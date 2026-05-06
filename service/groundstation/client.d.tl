@@ -3,45 +3,85 @@
 local types = require("groundstation.types")
 
 local record Client
+    -- Cancels or stops a contact with a specified contact ID based on its position in the contact lifecycle. For contacts that: Have yet to start, the contact will be cancelled. Have started but have yet to finish, the contact will be stopped.
     cancelContact: function(Client, types.CancelContactInput): types.CancelContactOutput, table
+    -- Creates a Config with the specified configData parameters. Only one type of configData can be specified.
     createConfig: function(Client, types.CreateConfigInput): types.CreateConfigOutput, table
+    -- Creates a DataflowEndpoint group containing the specified list of DataflowEndpoint objects. The name field in each endpoint is used in your mission profile DataflowEndpointConfig to specify which endpoints to use during a contact. When a contact uses multiple DataflowEndpointConfig objects, each Config must match a DataflowEndpoint in the same group.
     createDataflowEndpointGroup: function(Client, types.CreateDataflowEndpointGroupInput): types.CreateDataflowEndpointGroupOutput, table
+    -- Creates a DataflowEndpoint group containing the specified list of Ground Station Agent based endpoints. The name field in each endpoint is used in your mission profile DataflowEndpointConfig to specify which endpoints to use during a contact. When a contact uses multiple DataflowEndpointConfig objects, each Config must match a DataflowEndpoint in the same group.
     createDataflowEndpointGroupV2: function(Client, types.CreateDataflowEndpointGroupV2Input): types.CreateDataflowEndpointGroupV2Output, table
+    -- Create an ephemeris with your specified EphemerisData.
     createEphemeris: function(Client, types.CreateEphemerisInput): types.CreateEphemerisOutput, table
+    -- Creates a mission profile. dataflowEdges is a list of lists of strings. Each lower level list of strings has two elements: a from ARN and a to ARN.
     createMissionProfile: function(Client, types.CreateMissionProfileInput): types.CreateMissionProfileOutput, table
+    -- Deletes a Config.
     deleteConfig: function(Client, types.DeleteConfigInput): types.DeleteConfigOutput, table
+    -- Deletes a dataflow endpoint group.
     deleteDataflowEndpointGroup: function(Client, types.DeleteDataflowEndpointGroupInput): types.DeleteDataflowEndpointGroupOutput, table
+    -- Delete an ephemeris.
     deleteEphemeris: function(Client, types.DeleteEphemerisInput): types.DeleteEphemerisOutput, table
+    -- Deletes a mission profile.
     deleteMissionProfile: function(Client, types.DeleteMissionProfileInput): types.DeleteMissionProfileOutput, table
+    -- Describes an existing contact.
     describeContact: function(Client, types.DescribeContactInput): types.DescribeContactOutput, table
+    -- Describes a specific version of a contact.
     describeContactVersion: function(Client, types.DescribeContactVersionInput): types.DescribeContactVersionOutput, table
+    -- Retrieve information about an existing ephemeris.
     describeEphemeris: function(Client, types.DescribeEphemerisInput): types.DescribeEphemerisOutput, table
+    -- For use by AWS Ground Station Agent and shouldn't be called directly. Gets the latest configuration information for a registered agent.
     getAgentConfiguration: function(Client, types.GetAgentConfigurationInput): types.GetAgentConfigurationOutput, table
+    -- For use by AWS Ground Station Agent and shouldn't be called directly. Gets a presigned URL for uploading agent task response logs.
     getAgentTaskResponseUrl: function(Client, types.GetAgentTaskResponseUrlInput): types.GetAgentTaskResponseUrlOutput, table
+    -- Returns Config information. Only one Config response can be returned.
     getConfig: function(Client, types.GetConfigInput): types.GetConfigOutput, table
+    -- Returns the dataflow endpoint group.
     getDataflowEndpointGroup: function(Client, types.GetDataflowEndpointGroupInput): types.GetDataflowEndpointGroupOutput, table
+    -- Returns the number of reserved minutes used by account.
     getMinuteUsage: function(Client, types.GetMinuteUsageInput): types.GetMinuteUsageOutput, table
+    -- Returns a mission profile.
     getMissionProfile: function(Client, types.GetMissionProfileInput): types.GetMissionProfileOutput, table
+    -- Returns a satellite.
     getSatellite: function(Client, types.GetSatelliteInput): types.GetSatelliteOutput, table
+    -- Returns a list of antennas at a specified ground station.
     listAntennas: function(Client, types.ListAntennasInput): types.ListAntennasOutput, table
+    -- Returns a list of Config objects.
     listConfigs: function(Client, types.ListConfigsInput): types.ListConfigsOutput, table
+    -- Returns a list of contacts. If statusList contains AVAILABLE, the request must include groundStation, missionprofileArn, and satelliteArn.
     listContacts: function(Client, types.ListContactsInput): types.ListContactsOutput, table
+    -- Returns a list of versions for a specified contact.
     listContactVersions: function(Client, types.ListContactVersionsInput): types.ListContactVersionsOutput, table
+    -- Returns a list of DataflowEndpoint groups.
     listDataflowEndpointGroups: function(Client, types.ListDataflowEndpointGroupsInput): types.ListDataflowEndpointGroupsOutput, table
+    -- List your existing ephemerides.
     listEphemerides: function(Client, types.ListEphemeridesInput): types.ListEphemeridesOutput, table
+    -- Returns a list of reservations for a specified ground station.
     listGroundStationReservations: function(Client, types.ListGroundStationReservationsInput): types.ListGroundStationReservationsOutput, table
+    -- Returns a list of ground stations.
     listGroundStations: function(Client, types.ListGroundStationsInput): types.ListGroundStationsOutput, table
+    -- Returns a list of mission profiles.
     listMissionProfiles: function(Client, types.ListMissionProfilesInput): types.ListMissionProfilesOutput, table
+    -- Returns a list of satellites.
     listSatellites: function(Client, types.ListSatellitesInput): types.ListSatellitesOutput, table
+    -- Returns a list of tags for a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- For use by AWS Ground Station Agent and shouldn't be called directly. Registers a new agent with AWS Ground Station.
     registerAgent: function(Client, types.RegisterAgentInput): types.RegisterAgentOutput, table
+    -- Reserves a contact using specified parameters.
     reserveContact: function(Client, types.ReserveContactInput): types.ReserveContactOutput, table
+    -- Assigns a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deassigns a resource tag.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- For use by AWS Ground Station Agent and shouldn't be called directly. Update the status of the agent.
     updateAgentStatus: function(Client, types.UpdateAgentStatusInput): types.UpdateAgentStatusOutput, table
+    -- Updates the Config used when scheduling contacts. Updating a Config will not update the execution parameters for existing future contacts scheduled with this Config.
     updateConfig: function(Client, types.UpdateConfigInput): types.UpdateConfigOutput, table
+    -- Updates a specific contact.
     updateContact: function(Client, types.UpdateContactInput): types.UpdateContactOutput, table
+    -- Update an existing ephemeris.
     updateEphemeris: function(Client, types.UpdateEphemerisInput): types.UpdateEphemerisOutput, table
+    -- Updates a mission profile. Updating a mission profile will not update the execution parameters for existing future contacts.
     updateMissionProfile: function(Client, types.UpdateMissionProfileInput): types.UpdateMissionProfileOutput, table
 end
 

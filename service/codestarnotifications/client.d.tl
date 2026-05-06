@@ -3,18 +3,41 @@
 local types = require("codestarnotifications.types")
 
 local record Client
+    -- Creates a notification rule for a resource. The rule specifies the events you want
+    -- notifications about and the targets (such as Amazon Q Developer in chat applications topics or Amazon Q Developer in chat applications clients configured for Slack) where you want to receive
+    -- them.
     createNotificationRule: function(Client, types.CreateNotificationRuleInput): types.CreateNotificationRuleOutput, table
+    -- Deletes a notification rule for a resource.
     deleteNotificationRule: function(Client, types.DeleteNotificationRuleInput): types.DeleteNotificationRuleOutput, table
+    -- Deletes a specified target for notifications.
     deleteTarget: function(Client, types.DeleteTargetInput): types.DeleteTargetOutput, table
+    -- Returns information about a specified notification rule.
     describeNotificationRule: function(Client, types.DescribeNotificationRuleInput): types.DescribeNotificationRuleOutput, table
+    -- Returns information about the event types available for configuring notifications.
     listEventTypes: function(Client, types.ListEventTypesInput): types.ListEventTypesOutput, table
+    -- Returns a list of the notification rules for an Amazon Web Services account.
     listNotificationRules: function(Client, types.ListNotificationRulesInput): types.ListNotificationRulesOutput, table
+    -- Returns a list of the tags associated with a notification rule.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of the notification rule targets for an Amazon Web Services account.
     listTargets: function(Client, types.ListTargetsInput): types.ListTargetsOutput, table
+    -- Creates an association between a notification rule and an Amazon Q Developer in chat applications topic or Amazon Q Developer in chat applications client so that the
+    -- associated target can receive notifications when the events described in the rule are
+    -- triggered.
     subscribe: function(Client, types.SubscribeInput): types.SubscribeOutput, table
+    -- Associates a set of provided tags with a notification rule.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes an association between a notification rule and an Amazon Q Developer in chat applications topic so that
+    -- subscribers to that topic stop receiving notifications when the events described in the
+    -- rule are triggered.
     unsubscribe: function(Client, types.UnsubscribeInput): types.UnsubscribeOutput, table
+    -- Removes the association between one or more provided tags and a notification
+    -- rule.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a notification rule for a resource. You can change the events that trigger the
+    -- notification rule, the status of the rule, and the targets that receive the
+    -- notifications.
+    -- To add or remove tags for a notification rule, you must use TagResource and UntagResource.
     updateNotificationRule: function(Client, types.UpdateNotificationRuleInput): types.UpdateNotificationRuleOutput, table
 end
 

@@ -3,112 +3,219 @@
 local types = require("omics.types")
 
 local record Client
+    -- Stops a multipart read set upload into a sequence store and returns a response with no body if the operation is successful. To confirm that a multipart read set upload has been stopped, use the ListMultipartReadSetUploads API operation to view all active multipart read set uploads.
     abortMultipartReadSetUpload: function(Client, types.AbortMultipartReadSetUploadInput): types.AbortMultipartReadSetUploadOutput, table
+    -- Accept a resource share request.
     acceptShare: function(Client, types.AcceptShareInput): types.AcceptShareOutput, table
+    -- Deletes one or more read sets. If the operation is successful, it returns a response with no body. If there is an error with deleting one of the read sets, the operation returns an error list. If the operation successfully deletes only a subset of files, it will return an error list for the remaining files that fail to be deleted. There is a limit of 100 read sets that can be deleted in each BatchDeleteReadSet API call.
     batchDeleteReadSet: function(Client, types.BatchDeleteReadSetInput): types.BatchDeleteReadSetOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Cancels an annotation import job.
     cancelAnnotationImportJob: function(Client, types.CancelAnnotationImportJobInput): types.CancelAnnotationImportJobOutput, table
+    -- Cancels a run using its ID and returns a response with no body if the operation is successful. To confirm that the run has been cancelled, use the ListRuns API operation to check that it is no longer listed.
     cancelRun: function(Client, types.CancelRunInput): types.CancelRunOutput, table
+    -- Cancels all runs within a specified batch. This operation prevents not-yet-submitted runs from starting and submits CancelRun requests for runs that have already started. Cancel is only allowed on batches in PENDING, SUBMITTING, or INPROGRESS state. Cancel operations are non-atomic and may be partially successful. Use GetBatch to review successfulCancelSubmissionCount and failedCancelSubmissionCount in the submissionSummary. Only one cancel or delete operation per batch is allowed at a time.
     cancelRunBatch: function(Client, types.CancelRunBatchInput): types.CancelRunBatchOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Cancels a variant import job.
     cancelVariantImportJob: function(Client, types.CancelVariantImportJobInput): types.CancelVariantImportJobOutput, table
+    -- Completes a multipart read set upload into a sequence store after you have initiated the upload process with CreateMultipartReadSetUpload and uploaded all read set parts using UploadReadSetPart. You must specify the parts you uploaded using the parts parameter. If the operation is successful, it returns the read set ID(s) of the uploaded read set(s). For more information, see Direct upload to a sequence store in the Amazon Web Services HealthOmics User Guide.
     completeMultipartReadSetUpload: function(Client, types.CompleteMultipartReadSetUploadInput): types.CompleteMultipartReadSetUploadOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Creates an annotation store.
     createAnnotationStore: function(Client, types.CreateAnnotationStoreInput): types.CreateAnnotationStoreOutput, table
+    -- Creates a new version of an annotation store.
     createAnnotationStoreVersion: function(Client, types.CreateAnnotationStoreVersionInput): types.CreateAnnotationStoreVersionOutput, table
+    -- Create a new configuration.
     createConfiguration: function(Client, types.CreateConfigurationInput): types.CreateConfigurationOutput, table
+    -- Initiates a multipart read set upload for uploading partitioned source files into a sequence store. You can directly import source files from an EC2 instance and other local compute, or from an S3 bucket. To separate these source files into parts, use the split operation. Each part cannot be larger than 100 MB. If the operation is successful, it provides an uploadId which is required by the UploadReadSetPart API operation to upload parts into a sequence store. To continue uploading a multipart read set into your sequence store, you must use the UploadReadSetPart API operation to upload each part individually following the steps below: Specify the uploadId obtained from the previous call to CreateMultipartReadSetUpload. Upload parts for that uploadId. When you have finished uploading parts, use the CompleteMultipartReadSetUpload API to complete the multipart read set upload and to retrieve the final read set IDs in the response. To learn more about creating parts and the split operation, see Direct upload to a sequence store in the Amazon Web Services HealthOmics User Guide.
     createMultipartReadSetUpload: function(Client, types.CreateMultipartReadSetUploadInput): types.CreateMultipartReadSetUploadOutput, table
+    -- Creates a reference store and returns metadata in JSON format. Reference stores are used to store reference genomes in FASTA format. A reference store is created when the first reference genome is imported. To import additional reference genomes from an Amazon S3 bucket, use the StartReferenceImportJob API operation. For more information, see Creating a HealthOmics reference store in the Amazon Web Services HealthOmics User Guide.
     createReferenceStore: function(Client, types.CreateReferenceStoreInput): types.CreateReferenceStoreOutput, table
+    -- Creates a run cache to store and reference task outputs from completed private runs. Specify an Amazon S3 location where Amazon Web Services HealthOmics saves the cached data. This data must be immediately accessible and not in an archived state. You can save intermediate task files to a run cache if they are declared as task outputs in the workflow definition file. For more information, see Call caching and Creating a run cache in the Amazon Web Services HealthOmics User Guide.
     createRunCache: function(Client, types.CreateRunCacheInput): types.CreateRunCacheOutput, table
+    -- Creates a run group to limit the compute resources for the runs that are added to the group. Returns an ARN, ID, and tags for the run group.
     createRunGroup: function(Client, types.CreateRunGroupInput): types.CreateRunGroupOutput, table
+    -- Creates a sequence store and returns its metadata. Sequence stores are used to store sequence data files called read sets that are saved in FASTQ, BAM, uBAM, or CRAM formats. For aligned formats (BAM and CRAM), a sequence store can only use one reference genome. For unaligned formats (FASTQ and uBAM), a reference genome is not required. You can create multiple sequence stores per region per account. The following are optional parameters you can specify for your sequence store: Use s3AccessConfig to configure your sequence store with S3 access logs (recommended). Use sseConfig to define your own KMS key for encryption. Use eTagAlgorithmFamily to define which algorithm to use for the HealthOmics eTag on objects. Use fallbackLocation to define a backup location for storing files that have failed a direct upload. Use propagatedSetLevelTags to configure tags that propagate to all objects in your store. For more information, see Creating a HealthOmics sequence store in the Amazon Web Services HealthOmics User Guide.
     createSequenceStore: function(Client, types.CreateSequenceStoreInput): types.CreateSequenceStoreOutput, table
+    -- Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner). The following resources support cross-account sharing: HealthOmics variant stores HealthOmics annotation stores Private workflows
     createShare: function(Client, types.CreateShareInput): types.CreateShareOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Creates a variant store.
     createVariantStore: function(Client, types.CreateVariantStoreInput): types.CreateVariantStoreOutput, table
+    -- Creates a private workflow. Before you create a private workflow, you must create and configure these required resources: Workflow definition file: A workflow definition file written in WDL, Nextflow, or CWL. The workflow definition specifies the inputs and outputs for runs that use the workflow. It also includes specifications for the runs and run tasks for your workflow, including compute and memory requirements. The workflow definition file must be in .zip format. For more information, see Workflow definition files in Amazon Web Services HealthOmics. You can use Amazon Q CLI to build and validate your workflow definition files in WDL, Nextflow, and CWL. For more information, see Example prompts for Amazon Q CLI and the Amazon Web Services HealthOmics Agentic generative AI tutorial on GitHub. (Optional) Parameter template file: A parameter template file written in JSON. Create the file to define the run parameters, or Amazon Web Services HealthOmics generates the parameter template for you. For more information, see Parameter template files for HealthOmics workflows. ECR container images: Create container images for the workflow in a private ECR repository, or synchronize images from a supported upstream registry with your Amazon ECR private repository. (Optional) Sentieon licenses: Request a Sentieon license to use the Sentieon software in private workflows. For more information, see Creating or updating a private workflow in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    -- Creates a new workflow version for the workflow that you specify with the workflowId parameter. When you create a new version of a workflow, you need to specify the configuration for the new version. It doesn't inherit any configuration values from the workflow. Provide a version name that is unique for this workflow. You cannot change the name after HealthOmics creates the version. Don't include any personally identifiable information (PII) in the version name. Version names appear in the workflow version ARN. For more information, see Workflow versioning in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     createWorkflowVersion: function(Client, types.CreateWorkflowVersionInput): types.CreateWorkflowVersionOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Deletes an annotation store.
     deleteAnnotationStore: function(Client, types.DeleteAnnotationStoreInput): types.DeleteAnnotationStoreOutput, table
+    -- Deletes one or multiple versions of an annotation store.
     deleteAnnotationStoreVersions: function(Client, types.DeleteAnnotationStoreVersionsInput): types.DeleteAnnotationStoreVersionsOutput, table
+    -- Deletes a run batch resource and its associated metadata. This operation does not delete the individual workflow runs. To delete the runs, call DeleteRunBatch before calling DeleteBatch. DeleteBatch requires the batch to be in a terminal state: PROCESSED, FAILED, CANCELLED, or RUNS_DELETED. After DeleteBatch completes, the batch metadata is no longer accessible. You cannot call GetBatch, ListRunsInBatch, DeleteRunBatch, or CancelRunBatch on a deleted batch.
     deleteBatch: function(Client, types.DeleteBatchInput): types.DeleteBatchOutput, table
+    -- Delete an existing configuration.
     deleteConfiguration: function(Client, types.DeleteConfigurationInput): types.DeleteConfigurationOutput, table
+    -- Deletes a reference genome and returns a response with no body if the operation is successful. The read set associated with the reference genome must first be deleted before deleting the reference genome. After the reference genome is deleted, you can delete the reference store using the DeleteReferenceStore API operation. For more information, see Deleting HealthOmics reference and sequence stores in the Amazon Web Services HealthOmics User Guide.
     deleteReference: function(Client, types.DeleteReferenceInput): types.DeleteReferenceOutput, table
+    -- Deletes a reference store and returns a response with no body if the operation is successful. You can only delete a reference store when it does not contain any reference genomes. To empty a reference store, use DeleteReference. For more information about your workflow status, see Deleting HealthOmics reference and sequence stores in the Amazon Web Services HealthOmics User Guide.
     deleteReferenceStore: function(Client, types.DeleteReferenceStoreInput): types.DeleteReferenceStoreOutput, table
+    -- Deletes a run and returns a response with no body if the operation is successful. You can only delete a run that has reached a COMPLETED, FAILED, or CANCELLED stage. A completed run has delivered an output, or was cancelled and resulted in no output. When you delete a run, only the metadata associated with the run is deleted. The run outputs remain in Amazon S3 and logs remain in CloudWatch. To verify that the workflow is deleted: Use ListRuns to confirm the workflow no longer appears in the list. Use GetRun to verify the workflow cannot be found.
     deleteRun: function(Client, types.DeleteRunInput): types.DeleteRunOutput, table
+    -- Deletes the individual workflow runs within a batch. This operation is separate from DeleteBatch, which removes the batch metadata. Delete is only allowed on batches in PROCESSED or CANCELLED state. Delete operations are non-atomic and may be partially successful. Use GetBatch to review successfulDeleteSubmissionCount and failedDeleteSubmissionCount in the submissionSummary. Only one cancel or delete operation per batch is allowed at a time.
     deleteRunBatch: function(Client, types.DeleteRunBatchInput): types.DeleteRunBatchOutput, table
+    -- Deletes a run cache and returns a response with no body if the operation is successful. This action removes the cache metadata stored in the service account, but does not delete the data in Amazon S3. You can access the cache data in Amazon S3, for inspection or to troubleshoot issues. You can remove old cache data using standard S3 Delete operations. For more information, see Deleting a run cache in the Amazon Web Services HealthOmics User Guide.
     deleteRunCache: function(Client, types.DeleteRunCacheInput): types.DeleteRunCacheOutput, table
+    -- Deletes a run group and returns a response with no body if the operation is successful. To verify that the run group is deleted: Use ListRunGroups to confirm the workflow no longer appears in the list. Use GetRunGroup to verify the workflow cannot be found.
     deleteRunGroup: function(Client, types.DeleteRunGroupInput): types.DeleteRunGroupOutput, table
+    -- Deletes an access policy for the specified store.
     deleteS3AccessPolicy: function(Client, types.DeleteS3AccessPolicyInput): types.DeleteS3AccessPolicyOutput, table
+    -- Deletes a sequence store and returns a response with no body if the operation is successful. You can only delete a sequence store when it does not contain any read sets. Use the BatchDeleteReadSet API operation to ensure that all read sets in the sequence store are deleted. When a sequence store is deleted, all tags associated with the store are also deleted. For more information, see Deleting HealthOmics reference and sequence stores in the Amazon Web Services HealthOmics User Guide.
     deleteSequenceStore: function(Client, types.DeleteSequenceStoreInput): types.DeleteSequenceStoreOutput, table
+    -- Deletes a resource share. If you are the resource owner, the subscriber will no longer have access to the shared resource. If you are the subscriber, this operation deletes your access to the share.
     deleteShare: function(Client, types.DeleteShareInput): types.DeleteShareOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Deletes a variant store.
     deleteVariantStore: function(Client, types.DeleteVariantStoreInput): types.DeleteVariantStoreOutput, table
+    -- Deletes a workflow by specifying its ID. This operation returns a response with no body if the deletion is successful. To verify that the workflow is deleted: Use ListWorkflows to confirm the workflow no longer appears in the list. Use GetWorkflow to verify the workflow cannot be found.
     deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    -- Deletes a workflow version. Deleting a workflow version doesn't affect any ongoing runs that are using the workflow version. For more information, see Workflow versioning in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     deleteWorkflowVersion: function(Client, types.DeleteWorkflowVersionInput): types.DeleteWorkflowVersionOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Gets information about an annotation import job.
     getAnnotationImportJob: function(Client, types.GetAnnotationImportJobInput): types.GetAnnotationImportJobOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Gets information about an annotation store.
     getAnnotationStore: function(Client, types.GetAnnotationStoreInput): types.GetAnnotationStoreOutput, table
+    -- Retrieves the metadata for an annotation store version.
     getAnnotationStoreVersion: function(Client, types.GetAnnotationStoreVersionInput): types.GetAnnotationStoreVersionOutput, table
+    -- Retrieves details and current status for a specific run batch, including submission progress and run execution counts.
     getBatch: function(Client, types.GetBatchInput): types.GetBatchOutput, table
+    -- Retrieve configuration details for specified name.
     getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    -- Retrieves detailed information from parts of a read set and returns the read set in the same format that it was uploaded. You must have read sets uploaded to your sequence store in order to run this operation.
     getReadSet: function(Client, types.GetReadSetInput): types.GetReadSetOutput, table
+    -- Returns detailed information about the status of a read set activation job in JSON format.
     getReadSetActivationJob: function(Client, types.GetReadSetActivationJobInput): types.GetReadSetActivationJobOutput, table
+    -- Retrieves status information about a read set export job and returns the data in JSON format. Use this operation to actively monitor the progress of an export job.
     getReadSetExportJob: function(Client, types.GetReadSetExportJobInput): types.GetReadSetExportJobOutput, table
+    -- Gets detailed and status information about a read set import job and returns the data in JSON format.
     getReadSetImportJob: function(Client, types.GetReadSetImportJobInput): types.GetReadSetImportJobOutput, table
+    -- Retrieves the metadata for a read set from a sequence store in JSON format. This operation does not return tags. To retrieve the list of tags for a read set, use the ListTagsForResource API operation.
     getReadSetMetadata: function(Client, types.GetReadSetMetadataInput): types.GetReadSetMetadataOutput, table
+    -- Downloads parts of data from a reference genome and returns the reference file in the same format that it was uploaded. For more information, see Creating a HealthOmics reference store in the Amazon Web Services HealthOmics User Guide.
     getReference: function(Client, types.GetReferenceInput): types.GetReferenceOutput, table
+    -- Monitors the status of a reference import job. This operation can be called after calling the StartReferenceImportJob operation.
     getReferenceImportJob: function(Client, types.GetReferenceImportJobInput): types.GetReferenceImportJobOutput, table
+    -- Retrieves metadata for a reference genome. This operation returns the number of parts, part size, and MD5 of an entire file. This operation does not return tags. To retrieve the list of tags for a read set, use the ListTagsForResource API operation.
     getReferenceMetadata: function(Client, types.GetReferenceMetadataInput): types.GetReferenceMetadataOutput, table
+    -- Gets information about a reference store.
     getReferenceStore: function(Client, types.GetReferenceStoreInput): types.GetReferenceStoreOutput, table
+    -- Gets detailed information about a specific run using its ID. Amazon Web Services HealthOmics stores a configurable number of runs, as determined by service limits, that are available to the console and API. If GetRun does not return the requested run, you can find all run logs in the CloudWatch logs. For more information about viewing the run logs, see CloudWatch logs in the Amazon Web Services HealthOmics User Guide.
     getRun: function(Client, types.GetRunInput): types.GetRunOutput, table
+    -- Retrieves detailed information about the specified run cache using its ID. For more information, see Call caching for Amazon Web Services HealthOmics runs in the Amazon Web Services HealthOmics User Guide.
     getRunCache: function(Client, types.GetRunCacheInput): types.GetRunCacheOutput, table
+    -- Gets information about a run group and returns its metadata.
     getRunGroup: function(Client, types.GetRunGroupInput): types.GetRunGroupOutput, table
+    -- Gets detailed information about a run task using its ID.
     getRunTask: function(Client, types.GetRunTaskInput): types.GetRunTaskOutput, table
+    -- Retrieves details about an access policy on a given store.
     getS3AccessPolicy: function(Client, types.GetS3AccessPolicyInput): types.GetS3AccessPolicyOutput, table
+    -- Retrieves metadata for a sequence store using its ID and returns it in JSON format.
     getSequenceStore: function(Client, types.GetSequenceStoreInput): types.GetSequenceStoreOutput, table
+    -- Retrieves the metadata for the specified resource share.
     getShare: function(Client, types.GetShareInput): types.GetShareOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Gets information about a variant import job.
     getVariantImportJob: function(Client, types.GetVariantImportJobInput): types.GetVariantImportJobOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Gets information about a variant store.
     getVariantStore: function(Client, types.GetVariantStoreInput): types.GetVariantStoreOutput, table
+    -- Gets all information about a workflow using its ID. If a workflow is shared with you, you cannot export the workflow. For more information about your workflow status, see Verify the workflow status in the Amazon Web Services HealthOmics User Guide.
     getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    -- Gets information about a workflow version. For more information, see Workflow versioning in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     getWorkflowVersion: function(Client, types.GetWorkflowVersionInput): types.GetWorkflowVersionOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Retrieves a list of annotation import jobs.
     listAnnotationImportJobs: function(Client, types.ListAnnotationImportJobsInput): types.ListAnnotationImportJobsOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Retrieves a list of annotation stores.
     listAnnotationStores: function(Client, types.ListAnnotationStoresInput): types.ListAnnotationStoresOutput, table
+    -- Lists the versions of an annotation store.
     listAnnotationStoreVersions: function(Client, types.ListAnnotationStoreVersionsInput): types.ListAnnotationStoreVersionsOutput, table
+    -- Returns a list of run batches in your account, with optional filtering by status, name, or run group. Results are paginated. Only one filter per call is supported.
     listBatch: function(Client, types.ListBatchInput): types.ListBatchOutput, table
+    -- List all configurations for the account.
     listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    -- Lists in-progress multipart read set uploads for a sequence store and returns it in a JSON formatted output. Multipart read set uploads are initiated by the CreateMultipartReadSetUploads API operation. This operation returns a response with no body when the upload is complete.
     listMultipartReadSetUploads: function(Client, types.ListMultipartReadSetUploadsInput): types.ListMultipartReadSetUploadsOutput, table
+    -- Retrieves a list of read set activation jobs and returns the metadata in a JSON formatted output. To extract metadata from a read set activation job, use the GetReadSetActivationJob API operation.
     listReadSetActivationJobs: function(Client, types.ListReadSetActivationJobsInput): types.ListReadSetActivationJobsOutput, table
+    -- Retrieves a list of read set export jobs in a JSON formatted response. This API operation is used to check the status of a read set export job initiated by the StartReadSetExportJob API operation.
     listReadSetExportJobs: function(Client, types.ListReadSetExportJobsInput): types.ListReadSetExportJobsOutput, table
+    -- Retrieves a list of read set import jobs and returns the data in JSON format.
     listReadSetImportJobs: function(Client, types.ListReadSetImportJobsInput): types.ListReadSetImportJobsOutput, table
+    -- Retrieves a list of read sets from a sequence store ID and returns the metadata in JSON format.
     listReadSets: function(Client, types.ListReadSetsInput): types.ListReadSetsOutput, table
+    -- Lists all parts in a multipart read set upload for a sequence store and returns the metadata in a JSON formatted output.
     listReadSetUploadParts: function(Client, types.ListReadSetUploadPartsInput): types.ListReadSetUploadPartsOutput, table
+    -- Retrieves the metadata of one or more reference import jobs for a reference store.
     listReferenceImportJobs: function(Client, types.ListReferenceImportJobsInput): types.ListReferenceImportJobsOutput, table
+    -- Retrieves the metadata of one or more reference genomes in a reference store. For more information, see Creating a reference store in the Amazon Web Services HealthOmics User Guide.
     listReferences: function(Client, types.ListReferencesInput): types.ListReferencesOutput, table
+    -- Retrieves a list of reference stores linked to your account and returns their metadata in JSON format. For more information, see Creating a reference store in the Amazon Web Services HealthOmics User Guide.
     listReferenceStores: function(Client, types.ListReferenceStoresInput): types.ListReferenceStoresOutput, table
+    -- Retrieves a list of your run caches and the metadata for each cache.
     listRunCaches: function(Client, types.ListRunCachesInput): types.ListRunCachesOutput, table
+    -- Retrieves a list of all run groups and returns the metadata for each run group.
     listRunGroups: function(Client, types.ListRunGroupsInput): types.ListRunGroupsOutput, table
+    -- Retrieves a list of runs and returns each run's metadata and status. Amazon Web Services HealthOmics stores a configurable number of runs, as determined by service limits, that are available to the console and API. If the ListRuns response doesn't include specific runs that you expected, you can find all run logs in the CloudWatch logs. For more information about viewing the run logs, see CloudWatch logs in the Amazon Web Services HealthOmics User Guide.
     listRuns: function(Client, types.ListRunsInput): types.ListRunsOutput, table
+    -- Returns a paginated list of individual workflow runs within a specific batch. Use this operation to map each runSettingId to its HealthOmics-generated runId, and to check the submission status of each run. Only one filter per call is supported.
     listRunsInBatch: function(Client, types.ListRunsInBatchInput): types.ListRunsInBatchOutput, table
+    -- Returns a list of tasks and status information within their specified run. Use this operation to monitor runs and to identify which specific tasks have failed.
     listRunTasks: function(Client, types.ListRunTasksInput): types.ListRunTasksOutput, table
+    -- Retrieves a list of sequence stores and returns each sequence store's metadata. For more information, see Creating a HealthOmics sequence store in the Amazon Web Services HealthOmics User Guide.
     listSequenceStores: function(Client, types.ListSequenceStoresInput): types.ListSequenceStoresOutput, table
+    -- Retrieves the resource shares associated with an account. Use the filter parameter to retrieve a specific subset of the shares.
     listShares: function(Client, types.ListSharesInput): types.ListSharesOutput, table
+    -- Retrieves a list of tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Retrieves a list of variant import jobs.
     listVariantImportJobs: function(Client, types.ListVariantImportJobsInput): types.ListVariantImportJobsOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Retrieves a list of variant stores.
     listVariantStores: function(Client, types.ListVariantStoresInput): types.ListVariantStoresOutput, table
+    -- Retrieves a list of existing workflows. You can filter for specific workflows by their name and type. Using the type parameter, specify PRIVATE to retrieve a list of private workflows or specify READY2RUN for a list of all Ready2Run workflows. If you do not specify the type of workflow, this operation returns a list of existing workflows.
     listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    -- Lists the workflow versions for the specified workflow. For more information, see Workflow versioning in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     listWorkflowVersions: function(Client, types.ListWorkflowVersionsInput): types.ListWorkflowVersionsOutput, table
+    -- Adds an access policy to the specified store.
     putS3AccessPolicy: function(Client, types.PutS3AccessPolicyInput): types.PutS3AccessPolicyOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Starts an annotation import job.
     startAnnotationImportJob: function(Client, types.StartAnnotationImportJobInput): types.StartAnnotationImportJobOutput, table
+    -- Activates an archived read set and returns its metadata in a JSON formatted output. AWS HealthOmics automatically archives unused read sets after 30 days. To monitor the status of your read set activation job, use the GetReadSetActivationJob operation. To learn more, see Activating read sets in the Amazon Web Services HealthOmics User Guide.
     startReadSetActivationJob: function(Client, types.StartReadSetActivationJobInput): types.StartReadSetActivationJobOutput, table
+    -- Starts a read set export job. When the export job is finished, the read set is exported to an Amazon S3 bucket which can be retrieved using the GetReadSetExportJob API operation. To monitor the status of the export job, use the ListReadSetExportJobs API operation.
     startReadSetExportJob: function(Client, types.StartReadSetExportJobInput): types.StartReadSetExportJobOutput, table
+    -- Imports a read set from the sequence store. Read set import jobs support a maximum of 100 read sets of different types. Monitor the progress of your read set import job by calling the GetReadSetImportJob API operation.
     startReadSetImportJob: function(Client, types.StartReadSetImportJobInput): types.StartReadSetImportJobOutput, table
+    -- Imports a reference genome from Amazon S3 into a specified reference store. You can have multiple reference genomes in a reference store. You can only import reference genomes one at a time into each reference store. Monitor the status of your reference import job by using the GetReferenceImportJob API operation.
     startReferenceImportJob: function(Client, types.StartReferenceImportJobInput): types.StartReferenceImportJobOutput, table
+    -- Starts a new run and returns details about the run, or duplicates an existing run. A run is a single invocation of a workflow. If you provide request IDs, Amazon Web Services HealthOmics identifies duplicate requests and starts the run only once. Monitor the progress of the run by calling the GetRun API operation. To start a new run, the following inputs are required: A service role ARN (roleArn). The run's workflow ID (workflowId, not the uuid or runId). An Amazon S3 location (outputUri) where the run outputs will be saved. All required workflow parameters (parameter), which can include optional parameters from the parameter template. The run cannot include any parameters that are not defined in the parameter template. To see all possible parameters, use the GetRun API operation. For runs with a STATIC (default) storage type, specify the required storage capacity (in gibibytes). A storage capacity value is not required for runs that use DYNAMIC storage. StartRun can also duplicate an existing run using the run's default values. You can modify these default values and/or add other optional inputs. To duplicate a run, the following inputs are required: A service role ARN (roleArn). The ID of the run to duplicate (runId). An Amazon S3 location where the run outputs will be saved (outputUri). To learn more about the optional parameters for StartRun, see Starting a run in the Amazon Web Services HealthOmics User Guide. Use the retentionMode input to control how long the metadata for each run is stored in CloudWatch. There are two retention modes: Specify REMOVE to automatically remove the oldest runs when you reach the maximum service retention limit for runs. It is recommended that you use the REMOVE mode to initiate major run requests so that your runs do not fail when you reach the limit. The retentionMode is set to the RETAIN mode by default, which allows you to manually remove runs after reaching the maximum service retention limit. Under this setting, you cannot create additional runs until you remove the excess runs. To learn more about the retention modes, see Run retention mode in the Amazon Web Services HealthOmics User Guide. You can use Amazon Q CLI to analyze run logs and make performance optimization recommendations. To get started, see the Amazon Web Services HealthOmics MCP server on GitHub.
     startRun: function(Client, types.StartRunInput): types.StartRunOutput, table
+    -- Starts a batch of workflow runs. You can group up to 100,000 runs into a single batch that share a common configuration defined in defaultRunSetting. Per-run overrides can be provided either inline via inlineSettings (up to 100 runs) or via a JSON file stored in Amazon S3 via s3UriSettings (up to 100,000 runs). StartRunBatch validates common fields synchronously and returns immediately with a batch ID and status CREATING. The batch transitions to PENDING once initial setup completes. Runs are then submitted gradually and asynchronously at a rate governed by your StartRun throughput quota.
     startRunBatch: function(Client, types.StartRunBatchInput): types.StartRunBatchOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Starts a variant import job.
     startVariantImportJob: function(Client, types.StartVariantImportJobInput): types.StartVariantImportJobOutput, table
+    -- Tags a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Updates an annotation store.
     updateAnnotationStore: function(Client, types.UpdateAnnotationStoreInput): types.UpdateAnnotationStoreOutput, table
+    -- Updates the description of an annotation store version.
     updateAnnotationStoreVersion: function(Client, types.UpdateAnnotationStoreVersionInput): types.UpdateAnnotationStoreVersionOutput, table
+    -- Updates a run cache using its ID and returns a response with no body if the operation is successful. You can update the run cache description, name, or the default run cache behavior with CACHE_ON_FAILURE or CACHE_ALWAYS. To confirm that your run cache settings have been properly updated, use the GetRunCache API operation. For more information, see How call caching works in the Amazon Web Services HealthOmics User Guide.
     updateRunCache: function(Client, types.UpdateRunCacheInput): types.UpdateRunCacheOutput, table
+    -- Updates the settings of a run group and returns a response with no body if the operation is successful. You can update the following settings with UpdateRunGroup: Maximum number of CPUs Run time (measured in minutes) Number of GPUs Number of concurrent runs Group name To confirm that the settings have been successfully updated, use the ListRunGroups or GetRunGroup API operations to verify that the desired changes have been made.
     updateRunGroup: function(Client, types.UpdateRunGroupInput): types.UpdateRunGroupOutput, table
+    -- Update one or more parameters for the sequence store.
     updateSequenceStore: function(Client, types.UpdateSequenceStoreInput): types.UpdateSequenceStoreOutput, table
+    -- Amazon Web Services HealthOmics variant stores and annotation stores are no longer open to new customers. Existing customers can continue to use the service as normal. For more information, see Amazon Web Services HealthOmics variant store and annotation store availability change. Updates a variant store.
     updateVariantStore: function(Client, types.UpdateVariantStoreInput): types.UpdateVariantStoreOutput, table
+    -- Updates information about a workflow. You can update the following workflow information: Name Description Default storage type Default storage capacity (with workflow ID) This operation returns a response with no body if the operation is successful. You can check the workflow updates by calling the GetWorkflow API operation. For more information, see Update a private workflow in the Amazon Web Services HealthOmics User Guide.
     updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+    -- Updates information about the workflow version. For more information, see Workflow versioning in Amazon Web Services HealthOmics in the Amazon Web Services HealthOmics User Guide.
     updateWorkflowVersion: function(Client, types.UpdateWorkflowVersionInput): types.UpdateWorkflowVersionOutput, table
+    -- Uploads a specific part of a read set into a sequence store. When you a upload a read set part with a part number that already exists, the new part replaces the existing one. This operation returns a JSON formatted response containing a string identifier that is used to confirm that parts are being added to the intended upload. For more information, see Direct upload to a sequence store in the Amazon Web Services HealthOmics User Guide.
     uploadReadSetPart: function(Client, types.UploadReadSetPartInput): types.UploadReadSetPartOutput, table
 end
 

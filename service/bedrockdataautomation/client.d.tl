@@ -3,32 +3,59 @@
 local types = require("bedrockdataautomation.types")
 
 local record Client
+    -- Copies a Blueprint from one stage to another
     copyBlueprintStage: function(Client, types.CopyBlueprintStageInput): types.CopyBlueprintStageOutput, table
+    -- Creates an Amazon Bedrock Data Automation Blueprint
     createBlueprint: function(Client, types.CreateBlueprintInput): types.CreateBlueprintOutput, table
+    -- Creates a new version of an existing Amazon Bedrock Data Automation Blueprint
     createBlueprintVersion: function(Client, types.CreateBlueprintVersionInput): types.CreateBlueprintVersionOutput, table
+    -- Creates an Amazon Bedrock Data Automation Library
     createDataAutomationLibrary: function(Client, types.CreateDataAutomationLibraryInput): types.CreateDataAutomationLibraryOutput, table
+    -- Creates an Amazon Bedrock Data Automation Project
     createDataAutomationProject: function(Client, types.CreateDataAutomationProjectInput): types.CreateDataAutomationProjectOutput, table
+    -- Deletes an existing Amazon Bedrock Data Automation Blueprint
     deleteBlueprint: function(Client, types.DeleteBlueprintInput): types.DeleteBlueprintOutput, table
+    -- Deletes an existing Amazon Bedrock Data Automation Library
     deleteDataAutomationLibrary: function(Client, types.DeleteDataAutomationLibraryInput): types.DeleteDataAutomationLibraryOutput, table
+    -- Deletes an existing Amazon Bedrock Data Automation Project
     deleteDataAutomationProject: function(Client, types.DeleteDataAutomationProjectInput): types.DeleteDataAutomationProjectOutput, table
+    -- Gets an existing Amazon Bedrock Data Automation Blueprint
     getBlueprint: function(Client, types.GetBlueprintInput): types.GetBlueprintOutput, table
+    -- API used to get blueprint optimization status.
     getBlueprintOptimizationStatus: function(Client, types.GetBlueprintOptimizationStatusInput): types.GetBlueprintOptimizationStatusOutput, table
+    -- Gets an existing Amazon Bedrock Data Automation Library
     getDataAutomationLibrary: function(Client, types.GetDataAutomationLibraryInput): types.GetDataAutomationLibraryOutput, table
+    -- Gets an existing entity based on entity type from the library
     getDataAutomationLibraryEntity: function(Client, types.GetDataAutomationLibraryEntityInput): types.GetDataAutomationLibraryEntityOutput, table
+    -- API used to get status of data automation library ingestion job
     getDataAutomationLibraryIngestionJob: function(Client, types.GetDataAutomationLibraryIngestionJobInput): types.GetDataAutomationLibraryIngestionJobOutput, table
+    -- Gets an existing Amazon Bedrock Data Automation Project
     getDataAutomationProject: function(Client, types.GetDataAutomationProjectInput): types.GetDataAutomationProjectOutput, table
+    -- Invoke an async job to perform Blueprint Optimization
     invokeBlueprintOptimizationAsync: function(Client, types.InvokeBlueprintOptimizationAsyncInput): types.InvokeBlueprintOptimizationAsyncOutput, table
+    -- Async API: Invoke data automation library ingestion job
     invokeDataAutomationLibraryIngestionJob: function(Client, types.InvokeDataAutomationLibraryIngestionJobInput): types.InvokeDataAutomationLibraryIngestionJobOutput, table
+    -- Lists all existing Amazon Bedrock Data Automation Blueprints
     listBlueprints: function(Client, types.ListBlueprintsInput): types.ListBlueprintsOutput, table
+    -- Lists all existing Amazon Bedrock Data Automation Libraries
     listDataAutomationLibraries: function(Client, types.ListDataAutomationLibrariesInput): types.ListDataAutomationLibrariesOutput, table
+    -- Lists all stored entities in the library
     listDataAutomationLibraryEntities: function(Client, types.ListDataAutomationLibraryEntitiesInput): types.ListDataAutomationLibraryEntitiesOutput, table
+    -- Lists all data automation library ingestion jobs
     listDataAutomationLibraryIngestionJobs: function(Client, types.ListDataAutomationLibraryIngestionJobsInput): types.ListDataAutomationLibraryIngestionJobsOutput, table
+    -- Lists all existing Amazon Bedrock Data Automation Projects
     listDataAutomationProjects: function(Client, types.ListDataAutomationProjectsInput): types.ListDataAutomationProjectsOutput, table
+    -- List tags for an Amazon Bedrock Data Automation resource
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Tag an Amazon Bedrock Data Automation resource
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untag an Amazon Bedrock Data Automation resource
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing Amazon Bedrock Data Automation Blueprint
     updateBlueprint: function(Client, types.UpdateBlueprintInput): types.UpdateBlueprintOutput, table
+    -- Updates an existing Amazon Bedrock Data Automation Library
     updateDataAutomationLibrary: function(Client, types.UpdateDataAutomationLibraryInput): types.UpdateDataAutomationLibraryOutput, table
+    -- Updates an existing Amazon Bedrock Data Automation Project
     updateDataAutomationProject: function(Client, types.UpdateDataAutomationProjectInput): types.UpdateDataAutomationProjectOutput, table
 end
 

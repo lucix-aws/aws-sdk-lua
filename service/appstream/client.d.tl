@@ -3,94 +3,244 @@
 local types = require("appstream.types")
 
 local record Client
+    -- Associates the specified app block builder with the specified app block.
     associateAppBlockBuilderAppBlock: function(Client, types.AssociateAppBlockBuilderAppBlockInput): types.AssociateAppBlockBuilderAppBlockOutput, table
+    -- Associates the specified application with the specified fleet. This is only supported for Elastic fleets.
     associateApplicationFleet: function(Client, types.AssociateApplicationFleetInput): types.AssociateApplicationFleetOutput, table
+    -- Associates an application to entitle.
     associateApplicationToEntitlement: function(Client, types.AssociateApplicationToEntitlementInput): types.AssociateApplicationToEntitlementOutput, table
+    -- Associates the specified fleet with the specified stack.
     associateFleet: function(Client, types.AssociateFleetInput): types.AssociateFleetOutput, table
+    -- Associates license included application(s) with an existing image builder instance.
     associateSoftwareToImageBuilder: function(Client, types.AssociateSoftwareToImageBuilderInput): types.AssociateSoftwareToImageBuilderOutput, table
+    -- Associates the specified users with the specified stacks. Users in a user pool cannot be assigned to stacks with fleets that are joined to an Active Directory domain.
     batchAssociateUserStack: function(Client, types.BatchAssociateUserStackInput): types.BatchAssociateUserStackOutput, table
+    -- Disassociates the specified users from the specified stacks.
     batchDisassociateUserStack: function(Client, types.BatchDisassociateUserStackInput): types.BatchDisassociateUserStackOutput, table
+    -- Copies the image within the same region or to a new region within the same AWS account. Note that any tags you added to the image will not be copied.
     copyImage: function(Client, types.CopyImageInput): types.CopyImageOutput, table
+    -- Creates an app block.
+    -- App blocks are a WorkSpaces Applications resource that stores the details about the
+    -- virtual hard disk in an S3 bucket. It also stores the setup script with details about
+    -- how to mount the virtual hard disk. The virtual hard disk includes the application
+    -- binaries and other files necessary to launch your applications. Multiple applications
+    -- can be assigned to a single app block.
+    -- This is only supported for Elastic fleets.
     createAppBlock: function(Client, types.CreateAppBlockInput): types.CreateAppBlockOutput, table
+    -- Creates an app block builder.
     createAppBlockBuilder: function(Client, types.CreateAppBlockBuilderInput): types.CreateAppBlockBuilderOutput, table
+    -- Creates a URL to start a create app block builder streaming session.
     createAppBlockBuilderStreamingURL: function(Client, types.CreateAppBlockBuilderStreamingURLInput): types.CreateAppBlockBuilderStreamingURLOutput, table
+    -- Creates an application.
+    -- Applications are a WorkSpaces Applications resource that stores the details about how to
+    -- launch applications on Elastic fleet streaming instances. An application consists of the
+    -- launch details, icon, and display name. Applications are associated with an app block
+    -- that contains the application binaries and other files. The applications assigned to an
+    -- Elastic fleet are the applications users can launch.
+    -- This is only supported for Elastic fleets.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates a Directory Config object in WorkSpaces Applications. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
     createDirectoryConfig: function(Client, types.CreateDirectoryConfigInput): types.CreateDirectoryConfigOutput, table
+    -- Creates a new entitlement. Entitlements control access to specific applications within
+    -- a stack, based on user attributes. Entitlements apply to SAML 2.0 federated user
+    -- identities. WorkSpaces Applications user pool and streaming URL users are entitled to all
+    -- applications in a stack. Entitlements don't apply to the desktop stream view
+    -- application, or to applications managed by a dynamic app provider using the Dynamic
+    -- Application Framework.
     createEntitlement: function(Client, types.CreateEntitlementInput): types.CreateEntitlementOutput, table
+    -- Creates a task to export a WorkSpaces Applications image to an EC2 AMI. This allows you to use your customized WorkSpaces Applications images with other AWS services or for backup purposes.
     createExportImageTask: function(Client, types.CreateExportImageTaskInput): types.CreateExportImageTaskOutput, table
+    -- Creates a fleet. A fleet consists of streaming instances that your users access for their applications and desktops.
     createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    -- Creates an image builder. An image builder is a virtual machine that is used to create an image.
+    -- The initial state of the builder is PENDING. When it is ready, the state is RUNNING.
     createImageBuilder: function(Client, types.CreateImageBuilderInput): types.CreateImageBuilderOutput, table
+    -- Creates a URL to start an image builder streaming session.
     createImageBuilderStreamingURL: function(Client, types.CreateImageBuilderStreamingURLInput): types.CreateImageBuilderStreamingURLOutput, table
+    -- Creates a custom WorkSpaces Applications image by importing an EC2 AMI. This allows you to use your own customized AMI to create WorkSpaces Applications images that support additional instance types beyond the standard stream.* instances.
     createImportedImage: function(Client, types.CreateImportedImageInput): types.CreateImportedImageOutput, table
+    -- Creates a stack to start streaming applications to users. A stack consists of an associated fleet, user access policies, and storage configurations.
     createStack: function(Client, types.CreateStackInput): types.CreateStackOutput, table
+    -- Creates a temporary URL to start an WorkSpaces Applications streaming session for the specified user. A streaming URL enables application streaming to be tested without user setup.
     createStreamingURL: function(Client, types.CreateStreamingURLInput): types.CreateStreamingURLOutput, table
+    -- Creates custom branding that customizes the appearance of the streaming application catalog page.
     createThemeForStack: function(Client, types.CreateThemeForStackInput): types.CreateThemeForStackOutput, table
+    -- Creates a new image with the latest Windows operating system updates, driver updates, and WorkSpaces Applications agent software.
+    -- For more information, see the "Update an Image by Using
+    -- Managed WorkSpaces Applications Image Updates" section in Administer Your WorkSpaces Applications Images, in the Amazon WorkSpaces Applications Administration Guide.
     createUpdatedImage: function(Client, types.CreateUpdatedImageInput): types.CreateUpdatedImageOutput, table
+    -- Creates a usage report subscription. Usage reports are generated daily.
     createUsageReportSubscription: function(Client, types.CreateUsageReportSubscriptionInput): types.CreateUsageReportSubscriptionOutput, table
+    -- Creates a new user in the user pool.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Deletes an app block.
     deleteAppBlock: function(Client, types.DeleteAppBlockInput): types.DeleteAppBlockOutput, table
+    -- Deletes an app block builder.
+    -- An app block builder can only be deleted when it has no association with an app
+    -- block.
     deleteAppBlockBuilder: function(Client, types.DeleteAppBlockBuilderInput): types.DeleteAppBlockBuilderOutput, table
+    -- Deletes an application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes the specified Directory Config object from WorkSpaces Applications. This object includes the information required to join streaming instances to an Active Directory domain.
     deleteDirectoryConfig: function(Client, types.DeleteDirectoryConfigInput): types.DeleteDirectoryConfigOutput, table
+    -- Deletes the specified entitlement.
     deleteEntitlement: function(Client, types.DeleteEntitlementInput): types.DeleteEntitlementOutput, table
+    -- Deletes the specified fleet.
     deleteFleet: function(Client, types.DeleteFleetInput): types.DeleteFleetOutput, table
+    -- Deletes the specified image. You cannot delete an image when it is in use.
+    -- After you delete an image, you cannot provision new capacity using the image.
     deleteImage: function(Client, types.DeleteImageInput): types.DeleteImageOutput, table
+    -- Deletes the specified image builder and releases the capacity.
     deleteImageBuilder: function(Client, types.DeleteImageBuilderInput): types.DeleteImageBuilderOutput, table
+    -- Deletes permissions for the specified private image. After you delete permissions for an image, AWS accounts to which you previously granted these permissions can no longer use the image.
     deleteImagePermissions: function(Client, types.DeleteImagePermissionsInput): types.DeleteImagePermissionsOutput, table
+    -- Deletes the specified stack. After the stack is deleted, the application streaming environment provided by the stack is no longer available to users. Also, any reservations made for application streaming sessions for the stack are released.
     deleteStack: function(Client, types.DeleteStackInput): types.DeleteStackOutput, table
+    -- Deletes custom branding that customizes the appearance of the streaming application catalog page.
     deleteThemeForStack: function(Client, types.DeleteThemeForStackInput): types.DeleteThemeForStackOutput, table
+    -- Disables usage report generation.
     deleteUsageReportSubscription: function(Client, types.DeleteUsageReportSubscriptionInput): types.DeleteUsageReportSubscriptionOutput, table
+    -- Deletes a user from the user pool.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Retrieves a list that describes one or more app block builder associations.
     describeAppBlockBuilderAppBlockAssociations: function(Client, types.DescribeAppBlockBuilderAppBlockAssociationsInput): types.DescribeAppBlockBuilderAppBlockAssociationsOutput, table
+    -- Retrieves a list that describes one or more app block builders.
     describeAppBlockBuilders: function(Client, types.DescribeAppBlockBuildersInput): types.DescribeAppBlockBuildersOutput, table
+    -- Retrieves a list that describes one or more app blocks.
     describeAppBlocks: function(Client, types.DescribeAppBlocksInput): types.DescribeAppBlocksOutput, table
+    -- Retrieves a list that describes one or more application fleet associations. Either ApplicationArn or FleetName must be specified.
     describeApplicationFleetAssociations: function(Client, types.DescribeApplicationFleetAssociationsInput): types.DescribeApplicationFleetAssociationsOutput, table
+    -- Retrieves a list that describes one or more applications.
     describeApplications: function(Client, types.DescribeApplicationsInput): types.DescribeApplicationsOutput, table
+    -- Retrieves license included application usage information.
     describeAppLicenseUsage: function(Client, types.DescribeAppLicenseUsageInput): types.DescribeAppLicenseUsageOutput, table
+    -- Retrieves a list that describes one or more specified Directory Config objects for WorkSpaces Applications, if the names for these objects are provided. Otherwise, all Directory Config objects in the account are described. These objects include the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
+    -- Although the response syntax in this topic includes the account password, this password is not returned in the actual response.
     describeDirectoryConfigs: function(Client, types.DescribeDirectoryConfigsInput): types.DescribeDirectoryConfigsOutput, table
+    -- Retrieves a list that describes one of more entitlements.
     describeEntitlements: function(Client, types.DescribeEntitlementsInput): types.DescribeEntitlementsOutput, table
+    -- Retrieves a list that describes one or more specified fleets, if the fleet names are provided. Otherwise, all fleets in the account are described.
     describeFleets: function(Client, types.DescribeFleetsInput): types.DescribeFleetsOutput, table
+    -- Retrieves a list that describes one or more specified image builders, if the image builder names are provided. Otherwise, all image builders in the account are described.
     describeImageBuilders: function(Client, types.DescribeImageBuildersInput): types.DescribeImageBuildersOutput, table
+    -- Retrieves a list that describes the permissions for shared AWS account IDs on a private image that you own.
     describeImagePermissions: function(Client, types.DescribeImagePermissionsInput): types.DescribeImagePermissionsOutput, table
+    -- Retrieves a list that describes one or more specified images, if the image names or image ARNs are provided. Otherwise, all images in the account are described.
     describeImages: function(Client, types.DescribeImagesInput): types.DescribeImagesOutput, table
+    -- Retrieves a list that describes the streaming sessions for a specified stack and fleet. If a UserId is provided for the stack and fleet,
+    -- only streaming sessions for that user are described. If an authentication type is not provided,
+    -- the default is to authenticate users using a streaming URL.
     describeSessions: function(Client, types.DescribeSessionsInput): types.DescribeSessionsOutput, table
+    -- Retrieves license included application associations for a specified resource.
     describeSoftwareAssociations: function(Client, types.DescribeSoftwareAssociationsInput): types.DescribeSoftwareAssociationsOutput, table
+    -- Retrieves a list that describes one or more specified stacks, if the stack names are provided. Otherwise, all stacks in the account are described.
     describeStacks: function(Client, types.DescribeStacksInput): types.DescribeStacksOutput, table
+    -- Retrieves a list that describes the theme for a specified stack. A theme is custom branding that customizes the appearance of the streaming application catalog page.
     describeThemeForStack: function(Client, types.DescribeThemeForStackInput): types.DescribeThemeForStackOutput, table
+    -- Retrieves a list that describes one or more usage report subscriptions.
     describeUsageReportSubscriptions: function(Client, types.DescribeUsageReportSubscriptionsInput): types.DescribeUsageReportSubscriptionsOutput, table
+    -- Retrieves a list that describes one or more specified users in the user pool.
     describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    -- Retrieves a list that describes the UserStackAssociation objects. You must specify either or both of the following:
+    -- The stack name
+    -- The user name (email address of the user associated with the stack) and the authentication type for the user
     describeUserStackAssociations: function(Client, types.DescribeUserStackAssociationsInput): types.DescribeUserStackAssociationsOutput, table
+    -- Disables the specified user in the user pool. Users can't sign in to WorkSpaces Applications until they are re-enabled. This action does not delete the user.
     disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    -- Disassociates a specified app block builder from a specified app block.
     disassociateAppBlockBuilderAppBlock: function(Client, types.DisassociateAppBlockBuilderAppBlockInput): types.DisassociateAppBlockBuilderAppBlockOutput, table
+    -- Disassociates the specified application from the fleet.
     disassociateApplicationFleet: function(Client, types.DisassociateApplicationFleetInput): types.DisassociateApplicationFleetOutput, table
+    -- Deletes the specified application from the specified entitlement.
     disassociateApplicationFromEntitlement: function(Client, types.DisassociateApplicationFromEntitlementInput): types.DisassociateApplicationFromEntitlementOutput, table
+    -- Disassociates the specified fleet from the specified stack.
     disassociateFleet: function(Client, types.DisassociateFleetInput): types.DisassociateFleetOutput, table
+    -- Removes license included application(s) association(s) from an image builder instance.
     disassociateSoftwareFromImageBuilder: function(Client, types.DisassociateSoftwareFromImageBuilderInput): types.DisassociateSoftwareFromImageBuilderOutput, table
+    -- Drains the instance hosting the specified streaming session. The instance stops accepting new sessions while existing sessions continue uninterrupted. Once all sessions end, the instance is reclaimed and replaced. This only applies to multi-session fleets.
     drainSessionInstance: function(Client, types.DrainSessionInstanceInput): types.DrainSessionInstanceOutput, table
+    -- Enables a user in the user pool. After being enabled, users can sign in to WorkSpaces Applications and open applications from the stacks to which they are assigned.
     enableUser: function(Client, types.EnableUserInput): types.EnableUserOutput, table
+    -- Immediately stops the specified streaming session.
     expireSession: function(Client, types.ExpireSessionInput): types.ExpireSessionOutput, table
+    -- Retrieves information about an export image task, including its current state, progress, and any error details.
     getExportImageTask: function(Client, types.GetExportImageTaskInput): types.GetExportImageTaskOutput, table
+    -- Retrieves the name of the fleet that is associated with the specified stack.
     listAssociatedFleets: function(Client, types.ListAssociatedFleetsInput): types.ListAssociatedFleetsOutput, table
+    -- Retrieves the name of the stack with which the specified fleet is associated.
     listAssociatedStacks: function(Client, types.ListAssociatedStacksInput): types.ListAssociatedStacksOutput, table
+    -- Retrieves a list of entitled applications.
     listEntitledApplications: function(Client, types.ListEntitledApplicationsInput): types.ListEntitledApplicationsOutput, table
+    -- Lists export image tasks, with optional filtering and pagination. Use this operation to monitor the status of multiple export operations.
     listExportImageTasks: function(Client, types.ListExportImageTasksInput): types.ListExportImageTasksOutput, table
+    -- Retrieves a list of all tags for the specified WorkSpaces Applications resource. You can tag WorkSpaces Applications image builders, images, fleets, and stacks.
+    -- For more information about tags, see Tagging Your Resources in the Amazon WorkSpaces Applications Administration Guide.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts an app block builder.
+    -- An app block builder can only be started when it's associated with an app
+    -- block.
+    -- Starting an app block builder starts a new instance, which is equivalent to an elastic
+    -- fleet instance with application builder assistance functionality.
     startAppBlockBuilder: function(Client, types.StartAppBlockBuilderInput): types.StartAppBlockBuilderOutput, table
+    -- Starts the specified fleet.
     startFleet: function(Client, types.StartFleetInput): types.StartFleetOutput, table
+    -- Starts the specified image builder.
     startImageBuilder: function(Client, types.StartImageBuilderInput): types.StartImageBuilderOutput, table
+    -- Initiates license included applications deployment to an image builder instance.
     startSoftwareDeploymentToImageBuilder: function(Client, types.StartSoftwareDeploymentToImageBuilderInput): types.StartSoftwareDeploymentToImageBuilderOutput, table
+    -- Stops an app block builder.
+    -- Stopping an app block builder terminates the instance, and the instance state is not
+    -- persisted.
     stopAppBlockBuilder: function(Client, types.StopAppBlockBuilderInput): types.StopAppBlockBuilderOutput, table
+    -- Stops the specified fleet.
     stopFleet: function(Client, types.StopFleetInput): types.StopFleetOutput, table
+    -- Stops the specified image builder.
     stopImageBuilder: function(Client, types.StopImageBuilderInput): types.StopImageBuilderOutput, table
+    -- Adds or overwrites one or more tags for the specified WorkSpaces Applications resource. You can tag WorkSpaces Applications image builders, images, fleets, and stacks.
+    -- Each tag consists of a key and an optional value. If a resource already has a tag with the same key,
+    -- this operation updates its value.
+    -- To list the current tags for your resources, use ListTagsForResource.
+    -- To disassociate tags from your resources, use UntagResource.
+    -- For more information about tags, see Tagging Your Resources in the Amazon WorkSpaces Applications Administration Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Disassociates one or more specified tags from the specified WorkSpaces Applications resource.
+    -- To list the current tags for your resources, use ListTagsForResource.
+    -- For more information about tags, see Tagging Your Resources in the Amazon WorkSpaces Applications Administration Guide.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an app block builder.
+    -- If the app block builder is in the STARTING or STOPPING
+    -- state, you can't update it. If the app block builder is in the RUNNING
+    -- state, you can only update the DisplayName and Description. If the app block builder is
+    -- in the STOPPED state, you can update any attribute except the Name.
     updateAppBlockBuilder: function(Client, types.UpdateAppBlockBuilderInput): types.UpdateAppBlockBuilderOutput, table
+    -- Updates the specified application.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Updates the specified Directory Config object in WorkSpaces Applications. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
     updateDirectoryConfig: function(Client, types.UpdateDirectoryConfigInput): types.UpdateDirectoryConfigOutput, table
+    -- Updates the specified entitlement.
     updateEntitlement: function(Client, types.UpdateEntitlementInput): types.UpdateEntitlementOutput, table
+    -- Updates the specified fleet.
+    -- If the fleet is in the STOPPED state, you can update any attribute except
+    -- the fleet name.
+    -- If the fleet is in the RUNNING state, you can update the following based
+    -- on the fleet type:
+    -- Always-On and On-Demand fleet types
+    -- You can update the DisplayName, ComputeCapacity,
+    -- ImageARN, ImageName,
+    -- IdleDisconnectTimeoutInSeconds, and
+    -- DisconnectTimeoutInSeconds attributes.
+    -- Elastic fleet type
+    -- You can update the DisplayName,
+    -- IdleDisconnectTimeoutInSeconds,
+    -- DisconnectTimeoutInSeconds, MaxConcurrentSessions, SessionScriptS3Location
+    -- and UsbDeviceFilterStrings attributes.
+    -- If the fleet is in the STARTING or STOPPED state, you can't update it.
     updateFleet: function(Client, types.UpdateFleetInput): types.UpdateFleetOutput, table
+    -- Adds or updates permissions for the specified private image.
     updateImagePermissions: function(Client, types.UpdateImagePermissionsInput): types.UpdateImagePermissionsOutput, table
+    -- Updates the specified fields for the specified stack.
     updateStack: function(Client, types.UpdateStackInput): types.UpdateStackOutput, table
+    -- Updates custom branding that customizes the appearance of the streaming application catalog page.
     updateThemeForStack: function(Client, types.UpdateThemeForStackInput): types.UpdateThemeForStackOutput, table
 end
 

@@ -3,75 +3,279 @@
 local types = require("athena.types")
 
 local record Client
+    -- Returns the details of a single named query or a list of up to 50 queries, which you
+    -- provide as an array of query ID strings. Requires you to have access to the workgroup in
+    -- which the queries were saved. Use ListNamedQueriesInput to get the
+    -- list of named query IDs in the specified workgroup. If information could not be
+    -- retrieved for a submitted query ID, information about the query ID submitted is listed
+    -- under UnprocessedNamedQueryId. Named queries differ from executed
+    -- queries. Use BatchGetQueryExecutionInput to get details about each
+    -- unique query execution, and ListQueryExecutionsInput to get a list of
+    -- query execution IDs.
     batchGetNamedQuery: function(Client, types.BatchGetNamedQueryInput): types.BatchGetNamedQueryOutput, table
+    -- Returns the details of a single prepared statement or a list of up to 256 prepared
+    -- statements for the array of prepared statement names that you provide. Requires you to
+    -- have access to the workgroup to which the prepared statements belong. If a prepared
+    -- statement cannot be retrieved for the name specified, the statement is listed in
+    -- UnprocessedPreparedStatementNames.
     batchGetPreparedStatement: function(Client, types.BatchGetPreparedStatementInput): types.BatchGetPreparedStatementOutput, table
+    -- Returns the details of a single query execution or a list of up to 50 query
+    -- executions, which you provide as an array of query execution ID strings. Requires you to
+    -- have access to the workgroup in which the queries ran. To get a list of query execution
+    -- IDs, use ListQueryExecutionsInput$WorkGroup. Query executions differ
+    -- from named (saved) queries. Use BatchGetNamedQueryInput to get details
+    -- about named queries.
     batchGetQueryExecution: function(Client, types.BatchGetQueryExecutionInput): types.BatchGetQueryExecutionOutput, table
+    -- Cancels the capacity reservation with the specified name. Cancelled reservations
+    -- remain in your account and will be deleted 45 days after cancellation. During the 45
+    -- days, you cannot re-purpose or reuse a reservation that has been cancelled, but you can
+    -- refer to its tags and view it for historical reference.
     cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput): types.CancelCapacityReservationOutput, table
+    -- Creates a capacity reservation with the specified name and number of requested data
+    -- processing units.
     createCapacityReservation: function(Client, types.CreateCapacityReservationInput): types.CreateCapacityReservationOutput, table
+    -- Creates (registers) a data catalog with the specified name and properties. Catalogs
+    -- created are visible to all users of the same Amazon Web Services account.
+    -- For a FEDERATED catalog, this API operation creates the following
+    -- resources.
+    -- CFN Stack Name with a maximum length of 128 characters and prefix
+    -- athenafederatedcatalog-CATALOG_NAME_SANITIZED with length 23
+    -- characters.
+    -- Lambda Function Name with a maximum length of 64 characters and prefix
+    -- athenafederatedcatalog_CATALOG_NAME_SANITIZED with length 23
+    -- characters.
+    -- Glue Connection Name with a maximum length of 255 characters and a prefix
+    -- athenafederatedcatalog_CATALOG_NAME_SANITIZED with length 23
+    -- characters.
     createDataCatalog: function(Client, types.CreateDataCatalogInput): types.CreateDataCatalogOutput, table
+    -- Creates a named query in the specified workgroup. Requires that you have access to the
+    -- workgroup.
     createNamedQuery: function(Client, types.CreateNamedQueryInput): types.CreateNamedQueryOutput, table
+    -- Creates an empty ipynb file in the specified Apache Spark enabled
+    -- workgroup. Throws an error if a file in the workgroup with the same name already
+    -- exists.
     createNotebook: function(Client, types.CreateNotebookInput): types.CreateNotebookOutput, table
+    -- Creates a prepared statement for use with SQL queries in Athena.
     createPreparedStatement: function(Client, types.CreatePreparedStatementInput): types.CreatePreparedStatementOutput, table
+    -- Gets an authentication token and the URL at which the notebook can be accessed. During
+    -- programmatic access, CreatePresignedNotebookUrl must be called every 10
+    -- minutes to refresh the authentication token. For information about granting programmatic
+    -- access, see Grant
+    -- programmatic access.
     createPresignedNotebookUrl: function(Client, types.CreatePresignedNotebookUrlInput): types.CreatePresignedNotebookUrlOutput, table
+    -- Creates a workgroup with the specified name. A workgroup can be an Apache Spark
+    -- enabled workgroup or an Athena SQL workgroup.
     createWorkGroup: function(Client, types.CreateWorkGroupInput): types.CreateWorkGroupOutput, table
+    -- Deletes a cancelled capacity reservation. A reservation must be cancelled before it
+    -- can be deleted. A deleted reservation is immediately removed from your account and can
+    -- no longer be referenced, including by its ARN. A deleted reservation cannot be called by
+    -- GetCapacityReservation, and deleted reservations do not appear in the
+    -- output of ListCapacityReservations.
     deleteCapacityReservation: function(Client, types.DeleteCapacityReservationInput): types.DeleteCapacityReservationOutput, table
+    -- Deletes a data catalog.
     deleteDataCatalog: function(Client, types.DeleteDataCatalogInput): types.DeleteDataCatalogOutput, table
+    -- Deletes the named query if you have access to the workgroup in which the query was
+    -- saved.
     deleteNamedQuery: function(Client, types.DeleteNamedQueryInput): types.DeleteNamedQueryOutput, table
+    -- Deletes the specified notebook.
     deleteNotebook: function(Client, types.DeleteNotebookInput): types.DeleteNotebookOutput, table
+    -- Deletes the prepared statement with the specified name from the specified
+    -- workgroup.
     deletePreparedStatement: function(Client, types.DeletePreparedStatementInput): types.DeletePreparedStatementOutput, table
+    -- Deletes the workgroup with the specified name. The primary workgroup cannot be
+    -- deleted.
     deleteWorkGroup: function(Client, types.DeleteWorkGroupInput): types.DeleteWorkGroupOutput, table
+    -- Exports the specified notebook and its metadata.
     exportNotebook: function(Client, types.ExportNotebookInput): types.ExportNotebookOutput, table
+    -- Describes a previously submitted calculation execution.
     getCalculationExecution: function(Client, types.GetCalculationExecutionInput): types.GetCalculationExecutionOutput, table
+    -- Retrieves the unencrypted code that was executed for the calculation.
     getCalculationExecutionCode: function(Client, types.GetCalculationExecutionCodeInput): types.GetCalculationExecutionCodeOutput, table
+    -- Gets the status of a current calculation.
     getCalculationExecutionStatus: function(Client, types.GetCalculationExecutionStatusInput): types.GetCalculationExecutionStatusOutput, table
+    -- Gets the capacity assignment configuration for a capacity reservation, if one
+    -- exists.
     getCapacityAssignmentConfiguration: function(Client, types.GetCapacityAssignmentConfigurationInput): types.GetCapacityAssignmentConfigurationOutput, table
+    -- Returns information about the capacity reservation with the specified name.
     getCapacityReservation: function(Client, types.GetCapacityReservationInput): types.GetCapacityReservationOutput, table
+    -- Returns a database object for the specified database and data catalog.
     getDatabase: function(Client, types.GetDatabaseInput): types.GetDatabaseOutput, table
+    -- Returns the specified data catalog.
     getDataCatalog: function(Client, types.GetDataCatalogInput): types.GetDataCatalogOutput, table
+    -- Returns information about a single query. Requires that you have access to the
+    -- workgroup in which the query was saved.
     getNamedQuery: function(Client, types.GetNamedQueryInput): types.GetNamedQueryOutput, table
+    -- Retrieves notebook metadata for the specified notebook ID.
     getNotebookMetadata: function(Client, types.GetNotebookMetadataInput): types.GetNotebookMetadataOutput, table
+    -- Retrieves the prepared statement with the specified name from the specified
+    -- workgroup.
     getPreparedStatement: function(Client, types.GetPreparedStatementInput): types.GetPreparedStatementOutput, table
+    -- Returns information about a single execution of a query if you have access to the
+    -- workgroup in which the query ran. Each time a query executes, information about the
+    -- query execution is saved with a unique ID.
     getQueryExecution: function(Client, types.GetQueryExecutionInput): types.GetQueryExecutionOutput, table
+    -- Streams the results of a single query execution specified by
+    -- QueryExecutionId from the Athena query results location in
+    -- Amazon S3. For more information, see Working with query results, recent queries, and
+    -- output files in the Amazon Athena User Guide.
+    -- This request does not execute the query but returns results. Use StartQueryExecution to run a query.
+    -- To stream query results successfully, the IAM principal with permission to call
+    -- GetQueryResults also must have permissions to the Amazon S3
+    -- GetObject action for the Athena query results location.
+    -- IAM principals with permission to the Amazon S3
+    -- GetObject action for the query results location are able to retrieve
+    -- query results from Amazon S3 even if permission to the
+    -- GetQueryResults action is denied. To restrict user or role access,
+    -- ensure that Amazon S3 permissions to the Athena query location
+    -- are denied.
     getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    -- Returns query execution runtime statistics related to a single execution of a query if
+    -- you have access to the workgroup in which the query ran. Statistics from the
+    -- Timeline section of the response object are available as soon as QueryExecutionStatus$State is in a SUCCEEDED or FAILED state. The
+    -- remaining non-timeline statistics in the response (like stage-level input and output row
+    -- count and data size) are updated asynchronously and may not be available immediately
+    -- after a query completes or, in some cases, may not be returned. The non-timeline
+    -- statistics are also not included when a query has row-level filters defined in Lake Formation.
     getQueryRuntimeStatistics: function(Client, types.GetQueryRuntimeStatisticsInput): types.GetQueryRuntimeStatisticsOutput, table
+    -- Gets the Live UI/Persistence UI for a session.
     getResourceDashboard: function(Client, types.GetResourceDashboardInput): types.GetResourceDashboardOutput, table
+    -- Gets the full details of a previously created session, including the session status
+    -- and configuration.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Gets a connection endpoint and authentication token for a given session Id.
     getSessionEndpoint: function(Client, types.GetSessionEndpointInput): types.GetSessionEndpointOutput, table
+    -- Gets the current status of a session.
     getSessionStatus: function(Client, types.GetSessionStatusInput): types.GetSessionStatusOutput, table
+    -- Returns table metadata for the specified catalog, database, and table.
     getTableMetadata: function(Client, types.GetTableMetadataInput): types.GetTableMetadataOutput, table
+    -- Returns information about the workgroup with the specified name.
     getWorkGroup: function(Client, types.GetWorkGroupInput): types.GetWorkGroupOutput, table
+    -- Imports a single ipynb file to a Spark enabled workgroup. To import the
+    -- notebook, the request must specify a value for either Payload or
+    -- NoteBookS3LocationUri. If neither is specified or both are specified,
+    -- an InvalidRequestException occurs. The maximum file size that can be
+    -- imported is 10 megabytes. If an ipynb file with the same name already
+    -- exists in the workgroup, throws an error.
     importNotebook: function(Client, types.ImportNotebookInput): types.ImportNotebookOutput, table
+    -- Returns the supported DPU sizes for the supported application runtimes (for example,
+    -- Athena notebook version 1).
     listApplicationDPUSizes: function(Client, types.ListApplicationDPUSizesInput): types.ListApplicationDPUSizesOutput, table
+    -- Lists the calculations that have been submitted to a session in descending order.
+    -- Newer calculations are listed first; older calculations are listed later.
     listCalculationExecutions: function(Client, types.ListCalculationExecutionsInput): types.ListCalculationExecutionsOutput, table
+    -- Lists the capacity reservations for the current account.
     listCapacityReservations: function(Client, types.ListCapacityReservationsInput): types.ListCapacityReservationsOutput, table
+    -- Lists the databases in the specified data catalog.
     listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    -- Lists the data catalogs in the current Amazon Web Services account.
+    -- In the Athena console, data catalogs are listed as "data sources" on
+    -- the Data sources page under the Data source name column.
     listDataCatalogs: function(Client, types.ListDataCatalogsInput): types.ListDataCatalogsOutput, table
+    -- Returns a list of engine versions that are available to choose from, including the
+    -- Auto option.
     listEngineVersions: function(Client, types.ListEngineVersionsInput): types.ListEngineVersionsOutput, table
+    -- Lists, in descending order, the executors that joined a session. Newer executors are
+    -- listed first; older executors are listed later. The result can be optionally filtered by
+    -- state.
     listExecutors: function(Client, types.ListExecutorsInput): types.ListExecutorsOutput, table
+    -- Provides a list of available query IDs only for queries saved in the specified
+    -- workgroup. Requires that you have access to the specified workgroup. If a workgroup is
+    -- not specified, lists the saved queries for the primary workgroup.
     listNamedQueries: function(Client, types.ListNamedQueriesInput): types.ListNamedQueriesOutput, table
+    -- Displays the notebook files for the specified workgroup in paginated format.
     listNotebookMetadata: function(Client, types.ListNotebookMetadataInput): types.ListNotebookMetadataOutput, table
+    -- Lists, in descending order, the sessions that have been created in a notebook that are
+    -- in an active state like CREATING, CREATED, IDLE
+    -- or BUSY. Newer sessions are listed first; older sessions are listed
+    -- later.
     listNotebookSessions: function(Client, types.ListNotebookSessionsInput): types.ListNotebookSessionsOutput, table
+    -- Lists the prepared statements in the specified workgroup.
     listPreparedStatements: function(Client, types.ListPreparedStatementsInput): types.ListPreparedStatementsOutput, table
+    -- Provides a list of available query execution IDs for the queries in the specified
+    -- workgroup. Athena keeps a query history for 45 days. If a workgroup is not
+    -- specified, returns a list of query execution IDs for the primary workgroup. Requires you
+    -- to have access to the workgroup in which the queries ran.
     listQueryExecutions: function(Client, types.ListQueryExecutionsInput): types.ListQueryExecutionsOutput, table
+    -- Lists the sessions in a workgroup that are in an active state like
+    -- CREATING, CREATED, IDLE, or
+    -- BUSY. Newer sessions are listed first; older sessions are listed
+    -- later.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Lists the metadata for the tables in the specified data catalog database.
     listTableMetadata: function(Client, types.ListTableMetadataInput): types.ListTableMetadataOutput, table
+    -- Lists the tags associated with an Athena resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists available workgroups for the account.
     listWorkGroups: function(Client, types.ListWorkGroupsInput): types.ListWorkGroupsOutput, table
+    -- Puts a new capacity assignment configuration for a specified capacity reservation. If
+    -- a capacity assignment configuration already exists for the capacity reservation,
+    -- replaces the existing capacity assignment configuration.
     putCapacityAssignmentConfiguration: function(Client, types.PutCapacityAssignmentConfigurationInput): types.PutCapacityAssignmentConfigurationOutput, table
+    -- Submits calculations for execution within a session. You can supply the code to run as
+    -- an inline code block within the request.
+    -- The request syntax requires the StartCalculationExecutionRequest$CodeBlock parameter or the CalculationConfiguration$CodeBlock parameter, but not both. Because
+    -- CalculationConfiguration$CodeBlock is deprecated, use the
+    -- StartCalculationExecutionRequest$CodeBlock parameter
+    -- instead.
     startCalculationExecution: function(Client, types.StartCalculationExecutionInput): types.StartCalculationExecutionOutput, table
+    -- Runs the SQL query statements contained in the Query. Requires you to
+    -- have access to the workgroup in which the query ran. Running queries against an external
+    -- catalog requires GetDataCatalog permission to the catalog. For code
+    -- samples using the Amazon Web Services SDK for Java, see Examples and
+    -- Code Samples in the Amazon Athena User
+    -- Guide.
     startQueryExecution: function(Client, types.StartQueryExecutionInput): types.StartQueryExecutionOutput, table
+    -- Creates a session for running calculations within a workgroup. The session is ready
+    -- when it reaches an IDLE state.
     startSession: function(Client, types.StartSessionInput): types.StartSessionOutput, table
+    -- Requests the cancellation of a calculation. A StopCalculationExecution
+    -- call on a calculation that is already in a terminal state (for example,
+    -- STOPPED, FAILED, or COMPLETED) succeeds but
+    -- has no effect.
+    -- Cancelling a calculation is done on a best effort basis. If a calculation cannot
+    -- be cancelled, you can be charged for its completion. If you are concerned about
+    -- being charged for a calculation that cannot be cancelled, consider terminating the
+    -- session in which the calculation is running.
     stopCalculationExecution: function(Client, types.StopCalculationExecutionInput): types.StopCalculationExecutionOutput, table
+    -- Stops a query execution. Requires you to have access to the workgroup in which the
+    -- query ran.
     stopQueryExecution: function(Client, types.StopQueryExecutionInput): types.StopQueryExecutionOutput, table
+    -- Adds one or more tags to an Athena resource. A tag is a label that you
+    -- assign to a resource. Each tag consists of a key and an optional value, both of which
+    -- you define. For example, you can use tags to categorize Athena workgroups,
+    -- data catalogs, or capacity reservations by purpose, owner, or environment. Use a
+    -- consistent set of tag keys to make it easier to search and filter the resources in your
+    -- account. For best practices, see Tagging
+    -- Best Practices. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and
+    -- tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and
+    -- numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys
+    -- and values are case-sensitive. Tag keys must be unique per resource. If you specify more
+    -- than one tag, separate them by commas.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Terminates an active session. A TerminateSession call on a session that
+    -- is already inactive (for example, in a FAILED, TERMINATED or
+    -- TERMINATING state) succeeds but has no effect. Calculations running in
+    -- the session when TerminateSession is called are forcefully stopped, but may
+    -- display as FAILED instead of STOPPED.
     terminateSession: function(Client, types.TerminateSessionInput): types.TerminateSessionOutput, table
+    -- Removes one or more tags from an Athena resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the number of requested data processing units for the capacity reservation
+    -- with the specified name.
     updateCapacityReservation: function(Client, types.UpdateCapacityReservationInput): types.UpdateCapacityReservationOutput, table
+    -- Updates the data catalog that has the specified name.
     updateDataCatalog: function(Client, types.UpdateDataCatalogInput): types.UpdateDataCatalogOutput, table
+    -- Updates a NamedQuery object. The database or workgroup cannot be
+    -- updated.
     updateNamedQuery: function(Client, types.UpdateNamedQueryInput): types.UpdateNamedQueryOutput, table
+    -- Updates the contents of a Spark notebook.
     updateNotebook: function(Client, types.UpdateNotebookInput): types.UpdateNotebookOutput, table
+    -- Updates the metadata for a notebook.
     updateNotebookMetadata: function(Client, types.UpdateNotebookMetadataInput): types.UpdateNotebookMetadataOutput, table
+    -- Updates a prepared statement.
     updatePreparedStatement: function(Client, types.UpdatePreparedStatementInput): types.UpdatePreparedStatementOutput, table
+    -- Updates the workgroup with the specified name. The workgroup's name cannot be changed.
+    -- Only ConfigurationUpdates can be specified.
     updateWorkGroup: function(Client, types.UpdateWorkGroupInput): types.UpdateWorkGroupOutput, table
 end
 

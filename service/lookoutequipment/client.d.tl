@@ -3,54 +3,143 @@
 local types = require("lookoutequipment.types")
 
 local record Client
+    -- Creates a container for a collection of data being ingested for analysis. The dataset
+    -- contains the metadata describing where the data is and what the data actually looks like.
+    -- For example, it contains the location of the data source, the data schema, and other
+    -- information. A dataset also contains any tags associated with the ingested data.
     createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    -- Creates a scheduled inference. Scheduling an inference is setting up a continuous
+    -- real-time inference plan to analyze new measurement data. When setting up the schedule, you
+    -- provide an S3 bucket location for the input data, assign it a delimiter between separate
+    -- entries in the data, set an offset delay if desired, and set the frequency of inferencing.
+    -- You must also provide an S3 bucket location for the output data.
     createInferenceScheduler: function(Client, types.CreateInferenceSchedulerInput): types.CreateInferenceSchedulerOutput, table
+    -- Creates a label for an event.
     createLabel: function(Client, types.CreateLabelInput): types.CreateLabelOutput, table
+    -- Creates a group of labels.
     createLabelGroup: function(Client, types.CreateLabelGroupInput): types.CreateLabelGroupOutput, table
+    -- Creates a machine learning model for data inference.
+    -- A machine-learning (ML) model is a mathematical model that finds patterns in your data.
+    -- In Amazon Lookout for Equipment, the model learns the patterns of normal behavior and detects abnormal
+    -- behavior that could be potential equipment failure (or maintenance events). The models are
+    -- made by analyzing normal data and abnormalities in machine behavior that have already
+    -- occurred.
+    -- Your model is trained using a portion of the data from your dataset and uses that data
+    -- to learn patterns of normal behavior and abnormal patterns that lead to equipment failure.
+    -- Another portion of the data is used to evaluate the model's accuracy.
     createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    -- Creates a retraining scheduler on the specified model.
     createRetrainingScheduler: function(Client, types.CreateRetrainingSchedulerInput): types.CreateRetrainingSchedulerOutput, table
+    -- Deletes a dataset and associated artifacts. The operation will check to see if any
+    -- inference scheduler or data ingestion job is currently using the dataset, and if there
+    -- isn't, the dataset, its metadata, and any associated data stored in S3 will be deleted.
+    -- This does not affect any models that used this dataset for training and evaluation, but
+    -- does prevent it from being used in the future.
     deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    -- Deletes an inference scheduler that has been set up. Prior inference results will not be
+    -- deleted.
     deleteInferenceScheduler: function(Client, types.DeleteInferenceSchedulerInput): types.DeleteInferenceSchedulerOutput, table
+    -- Deletes a label.
     deleteLabel: function(Client, types.DeleteLabelInput): types.DeleteLabelOutput, table
+    -- Deletes a group of labels.
     deleteLabelGroup: function(Client, types.DeleteLabelGroupInput): types.DeleteLabelGroupOutput, table
+    -- Deletes a machine learning model currently available for Amazon Lookout for Equipment. This will prevent it
+    -- from being used with an inference scheduler, even one that is already set up.
     deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    -- Deletes the resource policy attached to the resource.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes a retraining scheduler from a model. The retraining scheduler must be in the
+    -- STOPPED status.
     deleteRetrainingScheduler: function(Client, types.DeleteRetrainingSchedulerInput): types.DeleteRetrainingSchedulerOutput, table
+    -- Provides information on a specific data ingestion job such as creation time, dataset
+    -- ARN, and status.
     describeDataIngestionJob: function(Client, types.DescribeDataIngestionJobInput): types.DescribeDataIngestionJobOutput, table
+    -- Provides a JSON description of the data in each time series dataset, including names,
+    -- column names, and data types.
     describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    -- Specifies information about the inference scheduler being used, including name, model,
+    -- status, and associated metadata
     describeInferenceScheduler: function(Client, types.DescribeInferenceSchedulerInput): types.DescribeInferenceSchedulerOutput, table
+    -- Returns the name of the label.
     describeLabel: function(Client, types.DescribeLabelInput): types.DescribeLabelOutput, table
+    -- Returns information about the label group.
     describeLabelGroup: function(Client, types.DescribeLabelGroupInput): types.DescribeLabelGroupOutput, table
+    -- Provides a JSON containing the overall information about a specific machine learning
+    -- model, including model name and ARN, dataset, training and evaluation information, status,
+    -- and so on.
     describeModel: function(Client, types.DescribeModelInput): types.DescribeModelOutput, table
+    -- Retrieves information about a specific machine learning model version.
     describeModelVersion: function(Client, types.DescribeModelVersionInput): types.DescribeModelVersionOutput, table
+    -- Provides the details of a resource policy attached to a resource.
     describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    -- Provides a description of the retraining scheduler, including information such as the
+    -- model name and retraining parameters.
     describeRetrainingScheduler: function(Client, types.DescribeRetrainingSchedulerInput): types.DescribeRetrainingSchedulerOutput, table
+    -- Imports a dataset.
     importDataset: function(Client, types.ImportDatasetInput): types.ImportDatasetOutput, table
+    -- Imports a model that has been trained successfully.
     importModelVersion: function(Client, types.ImportModelVersionInput): types.ImportModelVersionOutput, table
+    -- Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location
+    -- of the input data, status, and so on.
     listDataIngestionJobs: function(Client, types.ListDataIngestionJobsInput): types.ListDataIngestionJobsOutput, table
+    -- Lists all datasets currently available in your account, filtering on the dataset name.
     listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    -- Lists all inference events that have been found for the specified inference scheduler.
     listInferenceEvents: function(Client, types.ListInferenceEventsInput): types.ListInferenceEventsOutput, table
+    -- Lists all inference executions that have been performed by the specified inference
+    -- scheduler.
     listInferenceExecutions: function(Client, types.ListInferenceExecutionsInput): types.ListInferenceExecutionsOutput, table
+    -- Retrieves a list of all inference schedulers currently available for your account.
     listInferenceSchedulers: function(Client, types.ListInferenceSchedulersInput): types.ListInferenceSchedulersOutput, table
+    -- Returns a list of the label groups.
     listLabelGroups: function(Client, types.ListLabelGroupsInput): types.ListLabelGroupsOutput, table
+    -- Provides a list of labels.
     listLabels: function(Client, types.ListLabelsInput): types.ListLabelsOutput, table
+    -- Generates a list of all models in the account, including model name and ARN, dataset,
+    -- and status.
     listModels: function(Client, types.ListModelsInput): types.ListModelsOutput, table
+    -- Generates a list of all model versions for a given model, including the model version,
+    -- model version ARN, and status. To list a subset of versions, use the
+    -- MaxModelVersion and MinModelVersion fields.
     listModelVersions: function(Client, types.ListModelVersionsInput): types.ListModelVersionsOutput, table
+    -- Lists all retraining schedulers in your account, filtering by model name prefix and
+    -- status.
     listRetrainingSchedulers: function(Client, types.ListRetrainingSchedulersInput): types.ListRetrainingSchedulersOutput, table
+    -- Lists statistics about the data collected for each of the sensors that have been
+    -- successfully ingested in the particular dataset. Can also be used to retreive Sensor
+    -- Statistics for a previous ingestion job.
     listSensorStatistics: function(Client, types.ListSensorStatisticsInput): types.ListSensorStatisticsOutput, table
+    -- Lists all the tags for a specified resource, including key and value.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates a resource control policy for a given resource.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Starts a data ingestion job. Amazon Lookout for Equipment returns the job status.
     startDataIngestionJob: function(Client, types.StartDataIngestionJobInput): types.StartDataIngestionJobOutput, table
+    -- Starts an inference scheduler.
     startInferenceScheduler: function(Client, types.StartInferenceSchedulerInput): types.StartInferenceSchedulerOutput, table
+    -- Starts a retraining scheduler.
     startRetrainingScheduler: function(Client, types.StartRetrainingSchedulerInput): types.StartRetrainingSchedulerOutput, table
+    -- Stops an inference scheduler.
     stopInferenceScheduler: function(Client, types.StopInferenceSchedulerInput): types.StopInferenceSchedulerOutput, table
+    -- Stops a retraining scheduler.
     stopRetrainingScheduler: function(Client, types.StopRetrainingSchedulerInput): types.StopRetrainingSchedulerOutput, table
+    -- Associates a given tag to a resource in your account. A tag is a key-value pair which
+    -- can be added to an Amazon Lookout for Equipment resource as metadata. Tags can be used for organizing your
+    -- resources as well as helping you to search and filter by tag. Multiple tags can be added to
+    -- a resource, either when you create it, or later. Up to 50 tags can be associated with each
+    -- resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a specific tag from a given resource. The tag is specified by its key.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Sets the active model version for a given machine learning model.
     updateActiveModelVersion: function(Client, types.UpdateActiveModelVersionInput): types.UpdateActiveModelVersionOutput, table
+    -- Updates an inference scheduler.
     updateInferenceScheduler: function(Client, types.UpdateInferenceSchedulerInput): types.UpdateInferenceSchedulerOutput, table
+    -- Updates the label group.
     updateLabelGroup: function(Client, types.UpdateLabelGroupInput): types.UpdateLabelGroupOutput, table
+    -- Updates a model in the account.
     updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    -- Updates a retraining scheduler.
     updateRetrainingScheduler: function(Client, types.UpdateRetrainingSchedulerInput): types.UpdateRetrainingSchedulerOutput, table
 end
 

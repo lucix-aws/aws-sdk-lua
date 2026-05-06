@@ -3,35 +3,65 @@
 local types = require("rolesanywhere.types")
 
 local record Client
+    -- Creates a profile, a list of the roles that Roles Anywhere service is trusted to assume. You use profiles to intersect permissions with IAM managed policies. Required permissions: rolesanywhere:CreateProfile.
     createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    -- Creates a trust anchor to establish trust between IAM Roles Anywhere and your certificate authority (CA). You can define a trust anchor as a reference to an Private Certificate Authority (Private CA) or by uploading a CA certificate. Your Amazon Web Services workloads can authenticate with the trust anchor using certificates issued by the CA in exchange for temporary Amazon Web Services credentials. Required permissions: rolesanywhere:CreateTrustAnchor.
     createTrustAnchor: function(Client, types.CreateTrustAnchorInput): types.CreateTrustAnchorOutput, table
+    -- Delete an entry from the attribute mapping rules enforced by a given profile.
     deleteAttributeMapping: function(Client, types.DeleteAttributeMappingInput): types.DeleteAttributeMappingOutput, table
+    -- Deletes a certificate revocation list (CRL). Required permissions: rolesanywhere:DeleteCrl.
     deleteCrl: function(Client, types.DeleteCrlInput): types.DeleteCrlOutput, table
+    -- Deletes a profile. Required permissions: rolesanywhere:DeleteProfile.
     deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    -- Deletes a trust anchor. Required permissions: rolesanywhere:DeleteTrustAnchor.
     deleteTrustAnchor: function(Client, types.DeleteTrustAnchorInput): types.DeleteTrustAnchorOutput, table
+    -- Disables a certificate revocation list (CRL). Required permissions: rolesanywhere:DisableCrl.
     disableCrl: function(Client, types.DisableCrlInput): types.DisableCrlOutput, table
+    -- Disables a profile. When disabled, temporary credential requests with this profile fail. Required permissions: rolesanywhere:DisableProfile.
     disableProfile: function(Client, types.DisableProfileInput): types.DisableProfileOutput, table
+    -- Disables a trust anchor. When disabled, temporary credential requests specifying this trust anchor are unauthorized. Required permissions: rolesanywhere:DisableTrustAnchor.
     disableTrustAnchor: function(Client, types.DisableTrustAnchorInput): types.DisableTrustAnchorOutput, table
+    -- Enables a certificate revocation list (CRL). When enabled, certificates stored in the CRL are unauthorized to receive session credentials. Required permissions: rolesanywhere:EnableCrl.
     enableCrl: function(Client, types.EnableCrlInput): types.EnableCrlOutput, table
+    -- Enables temporary credential requests for a profile. Required permissions: rolesanywhere:EnableProfile.
     enableProfile: function(Client, types.EnableProfileInput): types.EnableProfileOutput, table
+    -- Enables a trust anchor. When enabled, certificates in the trust anchor chain are authorized for trust validation. Required permissions: rolesanywhere:EnableTrustAnchor.
     enableTrustAnchor: function(Client, types.EnableTrustAnchorInput): types.EnableTrustAnchorOutput, table
+    -- Gets a certificate revocation list (CRL). Required permissions: rolesanywhere:GetCrl.
     getCrl: function(Client, types.GetCrlInput): types.GetCrlOutput, table
+    -- Gets a profile. Required permissions: rolesanywhere:GetProfile.
     getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    -- Gets a subject, which associates a certificate identity with authentication attempts. The subject stores auditing information such as the status of the last authentication attempt, the certificate data used in the attempt, and the last time the associated identity attempted authentication. Required permissions: rolesanywhere:GetSubject.
     getSubject: function(Client, types.GetSubjectInput): types.GetSubjectOutput, table
+    -- Gets a trust anchor. Required permissions: rolesanywhere:GetTrustAnchor.
     getTrustAnchor: function(Client, types.GetTrustAnchorInput): types.GetTrustAnchorOutput, table
+    -- Imports the certificate revocation list (CRL). A CRL is a list of certificates that have been revoked by the issuing certificate Authority (CA).In order to be properly imported, a CRL must be in PEM format. IAM Roles Anywhere validates against the CRL before issuing credentials. Required permissions: rolesanywhere:ImportCrl.
     importCrl: function(Client, types.ImportCrlInput): types.ImportCrlOutput, table
+    -- Lists all certificate revocation lists (CRL) in the authenticated account and Amazon Web Services Region. Required permissions: rolesanywhere:ListCrls.
     listCrls: function(Client, types.ListCrlsInput): types.ListCrlsOutput, table
+    -- Lists all profiles in the authenticated account and Amazon Web Services Region. Required permissions: rolesanywhere:ListProfiles.
     listProfiles: function(Client, types.ListProfilesInput): types.ListProfilesOutput, table
+    -- Lists the subjects in the authenticated account and Amazon Web Services Region. Required permissions: rolesanywhere:ListSubjects.
     listSubjects: function(Client, types.ListSubjectsInput): types.ListSubjectsOutput, table
+    -- Lists the tags attached to the resource. Required permissions: rolesanywhere:ListTagsForResource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the trust anchors in the authenticated account and Amazon Web Services Region. Required permissions: rolesanywhere:ListTrustAnchors.
     listTrustAnchors: function(Client, types.ListTrustAnchorsInput): types.ListTrustAnchorsOutput, table
+    -- Put an entry in the attribute mapping rules that will be enforced by a given profile. A mapping specifies a certificate field and one or more specifiers that have contextual meanings.
     putAttributeMapping: function(Client, types.PutAttributeMappingInput): types.PutAttributeMappingOutput, table
+    -- Attaches a list of notification settings to a trust anchor. A notification setting includes information such as event name, threshold, status of the notification setting, and the channel to notify. Required permissions: rolesanywhere:PutNotificationSettings.
     putNotificationSettings: function(Client, types.PutNotificationSettingsInput): types.PutNotificationSettingsOutput, table
+    -- Resets the custom notification setting to IAM Roles Anywhere default setting. Required permissions: rolesanywhere:ResetNotificationSettings.
     resetNotificationSettings: function(Client, types.ResetNotificationSettingsInput): types.ResetNotificationSettingsOutput, table
+    -- Attaches tags to a resource. Required permissions: rolesanywhere:TagResource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the resource. Required permissions: rolesanywhere:UntagResource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the certificate revocation list (CRL). A CRL is a list of certificates that have been revoked by the issuing certificate authority (CA). IAM Roles Anywhere validates against the CRL before issuing credentials. Required permissions: rolesanywhere:UpdateCrl.
     updateCrl: function(Client, types.UpdateCrlInput): types.UpdateCrlOutput, table
+    -- Updates a profile, a list of the roles that IAM Roles Anywhere service is trusted to assume. You use profiles to intersect permissions with IAM managed policies. Required permissions: rolesanywhere:UpdateProfile.
     updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    -- Updates a trust anchor. You establish trust between IAM Roles Anywhere and your certificate authority (CA) by configuring a trust anchor. You can define a trust anchor as a reference to an Private Certificate Authority (Private CA) or by uploading a CA certificate. Your Amazon Web Services workloads can authenticate with the trust anchor using certificates issued by the CA in exchange for temporary Amazon Web Services credentials. Required permissions: rolesanywhere:UpdateTrustAnchor.
     updateTrustAnchor: function(Client, types.UpdateTrustAnchorInput): types.UpdateTrustAnchorOutput, table
 end
 

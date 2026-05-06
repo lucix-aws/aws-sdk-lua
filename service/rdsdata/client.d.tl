@@ -3,11 +3,42 @@
 local types = require("rdsdata.types")
 
 local record Client
+    -- Runs a batch SQL statement over an array of data.
+    -- You can run bulk update and insert operations for multiple records using a DML
+    -- statement with different parameter sets. Bulk operations can provide a significant
+    -- performance improvement over individual insert and update operations.
+    -- If a call isn't part of a transaction because it doesn't include the transactionID parameter,
+    -- changes that result from the call are committed automatically.
+    -- There isn't a fixed upper limit on the number of parameter sets. However, the maximum size of the HTTP request
+    -- submitted through the Data API is 4 MiB. If the request exceeds this limit, the Data API returns an error and doesn't
+    -- process the request. This 4-MiB limit includes the size of the HTTP headers and the JSON notation in the request. Thus, the
+    -- number of parameter sets that you can include depends on a combination of factors, such as the size of the SQL statement and
+    -- the size of each parameter set.
+    -- The response size limit is 1 MiB. If the call returns more than 1 MiB of response data, the call is terminated.
     batchExecuteStatement: function(Client, types.BatchExecuteStatementInput): types.BatchExecuteStatementOutput, table
+    -- Starts a SQL transaction.
+    -- A transaction can run for a maximum of 24 hours. A transaction is terminated and rolled back automatically after 24
+    -- hours.
+    -- A transaction times out if no calls use its transaction ID in three minutes. If a transaction times out before it's
+    -- committed, it's rolled back automatically.
+    -- For Aurora MySQL, DDL statements inside a transaction cause an implicit commit. We recommend that you run each MySQL DDL statement in a separate
+    -- ExecuteStatement call with continueAfterTimeout enabled.
     beginTransaction: function(Client, types.BeginTransactionInput): types.BeginTransactionOutput, table
+    -- Ends a SQL transaction started with the BeginTransaction operation and
+    -- commits the changes.
     commitTransaction: function(Client, types.CommitTransactionInput): types.CommitTransactionOutput, table
+    -- Runs one or more SQL statements.
+    -- This operation isn't supported for Aurora Serverless v2 and provisioned DB clusters.
+    -- For Aurora Serverless v1 DB clusters, the operation is deprecated.
+    -- Use the BatchExecuteStatement or ExecuteStatement operation.
     executeSql: function(Client, types.ExecuteSqlInput): types.ExecuteSqlOutput, table
+    -- Runs a SQL statement against a database.
+    -- If a call isn't part of a transaction because it doesn't include the
+    -- transactionID parameter, changes that result from the call are
+    -- committed automatically.
+    -- If the binary response data from the database is more than 1 MB, the call is terminated.
     executeStatement: function(Client, types.ExecuteStatementInput): types.ExecuteStatementOutput, table
+    -- Performs a rollback of a transaction. Rolling back a transaction cancels its changes.
     rollbackTransaction: function(Client, types.RollbackTransactionInput): types.RollbackTransactionOutput, table
 end
 

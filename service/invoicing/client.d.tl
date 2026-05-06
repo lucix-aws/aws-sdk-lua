@@ -3,22 +3,39 @@
 local types = require("invoicing.types")
 
 local record Client
+    -- This gets the invoice profile associated with a set of accounts. The accounts must be linked accounts under the requester management account organization.
     batchGetInvoiceProfile: function(Client, types.BatchGetInvoiceProfileInput): types.BatchGetInvoiceProfileOutput, table
+    -- This creates a new invoice unit with the provided definition.
     createInvoiceUnit: function(Client, types.CreateInvoiceUnitInput): types.CreateInvoiceUnitOutput, table
+    -- Creates a procurement portal preference configuration for e-invoice delivery and purchase order retrieval. This preference defines how invoices are delivered to a procurement portal and how purchase orders are retrieved.
     createProcurementPortalPreference: function(Client, types.CreateProcurementPortalPreferenceInput): types.CreateProcurementPortalPreferenceOutput, table
+    -- This deletes an invoice unit with the provided invoice unit ARN.
     deleteInvoiceUnit: function(Client, types.DeleteInvoiceUnitInput): types.DeleteInvoiceUnitOutput, table
+    -- Deletes an existing procurement portal preference. This action cannot be undone. Active e-invoice delivery and PO retrieval configurations will be terminated.
     deleteProcurementPortalPreference: function(Client, types.DeleteProcurementPortalPreferenceInput): types.DeleteProcurementPortalPreferenceOutput, table
+    -- Returns a URL to download the invoice document and supplemental documents associated with an invoice. The URLs are pre-signed and have expiration time. For special cases like Brazil, where Amazon Web Services generated invoice identifiers and government provided identifiers do not match, use the Amazon Web Services generated invoice identifier when making API requests. To grant IAM permission to use this operation, the caller needs the invoicing:GetInvoicePDF policy action.
     getInvoicePDF: function(Client, types.GetInvoicePDFInput): types.GetInvoicePDFOutput, table
+    -- This retrieves the invoice unit definition.
     getInvoiceUnit: function(Client, types.GetInvoiceUnitInput): types.GetInvoiceUnitOutput, table
+    -- Retrieves the details of a specific procurement portal preference configuration.
     getProcurementPortalPreference: function(Client, types.GetProcurementPortalPreferenceInput): types.GetProcurementPortalPreferenceOutput, table
+    -- Retrieves your invoice details programmatically, without line item details.
     listInvoiceSummaries: function(Client, types.ListInvoiceSummariesInput): types.ListInvoiceSummariesOutput, table
+    -- This fetches a list of all invoice unit definitions for a given account, as of the provided AsOf date.
     listInvoiceUnits: function(Client, types.ListInvoiceUnitsInput): types.ListInvoiceUnitsOutput, table
+    -- Retrieves a list of procurement portal preferences associated with the Amazon Web Services account.
     listProcurementPortalPreferences: function(Client, types.ListProcurementPortalPreferencesInput): types.ListProcurementPortalPreferencesOutput, table
+    -- Lists the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Updates an existing procurement portal preference configuration. This operation can modify settings for e-invoice delivery and purchase order retrieval.
     putProcurementPortalPreference: function(Client, types.PutProcurementPortalPreferenceInput): types.PutProcurementPortalPreferenceOutput, table
+    -- Adds a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- You can update the invoice unit configuration at any time, and Amazon Web Services will use the latest configuration at the end of the month.
     updateInvoiceUnit: function(Client, types.UpdateInvoiceUnitInput): types.UpdateInvoiceUnitOutput, table
+    -- Updates the status of a procurement portal preference, including the activation state of e-invoice delivery and purchase order retrieval features.
     updateProcurementPortalPreferenceStatus: function(Client, types.UpdateProcurementPortalPreferenceStatusInput): types.UpdateProcurementPortalPreferenceStatusOutput, table
 end
 

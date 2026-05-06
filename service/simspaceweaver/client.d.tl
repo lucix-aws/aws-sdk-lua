@@ -3,21 +3,75 @@
 local types = require("simspaceweaver.types")
 
 local record Client
+    -- Creates a snapshot of the specified simulation.
+    -- A snapshot is a file that contains simulation state data at a specific time.
+    -- The state data saved in a snapshot includes entity data from the State Fabric,
+    -- the simulation configuration specified in the schema, and the clock tick number.
+    -- You can use the snapshot to initialize a new simulation.
+    -- For more information about snapshots, see Snapshots
+    -- in the SimSpace Weaver User Guide.
+    -- You specify a Destination when you create a snapshot.
+    -- The Destination is the name of an Amazon S3 bucket and an optional
+    -- ObjectKeyPrefix. The ObjectKeyPrefix is
+    -- usually the name of a folder in the bucket. SimSpace Weaver creates a
+    -- snapshot folder inside the Destination and
+    -- places the snapshot file there.
+    -- The snapshot file is an Amazon S3 object. It has an object key with the
+    -- form:
+    -- object-key-prefix/snapshot/simulation-name-YYMMdd-HHmm-ss.zip, where:
+    -- YY
+    -- is the 2-digit year
+    -- MM
+    -- is the 2-digit month
+    -- dd
+    -- is the 2-digit day of the month
+    -- HH
+    -- is the 2-digit hour (24-hour clock)
+    -- mm
+    -- is the 2-digit minutes
+    -- ss
+    -- is the 2-digit seconds
     createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    -- Deletes the instance of the given custom app.
     deleteApp: function(Client, types.DeleteAppInput): types.DeleteAppOutput, table
+    -- Deletes all SimSpace Weaver resources assigned to the given simulation.
+    -- Your simulation uses resources in other Amazon Web Services. This API operation doesn't delete
+    -- resources in other Amazon Web Services.
     deleteSimulation: function(Client, types.DeleteSimulationInput): types.DeleteSimulationOutput, table
+    -- Returns the state of the given custom app.
     describeApp: function(Client, types.DescribeAppInput): types.DescribeAppOutput, table
+    -- Returns the current state of the given simulation.
     describeSimulation: function(Client, types.DescribeSimulationInput): types.DescribeSimulationOutput, table
+    -- Lists all custom apps or service apps for the given simulation and domain.
     listApps: function(Client, types.ListAppsInput): types.ListAppsOutput, table
+    -- Lists the SimSpace Weaver simulations in the Amazon Web Services account used to make the API call.
     listSimulations: function(Client, types.ListSimulationsInput): types.ListSimulationsOutput, table
+    -- Lists all tags on a SimSpace Weaver resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts a custom app with the configuration specified in the simulation schema.
     startApp: function(Client, types.StartAppInput): types.StartAppOutput, table
+    -- Starts the simulation clock.
     startClock: function(Client, types.StartClockInput): types.StartClockOutput, table
+    -- Starts a simulation with the given name. You must choose to start your
+    -- simulation from a schema or from a snapshot.
+    -- For more information about the schema, see the schema reference
+    -- in the SimSpace Weaver User Guide.
+    -- For more information about snapshots, see Snapshots
+    -- in the SimSpace Weaver User Guide.
     startSimulation: function(Client, types.StartSimulationInput): types.StartSimulationOutput, table
+    -- Stops the given custom app and shuts down all of its allocated compute resources.
     stopApp: function(Client, types.StopAppInput): types.StopAppOutput, table
+    -- Stops the simulation clock.
     stopClock: function(Client, types.StopClockInput): types.StopClockOutput, table
+    -- Stops the given simulation.
+    -- You can't restart a simulation after you stop it. If you want to restart a simulation, then
+    -- you must stop it, delete it, and start a new instance of it.
     stopSimulation: function(Client, types.StopSimulationInput): types.StopSimulationOutput, table
+    -- Adds tags to a SimSpace Weaver resource. For more information about tags, see Tagging Amazon Web Services resources in the
+    -- Amazon Web Services General Reference.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a SimSpace Weaver resource. For more information about tags, see Tagging Amazon Web Services resources in the
+    -- Amazon Web Services General Reference.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

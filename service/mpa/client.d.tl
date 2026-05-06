@@ -3,27 +3,49 @@
 local types = require("mpa.types")
 
 local record Client
+    -- Cancels an approval session. For more information, see Session in the Multi-party approval User Guide.
     cancelSession: function(Client, types.CancelSessionInput): types.CancelSessionOutput, table
+    -- Creates a new approval team. For more information, see Approval team in the Multi-party approval User Guide.
     createApprovalTeam: function(Client, types.CreateApprovalTeamInput): types.CreateApprovalTeamOutput, table
+    -- Creates a new identity source. For more information, see Identity Source in the Multi-party approval User Guide.
     createIdentitySource: function(Client, types.CreateIdentitySourceInput): types.CreateIdentitySourceOutput, table
+    -- Deletes an identity source. For more information, see Identity Source in the Multi-party approval User Guide.
     deleteIdentitySource: function(Client, types.DeleteIdentitySourceInput): types.DeleteIdentitySourceOutput, table
+    -- Deletes an inactive approval team. For more information, see Team health in the Multi-party approval User Guide. You can also use this operation to delete a team draft. For more information, see Interacting with drafts in the Multi-party approval User Guide.
     deleteInactiveApprovalTeamVersion: function(Client, types.DeleteInactiveApprovalTeamVersionInput): types.DeleteInactiveApprovalTeamVersionOutput, table
+    -- Returns details for an approval team.
     getApprovalTeam: function(Client, types.GetApprovalTeamInput): types.GetApprovalTeamOutput, table
+    -- Returns details for an identity source. For more information, see Identity Source in the Multi-party approval User Guide.
     getIdentitySource: function(Client, types.GetIdentitySourceInput): types.GetIdentitySourceOutput, table
+    -- Returns details for the version of a policy. Policies define the permissions for team resources.
     getPolicyVersion: function(Client, types.GetPolicyVersionInput): types.GetPolicyVersionOutput, table
+    -- Returns details about a policy for a resource.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Returns details for an approval session. For more information, see Session in the Multi-party approval User Guide.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Returns a list of approval teams.
     listApprovalTeams: function(Client, types.ListApprovalTeamsInput): types.ListApprovalTeamsOutput, table
+    -- Returns a list of identity sources. For more information, see Identity Source in the Multi-party approval User Guide.
     listIdentitySources: function(Client, types.ListIdentitySourcesInput): types.ListIdentitySourcesOutput, table
+    -- Returns a list of policies. Policies define the permissions for team resources.
     listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    -- Returns a list of the versions for policies. Policies define the permissions for team resources.
     listPolicyVersions: function(Client, types.ListPolicyVersionsInput): types.ListPolicyVersionsOutput, table
+    -- Returns a list of policies for a resource.
     listResourcePolicies: function(Client, types.ListResourcePoliciesInput): types.ListResourcePoliciesOutput, table
+    -- Returns a list of approval sessions. For more information, see Session in the Multi-party approval User Guide.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Returns a list of the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts the deletion process for an active approval team. Deletions require team approval Requests to delete an active team must be approved by the team.
     startActiveApprovalTeamDeletion: function(Client, types.StartActiveApprovalTeamDeletionInput): types.StartActiveApprovalTeamDeletionOutput, table
+    -- Starts a baseline session for specified approvers on an ACTIVE approval team.
     startApprovalTeamBaseline: function(Client, types.StartApprovalTeamBaselineInput): types.StartApprovalTeamBaselineOutput, table
+    -- Creates or updates a resource tag. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a resource tag. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an approval team. You can request to update the team description, approval threshold, and approvers in the team. Updates require team approval Updates to an active team must be approved by the team.
     updateApprovalTeam: function(Client, types.UpdateApprovalTeamInput): types.UpdateApprovalTeamOutput, table
 end
 

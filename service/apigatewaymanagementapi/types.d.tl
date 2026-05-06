@@ -12,46 +12,60 @@ local record GetConnectionInput
 end
 
 local record GetConnectionOutput
+    -- The time in ISO 8601 format for when the connection was established.
     ConnectedAt: number
     Identity: Identity
+    -- The time in ISO 8601 format for when the connection was last active.
     LastActiveAt: number
 end
 
 local record PostToConnectionInput
+    -- The data to be sent to the client specified by its connection id.
     Data: string
+    -- The identifier of the connection that a specific client is using.
     ConnectionId: string
 end
 
 local record PostToConnectionOutput
 end
 
+-- The caller is not authorized to invoke this operation.
 local record ForbiddenException
 end
 
+-- The connection with the provided id no longer exists.
 local record GoneException
 end
 
+-- The client is sending more than the allowed number of requests per unit of time or the WebSocket client side buffer is full.
 local record LimitExceededException
 end
 
+-- The caller is not authorized to invoke this operation.
 local record ForbiddenException
 end
 
+-- The connection with the provided id no longer exists.
 local record GoneException
 end
 
+-- The client is sending more than the allowed number of requests per unit of time or the WebSocket client side buffer is full.
 local record LimitExceededException
 end
 
+-- The caller is not authorized to invoke this operation.
 local record ForbiddenException
 end
 
+-- The connection with the provided id no longer exists.
 local record GoneException
 end
 
+-- The client is sending more than the allowed number of requests per unit of time or the WebSocket client side buffer is full.
 local record LimitExceededException
 end
 
+-- The data has exceeded the maximum size allowed.
 local record PayloadTooLargeException
     Message: string
 end

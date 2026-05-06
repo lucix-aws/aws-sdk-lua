@@ -3,84 +3,332 @@
 local types = require("networkfirewall.types")
 
 local record Client
+    -- Accepts a transit gateway attachment request for Network Firewall. When you accept the attachment request, Network Firewall creates the necessary routing components to enable traffic flow between the transit gateway and firewall endpoints.
+    -- You must accept a transit gateway attachment to complete the creation of a transit gateway-attached firewall, unless auto-accept is enabled on the transit gateway. After acceptance, use DescribeFirewall to verify the firewall status.
+    -- To reject an attachment instead of accepting it, use RejectNetworkFirewallTransitGatewayAttachment.
+    -- It can take several minutes for the attachment acceptance to complete and the firewall to become available.
     acceptNetworkFirewallTransitGatewayAttachment: function(Client, types.AcceptNetworkFirewallTransitGatewayAttachmentInput): types.AcceptNetworkFirewallTransitGatewayAttachmentOutput, table
+    -- Associates the specified Availability Zones with a transit gateway-attached firewall. For each Availability Zone, Network Firewall creates a firewall endpoint to process traffic. You can specify one or more Availability Zones where you want to deploy the firewall.
+    -- After adding Availability Zones, you must update your transit gateway route tables to direct traffic through the new firewall endpoints. Use DescribeFirewall to monitor the status of the new endpoints.
     associateAvailabilityZones: function(Client, types.AssociateAvailabilityZonesInput): types.AssociateAvailabilityZonesOutput, table
+    -- Associates a FirewallPolicy to a Firewall.
+    -- A firewall policy defines how to monitor and manage your VPC network traffic, using a
+    -- collection of inspection rule groups and other settings. Each firewall requires one
+    -- firewall policy association, and you can use the same firewall policy for multiple
+    -- firewalls.
     associateFirewallPolicy: function(Client, types.AssociateFirewallPolicyInput): types.AssociateFirewallPolicyOutput, table
+    -- Associates the specified subnets in the Amazon VPC to the firewall. You can specify one
+    -- subnet for each of the Availability Zones that the VPC spans.
+    -- This request creates an Network Firewall firewall endpoint in each of the subnets. To
+    -- enable the firewall's protections, you must also modify the VPC's route tables for each
+    -- subnet's Availability Zone, to redirect the traffic that's coming into and going out of the
+    -- zone through the firewall endpoint.
     associateSubnets: function(Client, types.AssociateSubnetsInput): types.AssociateSubnetsOutput, table
+    -- Attaches ProxyRuleGroup resources to a ProxyConfiguration
+    -- A Proxy Configuration defines the monitoring and protection behavior for a Proxy. The details of the behavior are defined in the rule groups that you add to your configuration.
     attachRuleGroupsToProxyConfiguration: function(Client, types.AttachRuleGroupsToProxyConfigurationInput): types.AttachRuleGroupsToProxyConfigurationOutput, table
+    -- Creates an Network Firewall Firewall and accompanying FirewallStatus for a VPC.
+    -- The firewall defines the configuration settings for an Network Firewall firewall. The settings that you can define at creation include the firewall policy, the subnets in your VPC to use for the firewall endpoints, and any tags that are attached to the firewall Amazon Web Services resource.
+    -- After you create a firewall, you can provide additional settings, like the logging configuration.
+    -- To update the settings for a firewall, you use the operations that apply to the settings
+    -- themselves, for example UpdateLoggingConfiguration, AssociateSubnets, and UpdateFirewallDeleteProtection.
+    -- To manage a firewall's tags, use the standard Amazon Web Services resource tagging operations, ListTagsForResource, TagResource, and UntagResource.
+    -- To retrieve information about firewalls, use ListFirewalls and DescribeFirewall.
+    -- To generate a report on the last 30 days of traffic monitored by a firewall, use StartAnalysisReport.
     createFirewall: function(Client, types.CreateFirewallInput): types.CreateFirewallOutput, table
+    -- Creates the firewall policy for the firewall according to the specifications.
+    -- An Network Firewall firewall policy defines the behavior of a firewall, in a collection of
+    -- stateless and stateful rule groups and other settings. You can use one firewall policy for
+    -- multiple firewalls.
     createFirewallPolicy: function(Client, types.CreateFirewallPolicyInput): types.CreateFirewallPolicyOutput, table
+    -- Creates an Network Firewall Proxy
+    -- Attaches a Proxy configuration to a NAT Gateway.
+    -- To manage a proxy's tags, use the standard Amazon Web Services resource tagging operations, ListTagsForResource, TagResource, and UntagResource.
+    -- To retrieve information about proxies, use ListProxies and DescribeProxy.
     createProxy: function(Client, types.CreateProxyInput): types.CreateProxyOutput, table
+    -- Creates an Network Firewall ProxyConfiguration
+    -- A Proxy Configuration defines the monitoring and protection behavior for a Proxy. The details of the behavior are defined in the rule groups that you add to your configuration.
+    -- To manage a proxy configuration's tags, use the standard Amazon Web Services resource tagging operations, ListTagsForResource, TagResource, and UntagResource.
+    -- To retrieve information about proxies, use ListProxyConfigurations and DescribeProxyConfiguration.
     createProxyConfiguration: function(Client, types.CreateProxyConfigurationInput): types.CreateProxyConfigurationOutput, table
+    -- Creates an Network Firewall ProxyRuleGroup
+    -- Collections of related proxy filtering rules. Rule groups help you manage and reuse sets of rules across multiple proxy configurations.
+    -- To manage a proxy rule group's tags, use the standard Amazon Web Services resource tagging operations, ListTagsForResource, TagResource, and UntagResource.
+    -- To retrieve information about proxy rule groups, use ListProxyRuleGroups and DescribeProxyRuleGroup.
+    -- To retrieve information about individual proxy rules, use DescribeProxyRuleGroup and DescribeProxyRule.
     createProxyRuleGroup: function(Client, types.CreateProxyRuleGroupInput): types.CreateProxyRuleGroupOutput, table
+    -- Creates Network Firewall ProxyRule resources.
+    -- Attaches new proxy rule(s) to an existing proxy rule group.
+    -- To retrieve information about individual proxy rules, use DescribeProxyRuleGroup and DescribeProxyRule.
     createProxyRules: function(Client, types.CreateProxyRulesInput): types.CreateProxyRulesOutput, table
+    -- Creates the specified stateless or stateful rule group, which includes the rules for
+    -- network traffic inspection, a capacity setting, and tags.
+    -- You provide your rule group specification in your request using either
+    -- RuleGroup or Rules.
     createRuleGroup: function(Client, types.CreateRuleGroupInput): types.CreateRuleGroupOutput, table
+    -- Creates an Network Firewall TLS inspection configuration. Network Firewall uses TLS inspection configurations to decrypt your firewall's inbound and outbound SSL/TLS traffic. After decryption, Network Firewall inspects the traffic according to your firewall policy's stateful rules, and then re-encrypts it before sending it to its destination. You can enable inspection of your firewall's inbound traffic, outbound traffic, or both. To use TLS inspection with your firewall, you must first import or provision certificates using ACM, create a TLS inspection configuration, add that configuration to a new firewall policy, and then associate that policy with your firewall.
+    -- To update the settings for a TLS inspection configuration, use UpdateTLSInspectionConfiguration.
+    -- To manage a TLS inspection configuration's tags, use the standard Amazon Web Services resource tagging operations, ListTagsForResource, TagResource, and UntagResource.
+    -- To retrieve information about TLS inspection configurations, use ListTLSInspectionConfigurations and DescribeTLSInspectionConfiguration.
+    -- For more information about TLS inspection configurations, see Inspecting SSL/TLS traffic with TLS
+    -- inspection configurations in the Network Firewall Developer Guide.
     createTLSInspectionConfiguration: function(Client, types.CreateTLSInspectionConfigurationInput): types.CreateTLSInspectionConfigurationOutput, table
+    -- Creates a firewall endpoint for an Network Firewall firewall. This type of firewall endpoint is independent of the firewall endpoints that you specify in the Firewall itself, and you define it in addition to those endpoints after the firewall has been created. You can define a VPC endpoint association using a different VPC than the one you used in the firewall specifications.
     createVpcEndpointAssociation: function(Client, types.CreateVpcEndpointAssociationInput): types.CreateVpcEndpointAssociationOutput, table
+    -- Deletes the specified Firewall and its FirewallStatus.
+    -- This operation requires the firewall's DeleteProtection flag to be
+    -- FALSE. You can't revert this operation.
+    -- You can check whether a firewall is
+    -- in use by reviewing the route tables for the Availability Zones where you have
+    -- firewall subnet mappings. Retrieve the subnet mappings by calling DescribeFirewall.
+    -- You define and update the route tables through Amazon VPC. As needed, update the route tables for the
+    -- zones to remove the firewall endpoints. When the route tables no longer use the firewall endpoints,
+    -- you can remove the firewall safely.
+    -- To delete a firewall, remove the delete protection if you need to using UpdateFirewallDeleteProtection,
+    -- then delete the firewall by calling DeleteFirewall.
     deleteFirewall: function(Client, types.DeleteFirewallInput): types.DeleteFirewallOutput, table
+    -- Deletes the specified FirewallPolicy.
     deleteFirewallPolicy: function(Client, types.DeleteFirewallPolicyInput): types.DeleteFirewallPolicyOutput, table
+    -- Deletes a transit gateway attachment from a Network Firewall. Either the firewall owner or the transit gateway owner can delete the attachment.
+    -- After you delete a transit gateway attachment, traffic will no longer flow through the firewall endpoints.
+    -- After you initiate the delete operation, use DescribeFirewall to monitor the deletion status.
     deleteNetworkFirewallTransitGatewayAttachment: function(Client, types.DeleteNetworkFirewallTransitGatewayAttachmentInput): types.DeleteNetworkFirewallTransitGatewayAttachmentOutput, table
+    -- Deletes the specified Proxy.
+    -- Detaches a Proxy configuration from a NAT Gateway.
     deleteProxy: function(Client, types.DeleteProxyInput): types.DeleteProxyOutput, table
+    -- Deletes the specified ProxyConfiguration.
     deleteProxyConfiguration: function(Client, types.DeleteProxyConfigurationInput): types.DeleteProxyConfigurationOutput, table
+    -- Deletes the specified ProxyRuleGroup.
     deleteProxyRuleGroup: function(Client, types.DeleteProxyRuleGroupInput): types.DeleteProxyRuleGroupOutput, table
+    -- Deletes the specified ProxyRule(s). currently attached to a ProxyRuleGroup
     deleteProxyRules: function(Client, types.DeleteProxyRulesInput): types.DeleteProxyRulesOutput, table
+    -- Deletes a resource policy that you created in a PutResourcePolicy request.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes the specified RuleGroup.
     deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): types.DeleteRuleGroupOutput, table
+    -- Deletes the specified TLSInspectionConfiguration.
     deleteTLSInspectionConfiguration: function(Client, types.DeleteTLSInspectionConfigurationInput): types.DeleteTLSInspectionConfigurationOutput, table
+    -- Deletes the specified VpcEndpointAssociation.
+    -- You can check whether an endpoint association is
+    -- in use by reviewing the route tables for the Availability Zones where you have the endpoint subnet mapping.
+    -- You can retrieve the subnet mapping by calling DescribeVpcEndpointAssociation.
+    -- You define and update the route tables through Amazon VPC. As needed, update the route tables for the
+    -- Availability Zone to remove the firewall endpoint for the association. When the route tables no longer use the firewall endpoint,
+    -- you can remove the endpoint association safely.
     deleteVpcEndpointAssociation: function(Client, types.DeleteVpcEndpointAssociationInput): types.DeleteVpcEndpointAssociationOutput, table
+    -- Returns the data objects for the specified firewall.
     describeFirewall: function(Client, types.DescribeFirewallInput): types.DescribeFirewallOutput, table
+    -- Returns the high-level information about a firewall, including the Availability Zones where the Firewall is
+    -- currently in use.
     describeFirewallMetadata: function(Client, types.DescribeFirewallMetadataInput): types.DescribeFirewallMetadataOutput, table
+    -- Returns the data objects for the specified firewall policy.
     describeFirewallPolicy: function(Client, types.DescribeFirewallPolicyInput): types.DescribeFirewallPolicyOutput, table
+    -- Returns key information about a specific flow operation.
     describeFlowOperation: function(Client, types.DescribeFlowOperationInput): types.DescribeFlowOperationOutput, table
+    -- Returns the logging configuration for the specified firewall.
     describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput): types.DescribeLoggingConfigurationOutput, table
+    -- Returns the data objects for the specified proxy.
     describeProxy: function(Client, types.DescribeProxyInput): types.DescribeProxyOutput, table
+    -- Returns the data objects for the specified proxy configuration.
     describeProxyConfiguration: function(Client, types.DescribeProxyConfigurationInput): types.DescribeProxyConfigurationOutput, table
+    -- Returns the data objects for the specified proxy configuration for the specified proxy rule group.
     describeProxyRule: function(Client, types.DescribeProxyRuleInput): types.DescribeProxyRuleOutput, table
+    -- Returns the data objects for the specified proxy rule group.
     describeProxyRuleGroup: function(Client, types.DescribeProxyRuleGroupInput): types.DescribeProxyRuleGroupOutput, table
+    -- Retrieves a resource policy that you created in a PutResourcePolicy request.
     describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    -- Returns the data objects for the specified rule group.
     describeRuleGroup: function(Client, types.DescribeRuleGroupInput): types.DescribeRuleGroupOutput, table
+    -- High-level information about a rule group, returned by operations like create and describe.
+    -- You can use the information provided in the metadata to retrieve and manage a rule group.
+    -- You can retrieve all objects for a rule group by calling DescribeRuleGroup.
     describeRuleGroupMetadata: function(Client, types.DescribeRuleGroupMetadataInput): types.DescribeRuleGroupMetadataOutput, table
+    -- Returns detailed information for a stateful rule group.
+    -- For active threat defense Amazon Web Services managed rule groups, this operation provides insight into the protections enabled by the rule group, based on Suricata rule metadata fields. Summaries are available for rule groups you manage and for active threat defense Amazon Web Services managed rule groups.
+    -- To modify how threat information appears in summaries, use the SummaryConfiguration parameter in UpdateRuleGroup.
     describeRuleGroupSummary: function(Client, types.DescribeRuleGroupSummaryInput): types.DescribeRuleGroupSummaryOutput, table
+    -- Returns the data objects for the specified TLS inspection configuration.
     describeTLSInspectionConfiguration: function(Client, types.DescribeTLSInspectionConfigurationInput): types.DescribeTLSInspectionConfigurationOutput, table
+    -- Returns the data object for the specified VPC endpoint association.
     describeVpcEndpointAssociation: function(Client, types.DescribeVpcEndpointAssociationInput): types.DescribeVpcEndpointAssociationOutput, table
+    -- Detaches ProxyRuleGroup resources from a ProxyConfiguration
+    -- A Proxy Configuration defines the monitoring and protection behavior for a Proxy. The details of the behavior are defined in the rule groups that you add to your configuration.
     detachRuleGroupsFromProxyConfiguration: function(Client, types.DetachRuleGroupsFromProxyConfigurationInput): types.DetachRuleGroupsFromProxyConfigurationOutput, table
+    -- Removes the specified Availability Zone associations from a transit gateway-attached firewall. This removes the firewall endpoints from these Availability Zones and stops traffic filtering in those zones. Before removing an Availability Zone, ensure you've updated your transit gateway route tables to redirect traffic appropriately.
+    -- If AvailabilityZoneChangeProtection is enabled, you must first disable it using UpdateAvailabilityZoneChangeProtection.
+    -- To verify the status of your Availability Zone changes, use DescribeFirewall.
     disassociateAvailabilityZones: function(Client, types.DisassociateAvailabilityZonesInput): types.DisassociateAvailabilityZonesOutput, table
+    -- Removes the specified subnet associations from the firewall. This removes the
+    -- firewall endpoints from the subnets and removes any network filtering protections that the endpoints
+    -- were providing.
     disassociateSubnets: function(Client, types.DisassociateSubnetsInput): types.DisassociateSubnetsOutput, table
+    -- The results of a COMPLETED analysis report generated with StartAnalysisReport.
+    -- For more information, see AnalysisTypeReportResult.
     getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput): types.GetAnalysisReportResultsOutput, table
+    -- Returns a list of all traffic analysis reports generated within the last 30 days.
     listAnalysisReports: function(Client, types.ListAnalysisReportsInput): types.ListAnalysisReportsOutput, table
+    -- Retrieves the metadata for the firewall policies that you have defined. Depending on
+    -- your setting for max results and the number of firewall policies, a single call might not
+    -- return the full list.
     listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput): types.ListFirewallPoliciesOutput, table
+    -- Retrieves the metadata for the firewalls that you have defined. If you provide VPC
+    -- identifiers in your request, this returns only the firewalls for those VPCs.
+    -- Depending on your setting for max results and the number of firewalls, a single call
+    -- might not return the full list.
     listFirewalls: function(Client, types.ListFirewallsInput): types.ListFirewallsOutput, table
+    -- Returns the results of a specific flow operation.
+    -- Flow operations let you manage the flows tracked in the flow table, also known as the firewall table.
+    -- A flow is network traffic that is monitored by a firewall, either by stateful or stateless rules.
+    -- For traffic to be considered part of a flow, it must share Destination, DestinationPort, Direction, Protocol, Source, and SourcePort.
     listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput): types.ListFlowOperationResultsOutput, table
+    -- Returns a list of all flow operations ran in a specific firewall.
+    -- You can optionally narrow the request scope by specifying the operation type or Availability Zone associated with a firewall's flow operations.
+    -- Flow operations let you manage the flows tracked in the flow table, also known as the firewall table.
+    -- A flow is network traffic that is monitored by a firewall, either by stateful or stateless rules.
+    -- For traffic to be considered part of a flow, it must share Destination, DestinationPort, Direction, Protocol, Source, and SourcePort.
     listFlowOperations: function(Client, types.ListFlowOperationsInput): types.ListFlowOperationsOutput, table
+    -- Retrieves the metadata for the proxies that you have defined. Depending on
+    -- your setting for max results and the number of proxies, a single call might not
+    -- return the full list.
     listProxies: function(Client, types.ListProxiesInput): types.ListProxiesOutput, table
+    -- Retrieves the metadata for the proxy configuration that you have defined. Depending on
+    -- your setting for max results and the number of proxy configurations, a single call might not
+    -- return the full list.
     listProxyConfigurations: function(Client, types.ListProxyConfigurationsInput): types.ListProxyConfigurationsOutput, table
+    -- Retrieves the metadata for the proxy rule groups that you have defined. Depending on
+    -- your setting for max results and the number of proxy rule groups, a single call might not
+    -- return the full list.
     listProxyRuleGroups: function(Client, types.ListProxyRuleGroupsInput): types.ListProxyRuleGroupsOutput, table
+    -- Retrieves the metadata for the rule groups that you have defined. Depending on your
+    -- setting for max results and the number of rule groups, a single call might not return the
+    -- full list.
     listRuleGroups: function(Client, types.ListRuleGroupsInput): types.ListRuleGroupsOutput, table
+    -- Retrieves the tags associated with the specified resource. Tags are key:value pairs that
+    -- you can use to categorize and manage your resources, for purposes like billing. For
+    -- example, you might set the tag key to "customer" and the value to the customer name or ID.
+    -- You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a
+    -- resource.
+    -- You can tag the Amazon Web Services resources that you manage through Network Firewall: firewalls, firewall
+    -- policies, and rule groups.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves the metadata for the TLS inspection configurations that you have defined. Depending on your setting for max results and the number of TLS inspection configurations, a single call might not return the full list.
     listTLSInspectionConfigurations: function(Client, types.ListTLSInspectionConfigurationsInput): types.ListTLSInspectionConfigurationsOutput, table
+    -- Retrieves the metadata for the VPC endpoint associations that you have defined. If you specify a fireawll,
+    -- this returns only the endpoint associations for that firewall.
+    -- Depending on your setting for max results and the number of associations, a single call
+    -- might not return the full list.
     listVpcEndpointAssociations: function(Client, types.ListVpcEndpointAssociationsInput): types.ListVpcEndpointAssociationsOutput, table
+    -- Creates or updates an IAM policy for your rule group, firewall policy, or firewall. Use this to share these resources between accounts. This operation works in conjunction with the Amazon Web Services Resource Access Manager (RAM) service to manage resource sharing for Network Firewall.
+    -- For information about using sharing with Network Firewall resources, see
+    -- Sharing Network Firewall resources in the Network Firewall Developer Guide.
+    -- Use this operation to create or update a resource policy for your Network Firewall rule group, firewall policy, or firewall. In the resource policy, you specify the accounts that you want to share the Network Firewall resource with and the operations that you want the accounts to be able to perform.
+    -- When you add an account in the resource policy, you then run the following Resource Access Manager (RAM) operations to access and accept the shared resource.
+    -- GetResourceShareInvitations - Returns the Amazon Resource Names (ARNs) of the resource share invitations.
+    -- AcceptResourceShareInvitation - Accepts the share invitation for a specified resource share.
+    -- For additional information about resource sharing using RAM, see Resource Access Manager User Guide.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Rejects a transit gateway attachment request for Network Firewall. When you reject the attachment request, Network Firewall cancels the creation of routing components between the transit gateway and firewall endpoints.
+    -- Only the transit gateway owner can reject the attachment. After rejection, no traffic will flow through the firewall endpoints for this attachment.
+    -- Use DescribeFirewall to monitor the rejection status. To accept the attachment instead of rejecting it, use AcceptNetworkFirewallTransitGatewayAttachment.
+    -- Once rejected, you cannot reverse this action. To establish connectivity, you must create a new transit gateway-attached firewall.
     rejectNetworkFirewallTransitGatewayAttachment: function(Client, types.RejectNetworkFirewallTransitGatewayAttachmentInput): types.RejectNetworkFirewallTransitGatewayAttachmentOutput, table
+    -- Generates a traffic analysis report for the timeframe and traffic type you specify.
+    -- For information on the contents of a traffic analysis report, see AnalysisReport.
     startAnalysisReport: function(Client, types.StartAnalysisReportInput): types.StartAnalysisReportOutput, table
+    -- Begins capturing the flows in a firewall, according to the filters you define.
+    -- Captures are similar, but not identical to snapshots. Capture operations provide visibility into flows that are not closed and are tracked by a firewall's flow table.
+    -- Unlike snapshots, captures are a time-boxed view.
+    -- A flow is network traffic that is monitored by a firewall, either by stateful or stateless rules.
+    -- For traffic to be considered part of a flow, it must share Destination, DestinationPort, Direction, Protocol, Source, and SourcePort.
+    -- To avoid encountering operation limits, you should avoid starting captures with broad filters, like wide IP ranges.
+    -- Instead, we recommend you define more specific criteria with FlowFilters, like narrow IP ranges, ports, or protocols.
     startFlowCapture: function(Client, types.StartFlowCaptureInput): types.StartFlowCaptureOutput, table
+    -- Begins the flushing of traffic from the firewall, according to the filters you define.
+    -- When the operation starts, impacted flows are temporarily marked as timed out before the Suricata engine prunes,
+    -- or flushes, the flows from the firewall table.
+    -- While the flush completes, impacted flows are processed as midstream traffic. This may result in a
+    -- temporary increase in midstream traffic metrics. We recommend that you double check your stream exception policy
+    -- before you perform a flush operation.
     startFlowFlush: function(Client, types.StartFlowFlushInput): types.StartFlowFlushOutput, table
+    -- Adds the specified tags to the specified resource. Tags are key:value pairs that you can
+    -- use to categorize and manage your resources, for purposes like billing. For example, you
+    -- might set the tag key to "customer" and the value to the customer name or ID. You can
+    -- specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a resource.
+    -- You can tag the Amazon Web Services resources that you manage through Network Firewall: firewalls, firewall
+    -- policies, and rule groups.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the tags with the specified keys from the specified resource. Tags are key:value
+    -- pairs that you can use to categorize and manage your resources, for purposes like billing.
+    -- For example, you might set the tag key to "customer" and the value to the customer name or
+    -- ID. You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a
+    -- resource.
+    -- You can manage tags for the Amazon Web Services resources that you manage through Network Firewall:
+    -- firewalls, firewall policies, and rule groups.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Modifies the AvailabilityZoneChangeProtection setting for a transit gateway-attached firewall. When enabled, this setting prevents accidental changes to the firewall's Availability Zone configuration. This helps protect against disrupting traffic flow in production environments.
+    -- When enabled, you must disable this protection before using AssociateAvailabilityZones or DisassociateAvailabilityZones to modify the firewall's Availability Zone configuration.
     updateAvailabilityZoneChangeProtection: function(Client, types.UpdateAvailabilityZoneChangeProtectionInput): types.UpdateAvailabilityZoneChangeProtectionOutput, table
+    -- Enables specific types of firewall analysis on a specific firewall you define.
     updateFirewallAnalysisSettings: function(Client, types.UpdateFirewallAnalysisSettingsInput): types.UpdateFirewallAnalysisSettingsOutput, table
+    -- Modifies the flag, DeleteProtection, which indicates whether it is possible
+    -- to delete the firewall. If the flag is set to TRUE, the firewall is protected
+    -- against deletion. This setting helps protect against accidentally deleting a firewall
+    -- that's in use.
     updateFirewallDeleteProtection: function(Client, types.UpdateFirewallDeleteProtectionInput): types.UpdateFirewallDeleteProtectionOutput, table
+    -- Modifies the description for the specified firewall. Use the description to help you
+    -- identify the firewall when you're working with it.
     updateFirewallDescription: function(Client, types.UpdateFirewallDescriptionInput): types.UpdateFirewallDescriptionOutput, table
+    -- A complex type that contains settings for encryption of your firewall resources.
     updateFirewallEncryptionConfiguration: function(Client, types.UpdateFirewallEncryptionConfigurationInput): types.UpdateFirewallEncryptionConfigurationOutput, table
+    -- Updates the properties of the specified firewall policy.
     updateFirewallPolicy: function(Client, types.UpdateFirewallPolicyInput): types.UpdateFirewallPolicyOutput, table
+    -- Modifies the flag, ChangeProtection, which indicates whether it
+    -- is possible to change the firewall. If the flag is set to TRUE, the firewall is protected
+    -- from changes. This setting helps protect against accidentally changing a firewall that's in use.
     updateFirewallPolicyChangeProtection: function(Client, types.UpdateFirewallPolicyChangeProtectionInput): types.UpdateFirewallPolicyChangeProtectionOutput, table
+    -- Sets the logging configuration for the specified firewall.
+    -- To change the logging configuration, retrieve the LoggingConfiguration by calling DescribeLoggingConfiguration, then change it and provide
+    -- the modified object to this update call. You must change the logging configuration one
+    -- LogDestinationConfig at a time inside the retrieved LoggingConfiguration object.
+    -- You can perform only one of the following actions in any call to
+    -- UpdateLoggingConfiguration:
+    -- Create a new log destination object by adding a single
+    -- LogDestinationConfig array element to
+    -- LogDestinationConfigs.
+    -- Delete a log destination object by removing a single
+    -- LogDestinationConfig array element from
+    -- LogDestinationConfigs.
+    -- Change the LogDestination setting in a single
+    -- LogDestinationConfig array element.
+    -- You can't change the LogDestinationType or LogType in a
+    -- LogDestinationConfig. To change these settings, delete the existing
+    -- LogDestinationConfig object and create a new one, using two separate calls
+    -- to this update operation.
     updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): types.UpdateLoggingConfigurationOutput, table
+    -- Updates the properties of the specified proxy.
     updateProxy: function(Client, types.UpdateProxyInput): types.UpdateProxyOutput, table
+    -- Updates the properties of the specified proxy configuration.
     updateProxyConfiguration: function(Client, types.UpdateProxyConfigurationInput): types.UpdateProxyConfigurationOutput, table
+    -- Updates the properties of the specified proxy rule.
     updateProxyRule: function(Client, types.UpdateProxyRuleInput): types.UpdateProxyRuleOutput, table
+    -- Updates proxy rule group priorities within a proxy configuration.
     updateProxyRuleGroupPriorities: function(Client, types.UpdateProxyRuleGroupPrioritiesInput): types.UpdateProxyRuleGroupPrioritiesOutput, table
+    -- Updates proxy rule priorities within a proxy rule group.
     updateProxyRulePriorities: function(Client, types.UpdateProxyRulePrioritiesInput): types.UpdateProxyRulePrioritiesOutput, table
+    -- Updates the rule settings for the specified rule group. You use a rule group by
+    -- reference in one or more firewall policies. When you modify a rule group, you modify all
+    -- firewall policies that use the rule group.
+    -- To update a rule group, first call DescribeRuleGroup to retrieve the
+    -- current RuleGroup object, update the object as needed, and then provide
+    -- the updated object to this call.
     updateRuleGroup: function(Client, types.UpdateRuleGroupInput): types.UpdateRuleGroupOutput, table
     updateSubnetChangeProtection: function(Client, types.UpdateSubnetChangeProtectionInput): types.UpdateSubnetChangeProtectionOutput, table
+    -- Updates the TLS inspection configuration settings for the specified TLS inspection configuration. You use a TLS inspection configuration by
+    -- referencing it in one or more firewall policies. When you modify a TLS inspection configuration, you modify all
+    -- firewall policies that use the TLS inspection configuration.
+    -- To update a TLS inspection configuration, first call DescribeTLSInspectionConfiguration to retrieve the
+    -- current TLSInspectionConfiguration object, update the object as needed, and then provide
+    -- the updated object to this call.
     updateTLSInspectionConfiguration: function(Client, types.UpdateTLSInspectionConfigurationInput): types.UpdateTLSInspectionConfigurationOutput, table
 end
 

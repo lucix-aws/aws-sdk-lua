@@ -3,35 +3,65 @@
 local types = require("b2bi.types")
 
 local record Client
+    -- Instantiates a capability based on the specified parameters. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs.
     createCapability: function(Client, types.CreateCapabilityInput): types.CreateCapabilityOutput, table
+    -- Creates a partnership between a customer and a trading partner, based on the supplied parameters. A partnership represents the connection between you and your trading partner. It ties together a profile and one or more trading capabilities.
     createPartnership: function(Client, types.CreatePartnershipInput): types.CreatePartnershipOutput, table
+    -- Creates a customer profile. You can have up to five customer profiles, each representing a distinct private network. A profile is the mechanism used to create the concept of a private network.
     createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    -- Amazon Web Services B2B Data Interchange uses a mapping template in JSONata or XSLT format to transform a customer input file into a JSON or XML file that can be converted to EDI. If you provide a sample EDI file with the same structure as the EDI files that you wish to generate, then the service can generate a mapping template. The starter template contains placeholder values which you can replace with JSONata or XSLT expressions to take data from your input file and insert it into the JSON or XML file that is used to generate the EDI. If you do not provide a sample EDI file, then the service can generate a mapping template based on the EDI settings in the templateDetails parameter. Currently, we only support generating a template that can generate the input to produce an Outbound X12 EDI file.
     createStarterMappingTemplate: function(Client, types.CreateStarterMappingTemplateInput): types.CreateStarterMappingTemplateOutput, table
+    -- Creates a transformer. Amazon Web Services B2B Data Interchange currently supports two scenarios: Inbound EDI: the Amazon Web Services customer receives an EDI file from their trading partner. Amazon Web Services B2B Data Interchange converts this EDI file into a JSON or XML file with a service-defined structure. A mapping template provided by the customer, in JSONata or XSLT format, is optionally applied to this file to produce a JSON or XML file with the structure the customer requires. Outbound EDI: the Amazon Web Services customer has a JSON or XML file containing data that they wish to use in an EDI file. A mapping template, provided by the customer (in either JSONata or XSLT format) is applied to this file to generate a JSON or XML file in the service-defined structure. This file is then converted to an EDI file. The following fields are provided for backwards compatibility only: fileFormat, mappingTemplate, ediType, and sampleDocument. Use the mapping data type in place of mappingTemplate and fileFormat Use the sampleDocuments data type in place of sampleDocument Use either the inputConversion or outputConversion in place of ediType
     createTransformer: function(Client, types.CreateTransformerInput): types.CreateTransformerOutput, table
+    -- Deletes the specified capability. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs.
     deleteCapability: function(Client, types.DeleteCapabilityInput): types.DeleteCapabilityOutput, table
+    -- Deletes the specified partnership. A partnership represents the connection between you and your trading partner. It ties together a profile and one or more trading capabilities.
     deletePartnership: function(Client, types.DeletePartnershipInput): types.DeletePartnershipOutput, table
+    -- Deletes the specified profile. A profile is the mechanism used to create the concept of a private network.
     deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    -- Deletes the specified transformer. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file.
     deleteTransformer: function(Client, types.DeleteTransformerInput): types.DeleteTransformerOutput, table
+    -- Takes sample input and output documents and uses Amazon Bedrock to generate a mapping automatically. Depending on the accuracy and other factors, you can then edit the mapping for your needs. Before you can use the AI-assisted feature for Amazon Web Services B2B Data Interchange you must enable models in Amazon Bedrock. For details, see AI-assisted template mapping prerequisites in the Amazon Web Services B2B Data Interchange User guide. To generate a mapping, perform the following steps: Start with an X12 EDI document to use as the input. Call TestMapping using your EDI document. Use the output from the TestMapping operation as either input or output for your GenerateMapping call, along with your sample file.
     generateMapping: function(Client, types.GenerateMappingInput): types.GenerateMappingOutput, table
+    -- Retrieves the details for the specified capability. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs.
     getCapability: function(Client, types.GetCapabilityInput): types.GetCapabilityOutput, table
+    -- Retrieves the details for a partnership, based on the partner and profile IDs specified. A partnership represents the connection between you and your trading partner. It ties together a profile and one or more trading capabilities.
     getPartnership: function(Client, types.GetPartnershipInput): types.GetPartnershipOutput, table
+    -- Retrieves the details for the profile specified by the profile ID. A profile is the mechanism used to create the concept of a private network.
     getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    -- Retrieves the details for the transformer specified by the transformer ID. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file.
     getTransformer: function(Client, types.GetTransformerInput): types.GetTransformerOutput, table
+    -- Returns the details of the transformer run, based on the Transformer job ID. If 30 days have elapsed since your transformer job was started, the system deletes it. So, if you run GetTransformerJob and supply a transformerId and transformerJobId for a job that was started more than 30 days previously, you receive a 404 response.
     getTransformerJob: function(Client, types.GetTransformerJobInput): types.GetTransformerJobOutput, table
+    -- Lists the capabilities associated with your Amazon Web Services account for your current or specified region. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs.
     listCapabilities: function(Client, types.ListCapabilitiesInput): types.ListCapabilitiesOutput, table
+    -- Lists the partnerships associated with your Amazon Web Services account for your current or specified region. A partnership represents the connection between you and your trading partner. It ties together a profile and one or more trading capabilities.
     listPartnerships: function(Client, types.ListPartnershipsInput): types.ListPartnershipsOutput, table
+    -- Lists the profiles associated with your Amazon Web Services account for your current or specified region. A profile is the mechanism used to create the concept of a private network.
     listProfiles: function(Client, types.ListProfilesInput): types.ListProfilesOutput, table
+    -- Lists all of the tags associated with the Amazon Resource Name (ARN) that you specify. The resource can be a capability, partnership, profile, or transformer.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the available transformers. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file.
     listTransformers: function(Client, types.ListTransformersInput): types.ListTransformersOutput, table
+    -- Runs a job, using a transformer, to parse input EDI (electronic data interchange) file into the output structures used by Amazon Web Services B2B Data Interchange. If you only want to transform EDI (electronic data interchange) documents, you don't need to create profiles, partnerships or capabilities. Just create and configure a transformer, and then run the StartTransformerJob API to process your files. The system stores transformer jobs for 30 days. During that period, you can run GetTransformerJob and supply its transformerId and transformerJobId to return details of the job.
     startTransformerJob: function(Client, types.StartTransformerJobInput): types.StartTransformerJobOutput, table
+    -- Attaches a key-value pair to a resource, as identified by its Amazon Resource Name (ARN). Resources are capability, partnership, profile, transformers and other entities. There is no response returned from this call.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- This operation mimics the latter half of a typical Outbound EDI request. It takes an input JSON/XML in the B2Bi shape as input, converts it to an X12 EDI string, and return that string.
     testConversion: function(Client, types.TestConversionInput): types.TestConversionOutput, table
+    -- Maps the input file according to the provided template file. The API call downloads the file contents from the Amazon S3 location, and passes the contents in as a string, to the inputFileContent parameter.
     testMapping: function(Client, types.TestMappingInput): types.TestMappingOutput, table
+    -- Parses the input EDI (electronic data interchange) file. The input file has a file size limit of 250 KB.
     testParsing: function(Client, types.TestParsingInput): types.TestParsingOutput, table
+    -- Detaches a key-value pair from the specified resource, as identified by its Amazon Resource Name (ARN). Resources are capability, partnership, profile, transformers and other entities.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates some of the parameters for a capability, based on the specified parameters. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs.
     updateCapability: function(Client, types.UpdateCapabilityInput): types.UpdateCapabilityOutput, table
+    -- Updates some of the parameters for a partnership between a customer and trading partner. A partnership represents the connection between you and your trading partner. It ties together a profile and one or more trading capabilities.
     updatePartnership: function(Client, types.UpdatePartnershipInput): types.UpdatePartnershipOutput, table
+    -- Updates the specified parameters for a profile. A profile is the mechanism used to create the concept of a private network.
     updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    -- Updates the specified parameters for a transformer. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file.
     updateTransformer: function(Client, types.UpdateTransformerInput): types.UpdateTransformerOutput, table
 end
 

@@ -3,92 +3,179 @@
 local types = require("guardduty.types")
 
 local record Client
+    -- Accepts the invitation to be a member account and get monitored by a GuardDuty administrator account that sent the invitation.
     acceptAdministratorInvitation: function(Client, types.AcceptAdministratorInvitationInput): types.AcceptAdministratorInvitationOutput, table
+    -- Accepts the invitation to be monitored by a GuardDuty administrator account.
     acceptInvitation: function(Client, types.AcceptInvitationInput): types.AcceptInvitationOutput, table
+    -- Archives GuardDuty findings that are specified by the list of finding IDs. Only the administrator account can archive findings. Member accounts don't have permission to archive findings from their accounts.
     archiveFindings: function(Client, types.ArchiveFindingsInput): types.ArchiveFindingsOutput, table
+    -- Creates a single GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default. When you don't specify any features, with an exception to RUNTIME_MONITORING, all the optional features are enabled by default. When you specify some of the features, any feature that is not specified in the API call gets enabled by default, with an exception to RUNTIME_MONITORING. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     createDetector: function(Client, types.CreateDetectorInput): types.CreateDetectorOutput, table
+    -- Creates a filter using the specified finding criteria. The maximum number of saved filters per Amazon Web Services account per Region is 100. For more information, see Quotas for GuardDuty.
     createFilter: function(Client, types.CreateFilterInput): types.CreateFilterOutput, table
+    -- Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with Amazon Web Services infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.
     createIPSet: function(Client, types.CreateIPSetInput): types.CreateIPSetOutput, table
+    -- Creates a new Malware Protection plan for the protected resource. When you create a Malware Protection plan, the Amazon Web Services service terms for GuardDuty Malware Protection apply. For more information, see Amazon Web Services service terms for GuardDuty Malware Protection.
     createMalwareProtectionPlan: function(Client, types.CreateMalwareProtectionPlanInput): types.CreateMalwareProtectionPlanOutput, table
+    -- Creates member accounts of the current Amazon Web Services account by specifying a list of Amazon Web Services account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization. As a delegated administrator, using CreateMembers will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account. A delegated administrator must enable GuardDuty prior to being added as a member. When you use CreateMembers as an Organizations delegated administrator, GuardDuty applies your organization's auto-enable settings to the member accounts in this request, irrespective of the accounts being new or existing members. For more information about the existing auto-enable settings for your organization, see DescribeOrganizationConfiguration. If you disassociate a member account that was added by invitation, the member account details obtained from this API, including the associated email addresses, will be retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API. When the member accounts added through Organizations are later disassociated, you (administrator) can't invite them by calling the InviteMembers API. You can create an association with these member accounts again only by calling the CreateMembers API.
     createMembers: function(Client, types.CreateMembersInput): types.CreateMembersOutput, table
+    -- Creates a publishing destination where you can export your GuardDuty findings. Before you start exporting the findings, the destination resource must exist.
     createPublishingDestination: function(Client, types.CreatePublishingDestinationInput): types.CreatePublishingDestinationOutput, table
+    -- Generates sample findings of types specified by the list of finding types. If 'NULL' is specified for findingTypes, the API generates sample findings of all supported finding types.
     createSampleFindings: function(Client, types.CreateSampleFindingsInput): types.CreateSampleFindingsOutput, table
+    -- Creates a new threat entity set. In a threat entity set, you can provide known malicious IP addresses and domains for your Amazon Web Services environment. GuardDuty generates findings based on the entries in the threat entity sets. Only users of the administrator account can manage entity sets, which automatically apply to member accounts.
     createThreatEntitySet: function(Client, types.CreateThreatEntitySetInput): types.CreateThreatEntitySetOutput, table
+    -- Creates a new ThreatIntelSet. ThreatIntelSets consist of known malicious IP addresses. GuardDuty generates findings based on ThreatIntelSets. Only users of the administrator account can use this operation.
     createThreatIntelSet: function(Client, types.CreateThreatIntelSetInput): types.CreateThreatIntelSetOutput, table
+    -- Creates a new trusted entity set. In the trusted entity set, you can provide IP addresses and domains that you believe are secure for communication in your Amazon Web Services environment. GuardDuty will not generate findings for the entries that are specified in a trusted entity set. At any given time, you can have only one trusted entity set. Only users of the administrator account can manage the entity sets, which automatically apply to member accounts.
     createTrustedEntitySet: function(Client, types.CreateTrustedEntitySetInput): types.CreateTrustedEntitySetOutput, table
+    -- Declines invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.
     declineInvitations: function(Client, types.DeclineInvitationsInput): types.DeclineInvitationsOutput, table
+    -- Deletes an Amazon GuardDuty detector that is specified by the detector ID.
     deleteDetector: function(Client, types.DeleteDetectorInput): types.DeleteDetectorOutput, table
+    -- Deletes the filter specified by the filter name.
     deleteFilter: function(Client, types.DeleteFilterInput): types.DeleteFilterOutput, table
+    -- Deletes invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.
     deleteInvitations: function(Client, types.DeleteInvitationsInput): types.DeleteInvitationsOutput, table
+    -- Deletes the IPSet specified by the ipSetId. IPSets are called trusted IP lists in the console user interface.
     deleteIPSet: function(Client, types.DeleteIPSetInput): types.DeleteIPSetOutput, table
+    -- Deletes the Malware Protection plan ID associated with the Malware Protection plan resource. Use this API only when you no longer want to protect the resource associated with this Malware Protection plan ID.
     deleteMalwareProtectionPlan: function(Client, types.DeleteMalwareProtectionPlanInput): types.DeleteMalwareProtectionPlanOutput, table
+    -- Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs. With autoEnableOrganizationMembers configuration for your organization set to ALL, you'll receive an error if you attempt to disable GuardDuty for a member account in your organization.
     deleteMembers: function(Client, types.DeleteMembersInput): types.DeleteMembersOutput, table
+    -- Deletes the publishing definition with the specified destinationId.
     deletePublishingDestination: function(Client, types.DeletePublishingDestinationInput): types.DeletePublishingDestinationOutput, table
+    -- Deletes the threat entity set that is associated with the specified threatEntitySetId.
     deleteThreatEntitySet: function(Client, types.DeleteThreatEntitySetInput): types.DeleteThreatEntitySetOutput, table
+    -- Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.
     deleteThreatIntelSet: function(Client, types.DeleteThreatIntelSetInput): types.DeleteThreatIntelSetOutput, table
+    -- Deletes the trusted entity set that is associated with the specified trustedEntitySetId.
     deleteTrustedEntitySet: function(Client, types.DeleteTrustedEntitySetInput): types.DeleteTrustedEntitySetOutput, table
+    -- Returns a list of malware scans. Each member account can view the malware scans for their own accounts. An administrator can view the malware scans for all the member accounts. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     describeMalwareScans: function(Client, types.DescribeMalwareScansInput): types.DescribeMalwareScansOutput, table
+    -- Returns information about the account selected as the delegated administrator for GuardDuty. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    -- Returns information about the publishing destination specified by the provided destinationId.
     describePublishingDestination: function(Client, types.DescribePublishingDestinationInput): types.DescribePublishingDestinationOutput, table
+    -- Removes the existing GuardDuty delegated administrator of the organization. Only the organization's management account can run this API operation.
     disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): types.DisableOrganizationAdminAccountOutput, table
+    -- Disassociates the current GuardDuty member account from its administrator account. When you disassociate an invited member from a GuardDuty delegated administrator, the member account details obtained from the CreateMembers API, including the associated email addresses, are retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API. With autoEnableOrganizationMembers configuration for your organization set to ALL, you'll receive an error if you attempt to disable GuardDuty in a member account.
     disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput): types.DisassociateFromAdministratorAccountOutput, table
+    -- Disassociates the current GuardDuty member account from its administrator account. When you disassociate an invited member from a GuardDuty delegated administrator, the member account details obtained from the CreateMembers API, including the associated email addresses, are retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API.
     disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput): types.DisassociateFromMasterAccountOutput, table
+    -- Disassociates GuardDuty member accounts (from the current administrator account) specified by the account IDs. When you disassociate an invited member from a GuardDuty delegated administrator, the member account details obtained from the CreateMembers API, including the associated email addresses, are retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API. With autoEnableOrganizationMembers configuration for your organization set to ALL, you'll receive an error if you attempt to disassociate a member account before removing them from your organization. If you disassociate a member account that was added by invitation, the member account details obtained from this API, including the associated email addresses, will be retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API. When the member accounts added through Organizations are later disassociated, you (administrator) can't invite them by calling the InviteMembers API. You can create an association with these member accounts again only by calling the CreateMembers API.
     disassociateMembers: function(Client, types.DisassociateMembersInput): types.DisassociateMembersOutput, table
+    -- Designates an Amazon Web Services account within the organization as your GuardDuty delegated administrator. Only the organization's management account can run this API operation.
     enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): types.EnableOrganizationAdminAccountOutput, table
+    -- Provides the details of the GuardDuty administrator account associated with the current GuardDuty member account. Based on the type of account that runs this API, the following list shows how the API behavior varies: When the GuardDuty administrator account runs this API, it will return success (HTTP 200) but no content. When a member account runs this API, it will return the details of the GuardDuty administrator account that is associated with this calling member account. When an individual account (not associated with an organization) runs this API, it will return success (HTTP 200) but no content.
     getAdministratorAccount: function(Client, types.GetAdministratorAccountInput): types.GetAdministratorAccountOutput, table
+    -- Retrieves aggregated statistics for your account. If you are a GuardDuty administrator, you can retrieve the statistics for all the resources associated with the active member accounts in your organization who have enabled Runtime Monitoring and have the GuardDuty security agent running on their resources.
     getCoverageStatistics: function(Client, types.GetCoverageStatisticsInput): types.GetCoverageStatisticsOutput, table
+    -- Retrieves a GuardDuty detector specified by the detectorId. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     getDetector: function(Client, types.GetDetectorInput): types.GetDetectorOutput, table
+    -- Returns the details of the filter specified by the filter name.
     getFilter: function(Client, types.GetFilterInput): types.GetFilterOutput, table
+    -- Describes Amazon GuardDuty findings specified by finding IDs.
     getFindings: function(Client, types.GetFindingsInput): types.GetFindingsOutput, table
+    -- Lists GuardDuty findings statistics for the specified detector ID. You must provide either findingStatisticTypes or groupBy parameter, and not both. You can use the maxResults and orderBy parameters only when using groupBy. There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see Regions and endpoints.
     getFindingsStatistics: function(Client, types.GetFindingsStatisticsInput): types.GetFindingsStatisticsOutput, table
+    -- Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.
     getInvitationsCount: function(Client, types.GetInvitationsCountInput): types.GetInvitationsCountOutput, table
+    -- Retrieves the IPSet specified by the ipSetId.
     getIPSet: function(Client, types.GetIPSetInput): types.GetIPSetOutput, table
+    -- Retrieves the Malware Protection plan details associated with a Malware Protection plan ID.
     getMalwareProtectionPlan: function(Client, types.GetMalwareProtectionPlanInput): types.GetMalwareProtectionPlanOutput, table
+    -- Retrieves the detailed information for a specific malware scan. Each member account can view the malware scan details for their own account. An administrator can view malware scan details for all accounts in the organization. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     getMalwareScan: function(Client, types.GetMalwareScanInput): types.GetMalwareScanOutput, table
+    -- Returns the details of the malware scan settings. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     getMalwareScanSettings: function(Client, types.GetMalwareScanSettingsInput): types.GetMalwareScanSettingsOutput, table
+    -- Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.
     getMasterAccount: function(Client, types.GetMasterAccountInput): types.GetMasterAccountOutput, table
+    -- Describes which data sources are enabled for the member account's detector. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     getMemberDetectors: function(Client, types.GetMemberDetectorsInput): types.GetMemberDetectorsOutput, table
+    -- Retrieves GuardDuty member accounts (of the current GuardDuty administrator account) specified by the account IDs.
     getMembers: function(Client, types.GetMembersInput): types.GetMembersOutput, table
+    -- Retrieves how many active member accounts have each feature enabled within GuardDuty. Only a delegated GuardDuty administrator of an organization can run this API. When you create a new organization, it might take up to 24 hours to generate the statistics for the entire organization.
     getOrganizationStatistics: function(Client, types.GetOrganizationStatisticsInput): types.GetOrganizationStatisticsOutput, table
+    -- Provides the number of days left for each data source used in the free trial period.
     getRemainingFreeTrialDays: function(Client, types.GetRemainingFreeTrialDaysInput): types.GetRemainingFreeTrialDaysOutput, table
+    -- Retrieves the threat entity set associated with the specified threatEntitySetId.
     getThreatEntitySet: function(Client, types.GetThreatEntitySetInput): types.GetThreatEntitySetOutput, table
+    -- Retrieves the ThreatIntelSet that is specified by the ThreatIntelSet ID.
     getThreatIntelSet: function(Client, types.GetThreatIntelSetInput): types.GetThreatIntelSetOutput, table
+    -- Retrieves the trusted entity set associated with the specified trustedEntitySetId.
     getTrustedEntitySet: function(Client, types.GetTrustedEntitySetInput): types.GetTrustedEntitySetOutput, table
+    -- Lists Amazon GuardDuty usage statistics over the last 30 days for the specified detector ID. For newly enabled detectors or data sources, the cost returned will include only the usage so far under 30 days. This may differ from the cost metrics in the console, which project usage over 30 days to provide a monthly cost estimate. For more information, see Understanding How Usage Costs are Calculated.
     getUsageStatistics: function(Client, types.GetUsageStatisticsInput): types.GetUsageStatisticsOutput, table
+    -- Invites Amazon Web Services accounts to become members of an organization administered by the Amazon Web Services account that invokes this API. If you are using Amazon Web Services Organizations to manage your GuardDuty environment, this step is not needed. For more information, see Managing accounts with organizations. To invite Amazon Web Services accounts, the first step is to ensure that GuardDuty has been enabled in the potential member accounts. You can now invoke this API to add accounts by invitation. The invited accounts can either accept or decline the invitation from their GuardDuty accounts. Each invited Amazon Web Services account can choose to accept the invitation from only one Amazon Web Services account. For more information, see Managing GuardDuty accounts by invitation. After the invite has been accepted and you choose to disassociate a member account (by using DisassociateMembers) from your account, the details of the member account obtained by invoking CreateMembers, including the associated email addresses, will be retained. This is done so that you can invoke InviteMembers without the need to invoke CreateMembers again. To remove the details associated with a member account, you must also invoke DeleteMembers. If you disassociate a member account that was added by invitation, the member account details obtained from this API, including the associated email addresses, will be retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API. When the member accounts added through Organizations are later disassociated, you (administrator) can't invite them by calling the InviteMembers API. You can create an association with these member accounts again only by calling the CreateMembers API.
     inviteMembers: function(Client, types.InviteMembersInput): types.InviteMembersOutput, table
+    -- Lists coverage details for your GuardDuty account. If you're a GuardDuty administrator, you can retrieve all resources associated with the active member accounts in your organization. Make sure the accounts have Runtime Monitoring enabled and GuardDuty agent running on their resources.
     listCoverage: function(Client, types.ListCoverageInput): types.ListCoverageOutput, table
+    -- Lists detectorIds of all the existing Amazon GuardDuty detector resources.
     listDetectors: function(Client, types.ListDetectorsInput): types.ListDetectorsOutput, table
+    -- Returns a paginated list of the current filters.
     listFilters: function(Client, types.ListFiltersInput): types.ListFiltersOutput, table
+    -- Lists GuardDuty findings for the specified detector ID. There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see Regions and endpoints.
     listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    -- Lists all GuardDuty membership invitations that were sent to the current Amazon Web Services account.
     listInvitations: function(Client, types.ListInvitationsInput): types.ListInvitationsOutput, table
+    -- Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated administrator account.
     listIPSets: function(Client, types.ListIPSetsInput): types.ListIPSetsOutput, table
+    -- Lists the Malware Protection plan IDs associated with the protected resources in your Amazon Web Services account.
     listMalwareProtectionPlans: function(Client, types.ListMalwareProtectionPlansInput): types.ListMalwareProtectionPlansOutput, table
+    -- Returns a list of malware scans. Each member account can view the malware scans for their own accounts. An administrator can view the malware scans for all of its members' accounts.
     listMalwareScans: function(Client, types.ListMalwareScansInput): types.ListMalwareScansOutput, table
+    -- Lists details about all member accounts for the current GuardDuty administrator account.
     listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    -- Lists the accounts designated as GuardDuty delegated administrators. Only the organization's management account can run this API operation.
     listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): types.ListOrganizationAdminAccountsOutput, table
+    -- Returns a list of publishing destinations associated with the specified detectorId.
     listPublishingDestinations: function(Client, types.ListPublishingDestinationsInput): types.ListPublishingDestinationsOutput, table
+    -- Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, threat intel sets, and publishing destination, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the threat entity sets associated with the specified GuardDuty detector ID. If you use this operation from a member account, the threat entity sets that are returned as a response, belong to the administrator account.
     listThreatEntitySets: function(Client, types.ListThreatEntitySetsInput): types.ListThreatEntitySetsOutput, table
+    -- Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.
     listThreatIntelSets: function(Client, types.ListThreatIntelSetsInput): types.ListThreatIntelSetsOutput, table
+    -- Lists the trusted entity sets associated with the specified GuardDuty detector ID. If you use this operation from a member account, the trusted entity sets that are returned as a response, belong to the administrator account.
     listTrustedEntitySets: function(Client, types.ListTrustedEntitySetsInput): types.ListTrustedEntitySetsOutput, table
+    -- Initiates a malware scan for a specific S3 object. This API allows you to perform on-demand malware scanning of individual objects in S3 buckets that have Malware Protection for S3 enabled. When you use this API, the Amazon Web Services service terms for GuardDuty Malware Protection apply. For more information, see Amazon Web Services service terms for GuardDuty Malware Protection.
     sendObjectMalwareScan: function(Client, types.SendObjectMalwareScanInput): types.SendObjectMalwareScanOutput, table
+    -- Initiates the malware scan. Invoking this API will automatically create the Service-linked role in the corresponding account if the resourceArn belongs to an EC2 instance. When the malware scan starts, you can use the associated scan ID to track the status of the scan. For more information, see ListMalwareScans and GetMalwareScan. When you use this API, the Amazon Web Services service terms for GuardDuty Malware Protection apply. For more information, see Amazon Web Services service terms for GuardDuty Malware Protection.
     startMalwareScan: function(Client, types.StartMalwareScanInput): types.StartMalwareScanOutput, table
+    -- Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the StopMonitoringMembers operation.
     startMonitoringMembers: function(Client, types.StartMonitoringMembersInput): types.StartMonitoringMembersOutput, table
+    -- Stops GuardDuty monitoring for the specified member accounts. Use the StartMonitoringMembers operation to restart monitoring for those accounts. With autoEnableOrganizationMembers configuration for your organization set to ALL, you'll receive an error if you attempt to stop monitoring the member accounts in your organization.
     stopMonitoringMembers: function(Client, types.StopMonitoringMembersInput): types.StopMonitoringMembersOutput, table
+    -- Adds tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Unarchives GuardDuty findings specified by the findingIds.
     unarchiveFindings: function(Client, types.UnarchiveFindingsInput): types.UnarchiveFindingsOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the GuardDuty detector specified by the detector ID. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     updateDetector: function(Client, types.UpdateDetectorInput): types.UpdateDetectorOutput, table
+    -- Updates the filter specified by the filter name.
     updateFilter: function(Client, types.UpdateFilterInput): types.UpdateFilterOutput, table
+    -- Marks the specified GuardDuty findings as useful or not useful.
     updateFindingsFeedback: function(Client, types.UpdateFindingsFeedbackInput): types.UpdateFindingsFeedbackOutput, table
+    -- Updates the IPSet specified by the IPSet ID.
     updateIPSet: function(Client, types.UpdateIPSetInput): types.UpdateIPSetOutput, table
+    -- Updates an existing Malware Protection plan resource.
     updateMalwareProtectionPlan: function(Client, types.UpdateMalwareProtectionPlanInput): types.UpdateMalwareProtectionPlanOutput, table
+    -- Updates the malware scan settings. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     updateMalwareScanSettings: function(Client, types.UpdateMalwareScanSettingsInput): types.UpdateMalwareScanSettingsOutput, table
+    -- Contains information on member accounts to be updated. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     updateMemberDetectors: function(Client, types.UpdateMemberDetectorsInput): types.UpdateMemberDetectorsOutput, table
+    -- Configures the delegated administrator account with the provided values. You must provide a value for either autoEnableOrganizationMembers or autoEnable, but not both. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints.
     updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    -- Updates information about the publishing destination specified by the destinationId.
     updatePublishingDestination: function(Client, types.UpdatePublishingDestinationInput): types.UpdatePublishingDestinationOutput, table
+    -- Updates the threat entity set associated with the specified threatEntitySetId.
     updateThreatEntitySet: function(Client, types.UpdateThreatEntitySetInput): types.UpdateThreatEntitySetOutput, table
+    -- Updates the ThreatIntelSet specified by the ThreatIntelSet ID.
     updateThreatIntelSet: function(Client, types.UpdateThreatIntelSetInput): types.UpdateThreatIntelSetOutput, table
+    -- Updates the trusted entity set associated with the specified trustedEntitySetId.
     updateTrustedEntitySet: function(Client, types.UpdateTrustedEntitySetInput): types.UpdateTrustedEntitySetOutput, table
 end
 

@@ -3,13 +3,35 @@
 local types = require("iotsecuretunneling.types")
 
 local record Client
+    -- Closes a tunnel identified by the unique tunnel id. When a CloseTunnel
+    -- request is received, we close the WebSocket connections between the client and proxy
+    -- server so no data can be transmitted.
+    -- Requires permission to access the CloseTunnel action.
     closeTunnel: function(Client, types.CloseTunnelInput): types.CloseTunnelOutput, table
+    -- Gets information about a tunnel identified by the unique tunnel id.
+    -- Requires permission to access the DescribeTunnel action.
     describeTunnel: function(Client, types.DescribeTunnelInput): types.DescribeTunnelOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List all tunnels for an Amazon Web Services account. Tunnels are listed by creation time in
+    -- descending order, newer tunnels will be listed before older tunnels.
+    -- Requires permission to access the ListTunnels action.
     listTunnels: function(Client, types.ListTunnelsInput): types.ListTunnelsOutput, table
+    -- Creates a new tunnel, and returns two client access tokens for clients to use to
+    -- connect to the IoT Secure Tunneling proxy server.
+    -- Requires permission to access the OpenTunnel action.
     openTunnel: function(Client, types.OpenTunnelInput): types.OpenTunnelOutput, table
+    -- Revokes the current client access token (CAT) and returns new CAT for clients to
+    -- use when reconnecting to secure tunneling to access the same tunnel.
+    -- Requires permission to access the RotateTunnelAccessToken action.
+    -- Rotating the CAT doesn't extend the tunnel duration. For example, say the tunnel
+    -- duration is 12 hours and the tunnel has already been open for 4 hours. When you
+    -- rotate the access tokens, the new tokens that are generated can only be used for the
+    -- remaining 8 hours.
     rotateTunnelAccessToken: function(Client, types.RotateTunnelAccessTokenInput): types.RotateTunnelAccessTokenOutput, table
+    -- A resource tag.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

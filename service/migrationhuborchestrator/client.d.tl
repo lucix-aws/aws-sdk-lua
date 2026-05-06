@@ -3,36 +3,69 @@
 local types = require("migrationhuborchestrator.types")
 
 local record Client
+    -- Creates a migration workflow template.
     createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    -- Create a workflow to orchestrate your migrations.
     createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    -- Create a step in the migration workflow.
     createWorkflowStep: function(Client, types.CreateWorkflowStepInput): types.CreateWorkflowStepOutput, table
+    -- Create a step group in a migration workflow.
     createWorkflowStepGroup: function(Client, types.CreateWorkflowStepGroupInput): types.CreateWorkflowStepGroupOutput, table
+    -- Deletes a migration workflow template.
     deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    -- Delete a migration workflow. You must pause a running workflow in Migration Hub Orchestrator console to
+    -- delete it.
     deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    -- Delete a step in a migration workflow. Pause the workflow to delete a running
+    -- step.
     deleteWorkflowStep: function(Client, types.DeleteWorkflowStepInput): types.DeleteWorkflowStepOutput, table
+    -- Delete a step group in a migration workflow.
     deleteWorkflowStepGroup: function(Client, types.DeleteWorkflowStepGroupInput): types.DeleteWorkflowStepGroupOutput, table
+    -- Get the template you want to use for creating a migration workflow.
     getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    -- Get a specific step in a template.
     getTemplateStep: function(Client, types.GetTemplateStepInput): types.GetTemplateStepOutput, table
+    -- Get a step group in a template.
     getTemplateStepGroup: function(Client, types.GetTemplateStepGroupInput): types.GetTemplateStepGroupOutput, table
+    -- Get migration workflow.
     getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    -- Get a step in the migration workflow.
     getWorkflowStep: function(Client, types.GetWorkflowStepInput): types.GetWorkflowStepOutput, table
+    -- Get the step group of a migration workflow.
     getWorkflowStepGroup: function(Client, types.GetWorkflowStepGroupInput): types.GetWorkflowStepGroupOutput, table
+    -- List AWS Migration Hub Orchestrator plugins.
     listPlugins: function(Client, types.ListPluginsInput): types.ListPluginsOutput, table
+    -- List the tags added to a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List the templates available in Migration Hub Orchestrator to create a migration workflow.
     listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    -- List the step groups in a template.
     listTemplateStepGroups: function(Client, types.ListTemplateStepGroupsInput): types.ListTemplateStepGroupsOutput, table
+    -- List the steps in a template.
     listTemplateSteps: function(Client, types.ListTemplateStepsInput): types.ListTemplateStepsOutput, table
+    -- List the migration workflows.
     listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    -- List the step groups in a migration workflow.
     listWorkflowStepGroups: function(Client, types.ListWorkflowStepGroupsInput): types.ListWorkflowStepGroupsOutput, table
+    -- List the steps in a workflow.
     listWorkflowSteps: function(Client, types.ListWorkflowStepsInput): types.ListWorkflowStepsOutput, table
+    -- Retry a failed step in a migration workflow.
     retryWorkflowStep: function(Client, types.RetryWorkflowStepInput): types.RetryWorkflowStepOutput, table
+    -- Start a migration workflow.
     startWorkflow: function(Client, types.StartWorkflowInput): types.StartWorkflowOutput, table
+    -- Stop an ongoing migration workflow.
     stopWorkflow: function(Client, types.StopWorkflowInput): types.StopWorkflowOutput, table
+    -- Tag a resource by specifying its Amazon Resource Name (ARN).
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes the tags for a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a migration workflow template.
     updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+    -- Update a migration workflow.
     updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+    -- Update a step in a migration workflow.
     updateWorkflowStep: function(Client, types.UpdateWorkflowStepInput): types.UpdateWorkflowStepOutput, table
+    -- Update the step group in a migration workflow.
     updateWorkflowStepGroup: function(Client, types.UpdateWorkflowStepGroupInput): types.UpdateWorkflowStepGroupOutput, table
 end
 

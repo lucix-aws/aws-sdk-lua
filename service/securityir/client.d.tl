@@ -3,29 +3,53 @@
 local types = require("securityir.types")
 
 local record Client
+    -- Provides information on whether the supplied account IDs are associated with a membership. AWS account ID's may appear less than 12 characters and need to be zero-prepended. An example would be 123123123 which is nine digits, and with zero-prepend would be 000123123123. Not zero-prepending to 12 digits could result in errors.
     batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput): types.BatchGetMemberAccountDetailsOutput, table
+    -- Cancels an existing membership.
     cancelMembership: function(Client, types.CancelMembershipInput): types.CancelMembershipOutput, table
+    -- Closes an existing case.
     closeCase: function(Client, types.CloseCaseInput): types.CloseCaseOutput, table
+    -- Creates a new case.
     createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    -- Adds a comment to an existing case.
     createCaseComment: function(Client, types.CreateCaseCommentInput): types.CreateCaseCommentOutput, table
+    -- Creates a new membership.
     createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    -- Returns the attributes of a case.
     getCase: function(Client, types.GetCaseInput): types.GetCaseOutput, table
+    -- Returns a Pre-Signed URL for uploading attachments into a case.
     getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput): types.GetCaseAttachmentDownloadUrlOutput, table
+    -- Uploads an attachment to a case.
     getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput): types.GetCaseAttachmentUploadUrlOutput, table
+    -- Returns the attributes of a membership.
     getMembership: function(Client, types.GetMembershipInput): types.GetMembershipOutput, table
+    -- Views the case history for edits made to a designated case.
     listCaseEdits: function(Client, types.ListCaseEditsInput): types.ListCaseEditsOutput, table
+    -- Lists all cases the requester has access to.
     listCases: function(Client, types.ListCasesInput): types.ListCasesOutput, table
+    -- Returns comments for a designated case.
     listComments: function(Client, types.ListCommentsInput): types.ListCommentsOutput, table
+    -- Investigation performed by an agent for a security incident...
     listInvestigations: function(Client, types.ListInvestigationsInput): types.ListInvestigationsOutput, table
+    -- Returns the memberships that the calling principal can access.
     listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    -- Returns currently configured tags on a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Send feedback based on response investigation action
     sendFeedback: function(Client, types.SendFeedbackInput): types.SendFeedbackOutput, table
+    -- Adds a tag(s) to a designated resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag(s) from a designate resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing case.
     updateCase: function(Client, types.UpdateCaseInput): types.UpdateCaseOutput, table
+    -- Updates an existing case comment.
     updateCaseComment: function(Client, types.UpdateCaseCommentInput): types.UpdateCaseCommentOutput, table
+    -- Updates the state transitions for a designated cases. Self-managed: the following states are available for self-managed cases. Submitted → Detection and Analysis Detection and Analysis → Containment, Eradication, and Recovery Detection and Analysis → Post-incident Activities Containment, Eradication, and Recovery → Detection and Analysis Containment, Eradication, and Recovery → Post-incident Activities Post-incident Activities → Containment, Eradication, and Recovery Post-incident Activities → Detection and Analysis Any → Closed AWS supported: You must use the CloseCase API to close.
     updateCaseStatus: function(Client, types.UpdateCaseStatusInput): types.UpdateCaseStatusOutput, table
+    -- Updates membership configuration.
     updateMembership: function(Client, types.UpdateMembershipInput): types.UpdateMembershipOutput, table
+    -- Updates the resolver type for a case. This is a one-way action and cannot be reversed.
     updateResolverType: function(Client, types.UpdateResolverTypeInput): types.UpdateResolverTypeOutput, table
 end
 

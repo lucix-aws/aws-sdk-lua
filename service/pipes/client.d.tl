@@ -3,15 +3,47 @@
 local types = require("pipes.types")
 
 local record Client
+    -- Create a pipe. Amazon EventBridge Pipes connect event sources to targets and reduces
+    -- the need for specialized knowledge and integration code.
     createPipe: function(Client, types.CreatePipeInput): types.CreatePipeOutput, table
+    -- Delete an existing pipe. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
     deletePipe: function(Client, types.DeletePipeInput): types.DeletePipeOutput, table
+    -- Get the information about an existing pipe. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
     describePipe: function(Client, types.DescribePipeInput): types.DescribePipeOutput, table
+    -- Get the pipes associated with this account. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
     listPipes: function(Client, types.ListPipesInput): types.ListPipesOutput, table
+    -- Displays the tags associated with a pipe.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Start an existing pipe.
     startPipe: function(Client, types.StartPipeInput): types.StartPipeOutput, table
+    -- Stop an existing pipe.
     stopPipe: function(Client, types.StopPipeInput): types.StopPipeOutput, table
+    -- Assigns one or more tags (key-value pairs) to the specified pipe. Tags can help you
+    -- organize and categorize your resources. You can also use them to scope user permissions by
+    -- granting a user permission to access or change only resources with certain tag
+    -- values.
+    -- Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly
+    -- as strings of characters.
+    -- You can use the TagResource action with a pipe that already has tags. If
+    -- you specify a new tag key, this tag is appended to the list of tags associated with the
+    -- pipe. If you specify a tag key that is already associated with the pipe, the new tag value
+    -- that you specify replaces the previous value for that tag.
+    -- You can associate as many as 50 tags with a pipe.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from the specified pipes.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update an existing pipe. When you call UpdatePipe, EventBridge only the
+    -- updates fields you have specified in the request; the rest remain unchanged. The exception
+    -- to this is if you modify any Amazon Web Services-service specific fields in the
+    -- SourceParameters, EnrichmentParameters, or
+    -- TargetParameters objects. For example,
+    -- DynamoDBStreamParameters or EventBridgeEventBusParameters.
+    -- EventBridge updates the fields in these objects atomically as one and overrides existing
+    -- values. This is by design, and means that if you don't specify an optional field in one of
+    -- these Parameters objects, EventBridge sets that field to its system-default
+    -- value during the update.
+    -- For more information about pipes, see
+    -- Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
     updatePipe: function(Client, types.UpdatePipeInput): types.UpdatePipeOutput, table
 end
 

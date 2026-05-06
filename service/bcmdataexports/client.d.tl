@@ -3,17 +3,29 @@
 local types = require("bcmdataexports.types")
 
 local record Client
+    -- Creates a data export and specifies the data query, the delivery preference, and any optional resource tags. A DataQuery consists of both a QueryStatement and TableConfigurations. The QueryStatement is an SQL statement. Data Exports only supports a limited subset of the SQL syntax. For more information on the SQL syntax that is supported, see Data query. To view the available tables and columns, see the Data Exports table dictionary. The TableConfigurations is a collection of specified TableProperties for the table being queried in the QueryStatement. TableProperties are additional configurations you can provide to change the data and schema of a table. Each table can have different TableProperties. However, tables are not required to have any TableProperties. Each table property has a default value that it assumes if not specified. For more information on table configurations, see Data query. To view the table properties available for each table, see the Data Exports table dictionary or use the ListTables API to get a response of all tables and their available properties.
     createExport: function(Client, types.CreateExportInput): types.CreateExportOutput, table
+    -- Deletes an existing data export.
     deleteExport: function(Client, types.DeleteExportInput): types.DeleteExportOutput, table
+    -- Exports data based on the source data update.
     getExecution: function(Client, types.GetExecutionInput): types.GetExecutionOutput, table
+    -- Views the definition of an existing data export.
     getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    -- Returns the metadata for the specified table and table properties. This includes the list of columns in the table schema, their data types, and column descriptions.
     getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    -- Lists the historical executions for the export.
     listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    -- Lists all data export definitions.
     listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    -- Lists all available tables in data exports.
     listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    -- List tags associated with an existing data export.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds tags for an existing data export definition.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes tags associated with an existing data export definition.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing data export by overwriting all export parameters. All export parameters must be provided in the UpdateExport request.
     updateExport: function(Client, types.UpdateExportInput): types.UpdateExportOutput, table
 end
 

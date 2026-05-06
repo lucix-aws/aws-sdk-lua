@@ -3,56 +3,118 @@
 local types = require("elasticsearchservice.types")
 
 local record Client
+    -- Allows the destination domain owner to accept an inbound cross-cluster search connection request.
     acceptInboundCrossClusterSearchConnection: function(Client, types.AcceptInboundCrossClusterSearchConnectionInput): types.AcceptInboundCrossClusterSearchConnectionOutput, table
+    -- Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See
+    -- Tagging Amazon Elasticsearch Service Domains for more information.
     addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    -- Associates a package with an Amazon ES domain.
     associatePackage: function(Client, types.AssociatePackageInput): types.AssociatePackageOutput, table
+    -- Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.
     authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput): types.AuthorizeVpcEndpointAccessOutput, table
+    -- Cancels a pending configuration change on an Amazon OpenSearch Service domain.
     cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput): types.CancelDomainConfigChangeOutput, table
+    -- Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the AutomatedUpdateDate and when the UpdateStatus is in the PENDING_UPDATE state.
     cancelElasticsearchServiceSoftwareUpdate: function(Client, types.CancelElasticsearchServiceSoftwareUpdateInput): types.CancelElasticsearchServiceSoftwareUpdateOutput, table
+    -- Creates a new Elasticsearch domain. For more information,
+    -- see Creating Elasticsearch Domains in the Amazon Elasticsearch Service Developer Guide.
     createElasticsearchDomain: function(Client, types.CreateElasticsearchDomainInput): types.CreateElasticsearchDomainOutput, table
+    -- Creates a new cross-cluster search connection from a source domain to a destination domain.
     createOutboundCrossClusterSearchConnection: function(Client, types.CreateOutboundCrossClusterSearchConnectionInput): types.CreateOutboundCrossClusterSearchConnectionOutput, table
+    -- Create a package for use with Amazon ES domains.
     createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    -- Creates an Amazon OpenSearch Service-managed VPC endpoint.
     createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): types.CreateVpcEndpointOutput, table
+    -- Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.
     deleteElasticsearchDomain: function(Client, types.DeleteElasticsearchDomainInput): types.DeleteElasticsearchDomainOutput, table
+    -- Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains. Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role. See Deleting Elasticsearch Service Role in VPC Endpoints for Amazon Elasticsearch Service Domains.
     deleteElasticsearchServiceRole: function(Client, types.DeleteElasticsearchServiceRoleInput): types.DeleteElasticsearchServiceRoleOutput, table
+    -- Allows the destination domain owner to delete an existing inbound cross-cluster search connection.
     deleteInboundCrossClusterSearchConnection: function(Client, types.DeleteInboundCrossClusterSearchConnectionInput): types.DeleteInboundCrossClusterSearchConnectionOutput, table
+    -- Allows the source domain owner to delete an existing outbound cross-cluster search connection.
     deleteOutboundCrossClusterSearchConnection: function(Client, types.DeleteOutboundCrossClusterSearchConnectionInput): types.DeleteOutboundCrossClusterSearchConnectionOutput, table
+    -- Delete the package.
     deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    -- Deletes an Amazon OpenSearch Service-managed interface VPC endpoint.
     deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput): types.DeleteVpcEndpointOutput, table
+    -- Provides scheduled Auto-Tune action details for the Elasticsearch domain, such as Auto-Tune action type, description, severity, and scheduled date.
     describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput): types.DescribeDomainAutoTunesOutput, table
+    -- Returns information about the current blue/green deployment happening on a domain, including
+    -- a change ID, status, and progress stages.
     describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput): types.DescribeDomainChangeProgressOutput, table
+    -- Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.
     describeElasticsearchDomain: function(Client, types.DescribeElasticsearchDomainInput): types.DescribeElasticsearchDomainOutput, table
+    -- Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.
     describeElasticsearchDomainConfig: function(Client, types.DescribeElasticsearchDomainConfigInput): types.DescribeElasticsearchDomainConfigOutput, table
+    -- Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.
     describeElasticsearchDomains: function(Client, types.DescribeElasticsearchDomainsInput): types.DescribeElasticsearchDomainsOutput, table
+    -- Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion.
+    -- When modifying existing Domain, specify the
+    -- DomainName
+    -- to know what Limits are supported for modifying.
     describeElasticsearchInstanceTypeLimits: function(Client, types.DescribeElasticsearchInstanceTypeLimitsInput): types.DescribeElasticsearchInstanceTypeLimitsOutput, table
+    -- Lists all the inbound cross-cluster search connections for a destination domain.
     describeInboundCrossClusterSearchConnections: function(Client, types.DescribeInboundCrossClusterSearchConnectionsInput): types.DescribeInboundCrossClusterSearchConnectionsOutput, table
+    -- Lists all the outbound cross-cluster search connections for a source domain.
     describeOutboundCrossClusterSearchConnections: function(Client, types.DescribeOutboundCrossClusterSearchConnectionsInput): types.DescribeOutboundCrossClusterSearchConnectionsOutput, table
+    -- Describes all packages available to Amazon ES. Includes options for filtering, limiting the number of results, and pagination.
     describePackages: function(Client, types.DescribePackagesInput): types.DescribePackagesOutput, table
+    -- Lists available reserved Elasticsearch instance offerings.
     describeReservedElasticsearchInstanceOfferings: function(Client, types.DescribeReservedElasticsearchInstanceOfferingsInput): types.DescribeReservedElasticsearchInstanceOfferingsOutput, table
+    -- Returns information about reserved Elasticsearch instances for this account.
     describeReservedElasticsearchInstances: function(Client, types.DescribeReservedElasticsearchInstancesInput): types.DescribeReservedElasticsearchInstancesOutput, table
+    -- Describes one or more Amazon OpenSearch Service-managed VPC endpoints.
     describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput): types.DescribeVpcEndpointsOutput, table
+    -- Dissociates a package from the Amazon ES domain.
     dissociatePackage: function(Client, types.DissociatePackageInput): types.DissociatePackageOutput, table
+    -- Returns a list of upgrade compatible Elastisearch versions.
+    -- You can optionally pass a
+    -- DomainName
+    -- to get all upgrade compatible Elasticsearch versions for that specific domain.
     getCompatibleElasticsearchVersions: function(Client, types.GetCompatibleElasticsearchVersionsInput): types.GetCompatibleElasticsearchVersionsOutput, table
+    -- Returns a list of versions of the package, along with their creation time and commit message.
     getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput): types.GetPackageVersionHistoryOutput, table
+    -- Retrieves the complete history of the last 10 upgrades that were performed on the domain.
     getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput): types.GetUpgradeHistoryOutput, table
+    -- Retrieves the latest status of the last upgrade or upgrade eligibility check that was performed on the domain.
     getUpgradeStatus: function(Client, types.GetUpgradeStatusInput): types.GetUpgradeStatusOutput, table
+    -- Returns the name of all Elasticsearch domains owned by the current user's account.
     listDomainNames: function(Client, types.ListDomainNamesInput): types.ListDomainNamesOutput, table
+    -- Lists all Amazon ES domains associated with the package.
     listDomainsForPackage: function(Client, types.ListDomainsForPackageInput): types.ListDomainsForPackageOutput, table
+    -- List all Elasticsearch instance types that are supported for given ElasticsearchVersion
     listElasticsearchInstanceTypes: function(Client, types.ListElasticsearchInstanceTypesInput): types.ListElasticsearchInstanceTypesOutput, table
+    -- List all supported Elasticsearch versions
     listElasticsearchVersions: function(Client, types.ListElasticsearchVersionsInput): types.ListElasticsearchVersionsOutput, table
+    -- Lists all packages associated with the Amazon ES domain.
     listPackagesForDomain: function(Client, types.ListPackagesForDomainInput): types.ListPackagesForDomainOutput, table
+    -- Returns all tags for the given Elasticsearch domain.
     listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    -- Retrieves information about each principal that is allowed to access a
+    -- given Amazon OpenSearch Service domain through the use of an interface VPC endpoint.
     listVpcEndpointAccess: function(Client, types.ListVpcEndpointAccessInput): types.ListVpcEndpointAccessOutput, table
+    -- Retrieves all Amazon OpenSearch Service-managed VPC endpoints in the current account and Region.
     listVpcEndpoints: function(Client, types.ListVpcEndpointsInput): types.ListVpcEndpointsOutput, table
+    -- Retrieves all Amazon OpenSearch Service-managed VPC endpoints associated with a particular domain.
     listVpcEndpointsForDomain: function(Client, types.ListVpcEndpointsForDomainInput): types.ListVpcEndpointsForDomainOutput, table
+    -- Allows you to purchase reserved Elasticsearch instances.
     purchaseReservedElasticsearchInstanceOffering: function(Client, types.PurchaseReservedElasticsearchInstanceOfferingInput): types.PurchaseReservedElasticsearchInstanceOfferingOutput, table
+    -- Allows the destination domain owner to reject an inbound cross-cluster search connection request.
     rejectInboundCrossClusterSearchConnection: function(Client, types.RejectInboundCrossClusterSearchConnectionInput): types.RejectInboundCrossClusterSearchConnectionOutput, table
+    -- Removes the specified set of tags from the specified Elasticsearch domain.
     removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    -- Revokes access to an Amazon OpenSearch Service domain that was provided through an interface
+    -- VPC endpoint.
     revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput): types.RevokeVpcEndpointAccessOutput, table
+    -- Schedules a service software update for an Amazon ES domain.
     startElasticsearchServiceSoftwareUpdate: function(Client, types.StartElasticsearchServiceSoftwareUpdateInput): types.StartElasticsearchServiceSoftwareUpdateOutput, table
+    -- Modifies the cluster configuration of the specified Elasticsearch domain, setting as setting the instance type and the number of instances.
     updateElasticsearchDomainConfig: function(Client, types.UpdateElasticsearchDomainConfigInput): types.UpdateElasticsearchDomainConfigOutput, table
+    -- Updates a package for use with Amazon ES domains.
     updatePackage: function(Client, types.UpdatePackageInput): types.UpdatePackageOutput, table
+    -- Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.
     updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput): types.UpdateVpcEndpointOutput, table
+    -- Allows you to either upgrade your domain or perform an Upgrade eligibility check to a compatible Elasticsearch version.
     upgradeElasticsearchDomain: function(Client, types.UpgradeElasticsearchDomainInput): types.UpgradeElasticsearchDomainOutput, table
 end
 

@@ -3,24 +3,43 @@
 local types = require("repostspace.types")
 
 local record Client
+    -- Add role to multiple users or groups in a private re:Post channel.
     batchAddChannelRoleToAccessors: function(Client, types.BatchAddChannelRoleToAccessorsInput): types.BatchAddChannelRoleToAccessorsOutput, table
+    -- Add a role to multiple users or groups in a private re:Post.
     batchAddRole: function(Client, types.BatchAddRoleInput): types.BatchAddRoleOutput, table
+    -- Remove a role from multiple users or groups in a private re:Post channel.
     batchRemoveChannelRoleFromAccessors: function(Client, types.BatchRemoveChannelRoleFromAccessorsInput): types.BatchRemoveChannelRoleFromAccessorsOutput, table
+    -- Remove a role from multiple users or groups in a private re:Post.
     batchRemoveRole: function(Client, types.BatchRemoveRoleInput): types.BatchRemoveRoleOutput, table
+    -- Creates a channel in an AWS re:Post Private private re:Post.
     createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    -- Creates an AWS re:Post Private private re:Post.
     createSpace: function(Client, types.CreateSpaceInput): types.CreateSpaceOutput, table
+    -- Deletes an AWS re:Post Private private re:Post.
     deleteSpace: function(Client, types.DeleteSpaceInput): types.DeleteSpaceOutput, table
+    -- Removes the user or group from the list of administrators of the private re:Post.
     deregisterAdmin: function(Client, types.DeregisterAdminInput): types.DeregisterAdminOutput, table
+    -- Displays information about a channel in a private re:Post.
     getChannel: function(Client, types.GetChannelInput): types.GetChannelOutput, table
+    -- Displays information about the AWS re:Post Private private re:Post.
     getSpace: function(Client, types.GetSpaceInput): types.GetSpaceOutput, table
+    -- Returns the list of channel within a private re:Post with some information about each channel.
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Returns a list of AWS re:Post Private private re:Posts in the account with some information about each private re:Post.
     listSpaces: function(Client, types.ListSpacesInput): types.ListSpacesOutput, table
+    -- Returns the tags that are associated with the AWS re:Post Private resource specified by the resourceArn. The only resource that can be tagged is a private re:Post.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds a user or group to the list of administrators of the private re:Post.
     registerAdmin: function(Client, types.RegisterAdminInput): types.RegisterAdminOutput, table
+    -- Sends an invitation email to selected users and groups.
     sendInvites: function(Client, types.SendInvitesInput): types.SendInvitesOutput, table
+    -- Associates tags with an AWS re:Post Private resource. Currently, the only resource that can be tagged is the private re:Post. If you specify a new tag key for the resource, the tag is appended to the list of tags that are associated with the resource. If you specify a tag key that’s already associated with the resource, the new tag value that you specify replaces the previous value for that tag.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the association of the tag with the AWS re:Post Private resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Modifies an existing channel.
     updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    -- Modifies an existing AWS re:Post Private private re:Post.
     updateSpace: function(Client, types.UpdateSpaceInput): types.UpdateSpaceOutput, table
 end
 

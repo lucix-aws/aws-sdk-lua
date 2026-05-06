@@ -3,23 +3,41 @@
 local types = require("kafkaconnect.types")
 
 local record Client
+    -- Creates a connector using the specified properties.
     createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    -- Creates a custom plugin using the specified properties.
     createCustomPlugin: function(Client, types.CreateCustomPluginInput): types.CreateCustomPluginOutput, table
+    -- Creates a worker configuration using the specified properties.
     createWorkerConfiguration: function(Client, types.CreateWorkerConfigurationInput): types.CreateWorkerConfigurationOutput, table
+    -- Deletes the specified connector.
     deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    -- Deletes a custom plugin.
     deleteCustomPlugin: function(Client, types.DeleteCustomPluginInput): types.DeleteCustomPluginOutput, table
+    -- Deletes the specified worker configuration.
     deleteWorkerConfiguration: function(Client, types.DeleteWorkerConfigurationInput): types.DeleteWorkerConfigurationOutput, table
+    -- Returns summary information about the connector.
     describeConnector: function(Client, types.DescribeConnectorInput): types.DescribeConnectorOutput, table
+    -- Returns information about the specified connector's operations.
     describeConnectorOperation: function(Client, types.DescribeConnectorOperationInput): types.DescribeConnectorOperationOutput, table
+    -- A summary description of the custom plugin.
     describeCustomPlugin: function(Client, types.DescribeCustomPluginInput): types.DescribeCustomPluginOutput, table
+    -- Returns information about a worker configuration.
     describeWorkerConfiguration: function(Client, types.DescribeWorkerConfigurationInput): types.DescribeWorkerConfigurationOutput, table
+    -- Lists information about a connector's operation(s).
     listConnectorOperations: function(Client, types.ListConnectorOperationsInput): types.ListConnectorOperationsOutput, table
+    -- Returns a list of all the connectors in this account and Region. The list is limited to connectors whose name starts with the specified prefix. The response also includes a description of each of the listed connectors.
     listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    -- Returns a list of all of the custom plugins in this account and Region.
     listCustomPlugins: function(Client, types.ListCustomPluginsInput): types.ListCustomPluginsOutput, table
+    -- Lists all the tags attached to the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of all of the worker configurations in this account and Region.
     listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput): types.ListWorkerConfigurationsOutput, table
+    -- Attaches tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the specified connector. For request body, specify only one parameter: either capacity or connectorConfiguration.
     updateConnector: function(Client, types.UpdateConnectorInput): types.UpdateConnectorOutput, table
 end
 

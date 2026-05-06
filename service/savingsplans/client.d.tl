@@ -3,15 +3,25 @@
 local types = require("savingsplans.types")
 
 local record Client
+    -- Creates a Savings Plan.
     createSavingsPlan: function(Client, types.CreateSavingsPlanInput): types.CreateSavingsPlanOutput, table
+    -- Deletes the queued purchase for the specified Savings Plan.
     deleteQueuedSavingsPlan: function(Client, types.DeleteQueuedSavingsPlanInput): types.DeleteQueuedSavingsPlanOutput, table
+    -- Describes the rates for a specific, existing Savings Plan.
     describeSavingsPlanRates: function(Client, types.DescribeSavingsPlanRatesInput): types.DescribeSavingsPlanRatesOutput, table
+    -- Describes the specified Savings Plans.
     describeSavingsPlans: function(Client, types.DescribeSavingsPlansInput): types.DescribeSavingsPlansOutput, table
+    -- Describes the offering rates for Savings Plans you might want to purchase.
     describeSavingsPlansOfferingRates: function(Client, types.DescribeSavingsPlansOfferingRatesInput): types.DescribeSavingsPlansOfferingRatesOutput, table
+    -- Describes the offerings for the specified Savings Plans.
     describeSavingsPlansOfferings: function(Client, types.DescribeSavingsPlansOfferingsInput): types.DescribeSavingsPlansOfferingsOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns the specified Savings Plan.
     returnSavingsPlan: function(Client, types.ReturnSavingsPlanInput): types.ReturnSavingsPlanOutput, table
+    -- Adds the specified tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

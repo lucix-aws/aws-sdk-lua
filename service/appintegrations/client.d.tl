@@ -3,28 +3,77 @@
 local types = require("appintegrations.types")
 
 local record Client
+    -- Creates and persists an Application resource.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates and persists a DataIntegration resource.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been
+    -- previously associated. Use a different DataIntegration, or recreate the DataIntegration
+    -- using the CreateDataIntegration API.
     createDataIntegration: function(Client, types.CreateDataIntegrationInput): types.CreateDataIntegrationOutput, table
+    -- Creates and persists a DataIntegrationAssociation resource.
     createDataIntegrationAssociation: function(Client, types.CreateDataIntegrationAssociationInput): types.CreateDataIntegrationAssociationOutput, table
+    -- Creates an EventIntegration, given a specified name, description, and a reference to an
+    -- Amazon EventBridge bus in your account and a partner event source that pushes events to
+    -- that bus. No objects are created in the your account, only metadata that is persisted on the
+    -- EventIntegration control plane.
     createEventIntegration: function(Client, types.CreateEventIntegrationInput): types.CreateEventIntegrationOutput, table
+    -- Deletes the Application. Only Applications that don't have any Application Associations
+    -- can be deleted.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes the DataIntegration. Only DataIntegrations that don't have any
+    -- DataIntegrationAssociations can be deleted. Deleting a DataIntegration also deletes the
+    -- underlying Amazon AppFlow flow and service linked role.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been previously associated.
+    -- Use a different DataIntegration, or recreate the DataIntegration using the
+    -- CreateDataIntegration API.
     deleteDataIntegration: function(Client, types.DeleteDataIntegrationInput): types.DeleteDataIntegrationOutput, table
+    -- Deletes the specified existing event integration. If the event integration is associated
+    -- with clients, the request is rejected.
     deleteEventIntegration: function(Client, types.DeleteEventIntegrationInput): types.DeleteEventIntegrationOutput, table
+    -- Get an Application resource.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Returns information about the DataIntegration.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been previously associated.
+    -- Use a different DataIntegration, or recreate the DataIntegration using the
+    -- CreateDataIntegration API.
     getDataIntegration: function(Client, types.GetDataIntegrationInput): types.GetDataIntegrationOutput, table
+    -- Returns information about the event integration.
     getEventIntegration: function(Client, types.GetEventIntegrationInput): types.GetEventIntegrationOutput, table
+    -- Returns a paginated list of application associations for an application.
     listApplicationAssociations: function(Client, types.ListApplicationAssociationsInput): types.ListApplicationAssociationsOutput, table
+    -- Lists applications in the account.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Returns a paginated list of DataIntegration associations in the account.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been previously associated.
+    -- Use a different DataIntegration, or recreate the DataIntegration using the
+    -- CreateDataIntegration API.
     listDataIntegrationAssociations: function(Client, types.ListDataIntegrationAssociationsInput): types.ListDataIntegrationAssociationsOutput, table
+    -- Returns a paginated list of DataIntegrations in the account.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been previously associated.
+    -- Use a different DataIntegration, or recreate the DataIntegration using the
+    -- CreateDataIntegration API.
     listDataIntegrations: function(Client, types.ListDataIntegrationsInput): types.ListDataIntegrationsOutput, table
+    -- Returns a paginated list of event integration associations in the account.
     listEventIntegrationAssociations: function(Client, types.ListEventIntegrationAssociationsInput): types.ListEventIntegrationAssociationsOutput, table
+    -- Returns a paginated list of event integrations in the account.
     listEventIntegrations: function(Client, types.ListEventIntegrationsInput): types.ListEventIntegrationsOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds the specified tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates and persists an Application resource.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Updates the description of a DataIntegration.
+    -- You cannot create a DataIntegration association for a DataIntegration that has been previously associated.
+    -- Use a different DataIntegration, or recreate the DataIntegration using the
+    -- CreateDataIntegration API.
     updateDataIntegration: function(Client, types.UpdateDataIntegrationInput): types.UpdateDataIntegrationOutput, table
+    -- Updates and persists a DataIntegrationAssociation resource.
+    -- Updating a DataIntegrationAssociation with ExecutionConfiguration will rerun the on-demand job.
     updateDataIntegrationAssociation: function(Client, types.UpdateDataIntegrationAssociationInput): types.UpdateDataIntegrationAssociationOutput, table
+    -- Updates the description of an event integration.
     updateEventIntegration: function(Client, types.UpdateEventIntegrationInput): types.UpdateEventIntegrationOutput, table
 end
 

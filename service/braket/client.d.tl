@@ -3,22 +3,39 @@
 local types = require("braket.types")
 
 local record Client
+    -- Cancels an Amazon Braket hybrid job.
     cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    -- Cancels the specified task.
     cancelQuantumTask: function(Client, types.CancelQuantumTaskInput): types.CancelQuantumTaskOutput, table
+    -- Creates an Amazon Braket hybrid job.
     createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    -- Creates a quantum task.
     createQuantumTask: function(Client, types.CreateQuantumTaskInput): types.CreateQuantumTaskOutput, table
+    -- Creates a spending limit for a specified quantum device. Spending limits help you control costs by setting maximum amounts that can be spent on quantum computing tasks within a specified time period. Simulators do not support spending limits.
     createSpendingLimit: function(Client, types.CreateSpendingLimitInput): types.CreateSpendingLimitOutput, table
+    -- Deletes an existing spending limit. This operation permanently removes the spending limit and cannot be undone. After deletion, the associated device becomes unrestricted for spending.
     deleteSpendingLimit: function(Client, types.DeleteSpendingLimitInput): types.DeleteSpendingLimitOutput, table
+    -- Retrieves the devices available in Amazon Braket. For backwards compatibility with older versions of BraketSchemas, OpenQASM information is omitted from GetDevice API calls. To get this information the user-agent needs to present a recent version of the BraketSchemas (1.8.0 or later). The Braket SDK automatically reports this for you. If you do not see OpenQASM results in the GetDevice response when using a Braket SDK, you may need to set AWS_EXECUTION_ENV environment variable to configure user-agent. See the code examples provided below for how to do this for the AWS CLI, Boto3, and the Go, Java, and JavaScript/TypeScript SDKs.
     getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    -- Retrieves the specified Amazon Braket hybrid job.
     getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    -- Retrieves the specified quantum task.
     getQuantumTask: function(Client, types.GetQuantumTaskInput): types.GetQuantumTaskOutput, table
+    -- Shows the tags associated with this resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Searches for devices using the specified filters.
     searchDevices: function(Client, types.SearchDevicesInput): types.SearchDevicesOutput, table
+    -- Searches for Amazon Braket hybrid jobs that match the specified filter values.
     searchJobs: function(Client, types.SearchJobsInput): types.SearchJobsOutput, table
+    -- Searches for tasks that match the specified filter values.
     searchQuantumTasks: function(Client, types.SearchQuantumTasksInput): types.SearchQuantumTasksOutput, table
+    -- Searches and lists spending limits based on specified filters. This operation supports pagination and allows filtering by various criteria to find specific spending limits. We recommend using pagination to ensure that the operation returns quickly and successfully.
     searchSpendingLimits: function(Client, types.SearchSpendingLimitsInput): types.SearchSpendingLimitsOutput, table
+    -- Add a tag to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing spending limit. You can modify the spending amount or time period. Changes take effect immediately.
     updateSpendingLimit: function(Client, types.UpdateSpendingLimitInput): types.UpdateSpendingLimitOutput, table
 end
 

@@ -3,77 +3,149 @@
 local types = require("bedrockagent.types")
 
 local record Client
+    -- Makes an agent a collaborator for another agent.
     associateAgentCollaborator: function(Client, types.AssociateAgentCollaboratorInput): types.AssociateAgentCollaboratorOutput, table
+    -- Associates a knowledge base with an agent. If a knowledge base is associated and its indexState is set to Enabled, the agent queries the knowledge base for information to augment its response to the user.
     associateAgentKnowledgeBase: function(Client, types.AssociateAgentKnowledgeBaseInput): types.AssociateAgentKnowledgeBaseOutput, table
+    -- Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers. Specify the following fields for security purposes. agentResourceRoleArn – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent. (Optional) customerEncryptionKeyArn – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent. (Optional) idleSessionTTLinSeconds – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent InvokeAgent request begins a new session. To enable your agent to retain conversational context across multiple sessions, include a memoryConfiguration object. For more information, see Configure memory. To override the default prompt behavior for agent orchestration and to use advanced prompts, include a promptOverrideConfiguration object. For more information, see Advanced prompts. If your agent fails to be created, the response returns a list of failureReasons alongside a list of recommendedActions for you to troubleshoot. The agent instructions will not be honored if your agent has only one knowledge base, uses default prompts, has no action group, and user input is disabled.
     createAgent: function(Client, types.CreateAgentInput): types.CreateAgentOutput, table
+    -- Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them. To allow your agent to request the user for additional information when trying to complete a task, add an action group with the parentActionGroupSignature field set to AMAZON.UserInput. To allow your agent to generate, run, and troubleshoot code when trying to complete a task, add an action group with the parentActionGroupSignature field set to AMAZON.CodeInterpreter. You must leave the description, apiSchema, and actionGroupExecutor fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an Observation reprompting the user for more information.
     createAgentActionGroup: function(Client, types.CreateAgentActionGroupInput): types.CreateAgentActionGroupOutput, table
+    -- Creates an alias of an agent that can be used to deploy the agent.
     createAgentAlias: function(Client, types.CreateAgentAliasInput): types.CreateAgentAliasOutput, table
+    -- Connects a knowledge base to a data source. You specify the configuration for the specific data source service in the dataSourceConfiguration field. You can't change the chunkingConfiguration after you create the data source connector.
     createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    -- Creates a prompt flow that you can use to send an input through various steps to yield an output. Configure nodes, each of which corresponds to a step of the flow, and create connections between the nodes to create paths to different outputs. For more information, see How it works and Create a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     createFlow: function(Client, types.CreateFlowInput): types.CreateFlowOutput, table
+    -- Creates an alias of a flow for deployment. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     createFlowAlias: function(Client, types.CreateFlowAliasInput): types.CreateFlowAliasOutput, table
+    -- Creates a version of the flow that you can deploy. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     createFlowVersion: function(Client, types.CreateFlowVersionInput): types.CreateFlowVersionOutput, table
+    -- Creates a knowledge base. A knowledge base contains your data sources so that Large Language Models (LLMs) can use your data. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see Set up a knowledge base. If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see Create a knowledge base. Provide the name and an optional description. Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the roleArn field. Provide the embedding model to use in the embeddingModelArn field in the knowledgeBaseConfiguration object. Provide the configuration for your vector store in the storageConfiguration object. For an Amazon OpenSearch Service database, use the opensearchServerlessConfiguration object. For more information, see Create a vector store in Amazon OpenSearch Service. For an Amazon Aurora database, use the RdsConfiguration object. For more information, see Create a vector store in Amazon Aurora. For a Pinecone database, use the pineconeConfiguration object. For more information, see Create a vector store in Pinecone. For a Redis Enterprise Cloud database, use the redisEnterpriseCloudConfiguration object. For more information, see Create a vector store in Redis Enterprise Cloud.
     createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput): types.CreateKnowledgeBaseOutput, table
+    -- Creates a prompt in your prompt library that you can add to a flow. For more information, see Prompt management in Amazon Bedrock, Create a prompt using Prompt management and Prompt flows in Amazon Bedrock in the Amazon Bedrock User Guide.
     createPrompt: function(Client, types.CreatePromptInput): types.CreatePromptOutput, table
+    -- Creates a static snapshot of your prompt that can be deployed to production. For more information, see Deploy prompts using Prompt management by creating versions in the Amazon Bedrock User Guide.
     createPromptVersion: function(Client, types.CreatePromptVersionInput): types.CreatePromptVersionOutput, table
+    -- Deletes an agent.
     deleteAgent: function(Client, types.DeleteAgentInput): types.DeleteAgentOutput, table
+    -- Deletes an action group in an agent.
     deleteAgentActionGroup: function(Client, types.DeleteAgentActionGroupInput): types.DeleteAgentActionGroupOutput, table
+    -- Deletes an alias of an agent.
     deleteAgentAlias: function(Client, types.DeleteAgentAliasInput): types.DeleteAgentAliasOutput, table
+    -- Deletes a version of an agent.
     deleteAgentVersion: function(Client, types.DeleteAgentVersionInput): types.DeleteAgentVersionOutput, table
+    -- Deletes a data source from a knowledge base.
     deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    -- Deletes a flow.
     deleteFlow: function(Client, types.DeleteFlowInput): types.DeleteFlowOutput, table
+    -- Deletes an alias of a flow.
     deleteFlowAlias: function(Client, types.DeleteFlowAliasInput): types.DeleteFlowAliasOutput, table
+    -- Deletes a version of a flow.
     deleteFlowVersion: function(Client, types.DeleteFlowVersionInput): types.DeleteFlowVersionOutput, table
+    -- Deletes a knowledge base. Before deleting a knowledge base, you should disassociate the knowledge base from any agents that it is associated with by making a DisassociateAgentKnowledgeBase request.
     deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput): types.DeleteKnowledgeBaseOutput, table
+    -- Deletes documents from a data source and syncs the changes to the knowledge base that is connected to it. For more information, see Ingest changes directly into a knowledge base in the Amazon Bedrock User Guide.
     deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput): types.DeleteKnowledgeBaseDocumentsOutput, table
+    -- Deletes a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see Delete prompts from the Prompt management tool and Delete a version of a prompt from the Prompt management tool in the Amazon Bedrock User Guide.
     deletePrompt: function(Client, types.DeletePromptInput): types.DeletePromptOutput, table
+    -- Disassociates an agent collaborator.
     disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput): types.DisassociateAgentCollaboratorOutput, table
+    -- Disassociates a knowledge base from an agent.
     disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput): types.DisassociateAgentKnowledgeBaseOutput, table
+    -- Gets information about an agent.
     getAgent: function(Client, types.GetAgentInput): types.GetAgentOutput, table
+    -- Gets information about an action group for an agent.
     getAgentActionGroup: function(Client, types.GetAgentActionGroupInput): types.GetAgentActionGroupOutput, table
+    -- Gets information about an alias of an agent.
     getAgentAlias: function(Client, types.GetAgentAliasInput): types.GetAgentAliasOutput, table
+    -- Retrieves information about an agent's collaborator.
     getAgentCollaborator: function(Client, types.GetAgentCollaboratorInput): types.GetAgentCollaboratorOutput, table
+    -- Gets information about a knowledge base associated with an agent.
     getAgentKnowledgeBase: function(Client, types.GetAgentKnowledgeBaseInput): types.GetAgentKnowledgeBaseOutput, table
+    -- Gets details about a version of an agent.
     getAgentVersion: function(Client, types.GetAgentVersionInput): types.GetAgentVersionOutput, table
+    -- Gets information about a data source.
     getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    -- Retrieves information about a flow. For more information, see Manage a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     getFlow: function(Client, types.GetFlowInput): types.GetFlowOutput, table
+    -- Retrieves information about a flow. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     getFlowAlias: function(Client, types.GetFlowAliasInput): types.GetFlowAliasOutput, table
+    -- Retrieves information about a version of a flow. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     getFlowVersion: function(Client, types.GetFlowVersionInput): types.GetFlowVersionOutput, table
+    -- Gets information about a data ingestion job. Data sources are ingested into your knowledge base so that Large Language Models (LLMs) can use your data.
     getIngestionJob: function(Client, types.GetIngestionJobInput): types.GetIngestionJobOutput, table
+    -- Gets information about a knowledge base.
     getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput): types.GetKnowledgeBaseOutput, table
+    -- Retrieves specific documents from a data source that is connected to a knowledge base. For more information, see Ingest changes directly into a knowledge base in the Amazon Bedrock User Guide.
     getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput): types.GetKnowledgeBaseDocumentsOutput, table
+    -- Retrieves information about the working draft (DRAFT version) of a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see View information about prompts using Prompt management and View information about a version of your prompt in the Amazon Bedrock User Guide.
     getPrompt: function(Client, types.GetPromptInput): types.GetPromptOutput, table
+    -- Ingests documents directly into the knowledge base that is connected to the data source. The dataSourceType specified in the content for each document must match the type of the data source that you specify in the header. For more information, see Ingest changes directly into a knowledge base in the Amazon Bedrock User Guide.
     ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput): types.IngestKnowledgeBaseDocumentsOutput, table
+    -- Lists the action groups for an agent and information about each one.
     listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput): types.ListAgentActionGroupsOutput, table
+    -- Lists the aliases of an agent and information about each one.
     listAgentAliases: function(Client, types.ListAgentAliasesInput): types.ListAgentAliasesOutput, table
+    -- Retrieve a list of an agent's collaborators.
     listAgentCollaborators: function(Client, types.ListAgentCollaboratorsInput): types.ListAgentCollaboratorsOutput, table
+    -- Lists knowledge bases associated with an agent and information about each one.
     listAgentKnowledgeBases: function(Client, types.ListAgentKnowledgeBasesInput): types.ListAgentKnowledgeBasesOutput, table
+    -- Lists the agents belonging to an account and information about each agent.
     listAgents: function(Client, types.ListAgentsInput): types.ListAgentsOutput, table
+    -- Lists the versions of an agent and information about each version.
     listAgentVersions: function(Client, types.ListAgentVersionsInput): types.ListAgentVersionsOutput, table
+    -- Lists the data sources in a knowledge base and information about each one.
     listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    -- Returns a list of aliases for a flow.
     listFlowAliases: function(Client, types.ListFlowAliasesInput): types.ListFlowAliasesOutput, table
+    -- Returns a list of flows and information about each flow. For more information, see Manage a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    -- Returns a list of information about each flow. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     listFlowVersions: function(Client, types.ListFlowVersionsInput): types.ListFlowVersionsOutput, table
+    -- Lists the data ingestion jobs for a data source. The list also includes information about each job.
     listIngestionJobs: function(Client, types.ListIngestionJobsInput): types.ListIngestionJobsOutput, table
+    -- Retrieves all the documents contained in a data source that is connected to a knowledge base. For more information, see Ingest changes directly into a knowledge base in the Amazon Bedrock User Guide.
     listKnowledgeBaseDocuments: function(Client, types.ListKnowledgeBaseDocumentsInput): types.ListKnowledgeBaseDocumentsOutput, table
+    -- Lists the knowledge bases in an account. The list also includesinformation about each knowledge base.
     listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput): types.ListKnowledgeBasesOutput, table
+    -- Returns either information about the working draft (DRAFT version) of each prompt in an account, or information about of all versions of a prompt, depending on whether you include the promptIdentifier field or not. For more information, see View information about prompts using Prompt management in the Amazon Bedrock User Guide.
     listPrompts: function(Client, types.ListPromptsInput): types.ListPromptsOutput, table
+    -- List all the tags for the resource you specify.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates a DRAFT version of the agent that can be used for internal testing.
     prepareAgent: function(Client, types.PrepareAgentInput): types.PrepareAgentOutput, table
+    -- Prepares the DRAFT version of a flow so that it can be invoked. For more information, see Test a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     prepareFlow: function(Client, types.PrepareFlowInput): types.PrepareFlowOutput, table
+    -- Begins a data ingestion job. Data sources are ingested into your knowledge base so that Large Language Models (LLMs) can use your data.
     startIngestionJob: function(Client, types.StartIngestionJobInput): types.StartIngestionJobOutput, table
+    -- Stops a currently running data ingestion job. You can send a StartIngestionJob request again to ingest the rest of your data when you are ready.
     stopIngestionJob: function(Client, types.StopIngestionJobInput): types.StopIngestionJobOutput, table
+    -- Associate tags with a resource. For more information, see Tagging resources in the Amazon Bedrock User Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the configuration of an agent.
     updateAgent: function(Client, types.UpdateAgentInput): types.UpdateAgentOutput, table
+    -- Updates the configuration for an action group for an agent.
     updateAgentActionGroup: function(Client, types.UpdateAgentActionGroupInput): types.UpdateAgentActionGroupOutput, table
+    -- Updates configurations for an alias of an agent.
     updateAgentAlias: function(Client, types.UpdateAgentAliasInput): types.UpdateAgentAliasOutput, table
+    -- Updates an agent's collaborator.
     updateAgentCollaborator: function(Client, types.UpdateAgentCollaboratorInput): types.UpdateAgentCollaboratorOutput, table
+    -- Updates the configuration for a knowledge base that has been associated with an agent.
     updateAgentKnowledgeBase: function(Client, types.UpdateAgentKnowledgeBaseInput): types.UpdateAgentKnowledgeBaseOutput, table
+    -- Updates the configurations for a data source connector. You can't change the chunkingConfiguration after you create the data source connector. Specify the existing chunkingConfiguration.
     updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    -- Modifies a flow. Include both fields that you want to keep and fields that you want to change. For more information, see How it works and Create a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     updateFlow: function(Client, types.UpdateFlowInput): types.UpdateFlowOutput, table
+    -- Modifies the alias of a flow. Include both fields that you want to keep and ones that you want to change. For more information, see Deploy a flow in Amazon Bedrock in the Amazon Bedrock User Guide.
     updateFlowAlias: function(Client, types.UpdateFlowAliasInput): types.UpdateFlowAliasOutput, table
+    -- Updates the configuration of a knowledge base with the fields that you specify. Because all fields will be overwritten, you must include the same values for fields that you want to keep the same. You can change the following fields: name description roleArn You can't change the knowledgeBaseConfiguration or storageConfiguration fields, so you must specify the same configurations as when you created the knowledge base. You can send a GetKnowledgeBase request and copy the same configurations.
     updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput): types.UpdateKnowledgeBaseOutput, table
+    -- Modifies a prompt in your prompt library. Include both fields that you want to keep and fields that you want to replace. For more information, see Prompt management in Amazon Bedrock and Edit prompts in your prompt library in the Amazon Bedrock User Guide.
     updatePrompt: function(Client, types.UpdatePromptInput): types.UpdatePromptOutput, table
+    -- Validates the definition of a flow.
     validateFlowDefinition: function(Client, types.ValidateFlowDefinitionInput): types.ValidateFlowDefinitionOutput, table
 end
 

@@ -3,33 +3,65 @@
 local types = require("amplifyuibuilder.types")
 
 local record Client
+    -- Creates a new component for an Amplify app.
     createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    -- Creates a new form for an Amplify app.
     createForm: function(Client, types.CreateFormInput): types.CreateFormOutput, table
+    -- Creates a theme to apply to the components in an Amplify app.
     createTheme: function(Client, types.CreateThemeInput): types.CreateThemeOutput, table
+    -- Deletes a component from an Amplify app.
     deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    -- Deletes a form from an Amplify app.
     deleteForm: function(Client, types.DeleteFormInput): types.DeleteFormOutput, table
+    -- Deletes a theme from an Amplify app.
     deleteTheme: function(Client, types.DeleteThemeInput): types.DeleteThemeOutput, table
+    -- This is for internal use.
+    -- Amplify uses this action to exchange an access code for a token.
     exchangeCodeForToken: function(Client, types.ExchangeCodeForTokenInput): types.ExchangeCodeForTokenOutput, table
+    -- Exports component configurations to code that is ready to integrate into an Amplify app.
     exportComponents: function(Client, types.ExportComponentsInput): types.ExportComponentsOutput, table
+    -- Exports form configurations to code that is ready to integrate into an Amplify app.
     exportForms: function(Client, types.ExportFormsInput): types.ExportFormsOutput, table
+    -- Exports theme configurations to code that is ready to integrate into an Amplify app.
     exportThemes: function(Client, types.ExportThemesInput): types.ExportThemesOutput, table
+    -- Returns an existing code generation job.
     getCodegenJob: function(Client, types.GetCodegenJobInput): types.GetCodegenJobOutput, table
+    -- Returns an existing component for an Amplify app.
     getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    -- Returns an existing form for an Amplify app.
     getForm: function(Client, types.GetFormInput): types.GetFormOutput, table
+    -- Returns existing metadata for an Amplify app.
     getMetadata: function(Client, types.GetMetadataInput): types.GetMetadataOutput, table
+    -- Returns an existing theme for an Amplify app.
     getTheme: function(Client, types.GetThemeInput): types.GetThemeOutput, table
+    -- Retrieves a list of code generation jobs for a specified Amplify app and backend environment.
     listCodegenJobs: function(Client, types.ListCodegenJobsInput): types.ListCodegenJobsOutput, table
+    -- Retrieves a list of components for a specified Amplify app and backend
+    -- environment.
     listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    -- Retrieves a list of forms for a specified Amplify app and backend environment.
     listForms: function(Client, types.ListFormsInput): types.ListFormsOutput, table
+    -- Returns a list of tags for a specified Amazon Resource Name (ARN).
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves a list of themes for a specified Amplify app and backend
+    -- environment.
     listThemes: function(Client, types.ListThemesInput): types.ListThemesOutput, table
+    -- Stores the metadata information about a feature on a form.
     putMetadataFlag: function(Client, types.PutMetadataFlagInput): types.PutMetadataFlagOutput, table
+    -- This is for internal use.
+    -- Amplify uses this action to refresh a previously issued access token that might have expired.
     refreshToken: function(Client, types.RefreshTokenInput): types.RefreshTokenOutput, table
+    -- Starts a code generation job for a specified Amplify app and backend environment.
     startCodegenJob: function(Client, types.StartCodegenJobInput): types.StartCodegenJobOutput, table
+    -- Tags the resource with a tag key and value.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource with a specified Amazon Resource Name (ARN).
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing component.
     updateComponent: function(Client, types.UpdateComponentInput): types.UpdateComponentOutput, table
+    -- Updates an existing form.
     updateForm: function(Client, types.UpdateFormInput): types.UpdateFormOutput, table
+    -- Updates an existing theme.
     updateTheme: function(Client, types.UpdateThemeInput): types.UpdateThemeOutput, table
 end
 

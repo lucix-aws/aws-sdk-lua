@@ -3,29 +3,53 @@
 local types = require("mq.types")
 
 local record Client
+    -- Creates a broker. Note: This API is asynchronous. To create a broker, you must either use the AmazonMQFullAccess IAM policy or include the following EC2 permissions in your IAM policy. ec2:CreateNetworkInterface This permission is required to allow Amazon MQ to create an elastic network interface (ENI) on behalf of your account. ec2:CreateNetworkInterfacePermission This permission is required to attach the ENI to the broker instance. ec2:DeleteNetworkInterface ec2:DeleteNetworkInterfacePermission ec2:DetachNetworkInterface ec2:DescribeInternetGateways ec2:DescribeNetworkInterfaces ec2:DescribeNetworkInterfacePermissions ec2:DescribeRouteTables ec2:DescribeSecurityGroups ec2:DescribeSubnets ec2:DescribeVpcs For more information, see Create an IAM User and Get Your Amazon Web Services Credentials and Never Modify or Delete the Amazon MQ Elastic Network Interface in the Amazon MQ Developer Guide.
     createBroker: function(Client, types.CreateBrokerInput): types.CreateBrokerOutput, table
+    -- Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).
     createConfiguration: function(Client, types.CreateConfigurationInput): types.CreateConfigurationOutput, table
+    -- Add a tag to a resource.
     createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    -- Creates an ActiveMQ user. Do not add personally identifiable information (PII) or other confidential or sensitive information in broker usernames. Broker usernames are accessible to other Amazon Web Services services, including CloudWatch Logs. Broker usernames are not intended to be used for private or sensitive data.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Deletes a broker. Note: This API is asynchronous.
     deleteBroker: function(Client, types.DeleteBrokerInput): types.DeleteBrokerOutput, table
+    -- Deletes the specified configuration.
     deleteConfiguration: function(Client, types.DeleteConfigurationInput): types.DeleteConfigurationOutput, table
+    -- Removes a tag from a resource.
     deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    -- Deletes an ActiveMQ user.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Returns information about the specified broker.
     describeBroker: function(Client, types.DescribeBrokerInput): types.DescribeBrokerOutput, table
+    -- Describe available engine types and versions.
     describeBrokerEngineTypes: function(Client, types.DescribeBrokerEngineTypesInput): types.DescribeBrokerEngineTypesOutput, table
+    -- Describe available broker instance options.
     describeBrokerInstanceOptions: function(Client, types.DescribeBrokerInstanceOptionsInput): types.DescribeBrokerInstanceOptionsOutput, table
+    -- Returns information about the specified configuration.
     describeConfiguration: function(Client, types.DescribeConfigurationInput): types.DescribeConfigurationOutput, table
+    -- Returns the specified configuration revision for the specified configuration.
     describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput): types.DescribeConfigurationRevisionOutput, table
+    -- Returns information about an ActiveMQ user.
     describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    -- Returns a list of all brokers.
     listBrokers: function(Client, types.ListBrokersInput): types.ListBrokersOutput, table
+    -- Returns a list of all revisions for the specified configuration.
     listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput): types.ListConfigurationRevisionsOutput, table
+    -- Returns a list of all configurations.
     listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    -- Lists tags for a resource.
     listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    -- Returns a list of all ActiveMQ users.
     listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    -- Promotes a data replication replica broker to the primary broker role.
     promote: function(Client, types.PromoteInput): types.PromoteOutput, table
+    -- Reboots a broker. Note: This API is asynchronous.
     rebootBroker: function(Client, types.RebootBrokerInput): types.RebootBrokerOutput, table
+    -- Adds a pending configuration change to a broker.
     updateBroker: function(Client, types.UpdateBrokerInput): types.UpdateBrokerOutput, table
+    -- Updates the specified configuration.
     updateConfiguration: function(Client, types.UpdateConfigurationInput): types.UpdateConfigurationOutput, table
+    -- Updates the information for an ActiveMQ user.
     updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
 end
 

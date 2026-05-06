@@ -3,93 +3,281 @@
 local types = require("opensearch.types")
 
 local record Client
+    -- Allows the destination Amazon OpenSearch Service domain owner to accept an inbound
+    -- cross-cluster search connection request. For more information, see Cross-cluster search for Amazon OpenSearch Service.
     acceptInboundConnection: function(Client, types.AcceptInboundConnectionInput): types.AcceptInboundConnectionOutput, table
+    -- Creates a new direct-query data source to the specified domain. For more information,
+    -- see Creating Amazon OpenSearch Service data source integrations with Amazon
+    -- S3.
     addDataSource: function(Client, types.AddDataSourceInput): types.AddDataSourceOutput, table
+    -- Adds a new data source in Amazon OpenSearch Service so that you can perform direct
+    -- queries on external data.
     addDirectQueryDataSource: function(Client, types.AddDirectQueryDataSourceInput): types.AddDirectQueryDataSourceOutput, table
+    -- Attaches tags to an existing Amazon OpenSearch Service domain, data source, or
+    -- application.
+    -- Tags are a set of case-sensitive key-value pairs. A domain, data source, or
+    -- application can have up to 10 tags. For more information, see Tagging Amazon OpenSearch Service resources.
     addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    -- Associates a package with an Amazon OpenSearch Service domain. For more information,
+    -- see Custom packages
+    -- for Amazon OpenSearch Service.
     associatePackage: function(Client, types.AssociatePackageInput): types.AssociatePackageOutput, table
+    -- Operation in the Amazon OpenSearch Service API for associating multiple packages with
+    -- a domain simultaneously.
     associatePackages: function(Client, types.AssociatePackagesInput): types.AssociatePackagesOutput, table
+    -- Provides access to an Amazon OpenSearch Service domain through the use of an interface
+    -- VPC endpoint.
     authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput): types.AuthorizeVpcEndpointAccessOutput, table
+    -- Cancels a pending configuration change on an Amazon OpenSearch Service domain.
     cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput): types.CancelDomainConfigChangeOutput, table
+    -- Cancels a scheduled service software update for an Amazon OpenSearch Service domain.
+    -- You can only perform this operation before the AutomatedUpdateDate and when
+    -- the domain's UpdateStatus is PENDING_UPDATE. For more
+    -- information, see Service
+    -- software updates in Amazon OpenSearch Service.
     cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput): types.CancelServiceSoftwareUpdateOutput, table
+    -- Creates an OpenSearch UI application. For more information, see Using the OpenSearch user interface in Amazon OpenSearch Service.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates an Amazon OpenSearch Service domain. For more information, see Creating and
+    -- managing Amazon OpenSearch Service domains.
     createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    -- Creates an OpenSearch index with optional automatic semantic enrichment for specified text fields. Automatic semantic enrichment enables semantic search capabilities without requiring machine learning expertise, improving search relevance by up to 20% by understanding search intent and contextual meaning beyond keyword matching. The semantic enrichment process has zero impact on search latency as sparse encodings are stored directly within the index during indexing. For more information, see Automatic semantic enrichment.
     createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    -- Creates a new cross-cluster search connection from a source Amazon OpenSearch Service domain
+    -- to a destination domain. For more information, see Cross-cluster search
+    -- for Amazon OpenSearch Service.
     createOutboundConnection: function(Client, types.CreateOutboundConnectionInput): types.CreateOutboundConnectionOutput, table
+    -- Creates a package for use with Amazon OpenSearch Service domains. For more
+    -- information, see Custom packages
+    -- for Amazon OpenSearch Service.
     createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    -- Creates an Amazon OpenSearch Service-managed VPC endpoint.
     createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): types.CreateVpcEndpointOutput, table
+    -- Deletes a specified OpenSearch application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes a direct-query data source. For more information, see Deleting
+    -- an Amazon OpenSearch Service data source with Amazon S3.
     deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    -- Deletes a previously configured direct query data source from Amazon OpenSearch
+    -- Service.
     deleteDirectQueryDataSource: function(Client, types.DeleteDirectQueryDataSourceInput): types.DeleteDirectQueryDataSourceOutput, table
+    -- Deletes an Amazon OpenSearch Service domain and all of its data. You can't recover a
+    -- domain after you delete it.
     deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    -- Allows the destination Amazon OpenSearch Service domain owner to delete an existing
+    -- inbound cross-cluster search connection. For more information, see Cross-cluster search for Amazon OpenSearch Service.
     deleteInboundConnection: function(Client, types.DeleteInboundConnectionInput): types.DeleteInboundConnectionOutput, table
+    -- Deletes an OpenSearch index. This operation permanently removes the index and cannot be undone.
     deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    -- Allows the source Amazon OpenSearch Service domain owner to delete an existing
+    -- outbound cross-cluster search connection. For more information, see Cross-cluster search for Amazon OpenSearch Service.
     deleteOutboundConnection: function(Client, types.DeleteOutboundConnectionInput): types.DeleteOutboundConnectionOutput, table
+    -- Deletes an Amazon OpenSearch Service package. For more information, see Custom packages
+    -- for Amazon OpenSearch Service.
     deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    -- Deletes an Amazon OpenSearch Service-managed interface VPC endpoint.
     deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput): types.DeleteVpcEndpointOutput, table
+    -- Deregisters a capability from an OpenSearch UI application. This operation removes the capability and its associated configuration.
     deregisterCapability: function(Client, types.DeregisterCapabilityInput): types.DeregisterCapabilityOutput, table
+    -- Describes the domain configuration for the specified Amazon OpenSearch Service domain,
+    -- including the domain ID, domain service endpoint, and domain ARN.
     describeDomain: function(Client, types.DescribeDomainInput): types.DescribeDomainOutput, table
+    -- Returns the list of optimizations that Auto-Tune has made to an Amazon OpenSearch
+    -- Service domain. For more information, see Auto-Tune for Amazon
+    -- OpenSearch Service.
     describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput): types.DescribeDomainAutoTunesOutput, table
+    -- Returns information about the current blue/green deployment happening on an Amazon
+    -- OpenSearch Service domain. For more information, see Making configuration changes in Amazon OpenSearch Service.
     describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput): types.DescribeDomainChangeProgressOutput, table
+    -- Returns the configuration of an Amazon OpenSearch Service domain.
     describeDomainConfig: function(Client, types.DescribeDomainConfigInput): types.DescribeDomainConfigOutput, table
+    -- Returns information about domain and node health, the standby Availability Zone,
+    -- number of nodes per Availability Zone, and shard count per node.
     describeDomainHealth: function(Client, types.DescribeDomainHealthInput): types.DescribeDomainHealthOutput, table
+    -- Returns information about domain and nodes, including data nodes, master nodes,
+    -- ultrawarm nodes, Availability Zone(s), standby nodes, node configurations, and node
+    -- states.
     describeDomainNodes: function(Client, types.DescribeDomainNodesInput): types.DescribeDomainNodesOutput, table
+    -- Returns domain configuration information about the specified Amazon OpenSearch Service
+    -- domains.
     describeDomains: function(Client, types.DescribeDomainsInput): types.DescribeDomainsOutput, table
+    -- Describes the progress of a pre-update dry run analysis on an Amazon OpenSearch
+    -- Service domain. For more information, see Determining whether a change will cause a blue/green deployment.
     describeDryRunProgress: function(Client, types.DescribeDryRunProgressInput): types.DescribeDryRunProgressOutput, table
+    -- Lists all the inbound cross-cluster search connections for a destination (remote)
+    -- Amazon OpenSearch Service domain. For more information, see Cross-cluster search for Amazon OpenSearch Service.
     describeInboundConnections: function(Client, types.DescribeInboundConnectionsInput): types.DescribeInboundConnectionsOutput, table
+    -- Describes the details of an existing insight for an Amazon OpenSearch Service domain.
+    -- Returns detailed fields associated with the specified insight, such as text descriptions
+    -- and metric data.
     describeInsightDetails: function(Client, types.DescribeInsightDetailsInput): types.DescribeInsightDetailsOutput, table
+    -- Describes the instance count, storage, and master node limits for a given OpenSearch
+    -- or Elasticsearch version and instance type.
     describeInstanceTypeLimits: function(Client, types.DescribeInstanceTypeLimitsInput): types.DescribeInstanceTypeLimitsOutput, table
+    -- Lists all the outbound cross-cluster connections for a local (source) Amazon
+    -- OpenSearch Service domain. For more information, see Cross-cluster search for Amazon OpenSearch Service.
     describeOutboundConnections: function(Client, types.DescribeOutboundConnectionsInput): types.DescribeOutboundConnectionsOutput, table
+    -- Describes all packages available to OpenSearch Service. For more information, see
+    -- Custom packages
+    -- for Amazon OpenSearch Service.
     describePackages: function(Client, types.DescribePackagesInput): types.DescribePackagesOutput, table
+    -- Describes the available Amazon OpenSearch Service Reserved Instance offerings for a
+    -- given Region. For more information, see Reserved Instances in Amazon
+    -- OpenSearch Service.
     describeReservedInstanceOfferings: function(Client, types.DescribeReservedInstanceOfferingsInput): types.DescribeReservedInstanceOfferingsOutput, table
+    -- Describes the Amazon OpenSearch Service instances that you have reserved in a given
+    -- Region. For more information, see Reserved Instances in Amazon
+    -- OpenSearch Service.
     describeReservedInstances: function(Client, types.DescribeReservedInstancesInput): types.DescribeReservedInstancesOutput, table
+    -- Describes one or more Amazon OpenSearch Service-managed VPC endpoints.
     describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput): types.DescribeVpcEndpointsOutput, table
+    -- Removes a package from the specified Amazon OpenSearch Service domain. The package
+    -- can't be in use with any OpenSearch index for the dissociation to succeed. The package
+    -- is still available in OpenSearch Service for association later. For more information,
+    -- see Custom packages
+    -- for Amazon OpenSearch Service.
     dissociatePackage: function(Client, types.DissociatePackageInput): types.DissociatePackageOutput, table
+    -- Dissociates multiple packages from a domain simultaneously.
     dissociatePackages: function(Client, types.DissociatePackagesInput): types.DissociatePackagesOutput, table
+    -- Retrieves the configuration and status of an existing OpenSearch application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Retrieves information about a registered capability for an OpenSearch UI application, including its configuration and current status.
     getCapability: function(Client, types.GetCapabilityInput): types.GetCapabilityOutput, table
+    -- Returns a map of OpenSearch or Elasticsearch versions and the versions you can upgrade
+    -- them to.
     getCompatibleVersions: function(Client, types.GetCompatibleVersionsInput): types.GetCompatibleVersionsOutput, table
+    -- Retrieves information about a direct query data source.
     getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    -- Gets the ARN of the current default application.
+    -- If the default application isn't set, the operation returns a resource not found
+    -- error.
     getDefaultApplicationSetting: function(Client, types.GetDefaultApplicationSettingInput): types.GetDefaultApplicationSettingOutput, table
+    -- Returns detailed configuration information for a specific direct query data source in
+    -- Amazon OpenSearch Service.
     getDirectQueryDataSource: function(Client, types.GetDirectQueryDataSourceInput): types.GetDirectQueryDataSourceOutput, table
+    -- The status of the maintenance action.
     getDomainMaintenanceStatus: function(Client, types.GetDomainMaintenanceStatusInput): types.GetDomainMaintenanceStatusOutput, table
+    -- Retrieves information about an OpenSearch index including its schema and semantic enrichment configuration. Use this operation to view the current index structure and semantic search settings.
     getIndex: function(Client, types.GetIndexInput): types.GetIndexOutput, table
+    -- Returns a list of Amazon OpenSearch Service package versions, along with their creation
+    -- time, commit message, and plugin properties (if the package is a zip plugin package). For more
+    -- information, see Custom packages for Amazon
+    -- OpenSearch Service.
     getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput): types.GetPackageVersionHistoryOutput, table
+    -- Retrieves the complete history of the last 10 upgrades performed on an Amazon OpenSearch
+    -- Service domain.
     getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput): types.GetUpgradeHistoryOutput, table
+    -- Returns the most recent status of the last upgrade or upgrade eligibility check performed on
+    -- an Amazon OpenSearch Service domain.
     getUpgradeStatus: function(Client, types.GetUpgradeStatusInput): types.GetUpgradeStatusOutput, table
+    -- Lists all OpenSearch applications under your account.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists direct-query data sources for a specific domain. For more information, see For
+    -- more information, see Working with
+    -- Amazon OpenSearch Service direct queries with Amazon S3.
     listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    -- Lists an inventory of all the direct query data sources that you have configured
+    -- within Amazon OpenSearch Service.
     listDirectQueryDataSources: function(Client, types.ListDirectQueryDataSourcesInput): types.ListDirectQueryDataSourcesOutput, table
+    -- A list of maintenance actions for the domain.
     listDomainMaintenances: function(Client, types.ListDomainMaintenancesInput): types.ListDomainMaintenancesOutput, table
+    -- Returns the names of all Amazon OpenSearch Service domains owned by the current user
+    -- in the active Region.
     listDomainNames: function(Client, types.ListDomainNamesInput): types.ListDomainNamesOutput, table
+    -- Lists all Amazon OpenSearch Service domains associated with a given package. For more
+    -- information, see Custom packages
+    -- for Amazon OpenSearch Service.
     listDomainsForPackage: function(Client, types.ListDomainsForPackageInput): types.ListDomainsForPackageOutput, table
+    -- Lists insights for an Amazon OpenSearch Service domain or Amazon Web Services account.
+    -- Returns a paginated list of insights based on the specified entity, filters, time range,
+    -- and sort order.
     listInsights: function(Client, types.ListInsightsInput): types.ListInsightsOutput, table
+    -- Lists all instance types and available features for a given OpenSearch or
+    -- Elasticsearch version.
     listInstanceTypeDetails: function(Client, types.ListInstanceTypeDetailsInput): types.ListInstanceTypeDetailsOutput, table
+    -- Lists all packages associated with an Amazon OpenSearch Service domain. For more
+    -- information, see Custom packages
+    -- for Amazon OpenSearch Service.
     listPackagesForDomain: function(Client, types.ListPackagesForDomainInput): types.ListPackagesForDomainOutput, table
+    -- Retrieves a list of configuration changes that are scheduled for a domain. These
+    -- changes can be service
+    -- software updates or blue/green Auto-Tune enhancements.
     listScheduledActions: function(Client, types.ListScheduledActionsInput): types.ListScheduledActionsOutput, table
+    -- Returns all resource tags for an Amazon OpenSearch Service domain, data source, or
+    -- application. For more information, see Tagging Amazon OpenSearch Service resources.
     listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    -- Lists all versions of OpenSearch and Elasticsearch that Amazon OpenSearch Service
+    -- supports.
     listVersions: function(Client, types.ListVersionsInput): types.ListVersionsOutput, table
+    -- Retrieves information about each Amazon Web Services principal that is allowed to
+    -- access a given Amazon OpenSearch Service domain through the use of an interface VPC
+    -- endpoint.
     listVpcEndpointAccess: function(Client, types.ListVpcEndpointAccessInput): types.ListVpcEndpointAccessOutput, table
+    -- Retrieves all Amazon OpenSearch Service-managed VPC endpoints in the current Amazon Web Services account and Region.
     listVpcEndpoints: function(Client, types.ListVpcEndpointsInput): types.ListVpcEndpointsOutput, table
+    -- Retrieves all Amazon OpenSearch Service-managed VPC endpoints associated with a
+    -- particular domain.
     listVpcEndpointsForDomain: function(Client, types.ListVpcEndpointsForDomainInput): types.ListVpcEndpointsForDomainOutput, table
+    -- Allows you to purchase Amazon OpenSearch Service Reserved Instances.
     purchaseReservedInstanceOffering: function(Client, types.PurchaseReservedInstanceOfferingInput): types.PurchaseReservedInstanceOfferingOutput, table
+    -- Sets the default application to the application with the specified ARN.
+    -- To remove the default application, use the GetDefaultApplicationSetting
+    -- operation to get the current default and then call the
+    -- PutDefaultApplicationSetting with the current applications ARN and the
+    -- setAsDefault parameter set to false.
     putDefaultApplicationSetting: function(Client, types.PutDefaultApplicationSettingInput): types.PutDefaultApplicationSettingOutput, table
+    -- Registers a capability for an OpenSearch UI application. Use this operation to enable specific capabilities, such as AI features, for a given application. The capability configuration defines the type and settings of the capability to register. For more information about the AI features, see Agentic AI for OpenSearch UI.
     registerCapability: function(Client, types.RegisterCapabilityInput): types.RegisterCapabilityOutput, table
+    -- Allows the remote Amazon OpenSearch Service domain owner to reject an inbound
+    -- cross-cluster connection request.
     rejectInboundConnection: function(Client, types.RejectInboundConnectionInput): types.RejectInboundConnectionOutput, table
+    -- Removes the specified set of tags from an Amazon OpenSearch Service domain, data
+    -- source, or application. For more information, see Tagging Amazon OpenSearch Service resources.
     removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    -- Revokes access to an Amazon OpenSearch Service domain that was provided through an
+    -- interface VPC endpoint.
     revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput): types.RevokeVpcEndpointAccessOutput, table
+    -- Rolls back a service software update for a domain to the previous version. For more
+    -- information, see Service
+    -- software updates in Amazon OpenSearch Service.
     rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput): types.RollbackServiceSoftwareUpdateOutput, table
+    -- Starts the node maintenance process on the data node. These processes can include a
+    -- node reboot, an Opensearch or Elasticsearch process restart, or a Dashboard or Kibana
+    -- restart.
     startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput): types.StartDomainMaintenanceOutput, table
+    -- Schedules a service software update for an Amazon OpenSearch Service domain. For more
+    -- information, see Service
+    -- software updates in Amazon OpenSearch Service.
     startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput): types.StartServiceSoftwareUpdateOutput, table
+    -- Updates the configuration and settings of an existing OpenSearch application.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Updates a direct-query data source. For more information, see Working
+    -- with Amazon OpenSearch Service data source integrations with Amazon
+    -- S3.
     updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    -- Updates the configuration or properties of an existing direct query data source in
+    -- Amazon OpenSearch Service.
     updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput): types.UpdateDirectQueryDataSourceOutput, table
+    -- Modifies the cluster configuration of the specified Amazon OpenSearch Service
+    -- domain.
     updateDomainConfig: function(Client, types.UpdateDomainConfigInput): types.UpdateDomainConfigOutput, table
+    -- Updates an existing OpenSearch index schema and semantic enrichment configuration. This operation allows modification of field mappings and semantic search settings for text fields. Changes to semantic enrichment configuration will apply to newly ingested documents.
     updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    -- Updates a package for use with Amazon OpenSearch Service domains. For more
+    -- information, see Custom packages
+    -- for Amazon OpenSearch Service.
     updatePackage: function(Client, types.UpdatePackageInput): types.UpdatePackageOutput, table
+    -- Updates the scope of a package. Scope of the package defines users who can view and
+    -- associate a package.
     updatePackageScope: function(Client, types.UpdatePackageScopeInput): types.UpdatePackageScopeOutput, table
+    -- Reschedules a planned domain configuration change for a later time. This change can be
+    -- a scheduled service
+    -- software update or a blue/green Auto-Tune enhancement.
     updateScheduledAction: function(Client, types.UpdateScheduledActionInput): types.UpdateScheduledActionOutput, table
+    -- Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.
     updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput): types.UpdateVpcEndpointOutput, table
+    -- Allows you to either upgrade your Amazon OpenSearch Service domain or perform an
+    -- upgrade eligibility check to a compatible version of OpenSearch or Elasticsearch.
     upgradeDomain: function(Client, types.UpgradeDomainInput): types.UpgradeDomainOutput, table
 end
 

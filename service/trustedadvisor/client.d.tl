@@ -3,16 +3,27 @@
 local types = require("trustedadvisor.types")
 
 local record Client
+    -- Update one or more exclusion statuses for a list of recommendation resources. This API supports up to 25 unique recommendation resource ARNs per request. This API currently doesn't support prioritized recommendation resources. This API updates global recommendations, eliminating the need to call the API in each AWS Region. After submitting an exclusion update, note that it might take a few minutes for the changes to be reflected in the system.
     batchUpdateRecommendationResourceExclusion: function(Client, types.BatchUpdateRecommendationResourceExclusionInput): types.BatchUpdateRecommendationResourceExclusionOutput, table
+    -- Get a specific recommendation within an AWS Organizations organization. This API supports only prioritized recommendations and provides global priority recommendations, eliminating the need to call the API in each AWS Region.
     getOrganizationRecommendation: function(Client, types.GetOrganizationRecommendationInput): types.GetOrganizationRecommendationOutput, table
+    -- Get a specific Recommendation. This API provides global recommendations, eliminating the need to call the API in each AWS Region.
     getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    -- List a filterable set of Checks. This API provides global recommendations, eliminating the need to call the API in each AWS Region.
     listChecks: function(Client, types.ListChecksInput): types.ListChecksOutput, table
+    -- Lists the accounts that own the resources for an organization aggregate recommendation. This API only supports prioritized recommendations and provides global priority recommendations, eliminating the need to call the API in each AWS Region.
     listOrganizationRecommendationAccounts: function(Client, types.ListOrganizationRecommendationAccountsInput): types.ListOrganizationRecommendationAccountsOutput, table
+    -- List Resources of a Recommendation within an Organization. This API only supports prioritized recommendations and provides global priority recommendations, eliminating the need to call the API in each AWS Region.
     listOrganizationRecommendationResources: function(Client, types.ListOrganizationRecommendationResourcesInput): types.ListOrganizationRecommendationResourcesOutput, table
+    -- List a filterable set of Recommendations within an Organization. This API only supports prioritized recommendations and provides global priority recommendations, eliminating the need to call the API in each AWS Region.
     listOrganizationRecommendations: function(Client, types.ListOrganizationRecommendationsInput): types.ListOrganizationRecommendationsOutput, table
+    -- List Resources of a Recommendation. This API provides global recommendations, eliminating the need to call the API in each AWS Region.
     listRecommendationResources: function(Client, types.ListRecommendationResourcesInput): types.ListRecommendationResourcesOutput, table
+    -- List a filterable set of Recommendations. This API provides global recommendations, eliminating the need to call the API in each AWS Region.
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- Update the lifecycle of a Recommendation within an Organization. This API only supports prioritized recommendations and updates global priority recommendations, eliminating the need to call the API in each AWS Region.
     updateOrganizationRecommendationLifecycle: function(Client, types.UpdateOrganizationRecommendationLifecycleInput): types.UpdateOrganizationRecommendationLifecycleOutput, table
+    -- Update the lifecyle of a Recommendation. This API only supports prioritized recommendations and updates global priority recommendations, eliminating the need to call the API in each AWS Region.
     updateRecommendationLifecycle: function(Client, types.UpdateRecommendationLifecycleInput): types.UpdateRecommendationLifecycleOutput, table
 end
 

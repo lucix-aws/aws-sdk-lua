@@ -3,44 +3,115 @@
 local types = require("ivsrealtime.types")
 
 local record Client
+    -- Creates an EncoderConfiguration object.
     createEncoderConfiguration: function(Client, types.CreateEncoderConfigurationInput): types.CreateEncoderConfigurationOutput, table
+    -- Creates a new IngestConfiguration resource, used to specify the ingest protocol for a stage.
     createIngestConfiguration: function(Client, types.CreateIngestConfigurationInput): types.CreateIngestConfigurationOutput, table
+    -- Creates an additional token for a specified stage. This can be done after stage creation
+    -- or when tokens expire. Tokens always are scoped to the stage for which they are
+    -- created.
+    -- Encryption keys are owned by Amazon IVS and never used directly by your
+    -- application.
     createParticipantToken: function(Client, types.CreateParticipantTokenInput): types.CreateParticipantTokenOutput, table
+    -- Creates a new stage (and optionally participant tokens).
     createStage: function(Client, types.CreateStageInput): types.CreateStageOutput, table
+    -- Creates a new storage configuration, used to enable recording to Amazon S3.
+    -- When a StorageConfiguration is created, IVS will modify the S3 bucketPolicy of the provided bucket.
+    -- This will ensure that IVS has sufficient permissions to write content to the provided bucket.
     createStorageConfiguration: function(Client, types.CreateStorageConfigurationInput): types.CreateStorageConfigurationOutput, table
+    -- Deletes an EncoderConfiguration resource. Ensures that no Compositions are using this
+    -- template; otherwise, returns an error.
     deleteEncoderConfiguration: function(Client, types.DeleteEncoderConfigurationInput): types.DeleteEncoderConfigurationOutput, table
+    -- Deletes a specified IngestConfiguration, so it can no longer be used to broadcast. An IngestConfiguration cannot be deleted if the publisher is actively streaming to a stage, unless force is set to true.
     deleteIngestConfiguration: function(Client, types.DeleteIngestConfigurationInput): types.DeleteIngestConfigurationOutput, table
+    -- Deletes the specified public key used to sign stage participant tokens.
+    -- This invalidates future participant tokens generated using the key pair’s private key.
     deletePublicKey: function(Client, types.DeletePublicKeyInput): types.DeletePublicKeyOutput, table
+    -- Shuts down and deletes the specified stage (disconnecting all participants). This operation also
+    -- removes the stageArn from the associated IngestConfiguration, if there are participants
+    -- using the IngestConfiguration to publish to the stage.
     deleteStage: function(Client, types.DeleteStageInput): types.DeleteStageOutput, table
+    -- Deletes the storage configuration for the specified ARN.
+    -- If you try to delete a storage configuration that is used by a Composition, you will get an error (409 ConflictException).
+    -- To avoid this, for all Compositions that reference the storage configuration, first use StopComposition and wait for it to complete,
+    -- then use DeleteStorageConfiguration.
     deleteStorageConfiguration: function(Client, types.DeleteStorageConfigurationInput): types.DeleteStorageConfigurationOutput, table
+    -- Disconnects a specified participant from a specified stage. If the participant is publishing using
+    -- an IngestConfiguration, DisconnectParticipant also updates the stageArn
+    -- in the IngestConfiguration to be an empty string.
     disconnectParticipant: function(Client, types.DisconnectParticipantInput): types.DisconnectParticipantOutput, table
+    -- Get information about the specified Composition resource.
     getComposition: function(Client, types.GetCompositionInput): types.GetCompositionOutput, table
+    -- Gets information about the specified EncoderConfiguration resource.
     getEncoderConfiguration: function(Client, types.GetEncoderConfigurationInput): types.GetEncoderConfigurationOutput, table
+    -- Gets information about the specified IngestConfiguration.
     getIngestConfiguration: function(Client, types.GetIngestConfigurationInput): types.GetIngestConfigurationOutput, table
+    -- Gets information about the specified participant token.
     getParticipant: function(Client, types.GetParticipantInput): types.GetParticipantOutput, table
+    -- Gets information for the specified public key.
     getPublicKey: function(Client, types.GetPublicKeyInput): types.GetPublicKeyOutput, table
+    -- Gets information for the specified stage.
     getStage: function(Client, types.GetStageInput): types.GetStageOutput, table
+    -- Gets information for the specified stage session.
     getStageSession: function(Client, types.GetStageSessionInput): types.GetStageSessionOutput, table
+    -- Gets the storage configuration for the specified ARN.
     getStorageConfiguration: function(Client, types.GetStorageConfigurationInput): types.GetStorageConfigurationOutput, table
+    -- Import a public key to be used for signing stage participant tokens.
     importPublicKey: function(Client, types.ImportPublicKeyInput): types.ImportPublicKeyOutput, table
+    -- Gets summary information about all Compositions in your account, in the AWS region
+    -- where the API request is processed.
     listCompositions: function(Client, types.ListCompositionsInput): types.ListCompositionsOutput, table
+    -- Gets summary information about all EncoderConfigurations in your account, in the AWS
+    -- region where the API request is processed.
     listEncoderConfigurations: function(Client, types.ListEncoderConfigurationsInput): types.ListEncoderConfigurationsOutput, table
+    -- Lists all IngestConfigurations in your account, in the AWS region where the API request is processed.
     listIngestConfigurations: function(Client, types.ListIngestConfigurationsInput): types.ListIngestConfigurationsOutput, table
+    -- Lists events for a specified participant that occurred during a specified stage
+    -- session.
     listParticipantEvents: function(Client, types.ListParticipantEventsInput): types.ListParticipantEventsOutput, table
+    -- Lists all the replicas for a participant from a source stage.
     listParticipantReplicas: function(Client, types.ListParticipantReplicasInput): types.ListParticipantReplicasOutput, table
+    -- Lists all participants in a specified stage session.
     listParticipants: function(Client, types.ListParticipantsInput): types.ListParticipantsOutput, table
+    -- Gets summary information about all public keys in your account, in the AWS region where the API request is processed.
     listPublicKeys: function(Client, types.ListPublicKeysInput): types.ListPublicKeysOutput, table
+    -- Gets summary information about all stages in your account, in the AWS region where the
+    -- API request is processed.
     listStages: function(Client, types.ListStagesInput): types.ListStagesOutput, table
+    -- Gets all sessions for a specified stage.
     listStageSessions: function(Client, types.ListStageSessionsInput): types.ListStageSessionsOutput, table
+    -- Gets summary information about all storage configurations in your account,
+    -- in the AWS region where the API request is processed.
     listStorageConfigurations: function(Client, types.ListStorageConfigurationsInput): types.ListStorageConfigurationsOutput, table
+    -- Gets information about AWS tags for the specified ARN.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts a Composition from a stage based on the configuration provided in the
+    -- request.
+    -- A Composition is an ephemeral resource that exists after this operation returns
+    -- successfully. Composition stops and the resource is deleted:
+    -- When StopComposition is called.
+    -- After a 1-minute timeout, when all participants are disconnected from the
+    -- stage.
+    -- After a 1-minute timeout, if there are no participants in the stage when
+    -- StartComposition is called.
+    -- When broadcasting to the IVS channel fails and all retries are exhausted.
+    -- When broadcasting is disconnected and all attempts to reconnect are
+    -- exhausted.
     startComposition: function(Client, types.StartCompositionInput): types.StartCompositionOutput, table
+    -- Starts replicating a publishing participant from a source stage to a destination stage.
     startParticipantReplication: function(Client, types.StartParticipantReplicationInput): types.StartParticipantReplicationOutput, table
+    -- Stops and deletes a Composition resource. Any broadcast from the Composition resource
+    -- is stopped.
     stopComposition: function(Client, types.StopCompositionInput): types.StopCompositionOutput, table
+    -- Stops a replicated participant session.
     stopParticipantReplication: function(Client, types.StopParticipantReplicationInput): types.StopParticipantReplicationOutput, table
+    -- Adds or updates tags for the AWS resource with the specified ARN.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the resource with the specified ARN.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a specified IngestConfiguration. Only the stage ARN attached to the IngestConfiguration can be updated. An IngestConfiguration that is active cannot be updated.
     updateIngestConfiguration: function(Client, types.UpdateIngestConfigurationInput): types.UpdateIngestConfigurationOutput, table
+    -- Updates a stage’s configuration.
     updateStage: function(Client, types.UpdateStageInput): types.UpdateStageOutput, table
 end
 

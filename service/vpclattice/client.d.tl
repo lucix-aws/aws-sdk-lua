@@ -3,78 +3,151 @@
 local types = require("vpclattice.types")
 
 local record Client
+    -- Updates the listener rules in a batch. You can use this operation to change the priority of listener rules. This can be useful when bulk updating or swapping rule priority. Required permissions: vpc-lattice:UpdateRule For more information, see How Amazon VPC Lattice works with IAM in the Amazon VPC Lattice User Guide.
     batchUpdateRule: function(Client, types.BatchUpdateRuleInput): types.BatchUpdateRuleOutput, table
+    -- Enables access logs to be sent to Amazon CloudWatch, Amazon S3, and Amazon Kinesis Data Firehose. The service network owner can use the access logs to audit the services in the network. The service network owner can only see access logs from clients and services that are associated with their service network. Access log entries represent traffic originated from VPCs associated with that network. For more information, see Access logs in the Amazon VPC Lattice User Guide.
     createAccessLogSubscription: function(Client, types.CreateAccessLogSubscriptionInput): types.CreateAccessLogSubscriptionOutput, table
+    -- Creates a listener for a service. Before you start using your Amazon VPC Lattice service, you must add one or more listeners. A listener is a process that checks for connection requests to your services. For more information, see Listeners in the Amazon VPC Lattice User Guide.
     createListener: function(Client, types.CreateListenerInput): types.CreateListenerOutput, table
+    -- Creates a resource configuration. A resource configuration defines a specific resource. You can associate a resource configuration with a service network or a VPC endpoint.
     createResourceConfiguration: function(Client, types.CreateResourceConfigurationInput): types.CreateResourceConfigurationOutput, table
+    -- A resource gateway is a point of ingress into the VPC where a resource resides. It spans multiple Availability Zones. For your resource to be accessible from all Availability Zones, you should create your resource gateways to span as many Availability Zones as possible. A VPC can have multiple resource gateways.
     createResourceGateway: function(Client, types.CreateResourceGatewayInput): types.CreateResourceGatewayOutput, table
+    -- Creates a listener rule. Each listener has a default rule for checking connection requests, but you can define additional rules. Each rule consists of a priority, one or more actions, and one or more conditions. For more information, see Listener rules in the Amazon VPC Lattice User Guide.
     createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    -- Creates a service. A service is any software application that can run on instances containers, or serverless functions within an account or virtual private cloud (VPC). For more information, see Services in the Amazon VPC Lattice User Guide.
     createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    -- Creates a service network. A service network is a logical boundary for a collection of services. You can associate services and VPCs with a service network. For more information, see Service networks in the Amazon VPC Lattice User Guide.
     createServiceNetwork: function(Client, types.CreateServiceNetworkInput): types.CreateServiceNetworkOutput, table
+    -- Associates the specified service network with the specified resource configuration. This allows the resource configuration to receive connections through the service network, including through a service network VPC endpoint.
     createServiceNetworkResourceAssociation: function(Client, types.CreateServiceNetworkResourceAssociationInput): types.CreateServiceNetworkResourceAssociationOutput, table
+    -- Associates the specified service with the specified service network. For more information, see Manage service associations in the Amazon VPC Lattice User Guide. You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it. You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network. As a result of this operation, the association is created in the service network account and the association owner account.
     createServiceNetworkServiceAssociation: function(Client, types.CreateServiceNetworkServiceAssociationInput): types.CreateServiceNetworkServiceAssociationOutput, table
+    -- Associates a VPC with a service network. When you associate a VPC with the service network, it enables all the resources within that VPC to be clients and communicate with other services in the service network. For more information, see Manage VPC associations in the Amazon VPC Lattice User Guide. You can't use this operation if there is a disassociation in progress. If the association fails, retry by deleting the association and recreating it. As a result of this operation, the association gets created in the service network account and the VPC owner account. If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups.
     createServiceNetworkVpcAssociation: function(Client, types.CreateServiceNetworkVpcAssociationInput): types.CreateServiceNetworkVpcAssociationOutput, table
+    -- Creates a target group. A target group is a collection of targets, or compute resources, that run your application or service. A target group can only be used by a single service. For more information, see Target groups in the Amazon VPC Lattice User Guide.
     createTargetGroup: function(Client, types.CreateTargetGroupInput): types.CreateTargetGroupOutput, table
+    -- Deletes the specified access log subscription.
     deleteAccessLogSubscription: function(Client, types.DeleteAccessLogSubscriptionInput): types.DeleteAccessLogSubscriptionOutput, table
+    -- Deletes the specified auth policy. If an auth is set to AWS_IAM and the auth policy is deleted, all requests are denied. If you are trying to remove the auth policy completely, you must set the auth type to NONE. If auth is enabled on the resource, but no auth policy is set, all requests are denied.
     deleteAuthPolicy: function(Client, types.DeleteAuthPolicyInput): types.DeleteAuthPolicyOutput, table
+    -- Deletes the specified domain verification.
     deleteDomainVerification: function(Client, types.DeleteDomainVerificationInput): types.DeleteDomainVerificationOutput, table
+    -- Deletes the specified listener.
     deleteListener: function(Client, types.DeleteListenerInput): types.DeleteListenerOutput, table
+    -- Deletes the specified resource configuration.
     deleteResourceConfiguration: function(Client, types.DeleteResourceConfigurationInput): types.DeleteResourceConfigurationOutput, table
+    -- Disassociates the resource configuration from the resource VPC endpoint.
     deleteResourceEndpointAssociation: function(Client, types.DeleteResourceEndpointAssociationInput): types.DeleteResourceEndpointAssociationOutput, table
+    -- Deletes the specified resource gateway.
     deleteResourceGateway: function(Client, types.DeleteResourceGatewayInput): types.DeleteResourceGatewayOutput, table
+    -- Deletes the specified resource policy.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes a listener rule. Each listener has a default rule for checking connection requests, but you can define additional rules. Each rule consists of a priority, one or more actions, and one or more conditions. You can delete additional listener rules, but you cannot delete the default rule. For more information, see Listener rules in the Amazon VPC Lattice User Guide.
     deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    -- Deletes a service. A service can't be deleted if it's associated with a service network. If you delete a service, all resources related to the service, such as the resource policy, auth policy, listeners, listener rules, and access log subscriptions, are also deleted. For more information, see Delete a service in the Amazon VPC Lattice User Guide.
     deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    -- Deletes a service network. You can only delete the service network if there is no service or VPC associated with it. If you delete a service network, all resources related to the service network, such as the resource policy, auth policy, and access log subscriptions, are also deleted. For more information, see Delete a service network in the Amazon VPC Lattice User Guide.
     deleteServiceNetwork: function(Client, types.DeleteServiceNetworkInput): types.DeleteServiceNetworkOutput, table
+    -- Deletes the association between a service network and a resource configuration.
     deleteServiceNetworkResourceAssociation: function(Client, types.DeleteServiceNetworkResourceAssociationInput): types.DeleteServiceNetworkResourceAssociationOutput, table
+    -- Deletes the association between a service and a service network. This operation fails if an association is still in progress.
     deleteServiceNetworkServiceAssociation: function(Client, types.DeleteServiceNetworkServiceAssociationInput): types.DeleteServiceNetworkServiceAssociationOutput, table
+    -- Disassociates the VPC from the service network. You can't disassociate the VPC if there is a create or update association in progress.
     deleteServiceNetworkVpcAssociation: function(Client, types.DeleteServiceNetworkVpcAssociationInput): types.DeleteServiceNetworkVpcAssociationOutput, table
+    -- Deletes a target group. You can't delete a target group if it is used in a listener rule or if the target group creation is in progress.
     deleteTargetGroup: function(Client, types.DeleteTargetGroupInput): types.DeleteTargetGroupOutput, table
+    -- Deregisters the specified targets from the specified target group.
     deregisterTargets: function(Client, types.DeregisterTargetsInput): types.DeregisterTargetsOutput, table
+    -- Retrieves information about the specified access log subscription.
     getAccessLogSubscription: function(Client, types.GetAccessLogSubscriptionInput): types.GetAccessLogSubscriptionOutput, table
+    -- Retrieves information about the auth policy for the specified service or service network.
     getAuthPolicy: function(Client, types.GetAuthPolicyInput): types.GetAuthPolicyOutput, table
+    -- Retrieves information about a domain verification.ß
     getDomainVerification: function(Client, types.GetDomainVerificationInput): types.GetDomainVerificationOutput, table
+    -- Retrieves information about the specified listener for the specified service.
     getListener: function(Client, types.GetListenerInput): types.GetListenerOutput, table
+    -- Retrieves information about the specified resource configuration.
     getResourceConfiguration: function(Client, types.GetResourceConfigurationInput): types.GetResourceConfigurationOutput, table
+    -- Retrieves information about the specified resource gateway.
     getResourceGateway: function(Client, types.GetResourceGatewayInput): types.GetResourceGatewayOutput, table
+    -- Retrieves information about the specified resource policy. The resource policy is an IAM policy created on behalf of the resource owner when they share a resource.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Retrieves information about the specified listener rules. You can also retrieve information about the default listener rule. For more information, see Listener rules in the Amazon VPC Lattice User Guide.
     getRule: function(Client, types.GetRuleInput): types.GetRuleOutput, table
+    -- Retrieves information about the specified service.
     getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    -- Retrieves information about the specified service network.
     getServiceNetwork: function(Client, types.GetServiceNetworkInput): types.GetServiceNetworkOutput, table
+    -- Retrieves information about the specified association between a service network and a resource configuration.
     getServiceNetworkResourceAssociation: function(Client, types.GetServiceNetworkResourceAssociationInput): types.GetServiceNetworkResourceAssociationOutput, table
+    -- Retrieves information about the specified association between a service network and a service.
     getServiceNetworkServiceAssociation: function(Client, types.GetServiceNetworkServiceAssociationInput): types.GetServiceNetworkServiceAssociationOutput, table
+    -- Retrieves information about the specified association between a service network and a VPC.
     getServiceNetworkVpcAssociation: function(Client, types.GetServiceNetworkVpcAssociationInput): types.GetServiceNetworkVpcAssociationOutput, table
+    -- Retrieves information about the specified target group.
     getTargetGroup: function(Client, types.GetTargetGroupInput): types.GetTargetGroupOutput, table
+    -- Lists the access log subscriptions for the specified service network or service.
     listAccessLogSubscriptions: function(Client, types.ListAccessLogSubscriptionsInput): types.ListAccessLogSubscriptionsOutput, table
+    -- Lists the domain verifications.
     listDomainVerifications: function(Client, types.ListDomainVerificationsInput): types.ListDomainVerificationsOutput, table
+    -- Lists the listeners for the specified service.
     listListeners: function(Client, types.ListListenersInput): types.ListListenersOutput, table
+    -- Lists the resource configurations owned by or shared with this account.
     listResourceConfigurations: function(Client, types.ListResourceConfigurationsInput): types.ListResourceConfigurationsOutput, table
+    -- Lists the associations for the specified VPC endpoint.
     listResourceEndpointAssociations: function(Client, types.ListResourceEndpointAssociationsInput): types.ListResourceEndpointAssociationsOutput, table
+    -- Lists the resource gateways that you own or that were shared with you.
     listResourceGateways: function(Client, types.ListResourceGatewaysInput): types.ListResourceGatewaysOutput, table
+    -- Lists the rules for the specified listener.
     listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    -- Lists the associations between a service network and a resource configuration.
     listServiceNetworkResourceAssociations: function(Client, types.ListServiceNetworkResourceAssociationsInput): types.ListServiceNetworkResourceAssociationsOutput, table
+    -- Lists the service networks owned by or shared with this account. The account ID in the ARN shows which account owns the service network.
     listServiceNetworks: function(Client, types.ListServiceNetworksInput): types.ListServiceNetworksOutput, table
+    -- Lists the associations between a service network and a service. You can filter the list either by service or service network. You must provide either the service network identifier or the service identifier. Every association in Amazon VPC Lattice has a unique Amazon Resource Name (ARN), such as when a service network is associated with a VPC or when a service is associated with a service network. If the association is for a resource is shared with another account, the association includes the local account ID as the prefix in the ARN.
     listServiceNetworkServiceAssociations: function(Client, types.ListServiceNetworkServiceAssociationsInput): types.ListServiceNetworkServiceAssociationsOutput, table
+    -- Lists the associations between a service network and a VPC. You can filter the list either by VPC or service network. You must provide either the ID of the service network identifier or the ID of the VPC.
     listServiceNetworkVpcAssociations: function(Client, types.ListServiceNetworkVpcAssociationsInput): types.ListServiceNetworkVpcAssociationsOutput, table
+    -- Lists the associations between a service network and a VPC endpoint.
     listServiceNetworkVpcEndpointAssociations: function(Client, types.ListServiceNetworkVpcEndpointAssociationsInput): types.ListServiceNetworkVpcEndpointAssociationsOutput, table
+    -- Lists the services owned by the caller account or shared with the caller account.
     listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists your target groups. You can narrow your search by using the filters below in your request.
     listTargetGroups: function(Client, types.ListTargetGroupsInput): types.ListTargetGroupsOutput, table
+    -- Lists the targets for the target group. By default, all targets are included. You can use this API to check the health status of targets. You can also ﬁlter the results by target.
     listTargets: function(Client, types.ListTargetsInput): types.ListTargetsOutput, table
+    -- Creates or updates the auth policy. The policy string in JSON must not contain newlines or blank lines. For more information, see Auth policies in the Amazon VPC Lattice User Guide.
     putAuthPolicy: function(Client, types.PutAuthPolicyInput): types.PutAuthPolicyOutput, table
+    -- Attaches a resource-based permission policy to a service or service network. The policy must contain the same actions and condition statements as the Amazon Web Services Resource Access Manager permission for sharing services and service networks.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Registers the targets with the target group. If it's a Lambda target, you can only have one target in a target group.
     registerTargets: function(Client, types.RegisterTargetsInput): types.RegisterTargetsOutput, table
+    -- Starts the domain verification process for a custom domain name.
     startDomainVerification: function(Client, types.StartDomainVerificationInput): types.StartDomainVerificationOutput, table
+    -- Adds the specified tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the specified access log subscription.
     updateAccessLogSubscription: function(Client, types.UpdateAccessLogSubscriptionInput): types.UpdateAccessLogSubscriptionOutput, table
+    -- Updates the specified listener for the specified service.
     updateListener: function(Client, types.UpdateListenerInput): types.UpdateListenerOutput, table
+    -- Updates the specified resource configuration.
     updateResourceConfiguration: function(Client, types.UpdateResourceConfigurationInput): types.UpdateResourceConfigurationOutput, table
+    -- Updates the specified resource gateway.
     updateResourceGateway: function(Client, types.UpdateResourceGatewayInput): types.UpdateResourceGatewayOutput, table
+    -- Updates a specified rule for the listener. You can't modify a default listener rule. To modify a default listener rule, use UpdateListener.
     updateRule: function(Client, types.UpdateRuleInput): types.UpdateRuleOutput, table
+    -- Updates the specified service.
     updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    -- Updates the specified service network.
     updateServiceNetwork: function(Client, types.UpdateServiceNetworkInput): types.UpdateServiceNetworkOutput, table
+    -- Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and then recreate it without security groups.
     updateServiceNetworkVpcAssociation: function(Client, types.UpdateServiceNetworkVpcAssociationInput): types.UpdateServiceNetworkVpcAssociationOutput, table
+    -- Updates the specified target group.
     updateTargetGroup: function(Client, types.UpdateTargetGroupInput): types.UpdateTargetGroupOutput, table
 end
 

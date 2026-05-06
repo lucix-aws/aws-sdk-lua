@@ -3,6 +3,8 @@
 local types = require("marketplaceentitlementservice.types")
 
 local record Client
+    -- GetEntitlements retrieves entitlement values for a given product. The results can be
+    -- filtered based on customer identifier, AWS account ID, license ARN, or product dimensions.
     getEntitlements: function(Client, types.GetEntitlementsInput): types.GetEntitlementsOutput, table
 end
 

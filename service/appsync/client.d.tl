@@ -3,79 +3,212 @@
 local types = require("appsync.types")
 
 local record Client
+    -- Maps an endpoint to your custom domain.
     associateApi: function(Client, types.AssociateApiInput): types.AssociateApiOutput, table
+    -- Creates an association between a Merged API and source API using the source API's
+    -- identifier.
     associateMergedGraphqlApi: function(Client, types.AssociateMergedGraphqlApiInput): types.AssociateMergedGraphqlApiOutput, table
+    -- Creates an association between a Merged API and source API using the Merged API's
+    -- identifier.
     associateSourceGraphqlApi: function(Client, types.AssociateSourceGraphqlApiInput): types.AssociateSourceGraphqlApiOutput, table
+    -- Creates an Api object. Use this operation to create an AppSync
+    -- API with your preferred configuration, such as an Event API that provides real-time message
+    -- publishing and message subscriptions over WebSockets.
     createApi: function(Client, types.CreateApiInput): types.CreateApiOutput, table
+    -- Creates a cache for the GraphQL API.
     createApiCache: function(Client, types.CreateApiCacheInput): types.CreateApiCacheOutput, table
+    -- Creates a unique key that you can distribute to clients who invoke your API.
     createApiKey: function(Client, types.CreateApiKeyInput): types.CreateApiKeyOutput, table
+    -- Creates a ChannelNamespace for an Api.
     createChannelNamespace: function(Client, types.CreateChannelNamespaceInput): types.CreateChannelNamespaceOutput, table
+    -- Creates a DataSource object.
     createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    -- Creates a custom DomainName object.
     createDomainName: function(Client, types.CreateDomainNameInput): types.CreateDomainNameOutput, table
+    -- Creates a Function object.
+    -- A function is a reusable entity. You can use multiple functions to compose the resolver
+    -- logic.
     createFunction: function(Client, types.CreateFunctionInput): types.CreateFunctionOutput, table
+    -- Creates a GraphqlApi object.
     createGraphqlApi: function(Client, types.CreateGraphqlApiInput): types.CreateGraphqlApiOutput, table
+    -- Creates a Resolver object.
+    -- A resolver converts incoming requests into a format that a data source can understand,
+    -- and converts the data source's responses into GraphQL.
     createResolver: function(Client, types.CreateResolverInput): types.CreateResolverOutput, table
+    -- Creates a Type object.
     createType: function(Client, types.CreateTypeInput): types.CreateTypeOutput, table
+    -- Deletes an Api object
     deleteApi: function(Client, types.DeleteApiInput): types.DeleteApiOutput, table
+    -- Deletes an ApiCache object.
     deleteApiCache: function(Client, types.DeleteApiCacheInput): types.DeleteApiCacheOutput, table
+    -- Deletes an API key.
     deleteApiKey: function(Client, types.DeleteApiKeyInput): types.DeleteApiKeyOutput, table
+    -- Deletes a ChannelNamespace.
     deleteChannelNamespace: function(Client, types.DeleteChannelNamespaceInput): types.DeleteChannelNamespaceOutput, table
+    -- Deletes a DataSource object.
     deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    -- Deletes a custom DomainName object.
     deleteDomainName: function(Client, types.DeleteDomainNameInput): types.DeleteDomainNameOutput, table
+    -- Deletes a Function.
     deleteFunction: function(Client, types.DeleteFunctionInput): types.DeleteFunctionOutput, table
+    -- Deletes a GraphqlApi object.
     deleteGraphqlApi: function(Client, types.DeleteGraphqlApiInput): types.DeleteGraphqlApiOutput, table
+    -- Deletes a Resolver object.
     deleteResolver: function(Client, types.DeleteResolverInput): types.DeleteResolverOutput, table
+    -- Deletes a Type object.
     deleteType: function(Client, types.DeleteTypeInput): types.DeleteTypeOutput, table
+    -- Removes an ApiAssociation object from a custom domain.
     disassociateApi: function(Client, types.DisassociateApiInput): types.DisassociateApiOutput, table
+    -- Deletes an association between a Merged API and source API using the source API's
+    -- identifier and the association ID.
     disassociateMergedGraphqlApi: function(Client, types.DisassociateMergedGraphqlApiInput): types.DisassociateMergedGraphqlApiOutput, table
+    -- Deletes an association between a Merged API and source API using the Merged API's
+    -- identifier and the association ID.
     disassociateSourceGraphqlApi: function(Client, types.DisassociateSourceGraphqlApiInput): types.DisassociateSourceGraphqlApiOutput, table
+    -- Evaluates the given code and returns the response. The code definition requirements
+    -- depend on the specified runtime. For APPSYNC_JS runtimes, the code defines the
+    -- request and response functions. The request function takes the incoming request after a
+    -- GraphQL operation is parsed and converts it into a request configuration for the selected
+    -- data source operation. The response function interprets responses from the data source and
+    -- maps it to the shape of the GraphQL field output type.
     evaluateCode: function(Client, types.EvaluateCodeInput): types.EvaluateCodeOutput, table
+    -- Evaluates a given template and returns the response. The mapping template can be a
+    -- request or response template.
+    -- Request templates take the incoming request after a GraphQL operation is parsed and
+    -- convert it into a request configuration for the selected data source operation. Response
+    -- templates interpret responses from the data source and map it to the shape of the GraphQL
+    -- field output type.
+    -- Mapping templates are written in the Apache Velocity Template Language (VTL).
     evaluateMappingTemplate: function(Client, types.EvaluateMappingTemplateInput): types.EvaluateMappingTemplateOutput, table
+    -- Flushes an ApiCache object.
     flushApiCache: function(Client, types.FlushApiCacheInput): types.FlushApiCacheOutput, table
+    -- Retrieves an Api object.
     getApi: function(Client, types.GetApiInput): types.GetApiOutput, table
+    -- Retrieves an ApiAssociation object.
     getApiAssociation: function(Client, types.GetApiAssociationInput): types.GetApiAssociationOutput, table
+    -- Retrieves an ApiCache object.
     getApiCache: function(Client, types.GetApiCacheInput): types.GetApiCacheOutput, table
+    -- Retrieves the channel namespace for a specified Api.
     getChannelNamespace: function(Client, types.GetChannelNamespaceInput): types.GetChannelNamespaceOutput, table
+    -- Retrieves a DataSource object.
     getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    -- Retrieves the record of an existing introspection. If the retrieval is successful, the
+    -- result of the instrospection will also be returned. If the retrieval fails the operation,
+    -- an error message will be returned instead.
     getDataSourceIntrospection: function(Client, types.GetDataSourceIntrospectionInput): types.GetDataSourceIntrospectionOutput, table
+    -- Retrieves a custom DomainName object.
     getDomainName: function(Client, types.GetDomainNameInput): types.GetDomainNameOutput, table
+    -- Get a Function.
     getFunction: function(Client, types.GetFunctionInput): types.GetFunctionOutput, table
+    -- Retrieves a GraphqlApi object.
     getGraphqlApi: function(Client, types.GetGraphqlApiInput): types.GetGraphqlApiOutput, table
+    -- Retrieves the list of environmental variable key-value pairs associated with an API by
+    -- its ID value.
     getGraphqlApiEnvironmentVariables: function(Client, types.GetGraphqlApiEnvironmentVariablesInput): types.GetGraphqlApiEnvironmentVariablesOutput, table
+    -- Retrieves the introspection schema for a GraphQL API.
     getIntrospectionSchema: function(Client, types.GetIntrospectionSchemaInput): types.GetIntrospectionSchemaOutput, table
+    -- Retrieves a Resolver object.
     getResolver: function(Client, types.GetResolverInput): types.GetResolverOutput, table
+    -- Retrieves the current status of a schema creation operation.
     getSchemaCreationStatus: function(Client, types.GetSchemaCreationStatusInput): types.GetSchemaCreationStatusOutput, table
+    -- Retrieves a SourceApiAssociation object.
     getSourceApiAssociation: function(Client, types.GetSourceApiAssociationInput): types.GetSourceApiAssociationOutput, table
+    -- Retrieves a Type object.
     getType: function(Client, types.GetTypeInput): types.GetTypeOutput, table
+    -- Lists the API keys for a given API.
+    -- API keys are deleted automatically 60 days after they expire. However, they may still
+    -- be included in the response until they have actually been deleted. You can safely call
+    -- DeleteApiKey to manually delete a key before it's automatically
+    -- deleted.
     listApiKeys: function(Client, types.ListApiKeysInput): types.ListApiKeysOutput, table
+    -- Lists the APIs in your AppSync account.
+    -- ListApis returns only the high level API details. For more detailed
+    -- information about an API, use GetApi.
     listApis: function(Client, types.ListApisInput): types.ListApisOutput, table
+    -- Lists the channel namespaces for a specified Api.
+    -- ListChannelNamespaces returns only high level details for the channel
+    -- namespace. To retrieve code handlers, use GetChannelNamespace.
     listChannelNamespaces: function(Client, types.ListChannelNamespacesInput): types.ListChannelNamespacesOutput, table
+    -- Lists the data sources for a given API.
     listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    -- Lists multiple custom domain names.
     listDomainNames: function(Client, types.ListDomainNamesInput): types.ListDomainNamesOutput, table
+    -- List multiple functions.
     listFunctions: function(Client, types.ListFunctionsInput): types.ListFunctionsOutput, table
+    -- Lists your GraphQL APIs.
     listGraphqlApis: function(Client, types.ListGraphqlApisInput): types.ListGraphqlApisOutput, table
+    -- Lists the resolvers for a given API and type.
     listResolvers: function(Client, types.ListResolversInput): types.ListResolversOutput, table
+    -- List the resolvers that are associated with a specific function.
     listResolversByFunction: function(Client, types.ListResolversByFunctionInput): types.ListResolversByFunctionOutput, table
+    -- Lists the SourceApiAssociationSummary data.
     listSourceApiAssociations: function(Client, types.ListSourceApiAssociationsInput): types.ListSourceApiAssociationsOutput, table
+    -- Lists the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the types for a given API.
     listTypes: function(Client, types.ListTypesInput): types.ListTypesOutput, table
+    -- Lists Type objects by the source API association ID.
     listTypesByAssociation: function(Client, types.ListTypesByAssociationInput): types.ListTypesByAssociationOutput, table
+    -- Creates a list of environmental variables in an API by its ID value.
+    -- When creating an environmental variable, it must follow the constraints below:
+    -- Both JavaScript and VTL templates support environmental variables.
+    -- Environmental variables are not evaluated before function invocation.
+    -- Environmental variables only support string values.
+    -- Any defined value in an environmental variable is considered a string literal
+    -- and not expanded.
+    -- Variable evaluations should ideally be performed in the function
+    -- code.
+    -- When creating an environmental variable key-value pair, it must follow the additional
+    -- constraints below:
+    -- Keys must begin with a letter.
+    -- Keys must be at least two characters long.
+    -- Keys can only contain letters, numbers, and the underscore character
+    -- (_).
+    -- Values can be up to 512 characters long.
+    -- You can configure up to 50 key-value pairs in a GraphQL API.
+    -- You can create a list of environmental variables by adding it to the
+    -- environmentVariables payload as a list in the format
+    -- {"key1":"value1","key2":"value2", …}. Note that each call of the
+    -- PutGraphqlApiEnvironmentVariables action will result in the overwriting of
+    -- the existing environmental variable list of that API. This means the existing environmental
+    -- variables will be lost. To avoid this, you must include all existing and new environmental
+    -- variables in the list each time you call this action.
     putGraphqlApiEnvironmentVariables: function(Client, types.PutGraphqlApiEnvironmentVariablesInput): types.PutGraphqlApiEnvironmentVariablesOutput, table
+    -- Creates a new introspection. Returns the introspectionId of the new
+    -- introspection after its creation.
     startDataSourceIntrospection: function(Client, types.StartDataSourceIntrospectionInput): types.StartDataSourceIntrospectionOutput, table
+    -- Adds a new schema to your GraphQL API.
+    -- This operation is asynchronous. Use to
+    -- determine when it has completed.
     startSchemaCreation: function(Client, types.StartSchemaCreationInput): types.StartSchemaCreationOutput, table
+    -- Initiates a merge operation. Returns a status that shows the result of the merge
+    -- operation.
     startSchemaMerge: function(Client, types.StartSchemaMergeInput): types.StartSchemaMergeOutput, table
+    -- Tags a resource with user-supplied tags.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Api.
     updateApi: function(Client, types.UpdateApiInput): types.UpdateApiOutput, table
+    -- Updates the cache for the GraphQL API.
     updateApiCache: function(Client, types.UpdateApiCacheInput): types.UpdateApiCacheOutput, table
+    -- Updates an API key. You can update the key as long as it's not deleted.
     updateApiKey: function(Client, types.UpdateApiKeyInput): types.UpdateApiKeyOutput, table
+    -- Updates a ChannelNamespace associated with an Api.
     updateChannelNamespace: function(Client, types.UpdateChannelNamespaceInput): types.UpdateChannelNamespaceOutput, table
+    -- Updates a DataSource object.
     updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    -- Updates a custom DomainName object.
     updateDomainName: function(Client, types.UpdateDomainNameInput): types.UpdateDomainNameOutput, table
+    -- Updates a Function object.
     updateFunction: function(Client, types.UpdateFunctionInput): types.UpdateFunctionOutput, table
+    -- Updates a GraphqlApi object.
     updateGraphqlApi: function(Client, types.UpdateGraphqlApiInput): types.UpdateGraphqlApiOutput, table
+    -- Updates a Resolver object.
     updateResolver: function(Client, types.UpdateResolverInput): types.UpdateResolverOutput, table
+    -- Updates some of the configuration choices of a particular source API association.
     updateSourceApiAssociation: function(Client, types.UpdateSourceApiAssociationInput): types.UpdateSourceApiAssociationOutput, table
+    -- Updates a Type object.
     updateType: function(Client, types.UpdateTypeInput): types.UpdateTypeOutput, table
 end
 

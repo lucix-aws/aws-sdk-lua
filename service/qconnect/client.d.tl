@@ -3,98 +3,191 @@
 local types = require("qconnect.types")
 
 local record Client
+    -- Activates a specific version of the Amazon Q in Connect message template. After the version is activated, the previous active version will be deactivated automatically. You can use the $ACTIVE_VERSION qualifier later to reference the version that is in active status.
     activateMessageTemplate: function(Client, types.ActivateMessageTemplateInput): types.ActivateMessageTemplateOutput, table
+    -- Creates an Amazon Q in Connect AI Agent.
     createAIAgent: function(Client, types.CreateAIAgentInput): types.CreateAIAgentOutput, table
+    -- Creates and Amazon Q in Connect AI Agent version.
     createAIAgentVersion: function(Client, types.CreateAIAgentVersionInput): types.CreateAIAgentVersionOutput, table
+    -- Creates an Amazon Q in Connect AI Guardrail.
     createAIGuardrail: function(Client, types.CreateAIGuardrailInput): types.CreateAIGuardrailOutput, table
+    -- Creates an Amazon Q in Connect AI Guardrail version.
     createAIGuardrailVersion: function(Client, types.CreateAIGuardrailVersionInput): types.CreateAIGuardrailVersionOutput, table
+    -- Creates an Amazon Q in Connect AI Prompt.
     createAIPrompt: function(Client, types.CreateAIPromptInput): types.CreateAIPromptOutput, table
+    -- Creates an Amazon Q in Connect AI Prompt version.
     createAIPromptVersion: function(Client, types.CreateAIPromptVersionInput): types.CreateAIPromptVersionOutput, table
+    -- Creates an Amazon Q in Connect assistant.
     createAssistant: function(Client, types.CreateAssistantInput): types.CreateAssistantOutput, table
+    -- Creates an association between an Amazon Q in Connect assistant and another resource. Currently, the only supported association is with a knowledge base. An assistant can have only a single association.
     createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput): types.CreateAssistantAssociationOutput, table
+    -- Creates Amazon Q in Connect content. Before to calling this API, use StartContentUpload to upload an asset.
     createContent: function(Client, types.CreateContentInput): types.CreateContentOutput, table
+    -- Creates an association between a content resource in a knowledge base and step-by-step guides. Step-by-step guides offer instructions to agents for resolving common customer issues. You create a content association to integrate Amazon Q in Connect and step-by-step guides. After you integrate Amazon Q and step-by-step guides, when Amazon Q provides a recommendation to an agent based on the intent that it's detected, it also provides them with the option to start the step-by-step guide that you have associated with the content. Note the following limitations: You can create only one content association for each content resource in a knowledge base. You can associate a step-by-step guide with multiple content resources. For more information, see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide.
     createContentAssociation: function(Client, types.CreateContentAssociationInput): types.CreateContentAssociationOutput, table
+    -- Creates a knowledge base. When using this API, you cannot reuse Amazon AppIntegrations DataIntegrations with external knowledge bases such as Salesforce and ServiceNow. If you do, you'll get an InvalidRequestException error. For example, you're programmatically managing your external knowledge base, and you want to add or remove one of the fields that is being ingested from Salesforce. Do the following: Call DeleteKnowledgeBase. Call DeleteDataIntegration. Call CreateDataIntegration to recreate the DataIntegration or a create different one. Call CreateKnowledgeBase.
     createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput): types.CreateKnowledgeBaseOutput, table
+    -- Creates an Amazon Q in Connect message template. The name of the message template has to be unique for each knowledge base. The channel subtype of the message template is immutable and cannot be modified after creation. After the message template is created, you can use the $LATEST qualifier to reference the created message template.
     createMessageTemplate: function(Client, types.CreateMessageTemplateInput): types.CreateMessageTemplateOutput, table
+    -- Uploads an attachment file to the specified Amazon Q in Connect message template. The name of the message template attachment has to be unique for each message template referenced by the $LATEST qualifier. The body of the attachment file should be encoded using base64 encoding. After the file is uploaded, you can use the pre-signed Amazon S3 URL returned in response to download the uploaded file.
     createMessageTemplateAttachment: function(Client, types.CreateMessageTemplateAttachmentInput): types.CreateMessageTemplateAttachmentOutput, table
+    -- Creates a new Amazon Q in Connect message template version from the current content and configuration of a message template. Versions are immutable and monotonically increasing. Once a version is created, you can reference a specific version of the message template by passing in <message-template-id>:<versionNumber> as the message template identifier. An error is displayed if the supplied messageTemplateContentSha256 is different from the messageTemplateContentSha256 of the message template with $LATEST qualifier. If multiple CreateMessageTemplateVersion requests are made while the message template remains the same, only the first invocation creates a new version and the succeeding requests will return the same response as the first invocation.
     createMessageTemplateVersion: function(Client, types.CreateMessageTemplateVersionInput): types.CreateMessageTemplateVersionOutput, table
+    -- Creates an Amazon Q in Connect quick response.
     createQuickResponse: function(Client, types.CreateQuickResponseInput): types.CreateQuickResponseOutput, table
+    -- Creates a session. A session is a contextual container used for generating recommendations. Amazon Connect creates a new Amazon Q in Connect session for each contact on which Amazon Q in Connect is enabled.
     createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    -- Deactivates a specific version of the Amazon Q in Connect message template . After the version is deactivated, you can no longer use the $ACTIVE_VERSION qualifier to reference the version in active status.
     deactivateMessageTemplate: function(Client, types.DeactivateMessageTemplateInput): types.DeactivateMessageTemplateOutput, table
+    -- Deletes an Amazon Q in Connect AI Agent.
     deleteAIAgent: function(Client, types.DeleteAIAgentInput): types.DeleteAIAgentOutput, table
+    -- Deletes an Amazon Q in Connect AI Agent Version.
     deleteAIAgentVersion: function(Client, types.DeleteAIAgentVersionInput): types.DeleteAIAgentVersionOutput, table
+    -- Deletes an Amazon Q in Connect AI Guardrail.
     deleteAIGuardrail: function(Client, types.DeleteAIGuardrailInput): types.DeleteAIGuardrailOutput, table
+    -- Delete and Amazon Q in Connect AI Guardrail version.
     deleteAIGuardrailVersion: function(Client, types.DeleteAIGuardrailVersionInput): types.DeleteAIGuardrailVersionOutput, table
+    -- Deletes an Amazon Q in Connect AI Prompt.
     deleteAIPrompt: function(Client, types.DeleteAIPromptInput): types.DeleteAIPromptOutput, table
+    -- Delete and Amazon Q in Connect AI Prompt version.
     deleteAIPromptVersion: function(Client, types.DeleteAIPromptVersionInput): types.DeleteAIPromptVersionOutput, table
+    -- Deletes an assistant.
     deleteAssistant: function(Client, types.DeleteAssistantInput): types.DeleteAssistantOutput, table
+    -- Deletes an assistant association.
     deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput): types.DeleteAssistantAssociationOutput, table
+    -- Deletes the content.
     deleteContent: function(Client, types.DeleteContentInput): types.DeleteContentOutput, table
+    -- Deletes the content association. For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide.
     deleteContentAssociation: function(Client, types.DeleteContentAssociationInput): types.DeleteContentAssociationOutput, table
+    -- Deletes the quick response import job.
     deleteImportJob: function(Client, types.DeleteImportJobInput): types.DeleteImportJobOutput, table
+    -- Deletes the knowledge base. When you use this API to delete an external knowledge base such as Salesforce or ServiceNow, you must also delete the Amazon AppIntegrations DataIntegration. This is because you can't reuse the DataIntegration after it's been associated with an external knowledge base. However, you can delete and recreate it. See DeleteDataIntegration and CreateDataIntegration in the Amazon AppIntegrations API Reference.
     deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput): types.DeleteKnowledgeBaseOutput, table
+    -- Deletes an Amazon Q in Connect message template entirely or a specific version of the message template if version is supplied in the request. You can provide the message template identifier as <message-template-id>:<versionNumber> to delete a specific version of the message template. If it is not supplied, the message template and all available versions will be deleted.
     deleteMessageTemplate: function(Client, types.DeleteMessageTemplateInput): types.DeleteMessageTemplateOutput, table
+    -- Deletes the attachment file from the Amazon Q in Connect message template that is referenced by $LATEST qualifier. Attachments on available message template versions will remain unchanged.
     deleteMessageTemplateAttachment: function(Client, types.DeleteMessageTemplateAttachmentInput): types.DeleteMessageTemplateAttachmentOutput, table
+    -- Deletes a quick response.
     deleteQuickResponse: function(Client, types.DeleteQuickResponseInput): types.DeleteQuickResponseOutput, table
+    -- Gets an Amazon Q in Connect AI Agent.
     getAIAgent: function(Client, types.GetAIAgentInput): types.GetAIAgentOutput, table
+    -- Gets the Amazon Q in Connect AI Guardrail.
     getAIGuardrail: function(Client, types.GetAIGuardrailInput): types.GetAIGuardrailOutput, table
+    -- Gets and Amazon Q in Connect AI Prompt.
     getAIPrompt: function(Client, types.GetAIPromptInput): types.GetAIPromptOutput, table
+    -- Retrieves information about an assistant.
     getAssistant: function(Client, types.GetAssistantInput): types.GetAssistantOutput, table
+    -- Retrieves information about an assistant association.
     getAssistantAssociation: function(Client, types.GetAssistantAssociationInput): types.GetAssistantAssociationOutput, table
+    -- Retrieves content, including a pre-signed URL to download the content.
     getContent: function(Client, types.GetContentInput): types.GetContentOutput, table
+    -- Returns the content association. For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide.
     getContentAssociation: function(Client, types.GetContentAssociationInput): types.GetContentAssociationOutput, table
+    -- Retrieves summary information about the content.
     getContentSummary: function(Client, types.GetContentSummaryInput): types.GetContentSummaryOutput, table
+    -- Retrieves the started import job.
     getImportJob: function(Client, types.GetImportJobInput): types.GetImportJobOutput, table
+    -- Retrieves information about the knowledge base.
     getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput): types.GetKnowledgeBaseOutput, table
+    -- Retrieves the Amazon Q in Connect message template. The message template identifier can contain an optional qualifier, for example, <message-template-id>:<qualifier>, which is either an actual version number or an Amazon Q Connect managed qualifier $ACTIVE_VERSION | $LATEST. If it is not supplied, then $LATEST is assumed implicitly.
     getMessageTemplate: function(Client, types.GetMessageTemplateInput): types.GetMessageTemplateOutput, table
+    -- Retrieves next message on an Amazon Q in Connect session.
     getNextMessage: function(Client, types.GetNextMessageInput): types.GetNextMessageOutput, table
+    -- Retrieves the quick response.
     getQuickResponse: function(Client, types.GetQuickResponseInput): types.GetQuickResponseOutput, table
+    -- This API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024, you will need to create a new Assistant in the Amazon Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications. Retrieves recommendations for the specified session. To avoid retrieving the same recommendations in subsequent calls, use NotifyRecommendationsReceived. This API supports long-polling behavior with the waitTimeSeconds parameter. Short poll is the default behavior and only returns recommendations already available. To perform a manual query against an assistant, use QueryAssistant.
     getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    -- Retrieves information for a specified session.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Lists AI Agents.
     listAIAgents: function(Client, types.ListAIAgentsInput): types.ListAIAgentsOutput, table
+    -- List AI Agent versions.
     listAIAgentVersions: function(Client, types.ListAIAgentVersionsInput): types.ListAIAgentVersionsOutput, table
+    -- Lists the AI Guardrails available on the Amazon Q in Connect assistant.
     listAIGuardrails: function(Client, types.ListAIGuardrailsInput): types.ListAIGuardrailsOutput, table
+    -- Lists AI Guardrail versions.
     listAIGuardrailVersions: function(Client, types.ListAIGuardrailVersionsInput): types.ListAIGuardrailVersionsOutput, table
+    -- Lists the AI Prompts available on the Amazon Q in Connect assistant.
     listAIPrompts: function(Client, types.ListAIPromptsInput): types.ListAIPromptsOutput, table
+    -- Lists AI Prompt versions.
     listAIPromptVersions: function(Client, types.ListAIPromptVersionsInput): types.ListAIPromptVersionsOutput, table
+    -- Lists information about assistant associations.
     listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput): types.ListAssistantAssociationsOutput, table
+    -- Lists information about assistants.
     listAssistants: function(Client, types.ListAssistantsInput): types.ListAssistantsOutput, table
+    -- Lists the content associations. For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide.
     listContentAssociations: function(Client, types.ListContentAssociationsInput): types.ListContentAssociationsOutput, table
+    -- Lists the content.
     listContents: function(Client, types.ListContentsInput): types.ListContentsOutput, table
+    -- Lists information about import jobs.
     listImportJobs: function(Client, types.ListImportJobsInput): types.ListImportJobsOutput, table
+    -- Lists the knowledge bases.
     listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput): types.ListKnowledgeBasesOutput, table
+    -- Lists messages on an Amazon Q in Connect session.
     listMessages: function(Client, types.ListMessagesInput): types.ListMessagesOutput, table
+    -- Lists all the available Amazon Q in Connect message templates for the specified knowledge base.
     listMessageTemplates: function(Client, types.ListMessageTemplatesInput): types.ListMessageTemplatesOutput, table
+    -- Lists all the available versions for the specified Amazon Q in Connect message template.
     listMessageTemplateVersions: function(Client, types.ListMessageTemplateVersionsInput): types.ListMessageTemplateVersionsOutput, table
+    -- Lists information about quick response.
     listQuickResponses: function(Client, types.ListQuickResponsesInput): types.ListQuickResponsesOutput, table
+    -- Retrieves AI agent execution traces for a session, providing granular visibility into agent orchestration flows, LLM interactions, and tool invocations.
     listSpans: function(Client, types.ListSpansInput): types.ListSpansOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Removes the specified recommendations from the specified assistant's queue of newly available recommendations. You can use this API in conjunction with GetRecommendations and a waitTimeSeconds input for long-polling behavior and avoiding duplicate recommendations.
     notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput): types.NotifyRecommendationsReceivedOutput, table
+    -- Provides feedback against the specified assistant for the specified target. This API only supports generative targets.
     putFeedback: function(Client, types.PutFeedbackInput): types.PutFeedbackOutput, table
+    -- This API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024, you will need to create a new Assistant in the Amazon Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications. Performs a manual search against the specified assistant. To retrieve recommendations for an assistant, use GetRecommendations.
     queryAssistant: function(Client, types.QueryAssistantInput): types.QueryAssistantOutput, table
+    -- Removes the AI Agent that is set for use by default on an Amazon Q in Connect Assistant.
     removeAssistantAIAgent: function(Client, types.RemoveAssistantAIAgentInput): types.RemoveAssistantAIAgentOutput, table
+    -- Removes a URI template from a knowledge base.
     removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput): types.RemoveKnowledgeBaseTemplateUriOutput, table
+    -- Renders the Amazon Q in Connect message template based on the attribute values provided and generates the message content. For any variable present in the message template, if the attribute value is neither provided in the attribute request parameter nor the default attribute of the message template, the rendered message content will keep the variable placeholder as it is and return the attribute keys that are missing.
     renderMessageTemplate: function(Client, types.RenderMessageTemplateInput): types.RenderMessageTemplateOutput, table
+    -- Retrieves content from knowledge sources based on a query.
     retrieve: function(Client, types.RetrieveInput): types.RetrieveOutput, table
+    -- Searches for content in a specified knowledge base. Can be used to get a specific content resource by its name.
     searchContent: function(Client, types.SearchContentInput): types.SearchContentOutput, table
+    -- Searches for Amazon Q in Connect message templates in the specified knowledge base.
     searchMessageTemplates: function(Client, types.SearchMessageTemplatesInput): types.SearchMessageTemplatesOutput, table
+    -- Searches existing Amazon Q in Connect quick responses in an Amazon Q in Connect knowledge base.
     searchQuickResponses: function(Client, types.SearchQuickResponsesInput): types.SearchQuickResponsesOutput, table
+    -- Searches for sessions.
     searchSessions: function(Client, types.SearchSessionsInput): types.SearchSessionsOutput, table
+    -- Submits a message to the Amazon Q in Connect session.
     sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    -- Get a URL to upload content to a knowledge base. To upload content, first make a PUT request to the returned URL with your file, making sure to include the required headers. Then use CreateContent to finalize the content creation process or UpdateContent to modify an existing resource. You can only upload content to a knowledge base of type CUSTOM.
     startContentUpload: function(Client, types.StartContentUploadInput): types.StartContentUploadOutput, table
+    -- Start an asynchronous job to import Amazon Q in Connect resources from an uploaded source file. Before calling this API, use StartContentUpload to upload an asset that contains the resource data. For importing Amazon Q in Connect quick responses, you need to upload a csv file including the quick responses. For information about how to format the csv file for importing quick responses, see Import quick responses.
     startImportJob: function(Client, types.StartImportJobInput): types.StartImportJobOutput, table
+    -- Adds the specified tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an AI Agent.
     updateAIAgent: function(Client, types.UpdateAIAgentInput): types.UpdateAIAgentOutput, table
+    -- Updates an AI Guardrail.
     updateAIGuardrail: function(Client, types.UpdateAIGuardrailInput): types.UpdateAIGuardrailOutput, table
+    -- Updates an AI Prompt.
     updateAIPrompt: function(Client, types.UpdateAIPromptInput): types.UpdateAIPromptOutput, table
+    -- Updates the AI Agent that is set for use by default on an Amazon Q in Connect Assistant.
     updateAssistantAIAgent: function(Client, types.UpdateAssistantAIAgentInput): types.UpdateAssistantAIAgentOutput, table
+    -- Updates information about the content.
     updateContent: function(Client, types.UpdateContentInput): types.UpdateContentOutput, table
+    -- Updates the template URI of a knowledge base. This is only supported for knowledge bases of type EXTERNAL. Include a single variable in ${variable} format; this interpolated by Amazon Q in Connect using ingested content. For example, if you ingest a Salesforce article, it has an Id value, and you can set the template URI to https://myInstanceName.lightning.force.com/lightning/r/Knowledge__kav/*${Id}*/view.
     updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput): types.UpdateKnowledgeBaseTemplateUriOutput, table
+    -- Updates the Amazon Q in Connect message template. Partial update is supported. If any field is not supplied, it will remain unchanged for the message template that is referenced by the $LATEST qualifier. Any modification will only apply to the message template that is referenced by the $LATEST qualifier. The fields for all available versions will remain unchanged.
     updateMessageTemplate: function(Client, types.UpdateMessageTemplateInput): types.UpdateMessageTemplateOutput, table
+    -- Updates the Amazon Q in Connect message template metadata. Note that any modification to the message template’s name, description and grouping configuration will applied to the message template pointed by the $LATEST qualifier and all available versions. Partial update is supported. If any field is not supplied, it will remain unchanged for the message template.
     updateMessageTemplateMetadata: function(Client, types.UpdateMessageTemplateMetadataInput): types.UpdateMessageTemplateMetadataOutput, table
+    -- Updates an existing Amazon Q in Connect quick response.
     updateQuickResponse: function(Client, types.UpdateQuickResponseInput): types.UpdateQuickResponseOutput, table
+    -- Updates a session. A session is a contextual container used for generating recommendations. Amazon Connect updates the existing Amazon Q in Connect session for each contact on which Amazon Q in Connect is enabled.
     updateSession: function(Client, types.UpdateSessionInput): types.UpdateSessionOutput, table
+    -- Updates the data stored on an Amazon Q in Connect Session.
     updateSessionData: function(Client, types.UpdateSessionDataInput): types.UpdateSessionDataOutput, table
 end
 

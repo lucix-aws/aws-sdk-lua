@@ -3,84 +3,238 @@
 local types = require("codecommit.types")
 
 local record Client
+    -- Creates an association between an approval rule template and a specified repository.
+    -- Then, the next time a pull request is created in the repository where the destination
+    -- reference (if specified) matches the destination reference (branch) for the pull
+    -- request, an approval rule that matches the template conditions is automatically created
+    -- for that pull request. If no destination references are specified in the template, an
+    -- approval rule that matches the template contents is created for all pull requests in
+    -- that repository.
     associateApprovalRuleTemplateWithRepository: function(Client, types.AssociateApprovalRuleTemplateWithRepositoryInput): types.AssociateApprovalRuleTemplateWithRepositoryOutput, table
+    -- Creates an association between an approval rule template and one or more specified repositories.
     batchAssociateApprovalRuleTemplateWithRepositories: function(Client, types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput): types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput, table
+    -- Returns information about one or more merge conflicts in the attempted merge of two commit specifiers using the squash or three-way merge strategy.
     batchDescribeMergeConflicts: function(Client, types.BatchDescribeMergeConflictsInput): types.BatchDescribeMergeConflictsOutput, table
+    -- Removes the association between an approval rule template and one or more specified repositories.
     batchDisassociateApprovalRuleTemplateFromRepositories: function(Client, types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput): types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput, table
+    -- Returns information about the contents of one or more commits in a repository.
     batchGetCommits: function(Client, types.BatchGetCommitsInput): types.BatchGetCommitsOutput, table
+    -- Returns information about one or more repositories.
+    -- The description field for a repository accepts all HTML characters and all valid
+    -- Unicode characters. Applications that do not HTML-encode the description and display
+    -- it in a webpage can expose users to potentially malicious code. Make sure that you
+    -- HTML-encode the description field in any application that uses this API to display
+    -- the repository description on a webpage.
     batchGetRepositories: function(Client, types.BatchGetRepositoriesInput): types.BatchGetRepositoriesOutput, table
+    -- Creates a template for approval rules that can then be associated with one or more
+    -- repositories in your Amazon Web Services account. When you associate a template with a repository,
+    -- CodeCommit creates an approval rule that matches the conditions of the template for all
+    -- pull requests that meet the conditions of the template. For more information, see
+    -- AssociateApprovalRuleTemplateWithRepository.
     createApprovalRuleTemplate: function(Client, types.CreateApprovalRuleTemplateInput): types.CreateApprovalRuleTemplateOutput, table
+    -- Creates a branch in a repository and points the branch to a commit.
+    -- Calling the create branch operation does not set a repository's default branch. To do this, call the update default branch operation.
     createBranch: function(Client, types.CreateBranchInput): types.CreateBranchOutput, table
+    -- Creates a commit for a repository on the tip of a specified branch.
     createCommit: function(Client, types.CreateCommitInput): types.CreateCommitOutput, table
+    -- Creates a pull request in the specified repository.
     createPullRequest: function(Client, types.CreatePullRequestInput): types.CreatePullRequestOutput, table
+    -- Creates an approval rule for a pull request.
     createPullRequestApprovalRule: function(Client, types.CreatePullRequestApprovalRuleInput): types.CreatePullRequestApprovalRuleOutput, table
+    -- Creates a new, empty repository.
     createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    -- Creates an unreferenced commit that represents the result of merging two branches
+    -- using a specified merge strategy. This can help you determine the outcome of a potential
+    -- merge. This API cannot be used with the fast-forward merge strategy because that
+    -- strategy does not create a merge commit.
+    -- This unreferenced merge commit
+    -- can only be accessed using the GetCommit API or through git commands such as git fetch. To retrieve this commit, you must specify its commit ID or otherwise reference it.
     createUnreferencedMergeCommit: function(Client, types.CreateUnreferencedMergeCommitInput): types.CreateUnreferencedMergeCommitOutput, table
+    -- Deletes a specified approval rule template. Deleting a template does not remove approval rules on pull requests already created with the template.
     deleteApprovalRuleTemplate: function(Client, types.DeleteApprovalRuleTemplateInput): types.DeleteApprovalRuleTemplateOutput, table
+    -- Deletes a branch from a repository, unless that branch is the default branch for the repository.
     deleteBranch: function(Client, types.DeleteBranchInput): types.DeleteBranchOutput, table
+    -- Deletes the content of a comment made on a change, file, or commit in a repository.
     deleteCommentContent: function(Client, types.DeleteCommentContentInput): types.DeleteCommentContentOutput, table
+    -- Deletes a specified file from a specified branch. A commit is created on the branch
+    -- that contains the revision. The file still exists in the commits earlier to the commit
+    -- that contains the deletion.
     deleteFile: function(Client, types.DeleteFileInput): types.DeleteFileOutput, table
+    -- Deletes an approval rule from a specified pull request. Approval rules can be deleted from a pull request only if the pull request is open, and if the
+    -- approval rule was created specifically for a pull request and not generated from an approval rule template associated with the repository where the
+    -- pull request was created. You cannot delete an approval rule from a merged or closed pull request.
     deletePullRequestApprovalRule: function(Client, types.DeletePullRequestApprovalRuleInput): types.DeletePullRequestApprovalRuleOutput, table
+    -- Deletes a repository. If a specified repository was already deleted, a null repository
+    -- ID is returned.
+    -- Deleting a repository also deletes all associated objects and metadata. After a repository is
+    -- deleted, all future push calls to the deleted repository fail.
     deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    -- Returns information about one or more merge conflicts in the attempted merge of two
+    -- commit specifiers using the squash or three-way merge strategy. If the merge option for
+    -- the attempted merge is specified as FAST_FORWARD_MERGE, an exception is thrown.
     describeMergeConflicts: function(Client, types.DescribeMergeConflictsInput): types.DescribeMergeConflictsOutput, table
+    -- Returns information about one or more pull request events.
     describePullRequestEvents: function(Client, types.DescribePullRequestEventsInput): types.DescribePullRequestEventsOutput, table
+    -- Removes the association between a template and a repository so that approval rules
+    -- based on the template are not automatically created when pull requests are created in
+    -- the specified repository. This does not delete any approval rules previously created for
+    -- pull requests through the template association.
     disassociateApprovalRuleTemplateFromRepository: function(Client, types.DisassociateApprovalRuleTemplateFromRepositoryInput): types.DisassociateApprovalRuleTemplateFromRepositoryOutput, table
+    -- Evaluates whether a pull request has met all the conditions specified in its associated approval rules.
     evaluatePullRequestApprovalRules: function(Client, types.EvaluatePullRequestApprovalRulesInput): types.EvaluatePullRequestApprovalRulesOutput, table
+    -- Returns information about a specified approval rule template.
     getApprovalRuleTemplate: function(Client, types.GetApprovalRuleTemplateInput): types.GetApprovalRuleTemplateOutput, table
+    -- Returns the base-64 encoded content of an individual blob in a repository.
     getBlob: function(Client, types.GetBlobInput): types.GetBlobOutput, table
+    -- Returns information about a repository branch, including its name and the last commit ID.
     getBranch: function(Client, types.GetBranchInput): types.GetBranchOutput, table
+    -- Returns the content of a comment made on a change, file, or commit in a repository.
+    -- Reaction counts might include numbers from user identities who were deleted after the reaction was made. For a count of
+    -- reactions from active identities, use GetCommentReactions.
     getComment: function(Client, types.GetCommentInput): types.GetCommentOutput, table
+    -- Returns information about reactions to a specified comment ID. Reactions from users who have been deleted will not be included in the count.
     getCommentReactions: function(Client, types.GetCommentReactionsInput): types.GetCommentReactionsOutput, table
+    -- Returns information about comments made on the comparison between two commits.
+    -- Reaction counts might include numbers from user identities who were deleted after the reaction was made. For a count of
+    -- reactions from active identities, use GetCommentReactions.
     getCommentsForComparedCommit: function(Client, types.GetCommentsForComparedCommitInput): types.GetCommentsForComparedCommitOutput, table
+    -- Returns comments made on a pull request.
+    -- Reaction counts might include numbers from user identities who were deleted after the reaction was made. For a count of
+    -- reactions from active identities, use GetCommentReactions.
     getCommentsForPullRequest: function(Client, types.GetCommentsForPullRequestInput): types.GetCommentsForPullRequestOutput, table
+    -- Returns information about a commit, including commit message and committer information.
     getCommit: function(Client, types.GetCommitInput): types.GetCommitOutput, table
+    -- Returns information about the differences in a valid commit specifier (such as a
+    -- branch, tag, HEAD, commit ID, or other fully qualified reference). Results can be
+    -- limited to a specified path.
     getDifferences: function(Client, types.GetDifferencesInput): types.GetDifferencesOutput, table
+    -- Returns the base-64 encoded contents of a specified file and its metadata.
     getFile: function(Client, types.GetFileInput): types.GetFileOutput, table
+    -- Returns the contents of a specified folder in a repository.
     getFolder: function(Client, types.GetFolderInput): types.GetFolderOutput, table
+    -- Returns information about a specified merge commit.
     getMergeCommit: function(Client, types.GetMergeCommitInput): types.GetMergeCommitOutput, table
+    -- Returns information about merge conflicts between the before and after commit IDs for a pull request in a repository.
     getMergeConflicts: function(Client, types.GetMergeConflictsInput): types.GetMergeConflictsOutput, table
+    -- Returns information about the merge options available for merging two specified
+    -- branches. For details about why a merge option is not available, use GetMergeConflicts
+    -- or DescribeMergeConflicts.
     getMergeOptions: function(Client, types.GetMergeOptionsInput): types.GetMergeOptionsOutput, table
+    -- Gets information about a pull request in a specified repository.
     getPullRequest: function(Client, types.GetPullRequestInput): types.GetPullRequestOutput, table
+    -- Gets information about the approval states for a specified pull request. Approval states only apply to pull requests that have one or more
+    -- approval rules applied to them.
     getPullRequestApprovalStates: function(Client, types.GetPullRequestApprovalStatesInput): types.GetPullRequestApprovalStatesOutput, table
+    -- Returns information about whether approval rules have been set aside (overridden) for a
+    -- pull request, and if so, the Amazon Resource Name (ARN) of the user or identity that overrode the rules and their requirements for the pull request.
     getPullRequestOverrideState: function(Client, types.GetPullRequestOverrideStateInput): types.GetPullRequestOverrideStateOutput, table
+    -- Returns information about a repository.
+    -- The description field for a repository accepts all HTML characters and all valid
+    -- Unicode characters. Applications that do not HTML-encode the description and display
+    -- it in a webpage can expose users to potentially malicious code. Make sure that you
+    -- HTML-encode the description field in any application that uses this API to display
+    -- the repository description on a webpage.
     getRepository: function(Client, types.GetRepositoryInput): types.GetRepositoryOutput, table
+    -- Gets information about triggers configured for a repository.
     getRepositoryTriggers: function(Client, types.GetRepositoryTriggersInput): types.GetRepositoryTriggersOutput, table
+    -- Lists all approval rule templates in the specified Amazon Web Services Region in your Amazon Web Services account. If
+    -- an Amazon Web Services Region is not specified, the Amazon Web Services Region where you are signed in is used.
     listApprovalRuleTemplates: function(Client, types.ListApprovalRuleTemplatesInput): types.ListApprovalRuleTemplatesOutput, table
+    -- Lists all approval rule templates that are associated with a specified repository.
     listAssociatedApprovalRuleTemplatesForRepository: function(Client, types.ListAssociatedApprovalRuleTemplatesForRepositoryInput): types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, table
+    -- Gets information about one or more branches in a repository.
     listBranches: function(Client, types.ListBranchesInput): types.ListBranchesOutput, table
+    -- Retrieves a list of commits and changes to a specified file.
     listFileCommitHistory: function(Client, types.ListFileCommitHistoryInput): types.ListFileCommitHistoryOutput, table
+    -- Returns a list of pull requests for a specified repository. The return list can be refined by pull request
+    -- status or pull request author ARN.
     listPullRequests: function(Client, types.ListPullRequestsInput): types.ListPullRequestsOutput, table
+    -- Gets information about one or more repositories.
     listRepositories: function(Client, types.ListRepositoriesInput): types.ListRepositoriesOutput, table
+    -- Lists all repositories associated with the specified approval rule template.
     listRepositoriesForApprovalRuleTemplate: function(Client, types.ListRepositoriesForApprovalRuleTemplateInput): types.ListRepositoriesForApprovalRuleTemplateOutput, table
+    -- Gets information about Amazon Web Servicestags for a specified Amazon Resource Name (ARN) in CodeCommit. For a list of valid resources in CodeCommit, see CodeCommit Resources and Operations in the CodeCommit User
+    -- Guide.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Merges two branches using the fast-forward merge strategy.
     mergeBranchesByFastForward: function(Client, types.MergeBranchesByFastForwardInput): types.MergeBranchesByFastForwardOutput, table
+    -- Merges two branches using the squash merge strategy.
     mergeBranchesBySquash: function(Client, types.MergeBranchesBySquashInput): types.MergeBranchesBySquashOutput, table
+    -- Merges two specified branches using the three-way merge strategy.
     mergeBranchesByThreeWay: function(Client, types.MergeBranchesByThreeWayInput): types.MergeBranchesByThreeWayOutput, table
+    -- Attempts to merge the source commit of a pull request into the specified destination
+    -- branch for that pull request at the specified commit using the fast-forward merge strategy. If the merge is successful, it closes the pull request.
     mergePullRequestByFastForward: function(Client, types.MergePullRequestByFastForwardInput): types.MergePullRequestByFastForwardOutput, table
+    -- Attempts to merge the source commit of a pull request into the specified destination
+    -- branch for that pull request at the specified commit using the squash merge strategy. If the merge is successful, it closes the pull request.
     mergePullRequestBySquash: function(Client, types.MergePullRequestBySquashInput): types.MergePullRequestBySquashOutput, table
+    -- Attempts to merge the source commit of a pull request into the specified destination
+    -- branch for that pull request at the specified commit using the three-way merge strategy. If the merge is successful, it closes the pull request.
     mergePullRequestByThreeWay: function(Client, types.MergePullRequestByThreeWayInput): types.MergePullRequestByThreeWayOutput, table
+    -- Sets aside (overrides) all approval rule requirements for a specified pull request.
     overridePullRequestApprovalRules: function(Client, types.OverridePullRequestApprovalRulesInput): types.OverridePullRequestApprovalRulesOutput, table
+    -- Posts a comment on the comparison between two commits.
     postCommentForComparedCommit: function(Client, types.PostCommentForComparedCommitInput): types.PostCommentForComparedCommitOutput, table
+    -- Posts a comment on a pull request.
     postCommentForPullRequest: function(Client, types.PostCommentForPullRequestInput): types.PostCommentForPullRequestOutput, table
+    -- Posts a comment in reply to an existing comment on a comparison between commits or a pull request.
     postCommentReply: function(Client, types.PostCommentReplyInput): types.PostCommentReplyOutput, table
+    -- Adds or updates a reaction to a specified comment for the user whose identity is used to make the request. You can only add or
+    -- update a reaction for yourself. You cannot add, modify, or delete a reaction for another user.
     putCommentReaction: function(Client, types.PutCommentReactionInput): types.PutCommentReactionOutput, table
+    -- Adds or updates a file in a branch in an CodeCommit repository, and generates a commit for the addition in the specified branch.
     putFile: function(Client, types.PutFileInput): types.PutFileOutput, table
+    -- Replaces all triggers for a repository. Used to create or delete triggers.
     putRepositoryTriggers: function(Client, types.PutRepositoryTriggersInput): types.PutRepositoryTriggersOutput, table
+    -- Adds or updates tags for a resource in CodeCommit. For a list of valid resources
+    -- in CodeCommit, see CodeCommit Resources and Operations in the CodeCommit User
+    -- Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests the functionality of repository triggers by sending information to the trigger
+    -- target. If real data is available in the repository, the test sends data from the last
+    -- commit. If no data is available, sample data is generated.
     testRepositoryTriggers: function(Client, types.TestRepositoryTriggersInput): types.TestRepositoryTriggersOutput, table
+    -- Removes tags for a resource in CodeCommit. For a list of valid resources in CodeCommit, see CodeCommit Resources and Operations in the CodeCommit User
+    -- Guide.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the content of an approval rule template. You can change the number of
+    -- required approvals, the membership of the approval rule, and whether an approval pool is
+    -- defined.
     updateApprovalRuleTemplateContent: function(Client, types.UpdateApprovalRuleTemplateContentInput): types.UpdateApprovalRuleTemplateContentOutput, table
+    -- Updates the description for a specified approval rule template.
     updateApprovalRuleTemplateDescription: function(Client, types.UpdateApprovalRuleTemplateDescriptionInput): types.UpdateApprovalRuleTemplateDescriptionOutput, table
+    -- Updates the name of a specified approval rule template.
     updateApprovalRuleTemplateName: function(Client, types.UpdateApprovalRuleTemplateNameInput): types.UpdateApprovalRuleTemplateNameOutput, table
+    -- Replaces the contents of a comment.
     updateComment: function(Client, types.UpdateCommentInput): types.UpdateCommentOutput, table
+    -- Sets or changes the default branch name for the specified repository.
+    -- If you use this operation to change the default branch name to the current default branch name, a success message is returned even though the default branch did not change.
     updateDefaultBranch: function(Client, types.UpdateDefaultBranchInput): types.UpdateDefaultBranchOutput, table
+    -- Updates the structure of an approval rule created specifically for a pull request. For example, you can change the number of required approvers and
+    -- the approval pool for approvers.
     updatePullRequestApprovalRuleContent: function(Client, types.UpdatePullRequestApprovalRuleContentInput): types.UpdatePullRequestApprovalRuleContentOutput, table
+    -- Updates the state of a user's approval on a pull request. The user is derived from the signed-in account when the request is made.
     updatePullRequestApprovalState: function(Client, types.UpdatePullRequestApprovalStateInput): types.UpdatePullRequestApprovalStateOutput, table
+    -- Replaces the contents of the description of a pull request.
     updatePullRequestDescription: function(Client, types.UpdatePullRequestDescriptionInput): types.UpdatePullRequestDescriptionOutput, table
+    -- Updates the status of a pull request.
     updatePullRequestStatus: function(Client, types.UpdatePullRequestStatusInput): types.UpdatePullRequestStatusOutput, table
+    -- Replaces the title of a pull request.
     updatePullRequestTitle: function(Client, types.UpdatePullRequestTitleInput): types.UpdatePullRequestTitleOutput, table
+    -- Sets or changes the comment or description for a repository.
+    -- The description field for a repository accepts all HTML characters and all valid
+    -- Unicode characters. Applications that do not HTML-encode the description and display
+    -- it in a webpage can expose users to potentially malicious code. Make sure that you
+    -- HTML-encode the description field in any application that uses this API to display
+    -- the repository description on a webpage.
     updateRepositoryDescription: function(Client, types.UpdateRepositoryDescriptionInput): types.UpdateRepositoryDescriptionOutput, table
+    -- Updates the Key Management Service encryption key used to encrypt and decrypt a CodeCommit repository.
     updateRepositoryEncryptionKey: function(Client, types.UpdateRepositoryEncryptionKeyInput): types.UpdateRepositoryEncryptionKeyOutput, table
+    -- Renames a repository. The repository name must be unique across the calling Amazon Web Services account.
+    -- Repository names are limited to 100 alphanumeric, dash, and underscore
+    -- characters, and cannot include certain characters. The suffix .git is prohibited. For
+    -- more information about the limits on repository names, see Quotas in the CodeCommit
+    -- User Guide.
     updateRepositoryName: function(Client, types.UpdateRepositoryNameInput): types.UpdateRepositoryNameOutput, table
 end
 

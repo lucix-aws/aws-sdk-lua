@@ -3,37 +3,199 @@
 local types = require("kinesisvideo.types")
 
 local record Client
+    -- Creates a signaling channel.
+    -- CreateSignalingChannel is an asynchronous operation.
     createSignalingChannel: function(Client, types.CreateSignalingChannelInput): types.CreateSignalingChannelOutput, table
+    -- Creates a new Kinesis video stream.
+    -- When you create a new stream, Kinesis Video Streams assigns it a version number.
+    -- When you change the stream's metadata, Kinesis Video Streams updates the version.
+    -- CreateStream is an asynchronous operation.
+    -- For information about how the service works, see How it Works.
+    -- You must have permissions for the KinesisVideo:CreateStream
+    -- action.
     createStream: function(Client, types.CreateStreamInput): types.CreateStreamOutput, table
+    -- An asynchronous API that deletes a stream’s existing edge configuration, as well as the corresponding media from the Edge Agent.
+    -- When you invoke this API, the sync status is set to DELETING. A deletion process starts, in which active edge jobs are stopped and all media is deleted from the edge device. The time to delete varies, depending on the total amount of stored media. If the deletion process fails, the sync status changes to DELETE_FAILED. You will need to re-try the deletion.
+    -- When the deletion process has completed successfully, the edge configuration is no longer accessible.
     deleteEdgeConfiguration: function(Client, types.DeleteEdgeConfigurationInput): types.DeleteEdgeConfigurationOutput, table
+    -- Deletes a specified signaling channel. DeleteSignalingChannel is an
+    -- asynchronous operation. If you don't specify the channel's current version, the most
+    -- recent version is deleted.
     deleteSignalingChannel: function(Client, types.DeleteSignalingChannelInput): types.DeleteSignalingChannelOutput, table
+    -- Deletes a Kinesis video stream and the data contained in the stream.
+    -- This method marks the stream for deletion, and makes the data in the stream
+    -- inaccessible immediately.
+    -- To ensure that you have the latest version of the stream before deleting it, you
+    -- can specify the stream version. Kinesis Video Streams assigns a version to each stream.
+    -- When you update a stream, Kinesis Video Streams assigns a new version number. To get the
+    -- latest stream version, use the DescribeStream API.
+    -- This operation requires permission for the KinesisVideo:DeleteStream
+    -- action.
     deleteStream: function(Client, types.DeleteStreamInput): types.DeleteStreamOutput, table
+    -- Describes a stream’s edge configuration that was set using the
+    -- StartEdgeConfigurationUpdate API and the latest status of the edge
+    -- agent's recorder and uploader jobs. Use this API to get the status of the configuration
+    -- to determine if the configuration is in sync with the Edge Agent. Use this API to
+    -- evaluate the health of the Edge Agent.
     describeEdgeConfiguration: function(Client, types.DescribeEdgeConfigurationInput): types.DescribeEdgeConfigurationOutput, table
+    -- Gets the ImageGenerationConfiguration for a given Kinesis video stream.
     describeImageGenerationConfiguration: function(Client, types.DescribeImageGenerationConfigurationInput): types.DescribeImageGenerationConfigurationOutput, table
+    -- Returns the most current information about the stream. The streamName
+    -- or streamARN should be provided in the input.
     describeMappedResourceConfiguration: function(Client, types.DescribeMappedResourceConfigurationInput): types.DescribeMappedResourceConfigurationOutput, table
+    -- Returns the most current information about the channel. Specify the ChannelName
+    -- or ChannelARN in the input.
     describeMediaStorageConfiguration: function(Client, types.DescribeMediaStorageConfigurationInput): types.DescribeMediaStorageConfigurationOutput, table
+    -- Gets the NotificationConfiguration for a given Kinesis video stream.
     describeNotificationConfiguration: function(Client, types.DescribeNotificationConfigurationInput): types.DescribeNotificationConfigurationOutput, table
+    -- Returns the most current information about the signaling channel. You must specify
+    -- either the name or the Amazon Resource Name (ARN) of the channel that you want to
+    -- describe.
     describeSignalingChannel: function(Client, types.DescribeSignalingChannelInput): types.DescribeSignalingChannelOutput, table
+    -- Returns the most current information about the specified stream. You must specify
+    -- either the StreamName or the StreamARN.
     describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    -- Retrieves the current storage configuration for the specified Kinesis video stream.
+    -- In the request, you must specify either the StreamName or the StreamARN.
+    -- You must have permissions for the KinesisVideo:DescribeStreamStorageConfiguration action.
     describeStreamStorageConfiguration: function(Client, types.DescribeStreamStorageConfigurationInput): types.DescribeStreamStorageConfigurationOutput, table
+    -- Gets an endpoint for a specified stream for either reading or writing. Use this
+    -- endpoint in your application to read from the specified stream (using the
+    -- GetMedia or GetMediaForFragmentList operations) or write
+    -- to it (using the PutMedia operation).
+    -- The returned endpoint does not have the API name appended. The client needs to
+    -- add the API name to the returned endpoint.
+    -- In the request, specify the stream either by StreamName or
+    -- StreamARN.
     getDataEndpoint: function(Client, types.GetDataEndpointInput): types.GetDataEndpointOutput, table
+    -- Provides an endpoint for the specified signaling channel to send and receive messages.
+    -- This API uses the SingleMasterChannelEndpointConfiguration input parameter,
+    -- which consists of the Protocols and Role properties.
+    -- Protocols is used to determine the communication mechanism. For example,
+    -- if you specify WSS as the protocol, this API produces a secure websocket
+    -- endpoint. If you specify HTTPS as the protocol, this API generates an HTTPS
+    -- endpoint. If you specify WEBRTC as the protocol, but the signaling channel isn't
+    -- configured for ingestion, you will receive the error
+    -- InvalidArgumentException.
+    -- Role determines the messaging permissions. A MASTER role
+    -- results in this API generating an endpoint that a client can use to communicate with any
+    -- of the viewers on the channel. A VIEWER role results in this API generating
+    -- an endpoint that a client can use to communicate only with a MASTER.
     getSignalingChannelEndpoint: function(Client, types.GetSignalingChannelEndpointInput): types.GetSignalingChannelEndpointOutput, table
+    -- Returns an array of edge configurations associated with the specified Edge Agent.
+    -- In the request, you must specify the Edge Agent HubDeviceArn.
     listEdgeAgentConfigurations: function(Client, types.ListEdgeAgentConfigurationsInput): types.ListEdgeAgentConfigurationsOutput, table
+    -- Returns an array of ChannelInfo objects. Each object describes a
+    -- signaling channel. To retrieve only those channels that satisfy a specific condition,
+    -- you can specify a ChannelNameCondition.
     listSignalingChannels: function(Client, types.ListSignalingChannelsInput): types.ListSignalingChannelsOutput, table
+    -- Returns an array of StreamInfo objects. Each object describes a
+    -- stream. To retrieve only streams that satisfy a specific condition, you can specify a
+    -- StreamNameCondition.
     listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+    -- Returns a list of tags associated with the specified signaling channel.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of tags associated with the specified stream.
+    -- In the request, you must specify either the StreamName or the
+    -- StreamARN.
     listTagsForStream: function(Client, types.ListTagsForStreamInput): types.ListTagsForStreamOutput, table
+    -- An asynchronous API that updates a stream’s existing edge configuration.
+    -- The Kinesis Video Stream will sync the stream’s edge configuration with the Edge Agent IoT Greengrass
+    -- component that runs on an IoT Hub Device, setup at your premise. The time to sync can vary
+    -- and depends on the connectivity of the Hub Device.
+    -- The SyncStatus will be updated as the edge configuration is acknowledged,
+    -- and synced with the Edge Agent.
+    -- If this API is invoked for the first time, a new edge configuration will be created for the stream,
+    -- and the sync status will be set to SYNCING. You will have to wait for the sync status
+    -- to reach a terminal state such as: IN_SYNC, or SYNC_FAILED, before using this API again.
+    -- If you invoke this API during the syncing process, a ResourceInUseException will be thrown.
+    -- The connectivity of the stream’s edge configuration and the Edge Agent will be retried for 15 minutes. After 15 minutes,
+    -- the status will transition into the SYNC_FAILED state.
+    -- To move an edge configuration from one device to another, use DeleteEdgeConfiguration to delete
+    -- the current edge configuration. You can then invoke StartEdgeConfigurationUpdate with an updated Hub Device ARN.
     startEdgeConfigurationUpdate: function(Client, types.StartEdgeConfigurationUpdateInput): types.StartEdgeConfigurationUpdateOutput, table
+    -- Adds one or more tags to a signaling channel. A tag is a
+    -- key-value pair (the value is optional) that you can define and assign to Amazon Web Services resources.
+    -- If you specify a tag that already exists, the tag value is replaced with the value that
+    -- you specify in the request. For more information, see Using Cost Allocation
+    -- Tags in the Billing and Cost Management and Cost Management User
+    -- Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Adds one or more tags to a stream. A tag is a key-value pair
+    -- (the value is optional) that you can define and assign to Amazon Web Services resources. If you specify
+    -- a tag that already exists, the tag value is replaced with the value that you specify in
+    -- the request. For more information, see Using Cost Allocation
+    -- Tags in the Billing and Cost Management and Cost Management User Guide.
+    -- You must provide either the StreamName or the
+    -- StreamARN.
+    -- This operation requires permission for the KinesisVideo:TagStream
+    -- action.
+    -- A Kinesis video stream can support up to 50 tags.
     tagStream: function(Client, types.TagStreamInput): types.TagStreamOutput, table
+    -- Removes one or more tags from a signaling channel. In the request, specify only a tag
+    -- key or keys; don't specify the value. If you specify a tag key that does not exist, it's
+    -- ignored.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Removes one or more tags from a stream. In the request, specify only a tag key or
+    -- keys; don't specify the value. If you specify a tag key that does not exist, it's
+    -- ignored.
+    -- In the request, you must provide the StreamName or
+    -- StreamARN.
     untagStream: function(Client, types.UntagStreamInput): types.UntagStreamOutput, table
+    -- Increases or decreases the stream's data retention period by the value that you
+    -- specify. To indicate whether you want to increase or decrease the data retention period,
+    -- specify the Operation parameter in the request body. In the request, you
+    -- must specify either the StreamName or the StreamARN.
+    -- This operation requires permission for the
+    -- KinesisVideo:UpdateDataRetention action.
+    -- Changing the data retention period affects the data in the stream as
+    -- follows:
+    -- If the data retention period is increased, existing data is retained for
+    -- the new retention period. For example, if the data retention period is increased
+    -- from one hour to seven hours, all existing data is retained for seven
+    -- hours.
+    -- If the data retention period is decreased, existing data is retained for
+    -- the new retention period. For example, if the data retention period is decreased
+    -- from seven hours to one hour, all existing data is retained for one hour, and
+    -- any data older than one hour is deleted immediately.
     updateDataRetention: function(Client, types.UpdateDataRetentionInput): types.UpdateDataRetentionOutput, table
+    -- Updates the StreamInfo and ImageProcessingConfiguration fields.
     updateImageGenerationConfiguration: function(Client, types.UpdateImageGenerationConfigurationInput): types.UpdateImageGenerationConfigurationOutput, table
+    -- Associates a SignalingChannel to a stream to store the media. There are
+    -- two signaling modes that you can specify :
+    -- If StorageStatus is enabled, the data will be stored in the
+    -- StreamARN provided. In order for WebRTC Ingestion to work, the stream must have data retention
+    -- enabled.
+    -- If StorageStatus is disabled, no data will be stored, and the
+    -- StreamARN parameter will not be needed.
+    -- If StorageStatus is enabled, direct peer-to-peer (master-viewer) connections no
+    -- longer occur. Peers connect directly to the storage session. You must call the
+    -- JoinStorageSession API to trigger an SDP offer send and establish a
+    -- connection between a peer and the storage session.
     updateMediaStorageConfiguration: function(Client, types.UpdateMediaStorageConfigurationInput): types.UpdateMediaStorageConfigurationOutput, table
+    -- Updates the notification information for a stream.
     updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput): types.UpdateNotificationConfigurationOutput, table
+    -- Updates the existing signaling channel. This is an asynchronous operation and takes
+    -- time to complete.
+    -- If the MessageTtlSeconds value is updated (either increased or reduced),
+    -- it only applies to new messages sent via this channel after it's been updated. Existing
+    -- messages are still expired as per the previous MessageTtlSeconds
+    -- value.
     updateSignalingChannel: function(Client, types.UpdateSignalingChannelInput): types.UpdateSignalingChannelOutput, table
+    -- Updates stream metadata, such as the device name and media type.
+    -- You must provide the stream name or the Amazon Resource Name (ARN) of the
+    -- stream.
+    -- To make sure that you have the latest version of the stream before updating it, you
+    -- can specify the stream version. Kinesis Video Streams assigns a version to each stream.
+    -- When you update a stream, Kinesis Video Streams assigns a new version number. To get the
+    -- latest stream version, use the DescribeStream API.
+    -- UpdateStream is an asynchronous operation, and takes time to
+    -- complete.
     updateStream: function(Client, types.UpdateStreamInput): types.UpdateStreamOutput, table
+    -- Updates the storage configuration for an existing Kinesis video stream.
+    -- This operation allows you to modify the storage tier settings for a stream, enabling you to optimize storage costs and performance based on your access patterns.
+    -- UpdateStreamStorageConfiguration is an asynchronous operation.
+    -- You must have permissions for the KinesisVideo:UpdateStreamStorageConfiguration action.
     updateStreamStorageConfiguration: function(Client, types.UpdateStreamStorageConfigurationInput): types.UpdateStreamStorageConfigurationOutput, table
 end
 

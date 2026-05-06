@@ -3,101 +3,293 @@
 local types = require("chimesdkvoice.types")
 
 local record Client
+    -- Associates phone numbers with the specified Amazon Chime SDK Voice Connector.
     associatePhoneNumbersWithVoiceConnector: function(Client, types.AssociatePhoneNumbersWithVoiceConnectorInput): types.AssociatePhoneNumbersWithVoiceConnectorOutput, table
+    -- Associates phone numbers with the specified Amazon Chime SDK Voice Connector group.
     associatePhoneNumbersWithVoiceConnectorGroup: function(Client, types.AssociatePhoneNumbersWithVoiceConnectorGroupInput): types.AssociatePhoneNumbersWithVoiceConnectorGroupOutput, table
+    -- Moves phone numbers into the
+    -- Deletion queue. Phone numbers must be disassociated from any users or Amazon Chime SDK Voice Connectors before they can be deleted.
+    -- Phone numbers remain in the
+    -- Deletion queue for 7 days before they are deleted permanently.
     batchDeletePhoneNumber: function(Client, types.BatchDeletePhoneNumberInput): types.BatchDeletePhoneNumberOutput, table
+    -- Updates phone number product types, calling names, or phone number names. You can update one attribute at a time for each
+    -- UpdatePhoneNumberRequestItem. For example, you can update the product type, the calling name, or phone name.
+    -- You cannot have a duplicate phoneNumberId in a request.
     batchUpdatePhoneNumber: function(Client, types.BatchUpdatePhoneNumberInput): types.BatchUpdatePhoneNumberOutput, table
+    -- Creates an order for phone numbers to be provisioned. For numbers outside the U.S., you must use the Amazon Chime SDK SIP media application dial-in product type.
     createPhoneNumberOrder: function(Client, types.CreatePhoneNumberOrderInput): types.CreatePhoneNumberOrderOutput, table
+    -- Creates a proxy session for the specified Amazon Chime SDK Voice Connector for
+    -- the specified participant phone numbers.
     createProxySession: function(Client, types.CreateProxySessionInput): types.CreateProxySessionOutput, table
+    -- Creates a SIP media application. For more information about SIP media applications, see Managing SIP media applications
+    -- and rules in the Amazon Chime SDK Administrator Guide.
     createSipMediaApplication: function(Client, types.CreateSipMediaApplicationInput): types.CreateSipMediaApplicationOutput, table
+    -- Creates an outbound call to a phone number from the phone number specified
+    -- in the request, and it invokes the endpoint of the specified
+    -- sipMediaApplicationId.
     createSipMediaApplicationCall: function(Client, types.CreateSipMediaApplicationCallInput): types.CreateSipMediaApplicationCallOutput, table
+    -- Creates a SIP rule, which can be used to run a SIP media application as a target for a specific trigger type. For more information about SIP rules, see Managing SIP media applications
+    -- and rules in the Amazon Chime SDK Administrator Guide.
     createSipRule: function(Client, types.CreateSipRuleInput): types.CreateSipRuleOutput, table
+    -- Creates an Amazon Chime SDK Voice Connector. For more information about
+    -- Voice Connectors,
+    -- see Managing Amazon Chime SDK Voice Connector groups in the Amazon Chime SDK
+    -- Administrator Guide.
     createVoiceConnector: function(Client, types.CreateVoiceConnectorInput): types.CreateVoiceConnectorOutput, table
+    -- Creates an Amazon Chime SDK Voice Connector group under the administrator's
+    -- AWS account. You can associate Amazon Chime SDK Voice Connectors with the
+    -- Voice Connector group by including VoiceConnectorItems in the
+    -- request.
+    -- You can include Voice Connectors from different AWS Regions in your group.
+    -- This creates a fault tolerant mechanism for fallback in case of availability events.
     createVoiceConnectorGroup: function(Client, types.CreateVoiceConnectorGroupInput): types.CreateVoiceConnectorGroupOutput, table
+    -- Creates a voice profile, which consists of an enrolled user and their latest voice print.
+    -- Before creating any voice profiles, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
+    -- For more information about voice profiles and voice analytics, see Using Amazon Chime SDK Voice Analytics
+    -- in the Amazon Chime SDK Developer Guide.
     createVoiceProfile: function(Client, types.CreateVoiceProfileInput): types.CreateVoiceProfileOutput, table
+    -- Creates a voice profile domain, a collection of voice profiles, their voice prints, and encrypted enrollment audio.
+    -- Before creating any voice profiles, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
+    -- For more information about voice profile domains, see Using Amazon Chime SDK Voice Analytics
+    -- in the Amazon Chime SDK Developer Guide.
     createVoiceProfileDomain: function(Client, types.CreateVoiceProfileDomainInput): types.CreateVoiceProfileDomainOutput, table
+    -- Moves the specified phone number into the
+    -- Deletion queue. A phone number must
+    -- be disassociated from any users or Amazon Chime SDK Voice Connectors before it can be
+    -- deleted.
+    -- Deleted phone numbers remain in the
+    -- Deletion queue queue for 7 days before
+    -- they are deleted permanently.
     deletePhoneNumber: function(Client, types.DeletePhoneNumberInput): types.DeletePhoneNumberOutput, table
+    -- Deletes the specified proxy session from the specified Amazon Chime SDK Voice
+    -- Connector.
     deleteProxySession: function(Client, types.DeleteProxySessionInput): types.DeleteProxySessionOutput, table
+    -- Deletes a SIP media application.
     deleteSipMediaApplication: function(Client, types.DeleteSipMediaApplicationInput): types.DeleteSipMediaApplicationOutput, table
+    -- Deletes a SIP rule.
     deleteSipRule: function(Client, types.DeleteSipRuleInput): types.DeleteSipRuleOutput, table
+    -- Deletes an Amazon Chime SDK Voice Connector. Any phone numbers associated
+    -- with the Amazon Chime SDK Voice Connector must be disassociated from it before it
+    -- can be deleted.
     deleteVoiceConnector: function(Client, types.DeleteVoiceConnectorInput): types.DeleteVoiceConnectorOutput, table
+    -- Deletes the emergency calling details from the specified Amazon Chime SDK Voice
+    -- Connector.
     deleteVoiceConnectorEmergencyCallingConfiguration: function(Client, types.DeleteVoiceConnectorEmergencyCallingConfigurationInput): types.DeleteVoiceConnectorEmergencyCallingConfigurationOutput, table
+    -- Deletes the external systems configuration for a Voice Connector.
     deleteVoiceConnectorExternalSystemsConfiguration: function(Client, types.DeleteVoiceConnectorExternalSystemsConfigurationInput): types.DeleteVoiceConnectorExternalSystemsConfigurationOutput, table
+    -- Deletes an Amazon Chime SDK Voice Connector group. Any VoiceConnectorItems
+    -- and phone numbers associated with the group must be removed before it can be
+    -- deleted.
     deleteVoiceConnectorGroup: function(Client, types.DeleteVoiceConnectorGroupInput): types.DeleteVoiceConnectorGroupOutput, table
+    -- Deletes the origination settings for the specified Amazon Chime SDK Voice Connector.
+    -- If emergency calling is configured for the Voice Connector, it must be
+    -- deleted prior to deleting the origination settings.
     deleteVoiceConnectorOrigination: function(Client, types.DeleteVoiceConnectorOriginationInput): types.DeleteVoiceConnectorOriginationOutput, table
+    -- Deletes the proxy configuration from the specified Amazon Chime SDK Voice Connector.
     deleteVoiceConnectorProxy: function(Client, types.DeleteVoiceConnectorProxyInput): types.DeleteVoiceConnectorProxyOutput, table
+    -- Deletes a Voice Connector's streaming configuration.
     deleteVoiceConnectorStreamingConfiguration: function(Client, types.DeleteVoiceConnectorStreamingConfigurationInput): types.DeleteVoiceConnectorStreamingConfigurationOutput, table
+    -- Deletes the termination settings for the specified Amazon Chime SDK Voice Connector.
+    -- If emergency calling is configured for the Voice Connector, it must be
+    -- deleted prior to deleting the termination settings.
     deleteVoiceConnectorTermination: function(Client, types.DeleteVoiceConnectorTerminationInput): types.DeleteVoiceConnectorTerminationOutput, table
+    -- Deletes the specified SIP credentials used by your equipment to
+    -- authenticate during call termination.
     deleteVoiceConnectorTerminationCredentials: function(Client, types.DeleteVoiceConnectorTerminationCredentialsInput): types.DeleteVoiceConnectorTerminationCredentialsOutput, table
+    -- Deletes a voice profile, including its voice print and enrollment data. WARNING: This action is not reversible.
     deleteVoiceProfile: function(Client, types.DeleteVoiceProfileInput): types.DeleteVoiceProfileOutput, table
+    -- Deletes all voice profiles in the domain. WARNING: This action is not reversible.
     deleteVoiceProfileDomain: function(Client, types.DeleteVoiceProfileDomainInput): types.DeleteVoiceProfileDomainOutput, table
+    -- Disassociates the specified phone numbers from the specified
+    -- Amazon Chime SDK Voice Connector.
     disassociatePhoneNumbersFromVoiceConnector: function(Client, types.DisassociatePhoneNumbersFromVoiceConnectorInput): types.DisassociatePhoneNumbersFromVoiceConnectorOutput, table
+    -- Disassociates the specified phone numbers from the specified Amazon Chime SDK Voice
+    -- Connector group.
     disassociatePhoneNumbersFromVoiceConnectorGroup: function(Client, types.DisassociatePhoneNumbersFromVoiceConnectorGroupInput): types.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput, table
+    -- Retrieves the global settings for the Amazon Chime SDK Voice Connectors in an AWS account.
     getGlobalSettings: function(Client, types.GetGlobalSettingsInput): types.GetGlobalSettingsOutput, table
+    -- Retrieves details for the specified phone number ID, such as associations,
+    -- capabilities, and product type.
     getPhoneNumber: function(Client, types.GetPhoneNumberInput): types.GetPhoneNumberOutput, table
+    -- Retrieves details for the specified phone number order, such as the order
+    -- creation timestamp, phone numbers in E.164 format, product type, and
+    -- order status.
     getPhoneNumberOrder: function(Client, types.GetPhoneNumberOrderInput): types.GetPhoneNumberOrderOutput, table
+    -- Retrieves the phone number settings for the administrator's AWS account,
+    -- such as the default outbound calling name.
     getPhoneNumberSettings: function(Client, types.GetPhoneNumberSettingsInput): types.GetPhoneNumberSettingsOutput, table
+    -- Retrieves the specified proxy session details for the specified Amazon Chime SDK Voice Connector.
     getProxySession: function(Client, types.GetProxySessionInput): types.GetProxySessionOutput, table
+    -- Retrieves the information for a SIP media application, including name,
+    -- AWS Region, and endpoints.
     getSipMediaApplication: function(Client, types.GetSipMediaApplicationInput): types.GetSipMediaApplicationOutput, table
+    -- Gets the Alexa Skill configuration for the SIP media application.
+    -- Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to
+    -- the Alexa Smart Properties page.
     getSipMediaApplicationAlexaSkillConfiguration: function(Client, types.GetSipMediaApplicationAlexaSkillConfigurationInput): types.GetSipMediaApplicationAlexaSkillConfigurationOutput, table
+    -- Retrieves the logging configuration for the specified SIP media application.
     getSipMediaApplicationLoggingConfiguration: function(Client, types.GetSipMediaApplicationLoggingConfigurationInput): types.GetSipMediaApplicationLoggingConfigurationOutput, table
+    -- Retrieves the details of a SIP rule, such as the rule ID, name, triggers, and
+    -- target endpoints.
     getSipRule: function(Client, types.GetSipRuleInput): types.GetSipRuleOutput, table
+    -- Retrieves the details of the specified speaker search task.
     getSpeakerSearchTask: function(Client, types.GetSpeakerSearchTaskInput): types.GetSpeakerSearchTaskOutput, table
+    -- Retrieves details for the specified Amazon Chime SDK Voice Connector, such as
+    -- timestamps,name, outbound host, and encryption requirements.
     getVoiceConnector: function(Client, types.GetVoiceConnectorInput): types.GetVoiceConnectorOutput, table
+    -- Retrieves the emergency calling configuration details for the specified Voice Connector.
     getVoiceConnectorEmergencyCallingConfiguration: function(Client, types.GetVoiceConnectorEmergencyCallingConfigurationInput): types.GetVoiceConnectorEmergencyCallingConfigurationOutput, table
+    -- Gets information about an external systems configuration for a Voice
+    -- Connector.
     getVoiceConnectorExternalSystemsConfiguration: function(Client, types.GetVoiceConnectorExternalSystemsConfigurationInput): types.GetVoiceConnectorExternalSystemsConfigurationOutput, table
+    -- Retrieves details for the specified Amazon Chime SDK Voice Connector group,
+    -- such as timestamps,name, and associated VoiceConnectorItems.
     getVoiceConnectorGroup: function(Client, types.GetVoiceConnectorGroupInput): types.GetVoiceConnectorGroupOutput, table
+    -- Retrieves the logging configuration settings for the specified Voice Connector.
+    -- Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.
     getVoiceConnectorLoggingConfiguration: function(Client, types.GetVoiceConnectorLoggingConfigurationInput): types.GetVoiceConnectorLoggingConfigurationOutput, table
+    -- Retrieves the origination settings for the specified Voice Connector.
     getVoiceConnectorOrigination: function(Client, types.GetVoiceConnectorOriginationInput): types.GetVoiceConnectorOriginationOutput, table
+    -- Retrieves the proxy configuration details for the specified Amazon Chime SDK Voice
+    -- Connector.
     getVoiceConnectorProxy: function(Client, types.GetVoiceConnectorProxyInput): types.GetVoiceConnectorProxyOutput, table
+    -- Retrieves the streaming configuration details for the specified Amazon Chime SDK
+    -- Voice Connector. Shows whether media streaming is enabled for sending to Amazon
+    -- Kinesis. It also shows the retention period, in hours, for the Amazon Kinesis data.
     getVoiceConnectorStreamingConfiguration: function(Client, types.GetVoiceConnectorStreamingConfigurationInput): types.GetVoiceConnectorStreamingConfigurationOutput, table
+    -- Retrieves the termination setting details for the specified Voice Connector.
     getVoiceConnectorTermination: function(Client, types.GetVoiceConnectorTerminationInput): types.GetVoiceConnectorTerminationOutput, table
+    -- Retrieves information about the last time a SIP OPTIONS ping
+    -- was received from your SIP infrastructure for the specified Amazon Chime SDK Voice
+    -- Connector.
     getVoiceConnectorTerminationHealth: function(Client, types.GetVoiceConnectorTerminationHealthInput): types.GetVoiceConnectorTerminationHealthOutput, table
+    -- Retrieves the details of the specified voice profile.
     getVoiceProfile: function(Client, types.GetVoiceProfileInput): types.GetVoiceProfileOutput, table
+    -- Retrieves the details of the specified voice profile domain.
     getVoiceProfileDomain: function(Client, types.GetVoiceProfileDomainInput): types.GetVoiceProfileDomainOutput, table
+    -- Retrieves the details of a voice tone analysis task.
     getVoiceToneAnalysisTask: function(Client, types.GetVoiceToneAnalysisTaskInput): types.GetVoiceToneAnalysisTaskOutput, table
+    -- Lists the available AWS Regions in which you can create an Amazon Chime SDK Voice Connector.
     listAvailableVoiceConnectorRegions: function(Client, types.ListAvailableVoiceConnectorRegionsInput): types.ListAvailableVoiceConnectorRegionsOutput, table
+    -- Lists the phone numbers for an administrator's Amazon Chime SDK account.
     listPhoneNumberOrders: function(Client, types.ListPhoneNumberOrdersInput): types.ListPhoneNumberOrdersOutput, table
+    -- Lists the phone numbers for the specified Amazon Chime SDK account,
+    -- Amazon Chime SDK user, Amazon Chime SDK Voice Connector, or Amazon Chime SDK Voice
+    -- Connector group.
     listPhoneNumbers: function(Client, types.ListPhoneNumbersInput): types.ListPhoneNumbersOutput, table
+    -- Lists the proxy sessions for the specified Amazon Chime SDK Voice Connector.
     listProxySessions: function(Client, types.ListProxySessionsInput): types.ListProxySessionsOutput, table
+    -- Lists the SIP media applications under the administrator's AWS account.
     listSipMediaApplications: function(Client, types.ListSipMediaApplicationsInput): types.ListSipMediaApplicationsOutput, table
+    -- Lists the SIP rules under the administrator's AWS account.
     listSipRules: function(Client, types.ListSipRulesInput): types.ListSipRulesOutput, table
+    -- Lists the countries that you can order phone numbers from.
     listSupportedPhoneNumberCountries: function(Client, types.ListSupportedPhoneNumberCountriesInput): types.ListSupportedPhoneNumberCountriesOutput, table
+    -- Returns a list of the tags in a given resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the Amazon Chime SDK Voice Connector groups in the administrator's AWS
+    -- account.
     listVoiceConnectorGroups: function(Client, types.ListVoiceConnectorGroupsInput): types.ListVoiceConnectorGroupsOutput, table
+    -- Lists the Amazon Chime SDK Voice Connectors in the administrators
+    -- AWS account.
     listVoiceConnectors: function(Client, types.ListVoiceConnectorsInput): types.ListVoiceConnectorsOutput, table
+    -- Lists the SIP credentials for the specified Amazon Chime SDK Voice Connector.
     listVoiceConnectorTerminationCredentials: function(Client, types.ListVoiceConnectorTerminationCredentialsInput): types.ListVoiceConnectorTerminationCredentialsOutput, table
+    -- Lists the specified voice profile domains in the administrator's AWS account.
     listVoiceProfileDomains: function(Client, types.ListVoiceProfileDomainsInput): types.ListVoiceProfileDomainsOutput, table
+    -- Lists the voice profiles in a voice profile domain.
     listVoiceProfiles: function(Client, types.ListVoiceProfilesInput): types.ListVoiceProfilesOutput, table
+    -- Updates the Alexa Skill configuration for the SIP media application.
+    -- Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to
+    -- the Alexa Smart Properties page.
     putSipMediaApplicationAlexaSkillConfiguration: function(Client, types.PutSipMediaApplicationAlexaSkillConfigurationInput): types.PutSipMediaApplicationAlexaSkillConfigurationOutput, table
+    -- Updates the logging configuration for the specified SIP media application.
     putSipMediaApplicationLoggingConfiguration: function(Client, types.PutSipMediaApplicationLoggingConfigurationInput): types.PutSipMediaApplicationLoggingConfigurationOutput, table
+    -- Updates a Voice Connector's emergency calling configuration.
     putVoiceConnectorEmergencyCallingConfiguration: function(Client, types.PutVoiceConnectorEmergencyCallingConfigurationInput): types.PutVoiceConnectorEmergencyCallingConfigurationOutput, table
+    -- Adds an external systems configuration to a Voice Connector.
     putVoiceConnectorExternalSystemsConfiguration: function(Client, types.PutVoiceConnectorExternalSystemsConfigurationInput): types.PutVoiceConnectorExternalSystemsConfigurationOutput, table
+    -- Updates a Voice Connector's logging configuration.
     putVoiceConnectorLoggingConfiguration: function(Client, types.PutVoiceConnectorLoggingConfigurationInput): types.PutVoiceConnectorLoggingConfigurationOutput, table
+    -- Updates a Voice Connector's origination settings.
     putVoiceConnectorOrigination: function(Client, types.PutVoiceConnectorOriginationInput): types.PutVoiceConnectorOriginationOutput, table
+    -- Puts the specified proxy configuration to the specified Amazon Chime SDK Voice Connector.
     putVoiceConnectorProxy: function(Client, types.PutVoiceConnectorProxyInput): types.PutVoiceConnectorProxyOutput, table
+    -- Updates a Voice Connector's streaming configuration settings.
     putVoiceConnectorStreamingConfiguration: function(Client, types.PutVoiceConnectorStreamingConfigurationInput): types.PutVoiceConnectorStreamingConfigurationOutput, table
+    -- Updates a Voice Connector's termination settings.
     putVoiceConnectorTermination: function(Client, types.PutVoiceConnectorTerminationInput): types.PutVoiceConnectorTerminationOutput, table
+    -- Updates a Voice Connector's termination credentials.
     putVoiceConnectorTerminationCredentials: function(Client, types.PutVoiceConnectorTerminationCredentialsInput): types.PutVoiceConnectorTerminationCredentialsOutput, table
+    -- Restores a deleted phone number.
     restorePhoneNumber: function(Client, types.RestorePhoneNumberInput): types.RestorePhoneNumberOutput, table
+    -- Searches the provisioned phone numbers in an organization.
     searchAvailablePhoneNumbers: function(Client, types.SearchAvailablePhoneNumbersInput): types.SearchAvailablePhoneNumbersOutput, table
+    -- Starts a speaker search task.
+    -- Before starting any speaker search tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
     startSpeakerSearchTask: function(Client, types.StartSpeakerSearchTaskInput): types.StartSpeakerSearchTaskOutput, table
+    -- Starts a voice tone analysis task. For more information about voice tone analysis, see
+    -- Using Amazon Chime SDK voice analytics
+    -- in the Amazon Chime SDK Developer Guide.
+    -- Before starting any voice tone analysis tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
     startVoiceToneAnalysisTask: function(Client, types.StartVoiceToneAnalysisTaskInput): types.StartVoiceToneAnalysisTaskOutput, table
+    -- Stops a speaker search task.
     stopSpeakerSearchTask: function(Client, types.StopSpeakerSearchTaskInput): types.StopSpeakerSearchTaskOutput, table
+    -- Stops a voice tone analysis task.
     stopVoiceToneAnalysisTask: function(Client, types.StopVoiceToneAnalysisTaskInput): types.StopVoiceToneAnalysisTaskOutput, table
+    -- Adds a tag to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates global settings for the Amazon Chime SDK Voice Connectors in an AWS account.
     updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput): types.UpdateGlobalSettingsOutput, table
+    -- Updates phone number details, such as product type, calling name, or phone number name for the
+    -- specified phone number ID. You can update one phone number detail at a time. For
+    -- example, you can update either the product type, calling name, or phone number name in one action.
+    -- For numbers outside the U.S., you must use the Amazon Chime SDK SIP Media
+    -- Application Dial-In product type.
+    -- Updates to outbound calling names can take 72 hours to complete. Pending
+    -- updates to outbound calling names must be complete before you can request another
+    -- update.
     updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput): types.UpdatePhoneNumberOutput, table
+    -- Updates the phone number settings for the administrator's AWS account, such
+    -- as the default outbound calling name. You can update the default outbound calling
+    -- name once every seven days. Outbound calling names can take up to 72 hours to
+    -- update.
     updatePhoneNumberSettings: function(Client, types.UpdatePhoneNumberSettingsInput): types.UpdatePhoneNumberSettingsOutput, table
+    -- Updates the specified proxy session details, such as voice or SMS capabilities.
     updateProxySession: function(Client, types.UpdateProxySessionInput): types.UpdateProxySessionOutput, table
+    -- Updates the details of the specified SIP media application.
     updateSipMediaApplication: function(Client, types.UpdateSipMediaApplicationInput): types.UpdateSipMediaApplicationOutput, table
+    -- Invokes the AWS Lambda function associated with the SIP media application and
+    -- transaction ID in an update request. The Lambda function can then return a new set
+    -- of actions.
     updateSipMediaApplicationCall: function(Client, types.UpdateSipMediaApplicationCallInput): types.UpdateSipMediaApplicationCallOutput, table
+    -- Updates the details of the specified SIP rule.
     updateSipRule: function(Client, types.UpdateSipRuleInput): types.UpdateSipRuleOutput, table
+    -- Updates the details for the specified Amazon Chime SDK Voice Connector.
     updateVoiceConnector: function(Client, types.UpdateVoiceConnectorInput): types.UpdateVoiceConnectorOutput, table
+    -- Updates the settings for the specified Amazon Chime SDK Voice Connector group.
     updateVoiceConnectorGroup: function(Client, types.UpdateVoiceConnectorGroupInput): types.UpdateVoiceConnectorGroupOutput, table
+    -- Updates the specified voice profile’s voice print and refreshes its expiration timestamp.
+    -- As a condition of using this feature, you acknowledge that the collection, use, storage, and retention of
+    -- your caller’s biometric identifiers and biometric information (“biometric data”) in the form of a digital voiceprint
+    -- requires the caller’s informed consent via a written release. Such consent is required under various state laws,
+    -- including biometrics laws in Illinois, Texas, Washington and other state privacy laws.
+    -- You must provide a written release to each caller through a process that clearly reflects each caller’s informed
+    -- consent before using Amazon Chime SDK Voice Insights service, as required under the terms of your agreement
+    -- with AWS governing your use of the service.
     updateVoiceProfile: function(Client, types.UpdateVoiceProfileInput): types.UpdateVoiceProfileOutput, table
+    -- Updates the settings for the specified voice profile domain.
     updateVoiceProfileDomain: function(Client, types.UpdateVoiceProfileDomainInput): types.UpdateVoiceProfileDomainOutput, table
+    -- Validates an address to be used for 911 calls made with Amazon Chime SDK Voice
+    -- Connectors. You can use validated addresses in a Presence Information Data Format
+    -- Location Object file that you include in SIP requests. That helps ensure that addresses
+    -- are routed to the appropriate Public Safety Answering Point.
     validateE911Address: function(Client, types.ValidateE911AddressInput): types.ValidateE911AddressOutput, table
 end
 

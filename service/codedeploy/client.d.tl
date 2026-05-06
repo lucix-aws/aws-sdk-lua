@@ -3,52 +3,158 @@
 local types = require("codedeploy.types")
 
 local record Client
+    -- Adds tags to on-premises instances.
     addTagsToOnPremisesInstances: function(Client, types.AddTagsToOnPremisesInstancesInput): types.AddTagsToOnPremisesInstancesOutput, table
+    -- Gets information about one or more application revisions. The maximum number of
+    -- application revisions that can be returned is 25.
     batchGetApplicationRevisions: function(Client, types.BatchGetApplicationRevisionsInput): types.BatchGetApplicationRevisionsOutput, table
+    -- Gets information about one or more applications. The maximum number of applications
+    -- that can be returned is 100.
     batchGetApplications: function(Client, types.BatchGetApplicationsInput): types.BatchGetApplicationsOutput, table
+    -- Gets information about one or more deployment groups.
     batchGetDeploymentGroups: function(Client, types.BatchGetDeploymentGroupsInput): types.BatchGetDeploymentGroupsOutput, table
+    -- This method works, but is deprecated. Use BatchGetDeploymentTargets
+    -- instead.
+    -- Returns an array of one or more instances associated with a deployment. This method
+    -- works with EC2/On-premises and Lambda compute platforms. The newer
+    -- BatchGetDeploymentTargets works with all compute platforms. The maximum
+    -- number of instances that can be returned is 25.
     batchGetDeploymentInstances: function(Client, types.BatchGetDeploymentInstancesInput): types.BatchGetDeploymentInstancesOutput, table
+    -- Gets information about one or more deployments. The maximum number of deployments that
+    -- can be returned is 25.
     batchGetDeployments: function(Client, types.BatchGetDeploymentsInput): types.BatchGetDeploymentsOutput, table
+    -- Returns an array of one or more targets associated with a deployment. This method
+    -- works with all compute types and should be used instead of the deprecated
+    -- BatchGetDeploymentInstances. The maximum number of targets that can be
+    -- returned is 25.
+    -- The type of targets returned depends on the deployment's compute platform or
+    -- deployment method:
+    -- EC2/On-premises: Information about Amazon EC2 instance targets.
+    -- Lambda: Information about
+    -- Lambda functions targets.
+    -- Amazon ECS: Information about Amazon ECS service targets.
+    -- CloudFormation: Information about
+    -- targets of blue/green deployments initiated by a CloudFormation stack
+    -- update.
     batchGetDeploymentTargets: function(Client, types.BatchGetDeploymentTargetsInput): types.BatchGetDeploymentTargetsOutput, table
+    -- Gets information about one or more on-premises instances. The maximum number of
+    -- on-premises instances that can be returned is 25.
     batchGetOnPremisesInstances: function(Client, types.BatchGetOnPremisesInstancesInput): types.BatchGetOnPremisesInstancesOutput, table
+    -- For a blue/green deployment, starts the process of rerouting traffic from instances in
+    -- the original environment to instances in the replacement environment without waiting for
+    -- a specified wait time to elapse. (Traffic rerouting, which is achieved by registering
+    -- instances in the replacement environment with the load balancer, can start as soon as
+    -- all instances have a status of Ready.)
     continueDeployment: function(Client, types.ContinueDeploymentInput): types.ContinueDeploymentOutput, table
+    -- Creates an application.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Deploys an application revision through the specified deployment group.
     createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    -- Creates a deployment configuration.
     createDeploymentConfig: function(Client, types.CreateDeploymentConfigInput): types.CreateDeploymentConfigOutput, table
+    -- Creates a deployment group to which application revisions are deployed.
     createDeploymentGroup: function(Client, types.CreateDeploymentGroupInput): types.CreateDeploymentGroupOutput, table
+    -- Deletes an application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes a deployment configuration.
+    -- A deployment configuration cannot be deleted if it is currently in use. Predefined
+    -- configurations cannot be deleted.
     deleteDeploymentConfig: function(Client, types.DeleteDeploymentConfigInput): types.DeleteDeploymentConfigOutput, table
+    -- Deletes a deployment group.
     deleteDeploymentGroup: function(Client, types.DeleteDeploymentGroupInput): types.DeleteDeploymentGroupOutput, table
+    -- Deletes a GitHub account connection.
     deleteGitHubAccountToken: function(Client, types.DeleteGitHubAccountTokenInput): types.DeleteGitHubAccountTokenOutput, table
+    -- Deletes resources linked to an external ID. This action only applies if you have
+    -- configured blue/green deployments through CloudFormation.
+    -- It is not necessary to call this action directly. CloudFormation calls it
+    -- on your behalf when it needs to delete stack resources. This action is offered
+    -- publicly in case you need to delete resources to comply with General Data Protection
+    -- Regulation (GDPR) requirements.
     deleteResourcesByExternalId: function(Client, types.DeleteResourcesByExternalIdInput): types.DeleteResourcesByExternalIdOutput, table
+    -- Deregisters an on-premises instance.
     deregisterOnPremisesInstance: function(Client, types.DeregisterOnPremisesInstanceInput): types.DeregisterOnPremisesInstanceOutput, table
+    -- Gets information about an application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Gets information about an application revision.
     getApplicationRevision: function(Client, types.GetApplicationRevisionInput): types.GetApplicationRevisionOutput, table
+    -- Gets information about a deployment.
+    -- The content property of the appSpecContent object in
+    -- the returned revision is always null. Use GetApplicationRevision and
+    -- the sha256 property of the returned appSpecContent object
+    -- to get the content of the deployment’s AppSpec file.
     getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    -- Gets information about a deployment configuration.
     getDeploymentConfig: function(Client, types.GetDeploymentConfigInput): types.GetDeploymentConfigOutput, table
+    -- Gets information about a deployment group.
     getDeploymentGroup: function(Client, types.GetDeploymentGroupInput): types.GetDeploymentGroupOutput, table
+    -- Gets information about an instance as part of a deployment.
     getDeploymentInstance: function(Client, types.GetDeploymentInstanceInput): types.GetDeploymentInstanceOutput, table
+    -- Returns information about a deployment target.
     getDeploymentTarget: function(Client, types.GetDeploymentTargetInput): types.GetDeploymentTargetOutput, table
+    -- Gets information about an on-premises instance.
     getOnPremisesInstance: function(Client, types.GetOnPremisesInstanceInput): types.GetOnPremisesInstanceOutput, table
+    -- Lists information about revisions for an application.
     listApplicationRevisions: function(Client, types.ListApplicationRevisionsInput): types.ListApplicationRevisionsOutput, table
+    -- Lists the applications registered with the user or Amazon Web Services account.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists the deployment configurations with the user or Amazon Web Services account.
     listDeploymentConfigs: function(Client, types.ListDeploymentConfigsInput): types.ListDeploymentConfigsOutput, table
+    -- Lists the deployment groups for an application registered with the Amazon Web Services
+    -- user or Amazon Web Services account.
     listDeploymentGroups: function(Client, types.ListDeploymentGroupsInput): types.ListDeploymentGroupsOutput, table
+    -- The newer BatchGetDeploymentTargets should be used instead because
+    -- it works with all compute types. ListDeploymentInstances throws an
+    -- exception if it is used with a compute platform other than EC2/On-premises or
+    -- Lambda.
+    -- Lists the instance for a deployment associated with the user or Amazon Web Services account.
     listDeploymentInstances: function(Client, types.ListDeploymentInstancesInput): types.ListDeploymentInstancesOutput, table
+    -- Lists the deployments in a deployment group for an application registered with the
+    -- user or Amazon Web Services account.
     listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    -- Returns an array of target IDs that are associated a deployment.
     listDeploymentTargets: function(Client, types.ListDeploymentTargetsInput): types.ListDeploymentTargetsOutput, table
+    -- Lists the names of stored connections to GitHub accounts.
     listGitHubAccountTokenNames: function(Client, types.ListGitHubAccountTokenNamesInput): types.ListGitHubAccountTokenNamesOutput, table
+    -- Gets a list of names for one or more on-premises instances.
+    -- Unless otherwise specified, both registered and deregistered on-premises instance
+    -- names are listed. To list only registered or deregistered on-premises instance names,
+    -- use the registration status parameter.
     listOnPremisesInstances: function(Client, types.ListOnPremisesInstancesInput): types.ListOnPremisesInstancesOutput, table
+    -- Returns a list of tags for the resource identified by a specified Amazon Resource
+    -- Name (ARN). Tags are used to organize and categorize your CodeDeploy resources.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sets the result of a Lambda validation function. The function validates
+    -- lifecycle hooks during a deployment that uses the Lambda or Amazon ECS compute platform. For Lambda deployments, the available
+    -- lifecycle hooks are BeforeAllowTraffic and AfterAllowTraffic.
+    -- For Amazon ECS deployments, the available lifecycle hooks are
+    -- BeforeInstall, AfterInstall,
+    -- AfterAllowTestTraffic, BeforeAllowTraffic, and
+    -- AfterAllowTraffic. Lambda validation functions return
+    -- Succeeded or Failed. For more information, see AppSpec 'hooks' Section for an Lambda Deployment and
+    -- AppSpec 'hooks' Section for an Amazon ECS Deployment.
     putLifecycleEventHookExecutionStatus: function(Client, types.PutLifecycleEventHookExecutionStatusInput): types.PutLifecycleEventHookExecutionStatusOutput, table
+    -- Registers with CodeDeploy a revision for the specified application.
     registerApplicationRevision: function(Client, types.RegisterApplicationRevisionInput): types.RegisterApplicationRevisionOutput, table
+    -- Registers an on-premises instance.
+    -- Only one IAM ARN (an IAM session ARN or IAM user ARN) is supported in the request. You cannot use both.
     registerOnPremisesInstance: function(Client, types.RegisterOnPremisesInstanceInput): types.RegisterOnPremisesInstanceOutput, table
+    -- Removes one or more tags from one or more on-premises instances.
     removeTagsFromOnPremisesInstances: function(Client, types.RemoveTagsFromOnPremisesInstancesInput): types.RemoveTagsFromOnPremisesInstancesOutput, table
+    -- In a blue/green deployment, overrides any specified wait time and starts terminating
+    -- instances immediately after the traffic routing is complete.
     skipWaitTimeForInstanceTermination: function(Client, types.SkipWaitTimeForInstanceTerminationInput): types.SkipWaitTimeForInstanceTerminationOutput, table
+    -- Attempts to stop an ongoing deployment.
     stopDeployment: function(Client, types.StopDeploymentInput): types.StopDeploymentOutput, table
+    -- Associates the list of tags in the input Tags parameter with the
+    -- resource identified by the ResourceArn input parameter.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Disassociates a resource from a list of tags. The resource is identified by the
+    -- ResourceArn input parameter. The tags are identified by the list of
+    -- keys in the TagKeys input parameter.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Changes the name of an application.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Changes information about a deployment group.
     updateDeploymentGroup: function(Client, types.UpdateDeploymentGroupInput): types.UpdateDeploymentGroupOutput, table
 end
 

@@ -3,20 +3,35 @@
 local types = require("launchwizard.types")
 
 local record Client
+    -- Creates a deployment for the given workload. Deployments created by this operation are not available in the Launch Wizard console to use the Clone deployment action on.
     createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    -- Deletes a deployment.
     deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    -- Returns information about the deployment.
     getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    -- Returns information about a deployment pattern version.
     getDeploymentPatternVersion: function(Client, types.GetDeploymentPatternVersionInput): types.GetDeploymentPatternVersionOutput, table
+    -- Returns information about a workload.
     getWorkload: function(Client, types.GetWorkloadInput): types.GetWorkloadOutput, table
+    -- Returns details for a given workload and deployment pattern, including the available specifications. You can use the ListWorkloads operation to discover the available workload names and the ListWorkloadDeploymentPatterns operation to discover the available deployment pattern names of a given workload.
     getWorkloadDeploymentPattern: function(Client, types.GetWorkloadDeploymentPatternInput): types.GetWorkloadDeploymentPatternOutput, table
+    -- Lists the events of a deployment.
     listDeploymentEvents: function(Client, types.ListDeploymentEventsInput): types.ListDeploymentEventsOutput, table
+    -- Lists the deployment pattern versions.
     listDeploymentPatternVersions: function(Client, types.ListDeploymentPatternVersionsInput): types.ListDeploymentPatternVersionsOutput, table
+    -- Lists the deployments that have been created.
     listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    -- Lists the tags associated with a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the workload deployment patterns for a given workload name. You can use the ListWorkloads operation to discover the available workload names.
     listWorkloadDeploymentPatterns: function(Client, types.ListWorkloadDeploymentPatternsInput): types.ListWorkloadDeploymentPatternsOutput, table
+    -- Lists the available workload names. You can use the ListWorkloadDeploymentPatterns operation to discover the available deployment patterns for a given workload.
     listWorkloads: function(Client, types.ListWorkloadsInput): types.ListWorkloadsOutput, table
+    -- Adds the specified tags to the given resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the given resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a deployment.
     updateDeployment: function(Client, types.UpdateDeploymentInput): types.UpdateDeploymentOutput, table
 end
 

@@ -3,17 +3,30 @@
 local types = require("mwaa.types")
 
 local record Client
+    -- Creates a CLI token for the Airflow CLI. To learn more, see Creating an Apache Airflow CLI token.
     createCliToken: function(Client, types.CreateCliTokenInput): types.CreateCliTokenOutput, table
+    -- Creates an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Creates a web login token for the Airflow Web UI. To learn more, see Creating an Apache Airflow web login token.
     createWebLoginToken: function(Client, types.CreateWebLoginTokenInput): types.CreateWebLoginTokenOutput, table
+    -- Deletes an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Describes an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Invokes the Apache Airflow REST API on the webserver with the specified inputs. To
+    -- learn more, see Using the Apache Airflow REST API
     invokeRestApi: function(Client, types.InvokeRestApiInput): types.InvokeRestApiOutput, table
+    -- Lists the Amazon Managed Workflows for Apache Airflow (MWAA) environments.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Lists the key-value tag pairs associated to the Amazon Managed Workflows for Apache Airflow (MWAA) environment. For example, "Environment": "Staging".
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Internal only. Publishes environment health metrics to Amazon CloudWatch.
     publishMetrics: function(Client, types.PublishMetricsInput): types.PublishMetricsOutput, table
+    -- Associates key-value tag pairs to your Amazon Managed Workflows for Apache Airflow (MWAA) environment.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes key-value tag pairs associated to your Amazon Managed Workflows for Apache Airflow (MWAA) environment. For example, "Environment": "Staging".
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
     updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
 end
 

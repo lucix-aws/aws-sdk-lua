@@ -3,31 +3,71 @@
 local types = require("fis.types")
 
 local record Client
+    -- Creates an experiment template.
+    -- An experiment template includes the following components:
+    -- Targets: A target can be a specific resource in
+    -- your Amazon Web Services environment, or one or more resources that match criteria that you
+    -- specify, for example, resources that have specific tags.
+    -- Actions: The actions to carry out on the
+    -- target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.
+    -- Stop conditions: If a stop condition is
+    -- triggered while an experiment is running, the experiment is automatically
+    -- stopped. You can define a stop condition as a CloudWatch alarm.
+    -- For more information, see experiment templates
+    -- in the Fault Injection Service User Guide.
     createExperimentTemplate: function(Client, types.CreateExperimentTemplateInput): types.CreateExperimentTemplateOutput, table
+    -- Creates a target account configuration for the experiment template. A target account configuration
+    -- is required when accountTargeting of experimentOptions is set to multi-account.
+    -- For more information, see experiment options
+    -- in the Fault Injection Service User Guide.
     createTargetAccountConfiguration: function(Client, types.CreateTargetAccountConfigurationInput): types.CreateTargetAccountConfigurationOutput, table
+    -- Deletes the specified experiment template.
     deleteExperimentTemplate: function(Client, types.DeleteExperimentTemplateInput): types.DeleteExperimentTemplateOutput, table
+    -- Deletes the specified target account configuration of the experiment template.
     deleteTargetAccountConfiguration: function(Client, types.DeleteTargetAccountConfigurationInput): types.DeleteTargetAccountConfigurationOutput, table
+    -- Gets information about the specified FIS action.
     getAction: function(Client, types.GetActionInput): types.GetActionOutput, table
+    -- Gets information about the specified experiment.
     getExperiment: function(Client, types.GetExperimentInput): types.GetExperimentOutput, table
+    -- Gets information about the specified target account configuration of the experiment.
     getExperimentTargetAccountConfiguration: function(Client, types.GetExperimentTargetAccountConfigurationInput): types.GetExperimentTargetAccountConfigurationOutput, table
+    -- Gets information about the specified experiment template.
     getExperimentTemplate: function(Client, types.GetExperimentTemplateInput): types.GetExperimentTemplateOutput, table
+    -- Gets information about the specified safety lever.
     getSafetyLever: function(Client, types.GetSafetyLeverInput): types.GetSafetyLeverOutput, table
+    -- Gets information about the specified target account configuration of the experiment template.
     getTargetAccountConfiguration: function(Client, types.GetTargetAccountConfigurationInput): types.GetTargetAccountConfigurationOutput, table
+    -- Gets information about the specified resource type.
     getTargetResourceType: function(Client, types.GetTargetResourceTypeInput): types.GetTargetResourceTypeOutput, table
+    -- Lists the available FIS actions.
     listActions: function(Client, types.ListActionsInput): types.ListActionsOutput, table
+    -- Lists the resolved targets information of the specified experiment.
     listExperimentResolvedTargets: function(Client, types.ListExperimentResolvedTargetsInput): types.ListExperimentResolvedTargetsOutput, table
+    -- Lists your experiments.
     listExperiments: function(Client, types.ListExperimentsInput): types.ListExperimentsOutput, table
+    -- Lists the target account configurations of the specified experiment.
     listExperimentTargetAccountConfigurations: function(Client, types.ListExperimentTargetAccountConfigurationsInput): types.ListExperimentTargetAccountConfigurationsOutput, table
+    -- Lists your experiment templates.
     listExperimentTemplates: function(Client, types.ListExperimentTemplatesInput): types.ListExperimentTemplatesOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the target account configurations of the specified experiment template.
     listTargetAccountConfigurations: function(Client, types.ListTargetAccountConfigurationsInput): types.ListTargetAccountConfigurationsOutput, table
+    -- Lists the target resource types.
     listTargetResourceTypes: function(Client, types.ListTargetResourceTypesInput): types.ListTargetResourceTypesOutput, table
+    -- Starts running an experiment from the specified experiment template.
     startExperiment: function(Client, types.StartExperimentInput): types.StartExperimentOutput, table
+    -- Stops the specified experiment.
     stopExperiment: function(Client, types.StopExperimentInput): types.StopExperimentOutput, table
+    -- Applies the specified tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the specified experiment template.
     updateExperimentTemplate: function(Client, types.UpdateExperimentTemplateInput): types.UpdateExperimentTemplateOutput, table
+    -- Updates the specified safety lever state.
     updateSafetyLeverState: function(Client, types.UpdateSafetyLeverStateOperationInput): types.UpdateSafetyLeverStateOutput, table
+    -- Updates the target account configuration for the specified experiment template.
     updateTargetAccountConfiguration: function(Client, types.UpdateTargetAccountConfigurationInput): types.UpdateTargetAccountConfigurationOutput, table
 end
 

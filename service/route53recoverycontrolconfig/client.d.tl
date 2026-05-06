@@ -3,30 +3,55 @@
 local types = require("route53recoverycontrolconfig.types")
 
 local record Client
+    -- Create a new cluster. A cluster is a set of redundant Regional endpoints against which you can run API calls to update or get the state of one or more routing controls. Each cluster has a name, status, Amazon Resource Name (ARN), and an array of the five cluster endpoints (one for each supported Amazon Web Services Region) that you can use with API calls to the cluster data plane.
     createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    -- Creates a new control panel. A control panel represents a group of routing controls that can be changed together in a single transaction. You can use a control panel to centrally view the operational status of applications across your organization, and trigger multi-app failovers in a single transaction, for example, to fail over an Availability Zone or Amazon Web Services Region.
     createControlPanel: function(Client, types.CreateControlPanelInput): types.CreateControlPanelOutput, table
+    -- Creates a new routing control. A routing control has one of two states: ON and OFF. You can map the routing control state to the state of an Amazon Route 53 health check, which can be used to control traffic routing. To get or update the routing control state, see the Recovery Cluster (data plane) API actions for Amazon Route 53 Application Recovery Controller.
     createRoutingControl: function(Client, types.CreateRoutingControlInput): types.CreateRoutingControlOutput, table
+    -- Creates a safety rule in a control panel. Safety rules let you add safeguards around changing routing control states, and for enabling and disabling routing controls, to help prevent unexpected outcomes. There are two types of safety rules: assertion rules and gating rules. Assertion rule: An assertion rule enforces that, when you change a routing control state, that a certain criteria is met. For example, the criteria might be that at least one routing control state is On after the transaction so that traffic continues to flow to at least one cell for the application. This ensures that you avoid a fail-open scenario. Gating rule: A gating rule lets you configure a gating routing control as an overall "on/off" switch for a group of routing controls. Or, you can configure more complex gating scenarios, for example by configuring multiple gating routing controls. For more information, see Safety rules in the Amazon Route 53 Application Recovery Controller Developer Guide.
     createSafetyRule: function(Client, types.CreateSafetyRuleInput): types.CreateSafetyRuleOutput, table
+    -- Delete a cluster.
     deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    -- Deletes a control panel.
     deleteControlPanel: function(Client, types.DeleteControlPanelInput): types.DeleteControlPanelOutput, table
+    -- Deletes a routing control.
     deleteRoutingControl: function(Client, types.DeleteRoutingControlInput): types.DeleteRoutingControlOutput, table
+    -- Deletes a safety rule./>
     deleteSafetyRule: function(Client, types.DeleteSafetyRuleInput): types.DeleteSafetyRuleOutput, table
+    -- Display the details about a cluster. The response includes the cluster name, endpoints, status, and Amazon Resource Name (ARN).
     describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    -- Displays details about a control panel.
     describeControlPanel: function(Client, types.DescribeControlPanelInput): types.DescribeControlPanelOutput, table
+    -- Displays details about a routing control. A routing control has one of two states: ON and OFF. You can map the routing control state to the state of an Amazon Route 53 health check, which can be used to control routing. To get or update the routing control state, see the Recovery Cluster (data plane) API actions for Amazon Route 53 Application Recovery Controller.
     describeRoutingControl: function(Client, types.DescribeRoutingControlInput): types.DescribeRoutingControlOutput, table
+    -- Returns information about a safety rule.
     describeSafetyRule: function(Client, types.DescribeSafetyRuleInput): types.DescribeSafetyRuleOutput, table
+    -- Get information about the resource policy for a cluster.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Returns an array of all Amazon Route 53 health checks associated with a specific routing control.
     listAssociatedRoute53HealthChecks: function(Client, types.ListAssociatedRoute53HealthChecksInput): types.ListAssociatedRoute53HealthChecksOutput, table
+    -- Returns an array of all the clusters in an account.
     listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    -- Returns an array of control panels in an account or in a cluster.
     listControlPanels: function(Client, types.ListControlPanelsInput): types.ListControlPanelsOutput, table
+    -- Returns an array of routing controls for a control panel. A routing control is an Amazon Route 53 Application Recovery Controller construct that has one of two states: ON and OFF. You can map the routing control state to the state of an Amazon Route 53 health check, which can be used to control routing.
     listRoutingControls: function(Client, types.ListRoutingControlsInput): types.ListRoutingControlsOutput, table
+    -- List the safety rules (the assertion rules and gating rules) that you've defined for the routing controls in a control panel.
     listSafetyRules: function(Client, types.ListSafetyRulesInput): types.ListSafetyRulesOutput, table
+    -- Lists the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing cluster. You can only update the network type of a cluster.
     updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    -- Updates a control panel. The only update you can make to a control panel is to change the name of the control panel.
     updateControlPanel: function(Client, types.UpdateControlPanelInput): types.UpdateControlPanelOutput, table
+    -- Updates a routing control. You can only update the name of the routing control. To get or update the routing control state, see the Recovery Cluster (data plane) API actions for Amazon Route 53 Application Recovery Controller.
     updateRoutingControl: function(Client, types.UpdateRoutingControlInput): types.UpdateRoutingControlOutput, table
+    -- Update a safety rule (an assertion rule or gating rule). You can only update the name and the waiting period for a safety rule. To make other updates, delete the safety rule and create a new one.
     updateSafetyRule: function(Client, types.UpdateSafetyRuleInput): types.UpdateSafetyRuleOutput, table
 end
 

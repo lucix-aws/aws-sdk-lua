@@ -3,36 +3,67 @@
 local types = require("amplifybackend.types")
 
 local record Client
+    -- This operation clones an existing backend.
     cloneBackend: function(Client, types.CloneBackendInput): types.CloneBackendOutput, table
+    -- This operation creates a backend for an Amplify app. Backends are automatically created at the time of app creation.
     createBackend: function(Client, types.CreateBackendInput): types.CreateBackendOutput, table
+    -- Creates a new backend API resource.
     createBackendAPI: function(Client, types.CreateBackendAPIInput): types.CreateBackendAPIOutput, table
+    -- Creates a new backend authentication resource.
     createBackendAuth: function(Client, types.CreateBackendAuthInput): types.CreateBackendAuthOutput, table
+    -- Creates a config object for a backend.
     createBackendConfig: function(Client, types.CreateBackendConfigInput): types.CreateBackendConfigOutput, table
+    -- Creates a backend storage resource.
     createBackendStorage: function(Client, types.CreateBackendStorageInput): types.CreateBackendStorageOutput, table
+    -- Generates a one-time challenge code to authenticate a user into your Amplify Admin UI.
     createToken: function(Client, types.CreateTokenInput): types.CreateTokenOutput, table
+    -- Removes an existing environment from your Amplify project.
     deleteBackend: function(Client, types.DeleteBackendInput): types.DeleteBackendOutput, table
+    -- Deletes an existing backend API resource.
     deleteBackendAPI: function(Client, types.DeleteBackendAPIInput): types.DeleteBackendAPIOutput, table
+    -- Deletes an existing backend authentication resource.
     deleteBackendAuth: function(Client, types.DeleteBackendAuthInput): types.DeleteBackendAuthOutput, table
+    -- Removes the specified backend storage resource.
     deleteBackendStorage: function(Client, types.DeleteBackendStorageInput): types.DeleteBackendStorageOutput, table
+    -- Deletes the challenge token based on the given appId and sessionId.
     deleteToken: function(Client, types.DeleteTokenInput): types.DeleteTokenOutput, table
+    -- Generates a model schema for an existing backend API resource.
     generateBackendAPIModels: function(Client, types.GenerateBackendAPIModelsInput): types.GenerateBackendAPIModelsOutput, table
+    -- Provides project-level details for your Amplify UI project.
     getBackend: function(Client, types.GetBackendInput): types.GetBackendOutput, table
+    -- Gets the details for a backend API.
     getBackendAPI: function(Client, types.GetBackendAPIInput): types.GetBackendAPIOutput, table
+    -- Gets a model introspection schema for an existing backend API resource.
     getBackendAPIModels: function(Client, types.GetBackendAPIModelsInput): types.GetBackendAPIModelsOutput, table
+    -- Gets a backend auth details.
     getBackendAuth: function(Client, types.GetBackendAuthInput): types.GetBackendAuthOutput, table
+    -- Returns information about a specific job.
     getBackendJob: function(Client, types.GetBackendJobInput): types.GetBackendJobOutput, table
+    -- Gets details for a backend storage resource.
     getBackendStorage: function(Client, types.GetBackendStorageInput): types.GetBackendStorageOutput, table
+    -- Gets the challenge token based on the given appId and sessionId.
     getToken: function(Client, types.GetTokenInput): types.GetTokenOutput, table
+    -- Imports an existing backend authentication resource.
     importBackendAuth: function(Client, types.ImportBackendAuthInput): types.ImportBackendAuthOutput, table
+    -- Imports an existing backend storage resource.
     importBackendStorage: function(Client, types.ImportBackendStorageInput): types.ImportBackendStorageOutput, table
+    -- Lists the jobs for the backend of an Amplify app.
     listBackendJobs: function(Client, types.ListBackendJobsInput): types.ListBackendJobsOutput, table
+    -- The list of S3 buckets in your account.
     listS3Buckets: function(Client, types.ListS3BucketsInput): types.ListS3BucketsOutput, table
+    -- Removes all backend environments from your Amplify project.
     removeAllBackends: function(Client, types.RemoveAllBackendsInput): types.RemoveAllBackendsOutput, table
+    -- Removes the AWS resources required to access the Amplify Admin UI.
     removeBackendConfig: function(Client, types.RemoveBackendConfigInput): types.RemoveBackendConfigOutput, table
+    -- Updates an existing backend API resource.
     updateBackendAPI: function(Client, types.UpdateBackendAPIInput): types.UpdateBackendAPIOutput, table
+    -- Updates an existing backend authentication resource.
     updateBackendAuth: function(Client, types.UpdateBackendAuthInput): types.UpdateBackendAuthOutput, table
+    -- Updates the AWS resources required to access the Amplify Admin UI.
     updateBackendConfig: function(Client, types.UpdateBackendConfigInput): types.UpdateBackendConfigOutput, table
+    -- Updates a specific job.
     updateBackendJob: function(Client, types.UpdateBackendJobInput): types.UpdateBackendJobOutput, table
+    -- Updates an existing backend storage resource.
     updateBackendStorage: function(Client, types.UpdateBackendStorageInput): types.UpdateBackendStorageOutput, table
 end
 

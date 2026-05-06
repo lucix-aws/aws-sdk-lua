@@ -3,80 +3,195 @@
 local types = require("inspector2.types")
 
 local record Client
+    -- Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response
+    -- indicates the association was successfully started, but doesn’t indicate whether it was
+    -- completed. You can check if the association completed by using ListMembers for multiple
+    -- accounts or GetMembers for a single account.
     associateMember: function(Client, types.AssociateMemberInput): types.AssociateMemberOutput, table
+    -- Associates multiple code repositories with an Amazon Inspector code security scan
+    -- configuration.
     batchAssociateCodeSecurityScanConfiguration: function(Client, types.BatchAssociateCodeSecurityScanConfigurationInput): types.BatchAssociateCodeSecurityScanConfigurationOutput, table
+    -- Disassociates multiple code repositories from an Amazon Inspector code security scan
+    -- configuration.
     batchDisassociateCodeSecurityScanConfiguration: function(Client, types.BatchDisassociateCodeSecurityScanConfigurationInput): types.BatchDisassociateCodeSecurityScanConfigurationOutput, table
+    -- Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.
     batchGetAccountStatus: function(Client, types.BatchGetAccountStatusInput): types.BatchGetAccountStatusOutput, table
+    -- Retrieves code snippets from findings that Amazon Inspector detected code vulnerabilities
+    -- in.
     batchGetCodeSnippet: function(Client, types.BatchGetCodeSnippetInput): types.BatchGetCodeSnippetOutput, table
+    -- Gets vulnerability details for findings.
     batchGetFindingDetails: function(Client, types.BatchGetFindingDetailsInput): types.BatchGetFindingDetailsOutput, table
+    -- Gets free trial status for multiple Amazon Web Services accounts.
     batchGetFreeTrialInfo: function(Client, types.BatchGetFreeTrialInfoInput): types.BatchGetFreeTrialInfoOutput, table
+    -- Retrieves Amazon Inspector deep inspection activation status of multiple member accounts within
+    -- your organization. You must be the delegated administrator of an organization in Amazon Inspector to
+    -- use this API.
     batchGetMemberEc2DeepInspectionStatus: function(Client, types.BatchGetMemberEc2DeepInspectionStatusInput): types.BatchGetMemberEc2DeepInspectionStatusOutput, table
+    -- Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your
+    -- organization. You must be the delegated administrator of an organization in Amazon Inspector to use
+    -- this API.
     batchUpdateMemberEc2DeepInspectionStatus: function(Client, types.BatchUpdateMemberEc2DeepInspectionStatusInput): types.BatchUpdateMemberEc2DeepInspectionStatusOutput, table
+    -- Cancels the given findings report.
     cancelFindingsReport: function(Client, types.CancelFindingsReportInput): types.CancelFindingsReportOutput, table
+    -- Cancels a software bill of materials (SBOM) report.
     cancelSbomExport: function(Client, types.CancelSbomExportInput): types.CancelSbomExportOutput, table
+    -- Creates a CIS scan configuration.
     createCisScanConfiguration: function(Client, types.CreateCisScanConfigurationInput): types.CreateCisScanConfigurationOutput, table
+    -- Creates a code security integration with a source code repository provider.
+    -- After calling the CreateCodeSecurityIntegration operation, you complete
+    -- authentication and authorization with your provider. Next you call the
+    -- UpdateCodeSecurityIntegration operation to provide the details
+    -- to complete the integration setup
     createCodeSecurityIntegration: function(Client, types.CreateCodeSecurityIntegrationInput): types.CreateCodeSecurityIntegrationOutput, table
+    -- Creates a scan configuration for code security scanning.
     createCodeSecurityScanConfiguration: function(Client, types.CreateCodeSecurityScanConfigurationInput): types.CreateCodeSecurityScanConfigurationOutput, table
+    -- Creates a filter resource using specified filter criteria. When the filter action is set
+    -- to SUPPRESS this action creates a suppression rule.
     createFilter: function(Client, types.CreateFilterInput): types.CreateFilterOutput, table
+    -- Creates a finding report. By default only ACTIVE findings are returned in
+    -- the report. To see SUPRESSED or CLOSED findings you must specify
+    -- a value for the findingStatus filter criteria.
     createFindingsReport: function(Client, types.CreateFindingsReportInput): types.CreateFindingsReportOutput, table
+    -- Creates a software bill of materials (SBOM) report.
     createSbomExport: function(Client, types.CreateSbomExportInput): types.CreateSbomExportOutput, table
+    -- Deletes a CIS scan configuration.
     deleteCisScanConfiguration: function(Client, types.DeleteCisScanConfigurationInput): types.DeleteCisScanConfigurationOutput, table
+    -- Deletes a code security integration.
     deleteCodeSecurityIntegration: function(Client, types.DeleteCodeSecurityIntegrationInput): types.DeleteCodeSecurityIntegrationOutput, table
+    -- Deletes a code security scan configuration.
     deleteCodeSecurityScanConfiguration: function(Client, types.DeleteCodeSecurityScanConfigurationInput): types.DeleteCodeSecurityScanConfigurationOutput, table
+    -- Deletes a filter resource.
     deleteFilter: function(Client, types.DeleteFilterInput): types.DeleteFilterOutput, table
+    -- Describe Amazon Inspector configuration settings for an Amazon Web Services organization.
     describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    -- Disables Amazon Inspector scans for one or more Amazon Web Services accounts. Disabling all scan types in an
+    -- account disables the Amazon Inspector service.
     disable: function(Client, types.DisableInput): types.DisableOutput, table
+    -- Disables the Amazon Inspector delegated administrator for your organization.
     disableDelegatedAdminAccount: function(Client, types.DisableDelegatedAdminAccountInput): types.DisableDelegatedAdminAccountOutput, table
+    -- Disassociates a member account from an Amazon Inspector delegated administrator.
     disassociateMember: function(Client, types.DisassociateMemberInput): types.DisassociateMemberOutput, table
+    -- Enables Amazon Inspector scans for one or more Amazon Web Services accounts.
     enable: function(Client, types.EnableInput): types.EnableOutput, table
+    -- Enables the Amazon Inspector delegated administrator for your Organizations organization.
     enableDelegatedAdminAccount: function(Client, types.EnableDelegatedAdminAccountInput): types.EnableDelegatedAdminAccountOutput, table
+    -- Retrieves a CIS scan report.
     getCisScanReport: function(Client, types.GetCisScanReportInput): types.GetCisScanReportOutput, table
+    -- Retrieves CIS scan result details.
     getCisScanResultDetails: function(Client, types.GetCisScanResultDetailsInput): types.GetCisScanResultDetailsOutput, table
+    -- Returns a list of clusters and metadata associated with an image.
     getClustersForImage: function(Client, types.GetClustersForImageInput): types.GetClustersForImageOutput, table
+    -- Retrieves information about a code security integration.
     getCodeSecurityIntegration: function(Client, types.GetCodeSecurityIntegrationInput): types.GetCodeSecurityIntegrationOutput, table
+    -- Retrieves information about a specific code security scan.
     getCodeSecurityScan: function(Client, types.GetCodeSecurityScanInput): types.GetCodeSecurityScanOutput, table
+    -- Retrieves information about a code security scan configuration.
     getCodeSecurityScanConfiguration: function(Client, types.GetCodeSecurityScanConfigurationInput): types.GetCodeSecurityScanConfigurationOutput, table
+    -- Retrieves setting configurations for Inspector scans.
     getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    -- Retrieves information about the Amazon Inspector delegated administrator for your
+    -- organization.
     getDelegatedAdminAccount: function(Client, types.GetDelegatedAdminAccountInput): types.GetDelegatedAdminAccountOutput, table
+    -- Retrieves the activation status of Amazon Inspector deep inspection and custom paths associated
+    -- with your account.
     getEc2DeepInspectionConfiguration: function(Client, types.GetEc2DeepInspectionConfigurationInput): types.GetEc2DeepInspectionConfigurationOutput, table
+    -- Gets an encryption key.
     getEncryptionKey: function(Client, types.GetEncryptionKeyInput): types.GetEncryptionKeyOutput, table
+    -- Gets the status of a findings report.
     getFindingsReportStatus: function(Client, types.GetFindingsReportStatusInput): types.GetFindingsReportStatusOutput, table
+    -- Gets member information for your organization.
     getMember: function(Client, types.GetMemberInput): types.GetMemberOutput, table
+    -- Gets details of a software bill of materials (SBOM) report.
     getSbomExport: function(Client, types.GetSbomExportInput): types.GetSbomExportOutput, table
+    -- Lists the permissions an account has to configure Amazon Inspector.
+    -- If the account is a member account or standalone account with resources managed by an Organizations policy, the operation returns fewer permissions.
     listAccountPermissions: function(Client, types.ListAccountPermissionsInput): types.ListAccountPermissionsOutput, table
+    -- Lists CIS scan configurations.
     listCisScanConfigurations: function(Client, types.ListCisScanConfigurationsInput): types.ListCisScanConfigurationsOutput, table
+    -- Lists scan results aggregated by checks.
     listCisScanResultsAggregatedByChecks: function(Client, types.ListCisScanResultsAggregatedByChecksInput): types.ListCisScanResultsAggregatedByChecksOutput, table
+    -- Lists scan results aggregated by a target resource.
     listCisScanResultsAggregatedByTargetResource: function(Client, types.ListCisScanResultsAggregatedByTargetResourceInput): types.ListCisScanResultsAggregatedByTargetResourceOutput, table
+    -- Returns a CIS scan list.
     listCisScans: function(Client, types.ListCisScansInput): types.ListCisScansOutput, table
+    -- Lists all code security integrations in your account.
     listCodeSecurityIntegrations: function(Client, types.ListCodeSecurityIntegrationsInput): types.ListCodeSecurityIntegrationsOutput, table
+    -- Lists the associations between code repositories and Amazon Inspector code security scan
+    -- configurations.
     listCodeSecurityScanConfigurationAssociations: function(Client, types.ListCodeSecurityScanConfigurationAssociationsInput): types.ListCodeSecurityScanConfigurationAssociationsOutput, table
+    -- Lists all code security scan configurations in your account.
     listCodeSecurityScanConfigurations: function(Client, types.ListCodeSecurityScanConfigurationsInput): types.ListCodeSecurityScanConfigurationsOutput, table
+    -- Lists coverage details for your environment.
     listCoverage: function(Client, types.ListCoverageInput): types.ListCoverageOutput, table
+    -- Lists Amazon Inspector coverage statistics for your environment.
     listCoverageStatistics: function(Client, types.ListCoverageStatisticsInput): types.ListCoverageStatisticsOutput, table
+    -- Lists information about the Amazon Inspector delegated administrator of your organization.
     listDelegatedAdminAccounts: function(Client, types.ListDelegatedAdminAccountsInput): types.ListDelegatedAdminAccountsOutput, table
+    -- Lists the filters associated with your account.
     listFilters: function(Client, types.ListFiltersInput): types.ListFiltersOutput, table
+    -- Lists aggregated finding data for your environment based on specific criteria.
     listFindingAggregations: function(Client, types.ListFindingAggregationsInput): types.ListFindingAggregationsOutput, table
+    -- Lists findings for your environment.
     listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    -- List members associated with the Amazon Inspector delegated administrator for your
+    -- organization.
     listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    -- Lists all tags attached to a given resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the Amazon Inspector usage totals over the last 30 days.
     listUsageTotals: function(Client, types.ListUsageTotalsInput): types.ListUsageTotalsOutput, table
+    -- Resets an encryption key. After the key is reset your resources will be encrypted by an
+    -- Amazon Web Services owned key.
     resetEncryptionKey: function(Client, types.ResetEncryptionKeyInput): types.ResetEncryptionKeyOutput, table
+    -- Lists Amazon Inspector coverage details for a specific vulnerability.
     searchVulnerabilities: function(Client, types.SearchVulnerabilitiesInput): types.SearchVulnerabilitiesOutput, table
+    -- Sends a CIS session health. This API is used by the Amazon Inspector SSM plugin to
+    -- communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls
+    -- this API to start a CIS scan session for the scan ID supplied by the service.
     sendCisSessionHealth: function(Client, types.SendCisSessionHealthInput): types.SendCisSessionHealthOutput, table
+    -- Sends a CIS session telemetry. This API is used by the Amazon Inspector SSM plugin to
+    -- communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls
+    -- this API to start a CIS scan session for the scan ID supplied by the service.
     sendCisSessionTelemetry: function(Client, types.SendCisSessionTelemetryInput): types.SendCisSessionTelemetryOutput, table
+    -- Starts a CIS session. This API is used by the Amazon Inspector SSM plugin to
+    -- communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls
+    -- this API to start a CIS scan session for the scan ID supplied by the service.
     startCisSession: function(Client, types.StartCisSessionInput): types.StartCisSessionOutput, table
+    -- Initiates a code security scan on a specified repository.
     startCodeSecurityScan: function(Client, types.StartCodeSecurityScanInput): types.StartCodeSecurityScanOutput, table
+    -- Stops a CIS session. This API is used by the Amazon Inspector SSM plugin to
+    -- communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls
+    -- this API to stop a CIS scan session for the scan ID supplied by the service.
     stopCisSession: function(Client, types.StopCisSessionInput): types.StopCisSessionOutput, table
+    -- Adds tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a CIS scan configuration.
     updateCisScanConfiguration: function(Client, types.UpdateCisScanConfigurationInput): types.UpdateCisScanConfigurationOutput, table
+    -- Updates an existing code security integration.
+    -- After calling the CreateCodeSecurityIntegration operation, you complete
+    -- authentication and authorization with your provider. Next you call the
+    -- UpdateCodeSecurityIntegration operation to provide the details
+    -- to complete the integration setup
     updateCodeSecurityIntegration: function(Client, types.UpdateCodeSecurityIntegrationInput): types.UpdateCodeSecurityIntegrationOutput, table
+    -- Updates an existing code security scan configuration.
     updateCodeSecurityScanConfiguration: function(Client, types.UpdateCodeSecurityScanConfigurationInput): types.UpdateCodeSecurityScanConfigurationOutput, table
+    -- Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector
+    -- delegated administrator this updates the setting for all accounts you manage. Member
+    -- accounts in an organization cannot update this setting.
     updateConfiguration: function(Client, types.UpdateConfigurationInput): types.UpdateConfigurationOutput, table
+    -- Activates, deactivates Amazon Inspector deep inspection, or updates custom paths for your account.
     updateEc2DeepInspectionConfiguration: function(Client, types.UpdateEc2DeepInspectionConfigurationInput): types.UpdateEc2DeepInspectionConfigurationOutput, table
+    -- Updates an encryption key. A ResourceNotFoundException means that an
+    -- Amazon Web Services owned key is being used for encryption.
     updateEncryptionKey: function(Client, types.UpdateEncryptionKeyInput): types.UpdateEncryptionKeyOutput, table
+    -- Specifies the action that is to be applied to the findings that match the filter.
     updateFilter: function(Client, types.UpdateFilterInput): types.UpdateFilterOutput, table
+    -- Updates the configurations for your Amazon Inspector organization.
     updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    -- Updates the Amazon Inspector deep inspection custom paths for your organization. You must be an
+    -- Amazon Inspector delegated administrator to use this API.
     updateOrgEc2DeepInspectionConfiguration: function(Client, types.UpdateOrgEc2DeepInspectionConfigurationInput): types.UpdateOrgEc2DeepInspectionConfigurationOutput, table
 end
 

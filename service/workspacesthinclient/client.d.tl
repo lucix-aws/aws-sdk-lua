@@ -3,21 +3,37 @@
 local types = require("workspacesthinclient.types")
 
 local record Client
+    -- Creates an environment for your thin client devices.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Deletes a thin client device.
     deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    -- Deletes an environment.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Deregisters a thin client device.
     deregisterDevice: function(Client, types.DeregisterDeviceInput): types.DeregisterDeviceOutput, table
+    -- Returns information for a thin client device.
     getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    -- Returns information for an environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Returns information for a software set.
     getSoftwareSet: function(Client, types.GetSoftwareSetInput): types.GetSoftwareSetOutput, table
+    -- Returns a list of thin client devices.
     listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    -- Returns a list of environments.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Returns a list of software sets.
     listSoftwareSets: function(Client, types.ListSoftwareSetsInput): types.ListSoftwareSetsOutput, table
+    -- Returns a list of tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Assigns one or more tags (key-value pairs) to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag or tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a thin client device.
     updateDevice: function(Client, types.UpdateDeviceInput): types.UpdateDeviceOutput, table
+    -- Updates an environment.
     updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    -- Updates a software set.
     updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput): types.UpdateSoftwareSetOutput, table
 end
 

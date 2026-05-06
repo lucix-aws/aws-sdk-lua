@@ -3,78 +3,238 @@
 local types = require("frauddetector.types")
 
 local record Client
+    -- Creates a batch of variables.
     batchCreateVariable: function(Client, types.BatchCreateVariableInput): types.BatchCreateVariableOutput, table
+    -- Gets a batch of variables.
     batchGetVariable: function(Client, types.BatchGetVariableInput): types.BatchGetVariableOutput, table
+    -- Cancels an in-progress batch import job.
     cancelBatchImportJob: function(Client, types.CancelBatchImportJobInput): types.CancelBatchImportJobOutput, table
+    -- Cancels the specified batch prediction job.
     cancelBatchPredictionJob: function(Client, types.CancelBatchPredictionJobInput): types.CancelBatchPredictionJobOutput, table
+    -- Creates a batch import job.
     createBatchImportJob: function(Client, types.CreateBatchImportJobInput): types.CreateBatchImportJobOutput, table
+    -- Creates a batch prediction job.
     createBatchPredictionJob: function(Client, types.CreateBatchPredictionJobInput): types.CreateBatchPredictionJobOutput, table
+    -- Creates a detector version. The detector version starts in a DRAFT status.
     createDetectorVersion: function(Client, types.CreateDetectorVersionInput): types.CreateDetectorVersionOutput, table
+    -- Creates a list.
+    -- List is a set of input data for a variable in your event dataset. You use the input data in a rule that's associated with your detector.
+    -- For more information, see Lists.
     createList: function(Client, types.CreateListInput): types.CreateListOutput, table
+    -- Creates a model using the specified model type.
     createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    -- Creates a version of the model using the specified model type and model id.
     createModelVersion: function(Client, types.CreateModelVersionInput): types.CreateModelVersionOutput, table
+    -- Creates a rule for use with the specified detector.
     createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    -- Creates a variable.
     createVariable: function(Client, types.CreateVariableInput): types.CreateVariableOutput, table
+    -- Deletes the specified batch import job ID record. This action does not delete the data that was batch imported.
     deleteBatchImportJob: function(Client, types.DeleteBatchImportJobInput): types.DeleteBatchImportJobOutput, table
+    -- Deletes a batch prediction job.
     deleteBatchPredictionJob: function(Client, types.DeleteBatchPredictionJobInput): types.DeleteBatchPredictionJobOutput, table
+    -- Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.
+    -- When you delete a detector, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.
     deleteDetector: function(Client, types.DeleteDetectorInput): types.DeleteDetectorOutput, table
+    -- Deletes the detector version. You cannot delete detector versions that are in ACTIVE status.
+    -- When you delete a detector version, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.
     deleteDetectorVersion: function(Client, types.DeleteDetectorVersionInput): types.DeleteDetectorVersionOutput, table
+    -- Deletes an entity type.
+    -- You cannot delete an entity type that is included in an event type.
+    -- When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.
     deleteEntityType: function(Client, types.DeleteEntityTypeInput): types.DeleteEntityTypeOutput, table
+    -- Deletes the specified event.
+    -- When you delete an event, Amazon Fraud Detector permanently deletes that event and the event data is no longer stored in Amazon Fraud Detector.
+    -- If deleteAuditHistory is True, event data is available through search for up to 30 seconds after the delete operation is completed.
     deleteEvent: function(Client, types.DeleteEventInput): types.DeleteEventOutput, table
+    -- Deletes all events of a particular event type.
     deleteEventsByEventType: function(Client, types.DeleteEventsByEventTypeInput): types.DeleteEventsByEventTypeOutput, table
+    -- Deletes an event type.
+    -- You cannot delete an event type that is used in a detector or a model.
+    -- When you delete an event type, Amazon Fraud Detector permanently deletes that event type and the data is no longer stored in Amazon Fraud Detector.
     deleteEventType: function(Client, types.DeleteEventTypeInput): types.DeleteEventTypeOutput, table
+    -- Removes a SageMaker model from Amazon Fraud Detector.
+    -- You can remove an Amazon SageMaker model if it is not associated with a detector version. Removing a SageMaker model disconnects it from Amazon Fraud Detector, but the model remains available in SageMaker.
     deleteExternalModel: function(Client, types.DeleteExternalModelInput): types.DeleteExternalModelOutput, table
+    -- Deletes a label.
+    -- You cannot delete labels that are included in an event type in Amazon Fraud Detector.
+    -- You cannot delete a label assigned to an event ID. You must first delete the relevant event ID.
+    -- When you delete a label, Amazon Fraud Detector permanently deletes that label and the data is no longer stored in Amazon Fraud Detector.
     deleteLabel: function(Client, types.DeleteLabelInput): types.DeleteLabelOutput, table
+    -- Deletes the list, provided it is not used in a rule.
+    -- When you delete a list, Amazon Fraud Detector permanently deletes that list and the elements in the list.
     deleteList: function(Client, types.DeleteListInput): types.DeleteListOutput, table
+    -- Deletes a model.
+    -- You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.
+    -- When you delete a model, Amazon Fraud Detector permanently deletes that model and the data is no longer stored in Amazon Fraud Detector.
     deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    -- Deletes a model version.
+    -- You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.
+    -- When you delete a model version, Amazon Fraud Detector permanently deletes that model version and the data is no longer stored in Amazon Fraud Detector.
     deleteModelVersion: function(Client, types.DeleteModelVersionInput): types.DeleteModelVersionOutput, table
+    -- Deletes an outcome.
+    -- You cannot delete an outcome that is used in a rule version.
+    -- When you delete an outcome, Amazon Fraud Detector permanently deletes that outcome and the data is no longer stored in Amazon Fraud Detector.
     deleteOutcome: function(Client, types.DeleteOutcomeInput): types.DeleteOutcomeOutput, table
+    -- Deletes the rule. You cannot delete a rule if it is used by an ACTIVE or INACTIVE detector version.
+    -- When you delete a rule, Amazon Fraud Detector permanently deletes that rule and the data is no longer stored in Amazon Fraud Detector.
     deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    -- Deletes a variable.
+    -- You can't delete variables that are included in an event type in Amazon Fraud Detector.
+    -- Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.
+    -- When you delete a variable, Amazon Fraud Detector permanently deletes that variable and the data is no longer stored in Amazon Fraud Detector.
     deleteVariable: function(Client, types.DeleteVariableInput): types.DeleteVariableOutput, table
+    -- Gets all versions for a specified detector.
     describeDetector: function(Client, types.DescribeDetectorInput): types.DescribeDetectorOutput, table
+    -- Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version.
     describeModelVersions: function(Client, types.DescribeModelVersionsInput): types.DescribeModelVersionsOutput, table
+    -- Gets all batch import jobs or a specific job of the specified ID. This is a paginated API. If you provide a null maxResults,
+    -- this action retrieves a maximum of 50 records per page. If you provide a maxResults, the value must be between 1 and 50.
+    -- To get the next page results, provide the pagination token from the GetBatchImportJobsResponse as part of your request.
+    -- A null pagination token fetches the records from the beginning.
     getBatchImportJobs: function(Client, types.GetBatchImportJobsInput): types.GetBatchImportJobsOutput, table
+    -- Gets all batch prediction jobs or a specific job if you specify a job ID. This is a paginated API. If you provide a null maxResults, this action retrieves a maximum of 50 records per page. If you provide a maxResults, the value must be between 1 and 50. To get the next page results, provide the pagination token from the GetBatchPredictionJobsResponse as part of your request. A null pagination token fetches the records from the beginning.
     getBatchPredictionJobs: function(Client, types.GetBatchPredictionJobsInput): types.GetBatchPredictionJobsOutput, table
+    -- Retrieves the status of a DeleteEventsByEventType action.
     getDeleteEventsByEventTypeStatus: function(Client, types.GetDeleteEventsByEventTypeStatusInput): types.GetDeleteEventsByEventTypeStatusOutput, table
+    -- Gets all detectors or a single detector if a detectorId is specified. This is a paginated API. If you
+    -- provide a null maxResults, this action retrieves a maximum of 10 records
+    -- per page. If you provide a maxResults, the value must be between 5 and 10.
+    -- To get the next page results, provide the pagination token from the
+    -- GetDetectorsResponse as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getDetectors: function(Client, types.GetDetectorsInput): types.GetDetectorsOutput, table
+    -- Gets a particular detector version.
     getDetectorVersion: function(Client, types.GetDetectorVersionInput): types.GetDetectorVersionOutput, table
+    -- Gets all entity types or a specific entity type if a name is specified. This is a paginated API. If you
+    -- provide a null maxResults, this action retrieves a maximum of 10 records
+    -- per page. If you provide a maxResults, the value must be between 5 and 10.
+    -- To get the next page results, provide the pagination token from the
+    -- GetEntityTypesResponse as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getEntityTypes: function(Client, types.GetEntityTypesInput): types.GetEntityTypesOutput, table
+    -- Retrieves details of events stored with Amazon Fraud Detector. This action does not retrieve prediction results.
     getEvent: function(Client, types.GetEventInput): types.GetEventOutput, table
+    -- Evaluates an event against a detector version. If a version ID is not provided, the detector’s (ACTIVE) version is used.
     getEventPrediction: function(Client, types.GetEventPredictionInput): types.GetEventPredictionOutput, table
+    -- Gets details of the past fraud predictions for the specified event ID, event type, detector ID, and detector version ID that was generated in the specified time period.
     getEventPredictionMetadata: function(Client, types.GetEventPredictionMetadataInput): types.GetEventPredictionMetadataOutput, table
+    -- Gets all event types or a specific event type if name is provided. This is a paginated API. If you
+    -- provide a null maxResults, this action retrieves a maximum of 10 records
+    -- per page. If you provide a maxResults, the value must be between 5 and 10.
+    -- To get the next page results, provide the pagination token from the
+    -- GetEventTypesResponse as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getEventTypes: function(Client, types.GetEventTypesInput): types.GetEventTypesOutput, table
+    -- Gets the details for one or more Amazon SageMaker models that have been imported into the
+    -- service. This is a paginated API. If you provide a null maxResults, this
+    -- actions retrieves a maximum of 10 records per page. If you provide a
+    -- maxResults, the value must be between 5 and 10. To get the next page
+    -- results, provide the pagination token from the GetExternalModelsResult as part
+    -- of your request. A null pagination token fetches the records from the beginning.
     getExternalModels: function(Client, types.GetExternalModelsInput): types.GetExternalModelsOutput, table
+    -- Gets the encryption key if a KMS key has been specified to be used to encrypt content in Amazon Fraud Detector.
     getKMSEncryptionKey: function(Client, types.GetKMSEncryptionKeyInput): types.GetKMSEncryptionKeyOutput, table
+    -- Gets all labels or a specific label if name is provided. This is a paginated API. If you
+    -- provide a null maxResults, this action retrieves a maximum of 50 records
+    -- per page. If you provide a maxResults, the value must be between 10 and 50.
+    -- To get the next page results, provide the pagination token from the
+    -- GetGetLabelsResponse as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getLabels: function(Client, types.GetLabelsInput): types.GetLabelsOutput, table
+    -- Gets all the elements in the specified list.
     getListElements: function(Client, types.GetListElementsInput): types.GetListElementsOutput, table
+    -- Gets the metadata of either all the lists under the account or the specified list.
     getListsMetadata: function(Client, types.GetListsMetadataInput): types.GetListsMetadataOutput, table
+    -- Gets one or more models. Gets all models for the Amazon Web Services account if no model type and no model id provided. Gets all models for the Amazon Web Services account and model type, if the model type is specified but model id is not provided. Gets a specific model if (model type, model id) tuple is specified.
+    -- This is a paginated API. If you
+    -- provide a null maxResults, this action retrieves a maximum of 10 records
+    -- per page. If you provide a maxResults, the value must be between 1 and 10.
+    -- To get the next page results, provide the pagination token from the
+    -- response as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getModels: function(Client, types.GetModelsInput): types.GetModelsOutput, table
+    -- Gets the details of the specified model version.
     getModelVersion: function(Client, types.GetModelVersionInput): types.GetModelVersionOutput, table
+    -- Gets one or more outcomes. This is a paginated
+    -- API. If you provide a null maxResults, this actions retrieves a maximum of
+    -- 100 records per page. If you provide a maxResults, the value must be
+    -- between 50 and 100. To get the next page results, provide the pagination token from the
+    -- GetOutcomesResult as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     getOutcomes: function(Client, types.GetOutcomesInput): types.GetOutcomesOutput, table
+    -- Get all rules for a detector (paginated) if ruleId and ruleVersion are not specified. Gets all rules for the detector and the ruleId if present (paginated). Gets a specific rule if both the ruleId and the ruleVersion are specified.
+    -- This is a paginated API. Providing null maxResults results in retrieving maximum of 100 records per page. If you provide maxResults the value must be between 50 and 100. To get the next page result, a provide a pagination token from GetRulesResult as part of your request. Null pagination token fetches the records from the beginning.
     getRules: function(Client, types.GetRulesInput): types.GetRulesOutput, table
+    -- Gets all of the variables or the specific variable. This is a
+    -- paginated API. Providing null maxSizePerPage results in retrieving maximum of
+    -- 100 records per page. If you provide maxSizePerPage the value must be between
+    -- 50 and 100. To get the next page result, a provide a pagination token from
+    -- GetVariablesResult as part of your request. Null pagination token
+    -- fetches the records from the beginning.
     getVariables: function(Client, types.GetVariablesInput): types.GetVariablesOutput, table
+    -- Gets a list of past predictions. The list can be filtered by detector ID, detector version ID, event ID, event type, or by specifying a time period.
+    -- If filter is not specified, the most recent prediction is returned.
+    -- For example, the following filter lists all past predictions for xyz event type -
+    -- {
+    -- "eventType":{
+    -- "value": "xyz" }”
+    -- }
+    -- This is a paginated API. If you provide a null maxResults, this action will retrieve a maximum of 10 records per page.
+    -- If you provide a maxResults, the value must be between 50 and 100. To get the next page results, provide
+    -- the nextToken from the response as part of your request. A null nextToken fetches the records from the beginning.
     listEventPredictions: function(Client, types.ListEventPredictionsInput): types.ListEventPredictionsOutput, table
+    -- Lists all tags associated with the resource. This is a paginated API. To get the next page results, provide the pagination token from the
+    -- response as part of your request. A null pagination token
+    -- fetches the records from the beginning.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates or updates a detector.
     putDetector: function(Client, types.PutDetectorInput): types.PutDetectorOutput, table
+    -- Creates or updates an entity type. An entity represents who is performing the event. As part of a fraud prediction, you pass the entity ID to indicate the specific entity who performed the event. An entity type classifies the entity. Example classifications include customer, merchant, or account.
     putEntityType: function(Client, types.PutEntityTypeInput): types.PutEntityTypeOutput, table
+    -- Creates or updates an event type. An event is a business activity that is evaluated for fraud risk. With Amazon Fraud Detector, you generate fraud predictions for events. An event type defines the structure for an event sent to Amazon Fraud Detector. This includes the variables sent as part of the event, the entity performing the event (such as a customer), and the labels that classify the event. Example event types include online payment transactions, account registrations, and authentications.
     putEventType: function(Client, types.PutEventTypeInput): types.PutEventTypeOutput, table
+    -- Creates or updates an Amazon SageMaker model endpoint. You can also use this action to update the configuration of the model endpoint, including the IAM role and/or the mapped variables.
     putExternalModel: function(Client, types.PutExternalModelInput): types.PutExternalModelOutput, table
+    -- Specifies the KMS key to be used to encrypt content in Amazon Fraud Detector.
     putKMSEncryptionKey: function(Client, types.PutKMSEncryptionKeyInput): types.PutKMSEncryptionKeyOutput, table
+    -- Creates or updates label. A label classifies an event as fraudulent or legitimate. Labels are associated with event types and used to train supervised machine learning models in Amazon Fraud Detector.
     putLabel: function(Client, types.PutLabelInput): types.PutLabelOutput, table
+    -- Creates or updates an outcome.
     putOutcome: function(Client, types.PutOutcomeInput): types.PutOutcomeOutput, table
+    -- Stores events in Amazon Fraud Detector without generating fraud predictions for those events. For example, you can use SendEvent to upload a historical dataset, which you can then later use to train a model.
     sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    -- Assigns tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a detector version. The detector version attributes that you can update include models, external model endpoints, rules, rule execution mode, and description. You can only update a DRAFT detector version.
     updateDetectorVersion: function(Client, types.UpdateDetectorVersionInput): types.UpdateDetectorVersionOutput, table
+    -- Updates the detector version's description. You can update the metadata for any detector version (DRAFT, ACTIVE, or
+    -- INACTIVE).
     updateDetectorVersionMetadata: function(Client, types.UpdateDetectorVersionMetadataInput): types.UpdateDetectorVersionMetadataOutput, table
+    -- Updates the detector version’s status. You can perform the following promotions or
+    -- demotions using UpdateDetectorVersionStatus: DRAFT to ACTIVE, ACTIVE to INACTIVE, and INACTIVE to ACTIVE.
     updateDetectorVersionStatus: function(Client, types.UpdateDetectorVersionStatusInput): types.UpdateDetectorVersionStatusOutput, table
+    -- Updates the specified event with a new label.
     updateEventLabel: function(Client, types.UpdateEventLabelInput): types.UpdateEventLabelOutput, table
+    -- Updates a list.
     updateList: function(Client, types.UpdateListInput): types.UpdateListOutput, table
+    -- Updates model description.
     updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    -- Updates a model version. Updating a model version retrains an existing model version using updated training data and produces a new minor version of the model. You can update the training data set location and data access role attributes using this action. This action creates and trains a new minor version of the model, for example version 1.01, 1.02, 1.03.
     updateModelVersion: function(Client, types.UpdateModelVersionInput): types.UpdateModelVersionOutput, table
+    -- Updates the status of a model version.
+    -- You can perform the following status updates:
+    -- Change the TRAINING_IN_PROGRESS status to TRAINING_CANCELLED.
+    -- Change the TRAINING_COMPLETE status to ACTIVE.
+    -- Change ACTIVE to INACTIVE.
     updateModelVersionStatus: function(Client, types.UpdateModelVersionStatusInput): types.UpdateModelVersionStatusOutput, table
+    -- Updates a rule's metadata. The description attribute can be updated.
     updateRuleMetadata: function(Client, types.UpdateRuleMetadataInput): types.UpdateRuleMetadataOutput, table
+    -- Updates a rule version resulting in a new rule version. Updates a rule version resulting in a new rule version (version 1, 2, 3 ...).
     updateRuleVersion: function(Client, types.UpdateRuleVersionInput): types.UpdateRuleVersionOutput, table
+    -- Updates a variable.
     updateVariable: function(Client, types.UpdateVariableInput): types.UpdateVariableOutput, table
 end
 

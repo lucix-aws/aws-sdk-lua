@@ -3,127 +3,1513 @@
 local types = require("cognitoidentityprovider.types")
 
 local record Client
+    -- Adds additional user attributes to the user pool schema. Custom attributes can be
+    -- mutable or immutable and have a custom: or dev: prefix. For
+    -- more information, see Custom attributes.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     addCustomAttributes: function(Client, types.AddCustomAttributesInput): types.AddCustomAttributesOutput, table
+    -- Creates a new client secret for an existing confidential user pool app client. Supports up to 2 active secrets per app client for zero-downtime credential rotation workflows.
     addUserPoolClientSecret: function(Client, types.AddUserPoolClientSecretInput): types.AddUserPoolClientSecretOutput, table
+    -- Adds a user to a group. A user who is in a group can present a preferred-role claim to
+    -- an identity pool, and populates a cognito:groups claim to their access and
+    -- identity tokens.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput): types.AdminAddUserToGroupOutput, table
+    -- Confirms user sign-up as an administrator.
+    -- This request sets a user account active in a user pool that requires confirmation of new user accounts before they can sign in. You can
+    -- configure your user pool to not send confirmation codes to new users and instead confirm
+    -- them with this API operation on the back end.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
+    -- To configure your user pool to require administrative confirmation of users, set
+    -- AllowAdminCreateUserOnly to true in a
+    -- CreateUserPool or UpdateUserPool request.
     adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput): types.AdminConfirmSignUpOutput, table
+    -- Creates a new user in the specified user pool.
+    -- If MessageAction isn't set, the default is to send a welcome message via
+    -- email or phone (SMS).
+    -- This message is based on a template that you configured in your call to create or
+    -- update a user pool. This template includes your custom sign-up instructions and
+    -- placeholders for user name and temporary password.
+    -- Alternatively, you can call AdminCreateUser with SUPPRESS
+    -- for the MessageAction parameter, and Amazon Cognito won't send any email.
+    -- In either case, if the user has a password, they will be in the
+    -- FORCE_CHANGE_PASSWORD state until they sign in and set their password.
+    -- Your invitation message template must have the {####} password placeholder
+    -- if your users have passwords. If your template doesn't have this placeholder, Amazon Cognito
+    -- doesn't deliver the invitation message. In this case, you must update your message
+    -- template and resend the password with a new AdminCreateUser request with a
+    -- MessageAction value of RESEND.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminCreateUser: function(Client, types.AdminCreateUserInput): types.AdminCreateUserOutput, table
+    -- Deletes a user profile in your user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminDeleteUser: function(Client, types.AdminDeleteUserInput): types.AdminDeleteUserOutput, table
+    -- Deletes attribute values from a user. This operation doesn't affect tokens for
+    -- existing user sessions. The next ID token that the user receives will no longer have the
+    -- deleted attributes.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput): types.AdminDeleteUserAttributesOutput, table
+    -- Prevents the user from signing in with the specified external (SAML or social)
+    -- identity provider (IdP). If the user that you want to deactivate is a Amazon Cognito user pools
+    -- native username + password user, they can't use their password to sign in. If the user
+    -- to deactivate is a linked external IdP user, any link between that user and an existing
+    -- user is removed. When the external user signs in again, and the user is no longer
+    -- attached to the previously linked DestinationUser, the user must create a
+    -- new user account.
+    -- The value of ProviderName must match the name of a user pool IdP.
+    -- To deactivate a local user, set ProviderName to Cognito and
+    -- the ProviderAttributeName to Cognito_Subject. The
+    -- ProviderAttributeValue must be user's local username.
+    -- The ProviderAttributeName must always be Cognito_Subject for
+    -- social IdPs. The ProviderAttributeValue must always be the exact subject
+    -- that was used when the user was originally linked as a source user.
+    -- For de-linking a SAML identity, there are two scenarios. If the linked identity has
+    -- not yet been used to sign in, the ProviderAttributeName and
+    -- ProviderAttributeValue must be the same values that were used for the
+    -- SourceUser when the identities were originally linked using
+    -- AdminLinkProviderForUser call. This is also true if the linking was done with
+    -- ProviderAttributeName set to Cognito_Subject. If the user
+    -- has already signed in, the ProviderAttributeName must be
+    -- Cognito_Subject and ProviderAttributeValue must be the
+    -- NameID from their SAML assertion.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput): types.AdminDisableProviderForUserOutput, table
+    -- Deactivates a user profile and revokes all access tokens for the user. A deactivated
+    -- user can't sign in, but still appears in the responses to ListUsers
+    -- API requests.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminDisableUser: function(Client, types.AdminDisableUserInput): types.AdminDisableUserOutput, table
+    -- Activates sign-in for a user profile that previously had sign-in access
+    -- disabled.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminEnableUser: function(Client, types.AdminEnableUserInput): types.AdminEnableUserOutput, table
+    -- Forgets, or deletes, a remembered device from a user's profile. After you forget
+    -- the device, the user can no longer complete device authentication with that device and
+    -- when applicable, must submit MFA codes again. For more information, see Working with devices.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminForgetDevice: function(Client, types.AdminForgetDeviceInput): types.AdminForgetDeviceOutput, table
+    -- Given the device key, returns details for a user's device. For more information,
+    -- see Working with devices.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminGetDevice: function(Client, types.AdminGetDeviceInput): types.AdminGetDeviceOutput, table
+    -- Given a username, returns details about a user profile in a user pool. You can specify
+    -- alias attributes in the Username request parameter.
+    -- This operation contributes to your monthly active user (MAU) count for the purpose of
+    -- billing.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminGetUser: function(Client, types.AdminGetUserInput): types.AdminGetUserOutput, table
+    -- Starts sign-in for applications with a server-side component, for example a
+    -- traditional web application. This operation specifies the authentication flow that
+    -- you'd like to begin. The authentication flow that you specify must be supported in
+    -- your app client configuration. For more information about authentication flows, see
+    -- Authentication flows.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminInitiateAuth: function(Client, types.AdminInitiateAuthInput): types.AdminInitiateAuthOutput, table
+    -- Links an existing user account in a user pool, or DestinationUser, to an
+    -- identity from an external IdP, or SourceUser, based on a specified
+    -- attribute name and value from the external IdP.
+    -- This operation connects a local user profile with a user identity who hasn't yet
+    -- signed in from their third-party IdP. When the user signs in with their IdP, they get
+    -- access-control configuration from the local user profile. Linked local users can also
+    -- sign in with SDK-based API operations like InitiateAuth after they sign in
+    -- at least once through their IdP. For more information, see Linking federated users.
+    -- The maximum number of federated identities linked to a user is five.
+    -- Because this API allows a user with an external federated identity to sign in as a
+    -- local user, it is critical that it only be used with external IdPs and linked
+    -- attributes that you trust.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput): types.AdminLinkProviderForUserOutput, table
+    -- Lists a user's registered devices. Remembered devices are used in authentication
+    -- services where you offer a "Remember me" option for users who you want to permit to sign
+    -- in without MFA from a trusted device. Users can bypass MFA while your application
+    -- performs device SRP authentication on the back end. For more information, see Working with devices.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminListDevices: function(Client, types.AdminListDevicesInput): types.AdminListDevicesOutput, table
+    -- Lists the groups that a user belongs to. User pool groups are identifiers that you can
+    -- reference from the contents of ID and access tokens, and set preferred IAM roles for
+    -- identity-pool authentication. For more information, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput): types.AdminListGroupsForUserOutput, table
+    -- Requests a history of user activity and any risks detected as part of Amazon Cognito threat
+    -- protection. For more information, see Viewing user event history.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput): types.AdminListUserAuthEventsOutput, table
+    -- Given a username and a group name, removes them from the group. User pool groups are
+    -- identifiers that you can reference from the contents of ID and access tokens, and set
+    -- preferred IAM roles for identity-pool authentication. For more information, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput): types.AdminRemoveUserFromGroupOutput, table
+    -- Begins the password reset process. Sets the requested user’s account into a
+    -- RESET_REQUIRED status, and sends them a password-reset code. Your user
+    -- pool also sends the user a notification with a reset code and the information that their
+    -- password has been reset. At sign-in, your application or the managed login session
+    -- receives a challenge to complete the reset by confirming the code and setting a new
+    -- password.
+    -- To use this API operation, your user pool must have self-service account recovery
+    -- configured.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput): types.AdminResetUserPasswordOutput, table
+    -- Some API operations in a user pool generate a challenge, like a prompt for an MFA
+    -- code, for device authentication that bypasses MFA, or for a custom authentication
+    -- challenge. An AdminRespondToAuthChallenge API request provides the answer
+    -- to that challenge, like a code or a secure remote password (SRP). The parameters of a
+    -- response to an authentication challenge vary with the type of challenge.
+    -- For more information about custom authentication challenges, see Custom
+    -- authentication challenge Lambda triggers.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput): types.AdminRespondToAuthChallengeOutput, table
+    -- Sets the user's multi-factor authentication (MFA) preference, including which MFA
+    -- options are activated, and if any are preferred. Only one factor can be set as
+    -- preferred. The preferred MFA factor will be used to authenticate a user if multiple
+    -- factors are activated. If multiple options are activated and no preference is set, a
+    -- challenge to choose an MFA option will be returned during sign-in.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput): types.AdminSetUserMFAPreferenceOutput, table
+    -- Sets the specified user's password in a user pool. This operation administratively
+    -- sets a temporary or permanent password for a user. With this operation, you can bypass
+    -- self-service password changes and permit immediate sign-in with the password that you
+    -- set. To do this, set Permanent to true.
+    -- You can also set a new temporary password in this request, send it to a user, and
+    -- require them to choose a new password on their next sign-in. To do this, set
+    -- Permanent to false.
+    -- If the password is temporary, the user's Status becomes
+    -- FORCE_CHANGE_PASSWORD. When the user next tries to sign in, the
+    -- InitiateAuth or AdminInitiateAuth response includes the
+    -- NEW_PASSWORD_REQUIRED challenge. If the user doesn't sign in
+    -- before the temporary password expires, they can no longer sign in and you must repeat
+    -- this operation to set a temporary or permanent password for them.
+    -- After the user sets a new password, or if you set a permanent password, their status
+    -- becomes Confirmed.
+    -- AdminSetUserPassword can set a password for the user profile that Amazon Cognito
+    -- creates for third-party federated users. When you set a password, the federated user's
+    -- status changes from EXTERNAL_PROVIDER to CONFIRMED. A user in
+    -- this state can sign in as a federated user, and initiate authentication flows in the API
+    -- like a linked native user. They can also modify their password and attributes in
+    -- token-authenticated API requests like ChangePassword and
+    -- UpdateUserAttributes. As a best security practice and to keep users in
+    -- sync with your external IdP, don't set passwords on federated user profiles. To set up a
+    -- federated user for native sign-in with a linked native user, refer to Linking federated users to an existing user
+    -- profile.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput): types.AdminSetUserPasswordOutput, table
+    -- This action is no longer supported. You can use it to configure
+    -- only SMS MFA. You can't use it to configure time-based one-time password (TOTP) software
+    -- token MFA.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput): types.AdminSetUserSettingsOutput, table
+    -- Provides the feedback for an authentication event generated by threat protection
+    -- features. Your response indicates that you think that the event either was from a valid
+    -- user or was an unwanted authentication attempt. This feedback improves the risk
+    -- evaluation decision for the user pool as part of Amazon Cognito threat protection.
+    -- To activate this setting, your user pool must be on the
+    -- Plus tier.
+    -- To train the threat-protection model to recognize trusted and untrusted sign-in
+    -- characteristics, configure threat protection in audit-only mode and provide a mechanism
+    -- for users or administrators to submit feedback. Your feedback can tell Amazon Cognito that a risk
+    -- rating was assigned at a level you don't agree with.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminUpdateAuthEventFeedback: function(Client, types.AdminUpdateAuthEventFeedbackInput): types.AdminUpdateAuthEventFeedbackOutput, table
+    -- Updates the status of a user's device so that it is marked as remembered or not
+    -- remembered for the purpose of device authentication. Device authentication is a
+    -- "remember me" mechanism that silently completes sign-in from trusted devices with a
+    -- device key instead of a user-provided MFA code. This operation changes the status of a
+    -- device without deleting it, so you can enable it again later. For more information about
+    -- device authentication, see Working with devices.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminUpdateDeviceStatus: function(Client, types.AdminUpdateDeviceStatusInput): types.AdminUpdateDeviceStatusOutput, table
+    -- Updates the specified user's attributes. To delete an attribute from your user,
+    -- submit the attribute in your API request with a blank value.
+    -- For custom attributes, you must add a custom: prefix to the attribute
+    -- name, for example custom:department.
+    -- This operation can set a user's email address or phone number as verified and
+    -- permit immediate sign-in in user pools that require verification of these attributes. To
+    -- do this, set the email_verified or phone_number_verified
+    -- attribute to true.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     adminUpdateUserAttributes: function(Client, types.AdminUpdateUserAttributesInput): types.AdminUpdateUserAttributesOutput, table
+    -- Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call
+    -- this operation with your administrative credentials when your user signs out of your
+    -- app. This results in the following behavior.
+    -- Amazon Cognito no longer accepts token-authorized user operations
+    -- that you authorize with a signed-out user's access tokens. For more information,
+    -- see Using the Amazon Cognito user pools API and user pool
+    -- endpoints.
+    -- Amazon Cognito returns an Access Token has been revoked error when your
+    -- app attempts to authorize a user pools API request with a revoked access token
+    -- that contains the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito no longer accepts a signed-out user's ID token in a GetId request to an identity pool with
+    -- ServerSideTokenCheck enabled for its user pool IdP
+    -- configuration in CognitoIdentityProvider.
+    -- Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh
+    -- requests.
+    -- Other requests might be valid until your user's token expires. This operation
+    -- doesn't clear the managed login session cookie. To clear the session for
+    -- a user who signed in with managed login or the classic hosted UI, direct their browser
+    -- session to the logout endpoint.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     adminUserGlobalSignOut: function(Client, types.AdminUserGlobalSignOutInput): types.AdminUserGlobalSignOutOutput, table
+    -- Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA)
+    -- for a user, with a unique private key that Amazon Cognito generates and returns in the API
+    -- response. You can authorize an AssociateSoftwareToken request with either
+    -- the user's access token, or a session string from a challenge response that you received
+    -- from Amazon Cognito.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
     associateSoftwareToken: function(Client, types.AssociateSoftwareTokenInput): types.AssociateSoftwareTokenOutput, table
+    -- Changes the password for the currently signed-in user.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     changePassword: function(Client, types.ChangePasswordInput): types.ChangePasswordOutput, table
+    -- Completes registration of a passkey authenticator for the currently signed-in
+    -- user.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
     completeWebAuthnRegistration: function(Client, types.CompleteWebAuthnRegistrationInput): types.CompleteWebAuthnRegistrationOutput, table
+    -- Confirms a device that a user wants to remember. A remembered device is a "Remember me
+    -- on this device" option for user pools that perform authentication with the device key of
+    -- a trusted device in the back end, instead of a user-provided MFA code. For more
+    -- information about device authentication, see Working with user devices in your user pool.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     confirmDevice: function(Client, types.ConfirmDeviceInput): types.ConfirmDeviceOutput, table
+    -- This public API operation accepts a confirmation code that Amazon Cognito sent to a user and
+    -- accepts a new password for that user.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     confirmForgotPassword: function(Client, types.ConfirmForgotPasswordInput): types.ConfirmForgotPasswordOutput, table
+    -- Confirms the account of a new user. This public API operation submits a code that
+    -- Amazon Cognito sent to your user when they signed up in your user pool. After your user enters
+    -- their code, they confirm ownership of the email address or phone number that they
+    -- provided, and their user account becomes active. Depending on your user pool
+    -- configuration, your users will receive their confirmation code in an email or SMS
+    -- message.
+    -- Local users who signed up in your user pool are the only type of user who can confirm
+    -- sign-up with a code. Users who federate through an external identity provider (IdP) have
+    -- already been confirmed by their IdP.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     confirmSignUp: function(Client, types.ConfirmSignUpInput): types.ConfirmSignUpOutput, table
+    -- Creates a new group in the specified user pool. For more information about user pool
+    -- groups, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    -- Adds a configuration and trust relationship between a third-party identity provider
+    -- (IdP) and a user pool. Amazon Cognito accepts sign-in with third-party identity providers through
+    -- managed login and OIDC relying-party libraries. For more information, see Third-party IdP sign-in.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createIdentityProvider: function(Client, types.CreateIdentityProviderInput): types.CreateIdentityProviderOutput, table
+    -- Creates a new set of branding settings for a user pool style and associates it with an
+    -- app client. This operation is the programmatic option for the creation of a new style in
+    -- the branding editor.
+    -- Provides values for UI customization in a Settings JSON object and image
+    -- files in an Assets array. To send the JSON object Document
+    -- type parameter in Settings, you might need to update to the most recent
+    -- version of your Amazon Web Services SDK. To create a new style with default settings, set
+    -- UseCognitoProvidedValues to true and don't provide
+    -- values for any other options.
+    -- This operation has a 2-megabyte request-size limit and include the CSS settings and
+    -- image assets for your app client. Your branding settings might exceed 2MB in size. Amazon Cognito
+    -- doesn't require that you pass all parameters in one request and preserves existing
+    -- style settings that you don't specify. If your request is larger than 2MB, separate it
+    -- into multiple requests, each with a size smaller than the limit.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createManagedLoginBranding: function(Client, types.CreateManagedLoginBrandingInput): types.CreateManagedLoginBrandingOutput, table
+    -- Creates a new OAuth2.0 resource server and defines custom scopes within it. Resource
+    -- servers are associated with custom scopes and machine-to-machine (M2M) authorization.
+    -- For more information, see Access control with resource servers.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createResourceServer: function(Client, types.CreateResourceServerInput): types.CreateResourceServerOutput, table
+    -- Creates terms documents for the requested app client. When Terms and conditions and
+    -- Privacy policy documents are configured, the app client displays links to them in the
+    -- sign-up page of managed login for the app client.
+    -- You can provide URLs for terms documents in the languages that are supported by managed login localization. Amazon Cognito directs users to the terms documents for
+    -- their current language, with fallback to default if no document exists for
+    -- the language.
+    -- Each request accepts one type of terms document and a map of language-to-link for that
+    -- document type. You must provide both types of terms documents in at least one language
+    -- before Amazon Cognito displays your terms documents. Supply each type in separate
+    -- requests.
+    -- For more information, see Terms documents.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createTerms: function(Client, types.CreateTermsInput): types.CreateTermsOutput, table
+    -- Creates a user import job. You can import users into user pools from a comma-separated
+    -- values (CSV) file without adding Amazon Cognito MAU costs to your Amazon Web Services bill.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createUserImportJob: function(Client, types.CreateUserImportJobInput): types.CreateUserImportJobOutput, table
+    -- Creates a new Amazon Cognito user pool. This operation sets basic and advanced configuration
+    -- options.
+    -- If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createUserPool: function(Client, types.CreateUserPoolInput): types.CreateUserPoolOutput, table
+    -- Creates an app client in a user pool. This operation sets basic and advanced
+    -- configuration options.
+    -- Unlike app clients created in the console, Amazon Cognito doesn't automatically assign a
+    -- branding style to app clients that you configure with this API operation. Managed login and classic hosted UI pages aren't
+    -- available for your client until after you apply a branding style.
+    -- If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createUserPoolClient: function(Client, types.CreateUserPoolClientInput): types.CreateUserPoolClientOutput, table
+    -- A user pool domain hosts managed login, an authorization server and web server for
+    -- authentication in your application. This operation creates a new user pool prefix domain
+    -- or custom domain and sets the managed login branding version. Set the branding version
+    -- to 1 for hosted UI (classic) or 2 for managed login. When you
+    -- choose a custom domain, you must provide an SSL certificate in the US East (N. Virginia)
+    -- Amazon Web Services Region in your request.
+    -- Your prefix domain might take up to one minute to take effect. Your custom domain is
+    -- online within five minutes, but it can take up to one hour to distribute your SSL
+    -- certificate.
+    -- For more information about adding a custom domain to your user pool, see Configuring a user pool domain.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput): types.CreateUserPoolDomainOutput, table
+    -- Deletes a group from the specified user pool. When you delete a group, that group no
+    -- longer contributes to users' cognito:preferred_group or
+    -- cognito:groups claims, and no longer influence access-control decision
+    -- that are based on group membership. For more information about user pool groups, see
+    -- Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    -- Deletes a user pool identity provider (IdP). After you delete an IdP, users can no
+    -- longer sign in to your user pool through that IdP. For more information about user pool
+    -- IdPs, see Third-party IdP sign-in.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput): types.DeleteIdentityProviderOutput, table
+    -- Deletes a managed login branding style. When you delete a style, you delete the
+    -- branding association for an app client. When an app client doesn't have a style
+    -- assigned, your managed login pages for that app client are nonfunctional until you
+    -- create a new style or switch the domain branding version.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput): types.DeleteManagedLoginBrandingOutput, table
+    -- Deletes a resource server. After you delete a resource server, users can no longer
+    -- generate access tokens with scopes that are associate with that resource server.
+    -- Resource servers are associated with custom scopes and machine-to-machine (M2M)
+    -- authorization. For more information, see Access control with resource servers.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     deleteResourceServer: function(Client, types.DeleteResourceServerInput): types.DeleteResourceServerOutput, table
+    -- Deletes the terms documents with the requested ID from your app client.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     deleteTerms: function(Client, types.DeleteTermsInput): types.DeleteTermsOutput, table
+    -- Deletes the profile of the currently signed-in user. A deleted user profile can no
+    -- longer be used to sign in and can't be restored.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Deletes attributes from the currently signed-in user. For example, your application
+    -- can submit a request to this operation when a user wants to remove their
+    -- birthdate attribute value.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     deleteUserAttributes: function(Client, types.DeleteUserAttributesInput): types.DeleteUserAttributesOutput, table
+    -- Deletes a user pool. After you delete a user pool, users can no longer sign in to any
+    -- associated applications.
+    -- When you delete a user pool, it's no longer visible or operational in your Amazon Web Services account. Amazon Cognito retains deleted user pools in an inactive state for 14
+    -- days, then begins a cleanup process that fully removes them from Amazon Web Services systems. In case
+    -- of accidental deletion, contact Amazon Web Services Support within 14 days for restoration
+    -- assistance.
+    -- Amazon Cognito begins full deletion of all resources from deleted user pools after 14 days. In
+    -- the case of large user pools, the cleanup process might take significant additional time
+    -- before all user data is permanently deleted.
     deleteUserPool: function(Client, types.DeleteUserPoolInput): types.DeleteUserPoolOutput, table
+    -- Deletes a user pool app client. After you delete an app client, users can no longer
+    -- sign in to the associated application.
     deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput): types.DeleteUserPoolClientOutput, table
+    -- Deletes a specific client secret from a user pool app client. You cannot delete the last remaining secret for an app client.
     deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput): types.DeleteUserPoolClientSecretOutput, table
+    -- Given a user pool ID and domain identifier, deletes a user pool domain. After you
+    -- delete a user pool domain, your managed login pages and authorization server are no
+    -- longer available.
     deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput): types.DeleteUserPoolDomainOutput, table
+    -- Deletes a registered passkey, or WebAuthn, authenticator for the currently signed-in
+    -- user.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput): types.DeleteWebAuthnCredentialOutput, table
+    -- Given a user pool ID and identity provider (IdP) name, returns details about the
+    -- IdP.
     describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput): types.DescribeIdentityProviderOutput, table
+    -- Given the ID of a managed login branding style, returns detailed information about the
+    -- style.
     describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput): types.DescribeManagedLoginBrandingOutput, table
+    -- Given the ID of a user pool app client, returns detailed information about the style
+    -- assigned to the app client.
     describeManagedLoginBrandingByClient: function(Client, types.DescribeManagedLoginBrandingByClientInput): types.DescribeManagedLoginBrandingByClientOutput, table
+    -- Describes a resource server. For more information about resource servers, see Access control with resource servers.
     describeResourceServer: function(Client, types.DescribeResourceServerInput): types.DescribeResourceServerOutput, table
+    -- Given an app client or user pool ID where threat protection is configured, describes
+    -- the risk configuration. This operation returns details about adaptive authentication,
+    -- compromised credentials, and IP-address allow- and denylists. For more information about
+    -- threat protection, see Threat protection.
     describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput): types.DescribeRiskConfigurationOutput, table
+    -- Returns details for the requested terms documents ID. For more information, see Terms documents.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     describeTerms: function(Client, types.DescribeTermsInput): types.DescribeTermsOutput, table
+    -- Describes a user import job. For more information about user CSV import, see Importing users from a CSV file.
     describeUserImportJob: function(Client, types.DescribeUserImportJobInput): types.DescribeUserImportJobOutput, table
+    -- Given a user pool ID, returns configuration information. This operation is useful when
+    -- you want to inspect an existing user pool and programmatically replicate the
+    -- configuration to another user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     describeUserPool: function(Client, types.DescribeUserPoolInput): types.DescribeUserPoolOutput, table
+    -- Given an app client ID, returns configuration information. This operation is useful
+    -- when you want to inspect an existing app client and programmatically replicate the
+    -- configuration to another app client. For more information about app clients, see App clients.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput): types.DescribeUserPoolClientOutput, table
+    -- Given a user pool domain name, returns information about the domain
+    -- configuration.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput): types.DescribeUserPoolDomainOutput, table
+    -- Given a device key, deletes a remembered device as the currently signed-in user. For
+    -- more information about device authentication, see Working with user devices in your user pool.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     forgetDevice: function(Client, types.ForgetDeviceInput): types.ForgetDeviceOutput, table
+    -- Sends a password-reset confirmation code to the email address or phone number of the
+    -- requested username. The message delivery method is determined by the user's
+    -- available attributes and the AccountRecoverySetting configuration of the
+    -- user pool.
+    -- For the Username parameter, you can use the username or an email, phone,
+    -- or preferred username alias.
+    -- If neither a verified phone number nor a verified email exists, Amazon Cognito responds with an
+    -- InvalidParameterException error . If your app client has a client
+    -- secret and you don't provide a SECRET_HASH parameter, this API returns
+    -- NotAuthorizedException.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     forgotPassword: function(Client, types.ForgotPasswordInput): types.ForgotPasswordOutput, table
+    -- Given a user pool ID, generates a comma-separated value (CSV) list populated with
+    -- available user attributes in the user pool. This list is the header for the CSV file
+    -- that determines the users in a user import job. Save the content of
+    -- CSVHeader in the response as a .csv file and populate it
+    -- with the usernames and attributes of users that you want to import. For more information
+    -- about CSV user import, see Importing users from a CSV file.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     getCSVHeader: function(Client, types.GetCSVHeaderInput): types.GetCSVHeaderOutput, table
+    -- Given a device key, returns information about a remembered device for the current
+    -- user. For more information about device authentication, see Working with user devices in your user pool.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    -- Given a user pool ID and a group name, returns information about the user
+    -- group.
+    -- For more information about user pool groups, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    -- Given the identifier of an identity provider (IdP), for example
+    -- examplecorp, returns information about the user pool configuration for
+    -- that IdP. For more information about IdPs, see Third-party IdP sign-in.
     getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput): types.GetIdentityProviderByIdentifierOutput, table
+    -- Given a user pool ID, returns the logging configuration. User pools can export
+    -- message-delivery error and threat-protection activity logs to external Amazon Web Services services. For more information, see Exporting user pool logs.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput): types.GetLogDeliveryConfigurationOutput, table
+    -- Given a user pool ID, returns the signing certificate for SAML 2.0 federation.
+    -- Issued certificates are valid for 10 years from the date of issue. Amazon Cognito issues and
+    -- assigns a new signing certificate annually. This renewal process returns a new value in
+    -- the response to GetSigningCertificate, but doesn't invalidate the original
+    -- certificate.
+    -- For more information, see Signing SAML requests.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     getSigningCertificate: function(Client, types.GetSigningCertificateInput): types.GetSigningCertificateOutput, table
+    -- Given a refresh token, issues new ID, access, and optionally refresh tokens for the
+    -- user who owns the submitted token. This operation issues a new refresh token and
+    -- invalidates the original refresh token after an optional grace period when refresh token
+    -- rotation is enabled. If refresh token rotation is disabled, issues new ID and access
+    -- tokens only.
     getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput): types.GetTokensFromRefreshTokenOutput, table
+    -- Given a user pool ID or app client, returns information about classic hosted UI
+    -- branding that you applied, if any. Returns user-pool level branding information if no
+    -- app client branding is applied, or if you don't specify an app client ID. Returns
+    -- an empty object if you haven't applied hosted UI branding to either the client or
+    -- the user pool. For more information, see Hosted UI (classic) branding.
     getUICustomization: function(Client, types.GetUICustomizationInput): types.GetUICustomizationOutput, table
+    -- Gets user attributes and and MFA settings for the currently signed-in user.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    -- Given an attribute name, sends a user attribute verification code for the specified
+    -- attribute name to the currently signed-in user.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput): types.GetUserAttributeVerificationCodeOutput, table
+    -- Lists the authentication options for the currently signed-in user. Returns the
+    -- following:
+    -- The user's multi-factor authentication (MFA) preferences.
+    -- The user's options for choice-based authentication with the
+    -- USER_AUTH flow.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput): types.GetUserAuthFactorsOutput, table
+    -- Given a user pool ID, returns configuration for sign-in with WebAuthn authenticators
+    -- and for multi-factor authentication (MFA). This operation describes the
+    -- following:
+    -- The WebAuthn relying party (RP) ID and user-verification settings.
+    -- The required, optional, or disabled state of MFA for all user pool
+    -- users.
+    -- The message templates for email and SMS MFA.
+    -- The enabled or disabled state of time-based one-time password (TOTP)
+    -- MFA.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput): types.GetUserPoolMfaConfigOutput, table
+    -- Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call
+    -- this operation when your user signs out of your app. This results in the following
+    -- behavior.
+    -- Amazon Cognito no longer accepts token-authorized user operations
+    -- that you authorize with a signed-out user's access tokens. For more information,
+    -- see Using the Amazon Cognito user pools API and user pool
+    -- endpoints.
+    -- Amazon Cognito returns an Access Token has been revoked error when your
+    -- app attempts to authorize a user pools API request with a revoked access token
+    -- that contains the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito no longer accepts a signed-out user's ID token in a GetId request to an identity pool with
+    -- ServerSideTokenCheck enabled for its user pool IdP
+    -- configuration in CognitoIdentityProvider.
+    -- Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh
+    -- requests.
+    -- Other requests might be valid until your user's token expires. This operation
+    -- doesn't clear the managed login session cookie. To clear the session for
+    -- a user who signed in with managed login or the classic hosted UI, direct their browser
+    -- session to the logout endpoint.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     globalSignOut: function(Client, types.GlobalSignOutInput): types.GlobalSignOutOutput, table
+    -- Declares an authentication flow and initiates sign-in for a user in the Amazon Cognito user
+    -- directory. Amazon Cognito might respond with an additional challenge or an
+    -- AuthenticationResult that contains the outcome of a successful
+    -- authentication. You can't sign in a user with a federated IdP with
+    -- InitiateAuth. For more information, see Authentication.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     initiateAuth: function(Client, types.InitiateAuthInput): types.InitiateAuthOutput, table
+    -- Lists the devices that Amazon Cognito has registered to the currently signed-in user. For more
+    -- information about device authentication, see Working with user devices in your user pool.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    -- Given a user pool ID, returns user pool groups and their details.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    -- Given a user pool ID, returns information about configured identity providers (IdPs).
+    -- For more information about IdPs, see Third-party IdP sign-in.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listIdentityProviders: function(Client, types.ListIdentityProvidersInput): types.ListIdentityProvidersOutput, table
+    -- Given a user pool ID, returns all resource servers and their details. For more
+    -- information about resource servers, see Access control with resource servers.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listResourceServers: function(Client, types.ListResourceServersInput): types.ListResourceServersOutput, table
+    -- Lists the tags that are assigned to an Amazon Cognito user pool. For more information, see
+    -- Tagging
+    -- resources.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns details about all terms documents for the requested user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listTerms: function(Client, types.ListTermsInput): types.ListTermsOutput, table
+    -- Given a user pool ID, returns user import jobs and their details. Import jobs are
+    -- retained in user pool configuration so that you can stage, stop, start, review, and
+    -- delete them. For more information about user import, see Importing users from a CSV file.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listUserImportJobs: function(Client, types.ListUserImportJobsInput): types.ListUserImportJobsOutput, table
+    -- Given a user pool ID, lists app clients. App clients are sets of rules for the access
+    -- that you want a user pool to grant to one application. For more information, see App clients.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listUserPoolClients: function(Client, types.ListUserPoolClientsInput): types.ListUserPoolClientsOutput, table
+    -- Lists all client secrets associated with a user pool app client. Returns metadata about the secrets. The response does not include pagination tokens as there are only 2 secrets at any given time and we return both with every ListUserPoolClientSecrets call. For security reasons, the response never reveals the actual secret value in ClientSecretValue.
     listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput): types.ListUserPoolClientSecretsOutput, table
+    -- Lists user pools and their details in the current Amazon Web Services account.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listUserPools: function(Client, types.ListUserPoolsInput): types.ListUserPoolsOutput, table
+    -- Given a user pool ID, returns a list of users and their basic details in a user
+    -- pool.
+    -- This operation is eventually consistent. You might experience a delay before results
+    -- are up-to-date. To validate the existence or configuration of an individual user, use
+    -- AdminGetUser.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    -- Given a user pool ID and a group name, returns a list of users in the group. For more
+    -- information about user pool groups, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     listUsersInGroup: function(Client, types.ListUsersInGroupInput): types.ListUsersInGroupOutput, table
+    -- Generates a list of the currently signed-in user's registered passkey, or
+    -- WebAuthn, credentials.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput): types.ListWebAuthnCredentialsOutput, table
+    -- Resends the code that confirms a new account for a user who has signed up in your user
+    -- pool. Amazon Cognito sends confirmation codes to the user attribute in the
+    -- AutoVerifiedAttributes property of your user pool. When you prompt new
+    -- users for the confirmation code, include a "Resend code" option that generates a call to
+    -- this API operation.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput): types.ResendConfirmationCodeOutput, table
+    -- Some API operations in a user pool generate a challenge, like a prompt for an MFA
+    -- code, for device authentication that bypasses MFA, or for a custom authentication
+    -- challenge. A RespondToAuthChallenge API request provides the answer to that
+    -- challenge, like a code or a secure remote password (SRP). The parameters of a response
+    -- to an authentication challenge vary with the type of challenge.
+    -- For more information about custom authentication challenges, see Custom
+    -- authentication challenge Lambda triggers.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput): types.RespondToAuthChallengeOutput, table
+    -- Revokes all of the access tokens generated by, and at the same time as, the specified
+    -- refresh token. After a token is revoked, you can't use the revoked token to access Amazon Cognito
+    -- user APIs, or to authorize access to your resource server.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     revokeToken: function(Client, types.RevokeTokenInput): types.RevokeTokenOutput, table
+    -- Sets up or modifies the logging configuration of a user pool. User pools can export
+    -- user notification logs and, when threat protection is active, user-activity logs. For
+    -- more information, see Exporting user
+    -- pool logs.
     setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput): types.SetLogDeliveryConfigurationOutput, table
+    -- Configures threat protection for a user pool or app client. Sets configuration for the
+    -- following.
+    -- Responses to risks with adaptive authentication
+    -- Responses to vulnerable passwords with compromised-credentials
+    -- detection
+    -- Notifications to users who have had risky activity detected
+    -- IP-address denylist and allowlist
+    -- To set the risk configuration for the user pool to defaults, send this request with
+    -- only the UserPoolId parameter. To reset the threat protection settings of
+    -- an app client to be inherited from the user pool, send UserPoolId and
+    -- ClientId parameters only. To change threat protection to audit-only or
+    -- off, update the value of UserPoolAddOns in an UpdateUserPool
+    -- request. To activate this setting, your user pool must be on the
+    -- Plus tier.
     setRiskConfiguration: function(Client, types.SetRiskConfigurationInput): types.SetRiskConfigurationOutput, table
+    -- Configures UI branding settings for domains with the hosted UI (classic) branding
+    -- version. Your user pool must have a domain. Configure a domain with .
+    -- Set the default configuration for all clients with a ClientId of
+    -- ALL. When the ClientId value is an app client ID, the
+    -- settings you pass in this request apply to that app client and override the default
+    -- ALL configuration.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     setUICustomization: function(Client, types.SetUICustomizationInput): types.SetUICustomizationOutput, table
+    -- Set the user's multi-factor authentication (MFA) method preference, including which
+    -- MFA factors are activated and if any are preferred. Only one factor can be set as
+    -- preferred. The preferred MFA factor will be used to authenticate a user if multiple
+    -- factors are activated. If multiple options are activated and no preference is set, a
+    -- challenge to choose an MFA option will be returned during sign-in. If an MFA type is
+    -- activated for a user, the user will be prompted for MFA during all sign-in attempts
+    -- unless device tracking is turned on and the device has been trusted. If you want MFA to
+    -- be applied selectively based on the assessed risk level of sign-in attempts, deactivate
+    -- MFA for users and turn on Adaptive Authentication for the user pool.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput): types.SetUserMFAPreferenceOutput, table
+    -- Sets user pool multi-factor authentication (MFA) and passkey configuration. For more
+    -- information about user pool MFA, see Adding MFA. For more information about WebAuthn passkeys see Authentication flows.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput): types.SetUserPoolMfaConfigOutput, table
+    -- This action is no longer supported. You can use it to configure
+    -- only SMS MFA. You can't use it to configure time-based one-time password (TOTP) software
+    -- token or email MFA.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     setUserSettings: function(Client, types.SetUserSettingsInput): types.SetUserSettingsOutput, table
+    -- Registers a user with an app client and requests a user name, password, and user
+    -- attributes in the user pool.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- You might receive a LimitExceeded exception in response to this request
+    -- if you have exceeded a rate quota for email or SMS messages, and if your user pool
+    -- automatically verifies email addresses or phone numbers. When you get this exception in
+    -- the response, the user is successfully created and is in an UNCONFIRMED
+    -- state.
     signUp: function(Client, types.SignUpInput): types.SignUpOutput, table
+    -- Instructs your user pool to start importing users from a CSV file that contains their
+    -- usernames and attributes. For more information about importing users from a CSV file,
+    -- see Importing users from a CSV file.
     startUserImportJob: function(Client, types.StartUserImportJobInput): types.StartUserImportJobOutput, table
+    -- Requests credential creation options from your user pool for the currently signed-in
+    -- user. Returns information about the user pool, the user profile, and authentication
+    -- requirements. Users must provide this information in their request to enroll your
+    -- application with their passkey provider.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
     startWebAuthnRegistration: function(Client, types.StartWebAuthnRegistrationInput): types.StartWebAuthnRegistrationOutput, table
+    -- Instructs your user pool to stop a running job that's importing users from a CSV
+    -- file that contains their usernames and attributes. For more information about importing
+    -- users from a CSV file, see Importing users from a CSV file.
     stopUserImportJob: function(Client, types.StopUserImportJobInput): types.StopUserImportJobOutput, table
+    -- Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to
+    -- categorize and manage user pools in different ways, such as by purpose, owner,
+    -- environment, or other criteria.
+    -- Each tag consists of a key and value, both of which you define. A key is a general
+    -- category for more specific values. For example, if you have two versions of a user pool,
+    -- one for testing and another for production, you might assign an Environment
+    -- tag key to both user pools. The value of this key might be Test for one
+    -- user pool, and Production for the other.
+    -- Tags are useful for cost tracking and access control. You can activate your tags so
+    -- that they appear on the Billing and Cost Management console, where you can track the
+    -- costs associated with your user pools. In an Identity and Access Management policy, you can constrain
+    -- permissions for user pools based on specific tags or tag values.
+    -- You can use this action up to 5 times per second, per account. A user pool can have as
+    -- many as 50 tags.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Given tag IDs that you previously assigned to a user pool, removes them.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Provides the feedback for an authentication event generated by threat protection
+    -- features. The user's response indicates that you think that the event either was from a
+    -- valid user or was an unwanted authentication attempt. This feedback improves the risk
+    -- evaluation decision for the user pool as part of Amazon Cognito threat protection.
+    -- To activate this setting, your user pool must be on the
+    -- Plus tier.
+    -- This operation requires a FeedbackToken that Amazon Cognito generates and adds to
+    -- notification emails when users have potentially suspicious authentication events. Users
+    -- invoke this operation when they select the link that corresponds to
+    -- {one-click-link-valid} or {one-click-link-invalid} in your
+    -- notification template. Because FeedbackToken is a required parameter, you
+    -- can't make requests to UpdateAuthEventFeedback without the contents of
+    -- the notification email message.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     updateAuthEventFeedback: function(Client, types.UpdateAuthEventFeedbackInput): types.UpdateAuthEventFeedbackOutput, table
+    -- Updates the status of a the currently signed-in user's device so that it is
+    -- marked as remembered or not remembered for the purpose of device authentication. Device
+    -- authentication is a "remember me" mechanism that silently completes sign-in from trusted
+    -- devices with a device key instead of a user-provided MFA code. This operation changes
+    -- the status of a device without deleting it, so you can enable it again later. For more
+    -- information about device authentication, see Working with devices.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     updateDeviceStatus: function(Client, types.UpdateDeviceStatusInput): types.UpdateDeviceStatusOutput, table
+    -- Given the name of a user pool group, updates any of the properties for precedence,
+    -- IAM role, or description. For more information about user pool groups, see Adding groups to a user pool.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    -- Modifies the configuration and trust relationship between a third-party identity
+    -- provider (IdP) and a user pool. Amazon Cognito accepts sign-in with third-party identity
+    -- providers through managed login and OIDC relying-party libraries. For more information,
+    -- see Third-party IdP sign-in.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput): types.UpdateIdentityProviderOutput, table
+    -- Configures the branding settings for a user pool style. This operation is the
+    -- programmatic option for the configuration of a style in the branding editor.
+    -- Provides values for UI customization in a Settings JSON object and image
+    -- files in an Assets array.
+    -- This operation has a 2-megabyte request-size limit and include the CSS settings and
+    -- image assets for your app client. Your branding settings might exceed 2MB in size. Amazon Cognito
+    -- doesn't require that you pass all parameters in one request and preserves existing
+    -- style settings that you don't specify. If your request is larger than 2MB, separate it
+    -- into multiple requests, each with a size smaller than the limit.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput): types.UpdateManagedLoginBrandingOutput, table
+    -- Updates the name and scopes of a resource server. All other fields are read-only. For
+    -- more information about resource servers, see Access control with resource servers.
+    -- If you don't provide a value for an attribute, it is set to the default
+    -- value.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateResourceServer: function(Client, types.UpdateResourceServerInput): types.UpdateResourceServerOutput, table
+    -- Modifies existing terms documents for the requested app client. When Terms and
+    -- conditions and Privacy policy documents are configured, the app client displays links to
+    -- them in the sign-up page of managed login for the app client.
+    -- You can provide URLs for terms documents in the languages that are supported by managed login localization. Amazon Cognito directs users to the terms documents for
+    -- their current language, with fallback to default if no document exists for
+    -- the language.
+    -- Each request accepts one type of terms document and a map of language-to-link for that
+    -- document type. You must provide both types of terms documents in at least one language
+    -- before Amazon Cognito displays your terms documents. Supply each type in separate
+    -- requests.
+    -- For more information, see Terms documents.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateTerms: function(Client, types.UpdateTermsInput): types.UpdateTermsOutput, table
+    -- Updates the currently signed-in user's attributes. To delete an attribute from
+    -- the user, submit the attribute in your API request with a blank value.
+    -- For custom attributes, you must add a custom: prefix to the attribute
+    -- name, for example custom:department.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
     updateUserAttributes: function(Client, types.UpdateUserAttributesInput): types.UpdateUserAttributesOutput, table
+    -- Updates the configuration of a user pool. To avoid setting parameters to Amazon Cognito
+    -- defaults, construct this API request to pass the existing configuration of your user
+    -- pool, modified to include the changes that you want to make.
+    -- With the exception of UserPoolTier, if you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+    -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
+    -- require you to register an origination phone number before you can send SMS messages
+    -- to US phone numbers. If you use SMS text messages in Amazon Cognito, you must register a
+    -- phone number with Amazon Pinpoint.
+    -- Amazon Cognito uses the registered number automatically. Otherwise, Amazon Cognito users who must
+    -- receive SMS messages might not be able to sign up, activate their accounts, or sign
+    -- in.
+    -- If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Services service,
+    -- Amazon Simple Notification Service might place your account in the SMS sandbox. In
+    -- sandbox
+    -- mode
+    -- , you can send messages only to verified phone
+    -- numbers. After you test your app while in the sandbox environment, you can move out
+    -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
+    -- Developer Guide.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateUserPool: function(Client, types.UpdateUserPoolInput): types.UpdateUserPoolOutput, table
+    -- Given a user pool app client ID, updates the configuration. To avoid setting
+    -- parameters to Amazon Cognito defaults, construct this API request to pass the existing
+    -- configuration of your app client, modified to include the changes that you want to
+    -- make.
+    -- If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+    -- Unlike app clients created in the console, Amazon Cognito doesn't automatically assign a
+    -- branding style to app clients that you configure with this API operation. Managed login and classic hosted UI pages aren't
+    -- available for your client until after you apply a branding style.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput): types.UpdateUserPoolClientOutput, table
+    -- A user pool domain hosts managed login, an authorization server and web server for
+    -- authentication in your application. This operation updates the branding version for user
+    -- pool domains between 1 for hosted UI (classic) and 2 for
+    -- managed login. It also updates the SSL certificate for user pool custom domains.
+    -- Changes to the domain branding version take up to one minute to take effect for a
+    -- prefix domain and up to five minutes for a custom domain.
+    -- This operation doesn't change the name of your user pool domain. To change your
+    -- domain, delete it with DeleteUserPoolDomain and create a new domain with
+    -- CreateUserPoolDomain.
+    -- You can pass the ARN of a new Certificate Manager certificate in this request. Typically, ACM
+    -- certificates automatically renew and you user pool can continue to use the same ARN. But
+    -- if you generate a new certificate for your custom domain name, replace the original
+    -- configuration with the new ARN in this request.
+    -- ACM certificates for custom domains must be in the US East (N. Virginia)
+    -- Amazon Web Services Region. After you submit your request, Amazon Cognito requires up to 1 hour to distribute
+    -- your new certificate to your custom domain.
+    -- For more information about adding a custom domain to your user pool, see Configuring a user pool domain.
+    -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you must use IAM credentials to authorize requests, and you must
+    -- grant yourself the corresponding IAM permission in a policy.
+    -- Learn more
+    -- Signing Amazon Web Services API Requests
+    -- Using the Amazon Cognito user pools API and user pool endpoints
     updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput): types.UpdateUserPoolDomainOutput, table
+    -- Registers the current user's time-based one-time password (TOTP) authenticator
+    -- with a code generated in their authenticator app from a private key that's supplied
+    -- by your user pool. Marks the user's software token MFA status as "verified" if
+    -- successful. The request takes an access token or a session string, but not both.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput): types.VerifySoftwareTokenOutput, table
+    -- Submits a verification code for a signed-in user who has added or changed a value of
+    -- an auto-verified attribute. When successful, the user's attribute becomes verified
+    -- and the attribute email_verified or phone_number_verified
+    -- becomes true.
+    -- If your user pool requires verification before Amazon Cognito updates the attribute value,
+    -- this operation updates the affected attribute to its pending value.
+    -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
+    -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
+    -- this operation, you can't use IAM credentials to authorize requests, and you can't
+    -- grant IAM permissions in policies. For more information about authorization models in
+    -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     verifyUserAttribute: function(Client, types.VerifyUserAttributeInput): types.VerifyUserAttributeOutput, table
 end
 

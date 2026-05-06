@@ -3,13 +3,21 @@
 local types = require("costoptimizationhub.types")
 
 local record Client
+    -- Returns a set of preferences for an account in order to add account-specific preferences into the service. These preferences impact how the savings associated with recommendations are presented—estimated savings after discounts or estimated savings before discounts, for example.
     getPreferences: function(Client, types.GetPreferencesInput): types.GetPreferencesOutput, table
+    -- Returns both the current and recommended resource configuration and the estimated cost impact for a recommendation. The recommendationId is only valid for up to a maximum of 24 hours as recommendations are refreshed daily. To retrieve the recommendationId, use the ListRecommendations API.
     getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    -- Returns cost efficiency metrics aggregated over time and optionally grouped by a specified dimension. The metrics provide insights into your cost optimization progress by tracking estimated savings, spending, and measures how effectively you're optimizing your Cloud resources. The operation supports both daily and monthly time granularities and allows grouping results by account ID, Amazon Web Services Region. Results are returned as time-series data, enabling you to analyze trends in your cost optimization performance over the specified time period.
     listEfficiencyMetrics: function(Client, types.ListEfficiencyMetricsInput): types.ListEfficiencyMetricsOutput, table
+    -- Retrieves the enrollment status for an account. It can also return the list of accounts that are enrolled under the organization.
     listEnrollmentStatuses: function(Client, types.ListEnrollmentStatusesInput): types.ListEnrollmentStatusesOutput, table
+    -- Returns a list of recommendations.
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- Returns a concise representation of savings estimates for resources. Also returns de-duped savings across different types of recommendations. The following filters are not supported for this API: recommendationIds, resourceArns, and resourceIds.
     listRecommendationSummaries: function(Client, types.ListRecommendationSummariesInput): types.ListRecommendationSummariesOutput, table
+    -- Updates the enrollment (opt in and opt out) status of an account to the Cost Optimization Hub service. If the account is a management account of an organization, this action can also be used to enroll member accounts of the organization. You must have the appropriate permissions to opt in to Cost Optimization Hub and to view its recommendations. When you opt in, Cost Optimization Hub automatically creates a service-linked role in your account to access its data.
     updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput): types.UpdateEnrollmentStatusOutput, table
+    -- Updates a set of preferences for an account in order to add account-specific preferences into the service. These preferences impact how the savings associated with recommendations are presented.
     updatePreferences: function(Client, types.UpdatePreferencesInput): types.UpdatePreferencesOutput, table
 end
 

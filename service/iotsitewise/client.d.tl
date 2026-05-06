@@ -3,109 +3,426 @@
 local types = require("iotsitewise.types")
 
 local record Client
+    -- Associates a child asset with the given parent asset through a hierarchy defined in the
+    -- parent asset's model. For more information, see Associating assets in the
+    -- IoT SiteWise User Guide.
     associateAssets: function(Client, types.AssociateAssetsInput): types.AssociateAssetsOutput, table
+    -- Associates a time series (data stream) with an asset property.
     associateTimeSeriesToAssetProperty: function(Client, types.AssociateTimeSeriesToAssetPropertyInput): types.AssociateTimeSeriesToAssetPropertyOutput, table
+    -- Associates a group (batch) of assets with an IoT SiteWise Monitor project.
     batchAssociateProjectAssets: function(Client, types.BatchAssociateProjectAssetsInput): types.BatchAssociateProjectAssetsOutput, table
+    -- Disassociates a group (batch) of assets from an IoT SiteWise Monitor project.
     batchDisassociateProjectAssets: function(Client, types.BatchDisassociateProjectAssetsInput): types.BatchDisassociateProjectAssetsOutput, table
+    -- Gets aggregated values (for example, average, minimum, and maximum) for one or more asset
+    -- properties. For more information, see Querying aggregates in the
+    -- IoT SiteWise User Guide.
     batchGetAssetPropertyAggregates: function(Client, types.BatchGetAssetPropertyAggregatesInput): types.BatchGetAssetPropertyAggregatesOutput, table
+    -- Gets the current value for one or more asset properties. For more information, see Querying
+    -- current values in the IoT SiteWise User Guide.
     batchGetAssetPropertyValue: function(Client, types.BatchGetAssetPropertyValueInput): types.BatchGetAssetPropertyValueOutput, table
+    -- Gets the historical values for one or more asset properties. For more information, see
+    -- Querying historical values in the IoT SiteWise User Guide.
     batchGetAssetPropertyValueHistory: function(Client, types.BatchGetAssetPropertyValueHistoryInput): types.BatchGetAssetPropertyValueHistoryOutput, table
+    -- Sends a list of asset property values to IoT SiteWise. Each value is a timestamp-quality-value
+    -- (TQV) data point. For more information, see Ingesting data using the API in the
+    -- IoT SiteWise User Guide.
+    -- To identify an asset property, you must specify one of the following:
+    -- The assetId and propertyId of an asset property.
+    -- A propertyAlias, which is a data stream alias (for example,
+    -- /company/windfarm/3/turbine/7/temperature). To define an asset property's alias, see UpdateAssetProperty.
+    -- With respect to Unix epoch time, IoT SiteWise accepts only TQVs that have a timestamp of no more
+    -- than 7 days in the past and no more than 10 minutes in the future. IoT SiteWise rejects timestamps
+    -- outside of the inclusive range of [-7 days, +10 minutes] and returns a
+    -- TimestampOutOfRangeException error.
+    -- For each asset property, IoT SiteWise overwrites TQVs with duplicate timestamps unless the newer
+    -- TQV has a different quality. For example, if you store a TQV {T1, GOOD, V1},
+    -- then storing {T1, GOOD, V2} replaces the existing TQV.
+    -- IoT SiteWise authorizes access to each BatchPutAssetPropertyValue entry individually.
+    -- For more information, see BatchPutAssetPropertyValue authorization in the
+    -- IoT SiteWise User Guide.
     batchPutAssetPropertyValue: function(Client, types.BatchPutAssetPropertyValueInput): types.BatchPutAssetPropertyValueOutput, table
+    -- Creates an access policy that grants the specified identity (IAM Identity Center user, IAM Identity Center group, or
+    -- IAM user) access to the specified IoT SiteWise Monitor portal or project resource.
+    -- Support for access policies that use an SSO Group as the identity is not supported at this time.
     createAccessPolicy: function(Client, types.CreateAccessPolicyInput): types.CreateAccessPolicyOutput, table
+    -- Creates an asset from an existing asset model. For more information, see Creating assets in the
+    -- IoT SiteWise User Guide.
     createAsset: function(Client, types.CreateAssetInput): types.CreateAssetOutput, table
+    -- Creates an asset model from specified property and hierarchy definitions. You create
+    -- assets from asset models. With asset models, you can easily create assets of the same type
+    -- that have standardized definitions. Each asset created from a model inherits the asset model's
+    -- property and hierarchy definitions. For more information, see Defining asset models in the
+    -- IoT SiteWise User Guide.
+    -- You can create three types of asset models, ASSET_MODEL,
+    -- COMPONENT_MODEL, or an INTERFACE.
+    -- ASSET_MODEL – (default) An asset model that
+    -- you can use to create assets. Can't be included as a component in another asset
+    -- model.
+    -- COMPONENT_MODEL – A reusable component that
+    -- you can include in the composite models of other asset models. You can't create
+    -- assets directly from this type of asset model.
+    -- INTERFACE – An interface is a type of model
+    -- that defines a standard structure that can be applied to different asset models.
     createAssetModel: function(Client, types.CreateAssetModelInput): types.CreateAssetModelOutput, table
+    -- Creates a custom composite model from specified property and hierarchy definitions. There
+    -- are two types of custom composite models, inline and
+    -- component-model-based.
+    -- Use component-model-based custom composite models to define standard, reusable components.
+    -- A component-model-based custom composite model consists of a name, a description, and the ID
+    -- of the component model it references. A component-model-based custom composite model has no
+    -- properties of its own; its referenced component model provides its associated properties to
+    -- any created assets. For more information, see Custom composite models (Components)
+    -- in the IoT SiteWise User Guide.
+    -- Use inline custom composite models to organize the properties of an asset model. The
+    -- properties of inline custom composite models are local to the asset model where they are
+    -- included and can't be used to create multiple assets.
+    -- To create a component-model-based model, specify the composedAssetModelId of
+    -- an existing asset model with assetModelType of
+    -- COMPONENT_MODEL.
+    -- To create an inline model, specify the assetModelCompositeModelProperties and
+    -- don't include an composedAssetModelId.
     createAssetModelCompositeModel: function(Client, types.CreateAssetModelCompositeModelInput): types.CreateAssetModelCompositeModelOutput, table
+    -- Defines a job to ingest data to IoT SiteWise from Amazon S3. For more information, see Create a
+    -- bulk import job (CLI) in the Amazon Simple Storage Service User Guide.
+    -- Before you create a bulk import job, you must enable IoT SiteWise warm tier or IoT SiteWise cold tier.
+    -- For more information about how to configure storage settings, see PutStorageConfiguration.
+    -- Bulk import is designed to store historical data to IoT SiteWise.
+    -- Newly ingested data in the hot tier triggers notifications and computations.
+    -- After data moves from the hot tier to the warm or cold tier based on retention
+    -- settings, it does not trigger computations or notifications.
+    -- Data older than 7 days does not trigger computations or notifications.
     createBulkImportJob: function(Client, types.CreateBulkImportJobInput): types.CreateBulkImportJobOutput, table
+    -- Create a computation model with a configuration and data binding.
     createComputationModel: function(Client, types.CreateComputationModelInput): types.CreateComputationModelOutput, table
+    -- Creates a dashboard in an IoT SiteWise Monitor project.
     createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    -- Creates a dataset to connect an external datasource.
     createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    -- Creates a gateway, which is a virtual or edge device that delivers industrial data streams
+    -- from local servers to IoT SiteWise. For more information, see Ingesting data using a gateway in the
+    -- IoT SiteWise User Guide.
     createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    -- Creates a portal, which can contain projects and dashboards. IoT SiteWise Monitor uses IAM Identity Center or IAM
+    -- to authenticate portal users and manage user permissions.
+    -- Before you can sign in to a new portal, you must add at least one identity to that
+    -- portal. For more information, see Adding or removing portal
+    -- administrators in the IoT SiteWise User Guide.
     createPortal: function(Client, types.CreatePortalInput): types.CreatePortalOutput, table
+    -- Creates a project in the specified portal.
+    -- Make sure that the project name and description don't contain confidential
+    -- information.
     createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    -- Deletes an access policy that grants the specified identity access to the specified
+    -- IoT SiteWise Monitor resource. You can use this operation to revoke access to an IoT SiteWise Monitor
+    -- resource.
     deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput): types.DeleteAccessPolicyOutput, table
+    -- Deletes an asset. This action can't be undone. For more information, see Deleting assets and
+    -- models in the IoT SiteWise User Guide.
+    -- You can't delete an asset that's associated to another asset. For more information, see
+    -- DisassociateAssets.
     deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    -- Deletes an asset model. This action can't be undone. You must delete all assets created
+    -- from an asset model before you can delete the model. Also, you can't delete an asset model if
+    -- a parent asset model exists that contains a property formula expression that depends on the
+    -- asset model that you want to delete. For more information, see Deleting assets and models in the
+    -- IoT SiteWise User Guide.
     deleteAssetModel: function(Client, types.DeleteAssetModelInput): types.DeleteAssetModelOutput, table
+    -- Deletes a composite model. This action can't be undone. You must delete all assets created
+    -- from a composite model before you can delete the model. Also, you can't delete a composite
+    -- model if a parent asset model exists that contains a property formula expression that depends
+    -- on the asset model that you want to delete. For more information, see Deleting assets and
+    -- models in the IoT SiteWise User Guide.
     deleteAssetModelCompositeModel: function(Client, types.DeleteAssetModelCompositeModelInput): types.DeleteAssetModelCompositeModelOutput, table
+    -- Deletes an interface relationship between an asset model and an interface asset
+    -- model.
     deleteAssetModelInterfaceRelationship: function(Client, types.DeleteAssetModelInterfaceRelationshipInput): types.DeleteAssetModelInterfaceRelationshipOutput, table
+    -- Deletes a computation model. This action can't be undone.
     deleteComputationModel: function(Client, types.DeleteComputationModelInput): types.DeleteComputationModelOutput, table
+    -- Deletes a dashboard from IoT SiteWise Monitor.
     deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    -- Deletes a dataset. This cannot be undone.
     deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    -- Deletes a gateway from IoT SiteWise. When you delete a gateway, some of the gateway's files remain
+    -- in your gateway's file system.
     deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    -- Deletes a portal from IoT SiteWise Monitor.
     deletePortal: function(Client, types.DeletePortalInput): types.DeletePortalOutput, table
+    -- Deletes a project from IoT SiteWise Monitor.
     deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    -- Deletes a time series (data stream). If you delete a time series that's associated with an
+    -- asset property, the asset property still exists, but the time series will no longer be
+    -- associated with this asset property.
+    -- To identify a time series, do one of the following:
+    -- If the time series isn't associated with an asset property,
+    -- specify the alias of the time series.
+    -- If the time series is associated with an asset property,
+    -- specify one of the following:
+    -- The alias of the time series.
+    -- The assetId and propertyId that identifies the asset property.
     deleteTimeSeries: function(Client, types.DeleteTimeSeriesInput): types.DeleteTimeSeriesOutput, table
+    -- Describes an access policy, which specifies an identity's access to an IoT SiteWise Monitor portal or
+    -- project.
     describeAccessPolicy: function(Client, types.DescribeAccessPolicyInput): types.DescribeAccessPolicyOutput, table
+    -- Retrieves information about an action.
     describeAction: function(Client, types.DescribeActionInput): types.DescribeActionOutput, table
+    -- Retrieves information about an asset.
     describeAsset: function(Client, types.DescribeAssetInput): types.DescribeAssetOutput, table
+    -- Retrieves information about an asset composite model (also known as an asset component).
+    -- An AssetCompositeModel is an instance of an
+    -- AssetModelCompositeModel. If you want to see information about the model this is
+    -- based on, call DescribeAssetModelCompositeModel.
     describeAssetCompositeModel: function(Client, types.DescribeAssetCompositeModelInput): types.DescribeAssetCompositeModelOutput, table
+    -- Retrieves information about an asset model. This includes details about the asset model's
+    -- properties, hierarchies, composite models, and any interface relationships if the asset model
+    -- implements interfaces.
     describeAssetModel: function(Client, types.DescribeAssetModelInput): types.DescribeAssetModelOutput, table
+    -- Retrieves information about an asset model composite model (also known as an asset model
+    -- component). For more information, see Custom composite models
+    -- (Components) in the IoT SiteWise User Guide.
     describeAssetModelCompositeModel: function(Client, types.DescribeAssetModelCompositeModelInput): types.DescribeAssetModelCompositeModelOutput, table
+    -- Retrieves information about an interface relationship between an asset model and an
+    -- interface asset model.
     describeAssetModelInterfaceRelationship: function(Client, types.DescribeAssetModelInterfaceRelationshipInput): types.DescribeAssetModelInterfaceRelationshipOutput, table
+    -- Retrieves information about an asset property.
+    -- When you call this operation for an attribute property, this response includes the
+    -- default attribute value that you define in the asset model. If you update the default value
+    -- in the model, this operation's response includes the new default value.
+    -- This operation doesn't return the value of the asset property. To get the value of an
+    -- asset property, use GetAssetPropertyValue.
     describeAssetProperty: function(Client, types.DescribeAssetPropertyInput): types.DescribeAssetPropertyOutput, table
+    -- Retrieves information about a bulk import job request. For more information, see Describe
+    -- a bulk import job (CLI) in the Amazon Simple Storage Service User Guide.
     describeBulkImportJob: function(Client, types.DescribeBulkImportJobInput): types.DescribeBulkImportJobOutput, table
+    -- Retrieves information about a computation model.
     describeComputationModel: function(Client, types.DescribeComputationModelInput): types.DescribeComputationModelOutput, table
+    -- Retrieves information about the execution summary of a computation model.
     describeComputationModelExecutionSummary: function(Client, types.DescribeComputationModelExecutionSummaryInput): types.DescribeComputationModelExecutionSummaryOutput, table
+    -- Retrieves information about a dashboard.
     describeDashboard: function(Client, types.DescribeDashboardInput): types.DescribeDashboardOutput, table
+    -- Retrieves information about a dataset.
     describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    -- Retrieves information about the default encryption configuration for the Amazon Web Services account in
+    -- the default or specified Region. For more information, see Key management in the
+    -- IoT SiteWise User Guide.
     describeDefaultEncryptionConfiguration: function(Client, types.DescribeDefaultEncryptionConfigurationInput): types.DescribeDefaultEncryptionConfigurationOutput, table
+    -- Retrieves information about the execution.
     describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    -- Retrieves information about a gateway.
     describeGateway: function(Client, types.DescribeGatewayInput): types.DescribeGatewayOutput, table
+    -- Each gateway capability defines data sources for a gateway. This is the namespace of the gateway capability.
+    -- . The namespace follows the format service:capability:version, where:
+    -- service - The service providing the capability, or iotsitewise.
+    -- capability - The specific capability type. Options include: opcuacollector for the OPC UA data source collector, or publisher for data publisher capability.
+    -- version - The version number of the capability. Option include 2 for Classic streams, V2 gateways, and 3 for MQTT-enabled, V3 gateways.
+    -- After updating a capability configuration, the sync status becomes OUT_OF_SYNC until the gateway processes the configuration.Use DescribeGatewayCapabilityConfiguration to check the sync status and verify the configuration was applied.
+    -- A gateway can have multiple capability configurations with different namespaces.
     describeGatewayCapabilityConfiguration: function(Client, types.DescribeGatewayCapabilityConfigurationInput): types.DescribeGatewayCapabilityConfigurationOutput, table
+    -- Retrieves the current IoT SiteWise logging options.
     describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput): types.DescribeLoggingOptionsOutput, table
+    -- Retrieves information about a portal.
     describePortal: function(Client, types.DescribePortalInput): types.DescribePortalOutput, table
+    -- Retrieves information about a project.
     describeProject: function(Client, types.DescribeProjectInput): types.DescribeProjectOutput, table
+    -- Retrieves information about the storage configuration for IoT SiteWise.
     describeStorageConfiguration: function(Client, types.DescribeStorageConfigurationInput): types.DescribeStorageConfigurationOutput, table
+    -- Retrieves information about a time series (data stream).
+    -- To identify a time series, do one of the following:
+    -- If the time series isn't associated with an asset property,
+    -- specify the alias of the time series.
+    -- If the time series is associated with an asset property,
+    -- specify one of the following:
+    -- The alias of the time series.
+    -- The assetId and propertyId that identifies the asset property.
     describeTimeSeries: function(Client, types.DescribeTimeSeriesInput): types.DescribeTimeSeriesOutput, table
+    -- Disassociates a child asset from the given parent asset through a hierarchy defined in the
+    -- parent asset's model.
     disassociateAssets: function(Client, types.DisassociateAssetsInput): types.DisassociateAssetsOutput, table
+    -- Disassociates a time series (data stream) from an asset property.
     disassociateTimeSeriesFromAssetProperty: function(Client, types.DisassociateTimeSeriesFromAssetPropertyInput): types.DisassociateTimeSeriesFromAssetPropertyOutput, table
+    -- Executes an action on a target resource.
     executeAction: function(Client, types.ExecuteActionInput): types.ExecuteActionOutput, table
+    -- Run SQL queries to retrieve metadata and time-series data from asset models, assets,
+    -- measurements, metrics, transforms, and aggregates.
     executeQuery: function(Client, types.ExecuteQueryInput): types.ExecuteQueryOutput, table
+    -- Gets aggregated values for an asset property. For more information, see Querying
+    -- aggregates in the IoT SiteWise User Guide.
+    -- To identify an asset property, you must specify one of the following:
+    -- The assetId and propertyId of an asset property.
+    -- A propertyAlias, which is a data stream alias (for example,
+    -- /company/windfarm/3/turbine/7/temperature). To define an asset property's alias, see UpdateAssetProperty.
     getAssetPropertyAggregates: function(Client, types.GetAssetPropertyAggregatesInput): types.GetAssetPropertyAggregatesOutput, table
+    -- Gets an asset property's current value. For more information, see Querying
+    -- current values in the IoT SiteWise User Guide.
+    -- To identify an asset property, you must specify one of the following:
+    -- The assetId and propertyId of an asset property.
+    -- A propertyAlias, which is a data stream alias (for example,
+    -- /company/windfarm/3/turbine/7/temperature). To define an asset property's alias, see UpdateAssetProperty.
     getAssetPropertyValue: function(Client, types.GetAssetPropertyValueInput): types.GetAssetPropertyValueOutput, table
+    -- Gets the history of an asset property's values. For more information, see Querying
+    -- historical values in the IoT SiteWise User Guide.
+    -- To identify an asset property, you must specify one of the following:
+    -- The assetId and propertyId of an asset property.
+    -- A propertyAlias, which is a data stream alias (for example,
+    -- /company/windfarm/3/turbine/7/temperature). To define an asset property's alias, see UpdateAssetProperty.
     getAssetPropertyValueHistory: function(Client, types.GetAssetPropertyValueHistoryInput): types.GetAssetPropertyValueHistoryOutput, table
+    -- Get interpolated values for an asset property for a specified time interval, during a
+    -- period of time. If your time series is missing data points during the specified time interval,
+    -- you can use interpolation to estimate the missing data.
+    -- For example, you can use this operation to return the interpolated temperature values for
+    -- a wind turbine every 24 hours over a duration of 7 days.
+    -- To identify an asset property, you must specify one of the following:
+    -- The assetId and propertyId of an asset property.
+    -- A propertyAlias, which is a data stream alias (for example,
+    -- /company/windfarm/3/turbine/7/temperature). To define an asset property's alias, see UpdateAssetProperty.
     getInterpolatedAssetPropertyValues: function(Client, types.GetInterpolatedAssetPropertyValuesInput): types.GetInterpolatedAssetPropertyValuesOutput, table
+    -- Invokes SiteWise Assistant to start or continue a conversation.
     invokeAssistant: function(Client, types.InvokeAssistantInput): types.InvokeAssistantOutput, table
+    -- Retrieves a paginated list of access policies for an identity (an IAM Identity Center user, an IAM Identity Center
+    -- group, or an IAM user) or an IoT SiteWise Monitor resource (a portal or project).
     listAccessPolicies: function(Client, types.ListAccessPoliciesInput): types.ListAccessPoliciesOutput, table
+    -- Retrieves a paginated list of actions for a specific target resource.
     listActions: function(Client, types.ListActionsInput): types.ListActionsOutput, table
+    -- Retrieves a paginated list of composite models associated with the asset model
     listAssetModelCompositeModels: function(Client, types.ListAssetModelCompositeModelsInput): types.ListAssetModelCompositeModelsOutput, table
+    -- Retrieves a paginated list of properties associated with an asset model.
+    -- If you update properties associated with the model before you finish listing all the properties,
+    -- you need to start all over again.
     listAssetModelProperties: function(Client, types.ListAssetModelPropertiesInput): types.ListAssetModelPropertiesOutput, table
+    -- Retrieves a paginated list of summaries of all asset models.
     listAssetModels: function(Client, types.ListAssetModelsInput): types.ListAssetModelsOutput, table
+    -- Retrieves a paginated list of properties associated with an asset.
+    -- If you update properties associated with the model before you finish listing all the properties,
+    -- you need to start all over again.
     listAssetProperties: function(Client, types.ListAssetPropertiesInput): types.ListAssetPropertiesOutput, table
+    -- Retrieves a paginated list of asset relationships for an asset. You can use this operation
+    -- to identify an asset's root asset and all associated assets between that asset and its
+    -- root.
     listAssetRelationships: function(Client, types.ListAssetRelationshipsInput): types.ListAssetRelationshipsOutput, table
+    -- Retrieves a paginated list of asset summaries.
+    -- You can use this operation to do the following:
+    -- List assets based on a specific asset model.
+    -- List top-level assets.
+    -- You can't use this operation to list all assets. To retrieve summaries for all of your
+    -- assets, use ListAssetModels to get all of your asset model IDs. Then, use ListAssets to get all
+    -- assets for each asset model.
     listAssets: function(Client, types.ListAssetsInput): types.ListAssetsOutput, table
+    -- Retrieves a paginated list of associated assets.
+    -- You can use this operation to do the following:
+    -- CHILD - List all child assets associated to the asset.
+    -- PARENT - List the asset's parent asset.
     listAssociatedAssets: function(Client, types.ListAssociatedAssetsInput): types.ListAssociatedAssetsOutput, table
+    -- Retrieves a paginated list of bulk import job requests. For more information, see List bulk
+    -- import jobs (CLI) in the IoT SiteWise User Guide.
     listBulkImportJobs: function(Client, types.ListBulkImportJobsInput): types.ListBulkImportJobsOutput, table
+    -- Retrieves a paginated list of composition relationships for an asset model of type
+    -- COMPONENT_MODEL.
     listCompositionRelationships: function(Client, types.ListCompositionRelationshipsInput): types.ListCompositionRelationshipsOutput, table
+    -- Lists all data binding usages for computation models. This allows to identify where
+    -- specific data bindings are being utilized across the computation models. This track
+    -- dependencies between data sources and computation models.
     listComputationModelDataBindingUsages: function(Client, types.ListComputationModelDataBindingUsagesInput): types.ListComputationModelDataBindingUsagesOutput, table
+    -- Lists all distinct resources that are resolved from the executed actions of the
+    -- computation model.
     listComputationModelResolveToResources: function(Client, types.ListComputationModelResolveToResourcesInput): types.ListComputationModelResolveToResourcesOutput, table
+    -- Retrieves a paginated list of summaries of all computation models.
     listComputationModels: function(Client, types.ListComputationModelsInput): types.ListComputationModelsOutput, table
+    -- Retrieves a paginated list of dashboards for an IoT SiteWise Monitor project.
     listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    -- Retrieves a paginated list of datasets for a specific target resource.
     listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    -- Retrieves a paginated list of summaries of all executions.
     listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    -- Retrieves a paginated list of gateways.
     listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    -- Retrieves a paginated list of asset models that have a specific interface asset model
+    -- applied to them.
     listInterfaceRelationships: function(Client, types.ListInterfaceRelationshipsInput): types.ListInterfaceRelationshipsOutput, table
+    -- Retrieves a paginated list of IoT SiteWise Monitor portals.
     listPortals: function(Client, types.ListPortalsInput): types.ListPortalsOutput, table
+    -- Retrieves a paginated list of assets associated with an IoT SiteWise Monitor project.
     listProjectAssets: function(Client, types.ListProjectAssetsInput): types.ListProjectAssetsOutput, table
+    -- Retrieves a paginated list of projects for an IoT SiteWise Monitor portal.
     listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    -- Retrieves the list of tags for an IoT SiteWise resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves a paginated list of time series (data streams).
     listTimeSeries: function(Client, types.ListTimeSeriesInput): types.ListTimeSeriesOutput, table
+    -- Creates or updates an interface relationship between an asset model and an interface asset
+    -- model. This operation applies an interface to an asset model.
     putAssetModelInterfaceRelationship: function(Client, types.PutAssetModelInterfaceRelationshipInput): types.PutAssetModelInterfaceRelationshipOutput, table
+    -- Sets the default encryption configuration for the Amazon Web Services account. For more information, see
+    -- Key management in
+    -- the IoT SiteWise User Guide.
     putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput): types.PutDefaultEncryptionConfigurationOutput, table
+    -- Sets logging options for IoT SiteWise.
     putLoggingOptions: function(Client, types.PutLoggingOptionsInput): types.PutLoggingOptionsOutput, table
+    -- Configures storage settings for IoT SiteWise.
     putStorageConfiguration: function(Client, types.PutStorageConfigurationInput): types.PutStorageConfigurationOutput, table
+    -- Adds tags to an IoT SiteWise resource. If a tag already exists for the resource, this operation
+    -- updates the tag's value.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from an IoT SiteWise resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing access policy that specifies an identity's access to an IoT SiteWise Monitor
+    -- portal or project resource.
     updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput): types.UpdateAccessPolicyOutput, table
+    -- Updates an asset's name. For more information, see Updating assets and models in the
+    -- IoT SiteWise User Guide.
     updateAsset: function(Client, types.UpdateAssetInput): types.UpdateAssetOutput, table
+    -- Updates an asset model and all of the assets that were created from the model. Each asset
+    -- created from the model inherits the updated asset model's property and hierarchy definitions.
+    -- For more information, see Updating assets and models in the
+    -- IoT SiteWise User Guide.
+    -- If you remove a property from an asset model, IoT SiteWise deletes all previous data for that
+    -- property. You can’t change the type or data type of an existing property.
+    -- To replace an existing asset model property with a new one with the same
+    -- name, do the following:
+    -- Submit an UpdateAssetModel request with the entire existing property
+    -- removed.
+    -- Submit a second UpdateAssetModel request that includes the new
+    -- property. The new asset property will have the same name as the previous
+    -- one and IoT SiteWise will generate a new unique id.
     updateAssetModel: function(Client, types.UpdateAssetModelInput): types.UpdateAssetModelOutput, table
+    -- Updates a composite model and all of the assets that were created from the model. Each
+    -- asset created from the model inherits the updated asset model's property and hierarchy
+    -- definitions. For more information, see Updating assets and models in the
+    -- IoT SiteWise User Guide.
+    -- If you remove a property from a composite asset model, IoT SiteWise deletes all previous data
+    -- for that property. You can’t change the type or data type of an existing property.
+    -- To replace an existing composite asset model property with a new one with the same
+    -- name, do the following:
+    -- Submit an UpdateAssetModelCompositeModel request with the entire
+    -- existing property removed.
+    -- Submit a second UpdateAssetModelCompositeModel request that includes
+    -- the new property. The new asset property will have the same name as the
+    -- previous one and IoT SiteWise will generate a new unique id.
     updateAssetModelCompositeModel: function(Client, types.UpdateAssetModelCompositeModelInput): types.UpdateAssetModelCompositeModelOutput, table
+    -- Updates an asset property's alias and notification state.
+    -- This operation overwrites the property's existing alias and notification state. To keep
+    -- your existing property's alias or notification state, you must include the existing values
+    -- in the UpdateAssetProperty request. For more information, see DescribeAssetProperty.
     updateAssetProperty: function(Client, types.UpdateAssetPropertyInput): types.UpdateAssetPropertyOutput, table
+    -- Updates the computation model.
     updateComputationModel: function(Client, types.UpdateComputationModelInput): types.UpdateComputationModelOutput, table
+    -- Updates an IoT SiteWise Monitor dashboard.
     updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    -- Updates a dataset.
     updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    -- Updates a gateway's name.
     updateGateway: function(Client, types.UpdateGatewayInput): types.UpdateGatewayOutput, table
+    -- Updates a gateway capability configuration or defines a new capability configuration. Each gateway capability defines data sources for a gateway.
+    -- Important workflow notes:
+    -- Each gateway capability defines data sources for a gateway. This is the namespace of the gateway capability.
+    -- . The namespace follows the format service:capability:version, where:
+    -- service - The service providing the capability, or iotsitewise.
+    -- capability - The specific capability type. Options include: opcuacollector for the OPC UA data source collector, or publisher for data publisher capability.
+    -- version - The version number of the capability. Option include 2 for Classic streams, V2 gateways, and 3 for MQTT-enabled, V3 gateways.
+    -- After updating a capability configuration, the sync status becomes OUT_OF_SYNC until the gateway processes the configuration.Use DescribeGatewayCapabilityConfiguration to check the sync status and verify the configuration was applied.
+    -- A gateway can have multiple capability configurations with different namespaces.
     updateGatewayCapabilityConfiguration: function(Client, types.UpdateGatewayCapabilityConfigurationInput): types.UpdateGatewayCapabilityConfigurationOutput, table
+    -- Updates an IoT SiteWise Monitor portal.
     updatePortal: function(Client, types.UpdatePortalInput): types.UpdatePortalOutput, table
+    -- Updates an IoT SiteWise Monitor project.
     updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
 end
 

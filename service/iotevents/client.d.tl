@@ -3,31 +3,78 @@
 local types = require("iotevents.types")
 
 local record Client
+    -- Creates an alarm model to monitor an AWS IoT Events input attribute. You can use the alarm to get
+    -- notified when the value is outside a specified range. For more information, see Create an
+    -- alarm model in the AWS IoT Events Developer Guide.
     createAlarmModel: function(Client, types.CreateAlarmModelInput): types.CreateAlarmModelOutput, table
+    -- Creates a detector model.
     createDetectorModel: function(Client, types.CreateDetectorModelInput): types.CreateDetectorModelOutput, table
+    -- Creates an input.
     createInput: function(Client, types.CreateInputInput): types.CreateInputOutput, table
+    -- Deletes an alarm model. Any alarm instances that were created based on this alarm model
+    -- are also deleted. This action can't be undone.
     deleteAlarmModel: function(Client, types.DeleteAlarmModelInput): types.DeleteAlarmModelOutput, table
+    -- Deletes a detector model. Any active instances of the detector model are also
+    -- deleted.
     deleteDetectorModel: function(Client, types.DeleteDetectorModelInput): types.DeleteDetectorModelOutput, table
+    -- Deletes an input.
     deleteInput: function(Client, types.DeleteInputInput): types.DeleteInputOutput, table
+    -- Retrieves information about an alarm model. If you don't specify a value for the
+    -- alarmModelVersion parameter, the latest version is returned.
     describeAlarmModel: function(Client, types.DescribeAlarmModelInput): types.DescribeAlarmModelOutput, table
+    -- Describes a detector model. If the version parameter is not specified,
+    -- information about the latest version is returned.
     describeDetectorModel: function(Client, types.DescribeDetectorModelInput): types.DescribeDetectorModelOutput, table
+    -- Retrieves runtime information about a detector model analysis.
+    -- After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.
     describeDetectorModelAnalysis: function(Client, types.DescribeDetectorModelAnalysisInput): types.DescribeDetectorModelAnalysisOutput, table
+    -- Describes an input.
     describeInput: function(Client, types.DescribeInputInput): types.DescribeInputOutput, table
+    -- Retrieves the current settings of the AWS IoT Events logging options.
     describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput): types.DescribeLoggingOptionsOutput, table
+    -- Retrieves one or more analysis results of the detector model.
+    -- After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.
     getDetectorModelAnalysisResults: function(Client, types.GetDetectorModelAnalysisResultsInput): types.GetDetectorModelAnalysisResultsOutput, table
+    -- Lists the alarm models that you created. The operation returns only the metadata
+    -- associated with each alarm model.
     listAlarmModels: function(Client, types.ListAlarmModelsInput): types.ListAlarmModelsOutput, table
+    -- Lists all the versions of an alarm model. The operation returns only the metadata
+    -- associated with each alarm model version.
     listAlarmModelVersions: function(Client, types.ListAlarmModelVersionsInput): types.ListAlarmModelVersionsOutput, table
+    -- Lists the detector models you have created. Only the metadata associated with each
+    -- detector model is returned.
     listDetectorModels: function(Client, types.ListDetectorModelsInput): types.ListDetectorModelsOutput, table
+    -- Lists all the versions of a detector model. Only the metadata associated with each
+    -- detector model version is returned.
     listDetectorModelVersions: function(Client, types.ListDetectorModelVersionsInput): types.ListDetectorModelVersionsOutput, table
+    -- Lists one or more input routings.
     listInputRoutings: function(Client, types.ListInputRoutingsInput): types.ListInputRoutingsOutput, table
+    -- Lists the inputs you have created.
     listInputs: function(Client, types.ListInputsInput): types.ListInputsOutput, table
+    -- Lists the tags (metadata) you have assigned to the resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sets or updates the AWS IoT Events logging options.
+    -- If you update the value of any loggingOptions field, it takes up to one
+    -- minute for the change to take effect. If you change the policy attached to the role you
+    -- specified in the roleArn field (for example, to correct an invalid policy), it
+    -- takes up to five minutes for that change to take effect.
     putLoggingOptions: function(Client, types.PutLoggingOptionsInput): types.PutLoggingOptionsOutput, table
+    -- Performs an analysis of your detector model. For more information,
+    -- see Troubleshooting a detector model
+    -- in the AWS IoT Events Developer Guide.
     startDetectorModelAnalysis: function(Client, types.StartDetectorModelAnalysisInput): types.StartDetectorModelAnalysisOutput, table
+    -- Adds to or modifies the tags of the given resource. Tags are metadata that can be used to
+    -- manage a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the given tags (metadata) from the resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an alarm model. Any alarms that were created based on the previous version are
+    -- deleted and then created again as new data arrives.
     updateAlarmModel: function(Client, types.UpdateAlarmModelInput): types.UpdateAlarmModelOutput, table
+    -- Updates a detector model. Detectors (instances) spawned by the previous version are
+    -- deleted and then re-created as new inputs arrive.
     updateDetectorModel: function(Client, types.UpdateDetectorModelInput): types.UpdateDetectorModelOutput, table
+    -- Updates an input.
     updateInput: function(Client, types.UpdateInputInput): types.UpdateInputOutput, table
 end
 

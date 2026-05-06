@@ -3,32 +3,59 @@
 local types = require("ssmsap.types")
 
 local record Client
+    -- Removes permissions associated with the target database.
     deleteResourcePermission: function(Client, types.DeleteResourcePermissionInput): types.DeleteResourcePermissionOutput, table
+    -- Deregister an SAP application with AWS Systems Manager for SAP. This action does not aﬀect the existing setup of your SAP workloads on Amazon EC2.
     deregisterApplication: function(Client, types.DeregisterApplicationInput): types.DeregisterApplicationOutput, table
+    -- Gets an application registered with AWS Systems Manager for SAP. It also returns the components of the application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Gets the component of an application registered with AWS Systems Manager for SAP.
     getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    -- Gets the details of a configuration check operation by specifying the operation ID.
     getConfigurationCheckOperation: function(Client, types.GetConfigurationCheckOperationInput): types.GetConfigurationCheckOperationOutput, table
+    -- Gets the SAP HANA database of an application registered with AWS Systems Manager for SAP.
     getDatabase: function(Client, types.GetDatabaseInput): types.GetDatabaseOutput, table
+    -- Gets the details of an operation by specifying the operation ID.
     getOperation: function(Client, types.GetOperationInput): types.GetOperationOutput, table
+    -- Gets permissions associated with the target database.
     getResourcePermission: function(Client, types.GetResourcePermissionInput): types.GetResourcePermissionOutput, table
+    -- Lists all the applications registered with AWS Systems Manager for SAP.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists all the components registered with AWS Systems Manager for SAP.
     listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    -- Lists all configuration check types supported by AWS Systems Manager for SAP.
     listConfigurationCheckDefinitions: function(Client, types.ListConfigurationCheckDefinitionsInput): types.ListConfigurationCheckDefinitionsOutput, table
+    -- Lists the configuration check operations performed by AWS Systems Manager for SAP.
     listConfigurationCheckOperations: function(Client, types.ListConfigurationCheckOperationsInput): types.ListConfigurationCheckOperationsOutput, table
+    -- Lists the SAP HANA databases of an application registered with AWS Systems Manager for SAP.
     listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    -- Returns a list of operations events. Available parameters include OperationID, as well as optional parameters MaxResults, NextToken, and Filters.
     listOperationEvents: function(Client, types.ListOperationEventsInput): types.ListOperationEventsOutput, table
+    -- Lists the operations performed by AWS Systems Manager for SAP.
     listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    -- Lists the sub-check results of a specified configuration check operation.
     listSubCheckResults: function(Client, types.ListSubCheckResultsInput): types.ListSubCheckResultsOutput, table
+    -- Lists the rules of a specified sub-check belonging to a configuration check operation.
     listSubCheckRuleResults: function(Client, types.ListSubCheckRuleResultsInput): types.ListSubCheckRuleResultsOutput, table
+    -- Lists all tags on an SAP HANA application and/or database registered with AWS Systems Manager for SAP.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds permissions to the target database.
     putResourcePermission: function(Client, types.PutResourcePermissionInput): types.PutResourcePermissionOutput, table
+    -- Register an SAP application with AWS Systems Manager for SAP. You must meet the following requirements before registering. The SAP application you want to register with AWS Systems Manager for SAP is running on Amazon EC2. AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with the required IAM permissions. Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets Manager to manage SAP applications and components.
     registerApplication: function(Client, types.RegisterApplicationInput): types.RegisterApplicationOutput, table
+    -- Request is an operation which starts an application. Parameter ApplicationId is required.
     startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    -- Refreshes a registered application.
     startApplicationRefresh: function(Client, types.StartApplicationRefreshInput): types.StartApplicationRefreshOutput, table
+    -- Initiates configuration check operations against a specified application.
     startConfigurationChecks: function(Client, types.StartConfigurationChecksInput): types.StartConfigurationChecksOutput, table
+    -- Request is an operation to stop an application. Parameter ApplicationId is required. Parameters StopConnectedEntity and IncludeEc2InstanceShutdown are optional.
     stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    -- Creates tag for a resource by specifying the ARN.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Delete the tags for a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the settings of an application registered with AWS Systems Manager for SAP.
     updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput): types.UpdateApplicationSettingsOutput, table
 end
 

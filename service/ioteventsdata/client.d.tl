@@ -3,17 +3,40 @@
 local types = require("ioteventsdata.types")
 
 local record Client
+    -- Acknowledges one or more alarms. The alarms change to the ACKNOWLEDGED state
+    -- after you acknowledge them.
     batchAcknowledgeAlarm: function(Client, types.BatchAcknowledgeAlarmInput): types.BatchAcknowledgeAlarmOutput, table
+    -- Deletes one or more detectors that were created. When a detector is deleted, its state will be cleared and the detector will be removed from the list of detectors. The deleted detector will no longer appear if referenced in the ListDetectors API call.
     batchDeleteDetector: function(Client, types.BatchDeleteDetectorInput): types.BatchDeleteDetectorOutput, table
+    -- Disables one or more alarms. The alarms change to the DISABLED state after
+    -- you disable them.
     batchDisableAlarm: function(Client, types.BatchDisableAlarmInput): types.BatchDisableAlarmOutput, table
+    -- Enables one or more alarms. The alarms change to the NORMAL state after you
+    -- enable them.
     batchEnableAlarm: function(Client, types.BatchEnableAlarmInput): types.BatchEnableAlarmOutput, table
+    -- Sends a set of messages to the IoT Events system. Each message payload is transformed into
+    -- the input you specify ("inputName") and ingested into any detectors that monitor
+    -- that input. If multiple messages are sent, the order in which the messages are processed isn't
+    -- guaranteed. To guarantee ordering, you must send messages one at a time and wait for a
+    -- successful response.
     batchPutMessage: function(Client, types.BatchPutMessageInput): types.BatchPutMessageOutput, table
+    -- Resets one or more alarms. The alarms return to the NORMAL state after you
+    -- reset them.
     batchResetAlarm: function(Client, types.BatchResetAlarmInput): types.BatchResetAlarmOutput, table
+    -- Changes one or more alarms to the snooze mode. The alarms change to the
+    -- SNOOZE_DISABLED state after you set them to the snooze mode.
     batchSnoozeAlarm: function(Client, types.BatchSnoozeAlarmInput): types.BatchSnoozeAlarmOutput, table
+    -- Updates the state, variable values, and timer settings of one or more detectors
+    -- (instances) of a specified detector model.
     batchUpdateDetector: function(Client, types.BatchUpdateDetectorInput): types.BatchUpdateDetectorOutput, table
+    -- Retrieves information about an alarm.
     describeAlarm: function(Client, types.DescribeAlarmInput): types.DescribeAlarmOutput, table
+    -- Returns information about the specified detector (instance).
     describeDetector: function(Client, types.DescribeDetectorInput): types.DescribeDetectorOutput, table
+    -- Lists one or more alarms. The operation returns only the metadata associated with each
+    -- alarm.
     listAlarms: function(Client, types.ListAlarmsInput): types.ListAlarmsOutput, table
+    -- Lists detectors (the instances of a detector model).
     listDetectors: function(Client, types.ListDetectorsInput): types.ListDetectorsOutput, table
 end
 

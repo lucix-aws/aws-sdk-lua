@@ -3,88 +3,171 @@
 local types = require("iotmanagedintegrations.types")
 
 local record Client
+    -- Creates a new account association via the destination id.
     createAccountAssociation: function(Client, types.CreateAccountAssociationInput): types.CreateAccountAssociationOutput, table
+    -- Creates a C2C (cloud-to-cloud) connector.
     createCloudConnector: function(Client, types.CreateCloudConnectorInput): types.CreateCloudConnectorOutput, table
+    -- Create a connector destination for connecting a cloud-to-cloud (C2C) connector to the customer's Amazon Web Services account.
     createConnectorDestination: function(Client, types.CreateConnectorDestinationInput): types.CreateConnectorDestinationOutput, table
+    -- Create a credential locker. This operation will not trigger the creation of all the manufacturing resources.
     createCredentialLocker: function(Client, types.CreateCredentialLockerInput): types.CreateCredentialLockerOutput, table
+    -- Create a notification destination such as Kinesis Data Streams that receive events and notifications from Managed integrations. Managed integrations uses the destination to determine where to deliver notifications.
     createDestination: function(Client, types.CreateDestinationInput): types.CreateDestinationOutput, table
+    -- Set the event log configuration for the account, resource type, or specific resource.
     createEventLogConfiguration: function(Client, types.CreateEventLogConfigurationInput): types.CreateEventLogConfigurationOutput, table
+    -- Creates a managed thing. A managed thing contains the device identifier, protocol supported, and capabilities of the device in a data model format defined by Managed integrations.
     createManagedThing: function(Client, types.CreateManagedThingInput): types.CreateManagedThingOutput, table
+    -- Creates a notification configuration. A configuration is a connection between an event type and a destination that you have already created.
     createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput): types.CreateNotificationConfigurationOutput, table
+    -- Create an over-the-air (OTA) task to target a device.
     createOtaTask: function(Client, types.CreateOtaTaskInput): types.CreateOtaTaskOutput, table
+    -- Create a configuraiton for the over-the-air (OTA) task.
     createOtaTaskConfiguration: function(Client, types.CreateOtaTaskConfigurationInput): types.CreateOtaTaskConfigurationOutput, table
+    -- Create a provisioning profile for executing device provisioning flows. The provisioning profile is a document that defines the set of resources and policies applied to a device during the provisioning process.
     createProvisioningProfile: function(Client, types.CreateProvisioningProfileInput): types.CreateProvisioningProfileOutput, table
+    -- Remove a third-party account association for an end user. You must first call the DeregisterAccountAssociation to remove the connection between the managed thing and the third-party account before calling the DeleteAccountAssociation API.
     deleteAccountAssociation: function(Client, types.DeleteAccountAssociationInput): types.DeleteAccountAssociationOutput, table
+    -- Delete a cloud connector.
     deleteCloudConnector: function(Client, types.DeleteCloudConnectorInput): types.DeleteCloudConnectorOutput, table
+    -- Delete a connector destination linked to a cloud-to-cloud (C2C) connector. Deletion can't be done if the account association has used this connector destination.
     deleteConnectorDestination: function(Client, types.DeleteConnectorDestinationInput): types.DeleteConnectorDestinationOutput, table
+    -- Delete a credential locker. This operation can't be undone and any existing device won't be able to use IoT managed integrations.
     deleteCredentialLocker: function(Client, types.DeleteCredentialLockerInput): types.DeleteCredentialLockerOutput, table
+    -- Deletes a notification destination specified by name.
     deleteDestination: function(Client, types.DeleteDestinationInput): types.DeleteDestinationOutput, table
+    -- Delete an event log configuration.
     deleteEventLogConfiguration: function(Client, types.DeleteEventLogConfigurationInput): types.DeleteEventLogConfigurationOutput, table
+    -- Delete a managed thing. For direct-connected and hub-connected devices connecting with Managed integrations via a controller, all of the devices connected to it will have their status changed to PENDING. It is not possible to remove a cloud-to-cloud device.
     deleteManagedThing: function(Client, types.DeleteManagedThingInput): types.DeleteManagedThingOutput, table
+    -- Deletes a notification configuration.
     deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput): types.DeleteNotificationConfigurationOutput, table
+    -- Delete the over-the-air (OTA) task.
     deleteOtaTask: function(Client, types.DeleteOtaTaskInput): types.DeleteOtaTaskOutput, table
+    -- Delete the over-the-air (OTA) task configuration.
     deleteOtaTaskConfiguration: function(Client, types.DeleteOtaTaskConfigurationInput): types.DeleteOtaTaskConfigurationOutput, table
+    -- Delete a provisioning profile.
     deleteProvisioningProfile: function(Client, types.DeleteProvisioningProfileInput): types.DeleteProvisioningProfileOutput, table
+    -- Deregister an account association from a managed thing.
     deregisterAccountAssociation: function(Client, types.DeregisterAccountAssociationInput): types.DeregisterAccountAssociationOutput, table
+    -- Get an account association for an Amazon Web Services account linked to a customer-managed destination.
     getAccountAssociation: function(Client, types.GetAccountAssociationInput): types.GetAccountAssociationOutput, table
+    -- Get configuration details for a cloud connector.
     getCloudConnector: function(Client, types.GetCloudConnectorInput): types.GetCloudConnectorOutput, table
+    -- Get connector destination details linked to a cloud-to-cloud (C2C) connector.
     getConnectorDestination: function(Client, types.GetConnectorDestinationInput): types.GetConnectorDestinationOutput, table
+    -- Get information on an existing credential locker
     getCredentialLocker: function(Client, types.GetCredentialLockerInput): types.GetCredentialLockerOutput, table
+    -- Returns the IoT managed integrations custom endpoint.
     getCustomEndpoint: function(Client, types.GetCustomEndpointInput): types.GetCustomEndpointOutput, table
+    -- Retrieves information about the default encryption configuration for the Amazon Web Services account in the default or specified region. For more information, see Key management in the AWS IoT SiteWise User Guide.
     getDefaultEncryptionConfiguration: function(Client, types.GetDefaultEncryptionConfigurationInput): types.GetDefaultEncryptionConfigurationOutput, table
+    -- Gets a destination by name.
     getDestination: function(Client, types.GetDestinationInput): types.GetDestinationOutput, table
+    -- Get the current state of a device discovery.
     getDeviceDiscovery: function(Client, types.GetDeviceDiscoveryInput): types.GetDeviceDiscoveryOutput, table
+    -- Get an event log configuration.
     getEventLogConfiguration: function(Client, types.GetEventLogConfigurationInput): types.GetEventLogConfigurationOutput, table
+    -- Get a hub configuration.
     getHubConfiguration: function(Client, types.GetHubConfigurationInput): types.GetHubConfigurationOutput, table
+    -- Get details of a managed thing including its attributes and capabilities.
     getManagedThing: function(Client, types.GetManagedThingInput): types.GetManagedThingOutput, table
+    -- Get the capabilities for a managed thing using the device ID.
     getManagedThingCapabilities: function(Client, types.GetManagedThingCapabilitiesInput): types.GetManagedThingCapabilitiesOutput, table
+    -- Retrieves the certificate PEM for a managed IoT thing.
     getManagedThingCertificate: function(Client, types.GetManagedThingCertificateInput): types.GetManagedThingCertificateOutput, table
+    -- Get the connectivity status of a managed thing.
     getManagedThingConnectivityData: function(Client, types.GetManagedThingConnectivityDataInput): types.GetManagedThingConnectivityDataOutput, table
+    -- Get the metadata information for a managed thing. The managedThing metadata parameter is used for associating attributes with a managedThing that can be used for grouping over-the-air (OTA) tasks. Name value pairs in metadata can be used in the OtaTargetQueryString parameter for the CreateOtaTask API operation.
     getManagedThingMetaData: function(Client, types.GetManagedThingMetaDataInput): types.GetManagedThingMetaDataOutput, table
+    -- Returns the managed thing state for the given device Id.
     getManagedThingState: function(Client, types.GetManagedThingStateInput): types.GetManagedThingStateOutput, table
+    -- Get a notification configuration for a specified event type.
     getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput): types.GetNotificationConfigurationOutput, table
+    -- Get details of the over-the-air (OTA) task by its task id.
     getOtaTask: function(Client, types.GetOtaTaskInput): types.GetOtaTaskOutput, table
+    -- Get a configuraiton for the over-the-air (OTA) task.
     getOtaTaskConfiguration: function(Client, types.GetOtaTaskConfigurationInput): types.GetOtaTaskConfigurationOutput, table
+    -- Get details of a provisioning profile.
     getProvisioningProfile: function(Client, types.GetProvisioningProfileInput): types.GetProvisioningProfileOutput, table
+    -- Get the runtime log configuration for a specific managed thing.
     getRuntimeLogConfiguration: function(Client, types.GetRuntimeLogConfigurationInput): types.GetRuntimeLogConfigurationOutput, table
+    -- Gets a schema version with the provided information.
     getSchemaVersion: function(Client, types.GetSchemaVersionInput): types.GetSchemaVersionOutput, table
+    -- Lists all account associations, with optional filtering by connector destination ID.
     listAccountAssociations: function(Client, types.ListAccountAssociationsInput): types.ListAccountAssociationsOutput, table
+    -- Returns a list of connectors filtered by its Lambda Amazon Resource Name (ARN) and type.
     listCloudConnectors: function(Client, types.ListCloudConnectorsInput): types.ListCloudConnectorsOutput, table
+    -- Lists all connector destinations, with optional filtering by cloud connector ID.
     listConnectorDestinations: function(Client, types.ListConnectorDestinationsInput): types.ListConnectorDestinationsOutput, table
+    -- List information on an existing credential locker.
     listCredentialLockers: function(Client, types.ListCredentialLockersInput): types.ListCredentialLockersOutput, table
+    -- List all notification destinations.
     listDestinations: function(Client, types.ListDestinationsInput): types.ListDestinationsOutput, table
+    -- Lists all device discovery tasks, with optional filtering by type and status.
     listDeviceDiscoveries: function(Client, types.ListDeviceDiscoveriesInput): types.ListDeviceDiscoveriesOutput, table
+    -- Lists all devices discovered during a specific device discovery task.
     listDiscoveredDevices: function(Client, types.ListDiscoveredDevicesInput): types.ListDiscoveredDevicesOutput, table
+    -- List all event log configurations for an account.
     listEventLogConfigurations: function(Client, types.ListEventLogConfigurationsInput): types.ListEventLogConfigurationsOutput, table
+    -- Lists all account associations for a specific managed thing.
     listManagedThingAccountAssociations: function(Client, types.ListManagedThingAccountAssociationsInput): types.ListManagedThingAccountAssociationsOutput, table
+    -- Listing all managed things with provision for filters.
     listManagedThings: function(Client, types.ListManagedThingsInput): types.ListManagedThingsOutput, table
+    -- List schemas associated with a managed thing.
     listManagedThingSchemas: function(Client, types.ListManagedThingSchemasInput): types.ListManagedThingSchemasOutput, table
+    -- List all notification configurations.
     listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput): types.ListNotificationConfigurationsOutput, table
+    -- List all of the over-the-air (OTA) task configurations.
     listOtaTaskConfigurations: function(Client, types.ListOtaTaskConfigurationsInput): types.ListOtaTaskConfigurationsOutput, table
+    -- List all of the over-the-air (OTA) task executions.
     listOtaTaskExecutions: function(Client, types.ListOtaTaskExecutionsInput): types.ListOtaTaskExecutionsOutput, table
+    -- List all of the over-the-air (OTA) tasks.
     listOtaTasks: function(Client, types.ListOtaTasksInput): types.ListOtaTasksOutput, table
+    -- List the provisioning profiles within the Amazon Web Services account.
     listProvisioningProfiles: function(Client, types.ListProvisioningProfilesInput): types.ListProvisioningProfilesOutput, table
+    -- Lists schema versions with the provided information.
     listSchemaVersions: function(Client, types.ListSchemaVersionsInput): types.ListSchemaVersionsOutput, table
+    -- Lists the tags for a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sets the default encryption configuration for the Amazon Web Services account. For more information, see Key management in the AWS IoT SiteWise User Guide.
     putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput): types.PutDefaultEncryptionConfigurationOutput, table
+    -- Update a hub configuration.
     putHubConfiguration: function(Client, types.PutHubConfigurationInput): types.PutHubConfigurationOutput, table
+    -- Set the runtime log configuration for a specific managed thing.
     putRuntimeLogConfiguration: function(Client, types.PutRuntimeLogConfigurationInput): types.PutRuntimeLogConfigurationOutput, table
+    -- Registers an account association with a managed thing, establishing a connection between a device and a third-party account.
     registerAccountAssociation: function(Client, types.RegisterAccountAssociationInput): types.RegisterAccountAssociationOutput, table
+    -- Customers can request IoT managed integrations to manage the server trust for them or bring their own external server trusts for the custom domain. Returns an IoT managed integrations endpoint.
     registerCustomEndpoint: function(Client, types.RegisterCustomEndpointInput): types.RegisterCustomEndpointOutput, table
+    -- Reset a runtime log configuration for a specific managed thing.
     resetRuntimeLogConfiguration: function(Client, types.ResetRuntimeLogConfigurationInput): types.ResetRuntimeLogConfigurationOutput, table
+    -- Relays third-party device events for a connector such as a new device or a device state change event.
     sendConnectorEvent: function(Client, types.SendConnectorEventInput): types.SendConnectorEventOutput, table
+    -- Send the command to the device represented by the managed thing.
     sendManagedThingCommand: function(Client, types.SendManagedThingCommandInput): types.SendManagedThingCommandOutput, table
+    -- Initiates a refresh of an existing account association to update its authorization and connection status.
     startAccountAssociationRefresh: function(Client, types.StartAccountAssociationRefreshInput): types.StartAccountAssociationRefreshOutput, table
+    -- This API is used to start device discovery for hub-connected and third-party-connected devices. The authentication material (install code) is delivered as a message to the controller instructing it to start the discovery.
     startDeviceDiscovery: function(Client, types.StartDeviceDiscoveryInput): types.StartDeviceDiscoveryOutput, table
+    -- Adds tags to a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the properties of an existing account association.
     updateAccountAssociation: function(Client, types.UpdateAccountAssociationInput): types.UpdateAccountAssociationOutput, table
+    -- Update an existing cloud connector.
     updateCloudConnector: function(Client, types.UpdateCloudConnectorInput): types.UpdateCloudConnectorOutput, table
+    -- Updates the properties of an existing connector destination.
     updateConnectorDestination: function(Client, types.UpdateConnectorDestinationInput): types.UpdateConnectorDestinationOutput, table
+    -- Update a destination specified by name.
     updateDestination: function(Client, types.UpdateDestinationInput): types.UpdateDestinationOutput, table
+    -- Update an event log configuration by log configuration ID.
     updateEventLogConfiguration: function(Client, types.UpdateEventLogConfigurationInput): types.UpdateEventLogConfigurationOutput, table
+    -- Update the attributes and capabilities associated with a managed thing.
     updateManagedThing: function(Client, types.UpdateManagedThingInput): types.UpdateManagedThingOutput, table
+    -- Update a notification configuration.
     updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput): types.UpdateNotificationConfigurationOutput, table
+    -- Update an over-the-air (OTA) task.
     updateOtaTask: function(Client, types.UpdateOtaTaskInput): types.UpdateOtaTaskOutput, table
 end
 

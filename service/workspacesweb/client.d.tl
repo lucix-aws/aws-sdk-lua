@@ -3,80 +3,155 @@
 local types = require("workspacesweb.types")
 
 local record Client
+    -- Associates a browser settings resource with a web portal.
     associateBrowserSettings: function(Client, types.AssociateBrowserSettingsInput): types.AssociateBrowserSettingsOutput, table
+    -- Associates a data protection settings resource with a web portal.
     associateDataProtectionSettings: function(Client, types.AssociateDataProtectionSettingsInput): types.AssociateDataProtectionSettingsOutput, table
+    -- Associates an IP access settings resource with a web portal.
     associateIpAccessSettings: function(Client, types.AssociateIpAccessSettingsInput): types.AssociateIpAccessSettingsOutput, table
+    -- Associates a network settings resource with a web portal.
     associateNetworkSettings: function(Client, types.AssociateNetworkSettingsInput): types.AssociateNetworkSettingsOutput, table
+    -- Associates a session logger with a portal.
     associateSessionLogger: function(Client, types.AssociateSessionLoggerInput): types.AssociateSessionLoggerOutput, table
+    -- Associates a trust store with a web portal.
     associateTrustStore: function(Client, types.AssociateTrustStoreInput): types.AssociateTrustStoreOutput, table
+    -- Associates a user access logging settings resource with a web portal.
     associateUserAccessLoggingSettings: function(Client, types.AssociateUserAccessLoggingSettingsInput): types.AssociateUserAccessLoggingSettingsOutput, table
+    -- Associates a user settings resource with a web portal.
     associateUserSettings: function(Client, types.AssociateUserSettingsInput): types.AssociateUserSettingsOutput, table
+    -- Creates a browser settings resource that can be associated with a web portal. Once associated with a web portal, browser settings control how the browser will behave once a user starts a streaming session for the web portal.
     createBrowserSettings: function(Client, types.CreateBrowserSettingsInput): types.CreateBrowserSettingsOutput, table
+    -- Creates a data protection settings resource that can be associated with a web portal.
     createDataProtectionSettings: function(Client, types.CreateDataProtectionSettingsInput): types.CreateDataProtectionSettingsOutput, table
+    -- Creates an identity provider resource that is then associated with a web portal.
     createIdentityProvider: function(Client, types.CreateIdentityProviderInput): types.CreateIdentityProviderOutput, table
+    -- Creates an IP access settings resource that can be associated with a web portal.
     createIpAccessSettings: function(Client, types.CreateIpAccessSettingsInput): types.CreateIpAccessSettingsOutput, table
+    -- Creates a network settings resource that can be associated with a web portal. Once associated with a web portal, network settings define how streaming instances will connect with your specified VPC.
     createNetworkSettings: function(Client, types.CreateNetworkSettingsInput): types.CreateNetworkSettingsOutput, table
+    -- Creates a web portal.
     createPortal: function(Client, types.CreatePortalInput): types.CreatePortalOutput, table
+    -- Creates a session logger.
     createSessionLogger: function(Client, types.CreateSessionLoggerInput): types.CreateSessionLoggerOutput, table
+    -- Creates a trust store that can be associated with a web portal. A trust store contains certificate authority (CA) certificates. Once associated with a web portal, the browser in a streaming session will recognize certificates that have been issued using any of the CAs in the trust store. If your organization has internal websites that use certificates issued by private CAs, you should add the private CA certificate to the trust store.
     createTrustStore: function(Client, types.CreateTrustStoreInput): types.CreateTrustStoreOutput, table
+    -- Creates a user access logging settings resource that can be associated with a web portal.
     createUserAccessLoggingSettings: function(Client, types.CreateUserAccessLoggingSettingsInput): types.CreateUserAccessLoggingSettingsOutput, table
+    -- Creates a user settings resource that can be associated with a web portal. Once associated with a web portal, user settings control how users can transfer data between a streaming session and the their local devices.
     createUserSettings: function(Client, types.CreateUserSettingsInput): types.CreateUserSettingsOutput, table
+    -- Deletes browser settings.
     deleteBrowserSettings: function(Client, types.DeleteBrowserSettingsInput): types.DeleteBrowserSettingsOutput, table
+    -- Deletes data protection settings.
     deleteDataProtectionSettings: function(Client, types.DeleteDataProtectionSettingsInput): types.DeleteDataProtectionSettingsOutput, table
+    -- Deletes the identity provider.
     deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput): types.DeleteIdentityProviderOutput, table
+    -- Deletes IP access settings.
     deleteIpAccessSettings: function(Client, types.DeleteIpAccessSettingsInput): types.DeleteIpAccessSettingsOutput, table
+    -- Deletes network settings.
     deleteNetworkSettings: function(Client, types.DeleteNetworkSettingsInput): types.DeleteNetworkSettingsOutput, table
+    -- Deletes a web portal.
     deletePortal: function(Client, types.DeletePortalInput): types.DeletePortalOutput, table
+    -- Deletes a session logger resource.
     deleteSessionLogger: function(Client, types.DeleteSessionLoggerInput): types.DeleteSessionLoggerOutput, table
+    -- Deletes the trust store.
     deleteTrustStore: function(Client, types.DeleteTrustStoreInput): types.DeleteTrustStoreOutput, table
+    -- Deletes user access logging settings.
     deleteUserAccessLoggingSettings: function(Client, types.DeleteUserAccessLoggingSettingsInput): types.DeleteUserAccessLoggingSettingsOutput, table
+    -- Deletes user settings.
     deleteUserSettings: function(Client, types.DeleteUserSettingsInput): types.DeleteUserSettingsOutput, table
+    -- Disassociates browser settings from a web portal.
     disassociateBrowserSettings: function(Client, types.DisassociateBrowserSettingsInput): types.DisassociateBrowserSettingsOutput, table
+    -- Disassociates data protection settings from a web portal.
     disassociateDataProtectionSettings: function(Client, types.DisassociateDataProtectionSettingsInput): types.DisassociateDataProtectionSettingsOutput, table
+    -- Disassociates IP access settings from a web portal.
     disassociateIpAccessSettings: function(Client, types.DisassociateIpAccessSettingsInput): types.DisassociateIpAccessSettingsOutput, table
+    -- Disassociates network settings from a web portal.
     disassociateNetworkSettings: function(Client, types.DisassociateNetworkSettingsInput): types.DisassociateNetworkSettingsOutput, table
+    -- Disassociates a session logger from a portal.
     disassociateSessionLogger: function(Client, types.DisassociateSessionLoggerInput): types.DisassociateSessionLoggerOutput, table
+    -- Disassociates a trust store from a web portal.
     disassociateTrustStore: function(Client, types.DisassociateTrustStoreInput): types.DisassociateTrustStoreOutput, table
+    -- Disassociates user access logging settings from a web portal.
     disassociateUserAccessLoggingSettings: function(Client, types.DisassociateUserAccessLoggingSettingsInput): types.DisassociateUserAccessLoggingSettingsOutput, table
+    -- Disassociates user settings from a web portal.
     disassociateUserSettings: function(Client, types.DisassociateUserSettingsInput): types.DisassociateUserSettingsOutput, table
+    -- Expires an active secure browser session.
     expireSession: function(Client, types.ExpireSessionInput): types.ExpireSessionOutput, table
+    -- Gets browser settings.
     getBrowserSettings: function(Client, types.GetBrowserSettingsInput): types.GetBrowserSettingsOutput, table
+    -- Gets the data protection settings.
     getDataProtectionSettings: function(Client, types.GetDataProtectionSettingsInput): types.GetDataProtectionSettingsOutput, table
+    -- Gets the identity provider.
     getIdentityProvider: function(Client, types.GetIdentityProviderInput): types.GetIdentityProviderOutput, table
+    -- Gets the IP access settings.
     getIpAccessSettings: function(Client, types.GetIpAccessSettingsInput): types.GetIpAccessSettingsOutput, table
+    -- Gets the network settings.
     getNetworkSettings: function(Client, types.GetNetworkSettingsInput): types.GetNetworkSettingsOutput, table
+    -- Gets the web portal.
     getPortal: function(Client, types.GetPortalInput): types.GetPortalOutput, table
+    -- Gets the service provider metadata.
     getPortalServiceProviderMetadata: function(Client, types.GetPortalServiceProviderMetadataInput): types.GetPortalServiceProviderMetadataOutput, table
+    -- Gets information for a secure browser session.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Gets details about a specific session logger resource.
     getSessionLogger: function(Client, types.GetSessionLoggerInput): types.GetSessionLoggerOutput, table
+    -- Gets the trust store.
     getTrustStore: function(Client, types.GetTrustStoreInput): types.GetTrustStoreOutput, table
+    -- Gets the trust store certificate.
     getTrustStoreCertificate: function(Client, types.GetTrustStoreCertificateInput): types.GetTrustStoreCertificateOutput, table
+    -- Gets user access logging settings.
     getUserAccessLoggingSettings: function(Client, types.GetUserAccessLoggingSettingsInput): types.GetUserAccessLoggingSettingsOutput, table
+    -- Gets user settings.
     getUserSettings: function(Client, types.GetUserSettingsInput): types.GetUserSettingsOutput, table
+    -- Retrieves a list of browser settings.
     listBrowserSettings: function(Client, types.ListBrowserSettingsInput): types.ListBrowserSettingsOutput, table
+    -- Retrieves a list of data protection settings.
     listDataProtectionSettings: function(Client, types.ListDataProtectionSettingsInput): types.ListDataProtectionSettingsOutput, table
+    -- Retrieves a list of identity providers for a specific web portal.
     listIdentityProviders: function(Client, types.ListIdentityProvidersInput): types.ListIdentityProvidersOutput, table
+    -- Retrieves a list of IP access settings.
     listIpAccessSettings: function(Client, types.ListIpAccessSettingsInput): types.ListIpAccessSettingsOutput, table
+    -- Retrieves a list of network settings.
     listNetworkSettings: function(Client, types.ListNetworkSettingsInput): types.ListNetworkSettingsOutput, table
+    -- Retrieves a list or web portals.
     listPortals: function(Client, types.ListPortalsInput): types.ListPortalsOutput, table
+    -- Lists all available session logger resources.
     listSessionLoggers: function(Client, types.ListSessionLoggersInput): types.ListSessionLoggersOutput, table
+    -- Lists information for multiple secure browser sessions from a specific portal.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Retrieves a list of tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves a list of trust store certificates.
     listTrustStoreCertificates: function(Client, types.ListTrustStoreCertificatesInput): types.ListTrustStoreCertificatesOutput, table
+    -- Retrieves a list of trust stores.
     listTrustStores: function(Client, types.ListTrustStoresInput): types.ListTrustStoresOutput, table
+    -- Retrieves a list of user access logging settings.
     listUserAccessLoggingSettings: function(Client, types.ListUserAccessLoggingSettingsInput): types.ListUserAccessLoggingSettingsOutput, table
+    -- Retrieves a list of user settings.
     listUserSettings: function(Client, types.ListUserSettingsInput): types.ListUserSettingsOutput, table
+    -- Adds or overwrites one or more tags for the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates browser settings.
     updateBrowserSettings: function(Client, types.UpdateBrowserSettingsInput): types.UpdateBrowserSettingsOutput, table
+    -- Updates data protection settings.
     updateDataProtectionSettings: function(Client, types.UpdateDataProtectionSettingsInput): types.UpdateDataProtectionSettingsOutput, table
+    -- Updates the identity provider.
     updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput): types.UpdateIdentityProviderOutput, table
+    -- Updates IP access settings.
     updateIpAccessSettings: function(Client, types.UpdateIpAccessSettingsInput): types.UpdateIpAccessSettingsOutput, table
+    -- Updates network settings.
     updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput): types.UpdateNetworkSettingsOutput, table
+    -- Updates a web portal.
     updatePortal: function(Client, types.UpdatePortalInput): types.UpdatePortalOutput, table
+    -- Updates the details of a session logger.
     updateSessionLogger: function(Client, types.UpdateSessionLoggerInput): types.UpdateSessionLoggerOutput, table
+    -- Updates the trust store.
     updateTrustStore: function(Client, types.UpdateTrustStoreInput): types.UpdateTrustStoreOutput, table
+    -- Updates the user access logging settings.
     updateUserAccessLoggingSettings: function(Client, types.UpdateUserAccessLoggingSettingsInput): types.UpdateUserAccessLoggingSettingsOutput, table
+    -- Updates the user settings.
     updateUserSettings: function(Client, types.UpdateUserSettingsInput): types.UpdateUserSettingsOutput, table
 end
 

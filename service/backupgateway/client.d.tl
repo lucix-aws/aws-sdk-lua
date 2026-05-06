@@ -3,30 +3,80 @@
 local types = require("backupgateway.types")
 
 local record Client
+    -- Associates a backup gateway with your server. After you complete the association process,
+    -- you can back up and restore your VMs through the gateway.
     associateGatewayToServer: function(Client, types.AssociateGatewayToServerInput): types.AssociateGatewayToServerOutput, table
+    -- Creates a backup gateway. After you create a gateway, you can associate it with a server
+    -- using the AssociateGatewayToServer operation.
     createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    -- Deletes a backup gateway.
     deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    -- Deletes a hypervisor.
     deleteHypervisor: function(Client, types.DeleteHypervisorInput): types.DeleteHypervisorOutput, table
+    -- Disassociates a backup gateway from the specified server. After the disassociation process
+    -- finishes, the gateway can no longer access the virtual machines on the server.
     disassociateGatewayFromServer: function(Client, types.DisassociateGatewayFromServerInput): types.DisassociateGatewayFromServerOutput, table
+    -- Retrieves the bandwidth rate limit schedule for a specified gateway.
+    -- By default, gateways do not have bandwidth rate limit schedules, which means
+    -- no bandwidth rate limiting is in effect. Use this to get a gateway's
+    -- bandwidth rate limit schedule.
     getBandwidthRateLimitSchedule: function(Client, types.GetBandwidthRateLimitScheduleInput): types.GetBandwidthRateLimitScheduleOutput, table
+    -- By providing the ARN (Amazon Resource Name), this
+    -- API returns the gateway.
     getGateway: function(Client, types.GetGatewayInput): types.GetGatewayOutput, table
+    -- This action requests information about the specified hypervisor to which the gateway will connect.
+    -- A hypervisor is hardware, software, or firmware that creates and manages virtual machines,
+    -- and allocates resources to them.
     getHypervisor: function(Client, types.GetHypervisorInput): types.GetHypervisorOutput, table
+    -- This action retrieves the property mappings for the specified hypervisor.
+    -- A hypervisor property mapping displays the relationship of entity properties
+    -- available from the hypervisor to the properties available in Amazon Web Services.
     getHypervisorPropertyMappings: function(Client, types.GetHypervisorPropertyMappingsInput): types.GetHypervisorPropertyMappingsOutput, table
+    -- By providing the ARN (Amazon Resource Name), this API returns the virtual machine.
     getVirtualMachine: function(Client, types.GetVirtualMachineInput): types.GetVirtualMachineOutput, table
+    -- Connect to a hypervisor by importing its configuration.
     importHypervisorConfiguration: function(Client, types.ImportHypervisorConfigurationInput): types.ImportHypervisorConfigurationOutput, table
+    -- Lists backup gateways owned by an Amazon Web Services account in an Amazon Web Services Region. The returned list is ordered by gateway Amazon Resource Name (ARN).
     listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    -- Lists your hypervisors.
     listHypervisors: function(Client, types.ListHypervisorsInput): types.ListHypervisorsOutput, table
+    -- Lists the tags applied to the resource identified by its Amazon Resource Name
+    -- (ARN).
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists your virtual machines.
     listVirtualMachines: function(Client, types.ListVirtualMachinesInput): types.ListVirtualMachinesOutput, table
+    -- This action sets the bandwidth rate limit schedule for a specified gateway.
+    -- By default, gateways do not have a bandwidth rate limit schedule, which means
+    -- no bandwidth rate limiting is in effect. Use this to initiate a
+    -- gateway's bandwidth rate limit schedule.
     putBandwidthRateLimitSchedule: function(Client, types.PutBandwidthRateLimitScheduleInput): types.PutBandwidthRateLimitScheduleOutput, table
+    -- This action sets the property mappings for the specified hypervisor.
+    -- A hypervisor property mapping displays the relationship of entity properties
+    -- available from the hypervisor to the properties available in Amazon Web Services.
     putHypervisorPropertyMappings: function(Client, types.PutHypervisorPropertyMappingsInput): types.PutHypervisorPropertyMappingsOutput, table
+    -- Set the maintenance start time for a gateway.
     putMaintenanceStartTime: function(Client, types.PutMaintenanceStartTimeInput): types.PutMaintenanceStartTimeOutput, table
+    -- This action sends a request to sync metadata across the specified virtual machines.
     startVirtualMachinesMetadataSync: function(Client, types.StartVirtualMachinesMetadataSyncInput): types.StartVirtualMachinesMetadataSyncOutput, table
+    -- Tag the resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests your hypervisor configuration to validate that backup gateway can connect with the
+    -- hypervisor and its resources.
     testHypervisorConfiguration: function(Client, types.TestHypervisorConfigurationInput): types.TestHypervisorConfigurationOutput, table
+    -- Removes tags from the resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a gateway's name. Specify which gateway to update using the Amazon Resource Name
+    -- (ARN) of the gateway in your request.
     updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput): types.UpdateGatewayInformationOutput, table
+    -- Updates the gateway virtual machine (VM) software.
+    -- The request immediately triggers the software update.
+    -- When you make this request, you get a 200 OK
+    -- success response immediately. However, it might take some
+    -- time for the update to complete.
     updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput): types.UpdateGatewaySoftwareNowOutput, table
+    -- Updates a hypervisor metadata, including its host, username, and password. Specify which
+    -- hypervisor to update using the Amazon Resource Name (ARN) of the hypervisor in your
+    -- request.
     updateHypervisor: function(Client, types.UpdateHypervisorInput): types.UpdateHypervisorOutput, table
 end
 

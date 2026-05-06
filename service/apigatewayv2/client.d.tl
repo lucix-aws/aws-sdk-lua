@@ -3,108 +3,210 @@
 local types = require("apigatewayv2.types")
 
 local record Client
+    -- Creates an Api resource.
     createApi: function(Client, types.CreateApiInput): types.CreateApiOutput, table
+    -- Creates an API mapping.
     createApiMapping: function(Client, types.CreateApiMappingInput): types.CreateApiMappingOutput, table
+    -- Creates an Authorizer for an API.
     createAuthorizer: function(Client, types.CreateAuthorizerInput): types.CreateAuthorizerOutput, table
+    -- Creates a Deployment for an API.
     createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    -- Creates a domain name.
     createDomainName: function(Client, types.CreateDomainNameInput): types.CreateDomainNameOutput, table
+    -- Creates an Integration.
     createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    -- Creates an IntegrationResponses.
     createIntegrationResponse: function(Client, types.CreateIntegrationResponseInput): types.CreateIntegrationResponseOutput, table
+    -- Creates a Model for an API.
     createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    -- Creates a portal.
     createPortal: function(Client, types.CreatePortalInput): types.CreatePortalOutput, table
+    -- Creates a new portal product.
     createPortalProduct: function(Client, types.CreatePortalProductInput): types.CreatePortalProductOutput, table
+    -- Creates a new product page for a portal product.
     createProductPage: function(Client, types.CreateProductPageInput): types.CreateProductPageOutput, table
+    -- Creates a product REST endpoint page for a portal product.
     createProductRestEndpointPage: function(Client, types.CreateProductRestEndpointPageInput): types.CreateProductRestEndpointPageOutput, table
+    -- Creates a Route for an API.
     createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    -- Creates a RouteResponse for a Route.
     createRouteResponse: function(Client, types.CreateRouteResponseInput): types.CreateRouteResponseOutput, table
+    -- Creates a RoutingRule.
     createRoutingRule: function(Client, types.CreateRoutingRuleInput): types.CreateRoutingRuleOutput, table
+    -- Creates a Stage for an API.
     createStage: function(Client, types.CreateStageInput): types.CreateStageOutput, table
+    -- Creates a VPC link.
     createVpcLink: function(Client, types.CreateVpcLinkInput): types.CreateVpcLinkOutput, table
+    -- Deletes the AccessLogSettings for a Stage. To disable access logging for a Stage, delete its AccessLogSettings.
     deleteAccessLogSettings: function(Client, types.DeleteAccessLogSettingsInput): types.DeleteAccessLogSettingsOutput, table
+    -- Deletes an Api resource.
     deleteApi: function(Client, types.DeleteApiInput): types.DeleteApiOutput, table
+    -- Deletes an API mapping.
     deleteApiMapping: function(Client, types.DeleteApiMappingInput): types.DeleteApiMappingOutput, table
+    -- Deletes an Authorizer.
     deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): types.DeleteAuthorizerOutput, table
+    -- Deletes a CORS configuration.
     deleteCorsConfiguration: function(Client, types.DeleteCorsConfigurationInput): types.DeleteCorsConfigurationOutput, table
+    -- Deletes a Deployment.
     deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    -- Deletes a domain name.
     deleteDomainName: function(Client, types.DeleteDomainNameInput): types.DeleteDomainNameOutput, table
+    -- Deletes an Integration.
     deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    -- Deletes an IntegrationResponses.
     deleteIntegrationResponse: function(Client, types.DeleteIntegrationResponseInput): types.DeleteIntegrationResponseOutput, table
+    -- Deletes a Model.
     deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    -- Deletes a portal.
     deletePortal: function(Client, types.DeletePortalInput): types.DeletePortalOutput, table
+    -- Deletes a portal product.
     deletePortalProduct: function(Client, types.DeletePortalProductInput): types.DeletePortalProductOutput, table
+    -- Deletes the sharing policy for a portal product.
     deletePortalProductSharingPolicy: function(Client, types.DeletePortalProductSharingPolicyInput): types.DeletePortalProductSharingPolicyOutput, table
+    -- Deletes a product page of a portal product.
     deleteProductPage: function(Client, types.DeleteProductPageInput): types.DeleteProductPageOutput, table
+    -- Deletes a product REST endpoint page.
     deleteProductRestEndpointPage: function(Client, types.DeleteProductRestEndpointPageInput): types.DeleteProductRestEndpointPageOutput, table
+    -- Deletes a Route.
     deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    -- Deletes a route request parameter. Supported only for WebSocket APIs.
     deleteRouteRequestParameter: function(Client, types.DeleteRouteRequestParameterInput): types.DeleteRouteRequestParameterOutput, table
+    -- Deletes a RouteResponse.
     deleteRouteResponse: function(Client, types.DeleteRouteResponseInput): types.DeleteRouteResponseOutput, table
+    -- Deletes the RouteSettings for a stage.
     deleteRouteSettings: function(Client, types.DeleteRouteSettingsInput): types.DeleteRouteSettingsOutput, table
+    -- Deletes a routing rule.
     deleteRoutingRule: function(Client, types.DeleteRoutingRuleInput): types.DeleteRoutingRuleOutput, table
+    -- Deletes a Stage.
     deleteStage: function(Client, types.DeleteStageInput): types.DeleteStageOutput, table
+    -- Deletes a VPC link.
     deleteVpcLink: function(Client, types.DeleteVpcLinkInput): types.DeleteVpcLinkOutput, table
+    -- Deletes the publication of a portal portal.
     disablePortal: function(Client, types.DisablePortalInput): types.DisablePortalOutput, table
     exportApi: function(Client, types.ExportApiInput): types.ExportApiOutput, table
+    -- Gets an Api resource.
     getApi: function(Client, types.GetApiInput): types.GetApiOutput, table
+    -- Gets an API mapping.
     getApiMapping: function(Client, types.GetApiMappingInput): types.GetApiMappingOutput, table
+    -- Gets API mappings.
     getApiMappings: function(Client, types.GetApiMappingsInput): types.GetApiMappingsOutput, table
+    -- Gets a collection of Api resources.
     getApis: function(Client, types.GetApisInput): types.GetApisOutput, table
+    -- Gets an Authorizer.
     getAuthorizer: function(Client, types.GetAuthorizerInput): types.GetAuthorizerOutput, table
+    -- Gets the Authorizers for an API.
     getAuthorizers: function(Client, types.GetAuthorizersInput): types.GetAuthorizersOutput, table
+    -- Gets a Deployment.
     getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    -- Gets the Deployments for an API.
     getDeployments: function(Client, types.GetDeploymentsInput): types.GetDeploymentsOutput, table
+    -- Gets a domain name.
     getDomainName: function(Client, types.GetDomainNameInput): types.GetDomainNameOutput, table
+    -- Gets the domain names for an AWS account.
     getDomainNames: function(Client, types.GetDomainNamesInput): types.GetDomainNamesOutput, table
+    -- Gets an Integration.
     getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    -- Gets an IntegrationResponses.
     getIntegrationResponse: function(Client, types.GetIntegrationResponseInput): types.GetIntegrationResponseOutput, table
+    -- Gets the IntegrationResponses for an Integration.
     getIntegrationResponses: function(Client, types.GetIntegrationResponsesInput): types.GetIntegrationResponsesOutput, table
+    -- Gets the Integrations for an API.
     getIntegrations: function(Client, types.GetIntegrationsInput): types.GetIntegrationsOutput, table
+    -- Gets a Model.
     getModel: function(Client, types.GetModelInput): types.GetModelOutput, table
+    -- Gets the Models for an API.
     getModels: function(Client, types.GetModelsInput): types.GetModelsOutput, table
+    -- Gets a model template.
     getModelTemplate: function(Client, types.GetModelTemplateInput): types.GetModelTemplateOutput, table
+    -- Gets a portal.
     getPortal: function(Client, types.GetPortalInput): types.GetPortalOutput, table
+    -- Gets a portal product.
     getPortalProduct: function(Client, types.GetPortalProductInput): types.GetPortalProductOutput, table
+    -- Gets the sharing policy for a portal product.
     getPortalProductSharingPolicy: function(Client, types.GetPortalProductSharingPolicyInput): types.GetPortalProductSharingPolicyOutput, table
+    -- Gets a product page of a portal product.
     getProductPage: function(Client, types.GetProductPageInput): types.GetProductPageOutput, table
+    -- Gets a product REST endpoint page.
     getProductRestEndpointPage: function(Client, types.GetProductRestEndpointPageInput): types.GetProductRestEndpointPageOutput, table
+    -- Gets a Route.
     getRoute: function(Client, types.GetRouteInput): types.GetRouteOutput, table
+    -- Gets a RouteResponse.
     getRouteResponse: function(Client, types.GetRouteResponseInput): types.GetRouteResponseOutput, table
+    -- Gets the RouteResponses for a Route.
     getRouteResponses: function(Client, types.GetRouteResponsesInput): types.GetRouteResponsesOutput, table
+    -- Gets the Routes for an API.
     getRoutes: function(Client, types.GetRoutesInput): types.GetRoutesOutput, table
+    -- Gets a routing rule.
     getRoutingRule: function(Client, types.GetRoutingRuleInput): types.GetRoutingRuleOutput, table
+    -- Gets a Stage.
     getStage: function(Client, types.GetStageInput): types.GetStageOutput, table
+    -- Gets the Stages for an API.
     getStages: function(Client, types.GetStagesInput): types.GetStagesOutput, table
+    -- Gets a collection of Tag resources.
     getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    -- Gets a VPC link.
     getVpcLink: function(Client, types.GetVpcLinkInput): types.GetVpcLinkOutput, table
+    -- Gets a collection of VPC links.
     getVpcLinks: function(Client, types.GetVpcLinksInput): types.GetVpcLinksOutput, table
+    -- Imports an API.
     importApi: function(Client, types.ImportApiInput): types.ImportApiOutput, table
+    -- Lists portal products.
     listPortalProducts: function(Client, types.ListPortalProductsInput): types.ListPortalProductsOutput, table
+    -- Lists portals.
     listPortals: function(Client, types.ListPortalsInput): types.ListPortalsOutput, table
+    -- Lists the product pages for a portal product.
     listProductPages: function(Client, types.ListProductPagesInput): types.ListProductPagesOutput, table
+    -- Lists the product REST endpoint pages of a portal product.
     listProductRestEndpointPages: function(Client, types.ListProductRestEndpointPagesInput): types.ListProductRestEndpointPagesOutput, table
+    -- Lists routing rules.
     listRoutingRules: function(Client, types.ListRoutingRulesInput): types.ListRoutingRulesOutput, table
+    -- Creates a portal preview.
     previewPortal: function(Client, types.PreviewPortalInput): types.PreviewPortalOutput, table
+    -- Publishes a portal.
     publishPortal: function(Client, types.PublishPortalInput): types.PublishPortalOutput, table
+    -- Updates the sharing policy for a portal product.
     putPortalProductSharingPolicy: function(Client, types.PutPortalProductSharingPolicyInput): types.PutPortalProductSharingPolicyOutput, table
+    -- Updates a routing rule.
     putRoutingRule: function(Client, types.PutRoutingRuleInput): types.PutRoutingRuleOutput, table
+    -- Puts an Api resource.
     reimportApi: function(Client, types.ReimportApiInput): types.ReimportApiOutput, table
+    -- Resets all authorizer cache entries on a stage. Supported only for HTTP APIs.
     resetAuthorizersCache: function(Client, types.ResetAuthorizersCacheInput): types.ResetAuthorizersCacheOutput, table
+    -- Creates a new Tag resource to represent a tag.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes a Tag.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Api resource.
     updateApi: function(Client, types.UpdateApiInput): types.UpdateApiOutput, table
+    -- The API mapping.
     updateApiMapping: function(Client, types.UpdateApiMappingInput): types.UpdateApiMappingOutput, table
+    -- Updates an Authorizer.
     updateAuthorizer: function(Client, types.UpdateAuthorizerInput): types.UpdateAuthorizerOutput, table
+    -- Updates a Deployment.
     updateDeployment: function(Client, types.UpdateDeploymentInput): types.UpdateDeploymentOutput, table
+    -- Updates a domain name.
     updateDomainName: function(Client, types.UpdateDomainNameInput): types.UpdateDomainNameOutput, table
+    -- Updates an Integration.
     updateIntegration: function(Client, types.UpdateIntegrationInput): types.UpdateIntegrationOutput, table
+    -- Updates an IntegrationResponses.
     updateIntegrationResponse: function(Client, types.UpdateIntegrationResponseInput): types.UpdateIntegrationResponseOutput, table
+    -- Updates a Model.
     updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    -- Updates a portal.
     updatePortal: function(Client, types.UpdatePortalInput): types.UpdatePortalOutput, table
+    -- Updates the portal product.
     updatePortalProduct: function(Client, types.UpdatePortalProductInput): types.UpdatePortalProductOutput, table
+    -- Updates a product page of a portal product.
     updateProductPage: function(Client, types.UpdateProductPageInput): types.UpdateProductPageOutput, table
+    -- Updates a product REST endpoint page.
     updateProductRestEndpointPage: function(Client, types.UpdateProductRestEndpointPageInput): types.UpdateProductRestEndpointPageOutput, table
+    -- Updates a Route.
     updateRoute: function(Client, types.UpdateRouteInput): types.UpdateRouteOutput, table
+    -- Updates a RouteResponse.
     updateRouteResponse: function(Client, types.UpdateRouteResponseInput): types.UpdateRouteResponseOutput, table
+    -- Updates a Stage.
     updateStage: function(Client, types.UpdateStageInput): types.UpdateStageOutput, table
+    -- Updates a VPC link.
     updateVpcLink: function(Client, types.UpdateVpcLinkInput): types.UpdateVpcLinkOutput, table
 end
 

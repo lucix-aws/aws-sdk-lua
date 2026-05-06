@@ -3,56 +3,308 @@
 local types = require("chimesdkmessaging.types")
 
 local record Client
+    -- Associates a channel flow with a channel. Once associated, all messages to that channel go through channel flow processors. To stop processing, use the
+    -- DisassociateChannelFlow API.
+    -- Only administrators or channel moderators can associate a channel flow. The
+    -- x-amz-chime-bearer request header is mandatory. Use the ARN of the
+    -- AppInstanceUser or AppInstanceBot
+    -- that makes the API call as the value in the header.
     associateChannelFlow: function(Client, types.AssociateChannelFlowInput): types.AssociateChannelFlowOutput, table
+    -- Adds a specified number of users and bots to a channel.
     batchCreateChannelMembership: function(Client, types.BatchCreateChannelMembershipInput): types.BatchCreateChannelMembershipOutput, table
+    -- Calls back Amazon Chime SDK messaging with a processing response message. This should be invoked from the processor Lambda. This is a developer API.
+    -- You can return one of the following processing responses:
+    -- Update message content or metadata
+    -- Deny a message
+    -- Make no changes to the message
     channelFlowCallback: function(Client, types.ChannelFlowCallbackInput): types.ChannelFlowCallbackOutput, table
+    -- Creates a channel to which you can add users and send messages.
+    -- Restriction: You can't change a channel's
+    -- privacy.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    -- Permanently bans a member from a channel. Moderators can't add banned members to a
+    -- channel. To undo a ban, you first have to DeleteChannelBan, and then
+    -- CreateChannelMembership. Bans are cleaned up when you delete users or
+    -- channels.
+    -- If you ban a user who is already part of a channel, that user is automatically kicked
+    -- from the channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     createChannelBan: function(Client, types.CreateChannelBanInput): types.CreateChannelBanOutput, table
+    -- Creates a channel flow, a container for processors. Processors are AWS Lambda functions
+    -- that perform actions on chat messages, such as stripping out profanity. You can associate
+    -- channel flows with channels, and the processors in the channel flow then take action on all
+    -- messages sent to that channel. This is a developer API.
+    -- Channel flows process the following items:
+    -- New and updated messages
+    -- Persistent and non-persistent messages
+    -- The Standard message type
+    -- Channel flows don't process Control or System messages. For more information about the message types provided by Chime SDK messaging, refer to
+    -- Message types in the Amazon Chime developer guide.
     createChannelFlow: function(Client, types.CreateChannelFlowInput): types.CreateChannelFlowOutput, table
+    -- Adds a member to a channel. The InvitedBy field in ChannelMembership
+    -- is derived from the request header. A channel member can:
+    -- List messages
+    -- Send messages
+    -- Receive messages
+    -- Edit their own messages
+    -- Leave the channel
+    -- Privacy settings impact this action as follows:
+    -- Public Channels: You do not need to be a member to list messages, but you must be
+    -- a member to send messages.
+    -- Private Channels: You must be a member to list or send messages.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUserArn or AppInstanceBot that makes the API call
+    -- as the value in the header.
     createChannelMembership: function(Client, types.CreateChannelMembershipInput): types.CreateChannelMembershipOutput, table
+    -- Creates a new ChannelModerator. A channel moderator can:
+    -- Add and remove other members of the channel.
+    -- Add and remove other moderators of the channel.
+    -- Add and remove user bans for the channel.
+    -- Redact messages in the channel.
+    -- List messages in the channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBotof the user that makes the API call as the value in
+    -- the header.
     createChannelModerator: function(Client, types.CreateChannelModeratorInput): types.CreateChannelModeratorOutput, table
+    -- Immediately makes a channel and its memberships inaccessible and marks them for
+    -- deletion. This is an irreversible process.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUserArn or AppInstanceBot that makes the API call as the value in
+    -- the header.
     deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    -- Removes a member from a channel's ban list.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     deleteChannelBan: function(Client, types.DeleteChannelBanInput): types.DeleteChannelBanOutput, table
+    -- Deletes a channel flow, an irreversible process. This is a developer API.
+    -- This API works only when the channel flow is not associated with any channel. To get a list of all channels that a channel flow is associated with, use the
+    -- ListChannelsAssociatedWithChannelFlow API. Use the DisassociateChannelFlow API to disassociate a channel flow from all channels.
     deleteChannelFlow: function(Client, types.DeleteChannelFlowInput): types.DeleteChannelFlowOutput, table
+    -- Removes a member from a channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- AppInstanceUserArn of the user that makes the API call as the value in
+    -- the header.
     deleteChannelMembership: function(Client, types.DeleteChannelMembershipInput): types.DeleteChannelMembershipOutput, table
+    -- Deletes a channel message. Only admins can perform this action. Deletion makes messages
+    -- inaccessible immediately. A background process deletes any revisions created by
+    -- UpdateChannelMessage.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     deleteChannelMessage: function(Client, types.DeleteChannelMessageInput): types.DeleteChannelMessageOutput, table
+    -- Deletes a channel moderator.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     deleteChannelModerator: function(Client, types.DeleteChannelModeratorInput): types.DeleteChannelModeratorOutput, table
+    -- Deletes the streaming configurations for an AppInstance. For more information, see
+    -- Streaming messaging data in the Amazon Chime SDK Developer Guide.
     deleteMessagingStreamingConfigurations: function(Client, types.DeleteMessagingStreamingConfigurationsInput): types.DeleteMessagingStreamingConfigurationsOutput, table
+    -- Returns the full details of a channel in an Amazon Chime
+    -- AppInstance.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     describeChannel: function(Client, types.DescribeChannelInput): types.DescribeChannelOutput, table
+    -- Returns the full details of a channel ban.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     describeChannelBan: function(Client, types.DescribeChannelBanInput): types.DescribeChannelBanOutput, table
+    -- Returns the full details of a channel flow in an Amazon Chime AppInstance. This is a developer API.
     describeChannelFlow: function(Client, types.DescribeChannelFlowInput): types.DescribeChannelFlowOutput, table
+    -- Returns the full details of a user's channel membership.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     describeChannelMembership: function(Client, types.DescribeChannelMembershipInput): types.DescribeChannelMembershipOutput, table
+    -- Returns the details of a channel based on the membership of the specified
+    -- AppInstanceUser or AppInstanceBot.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     describeChannelMembershipForAppInstanceUser: function(Client, types.DescribeChannelMembershipForAppInstanceUserInput): types.DescribeChannelMembershipForAppInstanceUserOutput, table
+    -- Returns the full details of a channel moderated by the specified
+    -- AppInstanceUser or AppInstanceBot.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     describeChannelModeratedByAppInstanceUser: function(Client, types.DescribeChannelModeratedByAppInstanceUserInput): types.DescribeChannelModeratedByAppInstanceUserOutput, table
+    -- Returns the full details of a single ChannelModerator.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- AppInstanceUserArn of the user that makes the API call as the value in
+    -- the header.
     describeChannelModerator: function(Client, types.DescribeChannelModeratorInput): types.DescribeChannelModeratorOutput, table
+    -- Disassociates a channel flow from all its channels. Once disassociated, all messages to
+    -- that channel stop going through the channel flow processor.
+    -- Only administrators or channel moderators can disassociate a channel flow.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     disassociateChannelFlow: function(Client, types.DisassociateChannelFlowInput): types.DisassociateChannelFlowOutput, table
+    -- Gets the membership preferences of an AppInstanceUser or AppInstanceBot
+    -- for the specified channel. A user or a bot must be a member of the channel and own the membership in order to retrieve membership preferences.
+    -- Users or bots in the AppInstanceAdmin and channel moderator roles can't
+    -- retrieve preferences for other users or bots. Banned users or bots can't retrieve membership preferences for the
+    -- channel from which they are banned.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     getChannelMembershipPreferences: function(Client, types.GetChannelMembershipPreferencesInput): types.GetChannelMembershipPreferencesOutput, table
+    -- Gets the full details of a channel message.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     getChannelMessage: function(Client, types.GetChannelMessageInput): types.GetChannelMessageOutput, table
+    -- Gets message status for a specified messageId. Use this API to determine the intermediate status of messages going through channel flow processing. The API provides an alternative to
+    -- retrieving message status if the event was not received because a client wasn't connected to a websocket.
+    -- Messages can have any one of these statuses.
+    -- SENT
+    -- Message processed successfully
+    -- PENDING
+    -- Ongoing processing
+    -- FAILED
+    -- Processing failed
+    -- DENIED
+    -- Message denied by the processor
+    -- This API does not return statuses for denied messages, because we don't store them once the processor denies them.
+    -- Only the message sender can invoke this API.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     getChannelMessageStatus: function(Client, types.GetChannelMessageStatusInput): types.GetChannelMessageStatusOutput, table
+    -- The details of the endpoint for the messaging session.
     getMessagingSessionEndpoint: function(Client, types.GetMessagingSessionEndpointInput): types.GetMessagingSessionEndpointOutput, table
+    -- Retrieves the data streaming configuration for an AppInstance. For more information, see
+    -- Streaming messaging data in the Amazon Chime SDK Developer Guide.
     getMessagingStreamingConfigurations: function(Client, types.GetMessagingStreamingConfigurationsInput): types.GetMessagingStreamingConfigurationsOutput, table
+    -- Lists all the users and bots banned from a particular channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannelBans: function(Client, types.ListChannelBansInput): types.ListChannelBansOutput, table
+    -- Returns a paginated lists of all the channel flows created under a single Chime. This is a developer API.
     listChannelFlows: function(Client, types.ListChannelFlowsInput): types.ListChannelFlowsOutput, table
+    -- Lists all channel memberships in a channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
+    -- If you want to list the channels to which a specific app instance user belongs, see the
+    -- ListChannelMembershipsForAppInstanceUser API.
     listChannelMemberships: function(Client, types.ListChannelMembershipsInput): types.ListChannelMembershipsOutput, table
+    -- Lists all channels that an AppInstanceUser or AppInstanceBot is a part of.
+    -- Only an AppInstanceAdmin can call the API with a user ARN that is not their own.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannelMembershipsForAppInstanceUser: function(Client, types.ListChannelMembershipsForAppInstanceUserInput): types.ListChannelMembershipsForAppInstanceUserOutput, table
+    -- List all the messages in a channel. Returns a paginated list of
+    -- ChannelMessages. By default, sorted by creation timestamp in descending
+    -- order.
+    -- Redacted messages appear in the results as empty, since they are only redacted, not
+    -- deleted. Deleted messages do not appear in the results. This action always returns the
+    -- latest version of an edited message.
+    -- Also, the x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannelMessages: function(Client, types.ListChannelMessagesInput): types.ListChannelMessagesOutput, table
+    -- Lists all the moderators for a channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannelModerators: function(Client, types.ListChannelModeratorsInput): types.ListChannelModeratorsOutput, table
+    -- Lists all Channels created under a single Chime App as a paginated list. You can specify
+    -- filters to narrow results.
+    -- Functionality & restrictions
+    -- Use privacy = PUBLIC to retrieve all public channels in the
+    -- account.
+    -- Only an AppInstanceAdmin can set privacy = PRIVATE to
+    -- list the private channels in an account.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Lists all channels associated with a specified channel flow. You can associate a channel flow with multiple channels, but you can only associate a channel with one channel flow. This is a developer API.
     listChannelsAssociatedWithChannelFlow: function(Client, types.ListChannelsAssociatedWithChannelFlowInput): types.ListChannelsAssociatedWithChannelFlowOutput, table
+    -- A list of the channels moderated by an AppInstanceUser.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     listChannelsModeratedByAppInstanceUser: function(Client, types.ListChannelsModeratedByAppInstanceUserInput): types.ListChannelsModeratedByAppInstanceUserOutput, table
+    -- Lists all the SubChannels in an elastic channel when given a channel ID. Available only to the app instance admins and channel moderators of elastic channels.
     listSubChannels: function(Client, types.ListSubChannelsInput): types.ListSubChannelsOutput, table
+    -- Lists the tags applied to an Amazon Chime SDK messaging resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sets the number of days before the channel is automatically deleted.
+    -- A background process deletes expired channels within 6 hours of expiration.
+    -- Actual deletion times may vary.
+    -- Expired channels that have not yet been deleted appear as active, and you can update
+    -- their expiration settings. The system honors the new settings.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     putChannelExpirationSettings: function(Client, types.PutChannelExpirationSettingsInput): types.PutChannelExpirationSettingsOutput, table
+    -- Sets the membership preferences of an AppInstanceUser or AppInstanceBot
+    -- for the specified channel. The user or bot must be a member of the channel. Only the user or bot who owns the
+    -- membership can set preferences. Users or bots in the AppInstanceAdmin and channel moderator roles can't set
+    -- preferences for other users. Banned users or bots can't set membership preferences for the channel from
+    -- which they are banned.
+    -- The x-amz-chime-bearer request header is mandatory. Use the ARN of an
+    -- AppInstanceUser or AppInstanceBot that makes the API call as the value in the
+    -- header.
     putChannelMembershipPreferences: function(Client, types.PutChannelMembershipPreferencesInput): types.PutChannelMembershipPreferencesOutput, table
+    -- Sets the data streaming configuration for an AppInstance. For more information, see
+    -- Streaming messaging data in the Amazon Chime SDK Developer Guide.
     putMessagingStreamingConfigurations: function(Client, types.PutMessagingStreamingConfigurationsInput): types.PutMessagingStreamingConfigurationsOutput, table
+    -- Redacts message content and metadata. The message exists in the back end, but the
+    -- action returns null content, and the state shows as redacted.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     redactChannelMessage: function(Client, types.RedactChannelMessageInput): types.RedactChannelMessageOutput, table
+    -- Allows the ChimeBearer to search channels by channel members. Users or bots can search
+    -- across the channels that they belong to. Users in the AppInstanceAdmin role can search across
+    -- all channels.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
+    -- This operation isn't supported for AppInstanceUsers with a large number of memberships.
     searchChannels: function(Client, types.SearchChannelsInput): types.SearchChannelsOutput, table
+    -- Sends a message to a particular channel that the member is a part of.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
+    -- Also, STANDARD messages can be up to 4KB in size and contain metadata. Metadata is arbitrary,
+    -- and you can use it in a variety of ways, such as containing a link to an attachment.
+    -- CONTROL messages are limited to 30 bytes and do not contain metadata.
     sendChannelMessage: function(Client, types.SendChannelMessageInput): types.SendChannelMessageOutput, table
+    -- Applies the specified tags to the specified Amazon Chime SDK messaging resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified Amazon Chime SDK messaging resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update a channel's attributes.
+    -- Restriction: You can't change a channel's privacy.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    -- Updates channel flow attributes. This is a developer API.
     updateChannelFlow: function(Client, types.UpdateChannelFlowInput): types.UpdateChannelFlowOutput, table
+    -- Updates the content of a message.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     updateChannelMessage: function(Client, types.UpdateChannelMessageInput): types.UpdateChannelMessageOutput, table
+    -- The details of the time when a user last read messages in a channel.
+    -- The x-amz-chime-bearer request header is mandatory. Use the
+    -- ARN of the AppInstanceUser or AppInstanceBot that makes the API call as the value in
+    -- the header.
     updateChannelReadMarker: function(Client, types.UpdateChannelReadMarkerInput): types.UpdateChannelReadMarkerOutput, table
 end
 

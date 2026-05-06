@@ -3,97 +3,189 @@
 local types = require("greengrass.types")
 
 local record Client
+    -- Associates a role with a group. Your Greengrass core will use the role to access AWS cloud services. The role's permissions should allow Greengrass core Lambda functions to perform actions against the cloud.
     associateRoleToGroup: function(Client, types.AssociateRoleToGroupInput): types.AssociateRoleToGroupOutput, table
+    -- Associates a role with your account. AWS IoT Greengrass will use the role to access your Lambda functions and AWS IoT resources. This is necessary for deployments to succeed. The role must have at least minimum permissions in the policy ''AWSGreengrassResourceAccessRolePolicy''.
     associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput): types.AssociateServiceRoleToAccountOutput, table
+    -- Creates a connector definition. You may provide the initial version of the connector definition now or use ''CreateConnectorDefinitionVersion'' at a later time.
     createConnectorDefinition: function(Client, types.CreateConnectorDefinitionInput): types.CreateConnectorDefinitionOutput, table
+    -- Creates a version of a connector definition which has already been defined.
     createConnectorDefinitionVersion: function(Client, types.CreateConnectorDefinitionVersionInput): types.CreateConnectorDefinitionVersionOutput, table
+    -- Creates a core definition. You may provide the initial version of the core definition now or use ''CreateCoreDefinitionVersion'' at a later time. Greengrass groups must each contain exactly one Greengrass core.
     createCoreDefinition: function(Client, types.CreateCoreDefinitionInput): types.CreateCoreDefinitionOutput, table
+    -- Creates a version of a core definition that has already been defined. Greengrass groups must each contain exactly one Greengrass core.
     createCoreDefinitionVersion: function(Client, types.CreateCoreDefinitionVersionInput): types.CreateCoreDefinitionVersionOutput, table
+    -- Creates a deployment. ''CreateDeployment'' requests are idempotent with respect to the ''X-Amzn-Client-Token'' token and the request parameters.
     createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    -- Creates a device definition. You may provide the initial version of the device definition now or use ''CreateDeviceDefinitionVersion'' at a later time.
     createDeviceDefinition: function(Client, types.CreateDeviceDefinitionInput): types.CreateDeviceDefinitionOutput, table
+    -- Creates a version of a device definition that has already been defined.
     createDeviceDefinitionVersion: function(Client, types.CreateDeviceDefinitionVersionInput): types.CreateDeviceDefinitionVersionOutput, table
+    -- Creates a Lambda function definition which contains a list of Lambda functions and their configurations to be used in a group. You can create an initial version of the definition by providing a list of Lambda functions and their configurations now, or use ''CreateFunctionDefinitionVersion'' later.
     createFunctionDefinition: function(Client, types.CreateFunctionDefinitionInput): types.CreateFunctionDefinitionOutput, table
+    -- Creates a version of a Lambda function definition that has already been defined.
     createFunctionDefinitionVersion: function(Client, types.CreateFunctionDefinitionVersionInput): types.CreateFunctionDefinitionVersionOutput, table
+    -- Creates a group. You may provide the initial version of the group or use ''CreateGroupVersion'' at a later time. Tip: You can use the ''gg_group_setup'' package (https://github.com/awslabs/aws-greengrass-group-setup) as a library or command-line application to create and deploy Greengrass groups.
     createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    -- Creates a CA for the group. If a CA already exists, it will rotate the existing CA.
     createGroupCertificateAuthority: function(Client, types.CreateGroupCertificateAuthorityInput): types.CreateGroupCertificateAuthorityOutput, table
+    -- Creates a version of a group which has already been defined.
     createGroupVersion: function(Client, types.CreateGroupVersionInput): types.CreateGroupVersionOutput, table
+    -- Creates a logger definition. You may provide the initial version of the logger definition now or use ''CreateLoggerDefinitionVersion'' at a later time.
     createLoggerDefinition: function(Client, types.CreateLoggerDefinitionInput): types.CreateLoggerDefinitionOutput, table
+    -- Creates a version of a logger definition that has already been defined.
     createLoggerDefinitionVersion: function(Client, types.CreateLoggerDefinitionVersionInput): types.CreateLoggerDefinitionVersionOutput, table
+    -- Creates a resource definition which contains a list of resources to be used in a group. You can create an initial version of the definition by providing a list of resources now, or use ''CreateResourceDefinitionVersion'' later.
     createResourceDefinition: function(Client, types.CreateResourceDefinitionInput): types.CreateResourceDefinitionOutput, table
+    -- Creates a version of a resource definition that has already been defined.
     createResourceDefinitionVersion: function(Client, types.CreateResourceDefinitionVersionInput): types.CreateResourceDefinitionVersionOutput, table
+    -- Creates a software update for a core or group of cores (specified as an IoT thing group.) Use this to update the OTA Agent as well as the Greengrass core software. It makes use of the IoT Jobs feature which provides additional commands to manage a Greengrass core software update job.
     createSoftwareUpdateJob: function(Client, types.CreateSoftwareUpdateJobInput): types.CreateSoftwareUpdateJobOutput, table
+    -- Creates a subscription definition. You may provide the initial version of the subscription definition now or use ''CreateSubscriptionDefinitionVersion'' at a later time.
     createSubscriptionDefinition: function(Client, types.CreateSubscriptionDefinitionInput): types.CreateSubscriptionDefinitionOutput, table
+    -- Creates a version of a subscription definition which has already been defined.
     createSubscriptionDefinitionVersion: function(Client, types.CreateSubscriptionDefinitionVersionInput): types.CreateSubscriptionDefinitionVersionOutput, table
+    -- Deletes a connector definition.
     deleteConnectorDefinition: function(Client, types.DeleteConnectorDefinitionInput): types.DeleteConnectorDefinitionOutput, table
+    -- Deletes a core definition.
     deleteCoreDefinition: function(Client, types.DeleteCoreDefinitionInput): types.DeleteCoreDefinitionOutput, table
+    -- Deletes a device definition.
     deleteDeviceDefinition: function(Client, types.DeleteDeviceDefinitionInput): types.DeleteDeviceDefinitionOutput, table
+    -- Deletes a Lambda function definition.
     deleteFunctionDefinition: function(Client, types.DeleteFunctionDefinitionInput): types.DeleteFunctionDefinitionOutput, table
+    -- Deletes a group.
     deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    -- Deletes a logger definition.
     deleteLoggerDefinition: function(Client, types.DeleteLoggerDefinitionInput): types.DeleteLoggerDefinitionOutput, table
+    -- Deletes a resource definition.
     deleteResourceDefinition: function(Client, types.DeleteResourceDefinitionInput): types.DeleteResourceDefinitionOutput, table
+    -- Deletes a subscription definition.
     deleteSubscriptionDefinition: function(Client, types.DeleteSubscriptionDefinitionInput): types.DeleteSubscriptionDefinitionOutput, table
+    -- Disassociates the role from a group.
     disassociateRoleFromGroup: function(Client, types.DisassociateRoleFromGroupInput): types.DisassociateRoleFromGroupOutput, table
+    -- Disassociates the service role from your account. Without a service role, deployments will not work.
     disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput): types.DisassociateServiceRoleFromAccountOutput, table
+    -- Retrieves the role associated with a particular group.
     getAssociatedRole: function(Client, types.GetAssociatedRoleInput): types.GetAssociatedRoleOutput, table
+    -- Returns the status of a bulk deployment.
     getBulkDeploymentStatus: function(Client, types.GetBulkDeploymentStatusInput): types.GetBulkDeploymentStatusOutput, table
+    -- Retrieves the connectivity information for a core.
     getConnectivityInfo: function(Client, types.GetConnectivityInfoInput): types.GetConnectivityInfoOutput, table
+    -- Retrieves information about a connector definition.
     getConnectorDefinition: function(Client, types.GetConnectorDefinitionInput): types.GetConnectorDefinitionOutput, table
+    -- Retrieves information about a connector definition version, including the connectors that the version contains. Connectors are prebuilt modules that interact with local infrastructure, device protocols, AWS, and other cloud services.
     getConnectorDefinitionVersion: function(Client, types.GetConnectorDefinitionVersionInput): types.GetConnectorDefinitionVersionOutput, table
+    -- Retrieves information about a core definition version.
     getCoreDefinition: function(Client, types.GetCoreDefinitionInput): types.GetCoreDefinitionOutput, table
+    -- Retrieves information about a core definition version.
     getCoreDefinitionVersion: function(Client, types.GetCoreDefinitionVersionInput): types.GetCoreDefinitionVersionOutput, table
+    -- Returns the status of a deployment.
     getDeploymentStatus: function(Client, types.GetDeploymentStatusInput): types.GetDeploymentStatusOutput, table
+    -- Retrieves information about a device definition.
     getDeviceDefinition: function(Client, types.GetDeviceDefinitionInput): types.GetDeviceDefinitionOutput, table
+    -- Retrieves information about a device definition version.
     getDeviceDefinitionVersion: function(Client, types.GetDeviceDefinitionVersionInput): types.GetDeviceDefinitionVersionOutput, table
+    -- Retrieves information about a Lambda function definition, including its creation time and latest version.
     getFunctionDefinition: function(Client, types.GetFunctionDefinitionInput): types.GetFunctionDefinitionOutput, table
+    -- Retrieves information about a Lambda function definition version, including which Lambda functions are included in the version and their configurations.
     getFunctionDefinitionVersion: function(Client, types.GetFunctionDefinitionVersionInput): types.GetFunctionDefinitionVersionOutput, table
+    -- Retrieves information about a group.
     getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    -- Retreives the CA associated with a group. Returns the public key of the CA.
     getGroupCertificateAuthority: function(Client, types.GetGroupCertificateAuthorityInput): types.GetGroupCertificateAuthorityOutput, table
+    -- Retrieves the current configuration for the CA used by the group.
     getGroupCertificateConfiguration: function(Client, types.GetGroupCertificateConfigurationInput): types.GetGroupCertificateConfigurationOutput, table
+    -- Retrieves information about a group version.
     getGroupVersion: function(Client, types.GetGroupVersionInput): types.GetGroupVersionOutput, table
+    -- Retrieves information about a logger definition.
     getLoggerDefinition: function(Client, types.GetLoggerDefinitionInput): types.GetLoggerDefinitionOutput, table
+    -- Retrieves information about a logger definition version.
     getLoggerDefinitionVersion: function(Client, types.GetLoggerDefinitionVersionInput): types.GetLoggerDefinitionVersionOutput, table
+    -- Retrieves information about a resource definition, including its creation time and latest version.
     getResourceDefinition: function(Client, types.GetResourceDefinitionInput): types.GetResourceDefinitionOutput, table
+    -- Retrieves information about a resource definition version, including which resources are included in the version.
     getResourceDefinitionVersion: function(Client, types.GetResourceDefinitionVersionInput): types.GetResourceDefinitionVersionOutput, table
+    -- Retrieves the service role that is attached to your account.
     getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput): types.GetServiceRoleForAccountOutput, table
+    -- Retrieves information about a subscription definition.
     getSubscriptionDefinition: function(Client, types.GetSubscriptionDefinitionInput): types.GetSubscriptionDefinitionOutput, table
+    -- Retrieves information about a subscription definition version.
     getSubscriptionDefinitionVersion: function(Client, types.GetSubscriptionDefinitionVersionInput): types.GetSubscriptionDefinitionVersionOutput, table
+    -- Get the runtime configuration of a thing.
     getThingRuntimeConfiguration: function(Client, types.GetThingRuntimeConfigurationInput): types.GetThingRuntimeConfigurationOutput, table
+    -- Gets a paginated list of the deployments that have been started in a bulk deployment operation, and their current deployment status.
     listBulkDeploymentDetailedReports: function(Client, types.ListBulkDeploymentDetailedReportsInput): types.ListBulkDeploymentDetailedReportsOutput, table
+    -- Returns a list of bulk deployments.
     listBulkDeployments: function(Client, types.ListBulkDeploymentsInput): types.ListBulkDeploymentsOutput, table
+    -- Retrieves a list of connector definitions.
     listConnectorDefinitions: function(Client, types.ListConnectorDefinitionsInput): types.ListConnectorDefinitionsOutput, table
+    -- Lists the versions of a connector definition, which are containers for connectors. Connectors run on the Greengrass core and contain built-in integration with local infrastructure, device protocols, AWS, and other cloud services.
     listConnectorDefinitionVersions: function(Client, types.ListConnectorDefinitionVersionsInput): types.ListConnectorDefinitionVersionsOutput, table
+    -- Retrieves a list of core definitions.
     listCoreDefinitions: function(Client, types.ListCoreDefinitionsInput): types.ListCoreDefinitionsOutput, table
+    -- Lists the versions of a core definition.
     listCoreDefinitionVersions: function(Client, types.ListCoreDefinitionVersionsInput): types.ListCoreDefinitionVersionsOutput, table
+    -- Returns a history of deployments for the group.
     listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    -- Retrieves a list of device definitions.
     listDeviceDefinitions: function(Client, types.ListDeviceDefinitionsInput): types.ListDeviceDefinitionsOutput, table
+    -- Lists the versions of a device definition.
     listDeviceDefinitionVersions: function(Client, types.ListDeviceDefinitionVersionsInput): types.ListDeviceDefinitionVersionsOutput, table
+    -- Retrieves a list of Lambda function definitions.
     listFunctionDefinitions: function(Client, types.ListFunctionDefinitionsInput): types.ListFunctionDefinitionsOutput, table
+    -- Lists the versions of a Lambda function definition.
     listFunctionDefinitionVersions: function(Client, types.ListFunctionDefinitionVersionsInput): types.ListFunctionDefinitionVersionsOutput, table
+    -- Retrieves the current CAs for a group.
     listGroupCertificateAuthorities: function(Client, types.ListGroupCertificateAuthoritiesInput): types.ListGroupCertificateAuthoritiesOutput, table
+    -- Retrieves a list of groups.
     listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    -- Lists the versions of a group.
     listGroupVersions: function(Client, types.ListGroupVersionsInput): types.ListGroupVersionsOutput, table
+    -- Retrieves a list of logger definitions.
     listLoggerDefinitions: function(Client, types.ListLoggerDefinitionsInput): types.ListLoggerDefinitionsOutput, table
+    -- Lists the versions of a logger definition.
     listLoggerDefinitionVersions: function(Client, types.ListLoggerDefinitionVersionsInput): types.ListLoggerDefinitionVersionsOutput, table
+    -- Retrieves a list of resource definitions.
     listResourceDefinitions: function(Client, types.ListResourceDefinitionsInput): types.ListResourceDefinitionsOutput, table
+    -- Lists the versions of a resource definition.
     listResourceDefinitionVersions: function(Client, types.ListResourceDefinitionVersionsInput): types.ListResourceDefinitionVersionsOutput, table
+    -- Retrieves a list of subscription definitions.
     listSubscriptionDefinitions: function(Client, types.ListSubscriptionDefinitionsInput): types.ListSubscriptionDefinitionsOutput, table
+    -- Lists the versions of a subscription definition.
     listSubscriptionDefinitionVersions: function(Client, types.ListSubscriptionDefinitionVersionsInput): types.ListSubscriptionDefinitionVersionsOutput, table
+    -- Retrieves a list of resource tags for a resource arn.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Resets a group's deployments.
     resetDeployments: function(Client, types.ResetDeploymentsInput): types.ResetDeploymentsOutput, table
+    -- Deploys multiple groups in one operation. This action starts the bulk deployment of a specified set of group versions. Each group version deployment will be triggered with an adaptive rate that has a fixed upper limit. We recommend that you include an ''X-Amzn-Client-Token'' token in every ''StartBulkDeployment'' request. These requests are idempotent with respect to the token and the request parameters.
     startBulkDeployment: function(Client, types.StartBulkDeploymentInput): types.StartBulkDeploymentOutput, table
+    -- Stops the execution of a bulk deployment. This action returns a status of ''Stopping'' until the deployment is stopped. You cannot start a new bulk deployment while a previous deployment is in the ''Stopping'' state. This action doesn't rollback completed deployments or cancel pending deployments.
     stopBulkDeployment: function(Client, types.StopBulkDeploymentInput): types.StopBulkDeploymentOutput, table
+    -- Adds tags to a Greengrass resource. Valid resources are 'Group', 'ConnectorDefinition', 'CoreDefinition', 'DeviceDefinition', 'FunctionDefinition', 'LoggerDefinition', 'SubscriptionDefinition', 'ResourceDefinition', and 'BulkDeployment'.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove resource tags from a Greengrass Resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the connectivity information for the core. Any devices that belong to the group which has this core will receive this information in order to find the location of the core and connect to it.
     updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput): types.UpdateConnectivityInfoOutput, table
+    -- Updates a connector definition.
     updateConnectorDefinition: function(Client, types.UpdateConnectorDefinitionInput): types.UpdateConnectorDefinitionOutput, table
+    -- Updates a core definition.
     updateCoreDefinition: function(Client, types.UpdateCoreDefinitionInput): types.UpdateCoreDefinitionOutput, table
+    -- Updates a device definition.
     updateDeviceDefinition: function(Client, types.UpdateDeviceDefinitionInput): types.UpdateDeviceDefinitionOutput, table
+    -- Updates a Lambda function definition.
     updateFunctionDefinition: function(Client, types.UpdateFunctionDefinitionInput): types.UpdateFunctionDefinitionOutput, table
+    -- Updates a group.
     updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    -- Updates the Certificate expiry time for a group.
     updateGroupCertificateConfiguration: function(Client, types.UpdateGroupCertificateConfigurationInput): types.UpdateGroupCertificateConfigurationOutput, table
+    -- Updates a logger definition.
     updateLoggerDefinition: function(Client, types.UpdateLoggerDefinitionInput): types.UpdateLoggerDefinitionOutput, table
+    -- Updates a resource definition.
     updateResourceDefinition: function(Client, types.UpdateResourceDefinitionInput): types.UpdateResourceDefinitionOutput, table
+    -- Updates a subscription definition.
     updateSubscriptionDefinition: function(Client, types.UpdateSubscriptionDefinitionInput): types.UpdateSubscriptionDefinitionOutput, table
+    -- Updates the runtime configuration of a thing.
     updateThingRuntimeConfiguration: function(Client, types.UpdateThingRuntimeConfigurationInput): types.UpdateThingRuntimeConfigurationOutput, table
 end
 

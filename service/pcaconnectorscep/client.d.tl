@@ -3,17 +3,29 @@
 local types = require("pcaconnectorscep.types")
 
 local record Client
+    -- For general-purpose connectors. Creates a challenge password for the specified connector. The SCEP protocol uses a challenge password to authenticate a request before issuing a certificate from a certificate authority (CA). Your SCEP clients include the challenge password as part of their certificate request to Connector for SCEP. To retrieve the connector Amazon Resource Names (ARNs) for the connectors in your account, call ListConnectors. To create additional challenge passwords for the connector, call CreateChallenge again. We recommend frequently rotating your challenge passwords.
     createChallenge: function(Client, types.CreateChallengeInput): types.CreateChallengeOutput, table
+    -- Creates a SCEP connector. A SCEP connector links Amazon Web Services Private Certificate Authority to your SCEP-compatible devices and mobile device management (MDM) systems. Before you create a connector, you must complete a set of prerequisites, including creation of a private certificate authority (CA) to use with this connector. For more information, see Connector for SCEP prerequisites.
     createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    -- Deletes the specified Challenge.
     deleteChallenge: function(Client, types.DeleteChallengeInput): types.DeleteChallengeOutput, table
+    -- Deletes the specified Connector. This operation also deletes any challenges associated with the connector.
     deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    -- Retrieves the metadata for the specified Challenge.
     getChallengeMetadata: function(Client, types.GetChallengeMetadataInput): types.GetChallengeMetadataOutput, table
+    -- Retrieves the challenge password for the specified Challenge.
     getChallengePassword: function(Client, types.GetChallengePasswordInput): types.GetChallengePasswordOutput, table
+    -- Retrieves details about the specified Connector. Calling this action returns important details about the connector, such as the public SCEP URL where your clients can request certificates.
     getConnector: function(Client, types.GetConnectorInput): types.GetConnectorOutput, table
+    -- Retrieves the challenge metadata for the specified ARN.
     listChallengeMetadata: function(Client, types.ListChallengeMetadataInput): types.ListChallengeMetadataOutput, table
+    -- Lists the connectors belonging to your Amazon Web Services account.
     listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    -- Retrieves the tags associated with the specified resource. Tags are key-value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds one or more tags to your resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from your resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

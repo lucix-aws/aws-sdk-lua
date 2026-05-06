@@ -3,23 +3,41 @@
 local types = require("medicalimaging.types")
 
 local record Client
+    -- Copy an image set.
     copyImageSet: function(Client, types.CopyImageSetInput): types.CopyImageSetOutput, table
+    -- Create a data store.
     createDatastore: function(Client, types.CreateDatastoreInput): types.CreateDatastoreOutput, table
+    -- Delete a data store. Before a data store can be deleted, you must first delete all image sets within it.
     deleteDatastore: function(Client, types.DeleteDatastoreInput): types.DeleteDatastoreOutput, table
+    -- Delete an image set.
     deleteImageSet: function(Client, types.DeleteImageSetInput): types.DeleteImageSetOutput, table
+    -- Get data store properties.
     getDatastore: function(Client, types.GetDatastoreInput): types.GetDatastoreOutput, table
+    -- Get the import job properties to learn more about the job or job progress. The jobStatus refers to the execution of the import job. Therefore, an import job can return a jobStatus as COMPLETED even if validation issues are discovered during the import process. If a jobStatus returns as COMPLETED, we still recommend you review the output manifests written to S3, as they provide details on the success or failure of individual P10 object imports.
     getDICOMImportJob: function(Client, types.GetDICOMImportJobInput): types.GetDICOMImportJobOutput, table
+    -- Get an image frame (pixel data) for an image set.
     getImageFrame: function(Client, types.GetImageFrameInput): types.GetImageFrameOutput, table
+    -- Get image set properties.
     getImageSet: function(Client, types.GetImageSetInput): types.GetImageSetOutput, table
+    -- Get metadata attributes for an image set.
     getImageSetMetadata: function(Client, types.GetImageSetMetadataInput): types.GetImageSetMetadataOutput, table
+    -- List data stores.
     listDatastores: function(Client, types.ListDatastoresInput): types.ListDatastoresOutput, table
+    -- List import jobs created for a specific data store.
     listDICOMImportJobs: function(Client, types.ListDICOMImportJobsInput): types.ListDICOMImportJobsOutput, table
+    -- List image set versions.
     listImageSetVersions: function(Client, types.ListImageSetVersionsInput): types.ListImageSetVersionsOutput, table
+    -- Lists all tags associated with a medical imaging resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Search image sets based on defined input attributes. SearchImageSets accepts a single search query parameter and returns a paginated response of all image sets that have the matching criteria. All date range queries must be input as (lowerBound, upperBound). By default, SearchImageSets uses the updatedAt field for sorting in descending order from newest to oldest.
     searchImageSets: function(Client, types.SearchImageSetsInput): types.SearchImageSetsOutput, table
+    -- Start importing bulk data into an ACTIVE data store. The import job imports DICOM P10 files or enhances existing DICOM files with JSON metadata. The importConfiguration parameter specifies the import type. The data is found in the S3 prefix specified by the inputS3Uri parameter. The import job stores processing results in the file specified by the outputS3Uri parameter.
     startDICOMImportJob: function(Client, types.StartDICOMImportJobInput): types.StartDICOMImportJobOutput, table
+    -- Adds a user-specifed key and value tag to a medical imaging resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a medical imaging resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update image set metadata attributes.
     updateImageSetMetadata: function(Client, types.UpdateImageSetMetadataInput): types.UpdateImageSetMetadataOutput, table
 end
 

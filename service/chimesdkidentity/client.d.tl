@@ -3,35 +3,87 @@
 local types = require("chimesdkidentity.types")
 
 local record Client
+    -- Creates an Amazon Chime SDK messaging AppInstance under an AWS account.
+    -- Only SDK messaging customers use this API. CreateAppInstance supports
+    -- idempotency behavior as described in the AWS API Standard.
+    -- identity
     createAppInstance: function(Client, types.CreateAppInstanceInput): types.CreateAppInstanceOutput, table
+    -- Promotes an AppInstanceUser or AppInstanceBot to an
+    -- AppInstanceAdmin. The
+    -- promoted entity can perform the following actions.
+    -- ChannelModerator actions across all channels in the
+    -- AppInstance.
+    -- DeleteChannelMessage actions.
+    -- Only an AppInstanceUser and AppInstanceBot can be promoted to an AppInstanceAdmin
+    -- role.
     createAppInstanceAdmin: function(Client, types.CreateAppInstanceAdminInput): types.CreateAppInstanceAdminOutput, table
+    -- Creates a bot under an Amazon Chime AppInstance. The request consists of a
+    -- unique Configuration and Name for that bot.
     createAppInstanceBot: function(Client, types.CreateAppInstanceBotInput): types.CreateAppInstanceBotOutput, table
+    -- Creates a user under an Amazon Chime AppInstance. The request consists of a
+    -- unique appInstanceUserId and Name for that user.
     createAppInstanceUser: function(Client, types.CreateAppInstanceUserInput): types.CreateAppInstanceUserOutput, table
+    -- Deletes an AppInstance and all associated data asynchronously.
     deleteAppInstance: function(Client, types.DeleteAppInstanceInput): types.DeleteAppInstanceOutput, table
+    -- Demotes an AppInstanceAdmin to an AppInstanceUser or
+    -- AppInstanceBot. This action
+    -- does not delete the user.
     deleteAppInstanceAdmin: function(Client, types.DeleteAppInstanceAdminInput): types.DeleteAppInstanceAdminOutput, table
+    -- Deletes an AppInstanceBot.
     deleteAppInstanceBot: function(Client, types.DeleteAppInstanceBotInput): types.DeleteAppInstanceBotOutput, table
+    -- Deletes an AppInstanceUser.
     deleteAppInstanceUser: function(Client, types.DeleteAppInstanceUserInput): types.DeleteAppInstanceUserOutput, table
+    -- Deregisters an AppInstanceUserEndpoint.
     deregisterAppInstanceUserEndpoint: function(Client, types.DeregisterAppInstanceUserEndpointInput): types.DeregisterAppInstanceUserEndpointOutput, table
+    -- Returns the full details of an AppInstance.
     describeAppInstance: function(Client, types.DescribeAppInstanceInput): types.DescribeAppInstanceOutput, table
+    -- Returns the full details of an AppInstanceAdmin.
     describeAppInstanceAdmin: function(Client, types.DescribeAppInstanceAdminInput): types.DescribeAppInstanceAdminOutput, table
+    -- The AppInstanceBot's information.
     describeAppInstanceBot: function(Client, types.DescribeAppInstanceBotInput): types.DescribeAppInstanceBotOutput, table
+    -- Returns the full details of an AppInstanceUser.
     describeAppInstanceUser: function(Client, types.DescribeAppInstanceUserInput): types.DescribeAppInstanceUserOutput, table
+    -- Returns the full details of an AppInstanceUserEndpoint.
     describeAppInstanceUserEndpoint: function(Client, types.DescribeAppInstanceUserEndpointInput): types.DescribeAppInstanceUserEndpointOutput, table
+    -- Gets the retention settings for an AppInstance.
     getAppInstanceRetentionSettings: function(Client, types.GetAppInstanceRetentionSettingsInput): types.GetAppInstanceRetentionSettingsOutput, table
+    -- Returns a list of the administrators in the AppInstance.
     listAppInstanceAdmins: function(Client, types.ListAppInstanceAdminsInput): types.ListAppInstanceAdminsOutput, table
+    -- Lists all AppInstanceBots created under a single AppInstance.
     listAppInstanceBots: function(Client, types.ListAppInstanceBotsInput): types.ListAppInstanceBotsOutput, table
+    -- Lists all Amazon Chime AppInstances created under a single AWS
+    -- account.
     listAppInstances: function(Client, types.ListAppInstancesInput): types.ListAppInstancesOutput, table
+    -- Lists all the AppInstanceUserEndpoints created under a single AppInstanceUser.
     listAppInstanceUserEndpoints: function(Client, types.ListAppInstanceUserEndpointsInput): types.ListAppInstanceUserEndpointsOutput, table
+    -- List all AppInstanceUsers created under a single
+    -- AppInstance.
     listAppInstanceUsers: function(Client, types.ListAppInstanceUsersInput): types.ListAppInstanceUsersOutput, table
+    -- Lists the tags applied to an Amazon Chime SDK identity resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sets the amount of time in days that a given AppInstance retains
+    -- data.
     putAppInstanceRetentionSettings: function(Client, types.PutAppInstanceRetentionSettingsInput): types.PutAppInstanceRetentionSettingsOutput, table
+    -- Sets the number of days before the AppInstanceUser is automatically deleted.
+    -- A background process deletes expired AppInstanceUsers within 6 hours of expiration.
+    -- Actual deletion times may vary.
+    -- Expired AppInstanceUsers that have not yet been deleted appear as active, and you can update
+    -- their expiration settings. The system honors the new settings.
     putAppInstanceUserExpirationSettings: function(Client, types.PutAppInstanceUserExpirationSettingsInput): types.PutAppInstanceUserExpirationSettingsOutput, table
+    -- Registers an endpoint under an Amazon Chime AppInstanceUser. The endpoint receives messages for a user. For push notifications, the endpoint is a mobile device used to receive mobile push notifications for a user.
     registerAppInstanceUserEndpoint: function(Client, types.RegisterAppInstanceUserEndpointInput): types.RegisterAppInstanceUserEndpointOutput, table
+    -- Applies the specified tags to the specified Amazon Chime SDK identity resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified Amazon Chime SDK identity resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates AppInstance metadata.
     updateAppInstance: function(Client, types.UpdateAppInstanceInput): types.UpdateAppInstanceOutput, table
+    -- Updates the name and metadata of an AppInstanceBot.
     updateAppInstanceBot: function(Client, types.UpdateAppInstanceBotInput): types.UpdateAppInstanceBotOutput, table
+    -- Updates the details of an AppInstanceUser. You can update names and
+    -- metadata.
     updateAppInstanceUser: function(Client, types.UpdateAppInstanceUserInput): types.UpdateAppInstanceUserOutput, table
+    -- Updates the details of an AppInstanceUserEndpoint. You can update the name and AllowMessage values.
     updateAppInstanceUserEndpoint: function(Client, types.UpdateAppInstanceUserEndpointInput): types.UpdateAppInstanceUserEndpointOutput, table
 end
 

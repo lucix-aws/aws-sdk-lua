@@ -4,265 +4,383 @@ local record GetPreferencesInput
 end
 
 local record GetPreferencesOutput
+    -- Retrieves the status of the "savings estimation mode" preference.
     savingsEstimationMode: string
+    -- Retrieves the status of the "member account discount visibility" preference.
     memberAccountDiscountVisibility: string
+    -- Retrieves the current preferences for how Reserved Instances and Savings Plans cost-saving opportunities are prioritized in terms of payment option and term length.
     preferredCommitment: PreferredCommitment
 end
 
 local record GetRecommendationInput
+    -- The ID for the recommendation.
     recommendationId: string
 end
 
 local record GetRecommendationOutput
+    -- The ID for the recommendation.
     recommendationId: string
+    -- The unique identifier for the resource. This is the same as the Amazon Resource Name (ARN), if available.
     resourceId: string
+    -- The Amazon Resource Name (ARN) of the resource.
     resourceArn: string
+    -- The account to which the recommendation applies.
     accountId: string
+    -- The currency code used for the recommendation.
     currencyCode: string
+    -- The lookback period that's used to generate the recommendation.
     recommendationLookbackPeriodInDays: number
+    -- The lookback period used to calculate cost impact for a recommendation.
     costCalculationLookbackPeriodInDays: number
+    -- The estimated savings percentage relative to the total cost over the cost calculation lookback period.
     estimatedSavingsPercentage: number
+    -- The estimated savings amount over the lookback period used to calculate cost impact for a recommendation.
     estimatedSavingsOverCostCalculationLookbackPeriod: number
+    -- The type of resource.
     currentResourceType: string
+    -- The resource type of the recommendation.
     recommendedResourceType: string
+    -- The Amazon Web Services Region of the resource.
     region: string
+    -- The source of the recommendation.
     source: string
+    -- The time when the recommendation was last generated.
     lastRefreshTimestamp: number
+    -- The estimated monthly savings amount for the recommendation.
     estimatedMonthlySavings: number
+    -- The estimated monthly cost of the current resource. For Reserved Instances and Savings Plans, it refers to the cost for eligible usage.
     estimatedMonthlyCost: number
+    -- The effort required to implement the recommendation.
     implementationEffort: string
+    -- Whether or not implementing the recommendation requires a restart.
     restartNeeded: boolean
+    -- The type of action you can take by adopting the recommendation.
     actionType: string
+    -- Whether or not implementing the recommendation can be rolled back.
     rollbackPossible: boolean
+    -- The details for the resource.
     currentResourceDetails: ResourceDetails
+    -- The details about the recommended resource.
     recommendedResourceDetails: ResourceDetails
+    -- A list of tags associated with the resource for which the recommendation exists.
     tags: {Tag}
 end
 
 local record ListEfficiencyMetricsInput
+    -- The dimension by which to group the cost efficiency metrics. Valid values include account ID, Amazon Web Services Region. When no grouping is specified, metrics are aggregated across all resources in the specified time period.
     groupBy: string
+    -- The time granularity for the cost efficiency metrics. Specify Daily for metrics aggregated by day, or Monthly for metrics aggregated by month.
     granularity: string
+    -- The time period for which to retrieve the cost efficiency metrics. The start date is inclusive and the end date is exclusive. Dates can be specified in either YYYY-MM-DD format or YYYY-MM format depending on the desired granularity.
     timePeriod: TimePeriod
+    -- The maximum number of groups to return in the response. Valid values range from 0 to 1000. Use in conjunction with nextToken to paginate through results when the total number of groups exceeds this limit.
     maxResults: number
+    -- The ordering specification for the results. Defines which dimension to sort by and whether to sort in ascending or descending order.
     orderBy: OrderBy
+    -- The token to retrieve the next page of results. This value is returned in the response when the number of groups exceeds the specified maxResults value.
     nextToken: string
 end
 
 local record ListEfficiencyMetricsOutput
+    -- A list of cost efficiency metrics grouped by the specified dimension. Each group contains time-series data points with cost efficiency, potential savings, and optimzable spend for the specified time period.
     efficiencyMetricsByGroup: {EfficiencyMetricsByGroup}
+    -- The token to retrieve the next page of results. When this value is present in the response, additional groups are available. Pass this token in the nextToken parameter of a subsequent request to retrieve the next page.
     nextToken: string
 end
 
 local record ListEnrollmentStatusesInput
+    -- Indicates whether to return the enrollment status for the organization.
     includeOrganizationInfo: boolean
+    -- The account ID of a member account in the organization.
     accountId: string
+    -- The token to retrieve the next set of results.
     nextToken: string
+    -- The maximum number of objects that are returned for the request.
     maxResults: number
 end
 
 local record ListEnrollmentStatusesOutput
+    -- The enrollment status of a specific account ID, including creation and last updated timestamps.
     items: {AccountEnrollmentStatus}
+    -- The enrollment status of all member accounts in the organization if the account is the management account or delegated administrator.
     includeMemberAccounts: boolean
+    -- The token to retrieve the next set of results.
     nextToken: string
 end
 
 local record ListRecommendationsInput
+    -- The constraints that you want all returned recommendations to match.
     filter: Filter
+    -- The ordering of recommendations by a dimension.
     orderBy: OrderBy
+    -- List of all recommendations for a resource, or a single recommendation if de-duped by resourceId.
     includeAllRecommendations: boolean
+    -- The maximum number of recommendations that are returned for the request.
     maxResults: number
+    -- The token to retrieve the next set of results.
     nextToken: string
 end
 
 local record ListRecommendationsOutput
+    -- List of all savings recommendations.
     items: {Recommendation}
+    -- The token to retrieve the next set of results.
     nextToken: string
 end
 
 local record ListRecommendationSummariesInput
     filter: Filter
+    -- The grouping of recommendations by a dimension.
     groupBy: string
+    -- The maximum number of recommendations to be returned for the request.
     maxResults: number
+    -- Additional metrics to be returned for the request. The only valid value is savingsPercentage.
     metrics: {string}
+    -- The token to retrieve the next set of results.
     nextToken: string
 end
 
 local record ListRecommendationSummariesOutput
+    -- The total overall savings for the aggregated view.
     estimatedTotalDedupedSavings: number
+    -- A list of all savings recommendations.
     items: {RecommendationSummary}
+    -- The dimension used to group the recommendations by.
     groupBy: string
+    -- The currency code used for the recommendation.
     currencyCode: string
+    -- The results or descriptions for the additional metrics, based on whether the metrics were or were not requested.
     metrics: SummaryMetricsResult
+    -- The token to retrieve the next set of results.
     nextToken: string
 end
 
 local record UpdateEnrollmentStatusInput
+    -- Sets the account status.
     status: string
+    -- Indicates whether to enroll member accounts of the organization if the account is the management account or delegated administrator.
     includeMemberAccounts: boolean
 end
 
 local record UpdateEnrollmentStatusOutput
+    -- The enrollment status of the account.
     status: string
 end
 
 local record UpdatePreferencesInput
+    -- Sets the "savings estimation mode" preference.
     savingsEstimationMode: string
+    -- Sets the "member account discount visibility" preference.
     memberAccountDiscountVisibility: string
+    -- Sets the preferences for how Reserved Instances and Savings Plans cost-saving opportunities are prioritized in terms of payment option and term length.
     preferredCommitment: PreferredCommitment
 end
 
 local record UpdatePreferencesOutput
+    -- Shows the status of the "savings estimation mode" preference.
     savingsEstimationMode: string
+    -- Shows the status of the "member account discount visibility" preference.
     memberAccountDiscountVisibility: string
+    -- Shows the updated preferences for how Reserved Instances and Savings Plans cost-saving opportunities are prioritized in terms of payment option and term length.
     preferredCommitment: PreferredCommitment
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The specified Amazon Resource Name (ARN) in the request doesn't exist.
 local record ResourceNotFoundException
     message: string
+    -- The identifier of the resource that was not found.
     resourceId: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 
+-- You are not authorized to use this operation with the given parameters.
 local record AccessDeniedException
     message: string
 end
 
+-- An error on the server occurred during the processing of your request. Try again later.
 local record InternalServerException
     message: string
 end
 
+-- The request was denied due to request throttling.
 local record ThrottlingException
     message: string
 end
 
+-- The input fails to satisfy the constraints specified by an Amazon Web Services service.
 local record ValidationException
     message: string
+    -- The reason for the validation exception.
     reason: string
+    -- The list of fields that are invalid.
     fields: {ValidationExceptionDetail}
 end
 

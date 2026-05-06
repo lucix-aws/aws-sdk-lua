@@ -3,18 +3,34 @@
 local types = require("healthlake.types")
 
 local record Client
+    -- Create a FHIR-enabled data store.
     createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput): types.CreateFHIRDatastoreOutput, table
+    -- Delete a FHIR-enabled data store.
     deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput): types.DeleteFHIRDatastoreOutput, table
+    -- Get properties for a FHIR-enabled data store.
     describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput): types.DescribeFHIRDatastoreOutput, table
+    -- Get FHIR export job properties.
     describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput): types.DescribeFHIRExportJobOutput, table
+    -- Get the import job properties to learn more about the job or job progress.
     describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput): types.DescribeFHIRImportJobOutput, table
+    -- List all FHIR-enabled data stores in a user’s account, regardless of data store
+    -- status.
     listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput): types.ListFHIRDatastoresOutput, table
+    -- Lists all FHIR export jobs associated with an account and their statuses.
     listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput): types.ListFHIRExportJobsOutput, table
+    -- List all FHIR import jobs associated with an account and their statuses.
     listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput): types.ListFHIRImportJobsOutput, table
+    -- Returns a list of all existing tags associated with a data store.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Start a FHIR export job.
     startFHIRExportJob: function(Client, types.StartFHIRExportJobInput): types.StartFHIRExportJobOutput, table
+    -- Start importing bulk FHIR data into an ACTIVE data store. The import job imports FHIR
+    -- data found in the InputDataConfig object and stores processing results in the
+    -- JobOutputDataConfig object.
     startFHIRImportJob: function(Client, types.StartFHIRImportJobInput): types.StartFHIRImportJobOutput, table
+    -- Add a user-specifed key and value tag to a data store.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove a user-specifed key and value tag from a data store.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

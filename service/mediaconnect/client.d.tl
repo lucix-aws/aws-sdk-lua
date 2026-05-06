@@ -3,87 +3,169 @@
 local types = require("mediaconnect.types")
 
 local record Client
+    -- Adds outputs to an existing bridge.
     addBridgeOutputs: function(Client, types.AddBridgeOutputsInput): types.AddBridgeOutputsOutput, table
+    -- Adds sources to an existing bridge.
     addBridgeSources: function(Client, types.AddBridgeSourcesInput): types.AddBridgeSourcesOutput, table
+    -- Adds media streams to an existing flow. After you add a media stream to a flow, you can associate it with a source and/or an output that uses the ST 2110 JPEG XS or CDI protocol.
     addFlowMediaStreams: function(Client, types.AddFlowMediaStreamsInput): types.AddFlowMediaStreamsOutput, table
+    -- Adds outputs to an existing flow. You can create up to 50 outputs per flow.
     addFlowOutputs: function(Client, types.AddFlowOutputsInput): types.AddFlowOutputsOutput, table
+    -- Adds sources to a flow.
     addFlowSources: function(Client, types.AddFlowSourcesInput): types.AddFlowSourcesOutput, table
+    -- Adds VPC interfaces to a flow.
     addFlowVpcInterfaces: function(Client, types.AddFlowVpcInterfacesInput): types.AddFlowVpcInterfacesOutput, table
+    -- Retrieves information about multiple router inputs in AWS Elemental MediaConnect.
     batchGetRouterInput: function(Client, types.BatchGetRouterInputInput): types.BatchGetRouterInputOutput, table
+    -- Retrieves information about multiple router network interfaces in AWS Elemental MediaConnect.
     batchGetRouterNetworkInterface: function(Client, types.BatchGetRouterNetworkInterfaceInput): types.BatchGetRouterNetworkInterfaceOutput, table
+    -- Retrieves information about multiple router outputs in AWS Elemental MediaConnect.
     batchGetRouterOutput: function(Client, types.BatchGetRouterOutputInput): types.BatchGetRouterOutputOutput, table
+    -- Creates a new bridge. The request must include one source.
     createBridge: function(Client, types.CreateBridgeInput): types.CreateBridgeOutput, table
+    -- Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and entitlements (up to 50).
     createFlow: function(Client, types.CreateFlowInput): types.CreateFlowOutput, table
+    -- Creates a new gateway. The request must include at least one network (up to four).
     createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    -- Creates a new router input in AWS Elemental MediaConnect.
     createRouterInput: function(Client, types.CreateRouterInputInput): types.CreateRouterInputOutput, table
+    -- Creates a new router network interface in AWS Elemental MediaConnect.
     createRouterNetworkInterface: function(Client, types.CreateRouterNetworkInterfaceInput): types.CreateRouterNetworkInterfaceOutput, table
+    -- Creates a new router output in AWS Elemental MediaConnect.
     createRouterOutput: function(Client, types.CreateRouterOutputInput): types.CreateRouterOutputOutput, table
+    -- Deletes a bridge. Before you can delete a bridge, you must stop the bridge.
     deleteBridge: function(Client, types.DeleteBridgeInput): types.DeleteBridgeOutput, table
+    -- Deletes a flow. Before you can delete a flow, you must stop the flow.
     deleteFlow: function(Client, types.DeleteFlowInput): types.DeleteFlowOutput, table
+    -- Deletes a gateway. Before you can delete a gateway, you must deregister its instances and delete its bridges.
     deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    -- Deletes a router input from AWS Elemental MediaConnect.
     deleteRouterInput: function(Client, types.DeleteRouterInputInput): types.DeleteRouterInputOutput, table
+    -- Deletes a router network interface from AWS Elemental MediaConnect.
     deleteRouterNetworkInterface: function(Client, types.DeleteRouterNetworkInterfaceInput): types.DeleteRouterNetworkInterfaceOutput, table
+    -- Deletes a router output from AWS Elemental MediaConnect.
     deleteRouterOutput: function(Client, types.DeleteRouterOutputInput): types.DeleteRouterOutputOutput, table
+    -- Deregisters an instance. Before you deregister an instance, all bridges running on the instance must be stopped. If you want to deregister an instance without stopping the bridges, you must use the --force option.
     deregisterGatewayInstance: function(Client, types.DeregisterGatewayInstanceInput): types.DeregisterGatewayInstanceOutput, table
+    -- Displays the details of a bridge.
     describeBridge: function(Client, types.DescribeBridgeInput): types.DescribeBridgeOutput, table
+    -- Displays the details of a flow. The response includes the flow Amazon Resource Name (ARN), name, and Availability Zone, as well as details about the source, outputs, and entitlements.
     describeFlow: function(Client, types.DescribeFlowInput): types.DescribeFlowOutput, table
+    -- The DescribeFlowSourceMetadata API is used to view information about the flow's source transport stream and programs. This API displays status messages about the flow's source as well as details about the program's video, audio, and other data.
     describeFlowSourceMetadata: function(Client, types.DescribeFlowSourceMetadataInput): types.DescribeFlowSourceMetadataOutput, table
+    -- Describes the thumbnail for the flow source.
     describeFlowSourceThumbnail: function(Client, types.DescribeFlowSourceThumbnailInput): types.DescribeFlowSourceThumbnailOutput, table
+    -- Displays the details of a gateway. The response includes the gateway Amazon Resource Name (ARN), name, and CIDR blocks, as well as details about the networks.
     describeGateway: function(Client, types.DescribeGatewayInput): types.DescribeGatewayOutput, table
+    -- Displays the details of an instance.
     describeGatewayInstance: function(Client, types.DescribeGatewayInstanceInput): types.DescribeGatewayInstanceOutput, table
+    -- Displays the details of an offering. The response includes the offering description, duration, outbound bandwidth, price, and Amazon Resource Name (ARN).
     describeOffering: function(Client, types.DescribeOfferingInput): types.DescribeOfferingOutput, table
+    -- Displays the details of a reservation. The response includes the reservation name, state, start date and time, and the details of the offering that make up the rest of the reservation (such as price, duration, and outbound bandwidth).
     describeReservation: function(Client, types.DescribeReservationInput): types.DescribeReservationOutput, table
+    -- Retrieves information about a specific router input in AWS Elemental MediaConnect.
     getRouterInput: function(Client, types.GetRouterInputInput): types.GetRouterInputOutput, table
+    -- Retrieves detailed metadata information about a specific router input source, including stream details and connection state.
     getRouterInputSourceMetadata: function(Client, types.GetRouterInputSourceMetadataInput): types.GetRouterInputSourceMetadataOutput, table
+    -- Retrieves the thumbnail for a router input in AWS Elemental MediaConnect.
     getRouterInputThumbnail: function(Client, types.GetRouterInputThumbnailInput): types.GetRouterInputThumbnailOutput, table
+    -- Retrieves information about a specific router network interface in AWS Elemental MediaConnect.
     getRouterNetworkInterface: function(Client, types.GetRouterNetworkInterfaceInput): types.GetRouterNetworkInterfaceOutput, table
+    -- Retrieves information about a specific router output in AWS Elemental MediaConnect.
     getRouterOutput: function(Client, types.GetRouterOutputInput): types.GetRouterOutputOutput, table
+    -- Grants entitlements to an existing flow.
     grantFlowEntitlements: function(Client, types.GrantFlowEntitlementsInput): types.GrantFlowEntitlementsOutput, table
+    -- Displays a list of bridges that are associated with this account and an optionally specified Amazon Resource Name (ARN). This request returns a paginated result.
     listBridges: function(Client, types.ListBridgesInput): types.ListBridgesOutput, table
+    -- Displays a list of all entitlements that have been granted to this account. This request returns 20 results per page.
     listEntitlements: function(Client, types.ListEntitlementsInput): types.ListEntitlementsOutput, table
+    -- Displays a list of flows that are associated with this account. This request returns a paginated result.
     listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    -- Displays a list of instances associated with the Amazon Web Services account. This request returns a paginated result. You can use the filterArn property to display only the instances associated with the selected Gateway Amazon Resource Name (ARN).
     listGatewayInstances: function(Client, types.ListGatewayInstancesInput): types.ListGatewayInstancesOutput, table
+    -- Displays a list of gateways that are associated with this account. This request returns a paginated result.
     listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    -- Displays a list of all offerings that are available to this account in the current Amazon Web Services Region. If you have an active reservation (which means you've purchased an offering that has already started and hasn't expired yet), your account isn't eligible for other offerings.
     listOfferings: function(Client, types.ListOfferingsInput): types.ListOfferingsOutput, table
+    -- Displays a list of all reservations that have been purchased by this account in the current Amazon Web Services Region. This list includes all reservations in all states (such as active and expired).
     listReservations: function(Client, types.ListReservationsInput): types.ListReservationsOutput, table
+    -- Retrieves a list of router inputs in AWS Elemental MediaConnect.
     listRouterInputs: function(Client, types.ListRouterInputsInput): types.ListRouterInputsOutput, table
+    -- Retrieves a list of router network interfaces in AWS Elemental MediaConnect.
     listRouterNetworkInterfaces: function(Client, types.ListRouterNetworkInterfacesInput): types.ListRouterNetworkInterfacesOutput, table
+    -- Retrieves a list of router outputs in AWS Elemental MediaConnect.
     listRouterOutputs: function(Client, types.ListRouterOutputsInput): types.ListRouterOutputsOutput, table
+    -- Lists the tags associated with a global resource in AWS Elemental MediaConnect. The API supports the following global resources: router inputs, router outputs and router network interfaces.
     listTagsForGlobalResource: function(Client, types.ListTagsForGlobalResourceInput): types.ListTagsForGlobalResourceOutput, table
+    -- List all tags on a MediaConnect resource in the current region.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Submits a request to purchase an offering. If you already have an active reservation, you can't purchase another offering.
     purchaseOffering: function(Client, types.PurchaseOfferingInput): types.PurchaseOfferingOutput, table
+    -- Removes an output from a bridge.
     removeBridgeOutput: function(Client, types.RemoveBridgeOutputInput): types.RemoveBridgeOutputOutput, table
+    -- Removes a source from a bridge.
     removeBridgeSource: function(Client, types.RemoveBridgeSourceInput): types.RemoveBridgeSourceOutput, table
+    -- Removes a media stream from a flow. This action is only available if the media stream is not associated with a source or output.
     removeFlowMediaStream: function(Client, types.RemoveFlowMediaStreamInput): types.RemoveFlowMediaStreamOutput, table
+    -- Removes an output from an existing flow. This request can be made only on an output that does not have an entitlement associated with it. If the output has an entitlement, you must revoke the entitlement instead. When an entitlement is revoked from a flow, the service automatically removes the associated output.
     removeFlowOutput: function(Client, types.RemoveFlowOutputInput): types.RemoveFlowOutputOutput, table
+    -- Removes a source from an existing flow. This request can be made only if there is more than one source on the flow.
     removeFlowSource: function(Client, types.RemoveFlowSourceInput): types.RemoveFlowSourceOutput, table
+    -- Removes a VPC Interface from an existing flow. This request can be made only on a VPC interface that does not have a Source or Output associated with it. If the VPC interface is referenced by a Source or Output, you must first delete or update the Source or Output to no longer reference the VPC interface.
     removeFlowVpcInterface: function(Client, types.RemoveFlowVpcInterfaceInput): types.RemoveFlowVpcInterfaceOutput, table
+    -- Restarts a router input. This operation can be used to recover from errors or refresh the input state.
     restartRouterInput: function(Client, types.RestartRouterInputInput): types.RestartRouterInputOutput, table
+    -- Restarts a router output. This operation can be used to recover from errors or refresh the output state.
     restartRouterOutput: function(Client, types.RestartRouterOutputInput): types.RestartRouterOutputOutput, table
+    -- Revokes an entitlement from a flow. Once an entitlement is revoked, the content becomes unavailable to the subscriber and the associated output is removed.
     revokeFlowEntitlement: function(Client, types.RevokeFlowEntitlementInput): types.RevokeFlowEntitlementOutput, table
+    -- Starts a flow.
     startFlow: function(Client, types.StartFlowInput): types.StartFlowOutput, table
+    -- Starts a router input in AWS Elemental MediaConnect.
     startRouterInput: function(Client, types.StartRouterInputInput): types.StartRouterInputOutput, table
+    -- Starts a router output in AWS Elemental MediaConnect.
     startRouterOutput: function(Client, types.StartRouterOutputInput): types.StartRouterOutputOutput, table
+    -- Stops a flow.
     stopFlow: function(Client, types.StopFlowInput): types.StopFlowOutput, table
+    -- Stops a router input in AWS Elemental MediaConnect.
     stopRouterInput: function(Client, types.StopRouterInputInput): types.StopRouterInputOutput, table
+    -- Stops a router output in AWS Elemental MediaConnect.
     stopRouterOutput: function(Client, types.StopRouterOutputInput): types.StopRouterOutputOutput, table
+    -- Adds tags to a global resource in AWS Elemental MediaConnect. The API supports the following global resources: router inputs, router outputs and router network interfaces.
     tagGlobalResource: function(Client, types.TagGlobalResourceInput): types.TagGlobalResourceOutput, table
+    -- Associates the specified tags to a resource with the specified resourceArn in the current region. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Associates a router input with a router output in AWS Elemental MediaConnect.
     takeRouterInput: function(Client, types.TakeRouterInputInput): types.TakeRouterInputOutput, table
+    -- Removes tags from a global resource in AWS Elemental MediaConnect. The API supports the following global resources: router inputs, router outputs and router network interfaces.
     untagGlobalResource: function(Client, types.UntagGlobalResourceInput): types.UntagGlobalResourceOutput, table
+    -- Deletes specified tags from a resource in the current region.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the bridge.
     updateBridge: function(Client, types.UpdateBridgeInput): types.UpdateBridgeOperationOutput, table
+    -- Updates an existing bridge output.
     updateBridgeOutput: function(Client, types.UpdateBridgeOutputInput): types.UpdateBridgeOutputOutput, table
+    -- Updates an existing bridge source.
     updateBridgeSource: function(Client, types.UpdateBridgeSourceInput): types.UpdateBridgeSourceOutput, table
+    -- Updates the bridge state.
     updateBridgeState: function(Client, types.UpdateBridgeStateInput): types.UpdateBridgeStateOutput, table
+    -- Updates an existing flow. Because UpdateFlowSources and UpdateFlow are separate operations, you can't change both the source type AND the flow size in a single request. If you have a MEDIUM flow and you want to change the flow source to NDI®: First, use the UpdateFlow operation to upgrade the flow size to LARGE. After that, you can then use the UpdateFlowSource operation to configure the NDI source. If you're switching from an NDI source to a transport stream (TS) source and want to downgrade the flow size: First, use the UpdateFlowSource operation to change the flow source type. After that, you can then use the UpdateFlow operation to downgrade the flow size to MEDIUM.
     updateFlow: function(Client, types.UpdateFlowInput): types.UpdateFlowOperationOutput, table
+    -- Updates an entitlement. You can change an entitlement's description, subscribers, and encryption. If you change the subscribers, the service will remove the outputs that are are used by the subscribers that are removed.
     updateFlowEntitlement: function(Client, types.UpdateFlowEntitlementInput): types.UpdateFlowEntitlementOutput, table
+    -- Updates an existing media stream.
     updateFlowMediaStream: function(Client, types.UpdateFlowMediaStreamInput): types.UpdateFlowMediaStreamOutput, table
+    -- Updates an existing flow output.
     updateFlowOutput: function(Client, types.UpdateFlowOutputInput): types.UpdateFlowOutputOutput, table
+    -- Updates the source of a flow. Because UpdateFlowSources and UpdateFlow are separate operations, you can't change both the source type AND the flow size in a single request. If you have a MEDIUM flow and you want to change the flow source to NDI®: First, use the UpdateFlow operation to upgrade the flow size to LARGE. After that, you can then use the UpdateFlowSource operation to configure the NDI source. If you're switching from an NDI source to a transport stream (TS) source and want to downgrade the flow size: First, use the UpdateFlowSource operation to change the flow source type. After that, you can then use the UpdateFlow operation to downgrade the flow size to MEDIUM.
     updateFlowSource: function(Client, types.UpdateFlowSourceInput): types.UpdateFlowSourceOutput, table
+    -- Updates an existing gateway instance.
     updateGatewayInstance: function(Client, types.UpdateGatewayInstanceInput): types.UpdateGatewayInstanceOutput, table
+    -- Updates the configuration of an existing router input in AWS Elemental MediaConnect.
     updateRouterInput: function(Client, types.UpdateRouterInputInput): types.UpdateRouterInputOutput, table
+    -- Updates the configuration of an existing router network interface in AWS Elemental MediaConnect.
     updateRouterNetworkInterface: function(Client, types.UpdateRouterNetworkInterfaceInput): types.UpdateRouterNetworkInterfaceOutput, table
+    -- Updates the configuration of an existing router output in AWS Elemental MediaConnect.
     updateRouterOutput: function(Client, types.UpdateRouterOutputInput): types.UpdateRouterOutputOutput, table
 end
 

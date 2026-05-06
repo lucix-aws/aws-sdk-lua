@@ -3,49 +3,155 @@
 local types = require("workdocs.types")
 
 local record Client
+    -- Aborts the upload of the specified document version that was previously initiated
+    -- by InitiateDocumentVersionUpload. The client should make this call
+    -- only when it no longer intends to upload the document version, or fails to do
+    -- so.
     abortDocumentVersionUpload: function(Client, types.AbortDocumentVersionUploadInput): types.AbortDocumentVersionUploadOutput, table
+    -- Activates the specified user. Only active users can access Amazon
+    -- WorkDocs.
     activateUser: function(Client, types.ActivateUserInput): types.ActivateUserOutput, table
+    -- Creates a set of permissions for the specified folder or document. The resource
+    -- permissions are overwritten if the principals already have different
+    -- permissions.
     addResourcePermissions: function(Client, types.AddResourcePermissionsInput): types.AddResourcePermissionsOutput, table
+    -- Adds a new comment to the specified document version.
     createComment: function(Client, types.CreateCommentInput): types.CreateCommentOutput, table
+    -- Adds one or more custom properties to the specified resource (a folder, document,
+    -- or version).
     createCustomMetadata: function(Client, types.CreateCustomMetadataInput): types.CreateCustomMetadataOutput, table
+    -- Creates a folder with the specified name and parent folder.
     createFolder: function(Client, types.CreateFolderInput): types.CreateFolderOutput, table
+    -- Adds the specified list of labels to the given resource (a document or
+    -- folder)
     createLabels: function(Client, types.CreateLabelsInput): types.CreateLabelsOutput, table
+    -- Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a
+    -- confirmation message, and must confirm the subscription.
+    -- For more information, see Setting up notifications for an IAM user or role in the Amazon WorkDocs Developer
+    -- Guide.
     createNotificationSubscription: function(Client, types.CreateNotificationSubscriptionInput): types.CreateNotificationSubscriptionOutput, table
+    -- Creates a user in a Simple AD or Microsoft AD directory. The status of a newly
+    -- created user is "ACTIVE". New users can access Amazon WorkDocs.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Deactivates the specified user, which revokes the user's access to Amazon
+    -- WorkDocs.
     deactivateUser: function(Client, types.DeactivateUserInput): types.DeactivateUserOutput, table
+    -- Deletes the specified comment from the document version.
     deleteComment: function(Client, types.DeleteCommentInput): types.DeleteCommentOutput, table
+    -- Deletes custom metadata from the specified resource.
     deleteCustomMetadata: function(Client, types.DeleteCustomMetadataInput): types.DeleteCustomMetadataOutput, table
+    -- Permanently deletes the specified document and its associated metadata.
     deleteDocument: function(Client, types.DeleteDocumentInput): types.DeleteDocumentOutput, table
+    -- Deletes a specific version of a document.
     deleteDocumentVersion: function(Client, types.DeleteDocumentVersionInput): types.DeleteDocumentVersionOutput, table
+    -- Permanently deletes the specified folder and its contents.
     deleteFolder: function(Client, types.DeleteFolderInput): types.DeleteFolderOutput, table
+    -- Deletes the contents of the specified folder.
     deleteFolderContents: function(Client, types.DeleteFolderContentsInput): types.DeleteFolderContentsOutput, table
+    -- Deletes the specified list of labels from a resource.
     deleteLabels: function(Client, types.DeleteLabelsInput): types.DeleteLabelsOutput, table
+    -- Deletes the specified subscription from the specified organization.
     deleteNotificationSubscription: function(Client, types.DeleteNotificationSubscriptionInput): types.DeleteNotificationSubscriptionOutput, table
+    -- Deletes the specified user from a Simple AD or Microsoft AD directory.
+    -- Deleting a user immediately and permanently deletes all content in that user's folder structure. Site retention policies do NOT apply to this type of deletion.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Describes the user activities in a specified time period.
     describeActivities: function(Client, types.DescribeActivitiesInput): types.DescribeActivitiesOutput, table
+    -- List all the comments for the specified document version.
     describeComments: function(Client, types.DescribeCommentsInput): types.DescribeCommentsOutput, table
+    -- Retrieves the document versions for the specified document.
+    -- By default, only active versions are returned.
     describeDocumentVersions: function(Client, types.DescribeDocumentVersionsInput): types.DescribeDocumentVersionsOutput, table
+    -- Describes the contents of the specified folder, including its documents and
+    -- subfolders.
+    -- By default, Amazon WorkDocs returns the first 100 active document and folder
+    -- metadata items. If there are more results, the response includes a marker that you can
+    -- use to request the next set of results. You can also request initialized
+    -- documents.
     describeFolderContents: function(Client, types.DescribeFolderContentsInput): types.DescribeFolderContentsOutput, table
+    -- Describes the groups specified by the query. Groups are defined by the underlying
+    -- Active Directory.
     describeGroups: function(Client, types.DescribeGroupsInput): types.DescribeGroupsOutput, table
+    -- Lists the specified notification subscriptions.
     describeNotificationSubscriptions: function(Client, types.DescribeNotificationSubscriptionsInput): types.DescribeNotificationSubscriptionsOutput, table
+    -- Describes the permissions of a specified resource.
     describeResourcePermissions: function(Client, types.DescribeResourcePermissionsInput): types.DescribeResourcePermissionsOutput, table
+    -- Describes the current user's special folders; the RootFolder and the
+    -- RecycleBin. RootFolder is the root of user's files and
+    -- folders and RecycleBin is the root of recycled items. This is not a valid
+    -- action for SigV4 (administrative API) clients.
+    -- This action requires an authentication token. To get an authentication token,
+    -- register an application with Amazon WorkDocs. For more information, see Authentication and Access
+    -- Control for User Applications in the
+    -- Amazon
+    -- WorkDocs Developer Guide.
     describeRootFolders: function(Client, types.DescribeRootFoldersInput): types.DescribeRootFoldersOutput, table
+    -- Describes the specified users. You can describe all users or filter the results
+    -- (for example, by status or organization).
+    -- By default, Amazon WorkDocs returns the first 24 active or pending users. If there
+    -- are more results, the response includes a marker that you can use to request the next
+    -- set of results.
     describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    -- Retrieves details of the current user for whom the authentication token was
+    -- generated. This is not a valid action for SigV4 (administrative API) clients.
+    -- This action requires an authentication token. To get an authentication token,
+    -- register an application with Amazon WorkDocs. For more information, see Authentication and Access
+    -- Control for User Applications in the
+    -- Amazon
+    -- WorkDocs Developer Guide.
     getCurrentUser: function(Client, types.GetCurrentUserInput): types.GetCurrentUserOutput, table
+    -- Retrieves details of a document.
     getDocument: function(Client, types.GetDocumentInput): types.GetDocumentOutput, table
+    -- Retrieves the path information (the hierarchy from the root folder) for the
+    -- requested document.
+    -- By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the
+    -- requested document and only includes the IDs of the parent folders in the path. You can
+    -- limit the maximum number of levels. You can also request the names of the parent
+    -- folders.
     getDocumentPath: function(Client, types.GetDocumentPathInput): types.GetDocumentPathOutput, table
+    -- Retrieves version metadata for the specified document.
     getDocumentVersion: function(Client, types.GetDocumentVersionInput): types.GetDocumentVersionOutput, table
+    -- Retrieves the metadata of the specified folder.
     getFolder: function(Client, types.GetFolderInput): types.GetFolderOutput, table
+    -- Retrieves the path information (the hierarchy from the root folder) for the
+    -- specified folder.
+    -- By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the
+    -- requested folder and only includes the IDs of the parent folders in the path. You can
+    -- limit the maximum number of levels. You can also request the parent folder
+    -- names.
     getFolderPath: function(Client, types.GetFolderPathInput): types.GetFolderPathOutput, table
+    -- Retrieves a collection of resources, including folders and documents. The only
+    -- CollectionType supported is SHARED_WITH_ME.
     getResources: function(Client, types.GetResourcesInput): types.GetResourcesOutput, table
+    -- Creates a new document object and version object.
+    -- The client specifies the parent folder ID and name of the document to upload. The
+    -- ID is optionally specified when creating a new version of an existing document. This is
+    -- the first step to upload a document. Next, upload the document to the URL returned from
+    -- the call, and then call UpdateDocumentVersion.
+    -- To cancel the document upload, call AbortDocumentVersionUpload.
     initiateDocumentVersionUpload: function(Client, types.InitiateDocumentVersionUploadInput): types.InitiateDocumentVersionUploadOutput, table
+    -- Removes all the permissions from the specified resource.
     removeAllResourcePermissions: function(Client, types.RemoveAllResourcePermissionsInput): types.RemoveAllResourcePermissionsOutput, table
+    -- Removes the permission for the specified principal from the specified
+    -- resource.
     removeResourcePermission: function(Client, types.RemoveResourcePermissionInput): types.RemoveResourcePermissionOutput, table
+    -- Recovers a deleted version of an Amazon WorkDocs document.
     restoreDocumentVersions: function(Client, types.RestoreDocumentVersionsInput): types.RestoreDocumentVersionsOutput, table
+    -- Searches metadata and the content of folders, documents, document versions, and comments.
     searchResources: function(Client, types.SearchResourcesInput): types.SearchResourcesOutput, table
+    -- Updates the specified attributes of a document. The user must have access to both
+    -- the document and its parent folder, if applicable.
     updateDocument: function(Client, types.UpdateDocumentInput): types.UpdateDocumentOutput, table
+    -- Changes the status of the document version to ACTIVE.
+    -- Amazon WorkDocs also sets its document container to ACTIVE. This is the last step
+    -- in a document upload, after the client uploads the document to an S3-presigned URL
+    -- returned by InitiateDocumentVersionUpload.
     updateDocumentVersion: function(Client, types.UpdateDocumentVersionInput): types.UpdateDocumentVersionOutput, table
+    -- Updates the specified attributes of the specified folder. The user must have access
+    -- to both the folder and its parent folder, if applicable.
     updateFolder: function(Client, types.UpdateFolderInput): types.UpdateFolderOutput, table
+    -- Updates the specified attributes of the specified user, and grants or revokes
+    -- administrative privileges to the Amazon WorkDocs site.
     updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
 end
 

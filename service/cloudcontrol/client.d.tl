@@ -3,13 +3,53 @@
 local types = require("cloudcontrol.types")
 
 local record Client
+    -- Cancels the specified resource operation request. For more information, see Canceling resource operation requests in the
+    -- Amazon Web Services Cloud Control API User Guide.
+    -- Only resource operations requests with a status of PENDING or
+    -- IN_PROGRESS can be canceled.
     cancelResourceRequest: function(Client, types.CancelResourceRequestInput): types.CancelResourceRequestOutput, table
+    -- Creates the specified resource. For more information, see Creating a
+    -- resource in the Amazon Web Services Cloud Control API User Guide.
+    -- After you have initiated a resource creation request, you can monitor the progress of your
+    -- request by calling GetResourceRequestStatus using the RequestToken of the
+    -- ProgressEvent type returned by CreateResource.
     createResource: function(Client, types.CreateResourceInput): types.CreateResourceOutput, table
+    -- Deletes the specified resource. For details, see Deleting a
+    -- resource in the Amazon Web Services Cloud Control API User Guide.
+    -- After you have initiated a resource deletion request, you can monitor the progress of your
+    -- request by calling GetResourceRequestStatus using the RequestToken of the
+    -- ProgressEvent returned by DeleteResource.
     deleteResource: function(Client, types.DeleteResourceInput): types.DeleteResourceOutput, table
+    -- Returns information about the current state of the specified resource. For details, see
+    -- Reading a resource's current state.
+    -- You can use this action to return information about an existing resource in your account
+    -- and Amazon Web Services Region, whether those resources were provisioned using Cloud Control API.
     getResource: function(Client, types.GetResourceInput): types.GetResourceOutput, table
+    -- Returns the current status of a resource operation request. For more information, see
+    -- Tracking the progress of resource operation requests in the
+    -- Amazon Web Services Cloud Control API User Guide.
     getResourceRequestStatus: function(Client, types.GetResourceRequestStatusInput): types.GetResourceRequestStatusOutput, table
+    -- Returns existing resource operation requests. This includes requests of all status types.
+    -- For more information, see Listing active resource operation requests in the
+    -- Amazon Web Services Cloud Control API User Guide.
+    -- Resource operation requests expire after 7 days.
     listResourceRequests: function(Client, types.ListResourceRequestsInput): types.ListResourceRequestsOutput, table
+    -- Returns information about the specified resources. For more information, see Discovering resources in the Amazon Web Services Cloud Control API User Guide.
+    -- You can use this action to return information about existing resources in your account and
+    -- Amazon Web Services Region, whether those resources were provisioned using Cloud Control API.
     listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    -- Updates the specified property values in the resource.
+    -- You specify your resource property updates as a list of patch operations contained in a
+    -- JSON patch document that adheres to the
+    -- RFC 6902 - JavaScript Object
+    -- Notation (JSON) Patch
+    -- standard.
+    -- For details on how Cloud Control API performs resource update operations, see Updating a resource in the Amazon Web Services Cloud Control API User Guide.
+    -- After you have initiated a resource update request, you can monitor the progress of your
+    -- request by calling GetResourceRequestStatus using the RequestToken of the
+    -- ProgressEvent returned by UpdateResource.
+    -- For more information about the properties of a specific resource, refer to the related
+    -- topic for the resource in the Resource and property types reference in the CloudFormation Users Guide.
     updateResource: function(Client, types.UpdateResourceInput): types.UpdateResourceOutput, table
 end
 

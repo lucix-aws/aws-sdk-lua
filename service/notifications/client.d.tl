@@ -3,44 +3,83 @@
 local types = require("notifications.types")
 
 local record Client
+    -- Associates a delivery Channel with a particular NotificationConfiguration. Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).
     associateChannel: function(Client, types.AssociateChannelInput): types.AssociateChannelOutput, table
+    -- Associates an Account Contact with a particular ManagedNotificationConfiguration.
     associateManagedNotificationAccountContact: function(Client, types.AssociateManagedNotificationAccountContactInput): types.AssociateManagedNotificationAccountContactOutput, table
+    -- Associates an additional Channel with a particular ManagedNotificationConfiguration. Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).
     associateManagedNotificationAdditionalChannel: function(Client, types.AssociateManagedNotificationAdditionalChannelInput): types.AssociateManagedNotificationAdditionalChannelOutput, table
+    -- Associates an organizational unit with a notification configuration.
     associateOrganizationalUnit: function(Client, types.AssociateOrganizationalUnitInput): types.AssociateOrganizationalUnitOutput, table
+    -- Creates an EventRule that is associated with a specified NotificationConfiguration.
     createEventRule: function(Client, types.CreateEventRuleInput): types.CreateEventRuleOutput, table
+    -- Creates a new NotificationConfiguration.
     createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput): types.CreateNotificationConfigurationOutput, table
+    -- Deletes an EventRule.
     deleteEventRule: function(Client, types.DeleteEventRuleInput): types.DeleteEventRuleOutput, table
+    -- Deletes a NotificationConfiguration.
     deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput): types.DeleteNotificationConfigurationOutput, table
+    -- Deregisters a NotificationConfiguration in the specified Region. You can't deregister the last NotificationHub in the account. NotificationEvents stored in the deregistered NotificationConfiguration are no longer be visible. Recreating a new NotificationConfiguration in the same Region restores access to those NotificationEvents.
     deregisterNotificationHub: function(Client, types.DeregisterNotificationHubInput): types.DeregisterNotificationHubOutput, table
+    -- Disables service trust between User Notifications and Amazon Web Services Organizations.
     disableNotificationsAccessForOrganization: function(Client, types.DisableNotificationsAccessForOrganizationInput): types.DisableNotificationsAccessForOrganizationOutput, table
+    -- Disassociates a Channel from a specified NotificationConfiguration. Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).
     disassociateChannel: function(Client, types.DisassociateChannelInput): types.DisassociateChannelOutput, table
+    -- Disassociates an Account Contact with a particular ManagedNotificationConfiguration.
     disassociateManagedNotificationAccountContact: function(Client, types.DisassociateManagedNotificationAccountContactInput): types.DisassociateManagedNotificationAccountContactOutput, table
+    -- Disassociates an additional Channel from a particular ManagedNotificationConfiguration. Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).
     disassociateManagedNotificationAdditionalChannel: function(Client, types.DisassociateManagedNotificationAdditionalChannelInput): types.DisassociateManagedNotificationAdditionalChannelOutput, table
+    -- Removes the association between an organizational unit and a notification configuration.
     disassociateOrganizationalUnit: function(Client, types.DisassociateOrganizationalUnitInput): types.DisassociateOrganizationalUnitOutput, table
+    -- Enables service trust between User Notifications and Amazon Web Services Organizations.
     enableNotificationsAccessForOrganization: function(Client, types.EnableNotificationsAccessForOrganizationInput): types.EnableNotificationsAccessForOrganizationOutput, table
+    -- Returns a specified EventRule.
     getEventRule: function(Client, types.GetEventRuleInput): types.GetEventRuleOutput, table
+    -- Returns the child event of a specific given ManagedNotificationEvent.
     getManagedNotificationChildEvent: function(Client, types.GetManagedNotificationChildEventInput): types.GetManagedNotificationChildEventOutput, table
+    -- Returns a specified ManagedNotificationConfiguration.
     getManagedNotificationConfiguration: function(Client, types.GetManagedNotificationConfigurationInput): types.GetManagedNotificationConfigurationOutput, table
+    -- Returns a specified ManagedNotificationEvent.
     getManagedNotificationEvent: function(Client, types.GetManagedNotificationEventInput): types.GetManagedNotificationEventOutput, table
+    -- Returns a specified NotificationConfiguration.
     getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput): types.GetNotificationConfigurationOutput, table
+    -- Returns a specified NotificationEvent. User Notifications stores notifications in the individual Regions you register as notification hubs and the Region of the source event rule. GetNotificationEvent only returns notifications stored in the same Region in which the action is called. User Notifications doesn't backfill notifications to new Regions selected as notification hubs. For this reason, we recommend that you make calls in your oldest registered notification hub. For more information, see Notification hubs in the Amazon Web Services User Notifications User Guide.
     getNotificationEvent: function(Client, types.GetNotificationEventInput): types.GetNotificationEventOutput, table
+    -- Returns the AccessStatus of Service Trust Enablement for User Notifications and Amazon Web Services Organizations.
     getNotificationsAccessForOrganization: function(Client, types.GetNotificationsAccessForOrganizationInput): types.GetNotificationsAccessForOrganizationOutput, table
+    -- Returns a list of Channels for a NotificationConfiguration.
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Returns a list of EventRules according to specified filters, in reverse chronological order (newest first).
     listEventRules: function(Client, types.ListEventRulesInput): types.ListEventRulesOutput, table
+    -- Returns a list of Account contacts and Channels associated with a ManagedNotificationConfiguration, in paginated format.
     listManagedNotificationChannelAssociations: function(Client, types.ListManagedNotificationChannelAssociationsInput): types.ListManagedNotificationChannelAssociationsOutput, table
+    -- Returns a list of ManagedNotificationChildEvents for a specified aggregate ManagedNotificationEvent, ordered by creation time in reverse chronological order (newest first).
     listManagedNotificationChildEvents: function(Client, types.ListManagedNotificationChildEventsInput): types.ListManagedNotificationChildEventsOutput, table
+    -- Returns a list of Managed Notification Configurations according to specified filters, ordered by creation time in reverse chronological order (newest first).
     listManagedNotificationConfigurations: function(Client, types.ListManagedNotificationConfigurationsInput): types.ListManagedNotificationConfigurationsOutput, table
+    -- Returns a list of Managed Notification Events according to specified filters, ordered by creation time in reverse chronological order (newest first).
     listManagedNotificationEvents: function(Client, types.ListManagedNotificationEventsInput): types.ListManagedNotificationEventsOutput, table
+    -- Returns a list of member accounts associated with a notification configuration.
     listMemberAccounts: function(Client, types.ListMemberAccountsInput): types.ListMemberAccountsOutput, table
+    -- Returns a list of abbreviated NotificationConfigurations according to specified filters, in reverse chronological order (newest first).
     listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput): types.ListNotificationConfigurationsOutput, table
+    -- Returns a list of NotificationEvents according to specified filters, in reverse chronological order (newest first). User Notifications stores notifications in the individual Regions you register as notification hubs and the Region of the source event rule. ListNotificationEvents only returns notifications stored in the same Region in which the action is called. User Notifications doesn't backfill notifications to new Regions selected as notification hubs. For this reason, we recommend that you make calls in your oldest registered notification hub. For more information, see Notification hubs in the Amazon Web Services User Notifications User Guide.
     listNotificationEvents: function(Client, types.ListNotificationEventsInput): types.ListNotificationEventsOutput, table
+    -- Returns a list of NotificationHubs.
     listNotificationHubs: function(Client, types.ListNotificationHubsInput): types.ListNotificationHubsOutput, table
+    -- Returns a list of organizational units associated with a notification configuration.
     listOrganizationalUnits: function(Client, types.ListOrganizationalUnitsInput): types.ListOrganizationalUnitsOutput, table
+    -- Returns a list of tags for a specified Amazon Resource Name (ARN). For more information, see Tagging your Amazon Web Services resources in the Tagging Amazon Web Services Resources User Guide. This is only supported for NotificationConfigurations.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Registers a NotificationConfiguration in the specified Region. There is a maximum of one NotificationConfiguration per Region. You can have a maximum of 3 NotificationHub resources at a time.
     registerNotificationHub: function(Client, types.RegisterNotificationHubInput): types.RegisterNotificationHubOutput, table
+    -- Tags the resource with a tag key and value. For more information, see Tagging your Amazon Web Services resources in the Tagging Amazon Web Services Resources User Guide. This is only supported for NotificationConfigurations.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource with a specified Amazon Resource Name (ARN). For more information, see Tagging your Amazon Web Services resources in the Tagging Amazon Web Services Resources User Guide.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing EventRule.
     updateEventRule: function(Client, types.UpdateEventRuleInput): types.UpdateEventRuleOutput, table
+    -- Updates a NotificationConfiguration.
     updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput): types.UpdateNotificationConfigurationOutput, table
 end
 

@@ -3,73 +3,223 @@
 local types = require("route53resolver.types")
 
 local record Client
+    -- Associates a FirewallRuleGroup with a VPC, to provide DNS filtering for the VPC.
     associateFirewallRuleGroup: function(Client, types.AssociateFirewallRuleGroupInput): types.AssociateFirewallRuleGroupOutput, table
+    -- Adds IP addresses to an inbound or an outbound Resolver endpoint. If you want to add more than one IP address,
+    -- submit one AssociateResolverEndpointIpAddress request for each IP address.
+    -- To remove an IP address from an endpoint, see
+    -- DisassociateResolverEndpointIpAddress.
     associateResolverEndpointIpAddress: function(Client, types.AssociateResolverEndpointIpAddressInput): types.AssociateResolverEndpointIpAddressOutput, table
+    -- Associates an Amazon VPC with a specified query logging configuration. Route 53 Resolver logs DNS queries that originate in all of the Amazon VPCs
+    -- that are associated with a specified query logging configuration. To associate more than one VPC with a configuration, submit one AssociateResolverQueryLogConfig
+    -- request for each VPC.
+    -- The VPCs that you associate with a query logging configuration must be in the same Region as the configuration.
+    -- To remove a VPC from a query logging configuration, see
+    -- DisassociateResolverQueryLogConfig.
     associateResolverQueryLogConfig: function(Client, types.AssociateResolverQueryLogConfigInput): types.AssociateResolverQueryLogConfigOutput, table
+    -- Associates a Resolver rule with a VPC. When you associate a rule with a VPC, Resolver forwards all DNS queries
+    -- for the domain name that is specified in the rule and that originate in the VPC. The queries are forwarded to the
+    -- IP addresses for the DNS resolvers that are specified in the rule. For more information about rules, see
+    -- CreateResolverRule.
     associateResolverRule: function(Client, types.AssociateResolverRuleInput): types.AssociateResolverRuleOutput, table
+    -- Creates an empty firewall domain list for use in DNS Firewall rules. You can populate the domains for the new list with a file, using ImportFirewallDomains, or with domain strings, using UpdateFirewallDomains.
     createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput): types.CreateFirewallDomainListOutput, table
+    -- Creates a single DNS Firewall rule in the specified rule group, using the specified domain list.
     createFirewallRule: function(Client, types.CreateFirewallRuleInput): types.CreateFirewallRuleOutput, table
+    -- Creates an empty DNS Firewall rule group for filtering DNS network traffic in a VPC. You can add rules to the new rule group
+    -- by calling CreateFirewallRule.
     createFirewallRuleGroup: function(Client, types.CreateFirewallRuleGroupInput): types.CreateFirewallRuleGroupOutput, table
+    -- Creates a Route 53 Resolver on an Outpost.
     createOutpostResolver: function(Client, types.CreateOutpostResolverInput): types.CreateOutpostResolverOutput, table
+    -- Creates a Resolver endpoint. There are two types of Resolver endpoints, inbound and outbound:
+    -- An inbound Resolver endpoint forwards DNS queries to the DNS service for a VPC
+    -- from your network.
+    -- An outbound Resolver endpoint forwards DNS queries from the DNS service for a VPC
+    -- to your network.
     createResolverEndpoint: function(Client, types.CreateResolverEndpointInput): types.CreateResolverEndpointOutput, table
+    -- Creates a Resolver query logging configuration, which defines where you want Resolver to save DNS query logs that originate in your VPCs.
+    -- Resolver can log queries only for VPCs that are in the same Region as the query logging configuration.
+    -- To specify which VPCs you want to log queries for, you use AssociateResolverQueryLogConfig. For more information, see
+    -- AssociateResolverQueryLogConfig.
+    -- You can optionally use Resource Access Manager (RAM) to share a query logging configuration with other Amazon Web Services accounts. The other accounts
+    -- can then associate VPCs with the configuration. The query logs that Resolver creates for a configuration include all DNS queries that originate in all
+    -- VPCs that are associated with the configuration.
     createResolverQueryLogConfig: function(Client, types.CreateResolverQueryLogConfigInput): types.CreateResolverQueryLogConfigOutput, table
+    -- For DNS queries that originate in your VPCs, specifies which Resolver endpoint the queries pass through,
+    -- one domain name that you want to forward to your network, and the IP addresses of the DNS resolvers in your network.
     createResolverRule: function(Client, types.CreateResolverRuleInput): types.CreateResolverRuleOutput, table
+    -- Deletes the specified domain list.
     deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput): types.DeleteFirewallDomainListOutput, table
+    -- Deletes the specified firewall rule.
     deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput): types.DeleteFirewallRuleOutput, table
+    -- Deletes the specified firewall rule group.
     deleteFirewallRuleGroup: function(Client, types.DeleteFirewallRuleGroupInput): types.DeleteFirewallRuleGroupOutput, table
+    -- Deletes a Resolver on the Outpost.
     deleteOutpostResolver: function(Client, types.DeleteOutpostResolverInput): types.DeleteOutpostResolverOutput, table
+    -- Deletes a Resolver endpoint. The effect of deleting a Resolver endpoint depends on whether it's an inbound or an outbound
+    -- Resolver endpoint:
+    -- Inbound: DNS queries from your network are no longer routed
+    -- to the DNS service for the specified VPC.
+    -- Outbound: DNS queries from a VPC are no longer routed to your network.
     deleteResolverEndpoint: function(Client, types.DeleteResolverEndpointInput): types.DeleteResolverEndpointOutput, table
+    -- Deletes a query logging configuration. When you delete a configuration, Resolver stops logging DNS queries for all of the Amazon VPCs that are
+    -- associated with the configuration. This also applies if the query logging configuration is shared with other Amazon Web Services accounts, and
+    -- the other accounts have associated VPCs with the shared configuration.
+    -- Before you can delete a query logging configuration, you must first disassociate all VPCs from the configuration. See
+    -- DisassociateResolverQueryLogConfig.
+    -- If you used Resource Access Manager (RAM) to share a query logging configuration with other accounts, you must stop sharing
+    -- the configuration before you can delete a configuration. The accounts that you shared the configuration with can first disassociate VPCs
+    -- that they associated with the configuration, but that's not necessary. If you stop sharing the configuration, those VPCs are automatically
+    -- disassociated from the configuration.
     deleteResolverQueryLogConfig: function(Client, types.DeleteResolverQueryLogConfigInput): types.DeleteResolverQueryLogConfigOutput, table
+    -- Deletes a Resolver rule. Before you can delete a Resolver rule, you must disassociate it from all the VPCs that you
+    -- associated the Resolver rule with. For more information, see
+    -- DisassociateResolverRule.
     deleteResolverRule: function(Client, types.DeleteResolverRuleInput): types.DeleteResolverRuleOutput, table
+    -- Disassociates a FirewallRuleGroup from a VPC, to remove DNS filtering from the VPC.
     disassociateFirewallRuleGroup: function(Client, types.DisassociateFirewallRuleGroupInput): types.DisassociateFirewallRuleGroupOutput, table
+    -- Removes IP addresses from an inbound or an outbound Resolver endpoint. If you want to remove more than one IP address,
+    -- submit one DisassociateResolverEndpointIpAddress request for each IP address.
+    -- To add an IP address to an endpoint, see
+    -- AssociateResolverEndpointIpAddress.
     disassociateResolverEndpointIpAddress: function(Client, types.DisassociateResolverEndpointIpAddressInput): types.DisassociateResolverEndpointIpAddressOutput, table
+    -- Disassociates a VPC from a query logging configuration.
+    -- Before you can delete a query logging configuration, you must first disassociate all VPCs
+    -- from the configuration. If you used Resource Access Manager (RAM) to share a
+    -- query logging configuration with other accounts, VPCs can be disassociated from the
+    -- configuration in the following ways:
+    -- The accounts that you shared the configuration with can disassociate VPCs from the configuration.
+    -- You can stop sharing the configuration.
     disassociateResolverQueryLogConfig: function(Client, types.DisassociateResolverQueryLogConfigInput): types.DisassociateResolverQueryLogConfigOutput, table
+    -- Removes the association between a specified Resolver rule and a specified VPC.
+    -- If you disassociate a Resolver rule from a VPC, Resolver stops forwarding DNS queries for the
+    -- domain name that you specified in the Resolver rule.
     disassociateResolverRule: function(Client, types.DisassociateResolverRuleInput): types.DisassociateResolverRuleOutput, table
+    -- Retrieves the configuration of the firewall behavior provided by DNS Firewall for a
+    -- single VPC from Amazon Virtual Private Cloud (Amazon VPC).
     getFirewallConfig: function(Client, types.GetFirewallConfigInput): types.GetFirewallConfigOutput, table
+    -- Retrieves the specified firewall domain list.
     getFirewallDomainList: function(Client, types.GetFirewallDomainListInput): types.GetFirewallDomainListOutput, table
+    -- Retrieves the specified firewall rule group.
     getFirewallRuleGroup: function(Client, types.GetFirewallRuleGroupInput): types.GetFirewallRuleGroupOutput, table
+    -- Retrieves a firewall rule group association, which enables DNS filtering for a VPC with one rule group. A VPC can have more than one firewall rule group association, and a rule group can be associated with more than one VPC.
     getFirewallRuleGroupAssociation: function(Client, types.GetFirewallRuleGroupAssociationInput): types.GetFirewallRuleGroupAssociationOutput, table
+    -- Returns the Identity and Access Management (Amazon Web Services IAM) policy for sharing the
+    -- specified rule group. You can use the policy to share the rule group using Resource Access Manager (RAM).
     getFirewallRuleGroupPolicy: function(Client, types.GetFirewallRuleGroupPolicyInput): types.GetFirewallRuleGroupPolicyOutput, table
+    -- Gets information about a specified Resolver on the Outpost, such as its instance count and
+    -- type, name, and the current status of the Resolver.
     getOutpostResolver: function(Client, types.GetOutpostResolverInput): types.GetOutpostResolverOutput, table
+    -- Retrieves the behavior configuration of Route 53 Resolver behavior for a single VPC from
+    -- Amazon Virtual Private Cloud.
     getResolverConfig: function(Client, types.GetResolverConfigInput): types.GetResolverConfigOutput, table
+    -- Gets DNSSEC validation information for a specified resource.
     getResolverDnssecConfig: function(Client, types.GetResolverDnssecConfigInput): types.GetResolverDnssecConfigOutput, table
+    -- Gets information about a specified Resolver endpoint, such as whether it's an inbound or an outbound Resolver endpoint, and the
+    -- current status of the endpoint.
     getResolverEndpoint: function(Client, types.GetResolverEndpointInput): types.GetResolverEndpointOutput, table
+    -- Gets information about a specified Resolver query logging configuration, such as the number of VPCs that the configuration
+    -- is logging queries for and the location that logs are sent to.
     getResolverQueryLogConfig: function(Client, types.GetResolverQueryLogConfigInput): types.GetResolverQueryLogConfigOutput, table
+    -- Gets information about a specified association between a Resolver query logging configuration and an Amazon VPC. When you associate a VPC
+    -- with a query logging configuration, Resolver logs DNS queries that originate in that VPC.
     getResolverQueryLogConfigAssociation: function(Client, types.GetResolverQueryLogConfigAssociationInput): types.GetResolverQueryLogConfigAssociationOutput, table
+    -- Gets information about a query logging policy. A query logging policy specifies the Resolver query logging
+    -- operations and resources that you want to allow another Amazon Web Services account to be able to use.
     getResolverQueryLogConfigPolicy: function(Client, types.GetResolverQueryLogConfigPolicyInput): types.GetResolverQueryLogConfigPolicyOutput, table
+    -- Gets information about a specified Resolver rule, such as the domain name that the rule forwards DNS queries for and the ID of the
+    -- outbound Resolver endpoint that the rule is associated with.
     getResolverRule: function(Client, types.GetResolverRuleInput): types.GetResolverRuleOutput, table
+    -- Gets information about an association between a specified Resolver rule and a VPC. You associate a Resolver rule and a VPC using
+    -- AssociateResolverRule.
     getResolverRuleAssociation: function(Client, types.GetResolverRuleAssociationInput): types.GetResolverRuleAssociationOutput, table
+    -- Gets information about the Resolver rule policy for a specified rule. A Resolver rule policy includes the rule that you want to share
+    -- with another account, the account that you want to share the rule with, and the Resolver operations that you want to allow the account to use.
     getResolverRulePolicy: function(Client, types.GetResolverRulePolicyInput): types.GetResolverRulePolicyOutput, table
+    -- Imports domain names from a file into a domain list, for use in a DNS firewall rule group.
+    -- Each domain specification in your domain list must satisfy the following
+    -- requirements:
+    -- It can optionally start with * (asterisk).
+    -- With the exception of the optional starting asterisk, it must only contain
+    -- the following characters: A-Z, a-z,
+    -- 0-9, - (hyphen).
+    -- It must be from 1-255 characters in length.
     importFirewallDomains: function(Client, types.ImportFirewallDomainsInput): types.ImportFirewallDomainsOutput, table
+    -- Retrieves the firewall configurations that you have defined. DNS Firewall uses the configurations to manage firewall behavior for your VPCs.
+    -- A single call might return only a partial list of the configurations. For information, see MaxResults.
     listFirewallConfigs: function(Client, types.ListFirewallConfigsInput): types.ListFirewallConfigsOutput, table
+    -- Retrieves the firewall domain lists that you have defined. For each firewall domain list, you can retrieve the domains that are defined for a list by calling ListFirewallDomains.
+    -- A single call to this list operation might return only a partial list of the domain lists. For information, see MaxResults.
     listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput): types.ListFirewallDomainListsOutput, table
+    -- Retrieves the domains that you have defined for the specified firewall domain list.
+    -- A single call might return only a partial list of the domains. For information, see MaxResults.
     listFirewallDomains: function(Client, types.ListFirewallDomainsInput): types.ListFirewallDomainsOutput, table
+    -- Retrieves the firewall rule group associations that you have defined. Each association enables DNS filtering for a VPC with one rule group.
+    -- A single call might return only a partial list of the associations. For information, see MaxResults.
     listFirewallRuleGroupAssociations: function(Client, types.ListFirewallRuleGroupAssociationsInput): types.ListFirewallRuleGroupAssociationsOutput, table
+    -- Retrieves the minimal high-level information for the rule groups that you have defined.
+    -- A single call might return only a partial list of the rule groups. For information, see MaxResults.
     listFirewallRuleGroups: function(Client, types.ListFirewallRuleGroupsInput): types.ListFirewallRuleGroupsOutput, table
+    -- Retrieves the firewall rules that you have defined for the specified firewall rule group. DNS Firewall uses the rules in a rule group to filter DNS network traffic for a VPC.
+    -- A single call might return only a partial list of the rules. For information, see MaxResults.
     listFirewallRules: function(Client, types.ListFirewallRulesInput): types.ListFirewallRulesOutput, table
+    -- Lists all the Resolvers on Outposts that were created using the current Amazon Web Services account.
     listOutpostResolvers: function(Client, types.ListOutpostResolversInput): types.ListOutpostResolversOutput, table
+    -- Retrieves the Resolver configurations that you have defined.
+    -- Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.
     listResolverConfigs: function(Client, types.ListResolverConfigsInput): types.ListResolverConfigsOutput, table
+    -- Lists the configurations for DNSSEC validation that are associated with the current Amazon Web Services account.
     listResolverDnssecConfigs: function(Client, types.ListResolverDnssecConfigsInput): types.ListResolverDnssecConfigsOutput, table
+    -- Gets the IP addresses for a specified Resolver endpoint.
     listResolverEndpointIpAddresses: function(Client, types.ListResolverEndpointIpAddressesInput): types.ListResolverEndpointIpAddressesOutput, table
+    -- Lists all the Resolver endpoints that were created using the current Amazon Web Services account.
     listResolverEndpoints: function(Client, types.ListResolverEndpointsInput): types.ListResolverEndpointsOutput, table
+    -- Lists information about associations between Amazon VPCs and query logging configurations.
     listResolverQueryLogConfigAssociations: function(Client, types.ListResolverQueryLogConfigAssociationsInput): types.ListResolverQueryLogConfigAssociationsOutput, table
+    -- Lists information about the specified query logging configurations. Each configuration defines where you want Resolver to save
+    -- DNS query logs and specifies the VPCs that you want to log queries for.
     listResolverQueryLogConfigs: function(Client, types.ListResolverQueryLogConfigsInput): types.ListResolverQueryLogConfigsOutput, table
+    -- Lists the associations that were created between Resolver rules and VPCs using the current Amazon Web Services account.
     listResolverRuleAssociations: function(Client, types.ListResolverRuleAssociationsInput): types.ListResolverRuleAssociationsOutput, table
+    -- Lists the Resolver rules that were created using the current Amazon Web Services account.
     listResolverRules: function(Client, types.ListResolverRulesInput): types.ListResolverRulesOutput, table
+    -- Lists the tags that you associated with the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Attaches an Identity and Access Management (Amazon Web Services IAM) policy for sharing the rule
+    -- group. You can use the policy to share the rule group using Resource Access Manager
+    -- (RAM).
     putFirewallRuleGroupPolicy: function(Client, types.PutFirewallRuleGroupPolicyInput): types.PutFirewallRuleGroupPolicyOutput, table
+    -- Specifies an Amazon Web Services account that you want to share a query logging configuration with, the query logging configuration that you want to share,
+    -- and the operations that you want the account to be able to perform on the configuration.
     putResolverQueryLogConfigPolicy: function(Client, types.PutResolverQueryLogConfigPolicyInput): types.PutResolverQueryLogConfigPolicyOutput, table
+    -- Specifies an Amazon Web Services rule that you want to share with another account, the account that you want to share the rule with,
+    -- and the operations that you want the account to be able to perform on the rule.
     putResolverRulePolicy: function(Client, types.PutResolverRulePolicyInput): types.PutResolverRulePolicyOutput, table
+    -- Adds one or more tags to a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the configuration of the firewall behavior provided by DNS Firewall for a single
+    -- VPC from Amazon Virtual Private Cloud (Amazon VPC).
     updateFirewallConfig: function(Client, types.UpdateFirewallConfigInput): types.UpdateFirewallConfigOutput, table
+    -- Updates the firewall domain list from an array of domain specifications.
     updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput): types.UpdateFirewallDomainsOutput, table
+    -- Updates the specified firewall rule.
     updateFirewallRule: function(Client, types.UpdateFirewallRuleInput): types.UpdateFirewallRuleOutput, table
+    -- Changes the association of a FirewallRuleGroup with a VPC. The association enables DNS filtering for the VPC.
     updateFirewallRuleGroupAssociation: function(Client, types.UpdateFirewallRuleGroupAssociationInput): types.UpdateFirewallRuleGroupAssociationOutput, table
+    -- You can use UpdateOutpostResolver to update the instance count, type, or name of a Resolver on an Outpost.
     updateOutpostResolver: function(Client, types.UpdateOutpostResolverInput): types.UpdateOutpostResolverOutput, table
+    -- Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from
+    -- Amazon Virtual Private Cloud.
     updateResolverConfig: function(Client, types.UpdateResolverConfigInput): types.UpdateResolverConfigOutput, table
+    -- Updates an existing DNSSEC validation configuration. If there is no existing DNSSEC validation configuration, one is created.
     updateResolverDnssecConfig: function(Client, types.UpdateResolverDnssecConfigInput): types.UpdateResolverDnssecConfigOutput, table
+    -- Updates the name, or endpoint type for an inbound or an outbound Resolver endpoint.
+    -- You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated to other type.
     updateResolverEndpoint: function(Client, types.UpdateResolverEndpointInput): types.UpdateResolverEndpointOutput, table
+    -- Updates settings for a specified Resolver rule. ResolverRuleId is required, and all other parameters are optional.
+    -- If you don't specify a parameter, it retains its current value.
     updateResolverRule: function(Client, types.UpdateResolverRuleInput): types.UpdateResolverRuleOutput, table
 end
 

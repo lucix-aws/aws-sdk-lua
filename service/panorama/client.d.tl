@@ -3,39 +3,78 @@
 local types = require("panorama.types")
 
 local record Client
+    -- Creates an application instance and deploys it to a device.
     createApplicationInstance: function(Client, types.CreateApplicationInstanceInput): types.CreateApplicationInstanceOutput, table
+    -- Creates a job to run on a device. A job can update a device's software or reboot it.
     createJobForDevices: function(Client, types.CreateJobForDevicesInput): types.CreateJobForDevicesOutput, table
+    -- Creates a camera stream node.
     createNodeFromTemplateJob: function(Client, types.CreateNodeFromTemplateJobInput): types.CreateNodeFromTemplateJobOutput, table
+    -- Creates a package and storage location in an Amazon S3 access point.
     createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    -- Imports a node package.
     createPackageImportJob: function(Client, types.CreatePackageImportJobInput): types.CreatePackageImportJobOutput, table
+    -- Deletes a device.
     deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    -- Deletes a package.
+    -- To delete a package, you need permission to call s3:DeleteObject in addition to permissions for
+    -- the AWS Panorama API.
     deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    -- Deregisters a package version.
     deregisterPackageVersion: function(Client, types.DeregisterPackageVersionInput): types.DeregisterPackageVersionOutput, table
+    -- Returns information about an application instance on a device.
     describeApplicationInstance: function(Client, types.DescribeApplicationInstanceInput): types.DescribeApplicationInstanceOutput, table
+    -- Returns information about an application instance's configuration manifest.
     describeApplicationInstanceDetails: function(Client, types.DescribeApplicationInstanceDetailsInput): types.DescribeApplicationInstanceDetailsOutput, table
+    -- Returns information about a device.
     describeDevice: function(Client, types.DescribeDeviceInput): types.DescribeDeviceOutput, table
+    -- Returns information about a device job.
     describeDeviceJob: function(Client, types.DescribeDeviceJobInput): types.DescribeDeviceJobOutput, table
+    -- Returns information about a node.
     describeNode: function(Client, types.DescribeNodeInput): types.DescribeNodeOutput, table
+    -- Returns information about a job to create a camera stream node.
     describeNodeFromTemplateJob: function(Client, types.DescribeNodeFromTemplateJobInput): types.DescribeNodeFromTemplateJobOutput, table
+    -- Returns information about a package.
     describePackage: function(Client, types.DescribePackageInput): types.DescribePackageOutput, table
+    -- Returns information about a package import job.
     describePackageImportJob: function(Client, types.DescribePackageImportJobInput): types.DescribePackageImportJobOutput, table
+    -- Returns information about a package version.
     describePackageVersion: function(Client, types.DescribePackageVersionInput): types.DescribePackageVersionOutput, table
+    -- Returns a list of application instance dependencies.
     listApplicationInstanceDependencies: function(Client, types.ListApplicationInstanceDependenciesInput): types.ListApplicationInstanceDependenciesOutput, table
+    -- Returns a list of application node instances.
     listApplicationInstanceNodeInstances: function(Client, types.ListApplicationInstanceNodeInstancesInput): types.ListApplicationInstanceNodeInstancesOutput, table
+    -- Returns a list of application instances.
     listApplicationInstances: function(Client, types.ListApplicationInstancesInput): types.ListApplicationInstancesOutput, table
+    -- Returns a list of devices.
     listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    -- Returns a list of jobs.
     listDevicesJobs: function(Client, types.ListDevicesJobsInput): types.ListDevicesJobsOutput, table
+    -- Returns a list of camera stream node jobs.
     listNodeFromTemplateJobs: function(Client, types.ListNodeFromTemplateJobsInput): types.ListNodeFromTemplateJobsOutput, table
+    -- Returns a list of nodes.
     listNodes: function(Client, types.ListNodesInput): types.ListNodesOutput, table
+    -- Returns a list of package import jobs.
     listPackageImportJobs: function(Client, types.ListPackageImportJobsInput): types.ListPackageImportJobsOutput, table
+    -- Returns a list of packages.
     listPackages: function(Client, types.ListPackagesInput): types.ListPackagesOutput, table
+    -- Returns a list of tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates a device and returns a configuration archive. The configuration archive is a ZIP file that contains a
+    -- provisioning certificate that is valid for 5 minutes. Name the configuration archive
+    -- certificates-omni_device-name.zip and transfer it to the device within 5
+    -- minutes. Use the included USB storage device and connect it to the USB 3.0 port next to the HDMI output.
     provisionDevice: function(Client, types.ProvisionDeviceInput): types.ProvisionDeviceOutput, table
+    -- Registers a package version.
     registerPackageVersion: function(Client, types.RegisterPackageVersionInput): types.RegisterPackageVersionOutput, table
+    -- Removes an application instance.
     removeApplicationInstance: function(Client, types.RemoveApplicationInstanceInput): types.RemoveApplicationInstanceOutput, table
+    -- Signal camera nodes to stop or resume.
     signalApplicationInstanceNodeInstances: function(Client, types.SignalApplicationInstanceNodeInstancesInput): types.SignalApplicationInstanceNodeInstancesOutput, table
+    -- Tags a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a device's metadata.
     updateDeviceMetadata: function(Client, types.UpdateDeviceMetadataInput): types.UpdateDeviceMetadataOutput, table
 end
 

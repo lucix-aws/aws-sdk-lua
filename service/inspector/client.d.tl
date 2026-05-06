@@ -3,42 +3,127 @@
 local types = require("inspector.types")
 
 local record Client
+    -- Assigns attributes (key and value pairs) to the findings that are specified by the
+    -- ARNs of the findings.
     addAttributesToFindings: function(Client, types.AddAttributesToFindingsInput): types.AddAttributesToFindingsOutput, table
+    -- Creates a new assessment target using the ARN of the resource group that is generated
+    -- by CreateResourceGroup. If resourceGroupArn is not specified, all EC2
+    -- instances in the current AWS account and region are included in the assessment target. If
+    -- the service-linked role isn’t already registered, this action also creates and
+    -- registers a service-linked role to grant Amazon Inspector access to AWS Services needed to
+    -- perform security assessments. You can create up to 50 assessment targets per AWS account.
+    -- You can run up to 500 concurrent agents per AWS account. For more information, see
+    -- Amazon Inspector Assessment Targets.
     createAssessmentTarget: function(Client, types.CreateAssessmentTargetInput): types.CreateAssessmentTargetOutput, table
+    -- Creates an assessment template for the assessment target that is specified by the ARN
+    -- of the assessment target. If the service-linked role isn’t already registered, this action also creates and
+    -- registers a service-linked role to grant Amazon Inspector access to AWS Services needed to
+    -- perform security assessments.
     createAssessmentTemplate: function(Client, types.CreateAssessmentTemplateInput): types.CreateAssessmentTemplateOutput, table
+    -- Starts the generation of an exclusions preview for the specified assessment template.
+    -- The exclusions preview lists the potential exclusions (ExclusionPreview) that Inspector can
+    -- detect before it runs the assessment.
     createExclusionsPreview: function(Client, types.CreateExclusionsPreviewInput): types.CreateExclusionsPreviewOutput, table
+    -- Creates a resource group using the specified set of tags (key and value pairs) that
+    -- are used to select the EC2 instances to be included in an Amazon Inspector assessment
+    -- target. The created resource group is then used to create an Amazon Inspector assessment
+    -- target. For more information, see CreateAssessmentTarget.
     createResourceGroup: function(Client, types.CreateResourceGroupInput): types.CreateResourceGroupOutput, table
+    -- Deletes the assessment run that is specified by the ARN of the assessment
+    -- run.
     deleteAssessmentRun: function(Client, types.DeleteAssessmentRunInput): types.DeleteAssessmentRunOutput, table
+    -- Deletes the assessment target that is specified by the ARN of the assessment
+    -- target.
     deleteAssessmentTarget: function(Client, types.DeleteAssessmentTargetInput): types.DeleteAssessmentTargetOutput, table
+    -- Deletes the assessment template that is specified by the ARN of the assessment
+    -- template.
     deleteAssessmentTemplate: function(Client, types.DeleteAssessmentTemplateInput): types.DeleteAssessmentTemplateOutput, table
+    -- Describes the assessment runs that are specified by the ARNs of the assessment
+    -- runs.
     describeAssessmentRuns: function(Client, types.DescribeAssessmentRunsInput): types.DescribeAssessmentRunsOutput, table
+    -- Describes the assessment targets that are specified by the ARNs of the assessment
+    -- targets.
     describeAssessmentTargets: function(Client, types.DescribeAssessmentTargetsInput): types.DescribeAssessmentTargetsOutput, table
+    -- Describes the assessment templates that are specified by the ARNs of the assessment
+    -- templates.
     describeAssessmentTemplates: function(Client, types.DescribeAssessmentTemplatesInput): types.DescribeAssessmentTemplatesOutput, table
+    -- Describes the IAM role that enables Amazon Inspector to access your AWS
+    -- account.
     describeCrossAccountAccessRole: function(Client, types.DescribeCrossAccountAccessRoleInput): types.DescribeCrossAccountAccessRoleOutput, table
+    -- Describes the exclusions that are specified by the exclusions' ARNs.
     describeExclusions: function(Client, types.DescribeExclusionsInput): types.DescribeExclusionsOutput, table
+    -- Describes the findings that are specified by the ARNs of the findings.
     describeFindings: function(Client, types.DescribeFindingsInput): types.DescribeFindingsOutput, table
+    -- Describes the resource groups that are specified by the ARNs of the resource
+    -- groups.
     describeResourceGroups: function(Client, types.DescribeResourceGroupsInput): types.DescribeResourceGroupsOutput, table
+    -- Describes the rules packages that are specified by the ARNs of the rules
+    -- packages.
     describeRulesPackages: function(Client, types.DescribeRulesPackagesInput): types.DescribeRulesPackagesOutput, table
+    -- Produces an assessment report that includes detailed and comprehensive results of a
+    -- specified assessment run.
     getAssessmentReport: function(Client, types.GetAssessmentReportInput): types.GetAssessmentReportOutput, table
+    -- Retrieves the exclusions preview (a list of ExclusionPreview objects) specified by
+    -- the preview token. You can obtain the preview token by running the CreateExclusionsPreview
+    -- API.
     getExclusionsPreview: function(Client, types.GetExclusionsPreviewInput): types.GetExclusionsPreviewOutput, table
+    -- Information about the data that is collected for the specified assessment
+    -- run.
     getTelemetryMetadata: function(Client, types.GetTelemetryMetadataInput): types.GetTelemetryMetadataOutput, table
+    -- Lists the agents of the assessment runs that are specified by the ARNs of the
+    -- assessment runs.
     listAssessmentRunAgents: function(Client, types.ListAssessmentRunAgentsInput): types.ListAssessmentRunAgentsOutput, table
+    -- Lists the assessment runs that correspond to the assessment templates that are
+    -- specified by the ARNs of the assessment templates.
     listAssessmentRuns: function(Client, types.ListAssessmentRunsInput): types.ListAssessmentRunsOutput, table
+    -- Lists the ARNs of the assessment targets within this AWS account. For more
+    -- information about assessment targets, see Amazon Inspector Assessment
+    -- Targets.
     listAssessmentTargets: function(Client, types.ListAssessmentTargetsInput): types.ListAssessmentTargetsOutput, table
+    -- Lists the assessment templates that correspond to the assessment targets that are
+    -- specified by the ARNs of the assessment targets.
     listAssessmentTemplates: function(Client, types.ListAssessmentTemplatesInput): types.ListAssessmentTemplatesOutput, table
+    -- Lists all the event subscriptions for the assessment template that is specified by
+    -- the ARN of the assessment template. For more information, see SubscribeToEvent and UnsubscribeFromEvent.
     listEventSubscriptions: function(Client, types.ListEventSubscriptionsInput): types.ListEventSubscriptionsOutput, table
+    -- List exclusions that are generated by the assessment run.
     listExclusions: function(Client, types.ListExclusionsInput): types.ListExclusionsOutput, table
+    -- Lists findings that are generated by the assessment runs that are specified by the
+    -- ARNs of the assessment runs.
     listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    -- Lists all available Amazon Inspector rules packages.
     listRulesPackages: function(Client, types.ListRulesPackagesInput): types.ListRulesPackagesOutput, table
+    -- Lists all tags associated with an assessment template.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Previews the agents installed on the EC2 instances that are part of the specified
+    -- assessment target.
     previewAgents: function(Client, types.PreviewAgentsInput): types.PreviewAgentsOutput, table
+    -- Registers the IAM role that grants Amazon Inspector access to AWS Services needed to
+    -- perform security assessments.
     registerCrossAccountAccessRole: function(Client, types.RegisterCrossAccountAccessRoleInput): types.RegisterCrossAccountAccessRoleOutput, table
+    -- Removes entire attributes (key and value pairs) from the findings that are specified
+    -- by the ARNs of the findings where an attribute with the specified key exists.
     removeAttributesFromFindings: function(Client, types.RemoveAttributesFromFindingsInput): types.RemoveAttributesFromFindingsOutput, table
+    -- Sets tags (key and value pairs) to the assessment template that is specified by the
+    -- ARN of the assessment template.
     setTagsForResource: function(Client, types.SetTagsForResourceInput): types.SetTagsForResourceOutput, table
+    -- Starts the assessment run specified by the ARN of the assessment template. For this
+    -- API to function properly, you must not exceed the limit of running up to 500 concurrent
+    -- agents per AWS account.
     startAssessmentRun: function(Client, types.StartAssessmentRunInput): types.StartAssessmentRunOutput, table
+    -- Stops the assessment run that is specified by the ARN of the assessment
+    -- run.
     stopAssessmentRun: function(Client, types.StopAssessmentRunInput): types.StopAssessmentRunOutput, table
+    -- Enables the process of sending Amazon Simple Notification Service (SNS) notifications
+    -- about a specified event to a specified SNS topic.
     subscribeToEvent: function(Client, types.SubscribeToEventInput): types.SubscribeToEventOutput, table
+    -- Disables the process of sending Amazon Simple Notification Service (SNS)
+    -- notifications about a specified event to a specified SNS topic.
     unsubscribeFromEvent: function(Client, types.UnsubscribeFromEventInput): types.UnsubscribeFromEventOutput, table
+    -- Updates the assessment target that is specified by the ARN of the assessment
+    -- target.
+    -- If resourceGroupArn is not specified, all EC2 instances in the current AWS account
+    -- and region are included in the assessment target.
     updateAssessmentTarget: function(Client, types.UpdateAssessmentTargetInput): types.UpdateAssessmentTargetOutput, table
 end
 

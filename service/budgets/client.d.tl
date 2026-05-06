@@ -3,31 +3,84 @@
 local types = require("budgets.types")
 
 local record Client
+    -- Creates a budget and, if included, notifications and subscribers.
+    -- Only one of BudgetLimit or PlannedBudgetLimits can be present in
+    -- the syntax at one time. Use the syntax that matches your use case. The Request Syntax
+    -- section shows the BudgetLimit syntax. For PlannedBudgetLimits,
+    -- see the Examples section.
+    -- Similarly, only one set of filter and metric selections can be present in the syntax
+    -- at one time. Either FilterExpression and Metrics or
+    -- CostFilters and CostTypes, not both or a different
+    -- combination. We recommend using FilterExpression and Metrics
+    -- as they provide more flexible and powerful filtering capabilities. The Request Syntax
+    -- section shows the FilterExpression/Metrics syntax.
     createBudget: function(Client, types.CreateBudgetInput): types.CreateBudgetOutput, table
+    -- Creates a budget action.
     createBudgetAction: function(Client, types.CreateBudgetActionInput): types.CreateBudgetActionOutput, table
+    -- Creates a notification. You must create the budget before you create the associated notification.
     createNotification: function(Client, types.CreateNotificationInput): types.CreateNotificationOutput, table
+    -- Creates a subscriber. You must create the associated budget and notification before you create the subscriber.
     createSubscriber: function(Client, types.CreateSubscriberInput): types.CreateSubscriberOutput, table
+    -- Deletes a budget. You can delete your budget at any time.
+    -- Deleting a budget also deletes the notifications and subscribers that are associated with that budget.
     deleteBudget: function(Client, types.DeleteBudgetInput): types.DeleteBudgetOutput, table
+    -- Deletes a budget action.
     deleteBudgetAction: function(Client, types.DeleteBudgetActionInput): types.DeleteBudgetActionOutput, table
+    -- Deletes a notification.
+    -- Deleting a notification also deletes the subscribers that are associated with the notification.
     deleteNotification: function(Client, types.DeleteNotificationInput): types.DeleteNotificationOutput, table
+    -- Deletes a subscriber.
+    -- Deleting the last subscriber to a notification also deletes the notification.
     deleteSubscriber: function(Client, types.DeleteSubscriberInput): types.DeleteSubscriberOutput, table
+    -- Describes a budget.
+    -- The Request Syntax section shows the BudgetLimit syntax. For
+    -- PlannedBudgetLimits, see the Examples section.
     describeBudget: function(Client, types.DescribeBudgetInput): types.DescribeBudgetOutput, table
+    -- Describes a budget action detail.
     describeBudgetAction: function(Client, types.DescribeBudgetActionInput): types.DescribeBudgetActionOutput, table
+    -- Describes a budget action history detail.
     describeBudgetActionHistories: function(Client, types.DescribeBudgetActionHistoriesInput): types.DescribeBudgetActionHistoriesOutput, table
+    -- Describes all of the budget actions for an account.
     describeBudgetActionsForAccount: function(Client, types.DescribeBudgetActionsForAccountInput): types.DescribeBudgetActionsForAccountOutput, table
+    -- Describes all of the budget actions for a budget.
     describeBudgetActionsForBudget: function(Client, types.DescribeBudgetActionsForBudgetInput): types.DescribeBudgetActionsForBudgetOutput, table
+    -- Lists the budget names and notifications that are associated with an account.
     describeBudgetNotificationsForAccount: function(Client, types.DescribeBudgetNotificationsForAccountInput): types.DescribeBudgetNotificationsForAccountOutput, table
+    -- Describes the history for DAILY, MONTHLY, and QUARTERLY budgets. Budget history isn't available for ANNUAL budgets.
     describeBudgetPerformanceHistory: function(Client, types.DescribeBudgetPerformanceHistoryInput): types.DescribeBudgetPerformanceHistoryOutput, table
+    -- Lists the budgets that are associated with an account.
+    -- The Request Syntax section shows the BudgetLimit syntax. For
+    -- PlannedBudgetLimits, see the Examples section.
     describeBudgets: function(Client, types.DescribeBudgetsInput): types.DescribeBudgetsOutput, table
+    -- Lists the notifications that are associated with a budget.
     describeNotificationsForBudget: function(Client, types.DescribeNotificationsForBudgetInput): types.DescribeNotificationsForBudgetOutput, table
+    -- Lists the subscribers that are associated with a notification.
     describeSubscribersForNotification: function(Client, types.DescribeSubscribersForNotificationInput): types.DescribeSubscribersForNotificationOutput, table
+    -- Executes a budget action.
     executeBudgetAction: function(Client, types.ExecuteBudgetActionInput): types.ExecuteBudgetActionOutput, table
+    -- Lists tags associated with a budget or budget action resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates tags for a budget or budget action resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes tags associated with a budget or budget action resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a budget. You can change every part of a budget except for the budgetName and the calculatedSpend. When you modify a budget, the calculatedSpend drops to zero until Amazon Web Services has new usage data to use for forecasting.
+    -- Only one of BudgetLimit or PlannedBudgetLimits can be present in
+    -- the syntax at one time. Use the syntax that matches your case. The Request Syntax
+    -- section shows the BudgetLimit syntax. For PlannedBudgetLimits,
+    -- see the Examples section.
+    -- Similarly, only one set of filter and metric selections can be present in the syntax
+    -- at one time. Either FilterExpression and Metrics or
+    -- CostFilters and CostTypes, not both or a different
+    -- combination. We recommend using FilterExpression and Metrics
+    -- as they provide more flexible and powerful filtering capabilities. The Request Syntax
+    -- section shows the FilterExpression/Metrics syntax.
     updateBudget: function(Client, types.UpdateBudgetInput): types.UpdateBudgetOutput, table
+    -- Updates a budget action.
     updateBudgetAction: function(Client, types.UpdateBudgetActionInput): types.UpdateBudgetActionOutput, table
+    -- Updates a notification.
     updateNotification: function(Client, types.UpdateNotificationInput): types.UpdateNotificationOutput, table
+    -- Updates a subscriber.
     updateSubscriber: function(Client, types.UpdateSubscriberInput): types.UpdateSubscriberOutput, table
 end
 

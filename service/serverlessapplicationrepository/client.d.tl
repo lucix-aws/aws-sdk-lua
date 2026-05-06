@@ -3,19 +3,36 @@
 local types = require("serverlessapplicationrepository.types")
 
 local record Client
+    -- Creates an application, optionally including an AWS SAM file to create the first application version in the same call.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates an application version.
     createApplicationVersion: function(Client, types.CreateApplicationVersionInput): types.CreateApplicationVersionOutput, table
+    -- Creates an AWS CloudFormation change set for the given application.
     createCloudFormationChangeSet: function(Client, types.CreateCloudFormationChangeSetInput): types.CreateCloudFormationChangeSetOutput, table
+    -- Creates an AWS CloudFormation template.
     createCloudFormationTemplate: function(Client, types.CreateCloudFormationTemplateInput): types.CreateCloudFormationTemplateOutput, table
+    -- Deletes the specified application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Gets the specified application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Retrieves the policy for the application.
     getApplicationPolicy: function(Client, types.GetApplicationPolicyInput): types.GetApplicationPolicyOutput, table
+    -- Gets the specified AWS CloudFormation template.
     getCloudFormationTemplate: function(Client, types.GetCloudFormationTemplateInput): types.GetCloudFormationTemplateOutput, table
+    -- Retrieves the list of applications nested in the containing application.
     listApplicationDependencies: function(Client, types.ListApplicationDependenciesInput): types.ListApplicationDependenciesOutput, table
+    -- Lists applications owned by the requester.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists versions for the specified application.
     listApplicationVersions: function(Client, types.ListApplicationVersionsInput): types.ListApplicationVersionsOutput, table
+    -- Sets the permission policy for an application. For the list of actions supported for this operation, see
+    -- Application
+    -- Permissions
+    -- .
     putApplicationPolicy: function(Client, types.PutApplicationPolicyInput): types.PutApplicationPolicyOutput, table
+    -- Unshares an application from an AWS Organization.This operation can be called only from the organization's master account.
     unshareApplication: function(Client, types.UnshareApplicationInput): types.UnshareApplicationOutput, table
+    -- Updates the specified application.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
 end
 

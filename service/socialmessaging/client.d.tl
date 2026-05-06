@@ -3,26 +3,60 @@
 local types = require("socialmessaging.types")
 
 local record Client
+    -- This is only used through the Amazon Web Services console during sign-up to associate your WhatsApp Business Account to your Amazon Web Services account.
     associateWhatsAppBusinessAccount: function(Client, types.AssociateWhatsAppBusinessAccountInput): types.AssociateWhatsAppBusinessAccountOutput, table
+    -- Creates a new WhatsApp message template from a custom definition.
+    -- Amazon Web Services End User Messaging Social does not store any WhatsApp message template content.
     createWhatsAppMessageTemplate: function(Client, types.CreateWhatsAppMessageTemplateInput): types.CreateWhatsAppMessageTemplateOutput, table
+    -- Creates a new WhatsApp message template using a template from Meta's template library.
     createWhatsAppMessageTemplateFromLibrary: function(Client, types.CreateWhatsAppMessageTemplateFromLibraryInput): types.CreateWhatsAppMessageTemplateFromLibraryOutput, table
+    -- Uploads media for use in a WhatsApp message template.
     createWhatsAppMessageTemplateMedia: function(Client, types.CreateWhatsAppMessageTemplateMediaInput): types.CreateWhatsAppMessageTemplateMediaOutput, table
+    -- Delete a media object from the WhatsApp service. If the object is still in an Amazon S3 bucket you should delete it from there too.
     deleteWhatsAppMessageMedia: function(Client, types.DeleteWhatsAppMessageMediaInput): types.DeleteWhatsAppMessageMediaOutput, table
+    -- Deletes a WhatsApp message template.
     deleteWhatsAppMessageTemplate: function(Client, types.DeleteWhatsAppMessageTemplateInput): types.DeleteWhatsAppMessageTemplateOutput, table
+    -- Disassociate a WhatsApp Business Account (WABA) from your Amazon Web Services account.
     disassociateWhatsAppBusinessAccount: function(Client, types.DisassociateWhatsAppBusinessAccountInput): types.DisassociateWhatsAppBusinessAccountOutput, table
+    -- Get the details of your linked WhatsApp Business Account.
     getLinkedWhatsAppBusinessAccount: function(Client, types.GetLinkedWhatsAppBusinessAccountInput): types.GetLinkedWhatsAppBusinessAccountOutput, table
+    -- Retrieve the WABA account id and phone number details of a WhatsApp business account phone number.
     getLinkedWhatsAppBusinessAccountPhoneNumber: function(Client, types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput): types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput, table
+    -- Get a media file from the WhatsApp service. On successful completion the media file is
+    -- retrieved from Meta and stored in the specified Amazon S3 bucket. Use either
+    -- destinationS3File or destinationS3PresignedUrl for the
+    -- destination. If both are used then an InvalidParameterException is
+    -- returned.
     getWhatsAppMessageMedia: function(Client, types.GetWhatsAppMessageMediaInput): types.GetWhatsAppMessageMediaOutput, table
+    -- Retrieves a specific WhatsApp message template.
     getWhatsAppMessageTemplate: function(Client, types.GetWhatsAppMessageTemplateInput): types.GetWhatsAppMessageTemplateOutput, table
+    -- List all WhatsApp Business Accounts linked to your Amazon Web Services account.
     listLinkedWhatsAppBusinessAccounts: function(Client, types.ListLinkedWhatsAppBusinessAccountsInput): types.ListLinkedWhatsAppBusinessAccountsOutput, table
+    -- List all tags associated with a resource, such as a phone number or WABA.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists WhatsApp message templates for a specific WhatsApp Business Account.
     listWhatsAppMessageTemplates: function(Client, types.ListWhatsAppMessageTemplatesInput): types.ListWhatsAppMessageTemplatesOutput, table
+    -- Lists templates available in Meta's template library for WhatsApp messaging.
     listWhatsAppTemplateLibrary: function(Client, types.ListWhatsAppTemplateLibraryInput): types.ListWhatsAppTemplateLibraryOutput, table
+    -- Upload a media file to the WhatsApp service. Only the specified
+    -- originationPhoneNumberId has the permissions to send the media file when
+    -- using SendWhatsAppMessage. You must use either sourceS3File
+    -- or sourceS3PresignedUrl for the source. If both or neither are specified then an
+    -- InvalidParameterException is returned.
     postWhatsAppMessageMedia: function(Client, types.PostWhatsAppMessageMediaInput): types.PostWhatsAppMessageMediaOutput, table
+    -- Add an event destination to log event data from WhatsApp for a WhatsApp Business Account (WABA). A WABA can only have one event destination at a time. All resources associated with the WABA use the same event destination.
     putWhatsAppBusinessAccountEventDestinations: function(Client, types.PutWhatsAppBusinessAccountEventDestinationsInput): types.PutWhatsAppBusinessAccountEventDestinationsOutput, table
+    -- Send a WhatsApp message. For examples of sending a message using the Amazon Web Services
+    -- CLI, see Sending messages in the
+    -- Amazon Web Services End User Messaging Social User Guide
+    -- .
     sendWhatsAppMessage: function(Client, types.SendWhatsAppMessageInput): types.SendWhatsAppMessageOutput, table
+    -- Adds or overwrites only the specified tags for the specified resource. When you specify
+    -- an existing tag key, the value is overwritten with the new value.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing WhatsApp message template.
     updateWhatsAppMessageTemplate: function(Client, types.UpdateWhatsAppMessageTemplateInput): types.UpdateWhatsAppMessageTemplateOutput, table
 end
 

@@ -3,49 +3,118 @@
 local types = require("databrew.types")
 
 local record Client
+    -- Deletes one or more versions of a recipe at a time.
+    -- The entire request will be rejected if:
+    -- The recipe does not exist.
+    -- There is an invalid version identifier in the list of versions.
+    -- The version list is empty.
+    -- The version list size exceeds 50.
+    -- The version list contains duplicate entries.
+    -- The request will complete successfully, but with partial failures, if:
+    -- A version does not exist.
+    -- A version is being used by a job.
+    -- You specify LATEST_WORKING, but it's being used by a
+    -- project.
+    -- The version fails to be deleted.
+    -- The LATEST_WORKING version will only be deleted if the recipe has no
+    -- other versions. If you try to delete LATEST_WORKING while other versions
+    -- exist (or if they can't be deleted), then LATEST_WORKING will be listed as
+    -- partial failure in the response.
     batchDeleteRecipeVersion: function(Client, types.BatchDeleteRecipeVersionInput): types.BatchDeleteRecipeVersionOutput, table
+    -- Creates a new DataBrew dataset.
     createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    -- Creates a new job to analyze a dataset and create its data profile.
     createProfileJob: function(Client, types.CreateProfileJobInput): types.CreateProfileJobOutput, table
+    -- Creates a new DataBrew project.
     createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    -- Creates a new DataBrew recipe.
     createRecipe: function(Client, types.CreateRecipeInput): types.CreateRecipeOutput, table
+    -- Creates a new job to transform input data, using steps defined in an existing Glue DataBrew recipe
     createRecipeJob: function(Client, types.CreateRecipeJobInput): types.CreateRecipeJobOutput, table
+    -- Creates a new ruleset that can be used in a profile job to validate
+    -- the data quality of a dataset.
     createRuleset: function(Client, types.CreateRulesetInput): types.CreateRulesetOutput, table
+    -- Creates a new schedule for one or more DataBrew jobs. Jobs can be run at a specific
+    -- date and time, or at regular intervals.
     createSchedule: function(Client, types.CreateScheduleInput): types.CreateScheduleOutput, table
+    -- Deletes a dataset from DataBrew.
     deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    -- Deletes the specified DataBrew job.
     deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    -- Deletes an existing DataBrew project.
     deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    -- Deletes a single version of a DataBrew recipe.
     deleteRecipeVersion: function(Client, types.DeleteRecipeVersionInput): types.DeleteRecipeVersionOutput, table
+    -- Deletes a ruleset.
     deleteRuleset: function(Client, types.DeleteRulesetInput): types.DeleteRulesetOutput, table
+    -- Deletes the specified DataBrew schedule.
     deleteSchedule: function(Client, types.DeleteScheduleInput): types.DeleteScheduleOutput, table
+    -- Returns the definition of a specific DataBrew dataset.
     describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    -- Returns the definition of a specific DataBrew job.
     describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    -- Represents one run of a DataBrew job.
     describeJobRun: function(Client, types.DescribeJobRunInput): types.DescribeJobRunOutput, table
+    -- Returns the definition of a specific DataBrew project.
     describeProject: function(Client, types.DescribeProjectInput): types.DescribeProjectOutput, table
+    -- Returns the definition of a specific DataBrew recipe corresponding to a particular
+    -- version.
     describeRecipe: function(Client, types.DescribeRecipeInput): types.DescribeRecipeOutput, table
+    -- Retrieves detailed information about the ruleset.
     describeRuleset: function(Client, types.DescribeRulesetInput): types.DescribeRulesetOutput, table
+    -- Returns the definition of a specific DataBrew schedule.
     describeSchedule: function(Client, types.DescribeScheduleInput): types.DescribeScheduleOutput, table
+    -- Lists all of the DataBrew datasets.
     listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    -- Lists all of the previous runs of a particular DataBrew job.
     listJobRuns: function(Client, types.ListJobRunsInput): types.ListJobRunsOutput, table
+    -- Lists all of the DataBrew jobs that are defined.
     listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    -- Lists all of the DataBrew projects that are defined.
     listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    -- Lists all of the DataBrew recipes that are defined.
     listRecipes: function(Client, types.ListRecipesInput): types.ListRecipesOutput, table
+    -- Lists the versions of a particular DataBrew recipe, except for
+    -- LATEST_WORKING.
     listRecipeVersions: function(Client, types.ListRecipeVersionsInput): types.ListRecipeVersionsOutput, table
+    -- List all rulesets available in the current account or rulesets associated
+    -- with a specific resource (dataset).
     listRulesets: function(Client, types.ListRulesetsInput): types.ListRulesetsOutput, table
+    -- Lists the DataBrew schedules that are defined.
     listSchedules: function(Client, types.ListSchedulesInput): types.ListSchedulesOutput, table
+    -- Lists all the tags for a DataBrew resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Publishes a new version of a DataBrew recipe.
     publishRecipe: function(Client, types.PublishRecipeInput): types.PublishRecipeOutput, table
+    -- Performs a recipe step within an interactive DataBrew session that's currently
+    -- open.
     sendProjectSessionAction: function(Client, types.SendProjectSessionActionInput): types.SendProjectSessionActionOutput, table
+    -- Runs a DataBrew job.
     startJobRun: function(Client, types.StartJobRunInput): types.StartJobRunOutput, table
+    -- Creates an interactive session, enabling you to manipulate data in a DataBrew
+    -- project.
     startProjectSession: function(Client, types.StartProjectSessionInput): types.StartProjectSessionOutput, table
+    -- Stops a particular run of a job.
     stopJobRun: function(Client, types.StopJobRunInput): types.StopJobRunOutput, table
+    -- Adds metadata tags to a DataBrew resource, such as a dataset, project, recipe, job, or
+    -- schedule.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes metadata tags from a DataBrew resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Modifies the definition of an existing DataBrew dataset.
     updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    -- Modifies the definition of an existing profile job.
     updateProfileJob: function(Client, types.UpdateProfileJobInput): types.UpdateProfileJobOutput, table
+    -- Modifies the definition of an existing DataBrew project.
     updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    -- Modifies the definition of the LATEST_WORKING version of a DataBrew
+    -- recipe.
     updateRecipe: function(Client, types.UpdateRecipeInput): types.UpdateRecipeOutput, table
+    -- Modifies the definition of an existing DataBrew recipe job.
     updateRecipeJob: function(Client, types.UpdateRecipeJobInput): types.UpdateRecipeJobOutput, table
+    -- Updates specified ruleset.
     updateRuleset: function(Client, types.UpdateRulesetInput): types.UpdateRulesetOutput, table
+    -- Modifies the definition of an existing DataBrew schedule.
     updateSchedule: function(Client, types.UpdateScheduleInput): types.UpdateScheduleOutput, table
 end
 

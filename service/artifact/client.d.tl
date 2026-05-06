@@ -3,13 +3,21 @@
 local types = require("artifact.types")
 
 local record Client
+    -- Get the account settings for Artifact.
     getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    -- Get the content for a single report.
     getReport: function(Client, types.GetReportInput): types.GetReportOutput, table
+    -- Get the metadata for a single report.
     getReportMetadata: function(Client, types.GetReportMetadataInput): types.GetReportMetadataOutput, table
+    -- Get the Term content associated with a single report.
     getTermForReport: function(Client, types.GetTermForReportInput): types.GetTermForReportOutput, table
+    -- List active customer-agreements applicable to calling identity.
     listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput): types.ListCustomerAgreementsOutput, table
+    -- List available reports.
     listReports: function(Client, types.ListReportsInput): types.ListReportsOutput, table
+    -- List available report versions for a given report.
     listReportVersions: function(Client, types.ListReportVersionsInput): types.ListReportVersionsOutput, table
+    -- Put the account settings for Artifact.
     putAccountSettings: function(Client, types.PutAccountSettingsInput): types.PutAccountSettingsOutput, table
 end
 

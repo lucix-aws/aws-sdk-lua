@@ -3,115 +3,528 @@
 local types = require("sesv2.types")
 
 local record Client
+    -- Retrieves batches of metric data collected based on your sending activity.
+    -- You can execute this operation no more than 16 times per second,
+    -- and with at most 160 queries from the batches per second (cumulative).
     batchGetMetricData: function(Client, types.BatchGetMetricDataInput): types.BatchGetMetricDataOutput, table
+    -- Cancels an export job.
     cancelExportJob: function(Client, types.CancelExportJobInput): types.CancelExportJobOutput, table
+    -- Create a configuration set. Configuration sets are groups of
+    -- rules that you can apply to the emails that you send. You apply a configuration set to
+    -- an email by specifying the name of the configuration set when you call the Amazon SES API v2. When
+    -- you apply a configuration set to an email, all of the rules in that configuration set
+    -- are applied to the email.
     createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    -- Create an event destination. Events include message sends,
+    -- deliveries, opens, clicks, bounces, and complaints. Event
+    -- destinations are places that you can send information about these events
+    -- to. For example, you can send event data to Amazon EventBridge and associate a rule to send the event
+    -- to the specified target.
+    -- A single configuration set can include more than one event destination.
     createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): types.CreateConfigurationSetEventDestinationOutput, table
+    -- Creates a contact, which is an end-user who is receiving the email, and adds them to a
+    -- contact list.
     createContact: function(Client, types.CreateContactInput): types.CreateContactOutput, table
+    -- Creates a contact list.
     createContactList: function(Client, types.CreateContactListInput): types.CreateContactListOutput, table
+    -- Creates a new custom verification email template.
+    -- For more information about custom verification email templates, see Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput): types.CreateCustomVerificationEmailTemplateOutput, table
+    -- Create a new pool of dedicated IP addresses. A pool can include one or more dedicated
+    -- IP addresses that are associated with your Amazon Web Services account. You can associate a pool with
+    -- a configuration set. When you send an email that uses that configuration set, the
+    -- message is sent from one of the addresses in the associated pool.
     createDedicatedIpPool: function(Client, types.CreateDedicatedIpPoolInput): types.CreateDedicatedIpPoolOutput, table
+    -- Create a new predictive inbox placement test. Predictive inbox placement tests can help you predict how your messages will be handled
+    -- by various email providers around the world. When you perform a predictive inbox placement test, you provide a
+    -- sample message that contains the content that you plan to send to your customers. Amazon SES
+    -- then sends that message to special email addresses spread across several major email
+    -- providers. After about 24 hours, the test is complete, and you can use the
+    -- GetDeliverabilityTestReport operation to view the results of the
+    -- test.
     createDeliverabilityTestReport: function(Client, types.CreateDeliverabilityTestReportInput): types.CreateDeliverabilityTestReportOutput, table
+    -- Starts the process of verifying an email identity. An identity is
+    -- an email address or domain that you use when you send email. Before you can use an
+    -- identity to send email, you first have to verify it. By verifying an identity, you
+    -- demonstrate that you're the owner of the identity, and that you've given Amazon SES API v2
+    -- permission to send email from the identity.
+    -- When you verify an email address, Amazon SES sends an email to the address. Your email
+    -- address is verified as soon as you follow the link in the verification email.
+    -- When you verify a domain without specifying the DkimSigningAttributes
+    -- object, this operation provides a set of DKIM tokens. You can convert these tokens into
+    -- CNAME records, which you then add to the DNS configuration for your domain. Your domain
+    -- is verified when Amazon SES detects these records in the DNS configuration for your domain.
+    -- This verification method is known as Easy DKIM.
+    -- Alternatively, you can perform the verification process by providing your own
+    -- public-private key pair. This verification method is known as Bring Your Own DKIM
+    -- (BYODKIM). To use BYODKIM, your call to the CreateEmailIdentity operation
+    -- has to include the DkimSigningAttributes object. When you specify this
+    -- object, you provide a selector (a component of the DNS record name that identifies the
+    -- public key to use for DKIM authentication) and a private key.
+    -- When you verify a domain, this operation provides a set of DKIM tokens, which you can
+    -- convert into CNAME tokens. You add these CNAME tokens to the DNS configuration for your
+    -- domain. Your domain is verified when Amazon SES detects these records in the DNS
+    -- configuration for your domain. For some DNS providers, it can take 72 hours or more to
+    -- complete the domain verification process.
+    -- Additionally, you can associate an existing configuration set with the email identity that you're verifying.
     createEmailIdentity: function(Client, types.CreateEmailIdentityInput): types.CreateEmailIdentityOutput, table
+    -- Creates the specified sending authorization policy for the given identity (an email
+    -- address or a domain).
+    -- This API is for the identity owner only. If you have not verified the identity,
+    -- this API will return an error.
+    -- Sending authorization is a feature that enables an identity owner to authorize other
+    -- senders to use its identities. For information about using sending authorization, see
+    -- the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     createEmailIdentityPolicy: function(Client, types.CreateEmailIdentityPolicyInput): types.CreateEmailIdentityPolicyOutput, table
+    -- Creates an email template. Email templates enable you to send personalized email to
+    -- one or more destinations in a single API operation. For more information, see the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     createEmailTemplate: function(Client, types.CreateEmailTemplateInput): types.CreateEmailTemplateOutput, table
+    -- Creates an export job for a data source and destination.
+    -- You can execute this operation no more than once per second.
     createExportJob: function(Client, types.CreateExportJobInput): types.CreateExportJobOutput, table
+    -- Creates an import job for a data destination.
     createImportJob: function(Client, types.CreateImportJobInput): types.CreateImportJobOutput, table
+    -- Creates a multi-region endpoint (global-endpoint).
+    -- The primary region is going to be the AWS-Region where the operation is executed.
+    -- The secondary region has to be provided in request's parameters.
+    -- From the data flow standpoint there is no difference between primary
+    -- and secondary regions - sending traffic will be split equally between the two.
+    -- The primary region is the region where the resource has been created and where it can be managed.
     createMultiRegionEndpoint: function(Client, types.CreateMultiRegionEndpointInput): types.CreateMultiRegionEndpointOutput, table
+    -- Create a tenant.
+    -- Tenants are logical containers that group related SES resources together.
+    -- Each tenant can have its own set of resources like email identities, configuration sets,
+    -- and templates, along with reputation metrics and sending status. This helps isolate and manage
+    -- email sending for different customers or business units within your Amazon SES API v2 account.
     createTenant: function(Client, types.CreateTenantInput): types.CreateTenantOutput, table
+    -- Associate a resource with a tenant.
+    -- Resources can be email identities, configuration sets, or email templates.
+    -- When you associate a resource with a tenant, you can use that resource when sending emails
+    -- on behalf of that tenant.
+    -- A single resource can be associated with multiple tenants, allowing for resource sharing
+    -- across different tenants while maintaining isolation in email sending operations.
     createTenantResourceAssociation: function(Client, types.CreateTenantResourceAssociationInput): types.CreateTenantResourceAssociationOutput, table
+    -- Delete an existing configuration set.
+    -- Configuration sets are groups of rules that you can apply to the
+    -- emails you send. You apply a configuration set to an email by including a reference to
+    -- the configuration set in the headers of the email. When you apply a configuration set to
+    -- an email, all of the rules in that configuration set are applied to the email.
     deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    -- Delete an event destination.
+    -- Events include message sends, deliveries, opens, clicks, bounces,
+    -- and complaints. Event destinations are places that you can send
+    -- information about these events to. For example, you can send event data to Amazon EventBridge and
+    -- associate a rule to send the event to the specified target.
     deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): types.DeleteConfigurationSetEventDestinationOutput, table
+    -- Removes a contact from a contact list.
     deleteContact: function(Client, types.DeleteContactInput): types.DeleteContactOutput, table
+    -- Deletes a contact list and all of the contacts on that list.
     deleteContactList: function(Client, types.DeleteContactListInput): types.DeleteContactListOutput, table
+    -- Deletes an existing custom verification email template.
+    -- For more information about custom verification email templates, see Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput): types.DeleteCustomVerificationEmailTemplateOutput, table
+    -- Delete a dedicated IP pool.
     deleteDedicatedIpPool: function(Client, types.DeleteDedicatedIpPoolInput): types.DeleteDedicatedIpPoolOutput, table
+    -- Deletes an email identity. An identity can be either an email address or a domain
+    -- name.
     deleteEmailIdentity: function(Client, types.DeleteEmailIdentityInput): types.DeleteEmailIdentityOutput, table
+    -- Deletes the specified sending authorization policy for the given identity (an email
+    -- address or a domain). This API returns successfully even if a policy with the specified
+    -- name does not exist.
+    -- This API is for the identity owner only. If you have not verified the identity,
+    -- this API will return an error.
+    -- Sending authorization is a feature that enables an identity owner to authorize other
+    -- senders to use its identities. For information about using sending authorization, see
+    -- the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     deleteEmailIdentityPolicy: function(Client, types.DeleteEmailIdentityPolicyInput): types.DeleteEmailIdentityPolicyOutput, table
+    -- Deletes an email template.
+    -- You can execute this operation no more than once per second.
     deleteEmailTemplate: function(Client, types.DeleteEmailTemplateInput): types.DeleteEmailTemplateOutput, table
+    -- Deletes a multi-region endpoint (global-endpoint).
+    -- Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+    -- where operation is executed can be deleted.
     deleteMultiRegionEndpoint: function(Client, types.DeleteMultiRegionEndpointInput): types.DeleteMultiRegionEndpointOutput, table
+    -- Removes an email address from the suppression list for your account.
     deleteSuppressedDestination: function(Client, types.DeleteSuppressedDestinationInput): types.DeleteSuppressedDestinationOutput, table
+    -- Delete an existing tenant.
+    -- When you delete a tenant, its associations with resources
+    -- are removed, but the resources themselves are not deleted.
     deleteTenant: function(Client, types.DeleteTenantInput): types.DeleteTenantOutput, table
+    -- Delete an association between a tenant and a resource.
+    -- When you delete a tenant-resource association, the resource itself is not deleted,
+    -- only its association with the specific tenant is removed. After removal, the resource
+    -- will no longer be available for use with that tenant's email sending operations.
     deleteTenantResourceAssociation: function(Client, types.DeleteTenantResourceAssociationInput): types.DeleteTenantResourceAssociationOutput, table
+    -- Obtain information about the email-sending status and capabilities of your Amazon SES
+    -- account in the current Amazon Web Services Region.
     getAccount: function(Client, types.GetAccountInput): types.GetAccountOutput, table
+    -- Retrieve a list of the blacklists that your dedicated IP addresses appear on.
     getBlacklistReports: function(Client, types.GetBlacklistReportsInput): types.GetBlacklistReportsOutput, table
+    -- Get information about an existing configuration set, including the dedicated IP pool
+    -- that it's associated with, whether or not it's enabled for sending email, and
+    -- more.
+    -- Configuration sets are groups of rules that you can apply to the
+    -- emails you send. You apply a configuration set to an email by including a reference to
+    -- the configuration set in the headers of the email. When you apply a configuration set to
+    -- an email, all of the rules in that configuration set are applied to the email.
     getConfigurationSet: function(Client, types.GetConfigurationSetInput): types.GetConfigurationSetOutput, table
+    -- Retrieve a list of event destinations that are associated with a configuration
+    -- set.
+    -- Events include message sends, deliveries, opens, clicks, bounces,
+    -- and complaints. Event destinations are places that you can send
+    -- information about these events to. For example, you can send event data to Amazon EventBridge and
+    -- associate a rule to send the event to the specified target.
     getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput): types.GetConfigurationSetEventDestinationsOutput, table
+    -- Returns a contact from a contact list.
     getContact: function(Client, types.GetContactInput): types.GetContactOutput, table
+    -- Returns contact list metadata. It does not return any information about the contacts
+    -- present in the list.
     getContactList: function(Client, types.GetContactListInput): types.GetContactListOutput, table
+    -- Returns the custom email verification template for the template name you
+    -- specify.
+    -- For more information about custom verification email templates, see Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput): types.GetCustomVerificationEmailTemplateOutput, table
+    -- Get information about a dedicated IP address, including the name of the dedicated IP
+    -- pool that it's associated with, as well information about the automatic warm-up process
+    -- for the address.
     getDedicatedIp: function(Client, types.GetDedicatedIpInput): types.GetDedicatedIpOutput, table
+    -- Retrieve information about the dedicated pool.
     getDedicatedIpPool: function(Client, types.GetDedicatedIpPoolInput): types.GetDedicatedIpPoolOutput, table
+    -- List the dedicated IP addresses that are associated with your Amazon Web Services
+    -- account.
     getDedicatedIps: function(Client, types.GetDedicatedIpsInput): types.GetDedicatedIpsOutput, table
+    -- Retrieve information about the status of the Deliverability dashboard for your account. When
+    -- the Deliverability dashboard is enabled, you gain access to reputation, deliverability, and other
+    -- metrics for the domains that you use to send email. You also gain the ability to perform
+    -- predictive inbox placement tests.
+    -- When you use the Deliverability dashboard, you pay a monthly subscription charge, in addition
+    -- to any other fees that you accrue by using Amazon SES and other Amazon Web Services services. For more
+    -- information about the features and cost of a Deliverability dashboard subscription, see Amazon SES Pricing.
     getDeliverabilityDashboardOptions: function(Client, types.GetDeliverabilityDashboardOptionsInput): types.GetDeliverabilityDashboardOptionsOutput, table
+    -- Retrieve the results of a predictive inbox placement test.
     getDeliverabilityTestReport: function(Client, types.GetDeliverabilityTestReportInput): types.GetDeliverabilityTestReportOutput, table
+    -- Retrieve all the deliverability data for a specific campaign. This data is available
+    -- for a campaign only if the campaign sent email by using a domain that the
+    -- Deliverability dashboard is enabled for.
     getDomainDeliverabilityCampaign: function(Client, types.GetDomainDeliverabilityCampaignInput): types.GetDomainDeliverabilityCampaignOutput, table
+    -- Retrieve inbox placement and engagement rates for the domains that you use to send
+    -- email.
     getDomainStatisticsReport: function(Client, types.GetDomainStatisticsReportInput): types.GetDomainStatisticsReportOutput, table
+    -- Provides validation insights about a specific email address, including syntax validation, DNS record checks, mailbox existence, and other deliverability factors.
     getEmailAddressInsights: function(Client, types.GetEmailAddressInsightsInput): types.GetEmailAddressInsightsOutput, table
+    -- Provides information about a specific identity, including the identity's verification
+    -- status, sending authorization policies, its DKIM authentication status, and its custom
+    -- Mail-From settings.
     getEmailIdentity: function(Client, types.GetEmailIdentityInput): types.GetEmailIdentityOutput, table
+    -- Returns the requested sending authorization policies for the given identity (an email
+    -- address or a domain). The policies are returned as a map of policy names to policy
+    -- contents. You can retrieve a maximum of 20 policies at a time.
+    -- This API is for the identity owner only. If you have not verified the identity,
+    -- this API will return an error.
+    -- Sending authorization is a feature that enables an identity owner to authorize other
+    -- senders to use its identities. For information about using sending authorization, see
+    -- the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     getEmailIdentityPolicies: function(Client, types.GetEmailIdentityPoliciesInput): types.GetEmailIdentityPoliciesOutput, table
+    -- Displays the template object (which includes the subject line, HTML part and text
+    -- part) for the template you specify.
+    -- You can execute this operation no more than once per second.
     getEmailTemplate: function(Client, types.GetEmailTemplateInput): types.GetEmailTemplateOutput, table
+    -- Provides information about an export job.
     getExportJob: function(Client, types.GetExportJobInput): types.GetExportJobOutput, table
+    -- Provides information about an import job.
     getImportJob: function(Client, types.GetImportJobInput): types.GetImportJobOutput, table
+    -- Provides information about a specific message, including the from address, the
+    -- subject, the recipient address, email tags, as well as events associated with the message.
+    -- You can execute this operation no more than once per second.
     getMessageInsights: function(Client, types.GetMessageInsightsInput): types.GetMessageInsightsOutput, table
+    -- Displays the multi-region endpoint (global-endpoint) configuration.
+    -- Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+    -- where operation is executed can be displayed.
     getMultiRegionEndpoint: function(Client, types.GetMultiRegionEndpointInput): types.GetMultiRegionEndpointOutput, table
+    -- Retrieve information about a specific reputation entity, including its reputation
+    -- management policy, customer-managed status, Amazon Web Services Amazon SES-managed status, and aggregate
+    -- sending status.
+    -- Reputation entities represent resources in your Amazon SES account that have reputation
+    -- tracking and management capabilities. The reputation impact reflects the highest
+    -- impact reputation finding for the entity. Reputation findings can be retrieved
+    -- using the ListRecommendations operation.
     getReputationEntity: function(Client, types.GetReputationEntityInput): types.GetReputationEntityOutput, table
+    -- Retrieves information about a specific email address that's on the suppression list
+    -- for your account.
     getSuppressedDestination: function(Client, types.GetSuppressedDestinationInput): types.GetSuppressedDestinationOutput, table
+    -- Get information about a specific tenant, including the tenant's name, ID, ARN,
+    -- creation timestamp, tags, and sending status.
     getTenant: function(Client, types.GetTenantInput): types.GetTenantOutput, table
+    -- List all of the configuration sets associated with your account in the current
+    -- region.
+    -- Configuration sets are groups of rules that you can apply to the
+    -- emails you send. You apply a configuration set to an email by including a reference to
+    -- the configuration set in the headers of the email. When you apply a configuration set to
+    -- an email, all of the rules in that configuration set are applied to the email.
     listConfigurationSets: function(Client, types.ListConfigurationSetsInput): types.ListConfigurationSetsOutput, table
+    -- Lists all of the contact lists available.
+    -- If your output includes a "NextToken" field with a string value, this indicates there may be additional
+    -- contacts on the filtered list - regardless of the number of contacts returned.
     listContactLists: function(Client, types.ListContactListsInput): types.ListContactListsOutput, table
+    -- Lists the contacts present in a specific contact list.
     listContacts: function(Client, types.ListContactsInput): types.ListContactsOutput, table
+    -- Lists the existing custom verification email templates for your account in the current
+    -- Amazon Web Services Region.
+    -- For more information about custom verification email templates, see Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput): types.ListCustomVerificationEmailTemplatesOutput, table
+    -- List all of the dedicated IP pools that exist in your Amazon Web Services account in the current
+    -- Region.
     listDedicatedIpPools: function(Client, types.ListDedicatedIpPoolsInput): types.ListDedicatedIpPoolsOutput, table
+    -- Show a list of the predictive inbox placement tests that you've performed, regardless of their statuses. For
+    -- predictive inbox placement tests that are complete, you can use the GetDeliverabilityTestReport
+    -- operation to view the results.
     listDeliverabilityTestReports: function(Client, types.ListDeliverabilityTestReportsInput): types.ListDeliverabilityTestReportsOutput, table
+    -- Retrieve deliverability data for all the campaigns that used a specific domain to send
+    -- email during a specified time range. This data is available for a domain only if you
+    -- enabled the Deliverability dashboard for the domain.
     listDomainDeliverabilityCampaigns: function(Client, types.ListDomainDeliverabilityCampaignsInput): types.ListDomainDeliverabilityCampaignsOutput, table
+    -- Returns a list of all of the email identities that are associated with your Amazon Web Services
+    -- account. An identity can be either an email address or a domain. This operation returns
+    -- identities that are verified as well as those that aren't. This operation returns
+    -- identities that are associated with Amazon SES and Amazon Pinpoint.
     listEmailIdentities: function(Client, types.ListEmailIdentitiesInput): types.ListEmailIdentitiesOutput, table
+    -- Lists the email templates present in your Amazon SES account in the current Amazon Web Services
+    -- Region.
+    -- You can execute this operation no more than once per second.
     listEmailTemplates: function(Client, types.ListEmailTemplatesInput): types.ListEmailTemplatesOutput, table
+    -- Lists all of the export jobs.
     listExportJobs: function(Client, types.ListExportJobsInput): types.ListExportJobsOutput, table
+    -- Lists all of the import jobs.
     listImportJobs: function(Client, types.ListImportJobsInput): types.ListImportJobsOutput, table
+    -- List the multi-region endpoints (global-endpoints).
+    -- Only multi-region endpoints (global-endpoints) whose primary region is the AWS-Region
+    -- where operation is executed will be listed.
     listMultiRegionEndpoints: function(Client, types.ListMultiRegionEndpointsInput): types.ListMultiRegionEndpointsOutput, table
+    -- Lists the recommendations present in your Amazon SES account in the current Amazon Web Services Region.
+    -- You can execute this operation no more than once per second.
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- List reputation entities in your Amazon SES account in the current Amazon Web Services Region.
+    -- You can filter the results by entity type, reputation impact, sending status,
+    -- or entity reference prefix.
+    -- Reputation entities represent resources in your account that have reputation
+    -- tracking and management capabilities. Use this operation to get an overview of
+    -- all entities and their current reputation status.
     listReputationEntities: function(Client, types.ListReputationEntitiesInput): types.ListReputationEntitiesOutput, table
+    -- List all tenants associated with a specific resource.
+    -- This operation returns a list of tenants that are associated with the specified
+    -- resource. This is useful for understanding which tenants are currently using a particular
+    -- resource such as an email identity, configuration set, or email template.
     listResourceTenants: function(Client, types.ListResourceTenantsInput): types.ListResourceTenantsOutput, table
+    -- Retrieves a list of email addresses that are on the suppression list for your
+    -- account.
     listSuppressedDestinations: function(Client, types.ListSuppressedDestinationsInput): types.ListSuppressedDestinationsOutput, table
+    -- Retrieve a list of the tags (keys and values) that are associated with a specified
+    -- resource. A tag is a label that you optionally define and associate
+    -- with a resource. Each tag consists of a required tag key and an
+    -- optional associated tag value. A tag key is a general label that
+    -- acts as a category for more specific tag values. A tag value acts as a descriptor within
+    -- a tag key.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List all resources associated with a specific tenant.
+    -- This operation returns a list of resources (email identities, configuration sets,
+    -- or email templates) that are associated with the specified tenant. You can optionally
+    -- filter the results by resource type.
     listTenantResources: function(Client, types.ListTenantResourcesInput): types.ListTenantResourcesOutput, table
+    -- List all tenants associated with your account in the current Amazon Web Services Region.
+    -- This operation returns basic information about each tenant,
+    -- such as tenant name, ID, ARN, and creation timestamp.
     listTenants: function(Client, types.ListTenantsInput): types.ListTenantsOutput, table
+    -- Enable or disable the automatic warm-up feature for dedicated IP addresses.
     putAccountDedicatedIpWarmupAttributes: function(Client, types.PutAccountDedicatedIpWarmupAttributesInput): types.PutAccountDedicatedIpWarmupAttributesOutput, table
+    -- Update your Amazon SES account details.
     putAccountDetails: function(Client, types.PutAccountDetailsInput): types.PutAccountDetailsOutput, table
+    -- Enable or disable the ability of your account to send email.
     putAccountSendingAttributes: function(Client, types.PutAccountSendingAttributesInput): types.PutAccountSendingAttributesOutput, table
+    -- Change the settings for the account-level suppression list.
     putAccountSuppressionAttributes: function(Client, types.PutAccountSuppressionAttributesInput): types.PutAccountSuppressionAttributesOutput, table
+    -- Update your Amazon SES account VDM attributes.
+    -- You can execute this operation no more than once per second.
     putAccountVdmAttributes: function(Client, types.PutAccountVdmAttributesInput): types.PutAccountVdmAttributesOutput, table
+    -- Associate the configuration set with a MailManager archive. When you send email using the
+    -- SendEmail or SendBulkEmail operations the message as it will be given
+    -- to the receiving SMTP server will be archived, along with the recipient information.
     putConfigurationSetArchivingOptions: function(Client, types.PutConfigurationSetArchivingOptionsInput): types.PutConfigurationSetArchivingOptionsOutput, table
+    -- Associate a configuration set with a dedicated IP pool. You can use dedicated IP pools
+    -- to create groups of dedicated IP addresses for sending specific types of email.
     putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput): types.PutConfigurationSetDeliveryOptionsOutput, table
+    -- Enable or disable collection of reputation metrics for emails that you send using a
+    -- particular configuration set in a specific Amazon Web Services Region.
     putConfigurationSetReputationOptions: function(Client, types.PutConfigurationSetReputationOptionsInput): types.PutConfigurationSetReputationOptionsOutput, table
+    -- Enable or disable email sending for messages that use a particular configuration set
+    -- in a specific Amazon Web Services Region.
     putConfigurationSetSendingOptions: function(Client, types.PutConfigurationSetSendingOptionsInput): types.PutConfigurationSetSendingOptionsOutput, table
+    -- Specify the account suppression list preferences for a configuration set.
     putConfigurationSetSuppressionOptions: function(Client, types.PutConfigurationSetSuppressionOptionsInput): types.PutConfigurationSetSuppressionOptionsOutput, table
+    -- Specify a custom domain to use for open and click tracking elements in email that you
+    -- send.
     putConfigurationSetTrackingOptions: function(Client, types.PutConfigurationSetTrackingOptionsInput): types.PutConfigurationSetTrackingOptionsOutput, table
+    -- Specify VDM preferences for email that you send using the configuration set.
+    -- You can execute this operation no more than once per second.
     putConfigurationSetVdmOptions: function(Client, types.PutConfigurationSetVdmOptionsInput): types.PutConfigurationSetVdmOptionsOutput, table
+    -- Move a dedicated IP address to an existing dedicated IP pool.
+    -- The dedicated IP address that you specify must already exist, and must be
+    -- associated with your Amazon Web Services account.
+    -- The dedicated IP pool you specify must already exist. You can create a new pool by
+    -- using the CreateDedicatedIpPool operation.
     putDedicatedIpInPool: function(Client, types.PutDedicatedIpInPoolInput): types.PutDedicatedIpInPoolOutput, table
+    -- Used to convert a dedicated IP pool to a different scaling mode.
+    -- MANAGED pools cannot be converted to STANDARD scaling mode.
     putDedicatedIpPoolScalingAttributes: function(Client, types.PutDedicatedIpPoolScalingAttributesInput): types.PutDedicatedIpPoolScalingAttributesOutput, table
     putDedicatedIpWarmupAttributes: function(Client, types.PutDedicatedIpWarmupAttributesInput): types.PutDedicatedIpWarmupAttributesOutput, table
+    -- Enable or disable the Deliverability dashboard. When you enable the Deliverability dashboard, you gain
+    -- access to reputation, deliverability, and other metrics for the domains that you use to
+    -- send email. You also gain the ability to perform predictive inbox placement tests.
+    -- When you use the Deliverability dashboard, you pay a monthly subscription charge, in addition
+    -- to any other fees that you accrue by using Amazon SES and other Amazon Web Services services. For more
+    -- information about the features and cost of a Deliverability dashboard subscription, see Amazon SES Pricing.
     putDeliverabilityDashboardOption: function(Client, types.PutDeliverabilityDashboardOptionInput): types.PutDeliverabilityDashboardOptionOutput, table
+    -- Used to associate a configuration set with an email identity.
     putEmailIdentityConfigurationSetAttributes: function(Client, types.PutEmailIdentityConfigurationSetAttributesInput): types.PutEmailIdentityConfigurationSetAttributesOutput, table
+    -- Used to enable or disable DKIM authentication for an email identity.
     putEmailIdentityDkimAttributes: function(Client, types.PutEmailIdentityDkimAttributesInput): types.PutEmailIdentityDkimAttributesOutput, table
+    -- Used to configure or change the DKIM authentication settings for an email domain
+    -- identity. You can use this operation to do any of the following:
+    -- Update the signing attributes for an identity that uses Bring Your Own DKIM
+    -- (BYODKIM).
+    -- Update the key length that should be used for Easy DKIM.
+    -- Change from using no DKIM authentication to using Easy DKIM.
+    -- Change from using no DKIM authentication to using BYODKIM.
+    -- Change from using Easy DKIM to using BYODKIM.
+    -- Change from using BYODKIM to using Easy DKIM.
     putEmailIdentityDkimSigningAttributes: function(Client, types.PutEmailIdentityDkimSigningAttributesInput): types.PutEmailIdentityDkimSigningAttributesOutput, table
+    -- Used to enable or disable feedback forwarding for an identity. This setting determines
+    -- what happens when an identity is used to send an email that results in a bounce or
+    -- complaint event.
+    -- If the value is true, you receive email notifications when bounce or
+    -- complaint events occur. These notifications are sent to the address that you specified
+    -- in the Return-Path header of the original email.
+    -- You're required to have a method of tracking bounces and complaints. If you haven't
+    -- set up another mechanism for receiving bounce or complaint notifications (for example,
+    -- by setting up an event destination), you receive an email notification when these events
+    -- occur (even if this setting is disabled).
     putEmailIdentityFeedbackAttributes: function(Client, types.PutEmailIdentityFeedbackAttributesInput): types.PutEmailIdentityFeedbackAttributesOutput, table
+    -- Used to enable or disable the custom Mail-From domain configuration for an email
+    -- identity.
     putEmailIdentityMailFromAttributes: function(Client, types.PutEmailIdentityMailFromAttributesInput): types.PutEmailIdentityMailFromAttributesOutput, table
+    -- Adds an email address to the suppression list for your account.
     putSuppressedDestination: function(Client, types.PutSuppressedDestinationInput): types.PutSuppressedDestinationOutput, table
+    -- Composes an email message to multiple destinations.
     sendBulkEmail: function(Client, types.SendBulkEmailInput): types.SendBulkEmailOutput, table
+    -- Adds an email address to the list of identities for your Amazon SES account in the current
+    -- Amazon Web Services Region and attempts to verify it. As a result of executing this
+    -- operation, a customized verification email is sent to the specified address.
+    -- To use this operation, you must first create a custom verification email template. For
+    -- more information about creating and using custom verification email templates, see
+    -- Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput): types.SendCustomVerificationEmailOutput, table
+    -- Sends an email message. You can use the Amazon SES API v2 to send the following types of
+    -- messages:
+    -- Simple – A standard email message. When
+    -- you create this type of message, you specify the sender, the recipient, and the
+    -- message body, and Amazon SES assembles the message for you.
+    -- Raw – A raw, MIME-formatted email
+    -- message. When you send this type of email, you have to specify all of the
+    -- message headers, as well as the message body. You can use this message type to
+    -- send messages that contain attachments. The message that you specify has to be a
+    -- valid MIME message.
+    -- Templated – A message that contains
+    -- personalization tags. When you send this type of email, Amazon SES API v2 automatically
+    -- replaces the tags with values that you specify.
     sendEmail: function(Client, types.SendEmailInput): types.SendEmailOutput, table
+    -- Add one or more tags (keys and values) to a specified resource. A
+    -- tag is a label that you optionally define and associate with a
+    -- resource. Tags can help you categorize and manage resources in different ways, such as
+    -- by purpose, owner, environment, or other criteria. A resource can have as many as 50
+    -- tags.
+    -- Each tag consists of a required tag key and an
+    -- associated tag value, both of which you define. A tag key is a
+    -- general label that acts as a category for more specific tag values. A tag value acts as
+    -- a descriptor within a tag key.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Creates a preview of the MIME content of an email when provided with a template and a
+    -- set of replacement data.
+    -- You can execute this operation no more than once per second.
     testRenderEmailTemplate: function(Client, types.TestRenderEmailTemplateInput): types.TestRenderEmailTemplateOutput, table
+    -- Remove one or more tags (keys and values) from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update the configuration of an event destination for a configuration set.
+    -- Events include message sends, deliveries, opens, clicks, bounces,
+    -- and complaints. Event destinations are places that you can send
+    -- information about these events to. For example, you can send event data to Amazon EventBridge and
+    -- associate a rule to send the event to the specified target.
     updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): types.UpdateConfigurationSetEventDestinationOutput, table
+    -- Updates a contact's preferences for a list.
+    -- You must specify all existing topic preferences in the
+    -- TopicPreferences object, not just the ones that need updating;
+    -- otherwise, all your existing preferences will be removed.
     updateContact: function(Client, types.UpdateContactInput): types.UpdateContactOutput, table
+    -- Updates contact list metadata. This operation does a complete replacement.
     updateContactList: function(Client, types.UpdateContactListInput): types.UpdateContactListOutput, table
+    -- Updates an existing custom verification email template.
+    -- For more information about custom verification email templates, see Using
+    -- custom verification email templates in the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput): types.UpdateCustomVerificationEmailTemplateOutput, table
+    -- Updates the specified sending authorization policy for the given identity (an email
+    -- address or a domain). This API returns successfully even if a policy with the specified
+    -- name does not exist.
+    -- This API is for the identity owner only. If you have not verified the identity,
+    -- this API will return an error.
+    -- Sending authorization is a feature that enables an identity owner to authorize other
+    -- senders to use its identities. For information about using sending authorization, see
+    -- the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     updateEmailIdentityPolicy: function(Client, types.UpdateEmailIdentityPolicyInput): types.UpdateEmailIdentityPolicyOutput, table
+    -- Updates an email template. Email templates enable you to send personalized email to
+    -- one or more destinations in a single API operation. For more information, see the Amazon SES Developer
+    -- Guide.
+    -- You can execute this operation no more than once per second.
     updateEmailTemplate: function(Client, types.UpdateEmailTemplateInput): types.UpdateEmailTemplateOutput, table
+    -- Update the customer-managed sending status for a reputation entity. This allows
+    -- you to enable, disable, or reinstate sending for the entity.
+    -- The customer-managed status works in conjunction with the Amazon Web Services Amazon SES-managed status
+    -- to determine the overall sending capability. When you update the customer-managed status,
+    -- the Amazon Web Services Amazon SES-managed status remains unchanged. If Amazon Web Services Amazon SES has disabled the entity,
+    -- it will not be allowed to send regardless of the customer-managed status setting. When you
+    -- reinstate an entity through the customer-managed status, it can continue sending only if
+    -- the Amazon Web Services Amazon SES-managed status also permits sending, even if there are active reputation
+    -- findings, until the findings are resolved or new violations occur.
     updateReputationEntityCustomerManagedStatus: function(Client, types.UpdateReputationEntityCustomerManagedStatusInput): types.UpdateReputationEntityCustomerManagedStatusOutput, table
+    -- Update the reputation management policy for a reputation entity. The policy
+    -- determines how the entity responds to reputation findings, such as automatically
+    -- pausing sending when certain thresholds are exceeded.
+    -- Reputation management policies are Amazon Web Services Amazon SES-managed (predefined policies).
+    -- You can select from none, standard, and strict policies.
     updateReputationEntityPolicy: function(Client, types.UpdateReputationEntityPolicyInput): types.UpdateReputationEntityPolicyOutput, table
 end
 

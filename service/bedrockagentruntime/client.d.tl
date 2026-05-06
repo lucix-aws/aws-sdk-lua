@@ -3,36 +3,67 @@
 local types = require("bedrockagentruntime.types")
 
 local record Client
+    -- Creates a new invocation within a session. An invocation groups the related invocation steps that store the content from a conversation. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions. Related APIs ListInvocations ListSessions GetSession
     createInvocation: function(Client, types.CreateInvocationInput): types.CreateInvocationOutput, table
+    -- Creates a session to temporarily store conversations for generative AI (GenAI) applications built with open-source frameworks such as LangGraph and LlamaIndex. Sessions enable you to save the state of conversations at checkpoints, with the added security and infrastructure of Amazon Web Services. For more information, see Store and retrieve conversation history and context with Amazon Bedrock sessions. By default, Amazon Bedrock uses Amazon Web Services-managed keys for session encryption, including session metadata, or you can use your own KMS key. For more information, see Amazon Bedrock session encryption. You use a session to store state and conversation history for generative AI applications built with open-source frameworks. For Amazon Bedrock Agents, the service automatically manages conversation context and associates them with the agent-specific sessionId you specify in the InvokeAgent API operation. Related APIs: ListSessions GetSession EndSession DeleteSession
     createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    -- Deletes memory from the specified memory identifier.
     deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput): types.DeleteAgentMemoryOutput, table
+    -- Deletes a session that you ended. You can't delete a session with an ACTIVE status. To delete an active session, you must first end it with the EndSession API operation. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    -- Ends the session. After you end a session, you can still access its content but you can’t add to it. To delete the session and it's content, you use the DeleteSession API operation. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     endSession: function(Client, types.EndSessionInput): types.EndSessionOutput, table
+    -- Generates an SQL query from a natural language query. For more information, see Generate a query for structured data in the Amazon Bedrock User Guide.
     generateQuery: function(Client, types.GenerateQueryInput): types.GenerateQueryOutput, table
+    -- Gets the sessions stored in the memory of the agent.
     getAgentMemory: function(Client, types.GetAgentMemoryInput): types.GetAgentMemoryOutput, table
+    -- Retrieves the flow definition snapshot used for a flow execution. The snapshot represents the flow metadata and definition as it existed at the time the execution was started. Note that even if the flow is edited after an execution starts, the snapshot connected to the execution remains unchanged. Flow executions is in preview release for Amazon Bedrock and is subject to change.
     getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput): types.GetExecutionFlowSnapshotOutput, table
+    -- Retrieves details about a specific flow execution, including its status, start and end times, and any errors that occurred during execution.
     getFlowExecution: function(Client, types.GetFlowExecutionInput): types.GetFlowExecutionOutput, table
+    -- Retrieves the details of a specific invocation step within an invocation in a session. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     getInvocationStep: function(Client, types.GetInvocationStepInput): types.GetInvocationStepOutput, table
+    -- Retrieves details about a specific session. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Sends a prompt for the agent to process and respond to. Note the following fields for the request: To continue the same conversation with an agent, use the same sessionId value in the request. To activate trace enablement, turn enableTrace to true. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see Trace enablement. End a conversation by setting endSession to true. In the sessionState object, you can include attributes for the session or prompt or, if you configured an action group to return control, results from invocation of the action group. The response contains both chunk and trace attributes. The final response is returned in the bytes field of the chunk object. The InvokeAgent returns one chunk for the entire interaction. The attribution object contains citations for parts of the response. If you set enableTrace to true in the request, you can trace the agent's steps and reasoning process that led it to the response. If the action predicted was configured to return control, the response returns parameters for the action, elicited from the user, in the returnControl field. Errors are also surfaced in the response.
     invokeAgent: function(Client, types.InvokeAgentInput): types.InvokeAgentOutput, table
+    -- Invokes an alias of a flow to run the inputs that you specify and return the output of each node as a stream. If there's an error, the error is returned. For more information, see Test a flow in Amazon Bedrock in the Amazon Bedrock User Guide. The CLI doesn't support streaming operations in Amazon Bedrock, including InvokeFlow.
     invokeFlow: function(Client, types.InvokeFlowInput): types.InvokeFlowOutput, table
+    -- Invokes an inline Amazon Bedrock agent using the configurations you provide with the request. Specify the following fields for security purposes. (Optional) customerEncryptionKeyArn – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent. (Optional) idleSessionTTLinSeconds – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent InvokeInlineAgent request begins a new session. To override the default prompt behavior for agent orchestration and to use advanced prompts, include a promptOverrideConfiguration object. For more information, see Advanced prompts. The agent instructions will not be honored if your agent has only one knowledge base, uses default prompts, has no action group, and user input is disabled.
     invokeInlineAgent: function(Client, types.InvokeInlineAgentInput): types.InvokeInlineAgentOutput, table
+    -- Lists events that occurred during a flow execution. Events provide detailed information about the execution progress, including node inputs and outputs, flow inputs and outputs, condition results, and failure events. Flow executions is in preview release for Amazon Bedrock and is subject to change.
     listFlowExecutionEvents: function(Client, types.ListFlowExecutionEventsInput): types.ListFlowExecutionEventsOutput, table
+    -- Lists all executions of a flow. Results can be paginated and include summary information about each execution, such as status, start and end times, and the execution's Amazon Resource Name (ARN). Flow executions is in preview release for Amazon Bedrock and is subject to change.
     listFlowExecutions: function(Client, types.ListFlowExecutionsInput): types.ListFlowExecutionsOutput, table
+    -- Lists all invocations associated with a specific session. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     listInvocations: function(Client, types.ListInvocationsInput): types.ListInvocationsOutput, table
+    -- Lists all invocation steps associated with a session and optionally, an invocation within the session. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     listInvocationSteps: function(Client, types.ListInvocationStepsInput): types.ListInvocationStepsOutput, table
+    -- Lists all sessions in your Amazon Web Services account. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- List all the tags for the resource you specify.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Optimizes a prompt for the task that you specify. For more information, see Optimize a prompt in the Amazon Bedrock User Guide.
     optimizePrompt: function(Client, types.OptimizePromptInput): types.OptimizePromptOutput, table
+    -- Add an invocation step to an invocation in a session. An invocation step stores fine-grained state checkpoints, including text and images, for each interaction. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions. Related APIs: GetInvocationStep ListInvocationSteps ListInvocations ListSessions
     putInvocationStep: function(Client, types.PutInvocationStepInput): types.PutInvocationStepOutput, table
+    -- Reranks the relevance of sources based on queries. For more information, see Improve the relevance of query responses with a reranker model.
     rerank: function(Client, types.RerankInput): types.RerankOutput, table
+    -- Queries a knowledge base and retrieves information from it.
     retrieve: function(Client, types.RetrieveInput): types.RetrieveOutput, table
+    -- Queries a knowledge base and generates responses based on the retrieved results and using the specified foundation model or inference profile. The response only cites sources that are relevant to the query.
     retrieveAndGenerate: function(Client, types.RetrieveAndGenerateOperationInput): types.RetrieveAndGenerateOperationOutput, table
+    -- Queries a knowledge base and generates responses based on the retrieved results, with output in streaming format. The CLI doesn't support streaming operations in Amazon Bedrock, including InvokeModelWithResponseStream. This operation requires permission for the bedrock:RetrieveAndGenerate action.
     retrieveAndGenerateStream: function(Client, types.RetrieveAndGenerateStreamInput): types.RetrieveAndGenerateStreamOutput, table
+    -- Starts an execution of an Amazon Bedrock flow. Unlike flows that run until completion or time out after five minutes, flow executions let you run flows asynchronously for longer durations. Flow executions also yield control so that your application can perform other tasks. This operation returns an Amazon Resource Name (ARN) that you can use to track and manage your flow execution. Flow executions is in preview release for Amazon Bedrock and is subject to change.
     startFlowExecution: function(Client, types.StartFlowExecutionInput): types.StartFlowExecutionOutput, table
+    -- Stops an Amazon Bedrock flow's execution. This operation prevents further processing of the flow and changes the execution status to Aborted.
     stopFlowExecution: function(Client, types.StopFlowExecutionInput): types.StopFlowExecutionOutput, table
+    -- Associate tags with a resource. For more information, see Tagging resources in the Amazon Bedrock User Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the metadata or encryption settings of a session. For more information about sessions, see Store and retrieve conversation history and context with Amazon Bedrock sessions.
     updateSession: function(Client, types.UpdateSessionInput): types.UpdateSessionOutput, table
 end
 

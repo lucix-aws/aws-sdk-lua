@@ -3,49 +3,197 @@
 local types = require("codepipeline.types")
 
 local record Client
+    -- Returns information about a specified job and whether that job has been received by
+    -- the job worker. Used for custom actions only.
     acknowledgeJob: function(Client, types.AcknowledgeJobInput): types.AcknowledgeJobOutput, table
+    -- Confirms a job worker has received the specified job. Used for partner actions
+    -- only.
     acknowledgeThirdPartyJob: function(Client, types.AcknowledgeThirdPartyJobInput): types.AcknowledgeThirdPartyJobOutput, table
+    -- Creates a new custom action that can be used in all pipelines associated with the
+    -- Amazon Web Services account. Only used for custom actions.
     createCustomActionType: function(Client, types.CreateCustomActionTypeInput): types.CreateCustomActionTypeOutput, table
+    -- Creates a pipeline.
+    -- In the pipeline structure, you must include either artifactStore
+    -- or artifactStores in your pipeline, but you cannot use both. If you
+    -- create a cross-region action in your pipeline, you must use
+    -- artifactStores.
     createPipeline: function(Client, types.CreatePipelineInput): types.CreatePipelineOutput, table
+    -- Marks a custom action as deleted. PollForJobs for the custom action
+    -- fails after the action is marked for deletion. Used for custom actions only.
+    -- To re-create a custom action after it has been deleted you must use a string in
+    -- the version field that has never been used before. This string can be an incremented
+    -- version number, for example. To restore a deleted custom action, use a JSON file
+    -- that is identical to the deleted action, including the original string in the
+    -- version field.
     deleteCustomActionType: function(Client, types.DeleteCustomActionTypeInput): types.DeleteCustomActionTypeOutput, table
+    -- Deletes the specified pipeline.
     deletePipeline: function(Client, types.DeletePipelineInput): types.DeletePipelineOutput, table
+    -- Deletes a previously created webhook by name. Deleting the webhook stops CodePipeline from starting a pipeline every time an external event occurs. The API
+    -- returns successfully when trying to delete a webhook that is already deleted. If a
+    -- deleted webhook is re-created by calling PutWebhook with the same name, it will have a
+    -- different URL.
     deleteWebhook: function(Client, types.DeleteWebhookInput): types.DeleteWebhookOutput, table
+    -- Removes the connection between the webhook that was created by CodePipeline
+    -- and the external tool with events to be detected. Currently supported only for webhooks
+    -- that target an action type of GitHub.
     deregisterWebhookWithThirdParty: function(Client, types.DeregisterWebhookWithThirdPartyInput): types.DeregisterWebhookWithThirdPartyOutput, table
+    -- Prevents artifacts in a pipeline from transitioning to the next stage in the
+    -- pipeline.
     disableStageTransition: function(Client, types.DisableStageTransitionInput): types.DisableStageTransitionOutput, table
+    -- Enables artifacts in a pipeline to transition to a stage in a pipeline.
     enableStageTransition: function(Client, types.EnableStageTransitionInput): types.EnableStageTransitionOutput, table
+    -- Returns information about an action type created for an external provider, where the
+    -- action is to be used by customers of the external provider. The action can be created
+    -- with any supported integration model.
     getActionType: function(Client, types.GetActionTypeInput): types.GetActionTypeOutput, table
+    -- Returns information about a job. Used for custom actions only.
+    -- When this API is called, CodePipeline returns temporary credentials for
+    -- the S3 bucket used to store artifacts for the pipeline, if the action requires
+    -- access to that S3 bucket for input or output artifacts. This API also returns any
+    -- secret values defined for the action.
     getJobDetails: function(Client, types.GetJobDetailsInput): types.GetJobDetailsOutput, table
+    -- Returns the metadata, structure, stages, and actions of a pipeline. Can be used to
+    -- return the entire structure of a pipeline in JSON format, which can then be modified and
+    -- used to update the pipeline structure with UpdatePipeline.
     getPipeline: function(Client, types.GetPipelineInput): types.GetPipelineOutput, table
+    -- Returns information about an execution of a pipeline, including details about
+    -- artifacts, the pipeline execution ID, and the name, version, and status of the
+    -- pipeline.
     getPipelineExecution: function(Client, types.GetPipelineExecutionInput): types.GetPipelineExecutionOutput, table
+    -- Returns information about the state of a pipeline, including the stages and
+    -- actions.
+    -- Values returned in the revisionId and revisionUrl
+    -- fields indicate the source revision information, such as the commit ID, for the
+    -- current state.
     getPipelineState: function(Client, types.GetPipelineStateInput): types.GetPipelineStateOutput, table
+    -- Requests the details of a job for a third party action. Used for partner actions
+    -- only.
+    -- When this API is called, CodePipeline returns temporary credentials for
+    -- the S3 bucket used to store artifacts for the pipeline, if the action requires
+    -- access to that S3 bucket for input or output artifacts. This API also returns any
+    -- secret values defined for the action.
     getThirdPartyJobDetails: function(Client, types.GetThirdPartyJobDetailsInput): types.GetThirdPartyJobDetailsOutput, table
+    -- Lists the action executions that have occurred in a pipeline.
     listActionExecutions: function(Client, types.ListActionExecutionsInput): types.ListActionExecutionsOutput, table
+    -- Gets a summary of all CodePipeline action types associated with your
+    -- account.
     listActionTypes: function(Client, types.ListActionTypesInput): types.ListActionTypesOutput, table
+    -- Lists the targets for the deploy action.
     listDeployActionExecutionTargets: function(Client, types.ListDeployActionExecutionTargetsInput): types.ListDeployActionExecutionTargetsOutput, table
+    -- Gets a summary of the most recent executions for a pipeline.
+    -- When applying the filter for pipeline executions that have succeeded in the stage,
+    -- the operation returns all executions in the current pipeline version beginning on
+    -- February 1, 2024.
     listPipelineExecutions: function(Client, types.ListPipelineExecutionsInput): types.ListPipelineExecutionsOutput, table
+    -- Gets a summary of all of the pipelines associated with your account.
     listPipelines: function(Client, types.ListPipelinesInput): types.ListPipelinesOutput, table
+    -- Lists the rule executions that have occurred in a pipeline configured for conditions
+    -- with rules.
     listRuleExecutions: function(Client, types.ListRuleExecutionsInput): types.ListRuleExecutionsOutput, table
+    -- Lists the rules for the condition. For more information about conditions, see Stage
+    -- conditions and How do
+    -- stage conditions work?.For more information about rules, see the CodePipeline rule reference.
     listRuleTypes: function(Client, types.ListRuleTypesInput): types.ListRuleTypesOutput, table
+    -- Gets the set of key-value pairs (metadata) that are used to manage the
+    -- resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Gets a listing of all the webhooks in this Amazon Web Services Region for this
+    -- account. The output lists all webhooks and includes the webhook URL and ARN and the
+    -- configuration for each webhook.
+    -- If a secret token was provided, it will be redacted in the response.
     listWebhooks: function(Client, types.ListWebhooksInput): types.ListWebhooksOutput, table
+    -- Used to override a stage condition. For more information about conditions, see Stage
+    -- conditions and How do
+    -- stage conditions work?.
     overrideStageCondition: function(Client, types.OverrideStageConditionInput): types.OverrideStageConditionOutput, table
+    -- Returns information about any jobs for CodePipeline to act on.
+    -- PollForJobs is valid only for action types with "Custom" in the owner
+    -- field. If the action type contains AWS or ThirdParty in the
+    -- owner field, the PollForJobs action returns an error.
+    -- When this API is called, CodePipeline returns temporary credentials for
+    -- the S3 bucket used to store artifacts for the pipeline, if the action requires
+    -- access to that S3 bucket for input or output artifacts. This API also returns any
+    -- secret values defined for the action.
     pollForJobs: function(Client, types.PollForJobsInput): types.PollForJobsOutput, table
+    -- Determines whether there are any third party jobs for a job worker to act on. Used
+    -- for partner actions only.
+    -- When this API is called, CodePipeline returns temporary credentials for
+    -- the S3 bucket used to store artifacts for the pipeline, if the action requires
+    -- access to that S3 bucket for input or output artifacts.
     pollForThirdPartyJobs: function(Client, types.PollForThirdPartyJobsInput): types.PollForThirdPartyJobsOutput, table
+    -- Provides information to CodePipeline about new revisions to a
+    -- source.
     putActionRevision: function(Client, types.PutActionRevisionInput): types.PutActionRevisionOutput, table
+    -- Provides the response to a manual approval request to CodePipeline. Valid
+    -- responses include Approved and Rejected.
     putApprovalResult: function(Client, types.PutApprovalResultInput): types.PutApprovalResultOutput, table
+    -- Represents the failure of a job as returned to the pipeline by a job worker. Used
+    -- for custom actions only.
     putJobFailureResult: function(Client, types.PutJobFailureResultInput): types.PutJobFailureResultOutput, table
+    -- Represents the success of a job as returned to the pipeline by a job worker. Used
+    -- for custom actions only.
     putJobSuccessResult: function(Client, types.PutJobSuccessResultInput): types.PutJobSuccessResultOutput, table
+    -- Represents the failure of a third party job as returned to the pipeline by a job
+    -- worker. Used for partner actions only.
     putThirdPartyJobFailureResult: function(Client, types.PutThirdPartyJobFailureResultInput): types.PutThirdPartyJobFailureResultOutput, table
+    -- Represents the success of a third party job as returned to the pipeline by a job
+    -- worker. Used for partner actions only.
     putThirdPartyJobSuccessResult: function(Client, types.PutThirdPartyJobSuccessResultInput): types.PutThirdPartyJobSuccessResultOutput, table
+    -- Defines a webhook and returns a unique webhook URL generated by CodePipeline.
+    -- This URL can be supplied to third party source hosting providers to call every time
+    -- there's a code change. When CodePipeline receives a POST request on this URL, the
+    -- pipeline defined in the webhook is started as long as the POST request satisfied the
+    -- authentication and filtering requirements supplied when defining the webhook.
+    -- RegisterWebhookWithThirdParty and DeregisterWebhookWithThirdParty APIs can be used to
+    -- automatically configure supported third parties to call the generated webhook
+    -- URL.
+    -- When creating CodePipeline webhooks, do not use your own credentials or
+    -- reuse the same secret token across multiple webhooks. For optimal security, generate
+    -- a unique secret token for each webhook you create. The secret token is an arbitrary
+    -- string that you provide, which GitHub uses to compute and sign the webhook payloads
+    -- sent to CodePipeline, for protecting the integrity and authenticity of the
+    -- webhook payloads. Using your own credentials or reusing the same token across
+    -- multiple webhooks can lead to security vulnerabilities.
+    -- If a secret token was provided, it will be redacted in the response.
     putWebhook: function(Client, types.PutWebhookInput): types.PutWebhookOutput, table
+    -- Configures a connection between the webhook that was created and the external tool
+    -- with events to be detected.
     registerWebhookWithThirdParty: function(Client, types.RegisterWebhookWithThirdPartyInput): types.RegisterWebhookWithThirdPartyOutput, table
+    -- You can retry a stage that has failed without having to run a pipeline again from
+    -- the beginning. You do this by either retrying the failed actions in a stage or by
+    -- retrying all actions in the stage starting from the first action in the stage. When you
+    -- retry the failed actions in a stage, all actions that are still in progress continue
+    -- working, and failed actions are triggered again. When you retry a failed stage from the
+    -- first action in the stage, the stage cannot have any actions in progress. Before a stage
+    -- can be retried, it must either have all actions failed or some actions failed and some
+    -- succeeded.
     retryStageExecution: function(Client, types.RetryStageExecutionInput): types.RetryStageExecutionOutput, table
+    -- Rolls back a stage execution.
     rollbackStage: function(Client, types.RollbackStageInput): types.RollbackStageOutput, table
+    -- Starts the specified pipeline. Specifically, it begins processing the latest commit
+    -- to the source location specified as part of the pipeline.
     startPipelineExecution: function(Client, types.StartPipelineExecutionInput): types.StartPipelineExecutionOutput, table
+    -- Stops the specified pipeline execution. You choose to either stop the pipeline
+    -- execution by completing in-progress actions without starting subsequent actions, or by
+    -- abandoning in-progress actions. While completing or abandoning in-progress actions, the
+    -- pipeline execution is in a Stopping state. After all in-progress actions
+    -- are completed or abandoned, the pipeline execution is in a Stopped
+    -- state.
     stopPipelineExecution: function(Client, types.StopPipelineExecutionInput): types.StopPipelineExecutionOutput, table
+    -- Adds to or modifies the tags of the given resource. Tags are metadata that can be used
+    -- to manage a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from an Amazon Web Services resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an action type that was created with any supported integration model, where
+    -- the action type is to be used by customers of the action type provider. Use a JSON file
+    -- with the action definition and UpdateActionType to provide the full
+    -- structure.
     updateActionType: function(Client, types.UpdateActionTypeInput): types.UpdateActionTypeOutput, table
+    -- Updates a specified pipeline with edits or changes to its structure. Use a JSON
+    -- file with the pipeline structure and UpdatePipeline to provide the full
+    -- structure of the pipeline. Updating the pipeline increases the version number of the
+    -- pipeline by 1.
     updatePipeline: function(Client, types.UpdatePipelineInput): types.UpdatePipelineOutput, table
 end
 

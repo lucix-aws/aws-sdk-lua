@@ -3,36 +3,66 @@
 local types = require("schemas.types")
 
 local record Client
+    -- Creates a discoverer.
     createDiscoverer: function(Client, types.CreateDiscovererInput): types.CreateDiscovererOutput, table
+    -- Creates a registry.
     createRegistry: function(Client, types.CreateRegistryInput): types.CreateRegistryOutput, table
+    -- Creates a schema definition. Inactive schemas will be deleted after two years.
     createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    -- Deletes a discoverer.
     deleteDiscoverer: function(Client, types.DeleteDiscovererInput): types.DeleteDiscovererOutput, table
+    -- Deletes a Registry.
     deleteRegistry: function(Client, types.DeleteRegistryInput): types.DeleteRegistryOutput, table
+    -- Delete the resource-based policy attached to the specified registry.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Delete a schema definition.
     deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    -- Delete the schema version definition
     deleteSchemaVersion: function(Client, types.DeleteSchemaVersionInput): types.DeleteSchemaVersionOutput, table
+    -- Describe the code binding URI.
     describeCodeBinding: function(Client, types.DescribeCodeBindingInput): types.DescribeCodeBindingOutput, table
+    -- Describes the discoverer.
     describeDiscoverer: function(Client, types.DescribeDiscovererInput): types.DescribeDiscovererOutput, table
+    -- Describes the registry.
     describeRegistry: function(Client, types.DescribeRegistryInput): types.DescribeRegistryOutput, table
+    -- Retrieve the schema definition.
     describeSchema: function(Client, types.DescribeSchemaInput): types.DescribeSchemaOutput, table
     exportSchema: function(Client, types.ExportSchemaInput): types.ExportSchemaOutput, table
+    -- Get the code binding source URI.
     getCodeBindingSource: function(Client, types.GetCodeBindingSourceInput): types.GetCodeBindingSourceOutput, table
+    -- Get the discovered schema that was generated based on sampled events.
     getDiscoveredSchema: function(Client, types.GetDiscoveredSchemaInput): types.GetDiscoveredSchemaOutput, table
+    -- Retrieves the resource-based policy attached to a given registry.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- List the discoverers.
     listDiscoverers: function(Client, types.ListDiscoverersInput): types.ListDiscoverersOutput, table
+    -- List the registries.
     listRegistries: function(Client, types.ListRegistriesInput): types.ListRegistriesOutput, table
+    -- List the schemas.
     listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    -- Provides a list of the schema versions and related information.
     listSchemaVersions: function(Client, types.ListSchemaVersionsInput): types.ListSchemaVersionsOutput, table
+    -- Get tags for resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Put code binding URI
     putCodeBinding: function(Client, types.PutCodeBindingInput): types.PutCodeBindingOutput, table
+    -- The name of the policy.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Search the schemas
     searchSchemas: function(Client, types.SearchSchemasInput): types.SearchSchemasOutput, table
+    -- Starts the discoverer
     startDiscoverer: function(Client, types.StartDiscovererInput): types.StartDiscovererOutput, table
+    -- Stops the discoverer
     stopDiscoverer: function(Client, types.StopDiscovererInput): types.StopDiscovererOutput, table
+    -- Add tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the discoverer
     updateDiscoverer: function(Client, types.UpdateDiscovererInput): types.UpdateDiscovererOutput, table
+    -- Updates a registry.
     updateRegistry: function(Client, types.UpdateRegistryInput): types.UpdateRegistryOutput, table
+    -- Updates the schema definition Inactive schemas will be deleted after two years.
     updateSchema: function(Client, types.UpdateSchemaInput): types.UpdateSchemaOutput, table
 end
 

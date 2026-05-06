@@ -3,67 +3,163 @@
 local types = require("licensemanager.types")
 
 local record Client
+    -- Accepts the specified grant.
     acceptGrant: function(Client, types.AcceptGrantInput): types.AcceptGrantOutput, table
+    -- Checks in the specified license. Check in a license when it is no longer in use.
     checkInLicense: function(Client, types.CheckInLicenseInput): types.CheckInLicenseOutput, table
+    -- Checks out the specified license for offline use.
     checkoutBorrowLicense: function(Client, types.CheckoutBorrowLicenseInput): types.CheckoutBorrowLicenseOutput, table
+    -- Checks out the specified license.
+    -- If the account that created the license is the same that is performing the check out, you must
+    -- specify the account as the beneficiary.
     checkoutLicense: function(Client, types.CheckoutLicenseInput): types.CheckoutLicenseOutput, table
+    -- Creates a grant for the specified license. A grant shares the use of license
+    -- entitlements with a specific Amazon Web Services account, an organization, or an
+    -- organizational unit (OU). For more information, see Granted licenses in License Manager in the License Manager User Guide.
     createGrant: function(Client, types.CreateGrantInput): types.CreateGrantOutput, table
+    -- Creates a new version of the specified grant. For more information, see
+    -- Granted licenses in License Manager in the License Manager User Guide.
     createGrantVersion: function(Client, types.CreateGrantVersionInput): types.CreateGrantVersionOutput, table
+    -- Creates a license.
     createLicense: function(Client, types.CreateLicenseInput): types.CreateLicenseOutput, table
+    -- Creates a license asset group.
     createLicenseAssetGroup: function(Client, types.CreateLicenseAssetGroupInput): types.CreateLicenseAssetGroupOutput, table
+    -- Creates a license asset ruleset.
     createLicenseAssetRuleset: function(Client, types.CreateLicenseAssetRulesetInput): types.CreateLicenseAssetRulesetOutput, table
+    -- Creates a license configuration.
+    -- A license configuration is an abstraction of a customer license agreement that can be
+    -- consumed and enforced by License Manager. Components include specifications for the license
+    -- type (licensing by instance, socket, CPU, or vCPU), allowed tenancy (shared tenancy,
+    -- Dedicated Instance, Dedicated Host, or all of these), license affinity to host (how long a
+    -- license must be associated with a host), and the number of licenses purchased and used.
     createLicenseConfiguration: function(Client, types.CreateLicenseConfigurationInput): types.CreateLicenseConfigurationOutput, table
+    -- Creates a new license conversion task.
     createLicenseConversionTaskForResource: function(Client, types.CreateLicenseConversionTaskForResourceInput): types.CreateLicenseConversionTaskForResourceOutput, table
+    -- Creates a report generator.
     createLicenseManagerReportGenerator: function(Client, types.CreateLicenseManagerReportGeneratorInput): types.CreateLicenseManagerReportGeneratorOutput, table
+    -- Creates a new version of the specified license.
     createLicenseVersion: function(Client, types.CreateLicenseVersionInput): types.CreateLicenseVersionOutput, table
+    -- Creates a long-lived token.
+    -- A refresh token is a JWT token used to get an access token. With an access token,
+    -- you can call AssumeRoleWithWebIdentity to get role credentials that you can use to
+    -- call License Manager to manage the specified license.
     createToken: function(Client, types.CreateTokenInput): types.CreateTokenOutput, table
+    -- Deletes the specified grant.
     deleteGrant: function(Client, types.DeleteGrantInput): types.DeleteGrantOutput, table
+    -- Deletes the specified license.
     deleteLicense: function(Client, types.DeleteLicenseInput): types.DeleteLicenseOutput, table
+    -- Deletes a license asset group.
     deleteLicenseAssetGroup: function(Client, types.DeleteLicenseAssetGroupInput): types.DeleteLicenseAssetGroupOutput, table
+    -- Deletes a license asset ruleset.
     deleteLicenseAssetRuleset: function(Client, types.DeleteLicenseAssetRulesetInput): types.DeleteLicenseAssetRulesetOutput, table
+    -- Deletes the specified license configuration.
+    -- You cannot delete a license configuration that is in use.
     deleteLicenseConfiguration: function(Client, types.DeleteLicenseConfigurationInput): types.DeleteLicenseConfigurationOutput, table
+    -- Deletes the specified report generator.
+    -- This action deletes the report generator, which stops it from generating future reports.
+    -- The action cannot be reversed. It has no effect on the previous reports from this generator.
     deleteLicenseManagerReportGenerator: function(Client, types.DeleteLicenseManagerReportGeneratorInput): types.DeleteLicenseManagerReportGeneratorOutput, table
+    -- Deletes the specified token. Must be called in the license home Region.
     deleteToken: function(Client, types.DeleteTokenInput): types.DeleteTokenOutput, table
+    -- Extends the expiration date for license consumption.
     extendLicenseConsumption: function(Client, types.ExtendLicenseConsumptionInput): types.ExtendLicenseConsumptionOutput, table
+    -- Gets a temporary access token to use with AssumeRoleWithWebIdentity. Access tokens
+    -- are valid for one hour.
     getAccessToken: function(Client, types.GetAccessTokenInput): types.GetAccessTokenOutput, table
+    -- Gets detailed information about the specified grant.
     getGrant: function(Client, types.GetGrantInput): types.GetGrantOutput, table
+    -- Gets detailed information about the specified license.
     getLicense: function(Client, types.GetLicenseInput): types.GetLicenseOutput, table
+    -- Gets a license asset group.
     getLicenseAssetGroup: function(Client, types.GetLicenseAssetGroupInput): types.GetLicenseAssetGroupOutput, table
+    -- Gets a license asset ruleset.
     getLicenseAssetRuleset: function(Client, types.GetLicenseAssetRulesetInput): types.GetLicenseAssetRulesetOutput, table
+    -- Gets detailed information about the specified license configuration.
     getLicenseConfiguration: function(Client, types.GetLicenseConfigurationInput): types.GetLicenseConfigurationOutput, table
+    -- Gets information about the specified license type conversion task.
     getLicenseConversionTask: function(Client, types.GetLicenseConversionTaskInput): types.GetLicenseConversionTaskOutput, table
+    -- Gets information about the specified report generator.
     getLicenseManagerReportGenerator: function(Client, types.GetLicenseManagerReportGeneratorInput): types.GetLicenseManagerReportGeneratorOutput, table
+    -- Gets detailed information about the usage of the specified license.
     getLicenseUsage: function(Client, types.GetLicenseUsageInput): types.GetLicenseUsageOutput, table
+    -- Gets the License Manager settings for the current Region.
     getServiceSettings: function(Client, types.GetServiceSettingsInput): types.GetServiceSettingsOutput, table
+    -- Lists assets for a license asset group.
     listAssetsForLicenseAssetGroup: function(Client, types.ListAssetsForLicenseAssetGroupInput): types.ListAssetsForLicenseAssetGroupOutput, table
+    -- Lists the resource associations for the specified license configuration.
+    -- Resource associations need not consume licenses from a license configuration.
+    -- For example, an AMI or a stopped instance might not consume a license (depending on
+    -- the license rules).
     listAssociationsForLicenseConfiguration: function(Client, types.ListAssociationsForLicenseConfigurationInput): types.ListAssociationsForLicenseConfigurationOutput, table
+    -- Lists the grants distributed for the specified license.
     listDistributedGrants: function(Client, types.ListDistributedGrantsInput): types.ListDistributedGrantsOutput, table
+    -- Lists the license configuration operations that failed.
     listFailuresForLicenseConfigurationOperations: function(Client, types.ListFailuresForLicenseConfigurationOperationsInput): types.ListFailuresForLicenseConfigurationOperationsOutput, table
+    -- Lists license asset groups.
     listLicenseAssetGroups: function(Client, types.ListLicenseAssetGroupsInput): types.ListLicenseAssetGroupsOutput, table
+    -- Lists license asset rulesets.
     listLicenseAssetRulesets: function(Client, types.ListLicenseAssetRulesetsInput): types.ListLicenseAssetRulesetsOutput, table
+    -- Lists the license configurations for your account.
     listLicenseConfigurations: function(Client, types.ListLicenseConfigurationsInput): types.ListLicenseConfigurationsOutput, table
+    -- Lists license configurations for an organization.
     listLicenseConfigurationsForOrganization: function(Client, types.ListLicenseConfigurationsForOrganizationInput): types.ListLicenseConfigurationsForOrganizationOutput, table
+    -- Lists the license type conversion tasks for your account.
     listLicenseConversionTasks: function(Client, types.ListLicenseConversionTasksInput): types.ListLicenseConversionTasksOutput, table
+    -- Lists the report generators for your account.
     listLicenseManagerReportGenerators: function(Client, types.ListLicenseManagerReportGeneratorsInput): types.ListLicenseManagerReportGeneratorsOutput, table
+    -- Lists the licenses for your account.
     listLicenses: function(Client, types.ListLicensesInput): types.ListLicensesOutput, table
+    -- Describes the license configurations for the specified resource.
     listLicenseSpecificationsForResource: function(Client, types.ListLicenseSpecificationsForResourceInput): types.ListLicenseSpecificationsForResourceOutput, table
+    -- Lists all versions of the specified license.
     listLicenseVersions: function(Client, types.ListLicenseVersionsInput): types.ListLicenseVersionsOutput, table
+    -- Lists grants that are received. Received grants are grants created while specifying the
+    -- recipient as this Amazon Web Services account, your organization, or an organizational unit
+    -- (OU) to which this member account belongs.
     listReceivedGrants: function(Client, types.ListReceivedGrantsInput): types.ListReceivedGrantsOutput, table
+    -- Lists the grants received for all accounts in the organization.
     listReceivedGrantsForOrganization: function(Client, types.ListReceivedGrantsForOrganizationInput): types.ListReceivedGrantsForOrganizationOutput, table
+    -- Lists received licenses.
     listReceivedLicenses: function(Client, types.ListReceivedLicensesInput): types.ListReceivedLicensesOutput, table
+    -- Lists the licenses received for all accounts in the organization.
     listReceivedLicensesForOrganization: function(Client, types.ListReceivedLicensesForOrganizationInput): types.ListReceivedLicensesForOrganizationOutput, table
+    -- Lists resources managed using Systems Manager inventory.
     listResourceInventory: function(Client, types.ListResourceInventoryInput): types.ListResourceInventoryOutput, table
+    -- Lists the tags for the specified resource. For more information about tagging support in
+    -- License Manager, see the TagResource operation.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists your tokens.
     listTokens: function(Client, types.ListTokensInput): types.ListTokensOutput, table
+    -- Lists all license usage records for a license configuration, displaying license
+    -- consumption details by resource at a selected point in time. Use this action to audit the
+    -- current license consumption for any license inventory and configuration.
     listUsageForLicenseConfiguration: function(Client, types.ListUsageForLicenseConfigurationInput): types.ListUsageForLicenseConfigurationOutput, table
+    -- Rejects the specified grant.
     rejectGrant: function(Client, types.RejectGrantInput): types.RejectGrantOutput, table
+    -- Adds the specified tags to the specified resource. The following resources support
+    -- tagging in License Manager:
+    -- Licenses
+    -- Grants
+    -- License configurations
+    -- Report generators
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a license asset group.
     updateLicenseAssetGroup: function(Client, types.UpdateLicenseAssetGroupInput): types.UpdateLicenseAssetGroupOutput, table
+    -- Updates a license asset ruleset.
     updateLicenseAssetRuleset: function(Client, types.UpdateLicenseAssetRulesetInput): types.UpdateLicenseAssetRulesetOutput, table
+    -- Modifies the attributes of an existing license configuration.
     updateLicenseConfiguration: function(Client, types.UpdateLicenseConfigurationInput): types.UpdateLicenseConfigurationOutput, table
+    -- Updates a report generator.
+    -- After you make changes to a report generator, it starts generating new reports within 60 minutes of being updated.
     updateLicenseManagerReportGenerator: function(Client, types.UpdateLicenseManagerReportGeneratorInput): types.UpdateLicenseManagerReportGeneratorOutput, table
+    -- Adds or removes the specified license configurations for the specified Amazon Web Services resource.
+    -- You can update the license specifications of AMIs, instances, and hosts.
+    -- You cannot update the license specifications for launch templates and CloudFormation templates,
+    -- as they send license configurations to the operation that creates the resource.
     updateLicenseSpecificationsForResource: function(Client, types.UpdateLicenseSpecificationsForResourceInput): types.UpdateLicenseSpecificationsForResourceOutput, table
+    -- Updates License Manager settings for the current Region.
     updateServiceSettings: function(Client, types.UpdateServiceSettingsInput): types.UpdateServiceSettingsOutput, table
 end
 

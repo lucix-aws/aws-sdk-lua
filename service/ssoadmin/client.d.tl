@@ -3,84 +3,163 @@
 local types = require("ssoadmin.types")
 
 local record Client
+    -- Adds a Region to an IAM Identity Center instance. This operation initiates an asynchronous workflow to replicate the IAM Identity Center instance to the target Region. The Region status is set to ADDING at first and changes to ACTIVE when the workflow completes. To use this operation, your IAM Identity Center instance and the target Region must meet the requirements described in the IAM Identity Center User Guide. The following actions are related to AddRegion: RemoveRegion DescribeRegion ListRegions
     addRegion: function(Client, types.AddRegionInput): types.AddRegionOutput, table
+    -- Attaches the specified customer managed policy to the specified PermissionSet.
     attachCustomerManagedPolicyReferenceToPermissionSet: function(Client, types.AttachCustomerManagedPolicyReferenceToPermissionSetInput): types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput, table
+    -- Attaches an Amazon Web Services managed policy ARN to a permission set. If the permission set is already referenced by one or more account assignments, you will need to call ProvisionPermissionSet after this operation. Calling ProvisionPermissionSet applies the corresponding IAM policy updates to all assigned accounts.
     attachManagedPolicyToPermissionSet: function(Client, types.AttachManagedPolicyToPermissionSetInput): types.AttachManagedPolicyToPermissionSetOutput, table
+    -- Assigns access to a principal for a specified Amazon Web Services account using a specified permission set. The term principal here refers to a user or group that is defined in IAM Identity Center. As part of a successful CreateAccountAssignment call, the specified permission set will automatically be provisioned to the account in the form of an IAM policy. That policy is attached to the IAM role created in IAM Identity Center. If the permission set is subsequently updated, the corresponding IAM policies attached to roles in your accounts will not be updated automatically. In this case, you must call ProvisionPermissionSet to make these updates. After a successful response, call DescribeAccountAssignmentCreationStatus to describe the status of an assignment creation request.
     createAccountAssignment: function(Client, types.CreateAccountAssignmentInput): types.CreateAccountAssignmentOutput, table
+    -- Creates an OAuth 2.0 customer managed application in IAM Identity Center for the given application provider. This API does not support creating SAML 2.0 customer managed applications or Amazon Web Services managed applications. To learn how to create an Amazon Web Services managed application, see the application user guide. You can create a SAML 2.0 customer managed application in the Amazon Web Services Management Console only. See Setting up customer managed SAML 2.0 applications. For more information on these application types, see Amazon Web Services managed applications.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Grant application access to a user or group.
     createApplicationAssignment: function(Client, types.CreateApplicationAssignmentInput): types.CreateApplicationAssignmentOutput, table
+    -- Creates an instance of IAM Identity Center for a standalone Amazon Web Services account that is not managed by Organizations or a member Amazon Web Services account in an organization. You can create only one instance per account and across all Amazon Web Services Regions. The CreateInstance request is rejected if the following apply: The instance is created within the organization management account. An instance already exists in the same account.
     createInstance: function(Client, types.CreateInstanceInput): types.CreateInstanceOutput, table
+    -- Enables the attributes-based access control (ABAC) feature for the specified IAM Identity Center instance. You can also specify new attributes to add to your ABAC configuration during the enabling process. For more information about ABAC, see Attribute-Based Access Control in the IAM Identity Center User Guide. After a successful response, call DescribeInstanceAccessControlAttributeConfiguration to validate that InstanceAccessControlAttributeConfiguration was created.
     createInstanceAccessControlAttributeConfiguration: function(Client, types.CreateInstanceAccessControlAttributeConfigurationInput): types.CreateInstanceAccessControlAttributeConfigurationOutput, table
+    -- Creates a permission set within a specified IAM Identity Center instance. To grant users and groups access to Amazon Web Services account resources, use CreateAccountAssignment .
     createPermissionSet: function(Client, types.CreatePermissionSetInput): types.CreatePermissionSetOutput, table
+    -- Creates a connection to a trusted token issuer in an instance of IAM Identity Center. A trusted token issuer enables trusted identity propagation to be used with applications that authenticate outside of Amazon Web Services. This trusted token issuer describes an external identity provider (IdP) that can generate claims or assertions in the form of access tokens for a user. Applications enabled for IAM Identity Center can use these tokens for authentication.
     createTrustedTokenIssuer: function(Client, types.CreateTrustedTokenIssuerInput): types.CreateTrustedTokenIssuerOutput, table
+    -- Deletes a principal's access from a specified Amazon Web Services account using a specified permission set. After a successful response, call DescribeAccountAssignmentDeletionStatus to describe the status of an assignment deletion request.
     deleteAccountAssignment: function(Client, types.DeleteAccountAssignmentInput): types.DeleteAccountAssignmentOutput, table
+    -- Deletes the association with the application. The connected service resource still exists.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes an IAM Identity Center access scope from an application.
     deleteApplicationAccessScope: function(Client, types.DeleteApplicationAccessScopeInput): types.DeleteApplicationAccessScopeOutput, table
+    -- Revoke application access to an application by deleting application assignments for a user or group.
     deleteApplicationAssignment: function(Client, types.DeleteApplicationAssignmentInput): types.DeleteApplicationAssignmentOutput, table
+    -- Deletes an authentication method from an application.
     deleteApplicationAuthenticationMethod: function(Client, types.DeleteApplicationAuthenticationMethodInput): types.DeleteApplicationAuthenticationMethodOutput, table
+    -- Deletes a grant from an application.
     deleteApplicationGrant: function(Client, types.DeleteApplicationGrantInput): types.DeleteApplicationGrantOutput, table
+    -- Deletes the inline policy from a specified permission set.
     deleteInlinePolicyFromPermissionSet: function(Client, types.DeleteInlinePolicyFromPermissionSetInput): types.DeleteInlinePolicyFromPermissionSetOutput, table
+    -- Deletes the instance of IAM Identity Center. Only the account that owns the instance can call this API. Neither the delegated administrator nor member account can delete the organization instance, but those roles can delete their own instance.
     deleteInstance: function(Client, types.DeleteInstanceInput): types.DeleteInstanceOutput, table
+    -- Disables the attributes-based access control (ABAC) feature for the specified IAM Identity Center instance and deletes all of the attribute mappings that have been configured. Once deleted, any attributes that are received from an identity source and any custom attributes you have previously configured will not be passed. For more information about ABAC, see Attribute-Based Access Control in the IAM Identity Center User Guide.
     deleteInstanceAccessControlAttributeConfiguration: function(Client, types.DeleteInstanceAccessControlAttributeConfigurationInput): types.DeleteInstanceAccessControlAttributeConfigurationOutput, table
+    -- Deletes the permissions boundary from a specified PermissionSet.
     deletePermissionsBoundaryFromPermissionSet: function(Client, types.DeletePermissionsBoundaryFromPermissionSetInput): types.DeletePermissionsBoundaryFromPermissionSetOutput, table
+    -- Deletes the specified permission set.
     deletePermissionSet: function(Client, types.DeletePermissionSetInput): types.DeletePermissionSetOutput, table
+    -- Deletes a trusted token issuer configuration from an instance of IAM Identity Center. Deleting this trusted token issuer configuration will cause users to lose access to any applications that are configured to use the trusted token issuer.
     deleteTrustedTokenIssuer: function(Client, types.DeleteTrustedTokenIssuerInput): types.DeleteTrustedTokenIssuerOutput, table
+    -- Describes the status of the assignment creation request.
     describeAccountAssignmentCreationStatus: function(Client, types.DescribeAccountAssignmentCreationStatusInput): types.DescribeAccountAssignmentCreationStatusOutput, table
+    -- Describes the status of the assignment deletion request.
     describeAccountAssignmentDeletionStatus: function(Client, types.DescribeAccountAssignmentDeletionStatusInput): types.DescribeAccountAssignmentDeletionStatusOutput, table
+    -- Retrieves the details of an application associated with an instance of IAM Identity Center.
     describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    -- Retrieves a direct assignment of a user or group to an application. If the user doesn’t have a direct assignment to the application, the user may still have access to the application through a group. Therefore, don’t use this API to test access to an application for a user. Instead use ListApplicationAssignmentsForPrincipal.
     describeApplicationAssignment: function(Client, types.DescribeApplicationAssignmentInput): types.DescribeApplicationAssignmentOutput, table
+    -- Retrieves details about a provider that can be used to connect an Amazon Web Services managed application or customer managed application to IAM Identity Center.
     describeApplicationProvider: function(Client, types.DescribeApplicationProviderInput): types.DescribeApplicationProviderOutput, table
+    -- Returns the details of an instance of IAM Identity Center. The status can be one of the following: CREATE_IN_PROGRESS - The instance is in the process of being created. When the instance is ready for use, DescribeInstance returns the status of ACTIVE. While the instance is in the CREATE_IN_PROGRESS state, you can call only DescribeInstance and DeleteInstance operations. DELETE_IN_PROGRESS - The instance is being deleted. Returns AccessDeniedException after the delete operation completes. ACTIVE - The instance is active.
     describeInstance: function(Client, types.DescribeInstanceInput): types.DescribeInstanceOutput, table
+    -- Returns the list of IAM Identity Center identity store attributes that have been configured to work with attributes-based access control (ABAC) for the specified IAM Identity Center instance. This will not return attributes configured and sent by an external identity provider. For more information about ABAC, see Attribute-Based Access Control in the IAM Identity Center User Guide.
     describeInstanceAccessControlAttributeConfiguration: function(Client, types.DescribeInstanceAccessControlAttributeConfigurationInput): types.DescribeInstanceAccessControlAttributeConfigurationOutput, table
+    -- Gets the details of the permission set.
     describePermissionSet: function(Client, types.DescribePermissionSetInput): types.DescribePermissionSetOutput, table
+    -- Describes the status for the given permission set provisioning request.
     describePermissionSetProvisioningStatus: function(Client, types.DescribePermissionSetProvisioningStatusInput): types.DescribePermissionSetProvisioningStatusOutput, table
+    -- Retrieves details about a specific Region enabled in an IAM Identity Center instance. Details include the Region name, current status (ACTIVE, ADDING, or REMOVING), the date when the Region was added, and whether it is the primary Region. The request must be made from one of the enabled Regions of the IAM Identity Center instance. The following actions are related to DescribeRegion: AddRegion RemoveRegion ListRegions
     describeRegion: function(Client, types.DescribeRegionInput): types.DescribeRegionOutput, table
+    -- Retrieves details about a trusted token issuer configuration stored in an instance of IAM Identity Center. Details include the name of the trusted token issuer, the issuer URL, and the path of the source attribute and the destination attribute for a trusted token issuer configuration.
     describeTrustedTokenIssuer: function(Client, types.DescribeTrustedTokenIssuerInput): types.DescribeTrustedTokenIssuerOutput, table
+    -- Detaches the specified customer managed policy from the specified PermissionSet.
     detachCustomerManagedPolicyReferenceFromPermissionSet: function(Client, types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput): types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput, table
+    -- Detaches the attached Amazon Web Services managed policy ARN from the specified permission set.
     detachManagedPolicyFromPermissionSet: function(Client, types.DetachManagedPolicyFromPermissionSetInput): types.DetachManagedPolicyFromPermissionSetOutput, table
+    -- Retrieves the authorized targets for an IAM Identity Center access scope for an application.
     getApplicationAccessScope: function(Client, types.GetApplicationAccessScopeInput): types.GetApplicationAccessScopeOutput, table
+    -- Retrieves the configuration of PutApplicationAssignmentConfiguration.
     getApplicationAssignmentConfiguration: function(Client, types.GetApplicationAssignmentConfigurationInput): types.GetApplicationAssignmentConfigurationOutput, table
+    -- Retrieves details about an authentication method used by an application.
     getApplicationAuthenticationMethod: function(Client, types.GetApplicationAuthenticationMethodInput): types.GetApplicationAuthenticationMethodOutput, table
+    -- Retrieves details about an application grant.
     getApplicationGrant: function(Client, types.GetApplicationGrantInput): types.GetApplicationGrantOutput, table
+    -- Retrieves the session configuration for an application in IAM Identity Center. The session configuration determines how users can access an application. This includes whether user background sessions are enabled. User background sessions allow users to start a job on a supported Amazon Web Services managed application without having to remain signed in to an active session while the job runs.
     getApplicationSessionConfiguration: function(Client, types.GetApplicationSessionConfigurationInput): types.GetApplicationSessionConfigurationOutput, table
+    -- Obtains the inline policy assigned to the permission set.
     getInlinePolicyForPermissionSet: function(Client, types.GetInlinePolicyForPermissionSetInput): types.GetInlinePolicyForPermissionSetOutput, table
+    -- Obtains the permissions boundary for a specified PermissionSet.
     getPermissionsBoundaryForPermissionSet: function(Client, types.GetPermissionsBoundaryForPermissionSetInput): types.GetPermissionsBoundaryForPermissionSetOutput, table
+    -- Lists the status of the Amazon Web Services account assignment creation requests for a specified IAM Identity Center instance.
     listAccountAssignmentCreationStatus: function(Client, types.ListAccountAssignmentCreationStatusInput): types.ListAccountAssignmentCreationStatusOutput, table
+    -- Lists the status of the Amazon Web Services account assignment deletion requests for a specified IAM Identity Center instance.
     listAccountAssignmentDeletionStatus: function(Client, types.ListAccountAssignmentDeletionStatusInput): types.ListAccountAssignmentDeletionStatusOutput, table
+    -- Lists the assignee of the specified Amazon Web Services account with the specified permission set.
     listAccountAssignments: function(Client, types.ListAccountAssignmentsInput): types.ListAccountAssignmentsOutput, table
+    -- Retrieves a list of the IAM Identity Center associated Amazon Web Services accounts that the principal has access to. This action must be called from the management account containing your organization instance of IAM Identity Center. This action is not valid for account instances of IAM Identity Center.
     listAccountAssignmentsForPrincipal: function(Client, types.ListAccountAssignmentsForPrincipalInput): types.ListAccountAssignmentsForPrincipalOutput, table
+    -- Lists all the Amazon Web Services accounts where the specified permission set is provisioned.
     listAccountsForProvisionedPermissionSet: function(Client, types.ListAccountsForProvisionedPermissionSetInput): types.ListAccountsForProvisionedPermissionSetOutput, table
+    -- Lists the access scopes and authorized targets associated with an application.
     listApplicationAccessScopes: function(Client, types.ListApplicationAccessScopesInput): types.ListApplicationAccessScopesOutput, table
+    -- Lists Amazon Web Services account users that are assigned to an application.
     listApplicationAssignments: function(Client, types.ListApplicationAssignmentsInput): types.ListApplicationAssignmentsOutput, table
+    -- Lists the applications to which a specified principal is assigned. You must provide a filter when calling this action from a member account against your organization instance of IAM Identity Center. A filter is not required when called from the management account against an organization instance of IAM Identity Center, or from a member account against an account instance of IAM Identity Center in the same account.
     listApplicationAssignmentsForPrincipal: function(Client, types.ListApplicationAssignmentsForPrincipalInput): types.ListApplicationAssignmentsForPrincipalOutput, table
+    -- Lists all of the authentication methods supported by the specified application.
     listApplicationAuthenticationMethods: function(Client, types.ListApplicationAuthenticationMethodsInput): types.ListApplicationAuthenticationMethodsOutput, table
+    -- List the grants associated with an application.
     listApplicationGrants: function(Client, types.ListApplicationGrantsInput): types.ListApplicationGrantsOutput, table
+    -- Lists the application providers configured in the IAM Identity Center identity store.
     listApplicationProviders: function(Client, types.ListApplicationProvidersInput): types.ListApplicationProvidersOutput, table
+    -- Lists all applications associated with the instance of IAM Identity Center. When listing applications for an organization instance in the management account, member accounts must use the applicationAccount parameter to filter the list to only applications created from that account. When listing applications for an account instance in the same member account, a filter is not required.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists all customer managed policies attached to a specified PermissionSet.
     listCustomerManagedPolicyReferencesInPermissionSet: function(Client, types.ListCustomerManagedPolicyReferencesInPermissionSetInput): types.ListCustomerManagedPolicyReferencesInPermissionSetOutput, table
+    -- Lists the details of the organization and account instances of IAM Identity Center that were created in or visible to the account calling this API.
     listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    -- Lists the Amazon Web Services managed policy that is attached to a specified permission set.
     listManagedPoliciesInPermissionSet: function(Client, types.ListManagedPoliciesInPermissionSetInput): types.ListManagedPoliciesInPermissionSetOutput, table
+    -- Lists the status of the permission set provisioning requests for a specified IAM Identity Center instance.
     listPermissionSetProvisioningStatus: function(Client, types.ListPermissionSetProvisioningStatusInput): types.ListPermissionSetProvisioningStatusOutput, table
+    -- Lists the PermissionSets in an IAM Identity Center instance.
     listPermissionSets: function(Client, types.ListPermissionSetsInput): types.ListPermissionSetsOutput, table
+    -- Lists all the permission sets that are provisioned to a specified Amazon Web Services account.
     listPermissionSetsProvisionedToAccount: function(Client, types.ListPermissionSetsProvisionedToAccountInput): types.ListPermissionSetsProvisionedToAccountOutput, table
+    -- Lists all enabled Regions of an IAM Identity Center instance, including those that are being added or removed. This operation returns Regions with ACTIVE, ADDING, or REMOVING status. The following actions are related to ListRegions: AddRegion RemoveRegion DescribeRegion
     listRegions: function(Client, types.ListRegionsInput): types.ListRegionsOutput, table
+    -- Lists the tags that are attached to a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists all the trusted token issuers configured in an instance of IAM Identity Center.
     listTrustedTokenIssuers: function(Client, types.ListTrustedTokenIssuersInput): types.ListTrustedTokenIssuersOutput, table
+    -- The process by which a specified permission set is provisioned to the specified target.
     provisionPermissionSet: function(Client, types.ProvisionPermissionSetInput): types.ProvisionPermissionSetOutput, table
+    -- Adds or updates the list of authorized targets for an IAM Identity Center access scope for an application.
     putApplicationAccessScope: function(Client, types.PutApplicationAccessScopeInput): types.PutApplicationAccessScopeOutput, table
+    -- Configure how users gain access to an application. If AssignmentsRequired is true (default value), users don’t have access to the application unless an assignment is created using the CreateApplicationAssignment API. If false, all users have access to the application. If an assignment is created using CreateApplicationAssignment., the user retains access if AssignmentsRequired is set to true.
     putApplicationAssignmentConfiguration: function(Client, types.PutApplicationAssignmentConfigurationInput): types.PutApplicationAssignmentConfigurationOutput, table
+    -- Adds or updates an authentication method for an application.
     putApplicationAuthenticationMethod: function(Client, types.PutApplicationAuthenticationMethodInput): types.PutApplicationAuthenticationMethodOutput, table
+    -- Creates a configuration for an application to use grants. Conceptually grants are authorization to request actions related to tokens. This configuration will be used when parties are requesting and receiving tokens during the trusted identity propagation process. For more information on the IAM Identity Center supported grant workflows, see SAML 2.0 and OAuth 2.0. A grant is created between your applications and Identity Center instance which enables an application to use specified mechanisms to obtain tokens. These tokens are used by your applications to gain access to Amazon Web Services resources on behalf of users. The following elements are within these exchanges: Requester - The application requesting access to Amazon Web Services resources. Subject - Typically the user that is requesting access to Amazon Web Services resources. Grant - Conceptually, a grant is authorization to access Amazon Web Services resources. These grants authorize token generation for authenticating access to the requester and for the request to make requests on behalf of the subjects. There are four types of grants: AuthorizationCode - Allows an application to request authorization through a series of user-agent redirects. JWT bearer - Authorizes an application to exchange a JSON Web Token that came from an external identity provider. To learn more, see RFC 6479. Refresh token - Enables application to request new access tokens to replace expiring or expired access tokens. Exchange token - A grant that requests tokens from the authorization server by providing a ‘subject’ token with access scope authorizing trusted identity propagation to this application. To learn more, see RFC 8693. Authorization server - IAM Identity Center requests tokens. User credentials are never shared directly within these exchanges. Instead, applications use grants to request access tokens from IAM Identity Center. For more information, see RFC 6479. Use cases Connecting to custom applications. Configuring an Amazon Web Services service to make calls to another Amazon Web Services services using JWT tokens.
     putApplicationGrant: function(Client, types.PutApplicationGrantInput): types.PutApplicationGrantOutput, table
+    -- Updates the session configuration for an application in IAM Identity Center. The session configuration determines how users can access an application. This includes whether user background sessions are enabled. User background sessions allow users to start a job on a supported Amazon Web Services managed application without having to remain signed in to an active session while the job runs.
     putApplicationSessionConfiguration: function(Client, types.PutApplicationSessionConfigurationInput): types.PutApplicationSessionConfigurationOutput, table
+    -- Attaches an inline policy to a permission set. If the permission set is already referenced by one or more account assignments, you will need to call ProvisionPermissionSet after this action to apply the corresponding IAM policy updates to all assigned accounts.
     putInlinePolicyToPermissionSet: function(Client, types.PutInlinePolicyToPermissionSetInput): types.PutInlinePolicyToPermissionSetOutput, table
+    -- Attaches an Amazon Web Services managed or customer managed policy to the specified PermissionSet as a permissions boundary.
     putPermissionsBoundaryToPermissionSet: function(Client, types.PutPermissionsBoundaryToPermissionSetInput): types.PutPermissionsBoundaryToPermissionSetOutput, table
+    -- Removes an additional Region from an IAM Identity Center instance. This operation initiates an asynchronous workflow to clean up IAM Identity Center resources in the specified additional Region. The Region status is set to REMOVING and the Region record is deleted when the workflow completes. The request must be made from the primary Region. The target Region cannot be the primary Region, and no other add or remove Region workflows can be in progress. The following actions are related to RemoveRegion: AddRegion DescribeRegion ListRegions
     removeRegion: function(Client, types.RemoveRegionInput): types.RemoveRegionOutput, table
+    -- Associates a set of tags with a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Disassociates a set of tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates application properties.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Update the details for the instance of IAM Identity Center that is owned by the Amazon Web Services account.
     updateInstance: function(Client, types.UpdateInstanceInput): types.UpdateInstanceOutput, table
+    -- Updates the IAM Identity Center identity store attributes that you can use with the IAM Identity Center instance for attributes-based access control (ABAC). When using an external identity provider as an identity source, you can pass attributes through the SAML assertion as an alternative to configuring attributes from the IAM Identity Center identity store. If a SAML assertion passes any of these attributes, IAM Identity Center replaces the attribute value with the value from the IAM Identity Center identity store. For more information about ABAC, see Attribute-Based Access Control in the IAM Identity Center User Guide.
     updateInstanceAccessControlAttributeConfiguration: function(Client, types.UpdateInstanceAccessControlAttributeConfigurationInput): types.UpdateInstanceAccessControlAttributeConfigurationOutput, table
+    -- Updates an existing permission set.
     updatePermissionSet: function(Client, types.UpdatePermissionSetInput): types.UpdatePermissionSetOutput, table
+    -- Updates the name of the trusted token issuer, or the path of a source attribute or destination attribute for a trusted token issuer configuration. Updating this trusted token issuer configuration might cause users to lose access to any applications that are configured to use the trusted token issuer.
     updateTrustedTokenIssuer: function(Client, types.UpdateTrustedTokenIssuerInput): types.UpdateTrustedTokenIssuerOutput, table
 end
 

@@ -3,37 +3,69 @@
 local types = require("billingconductor.types")
 
 local record Client
+    -- Connects an array of account IDs in a consolidated billing family to a predefined billing group. The account IDs must be a part of the consolidated billing family during the current month, and not already associated with another billing group. The maximum number of accounts that can be associated in one call is 30.
     associateAccounts: function(Client, types.AssociateAccountsInput): types.AssociateAccountsOutput, table
+    -- Connects an array of PricingRuleArns to a defined PricingPlan. The maximum number PricingRuleArn that can be associated in one call is 30.
     associatePricingRules: function(Client, types.AssociatePricingRulesInput): types.AssociatePricingRulesOutput, table
+    -- Associates a batch of resources to a percentage custom line item.
     batchAssociateResourcesToCustomLineItem: function(Client, types.BatchAssociateResourcesToCustomLineItemInput): types.BatchAssociateResourcesToCustomLineItemOutput, table
+    -- Disassociates a batch of resources from a percentage custom line item.
     batchDisassociateResourcesFromCustomLineItem: function(Client, types.BatchDisassociateResourcesFromCustomLineItemInput): types.BatchDisassociateResourcesFromCustomLineItemOutput, table
+    -- Creates a billing group that resembles a consolidated billing family that Amazon Web Services charges, based off of the predefined pricing plan computation.
     createBillingGroup: function(Client, types.CreateBillingGroupInput): types.CreateBillingGroupOutput, table
+    -- Creates a custom line item that can be used to create a one-time fixed charge that can be applied to a single billing group for the current or previous billing period. The one-time fixed charge is either a fee or discount.
     createCustomLineItem: function(Client, types.CreateCustomLineItemInput): types.CreateCustomLineItemOutput, table
+    -- Creates a pricing plan that is used for computing Amazon Web Services charges for billing groups.
     createPricingPlan: function(Client, types.CreatePricingPlanInput): types.CreatePricingPlanOutput, table
+    -- Creates a pricing rule can be associated to a pricing plan, or a set of pricing plans.
     createPricingRule: function(Client, types.CreatePricingRuleInput): types.CreatePricingRuleOutput, table
+    -- Deletes a billing group.
     deleteBillingGroup: function(Client, types.DeleteBillingGroupInput): types.DeleteBillingGroupOutput, table
+    -- Deletes the custom line item identified by the given ARN in the current, or previous billing period.
     deleteCustomLineItem: function(Client, types.DeleteCustomLineItemInput): types.DeleteCustomLineItemOutput, table
+    -- Deletes a pricing plan. The pricing plan must not be associated with any billing groups to delete successfully.
     deletePricingPlan: function(Client, types.DeletePricingPlanInput): types.DeletePricingPlanOutput, table
+    -- Deletes the pricing rule that's identified by the input Amazon Resource Name (ARN).
     deletePricingRule: function(Client, types.DeletePricingRuleInput): types.DeletePricingRuleOutput, table
+    -- Removes the specified list of account IDs from the given billing group.
     disassociateAccounts: function(Client, types.DisassociateAccountsInput): types.DisassociateAccountsOutput, table
+    -- Disassociates a list of pricing rules from a pricing plan.
     disassociatePricingRules: function(Client, types.DisassociatePricingRulesInput): types.DisassociatePricingRulesOutput, table
+    -- Retrieves the margin summary report, which includes the Amazon Web Services cost and charged amount (pro forma cost) by Amazon Web Services service for a specific billing group.
     getBillingGroupCostReport: function(Client, types.GetBillingGroupCostReportInput): types.GetBillingGroupCostReportOutput, table
+    -- This is a paginated call to list linked accounts that are linked to the payer account for the specified time period. If no information is provided, the current billing period is used. The response will optionally include the billing group that's associated with the linked account.
     listAccountAssociations: function(Client, types.ListAccountAssociationsInput): types.ListAccountAssociationsOutput, table
+    -- A paginated call to retrieve a summary report of actual Amazon Web Services charges and the calculated Amazon Web Services charges based on the associated pricing plan of a billing group.
     listBillingGroupCostReports: function(Client, types.ListBillingGroupCostReportsInput): types.ListBillingGroupCostReportsOutput, table
+    -- A paginated call to retrieve a list of billing groups for the given billing period. If you don't provide a billing group, the current billing period is used.
     listBillingGroups: function(Client, types.ListBillingGroupsInput): types.ListBillingGroupsOutput, table
+    -- A paginated call to get a list of all custom line items (FFLIs) for the given billing period. If you don't provide a billing period, the current billing period is used.
     listCustomLineItems: function(Client, types.ListCustomLineItemsInput): types.ListCustomLineItemsOutput, table
+    -- A paginated call to get a list of all custom line item versions.
     listCustomLineItemVersions: function(Client, types.ListCustomLineItemVersionsInput): types.ListCustomLineItemVersionsOutput, table
+    -- A paginated call to get pricing plans for the given billing period. If you don't provide a billing period, the current billing period is used.
     listPricingPlans: function(Client, types.ListPricingPlansInput): types.ListPricingPlansOutput, table
+    -- A list of the pricing plans that are associated with a pricing rule.
     listPricingPlansAssociatedWithPricingRule: function(Client, types.ListPricingPlansAssociatedWithPricingRuleInput): types.ListPricingPlansAssociatedWithPricingRuleOutput, table
+    -- Describes a pricing rule that can be associated to a pricing plan, or set of pricing plans.
     listPricingRules: function(Client, types.ListPricingRulesInput): types.ListPricingRulesOutput, table
+    -- Lists the pricing rules that are associated with a pricing plan.
     listPricingRulesAssociatedToPricingPlan: function(Client, types.ListPricingRulesAssociatedToPricingPlanInput): types.ListPricingRulesAssociatedToPricingPlanOutput, table
+    -- List the resources that are associated to a custom line item.
     listResourcesAssociatedToCustomLineItem: function(Client, types.ListResourcesAssociatedToCustomLineItemInput): types.ListResourcesAssociatedToCustomLineItemOutput, table
+    -- A list the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes specified tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- This updates an existing billing group.
     updateBillingGroup: function(Client, types.UpdateBillingGroupInput): types.UpdateBillingGroupOutput, table
+    -- Update an existing custom line item in the current or previous billing period.
     updateCustomLineItem: function(Client, types.UpdateCustomLineItemInput): types.UpdateCustomLineItemOutput, table
+    -- This updates an existing pricing plan.
     updatePricingPlan: function(Client, types.UpdatePricingPlanInput): types.UpdatePricingPlanOutput, table
+    -- Updates an existing pricing rule.
     updatePricingRule: function(Client, types.UpdatePricingRuleInput): types.UpdatePricingRuleOutput, table
 end
 

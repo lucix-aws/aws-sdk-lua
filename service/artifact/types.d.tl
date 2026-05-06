@@ -8,66 +8,91 @@ local record GetAccountSettingsOutput
 end
 
 local record GetReportInput
+    -- Unique resource ID for the report resource.
     reportId: string
+    -- Version for the report resource.
     reportVersion: number
+    -- Unique download token provided by GetTermForReport API.
     termToken: string
 end
 
 local record GetReportOutput
+    -- Presigned S3 url to access the report content.
     documentPresignedUrl: string
 end
 
 local record GetReportMetadataInput
+    -- Unique resource ID for the report resource.
     reportId: string
+    -- Version for the report resource.
     reportVersion: number
 end
 
 local record GetReportMetadataOutput
+    -- Report resource detail.
     reportDetails: ReportDetail
 end
 
 local record GetTermForReportInput
+    -- Unique resource ID for the report resource.
     reportId: string
+    -- Version for the report resource.
     reportVersion: number
 end
 
 local record GetTermForReportOutput
+    -- Presigned S3 url to access the term content.
     documentPresignedUrl: string
+    -- Unique token representing this request event.
     termToken: string
 end
 
 local record ListCustomerAgreementsInput
+    -- Maximum number of resources to return in the paginated response.
     maxResults: number
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record ListCustomerAgreementsOutput
+    -- List of customer-agreement resources.
     customerAgreements: {CustomerAgreementSummary}
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record ListReportsInput
+    -- Maximum number of resources to return in the paginated response.
     maxResults: number
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record ListReportsOutput
+    -- List of report resources.
     reports: {ReportSummary}
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record ListReportVersionsInput
+    -- Unique resource ID for the report resource.
     reportId: string
+    -- Maximum number of resources to return in the paginated response.
     maxResults: number
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record ListReportVersionsOutput
+    -- List of report resources.
     reports: {ReportSummary}
+    -- Pagination token to request the next page of resources.
     nextToken: string
 end
 
 local record PutAccountSettingsInput
+    -- Desired notification subscription status.
     notificationSubscriptionStatus: string
 end
 
@@ -75,301 +100,449 @@ local record PutAccountSettingsOutput
     accountSettings: AccountSettings
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- Request to create/modify content would result in a conflict.
 local record ConflictException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- Request to create/modify content would result in a conflict.
 local record ConflictException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- Request to create/modify content would result in a conflict.
 local record ConflictException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 
+-- User does not have sufficient access to perform this action.
 local record AccessDeniedException
     message: string
 end
 
+-- Request to create/modify content would result in a conflict.
 local record ConflictException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- An unknown server exception has occurred.
 local record InternalServerException
     message: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request references a resource which does not exist.
 local record ResourceNotFoundException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
 end
 
+-- Request would cause a service quota to be exceeded.
 local record ServiceQuotaExceededException
     message: string
+    -- Identifier of the affected resource.
     resourceId: string
+    -- Type of the affected resource.
     resourceType: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
 end
 
+-- Request was denied due to request throttling.
 local record ThrottlingException
     message: string
+    -- Code for the affected service.
     serviceCode: string
+    -- Code for the affected quota.
     quotaCode: string
+    -- Number of seconds in which the caller can retry the request.
     retryAfterSeconds: number
 end
 
+-- Request fails to satisfy the constraints specified by an AWS service.
 local record ValidationException
     message: string
+    -- Reason the request failed validation.
     reason: string
+    -- The field that caused the error, if applicable.
     fieldList: {ValidationExceptionField}
 end
 

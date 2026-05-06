@@ -3,38 +3,96 @@
 local types = require("applicationinsights.types")
 
 local record Client
+    -- Adds a workload to a component. Each component can have at most five workloads.
     addWorkload: function(Client, types.AddWorkloadInput): types.AddWorkloadOutput, table
+    -- Adds an application that is created from a resource group.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates a custom component by grouping similar standalone instances to monitor.
     createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    -- Adds an log pattern to a LogPatternSet.
     createLogPattern: function(Client, types.CreateLogPatternInput): types.CreateLogPatternOutput, table
+    -- Removes the specified application from monitoring. Does not delete the
+    -- application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Ungroups a custom component. When you ungroup custom components, all applicable monitors
+    -- that are set up for the component are removed and the instances revert to their standalone
+    -- status.
     deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    -- Removes the specified log pattern from a LogPatternSet.
     deleteLogPattern: function(Client, types.DeleteLogPatternInput): types.DeleteLogPatternOutput, table
+    -- Describes the application.
     describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    -- Describes a component and lists the resources that are grouped together in a
+    -- component.
     describeComponent: function(Client, types.DescribeComponentInput): types.DescribeComponentOutput, table
+    -- Describes the monitoring configuration of the component.
     describeComponentConfiguration: function(Client, types.DescribeComponentConfigurationInput): types.DescribeComponentConfigurationOutput, table
+    -- Describes the recommended monitoring configuration of the component.
     describeComponentConfigurationRecommendation: function(Client, types.DescribeComponentConfigurationRecommendationInput): types.DescribeComponentConfigurationRecommendationOutput, table
+    -- Describe a specific log pattern from a LogPatternSet.
     describeLogPattern: function(Client, types.DescribeLogPatternInput): types.DescribeLogPatternOutput, table
+    -- Describes an anomaly or error with the application.
     describeObservation: function(Client, types.DescribeObservationInput): types.DescribeObservationOutput, table
+    -- Describes an application problem.
     describeProblem: function(Client, types.DescribeProblemInput): types.DescribeProblemOutput, table
+    -- Describes the anomalies or errors associated with the problem.
     describeProblemObservations: function(Client, types.DescribeProblemObservationsInput): types.DescribeProblemObservationsOutput, table
+    -- Describes a workload and its configuration.
     describeWorkload: function(Client, types.DescribeWorkloadInput): types.DescribeWorkloadOutput, table
+    -- Lists the IDs of the applications that you are monitoring.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists the auto-grouped, standalone, and custom components of the application.
     listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    -- Lists the INFO, WARN, and ERROR events for periodic configuration updates performed by
+    -- Application Insights. Examples of events represented are:
+    -- INFO: creating a new alarm or updating an alarm threshold.
+    -- WARN: alarm not created due to insufficient data points used to predict
+    -- thresholds.
+    -- ERROR: alarm not created due to permission errors or exceeding quotas.
     listConfigurationHistory: function(Client, types.ListConfigurationHistoryInput): types.ListConfigurationHistoryOutput, table
+    -- Lists the log patterns in the specific log LogPatternSet.
     listLogPatterns: function(Client, types.ListLogPatternsInput): types.ListLogPatternsOutput, table
+    -- Lists the log pattern sets in the specific application.
     listLogPatternSets: function(Client, types.ListLogPatternSetsInput): types.ListLogPatternSetsOutput, table
+    -- Lists the problems with your application.
     listProblems: function(Client, types.ListProblemsInput): types.ListProblemsOutput, table
+    -- Retrieve a list of the tags (keys and values) that are associated with a specified
+    -- application. A tag is a label that you optionally define and associate
+    -- with an application. Each tag consists of a required tag key and an
+    -- optional associated tag value. A tag key is a general label that acts
+    -- as a category for more specific tag values. A tag value acts as a descriptor within a tag
+    -- key.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the workloads that are configured on a given component.
     listWorkloads: function(Client, types.ListWorkloadsInput): types.ListWorkloadsOutput, table
+    -- Remove workload from a component.
     removeWorkload: function(Client, types.RemoveWorkloadInput): types.RemoveWorkloadOutput, table
+    -- Add one or more tags (keys and values) to a specified application. A
+    -- tag is a label that you optionally define and associate with an
+    -- application. Tags can help you categorize and manage application in different ways, such as
+    -- by purpose, owner, environment, or other criteria.
+    -- Each tag consists of a required tag key and an associated
+    -- tag value, both of which you define. A tag key is a general label
+    -- that acts as a category for more specific tag values. A tag value acts as a descriptor
+    -- within a tag key.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove one or more tags (keys and values) from a specified application.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the application.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Updates the custom component name and/or the list of resources that make up the
+    -- component.
     updateComponent: function(Client, types.UpdateComponentInput): types.UpdateComponentOutput, table
+    -- Updates the monitoring configurations for the component. The configuration input
+    -- parameter is an escaped JSON of the configuration and should match the schema of what is
+    -- returned by DescribeComponentConfigurationRecommendation.
     updateComponentConfiguration: function(Client, types.UpdateComponentConfigurationInput): types.UpdateComponentConfigurationOutput, table
+    -- Adds a log pattern to a LogPatternSet.
     updateLogPattern: function(Client, types.UpdateLogPatternInput): types.UpdateLogPatternOutput, table
+    -- Updates the visibility of the problem or specifies the problem as
+    -- RESOLVED.
     updateProblem: function(Client, types.UpdateProblemInput): types.UpdateProblemOutput, table
+    -- Adds a workload to a component. Each component can have at most five workloads.
     updateWorkload: function(Client, types.UpdateWorkloadInput): types.UpdateWorkloadOutput, table
 end
 

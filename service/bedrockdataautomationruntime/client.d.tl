@@ -3,11 +3,17 @@
 local types = require("bedrockdataautomationruntime.types")
 
 local record Client
+    -- API used to get data automation status.
     getDataAutomationStatus: function(Client, types.GetDataAutomationStatusInput): types.GetDataAutomationStatusOutput, table
+    -- Sync API: Invoke data automation.
     invokeDataAutomation: function(Client, types.InvokeDataAutomationInput): types.InvokeDataAutomationOutput, table
+    -- Async API: Invoke data automation.
     invokeDataAutomationAsync: function(Client, types.InvokeDataAutomationAsyncInput): types.InvokeDataAutomationAsyncOutput, table
+    -- List tags for an Amazon Bedrock Data Automation resource
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Tag an Amazon Bedrock Data Automation resource
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untag an Amazon Bedrock Data Automation resource
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

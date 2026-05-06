@@ -3,97 +3,254 @@
 local types = require("workmail.types")
 
 local record Client
+    -- Adds a member (user or group) to the resource's set of delegates.
     associateDelegateToResource: function(Client, types.AssociateDelegateToResourceInput): types.AssociateDelegateToResourceOutput, table
+    -- Adds a member (user or group) to the group's set.
     associateMemberToGroup: function(Client, types.AssociateMemberToGroupInput): types.AssociateMemberToGroupOutput, table
+    -- Assumes an impersonation role for the given WorkMail organization. This method returns an
+    -- authentication token you can use to make impersonated calls.
     assumeImpersonationRole: function(Client, types.AssumeImpersonationRoleInput): types.AssumeImpersonationRoleOutput, table
+    -- Cancels a mailbox export job.
+    -- If the mailbox export job is near completion, it might not be possible to cancel
+    -- it.
     cancelMailboxExportJob: function(Client, types.CancelMailboxExportJobInput): types.CancelMailboxExportJobOutput, table
+    -- Adds an alias to the set of a given member (user or group) of WorkMail.
     createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    -- Creates an AvailabilityConfiguration for the given WorkMail organization and domain.
     createAvailabilityConfiguration: function(Client, types.CreateAvailabilityConfigurationInput): types.CreateAvailabilityConfigurationOutput, table
+    -- Creates a group that can be used in WorkMail by calling the RegisterToWorkMail operation.
     createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    -- Creates the WorkMail application in IAM Identity Center that can be used later in the WorkMail - IdC integration. For more information, see PutIdentityProviderConfiguration. This action does not affect the authentication settings for any WorkMail organizations.
     createIdentityCenterApplication: function(Client, types.CreateIdentityCenterApplicationInput): types.CreateIdentityCenterApplicationOutput, table
+    -- Creates an impersonation role for the given WorkMail organization.
+    -- Idempotency ensures that an API request completes no more than one
+    -- time. With an idempotent request, if the original request completes successfully, any
+    -- subsequent retries also complete successfully without performing any further
+    -- actions.
     createImpersonationRole: function(Client, types.CreateImpersonationRoleInput): types.CreateImpersonationRoleOutput, table
+    -- Creates a new mobile device access rule for the specified WorkMail organization.
     createMobileDeviceAccessRule: function(Client, types.CreateMobileDeviceAccessRuleInput): types.CreateMobileDeviceAccessRuleOutput, table
+    -- Creates a new WorkMail organization. Optionally, you can choose to associate an existing AWS Directory Service directory with your organization. If an AWS Directory Service directory ID is specified, the organization alias must match the directory alias. If you choose not to associate an existing directory with your organization, then we create a new WorkMail directory for you. For more information, see Adding an organization in the WorkMail Administrator Guide.
+    -- You can associate multiple email domains with an organization, then choose your
+    -- default email domain from the WorkMail console. You can also associate a domain that is managed
+    -- in an Amazon Route 53 public hosted zone. For more information, see Adding a
+    -- domain and Choosing the default domain
+    -- in the WorkMail Administrator Guide.
+    -- Optionally, you can use a customer managed key from AWS Key Management Service (AWS
+    -- KMS) to encrypt email for your organization. If you don't associate an AWS KMS key, WorkMail
+    -- creates a default, AWS managed key for you.
     createOrganization: function(Client, types.CreateOrganizationInput): types.CreateOrganizationOutput, table
+    -- Creates a new WorkMail resource.
     createResource: function(Client, types.CreateResourceInput): types.CreateResourceOutput, table
+    -- Creates a user who can be used in WorkMail by calling the RegisterToWorkMail operation.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Deletes an access control rule for the specified WorkMail organization.
+    -- Deleting already deleted and non-existing rules does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.
     deleteAccessControlRule: function(Client, types.DeleteAccessControlRuleInput): types.DeleteAccessControlRuleOutput, table
+    -- Remove one or more specified aliases from a set of aliases for a given
+    -- user.
     deleteAlias: function(Client, types.DeleteAliasInput): types.DeleteAliasOutput, table
+    -- Deletes the AvailabilityConfiguration for the given WorkMail organization and domain.
     deleteAvailabilityConfiguration: function(Client, types.DeleteAvailabilityConfigurationInput): types.DeleteAvailabilityConfigurationOutput, table
+    -- Deletes the email monitoring configuration for a specified organization.
     deleteEmailMonitoringConfiguration: function(Client, types.DeleteEmailMonitoringConfigurationInput): types.DeleteEmailMonitoringConfigurationOutput, table
+    -- Deletes a group from WorkMail.
     deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    -- Deletes the IAM Identity Center application from WorkMail. This action does not affect the authentication settings for any WorkMail organizations.
     deleteIdentityCenterApplication: function(Client, types.DeleteIdentityCenterApplicationInput): types.DeleteIdentityCenterApplicationOutput, table
+    -- Disables the integration between IdC and WorkMail. Authentication will continue with the directory as it was before the IdC integration. You might have to reset your directory passwords and reconfigure your desktop and mobile email clients.
     deleteIdentityProviderConfiguration: function(Client, types.DeleteIdentityProviderConfigurationInput): types.DeleteIdentityProviderConfigurationOutput, table
+    -- Deletes an impersonation role for the given WorkMail organization.
     deleteImpersonationRole: function(Client, types.DeleteImpersonationRoleInput): types.DeleteImpersonationRoleOutput, table
+    -- Deletes permissions granted to a member (user or group).
     deleteMailboxPermissions: function(Client, types.DeleteMailboxPermissionsInput): types.DeleteMailboxPermissionsOutput, table
+    -- Deletes the mobile device access override for the given WorkMail organization, user, and device.
+    -- Deleting already deleted and non-existing overrides does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.
     deleteMobileDeviceAccessOverride: function(Client, types.DeleteMobileDeviceAccessOverrideInput): types.DeleteMobileDeviceAccessOverrideOutput, table
+    -- Deletes a mobile device access rule for the specified WorkMail organization.
+    -- Deleting already deleted and non-existing rules does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.
     deleteMobileDeviceAccessRule: function(Client, types.DeleteMobileDeviceAccessRuleInput): types.DeleteMobileDeviceAccessRuleOutput, table
+    -- Deletes an WorkMail organization and all underlying AWS resources managed by WorkMail as part of the organization. You can choose whether to delete the associated directory. For more information, see Removing an organization in the WorkMail Administrator Guide.
     deleteOrganization: function(Client, types.DeleteOrganizationInput): types.DeleteOrganizationOutput, table
+    -- Deletes the Personal Access Token from the provided WorkMail Organization.
     deletePersonalAccessToken: function(Client, types.DeletePersonalAccessTokenInput): types.DeletePersonalAccessTokenOutput, table
+    -- Deletes the specified resource.
     deleteResource: function(Client, types.DeleteResourceInput): types.DeleteResourceOutput, table
+    -- Deletes the specified retention policy from the specified organization.
     deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput): types.DeleteRetentionPolicyOutput, table
+    -- Deletes a user from WorkMail and all subsequent systems. Before you can delete a
+    -- user, the user state must be DISABLED. Use the DescribeUser
+    -- action to confirm the user state.
+    -- Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for
+    -- 30 days before they are permanently removed.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Mark a user, group, or resource as no longer used in WorkMail. This action
+    -- disassociates the mailbox and schedules it for clean-up. WorkMail keeps mailboxes for 30 days
+    -- before they are permanently removed. The functionality in the console is
+    -- Disable.
     deregisterFromWorkMail: function(Client, types.DeregisterFromWorkMailInput): types.DeregisterFromWorkMailOutput, table
+    -- Removes a domain from WorkMail, stops email routing to WorkMail, and removes the authorization allowing WorkMail use. SES keeps the domain because other applications may use it. You must first
+    -- remove any email address used by WorkMail entities before you remove the domain.
     deregisterMailDomain: function(Client, types.DeregisterMailDomainInput): types.DeregisterMailDomainOutput, table
+    -- Describes the current email monitoring configuration for a specified organization.
     describeEmailMonitoringConfiguration: function(Client, types.DescribeEmailMonitoringConfigurationInput): types.DescribeEmailMonitoringConfigurationOutput, table
+    -- Returns basic details about an entity in WorkMail.
     describeEntity: function(Client, types.DescribeEntityInput): types.DescribeEntityOutput, table
+    -- Returns the data available for the group.
     describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    -- Returns detailed information on the current IdC setup for the WorkMail organization.
     describeIdentityProviderConfiguration: function(Client, types.DescribeIdentityProviderConfigurationInput): types.DescribeIdentityProviderConfigurationOutput, table
+    -- Lists the settings in a DMARC policy for a specified organization.
     describeInboundDmarcSettings: function(Client, types.DescribeInboundDmarcSettingsInput): types.DescribeInboundDmarcSettingsOutput, table
+    -- Describes the current status of a mailbox export job.
     describeMailboxExportJob: function(Client, types.DescribeMailboxExportJobInput): types.DescribeMailboxExportJobOutput, table
+    -- Provides more information regarding a given organization based on its
+    -- identifier.
     describeOrganization: function(Client, types.DescribeOrganizationInput): types.DescribeOrganizationOutput, table
+    -- Returns the data available for the resource.
     describeResource: function(Client, types.DescribeResourceInput): types.DescribeResourceOutput, table
+    -- Provides information regarding the user.
     describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    -- Removes a member from the resource's set of delegates.
     disassociateDelegateFromResource: function(Client, types.DisassociateDelegateFromResourceInput): types.DisassociateDelegateFromResourceOutput, table
+    -- Removes a member from a group.
     disassociateMemberFromGroup: function(Client, types.DisassociateMemberFromGroupInput): types.DisassociateMemberFromGroupOutput, table
+    -- Gets the effects of an organization's access control rules as they apply to a
+    -- specified IPv4 address, access protocol action, and user ID or impersonation role ID. You must provide either the user ID or impersonation role ID. Impersonation role ID can only be used with Action EWS.
     getAccessControlEffect: function(Client, types.GetAccessControlEffectInput): types.GetAccessControlEffectOutput, table
+    -- Gets the default retention policy details for the specified organization.
     getDefaultRetentionPolicy: function(Client, types.GetDefaultRetentionPolicyInput): types.GetDefaultRetentionPolicyOutput, table
+    -- Gets the impersonation role details for the given WorkMail organization.
     getImpersonationRole: function(Client, types.GetImpersonationRoleInput): types.GetImpersonationRoleOutput, table
+    -- Tests whether the given impersonation role can impersonate a target user.
     getImpersonationRoleEffect: function(Client, types.GetImpersonationRoleEffectInput): types.GetImpersonationRoleEffectOutput, table
+    -- Requests a user's mailbox details for a specified organization and user.
     getMailboxDetails: function(Client, types.GetMailboxDetailsInput): types.GetMailboxDetailsOutput, table
+    -- Gets details for a mail domain, including domain records required to configure your domain with recommended security.
     getMailDomain: function(Client, types.GetMailDomainInput): types.GetMailDomainOutput, table
+    -- Simulates the effect of the mobile device access rules for the given attributes of a sample access event. Use this method to test the effects of the current set of mobile device access
+    -- rules for the WorkMail organization for a particular user's attributes.
     getMobileDeviceAccessEffect: function(Client, types.GetMobileDeviceAccessEffectInput): types.GetMobileDeviceAccessEffectOutput, table
+    -- Gets the mobile device access override for the given WorkMail organization, user, and device.
     getMobileDeviceAccessOverride: function(Client, types.GetMobileDeviceAccessOverrideInput): types.GetMobileDeviceAccessOverrideOutput, table
+    -- Requests details of a specific Personal Access Token within the WorkMail organization.
     getPersonalAccessTokenMetadata: function(Client, types.GetPersonalAccessTokenMetadataInput): types.GetPersonalAccessTokenMetadataOutput, table
+    -- Lists the access control rules for the specified organization.
     listAccessControlRules: function(Client, types.ListAccessControlRulesInput): types.ListAccessControlRulesOutput, table
+    -- Creates a paginated call to list the aliases associated with a given
+    -- entity.
     listAliases: function(Client, types.ListAliasesInput): types.ListAliasesOutput, table
+    -- List all the AvailabilityConfiguration's for the given WorkMail organization.
     listAvailabilityConfigurations: function(Client, types.ListAvailabilityConfigurationsInput): types.ListAvailabilityConfigurationsOutput, table
+    -- Returns an overview of the members of a group. Users and groups can be members of a
+    -- group.
     listGroupMembers: function(Client, types.ListGroupMembersInput): types.ListGroupMembersOutput, table
+    -- Returns summaries of the organization's groups.
     listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    -- Returns all the groups to which an entity belongs.
     listGroupsForEntity: function(Client, types.ListGroupsForEntityInput): types.ListGroupsForEntityOutput, table
+    -- Lists all the impersonation roles for the given WorkMail organization.
     listImpersonationRoles: function(Client, types.ListImpersonationRolesInput): types.ListImpersonationRolesOutput, table
+    -- Lists the mailbox export jobs started for the specified organization within the last
+    -- seven days.
     listMailboxExportJobs: function(Client, types.ListMailboxExportJobsInput): types.ListMailboxExportJobsOutput, table
+    -- Lists the mailbox permissions associated with a user, group, or resource
+    -- mailbox.
     listMailboxPermissions: function(Client, types.ListMailboxPermissionsInput): types.ListMailboxPermissionsOutput, table
+    -- Lists the mail domains in a given WorkMail organization.
     listMailDomains: function(Client, types.ListMailDomainsInput): types.ListMailDomainsOutput, table
+    -- Lists all the mobile device access overrides for any given combination of WorkMail organization, user, or device.
     listMobileDeviceAccessOverrides: function(Client, types.ListMobileDeviceAccessOverridesInput): types.ListMobileDeviceAccessOverridesOutput, table
+    -- Lists the mobile device access rules for the specified WorkMail organization.
     listMobileDeviceAccessRules: function(Client, types.ListMobileDeviceAccessRulesInput): types.ListMobileDeviceAccessRulesOutput, table
+    -- Returns summaries of the customer's organizations.
     listOrganizations: function(Client, types.ListOrganizationsInput): types.ListOrganizationsOutput, table
+    -- Returns a summary of your Personal Access Tokens.
     listPersonalAccessTokens: function(Client, types.ListPersonalAccessTokensInput): types.ListPersonalAccessTokensOutput, table
+    -- Lists the delegates associated with a resource. Users and groups can be resource
+    -- delegates and answer requests on behalf of the resource.
     listResourceDelegates: function(Client, types.ListResourceDelegatesInput): types.ListResourceDelegatesOutput, table
+    -- Returns summaries of the organization's resources.
     listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    -- Lists the tags applied to an WorkMail organization resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns summaries of the organization's users.
     listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    -- Adds a new access control rule for the specified organization. The rule allows or
+    -- denies access to the organization for the specified IPv4 addresses, access protocol
+    -- actions, user IDs and impersonation IDs. Adding a new rule with the same name as an existing rule replaces
+    -- the older rule.
     putAccessControlRule: function(Client, types.PutAccessControlRuleInput): types.PutAccessControlRuleOutput, table
+    -- Creates or updates the email monitoring configuration for a specified organization.
     putEmailMonitoringConfiguration: function(Client, types.PutEmailMonitoringConfigurationInput): types.PutEmailMonitoringConfigurationOutput, table
+    -- Enables integration between IAM Identity Center (IdC) and WorkMail to proxy authentication requests for mailbox users. You can connect your IdC directory or your external directory to WorkMail through
+    -- IdC and manage access to WorkMail mailboxes in a single place. For enhanced protection, you could enable Multifactor Authentication (MFA) and Personal Access Tokens.
     putIdentityProviderConfiguration: function(Client, types.PutIdentityProviderConfigurationInput): types.PutIdentityProviderConfigurationOutput, table
+    -- Enables or disables a DMARC policy for a given organization.
     putInboundDmarcSettings: function(Client, types.PutInboundDmarcSettingsInput): types.PutInboundDmarcSettingsOutput, table
+    -- Sets permissions for a user, group, or resource. This replaces any pre-existing
+    -- permissions.
     putMailboxPermissions: function(Client, types.PutMailboxPermissionsInput): types.PutMailboxPermissionsOutput, table
+    -- Creates or updates a mobile device access override for the given WorkMail organization, user, and device.
     putMobileDeviceAccessOverride: function(Client, types.PutMobileDeviceAccessOverrideInput): types.PutMobileDeviceAccessOverrideOutput, table
+    -- Puts a retention policy to the specified organization.
     putRetentionPolicy: function(Client, types.PutRetentionPolicyInput): types.PutRetentionPolicyOutput, table
+    -- Registers a new domain in WorkMail and SES, and configures it for use by WorkMail. Emails received by SES for this domain are routed to the specified WorkMail organization, and WorkMail has
+    -- permanent permission to use the specified domain for sending your users' emails.
     registerMailDomain: function(Client, types.RegisterMailDomainInput): types.RegisterMailDomainOutput, table
+    -- Registers an existing and disabled user, group, or resource for WorkMail use by
+    -- associating a mailbox and calendaring capabilities. It performs no change if the user,
+    -- group, or resource is enabled and fails if the user, group, or resource is deleted. This
+    -- operation results in the accumulation of costs. For more information, see Pricing. The equivalent console
+    -- functionality for this operation is Enable.
+    -- Users can either be created by calling the CreateUser API operation
+    -- or they can be synchronized from your directory. For more information, see DeregisterFromWorkMail.
     registerToWorkMail: function(Client, types.RegisterToWorkMailInput): types.RegisterToWorkMailOutput, table
+    -- Allows the administrator to reset the password for a user.
     resetPassword: function(Client, types.ResetPasswordInput): types.ResetPasswordOutput, table
+    -- Starts a mailbox export job to export MIME-format email messages and calendar items
+    -- from the specified mailbox to the specified Amazon Simple Storage Service (Amazon S3)
+    -- bucket. For more information, see Exporting mailbox content in
+    -- the WorkMail Administrator Guide.
     startMailboxExportJob: function(Client, types.StartMailboxExportJobInput): types.StartMailboxExportJobOutput, table
+    -- Applies the specified tags to the specified WorkMailorganization
+    -- resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Performs a test on an availability provider to ensure that access is allowed. For EWS, it verifies the provided credentials can be used to successfully log in. For Lambda, it verifies that the Lambda function can be invoked and that the resource access
+    -- policy was configured to deny anonymous access. An anonymous invocation is one done without providing either a SourceArn or SourceAccount header.
+    -- The request must contain either one provider definition (EwsProvider or
+    -- LambdaProvider) or the DomainName parameter. If the
+    -- DomainName parameter is provided, the configuration stored under the
+    -- DomainName will be tested.
     testAvailabilityConfiguration: function(Client, types.TestAvailabilityConfigurationInput): types.TestAvailabilityConfigurationOutput, table
+    -- Untags the specified tags from the specified WorkMail organization
+    -- resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing AvailabilityConfiguration for the given WorkMail
+    -- organization and domain.
     updateAvailabilityConfiguration: function(Client, types.UpdateAvailabilityConfigurationInput): types.UpdateAvailabilityConfigurationOutput, table
+    -- Updates the default mail domain for an organization. The default mail domain is used by the WorkMail AWS Console to suggest an email address when enabling a mail user. You can only have one default domain.
     updateDefaultMailDomain: function(Client, types.UpdateDefaultMailDomainInput): types.UpdateDefaultMailDomainOutput, table
+    -- Updates attributes in a group.
     updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    -- Updates an impersonation role for the given WorkMail organization.
     updateImpersonationRole: function(Client, types.UpdateImpersonationRoleInput): types.UpdateImpersonationRoleOutput, table
+    -- Updates a user's current mailbox quota for a specified organization and
+    -- user.
     updateMailboxQuota: function(Client, types.UpdateMailboxQuotaInput): types.UpdateMailboxQuotaOutput, table
+    -- Updates a mobile device access rule for the specified WorkMail organization.
     updateMobileDeviceAccessRule: function(Client, types.UpdateMobileDeviceAccessRuleInput): types.UpdateMobileDeviceAccessRuleOutput, table
+    -- Updates the primary email for a user, group, or resource. The current email is moved
+    -- into the list of aliases (or swapped between an existing alias and the current primary
+    -- email), and the email provided in the input is promoted as the primary.
     updatePrimaryEmailAddress: function(Client, types.UpdatePrimaryEmailAddressInput): types.UpdatePrimaryEmailAddressOutput, table
+    -- Updates data for the resource. To have the latest information, it must be preceded by
+    -- a DescribeResource call. The dataset in the request should be the one
+    -- expected when performing another DescribeResource call.
     updateResource: function(Client, types.UpdateResourceInput): types.UpdateResourceOutput, table
+    -- Updates data for the user. To have the latest information, it must be preceded by a
+    -- DescribeUser call. The dataset in the request should be the one
+    -- expected when performing another DescribeUser call.
     updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
 end
 

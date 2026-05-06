@@ -3,41 +3,77 @@
 local types = require("bcmpricingcalculator.types")
 
 local record Client
+    -- Create Compute Savings Plans, EC2 Instance Savings Plans, or EC2 Reserved Instances commitments that you want to model in a Bill Scenario. The BatchCreateBillScenarioCommitmentModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:CreateBillScenarioCommitmentModification in your policies.
     batchCreateBillScenarioCommitmentModification: function(Client, types.BatchCreateBillScenarioCommitmentModificationInput): types.BatchCreateBillScenarioCommitmentModificationOutput, table
+    -- Create Amazon Web Services service usage that you want to model in a Bill Scenario. The BatchCreateBillScenarioUsageModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:CreateBillScenarioUsageModification in your policies.
     batchCreateBillScenarioUsageModification: function(Client, types.BatchCreateBillScenarioUsageModificationInput): types.BatchCreateBillScenarioUsageModificationOutput, table
+    -- Create Amazon Web Services service usage that you want to model in a Workload Estimate. The BatchCreateWorkloadEstimateUsage operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:CreateWorkloadEstimateUsage in your policies.
     batchCreateWorkloadEstimateUsage: function(Client, types.BatchCreateWorkloadEstimateUsageInput): types.BatchCreateWorkloadEstimateUsageOutput, table
+    -- Delete commitment that you have created in a Bill Scenario. You can only delete a commitment that you had added and cannot model deletion (or removal) of a existing commitment. If you want model deletion of an existing commitment, see the negate BillScenarioCommitmentModificationAction of BatchCreateBillScenarioCommitmentModification operation. The BatchDeleteBillScenarioCommitmentModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:DeleteBillScenarioCommitmentModification in your policies.
     batchDeleteBillScenarioCommitmentModification: function(Client, types.BatchDeleteBillScenarioCommitmentModificationInput): types.BatchDeleteBillScenarioCommitmentModificationOutput, table
+    -- Delete usage that you have created in a Bill Scenario. You can only delete usage that you had added and cannot model deletion (or removal) of a existing usage. If you want model removal of an existing usage, see BatchUpdateBillScenarioUsageModification. The BatchDeleteBillScenarioUsageModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:DeleteBillScenarioUsageModification in your policies.
     batchDeleteBillScenarioUsageModification: function(Client, types.BatchDeleteBillScenarioUsageModificationInput): types.BatchDeleteBillScenarioUsageModificationOutput, table
+    -- Delete usage that you have created in a Workload estimate. You can only delete usage that you had added and cannot model deletion (or removal) of a existing usage. If you want model removal of an existing usage, see BatchUpdateWorkloadEstimateUsage. The BatchDeleteWorkloadEstimateUsage operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:DeleteWorkloadEstimateUsage in your policies.
     batchDeleteWorkloadEstimateUsage: function(Client, types.BatchDeleteWorkloadEstimateUsageInput): types.BatchDeleteWorkloadEstimateUsageOutput, table
+    -- Update a newly added or existing commitment. You can update the commitment group based on a commitment ID and a Bill scenario ID. The BatchUpdateBillScenarioCommitmentModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:UpdateBillScenarioCommitmentModification in your policies.
     batchUpdateBillScenarioCommitmentModification: function(Client, types.BatchUpdateBillScenarioCommitmentModificationInput): types.BatchUpdateBillScenarioCommitmentModificationOutput, table
+    -- Update a newly added or existing usage lines. You can update the usage amounts, usage hour, and usage group based on a usage ID and a Bill scenario ID. The BatchUpdateBillScenarioUsageModification operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:UpdateBillScenarioUsageModification in your policies.
     batchUpdateBillScenarioUsageModification: function(Client, types.BatchUpdateBillScenarioUsageModificationInput): types.BatchUpdateBillScenarioUsageModificationOutput, table
+    -- Update a newly added or existing usage lines. You can update the usage amounts and usage group based on a usage ID and a Workload estimate ID. The BatchUpdateWorkloadEstimateUsage operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission bcm-pricing-calculator:UpdateWorkloadEstimateUsage in your policies.
     batchUpdateWorkloadEstimateUsage: function(Client, types.BatchUpdateWorkloadEstimateUsageInput): types.BatchUpdateWorkloadEstimateUsageOutput, table
+    -- Create a Bill estimate from a Bill scenario. In the Bill scenario you can model usage addition, usage changes, and usage removal. You can also model commitment addition and commitment removal. After all changes in a Bill scenario is made satisfactorily, you can call this API with a Bill scenario ID to generate the Bill estimate. Bill estimate calculates the pre-tax cost for your consolidated billing family, incorporating all modeled usage and commitments alongside existing usage and commitments from your most recent completed anniversary bill, with any applicable discounts applied.
     createBillEstimate: function(Client, types.CreateBillEstimateInput): types.CreateBillEstimateOutput, table
+    -- Creates a new bill scenario to model potential changes to Amazon Web Services usage and costs.
     createBillScenario: function(Client, types.CreateBillScenarioInput): types.CreateBillScenarioOutput, table
+    -- Creates a new workload estimate to model costs for a specific workload.
     createWorkloadEstimate: function(Client, types.CreateWorkloadEstimateInput): types.CreateWorkloadEstimateOutput, table
+    -- Deletes an existing bill estimate.
     deleteBillEstimate: function(Client, types.DeleteBillEstimateInput): types.DeleteBillEstimateOutput, table
+    -- Deletes an existing bill scenario.
     deleteBillScenario: function(Client, types.DeleteBillScenarioInput): types.DeleteBillScenarioOutput, table
+    -- Deletes an existing workload estimate.
     deleteWorkloadEstimate: function(Client, types.DeleteWorkloadEstimateInput): types.DeleteWorkloadEstimateOutput, table
+    -- Retrieves details of a specific bill estimate.
     getBillEstimate: function(Client, types.GetBillEstimateInput): types.GetBillEstimateOutput, table
+    -- Retrieves details of a specific bill scenario.
     getBillScenario: function(Client, types.GetBillScenarioInput): types.GetBillScenarioOutput, table
+    -- Retrieves the current preferences for Pricing Calculator.
     getPreferences: function(Client, types.GetPreferencesInput): types.GetPreferencesOutput, table
+    -- Retrieves details of a specific workload estimate.
     getWorkloadEstimate: function(Client, types.GetWorkloadEstimateInput): types.GetWorkloadEstimateOutput, table
+    -- Lists the commitments associated with a bill estimate.
     listBillEstimateCommitments: function(Client, types.ListBillEstimateCommitmentsInput): types.ListBillEstimateCommitmentsOutput, table
+    -- Lists the input commitment modifications associated with a bill estimate.
     listBillEstimateInputCommitmentModifications: function(Client, types.ListBillEstimateInputCommitmentModificationsInput): types.ListBillEstimateInputCommitmentModificationsOutput, table
+    -- Lists the input usage modifications associated with a bill estimate.
     listBillEstimateInputUsageModifications: function(Client, types.ListBillEstimateInputUsageModificationsInput): types.ListBillEstimateInputUsageModificationsOutput, table
+    -- Lists the line items associated with a bill estimate.
     listBillEstimateLineItems: function(Client, types.ListBillEstimateLineItemsInput): types.ListBillEstimateLineItemsOutput, table
+    -- Lists all bill estimates for the account.
     listBillEstimates: function(Client, types.ListBillEstimatesInput): types.ListBillEstimatesOutput, table
+    -- Lists the commitment modifications associated with a bill scenario.
     listBillScenarioCommitmentModifications: function(Client, types.ListBillScenarioCommitmentModificationsInput): types.ListBillScenarioCommitmentModificationsOutput, table
+    -- Lists all bill scenarios for the account.
     listBillScenarios: function(Client, types.ListBillScenariosInput): types.ListBillScenariosOutput, table
+    -- Lists the usage modifications associated with a bill scenario.
     listBillScenarioUsageModifications: function(Client, types.ListBillScenarioUsageModificationsInput): types.ListBillScenarioUsageModificationsOutput, table
+    -- Lists all tags associated with a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists all workload estimates for the account.
     listWorkloadEstimates: function(Client, types.ListWorkloadEstimatesInput): types.ListWorkloadEstimatesOutput, table
+    -- Lists the usage associated with a workload estimate.
     listWorkloadEstimateUsage: function(Client, types.ListWorkloadEstimateUsageInput): types.ListWorkloadEstimateUsageOutput, table
+    -- Adds one or more tags to a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing bill estimate.
     updateBillEstimate: function(Client, types.UpdateBillEstimateInput): types.UpdateBillEstimateOutput, table
+    -- Updates an existing bill scenario.
     updateBillScenario: function(Client, types.UpdateBillScenarioInput): types.UpdateBillScenarioOutput, table
+    -- Updates the preferences for Pricing Calculator.
     updatePreferences: function(Client, types.UpdatePreferencesInput): types.UpdatePreferencesOutput, table
+    -- Updates an existing workload estimate.
     updateWorkloadEstimate: function(Client, types.UpdateWorkloadEstimateInput): types.UpdateWorkloadEstimateOutput, table
 end
 

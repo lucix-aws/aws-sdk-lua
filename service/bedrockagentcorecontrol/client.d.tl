@@ -3,120 +3,235 @@
 local types = require("bedrockagentcorecontrol.types")
 
 local record Client
+    -- Creates an Amazon Bedrock AgentCore Runtime.
     createAgentRuntime: function(Client, types.CreateAgentRuntimeInput): types.CreateAgentRuntimeOutput, table
+    -- Creates an AgentCore Runtime endpoint.
     createAgentRuntimeEndpoint: function(Client, types.CreateAgentRuntimeEndpointInput): types.CreateAgentRuntimeEndpointOutput, table
+    -- Creates a new API key credential provider.
     createApiKeyCredentialProvider: function(Client, types.CreateApiKeyCredentialProviderInput): types.CreateApiKeyCredentialProviderOutput, table
+    -- Creates a custom browser.
     createBrowser: function(Client, types.CreateBrowserInput): types.CreateBrowserOutput, table
+    -- Creates a browser profile in Amazon Bedrock AgentCore. A browser profile stores persistent browser data such as cookies, local storage, session storage, and browsing history that can be saved from browser sessions and reused in subsequent sessions.
     createBrowserProfile: function(Client, types.CreateBrowserProfileInput): types.CreateBrowserProfileOutput, table
+    -- Creates a custom code interpreter.
     createCodeInterpreter: function(Client, types.CreateCodeInterpreterInput): types.CreateCodeInterpreterOutput, table
+    -- Creates a new configuration bundle resource. A configuration bundle stores versioned component configurations for agent evaluation workflows.
     createConfigurationBundle: function(Client, types.CreateConfigurationBundleInput): types.CreateConfigurationBundleOutput, table
+    -- Creates a custom evaluator for agent quality assessment. Custom evaluators can use either LLM-as-a-Judge configurations with user-defined prompts, rating scales, and model settings, or code-based configurations with customer-managed Lambda functions to evaluate agent performance at tool call, trace, or session levels.
     createEvaluator: function(Client, types.CreateEvaluatorInput): types.CreateEvaluatorOutput, table
+    -- Creates a gateway for Amazon Bedrock Agent. A gateway serves as an integration point between your agent and external services. If you specify CUSTOM_JWT as the authorizerType, you must provide an authorizerConfiguration.
     createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    -- Creates a rule for a gateway. Rules define conditions and actions that control how requests are routed and processed through the gateway, including principal-based access control and path-based routing.
     createGatewayRule: function(Client, types.CreateGatewayRuleInput): types.CreateGatewayRuleOutput, table
+    -- Creates a target for a gateway. A target defines an endpoint that the gateway can connect to.
     createGatewayTarget: function(Client, types.CreateGatewayTargetInput): types.CreateGatewayTargetOutput, table
+    -- Operation to create a Harness.
     createHarness: function(Client, types.CreateHarnessInput): types.CreateHarnessOutput, table
+    -- Creates a new Amazon Bedrock AgentCore Memory resource.
     createMemory: function(Client, types.CreateMemoryInput): types.CreateMemoryOutput, table
+    -- Creates a new OAuth2 credential provider.
     createOauth2CredentialProvider: function(Client, types.CreateOauth2CredentialProviderInput): types.CreateOauth2CredentialProviderOutput, table
+    -- Creates an online evaluation configuration for continuous monitoring of agent performance. Online evaluation automatically samples live traffic from CloudWatch logs at specified rates and applies evaluators to assess agent quality in production.
     createOnlineEvaluationConfig: function(Client, types.CreateOnlineEvaluationConfigInput): types.CreateOnlineEvaluationConfigOutput, table
+    -- Creates a policy within the AgentCore Policy system. Policies provide real-time, deterministic control over agentic interactions with AgentCore Gateway. Using the Cedar policy language, you can define fine-grained policies that specify which interactions with Gateway tools are permitted based on input parameters and OAuth claims, ensuring agents operate within defined boundaries and business rules. The policy is validated during creation against the Cedar schema generated from the Gateway's tools' input schemas, which defines the available tools, their parameters, and expected data types. This is an asynchronous operation. Use the GetPolicy operation to poll the status field to track completion.
     createPolicy: function(Client, types.CreatePolicyInput): types.CreatePolicyOutput, table
+    -- Creates a new policy engine within the AgentCore Policy system. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with Gateways (each Gateway can be associated with at most one policy engine, but multiple Gateways can be associated with the same engine), the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies. This is an asynchronous operation. Use the GetPolicyEngine operation to poll the status field to track completion.
     createPolicyEngine: function(Client, types.CreatePolicyEngineInput): types.CreatePolicyEngineOutput, table
+    -- Creates a new registry in your Amazon Web Services account. A registry serves as a centralized catalog for organizing and managing registry records, including MCP servers, A2A agents, agent skills, and custom resource types. If you specify CUSTOM_JWT as the authorizerType, you must provide an authorizerConfiguration.
     createRegistry: function(Client, types.CreateRegistryInput): types.CreateRegistryOutput, table
+    -- Creates a new registry record within the specified registry. A registry record represents an individual AI resource's metadata in the registry. This could be an MCP server (and associated tools), A2A agent, agent skill, or a custom resource with a custom schema. The record is processed asynchronously and returns HTTP 202 Accepted.
     createRegistryRecord: function(Client, types.CreateRegistryRecordInput): types.CreateRegistryRecordOutput, table
+    -- Creates a new workload identity.
     createWorkloadIdentity: function(Client, types.CreateWorkloadIdentityInput): types.CreateWorkloadIdentityOutput, table
+    -- Deletes an Amazon Bedrock AgentCore Runtime.
     deleteAgentRuntime: function(Client, types.DeleteAgentRuntimeInput): types.DeleteAgentRuntimeOutput, table
+    -- Deletes an AAgentCore Runtime endpoint.
     deleteAgentRuntimeEndpoint: function(Client, types.DeleteAgentRuntimeEndpointInput): types.DeleteAgentRuntimeEndpointOutput, table
+    -- Deletes an API key credential provider.
     deleteApiKeyCredentialProvider: function(Client, types.DeleteApiKeyCredentialProviderInput): types.DeleteApiKeyCredentialProviderOutput, table
+    -- Deletes a custom browser.
     deleteBrowser: function(Client, types.DeleteBrowserInput): types.DeleteBrowserOutput, table
+    -- Deletes a browser profile.
     deleteBrowserProfile: function(Client, types.DeleteBrowserProfileInput): types.DeleteBrowserProfileOutput, table
+    -- Deletes a custom code interpreter.
     deleteCodeInterpreter: function(Client, types.DeleteCodeInterpreterInput): types.DeleteCodeInterpreterOutput, table
+    -- Deletes a configuration bundle and all of its versions.
     deleteConfigurationBundle: function(Client, types.DeleteConfigurationBundleInput): types.DeleteConfigurationBundleOutput, table
+    -- Deletes a custom evaluator. Builtin evaluators cannot be deleted. The evaluator must not be referenced by any active online evaluation configurations.
     deleteEvaluator: function(Client, types.DeleteEvaluatorInput): types.DeleteEvaluatorOutput, table
+    -- Deletes a gateway.
     deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    -- Deletes a gateway rule.
     deleteGatewayRule: function(Client, types.DeleteGatewayRuleInput): types.DeleteGatewayRuleOutput, table
+    -- Deletes a gateway target. You cannot delete a target that is in a pending authorization state (CREATE_PENDING_AUTH, UPDATE_PENDING_AUTH, or SYNCHRONIZE_PENDING_AUTH). Wait for the authorization to complete or fail before deleting the target.
     deleteGatewayTarget: function(Client, types.DeleteGatewayTargetInput): types.DeleteGatewayTargetOutput, table
+    -- Operation to delete a Harness.
     deleteHarness: function(Client, types.DeleteHarnessInput): types.DeleteHarnessOutput, table
+    -- Deletes an Amazon Bedrock AgentCore Memory resource.
     deleteMemory: function(Client, types.DeleteMemoryInput): types.DeleteMemoryOutput, table
+    -- Deletes an OAuth2 credential provider.
     deleteOauth2CredentialProvider: function(Client, types.DeleteOauth2CredentialProviderInput): types.DeleteOauth2CredentialProviderOutput, table
+    -- Deletes an online evaluation configuration and stops any ongoing evaluation processes associated with it.
     deleteOnlineEvaluationConfig: function(Client, types.DeleteOnlineEvaluationConfigInput): types.DeleteOnlineEvaluationConfigOutput, table
+    -- Deletes an existing policy from the AgentCore Policy system. Once deleted, the policy can no longer be used for agent behavior control and all references to it become invalid. This is an asynchronous operation. Use the GetPolicy operation to poll the status field to track completion.
     deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    -- Deletes an existing policy engine from the AgentCore Policy system. The policy engine must not have any associated policies before deletion. Once deleted, the policy engine and all its configurations become unavailable for policy management and evaluation. This is an asynchronous operation. Use the GetPolicyEngine operation to poll the status field to track completion.
     deletePolicyEngine: function(Client, types.DeletePolicyEngineInput): types.DeletePolicyEngineOutput, table
+    -- Deletes a registry. The registry must contain zero records before it can be deleted. This operation initiates the deletion process asynchronously.
     deleteRegistry: function(Client, types.DeleteRegistryInput): types.DeleteRegistryOutput, table
+    -- Deletes a registry record. The record's status transitions to DELETING and the record is removed asynchronously.
     deleteRegistryRecord: function(Client, types.DeleteRegistryRecordInput): types.DeleteRegistryRecordOutput, table
+    -- Deletes the resource-based policy for a specified resource. This feature is currently available only for AgentCore Runtime and Gateway.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes a workload identity.
     deleteWorkloadIdentity: function(Client, types.DeleteWorkloadIdentityInput): types.DeleteWorkloadIdentityOutput, table
+    -- Gets an Amazon Bedrock AgentCore Runtime.
     getAgentRuntime: function(Client, types.GetAgentRuntimeInput): types.GetAgentRuntimeOutput, table
+    -- Gets information about an Amazon Secure AgentEndpoint.
     getAgentRuntimeEndpoint: function(Client, types.GetAgentRuntimeEndpointInput): types.GetAgentRuntimeEndpointOutput, table
+    -- Retrieves information about an API key credential provider.
     getApiKeyCredentialProvider: function(Client, types.GetApiKeyCredentialProviderInput): types.GetApiKeyCredentialProviderOutput, table
+    -- Gets information about a custom browser.
     getBrowser: function(Client, types.GetBrowserInput): types.GetBrowserOutput, table
+    -- Gets information about a browser profile.
     getBrowserProfile: function(Client, types.GetBrowserProfileInput): types.GetBrowserProfileOutput, table
+    -- Gets information about a custom code interpreter.
     getCodeInterpreter: function(Client, types.GetCodeInterpreterInput): types.GetCodeInterpreterOutput, table
+    -- Gets the latest version of a configuration bundle. By default, returns the latest version on the mainline branch. Use GetConfigurationBundleVersion to retrieve a specific historical version.
     getConfigurationBundle: function(Client, types.GetConfigurationBundleInput): types.GetConfigurationBundleOutput, table
+    -- Gets a specific version of a configuration bundle by its version identifier.
     getConfigurationBundleVersion: function(Client, types.GetConfigurationBundleVersionInput): types.GetConfigurationBundleVersionOutput, table
+    -- Retrieves detailed information about an evaluator, including its configuration, status, and metadata. Works with both built-in and custom evaluators.
     getEvaluator: function(Client, types.GetEvaluatorInput): types.GetEvaluatorOutput, table
+    -- Retrieves information about a specific Gateway.
     getGateway: function(Client, types.GetGatewayInput): types.GetGatewayOutput, table
+    -- Retrieves detailed information about a specific gateway rule.
     getGatewayRule: function(Client, types.GetGatewayRuleInput): types.GetGatewayRuleOutput, table
+    -- Retrieves information about a specific gateway target.
     getGatewayTarget: function(Client, types.GetGatewayTargetInput): types.GetGatewayTargetOutput, table
+    -- Operation to get a single Harness.
     getHarness: function(Client, types.GetHarnessInput): types.GetHarnessOutput, table
+    -- Retrieve an existing Amazon Bedrock AgentCore Memory resource.
     getMemory: function(Client, types.GetMemoryInput): types.GetMemoryOutput, table
+    -- Retrieves information about an OAuth2 credential provider.
     getOauth2CredentialProvider: function(Client, types.GetOauth2CredentialProviderInput): types.GetOauth2CredentialProviderOutput, table
+    -- Retrieves detailed information about an online evaluation configuration, including its rules, data sources, evaluators, and execution status.
     getOnlineEvaluationConfig: function(Client, types.GetOnlineEvaluationConfigInput): types.GetOnlineEvaluationConfigOutput, table
+    -- Retrieves detailed information about a specific policy within the AgentCore Policy system. This operation returns the complete policy definition, metadata, and current status, allowing administrators to review and manage policy configurations.
     getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    -- Retrieves detailed information about a specific policy engine within the AgentCore Policy system. This operation returns the complete policy engine configuration, metadata, and current status, allowing administrators to review and manage policy engine settings.
     getPolicyEngine: function(Client, types.GetPolicyEngineInput): types.GetPolicyEngineOutput, table
+    -- Retrieves information about a policy generation request within the AgentCore Policy system. Policy generation converts natural language descriptions into Cedar policy statements using AI-powered translation, enabling non-technical users to create policies.
     getPolicyGeneration: function(Client, types.GetPolicyGenerationInput): types.GetPolicyGenerationOutput, table
+    -- Retrieves information about a specific registry.
     getRegistry: function(Client, types.GetRegistryInput): types.GetRegistryOutput, table
+    -- Retrieves information about a specific registry record.
     getRegistryRecord: function(Client, types.GetRegistryRecordInput): types.GetRegistryRecordOutput, table
+    -- Retrieves the resource-based policy for a specified resource. This feature is currently available only for AgentCore Runtime and Gateway.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Retrieves information about a token vault.
     getTokenVault: function(Client, types.GetTokenVaultInput): types.GetTokenVaultOutput, table
+    -- Retrieves information about a workload identity.
     getWorkloadIdentity: function(Client, types.GetWorkloadIdentityInput): types.GetWorkloadIdentityOutput, table
+    -- Lists all endpoints for a specific Amazon Secure Agent.
     listAgentRuntimeEndpoints: function(Client, types.ListAgentRuntimeEndpointsInput): types.ListAgentRuntimeEndpointsOutput, table
+    -- Lists all Amazon Secure Agents in your account.
     listAgentRuntimes: function(Client, types.ListAgentRuntimesInput): types.ListAgentRuntimesOutput, table
+    -- Lists all versions of a specific Amazon Secure Agent.
     listAgentRuntimeVersions: function(Client, types.ListAgentRuntimeVersionsInput): types.ListAgentRuntimeVersionsOutput, table
+    -- Lists all API key credential providers in your account.
     listApiKeyCredentialProviders: function(Client, types.ListApiKeyCredentialProvidersInput): types.ListApiKeyCredentialProvidersOutput, table
+    -- Lists all browser profiles in your account.
     listBrowserProfiles: function(Client, types.ListBrowserProfilesInput): types.ListBrowserProfilesOutput, table
+    -- Lists all custom browsers in your account.
     listBrowsers: function(Client, types.ListBrowsersInput): types.ListBrowsersOutput, table
+    -- Lists all custom code interpreters in your account.
     listCodeInterpreters: function(Client, types.ListCodeInterpretersInput): types.ListCodeInterpretersOutput, table
+    -- Lists all configuration bundles in the account.
     listConfigurationBundles: function(Client, types.ListConfigurationBundlesInput): types.ListConfigurationBundlesOutput, table
+    -- Lists all versions of a configuration bundle, with optional filtering by branch name or creation source.
     listConfigurationBundleVersions: function(Client, types.ListConfigurationBundleVersionsInput): types.ListConfigurationBundleVersionsOutput, table
+    -- Lists all available evaluators, including both builtin evaluators provided by the service and custom evaluators created by the user.
     listEvaluators: function(Client, types.ListEvaluatorsInput): types.ListEvaluatorsOutput, table
+    -- Lists all rules for a gateway.
     listGatewayRules: function(Client, types.ListGatewayRulesInput): types.ListGatewayRulesOutput, table
+    -- Lists all gateways in the account.
     listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    -- Lists all targets for a specific gateway.
     listGatewayTargets: function(Client, types.ListGatewayTargetsInput): types.ListGatewayTargetsOutput, table
+    -- Operation to list Harnesses.
     listHarnesses: function(Client, types.ListHarnessesInput): types.ListHarnessesOutput, table
+    -- Lists the available Amazon Bedrock AgentCore Memory resources in the current Amazon Web Services Region.
     listMemories: function(Client, types.ListMemoriesInput): types.ListMemoriesOutput, table
+    -- Lists all OAuth2 credential providers in your account.
     listOauth2CredentialProviders: function(Client, types.ListOauth2CredentialProvidersInput): types.ListOauth2CredentialProvidersOutput, table
+    -- Lists all online evaluation configurations in the account, providing summary information about each configuration's status and settings.
     listOnlineEvaluationConfigs: function(Client, types.ListOnlineEvaluationConfigsInput): types.ListOnlineEvaluationConfigsOutput, table
+    -- Retrieves a list of policies within the AgentCore Policy engine. This operation supports pagination and filtering to help administrators manage and discover policies across policy engines. Results can be filtered by policy engine or resource associations.
     listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    -- Retrieves a list of policy engines within the AgentCore Policy system. This operation supports pagination to help administrators discover and manage policy engines across their account. Each policy engine serves as a container for related policies.
     listPolicyEngines: function(Client, types.ListPolicyEnginesInput): types.ListPolicyEnginesOutput, table
+    -- Retrieves a list of generated policy assets from a policy generation request within the AgentCore Policy system. This operation returns the actual Cedar policies and related artifacts produced by the AI-powered policy generation process, allowing users to review and select from multiple generated policy options.
     listPolicyGenerationAssets: function(Client, types.ListPolicyGenerationAssetsInput): types.ListPolicyGenerationAssetsOutput, table
+    -- Retrieves a list of policy generation requests within the AgentCore Policy system. This operation supports pagination and filtering to help track and manage AI-powered policy generation operations.
     listPolicyGenerations: function(Client, types.ListPolicyGenerationsInput): types.ListPolicyGenerationsOutput, table
+    -- Lists all registries in the account. You can optionally filter results by status using the status parameter.
     listRegistries: function(Client, types.ListRegistriesInput): types.ListRegistriesOutput, table
+    -- Lists registry records within a registry. You can optionally filter results using the name, status, and descriptorType parameters. When multiple filters are specified, they are combined using AND logic.
     listRegistryRecords: function(Client, types.ListRegistryRecordsInput): types.ListRegistryRecordsOutput, table
+    -- Lists the tags associated with the specified resource. This feature is currently available only for AgentCore Runtime, Browser, Browser Profile, Code Interpreter tool, and Gateway.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists all workload identities in your account.
     listWorkloadIdentities: function(Client, types.ListWorkloadIdentitiesInput): types.ListWorkloadIdentitiesOutput, table
+    -- Creates or updates a resource-based policy for a resource with the specified resourceArn. This feature is currently available only for AgentCore Runtime and Gateway.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Sets the customer master key (CMK) for a token vault.
     setTokenVaultCMK: function(Client, types.SetTokenVaultCMKInput): types.SetTokenVaultCMKOutput, table
+    -- Initiates the AI-powered generation of Cedar policies from natural language descriptions within the AgentCore Policy system. This feature enables both technical and non-technical users to create policies by describing their authorization requirements in plain English, which is then automatically translated into formal Cedar policy statements. The generation process analyzes the natural language input along with the Gateway's tool context to produce validated policy options. Generated policy assets are automatically deleted after 7 days, so you should review and create policies from the generated assets within this timeframe. Once created, policies are permanent and not subject to this expiration. Generated policies should be reviewed and tested in log-only mode before deploying to production. Use this when you want to describe policy intent naturally rather than learning Cedar syntax, though generated policies may require refinement for complex scenarios.
     startPolicyGeneration: function(Client, types.StartPolicyGenerationInput): types.StartPolicyGenerationOutput, table
+    -- Submits a registry record for approval. This transitions the record from DRAFT status to PENDING_APPROVAL status. If the registry has auto-approval enabled, the record is automatically approved.
     submitRegistryRecordForApproval: function(Client, types.SubmitRegistryRecordForApprovalInput): types.SubmitRegistryRecordForApprovalOutput, table
+    -- Synchronizes the gateway targets by fetching the latest tool definitions from the target endpoints. You cannot synchronize a target that is in a pending authorization state (CREATE_PENDING_AUTH, UPDATE_PENDING_AUTH, or SYNCHRONIZE_PENDING_AUTH). Wait for the authorization to complete or fail before synchronizing. You cannot synchronize a target that has a static tool schema (mcpToolSchema) configured. Remove the static schema through an UpdateGatewayTarget call to enable dynamic tool synchronization.
     synchronizeGatewayTargets: function(Client, types.SynchronizeGatewayTargetsInput): types.SynchronizeGatewayTargetsOutput, table
+    -- Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are also deleted. This feature is currently available only for AgentCore Runtime, Browser, Browser Profile, Code Interpreter tool, and Gateway.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the specified tags from the specified resource. This feature is currently available only for AgentCore Runtime, Browser, Browser Profile, Code Interpreter tool, and Gateway.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing Amazon Secure Agent.
     updateAgentRuntime: function(Client, types.UpdateAgentRuntimeInput): types.UpdateAgentRuntimeOutput, table
+    -- Updates an existing Amazon Bedrock AgentCore Runtime endpoint.
     updateAgentRuntimeEndpoint: function(Client, types.UpdateAgentRuntimeEndpointInput): types.UpdateAgentRuntimeEndpointOutput, table
+    -- Updates an existing API key credential provider.
     updateApiKeyCredentialProvider: function(Client, types.UpdateApiKeyCredentialProviderInput): types.UpdateApiKeyCredentialProviderOutput, table
+    -- Updates a configuration bundle by creating a new version with the specified changes. Each update creates a new version in the version history.
     updateConfigurationBundle: function(Client, types.UpdateConfigurationBundleInput): types.UpdateConfigurationBundleOutput, table
+    -- Updates a custom evaluator's configuration, description, or evaluation level. Built-in evaluators cannot be updated. The evaluator must not be locked for modification.
     updateEvaluator: function(Client, types.UpdateEvaluatorInput): types.UpdateEvaluatorOutput, table
+    -- Updates an existing gateway.
     updateGateway: function(Client, types.UpdateGatewayInput): types.UpdateGatewayOutput, table
+    -- Updates a gateway rule's priority, conditions, actions, or description.
     updateGatewayRule: function(Client, types.UpdateGatewayRuleInput): types.UpdateGatewayRuleOutput, table
+    -- Updates an existing gateway target. You cannot update a target that is in a pending authorization state (CREATE_PENDING_AUTH, UPDATE_PENDING_AUTH, or SYNCHRONIZE_PENDING_AUTH). Wait for the authorization to complete or fail before updating the target.
     updateGatewayTarget: function(Client, types.UpdateGatewayTargetInput): types.UpdateGatewayTargetOutput, table
+    -- Operation to update a Harness.
     updateHarness: function(Client, types.UpdateHarnessInput): types.UpdateHarnessOutput, table
+    -- Update an Amazon Bedrock AgentCore Memory resource memory.
     updateMemory: function(Client, types.UpdateMemoryInput): types.UpdateMemoryOutput, table
+    -- Updates an existing OAuth2 credential provider.
     updateOauth2CredentialProvider: function(Client, types.UpdateOauth2CredentialProviderInput): types.UpdateOauth2CredentialProviderOutput, table
+    -- Updates an online evaluation configuration's settings, including rules, data sources, evaluators, and execution status. Changes take effect immediately for ongoing evaluations.
     updateOnlineEvaluationConfig: function(Client, types.UpdateOnlineEvaluationConfigInput): types.UpdateOnlineEvaluationConfigOutput, table
+    -- Updates an existing policy within the AgentCore Policy system. This operation allows modification of the policy description and definition while maintaining the policy's identity. The updated policy is validated against the Cedar schema before being applied. This is an asynchronous operation. Use the GetPolicy operation to poll the status field to track completion.
     updatePolicy: function(Client, types.UpdatePolicyInput): types.UpdatePolicyOutput, table
+    -- Updates an existing policy engine within the AgentCore Policy system. This operation allows modification of the policy engine description while maintaining its identity. This is an asynchronous operation. Use the GetPolicyEngine operation to poll the status field to track completion.
     updatePolicyEngine: function(Client, types.UpdatePolicyEngineInput): types.UpdatePolicyEngineOutput, table
+    -- Updates an existing registry. This operation uses PATCH semantics, so you only need to specify the fields you want to change.
     updateRegistry: function(Client, types.UpdateRegistryInput): types.UpdateRegistryOutput, table
+    -- Updates an existing registry record. This operation uses PATCH semantics, so you only need to specify the fields you want to change. The update is processed asynchronously and returns HTTP 202 Accepted.
     updateRegistryRecord: function(Client, types.UpdateRegistryRecordInput): types.UpdateRegistryRecordOutput, table
+    -- Updates the status of a registry record. Use this operation to approve, reject, or deprecate a registry record.
     updateRegistryRecordStatus: function(Client, types.UpdateRegistryRecordStatusInput): types.UpdateRegistryRecordStatusOutput, table
+    -- Updates an existing workload identity.
     updateWorkloadIdentity: function(Client, types.UpdateWorkloadIdentityInput): types.UpdateWorkloadIdentityOutput, table
 end
 

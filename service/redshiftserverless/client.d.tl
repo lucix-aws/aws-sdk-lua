@@ -3,70 +3,135 @@
 local types = require("redshiftserverless.types")
 
 local record Client
+    -- Converts a recovery point to a snapshot. For more information about recovery points and snapshots, see Working with snapshots and recovery points.
     convertRecoveryPointToSnapshot: function(Client, types.ConvertRecoveryPointToSnapshotInput): types.ConvertRecoveryPointToSnapshotOutput, table
+    -- Creates a custom domain association for Amazon Redshift Serverless.
     createCustomDomainAssociation: function(Client, types.CreateCustomDomainAssociationInput): types.CreateCustomDomainAssociationOutput, table
+    -- Creates an Amazon Redshift Serverless managed VPC endpoint.
     createEndpointAccess: function(Client, types.CreateEndpointAccessInput): types.CreateEndpointAccessOutput, table
+    -- Creates a namespace in Amazon Redshift Serverless.
     createNamespace: function(Client, types.CreateNamespaceInput): types.CreateNamespaceOutput, table
+    -- Creates an Amazon Redshift Serverless reservation, which gives you the option to commit to a specified number of Redshift Processing Units (RPUs) for a year at a discount from Serverless on-demand (OD) rates.
     createReservation: function(Client, types.CreateReservationInput): types.CreateReservationOutput, table
+    -- Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action. For example, you can create a schedule of when to run the CreateSnapshot API operation.
     createScheduledAction: function(Client, types.CreateScheduledActionInput): types.CreateScheduledActionOutput, table
+    -- Creates a snapshot of all databases in a namespace. For more information about snapshots, see Working with snapshots and recovery points.
     createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    -- Creates a snapshot copy configuration that lets you copy snapshots to another Amazon Web Services Region.
     createSnapshotCopyConfiguration: function(Client, types.CreateSnapshotCopyConfigurationInput): types.CreateSnapshotCopyConfigurationOutput, table
+    -- Creates a usage limit for a specified Amazon Redshift Serverless usage type. The usage limit is identified by the returned usage limit identifier.
     createUsageLimit: function(Client, types.CreateUsageLimitInput): types.CreateUsageLimitOutput, table
+    -- Creates an workgroup in Amazon Redshift Serverless. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a workgroup is in an account with VPC BPA turned on, the following capabilities are blocked: Creating a public access workgroup Modifying a private workgroup to public Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
     createWorkgroup: function(Client, types.CreateWorkgroupInput): types.CreateWorkgroupOutput, table
+    -- Deletes a custom domain association for Amazon Redshift Serverless.
     deleteCustomDomainAssociation: function(Client, types.DeleteCustomDomainAssociationInput): types.DeleteCustomDomainAssociationOutput, table
+    -- Deletes an Amazon Redshift Serverless managed VPC endpoint.
     deleteEndpointAccess: function(Client, types.DeleteEndpointAccessInput): types.DeleteEndpointAccessOutput, table
+    -- Deletes a namespace from Amazon Redshift Serverless. Before you delete the namespace, you can create a final snapshot that has all of the data within the namespace.
     deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    -- Deletes the specified resource policy.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes a scheduled action.
     deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): types.DeleteScheduledActionOutput, table
+    -- Deletes a snapshot from Amazon Redshift Serverless.
     deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    -- Deletes a snapshot copy configuration
     deleteSnapshotCopyConfiguration: function(Client, types.DeleteSnapshotCopyConfigurationInput): types.DeleteSnapshotCopyConfigurationOutput, table
+    -- Deletes a usage limit from Amazon Redshift Serverless.
     deleteUsageLimit: function(Client, types.DeleteUsageLimitInput): types.DeleteUsageLimitOutput, table
+    -- Deletes a workgroup.
     deleteWorkgroup: function(Client, types.DeleteWorkgroupInput): types.DeleteWorkgroupOutput, table
+    -- Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources. If the DbName parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.
     getCredentials: function(Client, types.GetCredentialsInput): types.GetCredentialsOutput, table
+    -- Gets information about a specific custom domain association.
     getCustomDomainAssociation: function(Client, types.GetCustomDomainAssociationInput): types.GetCustomDomainAssociationOutput, table
+    -- Returns information, such as the name, about a VPC endpoint.
     getEndpointAccess: function(Client, types.GetEndpointAccessInput): types.GetEndpointAccessOutput, table
+    -- Returns an Identity Center authentication token for accessing Amazon Redshift Serverless workgroups. The token provides secure access to data within the specified workgroups using Identity Center identity propagation. The token expires after a specified duration and must be refreshed for continued access. The Identity and Access Management (IAM) user or role that runs GetIdentityCenterAuthToken must have appropriate permissions to access the specified workgroups and Identity Center integration must be configured for the workgroups.
     getIdentityCenterAuthToken: function(Client, types.GetIdentityCenterAuthTokenInput): types.GetIdentityCenterAuthTokenOutput, table
+    -- Returns information about a namespace in Amazon Redshift Serverless.
     getNamespace: function(Client, types.GetNamespaceInput): types.GetNamespaceOutput, table
+    -- Returns information about a recovery point.
     getRecoveryPoint: function(Client, types.GetRecoveryPointInput): types.GetRecoveryPointOutput, table
+    -- Gets an Amazon Redshift Serverless reservation. A reservation gives you the option to commit to a specified number of Redshift Processing Units (RPUs) for a year at a discount from Serverless on-demand (OD) rates.
     getReservation: function(Client, types.GetReservationInput): types.GetReservationOutput, table
+    -- Returns the reservation offering. The offering determines the payment schedule for the reservation.
     getReservationOffering: function(Client, types.GetReservationOfferingInput): types.GetReservationOfferingOutput, table
+    -- Returns a resource policy.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Returns information about a scheduled action.
     getScheduledAction: function(Client, types.GetScheduledActionInput): types.GetScheduledActionOutput, table
+    -- Returns information about a specific snapshot.
     getSnapshot: function(Client, types.GetSnapshotInput): types.GetSnapshotOutput, table
+    -- Returns information about a TableRestoreStatus object.
     getTableRestoreStatus: function(Client, types.GetTableRestoreStatusInput): types.GetTableRestoreStatusOutput, table
+    -- Get the Redshift Serverless version for a specified track.
     getTrack: function(Client, types.GetTrackInput): types.GetTrackOutput, table
+    -- Returns information about a usage limit.
     getUsageLimit: function(Client, types.GetUsageLimitInput): types.GetUsageLimitOutput, table
+    -- Returns information about a specific workgroup.
     getWorkgroup: function(Client, types.GetWorkgroupInput): types.GetWorkgroupOutput, table
+    -- Lists custom domain associations for Amazon Redshift Serverless.
     listCustomDomainAssociations: function(Client, types.ListCustomDomainAssociationsInput): types.ListCustomDomainAssociationsOutput, table
+    -- Returns an array of EndpointAccess objects and relevant information.
     listEndpointAccess: function(Client, types.ListEndpointAccessInput): types.ListEndpointAccessOutput, table
+    -- Returns information about a list of specified managed workgroups in your account.
     listManagedWorkgroups: function(Client, types.ListManagedWorkgroupsInput): types.ListManagedWorkgroupsOutput, table
+    -- Returns information about a list of specified namespaces.
     listNamespaces: function(Client, types.ListNamespacesInput): types.ListNamespacesOutput, table
+    -- Returns an array of recovery points.
     listRecoveryPoints: function(Client, types.ListRecoveryPointsInput): types.ListRecoveryPointsOutput, table
+    -- Returns the current reservation offerings in your account.
     listReservationOfferings: function(Client, types.ListReservationOfferingsInput): types.ListReservationOfferingsOutput, table
+    -- Returns a list of Reservation objects.
     listReservations: function(Client, types.ListReservationsInput): types.ListReservationsOutput, table
+    -- Returns a list of scheduled actions. You can use the flags to filter the list of returned scheduled actions.
     listScheduledActions: function(Client, types.ListScheduledActionsInput): types.ListScheduledActionsOutput, table
+    -- Returns a list of snapshot copy configurations.
     listSnapshotCopyConfigurations: function(Client, types.ListSnapshotCopyConfigurationsInput): types.ListSnapshotCopyConfigurationsOutput, table
+    -- Returns a list of snapshots.
     listSnapshots: function(Client, types.ListSnapshotsInput): types.ListSnapshotsOutput, table
+    -- Returns information about an array of TableRestoreStatus objects.
     listTableRestoreStatus: function(Client, types.ListTableRestoreStatusInput): types.ListTableRestoreStatusOutput, table
+    -- Lists the tags assigned to a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List the Amazon Redshift Serverless versions.
     listTracks: function(Client, types.ListTracksInput): types.ListTracksOutput, table
+    -- Lists all usage limits within Amazon Redshift Serverless.
     listUsageLimits: function(Client, types.ListUsageLimitsInput): types.ListUsageLimitsOutput, table
+    -- Returns information about a list of specified workgroups.
     listWorkgroups: function(Client, types.ListWorkgroupsInput): types.ListWorkgroupsOutput, table
+    -- Creates or updates a resource policy. Currently, you can use policies to share snapshots across Amazon Web Services accounts.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Restore the data from a recovery point.
     restoreFromRecoveryPoint: function(Client, types.RestoreFromRecoveryPointInput): types.RestoreFromRecoveryPointOutput, table
+    -- Restores a namespace from a snapshot.
     restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput): types.RestoreFromSnapshotOutput, table
+    -- Restores a table from a recovery point to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with interleaved sort keys.
     restoreTableFromRecoveryPoint: function(Client, types.RestoreTableFromRecoveryPointInput): types.RestoreTableFromRecoveryPointOutput, table
+    -- Restores a table from a snapshot to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with interleaved sort keys.
     restoreTableFromSnapshot: function(Client, types.RestoreTableFromSnapshotInput): types.RestoreTableFromSnapshotOutput, table
+    -- Assigns one or more tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag or set of tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Amazon Redshift Serverless certificate associated with a custom domain.
     updateCustomDomainAssociation: function(Client, types.UpdateCustomDomainAssociationInput): types.UpdateCustomDomainAssociationOutput, table
+    -- Updates an Amazon Redshift Serverless managed endpoint.
     updateEndpointAccess: function(Client, types.UpdateEndpointAccessInput): types.UpdateEndpointAccessOutput, table
+    -- Modifies the lakehouse configuration for a namespace. This operation allows you to manage Amazon Redshift federated permissions and Amazon Web Services IAM Identity Center trusted identity propagation.
     updateLakehouseConfiguration: function(Client, types.UpdateLakehouseConfigurationInput): types.UpdateLakehouseConfigurationOutput, table
+    -- Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both adminUsername and adminUserPassword to update either field, but you can't update both kmsKeyId and logExports in a single request.
     updateNamespace: function(Client, types.UpdateNamespaceInput): types.UpdateNamespaceOutput, table
+    -- Updates a scheduled action.
     updateScheduledAction: function(Client, types.UpdateScheduledActionInput): types.UpdateScheduledActionOutput, table
+    -- Updates a snapshot.
     updateSnapshot: function(Client, types.UpdateSnapshotInput): types.UpdateSnapshotOutput, table
+    -- Updates a snapshot copy configuration.
     updateSnapshotCopyConfiguration: function(Client, types.UpdateSnapshotCopyConfigurationInput): types.UpdateSnapshotCopyConfigurationOutput, table
+    -- Update a usage limit in Amazon Redshift Serverless. You can't update the usage type or period of a usage limit.
     updateUsageLimit: function(Client, types.UpdateUsageLimitInput): types.UpdateUsageLimitOutput, table
+    -- Updates a workgroup with the specified configuration settings. You can't update multiple parameters in one request. For example, you can update baseCapacity or port in a single request, but you can't update both in the same request. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a workgroup is in an account with VPC BPA turned on, the following capabilities are blocked: Creating a public access workgroup Modifying a private workgroup to public Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
     updateWorkgroup: function(Client, types.UpdateWorkgroupInput): types.UpdateWorkgroupOutput, table
 end
 

@@ -3,45 +3,85 @@
 local types = require("observabilityadmin.types")
 
 local record Client
+    -- Creates a centralization rule that applies across an Amazon Web Services Organization. This operation can only be called by the organization's management account or a delegated administrator account.
     createCentralizationRuleForOrganization: function(Client, types.CreateCentralizationRuleForOrganizationInput): types.CreateCentralizationRuleForOrganizationOutput, table
+    -- Creates an integration between CloudWatch and S3 Tables for analytics. This integration enables querying CloudWatch telemetry data using analytics engines like Amazon Athena, Amazon Redshift, and Apache Spark.
     createS3TableIntegration: function(Client, types.CreateS3TableIntegrationInput): types.CreateS3TableIntegrationOutput, table
+    -- Creates a telemetry pipeline for processing and transforming telemetry data. The pipeline defines how data flows from sources through processors to destinations, enabling data transformation and delivering capabilities.
     createTelemetryPipeline: function(Client, types.CreateTelemetryPipelineInput): types.CreateTelemetryPipelineOutput, table
+    -- Creates a telemetry rule that defines how telemetry should be configured for Amazon Web Services resources in your account. The rule specifies which resources should have telemetry enabled and how that telemetry data should be collected based on resource type, telemetry type, and selection criteria.
     createTelemetryRule: function(Client, types.CreateTelemetryRuleInput): types.CreateTelemetryRuleOutput, table
+    -- Creates a telemetry rule that applies across an Amazon Web Services Organization. This operation can only be called by the organization's management account or a delegated administrator account.
     createTelemetryRuleForOrganization: function(Client, types.CreateTelemetryRuleForOrganizationInput): types.CreateTelemetryRuleForOrganizationOutput, table
+    -- Deletes an organization-wide centralization rule. This operation can only be called by the organization's management account or a delegated administrator account.
     deleteCentralizationRuleForOrganization: function(Client, types.DeleteCentralizationRuleForOrganizationInput): types.DeleteCentralizationRuleForOrganizationOutput, table
+    -- Deletes an S3 Table integration and its associated data. This operation removes the connection between CloudWatch Observability Admin and S3 Tables.
     deleteS3TableIntegration: function(Client, types.DeleteS3TableIntegrationInput): types.DeleteS3TableIntegrationOutput, table
+    -- Deletes a telemetry pipeline and its associated resources. This operation stops data processing and removes the pipeline configuration.
     deleteTelemetryPipeline: function(Client, types.DeleteTelemetryPipelineInput): types.DeleteTelemetryPipelineOutput, table
+    -- Deletes a telemetry rule from your account. Any telemetry configurations previously created by the rule will remain but no new resources will be configured by this rule.
     deleteTelemetryRule: function(Client, types.DeleteTelemetryRuleInput): types.DeleteTelemetryRuleOutput, table
+    -- Deletes an organization-wide telemetry rule. This operation can only be called by the organization's management account or a delegated administrator account.
     deleteTelemetryRuleForOrganization: function(Client, types.DeleteTelemetryRuleForOrganizationInput): types.DeleteTelemetryRuleForOrganizationOutput, table
+    -- Retrieves the details of a specific organization centralization rule. This operation can only be called by the organization's management account or a delegated administrator account.
     getCentralizationRuleForOrganization: function(Client, types.GetCentralizationRuleForOrganizationInput): types.GetCentralizationRuleForOrganizationOutput, table
+    -- Retrieves information about a specific S3 Table integration, including its configuration, status, and metadata.
     getS3TableIntegration: function(Client, types.GetS3TableIntegrationInput): types.GetS3TableIntegrationOutput, table
+    -- Returns the current status of the resource tags for telemetry feature, which enhances telemetry data with additional resource metadata from Resource Explorer.
     getTelemetryEnrichmentStatus: function(Client, types.GetTelemetryEnrichmentStatusInput): types.GetTelemetryEnrichmentStatusOutput, table
+    -- Returns the current onboarding status of the telemetry config feature, including the status of the feature and reason the feature failed to start or stop.
     getTelemetryEvaluationStatus: function(Client, types.GetTelemetryEvaluationStatusInput): types.GetTelemetryEvaluationStatusOutput, table
+    -- This returns the onboarding status of the telemetry configuration feature for the organization. It can only be called by a Management Account of an Amazon Web Services Organization or an assigned Delegated Admin Account of Amazon CloudWatch telemetry config.
     getTelemetryEvaluationStatusForOrganization: function(Client, types.GetTelemetryEvaluationStatusForOrganizationInput): types.GetTelemetryEvaluationStatusForOrganizationOutput, table
+    -- Retrieves information about a specific telemetry pipeline, including its configuration, status, and metadata.
     getTelemetryPipeline: function(Client, types.GetTelemetryPipelineInput): types.GetTelemetryPipelineOutput, table
+    -- Retrieves the details of a specific telemetry rule in your account.
     getTelemetryRule: function(Client, types.GetTelemetryRuleInput): types.GetTelemetryRuleOutput, table
+    -- Retrieves the details of a specific organization telemetry rule. This operation can only be called by the organization's management account or a delegated administrator account.
     getTelemetryRuleForOrganization: function(Client, types.GetTelemetryRuleForOrganizationInput): types.GetTelemetryRuleForOrganizationOutput, table
+    -- Lists all centralization rules in your organization. This operation can only be called by the organization's management account or a delegated administrator account.
     listCentralizationRulesForOrganization: function(Client, types.ListCentralizationRulesForOrganizationInput): types.ListCentralizationRulesForOrganizationOutput, table
+    -- Returns a list of telemetry configurations for Amazon Web Services resources supported by telemetry config. For more information, see Auditing CloudWatch telemetry configurations.
     listResourceTelemetry: function(Client, types.ListResourceTelemetryInput): types.ListResourceTelemetryOutput, table
+    -- Returns a list of telemetry configurations for Amazon Web Services resources supported by telemetry config in the organization.
     listResourceTelemetryForOrganization: function(Client, types.ListResourceTelemetryForOrganizationInput): types.ListResourceTelemetryForOrganizationOutput, table
+    -- Lists all S3 Table integrations in your account. We recommend using pagination to ensure that the operation returns quickly and successfully.
     listS3TableIntegrations: function(Client, types.ListS3TableIntegrationsInput): types.ListS3TableIntegrationsOutput, table
+    -- Lists all tags attached to the specified resource. Supports telemetry rule resources and telemetry pipeline resources.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of telemetry pipelines in your account. Returns up to 100 results. If more than 100 telemetry pipelines exist, include the NextToken value from the response to retrieve the next set of results.
     listTelemetryPipelines: function(Client, types.ListTelemetryPipelinesInput): types.ListTelemetryPipelinesOutput, table
+    -- Lists all telemetry rules in your account. You can filter the results by specifying a rule name prefix.
     listTelemetryRules: function(Client, types.ListTelemetryRulesInput): types.ListTelemetryRulesOutput, table
+    -- Lists all telemetry rules in your organization. This operation can only be called by the organization's management account or a delegated administrator account.
     listTelemetryRulesForOrganization: function(Client, types.ListTelemetryRulesForOrganizationInput): types.ListTelemetryRulesForOrganizationOutput, table
+    -- Enables the resource tags for telemetry feature for your account, which enhances telemetry data with additional resource metadata from Resource Explorer to provide richer context for monitoring and observability.
     startTelemetryEnrichment: function(Client, types.StartTelemetryEnrichmentInput): types.StartTelemetryEnrichmentOutput, table
+    -- This action begins onboarding the caller Amazon Web Services account to the telemetry config feature.
     startTelemetryEvaluation: function(Client, types.StartTelemetryEvaluationInput): types.StartTelemetryEvaluationOutput, table
+    -- This actions begins onboarding the organization and all member accounts to the telemetry config feature.
     startTelemetryEvaluationForOrganization: function(Client, types.StartTelemetryEvaluationForOrganizationInput): types.StartTelemetryEvaluationForOrganizationOutput, table
+    -- Disables the resource tags for telemetry feature for your account, stopping the enhancement of telemetry data with additional resource metadata.
     stopTelemetryEnrichment: function(Client, types.StopTelemetryEnrichmentInput): types.StopTelemetryEnrichmentOutput, table
+    -- This action begins offboarding the caller Amazon Web Services account from the telemetry config feature.
     stopTelemetryEvaluation: function(Client, types.StopTelemetryEvaluationInput): types.StopTelemetryEvaluationOutput, table
+    -- This action offboards the Organization of the caller Amazon Web Services account from the telemetry config feature.
     stopTelemetryEvaluationForOrganization: function(Client, types.StopTelemetryEvaluationForOrganizationInput): types.StopTelemetryEvaluationForOrganizationOutput, table
+    -- Adds or updates tags for a resource. Supports telemetry rule resources and telemetry pipeline resources.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests a pipeline configuration with sample records to validate data processing before deployment. This operation helps ensure your pipeline configuration works as expected.
     testTelemetryPipeline: function(Client, types.TestTelemetryPipelineInput): types.TestTelemetryPipelineOutput, table
+    -- Removes tags from a resource. Supports telemetry rule resources and telemetry pipeline resources.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing centralization rule that applies across an Amazon Web Services Organization. This operation can only be called by the organization's management account or a delegated administrator account.
     updateCentralizationRuleForOrganization: function(Client, types.UpdateCentralizationRuleForOrganizationInput): types.UpdateCentralizationRuleForOrganizationOutput, table
+    -- Updates the configuration of an existing telemetry pipeline. The following attributes cannot be updated after pipeline creation: Pipeline name - The pipeline name is immutable Pipeline ARN - The ARN is automatically generated and cannot be changed Source type - Once a pipeline is created with a specific source type (such as S3, CloudWatch Logs, GitHub, or third-party sources), it cannot be changed to a different source type Processors can be added, removed, or modified. However, some processors are not supported for third-party pipelines and cannot be added through updates. Source-Specific Update Rules CloudWatch Logs Sources (Vended and Custom) Updatable: sts_role_arn Fixed: data_source_name, data_source_type, sink (must remain @original) S3 Sources (Crowdstrike, Zscaler, SentinelOne, Custom) Updatable: All SQS configuration parameters, sts_role_arn, codec settings, compression type, bucket ownership settings, sink log group Fixed: notification_type, aws.region GitHub Audit Logs Updatable: All Amazon Web Services Secrets Manager attributes, scope (can switch between ORGANIZATION/ENTERPRISE), organization or enterprise name, range, authentication credentials (PAT or GitHub App) Microsoft Sources (Entra ID, Office365, Windows) Updatable: All Amazon Web Services Secrets Manager attributes, tenant_id, workspace_id (Windows only), OAuth2 credentials (client_id, client_secret) Okta Sources (SSO, Auth0) Updatable: All Amazon Web Services Secrets Manager attributes, domain, range, OAuth2 credentials (client_id, client_secret) Palo Alto Networks Updatable: All Amazon Web Services Secrets Manager attributes, hostname, basic authentication credentials (username, password) ServiceNow CMDB Updatable: All Amazon Web Services Secrets Manager attributes, instance_url, range, OAuth2 credentials (client_id, client_secret) Wiz CNAPP Updatable: All Amazon Web Services Secrets Manager attributes, region, range, OAuth2 credentials (client_id, client_secret)
     updateTelemetryPipeline: function(Client, types.UpdateTelemetryPipelineInput): types.UpdateTelemetryPipelineOutput, table
+    -- Updates an existing telemetry rule in your account. If multiple users attempt to modify the same telemetry rule simultaneously, a ConflictException is returned to provide specific error information for concurrent modification scenarios.
     updateTelemetryRule: function(Client, types.UpdateTelemetryRuleInput): types.UpdateTelemetryRuleOutput, table
+    -- Updates an existing telemetry rule that applies across an Amazon Web Services Organization. This operation can only be called by the organization's management account or a delegated administrator account.
     updateTelemetryRuleForOrganization: function(Client, types.UpdateTelemetryRuleForOrganizationInput): types.UpdateTelemetryRuleForOrganizationOutput, table
+    -- Validates a pipeline configuration without creating the pipeline. This operation checks the configuration for syntax errors and compatibility issues.
     validateTelemetryPipelineConfiguration: function(Client, types.ValidateTelemetryPipelineConfigurationInput): types.ValidateTelemetryPipelineConfigurationOutput, table
 end
 

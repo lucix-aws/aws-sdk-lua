@@ -3,24 +3,40 @@
 local types = require("mediapackage.types")
 
 local record Client
+    -- Changes the Channel's properities to configure log subscription
     configureLogs: function(Client, types.ConfigureLogsInput): types.ConfigureLogsOutput, table
+    -- Creates a new Channel.
     createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    -- Creates a new HarvestJob record.
     createHarvestJob: function(Client, types.CreateHarvestJobInput): types.CreateHarvestJobOutput, table
+    -- Creates a new OriginEndpoint record.
     createOriginEndpoint: function(Client, types.CreateOriginEndpointInput): types.CreateOriginEndpointOutput, table
+    -- Deletes an existing Channel.
     deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    -- Deletes an existing OriginEndpoint.
     deleteOriginEndpoint: function(Client, types.DeleteOriginEndpointInput): types.DeleteOriginEndpointOutput, table
+    -- Gets details about a Channel.
     describeChannel: function(Client, types.DescribeChannelInput): types.DescribeChannelOutput, table
+    -- Gets details about an existing HarvestJob.
     describeHarvestJob: function(Client, types.DescribeHarvestJobInput): types.DescribeHarvestJobOutput, table
+    -- Gets details about an existing OriginEndpoint.
     describeOriginEndpoint: function(Client, types.DescribeOriginEndpointInput): types.DescribeOriginEndpointOutput, table
+    -- Returns a collection of Channels.
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Returns a collection of HarvestJob records.
     listHarvestJobs: function(Client, types.ListHarvestJobsInput): types.ListHarvestJobsOutput, table
+    -- Returns a collection of OriginEndpoint records.
     listOriginEndpoints: function(Client, types.ListOriginEndpointsInput): types.ListOriginEndpointsOutput, table
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Changes the Channel's first IngestEndpoint's username and password. WARNING - This API is deprecated. Please use RotateIngestEndpointCredentials instead
     rotateChannelCredentials: function(Client, types.RotateChannelCredentialsInput): types.RotateChannelCredentialsOutput, table
+    -- Rotate the IngestEndpoint's username and password, as specified by the IngestEndpoint's id.
     rotateIngestEndpointCredentials: function(Client, types.RotateIngestEndpointCredentialsInput): types.RotateIngestEndpointCredentialsOutput, table
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing Channel.
     updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    -- Updates an existing OriginEndpoint.
     updateOriginEndpoint: function(Client, types.UpdateOriginEndpointInput): types.UpdateOriginEndpointOutput, table
 end
 

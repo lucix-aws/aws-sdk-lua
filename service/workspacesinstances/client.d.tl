@@ -3,18 +3,31 @@
 local types = require("workspacesinstances.types")
 
 local record Client
+    -- Attaches a volume to a WorkSpace Instance.
     associateVolume: function(Client, types.AssociateVolumeInput): types.AssociateVolumeOutput, table
+    -- Creates a new volume for WorkSpace Instances.
     createVolume: function(Client, types.CreateVolumeInput): types.CreateVolumeOutput, table
+    -- Launches a new WorkSpace Instance with specified configuration parameters, enabling programmatic workspace deployment.
     createWorkspaceInstance: function(Client, types.CreateWorkspaceInstanceInput): types.CreateWorkspaceInstanceOutput, table
+    -- Deletes a specified volume.
     deleteVolume: function(Client, types.DeleteVolumeInput): types.DeleteVolumeOutput, table
+    -- Deletes the specified WorkSpace Usage of this API will result in deletion of the resource in question.
     deleteWorkspaceInstance: function(Client, types.DeleteWorkspaceInstanceInput): types.DeleteWorkspaceInstanceOutput, table
+    -- Detaches a volume from a WorkSpace Instance.
     disassociateVolume: function(Client, types.DisassociateVolumeInput): types.DisassociateVolumeOutput, table
+    -- Retrieves detailed information about a specific WorkSpace Instance.
     getWorkspaceInstance: function(Client, types.GetWorkspaceInstanceInput): types.GetWorkspaceInstanceOutput, table
+    -- Retrieves a list of instance types supported by Amazon WorkSpaces Instances, enabling precise workspace infrastructure configuration.
     listInstanceTypes: function(Client, types.ListInstanceTypesInput): types.ListInstanceTypesOutput, table
+    -- Retrieves a list of AWS regions supported by Amazon WorkSpaces Instances, enabling region discovery for workspace deployments.
     listRegions: function(Client, types.ListRegionsInput): types.ListRegionsOutput, table
+    -- Retrieves tags for a WorkSpace Instance.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves a collection of WorkSpaces Instances based on specified filters.
     listWorkspaceInstances: function(Client, types.ListWorkspaceInstancesInput): types.ListWorkspaceInstancesOutput, table
+    -- Adds tags to a WorkSpace Instance.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a WorkSpace Instance.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

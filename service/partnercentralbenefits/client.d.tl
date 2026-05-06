@@ -3,22 +3,39 @@
 local types = require("partnercentralbenefits.types")
 
 local record Client
+    -- Modifies an existing benefit application by applying amendments to specific fields while maintaining revision control.
     amendBenefitApplication: function(Client, types.AmendBenefitApplicationInput): types.AmendBenefitApplicationOutput, table
+    -- Links an AWS resource to an existing benefit application for tracking and management purposes.
     associateBenefitApplicationResource: function(Client, types.AssociateBenefitApplicationResourceInput): types.AssociateBenefitApplicationResourceOutput, table
+    -- Cancels a benefit application that is currently in progress, preventing further processing.
     cancelBenefitApplication: function(Client, types.CancelBenefitApplicationInput): types.CancelBenefitApplicationOutput, table
+    -- Creates a new benefit application for a partner to request access to AWS benefits and programs.
     createBenefitApplication: function(Client, types.CreateBenefitApplicationInput): types.CreateBenefitApplicationOutput, table
+    -- Removes the association between an AWS resource and a benefit application.
     disassociateBenefitApplicationResource: function(Client, types.DisassociateBenefitApplicationResourceInput): types.DisassociateBenefitApplicationResourceOutput, table
+    -- Retrieves detailed information about a specific benefit available in the partner catalog.
     getBenefit: function(Client, types.GetBenefitInput): types.GetBenefitOutput, table
+    -- Retrieves detailed information about a specific benefit allocation that has been granted to a partner.
     getBenefitAllocation: function(Client, types.GetBenefitAllocationInput): types.GetBenefitAllocationOutput, table
+    -- Retrieves detailed information about a specific benefit application.
     getBenefitApplication: function(Client, types.GetBenefitApplicationInput): types.GetBenefitApplicationOutput, table
+    -- Retrieves a paginated list of benefit allocations based on specified filter criteria.
     listBenefitAllocations: function(Client, types.ListBenefitAllocationsInput): types.ListBenefitAllocationsOutput, table
+    -- Retrieves a paginated list of benefit applications based on specified filter criteria.
     listBenefitApplications: function(Client, types.ListBenefitApplicationsInput): types.ListBenefitApplicationsOutput, table
+    -- Retrieves a paginated list of available benefits based on specified filter criteria.
     listBenefits: function(Client, types.ListBenefitsInput): types.ListBenefitsOutput, table
+    -- Retrieves all tags associated with a specific resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Recalls a submitted benefit application, returning it to draft status for further modifications.
     recallBenefitApplication: function(Client, types.RecallBenefitApplicationInput): types.RecallBenefitApplicationOutput, table
+    -- Submits a benefit application for review and processing by AWS.
     submitBenefitApplication: function(Client, types.SubmitBenefitApplicationInput): types.SubmitBenefitApplicationOutput, table
+    -- Adds or updates tags for a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes specified tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing benefit application with new information while maintaining revision control.
     updateBenefitApplication: function(Client, types.UpdateBenefitApplicationInput): types.UpdateBenefitApplicationOutput, table
 end
 

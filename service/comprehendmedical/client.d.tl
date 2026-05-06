@@ -3,31 +3,87 @@
 local types = require("comprehendmedical.types")
 
 local record Client
+    -- Gets the properties associated with a medical entities detection job. Use this operation
+    -- to get the status of a detection job.
     describeEntitiesDetectionV2Job: function(Client, types.DescribeEntitiesDetectionV2JobInput): types.DescribeEntitiesDetectionV2JobOutput, table
+    -- Gets the properties associated with an InferICD10CM job. Use this operation to get the
+    -- status of an inference job.
     describeICD10CMInferenceJob: function(Client, types.DescribeICD10CMInferenceJobInput): types.DescribeICD10CMInferenceJobOutput, table
+    -- Gets the properties associated with a protected health information (PHI) detection job.
+    -- Use this operation to get the status of a detection job.
     describePHIDetectionJob: function(Client, types.DescribePHIDetectionJobInput): types.DescribePHIDetectionJobOutput, table
+    -- Gets the properties associated with an InferRxNorm job. Use this operation to get the
+    -- status of an inference job.
     describeRxNormInferenceJob: function(Client, types.DescribeRxNormInferenceJobInput): types.DescribeRxNormInferenceJobOutput, table
+    -- Gets the properties associated with an InferSNOMEDCT job. Use this operation to get the status of an inference job.
     describeSNOMEDCTInferenceJob: function(Client, types.DescribeSNOMEDCTInferenceJobInput): types.DescribeSNOMEDCTInferenceJobOutput, table
+    -- The DetectEntities operation is deprecated. You should use the DetectEntitiesV2 operation instead.
+    -- Inspects the clinical text for a variety of medical entities and returns specific
+    -- information about them such as entity category, location, and confidence score on that
+    -- information.
     detectEntities: function(Client, types.DetectEntitiesInput): types.DetectEntitiesOutput, table
+    -- Inspects the clinical text for a variety of medical entities and returns specific
+    -- information about them such as entity category, location, and confidence score on that
+    -- information. Amazon Comprehend Medical only detects medical entities in English language
+    -- texts.
+    -- The DetectEntitiesV2 operation replaces the DetectEntities
+    -- operation. This new action uses a different model for determining the entities in your medical
+    -- text and changes the way that some entities are returned in the output. You should use the
+    -- DetectEntitiesV2 operation in all new applications.
+    -- The DetectEntitiesV2 operation returns the Acuity and
+    -- Direction entities as attributes instead of types.
     detectEntitiesV2: function(Client, types.DetectEntitiesV2Input): types.DetectEntitiesV2Output, table
+    -- Inspects the clinical text for protected health information (PHI) entities and returns
+    -- the entity category, location, and confidence score for each entity. Amazon Comprehend Medical
+    -- only detects entities in English language texts.
     detectPHI: function(Client, types.DetectPHIInput): types.DetectPHIOutput, table
+    -- InferICD10CM detects medical conditions as entities listed in a patient record and links
+    -- those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the
+    -- Centers for Disease Control. Amazon Comprehend Medical only detects medical entities in
+    -- English language texts.
     inferICD10CM: function(Client, types.InferICD10CMInput): types.InferICD10CMOutput, table
+    -- InferRxNorm detects medications as entities listed in a patient record and links to the
+    -- normalized concept identifiers in the RxNorm database from the National Library of Medicine.
+    -- Amazon Comprehend Medical only detects medical entities in English language texts.
     inferRxNorm: function(Client, types.InferRxNormInput): types.InferRxNormOutput, table
+    -- InferSNOMEDCT detects possible medical concepts as entities and links them to codes from the Systematized Nomenclature of Medicine, Clinical Terms (SNOMED-CT) ontology
     inferSNOMEDCT: function(Client, types.InferSNOMEDCTInput): types.InferSNOMEDCTOutput, table
+    -- Gets a list of medical entity detection jobs that you have submitted.
     listEntitiesDetectionV2Jobs: function(Client, types.ListEntitiesDetectionV2JobsInput): types.ListEntitiesDetectionV2JobsOutput, table
+    -- Gets a list of InferICD10CM jobs that you have submitted.
     listICD10CMInferenceJobs: function(Client, types.ListICD10CMInferenceJobsInput): types.ListICD10CMInferenceJobsOutput, table
+    -- Gets a list of protected health information (PHI) detection jobs you have
+    -- submitted.
     listPHIDetectionJobs: function(Client, types.ListPHIDetectionJobsInput): types.ListPHIDetectionJobsOutput, table
+    -- Gets a list of InferRxNorm jobs that you have submitted.
     listRxNormInferenceJobs: function(Client, types.ListRxNormInferenceJobsInput): types.ListRxNormInferenceJobsOutput, table
+    -- Gets a list of InferSNOMEDCT jobs a user has submitted.
     listSNOMEDCTInferenceJobs: function(Client, types.ListSNOMEDCTInferenceJobsInput): types.ListSNOMEDCTInferenceJobsOutput, table
+    -- Starts an asynchronous medical entity detection job for a collection of documents. Use the
+    -- DescribeEntitiesDetectionV2Job operation to track the status of a job.
     startEntitiesDetectionV2Job: function(Client, types.StartEntitiesDetectionV2JobInput): types.StartEntitiesDetectionV2JobOutput, table
+    -- Starts an asynchronous job to detect medical conditions and link them to the ICD-10-CM
+    -- ontology. Use the DescribeICD10CMInferenceJob operation to track the status of a
+    -- job.
     startICD10CMInferenceJob: function(Client, types.StartICD10CMInferenceJobInput): types.StartICD10CMInferenceJobOutput, table
+    -- Starts an asynchronous job to detect protected health information (PHI). Use the
+    -- DescribePHIDetectionJob operation to track the status of a job.
     startPHIDetectionJob: function(Client, types.StartPHIDetectionJobInput): types.StartPHIDetectionJobOutput, table
+    -- Starts an asynchronous job to detect medication entities and link them to the RxNorm
+    -- ontology. Use the DescribeRxNormInferenceJob operation to track the status of a
+    -- job.
     startRxNormInferenceJob: function(Client, types.StartRxNormInferenceJobInput): types.StartRxNormInferenceJobOutput, table
+    -- Starts an asynchronous job to detect medical concepts and link them to the SNOMED-CT ontology. Use the DescribeSNOMEDCTInferenceJob operation to track the status of a job.
     startSNOMEDCTInferenceJob: function(Client, types.StartSNOMEDCTInferenceJobInput): types.StartSNOMEDCTInferenceJobOutput, table
+    -- Stops a medical entities detection job in progress.
     stopEntitiesDetectionV2Job: function(Client, types.StopEntitiesDetectionV2JobInput): types.StopEntitiesDetectionV2JobOutput, table
+    -- Stops an InferICD10CM inference job in progress.
     stopICD10CMInferenceJob: function(Client, types.StopICD10CMInferenceJobInput): types.StopICD10CMInferenceJobOutput, table
+    -- Stops a protected health information (PHI) detection job in progress.
     stopPHIDetectionJob: function(Client, types.StopPHIDetectionJobInput): types.StopPHIDetectionJobOutput, table
+    -- Stops an InferRxNorm inference job in progress.
     stopRxNormInferenceJob: function(Client, types.StopRxNormInferenceJobInput): types.StopRxNormInferenceJobOutput, table
+    -- Stops an InferSNOMEDCT inference job in progress.
     stopSNOMEDCTInferenceJob: function(Client, types.StopSNOMEDCTInferenceJobInput): types.StopSNOMEDCTInferenceJobOutput, table
 end
 

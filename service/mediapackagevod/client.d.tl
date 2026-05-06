@@ -3,22 +3,39 @@
 local types = require("mediapackagevod.types")
 
 local record Client
+    -- Changes the packaging group's properities to configure log subscription
     configureLogs: function(Client, types.ConfigureLogsInput): types.ConfigureLogsOutput, table
+    -- Creates a new MediaPackage VOD Asset resource.
     createAsset: function(Client, types.CreateAssetInput): types.CreateAssetOutput, table
+    -- Creates a new MediaPackage VOD PackagingConfiguration resource.
     createPackagingConfiguration: function(Client, types.CreatePackagingConfigurationInput): types.CreatePackagingConfigurationOutput, table
+    -- Creates a new MediaPackage VOD PackagingGroup resource.
     createPackagingGroup: function(Client, types.CreatePackagingGroupInput): types.CreatePackagingGroupOutput, table
+    -- Deletes an existing MediaPackage VOD Asset resource.
     deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    -- Deletes a MediaPackage VOD PackagingConfiguration resource.
     deletePackagingConfiguration: function(Client, types.DeletePackagingConfigurationInput): types.DeletePackagingConfigurationOutput, table
+    -- Deletes a MediaPackage VOD PackagingGroup resource.
     deletePackagingGroup: function(Client, types.DeletePackagingGroupInput): types.DeletePackagingGroupOutput, table
+    -- Returns a description of a MediaPackage VOD Asset resource.
     describeAsset: function(Client, types.DescribeAssetInput): types.DescribeAssetOutput, table
+    -- Returns a description of a MediaPackage VOD PackagingConfiguration resource.
     describePackagingConfiguration: function(Client, types.DescribePackagingConfigurationInput): types.DescribePackagingConfigurationOutput, table
+    -- Returns a description of a MediaPackage VOD PackagingGroup resource.
     describePackagingGroup: function(Client, types.DescribePackagingGroupInput): types.DescribePackagingGroupOutput, table
+    -- Returns a collection of MediaPackage VOD Asset resources.
     listAssets: function(Client, types.ListAssetsInput): types.ListAssetsOutput, table
+    -- Returns a collection of MediaPackage VOD PackagingConfiguration resources.
     listPackagingConfigurations: function(Client, types.ListPackagingConfigurationsInput): types.ListPackagingConfigurationsOutput, table
+    -- Returns a collection of MediaPackage VOD PackagingGroup resources.
     listPackagingGroups: function(Client, types.ListPackagingGroupsInput): types.ListPackagingGroupsOutput, table
+    -- Returns a list of the tags assigned to the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds tags to the specified resource. You can specify one or more tags to add.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified resource. You can specify one or more tags to remove.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a specific packaging group. You can't change the id attribute or any other system-generated attributes.
     updatePackagingGroup: function(Client, types.UpdatePackagingGroupInput): types.UpdatePackagingGroupOutput, table
 end
 

@@ -3,21 +3,37 @@
 local types = require("novaact.types")
 
 local record Client
+    -- Creates a new AI task (act) within a session that can interact with tools and perform specific actions.
     createAct: function(Client, types.CreateActInput): types.CreateActOutput, table
+    -- Creates a new session context within a workflow run to manage conversation state and acts.
     createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    -- Creates a new workflow definition template that can be used to execute multiple workflow runs.
     createWorkflowDefinition: function(Client, types.CreateWorkflowDefinitionInput): types.CreateWorkflowDefinitionOutput, table
+    -- Creates a new execution instance of a workflow definition with specified parameters.
     createWorkflowRun: function(Client, types.CreateWorkflowRunInput): types.CreateWorkflowRunOutput, table
+    -- Deletes a workflow definition and all associated resources. This operation cannot be undone.
     deleteWorkflowDefinition: function(Client, types.DeleteWorkflowDefinitionInput): types.DeleteWorkflowDefinitionOutput, table
+    -- Terminates and cleans up a workflow run, stopping all associated acts and sessions.
     deleteWorkflowRun: function(Client, types.DeleteWorkflowRunInput): types.DeleteWorkflowRunOutput, table
+    -- Retrieves the details and configuration of a specific workflow definition.
     getWorkflowDefinition: function(Client, types.GetWorkflowDefinitionInput): types.GetWorkflowDefinitionOutput, table
+    -- Retrieves the current state, configuration, and execution details of a workflow run.
     getWorkflowRun: function(Client, types.GetWorkflowRunInput): types.GetWorkflowRunOutput, table
+    -- Executes the next step of an act, processing tool call results and returning new tool calls if needed.
     invokeActStep: function(Client, types.InvokeActStepInput): types.InvokeActStepOutput, table
+    -- Lists all acts within a specific session with their current status and execution details.
     listActs: function(Client, types.ListActsInput): types.ListActsOutput, table
+    -- Lists all available AI models that can be used for workflow execution, including their status and compatibility information.
     listModels: function(Client, types.ListModelsInput): types.ListModelsOutput, table
+    -- Lists all sessions within a specific workflow run.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Lists all workflow definitions in your account with optional filtering and pagination.
     listWorkflowDefinitions: function(Client, types.ListWorkflowDefinitionsInput): types.ListWorkflowDefinitionsOutput, table
+    -- Lists all workflow runs for a specific workflow definition with optional filtering and pagination.
     listWorkflowRuns: function(Client, types.ListWorkflowRunsInput): types.ListWorkflowRunsOutput, table
+    -- Updates an existing act's configuration, status, or error information.
     updateAct: function(Client, types.UpdateActInput): types.UpdateActOutput, table
+    -- Updates the configuration or state of an active workflow run.
     updateWorkflowRun: function(Client, types.UpdateWorkflowRunInput): types.UpdateWorkflowRunOutput, table
 end
 

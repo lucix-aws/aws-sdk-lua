@@ -3,82 +3,207 @@
 local types = require("devicefarm.types")
 
 local record Client
+    -- Creates a device pool.
     createDevicePool: function(Client, types.CreateDevicePoolInput): types.CreateDevicePoolOutput, table
+    -- Creates a profile that can be applied to one or more private fleet device
+    -- instances.
     createInstanceProfile: function(Client, types.CreateInstanceProfileInput): types.CreateInstanceProfileOutput, table
+    -- Creates a network profile.
     createNetworkProfile: function(Client, types.CreateNetworkProfileInput): types.CreateNetworkProfileOutput, table
+    -- Creates a project.
     createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    -- Specifies and starts a remote access session.
     createRemoteAccessSession: function(Client, types.CreateRemoteAccessSessionInput): types.CreateRemoteAccessSessionOutput, table
+    -- Creates a Selenium testing project. Projects are used to track TestGridSession
+    -- instances.
     createTestGridProject: function(Client, types.CreateTestGridProjectInput): types.CreateTestGridProjectOutput, table
+    -- Creates a signed, short-term URL that can be passed to a Selenium RemoteWebDriver
+    -- constructor.
     createTestGridUrl: function(Client, types.CreateTestGridUrlInput): types.CreateTestGridUrlOutput, table
+    -- Uploads an app or test scripts.
     createUpload: function(Client, types.CreateUploadInput): types.CreateUploadOutput, table
+    -- Creates a configuration record in Device Farm for your Amazon Virtual Private Cloud
+    -- (VPC) endpoint.
     createVPCEConfiguration: function(Client, types.CreateVPCEConfigurationInput): types.CreateVPCEConfigurationOutput, table
+    -- Deletes a device pool given the pool ARN. Does not allow deletion of curated pools
+    -- owned by the system.
     deleteDevicePool: function(Client, types.DeleteDevicePoolInput): types.DeleteDevicePoolOutput, table
+    -- Deletes a profile that can be applied to one or more private device instances.
     deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput): types.DeleteInstanceProfileOutput, table
+    -- Deletes a network profile.
     deleteNetworkProfile: function(Client, types.DeleteNetworkProfileInput): types.DeleteNetworkProfileOutput, table
+    -- Deletes an AWS Device Farm project, given the project ARN. You cannot delete a project if it has an active run or session.
+    -- You cannot undo this operation.
     deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    -- Deletes a completed remote access session and its results. You cannot delete a remote access session if it is still active.
+    -- You cannot undo this operation.
     deleteRemoteAccessSession: function(Client, types.DeleteRemoteAccessSessionInput): types.DeleteRemoteAccessSessionOutput, table
+    -- Deletes the run, given the run ARN. You cannot delete a run if it is still active.
+    -- You cannot undo this operation.
     deleteRun: function(Client, types.DeleteRunInput): types.DeleteRunOutput, table
+    -- Deletes a Selenium testing project and all content generated under it. You cannot delete a project if it has active sessions.
+    -- You cannot undo this operation.
     deleteTestGridProject: function(Client, types.DeleteTestGridProjectInput): types.DeleteTestGridProjectOutput, table
+    -- Deletes an upload given the upload ARN.
     deleteUpload: function(Client, types.DeleteUploadInput): types.DeleteUploadOutput, table
+    -- Deletes a configuration for your Amazon Virtual Private Cloud (VPC) endpoint.
     deleteVPCEConfiguration: function(Client, types.DeleteVPCEConfigurationInput): types.DeleteVPCEConfigurationOutput, table
+    -- Returns the number of unmetered iOS or unmetered Android devices that have been purchased by the
+    -- account.
     getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    -- Gets information about a unique device type.
     getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    -- Returns information about a device instance that belongs to a private device fleet.
     getDeviceInstance: function(Client, types.GetDeviceInstanceInput): types.GetDeviceInstanceOutput, table
+    -- Gets information about a device pool.
     getDevicePool: function(Client, types.GetDevicePoolInput): types.GetDevicePoolOutput, table
+    -- Gets information about compatibility with a device pool.
     getDevicePoolCompatibility: function(Client, types.GetDevicePoolCompatibilityInput): types.GetDevicePoolCompatibilityOutput, table
+    -- Returns information about the specified instance profile.
     getInstanceProfile: function(Client, types.GetInstanceProfileInput): types.GetInstanceProfileOutput, table
+    -- Gets information about a job.
     getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    -- Returns information about a network profile.
     getNetworkProfile: function(Client, types.GetNetworkProfileInput): types.GetNetworkProfileOutput, table
+    -- Gets the current status and future status of all offerings purchased by an AWS account. The response
+    -- indicates how many offerings are currently available and the offerings that will be available in the next
+    -- period. The API returns a NotEligible error if the user is not permitted to invoke the
+    -- operation. If you must be able to invoke this operation, contact aws-devicefarm-support@amazon.com.
     getOfferingStatus: function(Client, types.GetOfferingStatusInput): types.GetOfferingStatusOutput, table
+    -- Gets information about a project.
     getProject: function(Client, types.GetProjectInput): types.GetProjectOutput, table
+    -- Returns a link to a currently running remote access session.
     getRemoteAccessSession: function(Client, types.GetRemoteAccessSessionInput): types.GetRemoteAccessSessionOutput, table
+    -- Gets information about a run.
     getRun: function(Client, types.GetRunInput): types.GetRunOutput, table
+    -- Gets information about a suite.
     getSuite: function(Client, types.GetSuiteInput): types.GetSuiteOutput, table
+    -- Gets information about a test.
     getTest: function(Client, types.GetTestInput): types.GetTestOutput, table
+    -- Retrieves information about a Selenium testing project.
     getTestGridProject: function(Client, types.GetTestGridProjectInput): types.GetTestGridProjectOutput, table
+    -- A session is an instance of a browser created through a RemoteWebDriver with the URL from CreateTestGridUrlResult$url. You can use the following to look up sessions:
+    -- The session ARN (GetTestGridSessionRequest$sessionArn).
+    -- The project ARN and a session ID (GetTestGridSessionRequest$projectArn and GetTestGridSessionRequest$sessionId).
     getTestGridSession: function(Client, types.GetTestGridSessionInput): types.GetTestGridSessionOutput, table
+    -- Gets information about an upload.
     getUpload: function(Client, types.GetUploadInput): types.GetUploadOutput, table
+    -- Returns information about the configuration settings for your Amazon Virtual Private
+    -- Cloud (VPC) endpoint.
     getVPCEConfiguration: function(Client, types.GetVPCEConfigurationInput): types.GetVPCEConfigurationOutput, table
+    -- Installs an application to the device in a remote access session. For Android
+    -- applications, the file must be in .apk format. For iOS applications, the file must be in
+    -- .ipa format.
     installToRemoteAccessSession: function(Client, types.InstallToRemoteAccessSessionInput): types.InstallToRemoteAccessSessionOutput, table
+    -- Gets information about artifacts.
     listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    -- Returns information about the private device instances associated with one or more AWS
+    -- accounts.
     listDeviceInstances: function(Client, types.ListDeviceInstancesInput): types.ListDeviceInstancesOutput, table
+    -- Gets information about device pools.
     listDevicePools: function(Client, types.ListDevicePoolsInput): types.ListDevicePoolsOutput, table
+    -- Gets information about unique device types.
     listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    -- Returns information about all the instance profiles in an AWS account.
     listInstanceProfiles: function(Client, types.ListInstanceProfilesInput): types.ListInstanceProfilesOutput, table
+    -- Gets information about jobs for a given test run.
     listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    -- Returns the list of available network profiles.
     listNetworkProfiles: function(Client, types.ListNetworkProfilesInput): types.ListNetworkProfilesOutput, table
+    -- Returns a list of offering promotions. Each offering promotion record contains the ID and description
+    -- of the promotion. The API returns a NotEligible error if the caller is not permitted to invoke
+    -- the operation. Contact aws-devicefarm-support@amazon.com if you must be able to invoke this operation.
     listOfferingPromotions: function(Client, types.ListOfferingPromotionsInput): types.ListOfferingPromotionsOutput, table
+    -- Returns a list of products or offerings that the user can manage through the API. Each offering record
+    -- indicates the recurring price per unit and the frequency for that offering. The API returns a
+    -- NotEligible error if the user is not permitted to invoke the operation. If you must be
+    -- able to invoke this operation, contact aws-devicefarm-support@amazon.com.
     listOfferings: function(Client, types.ListOfferingsInput): types.ListOfferingsOutput, table
+    -- Returns a list of all historical purchases, renewals, and system renewal transactions for an AWS
+    -- account. The list is paginated and ordered by a descending timestamp (most recent transactions are first).
+    -- The API returns a NotEligible error if the user is not permitted to invoke the operation. If
+    -- you must be able to invoke this operation, contact aws-devicefarm-support@amazon.com.
     listOfferingTransactions: function(Client, types.ListOfferingTransactionsInput): types.ListOfferingTransactionsOutput, table
+    -- Gets information about projects.
     listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    -- Returns a list of all currently running remote access sessions.
     listRemoteAccessSessions: function(Client, types.ListRemoteAccessSessionsInput): types.ListRemoteAccessSessionsOutput, table
+    -- Gets information about runs, given an AWS Device Farm project ARN.
     listRuns: function(Client, types.ListRunsInput): types.ListRunsOutput, table
+    -- Gets information about samples, given an AWS Device Farm job ARN.
     listSamples: function(Client, types.ListSamplesInput): types.ListSamplesOutput, table
+    -- Gets information about test suites for a given job.
     listSuites: function(Client, types.ListSuitesInput): types.ListSuitesOutput, table
+    -- List the tags for an AWS Device Farm resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Gets a list of all Selenium testing projects in your account.
     listTestGridProjects: function(Client, types.ListTestGridProjectsInput): types.ListTestGridProjectsOutput, table
+    -- Returns a list of the actions taken in a TestGridSession.
     listTestGridSessionActions: function(Client, types.ListTestGridSessionActionsInput): types.ListTestGridSessionActionsOutput, table
+    -- Retrieves a list of artifacts created during the session.
     listTestGridSessionArtifacts: function(Client, types.ListTestGridSessionArtifactsInput): types.ListTestGridSessionArtifactsOutput, table
+    -- Retrieves a list of sessions for a TestGridProject.
     listTestGridSessions: function(Client, types.ListTestGridSessionsInput): types.ListTestGridSessionsOutput, table
+    -- Gets information about tests in a given test suite.
     listTests: function(Client, types.ListTestsInput): types.ListTestsOutput, table
+    -- Gets information about unique problems, such as exceptions or crashes.
+    -- Unique problems are defined as a single instance of an error across a run, job, or suite. For example,
+    -- if a call in your application consistently raises an exception (OutOfBoundsException in
+    -- MyActivity.java:386), ListUniqueProblems returns a single entry instead of many
+    -- individual entries for that exception.
     listUniqueProblems: function(Client, types.ListUniqueProblemsInput): types.ListUniqueProblemsOutput, table
+    -- Gets information about uploads, given an AWS Device Farm project ARN.
     listUploads: function(Client, types.ListUploadsInput): types.ListUploadsOutput, table
+    -- Returns information about all Amazon Virtual Private Cloud (VPC) endpoint
+    -- configurations in the AWS account.
     listVPCEConfigurations: function(Client, types.ListVPCEConfigurationsInput): types.ListVPCEConfigurationsOutput, table
+    -- Immediately purchases offerings for an AWS account. Offerings renew with the latest total purchased
+    -- quantity for an offering, unless the renewal was overridden. The API returns a NotEligible
+    -- error if the user is not permitted to invoke the operation. If you must be able to invoke this operation,
+    -- contact aws-devicefarm-support@amazon.com.
     purchaseOffering: function(Client, types.PurchaseOfferingInput): types.PurchaseOfferingOutput, table
+    -- Explicitly sets the quantity of devices to renew for an offering, starting from the
+    -- effectiveDate of the next period. The API returns a NotEligible error if the
+    -- user is not permitted to invoke the operation. If you must be able to invoke this operation, contact aws-devicefarm-support@amazon.com.
     renewOffering: function(Client, types.RenewOfferingInput): types.RenewOfferingOutput, table
+    -- Schedules a run.
     scheduleRun: function(Client, types.ScheduleRunInput): types.ScheduleRunOutput, table
+    -- Initiates a stop request for the current job. AWS Device Farm immediately stops the job on the device
+    -- where tests have not started. You are not billed for this device. On the device where tests have started,
+    -- setup suite and teardown suite tests run to completion on the device. You are billed for setup, teardown,
+    -- and any tests that were in progress or already completed.
     stopJob: function(Client, types.StopJobInput): types.StopJobOutput, table
+    -- Ends a specified remote access session.
     stopRemoteAccessSession: function(Client, types.StopRemoteAccessSessionInput): types.StopRemoteAccessSessionOutput, table
+    -- Initiates a stop request for the current test run. AWS Device Farm immediately stops the run on devices
+    -- where tests have not started. You are not billed for these devices. On devices where tests have started
+    -- executing, setup suite and teardown suite tests run to completion on those devices. You are billed for
+    -- setup, teardown, and any tests that were in progress or already completed.
     stopRun: function(Client, types.StopRunInput): types.StopRunOutput, table
+    -- Associates the specified tags to a resource with the specified resourceArn. If existing tags
+    -- on a resource are not specified in the request parameters, they are not changed. When a resource is deleted,
+    -- the tags associated with that resource are also deleted.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes the specified tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates information about a private device instance.
     updateDeviceInstance: function(Client, types.UpdateDeviceInstanceInput): types.UpdateDeviceInstanceOutput, table
+    -- Modifies the name, description, and rules in a device pool given the attributes and
+    -- the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a
+    -- whole (or not at all).
     updateDevicePool: function(Client, types.UpdateDevicePoolInput): types.UpdateDevicePoolOutput, table
+    -- Updates information about an existing private device instance profile.
     updateInstanceProfile: function(Client, types.UpdateInstanceProfileInput): types.UpdateInstanceProfileOutput, table
+    -- Updates the network profile.
     updateNetworkProfile: function(Client, types.UpdateNetworkProfileInput): types.UpdateNetworkProfileOutput, table
+    -- Modifies the specified project name, given the project ARN and a new
+    -- name.
     updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    -- Change details of a project.
     updateTestGridProject: function(Client, types.UpdateTestGridProjectInput): types.UpdateTestGridProjectOutput, table
+    -- Updates an uploaded test spec.
     updateUpload: function(Client, types.UpdateUploadInput): types.UpdateUploadOutput, table
+    -- Updates information about an Amazon Virtual Private Cloud (VPC) endpoint configuration.
     updateVPCEConfiguration: function(Client, types.UpdateVPCEConfigurationInput): types.UpdateVPCEConfigurationOutput, table
 end
 

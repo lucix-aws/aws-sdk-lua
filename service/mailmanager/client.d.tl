@@ -3,65 +3,125 @@
 local types = require("mailmanager.types")
 
 local record Client
+    -- Creates an Add On instance for the subscription indicated in the request. The resulting Amazon Resource Name (ARN) can be used in a conditional statement for a rule set or traffic policy.
     createAddonInstance: function(Client, types.CreateAddonInstanceInput): types.CreateAddonInstanceOutput, table
+    -- Creates a subscription for an Add On representing the acceptance of its terms of use and additional pricing. The subscription can then be used to create an instance for use in rule sets or traffic policies.
     createAddonSubscription: function(Client, types.CreateAddonSubscriptionInput): types.CreateAddonSubscriptionOutput, table
+    -- Creates a new address list.
     createAddressList: function(Client, types.CreateAddressListInput): types.CreateAddressListOutput, table
+    -- Creates an import job for an address list.
     createAddressListImportJob: function(Client, types.CreateAddressListImportJobInput): types.CreateAddressListImportJobOutput, table
+    -- Creates a new email archive resource for storing and retaining emails.
     createArchive: function(Client, types.CreateArchiveInput): types.CreateArchiveOutput, table
+    -- Provision a new ingress endpoint resource.
     createIngressPoint: function(Client, types.CreateIngressPointInput): types.CreateIngressPointOutput, table
+    -- Creates a relay resource which can be used in rules to relay incoming emails to defined relay destinations.
     createRelay: function(Client, types.CreateRelayInput): types.CreateRelayOutput, table
+    -- Provision a new rule set.
     createRuleSet: function(Client, types.CreateRuleSetInput): types.CreateRuleSetOutput, table
+    -- Provision a new traffic policy resource.
     createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput): types.CreateTrafficPolicyOutput, table
+    -- Deletes an Add On instance.
     deleteAddonInstance: function(Client, types.DeleteAddonInstanceInput): types.DeleteAddonInstanceOutput, table
+    -- Deletes an Add On subscription.
     deleteAddonSubscription: function(Client, types.DeleteAddonSubscriptionInput): types.DeleteAddonSubscriptionOutput, table
+    -- Deletes an address list.
     deleteAddressList: function(Client, types.DeleteAddressListInput): types.DeleteAddressListOutput, table
+    -- Initiates deletion of an email archive. This changes the archive state to pending deletion. In this state, no new emails can be added, and existing archived emails become inaccessible (search, export, download). The archive and all of its contents will be permanently deleted 30 days after entering the pending deletion state, regardless of the configured retention period.
     deleteArchive: function(Client, types.DeleteArchiveInput): types.DeleteArchiveOutput, table
+    -- Delete an ingress endpoint resource.
     deleteIngressPoint: function(Client, types.DeleteIngressPointInput): types.DeleteIngressPointOutput, table
+    -- Deletes an existing relay resource.
     deleteRelay: function(Client, types.DeleteRelayInput): types.DeleteRelayOutput, table
+    -- Delete a rule set.
     deleteRuleSet: function(Client, types.DeleteRuleSetInput): types.DeleteRuleSetOutput, table
+    -- Delete a traffic policy resource.
     deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput): types.DeleteTrafficPolicyOutput, table
+    -- Removes a member from an address list.
     deregisterMemberFromAddressList: function(Client, types.DeregisterMemberFromAddressListInput): types.DeregisterMemberFromAddressListOutput, table
+    -- Gets detailed information about an Add On instance.
     getAddonInstance: function(Client, types.GetAddonInstanceInput): types.GetAddonInstanceOutput, table
+    -- Gets detailed information about an Add On subscription.
     getAddonSubscription: function(Client, types.GetAddonSubscriptionInput): types.GetAddonSubscriptionOutput, table
+    -- Fetch attributes of an address list.
     getAddressList: function(Client, types.GetAddressListInput): types.GetAddressListOutput, table
+    -- Fetch attributes of an import job.
     getAddressListImportJob: function(Client, types.GetAddressListImportJobInput): types.GetAddressListImportJobOutput, table
+    -- Retrieves the full details and current state of a specified email archive.
     getArchive: function(Client, types.GetArchiveInput): types.GetArchiveOutput, table
+    -- Retrieves the details and current status of a specific email archive export job.
     getArchiveExport: function(Client, types.GetArchiveExportInput): types.GetArchiveExportOutput, table
+    -- Returns a pre-signed URL that provides temporary download access to the specific email message stored in the archive.
     getArchiveMessage: function(Client, types.GetArchiveMessageInput): types.GetArchiveMessageOutput, table
+    -- Returns the textual content of a specific email message stored in the archive. Attachments are not included.
     getArchiveMessageContent: function(Client, types.GetArchiveMessageContentInput): types.GetArchiveMessageContentOutput, table
+    -- Retrieves the details and current status of a specific email archive search job.
     getArchiveSearch: function(Client, types.GetArchiveSearchInput): types.GetArchiveSearchOutput, table
+    -- Returns the results of a completed email archive search job.
     getArchiveSearchResults: function(Client, types.GetArchiveSearchResultsInput): types.GetArchiveSearchResultsOutput, table
+    -- Fetch ingress endpoint resource attributes.
     getIngressPoint: function(Client, types.GetIngressPointInput): types.GetIngressPointOutput, table
+    -- Fetch attributes of a member in an address list.
     getMemberOfAddressList: function(Client, types.GetMemberOfAddressListInput): types.GetMemberOfAddressListOutput, table
+    -- Fetch the relay resource and it's attributes.
     getRelay: function(Client, types.GetRelayInput): types.GetRelayOutput, table
+    -- Fetch attributes of a rule set.
     getRuleSet: function(Client, types.GetRuleSetInput): types.GetRuleSetOutput, table
+    -- Fetch attributes of a traffic policy resource.
     getTrafficPolicy: function(Client, types.GetTrafficPolicyInput): types.GetTrafficPolicyOutput, table
+    -- Lists all Add On instances in your account.
     listAddonInstances: function(Client, types.ListAddonInstancesInput): types.ListAddonInstancesOutput, table
+    -- Lists all Add On subscriptions in your account.
     listAddonSubscriptions: function(Client, types.ListAddonSubscriptionsInput): types.ListAddonSubscriptionsOutput, table
+    -- Lists jobs for an address list.
     listAddressListImportJobs: function(Client, types.ListAddressListImportJobsInput): types.ListAddressListImportJobsOutput, table
+    -- Lists address lists for this account.
     listAddressLists: function(Client, types.ListAddressListsInput): types.ListAddressListsOutput, table
+    -- Returns a list of email archive export jobs.
     listArchiveExports: function(Client, types.ListArchiveExportsInput): types.ListArchiveExportsOutput, table
+    -- Returns a list of all email archives in your account.
     listArchives: function(Client, types.ListArchivesInput): types.ListArchivesOutput, table
+    -- Returns a list of email archive search jobs.
     listArchiveSearches: function(Client, types.ListArchiveSearchesInput): types.ListArchiveSearchesOutput, table
+    -- List all ingress endpoint resources.
     listIngressPoints: function(Client, types.ListIngressPointsInput): types.ListIngressPointsOutput, table
+    -- Lists members of an address list.
     listMembersOfAddressList: function(Client, types.ListMembersOfAddressListInput): types.ListMembersOfAddressListOutput, table
+    -- Lists all the existing relay resources.
     listRelays: function(Client, types.ListRelaysInput): types.ListRelaysOutput, table
+    -- List rule sets for this account.
     listRuleSets: function(Client, types.ListRuleSetsInput): types.ListRuleSetsOutput, table
+    -- Retrieves the list of tags (keys and values) assigned to the resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List traffic policy resources.
     listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput): types.ListTrafficPoliciesOutput, table
+    -- Adds a member to an address list.
     registerMemberToAddressList: function(Client, types.RegisterMemberToAddressListInput): types.RegisterMemberToAddressListOutput, table
+    -- Starts an import job for an address list.
     startAddressListImportJob: function(Client, types.StartAddressListImportJobInput): types.StartAddressListImportJobOutput, table
+    -- Initiates an export of emails from the specified archive.
     startArchiveExport: function(Client, types.StartArchiveExportInput): types.StartArchiveExportOutput, table
+    -- Initiates a search across emails in the specified archive.
     startArchiveSearch: function(Client, types.StartArchiveSearchInput): types.StartArchiveSearchOutput, table
+    -- Stops an ongoing import job for an address list.
     stopAddressListImportJob: function(Client, types.StopAddressListImportJobInput): types.StopAddressListImportJobOutput, table
+    -- Stops an in-progress export of emails from an archive.
     stopArchiveExport: function(Client, types.StopArchiveExportInput): types.StopArchiveExportOutput, table
+    -- Stops an in-progress archive search job.
     stopArchiveSearch: function(Client, types.StopArchiveSearchInput): types.StopArchiveSearchOutput, table
+    -- Adds one or more tags (keys and values) to a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove one or more tags (keys and values) from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the attributes of an existing email archive.
     updateArchive: function(Client, types.UpdateArchiveInput): types.UpdateArchiveOutput, table
+    -- Update attributes of a provisioned ingress endpoint resource.
     updateIngressPoint: function(Client, types.UpdateIngressPointInput): types.UpdateIngressPointOutput, table
+    -- Updates the attributes of an existing relay resource.
     updateRelay: function(Client, types.UpdateRelayInput): types.UpdateRelayOutput, table
+    -- Update attributes of an already provisioned rule set.
     updateRuleSet: function(Client, types.UpdateRuleSetInput): types.UpdateRuleSetOutput, table
+    -- Update attributes of an already provisioned traffic policy resource.
     updateTrafficPolicy: function(Client, types.UpdateTrafficPolicyInput): types.UpdateTrafficPolicyOutput, table
 end
 

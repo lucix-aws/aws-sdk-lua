@@ -3,17 +3,29 @@
 local types = require("dsql.types")
 
 local record Client
+    -- The CreateCluster API allows you to create both single-Region clusters and multi-Region clusters. With the addition of the multiRegionProperties parameter, you can create a cluster with witness Region support and establish peer relationships with clusters in other Regions during creation. Creating multi-Region clusters requires additional IAM permissions beyond those needed for single-Region clusters, as detailed in the Required permissions section below. Required permissions dsql:CreateCluster Required to create a cluster. Resources: arn:aws:dsql:region:account-id:cluster/* dsql:TagResource Permission to add tags to a resource. Resources: arn:aws:dsql:region:account-id:cluster/* dsql:PutMultiRegionProperties Permission to configure multi-Region properties for a cluster. Resources: arn:aws:dsql:region:account-id:cluster/* dsql:AddPeerCluster When specifying multiRegionProperties.clusters, permission to add peer clusters. Resources: Local cluster: arn:aws:dsql:region:account-id:cluster/* Each peer cluster: exact ARN of each specified peer cluster dsql:PutWitnessRegion When specifying multiRegionProperties.witnessRegion, permission to set a witness Region. This permission is checked both in the cluster Region and in the witness Region. Resources: arn:aws:dsql:region:account-id:cluster/* Condition Keys: dsql:WitnessRegion (matching the specified witness region) The witness Region specified in multiRegionProperties.witnessRegion cannot be the same as the cluster's Region.
     createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    -- Deletes a cluster in Amazon Aurora DSQL.
     deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    -- Deletes the resource-based policy attached to a cluster. This removes all access permissions defined by the policy, reverting to default access controls.
     deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput): types.DeleteClusterPolicyOutput, table
+    -- Retrieves information about a cluster.
     getCluster: function(Client, types.GetClusterInput): types.GetClusterOutput, table
+    -- Retrieves the resource-based policy document attached to a cluster. This policy defines the access permissions and conditions for the cluster.
     getClusterPolicy: function(Client, types.GetClusterPolicyInput): types.GetClusterPolicyOutput, table
+    -- Retrieves the VPC endpoint service name.
     getVpcEndpointServiceName: function(Client, types.GetVpcEndpointServiceNameInput): types.GetVpcEndpointServiceNameOutput, table
+    -- Retrieves information about a list of clusters.
     listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    -- Lists all of the tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Attaches a resource-based policy to a cluster. This policy defines access permissions and conditions for the cluster, allowing you to control which principals can perform actions on the cluster.
     putClusterPolicy: function(Client, types.PutClusterPolicyInput): types.PutClusterPolicyOutput, table
+    -- Tags a resource with a map of key and value pairs.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- The UpdateCluster API allows you to modify both single-Region and multi-Region cluster configurations. With the multiRegionProperties parameter, you can add or modify witness Region support and manage peer relationships with clusters in other Regions. Note that updating multi-Region clusters requires additional IAM permissions beyond those needed for standard cluster updates, as detailed in the Permissions section. Required permissions dsql:UpdateCluster Permission to update a DSQL cluster. Resources: arn:aws:dsql:region:account-id:cluster/cluster-id dsql:PutMultiRegionProperties Permission to configure multi-Region properties for a cluster. Resources: arn:aws:dsql:region:account-id:cluster/cluster-id dsql:GetCluster Permission to retrieve cluster information. Resources: arn:aws:dsql:region:account-id:cluster/cluster-id dsql:AddPeerCluster Permission to add peer clusters. Resources: Local cluster: arn:aws:dsql:region:account-id:cluster/cluster-id Each peer cluster: exact ARN of each specified peer cluster dsql:RemovePeerCluster Permission to remove peer clusters. The dsql:RemovePeerCluster permission uses a wildcard ARN pattern to simplify permission management during updates. Resources: arn:aws:dsql:*:account-id:cluster/* dsql:PutWitnessRegion Permission to set a witness Region. Resources: arn:aws:dsql:region:account-id:cluster/cluster-id Condition Keys: dsql:WitnessRegion (matching the specified witness Region) This permission is checked both in the cluster Region and in the witness Region. The witness region specified in multiRegionProperties.witnessRegion cannot be the same as the cluster's Region. When updating clusters with peer relationships, permissions are checked for both adding and removing peers. The dsql:RemovePeerCluster permission uses a wildcard ARN pattern to simplify permission management during updates.
     updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
 end
 

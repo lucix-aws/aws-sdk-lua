@@ -3,19 +3,47 @@
 local types = require("iotdeviceadvisor.types")
 
 local record Client
+    -- Creates a Device Advisor test suite.
+    -- Requires permission to access the CreateSuiteDefinition action.
     createSuiteDefinition: function(Client, types.CreateSuiteDefinitionInput): types.CreateSuiteDefinitionOutput, table
+    -- Deletes a Device Advisor test suite.
+    -- Requires permission to access the DeleteSuiteDefinition action.
     deleteSuiteDefinition: function(Client, types.DeleteSuiteDefinitionInput): types.DeleteSuiteDefinitionOutput, table
+    -- Gets information about an Device Advisor endpoint.
     getEndpoint: function(Client, types.GetEndpointInput): types.GetEndpointOutput, table
+    -- Gets information about a Device Advisor test suite.
+    -- Requires permission to access the GetSuiteDefinition action.
     getSuiteDefinition: function(Client, types.GetSuiteDefinitionInput): types.GetSuiteDefinitionOutput, table
+    -- Gets information about a Device Advisor test suite run.
+    -- Requires permission to access the GetSuiteRun action.
     getSuiteRun: function(Client, types.GetSuiteRunInput): types.GetSuiteRunOutput, table
+    -- Gets a report download link for a successful Device Advisor qualifying test suite run.
+    -- Requires permission to access the GetSuiteRunReport action.
     getSuiteRunReport: function(Client, types.GetSuiteRunReportInput): types.GetSuiteRunReportOutput, table
+    -- Lists the Device Advisor test suites you have created.
+    -- Requires permission to access the ListSuiteDefinitions action.
     listSuiteDefinitions: function(Client, types.ListSuiteDefinitionsInput): types.ListSuiteDefinitionsOutput, table
+    -- Lists runs of the specified Device Advisor test suite. You can list all runs of the test
+    -- suite, or the runs of a specific version of the test suite.
+    -- Requires permission to access the ListSuiteRuns action.
     listSuiteRuns: function(Client, types.ListSuiteRunsInput): types.ListSuiteRunsOutput, table
+    -- Lists the tags attached to an IoT Device Advisor resource.
+    -- Requires permission to access the ListTagsForResource action.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts a Device Advisor test suite run.
+    -- Requires permission to access the StartSuiteRun action.
     startSuiteRun: function(Client, types.StartSuiteRunInput): types.StartSuiteRunOutput, table
+    -- Stops a Device Advisor test suite run that is currently running.
+    -- Requires permission to access the StopSuiteRun action.
     stopSuiteRun: function(Client, types.StopSuiteRunInput): types.StopSuiteRunOutput, table
+    -- Adds to and modifies existing tags of an IoT Device Advisor resource.
+    -- Requires permission to access the TagResource action.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from an IoT Device Advisor resource.
+    -- Requires permission to access the UntagResource action.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a Device Advisor test suite.
+    -- Requires permission to access the UpdateSuiteDefinition action.
     updateSuiteDefinition: function(Client, types.UpdateSuiteDefinitionInput): types.UpdateSuiteDefinitionOutput, table
 end
 

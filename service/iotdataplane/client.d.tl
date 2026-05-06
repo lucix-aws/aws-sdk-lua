@@ -3,13 +3,51 @@
 local types = require("iotdataplane.types")
 
 local record Client
+    -- Disconnects a connected MQTT client from Amazon Web Services IoT Core. When you disconnect a client, Amazon Web Services IoT Core closes the client's network connection and optionally cleans the session state.
     deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    -- Deletes the shadow for the specified thing.
+    -- Requires permission to access the DeleteThingShadow action.
+    -- For more information, see DeleteThingShadow in the IoT Developer Guide.
     deleteThingShadow: function(Client, types.DeleteThingShadowInput): types.DeleteThingShadowOutput, table
+    -- Gets the details of a single retained message for the specified topic.
+    -- This action returns the message payload of the retained message, which can
+    -- incur messaging costs. To list only the topic names of the retained messages, call
+    -- ListRetainedMessages.
+    -- Requires permission to access the GetRetainedMessage action.
+    -- For more information about messaging costs, see Amazon Web Services IoT Core
+    -- pricing - Messaging.
     getRetainedMessage: function(Client, types.GetRetainedMessageInput): types.GetRetainedMessageOutput, table
+    -- Gets the shadow for the specified thing.
+    -- Requires permission to access the GetThingShadow action.
+    -- For more information, see GetThingShadow in the
+    -- IoT Developer Guide.
     getThingShadow: function(Client, types.GetThingShadowInput): types.GetThingShadowOutput, table
+    -- Lists the shadows for the specified thing.
+    -- Requires permission to access the ListNamedShadowsForThing action.
     listNamedShadowsForThing: function(Client, types.ListNamedShadowsForThingInput): types.ListNamedShadowsForThingOutput, table
+    -- Lists summary information about the retained messages stored for the account.
+    -- This action returns only the topic names of the retained messages. It doesn't
+    -- return any message payloads. Although this action doesn't return a message payload,
+    -- it can still incur messaging costs.
+    -- To get the message payload of a retained message, call
+    -- GetRetainedMessage
+    -- with the topic name of the retained message.
+    -- Requires permission to access the ListRetainedMessages action.
+    -- For more information about messaging costs, see Amazon Web Services IoT Core
+    -- pricing - Messaging.
     listRetainedMessages: function(Client, types.ListRetainedMessagesInput): types.ListRetainedMessagesOutput, table
+    -- Publishes an MQTT message.
+    -- Requires permission to access the Publish action.
+    -- For more information about MQTT messages, see
+    -- MQTT Protocol in the
+    -- IoT Developer Guide.
+    -- For more information about messaging costs, see Amazon Web Services IoT Core
+    -- pricing - Messaging.
     publish: function(Client, types.PublishInput): types.PublishOutput, table
+    -- Updates the shadow for the specified thing.
+    -- Requires permission to access the UpdateThingShadow action.
+    -- For more information, see UpdateThingShadow in the
+    -- IoT Developer Guide.
     updateThingShadow: function(Client, types.UpdateThingShadowInput): types.UpdateThingShadowOutput, table
 end
 

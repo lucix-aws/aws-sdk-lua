@@ -3,39 +3,73 @@
 local types = require("mediaconvert.types")
 
 local record Client
+    -- Associates an AWS Certificate Manager (ACM) Amazon Resource Name (ARN) with AWS Elemental MediaConvert.
     associateCertificate: function(Client, types.AssociateCertificateInput): types.AssociateCertificateOutput, table
+    -- Permanently cancel a job. Once you have canceled a job, you can't start it again.
     cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    -- Create a new transcoding job. For information about jobs and job settings, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
     createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    -- Create a new job template. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
     createJobTemplate: function(Client, types.CreateJobTemplateInput): types.CreateJobTemplateOutput, table
+    -- Create a new preset. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
     createPreset: function(Client, types.CreatePresetInput): types.CreatePresetOutput, table
+    -- Create a new transcoding queue. For information about queues, see Working With Queues in the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html
     createQueue: function(Client, types.CreateQueueInput): types.CreateQueueOutput, table
+    -- Create a new resource share request for MediaConvert resources with AWS Support.
     createResourceShare: function(Client, types.CreateResourceShareInput): types.CreateResourceShareOutput, table
+    -- Permanently delete a job template you have created.
     deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): types.DeleteJobTemplateOutput, table
+    -- Permanently delete a policy that you created.
     deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    -- Permanently delete a preset you have created.
     deletePreset: function(Client, types.DeletePresetInput): types.DeletePresetOutput, table
+    -- Permanently delete a queue you have created.
     deleteQueue: function(Client, types.DeleteQueueInput): types.DeleteQueueOutput, table
+    -- Send a request with an empty body to the regional API endpoint to get your account API endpoint. Note that DescribeEndpoints is no longer required. We recommend that you send your requests directly to the regional endpoint instead.
     describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    -- Removes an association between the Amazon Resource Name (ARN) of an AWS Certificate Manager (ACM) certificate and an AWS Elemental MediaConvert resource.
     disassociateCertificate: function(Client, types.DisassociateCertificateInput): types.DisassociateCertificateOutput, table
+    -- Retrieve the JSON for a specific transcoding job.
     getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    -- Retrieve a JSON array of up to twenty of your most recent jobs matched by a jobs query.
     getJobsQueryResults: function(Client, types.GetJobsQueryResultsInput): types.GetJobsQueryResultsOutput, table
+    -- Retrieve the JSON for a specific job template.
     getJobTemplate: function(Client, types.GetJobTemplateInput): types.GetJobTemplateOutput, table
+    -- Retrieve the JSON for your policy.
     getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    -- Retrieve the JSON for a specific preset.
     getPreset: function(Client, types.GetPresetInput): types.GetPresetOutput, table
+    -- Retrieve the JSON for a specific queue.
     getQueue: function(Client, types.GetQueueInput): types.GetQueueOutput, table
+    -- Retrieve a JSON array of up to twenty of your most recently created jobs. This array includes in-process, completed, and errored jobs. This will return the jobs themselves, not just a list of the jobs. To retrieve the twenty next most recent jobs, use the nextToken string returned with the array.
     listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    -- Retrieve a JSON array of up to twenty of your job templates. This will return the templates themselves, not just a list of them. To retrieve the next twenty templates, use the nextToken string returned with the array
     listJobTemplates: function(Client, types.ListJobTemplatesInput): types.ListJobTemplatesOutput, table
+    -- Retrieve a JSON array of up to twenty of your presets. This will return the presets themselves, not just a list of them. To retrieve the next twenty presets, use the nextToken string returned with the array.
     listPresets: function(Client, types.ListPresetsInput): types.ListPresetsOutput, table
+    -- Retrieve a JSON array of up to twenty of your queues. This will return the queues themselves, not just a list of them. To retrieve the next twenty queues, use the nextToken string returned with the array.
     listQueues: function(Client, types.ListQueuesInput): types.ListQueuesOutput, table
+    -- Retrieve the tags for a MediaConvert resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieve a JSON array of all available Job engine versions and the date they expire.
     listVersions: function(Client, types.ListVersionsInput): types.ListVersionsOutput, table
+    -- Use Probe to obtain detailed information about your input media files. Probe returns a JSON that includes container, codec, frame rate, resolution, track count, audio layout, captions, and more. You can use this information to learn more about your media files, or to help make decisions while automating your transcoding workflow.
     probe: function(Client, types.ProbeInput): types.ProbeOutput, table
+    -- Create or change your policy. For more information about policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
     putPolicy: function(Client, types.PutPolicyInput): types.PutPolicyOutput, table
+    -- Retrieve a JSON array that includes job details for up to twenty of your most recent jobs. Optionally filter results further according to input file, queue, or status. To retrieve the twenty next most recent jobs, use the nextToken string returned with the array.
     searchJobs: function(Client, types.SearchJobsInput): types.SearchJobsOutput, table
+    -- Start an asynchronous jobs query using the provided filters. To receive the list of jobs that match your query, call the GetJobsQueryResults API using the query ID returned by this API.
     startJobsQuery: function(Client, types.StartJobsQueryInput): types.StartJobsQueryOutput, table
+    -- Add tags to a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove tags from a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Modify one of your existing job templates.
     updateJobTemplate: function(Client, types.UpdateJobTemplateInput): types.UpdateJobTemplateOutput, table
+    -- Modify one of your existing presets.
     updatePreset: function(Client, types.UpdatePresetInput): types.UpdatePresetOutput, table
+    -- Modify one of your existing queues.
     updateQueue: function(Client, types.UpdateQueueInput): types.UpdateQueueOutput, table
 end
 

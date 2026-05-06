@@ -3,7 +3,9 @@
 local types = require("sustainability.types")
 
 local record Client
+    -- Returns estimated carbon emission values based on customer grouping and filtering parameters. We recommend using pagination to ensure that the operation returns quickly and successfully.
     getEstimatedCarbonEmissions: function(Client, types.GetEstimatedCarbonEmissionsInput): types.GetEstimatedCarbonEmissionsOutput, table
+    -- Returns the possible dimension values available for a customer's account. We recommend using pagination to ensure that the operation returns quickly and successfully.
     getEstimatedCarbonEmissionsDimensionValues: function(Client, types.GetEstimatedCarbonEmissionsDimensionValuesInput): types.GetEstimatedCarbonEmissionsDimensionValuesOutput, table
 end
 

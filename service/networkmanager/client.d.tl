@@ -3,100 +3,240 @@
 local types = require("networkmanager.types")
 
 local record Client
+    -- Accepts a core network attachment request.
+    -- Once the attachment request is accepted by a core network owner, the attachment is
+    -- created and connected to a core network.
     acceptAttachment: function(Client, types.AcceptAttachmentInput): types.AcceptAttachmentOutput, table
+    -- Associates a core network Connect peer with a device and optionally, with a link.
+    -- If you specify a link, it must be associated with the specified device. You can only
+    -- associate core network Connect peers that have been created on a core network Connect
+    -- attachment on a core network.
     associateConnectPeer: function(Client, types.AssociateConnectPeerInput): types.AssociateConnectPeerOutput, table
+    -- Associates a customer gateway with a device and optionally, with a link. If you
+    -- specify a link, it must be associated with the specified device.
+    -- You can only associate customer gateways that are connected to a VPN attachment on a
+    -- transit gateway or core network registered in your global network. When you register a
+    -- transit gateway or core network, customer gateways that are connected to the transit
+    -- gateway are automatically included in the global network. To list customer gateways
+    -- that are connected to a transit gateway, use the DescribeVpnConnections EC2 API and filter by
+    -- transit-gateway-id.
+    -- You cannot associate a customer gateway with more than one device and link.
     associateCustomerGateway: function(Client, types.AssociateCustomerGatewayInput): types.AssociateCustomerGatewayOutput, table
+    -- Associates a link to a device. A device can be associated to multiple links and a link can be associated to multiple devices. The device and link must be in the same global network and the same site.
     associateLink: function(Client, types.AssociateLinkInput): types.AssociateLinkOutput, table
+    -- Associates a transit gateway Connect peer with a device, and optionally, with a link. If you
+    -- specify a link, it must be associated with the specified device.
+    -- You can only associate transit gateway Connect peers that have been created on a
+    -- transit gateway that's registered in your global network.
+    -- You cannot associate a transit gateway Connect peer with more than one device and link.
     associateTransitGatewayConnectPeer: function(Client, types.AssociateTransitGatewayConnectPeerInput): types.AssociateTransitGatewayConnectPeerOutput, table
+    -- Creates a core network Connect attachment from a specified core network attachment.
+    -- A core network Connect attachment is a GRE-based tunnel attachment that you can use to
+    -- establish a connection between a core network and an appliance. A core network Connect
+    -- attachment uses an existing VPC attachment as the underlying transport mechanism.
     createConnectAttachment: function(Client, types.CreateConnectAttachmentInput): types.CreateConnectAttachmentOutput, table
+    -- Creates a connection between two devices. The devices can be a physical or virtual appliance that connects to a third-party appliance in a VPC, or a physical appliance that connects to another physical appliance in an on-premises network.
     createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    -- Creates a core network Connect peer for a specified core network connect attachment between a core network and an appliance.
+    -- The peer address and transit gateway address must be the same IP address family (IPv4 or IPv6).
     createConnectPeer: function(Client, types.CreateConnectPeerInput): types.CreateConnectPeerOutput, table
+    -- Creates a core network as part of your global network, and optionally, with a core network policy.
     createCoreNetwork: function(Client, types.CreateCoreNetworkInput): types.CreateCoreNetworkOutput, table
+    -- Creates an association between a core network and a prefix list for routing control.
     createCoreNetworkPrefixListAssociation: function(Client, types.CreateCoreNetworkPrefixListAssociationInput): types.CreateCoreNetworkPrefixListAssociationOutput, table
+    -- Creates a new device in a global network. If you specify both a site ID and a
+    -- location, the location of the site is used for visualization in the Network Manager console.
     createDevice: function(Client, types.CreateDeviceInput): types.CreateDeviceOutput, table
+    -- Creates an Amazon Web Services Direct Connect gateway attachment
     createDirectConnectGatewayAttachment: function(Client, types.CreateDirectConnectGatewayAttachmentInput): types.CreateDirectConnectGatewayAttachmentOutput, table
+    -- Creates a new, empty global network.
     createGlobalNetwork: function(Client, types.CreateGlobalNetworkInput): types.CreateGlobalNetworkOutput, table
+    -- Creates a new link for a specified site.
     createLink: function(Client, types.CreateLinkInput): types.CreateLinkOutput, table
+    -- Creates a new site in a global network.
     createSite: function(Client, types.CreateSiteInput): types.CreateSiteOutput, table
+    -- Creates an Amazon Web Services site-to-site VPN attachment on an edge location of a core network.
     createSiteToSiteVpnAttachment: function(Client, types.CreateSiteToSiteVpnAttachmentInput): types.CreateSiteToSiteVpnAttachmentOutput, table
+    -- Creates a transit gateway peering connection.
     createTransitGatewayPeering: function(Client, types.CreateTransitGatewayPeeringInput): types.CreateTransitGatewayPeeringOutput, table
+    -- Creates a transit gateway route table attachment.
     createTransitGatewayRouteTableAttachment: function(Client, types.CreateTransitGatewayRouteTableAttachmentInput): types.CreateTransitGatewayRouteTableAttachmentOutput, table
+    -- Creates a VPC attachment on an edge location of a core network.
     createVpcAttachment: function(Client, types.CreateVpcAttachmentInput): types.CreateVpcAttachmentOutput, table
+    -- Deletes an attachment. Supports all attachment types.
     deleteAttachment: function(Client, types.DeleteAttachmentInput): types.DeleteAttachmentOutput, table
+    -- Deletes the specified connection in your global network.
     deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    -- Deletes a Connect peer.
     deleteConnectPeer: function(Client, types.DeleteConnectPeerInput): types.DeleteConnectPeerOutput, table
+    -- Deletes a core network along with all core network policies. This can only be done if there are no attachments on a core network.
     deleteCoreNetwork: function(Client, types.DeleteCoreNetworkInput): types.DeleteCoreNetworkOutput, table
+    -- Deletes a policy version from a core network. You can't delete the current LIVE policy.
     deleteCoreNetworkPolicyVersion: function(Client, types.DeleteCoreNetworkPolicyVersionInput): types.DeleteCoreNetworkPolicyVersionOutput, table
+    -- Deletes an association between a core network and a prefix list.
     deleteCoreNetworkPrefixListAssociation: function(Client, types.DeleteCoreNetworkPrefixListAssociationInput): types.DeleteCoreNetworkPrefixListAssociationOutput, table
+    -- Deletes an existing device. You must first disassociate the device from any links and
+    -- customer gateways.
     deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    -- Deletes an existing global network. You must first delete all global network objects
+    -- (devices, links, and sites), deregister all transit gateways, and delete any core networks.
     deleteGlobalNetwork: function(Client, types.DeleteGlobalNetworkInput): types.DeleteGlobalNetworkOutput, table
+    -- Deletes an existing link. You must first disassociate the link from any devices and
+    -- customer gateways.
     deleteLink: function(Client, types.DeleteLinkInput): types.DeleteLinkOutput, table
+    -- Deletes an existing peering connection.
     deletePeering: function(Client, types.DeletePeeringInput): types.DeletePeeringOutput, table
+    -- Deletes a resource policy for the specified resource. This revokes the access of the principals specified in the resource policy.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes an existing site. The site cannot be associated with any device or link.
     deleteSite: function(Client, types.DeleteSiteInput): types.DeleteSiteOutput, table
+    -- Deregisters a transit gateway from your global network. This action does not delete
+    -- your transit gateway, or modify any of its attachments. This action removes any customer gateway associations.
     deregisterTransitGateway: function(Client, types.DeregisterTransitGatewayInput): types.DeregisterTransitGatewayOutput, table
+    -- Describes one or more global networks. By default, all global networks are
+    -- described. To describe the objects in your global network, you must use the appropriate
+    -- Get* action. For example, to list the transit gateways in your global
+    -- network, use GetTransitGatewayRegistrations.
     describeGlobalNetworks: function(Client, types.DescribeGlobalNetworksInput): types.DescribeGlobalNetworksOutput, table
+    -- Disassociates a core network Connect peer from a device and a link.
     disassociateConnectPeer: function(Client, types.DisassociateConnectPeerInput): types.DisassociateConnectPeerOutput, table
+    -- Disassociates a customer gateway from a device and a link.
     disassociateCustomerGateway: function(Client, types.DisassociateCustomerGatewayInput): types.DisassociateCustomerGatewayOutput, table
+    -- Disassociates an existing device from a link. You must first disassociate any customer
+    -- gateways that are associated with the link.
     disassociateLink: function(Client, types.DisassociateLinkInput): types.DisassociateLinkOutput, table
+    -- Disassociates a transit gateway Connect peer from a device and link.
     disassociateTransitGatewayConnectPeer: function(Client, types.DisassociateTransitGatewayConnectPeerInput): types.DisassociateTransitGatewayConnectPeerOutput, table
+    -- Executes a change set on your core network. Deploys changes globally based on the policy submitted..
     executeCoreNetworkChangeSet: function(Client, types.ExecuteCoreNetworkChangeSetInput): types.ExecuteCoreNetworkChangeSetOutput, table
+    -- Returns information about a core network Connect attachment.
     getConnectAttachment: function(Client, types.GetConnectAttachmentInput): types.GetConnectAttachmentOutput, table
+    -- Gets information about one or more of your connections in a global network.
     getConnections: function(Client, types.GetConnectionsInput): types.GetConnectionsOutput, table
+    -- Returns information about a core network Connect peer.
     getConnectPeer: function(Client, types.GetConnectPeerInput): types.GetConnectPeerOutput, table
+    -- Returns information about a core network Connect peer associations.
     getConnectPeerAssociations: function(Client, types.GetConnectPeerAssociationsInput): types.GetConnectPeerAssociationsOutput, table
+    -- Returns information about the LIVE policy for a core network.
     getCoreNetwork: function(Client, types.GetCoreNetworkInput): types.GetCoreNetworkOutput, table
+    -- Returns information about a core network change event.
     getCoreNetworkChangeEvents: function(Client, types.GetCoreNetworkChangeEventsInput): types.GetCoreNetworkChangeEventsOutput, table
+    -- Returns a change set between the LIVE core network policy and a submitted policy.
     getCoreNetworkChangeSet: function(Client, types.GetCoreNetworkChangeSetInput): types.GetCoreNetworkChangeSetOutput, table
+    -- Returns details about a core network policy. You can get details about your current live policy or any previous policy version.
     getCoreNetworkPolicy: function(Client, types.GetCoreNetworkPolicyInput): types.GetCoreNetworkPolicyOutput, table
+    -- Gets the association information for customer gateways that are associated with
+    -- devices and links in your global network.
     getCustomerGatewayAssociations: function(Client, types.GetCustomerGatewayAssociationsInput): types.GetCustomerGatewayAssociationsOutput, table
+    -- Gets information about one or more of your devices in a global network.
     getDevices: function(Client, types.GetDevicesInput): types.GetDevicesOutput, table
+    -- Returns information about a specific Amazon Web Services Direct Connect gateway attachment.
     getDirectConnectGatewayAttachment: function(Client, types.GetDirectConnectGatewayAttachmentInput): types.GetDirectConnectGatewayAttachmentOutput, table
+    -- Gets the link associations for a device or a link. Either the device ID or the link ID
+    -- must be specified.
     getLinkAssociations: function(Client, types.GetLinkAssociationsInput): types.GetLinkAssociationsOutput, table
+    -- Gets information about one or more links in a specified global network.
+    -- If you specify the site ID, you cannot specify the type or provider in the same request. You can specify the type and provider in the same request.
     getLinks: function(Client, types.GetLinksInput): types.GetLinksOutput, table
+    -- Gets the count of network resources, by resource type, for the specified global network.
     getNetworkResourceCounts: function(Client, types.GetNetworkResourceCountsInput): types.GetNetworkResourceCountsOutput, table
+    -- Gets the network resource relationships for the specified global network.
     getNetworkResourceRelationships: function(Client, types.GetNetworkResourceRelationshipsInput): types.GetNetworkResourceRelationshipsOutput, table
+    -- Describes the network resources for the specified global network.
+    -- The results include information from the corresponding Describe call for the resource, minus any sensitive information such as pre-shared keys.
     getNetworkResources: function(Client, types.GetNetworkResourcesInput): types.GetNetworkResourcesOutput, table
+    -- Gets the network routes of the specified global network.
     getNetworkRoutes: function(Client, types.GetNetworkRoutesInput): types.GetNetworkRoutesOutput, table
+    -- Gets the network telemetry of the specified global network.
     getNetworkTelemetry: function(Client, types.GetNetworkTelemetryInput): types.GetNetworkTelemetryOutput, table
+    -- Returns information about a resource policy.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Gets information about the specified route analysis.
     getRouteAnalysis: function(Client, types.GetRouteAnalysisInput): types.GetRouteAnalysisOutput, table
+    -- Gets information about one or more of your sites in a global network.
     getSites: function(Client, types.GetSitesInput): types.GetSitesOutput, table
+    -- Returns information about a site-to-site VPN attachment.
     getSiteToSiteVpnAttachment: function(Client, types.GetSiteToSiteVpnAttachmentInput): types.GetSiteToSiteVpnAttachmentOutput, table
+    -- Gets information about one or more of your transit gateway Connect peer associations in a global network.
     getTransitGatewayConnectPeerAssociations: function(Client, types.GetTransitGatewayConnectPeerAssociationsInput): types.GetTransitGatewayConnectPeerAssociationsOutput, table
+    -- Returns information about a transit gateway peer.
     getTransitGatewayPeering: function(Client, types.GetTransitGatewayPeeringInput): types.GetTransitGatewayPeeringOutput, table
+    -- Gets information about the transit gateway registrations in a specified
+    -- global network.
     getTransitGatewayRegistrations: function(Client, types.GetTransitGatewayRegistrationsInput): types.GetTransitGatewayRegistrationsOutput, table
+    -- Returns information about a transit gateway route table attachment.
     getTransitGatewayRouteTableAttachment: function(Client, types.GetTransitGatewayRouteTableAttachmentInput): types.GetTransitGatewayRouteTableAttachmentOutput, table
+    -- Returns information about a VPC attachment.
     getVpcAttachment: function(Client, types.GetVpcAttachmentInput): types.GetVpcAttachmentOutput, table
+    -- Lists the routing policy associations for attachments in a core network.
     listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput): types.ListAttachmentRoutingPolicyAssociationsOutput, table
+    -- Returns a list of core network attachments.
     listAttachments: function(Client, types.ListAttachmentsInput): types.ListAttachmentsOutput, table
+    -- Returns a list of core network Connect peers.
     listConnectPeers: function(Client, types.ListConnectPeersInput): types.ListConnectPeersOutput, table
+    -- Returns a list of core network policy versions.
     listCoreNetworkPolicyVersions: function(Client, types.ListCoreNetworkPolicyVersionsInput): types.ListCoreNetworkPolicyVersionsOutput, table
+    -- Lists the prefix list associations for a core network.
     listCoreNetworkPrefixListAssociations: function(Client, types.ListCoreNetworkPrefixListAssociationsInput): types.ListCoreNetworkPrefixListAssociationsOutput, table
+    -- Lists routing information for a core network, including routes and their attributes.
     listCoreNetworkRoutingInformation: function(Client, types.ListCoreNetworkRoutingInformationInput): types.ListCoreNetworkRoutingInformationOutput, table
+    -- Returns a list of owned and shared core networks.
     listCoreNetworks: function(Client, types.ListCoreNetworksInput): types.ListCoreNetworksOutput, table
+    -- Gets the status of the Service Linked Role (SLR) deployment for the accounts in a given Amazon Web Services Organization.
     listOrganizationServiceAccessStatus: function(Client, types.ListOrganizationServiceAccessStatusInput): types.ListOrganizationServiceAccessStatusOutput, table
+    -- Lists the peerings for a core network.
     listPeerings: function(Client, types.ListPeeringsInput): types.ListPeeringsOutput, table
+    -- Lists the tags for a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Applies a routing policy label to an attachment for traffic routing decisions.
     putAttachmentRoutingPolicyLabel: function(Client, types.PutAttachmentRoutingPolicyLabelInput): types.PutAttachmentRoutingPolicyLabelOutput, table
+    -- Creates a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and the submitted policy.
     putCoreNetworkPolicy: function(Client, types.PutCoreNetworkPolicyInput): types.PutCoreNetworkPolicyOutput, table
+    -- Creates or updates a resource policy.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Registers a transit gateway in your global network. Not all Regions support transit
+    -- gateways for global networks. For a list of the supported Regions, see Region Availability in the Amazon Web Services Transit Gateways for Global
+    -- Networks User Guide. The transit gateway can be in any of the supported
+    -- Amazon Web Services Regions, but it must be owned by the same Amazon Web Services account that owns the global
+    -- network. You cannot register a transit gateway in more than one global network.
     registerTransitGateway: function(Client, types.RegisterTransitGatewayInput): types.RegisterTransitGatewayOutput, table
+    -- Rejects a core network attachment request.
     rejectAttachment: function(Client, types.RejectAttachmentInput): types.RejectAttachmentOutput, table
+    -- Removes a routing policy label from an attachment.
     removeAttachmentRoutingPolicyLabel: function(Client, types.RemoveAttachmentRoutingPolicyLabelInput): types.RemoveAttachmentRoutingPolicyLabelOutput, table
+    -- Restores a previous policy version as a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and restored policy.
     restoreCoreNetworkPolicyVersion: function(Client, types.RestoreCoreNetworkPolicyVersionInput): types.RestoreCoreNetworkPolicyVersionOutput, table
+    -- Enables the Network Manager service for an Amazon Web Services Organization. This can only be called by a management account within the organization.
     startOrganizationServiceAccessUpdate: function(Client, types.StartOrganizationServiceAccessUpdateInput): types.StartOrganizationServiceAccessUpdateOutput, table
+    -- Starts analyzing the routing path between the specified source and destination. For more information,
+    -- see Route Analyzer.
     startRouteAnalysis: function(Client, types.StartRouteAnalysisInput): types.StartRouteAnalysisOutput, table
+    -- Tags a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the information for an existing connection. To remove information for any of the parameters,
+    -- specify an empty string.
     updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    -- Updates the description of a core network.
     updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput): types.UpdateCoreNetworkOutput, table
+    -- Updates the details for an existing device. To remove information for any of the
+    -- parameters, specify an empty string.
     updateDevice: function(Client, types.UpdateDeviceInput): types.UpdateDeviceOutput, table
+    -- Updates the edge locations associated with an Amazon Web Services Direct Connect gateway attachment.
     updateDirectConnectGatewayAttachment: function(Client, types.UpdateDirectConnectGatewayAttachmentInput): types.UpdateDirectConnectGatewayAttachmentOutput, table
+    -- Updates an existing global network. To remove information for any of the parameters,
+    -- specify an empty string.
     updateGlobalNetwork: function(Client, types.UpdateGlobalNetworkInput): types.UpdateGlobalNetworkOutput, table
+    -- Updates the details for an existing link. To remove information for any of the
+    -- parameters, specify an empty string.
     updateLink: function(Client, types.UpdateLinkInput): types.UpdateLinkOutput, table
+    -- Updates the resource metadata for the specified global network.
     updateNetworkResourceMetadata: function(Client, types.UpdateNetworkResourceMetadataInput): types.UpdateNetworkResourceMetadataOutput, table
+    -- Updates the information for an existing site. To remove information for any of the
+    -- parameters, specify an empty string.
     updateSite: function(Client, types.UpdateSiteInput): types.UpdateSiteOutput, table
+    -- Updates a VPC attachment.
     updateVpcAttachment: function(Client, types.UpdateVpcAttachmentInput): types.UpdateVpcAttachmentOutput, table
 end
 

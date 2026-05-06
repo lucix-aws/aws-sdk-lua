@@ -3,10 +3,31 @@
 local types = require("s3outposts.types")
 
 local record Client
+    -- Creates an endpoint and associates it with the specified Outpost.
+    -- It can take up to 5 minutes for this action to finish.
+    -- Related actions include:
+    -- DeleteEndpoint
+    -- ListEndpoints
     createEndpoint: function(Client, types.CreateEndpointInput): types.CreateEndpointOutput, table
+    -- Deletes an endpoint.
+    -- It can take up to 5 minutes for this action to finish.
+    -- Related actions include:
+    -- CreateEndpoint
+    -- ListEndpoints
     deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    -- Lists endpoints associated with the specified Outpost.
+    -- Related actions include:
+    -- CreateEndpoint
+    -- DeleteEndpoint
     listEndpoints: function(Client, types.ListEndpointsInput): types.ListEndpointsOutput, table
+    -- Lists the Outposts with S3 on Outposts capacity for your Amazon Web Services account.
+    -- Includes S3 on Outposts that you have access to as the Outposts owner, or as a shared user
+    -- from Resource Access Manager (RAM).
     listOutpostsWithS3: function(Client, types.ListOutpostsWithS3Input): types.ListOutpostsWithS3Output, table
+    -- Lists all endpoints associated with an Outpost that has been shared by Amazon Web Services Resource Access Manager (RAM).
+    -- Related actions include:
+    -- CreateEndpoint
+    -- DeleteEndpoint
     listSharedEndpoints: function(Client, types.ListSharedEndpointsInput): types.ListSharedEndpointsOutput, table
 end
 

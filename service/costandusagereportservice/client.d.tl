@@ -3,12 +3,20 @@
 local types = require("costandusagereportservice.types")
 
 local record Client
+    -- Deletes the specified report. Any tags associated with the report are also
+    -- deleted.
     deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): types.DeleteReportDefinitionOutput, table
+    -- Lists the Amazon Web Services Cost and Usage Report available to this account.
     describeReportDefinitions: function(Client, types.DescribeReportDefinitionsInput): types.DescribeReportDefinitionsOutput, table
+    -- Lists the tags associated with the specified report definition.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Allows you to programmatically update your report preferences.
     modifyReportDefinition: function(Client, types.ModifyReportDefinitionInput): types.ModifyReportDefinitionOutput, table
+    -- Creates a new report using the description that you provide.
     putReportDefinition: function(Client, types.PutReportDefinitionInput): types.PutReportDefinitionOutput, table
+    -- Associates a set of tags with a report definition.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Disassociates a set of tags from a report definition.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

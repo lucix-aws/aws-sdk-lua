@@ -3,29 +3,144 @@
 local types = require("migrationhubrefactorspaces.types")
 
 local record Client
+    -- Creates an Amazon Web Services Migration Hub Refactor Spaces application. The account that owns the environment also owns the
+    -- applications created inside the environment, regardless of the account that creates the
+    -- application. Refactor Spaces provisions an Amazon API Gateway, API Gateway VPC link, and
+    -- Network Load Balancer for the application proxy inside your account.
+    -- In environments created with a CreateEnvironment:NetworkFabricType of NONE you need to configure
+    -- VPC to VPC connectivity between your service VPC and the application proxy VPC to
+    -- route traffic through the application proxy to a service with a private URL endpoint. For more
+    -- information, see
+    -- Create an application in the Refactor Spaces User Guide.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates an Amazon Web Services Migration Hub Refactor Spaces environment. The caller owns the environment resource, and all
+    -- Refactor Spaces applications, services, and routes created within the environment. They are referred
+    -- to as the environment owner. The environment owner has cross-account
+    -- visibility and control of Refactor Spaces resources that are added to the environment by other
+    -- accounts that the environment is shared with.
+    -- When creating an environment with a CreateEnvironment:NetworkFabricType of TRANSIT_GATEWAY, Refactor Spaces
+    -- provisions a transit gateway to enable services in VPCs to communicate directly across
+    -- accounts. If CreateEnvironment:NetworkFabricType is NONE, Refactor Spaces does not create
+    -- a transit gateway and you must use your network infrastructure to route traffic to services
+    -- with private URL endpoints.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Creates an Amazon Web Services Migration Hub Refactor Spaces route. The account owner of the service resource is always the
+    -- environment owner, regardless of which account creates the route. Routes target a service in
+    -- the application. If an application does not have any routes, then the first route must be
+    -- created as a DEFAULT
+    -- RouteType.
+    -- When created, the default route defaults to an active state so state is not a required
+    -- input. However, like all other state values the state of the default route can be updated
+    -- after creation, but only when all other routes are also inactive. Conversely, no route can be
+    -- active without the default route also being active.
+    -- When you create a route, Refactor Spaces configures the Amazon API Gateway to send traffic
+    -- to the target service as follows:
+    -- URL Endpoints
+    -- If the service has a URL endpoint, and the endpoint resolves to a private IP address,
+    -- Refactor Spaces routes traffic using the API Gateway VPC link. If a service endpoint
+    -- resolves to a public IP address, Refactor Spaces routes traffic over the public internet.
+    -- Services can have HTTP or HTTPS URL endpoints. For HTTPS URLs, publicly-signed
+    -- certificates are supported. Private Certificate Authorities (CAs) are permitted only if
+    -- the CA's domain is also publicly resolvable.
+    -- Refactor Spaces automatically resolves the public Domain Name System (DNS) names that are
+    -- set in CreateService:UrlEndpoint when you create a service. The DNS names
+    -- resolve when the DNS time-to-live (TTL) expires, or every 60 seconds for TTLs less than 60
+    -- seconds. This periodic DNS resolution ensures that the route configuration remains
+    -- up-to-date.
+    -- One-time health check
+    -- A one-time health check is performed on the service when either the route is updated
+    -- from inactive to active, or when it is created with an active state. If the health check
+    -- fails, the route transitions the route state to FAILED, an error code of
+    -- SERVICE_ENDPOINT_HEALTH_CHECK_FAILURE is provided, and no traffic is sent
+    -- to the service.
+    -- For private URLs, a target group is created on the Network Load Balancer and the load
+    -- balancer target group runs default target health checks. By default, the health check is
+    -- run against the service endpoint URL. Optionally, the health check can be performed
+    -- against a different protocol, port, and/or path using the CreateService:UrlEndpoint parameter. All other health check settings for the
+    -- load balancer use the default values described in the Health
+    -- checks for your target groups in the Elastic Load Balancing
+    -- guide. The health check is considered successful if at least one target
+    -- within the target group transitions to a healthy state.
+    -- Lambda function endpoints
+    -- If the service has an Lambda function endpoint, then Refactor Spaces
+    -- configures the Lambda function's resource policy to allow the application's
+    -- API Gateway to invoke the function.
+    -- The Lambda function state is checked. If the function is not active, the
+    -- function configuration is updated so that Lambda resources are provisioned. If
+    -- the Lambda state is Failed, then the route creation fails. For
+    -- more information, see the GetFunctionConfiguration's State response parameter in the Lambda Developer Guide.
+    -- A check is performed to determine that a Lambda function with the specified ARN
+    -- exists. If it does not exist, the health check fails. For public URLs, a connection is
+    -- opened to the public endpoint. If the URL is not reachable, the health check fails.
+    -- Environments without a network bridge
+    -- When you create environments without a network bridge (CreateEnvironment:NetworkFabricType is NONE) and you use your own
+    -- networking infrastructure, you need to configure VPC to VPC connectivity between your network and the application proxy VPC. Route
+    -- creation from the application proxy to service endpoints will fail if your network is not
+    -- configured to connect to the application proxy VPC. For more information, see Create
+    -- a route in the Refactor Spaces User Guide.
     createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    -- Creates an Amazon Web Services Migration Hub Refactor Spaces service. The account owner of the service is always the
+    -- environment owner, regardless of which account in the environment creates the service.
+    -- Services have either a URL endpoint in a virtual private cloud (VPC), or a Lambda
+    -- function endpoint.
+    -- If an Amazon Web Services resource is launched in a service VPC, and you want it to be
+    -- accessible to all of an environment’s services with VPCs and routes, apply the
+    -- RefactorSpacesSecurityGroup to the resource. Alternatively, to add more
+    -- cross-account constraints, apply your own security group.
     createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    -- Deletes an Amazon Web Services Migration Hub Refactor Spaces application. Before you can delete an application, you must first
+    -- delete any services or routes within the application.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes an Amazon Web Services Migration Hub Refactor Spaces environment. Before you can delete an environment, you must first
+    -- delete any applications and services within the environment.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Deletes the resource policy set for the environment.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes an Amazon Web Services Migration Hub Refactor Spaces route.
     deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    -- Deletes an Amazon Web Services Migration Hub Refactor Spaces service.
     deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    -- Gets an Amazon Web Services Migration Hub Refactor Spaces application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Gets an Amazon Web Services Migration Hub Refactor Spaces environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Gets the resource-based permission policy that is set for the given environment.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Gets an Amazon Web Services Migration Hub Refactor Spaces route.
     getRoute: function(Client, types.GetRouteInput): types.GetRouteOutput, table
+    -- Gets an Amazon Web Services Migration Hub Refactor Spaces service.
     getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    -- Lists all the Amazon Web Services Migration Hub Refactor Spaces applications within an environment.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists Amazon Web Services Migration Hub Refactor Spaces environments owned by a caller account or shared with the caller
+    -- account.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Lists all Amazon Web Services Migration Hub Refactor Spaces service virtual private clouds (VPCs) that are part of the
+    -- environment.
     listEnvironmentVpcs: function(Client, types.ListEnvironmentVpcsInput): types.ListEnvironmentVpcsOutput, table
+    -- Lists all the Amazon Web Services Migration Hub Refactor Spaces routes within an application.
     listRoutes: function(Client, types.ListRoutesInput): types.ListRoutesOutput, table
+    -- Lists all the Amazon Web Services Migration Hub Refactor Spaces services within an application.
     listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    -- Lists the tags of a resource. The caller account must be the same as the resource’s
+    -- OwnerAccountId. Listing tags in other accounts is not supported.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Attaches a resource-based permission policy to the Amazon Web Services Migration Hub Refactor Spaces environment. The policy
+    -- must contain the same actions and condition statements as the
+    -- arn:aws:ram::aws:permission/AWSRAMDefaultPermissionRefactorSpacesEnvironment
+    -- permission in Resource Access Manager. The policy must not contain new lines or blank lines.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Removes the tags of a given resource. Tags are metadata which can be used to manage a
+    -- resource. To tag a resource, the caller account must be the same as the resource’s
+    -- OwnerAccountId. Tagging resources in other accounts is not supported.
+    -- Amazon Web Services Migration Hub Refactor Spaces does not propagate tags to orchestrated resources, such as an
+    -- environment’s transit gateway.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Adds to or modifies the tags of the given resource. Tags are metadata which can be used to
+    -- manage a resource. To untag a resource, the caller account must be the same as the resource’s
+    -- OwnerAccountId. Untagging resources across accounts is not supported.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Amazon Web Services Migration Hub Refactor Spaces route.
     updateRoute: function(Client, types.UpdateRouteInput): types.UpdateRouteOutput, table
 end
 

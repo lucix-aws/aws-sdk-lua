@@ -3,19 +3,35 @@
 local types = require("ssmquicksetup.types")
 
 local record Client
+    -- Creates a Quick Setup configuration manager resource. This object is a collection
+    -- of desired state configurations for multiple configuration definitions and
+    -- summaries describing the deployments of those definitions.
     createConfigurationManager: function(Client, types.CreateConfigurationManagerInput): types.CreateConfigurationManagerOutput, table
+    -- Deletes a configuration manager.
     deleteConfigurationManager: function(Client, types.DeleteConfigurationManagerInput): types.DeleteConfigurationManagerOutput, table
+    -- Returns details about the specified configuration.
     getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    -- Returns a configuration manager.
     getConfigurationManager: function(Client, types.GetConfigurationManagerInput): types.GetConfigurationManagerOutput, table
+    -- Returns settings configured for Quick Setup in the requesting Amazon Web Services account and Amazon Web Services Region.
     getServiceSettings: function(Client, types.GetServiceSettingsInput): types.GetServiceSettingsOutput, table
+    -- Returns Quick Setup configuration managers.
     listConfigurationManagers: function(Client, types.ListConfigurationManagersInput): types.ListConfigurationManagersOutput, table
+    -- Returns configurations deployed by Quick Setup in the requesting Amazon Web Services account and Amazon Web Services Region.
     listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    -- Returns the available Quick Setup types.
     listQuickSetupTypes: function(Client, types.ListQuickSetupTypesInput): types.ListQuickSetupTypesOutput, table
+    -- Returns tags assigned to the resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Assigns key-value pairs of metadata to Amazon Web Services resources.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a Quick Setup configuration definition.
     updateConfigurationDefinition: function(Client, types.UpdateConfigurationDefinitionInput): types.UpdateConfigurationDefinitionOutput, table
+    -- Updates a Quick Setup configuration manager.
     updateConfigurationManager: function(Client, types.UpdateConfigurationManagerInput): types.UpdateConfigurationManagerOutput, table
+    -- Updates settings configured for Quick Setup.
     updateServiceSettings: function(Client, types.UpdateServiceSettingsInput): types.UpdateServiceSettingsOutput, table
 end
 

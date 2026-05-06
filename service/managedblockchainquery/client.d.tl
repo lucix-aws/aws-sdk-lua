@@ -3,14 +3,48 @@
 local types = require("managedblockchainquery.types")
 
 local record Client
+    -- Gets the token balance for a batch of tokens by using the BatchGetTokenBalance
+    -- action for every token in the request.
+    -- Only the native tokens BTC and ETH, and the ERC-20,
+    -- ERC-721, and ERC 1155 token standards are supported.
     batchGetTokenBalance: function(Client, types.BatchGetTokenBalanceInput): types.BatchGetTokenBalanceOutput, table
+    -- Gets the information about a specific contract deployed on the blockchain.
+    -- The Bitcoin blockchain networks do not support this
+    -- operation.
+    -- Metadata is currently only available for some ERC-20 contracts.
+    -- Metadata will be available for additional contracts in the future.
     getAssetContract: function(Client, types.GetAssetContractInput): types.GetAssetContractOutput, table
+    -- Gets the balance of a specific token, including native tokens, for a given address (wallet or contract) on the blockchain.
+    -- Only the native tokens BTC and ETH, and the ERC-20,
+    -- ERC-721, and ERC 1155 token standards are supported.
     getTokenBalance: function(Client, types.GetTokenBalanceInput): types.GetTokenBalanceOutput, table
+    -- Gets the details of a transaction.
+    -- This action will return transaction details for all transactions
+    -- that are confirmed on the blockchain, even if they have not reached
+    -- finality.
     getTransaction: function(Client, types.GetTransactionInput): types.GetTransactionOutput, table
+    -- Lists all the contracts for a given contract type deployed by an address
+    -- (either a contract address or a wallet address).
+    -- The Bitcoin blockchain networks do not support this
+    -- operation.
     listAssetContracts: function(Client, types.ListAssetContractsInput): types.ListAssetContractsOutput, table
+    -- Lists all the transaction events for an address on the blockchain.
+    -- This operation is only supported on the Bitcoin networks.
     listFilteredTransactionEvents: function(Client, types.ListFilteredTransactionEventsInput): types.ListFilteredTransactionEventsOutput, table
+    -- This action returns the following for a given blockchain network:
+    -- Lists all token balances owned by an address (either a contract
+    -- address or a wallet address).
+    -- Lists all token balances for all tokens created by a contract.
+    -- Lists all token balances for a given token.
+    -- You must always specify the network property of
+    -- the tokenFilter when using this operation.
     listTokenBalances: function(Client, types.ListTokenBalancesInput): types.ListTokenBalancesOutput, table
+    -- Lists all the transaction events for a transaction
+    -- This action will return transaction details for all transactions
+    -- that are confirmed on the blockchain, even if they have not reached
+    -- finality.
     listTransactionEvents: function(Client, types.ListTransactionEventsInput): types.ListTransactionEventsOutput, table
+    -- Lists all the transaction events for a transaction.
     listTransactions: function(Client, types.ListTransactionsInput): types.ListTransactionsOutput, table
 end
 

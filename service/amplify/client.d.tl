@@ -3,42 +3,115 @@
 local types = require("amplify.types")
 
 local record Client
+    -- Creates a new Amplify app.
     createApp: function(Client, types.CreateAppInput): types.CreateAppOutput, table
+    -- Creates a new backend environment for an Amplify app.
+    -- This API is available only to Amplify Gen 1 applications where the
+    -- backend is created using Amplify Studio or the Amplify
+    -- command line interface (CLI). This API isn’t available to Amplify Gen 2
+    -- applications. When you deploy an application with Amplify Gen 2, you provision the app's
+    -- backend infrastructure using Typescript code.
     createBackendEnvironment: function(Client, types.CreateBackendEnvironmentInput): types.CreateBackendEnvironmentOutput, table
+    -- Creates a new branch for an Amplify app.
     createBranch: function(Client, types.CreateBranchInput): types.CreateBranchOutput, table
+    -- Creates a deployment for a manually deployed Amplify app. Manually deployed apps are
+    -- not connected to a Git repository.
+    -- The maximum duration between the CreateDeployment call and the
+    -- StartDeployment call cannot exceed 8 hours. If the duration exceeds 8
+    -- hours, the StartDeployment call and the associated Job will
+    -- fail.
     createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    -- Creates a new domain association for an Amplify app. This action associates a custom
+    -- domain with the Amplify app
     createDomainAssociation: function(Client, types.CreateDomainAssociationInput): types.CreateDomainAssociationOutput, table
+    -- Creates a new webhook on an Amplify app.
     createWebhook: function(Client, types.CreateWebhookInput): types.CreateWebhookOutput, table
+    -- Deletes an existing Amplify app specified by an app ID.
     deleteApp: function(Client, types.DeleteAppInput): types.DeleteAppOutput, table
+    -- Deletes a backend environment for an Amplify app.
+    -- This API is available only to Amplify Gen 1 applications where the
+    -- backend is created using Amplify Studio or the Amplify
+    -- command line interface (CLI). This API isn’t available to Amplify Gen 2
+    -- applications. When you deploy an application with Amplify Gen 2, you provision the app's
+    -- backend infrastructure using Typescript code.
     deleteBackendEnvironment: function(Client, types.DeleteBackendEnvironmentInput): types.DeleteBackendEnvironmentOutput, table
+    -- Deletes a branch for an Amplify app.
     deleteBranch: function(Client, types.DeleteBranchInput): types.DeleteBranchOutput, table
+    -- Deletes a domain association for an Amplify app.
     deleteDomainAssociation: function(Client, types.DeleteDomainAssociationInput): types.DeleteDomainAssociationOutput, table
+    -- Deletes a job for a branch of an Amplify app.
     deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    -- Deletes a webhook.
     deleteWebhook: function(Client, types.DeleteWebhookInput): types.DeleteWebhookOutput, table
+    -- Returns the website access logs for a specific time range using a presigned URL.
     generateAccessLogs: function(Client, types.GenerateAccessLogsInput): types.GenerateAccessLogsOutput, table
+    -- Returns an existing Amplify app specified by an app ID.
     getApp: function(Client, types.GetAppInput): types.GetAppOutput, table
+    -- Returns the artifact info that corresponds to an artifact id.
     getArtifactUrl: function(Client, types.GetArtifactUrlInput): types.GetArtifactUrlOutput, table
+    -- Returns a backend environment for an Amplify app.
+    -- This API is available only to Amplify Gen 1 applications where the
+    -- backend is created using Amplify Studio or the Amplify
+    -- command line interface (CLI). This API isn’t available to Amplify Gen 2
+    -- applications. When you deploy an application with Amplify Gen 2, you provision the app's
+    -- backend infrastructure using Typescript code.
     getBackendEnvironment: function(Client, types.GetBackendEnvironmentInput): types.GetBackendEnvironmentOutput, table
+    -- Returns a branch for an Amplify app.
     getBranch: function(Client, types.GetBranchInput): types.GetBranchOutput, table
+    -- Returns the domain information for an Amplify app.
     getDomainAssociation: function(Client, types.GetDomainAssociationInput): types.GetDomainAssociationOutput, table
+    -- Returns a job for a branch of an Amplify app.
     getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    -- Returns the webhook information that corresponds to a specified webhook ID.
     getWebhook: function(Client, types.GetWebhookInput): types.GetWebhookOutput, table
+    -- Returns a list of the existing Amplify apps.
     listApps: function(Client, types.ListAppsInput): types.ListAppsOutput, table
+    -- Returns a list of end-to-end testing artifacts for a specified app, branch, and
+    -- job.
+    -- To return the build artifacts, use the GetJob API.
+    -- For more information about Amplify testing support, see Setting up
+    -- end-to-end Cypress tests for your Amplify application in the
+    -- Amplify Hosting User Guide.
     listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    -- Lists the backend environments for an Amplify app.
+    -- This API is available only to Amplify Gen 1 applications where the
+    -- backend is created using Amplify Studio or the Amplify
+    -- command line interface (CLI). This API isn’t available to Amplify Gen 2
+    -- applications. When you deploy an application with Amplify Gen 2, you provision the app's
+    -- backend infrastructure using Typescript code.
     listBackendEnvironments: function(Client, types.ListBackendEnvironmentsInput): types.ListBackendEnvironmentsOutput, table
+    -- Lists the branches of an Amplify app.
     listBranches: function(Client, types.ListBranchesInput): types.ListBranchesOutput, table
+    -- Returns the domain associations for an Amplify app.
     listDomainAssociations: function(Client, types.ListDomainAssociationsInput): types.ListDomainAssociationsOutput, table
+    -- Lists the jobs for a branch of an Amplify app.
     listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    -- Returns a list of tags for a specified Amazon Resource Name (ARN).
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of webhooks for an Amplify app.
     listWebhooks: function(Client, types.ListWebhooksInput): types.ListWebhooksOutput, table
+    -- Starts a deployment for a manually deployed app. Manually deployed apps are not
+    -- connected to a Git repository.
+    -- The maximum duration between the CreateDeployment call and the
+    -- StartDeployment call cannot exceed 8 hours. If the duration exceeds 8
+    -- hours, the StartDeployment call and the associated Job will
+    -- fail.
     startDeployment: function(Client, types.StartDeploymentInput): types.StartDeploymentOutput, table
+    -- Starts a new job for a branch of an Amplify app.
     startJob: function(Client, types.StartJobInput): types.StartJobOutput, table
+    -- Stops a job that is in progress for a branch of an Amplify app.
     stopJob: function(Client, types.StopJobInput): types.StopJobOutput, table
+    -- Tags the resource with a tag key and value.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource with a specified Amazon Resource Name (ARN).
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing Amplify app.
     updateApp: function(Client, types.UpdateAppInput): types.UpdateAppOutput, table
+    -- Updates a branch for an Amplify app.
     updateBranch: function(Client, types.UpdateBranchInput): types.UpdateBranchOutput, table
+    -- Creates a new domain association for an Amplify app.
     updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput): types.UpdateDomainAssociationOutput, table
+    -- Updates a webhook.
     updateWebhook: function(Client, types.UpdateWebhookInput): types.UpdateWebhookOutput, table
 end
 

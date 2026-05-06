@@ -3,8 +3,11 @@
 local types = require("uxc.types")
 
 local record Client
+    -- Returns the current account customization settings, including account color, visible services, and visible Regions. Settings that you have not configured return their default values: visible Regions and visible services return `null`, and account color returns `none`. The visibleServices and visibleRegions settings control only the appearance of services and Regions in the Amazon Web Services Management Console. They do not restrict access through the CLI, SDKs, or other APIs.
     getAccountCustomizations: function(Client, types.GetAccountCustomizationsInput): types.GetAccountCustomizationsOutput, table
+    -- Returns a paginated list of Amazon Web Services service identifiers that you can use as values for the visibleServices setting in UpdateAccountCustomizations. The available services vary by Amazon Web Services partition. Use pagination to retrieve all results. The visibleServices setting controls only the appearance of services in the Amazon Web Services Management Console. It does not restrict access through the CLI, SDKs, or other APIs.
     listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    -- Updates one or more account customization settings. You can update account color, visible services, and visible Regions in a single request. Only the settings that you include in the request body are modified. Omitted settings remain unchanged. To reset a setting to its default behavior, set the value to null for visible Regions and visible services, or none for account color. This operation is idempotent. The visibleServices and visibleRegions settings control only the appearance of services and Regions in the Amazon Web Services Management Console. They do not restrict access through the CLI, SDKs, or other APIs.
     updateAccountCustomizations: function(Client, types.UpdateAccountCustomizationsInput): types.UpdateAccountCustomizationsOutput, table
 end
 

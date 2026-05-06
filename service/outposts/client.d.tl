@@ -3,42 +3,120 @@
 local types = require("outposts.types")
 
 local record Client
+    -- Cancels the capacity task.
     cancelCapacityTask: function(Client, types.CancelCapacityTaskInput): types.CancelCapacityTaskOutput, table
+    -- Cancels the specified order for an Outpost.
     cancelOrder: function(Client, types.CancelOrderInput): types.CancelOrderOutput, table
+    -- Creates an order for an Outpost.
     createOrder: function(Client, types.CreateOrderInput): types.CreateOrderOutput, table
+    -- Creates an Outpost.
+    -- You can specify either an Availability one or an AZ ID.
     createOutpost: function(Client, types.CreateOutpostInput): types.CreateOutpostOutput, table
+    -- Creates a renewal contract for the specified Outpost.
     createRenewal: function(Client, types.CreateRenewalInput): types.CreateRenewalOutput, table
+    -- Creates a site for an Outpost.
     createSite: function(Client, types.CreateSiteInput): types.CreateSiteOutput, table
+    -- Deletes the specified Outpost.
     deleteOutpost: function(Client, types.DeleteOutpostInput): types.DeleteOutpostOutput, table
+    -- Deletes the specified site.
     deleteSite: function(Client, types.DeleteSiteInput): types.DeleteSiteOutput, table
+    -- Gets details of the specified capacity task.
     getCapacityTask: function(Client, types.GetCapacityTaskInput): types.GetCapacityTaskOutput, table
+    -- Gets information about the specified catalog item.
     getCatalogItem: function(Client, types.GetCatalogItemInput): types.GetCatalogItemOutput, table
+    -- Amazon Web Services uses this action to install Outpost servers.
+    -- Gets information about the specified connection.
+    -- Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For
+    -- more information, see
+    -- Amazon Web Services managed policies for Amazon Web Services Outposts and
+    -- Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail in the Amazon Web Services Outposts User Guide.
     getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    -- Gets information about the specified order.
     getOrder: function(Client, types.GetOrderInput): types.GetOrderOutput, table
+    -- Gets information about the specified Outpost.
     getOutpost: function(Client, types.GetOutpostInput): types.GetOutpostOutput, table
+    -- Gets current and historical billing information about the specified Outpost.
     getOutpostBillingInformation: function(Client, types.GetOutpostBillingInformationInput): types.GetOutpostBillingInformationOutput, table
+    -- Gets the instance types for the specified Outpost.
     getOutpostInstanceTypes: function(Client, types.GetOutpostInstanceTypesInput): types.GetOutpostInstanceTypesOutput, table
+    -- Gets the instance types that an Outpost can support in InstanceTypeCapacity.
+    -- This will generally include instance types that are not currently configured and therefore
+    -- cannot be launched with the current Outpost capacity configuration.
     getOutpostSupportedInstanceTypes: function(Client, types.GetOutpostSupportedInstanceTypesInput): types.GetOutpostSupportedInstanceTypesOutput, table
+    -- Gets all available renewal pricing options for the specified Outpost.
     getRenewalPricing: function(Client, types.GetRenewalPricingInput): types.GetRenewalPricingOutput, table
+    -- Gets information about the specified Outpost site.
     getSite: function(Client, types.GetSiteInput): types.GetSiteOutput, table
+    -- Gets the site address of the specified site.
     getSiteAddress: function(Client, types.GetSiteAddressInput): types.GetSiteAddressOutput, table
+    -- A list of Amazon EC2 instances, belonging to all accounts, running on the specified Outpost.
+    -- Does not include Amazon EBS or Amazon S3 instances.
     listAssetInstances: function(Client, types.ListAssetInstancesInput): types.ListAssetInstancesOutput, table
+    -- Lists the hardware assets for the specified Outpost.
+    -- Use filters to return specific results. If you specify multiple filters, the results include only the resources that match
+    -- all of the specified filters. For a filter where you can specify multiple values, the results include
+    -- items that match any of the values that you specify for the filter.
     listAssets: function(Client, types.ListAssetsInput): types.ListAssetsOutput, table
+    -- A list of Amazon EC2 instances running on the Outpost and belonging to the account that
+    -- initiated the capacity task. Use this list to specify the instances you cannot stop to free up
+    -- capacity to run the capacity task.
     listBlockingInstancesForCapacityTask: function(Client, types.ListBlockingInstancesForCapacityTaskInput): types.ListBlockingInstancesForCapacityTaskOutput, table
+    -- Lists the capacity tasks for your Amazon Web Services account.
+    -- Use filters to return specific results. If you specify multiple filters, the results include only the resources that match
+    -- all of the specified filters. For a filter where you can specify multiple values, the results include
+    -- items that match any of the values that you specify for the filter.
     listCapacityTasks: function(Client, types.ListCapacityTasksInput): types.ListCapacityTasksOutput, table
+    -- Lists the items in the catalog.
+    -- Use filters to return specific results. If you specify multiple filters, the results include only the resources that match
+    -- all of the specified filters. For a filter where you can specify multiple values, the results include
+    -- items that match any of the values that you specify for the filter.
     listCatalogItems: function(Client, types.ListCatalogItemsInput): types.ListCatalogItemsOutput, table
+    -- Lists the Outpost orders for your Amazon Web Services account.
     listOrders: function(Client, types.ListOrdersInput): types.ListOrdersOutput, table
+    -- Lists the Outposts for your Amazon Web Services account.
+    -- Use filters to return specific results. If you specify multiple filters, the results include only the resources that match
+    -- all of the specified filters. For a filter where you can specify multiple values, the results include
+    -- items that match any of the values that you specify for the filter.
     listOutposts: function(Client, types.ListOutpostsInput): types.ListOutpostsOutput, table
+    -- Lists the Outpost sites for your Amazon Web Services account. Use filters to return specific
+    -- results.
+    -- Use filters to return specific results. If you specify multiple filters, the results include only the resources that match
+    -- all of the specified filters. For a filter where you can specify multiple values, the results include
+    -- items that match any of the values that you specify for the filter.
     listSites: function(Client, types.ListSitesInput): types.ListSitesOutput, table
+    -- Lists the tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts the specified capacity task. You can have one active capacity task for each order
+    -- and each Outpost.
     startCapacityTask: function(Client, types.StartCapacityTaskInput): types.StartCapacityTaskOutput, table
+    -- Amazon Web Services uses this action to install Outpost servers.
+    -- Starts the connection required for Outpost server installation.
+    -- Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For
+    -- more information, see
+    -- Amazon Web Services managed policies for Amazon Web Services Outposts and
+    -- Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail in the Amazon Web Services Outposts User Guide.
     startConnection: function(Client, types.StartConnectionInput): types.StartConnectionOutput, table
+    -- Starts the decommission process to return the Outposts racks or servers.
     startOutpostDecommission: function(Client, types.StartOutpostDecommissionInput): types.StartOutpostDecommissionOutput, table
+    -- Adds tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Outpost.
     updateOutpost: function(Client, types.UpdateOutpostInput): types.UpdateOutpostOutput, table
+    -- Updates the specified site.
     updateSite: function(Client, types.UpdateSiteInput): types.UpdateSiteOutput, table
+    -- Updates the address of the specified site.
+    -- You can't update a site address if there is an order in progress. You must wait for the
+    -- order to complete or cancel the order.
+    -- You can update the operating address before you place an order at the site, or after all
+    -- Outposts that belong to the site have been deactivated.
     updateSiteAddress: function(Client, types.UpdateSiteAddressInput): types.UpdateSiteAddressOutput, table
+    -- Update the physical and logistical details for a rack at a site. For more information
+    -- about hardware requirements for racks, see Network
+    -- readiness checklist in the Amazon Web Services Outposts User Guide.
+    -- To update a rack at a site with an order of IN_PROGRESS, you must wait for
+    -- the order to complete or cancel the order.
     updateSiteRackPhysicalProperties: function(Client, types.UpdateSiteRackPhysicalPropertiesInput): types.UpdateSiteRackPhysicalPropertiesOutput, table
 end
 

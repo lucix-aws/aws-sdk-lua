@@ -3,76 +3,147 @@
 local types = require("transfer.types")
 
 local record Client
+    -- Used by administrators to choose which groups in the directory should have access to upload and download files over the enabled protocols using Transfer Family. For example, a Microsoft Active Directory might contain 50,000 users, but only a small fraction might need the ability to transfer files to the server. An administrator can use CreateAccess to limit the access to the correct set of users who need this ability.
     createAccess: function(Client, types.CreateAccessInput): types.CreateAccessOutput, table
+    -- Creates an agreement. An agreement is a bilateral trading partner agreement, or partnership, between an Transfer Family server and an AS2 process. The agreement defines the file and message transfer relationship between the server and the AS2 process. To define an agreement, Transfer Family combines a server, local profile, partner profile, certificate, and other attributes. The partner is identified with the PartnerProfileId, and the AS2 process is identified with the LocalProfileId. Specify either BaseDirectory or CustomDirectories, but not both. Specifying both causes the command to fail.
     createAgreement: function(Client, types.CreateAgreementInput): types.CreateAgreementOutput, table
+    -- Creates the connector, which captures the parameters for a connection for the AS2 or SFTP protocol. For AS2, the connector is required for sending files to an externally hosted AS2 server. For SFTP, the connector is required when sending files to an SFTP server or receiving files from an SFTP server. For more details about connectors, see Configure AS2 connectors and Create SFTP connectors. You must specify exactly one configuration object: either for AS2 (As2Config) or SFTP (SftpConfig).
     createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    -- Creates the local or partner profile to use for AS2 transfers.
     createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    -- Instantiates an auto-scaling virtual server based on the selected file transfer protocol in Amazon Web Services. When you make updates to your file transfer protocol-enabled server or when you work with users, use the service-generated ServerId property that is assigned to the newly created server.
     createServer: function(Client, types.CreateServerInput): types.CreateServerOutput, table
+    -- Creates a user and associates them with an existing file transfer protocol-enabled server. You can only create and associate users with servers that have the IdentityProviderType set to SERVICE_MANAGED. Using parameters for CreateUser, you can specify the user name, set the home directory, store the user's public key, and assign the user's Identity and Access Management (IAM) role. You can also optionally add a session policy, and assign metadata with tags that can be used to group and search for users.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Creates a web app based on specified parameters, and returns the ID for the new web app. You can configure the web app to be publicly accessible or hosted within a VPC. For more information about using VPC endpoints with Transfer Family, see Create a Transfer Family web app in a VPC.
     createWebApp: function(Client, types.CreateWebAppInput): types.CreateWebAppOutput, table
+    -- Allows you to create a workflow with specified steps and step details the workflow invokes after file transfer completes. After creating a workflow, you can associate the workflow created with any transfer servers by specifying the workflow-details field in CreateServer and UpdateServer operations.
     createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    -- Allows you to delete the access specified in the ServerID and ExternalID parameters.
     deleteAccess: function(Client, types.DeleteAccessInput): types.DeleteAccessOutput, table
+    -- Delete the agreement that's specified in the provided AgreementId.
     deleteAgreement: function(Client, types.DeleteAgreementInput): types.DeleteAgreementOutput, table
+    -- Deletes the certificate that's specified in the CertificateId parameter.
     deleteCertificate: function(Client, types.DeleteCertificateInput): types.DeleteCertificateOutput, table
+    -- Deletes the connector that's specified in the provided ConnectorId.
     deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    -- Deletes the host key that's specified in the HostKeyId parameter.
     deleteHostKey: function(Client, types.DeleteHostKeyInput): types.DeleteHostKeyOutput, table
+    -- Deletes the profile that's specified in the ProfileId parameter.
     deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    -- Deletes the file transfer protocol-enabled server that you specify. No response returns from this operation.
     deleteServer: function(Client, types.DeleteServerInput): types.DeleteServerOutput, table
+    -- Deletes a user's Secure Shell (SSH) public key.
     deleteSshPublicKey: function(Client, types.DeleteSshPublicKeyInput): types.DeleteSshPublicKeyOutput, table
+    -- Deletes the user belonging to a file transfer protocol-enabled server you specify. No response returns from this operation. When you delete a user from a server, the user's information is lost.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Deletes the specified web app.
     deleteWebApp: function(Client, types.DeleteWebAppInput): types.DeleteWebAppOutput, table
+    -- Deletes the WebAppCustomization object that corresponds to the web app ID specified.
     deleteWebAppCustomization: function(Client, types.DeleteWebAppCustomizationInput): types.DeleteWebAppCustomizationOutput, table
+    -- Deletes the specified workflow.
     deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    -- Describes the access that is assigned to the specific file transfer protocol-enabled server, as identified by its ServerId property and its ExternalId. The response from this call returns the properties of the access that is associated with the ServerId value that was specified.
     describeAccess: function(Client, types.DescribeAccessInput): types.DescribeAccessOutput, table
+    -- Describes the agreement that's identified by the AgreementId.
     describeAgreement: function(Client, types.DescribeAgreementInput): types.DescribeAgreementOutput, table
+    -- Describes the certificate that's identified by the CertificateId. Transfer Family automatically publishes a Amazon CloudWatch metric called DaysUntilExpiry for imported certificates. This metric tracks the number of days until the certificate expires based on the InactiveDate. The metric is available in the AWS/Transfer namespace and includes the CertificateId as a dimension.
     describeCertificate: function(Client, types.DescribeCertificateInput): types.DescribeCertificateOutput, table
+    -- Describes the connector that's identified by the ConnectorId.
     describeConnector: function(Client, types.DescribeConnectorInput): types.DescribeConnectorOutput, table
+    -- You can use DescribeExecution to check the details of the execution of the specified workflow. This API call only returns details for in-progress workflows. If you provide an ID for an execution that is not in progress, or if the execution doesn't match the specified workflow ID, you receive a ResourceNotFound exception.
     describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    -- Returns the details of the host key that's specified by the HostKeyId and ServerId.
     describeHostKey: function(Client, types.DescribeHostKeyInput): types.DescribeHostKeyOutput, table
+    -- Returns the details of the profile that's specified by the ProfileId.
     describeProfile: function(Client, types.DescribeProfileInput): types.DescribeProfileOutput, table
+    -- Describes the security policy that is attached to your server or SFTP connector. The response contains a description of the security policy's properties. For more information about security policies, see Working with security policies for servers or Working with security policies for SFTP connectors.
     describeSecurityPolicy: function(Client, types.DescribeSecurityPolicyInput): types.DescribeSecurityPolicyOutput, table
+    -- Describes a file transfer protocol-enabled server that you specify by passing the ServerId parameter. The response contains a description of a server's properties. When you set EndpointType to VPC, the response will contain the EndpointDetails.
     describeServer: function(Client, types.DescribeServerInput): types.DescribeServerOutput, table
+    -- Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its ServerId property. The response from this call returns the properties of the user associated with the ServerId value that was specified.
     describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    -- Describes the web app that's identified by WebAppId. The response includes endpoint configuration details such as whether the web app is publicly accessible or VPC hosted. For more information about using VPC endpoints with Transfer Family, see Create a Transfer Family web app in a VPC.
     describeWebApp: function(Client, types.DescribeWebAppInput): types.DescribeWebAppOutput, table
+    -- Describes the web app customization object that's identified by WebAppId.
     describeWebAppCustomization: function(Client, types.DescribeWebAppCustomizationInput): types.DescribeWebAppCustomizationOutput, table
+    -- Describes the specified workflow.
     describeWorkflow: function(Client, types.DescribeWorkflowInput): types.DescribeWorkflowOutput, table
+    -- Imports the signing and encryption certificates that you need to create local (AS2) profiles and partner profiles. You can import both the certificate and its chain in the Certificate parameter. After importing a certificate, Transfer Family automatically creates a Amazon CloudWatch metric called DaysUntilExpiry that tracks the number of days until the certificate expires. The metric is based on the InactiveDate parameter and is published daily in the AWS/Transfer namespace. It can take up to a full day after importing a certificate for Transfer Family to emit the DaysUntilExpiry metric to your account. If you use the Certificate parameter to upload both the certificate and its chain, don't use the CertificateChain parameter. CloudWatch monitoring The DaysUntilExpiry metric includes the following specifications: Units: Count (days) Dimensions: CertificateId (always present), Description (if provided during certificate import) Statistics: Minimum, Maximum, Average Frequency: Published daily
     importCertificate: function(Client, types.ImportCertificateInput): types.ImportCertificateOutput, table
+    -- Adds a host key to the server that's specified by the ServerId parameter.
     importHostKey: function(Client, types.ImportHostKeyInput): types.ImportHostKeyOutput, table
+    -- Adds a Secure Shell (SSH) public key to a Transfer Family user identified by a UserName value assigned to the specific file transfer protocol-enabled server, identified by ServerId. The response returns the UserName value, the ServerId value, and the name of the SshPublicKeyId.
     importSshPublicKey: function(Client, types.ImportSshPublicKeyInput): types.ImportSshPublicKeyOutput, table
+    -- Lists the details for all the accesses you have on your server.
     listAccesses: function(Client, types.ListAccessesInput): types.ListAccessesOutput, table
+    -- Returns a list of the agreements for the server that's identified by the ServerId that you supply. If you want to limit the results to a certain number, supply a value for the MaxResults parameter. If you ran the command previously and received a value for NextToken, you can supply that value to continue listing agreements from where you left off.
     listAgreements: function(Client, types.ListAgreementsInput): types.ListAgreementsOutput, table
+    -- Returns a list of the current certificates that have been imported into Transfer Family. If you want to limit the results to a certain number, supply a value for the MaxResults parameter. If you ran the command previously and received a value for the NextToken parameter, you can supply that value to continue listing certificates from where you left off.
     listCertificates: function(Client, types.ListCertificatesInput): types.ListCertificatesOutput, table
+    -- Lists the connectors for the specified Region.
     listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    -- Lists all in-progress executions for the specified workflow. If the specified workflow ID cannot be found, ListExecutions returns a ResourceNotFound exception.
     listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    -- Returns real-time updates and detailed information on the status of each individual file being transferred in a specific file transfer operation. You specify the file transfer by providing its ConnectorId and its TransferId. File transfer results are available up to 7 days after an operation has been requested.
     listFileTransferResults: function(Client, types.ListFileTransferResultsInput): types.ListFileTransferResultsOutput, table
+    -- Returns a list of host keys for the server that's specified by the ServerId parameter.
     listHostKeys: function(Client, types.ListHostKeysInput): types.ListHostKeysOutput, table
+    -- Returns a list of the profiles for your system. If you want to limit the results to a certain number, supply a value for the MaxResults parameter. If you ran the command previously and received a value for NextToken, you can supply that value to continue listing profiles from where you left off.
     listProfiles: function(Client, types.ListProfilesInput): types.ListProfilesOutput, table
+    -- Lists the security policies that are attached to your servers and SFTP connectors. For more information about security policies, see Working with security policies for servers or Working with security policies for SFTP connectors.
     listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput): types.ListSecurityPoliciesOutput, table
+    -- Lists the file transfer protocol-enabled servers that are associated with your Amazon Web Services account.
     listServers: function(Client, types.ListServersInput): types.ListServersOutput, table
+    -- Lists all of the tags associated with the Amazon Resource Name (ARN) that you specify. The resource can be a user, server, or role.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the users for a file transfer protocol-enabled server that you specify by passing the ServerId parameter.
     listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    -- Lists all web apps associated with your Amazon Web Services account for your current region. The response includes the endpoint type for each web app, showing whether it is publicly accessible or VPC hosted. For more information about using VPC endpoints with Transfer Family, see Create a Transfer Family web app in a VPC.
     listWebApps: function(Client, types.ListWebAppsInput): types.ListWebAppsOutput, table
+    -- Lists all workflows associated with your Amazon Web Services account for your current region.
     listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    -- Sends a callback for asynchronous custom steps. The ExecutionId, WorkflowId, and Token are passed to the target resource during execution of a custom step of a workflow. You must include those with their callback as well as providing a status.
     sendWorkflowStepState: function(Client, types.SendWorkflowStepStateInput): types.SendWorkflowStepStateOutput, table
+    -- Retrieves a list of the contents of a directory from a remote SFTP server. You specify the connector ID, the output path, and the remote directory path. You can also specify the optional MaxItems value to control the maximum number of items that are listed from the remote directory. This API returns a list of all files and directories in the remote directory (up to the maximum value), but does not return files or folders in sub-directories. That is, it only returns a list of files and directories one-level deep. After you receive the listing file, you can provide the files that you want to transfer to the RetrieveFilePaths parameter of the StartFileTransfer API call. The naming convention for the output file is connector-ID-listing-ID.json. The output file contains the following information: filePath: the complete path of a remote file, relative to the directory of the listing request for your SFTP connector on the remote server. modifiedTimestamp: the last time the file was modified, in UTC time format. This field is optional. If the remote file attributes don't contain a timestamp, it is omitted from the file listing. size: the size of the file, in bytes. This field is optional. If the remote file attributes don't contain a file size, it is omitted from the file listing. path: the complete path of a remote directory, relative to the directory of the listing request for your SFTP connector on the remote server. truncated: a flag indicating whether the list output contains all of the items contained in the remote directory or not. If your Truncated output value is true, you can increase the value provided in the optional max-items input attribute to be able to list more items (up to the maximum allowed list size of 200,000 items).
     startDirectoryListing: function(Client, types.StartDirectoryListingInput): types.StartDirectoryListingOutput, table
+    -- Begins a file transfer between local Amazon Web Services storage and a remote AS2 or SFTP server. For an AS2 connector, you specify the ConnectorId and one or more SendFilePaths to identify the files you want to transfer. For an SFTP connector, the file transfer can be either outbound or inbound. In both cases, you specify the ConnectorId. Depending on the direction of the transfer, you also specify the following items: If you are transferring file from a partner's SFTP server to Amazon Web Services storage, you specify one or more RetrieveFilePaths to identify the files you want to transfer, and a LocalDirectoryPath to specify the destination folder. If you are transferring file to a partner's SFTP server from Amazon Web Services storage, you specify one or more SendFilePaths to identify the files you want to transfer, and a RemoteDirectoryPath to specify the destination folder.
     startFileTransfer: function(Client, types.StartFileTransferInput): types.StartFileTransferOutput, table
+    -- Deletes a file or directory on the remote SFTP server.
     startRemoteDelete: function(Client, types.StartRemoteDeleteInput): types.StartRemoteDeleteOutput, table
+    -- Moves or renames a file or directory on the remote SFTP server.
     startRemoteMove: function(Client, types.StartRemoteMoveInput): types.StartRemoteMoveOutput, table
+    -- Changes the state of a file transfer protocol-enabled server from OFFLINE to ONLINE. It has no impact on a server that is already ONLINE. An ONLINE server can accept and process file transfer jobs. The state of STARTING indicates that the server is in an intermediate state, either not fully able to respond, or not fully online. The values of START_FAILED can indicate an error condition. No response is returned from this call.
     startServer: function(Client, types.StartServerInput): types.StartServerOutput, table
+    -- Changes the state of a file transfer protocol-enabled server from ONLINE to OFFLINE. An OFFLINE server cannot accept and process file transfer jobs. Information tied to your server, such as server and user properties, are not affected by stopping your server. Stopping the server does not reduce or impact your file transfer protocol endpoint billing; you must delete the server to stop being billed. The state of STOPPING indicates that the server is in an intermediate state, either not fully able to respond, or not fully offline. The values of STOP_FAILED can indicate an error condition. No response is returned from this call.
     stopServer: function(Client, types.StopServerInput): types.StopServerOutput, table
+    -- Attaches a key-value pair to a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities. There is no response returned from this call.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests whether your SFTP connector is set up successfully. We highly recommend that you call this operation to test your ability to transfer files between local Amazon Web Services storage and a trading partner's SFTP server.
     testConnection: function(Client, types.TestConnectionInput): types.TestConnectionOutput, table
+    -- If the IdentityProviderType of a file transfer protocol-enabled server is AWS_DIRECTORY_SERVICE or API_Gateway, tests whether your identity provider is set up successfully. We highly recommend that you call this operation to test your authentication method as soon as you create your server. By doing so, you can troubleshoot issues with the identity provider integration to ensure that your users can successfully use the service. The ServerId and UserName parameters are required. The ServerProtocol, SourceIp, and UserPassword are all optional. Note the following: You cannot use TestIdentityProvider if the IdentityProviderType of your server is SERVICE_MANAGED. TestIdentityProvider does not work with keys: it only accepts passwords. TestIdentityProvider can test the password operation for a custom Identity Provider that handles keys and passwords. If you provide any incorrect values for any parameters, the Response field is empty. If you provide a server ID for a server that uses service-managed users, you get an error: An error occurred (InvalidRequestException) when calling the TestIdentityProvider operation: s-server-ID not configured for external auth If you enter a Server ID for the --server-id parameter that does not identify an actual Transfer server, you receive the following error: An error occurred (ResourceNotFoundException) when calling the TestIdentityProvider operation: Unknown server. It is possible your sever is in a different region. You can specify a region by adding the following: --region region-code, such as --region us-east-2 to specify a server in US East (Ohio).
     testIdentityProvider: function(Client, types.TestIdentityProviderInput): types.TestIdentityProviderOutput, table
+    -- Detaches a key-value pair from a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities. No response is returned from this call.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Allows you to update parameters for the access specified in the ServerID and ExternalID parameters.
     updateAccess: function(Client, types.UpdateAccessInput): types.UpdateAccessOutput, table
+    -- Updates some of the parameters for an existing agreement. Provide the AgreementId and the ServerId for the agreement that you want to update, along with the new values for the parameters to update. Specify either BaseDirectory or CustomDirectories, but not both. Specifying both causes the command to fail. If you update an agreement from using base directory to custom directories, the base directory is no longer used. Similarly, if you change from custom directories to a base directory, the custom directories are no longer used.
     updateAgreement: function(Client, types.UpdateAgreementInput): types.UpdateAgreementOutput, table
+    -- Updates the active and inactive dates for a certificate.
     updateCertificate: function(Client, types.UpdateCertificateInput): types.UpdateCertificateOutput, table
+    -- Updates some of the parameters for an existing connector. Provide the ConnectorId for the connector that you want to update, along with the new values for the parameters to update.
     updateConnector: function(Client, types.UpdateConnectorInput): types.UpdateConnectorOutput, table
+    -- Updates the description for the host key that's specified by the ServerId and HostKeyId parameters.
     updateHostKey: function(Client, types.UpdateHostKeyInput): types.UpdateHostKeyOutput, table
+    -- Updates some of the parameters for an existing profile. Provide the ProfileId for the profile that you want to update, along with the new values for the parameters to update.
     updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    -- Updates the file transfer protocol-enabled server's properties after that server has been created. The UpdateServer call returns the ServerId of the server you updated.
     updateServer: function(Client, types.UpdateServerInput): types.UpdateServerOutput, table
+    -- Assigns new properties to a user. Parameters you pass modify any or all of the following: the home directory, role, and policy for the UserName and ServerId you specify. The response returns the ServerId and the UserName for the updated user. In the console, you can select Restricted when you create or update a user. This ensures that the user can't access anything outside of their home directory. The programmatic way to configure this behavior is to update the user. Set their HomeDirectoryType to LOGICAL, and specify HomeDirectoryMappings with Entry as root (/) and Target as their home directory. For example, if the user's home directory is /test/admin-user, the following command updates the user so that their configuration in the console shows the Restricted flag as selected. aws transfer update-user --server-id <server-id> --user-name admin-user --home-directory-type LOGICAL --home-directory-mappings "[{\"Entry\":\"/\", \"Target\":\"/test/admin-user\"}]"
     updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    -- Assigns new properties to a web app. You can modify the access point, identity provider details, endpoint configuration, and the web app units. For more information about using VPC endpoints with Transfer Family, see Create a Transfer Family web app in a VPC.
     updateWebApp: function(Client, types.UpdateWebAppInput): types.UpdateWebAppOutput, table
+    -- Assigns new customization properties to a web app. You can modify the icon file, logo file, and title.
     updateWebAppCustomization: function(Client, types.UpdateWebAppCustomizationInput): types.UpdateWebAppCustomizationOutput, table
 end
 

@@ -3,34 +3,80 @@
 local types = require("voiceid.types")
 
 local record Client
+    -- Associates the fraudsters with the watchlist specified in the same domain.
     associateFraudster: function(Client, types.AssociateFraudsterInput): types.AssociateFraudsterOutput, table
+    -- Creates a domain that contains all Amazon Connect Voice ID data, such as speakers, fraudsters,
+    -- customer audio, and voiceprints. Every domain is created with a default watchlist that fraudsters can be a part of.
     createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    -- Creates a watchlist that fraudsters can be a part of.
     createWatchlist: function(Client, types.CreateWatchlistInput): types.CreateWatchlistOutput, table
+    -- Deletes the specified domain from Voice ID.
     deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    -- Deletes the specified fraudster from Voice ID. This action disassociates the fraudster from any watchlists it is a part of.
     deleteFraudster: function(Client, types.DeleteFraudsterInput): types.DeleteFraudsterOutput, table
+    -- Deletes the specified speaker from Voice ID.
     deleteSpeaker: function(Client, types.DeleteSpeakerInput): types.DeleteSpeakerOutput, table
+    -- Deletes the specified watchlist from Voice ID. This API throws an exception when
+    -- there are fraudsters in the watchlist that you are trying to delete. You must delete the
+    -- fraudsters, and then delete the watchlist. Every domain has a default watchlist which cannot be deleted.
     deleteWatchlist: function(Client, types.DeleteWatchlistInput): types.DeleteWatchlistOutput, table
+    -- Describes the specified domain.
     describeDomain: function(Client, types.DescribeDomainInput): types.DescribeDomainOutput, table
+    -- Describes the specified fraudster.
     describeFraudster: function(Client, types.DescribeFraudsterInput): types.DescribeFraudsterOutput, table
+    -- Describes the specified fraudster registration job.
     describeFraudsterRegistrationJob: function(Client, types.DescribeFraudsterRegistrationJobInput): types.DescribeFraudsterRegistrationJobOutput, table
+    -- Describes the specified speaker.
     describeSpeaker: function(Client, types.DescribeSpeakerInput): types.DescribeSpeakerOutput, table
+    -- Describes the specified speaker enrollment job.
     describeSpeakerEnrollmentJob: function(Client, types.DescribeSpeakerEnrollmentJobInput): types.DescribeSpeakerEnrollmentJobOutput, table
+    -- Describes the specified watchlist.
     describeWatchlist: function(Client, types.DescribeWatchlistInput): types.DescribeWatchlistOutput, table
+    -- Disassociates the fraudsters from the watchlist specified. Voice ID always expects a
+    -- fraudster to be a part of at least one watchlist. If
+    -- you try to disassociate a fraudster from its only watchlist, a ValidationException is thrown.
     disassociateFraudster: function(Client, types.DisassociateFraudsterInput): types.DisassociateFraudsterOutput, table
+    -- Evaluates a specified session based on audio data accumulated during a streaming
+    -- Amazon Connect Voice ID call.
     evaluateSession: function(Client, types.EvaluateSessionInput): types.EvaluateSessionOutput, table
+    -- Lists all the domains in the Amazon Web Services account.
     listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    -- Lists all the fraudster registration jobs in the domain with the given
+    -- JobStatus. If JobStatus is not provided, this lists all
+    -- fraudster registration jobs in the given domain.
     listFraudsterRegistrationJobs: function(Client, types.ListFraudsterRegistrationJobsInput): types.ListFraudsterRegistrationJobsOutput, table
+    -- Lists all fraudsters in a specified watchlist or domain.
     listFraudsters: function(Client, types.ListFraudstersInput): types.ListFraudstersOutput, table
+    -- Lists all the speaker enrollment jobs in the domain with the specified
+    -- JobStatus. If JobStatus is not provided, this lists all
+    -- jobs with all possible speaker enrollment job statuses.
     listSpeakerEnrollmentJobs: function(Client, types.ListSpeakerEnrollmentJobsInput): types.ListSpeakerEnrollmentJobsOutput, table
+    -- Lists all speakers in a specified domain.
     listSpeakers: function(Client, types.ListSpeakersInput): types.ListSpeakersOutput, table
+    -- Lists all tags associated with a specified Voice ID resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists all watchlists in a specified domain.
     listWatchlists: function(Client, types.ListWatchlistsInput): types.ListWatchlistsOutput, table
+    -- Opts out a speaker from Voice ID. A speaker can be opted out regardless of whether or
+    -- not they already exist in Voice ID. If they don't yet exist, a new speaker is created
+    -- in an opted out state. If they already exist, their existing status is overridden and
+    -- they are opted out. Enrollment and evaluation authentication requests are rejected for
+    -- opted out speakers, and opted out speakers have no voice embeddings stored in
+    -- Voice ID.
     optOutSpeaker: function(Client, types.OptOutSpeakerInput): types.OptOutSpeakerOutput, table
+    -- Starts a new batch fraudster registration job using provided details.
     startFraudsterRegistrationJob: function(Client, types.StartFraudsterRegistrationJobInput): types.StartFraudsterRegistrationJobOutput, table
+    -- Starts a new batch speaker enrollment job using specified details.
     startSpeakerEnrollmentJob: function(Client, types.StartSpeakerEnrollmentJobInput): types.StartSpeakerEnrollmentJobOutput, table
+    -- Tags a Voice ID resource with the provided list of tags.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes specified tags from a specified Amazon Connect Voice ID resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the specified domain. This API has clobber behavior, and clears and replaces
+    -- all attributes. If an optional field, such as 'Description' is not provided, it is
+    -- removed from the domain.
     updateDomain: function(Client, types.UpdateDomainInput): types.UpdateDomainOutput, table
+    -- Updates the specified watchlist. Every domain has a default watchlist which cannot be updated.
     updateWatchlist: function(Client, types.UpdateWatchlistInput): types.UpdateWatchlistOutput, table
 end
 

@@ -3,27 +3,49 @@
 local types = require("emrserverless.types")
 
 local record Client
+    -- Cancels a job run.
     cancelJobRun: function(Client, types.CancelJobRunInput): types.CancelJobRunOutput, table
+    -- Creates an application.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Deletes an application. An application has to be in a stopped or created state in order to be deleted.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Displays detailed information about a specified application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Creates and returns a URL that you can use to access the application UIs for a job run. For jobs in a running state, the application UI is a live user interface such as the Spark or Tez web UI. For completed jobs, the application UI is a persistent application user interface such as the Spark History Server or persistent Tez UI. The URL is valid for one hour after you generate it. To access the application UI after that hour elapses, you must invoke the API again to generate a new URL.
     getDashboardForJobRun: function(Client, types.GetDashboardForJobRunInput): types.GetDashboardForJobRunOutput, table
+    -- Displays detailed information about a job run.
     getJobRun: function(Client, types.GetJobRunInput): types.GetJobRunOutput, table
+    -- Returns a URL that you can use to access the application UIs for a specified resource, such as a session. For resources in a running state, the application UI is a live user interface such as the Spark web UI. For terminated resources, the application UI is a persistent application user interface such as the Spark History Server. The URL is valid for one hour after you generate it. To access the application UI after that hour elapses, you must invoke the API again to generate a new URL.
     getResourceDashboard: function(Client, types.GetResourceDashboardInput): types.GetResourceDashboardOutput, table
+    -- Displays detailed information about a session.
     getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    -- Returns the session endpoint URL and a time-limited authentication token for the specified session. Use the endpoint and token to connect a client to the session. Call this operation again when the authentication token expires to obtain a new token.
     getSessionEndpoint: function(Client, types.GetSessionEndpointInput): types.GetSessionEndpointOutput, table
+    -- Lists applications based on a set of parameters.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Lists all attempt of a job run.
     listJobRunAttempts: function(Client, types.ListJobRunAttemptsInput): types.ListJobRunAttemptsOutput, table
+    -- Lists job runs based on a set of parameters.
     listJobRuns: function(Client, types.ListJobRunsInput): types.ListJobRunsOutput, table
+    -- Lists sessions for the specified application. You can filter sessions by state and creation time.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Lists the tags assigned to the resources.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts a specified application and initializes initial capacity if configured.
     startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    -- Starts a job run.
     startJobRun: function(Client, types.StartJobRunInput): types.StartJobRunOutput, table
+    -- Creates and starts a new session on the specified application. The application must be in the STARTED state or have AutoStart enabled, and have interactive sessions enabled. This operation is supported for EMR release 7.13.0 and later.
     startSession: function(Client, types.StartSessionInput): types.StartSessionOutput, table
+    -- Stops a specified application and releases initial capacity if configured. All scheduled and running jobs must be completed or cancelled before stopping an application.
     stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    -- Assigns tags to resources. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your Amazon Web Services resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Terminates the specified session. After you terminate a session, it enters the TERMINATING state and then the TERMINATED state. You can still access the Spark History Server for a terminated session through the GetResourceDashboard operation.
     terminateSession: function(Client, types.TerminateSessionInput): types.TerminateSessionOutput, table
+    -- Removes tags from resources.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a specified application. An application has to be in a stopped or created state in order to be updated.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
 end
 

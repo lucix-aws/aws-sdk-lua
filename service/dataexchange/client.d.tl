@@ -3,42 +3,79 @@
 local types = require("dataexchange.types")
 
 local record Client
+    -- This operation accepts a data grant.
     acceptDataGrant: function(Client, types.AcceptDataGrantInput): types.AcceptDataGrantOutput, table
+    -- This operation cancels a job. Jobs can be cancelled only when they are in the WAITING state.
     cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    -- This operation creates a data grant.
     createDataGrant: function(Client, types.CreateDataGrantInput): types.CreateDataGrantOutput, table
+    -- This operation creates a data set.
     createDataSet: function(Client, types.CreateDataSetInput): types.CreateDataSetOutput, table
+    -- This operation creates an event action.
     createEventAction: function(Client, types.CreateEventActionInput): types.CreateEventActionOutput, table
+    -- This operation creates a job.
     createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    -- This operation creates a revision for a data set.
     createRevision: function(Client, types.CreateRevisionInput): types.CreateRevisionOutput, table
+    -- This operation deletes an asset.
     deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    -- This operation deletes a data grant.
     deleteDataGrant: function(Client, types.DeleteDataGrantInput): types.DeleteDataGrantOutput, table
+    -- This operation deletes a data set.
     deleteDataSet: function(Client, types.DeleteDataSetInput): types.DeleteDataSetOutput, table
+    -- This operation deletes the event action.
     deleteEventAction: function(Client, types.DeleteEventActionInput): types.DeleteEventActionOutput, table
+    -- This operation deletes a revision.
     deleteRevision: function(Client, types.DeleteRevisionInput): types.DeleteRevisionOutput, table
+    -- This operation returns information about an asset.
     getAsset: function(Client, types.GetAssetInput): types.GetAssetOutput, table
+    -- This operation returns information about a data grant.
     getDataGrant: function(Client, types.GetDataGrantInput): types.GetDataGrantOutput, table
+    -- This operation returns information about a data set.
     getDataSet: function(Client, types.GetDataSetInput): types.GetDataSetOutput, table
+    -- This operation retrieves information about an event action.
     getEventAction: function(Client, types.GetEventActionInput): types.GetEventActionOutput, table
+    -- This operation returns information about a job.
     getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    -- This operation returns information about a received data grant.
     getReceivedDataGrant: function(Client, types.GetReceivedDataGrantInput): types.GetReceivedDataGrantOutput, table
+    -- This operation returns information about a revision.
     getRevision: function(Client, types.GetRevisionInput): types.GetRevisionOutput, table
+    -- This operation returns information about all data grants.
     listDataGrants: function(Client, types.ListDataGrantsInput): types.ListDataGrantsOutput, table
+    -- This operation lists a data set's revisions sorted by CreatedAt in descending order.
     listDataSetRevisions: function(Client, types.ListDataSetRevisionsInput): types.ListDataSetRevisionsOutput, table
+    -- This operation lists your data sets. When listing by origin OWNED, results are sorted by CreatedAt in descending order. When listing by origin ENTITLED, there is no order.
     listDataSets: function(Client, types.ListDataSetsInput): types.ListDataSetsOutput, table
+    -- This operation lists your event actions.
     listEventActions: function(Client, types.ListEventActionsInput): types.ListEventActionsOutput, table
+    -- This operation lists your jobs sorted by CreatedAt in descending order.
     listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    -- This operation returns information about all received data grants.
     listReceivedDataGrants: function(Client, types.ListReceivedDataGrantsInput): types.ListReceivedDataGrantsOutput, table
+    -- This operation lists a revision's assets sorted alphabetically in descending order.
     listRevisionAssets: function(Client, types.ListRevisionAssetsInput): types.ListRevisionAssetsOutput, table
+    -- This operation lists the tags on the resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- This operation revokes subscribers' access to a revision.
     revokeRevision: function(Client, types.RevokeRevisionInput): types.RevokeRevisionOutput, table
+    -- This operation invokes an API Gateway API asset. The request is proxied to the provider’s API Gateway API.
     sendApiAsset: function(Client, types.SendApiAssetInput): types.SendApiAssetOutput, table
+    -- The type of event associated with the data set.
     sendDataSetNotification: function(Client, types.SendDataSetNotificationInput): types.SendDataSetNotificationOutput, table
+    -- This operation starts a job.
     startJob: function(Client, types.StartJobInput): types.StartJobOutput, table
+    -- This operation tags a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- This operation removes one or more tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- This operation updates an asset.
     updateAsset: function(Client, types.UpdateAssetInput): types.UpdateAssetOutput, table
+    -- This operation updates a data set.
     updateDataSet: function(Client, types.UpdateDataSetInput): types.UpdateDataSetOutput, table
+    -- This operation updates the event action.
     updateEventAction: function(Client, types.UpdateEventActionInput): types.UpdateEventActionOutput, table
+    -- This operation updates a revision.
     updateRevision: function(Client, types.UpdateRevisionInput): types.UpdateRevisionOutput, table
 end
 

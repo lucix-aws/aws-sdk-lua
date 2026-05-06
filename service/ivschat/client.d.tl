@@ -3,22 +3,59 @@
 local types = require("ivschat.types")
 
 local record Client
+    -- Creates an encrypted token that is used by a chat participant to establish an individual
+    -- WebSocket chat connection to a room. When the token is used to connect to chat, the
+    -- connection is valid for the session duration specified in the request. The token becomes
+    -- invalid at the token-expiration timestamp included in the response.
+    -- Use the capabilities field to permit an end user to send messages or
+    -- moderate a room.
+    -- The attributes field securely attaches structured data to the chat session; the data is
+    -- included within each message sent by the end user and received by other participants in the
+    -- room. Common use cases for attributes include passing end-user profile data like an icon,
+    -- display name, colors, badges, and other display features.
+    -- Encryption keys are owned by Amazon IVS Chat and never used directly by your
+    -- application.
     createChatToken: function(Client, types.CreateChatTokenInput): types.CreateChatTokenOutput, table
+    -- Creates a logging configuration that allows clients to store and record sent
+    -- messages.
     createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput): types.CreateLoggingConfigurationOutput, table
+    -- Creates a room that allows clients to connect and pass messages.
     createRoom: function(Client, types.CreateRoomInput): types.CreateRoomOutput, table
+    -- Deletes the specified logging configuration.
     deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    -- Sends an event to a specific room which directs clients to delete a specific message;
+    -- that is, unrender it from view and delete it from the client’s chat history. This event’s
+    -- EventName is aws:DELETE_MESSAGE. This replicates the
+    -- DeleteMessage WebSocket operation in the Amazon IVS Chat Messaging API.
     deleteMessage: function(Client, types.DeleteMessageInput): types.DeleteMessageOutput, table
+    -- Deletes the specified room.
     deleteRoom: function(Client, types.DeleteRoomInput): types.DeleteRoomOutput, table
+    -- Disconnects all connections using a specified user ID from a room. This replicates the
+    -- DisconnectUser WebSocket operation in the Amazon IVS Chat Messaging API.
     disconnectUser: function(Client, types.DisconnectUserInput): types.DisconnectUserOutput, table
+    -- Gets the specified logging configuration.
     getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): types.GetLoggingConfigurationOutput, table
+    -- Gets the specified room.
     getRoom: function(Client, types.GetRoomInput): types.GetRoomOutput, table
+    -- Gets summary information about all your logging configurations in the AWS region where
+    -- the API request is processed.
     listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): types.ListLoggingConfigurationsOutput, table
+    -- Gets summary information about all your rooms in the AWS region where the API request is
+    -- processed. Results are sorted in descending order of updateTime.
     listRooms: function(Client, types.ListRoomsInput): types.ListRoomsOutput, table
+    -- Gets information about AWS tags for the specified ARN.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Sends an event to a room. Use this within your application’s business logic to send
+    -- events to clients of a room; e.g., to notify clients to change the way the chat UI is
+    -- rendered.
     sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    -- Adds or updates tags for the AWS resource with the specified ARN.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the resource with the specified ARN.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a specified logging configuration.
     updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): types.UpdateLoggingConfigurationOutput, table
+    -- Updates a room’s configuration.
     updateRoom: function(Client, types.UpdateRoomInput): types.UpdateRoomOutput, table
 end
 

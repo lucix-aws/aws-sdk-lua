@@ -3,10 +3,59 @@
 local types = require("transcribestreaming.types")
 
 local record Client
+    -- Provides details about the specified Amazon Web Services HealthScribe streaming session.
+    -- To view the status of the streaming session, check the StreamStatus field in the response. To get the
+    -- details of post-stream analytics, including its status, check the PostStreamAnalyticsResult field in the response.
     getMedicalScribeStream: function(Client, types.GetMedicalScribeStreamInput): types.GetMedicalScribeStreamOutput, table
+    -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
+    -- Amazon Transcribe and the transcription results are streamed to your application. Use this operation
+    -- for Call Analytics transcriptions.
+    -- The following parameters are required:
+    -- language-code or identify-language
+    -- media-encoding
+    -- sample-rate
+    -- For more information on streaming with Amazon Transcribe, see Transcribing streaming audio.
     startCallAnalyticsStreamTranscription: function(Client, types.StartCallAnalyticsStreamTranscriptionInput): types.StartCallAnalyticsStreamTranscriptionOutput, table
+    -- Starts a bidirectional HTTP/2 stream, where audio is streamed to
+    -- Amazon Web Services HealthScribe
+    -- and the transcription results are streamed to your application.
+    -- When you start a stream, you first specify the stream configuration in a MedicalScribeConfigurationEvent.
+    -- This event includes channel definitions, encryption settings, medical scribe context, and post-stream analytics settings, such as the output configuration for aggregated transcript and clinical note generation. These are additional
+    -- streaming session configurations beyond those provided in your initial start request headers. Whether you are starting a new session or resuming an existing session,
+    -- your first event must be a MedicalScribeConfigurationEvent.
+    -- After you send a MedicalScribeConfigurationEvent, you start AudioEvents and Amazon Web Services HealthScribe
+    -- responds with real-time transcription results. When you are finished, to start processing the results with the post-stream analytics, send a MedicalScribeSessionControlEvent with a Type of
+    -- END_OF_SESSION and Amazon Web Services HealthScribe starts the analytics.
+    -- You can pause or resume streaming.
+    -- To pause streaming, complete the input stream without sending the
+    -- MedicalScribeSessionControlEvent.
+    -- To resume streaming, call the StartMedicalScribeStream and specify the same SessionId you used to start the stream.
+    -- The following parameters are required:
+    -- language-code
+    -- media-encoding
+    -- media-sample-rate-hertz
+    -- For more information on streaming with
+    -- Amazon Web Services HealthScribe,
+    -- see Amazon Web Services HealthScribe.
     startMedicalScribeStream: function(Client, types.StartMedicalScribeStreamInput): types.StartMedicalScribeStreamOutput, table
+    -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
+    -- Amazon Transcribe Medical and the transcription results are streamed to your
+    -- application.
+    -- The following parameters are required:
+    -- language-code
+    -- media-encoding
+    -- sample-rate
+    -- For more information on streaming with Amazon Transcribe Medical, see
+    -- Transcribing
+    -- streaming audio.
     startMedicalStreamTranscription: function(Client, types.StartMedicalStreamTranscriptionInput): types.StartMedicalStreamTranscriptionOutput, table
+    -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
+    -- Amazon Transcribe and the transcription results are streamed to your application.
+    -- The following parameters are required:
+    -- language-code or identify-language or identify-multiple-language
+    -- media-encoding
+    -- sample-rate
+    -- For more information on streaming with Amazon Transcribe, see Transcribing streaming audio.
     startStreamTranscription: function(Client, types.StartStreamTranscriptionInput): types.StartStreamTranscriptionOutput, table
 end
 

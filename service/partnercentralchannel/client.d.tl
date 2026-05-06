@@ -3,22 +3,39 @@
 local types = require("partnercentralchannel.types")
 
 local record Client
+    -- Accepts a pending channel handshake request from another AWS account.
     acceptChannelHandshake: function(Client, types.AcceptChannelHandshakeInput): types.AcceptChannelHandshakeOutput, table
+    -- Cancels a pending channel handshake request.
     cancelChannelHandshake: function(Client, types.CancelChannelHandshakeInput): types.CancelChannelHandshakeOutput, table
+    -- Creates a new channel handshake request to establish a partnership with another AWS account.
     createChannelHandshake: function(Client, types.CreateChannelHandshakeInput): types.CreateChannelHandshakeOutput, table
+    -- Creates a new program management account for managing partner relationships.
     createProgramManagementAccount: function(Client, types.CreateProgramManagementAccountInput): types.CreateProgramManagementAccountOutput, table
+    -- Creates a new partner relationship between accounts.
     createRelationship: function(Client, types.CreateRelationshipInput): types.CreateRelationshipOutput, table
+    -- Deletes a program management account.
     deleteProgramManagementAccount: function(Client, types.DeleteProgramManagementAccountInput): types.DeleteProgramManagementAccountOutput, table
+    -- Deletes a partner relationship.
     deleteRelationship: function(Client, types.DeleteRelationshipInput): types.DeleteRelationshipOutput, table
+    -- Retrieves details of a specific partner relationship.
     getRelationship: function(Client, types.GetRelationshipInput): types.GetRelationshipOutput, table
+    -- Lists channel handshakes based on specified criteria.
     listChannelHandshakes: function(Client, types.ListChannelHandshakesInput): types.ListChannelHandshakesOutput, table
+    -- Lists program management accounts based on specified criteria.
     listProgramManagementAccounts: function(Client, types.ListProgramManagementAccountsInput): types.ListProgramManagementAccountsOutput, table
+    -- Lists partner relationships based on specified criteria.
     listRelationships: function(Client, types.ListRelationshipsInput): types.ListRelationshipsOutput, table
+    -- Lists tags associated with a specific resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Rejects a pending channel handshake request.
     rejectChannelHandshake: function(Client, types.RejectChannelHandshakeInput): types.RejectChannelHandshakeOutput, table
+    -- Adds or updates tags for a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the properties of a program management account.
     updateProgramManagementAccount: function(Client, types.UpdateProgramManagementAccountInput): types.UpdateProgramManagementAccountOutput, table
+    -- Updates the properties of a partner relationship.
     updateRelationship: function(Client, types.UpdateRelationshipInput): types.UpdateRelationshipOutput, table
 end
 

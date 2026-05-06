@@ -3,36 +3,87 @@
 local types = require("chimesdkmediapipelines.types")
 
 local record Client
+    -- Creates a media pipeline.
     createMediaCapturePipeline: function(Client, types.CreateMediaCapturePipelineInput): types.CreateMediaCapturePipelineOutput, table
+    -- Creates a media concatenation pipeline.
     createMediaConcatenationPipeline: function(Client, types.CreateMediaConcatenationPipelineInput): types.CreateMediaConcatenationPipelineOutput, table
+    -- Creates a media insights pipeline.
     createMediaInsightsPipeline: function(Client, types.CreateMediaInsightsPipelineInput): types.CreateMediaInsightsPipelineOutput, table
+    -- A structure that contains the static configurations for a media insights
+    -- pipeline.
     createMediaInsightsPipelineConfiguration: function(Client, types.CreateMediaInsightsPipelineConfigurationInput): types.CreateMediaInsightsPipelineConfigurationOutput, table
+    -- Creates a media live connector pipeline in an Amazon Chime SDK meeting.
     createMediaLiveConnectorPipeline: function(Client, types.CreateMediaLiveConnectorPipelineInput): types.CreateMediaLiveConnectorPipelineOutput, table
+    -- Creates an Amazon Kinesis Video Stream pool for use with media stream
+    -- pipelines.
+    -- If a meeting uses an opt-in Region as its
+    -- MediaRegion,
+    -- the KVS stream must be in that same Region. For example, if a meeting uses the af-south-1 Region, the KVS stream must also be in af-south-1. However, if the meeting uses a
+    -- Region that AWS turns on by default, the KVS stream can be in any available Region, including an opt-in Region. For example, if the meeting uses ca-central-1, the KVS stream can be in
+    -- eu-west-2, us-east-1, af-south-1, or any other Region that the Amazon Chime SDK supports.
+    -- To learn which AWS Region a meeting uses, call the GetMeeting API and
+    -- use the MediaRegion
+    -- parameter from the response.
+    -- For more information about opt-in Regions, refer to Available Regions in the
+    -- Amazon Chime SDK Developer Guide, and
+    -- Specify which AWS Regions your account can use,
+    -- in the AWS Account Management Reference Guide.
     createMediaPipelineKinesisVideoStreamPool: function(Client, types.CreateMediaPipelineKinesisVideoStreamPoolInput): types.CreateMediaPipelineKinesisVideoStreamPoolOutput, table
+    -- Creates a streaming media pipeline.
     createMediaStreamPipeline: function(Client, types.CreateMediaStreamPipelineInput): types.CreateMediaStreamPipelineOutput, table
+    -- Deletes the media pipeline.
     deleteMediaCapturePipeline: function(Client, types.DeleteMediaCapturePipelineInput): types.DeleteMediaCapturePipelineOutput, table
+    -- Deletes the specified configuration settings.
     deleteMediaInsightsPipelineConfiguration: function(Client, types.DeleteMediaInsightsPipelineConfigurationInput): types.DeleteMediaInsightsPipelineConfigurationOutput, table
+    -- Deletes the media pipeline.
     deleteMediaPipeline: function(Client, types.DeleteMediaPipelineInput): types.DeleteMediaPipelineOutput, table
+    -- Deletes an Amazon Kinesis Video Stream pool.
     deleteMediaPipelineKinesisVideoStreamPool: function(Client, types.DeleteMediaPipelineKinesisVideoStreamPoolInput): types.DeleteMediaPipelineKinesisVideoStreamPoolOutput, table
+    -- Gets an existing media pipeline.
     getMediaCapturePipeline: function(Client, types.GetMediaCapturePipelineInput): types.GetMediaCapturePipelineOutput, table
+    -- Gets the configuration settings for a media insights pipeline.
     getMediaInsightsPipelineConfiguration: function(Client, types.GetMediaInsightsPipelineConfigurationInput): types.GetMediaInsightsPipelineConfigurationOutput, table
+    -- Gets an existing media pipeline.
     getMediaPipeline: function(Client, types.GetMediaPipelineInput): types.GetMediaPipelineOutput, table
+    -- Gets an Kinesis video stream pool.
     getMediaPipelineKinesisVideoStreamPool: function(Client, types.GetMediaPipelineKinesisVideoStreamPoolInput): types.GetMediaPipelineKinesisVideoStreamPoolOutput, table
+    -- Retrieves the details of the specified speaker search task.
     getSpeakerSearchTask: function(Client, types.GetSpeakerSearchTaskInput): types.GetSpeakerSearchTaskOutput, table
+    -- Retrieves the details of a voice tone analysis task.
     getVoiceToneAnalysisTask: function(Client, types.GetVoiceToneAnalysisTaskInput): types.GetVoiceToneAnalysisTaskOutput, table
+    -- Returns a list of media pipelines.
     listMediaCapturePipelines: function(Client, types.ListMediaCapturePipelinesInput): types.ListMediaCapturePipelinesOutput, table
+    -- Lists the available media insights pipeline configurations.
     listMediaInsightsPipelineConfigurations: function(Client, types.ListMediaInsightsPipelineConfigurationsInput): types.ListMediaInsightsPipelineConfigurationsOutput, table
+    -- Lists the video stream pools in the media pipeline.
     listMediaPipelineKinesisVideoStreamPools: function(Client, types.ListMediaPipelineKinesisVideoStreamPoolsInput): types.ListMediaPipelineKinesisVideoStreamPoolsOutput, table
+    -- Returns a list of media pipelines.
     listMediaPipelines: function(Client, types.ListMediaPipelinesInput): types.ListMediaPipelinesOutput, table
+    -- Lists the tags available for a media pipeline.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts a speaker search task.
+    -- Before starting any speaker search tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
     startSpeakerSearchTask: function(Client, types.StartSpeakerSearchTaskInput): types.StartSpeakerSearchTaskOutput, table
+    -- Starts a voice tone analysis task. For more information about voice tone analysis, see
+    -- Using Amazon Chime SDK voice analytics
+    -- in the Amazon Chime SDK Developer Guide.
+    -- Before starting any voice tone analysis tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
+    -- AWS service terms for the Amazon Chime SDK.
     startVoiceToneAnalysisTask: function(Client, types.StartVoiceToneAnalysisTaskInput): types.StartVoiceToneAnalysisTaskOutput, table
+    -- Stops a speaker search task.
     stopSpeakerSearchTask: function(Client, types.StopSpeakerSearchTaskInput): types.StopSpeakerSearchTaskOutput, table
+    -- Stops a voice tone analysis task.
     stopVoiceToneAnalysisTask: function(Client, types.StopVoiceToneAnalysisTaskInput): types.StopVoiceToneAnalysisTaskOutput, table
+    -- The ARN of the media pipeline that you want to tag. Consists of the pipeline's endpoint region, resource ID, and pipeline ID.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes any tags from a media pipeline.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the media insights pipeline's configuration settings.
     updateMediaInsightsPipelineConfiguration: function(Client, types.UpdateMediaInsightsPipelineConfigurationInput): types.UpdateMediaInsightsPipelineConfigurationOutput, table
+    -- Updates the status of a media insights pipeline.
     updateMediaInsightsPipelineStatus: function(Client, types.UpdateMediaInsightsPipelineStatusInput): types.UpdateMediaInsightsPipelineStatusOutput, table
+    -- Updates an Amazon Kinesis Video Stream pool in a media pipeline.
     updateMediaPipelineKinesisVideoStreamPool: function(Client, types.UpdateMediaPipelineKinesisVideoStreamPoolInput): types.UpdateMediaPipelineKinesisVideoStreamPoolOutput, table
 end
 

@@ -3,32 +3,59 @@
 local types = require("rtbfabric.types")
 
 local record Client
+    -- Accepts a link request between gateways. When a requester gateway requests to link with a responder gateway, the responder can use this operation to accept the link request and establish the connection.
     acceptLink: function(Client, types.AcceptLinkInput): types.AcceptLinkOutput, table
+    -- Creates an inbound external link.
     createInboundExternalLink: function(Client, types.CreateInboundExternalLinkInput): types.CreateInboundExternalLinkOutput, table
+    -- Creates a new link between gateways. Establishes a connection that allows gateways to communicate and exchange bid requests and responses.
     createLink: function(Client, types.CreateLinkInput): types.CreateLinkOutput, table
+    -- Creates an outbound external link.
     createOutboundExternalLink: function(Client, types.CreateOutboundExternalLinkInput): types.CreateOutboundExternalLinkOutput, table
+    -- Creates a requester gateway.
     createRequesterGateway: function(Client, types.CreateRequesterGatewayInput): types.CreateRequesterGatewayOutput, table
+    -- Creates a responder gateway. A domain name or managed endpoint is required.
     createResponderGateway: function(Client, types.CreateResponderGatewayInput): types.CreateResponderGatewayOutput, table
+    -- Deletes an inbound external link.
     deleteInboundExternalLink: function(Client, types.DeleteInboundExternalLinkInput): types.DeleteInboundExternalLinkOutput, table
+    -- Deletes a link between gateways. Permanently removes the connection between gateways. This action cannot be undone.
     deleteLink: function(Client, types.DeleteLinkInput): types.DeleteLinkOutput, table
+    -- Deletes an outbound external link.
     deleteOutboundExternalLink: function(Client, types.DeleteOutboundExternalLinkInput): types.DeleteOutboundExternalLinkOutput, table
+    -- Deletes a requester gateway.
     deleteRequesterGateway: function(Client, types.DeleteRequesterGatewayInput): types.DeleteRequesterGatewayOutput, table
+    -- Deletes a responder gateway.
     deleteResponderGateway: function(Client, types.DeleteResponderGatewayInput): types.DeleteResponderGatewayOutput, table
+    -- Retrieves information about an inbound external link.
     getInboundExternalLink: function(Client, types.GetInboundExternalLinkInput): types.GetInboundExternalLinkOutput, table
+    -- Retrieves information about a link between gateways. Returns detailed information about the link configuration, status, and associated gateways.
     getLink: function(Client, types.GetLinkInput): types.GetLinkOutput, table
+    -- Retrieves information about an outbound external link.
     getOutboundExternalLink: function(Client, types.GetOutboundExternalLinkInput): types.GetOutboundExternalLinkOutput, table
+    -- Retrieves information about a requester gateway.
     getRequesterGateway: function(Client, types.GetRequesterGatewayInput): types.GetRequesterGatewayOutput, table
+    -- Retrieves information about a responder gateway.
     getResponderGateway: function(Client, types.GetResponderGatewayInput): types.GetResponderGatewayOutput, table
+    -- Lists links associated with gateways. Returns a list of all links for the specified gateways, including their status and configuration details.
     listLinks: function(Client, types.ListLinksInput): types.ListLinksOutput, table
+    -- Lists requester gateways.
     listRequesterGateways: function(Client, types.ListRequesterGatewaysInput): types.ListRequesterGatewaysOutput, table
+    -- Lists reponder gateways.
     listResponderGateways: function(Client, types.ListResponderGatewaysInput): types.ListResponderGatewaysOutput, table
+    -- Lists tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Rejects a link request between gateways. When a requester gateway requests to link with a responder gateway, the responder can use this operation to decline the link request.
     rejectLink: function(Client, types.RejectLinkInput): types.RejectLinkOutput, table
+    -- Assigns one or more tags (key-value pairs) to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag or tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the configuration of a link between gateways. Allows you to modify settings and parameters for an existing link.
     updateLink: function(Client, types.UpdateLinkInput): types.UpdateLinkOutput, table
+    -- Updates a link module flow.
     updateLinkModuleFlow: function(Client, types.UpdateLinkModuleFlowInput): types.UpdateLinkModuleFlowOutput, table
+    -- Updates a requester gateway.
     updateRequesterGateway: function(Client, types.UpdateRequesterGatewayInput): types.UpdateRequesterGatewayOutput, table
+    -- Updates a responder gateway.
     updateResponderGateway: function(Client, types.UpdateResponderGatewayInput): types.UpdateResponderGatewayOutput, table
 end
 

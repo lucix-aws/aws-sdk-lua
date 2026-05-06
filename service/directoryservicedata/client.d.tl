@@ -3,22 +3,81 @@
 local types = require("directoryservicedata.types")
 
 local record Client
+    -- Adds an existing user, group, or computer as a group member.
     addGroupMember: function(Client, types.AddGroupMemberInput): types.AddGroupMemberOutput, table
+    -- Creates a new group.
     createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    -- Creates a new user.
     createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    -- Deletes a group.
     deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    -- Deletes a user.
     deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    -- Returns information about a specific group.
     describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    -- Returns information about a specific user.
     describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    -- Deactivates an active user account. For information about how to enable an inactive user
+    -- account, see ResetUserPassword
+    -- in the Directory Service API Reference.
     disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    -- Returns member information for the specified group.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the
+    -- ListGroupMembers.NextToken member contains a token that you pass in the next
+    -- call to ListGroupMembers. This retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     listGroupMembers: function(Client, types.ListGroupMembersInput): types.ListGroupMembersOutput, table
+    -- Returns group information for the specified directory.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the ListGroups.NextToken
+    -- member contains a token that you pass in the next call to ListGroups. This
+    -- retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    -- Returns group information for the specified member.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the
+    -- ListGroupsForMember.NextToken member contains a token that you pass in the next
+    -- call to ListGroupsForMember. This retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     listGroupsForMember: function(Client, types.ListGroupsForMemberInput): types.ListGroupsForMemberOutput, table
+    -- Returns user information for the specified directory.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the ListUsers.NextToken
+    -- member contains a token that you pass in the next call to ListUsers. This
+    -- retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    -- Removes a member from a group.
     removeGroupMember: function(Client, types.RemoveGroupMemberInput): types.RemoveGroupMemberOutput, table
+    -- Searches the specified directory for a group. You can find groups that match the
+    -- SearchString parameter with the value of their attributes included in the
+    -- SearchString parameter.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the SearchGroups.NextToken
+    -- member contains a token that you pass in the next call to SearchGroups. This
+    -- retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     searchGroups: function(Client, types.SearchGroupsInput): types.SearchGroupsOutput, table
+    -- Searches the specified directory for a user. You can find users that match the
+    -- SearchString parameter with the value of their attributes included in the
+    -- SearchString parameter.
+    -- This operation supports pagination with the use of the NextToken request and
+    -- response parameters. If more results are available, the SearchUsers.NextToken
+    -- member contains a token that you pass in the next call to SearchUsers. This
+    -- retrieves the next set of items.
+    -- You can also specify a maximum number of return results with the MaxResults
+    -- parameter.
     searchUsers: function(Client, types.SearchUsersInput): types.SearchUsersOutput, table
+    -- Updates group information.
     updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    -- Updates user information.
     updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
 end
 

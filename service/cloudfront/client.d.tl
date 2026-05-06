@@ -3,172 +3,339 @@
 local types = require("cloudfront.types")
 
 local record Client
+    -- The AssociateAlias API operation only supports standard distributions. To move domains between distribution tenants and/or standard distributions, we recommend that you use the UpdateDomainAssociation API operation instead. Associates an alias with a CloudFront standard distribution. An alias is commonly known as a custom domain or vanity domain. It can also be called a CNAME or alternate domain name. With this operation, you can move an alias that's already used for a standard distribution to a different standard distribution. This prevents the downtime that could occur if you first remove the alias from one standard distribution and then separately add the alias to another standard distribution. To use this operation, specify the alias and the ID of the target standard distribution. For more information, including how to set up the target standard distribution, prerequisites that you must complete, and other restrictions, see Moving an alternate domain name to a different standard distribution or distribution tenant in the Amazon CloudFront Developer Guide.
     associateAlias: function(Client, types.AssociateAliasInput): types.AssociateAliasOutput, table
+    -- Associates the WAF web ACL with a distribution tenant.
     associateDistributionTenantWebACL: function(Client, types.AssociateDistributionTenantWebACLInput): types.AssociateDistributionTenantWebACLOutput, table
+    -- Associates the WAF web ACL with a distribution.
     associateDistributionWebACL: function(Client, types.AssociateDistributionWebACLInput): types.AssociateDistributionWebACLOutput, table
+    -- Creates a staging distribution using the configuration of the provided primary distribution. A staging distribution is a copy of an existing distribution (called the primary distribution) that you can use in a continuous deployment workflow. After you create a staging distribution, you can use UpdateDistribution to modify the staging distribution's configuration. Then you can use CreateContinuousDeploymentPolicy to incrementally move traffic to the staging distribution. This API operation requires the following IAM permissions: GetDistribution CreateDistribution CopyDistribution
     copyDistribution: function(Client, types.CopyDistributionInput): types.CopyDistributionOutput, table
+    -- Creates an Anycast static IP list.
     createAnycastIpList: function(Client, types.CreateAnycastIpListInput): types.CreateAnycastIpListOutput, table
+    -- Creates a cache policy. After you create a cache policy, you can attach it to one or more cache behaviors. When it's attached to a cache behavior, the cache policy determines the following: The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache. If your minimum TTL is greater than 0, CloudFront will cache content for at least the duration specified in the cache policy's minimum TTL, even if the Cache-Control: no-cache, no-store, or private directives are present in the origin headers. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find an object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy. For more information about cache policies, see Controlling the cache key in the Amazon CloudFront Developer Guide.
     createCachePolicy: function(Client, types.CreateCachePolicyInput): types.CreateCachePolicyOutput, table
+    -- Creates a new origin access identity. If you're using Amazon S3 for your origin, you can use an origin access identity to require users to access your content using a CloudFront URL instead of the Amazon S3 URL. For more information about how to use origin access identities, see Serving Private Content through CloudFront in the Amazon CloudFront Developer Guide.
     createCloudFrontOriginAccessIdentity: function(Client, types.CreateCloudFrontOriginAccessIdentityInput): types.CreateCloudFrontOriginAccessIdentityOutput, table
+    -- Creates a connection function.
     createConnectionFunction: function(Client, types.CreateConnectionFunctionInput): types.CreateConnectionFunctionOutput, table
+    -- Creates a connection group.
     createConnectionGroup: function(Client, types.CreateConnectionGroupInput): types.CreateConnectionGroupOutput, table
+    -- Creates a continuous deployment policy that distributes traffic for a custom domain name to two different CloudFront distributions. To use a continuous deployment policy, first use CopyDistribution to create a staging distribution, then use UpdateDistribution to modify the staging distribution's configuration. After you create and update a staging distribution, you can use a continuous deployment policy to incrementally move traffic to the staging distribution. This workflow enables you to test changes to a distribution's configuration before moving all of your domain's production traffic to the new configuration.
     createContinuousDeploymentPolicy: function(Client, types.CreateContinuousDeploymentPolicyInput): types.CreateContinuousDeploymentPolicyOutput, table
+    -- Creates a CloudFront distribution.
     createDistribution: function(Client, types.CreateDistributionInput): types.CreateDistributionOutput, table
+    -- Creates a distribution tenant.
     createDistributionTenant: function(Client, types.CreateDistributionTenantInput): types.CreateDistributionTenantOutput, table
+    -- Create a new distribution with tags. This API operation requires the following IAM permissions: CreateDistribution TagResource
     createDistributionWithTags: function(Client, types.CreateDistributionWithTagsInput): types.CreateDistributionWithTagsOutput, table
+    -- Create a new field-level encryption configuration.
     createFieldLevelEncryptionConfig: function(Client, types.CreateFieldLevelEncryptionConfigInput): types.CreateFieldLevelEncryptionConfigOutput, table
+    -- Create a field-level encryption profile.
     createFieldLevelEncryptionProfile: function(Client, types.CreateFieldLevelEncryptionProfileInput): types.CreateFieldLevelEncryptionProfileOutput, table
+    -- Creates a CloudFront function. To create a function, you provide the function code and some configuration information about the function. The response contains an Amazon Resource Name (ARN) that uniquely identifies the function. When you create a function, it's in the DEVELOPMENT stage. In this stage, you can test the function with TestFunction, and update it with UpdateFunction. When you're ready to use your function with a CloudFront distribution, use PublishFunction to copy the function from the DEVELOPMENT stage to LIVE. When it's live, you can attach the function to a distribution's cache behavior, using the function's ARN.
     createFunction: function(Client, types.CreateFunctionInput): types.CreateFunctionOutput, table
+    -- Create a new invalidation. For more information, see Invalidating files in the Amazon CloudFront Developer Guide.
     createInvalidation: function(Client, types.CreateInvalidationInput): types.CreateInvalidationOutput, table
+    -- Creates an invalidation for a distribution tenant. For more information, see Invalidating files in the Amazon CloudFront Developer Guide.
     createInvalidationForDistributionTenant: function(Client, types.CreateInvalidationForDistributionTenantInput): types.CreateInvalidationForDistributionTenantOutput, table
+    -- Creates a key group that you can use with CloudFront signed URLs and signed cookies. To create a key group, you must specify at least one public key for the key group. After you create a key group, you can reference it from one or more cache behaviors. When you reference a key group in a cache behavior, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see Serving private content in the Amazon CloudFront Developer Guide.
     createKeyGroup: function(Client, types.CreateKeyGroupInput): types.CreateKeyGroupOutput, table
+    -- Specifies the key value store resource to add to your account. In your account, the key value store names must be unique. You can also import key value store data in JSON format from an S3 bucket by providing a valid ImportSource that you own.
     createKeyValueStore: function(Client, types.CreateKeyValueStoreInput): types.CreateKeyValueStoreOutput, table
+    -- Enables or disables additional Amazon CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost. For more information, see Viewing additional CloudFront distribution metrics in the Amazon CloudFront Developer Guide.
     createMonitoringSubscription: function(Client, types.CreateMonitoringSubscriptionInput): types.CreateMonitoringSubscriptionOutput, table
+    -- Creates a new origin access control in CloudFront. After you create an origin access control, you can add it to an origin in a CloudFront distribution so that CloudFront sends authenticated (signed) requests to the origin. This makes it possible to block public access to the origin, allowing viewers (users) to access the origin's content only through CloudFront. For more information about using a CloudFront origin access control, see Restricting access to an Amazon Web Services origin in the Amazon CloudFront Developer Guide.
     createOriginAccessControl: function(Client, types.CreateOriginAccessControlInput): types.CreateOriginAccessControlOutput, table
+    -- Creates an origin request policy. After you create an origin request policy, you can attach it to one or more cache behaviors. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following: The request body and the URL path (without the domain name) from the viewer request. The headers that CloudFront automatically includes in every origin request, including Host, User-Agent, and X-Amz-Cf-Id. All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront. CloudFront sends a request when it can't find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use CachePolicy. For more information about origin request policies, see Controlling origin requests in the Amazon CloudFront Developer Guide.
     createOriginRequestPolicy: function(Client, types.CreateOriginRequestPolicyInput): types.CreateOriginRequestPolicyOutput, table
+    -- Uploads a public key to CloudFront that you can use with signed URLs and signed cookies, or with field-level encryption.
     createPublicKey: function(Client, types.CreatePublicKeyInput): types.CreatePublicKeyOutput, table
+    -- Creates a real-time log configuration. After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream. For more information about real-time log configurations, see Real-time logs in the Amazon CloudFront Developer Guide.
     createRealtimeLogConfig: function(Client, types.CreateRealtimeLogConfigInput): types.CreateRealtimeLogConfigOutput, table
+    -- Creates a response headers policy. A response headers policy contains information about a set of HTTP headers. To create a response headers policy, you provide some metadata about the policy and a set of configurations that specify the headers. After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, the response headers policy affects the HTTP headers that CloudFront includes in HTTP responses to requests that match the cache behavior. CloudFront adds or removes response headers according to the configuration of the response headers policy. For more information, see Adding or removing HTTP headers in CloudFront responses in the Amazon CloudFront Developer Guide.
     createResponseHeadersPolicy: function(Client, types.CreateResponseHeadersPolicyInput): types.CreateResponseHeadersPolicyOutput, table
+    -- This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, read the announcement on the Amazon CloudFront discussion forum.
     createStreamingDistribution: function(Client, types.CreateStreamingDistributionInput): types.CreateStreamingDistributionOutput, table
+    -- This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, read the announcement on the Amazon CloudFront discussion forum.
     createStreamingDistributionWithTags: function(Client, types.CreateStreamingDistributionWithTagsInput): types.CreateStreamingDistributionWithTagsOutput, table
+    -- Creates a trust store.
     createTrustStore: function(Client, types.CreateTrustStoreInput): types.CreateTrustStoreOutput, table
+    -- Create an Amazon CloudFront VPC origin.
     createVpcOrigin: function(Client, types.CreateVpcOriginInput): types.CreateVpcOriginOutput, table
+    -- Deletes an Anycast static IP list.
     deleteAnycastIpList: function(Client, types.DeleteAnycastIpListInput): types.DeleteAnycastIpListOutput, table
+    -- Deletes a cache policy. You cannot delete a cache policy if it's attached to a cache behavior. First update your distributions to remove the cache policy from all cache behaviors, then delete the cache policy. To delete a cache policy, you must provide the policy's identifier and version. To get these values, you can use ListCachePolicies or GetCachePolicy.
     deleteCachePolicy: function(Client, types.DeleteCachePolicyInput): types.DeleteCachePolicyOutput, table
+    -- Delete an origin access identity.
     deleteCloudFrontOriginAccessIdentity: function(Client, types.DeleteCloudFrontOriginAccessIdentityInput): types.DeleteCloudFrontOriginAccessIdentityOutput, table
+    -- Deletes a connection function.
     deleteConnectionFunction: function(Client, types.DeleteConnectionFunctionInput): types.DeleteConnectionFunctionOutput, table
+    -- Deletes a connection group.
     deleteConnectionGroup: function(Client, types.DeleteConnectionGroupInput): types.DeleteConnectionGroupOutput, table
+    -- Deletes a continuous deployment policy. You cannot delete a continuous deployment policy that's attached to a primary distribution. First update your distribution to remove the continuous deployment policy, then you can delete the policy.
     deleteContinuousDeploymentPolicy: function(Client, types.DeleteContinuousDeploymentPolicyInput): types.DeleteContinuousDeploymentPolicyOutput, table
+    -- Delete a distribution. Before you can delete a distribution, you must disable it, which requires permission to update the distribution. Once deleted, a distribution cannot be recovered.
     deleteDistribution: function(Client, types.DeleteDistributionInput): types.DeleteDistributionOutput, table
+    -- Deletes a distribution tenant. If you use this API operation to delete a distribution tenant that is currently enabled, the request will fail. To delete a distribution tenant, you must first disable the distribution tenant by using the UpdateDistributionTenant API operation.
     deleteDistributionTenant: function(Client, types.DeleteDistributionTenantInput): types.DeleteDistributionTenantOutput, table
+    -- Remove a field-level encryption configuration.
     deleteFieldLevelEncryptionConfig: function(Client, types.DeleteFieldLevelEncryptionConfigInput): types.DeleteFieldLevelEncryptionConfigOutput, table
+    -- Remove a field-level encryption profile.
     deleteFieldLevelEncryptionProfile: function(Client, types.DeleteFieldLevelEncryptionProfileInput): types.DeleteFieldLevelEncryptionProfileOutput, table
+    -- Deletes a CloudFront function. You cannot delete a function if it's associated with a cache behavior. First, update your distributions to remove the function association from all cache behaviors, then delete the function. To delete a function, you must provide the function's name and version (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
     deleteFunction: function(Client, types.DeleteFunctionInput): types.DeleteFunctionOutput, table
+    -- Deletes a key group. You cannot delete a key group that is referenced in a cache behavior. First update your distributions to remove the key group from all cache behaviors, then delete the key group. To delete a key group, you must provide the key group's identifier and version. To get these values, use ListKeyGroups followed by GetKeyGroup or GetKeyGroupConfig.
     deleteKeyGroup: function(Client, types.DeleteKeyGroupInput): types.DeleteKeyGroupOutput, table
+    -- Specifies the key value store to delete.
     deleteKeyValueStore: function(Client, types.DeleteKeyValueStoreInput): types.DeleteKeyValueStoreOutput, table
+    -- Disables additional CloudWatch metrics for the specified CloudFront distribution.
     deleteMonitoringSubscription: function(Client, types.DeleteMonitoringSubscriptionInput): types.DeleteMonitoringSubscriptionOutput, table
+    -- Deletes a CloudFront origin access control. You cannot delete an origin access control if it's in use. First, update all distributions to remove the origin access control from all origins, then delete the origin access control.
     deleteOriginAccessControl: function(Client, types.DeleteOriginAccessControlInput): types.DeleteOriginAccessControlOutput, table
+    -- Deletes an origin request policy. You cannot delete an origin request policy if it's attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy. To delete an origin request policy, you must provide the policy's identifier and version. To get the identifier, you can use ListOriginRequestPolicies or GetOriginRequestPolicy.
     deleteOriginRequestPolicy: function(Client, types.DeleteOriginRequestPolicyInput): types.DeleteOriginRequestPolicyOutput, table
+    -- Remove a public key you previously added to CloudFront.
     deletePublicKey: function(Client, types.DeletePublicKeyInput): types.DeletePublicKeyOutput, table
+    -- Deletes a real-time log configuration. You cannot delete a real-time log configuration if it's attached to a cache behavior. First update your distributions to remove the real-time log configuration from all cache behaviors, then delete the real-time log configuration. To delete a real-time log configuration, you can provide the configuration's name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to delete.
     deleteRealtimeLogConfig: function(Client, types.DeleteRealtimeLogConfigInput): types.DeleteRealtimeLogConfigOutput, table
+    -- Deletes the resource policy attached to the CloudFront resource.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes a response headers policy. You cannot delete a response headers policy if it's attached to a cache behavior. First update your distributions to remove the response headers policy from all cache behaviors, then delete the response headers policy. To delete a response headers policy, you must provide the policy's identifier and version. To get these values, you can use ListResponseHeadersPolicies or GetResponseHeadersPolicy.
     deleteResponseHeadersPolicy: function(Client, types.DeleteResponseHeadersPolicyInput): types.DeleteResponseHeadersPolicyOutput, table
+    -- Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps. To delete an RTMP distribution using the CloudFront API: Disable the RTMP distribution. Submit a GET Streaming Distribution Config request to get the current configuration and the Etag header for the distribution. Update the XML document that was returned in the response to your GET Streaming Distribution Config request to change the value of Enabled to false. Submit a PUT Streaming Distribution Config request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP If-Match header to the value of the ETag header that CloudFront returned when you submitted the GET Streaming Distribution Config request in Step 2. Review the response to the PUT Streaming Distribution Config request to confirm that the distribution was successfully disabled. Submit a GET Streaming Distribution Config request to confirm that your changes have propagated. When propagation is complete, the value of Status is Deployed. Submit a DELETE Streaming Distribution request. Set the value of the HTTP If-Match header to the value of the ETag header that CloudFront returned when you submitted the GET Streaming Distribution Config request in Step 2. Review the response to your DELETE Streaming Distribution request to confirm that the distribution was successfully deleted. For information about deleting a distribution using the CloudFront console, see Deleting a Distribution in the Amazon CloudFront Developer Guide.
     deleteStreamingDistribution: function(Client, types.DeleteStreamingDistributionInput): types.DeleteStreamingDistributionOutput, table
+    -- Deletes a trust store.
     deleteTrustStore: function(Client, types.DeleteTrustStoreInput): types.DeleteTrustStoreOutput, table
+    -- Delete an Amazon CloudFront VPC origin.
     deleteVpcOrigin: function(Client, types.DeleteVpcOriginInput): types.DeleteVpcOriginOutput, table
+    -- Describes a connection function.
     describeConnectionFunction: function(Client, types.DescribeConnectionFunctionInput): types.DescribeConnectionFunctionOutput, table
+    -- Gets configuration information and metadata about a CloudFront function, but not the function's code. To get a function's code, use GetFunction. To get configuration information and metadata about a function, you must provide the function's name and stage. To get these values, you can use ListFunctions.
     describeFunction: function(Client, types.DescribeFunctionInput): types.DescribeFunctionOutput, table
+    -- Specifies the key value store and its configuration.
     describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput): types.DescribeKeyValueStoreOutput, table
+    -- Disassociates a distribution tenant from the WAF web ACL.
     disassociateDistributionTenantWebACL: function(Client, types.DisassociateDistributionTenantWebACLInput): types.DisassociateDistributionTenantWebACLOutput, table
+    -- Disassociates a distribution from the WAF web ACL.
     disassociateDistributionWebACL: function(Client, types.DisassociateDistributionWebACLInput): types.DisassociateDistributionWebACLOutput, table
+    -- Gets an Anycast static IP list.
     getAnycastIpList: function(Client, types.GetAnycastIpListInput): types.GetAnycastIpListOutput, table
+    -- Gets a cache policy, including the following metadata: The policy's identifier. The date and time when the policy was last modified. To get a cache policy, you must provide the policy's identifier. If the cache policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the cache policy is not attached to a cache behavior, you can get the identifier using ListCachePolicies.
     getCachePolicy: function(Client, types.GetCachePolicyInput): types.GetCachePolicyOutput, table
+    -- Gets a cache policy configuration. To get a cache policy configuration, you must provide the policy's identifier. If the cache policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the cache policy is not attached to a cache behavior, you can get the identifier using ListCachePolicies.
     getCachePolicyConfig: function(Client, types.GetCachePolicyConfigInput): types.GetCachePolicyConfigOutput, table
+    -- Get the information about an origin access identity.
     getCloudFrontOriginAccessIdentity: function(Client, types.GetCloudFrontOriginAccessIdentityInput): types.GetCloudFrontOriginAccessIdentityOutput, table
+    -- Get the configuration information about an origin access identity.
     getCloudFrontOriginAccessIdentityConfig: function(Client, types.GetCloudFrontOriginAccessIdentityConfigInput): types.GetCloudFrontOriginAccessIdentityConfigOutput, table
+    -- Gets a connection function.
     getConnectionFunction: function(Client, types.GetConnectionFunctionInput): types.GetConnectionFunctionOutput, table
+    -- Gets information about a connection group.
     getConnectionGroup: function(Client, types.GetConnectionGroupInput): types.GetConnectionGroupOutput, table
+    -- Gets information about a connection group by using the endpoint that you specify.
     getConnectionGroupByRoutingEndpoint: function(Client, types.GetConnectionGroupByRoutingEndpointInput): types.GetConnectionGroupByRoutingEndpointOutput, table
+    -- Gets a continuous deployment policy, including metadata (the policy's identifier and the date and time when the policy was last modified).
     getContinuousDeploymentPolicy: function(Client, types.GetContinuousDeploymentPolicyInput): types.GetContinuousDeploymentPolicyOutput, table
+    -- Gets configuration information about a continuous deployment policy.
     getContinuousDeploymentPolicyConfig: function(Client, types.GetContinuousDeploymentPolicyConfigInput): types.GetContinuousDeploymentPolicyConfigOutput, table
+    -- Get the information about a distribution.
     getDistribution: function(Client, types.GetDistributionInput): types.GetDistributionOutput, table
+    -- Get the configuration information about a distribution.
     getDistributionConfig: function(Client, types.GetDistributionConfigInput): types.GetDistributionConfigOutput, table
+    -- Gets information about a distribution tenant.
     getDistributionTenant: function(Client, types.GetDistributionTenantInput): types.GetDistributionTenantOutput, table
+    -- Gets information about a distribution tenant by the associated domain.
     getDistributionTenantByDomain: function(Client, types.GetDistributionTenantByDomainInput): types.GetDistributionTenantByDomainOutput, table
+    -- Get the field-level encryption configuration information.
     getFieldLevelEncryption: function(Client, types.GetFieldLevelEncryptionInput): types.GetFieldLevelEncryptionOutput, table
+    -- Get the field-level encryption configuration information.
     getFieldLevelEncryptionConfig: function(Client, types.GetFieldLevelEncryptionConfigInput): types.GetFieldLevelEncryptionConfigOutput, table
+    -- Get the field-level encryption profile information.
     getFieldLevelEncryptionProfile: function(Client, types.GetFieldLevelEncryptionProfileInput): types.GetFieldLevelEncryptionProfileOutput, table
+    -- Get the field-level encryption profile configuration information.
     getFieldLevelEncryptionProfileConfig: function(Client, types.GetFieldLevelEncryptionProfileConfigInput): types.GetFieldLevelEncryptionProfileConfigOutput, table
+    -- Gets the code of a CloudFront function. To get configuration information and metadata about a function, use DescribeFunction. To get a function's code, you must provide the function's name and stage. To get these values, you can use ListFunctions.
     getFunction: function(Client, types.GetFunctionInput): types.GetFunctionOutput, table
+    -- Get the information about an invalidation.
     getInvalidation: function(Client, types.GetInvalidationInput): types.GetInvalidationOutput, table
+    -- Gets information about a specific invalidation for a distribution tenant.
     getInvalidationForDistributionTenant: function(Client, types.GetInvalidationForDistributionTenantInput): types.GetInvalidationForDistributionTenantOutput, table
+    -- Gets a key group, including the date and time when the key group was last modified. To get a key group, you must provide the key group's identifier. If the key group is referenced in a distribution's cache behavior, you can get the key group's identifier using ListDistributions or GetDistribution. If the key group is not referenced in a cache behavior, you can get the identifier using ListKeyGroups.
     getKeyGroup: function(Client, types.GetKeyGroupInput): types.GetKeyGroupOutput, table
+    -- Gets a key group configuration. To get a key group configuration, you must provide the key group's identifier. If the key group is referenced in a distribution's cache behavior, you can get the key group's identifier using ListDistributions or GetDistribution. If the key group is not referenced in a cache behavior, you can get the identifier using ListKeyGroups.
     getKeyGroupConfig: function(Client, types.GetKeyGroupConfigInput): types.GetKeyGroupConfigOutput, table
+    -- Gets details about the CloudFront managed ACM certificate.
     getManagedCertificateDetails: function(Client, types.GetManagedCertificateDetailsInput): types.GetManagedCertificateDetailsOutput, table
+    -- Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.
     getMonitoringSubscription: function(Client, types.GetMonitoringSubscriptionInput): types.GetMonitoringSubscriptionOutput, table
+    -- Gets a CloudFront origin access control, including its unique identifier.
     getOriginAccessControl: function(Client, types.GetOriginAccessControlInput): types.GetOriginAccessControlOutput, table
+    -- Gets a CloudFront origin access control configuration.
     getOriginAccessControlConfig: function(Client, types.GetOriginAccessControlConfigInput): types.GetOriginAccessControlConfigOutput, table
+    -- Gets an origin request policy, including the following metadata: The policy's identifier. The date and time when the policy was last modified. To get an origin request policy, you must provide the policy's identifier. If the origin request policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the origin request policy is not attached to a cache behavior, you can get the identifier using ListOriginRequestPolicies.
     getOriginRequestPolicy: function(Client, types.GetOriginRequestPolicyInput): types.GetOriginRequestPolicyOutput, table
+    -- Gets an origin request policy configuration. To get an origin request policy configuration, you must provide the policy's identifier. If the origin request policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the origin request policy is not attached to a cache behavior, you can get the identifier using ListOriginRequestPolicies.
     getOriginRequestPolicyConfig: function(Client, types.GetOriginRequestPolicyConfigInput): types.GetOriginRequestPolicyConfigOutput, table
+    -- Gets a public key.
     getPublicKey: function(Client, types.GetPublicKeyInput): types.GetPublicKeyOutput, table
+    -- Gets a public key configuration.
     getPublicKeyConfig: function(Client, types.GetPublicKeyConfigInput): types.GetPublicKeyConfigOutput, table
+    -- Gets a real-time log configuration. To get a real-time log configuration, you can provide the configuration's name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to get.
     getRealtimeLogConfig: function(Client, types.GetRealtimeLogConfigInput): types.GetRealtimeLogConfigOutput, table
+    -- Retrieves the resource policy for the specified CloudFront resource that you own and have shared.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Gets a response headers policy, including metadata (the policy's identifier and the date and time when the policy was last modified). To get a response headers policy, you must provide the policy's identifier. If the response headers policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the response headers policy is not attached to a cache behavior, you can get the identifier using ListResponseHeadersPolicies.
     getResponseHeadersPolicy: function(Client, types.GetResponseHeadersPolicyInput): types.GetResponseHeadersPolicyOutput, table
+    -- Gets a response headers policy configuration. To get a response headers policy configuration, you must provide the policy's identifier. If the response headers policy is attached to a distribution's cache behavior, you can get the policy's identifier using ListDistributions or GetDistribution. If the response headers policy is not attached to a cache behavior, you can get the identifier using ListResponseHeadersPolicies.
     getResponseHeadersPolicyConfig: function(Client, types.GetResponseHeadersPolicyConfigInput): types.GetResponseHeadersPolicyConfigOutput, table
+    -- Gets information about a specified RTMP distribution, including the distribution configuration.
     getStreamingDistribution: function(Client, types.GetStreamingDistributionInput): types.GetStreamingDistributionOutput, table
+    -- Get the configuration information about a streaming distribution.
     getStreamingDistributionConfig: function(Client, types.GetStreamingDistributionConfigInput): types.GetStreamingDistributionConfigOutput, table
+    -- Gets a trust store.
     getTrustStore: function(Client, types.GetTrustStoreInput): types.GetTrustStoreOutput, table
+    -- Get the details of an Amazon CloudFront VPC origin.
     getVpcOrigin: function(Client, types.GetVpcOriginInput): types.GetVpcOriginOutput, table
+    -- Lists your Anycast static IP lists.
     listAnycastIpLists: function(Client, types.ListAnycastIpListsInput): types.ListAnycastIpListsOutput, table
+    -- Gets a list of cache policies. You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listCachePolicies: function(Client, types.ListCachePoliciesInput): types.ListCachePoliciesOutput, table
+    -- Lists origin access identities.
     listCloudFrontOriginAccessIdentities: function(Client, types.ListCloudFrontOriginAccessIdentitiesInput): types.ListCloudFrontOriginAccessIdentitiesOutput, table
+    -- The ListConflictingAliases API operation only supports standard distributions. To list domain conflicts for both standard distributions and distribution tenants, we recommend that you use the ListDomainConflicts API operation instead. Gets a list of aliases that conflict or overlap with the provided alias, and the associated CloudFront standard distribution and Amazon Web Services accounts for each conflicting alias. An alias is commonly known as a custom domain or vanity domain. It can also be called a CNAME or alternate domain name. In the returned list, the standard distribution and account IDs are partially hidden, which allows you to identify the standard distribution and accounts that you own, and helps to protect the information of ones that you don't own. Use this operation to find aliases that are in use in CloudFront that conflict or overlap with the provided alias. For example, if you provide www.example.com as input, the returned list can include www.example.com and the overlapping wildcard alternate domain name (*.example.com), if they exist. If you provide *.example.com as input, the returned list can include *.example.com and any alternate domain names covered by that wildcard (for example, www.example.com, test.example.com, dev.example.com, and so on), if they exist. To list conflicting aliases, specify the alias to search and the ID of a standard distribution in your account that has an attached TLS certificate that includes the provided alias. For more information, including how to set up the standard distribution and certificate, see Moving an alternate domain name to a different standard distribution or distribution tenant in the Amazon CloudFront Developer Guide. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listConflictingAliases: function(Client, types.ListConflictingAliasesInput): types.ListConflictingAliasesOutput, table
+    -- Lists connection functions.
     listConnectionFunctions: function(Client, types.ListConnectionFunctionsInput): types.ListConnectionFunctionsOutput, table
+    -- Lists the connection groups in your Amazon Web Services account.
     listConnectionGroups: function(Client, types.ListConnectionGroupsInput): types.ListConnectionGroupsOutput, table
+    -- Gets a list of the continuous deployment policies in your Amazon Web Services account. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listContinuousDeploymentPolicies: function(Client, types.ListContinuousDeploymentPoliciesInput): types.ListContinuousDeploymentPoliciesOutput, table
+    -- List CloudFront distributions.
     listDistributions: function(Client, types.ListDistributionsInput): types.ListDistributionsOutput, table
+    -- Lists the distributions in your account that are associated with the specified AnycastIpListId.
     listDistributionsByAnycastIpListId: function(Client, types.ListDistributionsByAnycastIpListIdInput): types.ListDistributionsByAnycastIpListIdOutput, table
+    -- Gets a list of distribution IDs for distributions that have a cache behavior that's associated with the specified cache policy. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDistributionsByCachePolicyId: function(Client, types.ListDistributionsByCachePolicyIdInput): types.ListDistributionsByCachePolicyIdOutput, table
+    -- Lists distributions by connection function.
     listDistributionsByConnectionFunction: function(Client, types.ListDistributionsByConnectionFunctionInput): types.ListDistributionsByConnectionFunctionOutput, table
+    -- Lists the distributions by the connection mode that you specify.
     listDistributionsByConnectionMode: function(Client, types.ListDistributionsByConnectionModeInput): types.ListDistributionsByConnectionModeOutput, table
+    -- Gets a list of distribution IDs for distributions that have a cache behavior that references the specified key group. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDistributionsByKeyGroup: function(Client, types.ListDistributionsByKeyGroupInput): types.ListDistributionsByKeyGroupOutput, table
+    -- Gets a list of distribution IDs for distributions that have a cache behavior that's associated with the specified origin request policy. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDistributionsByOriginRequestPolicyId: function(Client, types.ListDistributionsByOriginRequestPolicyIdInput): types.ListDistributionsByOriginRequestPolicyIdOutput, table
+    -- Lists the CloudFront distributions that are associated with the specified resource that you own.
     listDistributionsByOwnedResource: function(Client, types.ListDistributionsByOwnedResourceInput): types.ListDistributionsByOwnedResourceOutput, table
+    -- Gets a list of distributions that have a cache behavior that's associated with the specified real-time log configuration. You can specify the real-time log configuration by its name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to list distributions for. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDistributionsByRealtimeLogConfig: function(Client, types.ListDistributionsByRealtimeLogConfigInput): types.ListDistributionsByRealtimeLogConfigOutput, table
+    -- Gets a list of distribution IDs for distributions that have a cache behavior that's associated with the specified response headers policy. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDistributionsByResponseHeadersPolicyId: function(Client, types.ListDistributionsByResponseHeadersPolicyIdInput): types.ListDistributionsByResponseHeadersPolicyIdOutput, table
+    -- Lists distributions by trust store.
     listDistributionsByTrustStore: function(Client, types.ListDistributionsByTrustStoreInput): types.ListDistributionsByTrustStoreOutput, table
+    -- List CloudFront distributions by their VPC origin ID.
     listDistributionsByVpcOriginId: function(Client, types.ListDistributionsByVpcOriginIdInput): types.ListDistributionsByVpcOriginIdOutput, table
+    -- List the distributions that are associated with a specified WAF web ACL.
     listDistributionsByWebACLId: function(Client, types.ListDistributionsByWebACLIdInput): types.ListDistributionsByWebACLIdOutput, table
+    -- Lists the distribution tenants in your Amazon Web Services account.
     listDistributionTenants: function(Client, types.ListDistributionTenantsInput): types.ListDistributionTenantsOutput, table
+    -- Lists distribution tenants by the customization that you specify. You must specify either the CertificateArn parameter or WebACLArn parameter, but not both in the same request.
     listDistributionTenantsByCustomization: function(Client, types.ListDistributionTenantsByCustomizationInput): types.ListDistributionTenantsByCustomizationOutput, table
+    -- We recommend that you use the ListDomainConflicts API operation to check for domain conflicts, as it supports both standard distributions and distribution tenants. ListConflictingAliases performs similar checks but only supports standard distributions. Lists existing domain associations that conflict with the domain that you specify. You can use this API operation to identify potential domain conflicts when moving domains between standard distributions and/or distribution tenants. Domain conflicts must be resolved first before they can be moved. For example, if you provide www.example.com as input, the returned list can include www.example.com and the overlapping wildcard alternate domain name (*.example.com), if they exist. If you provide *.example.com as input, the returned list can include *.example.com and any alternate domain names covered by that wildcard (for example, www.example.com, test.example.com, dev.example.com, and so on), if they exist. To list conflicting domains, specify the following: The domain to search for The ID of a standard distribution or distribution tenant in your account that has an attached TLS certificate, which covers the specified domain For more information, including how to set up the standard distribution or distribution tenant, and the certificate, see Moving an alternate domain name to a different standard distribution or distribution tenant in the Amazon CloudFront Developer Guide. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listDomainConflicts: function(Client, types.ListDomainConflictsInput): types.ListDomainConflictsOutput, table
+    -- List all field-level encryption configurations that have been created in CloudFront for this account.
     listFieldLevelEncryptionConfigs: function(Client, types.ListFieldLevelEncryptionConfigsInput): types.ListFieldLevelEncryptionConfigsOutput, table
+    -- Request a list of field-level encryption profiles that have been created in CloudFront for this account.
     listFieldLevelEncryptionProfiles: function(Client, types.ListFieldLevelEncryptionProfilesInput): types.ListFieldLevelEncryptionProfilesOutput, table
+    -- Gets a list of all CloudFront functions in your Amazon Web Services account. You can optionally apply a filter to return only the functions that are in the specified stage, either DEVELOPMENT or LIVE. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listFunctions: function(Client, types.ListFunctionsInput): types.ListFunctionsOutput, table
+    -- Lists invalidation batches.
     listInvalidations: function(Client, types.ListInvalidationsInput): types.ListInvalidationsOutput, table
+    -- Lists the invalidations for a distribution tenant.
     listInvalidationsForDistributionTenant: function(Client, types.ListInvalidationsForDistributionTenantInput): types.ListInvalidationsForDistributionTenantOutput, table
+    -- Gets a list of key groups. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listKeyGroups: function(Client, types.ListKeyGroupsInput): types.ListKeyGroupsOutput, table
+    -- Specifies the key value stores to list.
     listKeyValueStores: function(Client, types.ListKeyValueStoresInput): types.ListKeyValueStoresOutput, table
+    -- Gets the list of CloudFront origin access controls (OACs) in this Amazon Web Services account. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send another request that specifies the NextMarker value from the current response as the Marker value in the next request. If you're not using origin access controls for your Amazon Web Services account, the ListOriginAccessControls operation doesn't return the Items element in the response.
     listOriginAccessControls: function(Client, types.ListOriginAccessControlsInput): types.ListOriginAccessControlsOutput, table
+    -- Gets a list of origin request policies. You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listOriginRequestPolicies: function(Client, types.ListOriginRequestPoliciesInput): types.ListOriginRequestPoliciesOutput, table
+    -- List all public keys that have been added to CloudFront for this account.
     listPublicKeys: function(Client, types.ListPublicKeysInput): types.ListPublicKeysOutput, table
+    -- Gets a list of real-time log configurations. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listRealtimeLogConfigs: function(Client, types.ListRealtimeLogConfigsInput): types.ListRealtimeLogConfigsOutput, table
+    -- Gets a list of response headers policies. You can optionally apply a filter to get only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account. You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the NextMarker value from the current response as the Marker value in the subsequent request.
     listResponseHeadersPolicies: function(Client, types.ListResponseHeadersPoliciesInput): types.ListResponseHeadersPoliciesOutput, table
+    -- List streaming distributions.
     listStreamingDistributions: function(Client, types.ListStreamingDistributionsInput): types.ListStreamingDistributionsOutput, table
+    -- List tags for a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists trust stores.
     listTrustStores: function(Client, types.ListTrustStoresInput): types.ListTrustStoresOutput, table
+    -- List the CloudFront VPC origins in your account.
     listVpcOrigins: function(Client, types.ListVpcOriginsInput): types.ListVpcOriginsOutput, table
+    -- Publishes a connection function.
     publishConnectionFunction: function(Client, types.PublishConnectionFunctionInput): types.PublishConnectionFunctionOutput, table
+    -- Publishes a CloudFront function by copying the function code from the DEVELOPMENT stage to LIVE. This automatically updates all cache behaviors that are using this function to use the newly published copy in the LIVE stage. When a function is published to the LIVE stage, you can attach the function to a distribution's cache behavior, using the function's Amazon Resource Name (ARN). To publish a function, you must provide the function's name and version (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
     publishFunction: function(Client, types.PublishFunctionInput): types.PublishFunctionOutput, table
+    -- Creates a resource control policy for a given CloudFront resource.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Add tags to a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests a connection function.
     testConnectionFunction: function(Client, types.TestConnectionFunctionInput): types.TestConnectionFunctionOutput, table
+    -- Tests a CloudFront function. To test a function, you provide an event object that represents an HTTP request or response that your CloudFront distribution could receive in production. CloudFront runs the function, passing it the event object that you provided, and returns the function's result (the modified event object) in the response. The response also contains function logs and error messages, if any exist. For more information about testing functions, see Testing functions in the Amazon CloudFront Developer Guide. To test a function, you provide the function's name and version (ETag value) along with the event object. To get the function's name and version, you can use ListFunctions and DescribeFunction.
     testFunction: function(Client, types.TestFunctionInput): types.TestFunctionOutput, table
+    -- Remove tags from a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an Anycast static IP list.
     updateAnycastIpList: function(Client, types.UpdateAnycastIpListInput): types.UpdateAnycastIpListOutput, table
+    -- Updates a cache policy configuration. When you update a cache policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a cache policy configuration: Use GetCachePolicyConfig to get the current configuration. Locally modify the fields in the cache policy configuration that you want to update. Call UpdateCachePolicy by providing the entire cache policy configuration, including the fields that you modified and those that you didn't. If your minimum TTL is greater than 0, CloudFront will cache content for at least the duration specified in the cache policy's minimum TTL, even if the Cache-Control: no-cache, no-store, or private directives are present in the origin headers.
     updateCachePolicy: function(Client, types.UpdateCachePolicyInput): types.UpdateCachePolicyOutput, table
+    -- Update an origin access identity.
     updateCloudFrontOriginAccessIdentity: function(Client, types.UpdateCloudFrontOriginAccessIdentityInput): types.UpdateCloudFrontOriginAccessIdentityOutput, table
+    -- Updates a connection function.
     updateConnectionFunction: function(Client, types.UpdateConnectionFunctionInput): types.UpdateConnectionFunctionOutput, table
+    -- Updates a connection group.
     updateConnectionGroup: function(Client, types.UpdateConnectionGroupInput): types.UpdateConnectionGroupOutput, table
+    -- Updates a continuous deployment policy. You can update a continuous deployment policy to enable or disable it, to change the percentage of traffic that it sends to the staging distribution, or to change the staging distribution that it sends traffic to. When you update a continuous deployment policy configuration, all the fields are updated with the values that are provided in the request. You cannot update some fields independent of others. To update a continuous deployment policy configuration: Use GetContinuousDeploymentPolicyConfig to get the current configuration. Locally modify the fields in the continuous deployment policy configuration that you want to update. Use UpdateContinuousDeploymentPolicy, providing the entire continuous deployment policy configuration, including the fields that you modified and those that you didn't.
     updateContinuousDeploymentPolicy: function(Client, types.UpdateContinuousDeploymentPolicyInput): types.UpdateContinuousDeploymentPolicyOutput, table
+    -- Updates the configuration for a CloudFront distribution. The update process includes getting the current distribution configuration, updating it to make your changes, and then submitting an UpdateDistribution request to make the updates. To update a web distribution using the CloudFront API Use GetDistributionConfig to get the current configuration, including the version identifier (ETag). Update the distribution configuration that was returned in the response. Note the following important requirements and restrictions: You must copy the ETag field value from the response. (You'll use it for the IfMatch parameter in your request.) Then, remove the ETag field from the distribution configuration. You can't change the value of CallerReference. Submit an UpdateDistribution request, providing the updated distribution configuration. The new configuration replaces the existing configuration. The values that you specify in an UpdateDistribution request are not merged into your existing configuration. Make sure to include all fields: the ones that you modified and also the ones that you didn't.
     updateDistribution: function(Client, types.UpdateDistributionInput): types.UpdateDistributionOutput, table
+    -- Updates a distribution tenant.
     updateDistributionTenant: function(Client, types.UpdateDistributionTenantInput): types.UpdateDistributionTenantOutput, table
+    -- Copies the staging distribution's configuration to its corresponding primary distribution. The primary distribution retains its Aliases (also known as alternate domain names or CNAMEs) and ContinuousDeploymentPolicyId value, but otherwise its configuration is overwritten to match the staging distribution. You can use this operation in a continuous deployment workflow after you have tested configuration changes on the staging distribution. After using a continuous deployment policy to move a portion of your domain name's traffic to the staging distribution and verifying that it works as intended, you can use this operation to copy the staging distribution's configuration to the primary distribution. This action will disable the continuous deployment policy and move your domain's traffic back to the primary distribution. This API operation requires the following IAM permissions: GetDistribution UpdateDistribution
     updateDistributionWithStagingConfig: function(Client, types.UpdateDistributionWithStagingConfigInput): types.UpdateDistributionWithStagingConfigOutput, table
+    -- We recommend that you use the UpdateDomainAssociation API operation to move a domain association, as it supports both standard distributions and distribution tenants. AssociateAlias performs similar checks but only supports standard distributions. Moves a domain from its current standard distribution or distribution tenant to another one. You must first disable the source distribution (standard distribution or distribution tenant) and then separately call this operation to move the domain to another target distribution (standard distribution or distribution tenant). To use this operation, specify the domain and the ID of the target resource (standard distribution or distribution tenant). For more information, including how to set up the target resource, prerequisites that you must complete, and other restrictions, see Moving an alternate domain name to a different standard distribution or distribution tenant in the Amazon CloudFront Developer Guide.
     updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput): types.UpdateDomainAssociationOutput, table
+    -- Update a field-level encryption configuration.
     updateFieldLevelEncryptionConfig: function(Client, types.UpdateFieldLevelEncryptionConfigInput): types.UpdateFieldLevelEncryptionConfigOutput, table
+    -- Update a field-level encryption profile.
     updateFieldLevelEncryptionProfile: function(Client, types.UpdateFieldLevelEncryptionProfileInput): types.UpdateFieldLevelEncryptionProfileOutput, table
+    -- Updates a CloudFront function. You can update a function's code or the comment that describes the function. You cannot update a function's name. To update a function, you provide the function's name and version (ETag value) along with the updated function code. To get the name and version, you can use ListFunctions and DescribeFunction.
     updateFunction: function(Client, types.UpdateFunctionInput): types.UpdateFunctionOutput, table
+    -- Updates a key group. When you update a key group, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a key group: Get the current key group with GetKeyGroup or GetKeyGroupConfig. Locally modify the fields in the key group that you want to update. For example, add or remove public key IDs. Call UpdateKeyGroup with the entire key group object, including the fields that you modified and those that you didn't.
     updateKeyGroup: function(Client, types.UpdateKeyGroupInput): types.UpdateKeyGroupOutput, table
+    -- Specifies the key value store to update.
     updateKeyValueStore: function(Client, types.UpdateKeyValueStoreInput): types.UpdateKeyValueStoreOutput, table
+    -- Updates a CloudFront origin access control.
     updateOriginAccessControl: function(Client, types.UpdateOriginAccessControlInput): types.UpdateOriginAccessControlOutput, table
+    -- Updates an origin request policy configuration. When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration: Use GetOriginRequestPolicyConfig to get the current configuration. Locally modify the fields in the origin request policy configuration that you want to update. Call UpdateOriginRequestPolicy by providing the entire origin request policy configuration, including the fields that you modified and those that you didn't.
     updateOriginRequestPolicy: function(Client, types.UpdateOriginRequestPolicyInput): types.UpdateOriginRequestPolicyOutput, table
+    -- Update public key information. Note that the only value you can change is the comment.
     updatePublicKey: function(Client, types.UpdatePublicKeyInput): types.UpdatePublicKeyOutput, table
+    -- Updates a real-time log configuration. When you update a real-time log configuration, all the parameters are updated with the values provided in the request. You cannot update some parameters independent of others. To update a real-time log configuration: Call GetRealtimeLogConfig to get the current real-time log configuration. Locally modify the parameters in the real-time log configuration that you want to update. Call this API (UpdateRealtimeLogConfig) by providing the entire real-time log configuration, including the parameters that you modified and those that you didn't. You cannot update a real-time log configuration's Name or ARN.
     updateRealtimeLogConfig: function(Client, types.UpdateRealtimeLogConfigInput): types.UpdateRealtimeLogConfigOutput, table
+    -- Updates a response headers policy. When you update a response headers policy, the entire policy is replaced. You cannot update some policy fields independent of others. To update a response headers policy configuration: Use GetResponseHeadersPolicyConfig to get the current policy's configuration. Modify the fields in the response headers policy configuration that you want to update. Call UpdateResponseHeadersPolicy, providing the entire response headers policy configuration, including the fields that you modified and those that you didn't.
     updateResponseHeadersPolicy: function(Client, types.UpdateResponseHeadersPolicyInput): types.UpdateResponseHeadersPolicyOutput, table
+    -- Update a streaming distribution.
     updateStreamingDistribution: function(Client, types.UpdateStreamingDistributionInput): types.UpdateStreamingDistributionOutput, table
+    -- Updates a trust store.
     updateTrustStore: function(Client, types.UpdateTrustStoreInput): types.UpdateTrustStoreOutput, table
+    -- Update an Amazon CloudFront VPC origin in your account.
     updateVpcOrigin: function(Client, types.UpdateVpcOriginInput): types.UpdateVpcOriginOutput, table
+    -- Verify the DNS configuration for your domain names. This API operation checks whether your domain name points to the correct routing endpoint of the connection group, such as d111111abcdef8.cloudfront.net. You can use this API operation to troubleshoot and resolve DNS configuration issues.
     verifyDnsConfiguration: function(Client, types.VerifyDnsConfigurationInput): types.VerifyDnsConfigurationOutput, table
 end
 

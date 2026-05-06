@@ -3,185 +3,365 @@
 local types = require("datazone.types")
 
 local record Client
+    -- Accepts automatically generated business-friendly metadata for your Amazon DataZone assets.
     acceptPredictions: function(Client, types.AcceptPredictionsInput): types.AcceptPredictionsOutput, table
+    -- Accepts a subscription request to a specific asset.
     acceptSubscriptionRequest: function(Client, types.AcceptSubscriptionRequestInput): types.AcceptSubscriptionRequestOutput, table
+    -- Adds the owner of an entity (a domain unit).
     addEntityOwner: function(Client, types.AddEntityOwnerInput): types.AddEntityOwnerOutput, table
+    -- Adds a policy grant (an authorization policy) to a specified entity, including domain units, environment blueprint configurations, or environment profiles.
     addPolicyGrant: function(Client, types.AddPolicyGrantInput): types.AddPolicyGrantOutput, table
+    -- Associates the environment role in Amazon DataZone.
     associateEnvironmentRole: function(Client, types.AssociateEnvironmentRoleInput): types.AssociateEnvironmentRoleOutput, table
+    -- Associates governed terms with an asset.
     associateGovernedTerms: function(Client, types.AssociateGovernedTermsInput): types.AssociateGovernedTermsOutput, table
+    -- Gets the attribute metadata.
     batchGetAttributesMetadata: function(Client, types.BatchGetAttributesMetadataInput): types.BatchGetAttributesMetadataOutput, table
+    -- Writes the attribute metadata.
     batchPutAttributesMetadata: function(Client, types.BatchPutAttributesMetadataInput): types.BatchPutAttributesMetadataOutput, table
+    -- Cancels the metadata generation run. Prerequisites: The run must exist and be in a cancelable status (e.g., SUBMITTED, IN_PROGRESS). Runs in SUCCEEDED status cannot be cancelled. User must have access to the run and cancel permissions.
     cancelMetadataGenerationRun: function(Client, types.CancelMetadataGenerationRunInput): types.CancelMetadataGenerationRunOutput, table
+    -- Cancels the subscription to the specified asset.
     cancelSubscription: function(Client, types.CancelSubscriptionInput): types.CancelSubscriptionOutput, table
+    -- Creates an account pool.
     createAccountPool: function(Client, types.CreateAccountPoolInput): types.CreateAccountPoolOutput, table
+    -- Creates an asset in Amazon DataZone catalog. Before creating assets, make sure that the following requirements are met: --domain-identifier must refer to an existing domain. --owning-project-identifier must be a valid project within the domain. Asset type must be created beforehand using create-asset-type, or be a supported system-defined type. For more information, see create-asset-type. --type-revision (if used) must match a valid revision of the asset type. formsInput is required when it is associated as required in the asset-type. For more information, see create-form-type. Form content must include all required fields as per the form schema (e.g., bucketArn). You must invoke the following pre-requisite commands before invoking this API: CreateFormType CreateAssetType
     createAsset: function(Client, types.CreateAssetInput): types.CreateAssetOutput, table
+    -- Creates a data asset filter. Asset filters provide a sophisticated way to create controlled views of data assets by selecting specific columns or applying row-level filters. This capability is crucial for organizations that need to share data while maintaining security and privacy controls. For example, your database might be filtered to show only non-PII fields to certain users, or sales data might be filtered by region for different regional teams. Asset filters enable fine-grained access control while maintaining a single source of truth. Prerequisites: A valid domain (--domain-identifier) must exist. A data asset (--asset-identifier) must already be created under that domain. The asset must have the referenced columns available in its schema for column-based filtering. You cannot specify both (columnConfiguration, rowConfiguration)at the same time.
     createAssetFilter: function(Client, types.CreateAssetFilterInput): types.CreateAssetFilterOutput, table
+    -- Creates a revision of the asset. Asset revisions represent new versions of existing assets, capturing changes to either the underlying data or its metadata. They maintain a historical record of how assets evolve over time, who made changes, and when those changes occurred. This versioning capability is crucial for governance and compliance, allowing organizations to track changes, understand their impact, and roll back if necessary. Prerequisites: Asset must already exist in the domain with identifier. formsInput is required when asset has the form type. typeRevision should be the latest version of form type. The form content must include all required fields (e.g., bucketArn for S3ObjectCollectionForm). The owning project of the original asset must still exist and be active. User must have write access to the project and domain.
     createAssetRevision: function(Client, types.CreateAssetRevisionInput): types.CreateAssetRevisionOutput, table
+    -- Creates a custom asset type. Prerequisites: The formsInput field is required, however, can be passed as empty (e.g. -forms-input {}). You must have CreateAssetType permissions. The domain-identifier and owning-project-identifier must be valid and active. The name of the asset type must be unique within the domain — duplicate names will cause failure. JSON input must be valid — incorrect formatting causes Invalid JSON errors.
     createAssetType: function(Client, types.CreateAssetTypeInput): types.CreateAssetTypeOutput, table
+    -- Creates a new connection. In Amazon DataZone, a connection enables you to connect your resources (domains, projects, and environments) to external resources and services.
     createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    -- Creates a data product. A data product is a comprehensive package that combines data assets with their associated metadata, documentation, and access controls. It's designed to serve specific business needs or use cases, making it easier for users to find and consume data appropriately. Data products include important information about data quality, freshness, and usage guidelines, effectively bridging the gap between data producers and consumers while ensuring proper governance. Prerequisites: The domain must exist and be accessible. The owning project must be valid and active. The name must be unique within the domain (no existing data product with the same name). User must have create permissions for data products in the project.
     createDataProduct: function(Client, types.CreateDataProductInput): types.CreateDataProductOutput, table
+    -- Creates a data product revision. Prerequisites: The original data product must exist in the given domain. User must have permissions on the data product. The domain must be valid and accessible. The new revision name must comply with naming constraints (if required).
     createDataProductRevision: function(Client, types.CreateDataProductRevisionInput): types.CreateDataProductRevisionOutput, table
+    -- Creates an Amazon DataZone data source.
     createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    -- Creates an Amazon DataZone domain.
     createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    -- Creates a domain unit in Amazon DataZone.
     createDomainUnit: function(Client, types.CreateDomainUnitInput): types.CreateDomainUnitOutput, table
+    -- Create an Amazon DataZone environment.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Creates an action for the environment, for example, creates a console link for an analytics tool that is available in this environment.
     createEnvironmentAction: function(Client, types.CreateEnvironmentActionInput): types.CreateEnvironmentActionOutput, table
+    -- Creates a Amazon DataZone blueprint.
     createEnvironmentBlueprint: function(Client, types.CreateEnvironmentBlueprintInput): types.CreateEnvironmentBlueprintOutput, table
+    -- Creates an Amazon DataZone environment profile.
     createEnvironmentProfile: function(Client, types.CreateEnvironmentProfileInput): types.CreateEnvironmentProfileOutput, table
+    -- Creates a metadata form type. Prerequisites: The domain must exist and be in an ENABLED state. The owning project must exist and be accessible. The name must be unique within the domain. For custom form types, to indicate that a field should be searchable, annotate it with @amazon.datazone#searchable. By default, searchable fields are indexed for semantic search, where related query terms will match the attribute value even if they are not stemmed or keyword matches. To indicate that a field should be indexed for lexical search (which disables semantic search but supports stemmed and partial matches), annotate it with @amazon.datazone#searchable(modes:["LEXICAL"]). To indicate that a field should be indexed for technical identifier search (for more information on technical identifier search, see: https://aws.amazon.com/blogs/big-data/streamline-data-discovery-with-precise-technical-identifier-search-in-amazon-sagemaker-unified-studio/), annotate it with @amazon.datazone#searchable(modes:["TECHNICAL"]). To denote that a field will store glossary term ids (which are filterable via the Search/SearchListings APIs), annotate it with @amazon.datazone#glossaryterm("${GLOSSARY_ID}"), where ${GLOSSARY_ID} is the id of the glossary that the glossary terms stored in the field belong to.
     createFormType: function(Client, types.CreateFormTypeInput): types.CreateFormTypeOutput, table
+    -- Creates an Amazon DataZone business glossary. Specifies that this is a create glossary policy. A glossary serves as the central repository for business terminology and definitions within an organization. It helps establish and maintain a common language across different departments and teams, reducing miscommunication and ensuring consistent interpretation of business concepts. Glossaries can include hierarchical relationships between terms, cross-references, and links to actual data assets, making them invaluable for both business users and technical teams trying to understand and use data correctly. Prerequisites: Domain must exist and be in an active state. Owning project must exist and be accessible by the caller. The glossary name must be unique within the domain.
     createGlossary: function(Client, types.CreateGlossaryInput): types.CreateGlossaryOutput, table
+    -- Creates a business glossary term. A glossary term represents an individual entry within the Amazon DataZone glossary, serving as a standardized definition for a specific business concept or data element. Each term can include rich metadata such as detailed definitions, synonyms, related terms, and usage examples. Glossary terms can be linked directly to data assets, providing business context to technical data elements. This linking capability helps users understand the business meaning of data fields and ensures consistent interpretation across different systems and teams. Terms can also have relationships with other terms, creating a semantic network that reflects the complexity of business concepts. Prerequisites: Domain must exist. Glossary must exist. The term name must be unique within the glossary. Ensure term does not conflict with existing terms in hierarchy.
     createGlossaryTerm: function(Client, types.CreateGlossaryTermInput): types.CreateGlossaryTermOutput, table
+    -- Creates a group profile in Amazon DataZone.
     createGroupProfile: function(Client, types.CreateGroupProfileInput): types.CreateGroupProfileOutput, table
+    -- Publishes a listing (a record of an asset at a given time) or removes a listing from the catalog.
     createListingChangeSet: function(Client, types.CreateListingChangeSetInput): types.CreateListingChangeSetOutput, table
+    -- Creates an Amazon DataZone project.
     createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    -- Creates a project membership in Amazon DataZone.
     createProjectMembership: function(Client, types.CreateProjectMembershipInput): types.CreateProjectMembershipOutput, table
+    -- Creates a project profile.
     createProjectProfile: function(Client, types.CreateProjectProfileInput): types.CreateProjectProfileOutput, table
+    -- Creates a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.
     createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    -- Creates a subsscription grant in Amazon DataZone.
     createSubscriptionGrant: function(Client, types.CreateSubscriptionGrantInput): types.CreateSubscriptionGrantOutput, table
+    -- Creates a subscription request in Amazon DataZone.
     createSubscriptionRequest: function(Client, types.CreateSubscriptionRequestInput): types.CreateSubscriptionRequestOutput, table
+    -- Creates a subscription target in Amazon DataZone.
     createSubscriptionTarget: function(Client, types.CreateSubscriptionTargetInput): types.CreateSubscriptionTargetOutput, table
+    -- Creates a user profile in Amazon DataZone.
     createUserProfile: function(Client, types.CreateUserProfileInput): types.CreateUserProfileOutput, table
+    -- Deletes an account pool.
     deleteAccountPool: function(Client, types.DeleteAccountPoolInput): types.DeleteAccountPoolOutput, table
+    -- Deletes an asset in Amazon DataZone. --domain-identifier must refer to a valid and existing domain. --identifier must refer to an existing asset in the specified domain. Asset must not be referenced in any existing asset filters. Asset must not be linked to any draft or published data product. User must have delete permissions for the domain and project.
     deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    -- Deletes an asset filter. Prerequisites: The asset filter must exist. The domain and asset must not have been deleted. Ensure the --identifier refers to a valid filter ID.
     deleteAssetFilter: function(Client, types.DeleteAssetFilterInput): types.DeleteAssetFilterOutput, table
+    -- Deletes an asset type in Amazon DataZone. Prerequisites: The asset type must exist in the domain. You must have DeleteAssetType permission. The asset type must not be in use (e.g., assigned to any asset). If used, deletion will fail. You should retrieve the asset type using get-asset-type to confirm its presence before deletion.
     deleteAssetType: function(Client, types.DeleteAssetTypeInput): types.DeleteAssetTypeOutput, table
+    -- Deletes and connection. In Amazon DataZone, a connection enables you to connect your resources (domains, projects, and environments) to external resources and services.
     deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    -- Deletes data export configuration for a domain. This operation does not delete the S3 table created by the PutDataExportConfiguration operation. To temporarily disable export without deleting the configuration, use the PutDataExportConfiguration operation with the --no-enable-export flag instead. This allows you to re-enable export for the same domain using the --enable-export flag without deleting S3 table.
     deleteDataExportConfiguration: function(Client, types.DeleteDataExportConfigurationInput): types.DeleteDataExportConfigurationOutput, table
+    -- Deletes a data product in Amazon DataZone. Prerequisites: The data product must exist and not be deleted or archived. The user must have delete permissions for the data product. Domain and project must be active.
     deleteDataProduct: function(Client, types.DeleteDataProductInput): types.DeleteDataProductOutput, table
+    -- Deletes a data source in Amazon DataZone.
     deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    -- Deletes a Amazon DataZone domain.
     deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    -- Deletes a domain unit.
     deleteDomainUnit: function(Client, types.DeleteDomainUnitInput): types.DeleteDomainUnitOutput, table
+    -- Deletes an environment in Amazon DataZone.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Deletes an action for the environment, for example, deletes a console link for an analytics tool that is available in this environment.
     deleteEnvironmentAction: function(Client, types.DeleteEnvironmentActionInput): types.DeleteEnvironmentActionOutput, table
+    -- Deletes a blueprint in Amazon DataZone.
     deleteEnvironmentBlueprint: function(Client, types.DeleteEnvironmentBlueprintInput): types.DeleteEnvironmentBlueprintOutput, table
+    -- Deletes the blueprint configuration in Amazon DataZone.
     deleteEnvironmentBlueprintConfiguration: function(Client, types.DeleteEnvironmentBlueprintConfigurationInput): types.DeleteEnvironmentBlueprintConfigurationOutput, table
+    -- Deletes an environment profile in Amazon DataZone.
     deleteEnvironmentProfile: function(Client, types.DeleteEnvironmentProfileInput): types.DeleteEnvironmentProfileOutput, table
+    -- Deletes and metadata form type in Amazon DataZone. Prerequisites: The form type must exist in the domain. The form type must not be in use by any asset types or assets. The domain must be valid and accessible. User must have delete permissions on the form type. Any dependencies (such as linked asset types) must be removed first.
     deleteFormType: function(Client, types.DeleteFormTypeInput): types.DeleteFormTypeOutput, table
+    -- Deletes a business glossary in Amazon DataZone. Prerequisites: The glossary must be in DISABLED state. The glossary must not have any glossary terms associated with it. The glossary must exist in the specified domain. The caller must have the datazone:DeleteGlossary permission in the domain and glossary. Glossary should not be linked to any active metadata forms.
     deleteGlossary: function(Client, types.DeleteGlossaryInput): types.DeleteGlossaryOutput, table
+    -- Deletes a business glossary term in Amazon DataZone. Prerequisites: Glossary term must exist and be active. The term must not be linked to other assets or child terms. Caller must have delete permissions in the domain/glossary. Ensure all associations (such as to assets or parent terms) are removed before deletion.
     deleteGlossaryTerm: function(Client, types.DeleteGlossaryTermInput): types.DeleteGlossaryTermOutput, table
+    -- Deletes a listing (a record of an asset at a given time).
     deleteListing: function(Client, types.DeleteListingInput): types.DeleteListingOutput, table
+    -- Deletes a project in Amazon DataZone.
     deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    -- Deletes project membership in Amazon DataZone.
     deleteProjectMembership: function(Client, types.DeleteProjectMembershipInput): types.DeleteProjectMembershipOutput, table
+    -- Deletes a project profile.
     deleteProjectProfile: function(Client, types.DeleteProjectProfileInput): types.DeleteProjectProfileOutput, table
+    -- Deletes a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.
     deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    -- Deletes and subscription grant in Amazon DataZone.
     deleteSubscriptionGrant: function(Client, types.DeleteSubscriptionGrantInput): types.DeleteSubscriptionGrantOutput, table
+    -- Deletes a subscription request in Amazon DataZone.
     deleteSubscriptionRequest: function(Client, types.DeleteSubscriptionRequestInput): types.DeleteSubscriptionRequestOutput, table
+    -- Deletes a subscription target in Amazon DataZone.
     deleteSubscriptionTarget: function(Client, types.DeleteSubscriptionTargetInput): types.DeleteSubscriptionTargetOutput, table
+    -- Deletes the specified time series form for the specified asset.
     deleteTimeSeriesDataPoints: function(Client, types.DeleteTimeSeriesDataPointsInput): types.DeleteTimeSeriesDataPointsOutput, table
+    -- Disassociates the environment role in Amazon DataZone.
     disassociateEnvironmentRole: function(Client, types.DisassociateEnvironmentRoleInput): types.DisassociateEnvironmentRoleOutput, table
+    -- Disassociates restricted terms from an asset.
     disassociateGovernedTerms: function(Client, types.DisassociateGovernedTermsInput): types.DisassociateGovernedTermsOutput, table
+    -- Gets the details of the account pool.
     getAccountPool: function(Client, types.GetAccountPoolInput): types.GetAccountPoolOutput, table
+    -- Gets an Amazon DataZone asset. An asset is the fundamental building block in Amazon DataZone, representing any data resource that needs to be cataloged and managed. It can take many forms, from Amazon S3 buckets and database tables to dashboards and machine learning models. Each asset contains comprehensive metadata about the resource, including its location, schema, ownership, and lineage information. Assets are essential for organizing and managing data resources across an organization, making them discoverable and usable while maintaining proper governance. Before using the Amazon DataZone GetAsset command, ensure the following prerequisites are met: Domain identifier must exist and be valid Asset identifier must exist User must have the required permissions to perform the action
     getAsset: function(Client, types.GetAssetInput): types.GetAssetOutput, table
+    -- Gets an asset filter. Prerequisites: Domain (--domain-identifier), asset (--asset-identifier), and filter (--identifier) must all exist. The asset filter should not have been deleted. The asset must still exist (since the filter is linked to it).
     getAssetFilter: function(Client, types.GetAssetFilterInput): types.GetAssetFilterOutput, table
+    -- Gets an Amazon DataZone asset type. Asset types define the categories and characteristics of different kinds of data assets within Amazon DataZone.. They determine what metadata fields are required, what operations are possible, and how the asset integrates with other Amazon Web Services services. Asset types can range from built-in types like Amazon S3 buckets and Amazon Web Services Glue tables to custom types defined for specific organizational needs. Understanding asset types is crucial for properly organizing and managing different kinds of data resources. Prerequisites: The asset type with identifier must exist in the domain. ResourceNotFoundException. You must have the GetAssetType permission. Ensure the domain-identifier value is correct and accessible.
     getAssetType: function(Client, types.GetAssetTypeInput): types.GetAssetTypeOutput, table
+    -- Gets a connection. In Amazon DataZone, a connection enables you to connect your resources (domains, projects, and environments) to external resources and services.
     getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    -- Gets data export configuration details.
     getDataExportConfiguration: function(Client, types.GetDataExportConfigurationInput): types.GetDataExportConfigurationOutput, table
+    -- Gets the data product. Prerequisites: The data product ID must exist. The domain must be valid and accessible. User must have read or discovery permissions for the data product.
     getDataProduct: function(Client, types.GetDataProductInput): types.GetDataProductOutput, table
+    -- Gets an Amazon DataZone data source.
     getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    -- Gets an Amazon DataZone data source run.
     getDataSourceRun: function(Client, types.GetDataSourceRunInput): types.GetDataSourceRunOutput, table
+    -- Gets an Amazon DataZone domain.
     getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    -- Gets the details of the specified domain unit.
     getDomainUnit: function(Client, types.GetDomainUnitInput): types.GetDomainUnitOutput, table
+    -- Gets an Amazon DataZone environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Gets the specified environment action.
     getEnvironmentAction: function(Client, types.GetEnvironmentActionInput): types.GetEnvironmentActionOutput, table
+    -- Gets an Amazon DataZone blueprint.
     getEnvironmentBlueprint: function(Client, types.GetEnvironmentBlueprintInput): types.GetEnvironmentBlueprintOutput, table
+    -- Gets the blueprint configuration in Amazon DataZone.
     getEnvironmentBlueprintConfiguration: function(Client, types.GetEnvironmentBlueprintConfigurationInput): types.GetEnvironmentBlueprintConfigurationOutput, table
+    -- Gets the credentials of an environment in Amazon DataZone.
     getEnvironmentCredentials: function(Client, types.GetEnvironmentCredentialsInput): types.GetEnvironmentCredentialsOutput, table
+    -- Gets an evinronment profile in Amazon DataZone.
     getEnvironmentProfile: function(Client, types.GetEnvironmentProfileInput): types.GetEnvironmentProfileOutput, table
+    -- Gets a metadata form type in Amazon DataZone. Form types define the structure and validation rules for collecting metadata about assets in Amazon DataZone. They act as templates that ensure consistent metadata capture across similar types of assets, while allowing for customization to meet specific organizational needs. Form types can include required fields, validation rules, and dependencies, helping maintain high-quality metadata that makes data assets more discoverable and usable. The form type with the specified identifier must exist in the given domain. The domain must be valid and active. User must have permission on the form type. The form type should not be deleted or in an invalid state. One use case for this API is to determine whether a form field is indexed for search. A searchable field will be annotated with @amazon.datazone#searchable. By default, searchable fields are indexed for semantic search, where related query terms will match the attribute value even if they are not stemmed or keyword matches. If a field is indexed technical identifier search, it will be annotated with @amazon.datazone#searchable(modes:["TECHNICAL"]). If a field is indexed for lexical search (supports stemmed and prefix matches but not semantic matches), it will be annotated with @amazon.datazone#searchable(modes:["LEXICAL"]). A field storing glossary term IDs (which is filterable) will be annotated with @amazon.datazone#glossaryterm("${glossaryId}").
     getFormType: function(Client, types.GetFormTypeInput): types.GetFormTypeOutput, table
+    -- Gets a business glossary in Amazon DataZone. Prerequisites: The specified glossary ID must exist and be associated with the given domain. The caller must have the datazone:GetGlossary permission on the domain.
     getGlossary: function(Client, types.GetGlossaryInput): types.GetGlossaryOutput, table
+    -- Gets a business glossary term in Amazon DataZone. Prerequisites: Glossary term with identifier must exist in the domain. User must have permission on the glossary term. Domain must be accessible and active.
     getGlossaryTerm: function(Client, types.GetGlossaryTermInput): types.GetGlossaryTermOutput, table
+    -- Gets a group profile in Amazon DataZone.
     getGroupProfile: function(Client, types.GetGroupProfileInput): types.GetGroupProfileOutput, table
+    -- Gets the data portal URL for the specified Amazon DataZone domain.
     getIamPortalLoginUrl: function(Client, types.GetIamPortalLoginUrlInput): types.GetIamPortalLoginUrlOutput, table
+    -- The details of the job run.
     getJobRun: function(Client, types.GetJobRunInput): types.GetJobRunOutput, table
+    -- Describes the lineage event.
     getLineageEvent: function(Client, types.GetLineageEventInput): types.GetLineageEventOutput, table
+    -- Gets the data lineage node.
     getLineageNode: function(Client, types.GetLineageNodeInput): types.GetLineageNodeOutput, table
+    -- Gets a listing (a record of an asset at a given time). If you specify a listing version, only details that are specific to that version are returned.
     getListing: function(Client, types.GetListingInput): types.GetListingOutput, table
+    -- Gets a metadata generation run in Amazon DataZone. Prerequisites: Valid domain and run identifier. The metadata generation run must exist. User must have read access to the metadata run.
     getMetadataGenerationRun: function(Client, types.GetMetadataGenerationRunInput): types.GetMetadataGenerationRunOutput, table
+    -- Gets the details of a notebook run in an Amazon DataZone domain.
     getNotebookRun: function(Client, types.GetNotebookRunInput): types.GetNotebookRunOutput, table
+    -- Gets a project in Amazon DataZone.
     getProject: function(Client, types.GetProjectInput): types.GetProjectOutput, table
+    -- The details of the project profile.
     getProjectProfile: function(Client, types.GetProjectProfileInput): types.GetProjectProfileOutput, table
+    -- Gets the details of a rule in Amazon DataZone. A rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.
     getRule: function(Client, types.GetRuleInput): types.GetRuleOutput, table
+    -- Gets a subscription in Amazon DataZone.
     getSubscription: function(Client, types.GetSubscriptionInput): types.GetSubscriptionOutput, table
+    -- Gets the subscription grant in Amazon DataZone.
     getSubscriptionGrant: function(Client, types.GetSubscriptionGrantInput): types.GetSubscriptionGrantOutput, table
+    -- Gets the details of the specified subscription request.
     getSubscriptionRequestDetails: function(Client, types.GetSubscriptionRequestDetailsInput): types.GetSubscriptionRequestDetailsOutput, table
+    -- Gets the subscription target in Amazon DataZone.
     getSubscriptionTarget: function(Client, types.GetSubscriptionTargetInput): types.GetSubscriptionTargetOutput, table
+    -- Gets the existing data point for the asset.
     getTimeSeriesDataPoint: function(Client, types.GetTimeSeriesDataPointInput): types.GetTimeSeriesDataPointOutput, table
+    -- Gets a user profile in Amazon DataZone.
     getUserProfile: function(Client, types.GetUserProfileInput): types.GetUserProfileOutput, table
+    -- Lists existing account pools.
     listAccountPools: function(Client, types.ListAccountPoolsInput): types.ListAccountPoolsOutput, table
+    -- Lists the accounts in the specified account pool.
     listAccountsInAccountPool: function(Client, types.ListAccountsInAccountPoolInput): types.ListAccountsInAccountPoolOutput, table
+    -- Lists asset filters. Prerequisites: A valid domain and asset must exist. The asset must have at least one filter created to return results.
     listAssetFilters: function(Client, types.ListAssetFiltersInput): types.ListAssetFiltersOutput, table
+    -- Lists the revisions for the asset. Prerequisites: The asset must exist in the domain. There must be at least one revision of the asset (which happens automatically after creation). The domain must be valid and active. User must have permissions on the asset and domain.
     listAssetRevisions: function(Client, types.ListAssetRevisionsInput): types.ListAssetRevisionsOutput, table
+    -- Lists connections. In Amazon DataZone, a connection enables you to connect your resources (domains, projects, and environments) to external resources and services.
     listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    -- Lists data product revisions. Prerequisites: The data product ID must exist within the domain. User must have view permissions on the data product. The domain must be in a valid and accessible state.
     listDataProductRevisions: function(Client, types.ListDataProductRevisionsInput): types.ListDataProductRevisionsOutput, table
+    -- Lists data source run activities.
     listDataSourceRunActivities: function(Client, types.ListDataSourceRunActivitiesInput): types.ListDataSourceRunActivitiesOutput, table
+    -- Lists data source runs in Amazon DataZone.
     listDataSourceRuns: function(Client, types.ListDataSourceRunsInput): types.ListDataSourceRunsOutput, table
+    -- Lists data sources in Amazon DataZone.
     listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    -- Lists Amazon DataZone domains.
     listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    -- Lists child domain units for the specified parent domain unit.
     listDomainUnitsForParent: function(Client, types.ListDomainUnitsForParentInput): types.ListDomainUnitsForParentOutput, table
+    -- Lists the entity (domain units) owners.
     listEntityOwners: function(Client, types.ListEntityOwnersInput): types.ListEntityOwnersOutput, table
+    -- Lists existing environment actions.
     listEnvironmentActions: function(Client, types.ListEnvironmentActionsInput): types.ListEnvironmentActionsOutput, table
+    -- Lists blueprint configurations for a Amazon DataZone environment.
     listEnvironmentBlueprintConfigurations: function(Client, types.ListEnvironmentBlueprintConfigurationsInput): types.ListEnvironmentBlueprintConfigurationsOutput, table
+    -- Lists blueprints in an Amazon DataZone environment.
     listEnvironmentBlueprints: function(Client, types.ListEnvironmentBlueprintsInput): types.ListEnvironmentBlueprintsOutput, table
+    -- Lists Amazon DataZone environment profiles.
     listEnvironmentProfiles: function(Client, types.ListEnvironmentProfilesInput): types.ListEnvironmentProfilesOutput, table
+    -- Lists Amazon DataZone environments.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Lists job runs.
     listJobRuns: function(Client, types.ListJobRunsInput): types.ListJobRunsOutput, table
+    -- Lists lineage events.
     listLineageEvents: function(Client, types.ListLineageEventsInput): types.ListLineageEventsOutput, table
+    -- Lists the history of the specified data lineage node.
     listLineageNodeHistory: function(Client, types.ListLineageNodeHistoryInput): types.ListLineageNodeHistoryOutput, table
+    -- Lists all metadata generation runs. Metadata generation runs represent automated processes that leverage AI/ML capabilities to create or enhance asset metadata at scale. This feature helps organizations maintain comprehensive and consistent metadata across large numbers of assets without manual intervention. It can automatically generate business descriptions, tags, and other metadata elements, significantly reducing the time and effort required for metadata management while improving consistency and completeness. Prerequisites: Valid domain identifier. User must have access to metadata generation runs in the domain.
     listMetadataGenerationRuns: function(Client, types.ListMetadataGenerationRunsInput): types.ListMetadataGenerationRunsOutput, table
+    -- Lists notebook runs in an Amazon DataZone domain.
     listNotebookRuns: function(Client, types.ListNotebookRunsInput): types.ListNotebookRunsOutput, table
+    -- Lists all Amazon DataZone notifications.
     listNotifications: function(Client, types.ListNotificationsInput): types.ListNotificationsOutput, table
+    -- Lists policy grants.
     listPolicyGrants: function(Client, types.ListPolicyGrantsInput): types.ListPolicyGrantsOutput, table
+    -- Lists all members of the specified project.
     listProjectMemberships: function(Client, types.ListProjectMembershipsInput): types.ListProjectMembershipsOutput, table
+    -- Lists project profiles.
     listProjectProfiles: function(Client, types.ListProjectProfilesInput): types.ListProjectProfilesOutput, table
+    -- Lists Amazon DataZone projects.
     listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    -- Lists existing rules. In Amazon DataZone, a rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.
     listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    -- Lists subscription grants.
     listSubscriptionGrants: function(Client, types.ListSubscriptionGrantsInput): types.ListSubscriptionGrantsOutput, table
+    -- Lists Amazon DataZone subscription requests.
     listSubscriptionRequests: function(Client, types.ListSubscriptionRequestsInput): types.ListSubscriptionRequestsOutput, table
+    -- Lists subscriptions in Amazon DataZone.
     listSubscriptions: function(Client, types.ListSubscriptionsInput): types.ListSubscriptionsOutput, table
+    -- Lists subscription targets in Amazon DataZone.
     listSubscriptionTargets: function(Client, types.ListSubscriptionTargetsInput): types.ListSubscriptionTargetsOutput, table
+    -- Lists tags for the specified resource in Amazon DataZone.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists time series data points.
     listTimeSeriesDataPoints: function(Client, types.ListTimeSeriesDataPointsInput): types.ListTimeSeriesDataPointsOutput, table
+    -- Posts a data lineage event.
     postLineageEvent: function(Client, types.PostLineageEventInput): types.PostLineageEventOutput, table
+    -- Posts time series data points to Amazon DataZone for the specified asset.
     postTimeSeriesDataPoints: function(Client, types.PostTimeSeriesDataPointsInput): types.PostTimeSeriesDataPointsOutput, table
+    -- Creates data export configuration details. If you want to temporarily disable export and later re-enable it for the same domain, use the --no-enable-export flag to disable and the --enable-export flag to re-enable. This preserves the configuration and allows you to re-enable export without deleting S3 table. You can enable asset metadata export for only one domain per account per Region. To enable export for a different domain, complete the following steps: Delete the export configuration for the currently enabled domain using the DeleteDataExportConfiguration operation. Delete the asset S3 table under the aws-sagemaker-catalog S3 table bucket. We recommend backing up the S3 table before deletion. Call the PutDataExportConfiguration API to enable export for the new domain.
     putDataExportConfiguration: function(Client, types.PutDataExportConfigurationInput): types.PutDataExportConfigurationOutput, table
+    -- Writes the configuration for the specified environment blueprint in Amazon DataZone.
     putEnvironmentBlueprintConfiguration: function(Client, types.PutEnvironmentBlueprintConfigurationInput): types.PutEnvironmentBlueprintConfigurationOutput, table
+    -- Queries entities in the graph store.
     queryGraph: function(Client, types.QueryGraphInput): types.QueryGraphOutput, table
+    -- Rejects automatically generated business-friendly metadata for your Amazon DataZone assets.
     rejectPredictions: function(Client, types.RejectPredictionsInput): types.RejectPredictionsOutput, table
+    -- Rejects the specified subscription request.
     rejectSubscriptionRequest: function(Client, types.RejectSubscriptionRequestInput): types.RejectSubscriptionRequestOutput, table
+    -- Removes an owner from an entity.
     removeEntityOwner: function(Client, types.RemoveEntityOwnerInput): types.RemoveEntityOwnerOutput, table
+    -- Removes a policy grant.
     removePolicyGrant: function(Client, types.RemovePolicyGrantInput): types.RemovePolicyGrantOutput, table
+    -- Revokes a specified subscription in Amazon DataZone.
     revokeSubscription: function(Client, types.RevokeSubscriptionInput): types.RevokeSubscriptionOutput, table
+    -- Searches for assets in Amazon DataZone. Search in Amazon DataZone is a powerful capability that enables users to discover and explore data assets, glossary terms, and data products across their organization. It provides both basic and advanced search functionality, allowing users to find resources based on names, descriptions, metadata, and other attributes. Search can be scoped to specific types of resources (like assets, glossary terms, or data products) and can be filtered using various criteria such as creation date, owner, or status. The search functionality is essential for making the wealth of data resources in an organization discoverable and usable, helping users find the right data for their needs quickly and efficiently. Many search commands in Amazon DataZone are paginated, including search and search-types. When the result set is large, Amazon DataZone returns a nextToken in the response. This token can be used to retrieve the next page of results. Prerequisites: The --domain-identifier must refer to an existing Amazon DataZone domain. --search-scope must be one of: ASSET, GLOSSARY_TERM, DATA_PRODUCT, or GLOSSARY. The user must have search permissions in the specified domain. If using --filters, ensure that the JSON is well-formed and that each filter includes valid attribute and value keys. For paginated results, be prepared to use --next-token to fetch additional pages. To run a standard free-text search, the searchText parameter must be supplied. By default, all searchable fields are indexed for semantic search and will return semantic matches for SearchListings queries. To prevent semantic search indexing for a custom form attribute, see the CreateFormType API documentation. To run a lexical search query, enclose the query with double quotes (""). This will disable semantic search even for fields that have semantic search enabled and will only return results that contain the keywords wrapped by double quotes (order of tokens in the query is not enforced). Free-text search is supported for all attributes annotated with @amazon.datazone#searchable. To run a filtered search, provide filter clause using the filters parameter. To filter on glossary terms, use the special attribute __DataZoneGlossaryTerms. To filter on an indexed numeric attribute (i.e., a numeric attribute annotated with @amazon.datazone#sortable), provide a filter using the intValue parameter. The filters parameter can also be used to run more advanced free-text searches that target specific attributes (attributes must be annotated with @amazon.datazone#searchable for free-text search). Create/update timestamp filtering is supported using the special creationTime/lastUpdatedTime attributes. Filter types can be mixed and matched to power complex queries. To find out whether an attribute has been annotated and indexed for a given search type, use the GetFormType API to retrieve the form containing the attribute.
     search: function(Client, types.SearchInput): types.SearchOutput, table
+    -- Searches group profiles in Amazon DataZone.
     searchGroupProfiles: function(Client, types.SearchGroupProfilesInput): types.SearchGroupProfilesOutput, table
+    -- Searches listings in Amazon DataZone. SearchListings is a powerful capability that enables users to discover and explore published assets and data products across their organization. It provides both basic and advanced search functionality, allowing users to find resources based on names, descriptions, metadata, and other attributes. SearchListings also supports filtering using various criteria such as creation date, owner, or status. This API is essential for making the wealth of data resources in an organization discoverable and usable, helping users find the right data for their needs quickly and efficiently. SearchListings returns results in a paginated format. When the result set is large, the response will include a nextToken, which can be used to retrieve the next page of results. The SearchListings API gives users flexibility in specifying what kind of search is run. To run a standard free-text search, the searchText parameter must be supplied. By default, all searchable fields are indexed for semantic search and will return semantic matches for SearchListings queries. To prevent semantic search indexing for a custom form attribute, see the CreateFormType API documentation. To run a lexical search query, enclose the query with double quotes (""). This will disable semantic search even for fields that have semantic search enabled and will only return results that contain the keywords wrapped by double quotes (order of tokens in the query is not enforced). Free-text search is supported for all attributes annotated with @amazon.datazone#searchable. To run a filtered search, provide filter clause using the filters parameter. To filter on glossary terms, use the special attribute __DataZoneGlossaryTerms. To filter on an indexed numeric attribute (i.e., a numeric attribute annotated with @amazon.datazone#sortable), provide a filter using the intValue parameter. The filters parameter can also be used to run more advanced free-text searches that target specific attributes (attributes must be annotated with @amazon.datazone#searchable for free-text search). Create/update timestamp filtering is supported using the special creationTime/lastUpdatedTime attributes. Filter types can be mixed and matched to power complex queries. To find out whether an attribute has been annotated and indexed for a given search type, use the GetFormType API to retrieve the form containing the attribute.
     searchListings: function(Client, types.SearchListingsInput): types.SearchListingsOutput, table
+    -- Searches for types in Amazon DataZone. Prerequisites: The --domain-identifier must refer to an existing Amazon DataZone domain. --search-scope must be one of the valid values including: ASSET_TYPE, GLOSSARY_TERM_TYPE, DATA_PRODUCT_TYPE. The --managed flag must be present without a value. The user must have permissions for form or asset types in the domain. If using --filters, ensure that the JSON is valid. Filters contain correct structure (attribute, value, operator).
     searchTypes: function(Client, types.SearchTypesInput): types.SearchTypesOutput, table
+    -- Searches user profiles in Amazon DataZone.
     searchUserProfiles: function(Client, types.SearchUserProfilesInput): types.SearchUserProfilesOutput, table
+    -- Start the run of the specified data source in Amazon DataZone.
     startDataSourceRun: function(Client, types.StartDataSourceRunInput): types.StartDataSourceRunOutput, table
+    -- Starts the metadata generation run. Prerequisites: Asset must be created and belong to the specified domain and project. Asset type must be supported for metadata generation (e.g., Amazon Web Services Glue table). Asset must have a structured schema with valid rows and columns. Valid values for --type: BUSINESS_DESCRIPTIONS, BUSINESS_NAMES, BUSINESS_GLOSSARY_ASSOCIATIONS. The user must have permission to run metadata generation in the domain/project.
     startMetadataGenerationRun: function(Client, types.StartMetadataGenerationRunInput): types.StartMetadataGenerationRunOutput, table
+    -- Starts a notebook run in an Amazon DataZone domain. A notebook run represents the execution of a Amazon DataZone notebook within a project. You can configure compute, network, timeout, and environment settings for the run.
     startNotebookRun: function(Client, types.StartNotebookRunInput): types.StartNotebookRunOutput, table
+    -- Stops a running notebook run in an Amazon DataZone domain.
     stopNotebookRun: function(Client, types.StopNotebookRunInput): types.StopNotebookRunOutput, table
+    -- Tags a resource in Amazon DataZone.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource in Amazon DataZone.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the account pool.
     updateAccountPool: function(Client, types.UpdateAccountPoolInput): types.UpdateAccountPoolOutput, table
+    -- Updates an asset filter. Prerequisites: The domain, asset, and asset filter identifier must all exist. The asset must contain the columns being referenced in the update. If applying a row filter, ensure the column referenced in the expression exists in the asset schema.
     updateAssetFilter: function(Client, types.UpdateAssetFilterInput): types.UpdateAssetFilterOutput, table
+    -- Updates a connection. In Amazon DataZone, a connection enables you to connect your resources (domains, projects, and environments) to external resources and services.
     updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    -- Updates the specified data source in Amazon DataZone.
     updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    -- Updates a Amazon DataZone domain.
     updateDomain: function(Client, types.UpdateDomainInput): types.UpdateDomainOutput, table
+    -- Updates the domain unit.
     updateDomainUnit: function(Client, types.UpdateDomainUnitInput): types.UpdateDomainUnitOutput, table
+    -- Updates the specified environment in Amazon DataZone.
     updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    -- Updates an environment action.
     updateEnvironmentAction: function(Client, types.UpdateEnvironmentActionInput): types.UpdateEnvironmentActionOutput, table
+    -- Updates an environment blueprint in Amazon DataZone.
     updateEnvironmentBlueprint: function(Client, types.UpdateEnvironmentBlueprintInput): types.UpdateEnvironmentBlueprintOutput, table
+    -- Updates the specified environment profile in Amazon DataZone.
     updateEnvironmentProfile: function(Client, types.UpdateEnvironmentProfileInput): types.UpdateEnvironmentProfileOutput, table
+    -- Updates the business glossary in Amazon DataZone. Prerequisites: The glossary must exist in the given domain. The caller must have the datazone:UpdateGlossary permission to update it. When updating the name, the new name must be unique within the domain. The glossary must not be deleted or in a terminal state.
     updateGlossary: function(Client, types.UpdateGlossaryInput): types.UpdateGlossaryOutput, table
+    -- Updates a business glossary term in Amazon DataZone. Prerequisites: Glossary term must exist in the specified domain. New name must not conflict with existing terms in the same glossary. User must have permissions on the term. The term must not be in DELETED status.
     updateGlossaryTerm: function(Client, types.UpdateGlossaryTermInput): types.UpdateGlossaryTermOutput, table
+    -- Updates the specified group profile in Amazon DataZone.
     updateGroupProfile: function(Client, types.UpdateGroupProfileInput): types.UpdateGroupProfileOutput, table
+    -- Updates the specified project in Amazon DataZone.
     updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    -- Updates a project profile.
     updateProjectProfile: function(Client, types.UpdateProjectProfileInput): types.UpdateProjectProfileOutput, table
+    -- Updates the owner of the root domain unit.
     updateRootDomainUnitOwner: function(Client, types.UpdateRootDomainUnitOwnerInput): types.UpdateRootDomainUnitOwnerOutput, table
+    -- Updates a rule. In Amazon DataZone, a rule is a formal agreement that enforces specific requirements across user workflows (e.g., publishing assets to the catalog, requesting subscriptions, creating projects) within the Amazon DataZone data portal. These rules help maintain consistency, ensure compliance, and uphold governance standards in data management processes. For instance, a metadata enforcement rule can specify the required information for creating a subscription request or publishing a data asset to the catalog, ensuring alignment with organizational standards.
     updateRule: function(Client, types.UpdateRuleInput): types.UpdateRuleOutput, table
+    -- Updates the status of the specified subscription grant status in Amazon DataZone.
     updateSubscriptionGrantStatus: function(Client, types.UpdateSubscriptionGrantStatusInput): types.UpdateSubscriptionGrantStatusOutput, table
+    -- Updates a specified subscription request in Amazon DataZone.
     updateSubscriptionRequest: function(Client, types.UpdateSubscriptionRequestInput): types.UpdateSubscriptionRequestOutput, table
+    -- Updates the specified subscription target in Amazon DataZone.
     updateSubscriptionTarget: function(Client, types.UpdateSubscriptionTargetInput): types.UpdateSubscriptionTargetOutput, table
+    -- Updates the specified user profile in Amazon DataZone.
     updateUserProfile: function(Client, types.UpdateUserProfileInput): types.UpdateUserProfileOutput, table
 end
 

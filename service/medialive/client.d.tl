@@ -3,128 +3,251 @@
 local types = require("medialive.types")
 
 local record Client
+    -- Accept an incoming input device transfer. The ownership of the device will transfer to your AWS account.
     acceptInputDeviceTransfer: function(Client, types.AcceptInputDeviceTransferInput): types.AcceptInputDeviceTransferOutput, table
+    -- Starts delete of resources.
     batchDelete: function(Client, types.BatchDeleteInput): types.BatchDeleteOutput, table
+    -- Starts existing resources
     batchStart: function(Client, types.BatchStartInput): types.BatchStartOutput, table
+    -- Stops running resources
     batchStop: function(Client, types.BatchStopInput): types.BatchStopOutput, table
+    -- Update a channel schedule
     batchUpdateSchedule: function(Client, types.BatchUpdateScheduleInput): types.BatchUpdateScheduleOutput, table
+    -- Cancel an input device transfer that you have requested.
     cancelInputDeviceTransfer: function(Client, types.CancelInputDeviceTransferInput): types.CancelInputDeviceTransferOutput, table
+    -- Send a request to claim an AWS Elemental device that you have purchased from a third-party vendor. After the request succeeds, you will own the device.
     claimDevice: function(Client, types.ClaimDeviceInput): types.ClaimDeviceOutput, table
+    -- Creates a new channel
     createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    -- Create a ChannelPlacementGroup in the specified Cluster. As part of the create operation, you specify the Nodes to attach the group to.After you create a ChannelPlacementGroup, you add Channels to the group (you do this by modifying the Channels to add them to a specific group). You now have an association of Channels to ChannelPlacementGroup, and ChannelPlacementGroup to Nodes. This association means that all the Channels in the group are able to run on any of the Nodes associated with the group.
     createChannelPlacementGroup: function(Client, types.CreateChannelPlacementGroupInput): types.CreateChannelPlacementGroupOutput, table
+    -- Creates a cloudwatch alarm template to dynamically generate cloudwatch metric alarms on targeted resource types.
     createCloudWatchAlarmTemplate: function(Client, types.CreateCloudWatchAlarmTemplateInput): types.CreateCloudWatchAlarmTemplateOutput, table
+    -- Creates a cloudwatch alarm template group to group your cloudwatch alarm templates and to attach to signal maps for dynamically creating alarms.
     createCloudWatchAlarmTemplateGroup: function(Client, types.CreateCloudWatchAlarmTemplateGroupInput): types.CreateCloudWatchAlarmTemplateGroupOutput, table
+    -- Create a new Cluster.
     createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    -- Creates an eventbridge rule template to monitor events and send notifications to your targeted resources.
     createEventBridgeRuleTemplate: function(Client, types.CreateEventBridgeRuleTemplateInput): types.CreateEventBridgeRuleTemplateOutput, table
+    -- Creates an eventbridge rule template group to group your eventbridge rule templates and to attach to signal maps for dynamically creating notification rules.
     createEventBridgeRuleTemplateGroup: function(Client, types.CreateEventBridgeRuleTemplateGroupInput): types.CreateEventBridgeRuleTemplateGroupOutput, table
+    -- Create an input
     createInput: function(Client, types.CreateInputInput): types.CreateInputOutput, table
+    -- Creates a Input Security Group
     createInputSecurityGroup: function(Client, types.CreateInputSecurityGroupInput): types.CreateInputSecurityGroupOutput, table
+    -- Create a new multiplex.
     createMultiplex: function(Client, types.CreateMultiplexInput): types.CreateMultiplexOutput, table
+    -- Create a new program in the multiplex.
     createMultiplexProgram: function(Client, types.CreateMultiplexProgramInput): types.CreateMultiplexProgramOutput, table
+    -- Create as many Networks as you need. You will associate one or more Clusters with each Network.Each Network provides MediaLive Anywhere with required information about the network in your organization that you are using for video encoding using MediaLive.
     createNetwork: function(Client, types.CreateNetworkInput): types.CreateNetworkOutput, table
+    -- Create a Node in the specified Cluster. You can also create Nodes using the CreateNodeRegistrationScript. Note that you can't move a Node to another Cluster.
     createNode: function(Client, types.CreateNodeInput): types.CreateNodeOutput, table
+    -- Create the Register Node script for all the nodes intended for a specific Cluster. You will then run the script on each hardware unit that is intended for that Cluster. The script creates a Node in the specified Cluster. It then binds the Node to this hardware unit, and activates the node hardware for use with MediaLive Anywhere.
     createNodeRegistrationScript: function(Client, types.CreateNodeRegistrationScriptInput): types.CreateNodeRegistrationScriptOutput, table
+    -- Create a partner input
     createPartnerInput: function(Client, types.CreatePartnerInputInput): types.CreatePartnerInputOutput, table
+    -- Create an SdiSource for each video source that uses the SDI protocol. You will reference the SdiSource when you create an SDI input in MediaLive. You will also reference it in an SdiSourceMapping, in order to create a connection between the logical SdiSource and the physical SDI card and port that the physical SDI source uses.
     createSdiSource: function(Client, types.CreateSdiSourceInput): types.CreateSdiSourceOutput, table
+    -- Initiates the creation of a new signal map. Will discover a new mediaResourceMap based on the provided discoveryEntryPointArn.
     createSignalMap: function(Client, types.CreateSignalMapInput): types.CreateSignalMapOutput, table
+    -- Create tags for a resource
     createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    -- Starts deletion of channel. The associated outputs are also deleted.
     deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    -- Delete the specified ChannelPlacementGroup that exists in the specified Cluster.
     deleteChannelPlacementGroup: function(Client, types.DeleteChannelPlacementGroupInput): types.DeleteChannelPlacementGroupOutput, table
+    -- Deletes a cloudwatch alarm template.
     deleteCloudWatchAlarmTemplate: function(Client, types.DeleteCloudWatchAlarmTemplateInput): types.DeleteCloudWatchAlarmTemplateOutput, table
+    -- Deletes a cloudwatch alarm template group. You must detach this group from all signal maps and ensure its existing templates are moved to another group or deleted.
     deleteCloudWatchAlarmTemplateGroup: function(Client, types.DeleteCloudWatchAlarmTemplateGroupInput): types.DeleteCloudWatchAlarmTemplateGroupOutput, table
+    -- Delete a Cluster. The Cluster must be idle.
     deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    -- Deletes an eventbridge rule template.
     deleteEventBridgeRuleTemplate: function(Client, types.DeleteEventBridgeRuleTemplateInput): types.DeleteEventBridgeRuleTemplateOutput, table
+    -- Deletes an eventbridge rule template group. You must detach this group from all signal maps and ensure its existing templates are moved to another group or deleted.
     deleteEventBridgeRuleTemplateGroup: function(Client, types.DeleteEventBridgeRuleTemplateGroupInput): types.DeleteEventBridgeRuleTemplateGroupOutput, table
+    -- Deletes the input end point
     deleteInput: function(Client, types.DeleteInputInput): types.DeleteInputOutput, table
+    -- Deletes an Input Security Group
     deleteInputSecurityGroup: function(Client, types.DeleteInputSecurityGroupInput): types.DeleteInputSecurityGroupOutput, table
+    -- Delete a multiplex. The multiplex must be idle.
     deleteMultiplex: function(Client, types.DeleteMultiplexInput): types.DeleteMultiplexOutput, table
+    -- Delete a program from a multiplex.
     deleteMultiplexProgram: function(Client, types.DeleteMultiplexProgramInput): types.DeleteMultiplexProgramOutput, table
+    -- Delete a Network. The Network must have no resources associated with it.
     deleteNetwork: function(Client, types.DeleteNetworkInput): types.DeleteNetworkOutput, table
+    -- Delete a Node. The Node must be IDLE.
     deleteNode: function(Client, types.DeleteNodeInput): types.DeleteNodeOutput, table
+    -- Delete an expired reservation.
     deleteReservation: function(Client, types.DeleteReservationInput): types.DeleteReservationOutput, table
+    -- Delete all schedule actions on a channel.
     deleteSchedule: function(Client, types.DeleteScheduleInput): types.DeleteScheduleOutput, table
+    -- Delete an SdiSource. The SdiSource must not be part of any SidSourceMapping and must not be attached to any input.
     deleteSdiSource: function(Client, types.DeleteSdiSourceInput): types.DeleteSdiSourceOutput, table
+    -- Deletes the specified signal map.
     deleteSignalMap: function(Client, types.DeleteSignalMapInput): types.DeleteSignalMapOutput, table
+    -- Removes tags for a resource
     deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    -- Describe account configuration
     describeAccountConfiguration: function(Client, types.DescribeAccountConfigurationInput): types.DescribeAccountConfigurationOutput, table
+    -- Gets details about a channel
     describeChannel: function(Client, types.DescribeChannelInput): types.DescribeChannelOutput, table
+    -- Get details about a ChannelPlacementGroup.
     describeChannelPlacementGroup: function(Client, types.DescribeChannelPlacementGroupInput): types.DescribeChannelPlacementGroupOutput, table
+    -- Get details about a Cluster.
     describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    -- Produces details about an input
     describeInput: function(Client, types.DescribeInputInput): types.DescribeInputOutput, table
+    -- Gets the details for the input device
     describeInputDevice: function(Client, types.DescribeInputDeviceInput): types.DescribeInputDeviceOutput, table
+    -- Get the latest thumbnail data for the input device.
     describeInputDeviceThumbnail: function(Client, types.DescribeInputDeviceThumbnailInput): types.DescribeInputDeviceThumbnailOutput, table
+    -- Produces a summary of an Input Security Group
     describeInputSecurityGroup: function(Client, types.DescribeInputSecurityGroupInput): types.DescribeInputSecurityGroupOutput, table
+    -- Gets details about a multiplex.
     describeMultiplex: function(Client, types.DescribeMultiplexInput): types.DescribeMultiplexOutput, table
+    -- Get the details for a program in a multiplex.
     describeMultiplexProgram: function(Client, types.DescribeMultiplexProgramInput): types.DescribeMultiplexProgramOutput, table
+    -- Get details about a Network.
     describeNetwork: function(Client, types.DescribeNetworkInput): types.DescribeNetworkOutput, table
+    -- Get details about a Node in the specified Cluster.
     describeNode: function(Client, types.DescribeNodeInput): types.DescribeNodeOutput, table
+    -- Get details for an offering.
     describeOffering: function(Client, types.DescribeOfferingInput): types.DescribeOfferingOutput, table
+    -- Get details for a reservation.
     describeReservation: function(Client, types.DescribeReservationInput): types.DescribeReservationOutput, table
+    -- Get a channel schedule
     describeSchedule: function(Client, types.DescribeScheduleInput): types.DescribeScheduleOutput, table
+    -- Gets details about a SdiSource.
     describeSdiSource: function(Client, types.DescribeSdiSourceInput): types.DescribeSdiSourceOutput, table
+    -- Describe the latest thumbnails data.
     describeThumbnails: function(Client, types.DescribeThumbnailsInput): types.DescribeThumbnailsOutput, table
+    -- Retrieves the specified cloudwatch alarm template.
     getCloudWatchAlarmTemplate: function(Client, types.GetCloudWatchAlarmTemplateInput): types.GetCloudWatchAlarmTemplateOutput, table
+    -- Retrieves the specified cloudwatch alarm template group.
     getCloudWatchAlarmTemplateGroup: function(Client, types.GetCloudWatchAlarmTemplateGroupInput): types.GetCloudWatchAlarmTemplateGroupOutput, table
+    -- Retrieves the specified eventbridge rule template.
     getEventBridgeRuleTemplate: function(Client, types.GetEventBridgeRuleTemplateInput): types.GetEventBridgeRuleTemplateOutput, table
+    -- Retrieves the specified eventbridge rule template group.
     getEventBridgeRuleTemplateGroup: function(Client, types.GetEventBridgeRuleTemplateGroupInput): types.GetEventBridgeRuleTemplateGroupOutput, table
+    -- Retrieves the specified signal map.
     getSignalMap: function(Client, types.GetSignalMapInput): types.GetSignalMapOutput, table
+    -- List the alerts for a channel with optional filtering based on alert state.
     listAlerts: function(Client, types.ListAlertsInput): types.ListAlertsOutput, table
+    -- Retrieve the list of ChannelPlacementGroups in the specified Cluster.
     listChannelPlacementGroups: function(Client, types.ListChannelPlacementGroupsInput): types.ListChannelPlacementGroupsOutput, table
+    -- Produces list of channels that have been created
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Lists cloudwatch alarm template groups.
     listCloudWatchAlarmTemplateGroups: function(Client, types.ListCloudWatchAlarmTemplateGroupsInput): types.ListCloudWatchAlarmTemplateGroupsOutput, table
+    -- Lists cloudwatch alarm templates.
     listCloudWatchAlarmTemplates: function(Client, types.ListCloudWatchAlarmTemplatesInput): types.ListCloudWatchAlarmTemplatesOutput, table
+    -- List the alerts for a cluster with optional filtering based on alert state.
     listClusterAlerts: function(Client, types.ListClusterAlertsInput): types.ListClusterAlertsOutput, table
+    -- Retrieve the list of Clusters.
     listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    -- Lists eventbridge rule template groups.
     listEventBridgeRuleTemplateGroups: function(Client, types.ListEventBridgeRuleTemplateGroupsInput): types.ListEventBridgeRuleTemplateGroupsOutput, table
+    -- Lists eventbridge rule templates.
     listEventBridgeRuleTemplates: function(Client, types.ListEventBridgeRuleTemplatesInput): types.ListEventBridgeRuleTemplatesOutput, table
+    -- List input devices
     listInputDevices: function(Client, types.ListInputDevicesInput): types.ListInputDevicesOutput, table
+    -- List input devices that are currently being transferred. List input devices that you are transferring from your AWS account or input devices that another AWS account is transferring to you.
     listInputDeviceTransfers: function(Client, types.ListInputDeviceTransfersInput): types.ListInputDeviceTransfersOutput, table
+    -- Produces list of inputs that have been created
     listInputs: function(Client, types.ListInputsInput): types.ListInputsOutput, table
+    -- Produces a list of Input Security Groups for an account
     listInputSecurityGroups: function(Client, types.ListInputSecurityGroupsInput): types.ListInputSecurityGroupsOutput, table
+    -- List the alerts for a multiplex with optional filtering based on alert state.
     listMultiplexAlerts: function(Client, types.ListMultiplexAlertsInput): types.ListMultiplexAlertsOutput, table
+    -- Retrieve a list of the existing multiplexes.
     listMultiplexes: function(Client, types.ListMultiplexesInput): types.ListMultiplexesOutput, table
+    -- List the programs that currently exist for a specific multiplex.
     listMultiplexPrograms: function(Client, types.ListMultiplexProgramsInput): types.ListMultiplexProgramsOutput, table
+    -- Retrieve the list of Networks.
     listNetworks: function(Client, types.ListNetworksInput): types.ListNetworksOutput, table
+    -- Retrieve the list of Nodes.
     listNodes: function(Client, types.ListNodesInput): types.ListNodesOutput, table
+    -- List offerings available for purchase.
     listOfferings: function(Client, types.ListOfferingsInput): types.ListOfferingsOutput, table
+    -- List purchased reservations.
     listReservations: function(Client, types.ListReservationsInput): types.ListReservationsOutput, table
+    -- List all the SdiSources in the AWS account.
     listSdiSources: function(Client, types.ListSdiSourcesInput): types.ListSdiSourcesOutput, table
+    -- Lists signal maps.
     listSignalMaps: function(Client, types.ListSignalMapsInput): types.ListSignalMapsOutput, table
+    -- Produces list of tags that have been created for a resource
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Retrieves an array of all the encoder engine versions that are available in this AWS account.
     listVersions: function(Client, types.ListVersionsInput): types.ListVersionsOutput, table
+    -- Purchase an offering and create a reservation.
     purchaseOffering: function(Client, types.PurchaseOfferingInput): types.PurchaseOfferingOutput, table
+    -- Send a reboot command to the specified input device. The device will begin rebooting within a few seconds of sending the command. When the reboot is complete, the device’s connection status will change to connected.
     rebootInputDevice: function(Client, types.RebootInputDeviceInput): types.RebootInputDeviceOutput, table
+    -- Reject the transfer of the specified input device to your AWS account.
     rejectInputDeviceTransfer: function(Client, types.RejectInputDeviceTransferInput): types.RejectInputDeviceTransferOutput, table
+    -- Restart pipelines in one channel that is currently running.
     restartChannelPipelines: function(Client, types.RestartChannelPipelinesInput): types.RestartChannelPipelinesOutput, table
+    -- Starts an existing channel
     startChannel: function(Client, types.StartChannelInput): types.StartChannelOutput, table
+    -- Initiates a deployment to delete the monitor of the specified signal map.
     startDeleteMonitorDeployment: function(Client, types.StartDeleteMonitorDeploymentInput): types.StartDeleteMonitorDeploymentOutput, table
+    -- Start an input device that is attached to a MediaConnect flow. (There is no need to start a device that is attached to a MediaLive input; MediaLive starts the device when the channel starts.)
     startInputDevice: function(Client, types.StartInputDeviceInput): types.StartInputDeviceOutput, table
+    -- Start a maintenance window for the specified input device. Starting a maintenance window will give the device up to two hours to install software. If the device was streaming prior to the maintenance, it will resume streaming when the software is fully installed. Devices automatically install updates while they are powered on and their MediaLive channels are stopped. A maintenance window allows you to update a device without having to stop MediaLive channels that use the device. The device must remain powered on and connected to the internet for the duration of the maintenance.
     startInputDeviceMaintenanceWindow: function(Client, types.StartInputDeviceMaintenanceWindowInput): types.StartInputDeviceMaintenanceWindowOutput, table
+    -- Initiates a deployment to deploy the latest monitor of the specified signal map.
     startMonitorDeployment: function(Client, types.StartMonitorDeploymentInput): types.StartMonitorDeploymentOutput, table
+    -- Start (run) the multiplex. Starting the multiplex does not start the channels. You must explicitly start each channel.
     startMultiplex: function(Client, types.StartMultiplexInput): types.StartMultiplexOutput, table
+    -- Initiates an update for the specified signal map. Will discover a new signal map if a changed discoveryEntryPointArn is provided.
     startUpdateSignalMap: function(Client, types.StartUpdateSignalMapInput): types.StartUpdateSignalMapOutput, table
+    -- Stops a running channel
     stopChannel: function(Client, types.StopChannelInput): types.StopChannelOutput, table
+    -- Stop an input device that is attached to a MediaConnect flow. (There is no need to stop a device that is attached to a MediaLive input; MediaLive automatically stops the device when the channel stops.)
     stopInputDevice: function(Client, types.StopInputDeviceInput): types.StopInputDeviceOutput, table
+    -- Stops a running multiplex. If the multiplex isn't running, this action has no effect.
     stopMultiplex: function(Client, types.StopMultiplexInput): types.StopMultiplexOutput, table
+    -- Start an input device transfer to another AWS account. After you make the request, the other account must accept or reject the transfer.
     transferInputDevice: function(Client, types.TransferInputDeviceInput): types.TransferInputDeviceOutput, table
+    -- Update account configuration
     updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput): types.UpdateAccountConfigurationOutput, table
+    -- Updates a channel.
     updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    -- Changes the class of the channel.
     updateChannelClass: function(Client, types.UpdateChannelClassInput): types.UpdateChannelClassOutput, table
+    -- Change the settings for a ChannelPlacementGroup.
     updateChannelPlacementGroup: function(Client, types.UpdateChannelPlacementGroupInput): types.UpdateChannelPlacementGroupOutput, table
+    -- Updates the specified cloudwatch alarm template.
     updateCloudWatchAlarmTemplate: function(Client, types.UpdateCloudWatchAlarmTemplateInput): types.UpdateCloudWatchAlarmTemplateOutput, table
+    -- Updates the specified cloudwatch alarm template group.
     updateCloudWatchAlarmTemplateGroup: function(Client, types.UpdateCloudWatchAlarmTemplateGroupInput): types.UpdateCloudWatchAlarmTemplateGroupOutput, table
+    -- Change the settings for a Cluster.
     updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    -- Updates the specified eventbridge rule template.
     updateEventBridgeRuleTemplate: function(Client, types.UpdateEventBridgeRuleTemplateInput): types.UpdateEventBridgeRuleTemplateOutput, table
+    -- Updates the specified eventbridge rule template group.
     updateEventBridgeRuleTemplateGroup: function(Client, types.UpdateEventBridgeRuleTemplateGroupInput): types.UpdateEventBridgeRuleTemplateGroupOutput, table
+    -- Updates an input.
     updateInput: function(Client, types.UpdateInputInput): types.UpdateInputOutput, table
+    -- Updates the parameters for the input device.
     updateInputDevice: function(Client, types.UpdateInputDeviceInput): types.UpdateInputDeviceOutput, table
+    -- Update an Input Security Group's Whilelists.
     updateInputSecurityGroup: function(Client, types.UpdateInputSecurityGroupInput): types.UpdateInputSecurityGroupOutput, table
+    -- Updates a multiplex.
     updateMultiplex: function(Client, types.UpdateMultiplexInput): types.UpdateMultiplexOutput, table
+    -- Update a program in a multiplex.
     updateMultiplexProgram: function(Client, types.UpdateMultiplexProgramInput): types.UpdateMultiplexProgramOutput, table
+    -- Change the settings for a Network.
     updateNetwork: function(Client, types.UpdateNetworkInput): types.UpdateNetworkOutput, table
+    -- Change the settings for a Node.
     updateNode: function(Client, types.UpdateNodeInput): types.UpdateNodeOutput, table
+    -- Update the state of a node.
     updateNodeState: function(Client, types.UpdateNodeStateInput): types.UpdateNodeStateOutput, table
+    -- Update reservation.
     updateReservation: function(Client, types.UpdateReservationInput): types.UpdateReservationOutput, table
+    -- Change some of the settings in an SdiSource.
     updateSdiSource: function(Client, types.UpdateSdiSourceInput): types.UpdateSdiSourceOutput, table
 end
 

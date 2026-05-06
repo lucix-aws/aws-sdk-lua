@@ -3,55 +3,109 @@
 local types = require("finspace.types")
 
 local record Client
+    -- Create a new FinSpace environment.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Creates a changeset for a kdb database. A changeset allows you to add and delete existing files by using an ordered list of change requests.
     createKxChangeset: function(Client, types.CreateKxChangesetInput): types.CreateKxChangesetOutput, table
+    -- Creates a new kdb cluster.
     createKxCluster: function(Client, types.CreateKxClusterInput): types.CreateKxClusterOutput, table
+    -- Creates a new kdb database in the environment.
     createKxDatabase: function(Client, types.CreateKxDatabaseInput): types.CreateKxDatabaseOutput, table
+    -- Creates a snapshot of kdb database with tiered storage capabilities and a pre-warmed cache, ready for mounting on kdb clusters. Dataviews are only available for clusters running on a scaling group. They are not supported on dedicated clusters.
     createKxDataview: function(Client, types.CreateKxDataviewInput): types.CreateKxDataviewOutput, table
+    -- Creates a managed kdb environment for the account.
     createKxEnvironment: function(Client, types.CreateKxEnvironmentInput): types.CreateKxEnvironmentOutput, table
+    -- Creates a new scaling group.
     createKxScalingGroup: function(Client, types.CreateKxScalingGroupInput): types.CreateKxScalingGroupOutput, table
+    -- Creates a user in FinSpace kdb environment with an associated IAM role.
     createKxUser: function(Client, types.CreateKxUserInput): types.CreateKxUserOutput, table
+    -- Creates a new volume with a specific amount of throughput and storage capacity.
     createKxVolume: function(Client, types.CreateKxVolumeInput): types.CreateKxVolumeOutput, table
+    -- Delete an FinSpace environment.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Deletes a kdb cluster.
     deleteKxCluster: function(Client, types.DeleteKxClusterInput): types.DeleteKxClusterOutput, table
+    -- Deletes the specified nodes from a cluster.
     deleteKxClusterNode: function(Client, types.DeleteKxClusterNodeInput): types.DeleteKxClusterNodeOutput, table
+    -- Deletes the specified database and all of its associated data. This action is irreversible. You must copy any data out of the database before deleting it if the data is to be retained.
     deleteKxDatabase: function(Client, types.DeleteKxDatabaseInput): types.DeleteKxDatabaseOutput, table
+    -- Deletes the specified dataview. Before deleting a dataview, make sure that it is not in use by any cluster.
     deleteKxDataview: function(Client, types.DeleteKxDataviewInput): types.DeleteKxDataviewOutput, table
+    -- Deletes the kdb environment. This action is irreversible. Deleting a kdb environment will remove all the associated data and any services running in it.
     deleteKxEnvironment: function(Client, types.DeleteKxEnvironmentInput): types.DeleteKxEnvironmentOutput, table
+    -- Deletes the specified scaling group. This action is irreversible. You cannot delete a scaling group until all the clusters running on it have been deleted.
     deleteKxScalingGroup: function(Client, types.DeleteKxScalingGroupInput): types.DeleteKxScalingGroupOutput, table
+    -- Deletes a user in the specified kdb environment.
     deleteKxUser: function(Client, types.DeleteKxUserInput): types.DeleteKxUserOutput, table
+    -- Deletes a volume. You can only delete a volume if it's not attached to a cluster or a dataview. When a volume is deleted, any data on the volume is lost. This action is irreversible.
     deleteKxVolume: function(Client, types.DeleteKxVolumeInput): types.DeleteKxVolumeOutput, table
+    -- Returns the FinSpace environment object.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Returns information about a kdb changeset.
     getKxChangeset: function(Client, types.GetKxChangesetInput): types.GetKxChangesetOutput, table
+    -- Retrieves information about a kdb cluster.
     getKxCluster: function(Client, types.GetKxClusterInput): types.GetKxClusterOutput, table
+    -- Retrieves a connection string for a user to connect to a kdb cluster. You must call this API using the same role that you have defined while creating a user.
     getKxConnectionString: function(Client, types.GetKxConnectionStringInput): types.GetKxConnectionStringOutput, table
+    -- Returns database information for the specified environment ID.
     getKxDatabase: function(Client, types.GetKxDatabaseInput): types.GetKxDatabaseOutput, table
+    -- Retrieves details of the dataview.
     getKxDataview: function(Client, types.GetKxDataviewInput): types.GetKxDataviewOutput, table
+    -- Retrieves all the information for the specified kdb environment.
     getKxEnvironment: function(Client, types.GetKxEnvironmentInput): types.GetKxEnvironmentOutput, table
+    -- Retrieves details of a scaling group.
     getKxScalingGroup: function(Client, types.GetKxScalingGroupInput): types.GetKxScalingGroupOutput, table
+    -- Retrieves information about the specified kdb user.
     getKxUser: function(Client, types.GetKxUserInput): types.GetKxUserOutput, table
+    -- Retrieves the information about the volume.
     getKxVolume: function(Client, types.GetKxVolumeInput): types.GetKxVolumeOutput, table
+    -- A list of all of your FinSpace environments.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Returns a list of all the changesets for a database.
     listKxChangesets: function(Client, types.ListKxChangesetsInput): types.ListKxChangesetsOutput, table
+    -- Lists all the nodes in a kdb cluster.
     listKxClusterNodes: function(Client, types.ListKxClusterNodesInput): types.ListKxClusterNodesOutput, table
+    -- Returns a list of clusters.
     listKxClusters: function(Client, types.ListKxClustersInput): types.ListKxClustersOutput, table
+    -- Returns a list of all the databases in the kdb environment.
     listKxDatabases: function(Client, types.ListKxDatabasesInput): types.ListKxDatabasesOutput, table
+    -- Returns a list of all the dataviews in the database.
     listKxDataviews: function(Client, types.ListKxDataviewsInput): types.ListKxDataviewsOutput, table
+    -- Returns a list of kdb environments created in an account.
     listKxEnvironments: function(Client, types.ListKxEnvironmentsInput): types.ListKxEnvironmentsOutput, table
+    -- Returns a list of scaling groups in a kdb environment.
     listKxScalingGroups: function(Client, types.ListKxScalingGroupsInput): types.ListKxScalingGroupsOutput, table
+    -- Lists all the users in a kdb environment.
     listKxUsers: function(Client, types.ListKxUsersInput): types.ListKxUsersOutput, table
+    -- Lists all the volumes in a kdb environment.
     listKxVolumes: function(Client, types.ListKxVolumesInput): types.ListKxVolumesOutput, table
+    -- A list of all tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds metadata tags to a FinSpace resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes metadata tags from a FinSpace resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update your FinSpace environment.
     updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    -- Allows you to update code configuration on a running cluster. By using this API you can update the code, the initialization script path, and the command line arguments for a specific cluster.
+    -- The configuration that you want to update will override any existing configurations on the cluster.
     updateKxClusterCodeConfiguration: function(Client, types.UpdateKxClusterCodeConfigurationInput): types.UpdateKxClusterCodeConfigurationOutput, table
+    -- Updates the databases mounted on a kdb cluster, which includes the changesetId and all the dbPaths to be cached. This API does not allow you to change a database name or add a database if you created a cluster without one.
+    -- Using this API you can point a cluster to a different changeset and modify a list of partitions being cached.
     updateKxClusterDatabases: function(Client, types.UpdateKxClusterDatabasesInput): types.UpdateKxClusterDatabasesOutput, table
+    -- Updates information for the given kdb database.
     updateKxDatabase: function(Client, types.UpdateKxDatabaseInput): types.UpdateKxDatabaseOutput, table
+    -- Updates the specified dataview. The dataviews get automatically updated when any new changesets are ingested. Each update of the dataview creates a new version, including changeset details and cache configurations
     updateKxDataview: function(Client, types.UpdateKxDataviewInput): types.UpdateKxDataviewOutput, table
+    -- Updates information for the given kdb environment.
     updateKxEnvironment: function(Client, types.UpdateKxEnvironmentInput): types.UpdateKxEnvironmentOutput, table
+    -- Updates environment network to connect to your internal network by using a transit gateway. This API supports request to create a transit gateway attachment from FinSpace VPC to your transit gateway ID and create a custom Route-53 outbound resolvers.
+    -- Once you send a request to update a network, you cannot change it again. Network update might require termination of any clusters that are running in the existing network.
     updateKxEnvironmentNetwork: function(Client, types.UpdateKxEnvironmentNetworkInput): types.UpdateKxEnvironmentNetworkOutput, table
+    -- Updates the user details. You can only update the IAM role associated with a user.
     updateKxUser: function(Client, types.UpdateKxUserInput): types.UpdateKxUserOutput, table
+    -- Updates the throughput or capacity of a volume. During the update process, the filesystem
+    -- might be unavailable for a few minutes. You can retry any operations after the update is complete.
     updateKxVolume: function(Client, types.UpdateKxVolumeInput): types.UpdateKxVolumeOutput, table
 end
 

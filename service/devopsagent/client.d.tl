@@ -3,49 +3,93 @@
 local types = require("devopsagent.types")
 
 local record Client
+    -- Adds a specific service association to an AgentSpace. It overwrites the existing association of the same service. Returns 201 Created on success.
     associateService: function(Client, types.AssociateServiceInput): types.AssociateServiceOutput, table
+    -- Creates a new AgentSpace with the specified name and description. Duplicate space names are allowed.
     createAgentSpace: function(Client, types.CreateAgentSpaceInput): types.CreateAgentSpaceOutput, table
+    -- Creates a new backlog task in the specified agent space
     createBacklogTask: function(Client, types.CreateBacklogTaskInput): types.CreateBacklogTaskOutput, table
+    -- Creates a new chat execution in the specified agent space
     createChat: function(Client, types.CreateChatInput): types.CreateChatOutput, table
+    -- Creates a Private Connection to a target resource.
     createPrivateConnection: function(Client, types.CreatePrivateConnectionInput): types.CreatePrivateConnectionOutput, table
+    -- Deletes an AgentSpace. This operation is idempotent and returns a 204 No Content response on success.
     deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput): types.DeleteAgentSpaceOutput, table
+    -- Deletes a Private Connection. The deletion is asynchronous and returns DELETE_IN_PROGRESS status.
     deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput): types.DeletePrivateConnectionOutput, table
+    -- Deregister a service
     deregisterService: function(Client, types.DeregisterServiceInput): types.DeregisterServiceOutput, table
+    -- Retrieves details of an existing Private Connection.
     describePrivateConnection: function(Client, types.DescribePrivateConnectionInput): types.DescribePrivateConnectionOutput, table
+    -- Disable the Operator App for the specified AgentSpace
     disableOperatorApp: function(Client, types.DisableOperatorAppInput): types.DisableOperatorAppOutput, table
+    -- Deletes a specific service association from an AgentSpace. This operation is idempotent and returns a 204 No Content response on success.
     disassociateService: function(Client, types.DisassociateServiceInput): types.DisassociateServiceOutput, table
+    -- Enable the Operator App to access the given AgentSpace
     enableOperatorApp: function(Client, types.EnableOperatorAppInput): types.EnableOperatorAppOutput, table
+    -- Retrieves monthly account usage metrics and limits for the AWS account.
     getAccountUsage: function(Client, types.GetAccountUsageInput): types.GetAccountUsageOutput, table
+    -- Retrieves detailed information about a specific AgentSpace.
     getAgentSpace: function(Client, types.GetAgentSpaceInput): types.GetAgentSpaceOutput, table
+    -- Retrieves given associations configured for a specific AgentSpace.
     getAssociation: function(Client, types.GetAssociationInput): types.GetAssociationOutput, table
+    -- Gets a backlog task for the specified agent space and task id
     getBacklogTask: function(Client, types.GetBacklogTaskInput): types.GetBacklogTaskOutput, table
+    -- Get the full auth configuration of operator including any enabled auth flow
     getOperatorApp: function(Client, types.GetOperatorAppInput): types.GetOperatorAppOutput, table
+    -- Retrieves a specific recommendation by its ID
     getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    -- Retrieves given service by it's unique identifier
     getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    -- Lists all AgentSpaces with optional pagination.
     listAgentSpaces: function(Client, types.ListAgentSpacesInput): types.ListAgentSpacesOutput, table
+    -- List all associations for given AgentSpace
     listAssociations: function(Client, types.ListAssociationsInput): types.ListAssociationsOutput, table
+    -- Lists backlog tasks in the specified agent space with optional filtering and sorting
     listBacklogTasks: function(Client, types.ListBacklogTasksInput): types.ListBacklogTasksOutput, table
+    -- Retrieves a paginated list of the user's recent chat executions
     listChats: function(Client, types.ListChatsInput): types.ListChatsOutput, table
+    -- List executions
     listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    -- Lists goals in the specified agent space with optional filtering
     listGoals: function(Client, types.ListGoalsInput): types.ListGoalsOutput, table
+    -- List journal records for a specific execution
     listJournalRecords: function(Client, types.ListJournalRecordsInput): types.ListJournalRecordsOutput, table
+    -- List pending messages for a specific execution.
     listPendingMessages: function(Client, types.ListPendingMessagesInput): types.ListPendingMessagesOutput, table
+    -- Lists all Private Connections in the caller's account.
     listPrivateConnections: function(Client, types.ListPrivateConnectionsInput): types.ListPrivateConnectionsOutput, table
+    -- Lists recommendations for the specified agent space
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- List a list of registered service on the account level.
     listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    -- Lists tags for the specified AWS DevOps Agent resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List all webhooks for given Association
     listWebhooks: function(Client, types.ListWebhooksInput): types.ListWebhooksOutput, table
+    -- This operation registers the specified service
     registerService: function(Client, types.RegisterServiceInput): types.RegisterServiceOutput, table
+    -- Sends a chat message and streams the response for the specified agent space execution
     sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    -- Adds or overwrites tags for the specified AWS DevOps Agent resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified AWS DevOps Agent resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the information of an existing AgentSpace.
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput): types.UpdateAgentSpaceOutput, table
+    -- Partially updates the configuration of an existing service association for an AgentSpace. Present fields are fully replaced; absent fields are left unchanged. Returns 200 OK on success.
     updateAssociation: function(Client, types.UpdateAssociationInput): types.UpdateAssociationOutput, table
+    -- Update an existing backlog task.
     updateBacklogTask: function(Client, types.UpdateBacklogTaskInput): types.UpdateBacklogTaskOutput, table
+    -- Update an existing goal
     updateGoal: function(Client, types.UpdateGoalInput): types.UpdateGoalOutput, table
+    -- Update the external Identity Provider configuration for the Operator App
     updateOperatorAppIdpConfig: function(Client, types.UpdateOperatorAppIdpConfigInput): types.UpdateOperatorAppIdpConfigOutput, table
+    -- Updates the certificate associated with a Private Connection.
     updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput): types.UpdatePrivateConnectionCertificateOutput, table
+    -- Updates an existing recommendation with new content, status, or metadata
     updateRecommendation: function(Client, types.UpdateRecommendationInput): types.UpdateRecommendationOutput, table
+    -- Validates an aws association and set status and returns a 204 No Content response on success.
     validateAwsAssociations: function(Client, types.ValidateAwsAssociationsInput): types.ValidateAwsAssociationsOutput, table
 end
 

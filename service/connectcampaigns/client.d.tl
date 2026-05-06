@@ -3,27 +3,49 @@
 local types = require("connectcampaigns.types")
 
 local record Client
+    -- Creates a campaign for the specified Amazon Connect account. This API is idempotent.
     createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    -- Deletes a campaign from the specified Amazon Connect account.
     deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    -- Deletes a connect instance config from the specified AWS account.
     deleteConnectInstanceConfig: function(Client, types.DeleteConnectInstanceConfigInput): types.DeleteConnectInstanceConfigOutput, table
+    -- Delete the Connect Campaigns onboarding job for the specified Amazon Connect instance.
     deleteInstanceOnboardingJob: function(Client, types.DeleteInstanceOnboardingJobInput): types.DeleteInstanceOnboardingJobOutput, table
+    -- Describes the specific campaign.
     describeCampaign: function(Client, types.DescribeCampaignInput): types.DescribeCampaignOutput, table
+    -- Get state of a campaign for the specified Amazon Connect account.
     getCampaignState: function(Client, types.GetCampaignStateInput): types.GetCampaignStateOutput, table
+    -- Get state of campaigns for the specified Amazon Connect account.
     getCampaignStateBatch: function(Client, types.GetCampaignStateBatchInput): types.GetCampaignStateBatchOutput, table
+    -- Get the specific Connect instance config.
     getConnectInstanceConfig: function(Client, types.GetConnectInstanceConfigInput): types.GetConnectInstanceConfigOutput, table
+    -- Get the specific instance onboarding job status.
     getInstanceOnboardingJobStatus: function(Client, types.GetInstanceOnboardingJobStatusInput): types.GetInstanceOnboardingJobStatusOutput, table
+    -- Provides summary information about the campaigns under the specified Amazon Connect account.
     listCampaigns: function(Client, types.ListCampaignsInput): types.ListCampaignsOutput, table
+    -- List tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Pauses a campaign for the specified Amazon Connect account.
     pauseCampaign: function(Client, types.PauseCampaignInput): types.PauseCampaignOutput, table
+    -- Creates dials requests for the specified campaign Amazon Connect account. This API is idempotent.
     putDialRequestBatch: function(Client, types.PutDialRequestBatchInput): types.PutDialRequestBatchOutput, table
+    -- Stops a campaign for the specified Amazon Connect account.
     resumeCampaign: function(Client, types.ResumeCampaignInput): types.ResumeCampaignOutput, table
+    -- Starts a campaign for the specified Amazon Connect account.
     startCampaign: function(Client, types.StartCampaignInput): types.StartCampaignOutput, table
+    -- Onboard the specific Amazon Connect instance to Connect Campaigns.
     startInstanceOnboardingJob: function(Client, types.StartInstanceOnboardingJobInput): types.StartInstanceOnboardingJobOutput, table
+    -- Stops a campaign for the specified Amazon Connect account.
     stopCampaign: function(Client, types.StopCampaignInput): types.StopCampaignOutput, table
+    -- Tag a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untag a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the dialer config of a campaign. This API is idempotent.
     updateCampaignDialerConfig: function(Client, types.UpdateCampaignDialerConfigInput): types.UpdateCampaignDialerConfigOutput, table
+    -- Updates the name of a campaign. This API is idempotent.
     updateCampaignName: function(Client, types.UpdateCampaignNameInput): types.UpdateCampaignNameOutput, table
+    -- Updates the outbound call config of a campaign. This API is idempotent.
     updateCampaignOutboundCallConfig: function(Client, types.UpdateCampaignOutboundCallConfigInput): types.UpdateCampaignOutboundCallConfigOutput, table
 end
 

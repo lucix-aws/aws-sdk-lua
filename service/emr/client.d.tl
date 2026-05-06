@@ -3,65 +3,295 @@
 local types = require("emr.types")
 
 local record Client
+    -- Adds an instance fleet to a running cluster.
+    -- The instance fleet configuration is available only in Amazon EMR releases
+    -- 4.8.0 and later, excluding 5.0.x.
     addInstanceFleet: function(Client, types.AddInstanceFleetInput): types.AddInstanceFleetOutput, table
+    -- Adds one or more instance groups to a running cluster.
     addInstanceGroups: function(Client, types.AddInstanceGroupsInput): types.AddInstanceGroupsOutput, table
+    -- AddJobFlowSteps adds new steps to a running cluster. A maximum of 256 steps are allowed
+    -- in each job flow.
+    -- If your cluster is long-running (such as a Hive data warehouse) or complex, you may
+    -- require more than 256 steps to process your data. You can bypass the 256-step limitation in
+    -- various ways, including using SSH to connect to the master node and submitting queries
+    -- directly to the software running on the master node, such as Hive and Hadoop.
+    -- A step specifies the location of a JAR file stored either on the master node of the
+    -- cluster or in Amazon S3. Each step is performed by the main function of the main
+    -- class of the JAR file. The main class can be specified either in the manifest of the JAR or
+    -- by using the MainFunction parameter of the step.
+    -- Amazon EMR executes each step in the order listed. For a step to be considered
+    -- complete, the main function must exit with a zero exit code and all Hadoop jobs started
+    -- while the step was running must have completed and run successfully.
+    -- You can only add steps to a cluster that is in one of the following states: STARTING,
+    -- BOOTSTRAPPING, RUNNING, or WAITING.
+    -- The string values passed into HadoopJarStep object cannot exceed a total
+    -- of 10240 characters.
     addJobFlowSteps: function(Client, types.AddJobFlowStepsInput): types.AddJobFlowStepsOutput, table
+    -- Adds tags to an Amazon EMR resource, such as a cluster or an Amazon EMR
+    -- Studio. Tags make it easier to associate resources in various ways, such as grouping
+    -- clusters to track your Amazon EMR resource allocation costs. For more information,
+    -- see Tag
+    -- Clusters.
     addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    -- Cancels a pending step or steps in a running cluster. Available only in Amazon EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps are allowed in
+    -- each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not guarantee
+    -- that a step will be canceled, even if the request is successfully submitted. When you use
+    -- Amazon EMR releases 5.28.0 and later, you can cancel steps that are in a
+    -- PENDING or RUNNING state. In earlier versions of Amazon EMR, you can only cancel steps that are in a PENDING state.
     cancelSteps: function(Client, types.CancelStepsInput): types.CancelStepsOutput, table
+    -- Creates a persistent application user interface.
     createPersistentAppUI: function(Client, types.CreatePersistentAppUIInput): types.CreatePersistentAppUIOutput, table
+    -- Creates a security configuration, which is stored in the service and can be specified
+    -- when a cluster is created.
     createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): types.CreateSecurityConfigurationOutput, table
+    -- Creates a new Amazon EMR Studio.
     createStudio: function(Client, types.CreateStudioInput): types.CreateStudioOutput, table
+    -- Maps a user or group to the Amazon EMR Studio specified by
+    -- StudioId, and applies a session policy to refine Studio permissions for that
+    -- user or group. Use CreateStudioSessionMapping to assign users to a Studio when
+    -- you use IAM Identity Center authentication. For instructions on how to assign users to a
+    -- Studio when you use IAM authentication, see Assign a user or group to your EMR Studio.
     createStudioSessionMapping: function(Client, types.CreateStudioSessionMappingInput): types.CreateStudioSessionMappingOutput, table
+    -- Deletes a security configuration.
     deleteSecurityConfiguration: function(Client, types.DeleteSecurityConfigurationInput): types.DeleteSecurityConfigurationOutput, table
+    -- Removes an Amazon EMR Studio from the Studio metadata store.
     deleteStudio: function(Client, types.DeleteStudioInput): types.DeleteStudioOutput, table
+    -- Removes a user or group from an Amazon EMR Studio.
     deleteStudioSessionMapping: function(Client, types.DeleteStudioSessionMappingInput): types.DeleteStudioSessionMappingOutput, table
+    -- Provides cluster-level details including status, hardware and software configuration,
+    -- VPC settings, and so on.
     describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    -- This API is no longer supported and will eventually be removed. We recommend you use
+    -- ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and ListBootstrapActions instead.
+    -- DescribeJobFlows returns a list of job flows that match all of the supplied parameters.
+    -- The parameters can include a list of job flow IDs, job flow states, and restrictions on job
+    -- flow creation date and time.
+    -- Regardless of supplied parameters, only job flows created within the last two months are
+    -- returned.
+    -- If no parameters are supplied, then job flows matching either of the following criteria
+    -- are returned:
+    -- Job flows created and completed in the last two weeks
+    -- Job flows created within the last two months that are in one of the following
+    -- states: RUNNING, WAITING, SHUTTING_DOWN,
+    -- STARTING
+    -- Amazon EMR can return a maximum of 512 job flow descriptions.
     describeJobFlows: function(Client, types.DescribeJobFlowsInput): types.DescribeJobFlowsOutput, table
+    -- Provides details of a notebook execution.
     describeNotebookExecution: function(Client, types.DescribeNotebookExecutionInput): types.DescribeNotebookExecutionOutput, table
+    -- Describes a persistent application user interface.
     describePersistentAppUI: function(Client, types.DescribePersistentAppUIInput): types.DescribePersistentAppUIOutput, table
+    -- Provides Amazon EMR release label details, such as the releases available the
+    -- Region where the API request is run, and the available applications for a specific Amazon EMR release label. Can also list Amazon EMR releases that support a
+    -- specified version of Spark.
     describeReleaseLabel: function(Client, types.DescribeReleaseLabelInput): types.DescribeReleaseLabelOutput, table
+    -- Provides the details of a security configuration by returning the configuration
+    -- JSON.
     describeSecurityConfiguration: function(Client, types.DescribeSecurityConfigurationInput): types.DescribeSecurityConfigurationOutput, table
+    -- Provides more detail about the cluster step.
     describeStep: function(Client, types.DescribeStepInput): types.DescribeStepOutput, table
+    -- Returns details for the specified Amazon EMR Studio including ID, Name, VPC,
+    -- Studio access URL, and so on.
     describeStudio: function(Client, types.DescribeStudioInput): types.DescribeStudioOutput, table
+    -- Returns the auto-termination policy for an Amazon EMR cluster.
     getAutoTerminationPolicy: function(Client, types.GetAutoTerminationPolicyInput): types.GetAutoTerminationPolicyOutput, table
+    -- Returns the Amazon EMR block public access configuration for your Amazon Web Services account in the current Region. For more information see Configure Block
+    -- Public Access for Amazon EMR in the Amazon EMR
+    -- Management Guide.
     getBlockPublicAccessConfiguration: function(Client, types.GetBlockPublicAccessConfigurationInput): types.GetBlockPublicAccessConfigurationOutput, table
+    -- Provides temporary, HTTP basic credentials that are associated with a given runtime
+    -- IAM role and used by a cluster with fine-grained access control
+    -- activated. You can use these credentials to connect to cluster endpoints that support
+    -- username and password authentication.
     getClusterSessionCredentials: function(Client, types.GetClusterSessionCredentialsInput): types.GetClusterSessionCredentialsOutput, table
+    -- Fetches the attached managed scaling policy for an Amazon EMR cluster.
     getManagedScalingPolicy: function(Client, types.GetManagedScalingPolicyInput): types.GetManagedScalingPolicyOutput, table
+    -- The presigned URL properties for the cluster's application user interface.
     getOnClusterAppUIPresignedURL: function(Client, types.GetOnClusterAppUIPresignedURLInput): types.GetOnClusterAppUIPresignedURLOutput, table
+    -- The presigned URL properties for the cluster's application user interface.
     getPersistentAppUIPresignedURL: function(Client, types.GetPersistentAppUIPresignedURLInput): types.GetPersistentAppUIPresignedURLOutput, table
+    -- Fetches mapping details for the specified Amazon EMR Studio and identity (user
+    -- or group).
     getStudioSessionMapping: function(Client, types.GetStudioSessionMappingInput): types.GetStudioSessionMappingOutput, table
+    -- Provides information about the bootstrap actions associated with a cluster.
     listBootstrapActions: function(Client, types.ListBootstrapActionsInput): types.ListBootstrapActionsOutput, table
+    -- Provides the status of all clusters visible to this Amazon Web Services account. Allows
+    -- you to filter the list of clusters based on certain criteria; for example, filtering by
+    -- cluster creation date and time or by status. This call returns a maximum of 50 clusters in
+    -- unsorted order per call, but returns a marker to track the paging of the cluster list
+    -- across multiple ListClusters calls.
     listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    -- Lists all available details about the instance fleets in a cluster.
+    -- The instance fleet configuration is available only in Amazon EMR releases
+    -- 4.8.0 and later, excluding 5.0.x versions.
     listInstanceFleets: function(Client, types.ListInstanceFleetsInput): types.ListInstanceFleetsOutput, table
+    -- Provides all available details about the instance groups in a cluster.
     listInstanceGroups: function(Client, types.ListInstanceGroupsInput): types.ListInstanceGroupsOutput, table
+    -- Provides information for all active Amazon EC2 instances and Amazon EC2
+    -- instances terminated in the last 30 days, up to a maximum of 2,000. Amazon EC2
+    -- instances in any of the following states are considered active: AWAITING_FULFILLMENT,
+    -- PROVISIONING, BOOTSTRAPPING, RUNNING.
     listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    -- Provides summaries of all notebook executions. You can filter the list based on multiple
+    -- criteria such as status, time range, and editor id. Returns a maximum of 50 notebook
+    -- executions and a marker to track the paging of a longer notebook execution list across
+    -- multiple ListNotebookExecutions calls.
     listNotebookExecutions: function(Client, types.ListNotebookExecutionsInput): types.ListNotebookExecutionsOutput, table
+    -- Retrieves release labels of Amazon EMR services in the Region where the API is
+    -- called.
     listReleaseLabels: function(Client, types.ListReleaseLabelsInput): types.ListReleaseLabelsOutput, table
+    -- Lists all the security configurations visible to this account, providing their creation
+    -- dates and times, and their names. This call returns a maximum of 50 clusters per call, but
+    -- returns a marker to track the paging of the cluster list across multiple
+    -- ListSecurityConfigurations calls.
     listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput): types.ListSecurityConfigurationsOutput, table
+    -- Provides a list of steps for the cluster in reverse order unless you specify
+    -- stepIds with the request or filter by StepStates. You can
+    -- specify a maximum of 10 stepIDs. The CLI automatically
+    -- paginates results to return a list greater than 50 steps. To return more than 50 steps
+    -- using the CLI, specify a Marker, which is a pagination token
+    -- that indicates the next set of steps to retrieve.
     listSteps: function(Client, types.ListStepsInput): types.ListStepsOutput, table
+    -- Returns a list of all Amazon EMR Studios associated with the Amazon Web Services account. The list includes details such as ID, Studio Access URL, and
+    -- creation time for each Studio.
     listStudios: function(Client, types.ListStudiosInput): types.ListStudiosOutput, table
+    -- Returns a list of all user or group session mappings for the Amazon EMR Studio
+    -- specified by StudioId.
     listStudioSessionMappings: function(Client, types.ListStudioSessionMappingsInput): types.ListStudioSessionMappingsOutput, table
+    -- A list of the instance types that Amazon EMR supports. You can filter the
+    -- list by Amazon Web Services Region and Amazon EMR release.
     listSupportedInstanceTypes: function(Client, types.ListSupportedInstanceTypesInput): types.ListSupportedInstanceTypesOutput, table
+    -- Modifies the number of steps that can be executed concurrently for the cluster specified
+    -- using ClusterID.
     modifyCluster: function(Client, types.ModifyClusterInput): types.ModifyClusterOutput, table
+    -- Modifies the target On-Demand and target Spot capacities for the instance fleet with the
+    -- specified InstanceFleetID within the cluster specified using ClusterID. The call either
+    -- succeeds or fails atomically.
+    -- The instance fleet configuration is available only in Amazon EMR releases
+    -- 4.8.0 and later, excluding 5.0.x versions.
     modifyInstanceFleet: function(Client, types.ModifyInstanceFleetInput): types.ModifyInstanceFleetOutput, table
+    -- ModifyInstanceGroups modifies the number of nodes and configuration settings of an
+    -- instance group. The input parameters include the new target instance count for the group
+    -- and the instance group ID. The call will either succeed or fail atomically.
     modifyInstanceGroups: function(Client, types.ModifyInstanceGroupsInput): types.ModifyInstanceGroupsOutput, table
+    -- Creates or updates an automatic scaling policy for a core instance group or task
+    -- instance group in an Amazon EMR cluster. The automatic scaling policy defines how
+    -- an instance group dynamically adds and terminates Amazon EC2 instances in response
+    -- to the value of a CloudWatch metric.
     putAutoScalingPolicy: function(Client, types.PutAutoScalingPolicyInput): types.PutAutoScalingPolicyOutput, table
+    -- Auto-termination is supported in Amazon EMR releases 5.30.0 and 6.1.0 and
+    -- later. For more information, see Using an
+    -- auto-termination policy.
+    -- Creates or updates an auto-termination policy for an Amazon EMR cluster. An
+    -- auto-termination policy defines the amount of idle time in seconds after which a cluster
+    -- automatically terminates. For alternative cluster termination options, see Control
+    -- cluster termination.
     putAutoTerminationPolicy: function(Client, types.PutAutoTerminationPolicyInput): types.PutAutoTerminationPolicyOutput, table
+    -- Creates or updates an Amazon EMR block public access configuration for your
+    -- Amazon Web Services account in the current Region. For more information see Configure Block
+    -- Public Access for Amazon EMR in the Amazon EMR
+    -- Management Guide.
     putBlockPublicAccessConfiguration: function(Client, types.PutBlockPublicAccessConfigurationInput): types.PutBlockPublicAccessConfigurationOutput, table
+    -- Creates or updates a managed scaling policy for an Amazon EMR cluster. The
+    -- managed scaling policy defines the limits for resources, such as Amazon EC2
+    -- instances that can be added or terminated from a cluster. The policy only applies to the
+    -- core and task nodes. The master node cannot be scaled after initial configuration.
     putManagedScalingPolicy: function(Client, types.PutManagedScalingPolicyInput): types.PutManagedScalingPolicyOutput, table
+    -- Removes an automatic scaling policy from a specified instance group within an Amazon EMR cluster.
     removeAutoScalingPolicy: function(Client, types.RemoveAutoScalingPolicyInput): types.RemoveAutoScalingPolicyOutput, table
+    -- Removes an auto-termination policy from an Amazon EMR cluster.
     removeAutoTerminationPolicy: function(Client, types.RemoveAutoTerminationPolicyInput): types.RemoveAutoTerminationPolicyOutput, table
+    -- Removes a managed scaling policy from a specified Amazon EMR cluster.
     removeManagedScalingPolicy: function(Client, types.RemoveManagedScalingPolicyInput): types.RemoveManagedScalingPolicyOutput, table
+    -- Removes tags from an Amazon EMR resource, such as a cluster or Amazon EMR Studio. Tags make it easier to associate resources in various ways, such as grouping
+    -- clusters to track your Amazon EMR resource allocation costs. For more information,
+    -- see Tag
+    -- Clusters.
+    -- The following example removes the stack tag with value Prod from a cluster:
     removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    -- RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the
+    -- steps specified. After the steps complete, the cluster stops and the HDFS partition is
+    -- lost. To prevent loss of data, configure the last step of the job flow to store results in
+    -- Amazon S3. If the JobFlowInstancesConfig
+    -- KeepJobFlowAliveWhenNoSteps parameter is set to TRUE, the cluster
+    -- transitions to the WAITING state rather than shutting down after the steps have completed.
+    -- For additional protection, you can set the JobFlowInstancesConfig
+    -- TerminationProtected parameter to TRUE to lock the cluster and
+    -- prevent it from being terminated by API call, user intervention, or in the event of a job
+    -- flow error.
+    -- A maximum of 256 steps are allowed in each job flow.
+    -- If your cluster is long-running (such as a Hive data warehouse) or complex, you may
+    -- require more than 256 steps to process your data. You can bypass the 256-step limitation in
+    -- various ways, including using the SSH shell to connect to the master node and submitting
+    -- queries directly to the software running on the master node, such as Hive and
+    -- Hadoop.
+    -- For long-running clusters, we recommend that you periodically store your results.
+    -- The instance fleets configuration is available only in Amazon EMR releases
+    -- 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain
+    -- InstanceFleets parameters or InstanceGroups parameters, but not both.
     runJobFlow: function(Client, types.RunJobFlowInput): types.RunJobFlowOutput, table
+    -- You can use the SetKeepJobFlowAliveWhenNoSteps to configure a cluster (job flow) to terminate after the step execution, i.e., all your
+    -- steps are executed. If you want a transient cluster that shuts down after the last of the current executing steps are completed,
+    -- you can configure SetKeepJobFlowAliveWhenNoSteps to false. If you want a long running cluster, configure SetKeepJobFlowAliveWhenNoSteps to true.
+    -- For more information, see Managing Cluster Termination in the Amazon EMR Management Guide.
     setKeepJobFlowAliveWhenNoSteps: function(Client, types.SetKeepJobFlowAliveWhenNoStepsInput): types.SetKeepJobFlowAliveWhenNoStepsOutput, table
+    -- SetTerminationProtection locks a cluster (job flow) so the Amazon EC2 instances
+    -- in the cluster cannot be terminated by user intervention, an API call, or in the event of a
+    -- job-flow error. The cluster still terminates upon successful completion of the job flow.
+    -- Calling SetTerminationProtection on a cluster is similar to calling the
+    -- Amazon EC2
+    -- DisableAPITermination API on all Amazon EC2 instances in a
+    -- cluster.
+    -- SetTerminationProtection is used to prevent accidental termination of a
+    -- cluster and to ensure that in the event of an error, the instances persist so that you can
+    -- recover any data stored in their ephemeral instance storage.
+    -- To terminate a cluster that has been locked by setting
+    -- SetTerminationProtection to true, you must first unlock the
+    -- job flow by a subsequent call to SetTerminationProtection in which you set the
+    -- value to false.
+    -- For more information, see Managing Cluster
+    -- Termination in the Amazon EMR Management Guide.
     setTerminationProtection: function(Client, types.SetTerminationProtectionInput): types.SetTerminationProtectionOutput, table
+    -- Specify whether to enable unhealthy node replacement, which lets Amazon EMR gracefully
+    -- replace core nodes on a cluster if any nodes become unhealthy. For example, a node becomes
+    -- unhealthy if disk usage is above 90%. If unhealthy node replacement is on and TerminationProtected are off,
+    -- Amazon EMR immediately terminates the unhealthy core nodes. To use unhealthy node replacement
+    -- and retain unhealthy core nodes, use to turn on
+    -- termination protection. In such cases, Amazon EMR adds
+    -- the unhealthy nodes to a denylist, reducing job interruptions and failures.
+    -- If unhealthy node replacement is on, Amazon EMR
+    -- notifies YARN and other applications on the cluster to stop scheduling tasks
+    -- with these nodes, moves the data, and then terminates the nodes.
+    -- For more information, see graceful
+    -- node replacement in the Amazon EMR Management Guide.
     setUnhealthyNodeReplacement: function(Client, types.SetUnhealthyNodeReplacementInput): types.SetUnhealthyNodeReplacementOutput, table
+    -- The SetVisibleToAllUsers parameter is no longer supported. Your cluster may be
+    -- visible to all users in your account. To restrict cluster access using an IAM policy, see Identity and Access
+    -- Management for Amazon EMR.
+    -- Sets the Cluster$VisibleToAllUsers value for an Amazon EMR
+    -- cluster. When true, IAM principals in the Amazon Web Services account can perform Amazon EMR cluster actions that their IAM policies allow. When false, only the IAM
+    -- principal that created the cluster and the Amazon Web Services account root user can perform
+    -- Amazon EMR actions on the cluster, regardless of IAM permissions
+    -- policies attached to other IAM principals.
+    -- This action works on running clusters. When you create a cluster, use the RunJobFlowInput$VisibleToAllUsers parameter.
+    -- For more information, see Understanding the Amazon EMR Cluster VisibleToAllUsers Setting in the
+    -- Amazon EMR Management Guide.
     setVisibleToAllUsers: function(Client, types.SetVisibleToAllUsersInput): types.SetVisibleToAllUsersOutput, table
+    -- Starts a notebook execution.
     startNotebookExecution: function(Client, types.StartNotebookExecutionInput): types.StartNotebookExecutionOutput, table
+    -- Stops a notebook execution.
     stopNotebookExecution: function(Client, types.StopNotebookExecutionInput): types.StopNotebookExecutionOutput, table
+    -- TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut
+    -- down, any step not yet completed is canceled and the Amazon EC2 instances on which
+    -- the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.
+    -- The maximum number of clusters allowed is 10. The call to TerminateJobFlows
+    -- is asynchronous. Depending on the configuration of the cluster, it may take up to 1-5
+    -- minutes for the cluster to completely terminate and release allocated resources, such as
+    -- Amazon EC2 instances.
     terminateJobFlows: function(Client, types.TerminateJobFlowsInput): types.TerminateJobFlowsOutput, table
+    -- Updates an Amazon EMR Studio configuration, including attributes such as name,
+    -- description, and subnets.
     updateStudio: function(Client, types.UpdateStudioInput): types.UpdateStudioOutput, table
+    -- Updates the session policy attached to the user or group for the specified Amazon EMR Studio.
     updateStudioSessionMapping: function(Client, types.UpdateStudioSessionMappingInput): types.UpdateStudioSessionMappingOutput, table
 end
 

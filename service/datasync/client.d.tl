@@ -3,58 +3,265 @@
 local types = require("datasync.types")
 
 local record Client
+    -- Stops an DataSync task execution that's in progress. The transfer of some
+    -- files are abruptly interrupted. File contents that're transferred to the destination might be
+    -- incomplete or inconsistent with the source files.
+    -- However, if you start a new task execution using the same task and allow it to finish,
+    -- file content on the destination will be complete and consistent. This applies to other
+    -- unexpected failures that interrupt a task execution. In all of these cases, DataSync
+    -- successfully completes the transfer when you start the next task execution.
     cancelTaskExecution: function(Client, types.CancelTaskExecutionInput): types.CancelTaskExecutionOutput, table
+    -- Activates an DataSync agent that you deploy in your storage environment.
+    -- The activation process associates the agent with your Amazon Web Services account.
+    -- If you haven't deployed an agent yet, see Do I need a DataSync
+    -- agent?
     createAgent: function(Client, types.CreateAgentInput): types.CreateAgentOutput, table
+    -- Creates a transfer location for a Microsoft Azure Blob Storage
+    -- container. DataSync can use this location as a transfer source or destination.
+    -- You can make transfers with or without a DataSync agent that connects to your
+    -- container.
+    -- Before you begin, make sure you know how DataSync accesses Azure Blob Storage and works with access tiers and blob types.
     createLocationAzureBlob: function(Client, types.CreateLocationAzureBlobInput): types.CreateLocationAzureBlobOutput, table
+    -- Creates a transfer location for an Amazon EFS file system.
+    -- DataSync can use this location as a source or destination for transferring
+    -- data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses
+    -- Amazon EFS file systems.
     createLocationEfs: function(Client, types.CreateLocationEfsInput): types.CreateLocationEfsOutput, table
+    -- Creates a transfer location for an Amazon FSx for Lustre file
+    -- system. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses FSx for Lustre file systems.
     createLocationFsxLustre: function(Client, types.CreateLocationFsxLustreInput): types.CreateLocationFsxLustreOutput, table
+    -- Creates a transfer location for an Amazon FSx for NetApp ONTAP file
+    -- system. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses FSx for ONTAP file systems.
     createLocationFsxOntap: function(Client, types.CreateLocationFsxOntapInput): types.CreateLocationFsxOntapOutput, table
+    -- Creates a transfer location for an Amazon FSx for OpenZFS file
+    -- system. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses
+    -- FSx for OpenZFS file systems.
+    -- Request parameters related to SMB aren't supported with the
+    -- CreateLocationFsxOpenZfs operation.
     createLocationFsxOpenZfs: function(Client, types.CreateLocationFsxOpenZfsInput): types.CreateLocationFsxOpenZfsOutput, table
+    -- Creates a transfer location for an Amazon FSx for Windows File Server file
+    -- system. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses
+    -- FSx for Windows File Server file systems.
     createLocationFsxWindows: function(Client, types.CreateLocationFsxWindowsInput): types.CreateLocationFsxWindowsOutput, table
+    -- Creates a transfer location for a Hadoop Distributed File System
+    -- (HDFS). DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses HDFS
+    -- clusters.
     createLocationHdfs: function(Client, types.CreateLocationHdfsInput): types.CreateLocationHdfsOutput, table
+    -- Creates a transfer location for a Network File System (NFS) file
+    -- server. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync
+    -- accesses NFS file
+    -- servers.
     createLocationNfs: function(Client, types.CreateLocationNfsInput): types.CreateLocationNfsOutput, table
+    -- Creates a transfer location for an object storage system. DataSync can use this location as a source or destination for transferring data. You
+    -- can make transfers with or without a DataSync
+    -- agent.
+    -- Before you begin, make sure that you understand the prerequisites for DataSync to work with object storage systems.
     createLocationObjectStorage: function(Client, types.CreateLocationObjectStorageInput): types.CreateLocationObjectStorageOutput, table
+    -- Creates a transfer location for an Amazon S3 bucket.
+    -- DataSync can use this location as a source or destination for transferring
+    -- data.
+    -- Before you begin, make sure that you read the following topics:
+    -- Storage
+    -- class considerations with Amazon S3 locations
+    -- Evaluating S3 request costs when using DataSync
+    -- For more information, see Configuring
+    -- transfers with Amazon S3.
     createLocationS3: function(Client, types.CreateLocationS3Input): types.CreateLocationS3Output, table
+    -- Creates a transfer location for a Server Message Block (SMB) file
+    -- server. DataSync can use this location as a source or destination for
+    -- transferring data.
+    -- Before you begin, make sure that you understand how DataSync accesses SMB
+    -- file servers. For more information, see Providing DataSync access to SMB file servers.
     createLocationSmb: function(Client, types.CreateLocationSmbInput): types.CreateLocationSmbOutput, table
+    -- Configures a task, which defines where and how DataSync
+    -- transfers your data.
+    -- A task includes a source location, destination location, and transfer options (such as
+    -- bandwidth limits, scheduling, and more).
+    -- If you're planning to transfer data to or from an Amazon S3 location, review
+    -- how
+    -- DataSync can affect your S3 request charges and the DataSync pricing page before
+    -- you begin.
     createTask: function(Client, types.CreateTaskInput): types.CreateTaskOutput, table
+    -- Removes an DataSync agent resource from your Amazon Web Services account.
+    -- Keep in mind that this operation (which can't be undone) doesn't remove the agent's
+    -- virtual machine (VM) or Amazon EC2 instance from your storage environment. For next
+    -- steps, you can delete the VM or instance from your storage environment or reuse it to activate a new
+    -- agent.
     deleteAgent: function(Client, types.DeleteAgentInput): types.DeleteAgentOutput, table
+    -- Deletes a transfer location resource from DataSync.
     deleteLocation: function(Client, types.DeleteLocationInput): types.DeleteLocationOutput, table
+    -- Deletes a transfer task resource from DataSync.
     deleteTask: function(Client, types.DeleteTaskInput): types.DeleteTaskOutput, table
+    -- Returns information about an DataSync agent, such as its name, service
+    -- endpoint type, and status.
     describeAgent: function(Client, types.DescribeAgentInput): types.DescribeAgentOutput, table
+    -- Provides details about how an DataSync transfer location for Microsoft Azure
+    -- Blob Storage is configured.
     describeLocationAzureBlob: function(Client, types.DescribeLocationAzureBlobInput): types.DescribeLocationAzureBlobOutput, table
+    -- Provides details about how an DataSync transfer location for an Amazon EFS file system is configured.
     describeLocationEfs: function(Client, types.DescribeLocationEfsInput): types.DescribeLocationEfsOutput, table
+    -- Provides details about how an DataSync transfer location for an Amazon FSx for Lustre file system is configured.
     describeLocationFsxLustre: function(Client, types.DescribeLocationFsxLustreInput): types.DescribeLocationFsxLustreOutput, table
+    -- Provides details about how an DataSync transfer location for an Amazon FSx for NetApp ONTAP file system is configured.
+    -- If your location uses SMB, the DescribeLocationFsxOntap operation doesn't
+    -- actually return a Password.
     describeLocationFsxOntap: function(Client, types.DescribeLocationFsxOntapInput): types.DescribeLocationFsxOntapOutput, table
+    -- Provides details about how an DataSync transfer location for an Amazon FSx for OpenZFS file system is configured.
+    -- Response elements related to SMB aren't supported with the
+    -- DescribeLocationFsxOpenZfs operation.
     describeLocationFsxOpenZfs: function(Client, types.DescribeLocationFsxOpenZfsInput): types.DescribeLocationFsxOpenZfsOutput, table
+    -- Provides details about how an DataSync transfer location for an Amazon FSx for Windows File Server file system is configured.
     describeLocationFsxWindows: function(Client, types.DescribeLocationFsxWindowsInput): types.DescribeLocationFsxWindowsOutput, table
+    -- Provides details about how an DataSync transfer location for a Hadoop
+    -- Distributed File System (HDFS) is configured.
     describeLocationHdfs: function(Client, types.DescribeLocationHdfsInput): types.DescribeLocationHdfsOutput, table
+    -- Provides details about how an DataSync transfer location for a Network
+    -- File System (NFS) file server is configured.
     describeLocationNfs: function(Client, types.DescribeLocationNfsInput): types.DescribeLocationNfsOutput, table
+    -- Provides details about how an DataSync transfer location for an object
+    -- storage system is configured.
     describeLocationObjectStorage: function(Client, types.DescribeLocationObjectStorageInput): types.DescribeLocationObjectStorageOutput, table
+    -- Provides details about how an DataSync transfer location for an S3 bucket
+    -- is configured.
     describeLocationS3: function(Client, types.DescribeLocationS3Input): types.DescribeLocationS3Output, table
+    -- Provides details about how an DataSync transfer location for a Server
+    -- Message Block (SMB) file server is configured.
     describeLocationSmb: function(Client, types.DescribeLocationSmbInput): types.DescribeLocationSmbOutput, table
+    -- Provides information about a task, which defines where and how
+    -- DataSync transfers your data.
     describeTask: function(Client, types.DescribeTaskInput): types.DescribeTaskOutput, table
+    -- Provides information about an execution of your DataSync task. You can
+    -- use this operation to help monitor the progress of an ongoing data transfer or check the
+    -- results of the transfer.
+    -- Some DescribeTaskExecution response elements are only relevant to a
+    -- specific task mode. For information, see Understanding task mode differences and Understanding data
+    -- transfer performance counters.
     describeTaskExecution: function(Client, types.DescribeTaskExecutionInput): types.DescribeTaskExecutionOutput, table
+    -- Returns a list of DataSync agents that belong to an Amazon Web Services account in the Amazon Web Services Region specified in the request.
+    -- With pagination, you can reduce the number of agents returned in a response. If you get
+    -- a truncated list of agents in a response, the response contains a marker that you can specify
+    -- in your next request to fetch the next page of agents.
+    -- ListAgents is eventually consistent. This means the result of running the
+    -- operation might not reflect that you just created or deleted an agent. For example, if you
+    -- create an agent with CreateAgent and then
+    -- immediately run ListAgents, that agent might not show up in the list right away.
+    -- In situations like this, you can always confirm whether an agent has been created (or deleted)
+    -- by using DescribeAgent.
     listAgents: function(Client, types.ListAgentsInput): types.ListAgentsOutput, table
+    -- Returns a list of source and destination locations.
+    -- If you have more locations than are returned in a response (that is, the response
+    -- returns only a truncated list of your agents), the response contains a token that you can
+    -- specify in your next request to fetch the next page of locations.
     listLocations: function(Client, types.ListLocationsInput): types.ListLocationsOutput, table
+    -- Returns all the tags associated with an Amazon Web Services resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a list of executions for an DataSync transfer task.
     listTaskExecutions: function(Client, types.ListTaskExecutionsInput): types.ListTaskExecutionsOutput, table
+    -- Returns a list of the DataSync tasks you created.
     listTasks: function(Client, types.ListTasksInput): types.ListTasksOutput, table
+    -- Starts an DataSync transfer task. For each task, you can only run one task
+    -- execution at a time.
+    -- There are several steps to a task execution. For more information, see Task execution statuses.
+    -- If you're planning to transfer data to or from an Amazon S3 location, review
+    -- how
+    -- DataSync can affect your S3 request charges and the DataSync pricing page before
+    -- you begin.
     startTaskExecution: function(Client, types.StartTaskExecutionInput): types.StartTaskExecutionOutput, table
+    -- Applies a tag to an Amazon Web Services resource. Tags are
+    -- key-value pairs that can help you manage, filter, and search for your resources.
+    -- These include DataSync resources, such as locations, tasks, and task
+    -- executions.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from an Amazon Web Services resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the name of an DataSync agent.
     updateAgent: function(Client, types.UpdateAgentInput): types.UpdateAgentOutput, table
+    -- Modifies the following configurations of the Microsoft Azure Blob Storage transfer
+    -- location that you're using with DataSync.
+    -- For more information, see Configuring DataSync transfers with Azure Blob Storage.
     updateLocationAzureBlob: function(Client, types.UpdateLocationAzureBlobInput): types.UpdateLocationAzureBlobOutput, table
+    -- Modifies the following configuration parameters of the Amazon EFS transfer
+    -- location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with Amazon EFS.
     updateLocationEfs: function(Client, types.UpdateLocationEfsInput): types.UpdateLocationEfsOutput, table
+    -- Modifies the following configuration parameters of the Amazon FSx for Lustre
+    -- transfer location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with FSx for Lustre.
     updateLocationFsxLustre: function(Client, types.UpdateLocationFsxLustreInput): types.UpdateLocationFsxLustreOutput, table
+    -- Modifies the following configuration parameters of the Amazon FSx for NetApp ONTAP
+    -- transfer location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with FSx for ONTAP.
     updateLocationFsxOntap: function(Client, types.UpdateLocationFsxOntapInput): types.UpdateLocationFsxOntapOutput, table
+    -- Modifies the following configuration parameters of the Amazon FSx for OpenZFS
+    -- transfer location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with FSx for OpenZFS.
+    -- Request parameters related to SMB aren't supported with the
+    -- UpdateLocationFsxOpenZfs operation.
     updateLocationFsxOpenZfs: function(Client, types.UpdateLocationFsxOpenZfsInput): types.UpdateLocationFsxOpenZfsOutput, table
+    -- Modifies the following configuration parameters of the Amazon FSx for Windows File Server
+    -- transfer location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with FSx for Windows File Server.
     updateLocationFsxWindows: function(Client, types.UpdateLocationFsxWindowsInput): types.UpdateLocationFsxWindowsOutput, table
+    -- Modifies the following configuration parameters of the Hadoop Distributed File System
+    -- (HDFS) transfer location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with an HDFS cluster.
     updateLocationHdfs: function(Client, types.UpdateLocationHdfsInput): types.UpdateLocationHdfsOutput, table
+    -- Modifies the following configuration parameters of the Network File System (NFS) transfer
+    -- location that you're using with DataSync.
+    -- For more information, see Configuring transfers with an NFS
+    -- file server.
     updateLocationNfs: function(Client, types.UpdateLocationNfsInput): types.UpdateLocationNfsOutput, table
+    -- Modifies the following configuration parameters of the object storage transfer location
+    -- that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with an object storage system.
     updateLocationObjectStorage: function(Client, types.UpdateLocationObjectStorageInput): types.UpdateLocationObjectStorageOutput, table
+    -- Modifies the following configuration parameters of the Amazon S3 transfer location
+    -- that you're using with DataSync.
+    -- Before you begin, make sure that you read the following topics:
+    -- Storage
+    -- class considerations with Amazon S3 locations
+    -- Evaluating S3 request costs when using DataSync
     updateLocationS3: function(Client, types.UpdateLocationS3Input): types.UpdateLocationS3Output, table
+    -- Modifies the following configuration parameters of the Server Message Block (SMB) transfer
+    -- location that you're using with DataSync.
+    -- For more information, see Configuring DataSync
+    -- transfers with an SMB file server.
     updateLocationSmb: function(Client, types.UpdateLocationSmbInput): types.UpdateLocationSmbOutput, table
+    -- Updates the configuration of a task, which defines where and how
+    -- DataSync transfers your data.
     updateTask: function(Client, types.UpdateTaskInput): types.UpdateTaskOutput, table
+    -- Updates the configuration of a running DataSync task execution.
+    -- Currently, the only Option that you can modify with
+    -- UpdateTaskExecution is
+    -- BytesPerSecond
+    -- , which throttles bandwidth for a running or queued task
+    -- execution.
     updateTaskExecution: function(Client, types.UpdateTaskExecutionInput): types.UpdateTaskExecutionOutput, table
 end
 

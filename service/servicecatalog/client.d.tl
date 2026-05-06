@@ -3,95 +3,405 @@
 local types = require("servicecatalog.types")
 
 local record Client
+    -- Accepts an offer to share the specified portfolio.
     acceptPortfolioShare: function(Client, types.AcceptPortfolioShareInput): types.AcceptPortfolioShareOutput, table
+    -- Associates the specified budget with the specified resource.
     associateBudgetWithResource: function(Client, types.AssociateBudgetWithResourceInput): types.AssociateBudgetWithResourceOutput, table
+    -- Associates the specified principal ARN with the specified portfolio.
+    -- If you share the portfolio with principal name sharing enabled, the PrincipalARN association is
+    -- included in the share.
+    -- The PortfolioID, PrincipalARN, and PrincipalType parameters are
+    -- required.
+    -- You can associate a maximum of 10 Principals with a portfolio using PrincipalType as IAM_PATTERN.
+    -- When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is
+    -- then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin,
+    -- but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal
+    -- name association for the portfolio. Although this user may not know which principal names are associated through
+    -- Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then
+    -- Service Catalog recommends using PrincipalType as IAM. With this configuration,
+    -- the PrincipalARN must already exist in the recipient account before it can be associated.
     associatePrincipalWithPortfolio: function(Client, types.AssociatePrincipalWithPortfolioInput): types.AssociatePrincipalWithPortfolioOutput, table
+    -- Associates the specified product with the specified portfolio.
+    -- A delegated admin is authorized to invoke this command.
     associateProductWithPortfolio: function(Client, types.AssociateProductWithPortfolioInput): types.AssociateProductWithPortfolioOutput, table
+    -- Associates a self-service action with a provisioning artifact.
     associateServiceActionWithProvisioningArtifact: function(Client, types.AssociateServiceActionWithProvisioningArtifactInput): types.AssociateServiceActionWithProvisioningArtifactOutput, table
+    -- Associate the specified TagOption with the specified portfolio or product.
     associateTagOptionWithResource: function(Client, types.AssociateTagOptionWithResourceInput): types.AssociateTagOptionWithResourceOutput, table
+    -- Associates multiple self-service actions with provisioning artifacts.
     batchAssociateServiceActionWithProvisioningArtifact: function(Client, types.BatchAssociateServiceActionWithProvisioningArtifactInput): types.BatchAssociateServiceActionWithProvisioningArtifactOutput, table
+    -- Disassociates a batch of self-service actions from the specified provisioning artifact.
     batchDisassociateServiceActionFromProvisioningArtifact: function(Client, types.BatchDisassociateServiceActionFromProvisioningArtifactInput): types.BatchDisassociateServiceActionFromProvisioningArtifactOutput, table
+    -- Copies the specified source product to the specified target product or a new
+    -- product.
+    -- You can copy a product to the same account or another account. You can copy a product
+    -- to the same Region or another Region. If you copy a product to another account, you must
+    -- first share the product in a portfolio using CreatePortfolioShare.
+    -- This operation is performed asynchronously. To track the progress of the
+    -- operation, use DescribeCopyProductStatus.
     copyProduct: function(Client, types.CopyProductInput): types.CopyProductOutput, table
+    -- Creates a constraint.
+    -- A delegated admin is authorized to invoke this command.
     createConstraint: function(Client, types.CreateConstraintInput): types.CreateConstraintOutput, table
+    -- Creates a portfolio.
+    -- A delegated admin is authorized to invoke this command.
     createPortfolio: function(Client, types.CreatePortfolioInput): types.CreatePortfolioOutput, table
+    -- Shares the specified portfolio with the specified account or organization node.
+    -- Shares to an organization node can only be created by the management account of an
+    -- organization or by a delegated administrator. You can share portfolios to an organization,
+    -- an organizational unit, or a specific account.
+    -- Note that if a delegated admin is de-registered, they can no longer create portfolio shares.
+    -- AWSOrganizationsAccess must be enabled in order to create a portfolio share to an organization node.
+    -- You can't share a shared resource, including portfolios that contain a shared product.
+    -- If the portfolio share with the specified account or organization node already exists, this action will have no effect
+    -- and will not return an error. To update an existing share, you must use the UpdatePortfolioShare API instead.
+    -- When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is
+    -- then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin,
+    -- but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal
+    -- name association for the portfolio. Although this user may not know which principal names are associated through
+    -- Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then
+    -- Service Catalog recommends using PrincipalType as IAM. With this configuration,
+    -- the PrincipalARN must already exist in the recipient account before it can be associated.
     createPortfolioShare: function(Client, types.CreatePortfolioShareInput): types.CreatePortfolioShareOutput, table
+    -- Creates a product.
+    -- A delegated admin is authorized to invoke this command.
+    -- The user or role that performs this operation must have the
+    -- cloudformation:GetTemplate IAM policy permission. This policy permission is
+    -- required when using the ImportFromPhysicalId template source in the
+    -- information data section.
     createProduct: function(Client, types.CreateProductInput): types.CreateProductOutput, table
+    -- Creates a plan.
+    -- A plan includes the list of resources to be
+    -- created (when provisioning a new product) or modified (when updating a provisioned product)
+    -- when the plan is executed.
+    -- You can create one plan for each provisioned product. To create a plan for an existing
+    -- provisioned product, the product status must be AVAILABLE or TAINTED.
+    -- To view the resource changes in the change set, use DescribeProvisionedProductPlan.
+    -- To create or modify the provisioned product, use ExecuteProvisionedProductPlan.
     createProvisionedProductPlan: function(Client, types.CreateProvisionedProductPlanInput): types.CreateProvisionedProductPlanOutput, table
+    -- Creates a provisioning artifact (also known as a version) for the specified product.
+    -- You cannot create a provisioning artifact for a product that was shared with you.
+    -- The user or role that performs this operation must have the cloudformation:GetTemplate
+    -- IAM policy permission. This policy permission is required when using the
+    -- ImportFromPhysicalId template source in the information data section.
     createProvisioningArtifact: function(Client, types.CreateProvisioningArtifactInput): types.CreateProvisioningArtifactOutput, table
+    -- Creates a self-service action.
     createServiceAction: function(Client, types.CreateServiceActionInput): types.CreateServiceActionOutput, table
+    -- Creates a TagOption.
     createTagOption: function(Client, types.CreateTagOptionInput): types.CreateTagOptionOutput, table
+    -- Deletes the specified constraint.
+    -- A delegated admin is authorized to invoke this command.
     deleteConstraint: function(Client, types.DeleteConstraintInput): types.DeleteConstraintOutput, table
+    -- Deletes the specified portfolio.
+    -- You cannot delete a portfolio if it was shared with you or if it has associated
+    -- products, users, constraints, or shared accounts.
+    -- A delegated admin is authorized to invoke this command.
     deletePortfolio: function(Client, types.DeletePortfolioInput): types.DeletePortfolioOutput, table
+    -- Stops sharing the specified portfolio with the specified account or organization
+    -- node. Shares to an organization node can only be deleted by the management account of an
+    -- organization or by a delegated administrator.
+    -- Note that if a delegated admin is de-registered, portfolio shares created from that account are removed.
     deletePortfolioShare: function(Client, types.DeletePortfolioShareInput): types.DeletePortfolioShareOutput, table
+    -- Deletes the specified product.
+    -- You cannot delete a product if it was shared with you or is associated with a portfolio.
+    -- A delegated admin is authorized to invoke this command.
     deleteProduct: function(Client, types.DeleteProductInput): types.DeleteProductOutput, table
+    -- Deletes the specified plan.
     deleteProvisionedProductPlan: function(Client, types.DeleteProvisionedProductPlanInput): types.DeleteProvisionedProductPlanOutput, table
+    -- Deletes the specified provisioning artifact (also known as a version) for the specified product.
+    -- You cannot delete a provisioning artifact associated with a product that was shared with you.
+    -- You cannot delete the last provisioning artifact for a product, because a product must have at
+    -- least one provisioning artifact.
     deleteProvisioningArtifact: function(Client, types.DeleteProvisioningArtifactInput): types.DeleteProvisioningArtifactOutput, table
+    -- Deletes a self-service action.
     deleteServiceAction: function(Client, types.DeleteServiceActionInput): types.DeleteServiceActionOutput, table
+    -- Deletes the specified TagOption.
+    -- You cannot delete a TagOption if it is associated with a product or portfolio.
     deleteTagOption: function(Client, types.DeleteTagOptionInput): types.DeleteTagOptionOutput, table
+    -- Gets information about the specified constraint.
     describeConstraint: function(Client, types.DescribeConstraintInput): types.DescribeConstraintOutput, table
+    -- Gets the status of the specified copy product operation.
     describeCopyProductStatus: function(Client, types.DescribeCopyProductStatusInput): types.DescribeCopyProductStatusOutput, table
+    -- Gets information about the specified portfolio.
+    -- A delegated admin is authorized to invoke this command.
     describePortfolio: function(Client, types.DescribePortfolioInput): types.DescribePortfolioOutput, table
+    -- Returns a summary of each of the portfolio shares that were created for the specified portfolio.
+    -- You can use this API to determine which accounts or organizational nodes this
+    -- portfolio have been shared, whether the recipient entity has imported the share, and
+    -- whether TagOptions are included with the share.
+    -- The PortfolioId and Type parameters are both required.
     describePortfolioShares: function(Client, types.DescribePortfolioSharesInput): types.DescribePortfolioSharesOutput, table
+    -- Gets the status of the specified portfolio share operation. This API can only be called
+    -- by the management account in the organization or by a delegated admin.
     describePortfolioShareStatus: function(Client, types.DescribePortfolioShareStatusInput): types.DescribePortfolioShareStatusOutput, table
+    -- Gets information about the specified product.
+    -- Running this operation
+    -- with administrator access
+    -- results
+    -- in a failure.
+    -- DescribeProductAsAdmin should be used instead.
     describeProduct: function(Client, types.DescribeProductInput): types.DescribeProductOutput, table
+    -- Gets information about the specified product. This operation is run with administrator access.
     describeProductAsAdmin: function(Client, types.DescribeProductAsAdminInput): types.DescribeProductAsAdminOutput, table
+    -- Gets information about the specified product.
     describeProductView: function(Client, types.DescribeProductViewInput): types.DescribeProductViewOutput, table
+    -- Gets information about the specified provisioned product.
     describeProvisionedProduct: function(Client, types.DescribeProvisionedProductInput): types.DescribeProvisionedProductOutput, table
+    -- Gets information about the resource changes for the specified plan.
     describeProvisionedProductPlan: function(Client, types.DescribeProvisionedProductPlanInput): types.DescribeProvisionedProductPlanOutput, table
+    -- Gets information about the specified provisioning artifact (also known as a version) for the specified product.
     describeProvisioningArtifact: function(Client, types.DescribeProvisioningArtifactInput): types.DescribeProvisioningArtifactOutput, table
+    -- Gets information about the configuration required to provision the specified product using
+    -- the specified provisioning artifact.
+    -- If the output contains a TagOption key with an empty list of values, there is a
+    -- TagOption conflict for that key. The end user cannot take action to fix the conflict, and
+    -- launch is not blocked. In subsequent calls to ProvisionProduct,
+    -- do not include conflicted TagOption keys as tags, or this causes the error
+    -- "Parameter validation failed: Missing required parameter in Tags[N]:Value".
+    -- Tag the provisioned product with the value sc-tagoption-conflict-portfolioId-productId.
     describeProvisioningParameters: function(Client, types.DescribeProvisioningParametersInput): types.DescribeProvisioningParametersOutput, table
+    -- Gets information about the specified request operation.
+    -- Use this operation after calling a request operation (for example, ProvisionProduct,
+    -- TerminateProvisionedProduct, or UpdateProvisionedProduct).
+    -- If a provisioned product was transferred to a new owner using UpdateProvisionedProductProperties, the new owner
+    -- will be able to describe all past records for that product. The previous owner will no longer be able to describe the records, but will be able to
+    -- use ListRecordHistory to see the product's history from when he was the owner.
     describeRecord: function(Client, types.DescribeRecordInput): types.DescribeRecordOutput, table
+    -- Describes a self-service action.
     describeServiceAction: function(Client, types.DescribeServiceActionInput): types.DescribeServiceActionOutput, table
+    -- Finds the default parameters for a specific self-service action on a specific provisioned product and returns a map of the results to the user.
     describeServiceActionExecutionParameters: function(Client, types.DescribeServiceActionExecutionParametersInput): types.DescribeServiceActionExecutionParametersOutput, table
+    -- Gets information about the specified TagOption.
     describeTagOption: function(Client, types.DescribeTagOptionInput): types.DescribeTagOptionOutput, table
+    -- Disable portfolio sharing through the Organizations service. This command will not
+    -- delete your current shares, but prevents you from creating new shares throughout your
+    -- organization. Current shares are not kept in sync with your organization structure if the structure
+    -- changes after calling this API. Only the management account in the organization can call this API.
+    -- You cannot call this API if there are active delegated administrators in the organization.
+    -- Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess.
+    -- If you share an Service Catalog portfolio in an organization within
+    -- Organizations, and then disable Organizations access for Service Catalog,
+    -- the portfolio access permissions will not sync with the latest changes to the organization
+    -- structure. Specifically, accounts that you removed from the organization after
+    -- disabling Service Catalog access will retain access to the previously shared portfolio.
     disableAWSOrganizationsAccess: function(Client, types.DisableAWSOrganizationsAccessInput): types.DisableAWSOrganizationsAccessOutput, table
+    -- Disassociates the specified budget from the specified resource.
     disassociateBudgetFromResource: function(Client, types.DisassociateBudgetFromResourceInput): types.DisassociateBudgetFromResourceOutput, table
+    -- Disassociates a previously associated principal ARN from a specified
+    -- portfolio.
+    -- The PrincipalType and PrincipalARN must match the
+    -- AssociatePrincipalWithPortfolio call request details. For example,
+    -- to disassociate an association created with a PrincipalARN of PrincipalType
+    -- IAM you must use the PrincipalType IAM when calling DisassociatePrincipalFromPortfolio.
+    -- For portfolios that have been shared with principal name sharing enabled: after disassociating a principal,
+    -- share recipient accounts will no longer be able to provision products in this portfolio using a role matching the name
+    -- of the associated principal.
+    -- For more information, review associate-principal-with-portfolio
+    -- in the Amazon Web Services CLI Command Reference.
+    -- If you disassociate a principal from a portfolio, with PrincipalType as IAM, the same principal will
+    -- still have access to the portfolio if it matches one of the associated principals of type IAM_PATTERN.
+    -- To fully remove access for a principal, verify all the associated Principals of type IAM_PATTERN,
+    -- and then ensure you disassociate any IAM_PATTERN principals that match the principal
+    -- whose access you are removing.
     disassociatePrincipalFromPortfolio: function(Client, types.DisassociatePrincipalFromPortfolioInput): types.DisassociatePrincipalFromPortfolioOutput, table
+    -- Disassociates the specified product from the specified portfolio.
+    -- A delegated admin is authorized to invoke this command.
     disassociateProductFromPortfolio: function(Client, types.DisassociateProductFromPortfolioInput): types.DisassociateProductFromPortfolioOutput, table
+    -- Disassociates the specified self-service action association from the specified provisioning artifact.
     disassociateServiceActionFromProvisioningArtifact: function(Client, types.DisassociateServiceActionFromProvisioningArtifactInput): types.DisassociateServiceActionFromProvisioningArtifactOutput, table
+    -- Disassociates the specified TagOption from the specified resource.
     disassociateTagOptionFromResource: function(Client, types.DisassociateTagOptionFromResourceInput): types.DisassociateTagOptionFromResourceOutput, table
+    -- Enable portfolio sharing feature through Organizations. This API will allow Service Catalog to receive updates on your organization in order to sync your shares with the
+    -- current structure. This API can only be called by the management account in the organization.
+    -- When you call this API, Service Catalog calls organizations:EnableAWSServiceAccess on your behalf so that your shares stay in sync with any changes in your Organizations structure.
+    -- Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess.
+    -- If you have previously disabled Organizations access for Service Catalog, and then
+    -- enable access again, the portfolio access permissions might not sync with the latest changes to
+    -- the organization structure. Specifically, accounts that you removed from the organization after
+    -- disabling Service Catalog access, and before you enabled access again, can retain access to the
+    -- previously shared portfolio. As a result, an account that has been removed from the organization
+    -- might still be able to create or manage Amazon Web Services resources when it is no longer
+    -- authorized to do so. Amazon Web Services is working to resolve this issue.
     enableAWSOrganizationsAccess: function(Client, types.EnableAWSOrganizationsAccessInput): types.EnableAWSOrganizationsAccessOutput, table
+    -- Provisions or modifies a product based on the resource changes for the specified plan.
     executeProvisionedProductPlan: function(Client, types.ExecuteProvisionedProductPlanInput): types.ExecuteProvisionedProductPlanOutput, table
+    -- Executes a self-service action against a provisioned product.
     executeProvisionedProductServiceAction: function(Client, types.ExecuteProvisionedProductServiceActionInput): types.ExecuteProvisionedProductServiceActionOutput, table
+    -- Get the Access Status for Organizations portfolio share feature. This API can only be
+    -- called by the management account in the organization or by a delegated admin.
     getAWSOrganizationsAccessStatus: function(Client, types.GetAWSOrganizationsAccessStatusInput): types.GetAWSOrganizationsAccessStatusOutput, table
+    -- This API takes either a ProvisonedProductId or a ProvisionedProductName, along with a list of one or more output keys, and responds with the key/value pairs of those outputs.
     getProvisionedProductOutputs: function(Client, types.GetProvisionedProductOutputsInput): types.GetProvisionedProductOutputsOutput, table
+    -- Requests the import of a resource as an Service Catalog provisioned product
+    -- that is associated to an Service Catalog product and provisioning artifact.
+    -- Once imported, all supported governance actions are supported on the provisioned product.
+    -- Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets,
+    -- and non-root nested stacks, are not supported.
+    -- The CloudFormation stack must have one
+    -- of the following statuses
+    -- to be imported: CREATE_COMPLETE, UPDATE_COMPLETE,
+    -- UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE, and
+    -- IMPORT_ROLLBACK_COMPLETE.
+    -- Import of the resource requires that the CloudFormation stack template matches
+    -- the associated Service Catalog product provisioning artifact.
+    -- When you import an existing CloudFormation stack
+    -- into a portfolio, Service Catalog does not apply the product's associated constraints
+    -- during the import process. Service Catalog applies the constraints
+    -- after you call UpdateProvisionedProduct for the provisioned product.
+    -- The user or role that performs this operation must have the cloudformation:GetTemplate
+    -- and cloudformation:DescribeStacks IAM policy permissions.
+    -- You can only import one provisioned product at a time. The product's CloudFormation stack must have the
+    -- IMPORT_COMPLETE status before you import another.
     importAsProvisionedProduct: function(Client, types.ImportAsProvisionedProductInput): types.ImportAsProvisionedProductOutput, table
+    -- Lists all imported portfolios for which account-to-account shares were accepted by
+    -- this account. By specifying the PortfolioShareType, you can list portfolios for which
+    -- organizational shares were accepted by this account.
     listAcceptedPortfolioShares: function(Client, types.ListAcceptedPortfolioSharesInput): types.ListAcceptedPortfolioSharesOutput, table
+    -- Lists all the budgets associated to the specified resource.
     listBudgetsForResource: function(Client, types.ListBudgetsForResourceInput): types.ListBudgetsForResourceOutput, table
+    -- Lists the constraints for the specified portfolio and product.
     listConstraintsForPortfolio: function(Client, types.ListConstraintsForPortfolioInput): types.ListConstraintsForPortfolioOutput, table
+    -- Lists the paths
+    -- to the specified product.
+    -- A path describes
+    -- how the user
+    -- gets access
+    -- to a specified product
+    -- and is necessary
+    -- when provisioning a product.
+    -- A path also determines the constraints
+    -- that are put on a product.
+    -- A path is dependent
+    -- on a specific product, porfolio, and principal.
+    -- When provisioning a product
+    -- that's been added
+    -- to a portfolio,
+    -- you must grant your user, group, or role access
+    -- to the portfolio.
+    -- For more information,
+    -- see Granting users access
+    -- in the Service Catalog User Guide.
     listLaunchPaths: function(Client, types.ListLaunchPathsInput): types.ListLaunchPathsOutput, table
+    -- Lists the organization nodes that have access to the specified portfolio. This API can
+    -- only be called by the management account in the organization or by a delegated
+    -- admin.
+    -- If a delegated admin is de-registered, they can no longer perform this operation.
     listOrganizationPortfolioAccess: function(Client, types.ListOrganizationPortfolioAccessInput): types.ListOrganizationPortfolioAccessOutput, table
+    -- Lists the account IDs that have access to the specified portfolio.
+    -- A delegated admin can list the accounts that have access to the shared portfolio. Note that if a delegated admin is de-registered, they can no longer perform this operation.
     listPortfolioAccess: function(Client, types.ListPortfolioAccessInput): types.ListPortfolioAccessOutput, table
+    -- Lists all portfolios in the catalog.
     listPortfolios: function(Client, types.ListPortfoliosInput): types.ListPortfoliosOutput, table
+    -- Lists all portfolios that the specified product is associated with.
     listPortfoliosForProduct: function(Client, types.ListPortfoliosForProductInput): types.ListPortfoliosForProductOutput, table
+    -- Lists all PrincipalARNs and corresponding PrincipalTypes associated with the specified portfolio.
     listPrincipalsForPortfolio: function(Client, types.ListPrincipalsForPortfolioInput): types.ListPrincipalsForPortfolioOutput, table
+    -- Lists the plans for the specified provisioned product or all plans to which the user has access.
     listProvisionedProductPlans: function(Client, types.ListProvisionedProductPlansInput): types.ListProvisionedProductPlansOutput, table
+    -- Lists all provisioning artifacts (also known as versions) for the specified product.
     listProvisioningArtifacts: function(Client, types.ListProvisioningArtifactsInput): types.ListProvisioningArtifactsOutput, table
+    -- Lists all provisioning artifacts (also known as versions) for the specified self-service action.
     listProvisioningArtifactsForServiceAction: function(Client, types.ListProvisioningArtifactsForServiceActionInput): types.ListProvisioningArtifactsForServiceActionOutput, table
+    -- Lists the specified requests or all performed requests.
     listRecordHistory: function(Client, types.ListRecordHistoryInput): types.ListRecordHistoryOutput, table
+    -- Lists the resources associated with the specified TagOption.
     listResourcesForTagOption: function(Client, types.ListResourcesForTagOptionInput): types.ListResourcesForTagOptionOutput, table
+    -- Lists all self-service actions.
     listServiceActions: function(Client, types.ListServiceActionsInput): types.ListServiceActionsOutput, table
+    -- Returns a paginated list of self-service actions associated with the specified Product ID and Provisioning Artifact ID.
     listServiceActionsForProvisioningArtifact: function(Client, types.ListServiceActionsForProvisioningArtifactInput): types.ListServiceActionsForProvisioningArtifactOutput, table
+    -- Returns summary information about stack instances that are associated with the specified CFN_STACKSET type provisioned product. You can filter for stack instances that are associated with a specific Amazon Web Services account name or Region.
     listStackInstancesForProvisionedProduct: function(Client, types.ListStackInstancesForProvisionedProductInput): types.ListStackInstancesForProvisionedProductOutput, table
+    -- Lists the specified TagOptions or all TagOptions.
     listTagOptions: function(Client, types.ListTagOptionsInput): types.ListTagOptionsOutput, table
+    -- Notifies the result
+    -- of the provisioning engine execution.
     notifyProvisionProductEngineWorkflowResult: function(Client, types.NotifyProvisionProductEngineWorkflowResultInput): types.NotifyProvisionProductEngineWorkflowResultOutput, table
+    -- Notifies the result
+    -- of the terminate engine execution.
     notifyTerminateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyTerminateProvisionedProductEngineWorkflowResultInput): types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput, table
+    -- Notifies the result
+    -- of the update engine execution.
     notifyUpdateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyUpdateProvisionedProductEngineWorkflowResultInput): types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput, table
+    -- Provisions the specified product.
+    -- A provisioned product is a resourced instance
+    -- of a product.
+    -- For example,
+    -- provisioning a product
+    -- that's based
+    -- on an CloudFormation template
+    -- launches an CloudFormation stack and its underlying resources.
+    -- You can check the status
+    -- of this request
+    -- using DescribeRecord.
+    -- If the request contains a tag key
+    -- with an empty list
+    -- of values,
+    -- there's a tag conflict
+    -- for that key.
+    -- Don't include conflicted keys
+    -- as tags,
+    -- or this will cause the error "Parameter validation failed: Missing required parameter in Tags[N]:Value".
+    -- When provisioning a product
+    -- that's been added
+    -- to a portfolio,
+    -- you must grant your user, group, or role access
+    -- to the portfolio.
+    -- For more information,
+    -- see Granting users access
+    -- in the Service Catalog User Guide.
     provisionProduct: function(Client, types.ProvisionProductInput): types.ProvisionProductOutput, table
+    -- Rejects an offer to share the specified portfolio.
     rejectPortfolioShare: function(Client, types.RejectPortfolioShareInput): types.RejectPortfolioShareOutput, table
+    -- Lists the provisioned products that are available (not terminated).
+    -- To use additional filtering, see SearchProvisionedProducts.
     scanProvisionedProducts: function(Client, types.ScanProvisionedProductsInput): types.ScanProvisionedProductsOutput, table
+    -- Gets information about the products to which the caller has access.
     searchProducts: function(Client, types.SearchProductsInput): types.SearchProductsOutput, table
+    -- Gets information about the products for the specified portfolio or all products.
     searchProductsAsAdmin: function(Client, types.SearchProductsAsAdminInput): types.SearchProductsAsAdminOutput, table
+    -- Gets information about the provisioned products that meet the specified criteria.
     searchProvisionedProducts: function(Client, types.SearchProvisionedProductsInput): types.SearchProvisionedProductsOutput, table
+    -- Terminates the specified provisioned product.
+    -- This operation does not delete any records associated with the provisioned product.
+    -- You can check the status of this request using DescribeRecord.
     terminateProvisionedProduct: function(Client, types.TerminateProvisionedProductInput): types.TerminateProvisionedProductOutput, table
+    -- Updates the specified constraint.
     updateConstraint: function(Client, types.UpdateConstraintInput): types.UpdateConstraintOutput, table
+    -- Updates the specified portfolio.
+    -- You cannot update a product that was shared with you.
     updatePortfolio: function(Client, types.UpdatePortfolioInput): types.UpdatePortfolioOutput, table
+    -- Updates the specified portfolio share. You can use this API to enable or disable TagOptions sharing
+    -- or Principal sharing for an existing portfolio share.
+    -- The portfolio share cannot be updated if the CreatePortfolioShare operation is IN_PROGRESS, as the share is not available to recipient entities.
+    -- In this case, you must wait for the portfolio share to be completed.
+    -- You must provide the accountId or organization node in the input, but not both.
+    -- If the portfolio is shared to both an external account and an organization node, and both shares need to be updated, you must invoke UpdatePortfolioShare separately for each share type.
+    -- This API cannot be used for removing the portfolio share. You must use DeletePortfolioShare API for that action.
+    -- When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is
+    -- then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin,
+    -- but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal
+    -- name association for the portfolio. Although this user may not know which principal names are associated through
+    -- Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then
+    -- Service Catalog recommends using PrincipalType as IAM. With this configuration,
+    -- the PrincipalARN must already exist in the recipient account before it can be associated.
     updatePortfolioShare: function(Client, types.UpdatePortfolioShareInput): types.UpdatePortfolioShareOutput, table
+    -- Updates the specified product.
     updateProduct: function(Client, types.UpdateProductInput): types.UpdateProductOutput, table
+    -- Requests updates to the configuration of the specified provisioned product.
+    -- If there are tags associated with the object, they cannot be updated or added.
+    -- Depending on the specific updates requested, this operation can update with no
+    -- interruption, with some interruption, or replace the provisioned product entirely.
+    -- You can check the status of this request using DescribeRecord.
     updateProvisionedProduct: function(Client, types.UpdateProvisionedProductInput): types.UpdateProvisionedProductOutput, table
+    -- Requests updates to the properties of the specified provisioned product.
     updateProvisionedProductProperties: function(Client, types.UpdateProvisionedProductPropertiesInput): types.UpdateProvisionedProductPropertiesOutput, table
+    -- Updates the specified provisioning artifact (also known as a version) for the specified product.
+    -- You cannot update a provisioning artifact for a product that was shared with you.
     updateProvisioningArtifact: function(Client, types.UpdateProvisioningArtifactInput): types.UpdateProvisioningArtifactOutput, table
+    -- Updates a self-service action.
     updateServiceAction: function(Client, types.UpdateServiceActionInput): types.UpdateServiceActionOutput, table
+    -- Updates the specified TagOption.
     updateTagOption: function(Client, types.UpdateTagOptionInput): types.UpdateTagOptionOutput, table
 end
 

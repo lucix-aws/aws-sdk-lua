@@ -3,18 +3,45 @@
 local types = require("pi.types")
 
 local record Client
+    -- Creates a new performance analysis report for a specific time period for the
+    -- DB instance.
     createPerformanceAnalysisReport: function(Client, types.CreatePerformanceAnalysisReportInput): types.CreatePerformanceAnalysisReportOutput, table
+    -- Deletes a performance analysis report.
     deletePerformanceAnalysisReport: function(Client, types.DeletePerformanceAnalysisReportInput): types.DeletePerformanceAnalysisReportOutput, table
+    -- For a specific time period, retrieve the top N dimension keys for a metric.
+    -- Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements,
+    -- only the first 500 bytes are returned.
     describeDimensionKeys: function(Client, types.DescribeDimensionKeysInput): types.DescribeDimensionKeysOutput, table
+    -- Get the attributes of the specified dimension group for a DB instance or data source. For example, if you specify a SQL ID,
+    -- GetDimensionKeyDetails retrieves the full text of the dimension db.sql.statement associated with this ID.
+    -- This operation is useful because GetResourceMetrics and DescribeDimensionKeys don't support retrieval of large
+    -- SQL statement text, lock snapshots, and execution plans.
     getDimensionKeyDetails: function(Client, types.GetDimensionKeyDetailsInput): types.GetDimensionKeyDetailsOutput, table
+    -- Retrieves the report including the report ID, status, time details, and the insights
+    -- with recommendations. The report status can be RUNNING,
+    -- SUCCEEDED, or FAILED. The insights include the
+    -- description and recommendation fields.
     getPerformanceAnalysisReport: function(Client, types.GetPerformanceAnalysisReportInput): types.GetPerformanceAnalysisReportOutput, table
+    -- Retrieve the metadata for different features. For example, the metadata might indicate
+    -- that a feature is turned on or off on a specific DB instance.
     getResourceMetadata: function(Client, types.GetResourceMetadataInput): types.GetResourceMetadataOutput, table
+    -- Retrieve Performance Insights metrics for a set of data sources over a time period. You can provide
+    -- specific dimension groups and dimensions, and provide filtering criteria for each group. You must specify an aggregate function for
+    -- each metric.
+    -- Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements,
+    -- only the first 500 bytes are returned.
     getResourceMetrics: function(Client, types.GetResourceMetricsInput): types.GetResourceMetricsOutput, table
+    -- Retrieve the dimensions that can be queried for each specified metric type on a specified DB instance.
     listAvailableResourceDimensions: function(Client, types.ListAvailableResourceDimensionsInput): types.ListAvailableResourceDimensionsOutput, table
+    -- Retrieve metrics of the specified types that can be queried for a specified DB instance.
     listAvailableResourceMetrics: function(Client, types.ListAvailableResourceMetricsInput): types.ListAvailableResourceMetricsOutput, table
+    -- Lists all the analysis reports created for the DB instance. The reports are sorted based on the start time of each report.
     listPerformanceAnalysisReports: function(Client, types.ListPerformanceAnalysisReportsInput): types.ListPerformanceAnalysisReportsOutput, table
+    -- Retrieves all the metadata tags associated with Amazon RDS Performance Insights resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds metadata tags to the Amazon RDS Performance Insights resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes the metadata tags from the Amazon RDS Performance Insights resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

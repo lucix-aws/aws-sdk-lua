@@ -3,11 +3,17 @@
 local types = require("cloudfrontkeyvaluestore.types")
 
 local record Client
+    -- Deletes the key value pair specified by the key.
     deleteKey: function(Client, types.DeleteKeyInput): types.DeleteKeyOutput, table
+    -- Returns metadata information about Key Value Store.
     describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput): types.DescribeKeyValueStoreOutput, table
+    -- Returns a key value pair.
     getKey: function(Client, types.GetKeyInput): types.GetKeyOutput, table
+    -- Returns a list of key value pairs.
     listKeys: function(Client, types.ListKeysInput): types.ListKeysOutput, table
+    -- Creates a new key value pair or replaces the value of an existing key.
     putKey: function(Client, types.PutKeyInput): types.PutKeyOutput, table
+    -- Puts or Deletes multiple key value pairs in a single, all-or-nothing operation.
     updateKeys: function(Client, types.UpdateKeysInput): types.UpdateKeysOutput, table
 end
 

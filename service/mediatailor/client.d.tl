@@ -3,53 +3,101 @@
 local types = require("mediatailor.types")
 
 local record Client
+    -- Configures Amazon CloudWatch log settings for a channel.
     configureLogsForChannel: function(Client, types.ConfigureLogsForChannelInput): types.ConfigureLogsForChannelOutput, table
+    -- Defines where AWS Elemental MediaTailor sends logs for the playback configuration.
     configureLogsForPlaybackConfiguration: function(Client, types.ConfigureLogsForPlaybackConfigurationInput): types.ConfigureLogsForPlaybackConfigurationOutput, table
+    -- Creates a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    -- The live source configuration.
     createLiveSource: function(Client, types.CreateLiveSourceInput): types.CreateLiveSourceOutput, table
+    -- Creates a prefetch schedule for a playback configuration. A prefetch schedule allows you to tell MediaTailor to fetch and prepare certain ads before an ad break happens. For more information about ad prefetching, see Using ad prefetching in the MediaTailor User Guide.
     createPrefetchSchedule: function(Client, types.CreatePrefetchScheduleInput): types.CreatePrefetchScheduleOutput, table
+    -- Creates a program within a channel. For information about programs, see Working with programs in the MediaTailor User Guide.
     createProgram: function(Client, types.CreateProgramInput): types.CreateProgramOutput, table
+    -- Creates a source location. A source location is a container for sources. For more information about source locations, see Working with source locations in the MediaTailor User Guide.
     createSourceLocation: function(Client, types.CreateSourceLocationInput): types.CreateSourceLocationOutput, table
+    -- The VOD source configuration parameters.
     createVodSource: function(Client, types.CreateVodSourceInput): types.CreateVodSourceOutput, table
+    -- Deletes a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    -- The channel policy to delete.
     deleteChannelPolicy: function(Client, types.DeleteChannelPolicyInput): types.DeleteChannelPolicyOutput, table
+    -- Deletes a function. MediaTailor prevents deletion of a function that is still referenced by a playback configuration or by another function. Remove all references before deleting. For more information about functions, see Working with functions in the MediaTailor User Guide.
     deleteFunction: function(Client, types.DeleteFunctionInput): types.DeleteFunctionOutput, table
+    -- The live source to delete.
     deleteLiveSource: function(Client, types.DeleteLiveSourceInput): types.DeleteLiveSourceOutput, table
+    -- Deletes a playback configuration. For information about MediaTailor configurations, see Working with configurations in AWS Elemental MediaTailor.
     deletePlaybackConfiguration: function(Client, types.DeletePlaybackConfigurationInput): types.DeletePlaybackConfigurationOutput, table
+    -- Deletes a prefetch schedule for a specific playback configuration. If you call DeletePrefetchSchedule on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code. For more information about ad prefetching, see Using ad prefetching in the MediaTailor User Guide.
     deletePrefetchSchedule: function(Client, types.DeletePrefetchScheduleInput): types.DeletePrefetchScheduleOutput, table
+    -- Deletes a program within a channel. For information about programs, see Working with programs in the MediaTailor User Guide.
     deleteProgram: function(Client, types.DeleteProgramInput): types.DeleteProgramOutput, table
+    -- Deletes a source location. A source location is a container for sources. For more information about source locations, see Working with source locations in the MediaTailor User Guide.
     deleteSourceLocation: function(Client, types.DeleteSourceLocationInput): types.DeleteSourceLocationOutput, table
+    -- The video on demand (VOD) source to delete.
     deleteVodSource: function(Client, types.DeleteVodSourceInput): types.DeleteVodSourceOutput, table
+    -- Describes a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     describeChannel: function(Client, types.DescribeChannelInput): types.DescribeChannelOutput, table
+    -- The live source to describe.
     describeLiveSource: function(Client, types.DescribeLiveSourceInput): types.DescribeLiveSourceOutput, table
+    -- Describes a program within a channel. For information about programs, see Working with programs in the MediaTailor User Guide.
     describeProgram: function(Client, types.DescribeProgramInput): types.DescribeProgramOutput, table
+    -- Describes a source location. A source location is a container for sources. For more information about source locations, see Working with source locations in the MediaTailor User Guide.
     describeSourceLocation: function(Client, types.DescribeSourceLocationInput): types.DescribeSourceLocationOutput, table
+    -- Provides details about a specific video on demand (VOD) source in a specific source location.
     describeVodSource: function(Client, types.DescribeVodSourceInput): types.DescribeVodSourceOutput, table
+    -- Returns the channel's IAM policy. IAM policies are used to control access to your channel.
     getChannelPolicy: function(Client, types.GetChannelPolicyInput): types.GetChannelPolicyOutput, table
+    -- Retrieves information about your channel's schedule.
     getChannelSchedule: function(Client, types.GetChannelScheduleInput): types.GetChannelScheduleOutput, table
+    -- Retrieves the configuration and metadata for a function. For more information about functions, see Working with functions in the MediaTailor User Guide.
     getFunction: function(Client, types.GetFunctionInput): types.GetFunctionOutput, table
+    -- Retrieves a playback configuration. For information about MediaTailor configurations, see Working with configurations in AWS Elemental MediaTailor.
     getPlaybackConfiguration: function(Client, types.GetPlaybackConfigurationInput): types.GetPlaybackConfigurationOutput, table
+    -- Retrieves a prefetch schedule for a playback configuration. A prefetch schedule allows you to tell MediaTailor to fetch and prepare certain ads before an ad break happens. For more information about ad prefetching, see Using ad prefetching in the MediaTailor User Guide.
     getPrefetchSchedule: function(Client, types.GetPrefetchScheduleInput): types.GetPrefetchScheduleOutput, table
+    -- Lists the alerts that are associated with a MediaTailor channel assembly resource.
     listAlerts: function(Client, types.ListAlertsInput): types.ListAlertsOutput, table
+    -- Retrieves information about the channels that are associated with the current AWS account.
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    -- Retrieves all functions associated with your AWS account in the current Region. For more information about functions, see Working with functions in the MediaTailor User Guide.
     listFunctions: function(Client, types.ListFunctionsInput): types.ListFunctionsOutput, table
+    -- Lists the live sources contained in a source location. A source represents a piece of content.
     listLiveSources: function(Client, types.ListLiveSourcesInput): types.ListLiveSourcesOutput, table
+    -- Retrieves existing playback configurations. For information about MediaTailor configurations, see Working with Configurations in AWS Elemental MediaTailor.
     listPlaybackConfigurations: function(Client, types.ListPlaybackConfigurationsInput): types.ListPlaybackConfigurationsOutput, table
+    -- Lists the prefetch schedules for a playback configuration.
     listPrefetchSchedules: function(Client, types.ListPrefetchSchedulesInput): types.ListPrefetchSchedulesOutput, table
+    -- Lists the source locations for a channel. A source location defines the host server URL, and contains a list of sources.
     listSourceLocations: function(Client, types.ListSourceLocationsInput): types.ListSourceLocationsOutput, table
+    -- A list of tags that are associated with this resource. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the VOD sources contained in a source location. A source represents a piece of content.
     listVodSources: function(Client, types.ListVodSourcesInput): types.ListVodSourcesOutput, table
+    -- Creates an IAM policy for the channel. IAM policies are used to control access to your channel.
     putChannelPolicy: function(Client, types.PutChannelPolicyInput): types.PutChannelPolicyOutput, table
+    -- Creates or updates a function. A function defines reusable logic that MediaTailor executes at lifecycle hooks during ad insertion. For more information about functions, see Working with functions in the MediaTailor User Guide.
     putFunction: function(Client, types.PutFunctionInput): types.PutFunctionOutput, table
+    -- Creates a playback configuration. For information about MediaTailor configurations, see Working with configurations in AWS Elemental MediaTailor.
     putPlaybackConfiguration: function(Client, types.PutPlaybackConfigurationInput): types.PutPlaybackConfigurationOutput, table
+    -- Starts a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     startChannel: function(Client, types.StartChannelInput): types.StartChannelOutput, table
+    -- Stops a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     stopChannel: function(Client, types.StopChannelInput): types.StopChannelOutput, table
+    -- The resource to tag. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- The resource to untag.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a channel. For information about MediaTailor channels, see Working with channels in the MediaTailor User Guide.
     updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    -- Updates a live source's configuration.
     updateLiveSource: function(Client, types.UpdateLiveSourceInput): types.UpdateLiveSourceOutput, table
+    -- Updates a program within a channel.
     updateProgram: function(Client, types.UpdateProgramInput): types.UpdateProgramOutput, table
+    -- Updates a source location. A source location is a container for sources. For more information about source locations, see Working with source locations in the MediaTailor User Guide.
     updateSourceLocation: function(Client, types.UpdateSourceLocationInput): types.UpdateSourceLocationOutput, table
+    -- Updates a VOD source's configuration.
     updateVodSource: function(Client, types.UpdateVodSourceInput): types.UpdateVodSourceOutput, table
 end
 

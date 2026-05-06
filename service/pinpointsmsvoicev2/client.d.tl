@@ -3,111 +3,217 @@
 local types = require("pinpointsmsvoicev2.types")
 
 local record Client
+    -- Associates the specified origination identity with a pool. If the origination identity is a phone number and is already associated with another pool, an error is returned. A sender ID can be associated with multiple pools. If the origination identity configuration doesn't match the pool's configuration, an error is returned.
     associateOriginationIdentity: function(Client, types.AssociateOriginationIdentityInput): types.AssociateOriginationIdentityOutput, table
+    -- Associate a protect configuration with a configuration set. This replaces the configuration sets current protect configuration. A configuration set can only be associated with one protect configuration at a time. A protect configuration can be associated with multiple configuration sets.
     associateProtectConfiguration: function(Client, types.AssociateProtectConfigurationInput): types.AssociateProtectConfigurationOutput, table
+    -- Returns information about a destination phone number, including whether the number type and whether it is valid, the carrier, and more.
     carrierLookup: function(Client, types.CarrierLookupInput): types.CarrierLookupOutput, table
+    -- Creates a new configuration set. After you create the configuration set, you can add one or more event destinations to it. A configuration set is a set of rules that you apply to the SMS and voice messages that you send. When you send a message, you can optionally specify a single configuration set.
     createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    -- Creates a new event destination in a configuration set. An event destination is a location where you send message events. The event options are Amazon CloudWatch, Amazon Data Firehose, or Amazon SNS. For example, when a message is delivered successfully, you can send information about that event to an event destination, or send notifications to endpoints that are subscribed to an Amazon SNS topic. You can only create one event destination at a time. You must provide a value for a single event destination using either CloudWatchLogsDestination, KinesisFirehoseDestination or SnsDestination. If an event destination isn't provided then an exception is returned. Each configuration set can contain between 0 and 5 event destinations. Each event destination can contain a reference to a single destination, such as a CloudWatch or Firehose destination.
     createEventDestination: function(Client, types.CreateEventDestinationInput): types.CreateEventDestinationOutput, table
+    -- Creates a new notify configuration for managed messaging. A notify configuration defines the settings for sending templated messages, including the display name, use case, enabled channels, and enabled countries.
     createNotifyConfiguration: function(Client, types.CreateNotifyConfigurationInput): types.CreateNotifyConfigurationOutput, table
+    -- Creates a new opt-out list. If the opt-out list name already exists, an error is returned. An opt-out list is a list of phone numbers that are opted out, meaning you can't send SMS or voice messages to them. If end user replies with the keyword "STOP," an entry for the phone number is added to the opt-out list. In addition to STOP, your recipients can use any supported opt-out keyword, such as CANCEL or OPTOUT. For a list of supported opt-out keywords, see SMS opt out in the End User Messaging SMS User Guide.
     createOptOutList: function(Client, types.CreateOptOutListInput): types.CreateOptOutListOutput, table
+    -- Creates a new pool and associates the specified origination identity to the pool. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account. The new pool inherits its configuration from the specified origination identity. This includes keywords, message type, opt-out list, two-way configuration, and self-managed opt-out configuration. Deletion protection isn't inherited from the origination identity and defaults to false. If the origination identity is a phone number and is already associated with another pool, an error is returned. A sender ID can be associated with multiple pools.
     createPool: function(Client, types.CreatePoolInput): types.CreatePoolOutput, table
+    -- Create a new protect configuration. By default all country rule sets for each capability are set to ALLOW. Update the country rule sets using UpdateProtectConfigurationCountryRuleSet. A protect configurations name is stored as a Tag with the key set to Name and value as the name of the protect configuration.
     createProtectConfiguration: function(Client, types.CreateProtectConfigurationInput): types.CreateProtectConfigurationOutput, table
+    -- Creates a new RCS agent for sending rich messages through the RCS channel. The RCS agent serves as an origination identity for sending RCS messages to your recipients.
     createRcsAgent: function(Client, types.CreateRcsAgentInput): types.CreateRcsAgentOutput, table
+    -- Creates a new registration based on the RegistrationType field.
     createRegistration: function(Client, types.CreateRegistrationInput): types.CreateRegistrationOutput, table
+    -- Associate the registration with an origination identity such as a phone number or sender ID.
     createRegistrationAssociation: function(Client, types.CreateRegistrationAssociationInput): types.CreateRegistrationAssociationOutput, table
+    -- Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed “letter of authorization” (LOA) to be submitted. Use either AttachmentUrl or AttachmentBody to upload your attachment. If both are specified then an exception is returned.
     createRegistrationAttachment: function(Client, types.CreateRegistrationAttachmentInput): types.CreateRegistrationAttachmentOutput, table
+    -- Create a new version of the registration and increase the VersionNumber. The previous version of the registration becomes read-only.
     createRegistrationVersion: function(Client, types.CreateRegistrationVersionInput): types.CreateRegistrationVersionOutput, table
+    -- You can only send messages to verified destination numbers when your account is in the sandbox. You can add up to 10 verified destination numbers.
     createVerifiedDestinationNumber: function(Client, types.CreateVerifiedDestinationNumberInput): types.CreateVerifiedDestinationNumberOutput, table
+    -- Removes the current account default protect configuration.
     deleteAccountDefaultProtectConfiguration: function(Client, types.DeleteAccountDefaultProtectConfigurationInput): types.DeleteAccountDefaultProtectConfigurationOutput, table
+    -- Deletes an existing configuration set. A configuration set is a set of rules that you apply to voice and SMS messages that you send. In a configuration set, you can specify a destination for specific types of events related to voice and SMS messages.
     deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    -- Deletes an existing default message type on a configuration set. A message type is a type of messages that you plan to send. If you send account-related messages or time-sensitive messages such as one-time passcodes, choose Transactional. If you plan to send messages that contain marketing material or other promotional content, choose Promotional. This setting applies to your entire Amazon Web Services account.
     deleteDefaultMessageType: function(Client, types.DeleteDefaultMessageTypeInput): types.DeleteDefaultMessageTypeOutput, table
+    -- Deletes an existing default sender ID on a configuration set. A default sender ID is the identity that appears on recipients' devices when they receive SMS messages. Support for sender ID capabilities varies by country or region.
     deleteDefaultSenderId: function(Client, types.DeleteDefaultSenderIdInput): types.DeleteDefaultSenderIdOutput, table
+    -- Deletes an existing event destination. An event destination is a location where you send response information about the messages that you send. For example, when a message is delivered successfully, you can send information about that event to an Amazon CloudWatch destination, or send notifications to endpoints that are subscribed to an Amazon SNS topic.
     deleteEventDestination: function(Client, types.DeleteEventDestinationInput): types.DeleteEventDestinationOutput, table
+    -- Deletes an existing keyword from an origination phone number or pool. A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, End User Messaging SMS responds with a customizable message. Keywords "HELP" and "STOP" can't be deleted or modified.
     deleteKeyword: function(Client, types.DeleteKeywordInput): types.DeleteKeywordOutput, table
+    -- Deletes an account-level monthly spending limit override for sending multimedia messages (MMS). Deleting a spend limit override will set the EnforcedLimit to equal the MaxLimit, which is controlled by Amazon Web Services. For more information on spend limits (quotas) see Quotas for Server Migration Service in the Server Migration Service User Guide.
     deleteMediaMessageSpendLimitOverride: function(Client, types.DeleteMediaMessageSpendLimitOverrideInput): types.DeleteMediaMessageSpendLimitOverrideOutput, table
+    -- Deletes an existing notify configuration. If deletion protection is enabled, an error is returned.
     deleteNotifyConfiguration: function(Client, types.DeleteNotifyConfigurationInput): types.DeleteNotifyConfigurationOutput, table
+    -- Deletes an account-level monthly spending limit override for sending notify messages. Deleting a spend limit override will set the EnforcedLimit to equal the MaxLimit, which is controlled by Amazon Web Services. For more information on spend limits (quotas) see Quotas in the End User Messaging SMS User Guide.
     deleteNotifyMessageSpendLimitOverride: function(Client, types.DeleteNotifyMessageSpendLimitOverrideInput): types.DeleteNotifyMessageSpendLimitOverrideOutput, table
+    -- Deletes an existing opted out destination phone number from the specified opt-out list. Each destination phone number can only be deleted once every 30 days. If the specified destination phone number doesn't exist or if the opt-out list doesn't exist, an error is returned.
     deleteOptedOutNumber: function(Client, types.DeleteOptedOutNumberInput): types.DeleteOptedOutNumberOutput, table
+    -- Deletes an existing opt-out list. All opted out phone numbers in the opt-out list are deleted. If the specified opt-out list name doesn't exist or is in-use by an origination phone number or pool, an error is returned.
     deleteOptOutList: function(Client, types.DeleteOptOutListInput): types.DeleteOptOutListOutput, table
+    -- Deletes an existing pool. Deleting a pool disassociates all origination identities from that pool. If the pool status isn't active or if deletion protection is enabled, an error is returned. A pool is a collection of phone numbers and SenderIds. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account.
     deletePool: function(Client, types.DeletePoolInput): types.DeletePoolOutput, table
+    -- Permanently delete the protect configuration. The protect configuration must have deletion protection disabled and must not be associated as the account default protect configuration or associated with a configuration set.
     deleteProtectConfiguration: function(Client, types.DeleteProtectConfigurationInput): types.DeleteProtectConfigurationOutput, table
+    -- Permanently delete the protect configuration rule set number override.
     deleteProtectConfigurationRuleSetNumberOverride: function(Client, types.DeleteProtectConfigurationRuleSetNumberOverrideInput): types.DeleteProtectConfigurationRuleSetNumberOverrideOutput, table
+    -- Deletes an existing RCS agent. If deletion protection is enabled, an error is returned.
     deleteRcsAgent: function(Client, types.DeleteRcsAgentInput): types.DeleteRcsAgentOutput, table
+    -- Permanently delete an existing registration from your account.
     deleteRegistration: function(Client, types.DeleteRegistrationInput): types.DeleteRegistrationOutput, table
+    -- Permanently delete the specified registration attachment.
     deleteRegistrationAttachment: function(Client, types.DeleteRegistrationAttachmentInput): types.DeleteRegistrationAttachmentOutput, table
+    -- Delete the value in a registration form field.
     deleteRegistrationFieldValue: function(Client, types.DeleteRegistrationFieldValueInput): types.DeleteRegistrationFieldValueOutput, table
+    -- Deletes the resource-based policy document attached to the End User Messaging SMS resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Deletes an account-level monthly spending limit override for sending text messages. Deleting a spend limit override will set the EnforcedLimit to equal the MaxLimit, which is controlled by Amazon Web Services. For more information on spend limits (quotas) see Quotas in the End User Messaging SMS User Guide.
     deleteTextMessageSpendLimitOverride: function(Client, types.DeleteTextMessageSpendLimitOverrideInput): types.DeleteTextMessageSpendLimitOverrideOutput, table
+    -- Delete a verified destination phone number.
     deleteVerifiedDestinationNumber: function(Client, types.DeleteVerifiedDestinationNumberInput): types.DeleteVerifiedDestinationNumberOutput, table
+    -- Deletes an account level monthly spend limit override for sending voice messages. Deleting a spend limit override sets the EnforcedLimit equal to the MaxLimit, which is controlled by Amazon Web Services. For more information on spending limits (quotas) see Quotas in the End User Messaging SMS User Guide.
     deleteVoiceMessageSpendLimitOverride: function(Client, types.DeleteVoiceMessageSpendLimitOverrideInput): types.DeleteVoiceMessageSpendLimitOverrideOutput, table
+    -- Describes attributes of your Amazon Web Services account. The supported account attributes include account tier, which indicates whether your account is in the sandbox or production environment. When you're ready to move your account out of the sandbox, create an Amazon Web Services Support case for a service limit increase request. New accounts are placed into an SMS or voice sandbox. The sandbox protects both Amazon Web Services end recipients and SMS or voice recipients from fraud and abuse.
     describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    -- Describes the current End User Messaging SMS SMS Voice V2 resource quotas for your account. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value. When you establish an Amazon Web Services account, the account has initial quotas on the maximum number of configuration sets, opt-out lists, phone numbers, and pools that you can create in a given Region. For more information see Quotas in the End User Messaging SMS User Guide.
     describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    -- Describes the specified configuration sets or all in your account. If you specify configuration set names, the output includes information for only the specified configuration sets. If you specify filters, the output includes information for only those configuration sets that meet the filter criteria. If you don't specify configuration set names or filters, the output includes information for all configuration sets. If you specify a configuration set name that isn't valid, an error is returned.
     describeConfigurationSets: function(Client, types.DescribeConfigurationSetsInput): types.DescribeConfigurationSetsOutput, table
+    -- Describes the specified keywords or all keywords on your origination phone number or pool. A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, End User Messaging SMS responds with a customizable message. If you specify a keyword that isn't valid, an error is returned.
     describeKeywords: function(Client, types.DescribeKeywordsInput): types.DescribeKeywordsOutput, table
+    -- Describes the specified notify configurations or all notify configurations in your account. If you specify notify configuration IDs, the output includes information for only the specified notify configurations. If you specify filters, the output includes information for only those notify configurations that meet the filter criteria. If you don't specify notify configuration IDs or filters, the output includes information for all notify configurations. If you specify a notify configuration ID that isn't valid, an error is returned.
     describeNotifyConfigurations: function(Client, types.DescribeNotifyConfigurationsInput): types.DescribeNotifyConfigurationsOutput, table
+    -- Describes the specified notify templates or all notify templates in your account. If you specify template IDs, the output includes information for only the specified notify templates. If you specify filters, the output includes information for only those notify templates that meet the filter criteria. If you don't specify template IDs or filters, the output includes information for all notify templates. If you specify a template ID that isn't valid, an error is returned.
     describeNotifyTemplates: function(Client, types.DescribeNotifyTemplatesInput): types.DescribeNotifyTemplatesOutput, table
+    -- Describes the specified opted out destination numbers or all opted out destination numbers in an opt-out list. If you specify opted out numbers, the output includes information for only the specified opted out numbers. If you specify filters, the output includes information for only those opted out numbers that meet the filter criteria. If you don't specify opted out numbers or filters, the output includes information for all opted out destination numbers in your opt-out list. If you specify an opted out number that isn't valid, an exception is returned.
     describeOptedOutNumbers: function(Client, types.DescribeOptedOutNumbersInput): types.DescribeOptedOutNumbersOutput, table
+    -- Describes the specified opt-out list or all opt-out lists in your account. If you specify opt-out list names, the output includes information for only the specified opt-out lists. Opt-out lists include only those that meet the filter criteria. If you don't specify opt-out list names or filters, the output includes information for all opt-out lists. If you specify an opt-out list name that isn't valid, an error is returned.
     describeOptOutLists: function(Client, types.DescribeOptOutListsInput): types.DescribeOptOutListsOutput, table
+    -- Describes the specified origination phone number, or all the phone numbers in your account. If you specify phone number IDs, the output includes information for only the specified phone numbers. If you specify filters, the output includes information for only those phone numbers that meet the filter criteria. If you don't specify phone number IDs or filters, the output includes information for all phone numbers. If you specify a phone number ID that isn't valid, an error is returned.
     describePhoneNumbers: function(Client, types.DescribePhoneNumbersInput): types.DescribePhoneNumbersOutput, table
+    -- Retrieves the specified pools or all pools associated with your Amazon Web Services account. If you specify pool IDs, the output includes information for only the specified pools. If you specify filters, the output includes information for only those pools that meet the filter criteria. If you don't specify pool IDs or filters, the output includes information for all pools. If you specify a pool ID that isn't valid, an error is returned. A pool is a collection of phone numbers and SenderIds. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account.
     describePools: function(Client, types.DescribePoolsInput): types.DescribePoolsOutput, table
+    -- Retrieves the protect configurations that match any of filters. If a filter isn’t provided then all protect configurations are returned.
     describeProtectConfigurations: function(Client, types.DescribeProtectConfigurationsInput): types.DescribeProtectConfigurationsOutput, table
+    -- Retrieves the per-country launch status of an RCS agent, including carrier-level details for each country.
     describeRcsAgentCountryLaunchStatus: function(Client, types.DescribeRcsAgentCountryLaunchStatusInput): types.DescribeRcsAgentCountryLaunchStatusOutput, table
+    -- Retrieves the specified RCS agents or all RCS agents associated with your Amazon Web Services account. If you specify RCS agent IDs, the output includes information for only the specified RCS agents. If you specify filters, the output includes information for only those RCS agents that meet the filter criteria. If you don't specify RCS agent IDs or filters, the output includes information for all RCS agents.
     describeRcsAgents: function(Client, types.DescribeRcsAgentsInput): types.DescribeRcsAgentsOutput, table
+    -- Retrieves the specified registration attachments or all registration attachments associated with your Amazon Web Services account.
     describeRegistrationAttachments: function(Client, types.DescribeRegistrationAttachmentsInput): types.DescribeRegistrationAttachmentsOutput, table
+    -- Retrieves the specified registration type field definitions. You can use DescribeRegistrationFieldDefinitions to view the requirements for creating, filling out, and submitting each registration type.
     describeRegistrationFieldDefinitions: function(Client, types.DescribeRegistrationFieldDefinitionsInput): types.DescribeRegistrationFieldDefinitionsOutput, table
+    -- Retrieves the specified registration field values.
     describeRegistrationFieldValues: function(Client, types.DescribeRegistrationFieldValuesInput): types.DescribeRegistrationFieldValuesOutput, table
+    -- Retrieves the specified registrations.
     describeRegistrations: function(Client, types.DescribeRegistrationsInput): types.DescribeRegistrationsOutput, table
+    -- Retrieves the specified registration section definitions. You can use DescribeRegistrationSectionDefinitions to view the requirements for creating, filling out, and submitting each registration type.
     describeRegistrationSectionDefinitions: function(Client, types.DescribeRegistrationSectionDefinitionsInput): types.DescribeRegistrationSectionDefinitionsOutput, table
+    -- Retrieves the specified registration type definitions. You can use DescribeRegistrationTypeDefinitions to view the requirements for creating, filling out, and submitting each registration type.
     describeRegistrationTypeDefinitions: function(Client, types.DescribeRegistrationTypeDefinitionsInput): types.DescribeRegistrationTypeDefinitionsOutput, table
+    -- Retrieves the specified registration version.
     describeRegistrationVersions: function(Client, types.DescribeRegistrationVersionsInput): types.DescribeRegistrationVersionsOutput, table
+    -- Describes the specified SenderIds or all SenderIds associated with your Amazon Web Services account. If you specify SenderIds, the output includes information for only the specified SenderIds. If you specify filters, the output includes information for only those SenderIds that meet the filter criteria. If you don't specify SenderIds or filters, the output includes information for all SenderIds. f you specify a sender ID that isn't valid, an error is returned.
     describeSenderIds: function(Client, types.DescribeSenderIdsInput): types.DescribeSenderIdsOutput, table
+    -- Describes the current monthly spend limits for sending voice and text messages. When you establish an Amazon Web Services account, the account has initial monthly spend limit in a given Region. For more information on increasing your monthly spend limit, see Requesting increases to your monthly SMS, MMS, or Voice spending quota in the End User Messaging SMS User Guide.
     describeSpendLimits: function(Client, types.DescribeSpendLimitsInput): types.DescribeSpendLimitsOutput, table
+    -- Retrieves the specified verified destination numbers.
     describeVerifiedDestinationNumbers: function(Client, types.DescribeVerifiedDestinationNumbersInput): types.DescribeVerifiedDestinationNumbersOutput, table
+    -- Removes the specified origination identity from an existing pool. If the origination identity isn't associated with the specified pool, an error is returned.
     disassociateOriginationIdentity: function(Client, types.DisassociateOriginationIdentityInput): types.DisassociateOriginationIdentityOutput, table
+    -- Disassociate a protect configuration from a configuration set.
     disassociateProtectConfiguration: function(Client, types.DisassociateProtectConfigurationInput): types.DisassociateProtectConfigurationOutput, table
+    -- Discard the current version of the registration.
     discardRegistrationVersion: function(Client, types.DiscardRegistrationVersionInput): types.DiscardRegistrationVersionOutput, table
+    -- Retrieve the CountryRuleSet for the specified NumberCapability from a protect configuration.
     getProtectConfigurationCountryRuleSet: function(Client, types.GetProtectConfigurationCountryRuleSetInput): types.GetProtectConfigurationCountryRuleSetOutput, table
+    -- Retrieves the JSON text of the resource-based policy document attached to the End User Messaging SMS resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Lists countries that support notify messaging. You can optionally filter by channel, use case, or tier.
     listNotifyCountries: function(Client, types.ListNotifyCountriesInput): types.ListNotifyCountriesOutput, table
+    -- Lists all associated origination identities in your pool. If you specify filters, the output includes information for only those origination identities that meet the filter criteria.
     listPoolOriginationIdentities: function(Client, types.ListPoolOriginationIdentitiesInput): types.ListPoolOriginationIdentitiesOutput, table
+    -- Retrieve all of the protect configuration rule set number overrides that match the filters.
     listProtectConfigurationRuleSetNumberOverrides: function(Client, types.ListProtectConfigurationRuleSetNumberOverridesInput): types.ListProtectConfigurationRuleSetNumberOverridesOutput, table
+    -- Retrieve all of the origination identities that are associated with a registration.
     listRegistrationAssociations: function(Client, types.ListRegistrationAssociationsInput): types.ListRegistrationAssociationsOutput, table
+    -- List all tags associated with a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates or updates a keyword configuration on an origination phone number or pool. A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, End User Messaging SMS responds with a customizable message. If you specify a keyword that isn't valid, an error is returned.
     putKeyword: function(Client, types.PutKeywordInput): types.PutKeywordOutput, table
+    -- Set the MessageFeedbackStatus as RECEIVED or FAILED for the passed in MessageId. If you use message feedback then you must update message feedback record. When you receive a signal that a user has received the message you must use PutMessageFeedback to set the message feedback record as RECEIVED; Otherwise, an hour after the message feedback record is set to FAILED.
     putMessageFeedback: function(Client, types.PutMessageFeedbackInput): types.PutMessageFeedbackOutput, table
+    -- Creates an opted out destination phone number in the opt-out list. If the destination phone number isn't valid or if the specified opt-out list doesn't exist, an error is returned.
     putOptedOutNumber: function(Client, types.PutOptedOutNumberInput): types.PutOptedOutNumberOutput, table
+    -- Create or update a phone number rule override and associate it with a protect configuration.
     putProtectConfigurationRuleSetNumberOverride: function(Client, types.PutProtectConfigurationRuleSetNumberOverrideInput): types.PutProtectConfigurationRuleSetNumberOverrideOutput, table
+    -- Creates or updates a field value for a registration.
     putRegistrationFieldValue: function(Client, types.PutRegistrationFieldValueInput): types.PutRegistrationFieldValueOutput, table
+    -- Attaches a resource-based policy to a End User Messaging SMS resource(phone number, sender Id, phone poll, or opt-out list) that is used for sharing the resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number. For more information about resource-based policies, see Working with shared resources in the End User Messaging SMS User Guide.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Releases an existing origination phone number in your account. Once released, a phone number is no longer available for sending messages. If the origination phone number has deletion protection enabled or is associated with a pool, an error is returned.
     releasePhoneNumber: function(Client, types.ReleasePhoneNumberInput): types.ReleasePhoneNumberOutput, table
+    -- Releases an existing sender ID in your account.
     releaseSenderId: function(Client, types.ReleaseSenderIdInput): types.ReleaseSenderIdOutput, table
+    -- Request an origination phone number for use in your account. For more information on phone number request see Request a phone number in the End User Messaging SMS User Guide.
     requestPhoneNumber: function(Client, types.RequestPhoneNumberInput): types.RequestPhoneNumberOutput, table
+    -- Request a new sender ID that doesn't require registration.
     requestSenderId: function(Client, types.RequestSenderIdInput): types.RequestSenderIdOutput, table
+    -- Before you can send test messages to a verified destination phone number you need to opt-in the verified destination phone number. Creates a new text message with a verification code and send it to a verified destination phone number. Once you have the verification code use VerifyDestinationNumber to opt-in the verified destination phone number to receive messages.
     sendDestinationNumberVerificationCode: function(Client, types.SendDestinationNumberVerificationCodeInput): types.SendDestinationNumberVerificationCodeOutput, table
+    -- Creates a new multimedia message (MMS) and sends it to a recipient's phone number.
     sendMediaMessage: function(Client, types.SendMediaMessageInput): types.SendMediaMessageOutput, table
+    -- Sends a templated text message through a notify configuration to a recipient's phone number.
     sendNotifyTextMessage: function(Client, types.SendNotifyTextMessageInput): types.SendNotifyTextMessageOutput, table
+    -- Sends a templated voice message through a notify configuration to a recipient's phone number.
     sendNotifyVoiceMessage: function(Client, types.SendNotifyVoiceMessageInput): types.SendNotifyVoiceMessageOutput, table
+    -- Creates a new text message and sends it to a recipient's phone number. SendTextMessage only sends an SMS message to one recipient each time it is invoked. SMS throughput limits are measured in Message Parts per Second (MPS). Your MPS limit depends on the destination country of your messages, as well as the type of phone number (origination number) that you use to send the message. For more information about MPS, see Message Parts per Second (MPS) limits in the End User Messaging SMS User Guide.
     sendTextMessage: function(Client, types.SendTextMessageInput): types.SendTextMessageOutput, table
+    -- Allows you to send a request that sends a voice message. This operation uses Amazon Polly to convert a text script into a voice message.
     sendVoiceMessage: function(Client, types.SendVoiceMessageInput): types.SendVoiceMessageOutput, table
+    -- Set a protect configuration as your account default. You can only have one account default protect configuration at a time. The current account default protect configuration is replaced with the provided protect configuration.
     setAccountDefaultProtectConfiguration: function(Client, types.SetAccountDefaultProtectConfigurationInput): types.SetAccountDefaultProtectConfigurationOutput, table
+    -- Sets a configuration set's default for message feedback.
     setDefaultMessageFeedbackEnabled: function(Client, types.SetDefaultMessageFeedbackEnabledInput): types.SetDefaultMessageFeedbackEnabledOutput, table
+    -- Sets the default message type on a configuration set. Choose the category of SMS messages that you plan to send from this account. If you send account-related messages or time-sensitive messages such as one-time passcodes, choose Transactional. If you plan to send messages that contain marketing material or other promotional content, choose Promotional. This setting applies to your entire Amazon Web Services account.
     setDefaultMessageType: function(Client, types.SetDefaultMessageTypeInput): types.SetDefaultMessageTypeOutput, table
+    -- Sets default sender ID on a configuration set. When sending a text message to a destination country that supports sender IDs, the default sender ID on the configuration set specified will be used if no dedicated origination phone numbers or registered sender IDs are available in your account.
     setDefaultSenderId: function(Client, types.SetDefaultSenderIdInput): types.SetDefaultSenderIdOutput, table
+    -- Sets an account level monthly spend limit override for sending MMS messages. The requested spend limit must be less than or equal to the MaxLimit, which is set by Amazon Web Services.
     setMediaMessageSpendLimitOverride: function(Client, types.SetMediaMessageSpendLimitOverrideInput): types.SetMediaMessageSpendLimitOverrideOutput, table
+    -- Sets an account level monthly spend limit override for sending notify messages. The requested spend limit must be less than or equal to the MaxLimit, which is set by Amazon Web Services.
     setNotifyMessageSpendLimitOverride: function(Client, types.SetNotifyMessageSpendLimitOverrideInput): types.SetNotifyMessageSpendLimitOverrideOutput, table
+    -- Sets an account level monthly spend limit override for sending text messages. The requested spend limit must be less than or equal to the MaxLimit, which is set by Amazon Web Services.
     setTextMessageSpendLimitOverride: function(Client, types.SetTextMessageSpendLimitOverrideInput): types.SetTextMessageSpendLimitOverrideOutput, table
+    -- Sets an account level monthly spend limit override for sending voice messages. The requested spend limit must be less than or equal to the MaxLimit, which is set by Amazon Web Services.
     setVoiceMessageSpendLimitOverride: function(Client, types.SetVoiceMessageSpendLimitOverrideInput): types.SetVoiceMessageSpendLimitOverrideOutput, table
+    -- Submit the specified registration for review and approval.
     submitRegistrationVersion: function(Client, types.SubmitRegistrationVersionInput): types.SubmitRegistrationVersionOutput, table
+    -- Adds or overwrites only the specified tags for the specified resource. When you specify an existing tag key, the value is overwritten with the new value. Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see Tags in the End User Messaging SMS User Guide.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the association of the specified tags from a resource. For more information on tags see Tags in the End User Messaging SMS User Guide.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing event destination in a configuration set. You can update the IAM role ARN for CloudWatch Logs and Firehose. You can also enable or disable the event destination. You may want to update an event destination to change its matching event types or updating the destination resource ARN. You can't change an event destination's type between CloudWatch Logs, Firehose, and Amazon SNS.
     updateEventDestination: function(Client, types.UpdateEventDestinationInput): types.UpdateEventDestinationOutput, table
+    -- Updates an existing notify configuration. You can update the default template, pool association, enabled channels, enabled countries, and deletion protection settings.
     updateNotifyConfiguration: function(Client, types.UpdateNotifyConfigurationInput): types.UpdateNotifyConfigurationOutput, table
+    -- Updates the configuration of an existing origination phone number. You can update the opt-out list, enable or disable two-way messaging, change the TwoWayChannelArn, enable or disable self-managed opt-outs, and enable or disable deletion protection. If the origination phone number is associated with a pool, an error is returned.
     updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput): types.UpdatePhoneNumberOutput, table
+    -- Updates the configuration of an existing pool. You can update the opt-out list, enable or disable two-way messaging, change the TwoWayChannelArn, enable or disable self-managed opt-outs, enable or disable deletion protection, and enable or disable shared routes.
     updatePool: function(Client, types.UpdatePoolInput): types.UpdatePoolOutput, table
+    -- Update the setting for an existing protect configuration.
     updateProtectConfiguration: function(Client, types.UpdateProtectConfigurationInput): types.UpdateProtectConfigurationOutput, table
+    -- Update a country rule set to ALLOW, BLOCK, MONITOR, or FILTER messages to be sent to the specified destination counties. You can update one or multiple countries at a time. The updates are only applied to the specified NumberCapability type.
     updateProtectConfigurationCountryRuleSet: function(Client, types.UpdateProtectConfigurationCountryRuleSetInput): types.UpdateProtectConfigurationCountryRuleSetOutput, table
+    -- Updates the configuration of an existing RCS agent. You can update the opt-out list, deletion protection, two-way messaging settings, and self-managed opt-outs configuration.
     updateRcsAgent: function(Client, types.UpdateRcsAgentInput): types.UpdateRcsAgentOutput, table
+    -- Updates the configuration of an existing sender ID.
     updateSenderId: function(Client, types.UpdateSenderIdInput): types.UpdateSenderIdOutput, table
+    -- Use the verification code that was received by the verified destination phone number to opt-in the verified destination phone number to receive more messages.
     verifyDestinationNumber: function(Client, types.VerifyDestinationNumberInput): types.VerifyDestinationNumberOutput, table
 end
 

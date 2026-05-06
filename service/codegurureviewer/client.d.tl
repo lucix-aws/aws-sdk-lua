@@ -3,19 +3,54 @@
 local types = require("codegurureviewer.types")
 
 local record Client
+    -- Use to associate an Amazon Web Services CodeCommit repository or a repository managed by Amazon Web Services
+    -- CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews
+    -- source code changes in the repository's pull requests and provides automatic
+    -- recommendations. You can view recommendations using the CodeGuru Reviewer console. For more
+    -- information, see Recommendations in
+    -- Amazon CodeGuru Reviewer in the Amazon CodeGuru Reviewer User Guide.
+    -- If you associate a CodeCommit or S3 repository, it must be in the same Amazon Web Services Region and
+    -- Amazon Web Services account where its CodeGuru Reviewer code reviews are configured.
+    -- Bitbucket and GitHub Enterprise Server repositories are managed by Amazon Web Services CodeStar
+    -- Connections to connect to CodeGuru Reviewer. For more information, see Associate a
+    -- repository in the Amazon CodeGuru Reviewer User Guide.
+    -- You cannot use the CodeGuru Reviewer SDK or the Amazon Web Services CLI to associate a GitHub repository with
+    -- Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see
+    -- Getting started with
+    -- CodeGuru Reviewer in the CodeGuru Reviewer User Guide.
     associateRepository: function(Client, types.AssociateRepositoryInput): types.AssociateRepositoryOutput, table
+    -- Use to create a code review with a CodeReviewType of
+    -- RepositoryAnalysis. This type of code review analyzes all code under a
+    -- specified branch in an associated repository. PullRequest code reviews are
+    -- automatically triggered by a pull request.
     createCodeReview: function(Client, types.CreateCodeReviewInput): types.CreateCodeReviewOutput, table
+    -- Returns the metadata associated with the code review along with its status.
     describeCodeReview: function(Client, types.DescribeCodeReviewInput): types.DescribeCodeReviewOutput, table
+    -- Describes the customer feedback for a CodeGuru Reviewer recommendation.
     describeRecommendationFeedback: function(Client, types.DescribeRecommendationFeedbackInput): types.DescribeRecommendationFeedbackOutput, table
+    -- Returns a RepositoryAssociation object that contains information about the requested
+    -- repository association.
     describeRepositoryAssociation: function(Client, types.DescribeRepositoryAssociationInput): types.DescribeRepositoryAssociationOutput, table
+    -- Removes the association between Amazon CodeGuru Reviewer and a repository.
     disassociateRepository: function(Client, types.DisassociateRepositoryInput): types.DisassociateRepositoryOutput, table
+    -- Lists all the code reviews that the customer has created in the past 90 days.
     listCodeReviews: function(Client, types.ListCodeReviewsInput): types.ListCodeReviewsOutput, table
+    -- Returns a list of RecommendationFeedbackSummary objects that contain customer recommendation
+    -- feedback for all CodeGuru Reviewer users.
     listRecommendationFeedback: function(Client, types.ListRecommendationFeedbackInput): types.ListRecommendationFeedbackOutput, table
+    -- Returns the list of all recommendations for a completed code review.
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- Returns a list of RepositoryAssociationSummary objects that contain summary information about a
+    -- repository association. You can filter the returned list by ProviderType, Name, State, and Owner.
     listRepositoryAssociations: function(Client, types.ListRepositoryAssociationsInput): types.ListRepositoryAssociationsOutput, table
+    -- Returns the list of tags associated with an associated repository resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Stores customer feedback for a CodeGuru Reviewer recommendation. When this API is called again with
+    -- different reactions the previous feedback is overwritten.
     putRecommendationFeedback: function(Client, types.PutRecommendationFeedbackInput): types.PutRecommendationFeedbackOutput, table
+    -- Adds one or more tags to an associated repository.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from an associated repository.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
 end
 

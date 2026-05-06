@@ -3,37 +3,69 @@
 local types = require("route53recoveryreadiness.types")
 
 local record Client
+    -- Creates a cell in an account.
     createCell: function(Client, types.CreateCellInput): types.CreateCellOutput, table
+    -- Creates a cross-account readiness authorization. This lets you authorize another account to work with Route 53 Application Recovery Controller, for example, to check the readiness status of resources in a separate account.
     createCrossAccountAuthorization: function(Client, types.CreateCrossAccountAuthorizationInput): types.CreateCrossAccountAuthorizationOutput, table
+    -- Creates a readiness check in an account. A readiness check monitors a resource set in your application, such as a set of Amazon Aurora instances, that Application Recovery Controller is auditing recovery readiness for. The audits run once every minute on every resource that's associated with a readiness check.
     createReadinessCheck: function(Client, types.CreateReadinessCheckInput): types.CreateReadinessCheckOutput, table
+    -- Creates a recovery group in an account. A recovery group corresponds to an application and includes a list of the cells that make up the application.
     createRecoveryGroup: function(Client, types.CreateRecoveryGroupInput): types.CreateRecoveryGroupOutput, table
+    -- Creates a resource set. A resource set is a set of resources of one type that span multiple cells. You can associate a resource set with a readiness check to monitor the resources for failover readiness.
     createResourceSet: function(Client, types.CreateResourceSetInput): types.CreateResourceSetOutput, table
+    -- Delete a cell. When successful, the response code is 204, with no response body.
     deleteCell: function(Client, types.DeleteCellInput): types.DeleteCellOutput, table
+    -- Deletes cross account readiness authorization.
     deleteCrossAccountAuthorization: function(Client, types.DeleteCrossAccountAuthorizationInput): types.DeleteCrossAccountAuthorizationOutput, table
+    -- Deletes a readiness check.
     deleteReadinessCheck: function(Client, types.DeleteReadinessCheckInput): types.DeleteReadinessCheckOutput, table
+    -- Deletes a recovery group.
     deleteRecoveryGroup: function(Client, types.DeleteRecoveryGroupInput): types.DeleteRecoveryGroupOutput, table
+    -- Deletes a resource set.
     deleteResourceSet: function(Client, types.DeleteResourceSetInput): types.DeleteResourceSetOutput, table
+    -- Gets recommendations about architecture designs for improving resiliency for an application, based on a recovery group.
     getArchitectureRecommendations: function(Client, types.GetArchitectureRecommendationsInput): types.GetArchitectureRecommendationsOutput, table
+    -- Gets information about a cell including cell name, cell Amazon Resource Name (ARN), ARNs of nested cells for this cell, and a list of those cell ARNs with their associated recovery group ARNs.
     getCell: function(Client, types.GetCellInput): types.GetCellOutput, table
+    -- Gets readiness for a cell. Aggregates the readiness of all the resources that are associated with the cell into a single value.
     getCellReadinessSummary: function(Client, types.GetCellReadinessSummaryInput): types.GetCellReadinessSummaryOutput, table
+    -- Gets details about a readiness check.
     getReadinessCheck: function(Client, types.GetReadinessCheckInput): types.GetReadinessCheckOutput, table
+    -- Gets individual readiness status for a readiness check. To see the overall readiness status for a recovery group, that considers the readiness status for all the readiness checks in the recovery group, use GetRecoveryGroupReadinessSummary.
     getReadinessCheckResourceStatus: function(Client, types.GetReadinessCheckResourceStatusInput): types.GetReadinessCheckResourceStatusOutput, table
+    -- Gets the readiness status for an individual readiness check. To see the overall readiness status for a recovery group, that considers the readiness status for all the readiness checks in a recovery group, use GetRecoveryGroupReadinessSummary.
     getReadinessCheckStatus: function(Client, types.GetReadinessCheckStatusInput): types.GetReadinessCheckStatusOutput, table
+    -- Gets details about a recovery group, including a list of the cells that are included in it.
     getRecoveryGroup: function(Client, types.GetRecoveryGroupInput): types.GetRecoveryGroupOutput, table
+    -- Displays a summary of information about a recovery group's readiness status. Includes the readiness checks for resources in the recovery group and the readiness status of each one.
     getRecoveryGroupReadinessSummary: function(Client, types.GetRecoveryGroupReadinessSummaryInput): types.GetRecoveryGroupReadinessSummaryOutput, table
+    -- Displays the details about a resource set, including a list of the resources in the set.
     getResourceSet: function(Client, types.GetResourceSetInput): types.GetResourceSetOutput, table
+    -- Lists the cells for an account.
     listCells: function(Client, types.ListCellsInput): types.ListCellsOutput, table
+    -- Lists the cross-account readiness authorizations that are in place for an account.
     listCrossAccountAuthorizations: function(Client, types.ListCrossAccountAuthorizationsInput): types.ListCrossAccountAuthorizationsOutput, table
+    -- Lists the readiness checks for an account.
     listReadinessChecks: function(Client, types.ListReadinessChecksInput): types.ListReadinessChecksOutput, table
+    -- Lists the recovery groups in an account.
     listRecoveryGroups: function(Client, types.ListRecoveryGroupsInput): types.ListRecoveryGroupsOutput, table
+    -- Lists the resource sets in an account.
     listResourceSets: function(Client, types.ListResourceSetsInput): types.ListResourceSetsOutput, table
+    -- Lists all readiness rules, or lists the readiness rules for a specific resource type.
     listRules: function(Client, types.ListRulesInput): types.ListRulesOperationOutput, table
+    -- Lists the tags for a resource.
     listTagsForResources: function(Client, types.ListTagsForResourcesInput): types.ListTagsForResourcesOutput, table
+    -- Adds a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a cell to replace the list of nested cells with a new list of nested cells.
     updateCell: function(Client, types.UpdateCellInput): types.UpdateCellOutput, table
+    -- Updates a readiness check.
     updateReadinessCheck: function(Client, types.UpdateReadinessCheckInput): types.UpdateReadinessCheckOutput, table
+    -- Updates a recovery group.
     updateRecoveryGroup: function(Client, types.UpdateRecoveryGroupInput): types.UpdateRecoveryGroupOutput, table
+    -- Updates a resource set.
     updateResourceSet: function(Client, types.UpdateResourceSetInput): types.UpdateResourceSetOutput, table
 end
 

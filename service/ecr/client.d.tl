@@ -3,63 +3,243 @@
 local types = require("ecr.types")
 
 local record Client
+    -- Checks the availability of one or more image layers in a repository.
+    -- When an image is pushed to a repository, each image layer is checked to verify if it
+    -- has been uploaded before. If it has been uploaded, then the image layer is
+    -- skipped.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput): types.BatchCheckLayerAvailabilityOutput, table
+    -- Deletes a list of specified images within a repository. Images are specified with
+    -- either an imageTag or imageDigest.
+    -- You can remove a tag from an image by specifying the image's tag in your request. When
+    -- you remove the last tag from an image, the image is deleted from your repository.
+    -- You can completely delete an image (and all of its tags) by specifying the image's
+    -- digest in your request.
     batchDeleteImage: function(Client, types.BatchDeleteImageInput): types.BatchDeleteImageOutput, table
+    -- Gets detailed information for an image. Images are specified with either an
+    -- imageTag or imageDigest.
+    -- When an image is pulled, the BatchGetImage API is called once to retrieve the image
+    -- manifest.
     batchGetImage: function(Client, types.BatchGetImageInput): types.BatchGetImageOutput, table
+    -- Gets the scanning configuration for one or more repositories.
     batchGetRepositoryScanningConfiguration: function(Client, types.BatchGetRepositoryScanningConfigurationInput): types.BatchGetRepositoryScanningConfigurationOutput, table
+    -- Informs Amazon ECR that the image layer upload has completed for a specified registry,
+    -- repository name, and upload ID. You can optionally provide a sha256 digest
+    -- of the image layer for data validation purposes.
+    -- When an image is pushed, the CompleteLayerUpload API is called once per each new image
+    -- layer to verify that the upload has completed.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     completeLayerUpload: function(Client, types.CompleteLayerUploadInput): types.CompleteLayerUploadOutput, table
+    -- Creates a pull through cache rule. A pull through cache rule provides a way to cache
+    -- images from an upstream registry source in your Amazon ECR private registry. For more
+    -- information, see Using pull through cache
+    -- rules in the Amazon Elastic Container Registry User Guide.
     createPullThroughCacheRule: function(Client, types.CreatePullThroughCacheRuleInput): types.CreatePullThroughCacheRuleOutput, table
+    -- Creates a repository. For more information, see Amazon ECR repositories in the
+    -- Amazon Elastic Container Registry User Guide.
     createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    -- Creates a repository creation template. This template is used to define the settings
+    -- for repositories created by Amazon ECR on your behalf. For example, repositories created
+    -- through pull through cache actions. For more information, see Private
+    -- repository creation templates in the
+    -- Amazon Elastic Container Registry User Guide.
     createRepositoryCreationTemplate: function(Client, types.CreateRepositoryCreationTemplateInput): types.CreateRepositoryCreationTemplateOutput, table
+    -- Deletes the lifecycle policy associated with the specified repository.
     deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): types.DeleteLifecyclePolicyOutput, table
+    -- Deletes a pull through cache rule.
     deletePullThroughCacheRule: function(Client, types.DeletePullThroughCacheRuleInput): types.DeletePullThroughCacheRuleOutput, table
+    -- Deletes the registry permissions policy.
     deleteRegistryPolicy: function(Client, types.DeleteRegistryPolicyInput): types.DeleteRegistryPolicyOutput, table
+    -- Deletes a repository. If the repository isn't empty, you must either delete the
+    -- contents of the repository or use the force option to delete the repository
+    -- and have Amazon ECR delete all of its contents on your behalf.
     deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    -- Deletes a repository creation template.
     deleteRepositoryCreationTemplate: function(Client, types.DeleteRepositoryCreationTemplateInput): types.DeleteRepositoryCreationTemplateOutput, table
+    -- Deletes the repository policy associated with the specified repository.
     deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput): types.DeleteRepositoryPolicyOutput, table
+    -- Deletes the registry's signing configuration. Images pushed after deletion of the signing
+    -- configuration will no longer be automatically signed.
+    -- For more information, see Managed signing in the
+    -- Amazon Elastic Container Registry User Guide.
+    -- Deleting the signing configuration does not affect existing image signatures.
     deleteSigningConfiguration: function(Client, types.DeleteSigningConfigurationInput): types.DeleteSigningConfigurationOutput, table
+    -- Removes a principal from the pull time update exclusion list for a registry. Once removed, Amazon ECR will resume updating the pull time if the specified principal pulls an image.
     deregisterPullTimeUpdateExclusion: function(Client, types.DeregisterPullTimeUpdateExclusionInput): types.DeregisterPullTimeUpdateExclusionOutput, table
+    -- Returns the replication status for a specified image.
     describeImageReplicationStatus: function(Client, types.DescribeImageReplicationStatusInput): types.DescribeImageReplicationStatusOutput, table
+    -- Returns metadata about the images in a repository.
+    -- Starting with Docker version 1.9, the Docker client compresses image layers before
+    -- pushing them to a V2 Docker registry. The output of the docker images
+    -- command shows the uncompressed image size. Therefore, Docker might return a larger
+    -- image than the image shown in the Amazon Web Services Management Console.
+    -- The new version of Amazon ECR
+    -- Basic Scanning doesn't use the ImageDetail$imageScanFindingsSummary and ImageDetail$imageScanStatus attributes from the API response to
+    -- return scan results. Use the DescribeImageScanFindings API
+    -- instead. For more information about Amazon Web Services native basic scanning, see Scan
+    -- images for software vulnerabilities in Amazon ECR.
     describeImages: function(Client, types.DescribeImagesInput): types.DescribeImagesOutput, table
+    -- Returns the scan findings for the specified image.
     describeImageScanFindings: function(Client, types.DescribeImageScanFindingsInput): types.DescribeImageScanFindingsOutput, table
+    -- Returns the signing status for a specified image. If the image matched
+    -- signing rules that reference different signing profiles, a status is returned
+    -- for each profile.
+    -- For more information, see Managed signing in the
+    -- Amazon Elastic Container Registry User Guide.
     describeImageSigningStatus: function(Client, types.DescribeImageSigningStatusInput): types.DescribeImageSigningStatusOutput, table
+    -- Returns the pull through cache rules for a registry.
     describePullThroughCacheRules: function(Client, types.DescribePullThroughCacheRulesInput): types.DescribePullThroughCacheRulesOutput, table
+    -- Describes the settings for a registry. The replication configuration for a repository
+    -- can be created or updated with the PutReplicationConfiguration API
+    -- action.
     describeRegistry: function(Client, types.DescribeRegistryInput): types.DescribeRegistryOutput, table
+    -- Describes image repositories in a registry.
     describeRepositories: function(Client, types.DescribeRepositoriesInput): types.DescribeRepositoriesOutput, table
+    -- Returns details about the repository creation templates in a registry. The
+    -- prefixes request parameter can be used to return the details for a
+    -- specific repository creation template.
     describeRepositoryCreationTemplates: function(Client, types.DescribeRepositoryCreationTemplatesInput): types.DescribeRepositoryCreationTemplatesOutput, table
+    -- Retrieves the account setting value for the specified setting name.
     getAccountSetting: function(Client, types.GetAccountSettingInput): types.GetAccountSettingOutput, table
+    -- Retrieves an authorization token. An authorization token represents your IAM
+    -- authentication credentials and can be used to access any Amazon ECR registry that your IAM
+    -- principal has access to. The authorization token is valid for 12 hours.
+    -- The authorizationToken returned is a base64 encoded string that can be
+    -- decoded and used in a docker login command to authenticate to a registry.
+    -- The CLI offers an get-login-password command that simplifies the login
+    -- process. For more information, see Registry
+    -- authentication in the Amazon Elastic Container Registry User Guide.
     getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput): types.GetAuthorizationTokenOutput, table
+    -- Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can
+    -- only get URLs for image layers that are referenced in an image.
+    -- When an image is pulled, the GetDownloadUrlForLayer API is called once per image layer
+    -- that is not already cached.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     getDownloadUrlForLayer: function(Client, types.GetDownloadUrlForLayerInput): types.GetDownloadUrlForLayerOutput, table
+    -- Retrieves the lifecycle policy for the specified repository.
     getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput): types.GetLifecyclePolicyOutput, table
+    -- Retrieves the results of the lifecycle policy preview request for the specified
+    -- repository.
     getLifecyclePolicyPreview: function(Client, types.GetLifecyclePolicyPreviewInput): types.GetLifecyclePolicyPreviewOutput, table
+    -- Retrieves the permissions policy for a registry.
     getRegistryPolicy: function(Client, types.GetRegistryPolicyInput): types.GetRegistryPolicyOutput, table
+    -- Retrieves the scanning configuration for a registry.
     getRegistryScanningConfiguration: function(Client, types.GetRegistryScanningConfigurationInput): types.GetRegistryScanningConfigurationOutput, table
+    -- Retrieves the repository policy for the specified repository.
     getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput): types.GetRepositoryPolicyOutput, table
+    -- Retrieves the registry's signing configuration, which defines
+    -- rules for automatically signing images using Amazon Web Services Signer.
+    -- For more information, see Managed signing in the
+    -- Amazon Elastic Container Registry User Guide.
     getSigningConfiguration: function(Client, types.GetSigningConfigurationInput): types.GetSigningConfigurationOutput, table
+    -- Notifies Amazon ECR that you intend to upload an image layer.
+    -- When an image is pushed, the InitiateLayerUpload API is called once per image layer
+    -- that has not already been uploaded. Whether or not an image layer has been uploaded is
+    -- determined by the BatchCheckLayerAvailability API action.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     initiateLayerUpload: function(Client, types.InitiateLayerUploadInput): types.InitiateLayerUploadOutput, table
+    -- Lists the artifacts associated with a specified subject image.
+    -- The IAM principal invoking this operation must have the ecr:BatchGetImage permission.
     listImageReferrers: function(Client, types.ListImageReferrersInput): types.ListImageReferrersOutput, table
+    -- Lists all the image IDs for the specified repository.
+    -- You can filter images based on whether or not they are tagged by using the
+    -- tagStatus filter and specifying either TAGGED,
+    -- UNTAGGED or ANY. For example, you can filter your results
+    -- to return only UNTAGGED images and then pipe that result to a BatchDeleteImage operation to delete them. Or, you can filter your
+    -- results to return only TAGGED images to list all of the tags in your
+    -- repository.
     listImages: function(Client, types.ListImagesInput): types.ListImagesOutput, table
+    -- Lists the IAM principals that are excluded from having their image pull times recorded.
     listPullTimeUpdateExclusions: function(Client, types.ListPullTimeUpdateExclusionsInput): types.ListPullTimeUpdateExclusionsOutput, table
+    -- List the tags for an Amazon ECR resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Allows you to change the basic scan type version or registry policy scope.
     putAccountSetting: function(Client, types.PutAccountSettingInput): types.PutAccountSettingOutput, table
+    -- Creates or updates the image manifest and tags associated with an image.
+    -- When an image is pushed and all new image layers have been uploaded, the PutImage API
+    -- is called once to create or update the image manifest and the tags associated with the
+    -- image.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     putImage: function(Client, types.PutImageInput): types.PutImageOutput, table
+    -- The PutImageScanningConfiguration API is being deprecated, in favor
+    -- of specifying the image scanning configuration at the registry level. For more
+    -- information, see PutRegistryScanningConfiguration.
+    -- Updates the image scanning configuration for the specified repository.
     putImageScanningConfiguration: function(Client, types.PutImageScanningConfigurationInput): types.PutImageScanningConfigurationOutput, table
+    -- Updates the image tag mutability settings for the specified repository. For more
+    -- information, see Image tag
+    -- mutability in the Amazon Elastic Container Registry User Guide.
     putImageTagMutability: function(Client, types.PutImageTagMutabilityInput): types.PutImageTagMutabilityOutput, table
+    -- Creates or updates the lifecycle policy for the specified repository. For more
+    -- information, see Lifecycle policy
+    -- template.
     putLifecyclePolicy: function(Client, types.PutLifecyclePolicyInput): types.PutLifecyclePolicyOutput, table
+    -- Creates or updates the permissions policy for your registry.
+    -- A registry policy is used to specify permissions for another Amazon Web Services account and is used
+    -- when configuring cross-account replication. For more information, see Registry permissions in the Amazon Elastic Container Registry User Guide.
     putRegistryPolicy: function(Client, types.PutRegistryPolicyInput): types.PutRegistryPolicyOutput, table
+    -- Creates or updates the scanning configuration for your private registry.
     putRegistryScanningConfiguration: function(Client, types.PutRegistryScanningConfigurationInput): types.PutRegistryScanningConfigurationOutput, table
+    -- Creates or updates the replication configuration for a registry. The existing
+    -- replication configuration for a repository can be retrieved with the DescribeRegistry API action. The first time the
+    -- PutReplicationConfiguration API is called, a service-linked IAM role is created in
+    -- your account for the replication process. For more information, see Using
+    -- service-linked roles for Amazon ECR in the Amazon Elastic Container Registry User Guide.
+    -- For more information on the custom role for replication, see Creating an IAM role for replication.
+    -- When configuring cross-account replication, the destination account must grant the
+    -- source account permission to replicate. This permission is controlled using a
+    -- registry permissions policy. For more information, see PutRegistryPolicy.
     putReplicationConfiguration: function(Client, types.PutReplicationConfigurationInput): types.PutReplicationConfigurationOutput, table
+    -- Creates or updates the registry's signing configuration, which defines
+    -- rules for automatically signing images with Amazon Web Services Signer.
+    -- For more information, see Managed signing in the
+    -- Amazon Elastic Container Registry User Guide.
+    -- To successfully generate a signature, the IAM principal pushing images must have
+    -- permission to sign payloads with the Amazon Web Services Signer signing profile referenced in the signing
+    -- configuration.
     putSigningConfiguration: function(Client, types.PutSigningConfigurationInput): types.PutSigningConfigurationOutput, table
+    -- Adds an IAM principal to the pull time update exclusion list for a registry. Amazon ECR will not record the pull time if an excluded principal pulls an image.
     registerPullTimeUpdateExclusion: function(Client, types.RegisterPullTimeUpdateExclusionInput): types.RegisterPullTimeUpdateExclusionOutput, table
+    -- Applies a repository policy to the specified repository to control access permissions.
+    -- For more information, see Amazon ECR Repository
+    -- policies in the Amazon Elastic Container Registry User Guide.
     setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput): types.SetRepositoryPolicyOutput, table
+    -- Starts a basic image vulnerability scan.
+    -- A basic image scan can only be started once per 24 hours on an individual image. This
+    -- limit includes if an image was scanned on initial push. You can start up to 100,000
+    -- basic scans per 24 hours. This limit includes both scans on initial push and scans
+    -- initiated by the StartImageScan API. For more information, see Basic scanning in the Amazon Elastic Container Registry User Guide.
     startImageScan: function(Client, types.StartImageScanInput): types.StartImageScanOutput, table
+    -- Starts a preview of a lifecycle policy for the specified repository. This allows you
+    -- to see the results before associating the lifecycle policy with the repository.
     startLifecyclePolicyPreview: function(Client, types.StartLifecyclePolicyPreviewInput): types.StartLifecyclePolicyPreviewOutput, table
+    -- Adds specified tags to a resource with the specified ARN. Existing tags on a resource
+    -- are not changed if they are not specified in the request parameters.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes specified tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Transitions an image between storage classes. You can transition images from Amazon ECR standard storage class to Amazon ECR archival storage class for long-term storage, or restore archived images back to Amazon ECR standard.
     updateImageStorageClass: function(Client, types.UpdateImageStorageClassInput): types.UpdateImageStorageClassOutput, table
+    -- Updates an existing pull through cache rule.
     updatePullThroughCacheRule: function(Client, types.UpdatePullThroughCacheRuleInput): types.UpdatePullThroughCacheRuleOutput, table
+    -- Updates an existing repository creation template.
     updateRepositoryCreationTemplate: function(Client, types.UpdateRepositoryCreationTemplateInput): types.UpdateRepositoryCreationTemplateOutput, table
+    -- Uploads an image layer part to Amazon ECR.
+    -- When an image is pushed, each new image layer is uploaded in parts. The maximum size
+    -- of each image layer part can be 20971520 bytes (or about 20MB). The UploadLayerPart API
+    -- is called once per each new image layer part.
+    -- This operation is used by the Amazon ECR proxy and is not generally used by
+    -- customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
     uploadLayerPart: function(Client, types.UploadLayerPartInput): types.UploadLayerPartOutput, table
+    -- Validates an existing pull through cache rule for an upstream registry that requires
+    -- authentication. This will retrieve the contents of the Amazon Web Services Secrets Manager secret, verify the
+    -- syntax, and then validate that authentication to the upstream registry is
+    -- successful.
     validatePullThroughCacheRule: function(Client, types.ValidatePullThroughCacheRuleInput): types.ValidatePullThroughCacheRuleOutput, table
 end
 

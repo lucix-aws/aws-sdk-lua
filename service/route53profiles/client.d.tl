@@ -3,21 +3,38 @@
 local types = require("route53profiles.types")
 
 local record Client
+    -- Associates a Route 53 Profiles profile with a VPC. A VPC can have only one Profile associated with it, but a Profile can be associated with 1000 of VPCs (and you can request a higher quota).
+    -- For more information, see https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities.
     associateProfile: function(Client, types.AssociateProfileInput): types.AssociateProfileOutput, table
+    -- Associates a DNS reource configuration to a Route 53 Profile.
     associateResourceToProfile: function(Client, types.AssociateResourceToProfileInput): types.AssociateResourceToProfileOutput, table
+    -- Creates an empty Route 53 Profile.
     createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    -- Deletes the specified Route 53 Profile. Before you can delete a profile, you must first disassociate it from all VPCs.
     deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    -- Dissociates a specified Route 53 Profile from the specified VPC.
     disassociateProfile: function(Client, types.DisassociateProfileInput): types.DisassociateProfileOutput, table
+    -- Dissoaciated a specified resource, from the Route 53 Profile.
     disassociateResourceFromProfile: function(Client, types.DisassociateResourceFromProfileInput): types.DisassociateResourceFromProfileOutput, table
+    -- Returns information about a specified Route 53 Profile, such as whether whether the Profile is shared, and the current status of the Profile.
     getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    -- Retrieves a Route 53 Profile association for a VPC. A VPC can have only one Profile association, but a Profile can be associated with up to 5000 VPCs.
     getProfileAssociation: function(Client, types.GetProfileAssociationInput): types.GetProfileAssociationOutput, table
+    -- Returns information about a specified Route 53 Profile resource association.
     getProfileResourceAssociation: function(Client, types.GetProfileResourceAssociationInput): types.GetProfileResourceAssociationOutput, table
+    -- Lists all the VPCs that the specified Route 53 Profile is associated with.
     listProfileAssociations: function(Client, types.ListProfileAssociationsInput): types.ListProfileAssociationsOutput, table
+    -- Lists all the resource associations for the specified Route 53 Profile.
     listProfileResourceAssociations: function(Client, types.ListProfileResourceAssociationsInput): types.ListProfileResourceAssociationsOutput, table
+    -- Lists all the Route 53 Profiles associated with your Amazon Web Services account.
     listProfiles: function(Client, types.ListProfilesInput): types.ListProfilesOutput, table
+    -- Lists the tags that you associated with the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds one or more tags to a specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from a specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the specified Route 53 Profile resourse association.
     updateProfileResourceAssociation: function(Client, types.UpdateProfileResourceAssociationInput): types.UpdateProfileResourceAssociationOutput, table
 end
 

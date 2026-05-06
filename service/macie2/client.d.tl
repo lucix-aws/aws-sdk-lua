@@ -3,86 +3,167 @@
 local types = require("macie2.types")
 
 local record Client
+    -- Accepts an Amazon Macie membership invitation that was received from a specific account.
     acceptInvitation: function(Client, types.AcceptInvitationInput): types.AcceptInvitationOutput, table
+    -- Retrieves information about one or more custom data identifiers.
     batchGetCustomDataIdentifiers: function(Client, types.BatchGetCustomDataIdentifiersInput): types.BatchGetCustomDataIdentifiersOutput, table
+    -- Changes the status of automated sensitive data discovery for one or more accounts.
     batchUpdateAutomatedDiscoveryAccounts: function(Client, types.BatchUpdateAutomatedDiscoveryAccountsInput): types.BatchUpdateAutomatedDiscoveryAccountsOutput, table
+    -- Creates and defines the settings for an allow list.
     createAllowList: function(Client, types.CreateAllowListInput): types.CreateAllowListOutput, table
+    -- Creates and defines the settings for a classification job.
     createClassificationJob: function(Client, types.CreateClassificationJobInput): types.CreateClassificationJobOutput, table
+    -- Creates and defines the criteria and other settings for a custom data identifier.
     createCustomDataIdentifier: function(Client, types.CreateCustomDataIdentifierInput): types.CreateCustomDataIdentifierOutput, table
+    -- Creates and defines the criteria and other settings for a findings filter.
     createFindingsFilter: function(Client, types.CreateFindingsFilterInput): types.CreateFindingsFilterOutput, table
+    -- Sends an Amazon Macie membership invitation to one or more accounts.
     createInvitations: function(Client, types.CreateInvitationsInput): types.CreateInvitationsOutput, table
+    -- Associates an account with an Amazon Macie administrator account.
     createMember: function(Client, types.CreateMemberInput): types.CreateMemberOutput, table
+    -- Creates sample findings.
     createSampleFindings: function(Client, types.CreateSampleFindingsInput): types.CreateSampleFindingsOutput, table
+    -- Declines Amazon Macie membership invitations that were received from specific accounts.
     declineInvitations: function(Client, types.DeclineInvitationsInput): types.DeclineInvitationsOutput, table
+    -- Deletes an allow list.
     deleteAllowList: function(Client, types.DeleteAllowListInput): types.DeleteAllowListOutput, table
+    -- Soft deletes a custom data identifier.
     deleteCustomDataIdentifier: function(Client, types.DeleteCustomDataIdentifierInput): types.DeleteCustomDataIdentifierOutput, table
+    -- Deletes a findings filter.
     deleteFindingsFilter: function(Client, types.DeleteFindingsFilterInput): types.DeleteFindingsFilterOutput, table
+    -- Deletes Amazon Macie membership invitations that were received from specific accounts.
     deleteInvitations: function(Client, types.DeleteInvitationsInput): types.DeleteInvitationsOutput, table
+    -- Deletes the association between an Amazon Macie administrator account and an account.
     deleteMember: function(Client, types.DeleteMemberInput): types.DeleteMemberOutput, table
+    -- Retrieves (queries) statistical data and other information about one or more S3 buckets that Amazon Macie monitors and analyzes for an account.
     describeBuckets: function(Client, types.DescribeBucketsInput): types.DescribeBucketsOutput, table
+    -- Retrieves the status and settings for a classification job.
     describeClassificationJob: function(Client, types.DescribeClassificationJobInput): types.DescribeClassificationJobOutput, table
+    -- Retrieves the Amazon Macie configuration settings for an organization in Organizations.
     describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    -- Disables Amazon Macie and deletes all settings and resources for a Macie account.
     disableMacie: function(Client, types.DisableMacieInput): types.DisableMacieOutput, table
+    -- Disables an account as the delegated Amazon Macie administrator account for an organization in Organizations.
     disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): types.DisableOrganizationAdminAccountOutput, table
+    -- Disassociates a member account from its Amazon Macie administrator account.
     disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput): types.DisassociateFromAdministratorAccountOutput, table
+    -- (Deprecated) Disassociates a member account from its Amazon Macie administrator account. This operation has been replaced by the DisassociateFromAdministratorAccount operation.
     disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput): types.DisassociateFromMasterAccountOutput, table
+    -- Disassociates an Amazon Macie administrator account from a member account.
     disassociateMember: function(Client, types.DisassociateMemberInput): types.DisassociateMemberOutput, table
+    -- Enables Amazon Macie and specifies the configuration settings for a Macie account.
     enableMacie: function(Client, types.EnableMacieInput): types.EnableMacieOutput, table
+    -- Designates an account as the delegated Amazon Macie administrator account for an organization in Organizations.
     enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): types.EnableOrganizationAdminAccountOutput, table
+    -- Retrieves information about the Amazon Macie administrator account for an account.
     getAdministratorAccount: function(Client, types.GetAdministratorAccountInput): types.GetAdministratorAccountOutput, table
+    -- Retrieves the settings and status of an allow list.
     getAllowList: function(Client, types.GetAllowListInput): types.GetAllowListOutput, table
+    -- Retrieves the configuration settings and status of automated sensitive data discovery for an organization or standalone account.
     getAutomatedDiscoveryConfiguration: function(Client, types.GetAutomatedDiscoveryConfigurationInput): types.GetAutomatedDiscoveryConfigurationOutput, table
+    -- Retrieves (queries) aggregated statistical data about all the S3 buckets that Amazon Macie monitors and analyzes for an account.
     getBucketStatistics: function(Client, types.GetBucketStatisticsInput): types.GetBucketStatisticsOutput, table
+    -- Retrieves the configuration settings for storing data classification results.
     getClassificationExportConfiguration: function(Client, types.GetClassificationExportConfigurationInput): types.GetClassificationExportConfigurationOutput, table
+    -- Retrieves the classification scope settings for an account.
     getClassificationScope: function(Client, types.GetClassificationScopeInput): types.GetClassificationScopeOutput, table
+    -- Retrieves the criteria and other settings for a custom data identifier.
     getCustomDataIdentifier: function(Client, types.GetCustomDataIdentifierInput): types.GetCustomDataIdentifierOutput, table
+    -- Retrieves the details of one or more findings.
     getFindings: function(Client, types.GetFindingsInput): types.GetFindingsOutput, table
+    -- Retrieves the criteria and other settings for a findings filter.
     getFindingsFilter: function(Client, types.GetFindingsFilterInput): types.GetFindingsFilterOutput, table
+    -- Retrieves the configuration settings for publishing findings to Security Hub.
     getFindingsPublicationConfiguration: function(Client, types.GetFindingsPublicationConfigurationInput): types.GetFindingsPublicationConfigurationOutput, table
+    -- Retrieves (queries) aggregated statistical data about findings.
     getFindingStatistics: function(Client, types.GetFindingStatisticsInput): types.GetFindingStatisticsOutput, table
+    -- Retrieves the count of Amazon Macie membership invitations that were received by an account.
     getInvitationsCount: function(Client, types.GetInvitationsCountInput): types.GetInvitationsCountOutput, table
+    -- Retrieves the status and configuration settings for an Amazon Macie account.
     getMacieSession: function(Client, types.GetMacieSessionInput): types.GetMacieSessionOutput, table
+    -- (Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the GetAdministratorAccount operation.
     getMasterAccount: function(Client, types.GetMasterAccountInput): types.GetMasterAccountOutput, table
+    -- Retrieves information about an account that's associated with an Amazon Macie administrator account.
     getMember: function(Client, types.GetMemberInput): types.GetMemberOutput, table
+    -- Retrieves (queries) sensitive data discovery statistics and the sensitivity score for an S3 bucket.
     getResourceProfile: function(Client, types.GetResourceProfileInput): types.GetResourceProfileOutput, table
+    -- Retrieves the status and configuration settings for retrieving occurrences of sensitive data reported by findings.
     getRevealConfiguration: function(Client, types.GetRevealConfigurationInput): types.GetRevealConfigurationOutput, table
+    -- Retrieves occurrences of sensitive data reported by a finding.
     getSensitiveDataOccurrences: function(Client, types.GetSensitiveDataOccurrencesInput): types.GetSensitiveDataOccurrencesOutput, table
+    -- Checks whether occurrences of sensitive data can be retrieved for a finding.
     getSensitiveDataOccurrencesAvailability: function(Client, types.GetSensitiveDataOccurrencesAvailabilityInput): types.GetSensitiveDataOccurrencesAvailabilityOutput, table
+    -- Retrieves the settings for the sensitivity inspection template for an account.
     getSensitivityInspectionTemplate: function(Client, types.GetSensitivityInspectionTemplateInput): types.GetSensitivityInspectionTemplateOutput, table
+    -- Retrieves (queries) quotas and aggregated usage data for one or more accounts.
     getUsageStatistics: function(Client, types.GetUsageStatisticsInput): types.GetUsageStatisticsOutput, table
+    -- Retrieves (queries) aggregated usage data for an account.
     getUsageTotals: function(Client, types.GetUsageTotalsInput): types.GetUsageTotalsOutput, table
+    -- Retrieves a subset of information about all the allow lists for an account.
     listAllowLists: function(Client, types.ListAllowListsInput): types.ListAllowListsOutput, table
+    -- Retrieves the status of automated sensitive data discovery for one or more accounts.
     listAutomatedDiscoveryAccounts: function(Client, types.ListAutomatedDiscoveryAccountsInput): types.ListAutomatedDiscoveryAccountsOutput, table
+    -- Retrieves a subset of information about one or more classification jobs.
     listClassificationJobs: function(Client, types.ListClassificationJobsInput): types.ListClassificationJobsOutput, table
+    -- Retrieves a subset of information about the classification scope for an account.
     listClassificationScopes: function(Client, types.ListClassificationScopesInput): types.ListClassificationScopesOutput, table
+    -- Retrieves a subset of information about the custom data identifiers for an account.
     listCustomDataIdentifiers: function(Client, types.ListCustomDataIdentifiersInput): types.ListCustomDataIdentifiersOutput, table
+    -- Retrieves a subset of information about one or more findings.
     listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    -- Retrieves a subset of information about all the findings filters for an account.
     listFindingsFilters: function(Client, types.ListFindingsFiltersInput): types.ListFindingsFiltersOutput, table
+    -- Retrieves information about Amazon Macie membership invitations that were received by an account.
     listInvitations: function(Client, types.ListInvitationsInput): types.ListInvitationsOutput, table
+    -- Retrieves information about all the managed data identifiers that Amazon Macie currently provides.
     listManagedDataIdentifiers: function(Client, types.ListManagedDataIdentifiersInput): types.ListManagedDataIdentifiersOutput, table
+    -- Retrieves information about the accounts that are associated with an Amazon Macie administrator account.
     listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    -- Retrieves information about the delegated Amazon Macie administrator account for an organization in Organizations.
     listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): types.ListOrganizationAdminAccountsOutput, table
+    -- Retrieves information about objects that Amazon Macie selected from an S3 bucket for automated sensitive data discovery.
     listResourceProfileArtifacts: function(Client, types.ListResourceProfileArtifactsInput): types.ListResourceProfileArtifactsOutput, table
+    -- Retrieves information about the types and amount of sensitive data that Amazon Macie found in an S3 bucket.
     listResourceProfileDetections: function(Client, types.ListResourceProfileDetectionsInput): types.ListResourceProfileDetectionsOutput, table
+    -- Retrieves a subset of information about the sensitivity inspection template for an account.
     listSensitivityInspectionTemplates: function(Client, types.ListSensitivityInspectionTemplatesInput): types.ListSensitivityInspectionTemplatesOutput, table
+    -- Retrieves the tags (keys and values) that are associated with an Amazon Macie resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Adds or updates the configuration settings for storing data classification results.
     putClassificationExportConfiguration: function(Client, types.PutClassificationExportConfigurationInput): types.PutClassificationExportConfigurationOutput, table
+    -- Updates the configuration settings for publishing findings to Security Hub.
     putFindingsPublicationConfiguration: function(Client, types.PutFindingsPublicationConfigurationInput): types.PutFindingsPublicationConfigurationOutput, table
+    -- Retrieves (queries) statistical data and other information about Amazon Web Services resources that Amazon Macie monitors and analyzes for an account.
     searchResources: function(Client, types.SearchResourcesInput): types.SearchResourcesOutput, table
+    -- Adds or updates one or more tags (keys and values) that are associated with an Amazon Macie resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Tests criteria for a custom data identifier.
     testCustomDataIdentifier: function(Client, types.TestCustomDataIdentifierInput): types.TestCustomDataIdentifierOutput, table
+    -- Removes one or more tags (keys and values) from an Amazon Macie resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the settings for an allow list.
     updateAllowList: function(Client, types.UpdateAllowListInput): types.UpdateAllowListOutput, table
+    -- Changes the configuration settings and status of automated sensitive data discovery for an organization or standalone account.
     updateAutomatedDiscoveryConfiguration: function(Client, types.UpdateAutomatedDiscoveryConfigurationInput): types.UpdateAutomatedDiscoveryConfigurationOutput, table
+    -- Changes the status of a classification job.
     updateClassificationJob: function(Client, types.UpdateClassificationJobInput): types.UpdateClassificationJobOutput, table
+    -- Updates the classification scope settings for an account.
     updateClassificationScope: function(Client, types.UpdateClassificationScopeInput): types.UpdateClassificationScopeOutput, table
+    -- Updates the criteria and other settings for a findings filter.
     updateFindingsFilter: function(Client, types.UpdateFindingsFilterInput): types.UpdateFindingsFilterOutput, table
+    -- Suspends or re-enables Amazon Macie, or updates the configuration settings for a Macie account.
     updateMacieSession: function(Client, types.UpdateMacieSessionInput): types.UpdateMacieSessionOutput, table
+    -- Enables an Amazon Macie administrator to suspend or re-enable Macie for a member account.
     updateMemberSession: function(Client, types.UpdateMemberSessionInput): types.UpdateMemberSessionOutput, table
+    -- Updates the Amazon Macie configuration settings for an organization in Organizations.
     updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    -- Updates the sensitivity score for an S3 bucket.
     updateResourceProfile: function(Client, types.UpdateResourceProfileInput): types.UpdateResourceProfileOutput, table
+    -- Updates the sensitivity scoring settings for an S3 bucket.
     updateResourceProfileDetections: function(Client, types.UpdateResourceProfileDetectionsInput): types.UpdateResourceProfileDetectionsOutput, table
+    -- Updates the status and configuration settings for retrieving occurrences of sensitive data reported by findings.
     updateRevealConfiguration: function(Client, types.UpdateRevealConfigurationInput): types.UpdateRevealConfigurationOutput, table
+    -- Updates the settings for the sensitivity inspection template for an account.
     updateSensitivityInspectionTemplate: function(Client, types.UpdateSensitivityInspectionTemplateInput): types.UpdateSensitivityInspectionTemplateOutput, table
 end
 

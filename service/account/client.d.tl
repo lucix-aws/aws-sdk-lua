@@ -3,20 +3,35 @@
 local types = require("account.types")
 
 local record Client
+    -- Accepts the request that originated from StartPrimaryEmailUpdate to update the primary email address (also known as the root user email address) for the specified account.
     acceptPrimaryEmailUpdate: function(Client, types.AcceptPrimaryEmailUpdateInput): types.AcceptPrimaryEmailUpdateOutput, table
+    -- Deletes the specified alternate contact from an Amazon Web Services account. For complete details about how to use the alternate contact operations, see Update the alternate contacts for your Amazon Web Services account. Before you can update the alternate contact information for an Amazon Web Services account that is managed by Organizations, you must first enable integration between Amazon Web Services Account Management and Organizations. For more information, see Enable trusted access for Amazon Web Services Account Management.
     deleteAlternateContact: function(Client, types.DeleteAlternateContactInput): types.DeleteAlternateContactOutput, table
+    -- Disables (opts-out) a particular Region for an account. The act of disabling a Region will remove all IAM access to any resources that reside in that Region.
     disableRegion: function(Client, types.DisableRegionInput): types.DisableRegionOutput, table
+    -- Enables (opts-in) a particular Region for an account.
     enableRegion: function(Client, types.EnableRegionInput): types.EnableRegionOutput, table
+    -- Retrieves information about the specified account including its account name, account ID, account creation date and time, and account state. To use this API, an IAM user or role must have the account:GetAccountInformation IAM permission.
     getAccountInformation: function(Client, types.GetAccountInformationInput): types.GetAccountInformationOutput, table
+    -- Retrieves the specified alternate contact attached to an Amazon Web Services account. For complete details about how to use the alternate contact operations, see Update the alternate contacts for your Amazon Web Services account. Before you can update the alternate contact information for an Amazon Web Services account that is managed by Organizations, you must first enable integration between Amazon Web Services Account Management and Organizations. For more information, see Enable trusted access for Amazon Web Services Account Management.
     getAlternateContact: function(Client, types.GetAlternateContactInput): types.GetAlternateContactOutput, table
+    -- Retrieves the primary contact information of an Amazon Web Services account. For complete details about how to use the primary contact operations, see Update the primary contact for your Amazon Web Services account.
     getContactInformation: function(Client, types.GetContactInformationInput): types.GetContactInformationOutput, table
+    -- Retrieves information about the GovCloud account linked to the specified standard account (if it exists) including the GovCloud account ID and state. To use this API, an IAM user or role must have the account:GetGovCloudAccountInformation IAM permission.
     getGovCloudAccountInformation: function(Client, types.GetGovCloudAccountInformationInput): types.GetGovCloudAccountInformationOutput, table
+    -- Retrieves the primary email address for the specified account.
     getPrimaryEmail: function(Client, types.GetPrimaryEmailInput): types.GetPrimaryEmailOutput, table
+    -- Retrieves the opt-in status of a particular Region.
     getRegionOptStatus: function(Client, types.GetRegionOptStatusInput): types.GetRegionOptStatusOutput, table
+    -- Lists all the Regions for a given account and their respective opt-in statuses. Optionally, this list can be filtered by the region-opt-status-contains parameter.
     listRegions: function(Client, types.ListRegionsInput): types.ListRegionsOutput, table
+    -- Updates the account name of the specified account. To use this API, IAM principals must have the account:PutAccountName IAM permission.
     putAccountName: function(Client, types.PutAccountNameInput): types.PutAccountNameOutput, table
+    -- Modifies the specified alternate contact attached to an Amazon Web Services account. For complete details about how to use the alternate contact operations, see Update the alternate contacts for your Amazon Web Services account. Before you can update the alternate contact information for an Amazon Web Services account that is managed by Organizations, you must first enable integration between Amazon Web Services Account Management and Organizations. For more information, see Enable trusted access for Amazon Web Services Account Management.
     putAlternateContact: function(Client, types.PutAlternateContactInput): types.PutAlternateContactOutput, table
+    -- Updates the primary contact information of an Amazon Web Services account. For complete details about how to use the primary contact operations, see Update the primary contact for your Amazon Web Services account.
     putContactInformation: function(Client, types.PutContactInformationInput): types.PutContactInformationOutput, table
+    -- Starts the process to update the primary email address for the specified account.
     startPrimaryEmailUpdate: function(Client, types.StartPrimaryEmailUpdateInput): types.StartPrimaryEmailUpdateOutput, table
 end
 

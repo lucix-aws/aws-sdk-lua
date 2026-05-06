@@ -3,43 +3,100 @@
 local types = require("codecatalyst.types")
 
 local record Client
+    -- Creates a personal access token (PAT) for the current user. A personal access token (PAT) is similar to a password.
+    -- It is associated with your user identity for use across all spaces and projects in Amazon CodeCatalyst. You use PATs to access CodeCatalyst
+    -- from resources that include integrated development environments (IDEs) and Git-based source repositories.
+    -- PATs represent you in Amazon CodeCatalyst and you can manage them in your user settings.For more information, see
+    -- Managing personal access tokens in Amazon CodeCatalyst.
     createAccessToken: function(Client, types.CreateAccessTokenInput): types.CreateAccessTokenOutput, table
+    -- Creates a Dev Environment in Amazon CodeCatalyst, a cloud-based development environment that you can use to quickly work on the code stored
+    -- in the source repositories of your project.
+    -- When created in the Amazon CodeCatalyst console, by default a Dev Environment is configured to have a 2 core processor, 4GB of RAM, and 16GB of persistent storage. None of these
+    -- defaults apply to a Dev Environment created programmatically.
     createDevEnvironment: function(Client, types.CreateDevEnvironmentInput): types.CreateDevEnvironmentOutput, table
+    -- Creates a project in a specified space.
     createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    -- Creates an empty Git-based source repository in a specified project. The repository is
+    -- created with an initial empty commit with a default branch named main.
     createSourceRepository: function(Client, types.CreateSourceRepositoryInput): types.CreateSourceRepositoryOutput, table
+    -- Creates a branch in a specified source repository in Amazon CodeCatalyst.
+    -- This API only creates a branch in a source repository hosted in Amazon CodeCatalyst. You cannot use this API to create a branch in a linked repository.
     createSourceRepositoryBranch: function(Client, types.CreateSourceRepositoryBranchInput): types.CreateSourceRepositoryBranchOutput, table
+    -- Deletes a specified personal access token (PAT). A personal access token can only be deleted by the user who created it.
     deleteAccessToken: function(Client, types.DeleteAccessTokenInput): types.DeleteAccessTokenOutput, table
+    -- Deletes a Dev Environment.
     deleteDevEnvironment: function(Client, types.DeleteDevEnvironmentInput): types.DeleteDevEnvironmentOutput, table
+    -- Deletes a project in a space.
     deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    -- Deletes a source repository in Amazon CodeCatalyst. You cannot use this API to delete a linked repository. It can only be used to delete a Amazon CodeCatalyst source repository.
     deleteSourceRepository: function(Client, types.DeleteSourceRepositoryInput): types.DeleteSourceRepositoryOutput, table
+    -- Deletes a space.
+    -- Deleting a space cannot be undone. Additionally, since space names must be unique across Amazon CodeCatalyst, you cannot reuse names of deleted spaces.
     deleteSpace: function(Client, types.DeleteSpaceInput): types.DeleteSpaceOutput, table
+    -- Returns information about a Dev Environment for a source repository in a project. Dev Environments are specific to the user who creates them.
     getDevEnvironment: function(Client, types.GetDevEnvironmentInput): types.GetDevEnvironmentOutput, table
+    -- Returns information about a project.
     getProject: function(Client, types.GetProjectInput): types.GetProjectOutput, table
+    -- Returns information about a source repository.
     getSourceRepository: function(Client, types.GetSourceRepositoryInput): types.GetSourceRepositoryOutput, table
+    -- Returns information about the URLs that can be used with a Git client to clone a source
+    -- repository.
     getSourceRepositoryCloneUrls: function(Client, types.GetSourceRepositoryCloneUrlsInput): types.GetSourceRepositoryCloneUrlsOutput, table
+    -- Returns information about an space.
     getSpace: function(Client, types.GetSpaceInput): types.GetSpaceOutput, table
+    -- Returns information about the Amazon Web Services account used for billing purposes
+    -- and the billing plan for the space.
     getSubscription: function(Client, types.GetSubscriptionInput): types.GetSubscriptionOutput, table
+    -- Returns information about a user.
     getUserDetails: function(Client, types.GetUserDetailsInput): types.GetUserDetailsOutput, table
+    -- Returns information about a workflow.
     getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    -- Returns information about a specified run of a workflow.
     getWorkflowRun: function(Client, types.GetWorkflowRunInput): types.GetWorkflowRunOutput, table
+    -- Lists all personal access tokens (PATs) associated with the user who calls the API. You can only list PATs associated with your Amazon Web Services Builder ID.
     listAccessTokens: function(Client, types.ListAccessTokensInput): types.ListAccessTokensOutput, table
+    -- Retrieves a list of Dev Environments in a project.
     listDevEnvironments: function(Client, types.ListDevEnvironmentsInput): types.ListDevEnvironmentsOutput, table
+    -- Retrieves a list of active sessions for a Dev Environment in a project.
     listDevEnvironmentSessions: function(Client, types.ListDevEnvironmentSessionsInput): types.ListDevEnvironmentSessionsOutput, table
+    -- Retrieves a list of events that occurred during a specific time in a space. You can
+    -- use these events to audit user and system activity in a space. For more information, see
+    -- Monitoring in the Amazon CodeCatalyst User Guide.
+    -- ListEventLogs guarantees events for the last 30 days in a given space. You can also
+    -- view and retrieve a list of management events over the last 90 days for Amazon CodeCatalyst in the
+    -- CloudTrail console by viewing Event history, or by creating a trail to create
+    -- and maintain a record of events that extends past 90 days. For more information, see Working with CloudTrail Event History and Working with
+    -- CloudTrail trails.
     listEventLogs: function(Client, types.ListEventLogsInput): types.ListEventLogsOutput, table
+    -- Retrieves a list of projects.
     listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    -- Retrieves a list of source repositories in a project.
     listSourceRepositories: function(Client, types.ListSourceRepositoriesInput): types.ListSourceRepositoriesOutput, table
+    -- Retrieves a list of branches in a specified source repository.
     listSourceRepositoryBranches: function(Client, types.ListSourceRepositoryBranchesInput): types.ListSourceRepositoryBranchesOutput, table
+    -- Retrieves a list of spaces.
     listSpaces: function(Client, types.ListSpacesInput): types.ListSpacesOutput, table
+    -- Retrieves a list of workflow runs of a specified workflow.
     listWorkflowRuns: function(Client, types.ListWorkflowRunsInput): types.ListWorkflowRunsOutput, table
+    -- Retrieves a list of workflows in a specified project.
     listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    -- Starts a specified Dev Environment and puts it into an active state.
     startDevEnvironment: function(Client, types.StartDevEnvironmentInput): types.StartDevEnvironmentOutput, table
+    -- Starts a session for a specified Dev Environment.
     startDevEnvironmentSession: function(Client, types.StartDevEnvironmentSessionInput): types.StartDevEnvironmentSessionOutput, table
+    -- Begins a run of a specified workflow.
     startWorkflowRun: function(Client, types.StartWorkflowRunInput): types.StartWorkflowRunOutput, table
+    -- Pauses a specified Dev Environment and places it in a non-running state. Stopped Dev Environments do not consume compute minutes.
     stopDevEnvironment: function(Client, types.StopDevEnvironmentInput): types.StopDevEnvironmentOutput, table
+    -- Stops a session for a specified Dev Environment.
     stopDevEnvironmentSession: function(Client, types.StopDevEnvironmentSessionInput): types.StopDevEnvironmentSessionOutput, table
+    -- Changes one or more values for a Dev Environment. Updating certain values of the Dev Environment will cause a restart.
     updateDevEnvironment: function(Client, types.UpdateDevEnvironmentInput): types.UpdateDevEnvironmentOutput, table
+    -- Changes one or more values for a project.
     updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    -- Changes one or more values for a space.
     updateSpace: function(Client, types.UpdateSpaceInput): types.UpdateSpaceOutput, table
+    -- Verifies whether the calling user has a valid Amazon CodeCatalyst login and session. If successful, this returns the ID of the user in Amazon CodeCatalyst.
     verifySession: function(Client, types.VerifySessionInput): types.VerifySessionOutput, table
 end
 

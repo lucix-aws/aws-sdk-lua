@@ -3,10 +3,15 @@
 local types = require("geomaps.types")
 
 local record Client
+    -- GetGlyphs returns the map's glyphs. For more information, see Style labels with glyphs in the Amazon Location Service Developer Guide.
     getGlyphs: function(Client, types.GetGlyphsInput): types.GetGlyphsOutput, table
+    -- GetSprites returns the map's sprites. For more information, see Style iconography with sprites in the Amazon Location Service Developer Guide.
     getSprites: function(Client, types.GetSpritesInput): types.GetSpritesOutput, table
+    -- This operation is not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers. GetStaticMap provides high-quality static map images with customizable options. You can modify the map's appearance and overlay additional information. It's an ideal solution for applications requiring tailored static map snapshots. For more information, see the following topics in the Amazon Location Service Developer Guide: Static maps Customize static maps Overlay on the static map
     getStaticMap: function(Client, types.GetStaticMapInput): types.GetStaticMapOutput, table
+    -- GetStyleDescriptor returns information about the style. For more information, see Style dynamic maps in the Amazon Location Service Developer Guide.
     getStyleDescriptor: function(Client, types.GetStyleDescriptorInput): types.GetStyleDescriptorOutput, table
+    -- GetTile returns a tile. Map tiles are used by clients to render a map. They're addressed using a grid arrangement with an X coordinate, Y coordinate, and Z (zoom) level. For more information, see Tiles in the Amazon Location Service Developer Guide.
     getTile: function(Client, types.GetTileInput): types.GetTileOutput, table
 end
 

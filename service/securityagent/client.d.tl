@@ -3,55 +3,105 @@
 local types = require("securityagent.types")
 
 local record Client
+    -- Uploads an artifact to an agent space. Artifacts provide additional context for security testing, such as architecture diagrams, API specifications, or configuration files.
     addArtifact: function(Client, types.AddArtifactInput): types.AddArtifactOutput, table
+    -- Deletes one or more pentests from an agent space.
     batchDeletePentests: function(Client, types.BatchDeletePentestsInput): types.BatchDeletePentestsOutput, table
+    -- Retrieves information about one or more agent spaces.
     batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput): types.BatchGetAgentSpacesOutput, table
+    -- Retrieves metadata for one or more artifacts in an agent space.
     batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput): types.BatchGetArtifactMetadataOutput, table
+    -- Retrieves information about one or more security findings in an agent space.
     batchGetFindings: function(Client, types.BatchGetFindingsInput): types.BatchGetFindingsOutput, table
+    -- Retrieves information about one or more pentest jobs in an agent space.
     batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput): types.BatchGetPentestJobsOutput, table
+    -- Retrieves information about one or more tasks within a pentest job.
     batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput): types.BatchGetPentestJobTasksOutput, table
+    -- Retrieves information about one or more pentests in an agent space.
     batchGetPentests: function(Client, types.BatchGetPentestsInput): types.BatchGetPentestsOutput, table
+    -- Retrieves information about one or more target domains.
     batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput): types.BatchGetTargetDomainsOutput, table
+    -- Creates a new agent space. An agent space is a dedicated workspace for securing a specific application.
     createAgentSpace: function(Client, types.CreateAgentSpaceInput): types.CreateAgentSpaceOutput, table
+    -- Creates a new application. An application is the top-level organizational unit that supports IAM Identity Center integration.
     createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    -- Creates a new integration with a third-party provider, such as GitHub, for code review and remediation.
     createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    -- Creates a new membership, granting a user access to an agent space within an application.
     createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    -- Creates a new pentest configuration in an agent space. A pentest defines the security test parameters, including target assets, risk type exclusions, and logging configuration.
     createPentest: function(Client, types.CreatePentestInput): types.CreatePentestOutput, table
+    -- Creates a new target domain for penetration testing. A target domain is a web domain that must be registered and verified before it can be tested.
     createTargetDomain: function(Client, types.CreateTargetDomainInput): types.CreateTargetDomainOutput, table
+    -- Deletes an agent space and all of its associated resources, including pentests, findings, and artifacts.
     deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput): types.DeleteAgentSpaceOutput, table
+    -- Deletes an application and its associated configuration, including IAM Identity Center settings.
     deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    -- Deletes an artifact from an agent space.
     deleteArtifact: function(Client, types.DeleteArtifactInput): types.DeleteArtifactOutput, table
+    -- Deletes an integration with a third-party provider.
     deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    -- Deletes a membership, revoking a user's access to an agent space.
     deleteMembership: function(Client, types.DeleteMembershipInput): types.DeleteMembershipOutput, table
+    -- Deletes a target domain registration. After deletion, the domain can no longer be used for penetration testing.
     deleteTargetDomain: function(Client, types.DeleteTargetDomainInput): types.DeleteTargetDomainOutput, table
+    -- Retrieves information about an application.
     getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    -- Retrieves an artifact from an agent space.
     getArtifact: function(Client, types.GetArtifactInput): types.GetArtifactOutput, table
+    -- Retrieves information about an integration.
     getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    -- Initiates the OAuth registration flow with a third-party provider. Returns a redirect URL and CSRF state token for completing the authorization.
     initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput): types.InitiateProviderRegistrationOutput, table
+    -- Returns a paginated list of agent space summaries in your account.
     listAgentSpaces: function(Client, types.ListAgentSpacesInput): types.ListAgentSpacesOutput, table
+    -- Returns a paginated list of application summaries in your account.
     listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    -- Returns a paginated list of artifact summaries for the specified agent space.
     listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    -- Returns a paginated list of endpoints discovered during a pentest job execution.
     listDiscoveredEndpoints: function(Client, types.ListDiscoveredEndpointsInput): types.ListDiscoveredEndpointsOutput, table
+    -- Lists the security findings for a pentest job.
     listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    -- Lists the integrated resources for an agent space, optionally filtered by integration or resource type.
     listIntegratedResources: function(Client, types.ListIntegratedResourcesInput): types.ListIntegratedResourcesOutput, table
+    -- Lists the integrations in your account, optionally filtered by provider or provider type.
     listIntegrations: function(Client, types.ListIntegrationsInput): types.ListIntegrationsOutput, table
+    -- Returns a paginated list of membership summaries for the specified agent space within an application.
     listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    -- Returns a paginated list of pentest job summaries for the specified pentest configuration.
     listPentestJobsForPentest: function(Client, types.ListPentestJobsForPentestInput): types.ListPentestJobsForPentestOutput, table
+    -- Returns a paginated list of task summaries for the specified pentest job, optionally filtered by step name or category.
     listPentestJobTasks: function(Client, types.ListPentestJobTasksInput): types.ListPentestJobTasksOutput, table
+    -- Returns a paginated list of pentest summaries for the specified agent space.
     listPentests: function(Client, types.ListPentestsInput): types.ListPentestsOutput, table
+    -- Returns the tags associated with the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Returns a paginated list of target domain summaries in your account.
     listTargetDomains: function(Client, types.ListTargetDomainsInput): types.ListTargetDomainsOutput, table
+    -- Initiates code remediation for one or more security findings. This creates pull requests in integrated repositories to fix the identified vulnerabilities.
     startCodeRemediation: function(Client, types.StartCodeRemediationInput): types.StartCodeRemediationOutput, table
+    -- Starts a new pentest job for a pentest configuration. The job executes the security tests defined in the pentest.
     startPentestJob: function(Client, types.StartPentestJobInput): types.StartPentestJobOutput, table
+    -- Stops a running pentest job. The job transitions to a stopping state and then to stopped after cleanup completes.
     stopPentestJob: function(Client, types.StopPentestJobInput): types.StopPentestJobOutput, table
+    -- Adds tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the configuration of an existing agent space, including its name, description, AWS resources, target domains, and code review settings.
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput): types.UpdateAgentSpaceOutput, table
+    -- Updates the configuration of an existing application, including the IAM role and default KMS key.
     updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    -- Updates the status or risk level of a security finding.
     updateFinding: function(Client, types.UpdateFindingInput): types.UpdateFindingOutput, table
+    -- Updates the integrated resources for an agent space, including their capabilities.
     updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput): types.UpdateIntegratedResourcesOutput, table
+    -- Updates an existing pentest configuration.
     updatePentest: function(Client, types.UpdatePentestInput): types.UpdatePentestOutput, table
+    -- Updates the verification method for a target domain.
     updateTargetDomain: function(Client, types.UpdateTargetDomainInput): types.UpdateTargetDomainOutput, table
+    -- Initiates verification of a target domain. This checks whether the domain ownership verification token has been properly configured.
     verifyTargetDomain: function(Client, types.VerifyTargetDomainInput): types.VerifyTargetDomainOutput, table
 end
 

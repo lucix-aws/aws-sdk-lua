@@ -3,93 +3,181 @@
 local types = require("cleanrooms.types")
 
 local record Client
+    -- Retrieves multiple analysis templates within a collaboration by their Amazon Resource Names (ARNs).
     batchGetCollaborationAnalysisTemplate: function(Client, types.BatchGetCollaborationAnalysisTemplateInput): types.BatchGetCollaborationAnalysisTemplateOutput, table
+    -- Retrieves multiple schemas by their identifiers.
     batchGetSchema: function(Client, types.BatchGetSchemaInput): types.BatchGetSchemaOutput, table
+    -- Retrieves multiple analysis rule schemas.
     batchGetSchemaAnalysisRule: function(Client, types.BatchGetSchemaAnalysisRuleInput): types.BatchGetSchemaAnalysisRuleOutput, table
+    -- Creates a new analysis template.
     createAnalysisTemplate: function(Client, types.CreateAnalysisTemplateInput): types.CreateAnalysisTemplateOutput, table
+    -- Creates a new collaboration.
     createCollaboration: function(Client, types.CreateCollaborationInput): types.CreateCollaborationOutput, table
+    -- Creates a new change request to modify an existing collaboration. This enables post-creation modifications to collaborations through a structured API-driven approach.
     createCollaborationChangeRequest: function(Client, types.CreateCollaborationChangeRequestInput): types.CreateCollaborationChangeRequestOutput, table
+    -- Provides the details necessary to create a configured audience model association.
     createConfiguredAudienceModelAssociation: function(Client, types.CreateConfiguredAudienceModelAssociationInput): types.CreateConfiguredAudienceModelAssociationOutput, table
+    -- Creates a new configured table resource.
     createConfiguredTable: function(Client, types.CreateConfiguredTableInput): types.CreateConfiguredTableOutput, table
+    -- Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.
     createConfiguredTableAnalysisRule: function(Client, types.CreateConfiguredTableAnalysisRuleInput): types.CreateConfiguredTableAnalysisRuleOutput, table
+    -- Creates a configured table association. A configured table association links a configured table with a collaboration.
     createConfiguredTableAssociation: function(Client, types.CreateConfiguredTableAssociationInput): types.CreateConfiguredTableAssociationOutput, table
+    -- Creates a new analysis rule for an associated configured table.
     createConfiguredTableAssociationAnalysisRule: function(Client, types.CreateConfiguredTableAssociationAnalysisRuleInput): types.CreateConfiguredTableAssociationAnalysisRuleOutput, table
+    -- Creates an ID mapping table.
     createIdMappingTable: function(Client, types.CreateIdMappingTableInput): types.CreateIdMappingTableOutput, table
+    -- Creates an ID namespace association.
     createIdNamespaceAssociation: function(Client, types.CreateIdNamespaceAssociationInput): types.CreateIdNamespaceAssociationOutput, table
+    -- Creates a membership for a specific collaboration identifier and joins the collaboration.
     createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    -- Creates a privacy budget template for a specified collaboration. Each collaboration can have only one privacy budget template. If you need to change the privacy budget template, use the UpdatePrivacyBudgetTemplate operation.
     createPrivacyBudgetTemplate: function(Client, types.CreatePrivacyBudgetTemplateInput): types.CreatePrivacyBudgetTemplateOutput, table
+    -- Deletes an analysis template.
     deleteAnalysisTemplate: function(Client, types.DeleteAnalysisTemplateInput): types.DeleteAnalysisTemplateOutput, table
+    -- Deletes a collaboration. It can only be called by the collaboration owner.
     deleteCollaboration: function(Client, types.DeleteCollaborationInput): types.DeleteCollaborationOutput, table
+    -- Provides the information necessary to delete a configured audience model association.
     deleteConfiguredAudienceModelAssociation: function(Client, types.DeleteConfiguredAudienceModelAssociationInput): types.DeleteConfiguredAudienceModelAssociationOutput, table
+    -- Deletes a configured table.
     deleteConfiguredTable: function(Client, types.DeleteConfiguredTableInput): types.DeleteConfiguredTableOutput, table
+    -- Deletes a configured table analysis rule.
     deleteConfiguredTableAnalysisRule: function(Client, types.DeleteConfiguredTableAnalysisRuleInput): types.DeleteConfiguredTableAnalysisRuleOutput, table
+    -- Deletes a configured table association.
     deleteConfiguredTableAssociation: function(Client, types.DeleteConfiguredTableAssociationInput): types.DeleteConfiguredTableAssociationOutput, table
+    -- Deletes an analysis rule for a configured table association.
     deleteConfiguredTableAssociationAnalysisRule: function(Client, types.DeleteConfiguredTableAssociationAnalysisRuleInput): types.DeleteConfiguredTableAssociationAnalysisRuleOutput, table
+    -- Deletes an ID mapping table.
     deleteIdMappingTable: function(Client, types.DeleteIdMappingTableInput): types.DeleteIdMappingTableOutput, table
+    -- Deletes an ID namespace association.
     deleteIdNamespaceAssociation: function(Client, types.DeleteIdNamespaceAssociationInput): types.DeleteIdNamespaceAssociationOutput, table
+    -- Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.
     deleteMember: function(Client, types.DeleteMemberInput): types.DeleteMemberOutput, table
+    -- Deletes a specified membership. All resources under a membership must be deleted.
     deleteMembership: function(Client, types.DeleteMembershipInput): types.DeleteMembershipOutput, table
+    -- Deletes a privacy budget template for a specified collaboration.
     deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput): types.DeletePrivacyBudgetTemplateOutput, table
+    -- Retrieves an analysis template.
     getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput): types.GetAnalysisTemplateOutput, table
+    -- Returns metadata about a collaboration.
     getCollaboration: function(Client, types.GetCollaborationInput): types.GetCollaborationOutput, table
+    -- Retrieves an analysis template within a collaboration.
     getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput): types.GetCollaborationAnalysisTemplateOutput, table
+    -- Retrieves detailed information about a specific collaboration change request.
     getCollaborationChangeRequest: function(Client, types.GetCollaborationChangeRequestInput): types.GetCollaborationChangeRequestOutput, table
+    -- Retrieves a configured audience model association within a collaboration.
     getCollaborationConfiguredAudienceModelAssociation: function(Client, types.GetCollaborationConfiguredAudienceModelAssociationInput): types.GetCollaborationConfiguredAudienceModelAssociationOutput, table
+    -- Retrieves an ID namespace association from a specific collaboration.
     getCollaborationIdNamespaceAssociation: function(Client, types.GetCollaborationIdNamespaceAssociationInput): types.GetCollaborationIdNamespaceAssociationOutput, table
+    -- Returns details about a specified privacy budget template.
     getCollaborationPrivacyBudgetTemplate: function(Client, types.GetCollaborationPrivacyBudgetTemplateInput): types.GetCollaborationPrivacyBudgetTemplateOutput, table
+    -- Returns information about a configured audience model association.
     getConfiguredAudienceModelAssociation: function(Client, types.GetConfiguredAudienceModelAssociationInput): types.GetConfiguredAudienceModelAssociationOutput, table
+    -- Retrieves a configured table.
     getConfiguredTable: function(Client, types.GetConfiguredTableInput): types.GetConfiguredTableOutput, table
+    -- Retrieves a configured table analysis rule.
     getConfiguredTableAnalysisRule: function(Client, types.GetConfiguredTableAnalysisRuleInput): types.GetConfiguredTableAnalysisRuleOutput, table
+    -- Retrieves a configured table association.
     getConfiguredTableAssociation: function(Client, types.GetConfiguredTableAssociationInput): types.GetConfiguredTableAssociationOutput, table
+    -- Retrieves the analysis rule for a configured table association.
     getConfiguredTableAssociationAnalysisRule: function(Client, types.GetConfiguredTableAssociationAnalysisRuleInput): types.GetConfiguredTableAssociationAnalysisRuleOutput, table
+    -- Retrieves an ID mapping table.
     getIdMappingTable: function(Client, types.GetIdMappingTableInput): types.GetIdMappingTableOutput, table
+    -- Retrieves an ID namespace association.
     getIdNamespaceAssociation: function(Client, types.GetIdNamespaceAssociationInput): types.GetIdNamespaceAssociationOutput, table
+    -- Retrieves a specified membership for an identifier.
     getMembership: function(Client, types.GetMembershipInput): types.GetMembershipOutput, table
+    -- Returns details for a specified privacy budget template.
     getPrivacyBudgetTemplate: function(Client, types.GetPrivacyBudgetTemplateInput): types.GetPrivacyBudgetTemplateOutput, table
+    -- Returns job processing metadata.
     getProtectedJob: function(Client, types.GetProtectedJobInput): types.GetProtectedJobOutput, table
+    -- Returns query processing metadata.
     getProtectedQuery: function(Client, types.GetProtectedQueryInput): types.GetProtectedQueryOutput, table
+    -- Retrieves the schema for a relation within a collaboration.
     getSchema: function(Client, types.GetSchemaInput): types.GetSchemaOutput, table
+    -- Retrieves a schema analysis rule.
     getSchemaAnalysisRule: function(Client, types.GetSchemaAnalysisRuleInput): types.GetSchemaAnalysisRuleOutput, table
+    -- Lists analysis templates that the caller owns.
     listAnalysisTemplates: function(Client, types.ListAnalysisTemplatesInput): types.ListAnalysisTemplatesOutput, table
+    -- Lists analysis templates within a collaboration.
     listCollaborationAnalysisTemplates: function(Client, types.ListCollaborationAnalysisTemplatesInput): types.ListCollaborationAnalysisTemplatesOutput, table
+    -- Lists all change requests for a collaboration with pagination support. Returns change requests sorted by creation time.
     listCollaborationChangeRequests: function(Client, types.ListCollaborationChangeRequestsInput): types.ListCollaborationChangeRequestsOutput, table
+    -- Lists configured audience model associations within a collaboration.
     listCollaborationConfiguredAudienceModelAssociations: function(Client, types.ListCollaborationConfiguredAudienceModelAssociationsInput): types.ListCollaborationConfiguredAudienceModelAssociationsOutput, table
+    -- Returns a list of the ID namespace associations in a collaboration.
     listCollaborationIdNamespaceAssociations: function(Client, types.ListCollaborationIdNamespaceAssociationsInput): types.ListCollaborationIdNamespaceAssociationsOutput, table
+    -- Returns an array that summarizes each privacy budget in a specified collaboration. The summary includes the collaboration ARN, creation time, creating account, and privacy budget details.
     listCollaborationPrivacyBudgets: function(Client, types.ListCollaborationPrivacyBudgetsInput): types.ListCollaborationPrivacyBudgetsOutput, table
+    -- Returns an array that summarizes each privacy budget template in a specified collaboration.
     listCollaborationPrivacyBudgetTemplates: function(Client, types.ListCollaborationPrivacyBudgetTemplatesInput): types.ListCollaborationPrivacyBudgetTemplatesOutput, table
+    -- Lists collaborations the caller owns, is active in, or has been invited to.
     listCollaborations: function(Client, types.ListCollaborationsInput): types.ListCollaborationsOutput, table
+    -- Lists information about requested configured audience model associations.
     listConfiguredAudienceModelAssociations: function(Client, types.ListConfiguredAudienceModelAssociationsInput): types.ListConfiguredAudienceModelAssociationsOutput, table
+    -- Lists configured table associations for a membership.
     listConfiguredTableAssociations: function(Client, types.ListConfiguredTableAssociationsInput): types.ListConfiguredTableAssociationsOutput, table
+    -- Lists configured tables.
     listConfiguredTables: function(Client, types.ListConfiguredTablesInput): types.ListConfiguredTablesOutput, table
+    -- Returns a list of ID mapping tables.
     listIdMappingTables: function(Client, types.ListIdMappingTablesInput): types.ListIdMappingTablesOutput, table
+    -- Returns a list of ID namespace associations.
     listIdNamespaceAssociations: function(Client, types.ListIdNamespaceAssociationsInput): types.ListIdNamespaceAssociationsOutput, table
+    -- Lists all members within a collaboration.
     listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    -- Lists all memberships resources within the caller's account.
     listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    -- Returns detailed information about the privacy budgets in a specified membership.
     listPrivacyBudgets: function(Client, types.ListPrivacyBudgetsInput): types.ListPrivacyBudgetsOutput, table
+    -- Returns detailed information about the privacy budget templates in a specified membership.
     listPrivacyBudgetTemplates: function(Client, types.ListPrivacyBudgetTemplatesInput): types.ListPrivacyBudgetTemplatesOutput, table
+    -- Lists protected jobs, sorted by most recent job.
     listProtectedJobs: function(Client, types.ListProtectedJobsInput): types.ListProtectedJobsOutput, table
+    -- Lists protected queries, sorted by the most recent query.
     listProtectedQueries: function(Client, types.ListProtectedQueriesInput): types.ListProtectedQueriesOutput, table
+    -- Lists the schemas for relations within a collaboration.
     listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    -- Lists all of the tags that have been added to a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Defines the information that's necessary to populate an ID mapping table.
     populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput): types.PopulateIdMappingTableOutput, table
+    -- An estimate of the number of aggregation functions that the member who can query can run given epsilon and noise parameters.
     previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput): types.PreviewPrivacyImpactOutput, table
+    -- Creates a protected job that is started by Clean Rooms.
     startProtectedJob: function(Client, types.StartProtectedJobInput): types.StartProtectedJobOutput, table
+    -- Creates a protected query that is started by Clean Rooms.
     startProtectedQuery: function(Client, types.StartProtectedQueryInput): types.StartProtectedQueryOutput, table
+    -- Tags a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag or list of tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the analysis template metadata.
     updateAnalysisTemplate: function(Client, types.UpdateAnalysisTemplateInput): types.UpdateAnalysisTemplateOutput, table
+    -- Updates collaboration metadata and can only be called by the collaboration owner.
     updateCollaboration: function(Client, types.UpdateCollaborationInput): types.UpdateCollaborationOutput, table
+    -- Updates an existing collaboration change request. This operation allows approval actions for pending change requests in collaborations (APPROVE, DENY, CANCEL, COMMIT). For change requests without automatic approval, a member in the collaboration can manually APPROVE or DENY a change request. The collaboration owner can manually CANCEL or COMMIT a change request.
     updateCollaborationChangeRequest: function(Client, types.UpdateCollaborationChangeRequestInput): types.UpdateCollaborationChangeRequestOutput, table
+    -- Provides the details necessary to update a configured audience model association.
     updateConfiguredAudienceModelAssociation: function(Client, types.UpdateConfiguredAudienceModelAssociationInput): types.UpdateConfiguredAudienceModelAssociationOutput, table
+    -- Updates a configured table.
     updateConfiguredTable: function(Client, types.UpdateConfiguredTableInput): types.UpdateConfiguredTableOutput, table
+    -- Updates a configured table analysis rule.
     updateConfiguredTableAnalysisRule: function(Client, types.UpdateConfiguredTableAnalysisRuleInput): types.UpdateConfiguredTableAnalysisRuleOutput, table
+    -- Updates a configured table association.
     updateConfiguredTableAssociation: function(Client, types.UpdateConfiguredTableAssociationInput): types.UpdateConfiguredTableAssociationOutput, table
+    -- Updates the analysis rule for a configured table association.
     updateConfiguredTableAssociationAnalysisRule: function(Client, types.UpdateConfiguredTableAssociationAnalysisRuleInput): types.UpdateConfiguredTableAssociationAnalysisRuleOutput, table
+    -- Provides the details that are necessary to update an ID mapping table.
     updateIdMappingTable: function(Client, types.UpdateIdMappingTableInput): types.UpdateIdMappingTableOutput, table
+    -- Provides the details that are necessary to update an ID namespace association.
     updateIdNamespaceAssociation: function(Client, types.UpdateIdNamespaceAssociationInput): types.UpdateIdNamespaceAssociationOutput, table
+    -- Updates a membership.
     updateMembership: function(Client, types.UpdateMembershipInput): types.UpdateMembershipOutput, table
+    -- Updates the privacy budget template for the specified collaboration.
     updatePrivacyBudgetTemplate: function(Client, types.UpdatePrivacyBudgetTemplateInput): types.UpdatePrivacyBudgetTemplateOutput, table
+    -- Updates the processing of a currently running job.
     updateProtectedJob: function(Client, types.UpdateProtectedJobInput): types.UpdateProtectedJobOutput, table
+    -- Updates the processing of a currently running query.
     updateProtectedQuery: function(Client, types.UpdateProtectedQueryInput): types.UpdateProtectedQueryOutput, table
 end
 

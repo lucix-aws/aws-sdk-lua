@@ -3,52 +3,242 @@
 local types = require("costexplorer.types")
 
 local record Client
+    -- Creates a new cost anomaly detection monitor with the requested type and monitor
+    -- specification.
     createAnomalyMonitor: function(Client, types.CreateAnomalyMonitorInput): types.CreateAnomalyMonitorOutput, table
+    -- Adds an alert subscription to a cost anomaly detection monitor. You can use each
+    -- subscription to define subscribers with email or SNS notifications. Email subscribers can set
+    -- an absolute or percentage threshold and a time frequency for receiving notifications.
     createAnomalySubscription: function(Client, types.CreateAnomalySubscriptionInput): types.CreateAnomalySubscriptionOutput, table
+    -- Creates a new cost category with the requested name and rules.
     createCostCategoryDefinition: function(Client, types.CreateCostCategoryDefinitionInput): types.CreateCostCategoryDefinitionOutput, table
+    -- Deletes a cost anomaly monitor.
     deleteAnomalyMonitor: function(Client, types.DeleteAnomalyMonitorInput): types.DeleteAnomalyMonitorOutput, table
+    -- Deletes a cost anomaly subscription.
     deleteAnomalySubscription: function(Client, types.DeleteAnomalySubscriptionInput): types.DeleteAnomalySubscriptionOutput, table
+    -- Deletes a cost category. Expenses from this month going forward will no longer be
+    -- categorized with this cost category.
     deleteCostCategoryDefinition: function(Client, types.DeleteCostCategoryDefinitionInput): types.DeleteCostCategoryDefinitionOutput, table
+    -- Returns the name, Amazon Resource Name (ARN), rules, definition, and effective dates of a
+    -- cost category that's defined in the account.
+    -- You have the option to use EffectiveOn to return a cost category that's
+    -- active on a specific date. If there's no EffectiveOn specified, you see a Cost
+    -- Category that's effective on the current date. If cost category is still effective,
+    -- EffectiveEnd is omitted in the response.
     describeCostCategoryDefinition: function(Client, types.DescribeCostCategoryDefinitionInput): types.DescribeCostCategoryDefinitionOutput, table
+    -- Retrieves all of the cost anomalies detected on your account during the time period that's
+    -- specified by the DateInterval object. Anomalies are available for up to 90
+    -- days.
     getAnomalies: function(Client, types.GetAnomaliesInput): types.GetAnomaliesOutput, table
+    -- Retrieves the cost anomaly monitor definitions for your account. You can filter using a
+    -- list of cost anomaly monitor Amazon Resource Names (ARNs).
     getAnomalyMonitors: function(Client, types.GetAnomalyMonitorsInput): types.GetAnomalyMonitorsOutput, table
+    -- Retrieves the cost anomaly subscription objects for your account. You can filter using a
+    -- list of cost anomaly monitor Amazon Resource Names (ARNs).
     getAnomalySubscriptions: function(Client, types.GetAnomalySubscriptionsInput): types.GetAnomalySubscriptionsOutput, table
+    -- Retrieves estimated usage records for hourly granularity or resource-level data at daily
+    -- granularity.
     getApproximateUsageRecords: function(Client, types.GetApproximateUsageRecordsInput): types.GetApproximateUsageRecordsOutput, table
+    -- Retrieves a commitment purchase analysis result based on the
+    -- AnalysisId.
     getCommitmentPurchaseAnalysis: function(Client, types.GetCommitmentPurchaseAnalysisInput): types.GetCommitmentPurchaseAnalysisOutput, table
+    -- Retrieves cost and usage metrics for your account. You can specify which cost and
+    -- usage-related metric that you want the request to return. For example, you can specify
+    -- BlendedCosts or UsageQuantity. You can also filter and group your
+    -- data by various dimensions, such as SERVICE or AZ, in a specific
+    -- time range. For a complete list of valid dimensions, see the GetDimensionValues operation. Management account in an organization in Organizations have access to all member accounts.
+    -- For information about filter limitations, see Quotas and restrictions
+    -- in the Billing and Cost Management User Guide.
     getCostAndUsage: function(Client, types.GetCostAndUsageInput): types.GetCostAndUsageOutput, table
+    -- Retrieves cost and usage comparisons for your account between two periods within the last
+    -- 13 months. If you have enabled multi-year data at monthly granularity, you can go back up to
+    -- 38 months.
     getCostAndUsageComparisons: function(Client, types.GetCostAndUsageComparisonsInput): types.GetCostAndUsageComparisonsOutput, table
+    -- Retrieves cost and usage metrics with resources for your account. You can specify which
+    -- cost and usage-related metric, such as BlendedCosts or
+    -- UsageQuantity, that you want the request to return. You can also filter and group
+    -- your data by various dimensions, such as SERVICE or AZ, in a
+    -- specific time range. For a complete list of valid dimensions, see the GetDimensionValues operation. Management account in an organization in Organizations have access to all member accounts.
+    -- Hourly granularity is only available for EC2-Instances (Elastic Compute Cloud)
+    -- resource-level data. All other resource-level data is available at daily
+    -- granularity.
+    -- This is an opt-in only feature. You can enable this feature from the Cost Explorer
+    -- Settings page. For information about how to access the Settings page, see Controlling
+    -- Access for Cost Explorer in the Billing and Cost Management User
+    -- Guide.
     getCostAndUsageWithResources: function(Client, types.GetCostAndUsageWithResourcesInput): types.GetCostAndUsageWithResourcesOutput, table
+    -- Retrieves an array of cost category names and values incurred cost.
+    -- If some cost category names and values are not associated with any cost, they will not
+    -- be returned by this API.
     getCostCategories: function(Client, types.GetCostCategoriesInput): types.GetCostCategoriesOutput, table
+    -- Retrieves key factors driving cost changes between two time periods within the last 13
+    -- months, such as usage changes, discount changes, and commitment-based savings. If you have
+    -- enabled multi-year data at monthly granularity, you can go back up to 38 months.
     getCostComparisonDrivers: function(Client, types.GetCostComparisonDriversInput): types.GetCostComparisonDriversOutput, table
+    -- Retrieves a forecast for how much Amazon Web Services predicts that you will spend over
+    -- the forecast time period that you select, based on your past costs.
     getCostForecast: function(Client, types.GetCostForecastInput): types.GetCostForecastOutput, table
+    -- Retrieves all available filter values for a specified filter over a period of time. You
+    -- can search the dimension values for an arbitrary string.
     getDimensionValues: function(Client, types.GetDimensionValuesInput): types.GetDimensionValuesOutput, table
+    -- Retrieves the reservation coverage for your account, which you can use to see how much
+    -- of your Amazon Elastic Compute Cloud, Amazon ElastiCache, Amazon Relational Database Service,
+    -- or Amazon Redshift usage is covered by a reservation. An organization's management account can
+    -- see the coverage of the associated member accounts. This supports dimensions, cost categories,
+    -- and nested expressions. For any time period, you can filter data about reservation usage by
+    -- the following dimensions:
+    -- AZ
+    -- CACHE_ENGINE
+    -- DATABASE_ENGINE
+    -- DEPLOYMENT_OPTION
+    -- INSTANCE_TYPE
+    -- LINKED_ACCOUNT
+    -- OPERATING_SYSTEM
+    -- PLATFORM
+    -- REGION
+    -- SERVICE
+    -- TAG
+    -- TENANCY
+    -- To determine valid values for a dimension, use the GetDimensionValues
+    -- operation.
     getReservationCoverage: function(Client, types.GetReservationCoverageInput): types.GetReservationCoverageOutput, table
+    -- Gets recommendations for reservation purchases. These recommendations might help you to
+    -- reduce your costs. Reservations provide a discounted hourly rate (up to 75%) compared to
+    -- On-Demand pricing.
+    -- Amazon Web Services generates your recommendations by identifying your On-Demand usage
+    -- during a specific time period and collecting your usage into categories that are eligible for
+    -- a reservation. After Amazon Web Services has these categories, it simulates every combination
+    -- of reservations in each category of usage to identify the best number of each type of Reserved
+    -- Instance (RI) to purchase to maximize your estimated savings.
+    -- For example, Amazon Web Services automatically aggregates your Amazon EC2 Linux, shared
+    -- tenancy, and c4 family usage in the US West (Oregon) Region and recommends that you buy
+    -- size-flexible regional reservations to apply to the c4 family usage. Amazon Web Services
+    -- recommends the smallest size instance in an instance family. This makes it easier to purchase
+    -- a size-flexible Reserved Instance (RI). Amazon Web Services also shows the equal number of
+    -- normalized units. This way, you can purchase any instance size that you want. For this
+    -- example, your RI recommendation is for c4.large because that is the smallest size
+    -- instance in the c4 instance family.
     getReservationPurchaseRecommendation: function(Client, types.GetReservationPurchaseRecommendationInput): types.GetReservationPurchaseRecommendationOutput, table
+    -- Retrieves the reservation utilization for your account. Management account in an
+    -- organization have access to member accounts. You can filter data by dimensions in a time
+    -- period. You can use GetDimensionValues to determine the possible dimension
+    -- values. Currently, you can group only by SUBSCRIPTION_ID.
     getReservationUtilization: function(Client, types.GetReservationUtilizationInput): types.GetReservationUtilizationOutput, table
+    -- Creates recommendations that help you save cost by identifying idle and underutilized
+    -- Amazon EC2 instances.
+    -- Recommendations are generated to either downsize or terminate instances, along with
+    -- providing savings detail and metrics. For more information about calculation and function, see
+    -- Optimizing Your Cost with Rightsizing Recommendations in the Billing and Cost Management User Guide.
     getRightsizingRecommendation: function(Client, types.GetRightsizingRecommendationInput): types.GetRightsizingRecommendationOutput, table
+    -- Retrieves the details for a Savings Plan recommendation. These details include the hourly
+    -- data-points that construct the cost, coverage, and utilization charts.
     getSavingsPlanPurchaseRecommendationDetails: function(Client, types.GetSavingsPlanPurchaseRecommendationDetailsInput): types.GetSavingsPlanPurchaseRecommendationDetailsOutput, table
+    -- Retrieves the Savings Plans covered for your account. This enables you to see how much of
+    -- your cost is covered by a Savings Plan. An organization’s management account can see the
+    -- coverage of the associated member accounts. This supports dimensions, cost categories, and
+    -- nested expressions. For any time period, you can filter data for Savings Plans usage with the
+    -- following dimensions:
+    -- LINKED_ACCOUNT
+    -- REGION
+    -- SERVICE
+    -- INSTANCE_FAMILY
+    -- To determine valid values for a dimension, use the GetDimensionValues
+    -- operation.
     getSavingsPlansCoverage: function(Client, types.GetSavingsPlansCoverageInput): types.GetSavingsPlansCoverageOutput, table
+    -- Retrieves the Savings Plans recommendations for your account. First use
+    -- StartSavingsPlansPurchaseRecommendationGeneration to generate a new set of
+    -- recommendations, and then use GetSavingsPlansPurchaseRecommendation to retrieve
+    -- them.
     getSavingsPlansPurchaseRecommendation: function(Client, types.GetSavingsPlansPurchaseRecommendationInput): types.GetSavingsPlansPurchaseRecommendationOutput, table
+    -- Retrieves the Savings Plans utilization for your account across date ranges with daily or
+    -- monthly granularity. Management account in an organization have access to member accounts. You
+    -- can use GetDimensionValues in SAVINGS_PLANS to determine the
+    -- possible dimension values.
+    -- You can't group by any dimension values for
+    -- GetSavingsPlansUtilization.
     getSavingsPlansUtilization: function(Client, types.GetSavingsPlansUtilizationInput): types.GetSavingsPlansUtilizationOutput, table
+    -- Retrieves attribute data along with aggregate utilization and savings data for a given
+    -- time period. This doesn't support granular or grouped data (daily/monthly) in response. You
+    -- can't retrieve data by dates in a single response similar to
+    -- GetSavingsPlanUtilization, but you have the option to make multiple calls to
+    -- GetSavingsPlanUtilizationDetails by providing individual dates. You can use
+    -- GetDimensionValues in SAVINGS_PLANS to determine the possible
+    -- dimension values.
+    -- GetSavingsPlanUtilizationDetails internally groups data by
+    -- SavingsPlansArn.
     getSavingsPlansUtilizationDetails: function(Client, types.GetSavingsPlansUtilizationDetailsInput): types.GetSavingsPlansUtilizationDetailsOutput, table
+    -- Queries for available tag keys and tag values for a specified period. You can search
+    -- the tag values for an arbitrary string.
     getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    -- Retrieves a forecast for how much Amazon Web Services predicts that you will use
+    -- over the forecast time period that you select, based on your past usage.
     getUsageForecast: function(Client, types.GetUsageForecastInput): types.GetUsageForecastOutput, table
+    -- Lists the commitment purchase analyses for your account.
     listCommitmentPurchaseAnalyses: function(Client, types.ListCommitmentPurchaseAnalysesInput): types.ListCommitmentPurchaseAnalysesOutput, table
+    -- Retrieves a list of your historical cost allocation tag backfill requests.
     listCostAllocationTagBackfillHistory: function(Client, types.ListCostAllocationTagBackfillHistoryInput): types.ListCostAllocationTagBackfillHistoryOutput, table
+    -- Get a list of cost allocation tags. All inputs in the API are optional and serve as
+    -- filters. By default, all cost allocation tags are returned.
     listCostAllocationTags: function(Client, types.ListCostAllocationTagsInput): types.ListCostAllocationTagsOutput, table
+    -- Returns the name, Amazon Resource Name (ARN), NumberOfRules and effective
+    -- dates of all cost categories defined in the account. You have the option to use
+    -- EffectiveOn and SupportedResourceTypes to return a list of cost categories that were active on a specific
+    -- date. If there is no EffectiveOn specified, you’ll see cost categories that are
+    -- effective on the current date. If cost category is still effective, EffectiveEnd
+    -- is omitted in the response. ListCostCategoryDefinitions supports pagination. The
+    -- request can have a MaxResults range up to 100.
     listCostCategoryDefinitions: function(Client, types.ListCostCategoryDefinitionsInput): types.ListCostCategoryDefinitionsOutput, table
+    -- Returns resource associations of all cost categories defined in the account. You have the option to use CostCategoryArn to get the association for a specific cost category. ListCostCategoryResourceAssociations supports pagination. The request can have a MaxResults range up to 100.
     listCostCategoryResourceAssociations: function(Client, types.ListCostCategoryResourceAssociationsInput): types.ListCostCategoryResourceAssociationsOutput, table
+    -- Retrieves a list of your historical recommendation generations within the past 30
+    -- days.
     listSavingsPlansPurchaseRecommendationGeneration: function(Client, types.ListSavingsPlansPurchaseRecommendationGenerationInput): types.ListSavingsPlansPurchaseRecommendationGenerationOutput, table
+    -- Returns a list of resource tags associated with the resource specified by the Amazon
+    -- Resource Name (ARN).
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Modifies the feedback property of a given cost anomaly.
     provideAnomalyFeedback: function(Client, types.ProvideAnomalyFeedbackInput): types.ProvideAnomalyFeedbackOutput, table
+    -- Specifies the parameters of a planned commitment purchase and starts the generation of the
+    -- analysis. This enables you to estimate the cost, coverage, and utilization impact of your
+    -- planned commitment purchases.
     startCommitmentPurchaseAnalysis: function(Client, types.StartCommitmentPurchaseAnalysisInput): types.StartCommitmentPurchaseAnalysisOutput, table
+    -- Request a cost allocation tag backfill. This will backfill the activation status (either active or inactive) for all tag keys from para:BackfillFrom up to the time this request is made.
+    -- You can request a backfill once every 24 hours.
     startCostAllocationTagBackfill: function(Client, types.StartCostAllocationTagBackfillInput): types.StartCostAllocationTagBackfillOutput, table
+    -- Requests a Savings Plans recommendation generation. This enables you to calculate a fresh
+    -- set of Savings Plans recommendations that takes your latest usage data and current Savings
+    -- Plans inventory into account. You can refresh Savings Plans recommendations up to three times
+    -- daily for a consolidated billing family.
+    -- StartSavingsPlansPurchaseRecommendationGeneration has no request syntax
+    -- because no input parameters are needed to support this operation.
     startSavingsPlansPurchaseRecommendationGeneration: function(Client, types.StartSavingsPlansPurchaseRecommendationGenerationInput): types.StartSavingsPlansPurchaseRecommendationGenerationOutput, table
+    -- An API operation for adding one or more tags (key-value pairs) to a resource.
+    -- You can use the TagResource operation with a resource that already has tags.
+    -- If you specify a new tag key for the resource, this tag is appended to the list of tags
+    -- associated with the resource. If you specify a tag key that is already associated with the
+    -- resource, the new tag value you specify replaces the previous value for that tag.
+    -- Although the maximum number of array members is 200, user-tag maximum is 50. The remaining
+    -- are reserved for Amazon Web Services use.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from a resource. Specify only tag keys in your request. Don't
+    -- specify the value.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing cost anomaly monitor. The changes made are applied going forward, and
+    -- doesn't change anomalies detected in the past.
     updateAnomalyMonitor: function(Client, types.UpdateAnomalyMonitorInput): types.UpdateAnomalyMonitorOutput, table
+    -- Updates an existing cost anomaly subscription. Specify the fields that you want to update.
+    -- Omitted fields are unchanged.
+    -- The JSON below describes the generic construct for each type. See Request Parameters for possible values as they apply to
+    -- AnomalySubscription.
     updateAnomalySubscription: function(Client, types.UpdateAnomalySubscriptionInput): types.UpdateAnomalySubscriptionOutput, table
+    -- Updates status for cost allocation tags in bulk, with maximum batch size of 20. If the tag
+    -- status that's updated is the same as the existing tag status, the request doesn't fail.
+    -- Instead, it doesn't have any effect on the tag status (for example, activating the active
+    -- tag).
     updateCostAllocationTagsStatus: function(Client, types.UpdateCostAllocationTagsStatusInput): types.UpdateCostAllocationTagsStatusOutput, table
+    -- Updates an existing cost category. Changes made to the cost category rules will be used to
+    -- categorize the current month’s expenses and future expenses. This won’t change categorization
+    -- for the previous months.
     updateCostCategoryDefinition: function(Client, types.UpdateCostCategoryDefinitionInput): types.UpdateCostCategoryDefinitionOutput, table
 end
 

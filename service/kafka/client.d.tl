@@ -3,64 +3,123 @@
 local types = require("kafka.types")
 
 local record Client
+    -- Associates one or more Scram Secrets with an Amazon MSK cluster.
     batchAssociateScramSecret: function(Client, types.BatchAssociateScramSecretInput): types.BatchAssociateScramSecretOutput, table
+    -- Disassociates one or more Scram Secrets from an Amazon MSK cluster.
     batchDisassociateScramSecret: function(Client, types.BatchDisassociateScramSecretInput): types.BatchDisassociateScramSecretOutput, table
+    -- Creates a new MSK cluster.
     createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    -- Creates a new MSK cluster.
     createClusterV2: function(Client, types.CreateClusterV2Input): types.CreateClusterV2Output, table
+    -- Creates a new MSK configuration.
     createConfiguration: function(Client, types.CreateConfigurationInput): types.CreateConfigurationOutput, table
+    -- Creates the replicator.
     createReplicator: function(Client, types.CreateReplicatorInput): types.CreateReplicatorOutput, table
+    -- Creates a topic in the specified MSK cluster.
     createTopic: function(Client, types.CreateTopicInput): types.CreateTopicOutput, table
+    -- Creates a new MSK VPC connection.
     createVpcConnection: function(Client, types.CreateVpcConnectionInput): types.CreateVpcConnectionOutput, table
+    -- Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.
     deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    -- Deletes the MSK cluster policy specified by the Amazon Resource Name (ARN) in the request.
     deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput): types.DeleteClusterPolicyOutput, table
+    -- Deletes an MSK Configuration.
     deleteConfiguration: function(Client, types.DeleteConfigurationInput): types.DeleteConfigurationOutput, table
+    -- Deletes a replicator.
     deleteReplicator: function(Client, types.DeleteReplicatorInput): types.DeleteReplicatorOutput, table
+    -- Deletes a topic in the specified MSK cluster.
     deleteTopic: function(Client, types.DeleteTopicInput): types.DeleteTopicOutput, table
+    -- Deletes a MSK VPC connection.
     deleteVpcConnection: function(Client, types.DeleteVpcConnectionInput): types.DeleteVpcConnectionOutput, table
+    -- Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.
     describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    -- Returns a description of the cluster operation specified by the ARN.
     describeClusterOperation: function(Client, types.DescribeClusterOperationInput): types.DescribeClusterOperationOutput, table
+    -- Returns a description of the cluster operation specified by the ARN.
     describeClusterOperationV2: function(Client, types.DescribeClusterOperationV2Input): types.DescribeClusterOperationV2Output, table
+    -- Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.
     describeClusterV2: function(Client, types.DescribeClusterV2Input): types.DescribeClusterV2Output, table
+    -- Returns a description of this MSK configuration.
     describeConfiguration: function(Client, types.DescribeConfigurationInput): types.DescribeConfigurationOutput, table
+    -- Returns a description of this revision of the configuration.
     describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput): types.DescribeConfigurationRevisionOutput, table
+    -- Describes a replicator.
     describeReplicator: function(Client, types.DescribeReplicatorInput): types.DescribeReplicatorOutput, table
+    -- Returns topic details of this topic on a MSK cluster.
     describeTopic: function(Client, types.DescribeTopicInput): types.DescribeTopicOutput, table
+    -- Returns partition details of this topic on a MSK cluster.
     describeTopicPartitions: function(Client, types.DescribeTopicPartitionsInput): types.DescribeTopicPartitionsOutput, table
+    -- Returns a description of this MSK VPC connection.
     describeVpcConnection: function(Client, types.DescribeVpcConnectionInput): types.DescribeVpcConnectionOutput, table
+    -- A list of brokers that a client application can use to bootstrap. This list doesn't necessarily include all of the brokers in the cluster. The following Python 3.6 example shows how you can use the Amazon Resource Name (ARN) of a cluster to get its bootstrap brokers. If you don't know the ARN of your cluster, you can use the ListClusters operation to get the ARNs of all the clusters in this account and Region.
     getBootstrapBrokers: function(Client, types.GetBootstrapBrokersInput): types.GetBootstrapBrokersOutput, table
+    -- Get the MSK cluster policy specified by the Amazon Resource Name (ARN) in the request.
     getClusterPolicy: function(Client, types.GetClusterPolicyInput): types.GetClusterPolicyOutput, table
+    -- Gets the Apache Kafka versions to which you can update the MSK cluster.
     getCompatibleKafkaVersions: function(Client, types.GetCompatibleKafkaVersionsInput): types.GetCompatibleKafkaVersionsOutput, table
+    -- Returns a list of all the VPC connections in this Region.
     listClientVpcConnections: function(Client, types.ListClientVpcConnectionsInput): types.ListClientVpcConnectionsOutput, table
+    -- Returns a list of all the operations that have been performed on the specified MSK cluster.
     listClusterOperations: function(Client, types.ListClusterOperationsInput): types.ListClusterOperationsOutput, table
+    -- Returns a list of all the operations that have been performed on the specified MSK cluster.
     listClusterOperationsV2: function(Client, types.ListClusterOperationsV2Input): types.ListClusterOperationsV2Output, table
+    -- Returns a list of all the MSK clusters in the current Region.
     listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    -- Returns a list of all the MSK clusters in the current Region.
     listClustersV2: function(Client, types.ListClustersV2Input): types.ListClustersV2Output, table
+    -- Returns a list of all the MSK configurations in this Region.
     listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput): types.ListConfigurationRevisionsOutput, table
+    -- Returns a list of all the MSK configurations in this Region.
     listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    -- Returns a list of Apache Kafka versions.
     listKafkaVersions: function(Client, types.ListKafkaVersionsInput): types.ListKafkaVersionsOutput, table
+    -- Returns a list of the broker nodes in the cluster.
     listNodes: function(Client, types.ListNodesInput): types.ListNodesOutput, table
+    -- Lists the replicators.
     listReplicators: function(Client, types.ListReplicatorsInput): types.ListReplicatorsOutput, table
+    -- Returns a list of the Scram Secrets associated with an Amazon MSK cluster.
     listScramSecrets: function(Client, types.ListScramSecretsInput): types.ListScramSecretsOutput, table
+    -- Returns a list of the tags associated with the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List topics in a MSK cluster.
     listTopics: function(Client, types.ListTopicsInput): types.ListTopicsOutput, table
+    -- Returns a list of all the VPC connections in this Region.
     listVpcConnections: function(Client, types.ListVpcConnectionsInput): types.ListVpcConnectionsOutput, table
+    -- Creates or updates the MSK cluster policy specified by the cluster Amazon Resource Name (ARN) in the request.
     putClusterPolicy: function(Client, types.PutClusterPolicyInput): types.PutClusterPolicyOutput, table
+    -- Reboots brokers.
     rebootBroker: function(Client, types.RebootBrokerInput): types.RebootBrokerOutput, table
+    -- Returns empty response.
     rejectClientVpcConnection: function(Client, types.RejectClientVpcConnectionInput): types.RejectClientVpcConnectionOutput, table
+    -- Adds tags to the specified MSK resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes the tags associated with the keys that are provided in the query.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the number of broker nodes in the cluster.
     updateBrokerCount: function(Client, types.UpdateBrokerCountInput): types.UpdateBrokerCountOutput, table
+    -- Updates the EBS storage associated with MSK brokers.
     updateBrokerStorage: function(Client, types.UpdateBrokerStorageInput): types.UpdateBrokerStorageOutput, table
+    -- Updates EC2 instance type.
     updateBrokerType: function(Client, types.UpdateBrokerTypeInput): types.UpdateBrokerTypeOutput, table
+    -- Updates the cluster with the configuration that is specified in the request body.
     updateClusterConfiguration: function(Client, types.UpdateClusterConfigurationInput): types.UpdateClusterConfigurationOutput, table
+    -- Updates the Apache Kafka version for the cluster.
     updateClusterKafkaVersion: function(Client, types.UpdateClusterKafkaVersionInput): types.UpdateClusterKafkaVersionOutput, table
+    -- Updates an MSK configuration.
     updateConfiguration: function(Client, types.UpdateConfigurationInput): types.UpdateConfigurationOutput, table
+    -- Updates the cluster's connectivity configuration.
     updateConnectivity: function(Client, types.UpdateConnectivityInput): types.UpdateConnectivityOutput, table
+    -- Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.
     updateMonitoring: function(Client, types.UpdateMonitoringInput): types.UpdateMonitoringOutput, table
+    -- Use this resource to update the intelligent rebalancing status of an Amazon MSK Provisioned cluster with Express brokers.
     updateRebalancing: function(Client, types.UpdateRebalancingInput): types.UpdateRebalancingOutput, table
+    -- Updates replication info of a replicator.
     updateReplicationInfo: function(Client, types.UpdateReplicationInfoInput): types.UpdateReplicationInfoOutput, table
+    -- Updates the security settings for the cluster. You can use this operation to specify encryption and authentication on existing clusters.
     updateSecurity: function(Client, types.UpdateSecurityInput): types.UpdateSecurityOutput, table
+    -- Updates cluster broker volume size (or) sets cluster storage mode to TIERED.
     updateStorage: function(Client, types.UpdateStorageInput): types.UpdateStorageOutput, table
+    -- Updates the configuration of the specified topic.
     updateTopic: function(Client, types.UpdateTopicInput): types.UpdateTopicOutput, table
 end
 

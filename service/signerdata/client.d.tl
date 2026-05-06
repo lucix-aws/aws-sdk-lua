@@ -3,6 +3,7 @@
 local types = require("signerdata.types")
 
 local record Client
+    -- Retrieves the revocation status for a signed artifact by checking if the signing profile, job, or certificate has been revoked.
     getRevocationStatus: function(Client, types.GetRevocationStatusInput): types.GetRevocationStatusOutput, table
 end
 

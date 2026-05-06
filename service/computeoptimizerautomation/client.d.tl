@@ -3,28 +3,51 @@
 local types = require("computeoptimizerautomation.types")
 
 local record Client
+    -- Associates one or more member accounts with your organization's management account, enabling centralized implementation of optimization actions across those accounts. Once associated, the management account (or a delegated administrator) can apply recommended actions to the member account. When you associate a member account, its organization rule mode is automatically set to "Any allowed," which permits the management account to create Automation rules that automatically apply actions to that account. If the member account has not previously enabled the Automation feature, the association process automatically enables it. Only the management account or a delegated administrator can perform this action.
     associateAccounts: function(Client, types.AssociateAccountsInput): types.AssociateAccountsOutput, table
+    -- Creates a new automation rule to apply recommended actions to resources based on specified criteria.
     createAutomationRule: function(Client, types.CreateAutomationRuleInput): types.CreateAutomationRuleOutput, table
+    -- Deletes an existing automation rule.
     deleteAutomationRule: function(Client, types.DeleteAutomationRuleInput): types.DeleteAutomationRuleOutput, table
+    -- Disassociates member accounts from your organization's management account, removing centralized automation capabilities. Once disassociated, organization rules no longer apply to the member account, and the management account (or delegated administrator) cannot create Automation rules for that account. Only the management account or a delegated administrator can perform this action.
     disassociateAccounts: function(Client, types.DisassociateAccountsInput): types.DisassociateAccountsOutput, table
+    -- Retrieves details about a specific automation event.
     getAutomationEvent: function(Client, types.GetAutomationEventInput): types.GetAutomationEventOutput, table
+    -- Retrieves details about a specific automation rule.
     getAutomationRule: function(Client, types.GetAutomationRuleInput): types.GetAutomationRuleOutput, table
+    -- Retrieves the current enrollment configuration for Compute Optimizer Automation.
     getEnrollmentConfiguration: function(Client, types.GetEnrollmentConfigurationInput): types.GetEnrollmentConfigurationOutput, table
+    -- Lists the accounts in your organization that are enrolled in Compute Optimizer and whether they have enabled Automation. Only the management account or a delegated administrator can perform this action.
     listAccounts: function(Client, types.ListAccountsInput): types.ListAccountsOutput, table
+    -- Lists automation events based on specified filters. You can retrieve events that were created within the past year.
     listAutomationEvents: function(Client, types.ListAutomationEventsInput): types.ListAutomationEventsOutput, table
+    -- Lists the steps for a specific automation event. You can only list steps for events created within the past year.
     listAutomationEventSteps: function(Client, types.ListAutomationEventStepsInput): types.ListAutomationEventStepsOutput, table
+    -- Provides a summary of automation events based on specified filters. Only events created within the past year will be included in the summary.
     listAutomationEventSummaries: function(Client, types.ListAutomationEventSummariesInput): types.ListAutomationEventSummariesOutput, table
+    -- Returns a preview of the recommended actions that match your Automation rule's configuration and criteria.
     listAutomationRulePreview: function(Client, types.ListAutomationRulePreviewInput): types.ListAutomationRulePreviewOutput, table
+    -- Returns a summary of the recommended actions that match your rule preview configuration and criteria.
     listAutomationRulePreviewSummaries: function(Client, types.ListAutomationRulePreviewSummariesInput): types.ListAutomationRulePreviewSummariesOutput, table
+    -- Lists the automation rules that match specified filters.
     listAutomationRules: function(Client, types.ListAutomationRulesInput): types.ListAutomationRulesOutput, table
+    -- Lists the recommended actions based that match specified filters. Management accounts and delegated administrators can retrieve recommended actions that include associated member accounts. You can associate a member account using AssociateAccounts.
     listRecommendedActions: function(Client, types.ListRecommendedActionsInput): types.ListRecommendedActionsOutput, table
+    -- Provides a summary of recommended actions based on specified filters. Management accounts and delegated administrators can retrieve recommended actions that include associated member accounts. You can associate a member account using AssociateAccounts.
     listRecommendedActionSummaries: function(Client, types.ListRecommendedActionSummariesInput): types.ListRecommendedActionSummariesOutput, table
+    -- Lists the tags for a specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Initiates a rollback for a completed automation event. Management accounts and delegated administrators can only initiate a rollback for events belonging to associated member accounts. You can associate a member account using AssociateAccounts.
     rollbackAutomationEvent: function(Client, types.RollbackAutomationEventInput): types.RollbackAutomationEventOutput, table
+    -- Initiates a one-time, on-demand automation for the specified recommended action. Management accounts and delegated administrators can only initiate recommended actions for associated member accounts. You can associate a member account using AssociateAccounts.
     startAutomationEvent: function(Client, types.StartAutomationEventInput): types.StartAutomationEventOutput, table
+    -- Adds tags to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from the specified resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing automation rule.
     updateAutomationRule: function(Client, types.UpdateAutomationRuleInput): types.UpdateAutomationRuleOutput, table
+    -- Updates your account’s Compute Optimizer Automation enrollment configuration.
     updateEnrollmentConfiguration: function(Client, types.UpdateEnrollmentConfigurationInput): types.UpdateEnrollmentConfigurationOutput, table
 end
 

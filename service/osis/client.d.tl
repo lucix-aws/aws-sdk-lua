@@ -3,27 +3,70 @@
 local types = require("osis.types")
 
 local record Client
+    -- Creates an OpenSearch Ingestion pipeline. For more information, see Creating Amazon OpenSearch
+    -- Ingestion pipelines.
     createPipeline: function(Client, types.CreatePipelineInput): types.CreatePipelineOutput, table
+    -- Creates a VPC endpoint for an OpenSearch Ingestion pipeline. Pipeline endpoints allow you to
+    -- ingest data from your VPC into pipelines that you have access to.
     createPipelineEndpoint: function(Client, types.CreatePipelineEndpointInput): types.CreatePipelineEndpointOutput, table
+    -- Deletes an OpenSearch Ingestion pipeline. For more information, see Deleting Amazon OpenSearch
+    -- Ingestion pipelines.
     deletePipeline: function(Client, types.DeletePipelineInput): types.DeletePipelineOutput, table
+    -- Deletes a VPC endpoint for an OpenSearch Ingestion pipeline.
     deletePipelineEndpoint: function(Client, types.DeletePipelineEndpointInput): types.DeletePipelineEndpointOutput, table
+    -- Deletes a resource-based policy from an OpenSearch Ingestion resource.
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    -- Retrieves information about an OpenSearch Ingestion pipeline.
     getPipeline: function(Client, types.GetPipelineInput): types.GetPipelineOutput, table
+    -- Retrieves information about a specific blueprint for OpenSearch Ingestion. Blueprints are
+    -- templates for the configuration needed for a CreatePipeline request. For more
+    -- information, see Using
+    -- blueprints to create a pipeline.
     getPipelineBlueprint: function(Client, types.GetPipelineBlueprintInput): types.GetPipelineBlueprintOutput, table
+    -- Returns progress information for the current change happening on an OpenSearch Ingestion
+    -- pipeline. Currently, this operation only returns information when a pipeline is being
+    -- created.
+    -- For more information, see Tracking the status of pipeline creation.
     getPipelineChangeProgress: function(Client, types.GetPipelineChangeProgressInput): types.GetPipelineChangeProgressOutput, table
+    -- Retrieves the resource-based policy attached to an OpenSearch Ingestion resource.
     getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    -- Retrieves a list of all available blueprints for Data Prepper. For more information, see
+    -- Using
+    -- blueprints to create a pipeline.
     listPipelineBlueprints: function(Client, types.ListPipelineBlueprintsInput): types.ListPipelineBlueprintsOutput, table
+    -- Lists the pipeline endpoints connected to pipelines in your account.
     listPipelineEndpointConnections: function(Client, types.ListPipelineEndpointConnectionsInput): types.ListPipelineEndpointConnectionsOutput, table
+    -- Lists all pipeline endpoints in your account.
     listPipelineEndpoints: function(Client, types.ListPipelineEndpointsInput): types.ListPipelineEndpointsOutput, table
+    -- Lists all OpenSearch Ingestion pipelines in the current Amazon Web Services account and Region.
+    -- For more information, see Viewing Amazon OpenSearch
+    -- Ingestion pipelines.
     listPipelines: function(Client, types.ListPipelinesInput): types.ListPipelinesOutput, table
+    -- Lists all resource tags associated with an OpenSearch Ingestion pipeline. For more information,
+    -- see Tagging Amazon OpenSearch Ingestion pipelines.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Attaches a resource-based policy to an OpenSearch Ingestion resource. Resource-based
+    -- policies grant permissions to principals to perform actions on the resource.
     putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    -- Revokes pipeline endpoints from specified endpoint IDs.
     revokePipelineEndpointConnections: function(Client, types.RevokePipelineEndpointConnectionsInput): types.RevokePipelineEndpointConnectionsOutput, table
+    -- Starts an OpenSearch Ingestion pipeline. For more information, see Starting an OpenSearch Ingestion pipeline.
     startPipeline: function(Client, types.StartPipelineInput): types.StartPipelineOutput, table
+    -- Stops an OpenSearch Ingestion pipeline. For more information, see Stopping
+    -- an OpenSearch Ingestion pipeline.
     stopPipeline: function(Client, types.StopPipelineInput): types.StopPipelineOutput, table
+    -- Tags an OpenSearch Ingestion pipeline. For more information, see Tagging Amazon OpenSearch
+    -- Ingestion pipelines.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from an OpenSearch Ingestion pipeline. For more information, see Tagging
+    -- Amazon OpenSearch Ingestion pipelines.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an OpenSearch Ingestion pipeline. For more information, see Updating Amazon OpenSearch
+    -- Ingestion pipelines.
     updatePipeline: function(Client, types.UpdatePipelineInput): types.UpdatePipelineOutput, table
+    -- Checks whether an OpenSearch Ingestion pipeline configuration is valid prior to creation. For
+    -- more information, see Creating Amazon OpenSearch
+    -- Ingestion pipelines.
     validatePipeline: function(Client, types.ValidatePipelineInput): types.ValidatePipelineOutput, table
 end
 

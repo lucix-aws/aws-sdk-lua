@@ -3,26 +3,47 @@
 local types = require("arcregionswitch.types")
 
 local record Client
+    -- Approves a step in a plan execution that requires manual approval. When you create a plan, you can include approval steps that require manual intervention before the execution can proceed. This operation allows you to provide that approval. You must specify the plan ARN, execution ID, step name, and approval status. You can also provide an optional comment explaining the approval decision.
     approvePlanExecutionStep: function(Client, types.ApprovePlanExecutionStepInput): types.ApprovePlanExecutionStepOutput, table
+    -- Cancels an in-progress plan execution. This operation stops the execution of the plan and prevents any further steps from being processed. You must specify the plan ARN and execution ID. You can also provide an optional comment explaining why the execution was canceled.
     cancelPlanExecution: function(Client, types.CancelPlanExecutionInput): types.CancelPlanExecutionOutput, table
+    -- Creates a new Region switch plan. A plan defines the steps required to shift traffic from one Amazon Web Services Region to another. You must specify a name for the plan, the primary Region, and at least one additional Region. You can also provide a description, execution role, recovery time objective, associated alarms, triggers, and workflows that define the steps to execute during a Region switch.
     createPlan: function(Client, types.CreatePlanInput): types.CreatePlanOutput, table
+    -- Deletes a Region switch plan. You must specify the ARN of the plan to delete. You cannot delete a plan that has an active execution in progress.
     deletePlan: function(Client, types.DeletePlanInput): types.DeletePlanOutput, table
+    -- Retrieves detailed information about a Region switch plan. You must specify the ARN of the plan.
     getPlan: function(Client, types.GetPlanInput): types.GetPlanOutput, table
+    -- Retrieves the evaluation status of a Region switch plan. The evaluation status provides information about the last time the plan was evaluated and any warnings or issues detected.
     getPlanEvaluationStatus: function(Client, types.GetPlanEvaluationStatusInput): types.GetPlanEvaluationStatusOutput, table
+    -- Retrieves detailed information about a specific plan execution. You must specify the plan ARN and execution ID.
     getPlanExecution: function(Client, types.GetPlanExecutionInput): types.GetPlanExecutionOutput, table
+    -- Retrieves information about a Region switch plan in a specific Amazon Web Services Region. This operation is useful for getting Region-specific information about a plan.
     getPlanInRegion: function(Client, types.GetPlanInRegionInput): types.GetPlanInRegionOutput, table
+    -- Lists the events that occurred during a plan execution. These events provide a detailed timeline of the execution process.
     listPlanExecutionEvents: function(Client, types.ListPlanExecutionEventsInput): types.ListPlanExecutionEventsOutput, table
+    -- Lists the executions of a Region switch plan. This operation returns information about both current and historical executions.
     listPlanExecutions: function(Client, types.ListPlanExecutionsInput): types.ListPlanExecutionsOutput, table
+    -- Lists all Region switch plans in your Amazon Web Services account.
     listPlans: function(Client, types.ListPlansInput): types.ListPlansOutput, table
+    -- Lists all Region switch plans in your Amazon Web Services account that are available in the current Amazon Web Services Region.
     listPlansInRegion: function(Client, types.ListPlansInRegionInput): types.ListPlansInRegionOutput, table
+    -- List the Amazon Route 53 health checks.
     listRoute53HealthChecks: function(Client, types.ListRoute53HealthChecksInput): types.ListRoute53HealthChecksOutput, table
+    -- List the Amazon Route 53 health checks in a specific Amazon Web Services Region.
     listRoute53HealthChecksInRegion: function(Client, types.ListRoute53HealthChecksInRegionInput): types.ListRoute53HealthChecksInRegionOutput, table
+    -- Lists the tags attached to a Region switch resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts the execution of a Region switch plan. You can execute a plan in either graceful or ungraceful mode. Specifing ungraceful mode either changes the behavior of the execution blocks in a workflow or skips specific execution blocks.
     startPlanExecution: function(Client, types.StartPlanExecutionInput): types.StartPlanExecutionOutput, table
+    -- Adds or updates tags for a Region switch resource. You can assign metadata to your resources in the form of tags, which are key-value pairs.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a Region switch resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an existing Region switch plan. You can modify the plan's description, workflows, execution role, recovery time objective, associated alarms, and triggers.
     updatePlan: function(Client, types.UpdatePlanInput): types.UpdatePlanOutput, table
+    -- Updates an in-progress plan execution. This operation allows you to modify certain aspects of the execution, such as adding a comment or changing the action.
     updatePlanExecution: function(Client, types.UpdatePlanExecutionInput): types.UpdatePlanExecutionOutput, table
+    -- Updates a specific step in an in-progress plan execution. This operation allows you to modify the step's comment or action.
     updatePlanExecutionStep: function(Client, types.UpdatePlanExecutionStepInput): types.UpdatePlanExecutionStepOutput, table
 end
 

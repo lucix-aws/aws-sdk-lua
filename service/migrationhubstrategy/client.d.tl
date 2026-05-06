@@ -3,27 +3,51 @@
 local types = require("migrationhubstrategy.types")
 
 local record Client
+    -- Retrieves details about an application component.
     getApplicationComponentDetails: function(Client, types.GetApplicationComponentDetailsInput): types.GetApplicationComponentDetailsOutput, table
+    -- Retrieves a list of all the recommended strategies and tools for an application component
+    -- running on a server.
     getApplicationComponentStrategies: function(Client, types.GetApplicationComponentStrategiesInput): types.GetApplicationComponentStrategiesOutput, table
+    -- Retrieves the status of an on-going assessment.
     getAssessment: function(Client, types.GetAssessmentInput): types.GetAssessmentOutput, table
+    -- Retrieves the details about a specific import task.
     getImportFileTask: function(Client, types.GetImportFileTaskInput): types.GetImportFileTaskOutput, table
+    -- Retrieve the latest ID of a specific assessment task.
     getLatestAssessmentId: function(Client, types.GetLatestAssessmentIdInput): types.GetLatestAssessmentIdOutput, table
+    -- Retrieves your migration and modernization preferences.
     getPortfolioPreferences: function(Client, types.GetPortfolioPreferencesInput): types.GetPortfolioPreferencesOutput, table
+    -- Retrieves overall summary including the number of servers to rehost and the overall
+    -- number of anti-patterns.
     getPortfolioSummary: function(Client, types.GetPortfolioSummaryInput): types.GetPortfolioSummaryOutput, table
+    -- Retrieves detailed information about the specified recommendation report.
     getRecommendationReportDetails: function(Client, types.GetRecommendationReportDetailsInput): types.GetRecommendationReportDetailsOutput, table
+    -- Retrieves detailed information about a specified server.
     getServerDetails: function(Client, types.GetServerDetailsInput): types.GetServerDetailsOutput, table
+    -- Retrieves recommended strategies and tools for the specified server.
     getServerStrategies: function(Client, types.GetServerStrategiesInput): types.GetServerStrategiesOutput, table
+    -- Retrieves a list of all the servers fetched from customer vCenter using Strategy Recommendation Collector.
     listAnalyzableServers: function(Client, types.ListAnalyzableServersInput): types.ListAnalyzableServersOutput, table
+    -- Retrieves a list of all the application components (processes).
     listApplicationComponents: function(Client, types.ListApplicationComponentsInput): types.ListApplicationComponentsOutput, table
+    -- Retrieves a list of all the installed collectors.
     listCollectors: function(Client, types.ListCollectorsInput): types.ListCollectorsOutput, table
+    -- Retrieves a list of all the imports performed.
     listImportFileTask: function(Client, types.ListImportFileTaskInput): types.ListImportFileTaskOutput, table
+    -- Returns a list of all the servers.
     listServers: function(Client, types.ListServersInput): types.ListServersOutput, table
+    -- Saves the specified migration and modernization preferences.
     putPortfolioPreferences: function(Client, types.PutPortfolioPreferencesInput): types.PutPortfolioPreferencesOutput, table
+    -- Starts the assessment of an on-premises environment.
     startAssessment: function(Client, types.StartAssessmentInput): types.StartAssessmentOutput, table
+    -- Starts a file import.
     startImportFileTask: function(Client, types.StartImportFileTaskInput): types.StartImportFileTaskOutput, table
+    -- Starts generating a recommendation report.
     startRecommendationReportGeneration: function(Client, types.StartRecommendationReportGenerationInput): types.StartRecommendationReportGenerationOutput, table
+    -- Stops the assessment of an on-premises environment.
     stopAssessment: function(Client, types.StopAssessmentInput): types.StopAssessmentOutput, table
+    -- Updates the configuration of an application component.
     updateApplicationComponentConfig: function(Client, types.UpdateApplicationComponentConfigInput): types.UpdateApplicationComponentConfigOutput, table
+    -- Updates the configuration of the specified server.
     updateServerConfig: function(Client, types.UpdateServerConfigInput): types.UpdateServerConfigOutput, table
 end
 

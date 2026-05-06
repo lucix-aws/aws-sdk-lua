@@ -3,31 +3,75 @@
 local types = require("appfabric.types")
 
 local record Client
+    -- Gets user access details in a batch request.
+    -- This action polls data from the tasks that are kicked off by the
+    -- StartUserAccessTasks action.
     batchGetUserAccessTasks: function(Client, types.BatchGetUserAccessTasksInput): types.BatchGetUserAccessTasksOutput, table
+    -- Establishes a connection between Amazon Web Services AppFabric and an application, which allows AppFabric to
+    -- call the APIs of the application.
     connectAppAuthorization: function(Client, types.ConnectAppAuthorizationInput): types.ConnectAppAuthorizationOutput, table
+    -- Creates an app authorization within an app bundle, which allows AppFabric to connect to an
+    -- application.
     createAppAuthorization: function(Client, types.CreateAppAuthorizationInput): types.CreateAppAuthorizationOutput, table
+    -- Creates an app bundle to collect data from an application using AppFabric.
     createAppBundle: function(Client, types.CreateAppBundleInput): types.CreateAppBundleOutput, table
+    -- Creates a data ingestion for an application.
     createIngestion: function(Client, types.CreateIngestionInput): types.CreateIngestionOutput, table
+    -- Creates an ingestion destination, which specifies how an application's ingested data is
+    -- processed by Amazon Web Services AppFabric and where it's delivered.
     createIngestionDestination: function(Client, types.CreateIngestionDestinationInput): types.CreateIngestionDestinationOutput, table
+    -- Deletes an app authorization. You must delete the associated ingestion before you can
+    -- delete an app authorization.
     deleteAppAuthorization: function(Client, types.DeleteAppAuthorizationInput): types.DeleteAppAuthorizationOutput, table
+    -- Deletes an app bundle. You must delete all associated app authorizations before you can
+    -- delete an app bundle.
     deleteAppBundle: function(Client, types.DeleteAppBundleInput): types.DeleteAppBundleOutput, table
+    -- Deletes an ingestion. You must stop (disable) the ingestion and you must delete all
+    -- associated ingestion destinations before you can delete an app ingestion.
     deleteIngestion: function(Client, types.DeleteIngestionInput): types.DeleteIngestionOutput, table
+    -- Deletes an ingestion destination.
+    -- This deletes the association between an ingestion and it's destination. It doesn't
+    -- delete previously ingested data or the storage destination, such as the Amazon S3
+    -- bucket where the data is delivered. If the ingestion destination is deleted while the
+    -- associated ingestion is enabled, the ingestion will fail and is eventually disabled.
     deleteIngestionDestination: function(Client, types.DeleteIngestionDestinationInput): types.DeleteIngestionDestinationOutput, table
+    -- Returns information about an app authorization.
     getAppAuthorization: function(Client, types.GetAppAuthorizationInput): types.GetAppAuthorizationOutput, table
+    -- Returns information about an app bundle.
     getAppBundle: function(Client, types.GetAppBundleInput): types.GetAppBundleOutput, table
+    -- Returns information about an ingestion.
     getIngestion: function(Client, types.GetIngestionInput): types.GetIngestionOutput, table
+    -- Returns information about an ingestion destination.
     getIngestionDestination: function(Client, types.GetIngestionDestinationInput): types.GetIngestionDestinationOutput, table
+    -- Returns a list of all app authorizations configured for an app bundle.
     listAppAuthorizations: function(Client, types.ListAppAuthorizationsInput): types.ListAppAuthorizationsOutput, table
+    -- Returns a list of app bundles.
     listAppBundles: function(Client, types.ListAppBundlesInput): types.ListAppBundlesOutput, table
+    -- Returns a list of all ingestion destinations configured for an ingestion.
     listIngestionDestinations: function(Client, types.ListIngestionDestinationsInput): types.ListIngestionDestinationsOutput, table
+    -- Returns a list of all ingestions configured for an app bundle.
     listIngestions: function(Client, types.ListIngestionsInput): types.ListIngestionsOutput, table
+    -- Returns a list of tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Starts (enables) an ingestion, which collects data from an application.
     startIngestion: function(Client, types.StartIngestionInput): types.StartIngestionOutput, table
+    -- Starts the tasks to search user access status for a specific email address.
+    -- The tasks are stopped when the user access status data is found. The tasks are
+    -- terminated when the API calls to the application time out.
     startUserAccessTasks: function(Client, types.StartUserAccessTasksInput): types.StartUserAccessTasksOutput, table
+    -- Stops (disables) an ingestion.
     stopIngestion: function(Client, types.StopIngestionInput): types.StopIngestionOutput, table
+    -- Assigns one or more tags (key-value pairs) to the specified resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag or tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates an app authorization within an app bundle, which allows AppFabric to connect to an
+    -- application.
+    -- If the app authorization was in a connected state, updating the app
+    -- authorization will set it back to a PendingConnect state.
     updateAppAuthorization: function(Client, types.UpdateAppAuthorizationInput): types.UpdateAppAuthorizationOutput, table
+    -- Updates an ingestion destination, which specifies how an application's ingested data is
+    -- processed by Amazon Web Services AppFabric and where it's delivered.
     updateIngestionDestination: function(Client, types.UpdateIngestionDestinationInput): types.UpdateIngestionDestinationOutput, table
 end
 

@@ -3,82 +3,243 @@
 local types = require("imagebuilder.types")
 
 local record Client
+    -- CancelImageCreation cancels the creation of Image. This operation can only be used on
+    -- images in a non-terminal state.
     cancelImageCreation: function(Client, types.CancelImageCreationInput): types.CancelImageCreationOutput, table
+    -- Cancel a specific image lifecycle policy runtime instance.
     cancelLifecycleExecution: function(Client, types.CancelLifecycleExecutionInput): types.CancelLifecycleExecutionOutput, table
+    -- Creates a new component that can be used to build, validate, test, and assess your
+    -- image. The component is based on a YAML document that you specify using exactly one of
+    -- the following methods:
+    -- Inline, using the data property in the request body.
+    -- A URL that points to a YAML document file stored in Amazon S3, using the
+    -- uri property in the request body.
     createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    -- Creates a new container recipe. Container recipes define how images are configured,
+    -- tested, and assessed.
     createContainerRecipe: function(Client, types.CreateContainerRecipeInput): types.CreateContainerRecipeOutput, table
+    -- Creates a new distribution configuration. Distribution configurations define and
+    -- configure the outputs of your pipeline.
     createDistributionConfiguration: function(Client, types.CreateDistributionConfigurationInput): types.CreateDistributionConfigurationOutput, table
+    -- Creates a new image. This request will create a new image along with all of the
+    -- configured output resources defined in the distribution configuration. You must specify
+    -- exactly one recipe for your image, using either a ContainerRecipeArn or an
+    -- ImageRecipeArn.
     createImage: function(Client, types.CreateImageInput): types.CreateImageOutput, table
+    -- Creates a new image pipeline. Image pipelines enable you to automate the creation and
+    -- distribution of images.
     createImagePipeline: function(Client, types.CreateImagePipelineInput): types.CreateImagePipelineOutput, table
+    -- Creates a new image recipe. Image recipes define how images are configured, tested,
+    -- and assessed.
     createImageRecipe: function(Client, types.CreateImageRecipeInput): types.CreateImageRecipeOutput, table
+    -- Creates a new infrastructure configuration. An infrastructure configuration defines
+    -- the environment in which your image will be built and tested.
     createInfrastructureConfiguration: function(Client, types.CreateInfrastructureConfigurationInput): types.CreateInfrastructureConfigurationOutput, table
+    -- Create a lifecycle policy resource.
     createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): types.CreateLifecyclePolicyOutput, table
+    -- Create a new workflow or a new version of an existing workflow.
     createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    -- Deletes a component build version.
     deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    -- Deletes a container recipe.
     deleteContainerRecipe: function(Client, types.DeleteContainerRecipeInput): types.DeleteContainerRecipeOutput, table
+    -- Deletes a distribution configuration.
     deleteDistributionConfiguration: function(Client, types.DeleteDistributionConfigurationInput): types.DeleteDistributionConfigurationOutput, table
+    -- Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container
+    -- images that are created during the image build process. You must clean those up
+    -- separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI
+    -- commands.
+    -- To deregister an EC2 Linux AMI, see Deregister your
+    -- Linux AMI in the
+    -- Amazon EC2 User Guide
+    -- .
+    -- To deregister an EC2 Windows AMI, see Deregister your
+    -- Windows AMI in the
+    -- Amazon EC2 Windows Guide
+    -- .
+    -- To delete a container image from Amazon ECR, see Deleting
+    -- an image in the Amazon ECR User Guide.
     deleteImage: function(Client, types.DeleteImageInput): types.DeleteImageOutput, table
+    -- Deletes an image pipeline.
     deleteImagePipeline: function(Client, types.DeleteImagePipelineInput): types.DeleteImagePipelineOutput, table
+    -- Deletes an image recipe.
     deleteImageRecipe: function(Client, types.DeleteImageRecipeInput): types.DeleteImageRecipeOutput, table
+    -- Deletes an infrastructure configuration.
     deleteInfrastructureConfiguration: function(Client, types.DeleteInfrastructureConfigurationInput): types.DeleteInfrastructureConfigurationOutput, table
+    -- Delete the specified lifecycle policy resource.
     deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): types.DeleteLifecyclePolicyOutput, table
+    -- Deletes a specific workflow resource.
     deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    -- DistributeImage distributes existing AMIs to additional regions and accounts without rebuilding the image.
     distributeImage: function(Client, types.DistributeImageInput): types.DistributeImageOutput, table
+    -- Gets a component object.
     getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    -- Gets a component policy.
     getComponentPolicy: function(Client, types.GetComponentPolicyInput): types.GetComponentPolicyOutput, table
+    -- Retrieves a container recipe.
     getContainerRecipe: function(Client, types.GetContainerRecipeInput): types.GetContainerRecipeOutput, table
+    -- Retrieves the policy for a container recipe.
     getContainerRecipePolicy: function(Client, types.GetContainerRecipePolicyInput): types.GetContainerRecipePolicyOutput, table
+    -- Gets a distribution configuration.
     getDistributionConfiguration: function(Client, types.GetDistributionConfigurationInput): types.GetDistributionConfigurationOutput, table
+    -- Gets an image.
     getImage: function(Client, types.GetImageInput): types.GetImageOutput, table
+    -- Gets an image pipeline.
     getImagePipeline: function(Client, types.GetImagePipelineInput): types.GetImagePipelineOutput, table
+    -- Gets an image policy.
     getImagePolicy: function(Client, types.GetImagePolicyInput): types.GetImagePolicyOutput, table
+    -- Gets an image recipe.
     getImageRecipe: function(Client, types.GetImageRecipeInput): types.GetImageRecipeOutput, table
+    -- Gets an image recipe policy.
     getImageRecipePolicy: function(Client, types.GetImageRecipePolicyInput): types.GetImageRecipePolicyOutput, table
+    -- Gets an infrastructure configuration.
     getInfrastructureConfiguration: function(Client, types.GetInfrastructureConfigurationInput): types.GetInfrastructureConfigurationOutput, table
+    -- Get the runtime information that was logged for a specific runtime instance of the lifecycle policy.
     getLifecycleExecution: function(Client, types.GetLifecycleExecutionInput): types.GetLifecycleExecutionOutput, table
+    -- Get details for the specified image lifecycle policy.
     getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput): types.GetLifecyclePolicyOutput, table
+    -- Verify the subscription and perform resource dependency checks on the requested
+    -- Amazon Web Services Marketplace resource. For Amazon Web Services Marketplace components, the response contains fields to download the
+    -- components and their artifacts.
     getMarketplaceResource: function(Client, types.GetMarketplaceResourceInput): types.GetMarketplaceResourceOutput, table
+    -- Get a workflow resource object.
     getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    -- Get the runtime information that was logged for a specific runtime instance
+    -- of the workflow.
     getWorkflowExecution: function(Client, types.GetWorkflowExecutionInput): types.GetWorkflowExecutionOutput, table
+    -- Get the runtime information that was logged for a specific runtime instance of
+    -- the workflow step.
     getWorkflowStepExecution: function(Client, types.GetWorkflowStepExecutionInput): types.GetWorkflowStepExecutionOutput, table
+    -- Imports a component and transforms its data into a component document.
     importComponent: function(Client, types.ImportComponentInput): types.ImportComponentOutput, table
+    -- Import a Windows operating system image from a verified Microsoft ISO disk
+    -- file. The following disk images are supported:
+    -- Windows 11 Enterprise
     importDiskImage: function(Client, types.ImportDiskImageInput): types.ImportDiskImageOutput, table
+    -- When you export your virtual machine (VM) from its virtualization environment, that
+    -- process creates a set of one or more disk container files that act as snapshots of your
+    -- VM’s environment, settings, and data. The Amazon EC2 API ImportImage
+    -- action uses those files to import your VM and create an AMI. To import using the CLI
+    -- command, see import-image
+    -- You can reference the task ID from the VM import to pull in the AMI that the import
+    -- created as the base image for your Image Builder recipe.
     importVmImage: function(Client, types.ImportVmImageInput): types.ImportVmImageOutput, table
+    -- Returns the list of component build versions for the specified component
+    -- version Amazon Resource Name (ARN).
     listComponentBuildVersions: function(Client, types.ListComponentBuildVersionsInput): types.ListComponentBuildVersionsOutput, table
+    -- Returns the list of components that can be filtered by name, or by using the listed
+    -- filters to streamline results. Newly created components can take up to
+    -- two minutes to appear in the ListComponents API Results.
+    -- The semantic version has four nodes: ../.
+    -- You can assign values for the first three, and can filter on all of them.
+    -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
+    -- to specify the most recent versions or nodes when selecting the base image or components for your
+    -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
+    -- wildcards.
     listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    -- Returns a list of container recipes.
     listContainerRecipes: function(Client, types.ListContainerRecipesInput): types.ListContainerRecipesOutput, table
+    -- Returns a list of distribution configurations.
     listDistributionConfigurations: function(Client, types.ListDistributionConfigurationsInput): types.ListDistributionConfigurationsOutput, table
+    -- Returns a list of image build versions.
     listImageBuildVersions: function(Client, types.ListImageBuildVersionsInput): types.ListImageBuildVersionsOutput, table
+    -- List the Packages that are associated with an Image Build Version, as determined by
+    -- Amazon Web Services Systems Manager Inventory at build time.
     listImagePackages: function(Client, types.ListImagePackagesInput): types.ListImagePackagesOutput, table
+    -- Returns a list of images created by the specified pipeline.
     listImagePipelineImages: function(Client, types.ListImagePipelineImagesInput): types.ListImagePipelineImagesOutput, table
+    -- Returns a list of image pipelines.
     listImagePipelines: function(Client, types.ListImagePipelinesInput): types.ListImagePipelinesOutput, table
+    -- Returns a list of image recipes.
     listImageRecipes: function(Client, types.ListImageRecipesInput): types.ListImageRecipesOutput, table
+    -- Returns the list of images that you have access to. Newly created images can take up
+    -- to two minutes to appear in the ListImages API Results.
     listImages: function(Client, types.ListImagesInput): types.ListImagesOutput, table
+    -- Returns a list of image scan aggregations for your account. You can filter by the type
+    -- of key that Image Builder uses to group results. For example, if you want to get a list of
+    -- findings by severity level for one of your pipelines, you might specify your pipeline
+    -- with the imagePipelineArn filter. If you don't specify a filter, Image Builder
+    -- returns an aggregation for your account.
+    -- To streamline results, you can use the following filters in your request:
+    -- accountId
+    -- imageBuildVersionArn
+    -- imagePipelineArn
+    -- vulnerabilityId
     listImageScanFindingAggregations: function(Client, types.ListImageScanFindingAggregationsInput): types.ListImageScanFindingAggregationsOutput, table
+    -- Returns a list of image scan findings for your account.
     listImageScanFindings: function(Client, types.ListImageScanFindingsInput): types.ListImageScanFindingsOutput, table
+    -- Returns a list of infrastructure configurations.
     listInfrastructureConfigurations: function(Client, types.ListInfrastructureConfigurationsInput): types.ListInfrastructureConfigurationsOutput, table
+    -- List resources that the runtime instance of the image lifecycle identified for lifecycle actions.
     listLifecycleExecutionResources: function(Client, types.ListLifecycleExecutionResourcesInput): types.ListLifecycleExecutionResourcesOutput, table
+    -- Get the lifecycle runtime history for the specified resource.
     listLifecycleExecutions: function(Client, types.ListLifecycleExecutionsInput): types.ListLifecycleExecutionsOutput, table
+    -- Get a list of lifecycle policies in your Amazon Web Services account.
     listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput): types.ListLifecyclePoliciesOutput, table
+    -- Returns the list of tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Get a list of workflow steps that are waiting for action for workflows
+    -- in your Amazon Web Services account.
     listWaitingWorkflowSteps: function(Client, types.ListWaitingWorkflowStepsInput): types.ListWaitingWorkflowStepsOutput, table
+    -- Returns a list of build versions for a specific workflow resource.
     listWorkflowBuildVersions: function(Client, types.ListWorkflowBuildVersionsInput): types.ListWorkflowBuildVersionsOutput, table
+    -- Returns a list of workflow runtime instance metadata objects for a specific image build
+    -- version.
     listWorkflowExecutions: function(Client, types.ListWorkflowExecutionsInput): types.ListWorkflowExecutionsOutput, table
+    -- Lists workflow build versions based on filtering parameters.
     listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    -- Returns runtime data for each step in a runtime instance of the workflow
+    -- that you specify in the request.
     listWorkflowStepExecutions: function(Client, types.ListWorkflowStepExecutionsInput): types.ListWorkflowStepExecutionsOutput, table
+    -- Applies a policy to a component. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API
+    -- PutComponentPolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be
+    -- visible to all principals with whom the resource is shared.
     putComponentPolicy: function(Client, types.PutComponentPolicyInput): types.PutComponentPolicyOutput, table
+    -- Applies a policy to a container image. We recommend that you call the RAM API
+    -- CreateResourceShare
+    -- (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html) to share
+    -- resources. If you call the Image Builder API PutContainerImagePolicy, you must also
+    -- call the RAM API PromoteResourceShareCreatedFromPolicy
+    -- (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
+    -- in order for the resource to be visible to all principals with whom the resource is
+    -- shared.
     putContainerRecipePolicy: function(Client, types.PutContainerRecipePolicyInput): types.PutContainerRecipePolicyOutput, table
+    -- Applies a policy to an image. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API
+    -- PutImagePolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be
+    -- visible to all principals with whom the resource is shared.
     putImagePolicy: function(Client, types.PutImagePolicyInput): types.PutImagePolicyOutput, table
+    -- Applies a policy to an image recipe. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API
+    -- PutImageRecipePolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be
+    -- visible to all principals with whom the resource is shared.
     putImageRecipePolicy: function(Client, types.PutImageRecipePolicyInput): types.PutImageRecipePolicyOutput, table
+    -- RetryImage retries an image distribution without rebuilding the image.
     retryImage: function(Client, types.RetryImageInput): types.RetryImageOutput, table
+    -- Pauses or resumes image creation when the associated workflow runs a
+    -- WaitForAction step.
     sendWorkflowStepAction: function(Client, types.SendWorkflowStepActionInput): types.SendWorkflowStepActionOutput, table
+    -- Manually triggers a pipeline to create an image.
     startImagePipelineExecution: function(Client, types.StartImagePipelineExecutionInput): types.StartImagePipelineExecutionOutput, table
+    -- Begin asynchronous resource state update for lifecycle changes to the
+    -- specified image resources.
     startResourceStateUpdate: function(Client, types.StartResourceStateUpdateInput): types.StartResourceStateUpdateOutput, table
+    -- Adds a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes a tag from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a new distribution configuration. Distribution configurations define and
+    -- configure the outputs of your pipeline.
     updateDistributionConfiguration: function(Client, types.UpdateDistributionConfigurationInput): types.UpdateDistributionConfigurationOutput, table
+    -- Updates an image pipeline. Image pipelines enable you to automate the creation and
+    -- distribution of images. You must specify exactly one recipe for your image, using either
+    -- a containerRecipeArn or an imageRecipeArn.
+    -- UpdateImagePipeline does not support selective updates for the pipeline. You must
+    -- specify all of the required properties in the update request, not just the
+    -- properties that have changed.
     updateImagePipeline: function(Client, types.UpdateImagePipelineInput): types.UpdateImagePipelineOutput, table
+    -- Updates a new infrastructure configuration. An infrastructure configuration defines
+    -- the environment in which your image will be built and tested.
     updateInfrastructureConfiguration: function(Client, types.UpdateInfrastructureConfigurationInput): types.UpdateInfrastructureConfigurationOutput, table
+    -- Update the specified lifecycle policy.
     updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): types.UpdateLifecyclePolicyOutput, table
 end
 

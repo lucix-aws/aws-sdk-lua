@@ -3,10 +3,22 @@
 local types = require("personalizeevents.types")
 
 local record Client
+    -- Records action interaction event data. An action interaction event is an interaction between a user and an action.
+    -- For example, a user taking an action, such a enrolling in a membership program or downloading your app.
+    -- For more information about recording action interactions, see Recording action interaction events.
+    -- For more information about actions in an Actions dataset, see Actions dataset.
     putActionInteractions: function(Client, types.PutActionInteractionsInput): types.PutActionInteractionsOutput, table
+    -- Adds one or more actions to an Actions dataset. For more information see
+    -- Importing actions individually.
     putActions: function(Client, types.PutActionsInput): types.PutActionsOutput, table
+    -- Records item interaction event data. For more information see
+    -- Recording item interaction events.
     putEvents: function(Client, types.PutEventsInput): types.PutEventsOutput, table
+    -- Adds one or more items to an Items dataset. For more information see
+    -- Importing items individually.
     putItems: function(Client, types.PutItemsInput): types.PutItemsOutput, table
+    -- Adds one or more users to a Users dataset. For more information see
+    -- Importing users individually.
     putUsers: function(Client, types.PutUsersInput): types.PutUsersOutput, table
 end
 

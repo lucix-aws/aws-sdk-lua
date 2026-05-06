@@ -3,117 +3,279 @@
 local types = require("iotwireless.types")
 
 local record Client
+    -- Associates a partner account with your AWS account.
     associateAwsAccountWithPartnerAccount: function(Client, types.AssociateAwsAccountWithPartnerAccountInput): types.AssociateAwsAccountWithPartnerAccountOutput, table
+    -- Associate a multicast group with a FUOTA task.
     associateMulticastGroupWithFuotaTask: function(Client, types.AssociateMulticastGroupWithFuotaTaskInput): types.AssociateMulticastGroupWithFuotaTaskOutput, table
+    -- Associate a wireless device with a FUOTA task.
     associateWirelessDeviceWithFuotaTask: function(Client, types.AssociateWirelessDeviceWithFuotaTaskInput): types.AssociateWirelessDeviceWithFuotaTaskOutput, table
+    -- Associates a wireless device with a multicast group.
     associateWirelessDeviceWithMulticastGroup: function(Client, types.AssociateWirelessDeviceWithMulticastGroupInput): types.AssociateWirelessDeviceWithMulticastGroupOutput, table
+    -- Associates a wireless device with a thing.
     associateWirelessDeviceWithThing: function(Client, types.AssociateWirelessDeviceWithThingInput): types.AssociateWirelessDeviceWithThingOutput, table
+    -- Associates a wireless gateway with a certificate.
     associateWirelessGatewayWithCertificate: function(Client, types.AssociateWirelessGatewayWithCertificateInput): types.AssociateWirelessGatewayWithCertificateOutput, table
+    -- Associates a wireless gateway with a thing.
     associateWirelessGatewayWithThing: function(Client, types.AssociateWirelessGatewayWithThingInput): types.AssociateWirelessGatewayWithThingOutput, table
+    -- Cancels an existing multicast group session.
     cancelMulticastGroupSession: function(Client, types.CancelMulticastGroupSessionInput): types.CancelMulticastGroupSessionOutput, table
+    -- Creates a new destination that maps a device message to an AWS IoT rule.
     createDestination: function(Client, types.CreateDestinationInput): types.CreateDestinationOutput, table
+    -- Creates a new device profile.
     createDeviceProfile: function(Client, types.CreateDeviceProfileInput): types.CreateDeviceProfileOutput, table
+    -- Creates a FUOTA task.
     createFuotaTask: function(Client, types.CreateFuotaTaskInput): types.CreateFuotaTaskOutput, table
+    -- Creates a multicast group.
     createMulticastGroup: function(Client, types.CreateMulticastGroupInput): types.CreateMulticastGroupOutput, table
+    -- Creates a new network analyzer configuration.
     createNetworkAnalyzerConfiguration: function(Client, types.CreateNetworkAnalyzerConfigurationInput): types.CreateNetworkAnalyzerConfigurationOutput, table
+    -- Creates a new service profile.
     createServiceProfile: function(Client, types.CreateServiceProfileInput): types.CreateServiceProfileOutput, table
+    -- Provisions a wireless device.
     createWirelessDevice: function(Client, types.CreateWirelessDeviceInput): types.CreateWirelessDeviceOutput, table
+    -- Provisions a wireless gateway.
+    -- When provisioning a wireless gateway, you might run into duplication errors for
+    -- the following reasons.
+    -- If you specify a GatewayEui value that already exists.
+    -- If you used a ClientRequestToken with the same parameters
+    -- within the last 10 minutes.
+    -- To avoid this error, make sure that you use unique identifiers and parameters for
+    -- each request within the specified time period.
     createWirelessGateway: function(Client, types.CreateWirelessGatewayInput): types.CreateWirelessGatewayOutput, table
+    -- Creates a task for a wireless gateway.
     createWirelessGatewayTask: function(Client, types.CreateWirelessGatewayTaskInput): types.CreateWirelessGatewayTaskOutput, table
+    -- Creates a gateway task definition.
     createWirelessGatewayTaskDefinition: function(Client, types.CreateWirelessGatewayTaskDefinitionInput): types.CreateWirelessGatewayTaskDefinitionOutput, table
+    -- Deletes a destination.
     deleteDestination: function(Client, types.DeleteDestinationInput): types.DeleteDestinationOutput, table
+    -- Deletes a device profile.
     deleteDeviceProfile: function(Client, types.DeleteDeviceProfileInput): types.DeleteDeviceProfileOutput, table
+    -- Deletes a FUOTA task.
     deleteFuotaTask: function(Client, types.DeleteFuotaTaskInput): types.DeleteFuotaTaskOutput, table
+    -- Deletes a multicast group if it is not in use by a FUOTA task.
     deleteMulticastGroup: function(Client, types.DeleteMulticastGroupInput): types.DeleteMulticastGroupOutput, table
+    -- Deletes a network analyzer configuration.
     deleteNetworkAnalyzerConfiguration: function(Client, types.DeleteNetworkAnalyzerConfigurationInput): types.DeleteNetworkAnalyzerConfigurationOutput, table
+    -- Remove queued messages from the downlink queue.
     deleteQueuedMessages: function(Client, types.DeleteQueuedMessagesInput): types.DeleteQueuedMessagesOutput, table
+    -- Deletes a service profile.
     deleteServiceProfile: function(Client, types.DeleteServiceProfileInput): types.DeleteServiceProfileOutput, table
+    -- Deletes a wireless device.
     deleteWirelessDevice: function(Client, types.DeleteWirelessDeviceInput): types.DeleteWirelessDeviceOutput, table
+    -- Delete an import task.
     deleteWirelessDeviceImportTask: function(Client, types.DeleteWirelessDeviceImportTaskInput): types.DeleteWirelessDeviceImportTaskOutput, table
+    -- Deletes a wireless gateway.
+    -- When deleting a wireless gateway, you might run into duplication errors for the
+    -- following reasons.
+    -- If you specify a GatewayEui value that already exists.
+    -- If you used a ClientRequestToken with the same parameters
+    -- within the last 10 minutes.
+    -- To avoid this error, make sure that you use unique identifiers and parameters for
+    -- each request within the specified time period.
     deleteWirelessGateway: function(Client, types.DeleteWirelessGatewayInput): types.DeleteWirelessGatewayOutput, table
+    -- Deletes a wireless gateway task.
     deleteWirelessGatewayTask: function(Client, types.DeleteWirelessGatewayTaskInput): types.DeleteWirelessGatewayTaskOutput, table
+    -- Deletes a wireless gateway task definition. Deleting this task definition does not
+    -- affect tasks that are currently in progress.
     deleteWirelessGatewayTaskDefinition: function(Client, types.DeleteWirelessGatewayTaskDefinitionInput): types.DeleteWirelessGatewayTaskDefinitionOutput, table
+    -- Deregister a wireless device from AWS IoT Wireless.
     deregisterWirelessDevice: function(Client, types.DeregisterWirelessDeviceInput): types.DeregisterWirelessDeviceOutput, table
+    -- Disassociates your AWS account from a partner account. If
+    -- PartnerAccountId and PartnerType are null,
+    -- disassociates your AWS account from all partner accounts.
     disassociateAwsAccountFromPartnerAccount: function(Client, types.DisassociateAwsAccountFromPartnerAccountInput): types.DisassociateAwsAccountFromPartnerAccountOutput, table
+    -- Disassociates a multicast group from a FUOTA task.
     disassociateMulticastGroupFromFuotaTask: function(Client, types.DisassociateMulticastGroupFromFuotaTaskInput): types.DisassociateMulticastGroupFromFuotaTaskOutput, table
+    -- Disassociates a wireless device from a FUOTA task.
     disassociateWirelessDeviceFromFuotaTask: function(Client, types.DisassociateWirelessDeviceFromFuotaTaskInput): types.DisassociateWirelessDeviceFromFuotaTaskOutput, table
+    -- Disassociates a wireless device from a multicast group.
     disassociateWirelessDeviceFromMulticastGroup: function(Client, types.DisassociateWirelessDeviceFromMulticastGroupInput): types.DisassociateWirelessDeviceFromMulticastGroupOutput, table
+    -- Disassociates a wireless device from its currently associated thing.
     disassociateWirelessDeviceFromThing: function(Client, types.DisassociateWirelessDeviceFromThingInput): types.DisassociateWirelessDeviceFromThingOutput, table
+    -- Disassociates a wireless gateway from its currently associated certificate.
     disassociateWirelessGatewayFromCertificate: function(Client, types.DisassociateWirelessGatewayFromCertificateInput): types.DisassociateWirelessGatewayFromCertificateOutput, table
+    -- Disassociates a wireless gateway from its currently associated thing.
     disassociateWirelessGatewayFromThing: function(Client, types.DisassociateWirelessGatewayFromThingInput): types.DisassociateWirelessGatewayFromThingOutput, table
+    -- Gets information about a destination.
     getDestination: function(Client, types.GetDestinationInput): types.GetDestinationOutput, table
+    -- Gets information about a device profile.
     getDeviceProfile: function(Client, types.GetDeviceProfileInput): types.GetDeviceProfileOutput, table
+    -- Get the event configuration based on resource types.
     getEventConfigurationByResourceTypes: function(Client, types.GetEventConfigurationByResourceTypesInput): types.GetEventConfigurationByResourceTypesOutput, table
+    -- Gets information about a FUOTA task.
     getFuotaTask: function(Client, types.GetFuotaTaskInput): types.GetFuotaTaskOutput, table
+    -- Returns current default log levels or log levels by resource types. Based on the
+    -- resource type, log levels can be returned for wireless device, wireless gateway, or
+    -- FUOTA task log options.
     getLogLevelsByResourceTypes: function(Client, types.GetLogLevelsByResourceTypesInput): types.GetLogLevelsByResourceTypesOutput, table
+    -- Get the metric configuration status for this AWS account.
     getMetricConfiguration: function(Client, types.GetMetricConfigurationInput): types.GetMetricConfigurationOutput, table
+    -- Get the summary metrics for this AWS account.
     getMetrics: function(Client, types.GetMetricsInput): types.GetMetricsOutput, table
+    -- Gets information about a multicast group.
     getMulticastGroup: function(Client, types.GetMulticastGroupInput): types.GetMulticastGroupOutput, table
+    -- Gets information about a multicast group session.
     getMulticastGroupSession: function(Client, types.GetMulticastGroupSessionInput): types.GetMulticastGroupSessionOutput, table
+    -- Get network analyzer configuration.
     getNetworkAnalyzerConfiguration: function(Client, types.GetNetworkAnalyzerConfigurationInput): types.GetNetworkAnalyzerConfigurationOutput, table
+    -- Gets information about a partner account. If PartnerAccountId and
+    -- PartnerType are null, returns all partner accounts.
     getPartnerAccount: function(Client, types.GetPartnerAccountInput): types.GetPartnerAccountOutput, table
+    -- Get the position information for a given resource.
+    -- This action is no longer supported. Calls to retrieve the position information
+    -- should use the GetResourcePosition API operation instead.
     getPosition: function(Client, types.GetPositionInput): types.GetPositionOutput, table
+    -- Get position configuration for a given resource.
+    -- This action is no longer supported. Calls to retrieve the position configuration
+    -- should use the GetResourcePosition API operation instead.
     getPositionConfiguration: function(Client, types.GetPositionConfigurationInput): types.GetPositionConfigurationOutput, table
+    -- Get estimated position information as a payload in GeoJSON format. The payload
+    -- measurement data is resolved using solvers that are provided by third-party
+    -- vendors.
     getPositionEstimate: function(Client, types.GetPositionEstimateInput): types.GetPositionEstimateOutput, table
+    -- Get the event configuration for a particular resource identifier.
     getResourceEventConfiguration: function(Client, types.GetResourceEventConfigurationInput): types.GetResourceEventConfigurationOutput, table
+    -- Fetches the log-level override, if any, for a given resource ID and resource
+    -- type..
     getResourceLogLevel: function(Client, types.GetResourceLogLevelInput): types.GetResourceLogLevelOutput, table
+    -- Get the position information for a given wireless device or a wireless gateway
+    -- resource. The position information uses the World Geodetic System
+    -- (WGS84).
     getResourcePosition: function(Client, types.GetResourcePositionInput): types.GetResourcePositionOutput, table
+    -- Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol
+    -- or LoRaWAN Network Server (LNS) connections.
     getServiceEndpoint: function(Client, types.GetServiceEndpointInput): types.GetServiceEndpointOutput, table
+    -- Gets information about a service profile.
     getServiceProfile: function(Client, types.GetServiceProfileInput): types.GetServiceProfileOutput, table
+    -- Gets information about a wireless device.
     getWirelessDevice: function(Client, types.GetWirelessDeviceInput): types.GetWirelessDeviceOutput, table
+    -- Get information about an import task and count of device onboarding summary
+    -- information for the import task.
     getWirelessDeviceImportTask: function(Client, types.GetWirelessDeviceImportTaskInput): types.GetWirelessDeviceImportTaskOutput, table
+    -- Gets operating information about a wireless device.
     getWirelessDeviceStatistics: function(Client, types.GetWirelessDeviceStatisticsInput): types.GetWirelessDeviceStatisticsOutput, table
+    -- Gets information about a wireless gateway.
     getWirelessGateway: function(Client, types.GetWirelessGatewayInput): types.GetWirelessGatewayOutput, table
+    -- Gets the ID of the certificate that is currently associated with a wireless
+    -- gateway.
     getWirelessGatewayCertificate: function(Client, types.GetWirelessGatewayCertificateInput): types.GetWirelessGatewayCertificateOutput, table
+    -- Gets the firmware version and other information about a wireless gateway.
     getWirelessGatewayFirmwareInformation: function(Client, types.GetWirelessGatewayFirmwareInformationInput): types.GetWirelessGatewayFirmwareInformationOutput, table
+    -- Gets operating information about a wireless gateway.
     getWirelessGatewayStatistics: function(Client, types.GetWirelessGatewayStatisticsInput): types.GetWirelessGatewayStatisticsOutput, table
+    -- Gets information about a wireless gateway task.
     getWirelessGatewayTask: function(Client, types.GetWirelessGatewayTaskInput): types.GetWirelessGatewayTaskOutput, table
+    -- Gets information about a wireless gateway task definition.
     getWirelessGatewayTaskDefinition: function(Client, types.GetWirelessGatewayTaskDefinitionInput): types.GetWirelessGatewayTaskDefinitionOutput, table
+    -- Lists the destinations registered to your AWS account.
     listDestinations: function(Client, types.ListDestinationsInput): types.ListDestinationsOutput, table
+    -- Lists the device profiles registered to your AWS account.
     listDeviceProfiles: function(Client, types.ListDeviceProfilesInput): types.ListDeviceProfilesOutput, table
+    -- List the Sidewalk devices in an import task and their onboarding status.
     listDevicesForWirelessDeviceImportTask: function(Client, types.ListDevicesForWirelessDeviceImportTaskInput): types.ListDevicesForWirelessDeviceImportTaskOutput, table
+    -- List event configurations where at least one event topic has been enabled.
     listEventConfigurations: function(Client, types.ListEventConfigurationsInput): types.ListEventConfigurationsOutput, table
+    -- Lists the FUOTA tasks registered to your AWS account.
     listFuotaTasks: function(Client, types.ListFuotaTasksInput): types.ListFuotaTasksOutput, table
+    -- Lists the multicast groups registered to your AWS account.
     listMulticastGroups: function(Client, types.ListMulticastGroupsInput): types.ListMulticastGroupsOutput, table
+    -- List all multicast groups associated with a FUOTA task.
     listMulticastGroupsByFuotaTask: function(Client, types.ListMulticastGroupsByFuotaTaskInput): types.ListMulticastGroupsByFuotaTaskOutput, table
+    -- Lists the network analyzer configurations.
     listNetworkAnalyzerConfigurations: function(Client, types.ListNetworkAnalyzerConfigurationsInput): types.ListNetworkAnalyzerConfigurationsOutput, table
+    -- Lists the partner accounts associated with your AWS account.
     listPartnerAccounts: function(Client, types.ListPartnerAccountsInput): types.ListPartnerAccountsOutput, table
+    -- List position configurations for a given resource, such as positioning solvers.
+    -- This action is no longer supported. Calls to retrieve position information should
+    -- use the GetResourcePosition API operation instead.
     listPositionConfigurations: function(Client, types.ListPositionConfigurationsInput): types.ListPositionConfigurationsOutput, table
+    -- List queued messages in the downlink queue.
     listQueuedMessages: function(Client, types.ListQueuedMessagesInput): types.ListQueuedMessagesOutput, table
+    -- Lists the service profiles registered to your AWS account.
     listServiceProfiles: function(Client, types.ListServiceProfilesInput): types.ListServiceProfilesOutput, table
+    -- Lists the tags (metadata) you have assigned to the resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- List of import tasks and summary information of onboarding status of devices in each
+    -- import task.
     listWirelessDeviceImportTasks: function(Client, types.ListWirelessDeviceImportTasksInput): types.ListWirelessDeviceImportTasksOutput, table
+    -- Lists the wireless devices registered to your AWS account.
     listWirelessDevices: function(Client, types.ListWirelessDevicesInput): types.ListWirelessDevicesOutput, table
+    -- Lists the wireless gateways registered to your AWS account.
     listWirelessGateways: function(Client, types.ListWirelessGatewaysInput): types.ListWirelessGatewaysOutput, table
+    -- List the wireless gateway tasks definitions registered to your AWS account.
     listWirelessGatewayTaskDefinitions: function(Client, types.ListWirelessGatewayTaskDefinitionsInput): types.ListWirelessGatewayTaskDefinitionsOutput, table
+    -- Put position configuration for a given resource.
+    -- This action is no longer supported. Calls to update the position configuration
+    -- should use the UpdateResourcePosition API operation instead.
     putPositionConfiguration: function(Client, types.PutPositionConfigurationInput): types.PutPositionConfigurationOutput, table
+    -- Sets the log-level override for a resource ID and resource type. A limit of 200 log
+    -- level override can be set per account.
     putResourceLogLevel: function(Client, types.PutResourceLogLevelInput): types.PutResourceLogLevelOutput, table
+    -- Removes the log-level overrides for all resources; wireless devices, wireless
+    -- gateways, and FUOTA tasks.
     resetAllResourceLogLevels: function(Client, types.ResetAllResourceLogLevelsInput): types.ResetAllResourceLogLevelsOutput, table
+    -- Removes the log-level override, if any, for a specific resource ID and resource type.
+    -- It can be used for a wireless device, a wireless gateway, or a FUOTA task.
     resetResourceLogLevel: function(Client, types.ResetResourceLogLevelInput): types.ResetResourceLogLevelOutput, table
+    -- Sends the specified data to a multicast group.
     sendDataToMulticastGroup: function(Client, types.SendDataToMulticastGroupInput): types.SendDataToMulticastGroupOutput, table
+    -- Sends a decrypted application data frame to a device.
     sendDataToWirelessDevice: function(Client, types.SendDataToWirelessDeviceInput): types.SendDataToWirelessDeviceOutput, table
+    -- Starts a bulk association of all qualifying wireless devices with a multicast
+    -- group.
     startBulkAssociateWirelessDeviceWithMulticastGroup: function(Client, types.StartBulkAssociateWirelessDeviceWithMulticastGroupInput): types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput, table
+    -- Starts a bulk disassociatin of all qualifying wireless devices from a multicast
+    -- group.
     startBulkDisassociateWirelessDeviceFromMulticastGroup: function(Client, types.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput): types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput, table
+    -- Starts a FUOTA task.
     startFuotaTask: function(Client, types.StartFuotaTaskInput): types.StartFuotaTaskOutput, table
+    -- Starts a multicast group session.
     startMulticastGroupSession: function(Client, types.StartMulticastGroupSessionInput): types.StartMulticastGroupSessionOutput, table
+    -- Start import task for a single wireless device.
     startSingleWirelessDeviceImportTask: function(Client, types.StartSingleWirelessDeviceImportTaskInput): types.StartSingleWirelessDeviceImportTaskOutput, table
+    -- Start import task for provisioning Sidewalk devices in bulk using an S3 CSV
+    -- file.
     startWirelessDeviceImportTask: function(Client, types.StartWirelessDeviceImportTaskInput): types.StartWirelessDeviceImportTaskOutput, table
+    -- Adds a tag to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Simulates a provisioned device by sending an uplink data payload of
+    -- Hello.
     testWirelessDevice: function(Client, types.TestWirelessDeviceInput): types.TestWirelessDeviceOutput, table
+    -- Removes one or more tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates properties of a destination.
     updateDestination: function(Client, types.UpdateDestinationInput): types.UpdateDestinationOutput, table
+    -- Update the event configuration based on resource types.
     updateEventConfigurationByResourceTypes: function(Client, types.UpdateEventConfigurationByResourceTypesInput): types.UpdateEventConfigurationByResourceTypesOutput, table
+    -- Updates properties of a FUOTA task.
     updateFuotaTask: function(Client, types.UpdateFuotaTaskInput): types.UpdateFuotaTaskOutput, table
+    -- Set default log level, or log levels by resource types. This can be for wireless
+    -- device, wireless gateway, or FUOTA task log options, and is used to control the log
+    -- messages that'll be displayed in CloudWatch.
     updateLogLevelsByResourceTypes: function(Client, types.UpdateLogLevelsByResourceTypesInput): types.UpdateLogLevelsByResourceTypesOutput, table
+    -- Update the summary metric configuration.
     updateMetricConfiguration: function(Client, types.UpdateMetricConfigurationInput): types.UpdateMetricConfigurationOutput, table
+    -- Updates properties of a multicast group session.
     updateMulticastGroup: function(Client, types.UpdateMulticastGroupInput): types.UpdateMulticastGroupOutput, table
+    -- Update network analyzer configuration.
     updateNetworkAnalyzerConfiguration: function(Client, types.UpdateNetworkAnalyzerConfigurationInput): types.UpdateNetworkAnalyzerConfigurationOutput, table
+    -- Updates properties of a partner account.
     updatePartnerAccount: function(Client, types.UpdatePartnerAccountInput): types.UpdatePartnerAccountOutput, table
+    -- Update the position information of a resource.
+    -- This action is no longer supported. Calls to update the position information
+    -- should use the UpdateResourcePosition API operation instead.
     updatePosition: function(Client, types.UpdatePositionInput): types.UpdatePositionOutput, table
+    -- Update the event configuration for a particular resource identifier.
     updateResourceEventConfiguration: function(Client, types.UpdateResourceEventConfigurationInput): types.UpdateResourceEventConfigurationOutput, table
+    -- Update the position information of a given wireless device or a wireless gateway
+    -- resource. The position coordinates are based on the World Geodetic System
+    -- (WGS84).
     updateResourcePosition: function(Client, types.UpdateResourcePositionInput): types.UpdateResourcePositionOutput, table
+    -- Updates properties of a wireless device.
     updateWirelessDevice: function(Client, types.UpdateWirelessDeviceInput): types.UpdateWirelessDeviceOutput, table
+    -- Update an import task to add more devices to the task.
     updateWirelessDeviceImportTask: function(Client, types.UpdateWirelessDeviceImportTaskInput): types.UpdateWirelessDeviceImportTaskOutput, table
+    -- Updates properties of a wireless gateway.
     updateWirelessGateway: function(Client, types.UpdateWirelessGatewayInput): types.UpdateWirelessGatewayOutput, table
 end
 

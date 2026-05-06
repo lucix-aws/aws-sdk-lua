@@ -3,30 +3,73 @@
 local types = require("pcaconnectorad.types")
 
 local record Client
+    -- Creates a connector between Amazon Web Services Private CA and an Active Directory. You must specify the private CA,
+    -- directory ID, and security groups.
     createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    -- Creates a directory registration that authorizes communication between Amazon Web Services Private CA and an
+    -- Active Directory
     createDirectoryRegistration: function(Client, types.CreateDirectoryRegistrationInput): types.CreateDirectoryRegistrationOutput, table
+    -- Creates a service principal name (SPN) for the service account in Active Directory. Kerberos
+    -- authentication uses SPNs to associate a service instance with a service sign-in
+    -- account.
     createServicePrincipalName: function(Client, types.CreateServicePrincipalNameInput): types.CreateServicePrincipalNameOutput, table
+    -- Creates an Active Directory compatible certificate template. The connectors issues certificates
+    -- using these templates based on the requester’s Active Directory group membership.
     createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    -- Create a group access control entry. Allow or deny Active Directory groups from enrolling and/or
+    -- autoenrolling with the template based on the group security identifiers (SIDs).
     createTemplateGroupAccessControlEntry: function(Client, types.CreateTemplateGroupAccessControlEntryInput): types.CreateTemplateGroupAccessControlEntryOutput, table
+    -- Deletes a connector for Active Directory. You must provide the Amazon Resource Name (ARN) of the
+    -- connector that you want to delete. You can find the ARN by calling the https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_ListConnectors
+    -- action. Deleting a connector does not deregister your directory with Amazon Web Services Private CA. You can
+    -- deregister your directory by calling the https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_DeleteDirectoryRegistration
+    -- action.
     deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    -- Deletes a directory registration. Deleting a directory registration deauthorizes
+    -- Amazon Web Services Private CA with the directory.
     deleteDirectoryRegistration: function(Client, types.DeleteDirectoryRegistrationInput): types.DeleteDirectoryRegistrationOutput, table
+    -- Deletes the service principal name (SPN) used by a connector to authenticate with your
+    -- Active Directory.
     deleteServicePrincipalName: function(Client, types.DeleteServicePrincipalNameInput): types.DeleteServicePrincipalNameOutput, table
+    -- Deletes a template. Certificates issued using the template are still valid until they
+    -- are revoked or expired.
     deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    -- Deletes a group access control entry.
     deleteTemplateGroupAccessControlEntry: function(Client, types.DeleteTemplateGroupAccessControlEntryInput): types.DeleteTemplateGroupAccessControlEntryOutput, table
+    -- Lists information about your connector. You specify the connector on input by its ARN
+    -- (Amazon Resource Name).
     getConnector: function(Client, types.GetConnectorInput): types.GetConnectorOutput, table
+    -- A structure that contains information about your directory registration.
     getDirectoryRegistration: function(Client, types.GetDirectoryRegistrationInput): types.GetDirectoryRegistrationOutput, table
+    -- Lists the service principal name that the connector uses to authenticate with
+    -- Active Directory.
     getServicePrincipalName: function(Client, types.GetServicePrincipalNameInput): types.GetServicePrincipalNameOutput, table
+    -- Retrieves a certificate template that the connector uses to issue certificates from a
+    -- private CA.
     getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    -- Retrieves the group access control entries for a template.
     getTemplateGroupAccessControlEntry: function(Client, types.GetTemplateGroupAccessControlEntryInput): types.GetTemplateGroupAccessControlEntryOutput, table
+    -- Lists the connectors that you created by using the https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateConnector action.
     listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    -- Lists the directory registrations that you created by using the https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateDirectoryRegistration
+    -- action.
     listDirectoryRegistrations: function(Client, types.ListDirectoryRegistrationsInput): types.ListDirectoryRegistrationsOutput, table
+    -- Lists the service principal names that the connector uses to authenticate with
+    -- Active Directory.
     listServicePrincipalNames: function(Client, types.ListServicePrincipalNamesInput): types.ListServicePrincipalNamesOutput, table
+    -- Lists the tags, if any, that are associated with your resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists group access control entries you created.
     listTemplateGroupAccessControlEntries: function(Client, types.ListTemplateGroupAccessControlEntriesInput): types.ListTemplateGroupAccessControlEntriesOutput, table
+    -- Lists the templates, if any, that are associated with a connector.
     listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    -- Adds one or more tags to your resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes one or more tags from your resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Update template configuration to define the information included in certificates.
     updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+    -- Update a group access control entry you created using CreateTemplateGroupAccessControlEntry.
     updateTemplateGroupAccessControlEntry: function(Client, types.UpdateTemplateGroupAccessControlEntryInput): types.UpdateTemplateGroupAccessControlEntryOutput, table
 end
 

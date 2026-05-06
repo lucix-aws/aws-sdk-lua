@@ -3,22 +3,39 @@
 local types = require("licensemanagerusersubscriptions.types")
 
 local record Client
+    -- Associates the user to an EC2 instance to utilize user-based subscriptions. Your estimated bill for charges on the number of users and related costs will take 48 hours to appear for billing periods that haven't closed (marked as Pending billing status) in Amazon Web Services Billing. For more information, see Viewing your monthly charges in the Amazon Web Services Billing User Guide.
     associateUser: function(Client, types.AssociateUserInput): types.AssociateUserOutput, table
+    -- Creates a network endpoint for the Remote Desktop Services (RDS) license server.
     createLicenseServerEndpoint: function(Client, types.CreateLicenseServerEndpointInput): types.CreateLicenseServerEndpointOutput, table
+    -- Deletes a LicenseServerEndpoint resource.
     deleteLicenseServerEndpoint: function(Client, types.DeleteLicenseServerEndpointInput): types.DeleteLicenseServerEndpointOutput, table
+    -- Deregisters the Active Directory identity provider from License Manager user-based subscriptions.
     deregisterIdentityProvider: function(Client, types.DeregisterIdentityProviderInput): types.DeregisterIdentityProviderOutput, table
+    -- Disassociates the user from an EC2 instance providing user-based subscriptions.
     disassociateUser: function(Client, types.DisassociateUserInput): types.DisassociateUserOutput, table
+    -- Lists the Active Directory identity providers for user-based subscriptions.
     listIdentityProviders: function(Client, types.ListIdentityProvidersInput): types.ListIdentityProvidersOutput, table
+    -- Lists the EC2 instances providing user-based subscriptions.
     listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    -- List the Remote Desktop Services (RDS) License Server endpoints
     listLicenseServerEndpoints: function(Client, types.ListLicenseServerEndpointsInput): types.ListLicenseServerEndpointsOutput, table
+    -- Lists the user-based subscription products available from an identity provider.
     listProductSubscriptions: function(Client, types.ListProductSubscriptionsInput): types.ListProductSubscriptionsOutput, table
+    -- Returns the list of tags for the specified resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists user associations for an identity provider.
     listUserAssociations: function(Client, types.ListUserAssociationsInput): types.ListUserAssociationsOutput, table
+    -- Registers an identity provider for user-based subscriptions.
     registerIdentityProvider: function(Client, types.RegisterIdentityProviderInput): types.RegisterIdentityProviderOutput, table
+    -- Starts a product subscription for a user with the specified identity provider. Your estimated bill for charges on the number of users and related costs will take 48 hours to appear for billing periods that haven't closed (marked as Pending billing status) in Amazon Web Services Billing. For more information, see Viewing your monthly charges in the Amazon Web Services Billing User Guide.
     startProductSubscription: function(Client, types.StartProductSubscriptionInput): types.StartProductSubscriptionOutput, table
+    -- Stops a product subscription for a user with the specified identity provider.
     stopProductSubscription: function(Client, types.StopProductSubscriptionInput): types.StopProductSubscriptionOutput, table
+    -- Adds tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes tags from a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates additional product configuration settings for the registered identity provider.
     updateIdentityProviderSettings: function(Client, types.UpdateIdentityProviderSettingsInput): types.UpdateIdentityProviderSettingsOutput, table
 end
 

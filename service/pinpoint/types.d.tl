@@ -9,6 +9,7 @@ local record CreateAppOutput
 end
 
 local record CreateCampaignInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     WriteCampaignRequest: WriteCampaignRequest
 end
@@ -19,6 +20,7 @@ end
 
 local record CreateEmailTemplateInput
     EmailTemplateRequest: EmailTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
 end
 
@@ -27,6 +29,7 @@ local record CreateEmailTemplateOutput
 end
 
 local record CreateExportJobInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     ExportJobRequest: ExportJobRequest
 end
@@ -36,6 +39,7 @@ local record CreateExportJobOutput
 end
 
 local record CreateImportJobInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     ImportJobRequest: ImportJobRequest
 end
@@ -46,6 +50,7 @@ end
 
 local record CreateInAppTemplateInput
     InAppTemplateRequest: InAppTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
 end
 
@@ -54,6 +59,7 @@ local record CreateInAppTemplateOutput
 end
 
 local record CreateJourneyInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     WriteJourneyRequest: WriteJourneyRequest
 end
@@ -64,6 +70,7 @@ end
 
 local record CreatePushTemplateInput
     PushNotificationTemplateRequest: PushNotificationTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
 end
 
@@ -80,6 +87,7 @@ local record CreateRecommenderConfigurationOutput
 end
 
 local record CreateSegmentInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     WriteSegmentRequest: WriteSegmentRequest
 end
@@ -90,6 +98,7 @@ end
 
 local record CreateSmsTemplateInput
     SMSTemplateRequest: SMSTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
 end
 
@@ -98,6 +107,7 @@ local record CreateSmsTemplateOutput
 end
 
 local record CreateVoiceTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
     VoiceTemplateRequest: VoiceTemplateRequest
 end
@@ -107,6 +117,7 @@ local record CreateVoiceTemplateOutput
 end
 
 local record DeleteAdmChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -115,6 +126,7 @@ local record DeleteAdmChannelOutput
 end
 
 local record DeleteApnsChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -123,6 +135,7 @@ local record DeleteApnsChannelOutput
 end
 
 local record DeleteApnsSandboxChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -131,6 +144,7 @@ local record DeleteApnsSandboxChannelOutput
 end
 
 local record DeleteApnsVoipChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -139,6 +153,7 @@ local record DeleteApnsVoipChannelOutput
 end
 
 local record DeleteApnsVoipSandboxChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -147,6 +162,7 @@ local record DeleteApnsVoipSandboxChannelOutput
 end
 
 local record DeleteAppInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -155,6 +171,7 @@ local record DeleteAppOutput
 end
 
 local record DeleteBaiduChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -163,7 +180,9 @@ local record DeleteBaiduChannelOutput
 end
 
 local record DeleteCampaignInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
 end
 
@@ -172,6 +191,7 @@ local record DeleteCampaignOutput
 end
 
 local record DeleteEmailChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -180,7 +200,9 @@ local record DeleteEmailChannelOutput
 end
 
 local record DeleteEmailTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -189,7 +211,9 @@ local record DeleteEmailTemplateOutput
 end
 
 local record DeleteEndpointInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }.
     EndpointId: string
 end
 
@@ -198,6 +222,7 @@ local record DeleteEndpointOutput
 end
 
 local record DeleteEventStreamInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -206,6 +231,7 @@ local record DeleteEventStreamOutput
 end
 
 local record DeleteGcmChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -214,7 +240,9 @@ local record DeleteGcmChannelOutput
 end
 
 local record DeleteInAppTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -223,7 +251,9 @@ local record DeleteInAppTemplateOutput
 end
 
 local record DeleteJourneyInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
 end
 
@@ -232,7 +262,9 @@ local record DeleteJourneyOutput
 end
 
 local record DeletePushTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -241,6 +273,7 @@ local record DeletePushTemplateOutput
 end
 
 local record DeleteRecommenderConfigurationInput
+    -- The unique identifier for the recommender model configuration. This identifier is displayed as the Recommender ID on the Amazon Pinpoint console.
     RecommenderId: string
 end
 
@@ -249,7 +282,9 @@ local record DeleteRecommenderConfigurationOutput
 end
 
 local record DeleteSegmentInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the segment.
     SegmentId: string
 end
 
@@ -258,6 +293,7 @@ local record DeleteSegmentOutput
 end
 
 local record DeleteSmsChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -266,7 +302,9 @@ local record DeleteSmsChannelOutput
 end
 
 local record DeleteSmsTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -275,7 +313,9 @@ local record DeleteSmsTemplateOutput
 end
 
 local record DeleteUserEndpointsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the user.
     UserId: string
 end
 
@@ -284,6 +324,7 @@ local record DeleteUserEndpointsOutput
 end
 
 local record DeleteVoiceChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -292,7 +333,9 @@ local record DeleteVoiceChannelOutput
 end
 
 local record DeleteVoiceTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -301,6 +344,7 @@ local record DeleteVoiceTemplateOutput
 end
 
 local record GetAdmChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -309,6 +353,7 @@ local record GetAdmChannelOutput
 end
 
 local record GetApnsChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -317,6 +362,7 @@ local record GetApnsChannelOutput
 end
 
 local record GetApnsSandboxChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -325,6 +371,7 @@ local record GetApnsSandboxChannelOutput
 end
 
 local record GetApnsVoipChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -333,6 +380,7 @@ local record GetApnsVoipChannelOutput
 end
 
 local record GetApnsVoipSandboxChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -341,6 +389,7 @@ local record GetApnsVoipSandboxChannelOutput
 end
 
 local record GetAppInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -349,11 +398,17 @@ local record GetAppOutput
 end
 
 local record GetApplicationDateRangeKpiInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The last date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-26T20:00:00Z for 8:00 PM UTC July 26, 2019.
     EndTime: number
+    -- The name of the metric, also referred to as a key performance indicator (KPI), to retrieve data for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. Examples are email-open-rate and successful-delivery-rate. For a list of valid values, see the Amazon Pinpoint Developer Guide.
     KpiName: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The first date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-19T20:00:00Z for 8:00 PM UTC July 19, 2019. This value should also be fewer than 90 days from the current day.
     StartTime: number
 end
 
@@ -362,6 +417,7 @@ local record GetApplicationDateRangeKpiOutput
 end
 
 local record GetApplicationSettingsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -370,7 +426,9 @@ local record GetApplicationSettingsOutput
 end
 
 local record GetAppsInput
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -379,6 +437,7 @@ local record GetAppsOutput
 end
 
 local record GetBaiduChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -387,7 +446,9 @@ local record GetBaiduChannelOutput
 end
 
 local record GetCampaignInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
 end
 
@@ -396,9 +457,13 @@ local record GetCampaignOutput
 end
 
 local record GetCampaignActivitiesInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -407,12 +472,19 @@ local record GetCampaignActivitiesOutput
 end
 
 local record GetCampaignDateRangeKpiInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
+    -- The last date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-26T20:00:00Z for 8:00 PM UTC July 26, 2019.
     EndTime: number
+    -- The name of the metric, also referred to as a key performance indicator (KPI), to retrieve data for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. Examples are email-open-rate and successful-delivery-rate. For a list of valid values, see the Amazon Pinpoint Developer Guide.
     KpiName: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The first date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-19T20:00:00Z for 8:00 PM UTC July 19, 2019. This value should also be fewer than 90 days from the current day.
     StartTime: number
 end
 
@@ -421,8 +493,11 @@ local record GetCampaignDateRangeKpiOutput
 end
 
 local record GetCampaignsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -431,8 +506,11 @@ local record GetCampaignsOutput
 end
 
 local record GetCampaignVersionInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
+    -- The unique version number (Version property) for the campaign version.
     Version: string
 end
 
@@ -441,9 +519,13 @@ local record GetCampaignVersionOutput
 end
 
 local record GetCampaignVersionsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -452,6 +534,7 @@ local record GetCampaignVersionsOutput
 end
 
 local record GetChannelsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -460,6 +543,7 @@ local record GetChannelsOutput
 end
 
 local record GetEmailChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -468,7 +552,9 @@ local record GetEmailChannelOutput
 end
 
 local record GetEmailTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -477,7 +563,9 @@ local record GetEmailTemplateOutput
 end
 
 local record GetEndpointInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }.
     EndpointId: string
 end
 
@@ -486,6 +574,7 @@ local record GetEndpointOutput
 end
 
 local record GetEventStreamInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -494,7 +583,9 @@ local record GetEventStreamOutput
 end
 
 local record GetExportJobInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the job.
     JobId: string
 end
 
@@ -503,8 +594,11 @@ local record GetExportJobOutput
 end
 
 local record GetExportJobsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -513,6 +607,7 @@ local record GetExportJobsOutput
 end
 
 local record GetGcmChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -521,7 +616,9 @@ local record GetGcmChannelOutput
 end
 
 local record GetImportJobInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the job.
     JobId: string
 end
 
@@ -530,8 +627,11 @@ local record GetImportJobOutput
 end
 
 local record GetImportJobsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -540,7 +640,9 @@ local record GetImportJobsOutput
 end
 
 local record GetInAppMessagesInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the endpoint.
     EndpointId: string
 end
 
@@ -549,7 +651,9 @@ local record GetInAppMessagesOutput
 end
 
 local record GetInAppTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -558,7 +662,9 @@ local record GetInAppTemplateOutput
 end
 
 local record GetJourneyInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
 end
 
@@ -567,12 +673,19 @@ local record GetJourneyOutput
 end
 
 local record GetJourneyDateRangeKpiInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The last date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-26T20:00:00Z for 8:00 PM UTC July 26, 2019.
     EndTime: number
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The name of the metric, also referred to as a key performance indicator (KPI), to retrieve data for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. Examples are email-open-rate and successful-delivery-rate. For a list of valid values, see the Amazon Pinpoint Developer Guide.
     KpiName: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The first date and time to retrieve data for, as part of an inclusive date range that filters the query results. This value should be in extended ISO 8601 format and use Coordinated Universal Time (UTC), for example: 2019-07-19T20:00:00Z for 8:00 PM UTC July 19, 2019. This value should also be fewer than 90 days from the current day.
     StartTime: number
 end
 
@@ -581,10 +694,15 @@ local record GetJourneyDateRangeKpiOutput
 end
 
 local record GetJourneyExecutionActivityMetricsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey activity.
     JourneyActivityId: string
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
 end
 
@@ -593,9 +711,13 @@ local record GetJourneyExecutionActivityMetricsOutput
 end
 
 local record GetJourneyExecutionMetricsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
 end
 
@@ -604,11 +726,17 @@ local record GetJourneyExecutionMetricsOutput
 end
 
 local record GetJourneyRunExecutionActivityMetricsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey activity.
     JourneyActivityId: string
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The unique identifier for the journey run.
     RunId: string
 end
 
@@ -617,10 +745,15 @@ local record GetJourneyRunExecutionActivityMetricsOutput
 end
 
 local record GetJourneyRunExecutionMetricsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The unique identifier for the journey run.
     RunId: string
 end
 
@@ -629,9 +762,13 @@ local record GetJourneyRunExecutionMetricsOutput
 end
 
 local record GetJourneyRunsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -640,7 +777,9 @@ local record GetJourneyRunsOutput
 end
 
 local record GetPushTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -649,6 +788,7 @@ local record GetPushTemplateOutput
 end
 
 local record GetRecommenderConfigurationInput
+    -- The unique identifier for the recommender model configuration. This identifier is displayed as the Recommender ID on the Amazon Pinpoint console.
     RecommenderId: string
 end
 
@@ -657,7 +797,9 @@ local record GetRecommenderConfigurationOutput
 end
 
 local record GetRecommenderConfigurationsInput
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -666,7 +808,9 @@ local record GetRecommenderConfigurationsOutput
 end
 
 local record GetSegmentInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the segment.
     SegmentId: string
 end
 
@@ -675,9 +819,13 @@ local record GetSegmentOutput
 end
 
 local record GetSegmentExportJobsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The unique identifier for the segment.
     SegmentId: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -686,9 +834,13 @@ local record GetSegmentExportJobsOutput
 end
 
 local record GetSegmentImportJobsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The unique identifier for the segment.
     SegmentId: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -697,8 +849,11 @@ local record GetSegmentImportJobsOutput
 end
 
 local record GetSegmentsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -707,8 +862,11 @@ local record GetSegmentsOutput
 end
 
 local record GetSegmentVersionInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the segment.
     SegmentId: string
+    -- The unique version number (Version property) for the campaign version.
     Version: string
 end
 
@@ -717,9 +875,13 @@ local record GetSegmentVersionOutput
 end
 
 local record GetSegmentVersionsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The unique identifier for the segment.
     SegmentId: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -728,6 +890,7 @@ local record GetSegmentVersionsOutput
 end
 
 local record GetSmsChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -736,7 +899,9 @@ local record GetSmsChannelOutput
 end
 
 local record GetSmsTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -745,7 +910,9 @@ local record GetSmsTemplateOutput
 end
 
 local record GetUserEndpointsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the user.
     UserId: string
 end
 
@@ -754,6 +921,7 @@ local record GetUserEndpointsOutput
 end
 
 local record GetVoiceChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -762,7 +930,9 @@ local record GetVoiceChannelOutput
 end
 
 local record GetVoiceTemplateInput
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -771,8 +941,11 @@ local record GetVoiceTemplateOutput
 end
 
 local record ListJourneysInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The NextToken string that specifies which page of results to return in a paginated response.
     Token: string
 end
 
@@ -781,6 +954,7 @@ local record ListJourneysOutput
 end
 
 local record ListTagsForResourceInput
+    -- The Amazon Resource Name (ARN) of the resource.
     ResourceArn: string
 end
 
@@ -789,9 +963,13 @@ local record ListTagsForResourceOutput
 end
 
 local record ListTemplatesInput
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The substring to match in the names of the message templates to include in the results. If you specify this value, Amazon Pinpoint returns only those templates whose names begin with the value that you specify.
     Prefix: string
+    -- The type of message template to include in the results. Valid values are: EMAIL, PUSH, SMS, and VOICE. To include all types of templates in the results, don't include this parameter in your request.
     TemplateType: string
 end
 
@@ -800,9 +978,13 @@ local record ListTemplatesOutput
 end
 
 local record ListTemplateVersionsInput
+    -- The string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     NextToken: string
+    -- The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics.
     PageSize: string
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The type of channel that the message template is designed for. Valid values are: EMAIL, PUSH, SMS, and VOICE.
     TemplateType: string
 end
 
@@ -819,6 +1001,7 @@ local record PhoneNumberValidateOutput
 end
 
 local record PutEventsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     EventsRequest: EventsRequest
 end
@@ -828,6 +1011,7 @@ local record PutEventsOutput
 end
 
 local record PutEventStreamInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     WriteEventStream: WriteEventStream
 end
@@ -837,7 +1021,9 @@ local record PutEventStreamOutput
 end
 
 local record RemoveAttributesInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The type of attribute or attributes to remove. Valid values are: endpoint-custom-attributes - Custom attributes that describe endpoints, such as the date when an associated user opted in or out of receiving communications from you through a specific type of channel. endpoint-metric-attributes - Custom metrics that your app reports to Amazon Pinpoint for endpoints, such as the number of app sessions or the number of items left in a cart. endpoint-user-attributes - Custom attributes that describe users, such as first name, last name, and age.
     AttributeType: string
     UpdateAttributesRequest: UpdateAttributesRequest
 end
@@ -847,6 +1033,7 @@ local record RemoveAttributesOutput
 end
 
 local record SendMessagesInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     MessageRequest: MessageRequest
 end
@@ -856,6 +1043,7 @@ local record SendMessagesOutput
 end
 
 local record SendOTPMessageInput
+    -- The unique ID of your Amazon Pinpoint application.
     ApplicationId: string
     SendOTPMessageRequestParameters: SendOTPMessageRequestParameters
 end
@@ -865,6 +1053,7 @@ local record SendOTPMessageOutput
 end
 
 local record SendUsersMessagesInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     SendUsersMessageRequest: SendUsersMessageRequest
 end
@@ -874,6 +1063,7 @@ local record SendUsersMessagesOutput
 end
 
 local record TagResourceInput
+    -- The Amazon Resource Name (ARN) of the resource.
     ResourceArn: string
     TagsModel: TagsModel
 end
@@ -882,7 +1072,9 @@ local record TagResourceOutput
 end
 
 local record UntagResourceInput
+    -- The Amazon Resource Name (ARN) of the resource.
     ResourceArn: string
+    -- The key of the tag to remove from the resource. To remove multiple tags, append the tagKeys parameter and argument for each additional tag to remove, separated by an ampersand (&).
     TagKeys: {string}
 end
 
@@ -891,6 +1083,7 @@ end
 
 local record UpdateAdmChannelInput
     ADMChannelRequest: ADMChannelRequest
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -900,6 +1093,7 @@ end
 
 local record UpdateApnsChannelInput
     APNSChannelRequest: APNSChannelRequest
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -909,6 +1103,7 @@ end
 
 local record UpdateApnsSandboxChannelInput
     APNSSandboxChannelRequest: APNSSandboxChannelRequest
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -918,6 +1113,7 @@ end
 
 local record UpdateApnsVoipChannelInput
     APNSVoipChannelRequest: APNSVoipChannelRequest
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -927,6 +1123,7 @@ end
 
 local record UpdateApnsVoipSandboxChannelInput
     APNSVoipSandboxChannelRequest: APNSVoipSandboxChannelRequest
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
 end
 
@@ -935,6 +1132,7 @@ local record UpdateApnsVoipSandboxChannelOutput
 end
 
 local record UpdateApplicationSettingsInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     WriteApplicationSettingsRequest: WriteApplicationSettingsRequest
 end
@@ -944,6 +1142,7 @@ local record UpdateApplicationSettingsOutput
 end
 
 local record UpdateBaiduChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     BaiduChannelRequest: BaiduChannelRequest
 end
@@ -953,7 +1152,9 @@ local record UpdateBaiduChannelOutput
 end
 
 local record UpdateCampaignInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the campaign.
     CampaignId: string
     WriteCampaignRequest: WriteCampaignRequest
 end
@@ -963,6 +1164,7 @@ local record UpdateCampaignOutput
 end
 
 local record UpdateEmailChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     EmailChannelRequest: EmailChannelRequest
 end
@@ -972,9 +1174,12 @@ local record UpdateEmailChannelOutput
 end
 
 local record UpdateEmailTemplateInput
+    -- Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur.
     CreateNewVersion: boolean
     EmailTemplateRequest: EmailTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -983,7 +1188,9 @@ local record UpdateEmailTemplateOutput
 end
 
 local record UpdateEndpointInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }.
     EndpointId: string
     EndpointRequest: EndpointRequest
 end
@@ -993,6 +1200,7 @@ local record UpdateEndpointOutput
 end
 
 local record UpdateEndpointsBatchInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     EndpointBatchRequest: EndpointBatchRequest
 end
@@ -1002,6 +1210,7 @@ local record UpdateEndpointsBatchOutput
 end
 
 local record UpdateGcmChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     GCMChannelRequest: GCMChannelRequest
 end
@@ -1011,9 +1220,12 @@ local record UpdateGcmChannelOutput
 end
 
 local record UpdateInAppTemplateInput
+    -- Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur.
     CreateNewVersion: boolean
     InAppTemplateRequest: InAppTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -1022,7 +1234,9 @@ local record UpdateInAppTemplateOutput
 end
 
 local record UpdateJourneyInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
     WriteJourneyRequest: WriteJourneyRequest
 end
@@ -1032,7 +1246,9 @@ local record UpdateJourneyOutput
 end
 
 local record UpdateJourneyStateInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the journey.
     JourneyId: string
     JourneyStateRequest: JourneyStateRequest
 end
@@ -1042,9 +1258,12 @@ local record UpdateJourneyStateOutput
 end
 
 local record UpdatePushTemplateInput
+    -- Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur.
     CreateNewVersion: boolean
     PushNotificationTemplateRequest: PushNotificationTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -1053,6 +1272,7 @@ local record UpdatePushTemplateOutput
 end
 
 local record UpdateRecommenderConfigurationInput
+    -- The unique identifier for the recommender model configuration. This identifier is displayed as the Recommender ID on the Amazon Pinpoint console.
     RecommenderId: string
     UpdateRecommenderConfiguration: UpdateRecommenderConfigurationShape
 end
@@ -1062,7 +1282,9 @@ local record UpdateRecommenderConfigurationOutput
 end
 
 local record UpdateSegmentInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
+    -- The unique identifier for the segment.
     SegmentId: string
     WriteSegmentRequest: WriteSegmentRequest
 end
@@ -1072,6 +1294,7 @@ local record UpdateSegmentOutput
 end
 
 local record UpdateSmsChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     SMSChannelRequest: SMSChannelRequest
 end
@@ -1081,9 +1304,12 @@ local record UpdateSmsChannelOutput
 end
 
 local record UpdateSmsTemplateInput
+    -- Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur.
     CreateNewVersion: boolean
     SMSTemplateRequest: SMSTemplateRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
 end
 
@@ -1093,7 +1319,9 @@ end
 
 local record UpdateTemplateActiveVersionInput
     TemplateActiveVersionRequest: TemplateActiveVersionRequest
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The type of channel that the message template is designed for. Valid values are: EMAIL, PUSH, SMS, and VOICE.
     TemplateType: string
 end
 
@@ -1102,6 +1330,7 @@ local record UpdateTemplateActiveVersionOutput
 end
 
 local record UpdateVoiceChannelInput
+    -- The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console.
     ApplicationId: string
     VoiceChannelRequest: VoiceChannelRequest
 end
@@ -1111,8 +1340,11 @@ local record UpdateVoiceChannelOutput
 end
 
 local record UpdateVoiceTemplateInput
+    -- Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur.
     CreateNewVersion: boolean
+    -- The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive.
     TemplateName: string
+    -- The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template.
     Version: string
     VoiceTemplateRequest: VoiceTemplateRequest
 end
@@ -1122,6 +1354,7 @@ local record UpdateVoiceTemplateOutput
 end
 
 local record VerifyOTPMessageInput
+    -- The unique ID of your Amazon Pinpoint application.
     ApplicationId: string
     VerifyOTPMessageRequestParameters: VerifyOTPMessageRequestParameters
 end
@@ -1130,4113 +1363,6579 @@ local record VerifyOTPMessageOutput
     VerificationResponse: VerificationResponse
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ConflictException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record BadRequestException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record ForbiddenException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record InternalServerErrorException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record MethodNotAllowedException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record NotFoundException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record PayloadTooLargeException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 
+-- Provides information about an API request or response.
 local record TooManyRequestsException
+    -- The message that's returned from the API.
     Message: string
+    -- The unique identifier for the request or response.
     RequestID: string
 end
 

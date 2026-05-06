@@ -3,26 +3,47 @@
 local types = require("evs.types")
 
 local record Client
+    -- Associates an Elastic IP address with a public HCX VLAN. This operation is only allowed for public HCX VLANs at this time.
     associateEipToVlan: function(Client, types.AssociateEipToVlanInput): types.AssociateEipToVlanOutput, table
+    -- Creates a Windows Server License entitlement for virtual machines in an Amazon EVS environment using the provided vCenter Server connector. This is an asynchronous operation. Amazon EVS validates the specified virtual machines before starting usage tracking.
     createEntitlement: function(Client, types.CreateEntitlementInput): types.CreateEntitlementOutput, table
+    -- Creates an Amazon EVS environment that runs VCF software, such as SDDC Manager, NSX Manager, and vCenter Server. During environment creation, Amazon EVS performs validations on DNS settings, provisions VLAN subnets and hosts, and deploys the supplied version of VCF. It can take several hours to create an environment. After the deployment completes, you can configure VCF in the vSphere user interface according to your needs. When creating a new environment, the default ESX version for the selected VCF version will be used, you cannot choose a specific ESX version in CreateEnvironment action. When a host has been added with a specific ESX version, it can only be upgraded using vCenter Lifecycle Manager. You cannot use the dedicatedHostId and placementGroupId parameters together in the same CreateEnvironment action. This results in a ValidationException response.
     createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    -- Creates a connector for an Amazon EVS environment. A connector establishes a connection to a VCF appliance, such as vCenter, using a fully qualified domain name and an Amazon Web Services Secrets Manager secret that stores the appliance credentials.
     createEnvironmentConnector: function(Client, types.CreateEnvironmentConnectorInput): types.CreateEnvironmentConnectorOutput, table
+    -- Creates an ESX host and adds it to an Amazon EVS environment. Amazon EVS supports 4-16 hosts per environment. This action can only be used after the Amazon EVS environment is deployed. You can use the dedicatedHostId parameter to specify an Amazon EC2 Dedicated Host for ESX host creation. You can use the placementGroupId parameter to specify a cluster or partition placement group to launch EC2 instances into. If you don't specify an ESX version when adding hosts using CreateEnvironmentHost action, Amazon EVS automatically uses the default ESX version associated with your environment's VCF version. To find the default ESX version for a particular VCF version, use the GetVersions action. You cannot use the dedicatedHostId and placementGroupId parameters together in the same CreateEnvironmentHost action. This results in a ValidationException response.
     createEnvironmentHost: function(Client, types.CreateEnvironmentHostInput): types.CreateEnvironmentHostOutput, table
+    -- Deletes a Windows Server License entitlement for virtual machines in an Amazon EVS environment. Deleting an entitlement stops usage tracking for the specified virtual machines.
     deleteEntitlement: function(Client, types.DeleteEntitlementInput): types.DeleteEntitlementOutput, table
+    -- Deletes an Amazon EVS environment. Amazon EVS environments will only be enabled for deletion once the hosts are deleted. You can delete hosts using the DeleteEnvironmentHost action. Environment deletion also deletes the associated Amazon EVS VLAN subnets and Amazon Web Services Secrets Manager secrets that Amazon EVS created. Amazon Web Services resources that you create are not deleted. These resources may continue to incur costs.
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    -- Deletes a connector from an Amazon EVS environment. Before deleting a connector, you must remove all entitlements that are associated with the same vCenter.
     deleteEnvironmentConnector: function(Client, types.DeleteEnvironmentConnectorInput): types.DeleteEnvironmentConnectorOutput, table
+    -- Deletes a host from an Amazon EVS environment. Before deleting a host, you must unassign and decommission the host from within the SDDC Manager user interface. Not doing so could impact the availability of your virtual machines or result in data loss.
     deleteEnvironmentHost: function(Client, types.DeleteEnvironmentHostInput): types.DeleteEnvironmentHostOutput, table
+    -- Disassociates an Elastic IP address from a public HCX VLAN. This operation is only allowed for public HCX VLANs at this time.
     disassociateEipFromVlan: function(Client, types.DisassociateEipFromVlanInput): types.DisassociateEipFromVlanOutput, table
+    -- Returns a description of the specified environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    -- Returns information about VCF versions, ESX versions and EC2 instance types provided by Amazon EVS. For each VCF version, the response also includes the default ESX version and provided EC2 instance types.
     getVersions: function(Client, types.GetVersionsInput): types.GetVersionsOutput, table
+    -- Lists the connectors within an environment. Returns the status of each connector and its applicable checks, among other connector details.
     listEnvironmentConnectors: function(Client, types.ListEnvironmentConnectorsInput): types.ListEnvironmentConnectorsOutput, table
+    -- List the hosts within an environment.
     listEnvironmentHosts: function(Client, types.ListEnvironmentHostsInput): types.ListEnvironmentHostsOutput, table
+    -- Lists the Amazon EVS environments in your Amazon Web Services account in the specified Amazon Web Services Region.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    -- Lists environment VLANs that are associated with the specified environment.
     listEnvironmentVlans: function(Client, types.ListEnvironmentVlansInput): types.ListEnvironmentVlansOutput, table
+    -- Lists the tags for an Amazon EVS resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists the Windows Server License entitlements for virtual machines in an Amazon EVS environment. Returns existing entitlements for virtual machines associated with the specified environment and connector.
     listVmEntitlements: function(Client, types.ListVmEntitlementsInput): types.ListVmEntitlementsOutput, table
+    -- Associates the specified tags to an Amazon EVS resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they aren't changed. When a resource is deleted, the tags associated with that resource are also deleted. Tags that you create for Amazon EVS resources don't propagate to any other resources associated with the environment. For example, if you tag an environment with this operation, that tag doesn't automatically propagate to the VLAN subnets and hosts associated with the environment.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Deletes specified tags from an Amazon EVS resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates a connector for an Amazon EVS environment. You can update the Amazon Web Services Secrets Manager secret ARN or the appliance FQDN to reconfigure the connector metadata. You cannot update both the secret and the FQDN in the same request.
     updateEnvironmentConnector: function(Client, types.UpdateEnvironmentConnectorInput): types.UpdateEnvironmentConnectorOutput, table
 end
 

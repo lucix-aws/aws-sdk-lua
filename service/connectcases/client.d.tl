@@ -3,48 +3,91 @@
 local types = require("connectcases.types")
 
 local record Client
+    -- Gets a batch of case rules. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     batchGetCaseRule: function(Client, types.BatchGetCaseRuleInput): types.BatchGetCaseRuleOutput, table
+    -- Returns the description for the list of fields in the request parameters.
     batchGetField: function(Client, types.BatchGetFieldInput): types.BatchGetFieldOutput, table
+    -- Creates and updates a set of field options for a single select field in a Cases domain.
     batchPutFieldOptions: function(Client, types.BatchPutFieldOptionsInput): types.BatchPutFieldOptionsOutput, table
+    -- If you provide a value for PerformedBy.UserArn you must also have connect:DescribeUser permission on the User ARN resource that you provide Creates a case in the specified Cases domain. Case system and custom fields are taken as an array id/value pairs with a declared data types. When creating a case from a template that has tag propagation configurations, the specified tags are automatically applied to the case. The following fields are required when creating a case: customer_id - You must provide the full customer profile ARN in this format: arn:aws:profile:your_AWS_Region:your_AWS_account ID:domains/your_profiles_domain_name/profiles/profile_ID title
     createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    -- Creates a new case rule. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     createCaseRule: function(Client, types.CreateCaseRuleInput): types.CreateCaseRuleOutput, table
+    -- Creates a domain, which is a container for all case data, such as cases, fields, templates and layouts. Each Amazon Connect instance can be associated with only one Cases domain. This will not associate your connect instance to Cases domain. Instead, use the Amazon Connect CreateIntegrationAssociation API. You need specific IAM permissions to successfully associate the Cases domain. For more information, see Onboard to Cases.
     createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    -- Creates a field in the Cases domain. This field is used to define the case object model (that is, defines what data can be captured on cases) in a Cases domain.
     createField: function(Client, types.CreateFieldInput): types.CreateFieldOutput, table
+    -- Creates a layout in the Cases domain. Layouts define the following configuration in the top section and More Info tab of the Cases user interface: Fields to display to the users Field ordering Title and Status fields cannot be part of layouts since they are not configurable.
     createLayout: function(Client, types.CreateLayoutInput): types.CreateLayoutOutput, table
+    -- Creates a related item (comments, tasks, and contacts) and associates it with a case. There's a quota for the number of fields allowed in a Custom type related item. See Amazon Connect Cases quotas. Use cases Following are examples of related items that you may want to associate with a case: Related contacts, such as calls, chats, emails tasks Comments, for agent notes SLAs, to capture target resolution goals Cases, to capture related Amazon Connect Cases Files, such as policy documentation or customer-provided attachments Custom related items, which provide flexibility for you to define related items that such as bookings, orders, products, notices, and more Important things to know If you are associating a contact to a case by passing in Contact for a type, you must have DescribeContact permission on the ARN of the contact that you provide in content.contact.contactArn. A Related Item is a resource that is associated with a case. It may or may not have an external identifier linking it to an external resource (for example, a contactArn). All Related Items have their own internal identifier, the relatedItemArn. Examples of related items include comments and contacts. If you provide a value for performedBy.userArn you must also have DescribeUser permission on the ARN of the user that you provide. The type field is reserved for internal use only. Endpoints: See Amazon Connect endpoints and quotas.
     createRelatedItem: function(Client, types.CreateRelatedItemInput): types.CreateRelatedItemOutput, table
+    -- Creates a template in the Cases domain. This template is used to define the case object model (that is, to define what data can be captured on cases) in a Cases domain. A template must have a unique name within a domain, and it must reference existing field IDs and layout IDs. Additionally, multiple fields with same IDs are not allowed within the same Template. A template can be either Active or Inactive, as indicated by its status. Inactive templates cannot be used to create cases. Other template APIs are: DeleteTemplate GetTemplate ListTemplates UpdateTemplate
     createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    -- The DeleteCase API permanently deletes a case and all its associated resources from the cases data store. After a successful deletion, you cannot: Retrieve related items Access audit history Perform any operations that require the CaseID This action is irreversible. After you delete a case, you cannot recover its data.
     deleteCase: function(Client, types.DeleteCaseInput): types.DeleteCaseOutput, table
+    -- Deletes a case rule. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     deleteCaseRule: function(Client, types.DeleteCaseRuleInput): types.DeleteCaseRuleOutput, table
+    -- Deletes a Cases domain. After deleting your domain you must disassociate the deleted domain from your Amazon Connect instance with another API call before being able to use Cases again with this Amazon Connect instance. See DeleteIntegrationAssociation.
     deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    -- Deletes a field from a cases template. After a field is deleted: You can still retrieve the field by calling BatchGetField. You cannot update a deleted field by calling UpdateField; it throws a ValidationException. Deleted fields are not included in the ListFields response. Calling CreateCase with a deleted field throws a ValidationException denoting which field identifiers in the request have been deleted. Calling GetCase with a deleted field identifier returns the deleted field's value if one exists. Calling UpdateCase with a deleted field ID throws a ValidationException if the case does not already contain a value for the deleted field. Otherwise it succeeds, allowing you to update or remove (using emptyValue: {}) the field's value from the case. GetTemplate does not return field IDs for deleted fields. GetLayout does not return field IDs for deleted fields. Calling SearchCases with the deleted field ID as a filter returns any cases that have a value for the deleted field that matches the filter criteria. Calling SearchCases with a searchTerm value that matches a deleted field's value on a case returns the case in the response. Calling BatchPutFieldOptions with a deleted field ID throw a ValidationException. Calling GetCaseEventConfiguration does not return field IDs for deleted fields.
     deleteField: function(Client, types.DeleteFieldInput): types.DeleteFieldOutput, table
+    -- Deletes a layout from a cases template. You can delete up to 100 layouts per domain. After a layout is deleted: You can still retrieve the layout by calling GetLayout. You cannot update a deleted layout by calling UpdateLayout; it throws a ValidationException. Deleted layouts are not included in the ListLayouts response.
     deleteLayout: function(Client, types.DeleteLayoutInput): types.DeleteLayoutOutput, table
+    -- Deletes the related item resource under a case. This API cannot be used on a FILE type related attachment. To delete this type of file, use the DeleteAttachedFile API
     deleteRelatedItem: function(Client, types.DeleteRelatedItemInput): types.DeleteRelatedItemOutput, table
+    -- Deletes a cases template. You can delete up to 100 templates per domain. After a cases template is deleted: You can still retrieve the template by calling GetTemplate. You cannot update the template. You cannot create a case by using the deleted template. Deleted templates are not included in the ListTemplates response.
     deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    -- Returns information about a specific case if it exists.
     getCase: function(Client, types.GetCaseInput): types.GetCaseOutput, table
+    -- Returns the audit history about a specific case if it exists.
     getCaseAuditEvents: function(Client, types.GetCaseAuditEventsInput): types.GetCaseAuditEventsOutput, table
+    -- Returns the case event publishing configuration.
     getCaseEventConfiguration: function(Client, types.GetCaseEventConfigurationInput): types.GetCaseEventConfigurationOutput, table
+    -- Returns information about a specific domain if it exists.
     getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    -- Returns the details for the requested layout.
     getLayout: function(Client, types.GetLayoutInput): types.GetLayoutOutput, table
+    -- Returns the details for the requested template. Other template APIs are: CreateTemplate DeleteTemplate ListTemplates UpdateTemplate
     getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    -- Lists all case rules in a Cases domain. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     listCaseRules: function(Client, types.ListCaseRulesInput): types.ListCaseRulesOutput, table
+    -- Lists cases for a given contact.
     listCasesForContact: function(Client, types.ListCasesForContactInput): types.ListCasesForContactOutput, table
+    -- Lists all cases domains in the Amazon Web Services account. Each list item is a condensed summary object of the domain.
     listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    -- Lists all of the field options for a field identifier in the domain.
     listFieldOptions: function(Client, types.ListFieldOptionsInput): types.ListFieldOptionsOutput, table
+    -- Lists all fields in a Cases domain.
     listFields: function(Client, types.ListFieldsInput): types.ListFieldsOutput, table
+    -- Lists all layouts in the given cases domain. Each list item is a condensed summary object of the layout.
     listLayouts: function(Client, types.ListLayoutsInput): types.ListLayoutsOutput, table
+    -- Lists tags for a resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Lists all of the templates in a Cases domain. Each list item is a condensed summary object of the template. Other template APIs are: CreateTemplate DeleteTemplate GetTemplate UpdateTemplate
     listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    -- Adds case event publishing configuration. For a complete list of fields you can add to the event message, see Create case fields in the Amazon Connect Administrator Guide
     putCaseEventConfiguration: function(Client, types.PutCaseEventConfigurationInput): types.PutCaseEventConfigurationOutput, table
+    -- Searches for related items across all cases within a domain. This is a global search operation that returns related items from multiple cases, unlike the case-specific SearchRelatedItems API. Use cases Following are common uses cases for this API: Find cases with similar issues across the domain. For example, search for all cases containing comments about "product defect" to identify patterns and existing solutions. Locate all cases associated with specific contacts or orders. For example, find all cases linked to a contactArn to understand the complete customer journey. Monitor SLA compliance across cases. For example, search for all cases with "Active" SLA status to prioritize remediation efforts. Important things to know This API returns case identifiers, not complete case objects. To retrieve full case details, you must make additional calls to the GetCase API for each returned case ID. This API searches across related items content, not case fields. Use the SearchCases API to search within case field values. Endpoints: See Amazon Connect endpoints and quotas.
     searchAllRelatedItems: function(Client, types.SearchAllRelatedItemsInput): types.SearchAllRelatedItemsOutput, table
+    -- Searches for cases within their associated Cases domain. Search results are returned as a paginated list of abridged case documents. For customer_id you must provide the full customer profile ARN in this format: arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile ID.
     searchCases: function(Client, types.SearchCasesInput): types.SearchCasesOutput, table
+    -- Searches for related items that are associated with a case. If no filters are provided, this returns all related items associated with a case.
     searchRelatedItems: function(Client, types.SearchRelatedItemsInput): types.SearchRelatedItemsOutput, table
+    -- Adds tags to a resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Untags a resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- If you provide a value for PerformedBy.UserArn you must also have connect:DescribeUser permission on the User ARN resource that you provide Updates the values of fields on a case. Fields to be updated are received as an array of id/value pairs identical to the CreateCase input . If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.
     updateCase: function(Client, types.UpdateCaseInput): types.UpdateCaseOutput, table
+    -- Updates a case rule. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     updateCaseRule: function(Client, types.UpdateCaseRuleInput): types.UpdateCaseRuleOutput, table
+    -- Updates the properties of an existing field.
     updateField: function(Client, types.UpdateFieldInput): types.UpdateFieldOutput, table
+    -- Updates the attributes of an existing layout. If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body. A ValidationException is returned when you add non-existent fieldIds to a layout. Title and Status fields cannot be part of layouts because they are not configurable.
     updateLayout: function(Client, types.UpdateLayoutInput): types.UpdateLayoutOutput, table
+    -- Updates the content of a related item associated with a case. The following related item types are supported: Comment - Update the text content of an existing comment Custom - Update the fields of a custom related item. You can add, modify, and remove fields from a custom related item. There's a quota for the number of fields allowed in a Custom type related item. See Amazon Connect Cases quotas. Important things to know When updating a Custom related item, all existing and new fields, and their associated values should be included in the request. Fields not included as part of this request will be removed. If you provide a value for performedBy.userArn you must also have DescribeUser permission on the ARN of the user that you provide. System case fields cannot be used in a custom related item. Endpoints: See Amazon Connect endpoints and quotas.
     updateRelatedItem: function(Client, types.UpdateRelatedItemInput): types.UpdateRelatedItemOutput, table
+    -- Updates the attributes of an existing template. The template attributes that can be modified include name, description, layoutConfiguration, requiredFields, and status. At least one of these attributes must not be null. If a null value is provided for a given attribute, that attribute is ignored and its current value is preserved. Other template APIs are: CreateTemplate DeleteTemplate GetTemplate ListTemplates
     updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
 end
 

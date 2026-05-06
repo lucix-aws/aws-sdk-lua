@@ -3,59 +3,113 @@
 local types = require("bedrockagentcore.types")
 
 local record Client
+    -- Creates multiple memory records in a single batch operation for the specified memory with custom content.
     batchCreateMemoryRecords: function(Client, types.BatchCreateMemoryRecordsInput): types.BatchCreateMemoryRecordsOutput, table
+    -- Deletes multiple memory records in a single batch operation from the specified memory.
     batchDeleteMemoryRecords: function(Client, types.BatchDeleteMemoryRecordsInput): types.BatchDeleteMemoryRecordsOutput, table
+    -- Updates multiple memory records with custom content in a single batch operation within the specified memory.
     batchUpdateMemoryRecords: function(Client, types.BatchUpdateMemoryRecordsInput): types.BatchUpdateMemoryRecordsOutput, table
+    -- Confirms the user authentication session for obtaining OAuth2.0 tokens for a resource.
     completeResourceTokenAuth: function(Client, types.CompleteResourceTokenAuthInput): types.CompleteResourceTokenAuthOutput, table
+    -- Creates an A/B test for comparing agent configurations. A/B tests split traffic between a control variant and a treatment variant through a gateway, then evaluate performance using online evaluation configurations to determine which variant performs better.
     createABTest: function(Client, types.CreateABTestInput): types.CreateABTestOutput, table
+    -- Creates an event in an AgentCore Memory resource. Events represent interactions or activities that occur within a session and are associated with specific actors. To use this operation, you must have the bedrock-agentcore:CreateEvent permission. This operation is subject to request rate limiting.
     createEvent: function(Client, types.CreateEventInput): types.CreateEventOutput, table
+    -- Deletes an A/B test and its associated gateway rules.
     deleteABTest: function(Client, types.DeleteABTestInput): types.DeleteABTestOutput, table
+    -- Deletes a batch evaluation and its associated results.
     deleteBatchEvaluation: function(Client, types.DeleteBatchEvaluationInput): types.DeleteBatchEvaluationOutput, table
+    -- Deletes an event from an AgentCore Memory resource. When you delete an event, it is permanently removed. To use this operation, you must have the bedrock-agentcore:DeleteEvent permission.
     deleteEvent: function(Client, types.DeleteEventInput): types.DeleteEventOutput, table
+    -- Deletes a memory record from an AgentCore Memory resource. When you delete a memory record, it is permanently removed. To use this operation, you must have the bedrock-agentcore:DeleteMemoryRecord permission.
     deleteMemoryRecord: function(Client, types.DeleteMemoryRecordInput): types.DeleteMemoryRecordOutput, table
+    -- Deletes a recommendation and its associated results.
     deleteRecommendation: function(Client, types.DeleteRecommendationInput): types.DeleteRecommendationOutput, table
+    -- Performs on-demand evaluation of agent traces using a specified evaluator. This synchronous API accepts traces in OpenTelemetry format and returns immediate scoring results with detailed explanations.
     evaluate: function(Client, types.EvaluateInput): types.EvaluateOutput, table
+    -- Retrieves detailed information about an A/B test, including its configuration, status, and statistical results.
     getABTest: function(Client, types.GetABTestInput): types.GetABTestOutput, table
+    -- Retrieves the A2A agent card associated with an AgentCore Runtime agent.
     getAgentCard: function(Client, types.GetAgentCardInput): types.GetAgentCardOutput, table
+    -- Retrieves detailed information about a batch evaluation, including its status, configuration, results, and any error details.
     getBatchEvaluation: function(Client, types.GetBatchEvaluationInput): types.GetBatchEvaluationOutput, table
+    -- Retrieves detailed information about a specific browser session in Amazon Bedrock AgentCore. This operation returns the session's configuration, current status, associated streams, and metadata. To get a browser session, you must specify both the browser identifier and the session ID. The response includes information about the session's viewport configuration, timeout settings, and stream endpoints. The following operations are related to GetBrowserSession: StartBrowserSession ListBrowserSessions StopBrowserSession
     getBrowserSession: function(Client, types.GetBrowserSessionInput): types.GetBrowserSessionOutput, table
+    -- Retrieves detailed information about a specific code interpreter session in Amazon Bedrock AgentCore. This operation returns the session's configuration, current status, and metadata. To get a code interpreter session, you must specify both the code interpreter identifier and the session ID. The response includes information about the session's timeout settings and current status. The following operations are related to GetCodeInterpreterSession: StartCodeInterpreterSession ListCodeInterpreterSessions StopCodeInterpreterSession
     getCodeInterpreterSession: function(Client, types.GetCodeInterpreterSessionInput): types.GetCodeInterpreterSessionOutput, table
+    -- Retrieves information about a specific event in an AgentCore Memory resource. To use this operation, you must have the bedrock-agentcore:GetEvent permission.
     getEvent: function(Client, types.GetEventInput): types.GetEventOutput, table
+    -- Retrieves a specific memory record from an AgentCore Memory resource. To use this operation, you must have the bedrock-agentcore:GetMemoryRecord permission.
     getMemoryRecord: function(Client, types.GetMemoryRecordInput): types.GetMemoryRecordOutput, table
+    -- Retrieves detailed information about a recommendation, including its configuration, status, and results.
     getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    -- Retrieves the API key associated with an API key credential provider.
     getResourceApiKey: function(Client, types.GetResourceApiKeyInput): types.GetResourceApiKeyOutput, table
+    -- Returns the OAuth 2.0 token of the provided resource.
     getResourceOauth2Token: function(Client, types.GetResourceOauth2TokenInput): types.GetResourceOauth2TokenOutput, table
+    -- Obtains a workload access token for agentic workloads not acting on behalf of a user.
     getWorkloadAccessToken: function(Client, types.GetWorkloadAccessTokenInput): types.GetWorkloadAccessTokenOutput, table
+    -- Obtains a workload access token for agentic workloads acting on behalf of a user, using a JWT token.
     getWorkloadAccessTokenForJWT: function(Client, types.GetWorkloadAccessTokenForJWTInput): types.GetWorkloadAccessTokenForJWTOutput, table
+    -- Obtains a workload access token for agentic workloads acting on behalf of a user, using the user's ID.
     getWorkloadAccessTokenForUserId: function(Client, types.GetWorkloadAccessTokenForUserIdInput): types.GetWorkloadAccessTokenForUserIdOutput, table
+    -- Sends a request to an agent or tool hosted in an Amazon Bedrock AgentCore Runtime and receives responses in real-time. To invoke an agent, you can specify either the AgentCore Runtime ARN or the agent ID with an account ID, and provide a payload containing your request. When you use the agent ID instead of the full ARN, you don't need to URL-encode the identifier. You can optionally specify a qualifier to target a specific endpoint of the agent. This operation supports streaming responses, allowing you to receive partial responses as they become available. We recommend using pagination to ensure that the operation returns quickly and successfully when processing large responses. For example code, see Invoke an AgentCore Runtime agent. If you're integrating your agent with OAuth, you can't use the Amazon Web Services SDK to call InvokeAgentRuntime. Instead, make a HTTPS request to InvokeAgentRuntime. For an example, see Authenticate and authorize with Inbound Auth and Outbound Auth. To use this operation, you must have the bedrock-agentcore:InvokeAgentRuntime permission. If you are making a call to InvokeAgentRuntime on behalf of a user ID with the X-Amzn-Bedrock-AgentCore-Runtime-User-Id header, You require permissions to both actions (bedrock-agentcore:InvokeAgentRuntime and bedrock-agentcore:InvokeAgentRuntimeForUser).
     invokeAgentRuntime: function(Client, types.InvokeAgentRuntimeInput): types.InvokeAgentRuntimeOutput, table
+    -- Executes a command in a runtime session container and streams the output back to the caller. This operation allows you to run shell commands within the agent runtime environment and receive real-time streaming responses including standard output and standard error. To invoke a command, you must specify the agent runtime ARN and a runtime session ID. The command execution supports streaming responses, allowing you to receive output as it becomes available through contentStart, contentDelta, and contentStop events. To use this operation, you must have the bedrock-agentcore:InvokeAgentRuntimeCommand permission.
     invokeAgentRuntimeCommand: function(Client, types.InvokeAgentRuntimeCommandInput): types.InvokeAgentRuntimeCommandOutput, table
+    -- Invokes an operating system-level action on a browser session in Amazon Bedrock AgentCore. This operation provides direct OS-level control over browser sessions, enabling mouse actions, keyboard input, and screenshots that the WebSocket-based Chrome DevTools Protocol (CDP) cannot handle — such as interacting with print dialogs, context menus, and JavaScript alerts. You send a request with exactly one action in the BrowserAction union, and receive a corresponding result in the BrowserActionResult union. The following operations are related to InvokeBrowser: StartBrowserSession GetBrowserSession StopBrowserSession
     invokeBrowser: function(Client, types.InvokeBrowserInput): types.InvokeBrowserOutput, table
+    -- Executes code within an active code interpreter session in Amazon Bedrock AgentCore. This operation processes the provided code, runs it in a secure environment, and returns the execution results including output, errors, and generated visualizations. To execute code, you must specify the code interpreter identifier, session ID, and the code to run in the arguments parameter. The operation returns a stream containing the execution results, which can include text output, error messages, and data visualizations. This operation is subject to request rate limiting based on your account's service quotas. The following operations are related to InvokeCodeInterpreter: StartCodeInterpreterSession GetCodeInterpreterSession
     invokeCodeInterpreter: function(Client, types.InvokeCodeInterpreterInput): types.InvokeCodeInterpreterOutput, table
+    -- Operation to invoke a Harness.
     invokeHarness: function(Client, types.InvokeHarnessInput): types.InvokeHarnessOutput, table
+    -- Lists all A/B tests in the account.
     listABTests: function(Client, types.ListABTestsInput): types.ListABTestsOutput, table
+    -- Lists all actors in an AgentCore Memory resource. We recommend using pagination to ensure that the operation returns quickly and successfully. To use this operation, you must have the bedrock-agentcore:ListActors permission.
     listActors: function(Client, types.ListActorsInput): types.ListActorsOutput, table
+    -- Lists all batch evaluations in the account, providing summary information about each evaluation's status and configuration.
     listBatchEvaluations: function(Client, types.ListBatchEvaluationsInput): types.ListBatchEvaluationsOutput, table
+    -- Retrieves a list of browser sessions in Amazon Bedrock AgentCore that match the specified criteria. This operation returns summary information about each session, including identifiers, status, and timestamps. You can filter the results by browser identifier and session status. The operation supports pagination to handle large result sets efficiently. We recommend using pagination to ensure that the operation returns quickly and successfully when retrieving large numbers of sessions. The following operations are related to ListBrowserSessions: StartBrowserSession GetBrowserSession
     listBrowserSessions: function(Client, types.ListBrowserSessionsInput): types.ListBrowserSessionsOutput, table
+    -- Retrieves a list of code interpreter sessions in Amazon Bedrock AgentCore that match the specified criteria. This operation returns summary information about each session, including identifiers, status, and timestamps. You can filter the results by code interpreter identifier and session status. The operation supports pagination to handle large result sets efficiently. We recommend using pagination to ensure that the operation returns quickly and successfully when retrieving large numbers of sessions. The following operations are related to ListCodeInterpreterSessions: StartCodeInterpreterSession GetCodeInterpreterSession
     listCodeInterpreterSessions: function(Client, types.ListCodeInterpreterSessionsInput): types.ListCodeInterpreterSessionsOutput, table
+    -- Lists events in an AgentCore Memory resource based on specified criteria. We recommend using pagination to ensure that the operation returns quickly and successfully. To use this operation, you must have the bedrock-agentcore:ListEvents permission.
     listEvents: function(Client, types.ListEventsInput): types.ListEventsOutput, table
+    -- Lists all long-term memory extraction jobs that are eligible to be started with optional filtering. To use this operation, you must have the bedrock-agentcore:ListMemoryExtractionJobs permission.
     listMemoryExtractionJobs: function(Client, types.ListMemoryExtractionJobsInput): types.ListMemoryExtractionJobsOutput, table
+    -- Lists memory records in an AgentCore Memory resource based on specified criteria. We recommend using pagination to ensure that the operation returns quickly and successfully. To use this operation, you must have the bedrock-agentcore:ListMemoryRecords permission.
     listMemoryRecords: function(Client, types.ListMemoryRecordsInput): types.ListMemoryRecordsOutput, table
+    -- Lists all recommendations in the account, with optional filtering by status.
     listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    -- Lists sessions in an AgentCore Memory resource based on specified criteria. We recommend using pagination to ensure that the operation returns quickly and successfully. Empty sessions are automatically deleted after one day. To use this operation, you must have the bedrock-agentcore:ListSessions permission.
     listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    -- Searches for and retrieves memory records from an AgentCore Memory resource based on specified search criteria. We recommend using pagination to ensure that the operation returns quickly and successfully. To use this operation, you must have the bedrock-agentcore:RetrieveMemoryRecords permission.
     retrieveMemoryRecords: function(Client, types.RetrieveMemoryRecordsInput): types.RetrieveMemoryRecordsOutput, table
+    -- Saves the current state of a browser session as a reusable profile in Amazon Bedrock AgentCore. A browser profile captures persistent browser data such as cookies and local storage from an active session, enabling you to reuse this data in future browser sessions. To save a browser session profile, you must specify the profile identifier, browser identifier, and session ID. The session must be active when saving the profile. Once saved, the profile can be used with the StartBrowserSession operation to initialize new sessions with the stored browser state. Browser profiles are useful for scenarios that require persistent authentication, maintaining user preferences across sessions, or continuing tasks that depend on previously stored browser data. The following operations are related to SaveBrowserSessionProfile: StartBrowserSession GetBrowserSession
     saveBrowserSessionProfile: function(Client, types.SaveBrowserSessionProfileInput): types.SaveBrowserSessionProfileOutput, table
+    -- Searches for registry records using semantic, lexical, or hybrid queries. Returns metadata for matching records ordered by relevance within the specified registry.
     searchRegistryRecords: function(Client, types.SearchRegistryRecordsInput): types.SearchRegistryRecordsOutput, table
+    -- Starts a batch evaluation job that evaluates agent performance across multiple sessions. Batch evaluations pull agent traces from CloudWatch Logs or an existing online evaluation configuration and run specified evaluators and insights against them.
     startBatchEvaluation: function(Client, types.StartBatchEvaluationInput): types.StartBatchEvaluationOutput, table
+    -- Creates and initializes a browser session in Amazon Bedrock AgentCore. The session enables agents to navigate and interact with web content, extract information from websites, and perform web-based tasks as part of their response generation. To create a session, you must specify a browser identifier and a name. You can also configure the viewport dimensions to control the visible area of web content. The session remains active until it times out or you explicitly stop it using the StopBrowserSession operation. The following operations are related to StartBrowserSession: GetBrowserSession UpdateBrowserStream SaveBrowserSessionProfile StopBrowserSession InvokeBrowser
     startBrowserSession: function(Client, types.StartBrowserSessionInput): types.StartBrowserSessionOutput, table
+    -- Creates and initializes a code interpreter session in Amazon Bedrock AgentCore. The session enables agents to execute code as part of their response generation, supporting programming languages such as Python for data analysis, visualization, and computation tasks. To create a session, you must specify a code interpreter identifier and a name. The session remains active until it times out or you explicitly stop it using the StopCodeInterpreterSession operation. The following operations are related to StartCodeInterpreterSession: InvokeCodeInterpreter GetCodeInterpreterSession StopCodeInterpreterSession
     startCodeInterpreterSession: function(Client, types.StartCodeInterpreterSessionInput): types.StartCodeInterpreterSessionOutput, table
+    -- Starts a memory extraction job that processes events that failed extraction previously in an AgentCore Memory resource and produces structured memory records. When earlier extraction attempts have left events unprocessed, this job will pick up and extract those as well. To use this operation, you must have the bedrock-agentcore:StartMemoryExtractionJob permission.
     startMemoryExtractionJob: function(Client, types.StartMemoryExtractionJobInput): types.StartMemoryExtractionJobOutput, table
+    -- Starts a recommendation job that analyzes agent traces and generates optimization suggestions for system prompts or tool descriptions to improve agent performance.
     startRecommendation: function(Client, types.StartRecommendationInput): types.StartRecommendationOutput, table
+    -- Stops a running batch evaluation. Sessions that have already been evaluated retain their results.
     stopBatchEvaluation: function(Client, types.StopBatchEvaluationInput): types.StopBatchEvaluationOutput, table
+    -- Terminates an active browser session in Amazon Bedrock AgentCore. This operation stops the session, releases associated resources, and makes the session unavailable for further use. To stop a browser session, you must specify both the browser identifier and the session ID. Once stopped, a session cannot be restarted; you must create a new session using StartBrowserSession. The following operations are related to StopBrowserSession: StartBrowserSession GetBrowserSession
     stopBrowserSession: function(Client, types.StopBrowserSessionInput): types.StopBrowserSessionOutput, table
+    -- Terminates an active code interpreter session in Amazon Bedrock AgentCore. This operation stops the session, releases associated resources, and makes the session unavailable for further use. To stop a code interpreter session, you must specify both the code interpreter identifier and the session ID. Once stopped, a session cannot be restarted; you must create a new session using StartCodeInterpreterSession. The following operations are related to StopCodeInterpreterSession: StartCodeInterpreterSession GetCodeInterpreterSession
     stopCodeInterpreterSession: function(Client, types.StopCodeInterpreterSessionInput): types.StopCodeInterpreterSessionOutput, table
+    -- Stops a session that is running in an running AgentCore Runtime agent.
     stopRuntimeSession: function(Client, types.StopRuntimeSessionInput): types.StopRuntimeSessionOutput, table
+    -- Updates an A/B test's configuration, including variants, traffic allocation, evaluation settings, or execution status.
     updateABTest: function(Client, types.UpdateABTestInput): types.UpdateABTestOutput, table
+    -- Updates a browser stream. To use this operation, you must have permissions to perform the bedrock:UpdateBrowserStream action.
     updateBrowserStream: function(Client, types.UpdateBrowserStreamInput): types.UpdateBrowserStreamOutput, table
 end
 

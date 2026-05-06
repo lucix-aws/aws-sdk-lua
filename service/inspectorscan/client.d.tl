@@ -3,6 +3,7 @@
 local types = require("inspectorscan.types")
 
 local record Client
+    -- Scans a provided CycloneDX 1.5 SBOM and reports on any vulnerabilities discovered in that SBOM. You can generate compatible SBOMs for your resources using the Amazon Inspector SBOM generator. The output of this action reports NVD and CVSS scores when NVD and CVSS scores are available. Because the output reports both scores, you might notice a discrepency between them. However, you can triage the severity of either score depending on the vendor of your choosing.
     scanSbom: function(Client, types.ScanSbomInput): types.ScanSbomOutput, table
 end
 

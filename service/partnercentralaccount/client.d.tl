@@ -3,34 +3,63 @@
 local types = require("partnercentralaccount.types")
 
 local record Client
+    -- Accepts a connection invitation from another partner, establishing a formal partnership connection between the two parties.
     acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput): types.AcceptConnectionInvitationOutput, table
+    -- Associates an email domain with AWS training and certification for the partner account, enabling automatic verification of employee certifications.
     associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput): types.AssociateAwsTrainingCertificationEmailDomainOutput, table
+    -- Cancels an existing connection between partners, terminating the partnership relationship.
     cancelConnection: function(Client, types.CancelConnectionInput): types.CancelConnectionOutput, table
+    -- Cancels a pending connection invitation before it has been accepted or rejected.
     cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput): types.CancelConnectionInvitationOutput, table
+    -- Cancels an in-progress profile update task, stopping any pending changes to the partner profile.
     cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput): types.CancelProfileUpdateTaskOutput, table
+    -- Creates a new connection invitation to establish a partnership with another organization.
     createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput): types.CreateConnectionInvitationOutput, table
+    -- Creates a new partner account in the AWS Partner Network with the specified details and configuration.
     createPartner: function(Client, types.CreatePartnerInput): types.CreatePartnerOutput, table
+    -- Removes the association between an email domain and AWS training and certification for the partner account.
     disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput): types.DisassociateAwsTrainingCertificationEmailDomainOutput, table
+    -- Retrieves the alliance lead contact information for a partner account.
     getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput): types.GetAllianceLeadContactOutput, table
+    -- Retrieves detailed information about a specific connection between partners.
     getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    -- Retrieves detailed information about a specific connection invitation.
     getConnectionInvitation: function(Client, types.GetConnectionInvitationInput): types.GetConnectionInvitationOutput, table
+    -- Retrieves the connection preferences for a partner account, including access settings and exclusions.
     getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput): types.GetConnectionPreferencesOutput, table
+    -- Retrieves detailed information about a specific partner account.
     getPartner: function(Client, types.GetPartnerInput): types.GetPartnerOutput, table
+    -- Retrieves information about a specific profile update task.
     getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput): types.GetProfileUpdateTaskOutput, table
+    -- Retrieves the visibility settings for a partner profile, determining who can see the profile information.
     getProfileVisibility: function(Client, types.GetProfileVisibilityInput): types.GetProfileVisibilityOutput, table
+    -- Retrieves the current status and details of a verification process for a partner account. This operation allows partners to check the progress and results of business or registrant verification processes.
     getVerification: function(Client, types.GetVerificationInput): types.GetVerificationOutput, table
+    -- Lists connection invitations for the partner account, with optional filtering by status, type, and other criteria.
     listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput): types.ListConnectionInvitationsOutput, table
+    -- Lists active connections for the partner account, with optional filtering by connection type and participant.
     listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    -- Lists partner accounts in the catalog, providing a summary view of all partners.
     listPartners: function(Client, types.ListPartnersInput): types.ListPartnersOutput, table
+    -- Lists all tags associated with a specific AWS Partner Central Account resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Creates or updates the alliance lead contact information for a partner account.
     putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput): types.PutAllianceLeadContactOutput, table
+    -- Sets the visibility level for a partner profile, controlling who can view the profile information.
     putProfileVisibility: function(Client, types.PutProfileVisibilityInput): types.PutProfileVisibilityOutput, table
+    -- Rejects a connection invitation from another partner, declining the partnership request.
     rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput): types.RejectConnectionInvitationOutput, table
+    -- Sends an email verification code to the specified email address for account verification purposes.
     sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput): types.SendEmailVerificationCodeOutput, table
+    -- Initiates a profile update task to modify partner profile information asynchronously.
     startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput): types.StartProfileUpdateTaskOutput, table
+    -- Initiates a new verification process for a partner account. This operation begins the verification workflow for either business registration or individual registrant identity verification as required by AWS Partner Central.
     startVerification: function(Client, types.StartVerificationInput): types.StartVerificationOutput, table
+    -- Adds or updates tags for a specified AWS Partner Central Account resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Removes specified tags from an AWS Partner Central Account resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the connection preferences for a partner account, modifying access settings and exclusions.
     updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput): types.UpdateConnectionPreferencesOutput, table
 end
 

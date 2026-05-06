@@ -3,16 +3,32 @@
 local types = require("licensemanagerlinuxsubscriptions.types")
 
 local record Client
+    -- Remove a third-party subscription provider from the Bring Your Own License (BYOL) subscriptions
+    -- registered to your account.
     deregisterSubscriptionProvider: function(Client, types.DeregisterSubscriptionProviderInput): types.DeregisterSubscriptionProviderOutput, table
+    -- Get details for a Bring Your Own License (BYOL) subscription that's registered to your account.
     getRegisteredSubscriptionProvider: function(Client, types.GetRegisteredSubscriptionProviderInput): types.GetRegisteredSubscriptionProviderOutput, table
+    -- Lists the Linux subscriptions service settings for your account.
     getServiceSettings: function(Client, types.GetServiceSettingsInput): types.GetServiceSettingsOutput, table
+    -- Lists the running Amazon EC2 instances that were discovered with commercial Linux
+    -- subscriptions.
     listLinuxSubscriptionInstances: function(Client, types.ListLinuxSubscriptionInstancesInput): types.ListLinuxSubscriptionInstancesOutput, table
+    -- Lists the Linux subscriptions that have been discovered. If you have linked your
+    -- organization, the returned results will include data aggregated across your accounts in
+    -- Organizations.
     listLinuxSubscriptions: function(Client, types.ListLinuxSubscriptionsInput): types.ListLinuxSubscriptionsOutput, table
+    -- List Bring Your Own License (BYOL) subscription registration resources for your account.
     listRegisteredSubscriptionProviders: function(Client, types.ListRegisteredSubscriptionProvidersInput): types.ListRegisteredSubscriptionProvidersOutput, table
+    -- List the metadata tags that are assigned to the
+    -- specified Amazon Web Services resource.
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    -- Register the supported third-party subscription provider for your Bring Your Own License (BYOL) subscription.
     registerSubscriptionProvider: function(Client, types.RegisterSubscriptionProviderInput): types.RegisterSubscriptionProviderOutput, table
+    -- Add metadata tags to the specified Amazon Web Services resource.
     tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    -- Remove one or more metadata tag from the specified Amazon Web Services resource.
     untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    -- Updates the service settings for Linux subscriptions.
     updateServiceSettings: function(Client, types.UpdateServiceSettingsInput): types.UpdateServiceSettingsOutput, table
 end
 
