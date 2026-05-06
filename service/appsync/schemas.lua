@@ -3519,7 +3519,7 @@ M.EvaluateCodeInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        function = schema.new({
+        ["function"] = schema.new({
             id = id.from(_N, "EvaluateCodeInput", "function"),
             type = "string",
             name = "function",

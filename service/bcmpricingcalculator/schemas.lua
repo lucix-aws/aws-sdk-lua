@@ -740,7 +740,7 @@ M.BillInterval = schema.new({
             name = "start",
             target_id = prelude.Timestamp.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "BillInterval", "end"),
             type = "timestamp",
             name = "end",
@@ -3596,21 +3596,21 @@ M.Expression = schema.new({
     id = id.from(_N, "Expression"),
     type = "structure",
     members = {
-        and = schema.new({
+        ["and"] = schema.new({
             id = id.from(_N, "Expression", "and"),
             type = "list",
             name = "and",
             target_id = prelude.Document.id,
             list_member = M.Expression,
         }),
-        or = schema.new({
+        ["or"] = schema.new({
             id = id.from(_N, "Expression", "or"),
             type = "list",
             name = "or",
             target_id = prelude.Document.id,
             list_member = M.Expression,
         }),
-        not = schema.new({
+        ["not"] = schema.new({
             id = id.from(_N, "Expression", "not"),
             type = "structure",
             name = "not",

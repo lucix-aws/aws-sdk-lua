@@ -5290,7 +5290,7 @@ M.Span = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "Span", "end"),
             type = "structure",
             name = "end",

@@ -132,7 +132,7 @@ M.SearchInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "q.parser" },
             },
         }),
-        return = schema.new({
+        ["return"] = schema.new({
             id = id.from(_N, "SearchInput", "return"),
             type = "string",
             name = "return",

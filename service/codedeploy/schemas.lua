@@ -4917,7 +4917,7 @@ M.TimeRange = schema.new({
             name = "start",
             target_id = prelude.Timestamp.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "TimeRange", "end"),
             type = "timestamp",
             name = "end",

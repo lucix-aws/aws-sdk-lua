@@ -4622,7 +4622,7 @@ M.CaseFilter = schema.new({
             target_id = id.from(_N, "FieldFilter"),
             target = M.FieldFilter,
         }),
-        not = schema.new({
+        ["not"] = schema.new({
             id = id.from(_N, "CaseFilter", "not"),
             type = "union",
             name = "not",
@@ -4664,7 +4664,7 @@ M.CustomFieldsFilter = schema.new({
             target_id = id.from(_N, "FieldFilter"),
             target = M.FieldFilter,
         }),
-        not = schema.new({
+        ["not"] = schema.new({
             id = id.from(_N, "CustomFieldsFilter", "not"),
             type = "union",
             name = "not",

@@ -13801,7 +13801,7 @@ M.RetrievalFilterConfiguration = schema.new({
             target_id = id.from(_N, "FilterAttribute"),
             target = M.FilterAttribute,
         }),
-        in = schema.new({
+        ["in"] = schema.new({
             id = id.from(_N, "RetrievalFilterConfiguration", "in"),
             type = "structure",
             name = "in",

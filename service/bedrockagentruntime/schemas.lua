@@ -270,7 +270,7 @@ M.ActionGroupInvocationInput = schema.new({
             target_id = id.from(_N, "RequestBody"),
             target = M.RequestBody,
         }),
-        function = schema.new({
+        ["function"] = schema.new({
             id = id.from(_N, "ActionGroupInvocationInput", "function"),
             type = "string",
             name = "function",
@@ -692,7 +692,7 @@ M.FunctionResult = schema.new({
             name = "confirmationState",
             target_id = prelude.String.id,
         }),
-        function = schema.new({
+        ["function"] = schema.new({
             id = id.from(_N, "FunctionResult", "function"),
             type = "string",
             name = "function",
@@ -973,7 +973,7 @@ M.FunctionInvocationInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FunctionParameter,
         }),
-        function = schema.new({
+        ["function"] = schema.new({
             id = id.from(_N, "FunctionInvocationInput", "function"),
             type = "string",
             name = "function",
@@ -5596,7 +5596,7 @@ M.Span = schema.new({
             name = "start",
             target_id = prelude.Integer.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "Span", "end"),
             type = "integer",
             name = "end",
@@ -8880,7 +8880,7 @@ M.RetrievalFilter = schema.new({
             target_id = id.from(_N, "FilterAttribute"),
             target = M.FilterAttribute,
         }),
-        in = schema.new({
+        ["in"] = schema.new({
             id = id.from(_N, "RetrievalFilter", "in"),
             type = "structure",
             name = "in",

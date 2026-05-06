@@ -3144,7 +3144,7 @@ M.FreeTrialInfo = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "FreeTrialInfo", "end"),
             type = "timestamp",
             name = "end",
@@ -7489,7 +7489,7 @@ M.PortRange = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "PortRange", "end"),
             type = "integer",
             name = "end",

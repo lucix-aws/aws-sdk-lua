@@ -3503,7 +3503,7 @@ M.RowFilterExpression = schema.new({
             target_id = id.from(_N, "IsNotNullExpression"),
             target = M.IsNotNullExpression,
         }),
-        in = schema.new({
+        ["in"] = schema.new({
             id = id.from(_N, "RowFilterExpression", "in"),
             type = "structure",
             name = "in",
@@ -30371,14 +30371,14 @@ M.FilterClause = schema.new({
             target_id = id.from(_N, "Filter"),
             target = M.Filter,
         }),
-        and = schema.new({
+        ["and"] = schema.new({
             id = id.from(_N, "FilterClause", "and"),
             type = "list",
             name = "and",
             target_id = prelude.Document.id,
             list_member = M.FilterClause,
         }),
-        or = schema.new({
+        ["or"] = schema.new({
             id = id.from(_N, "FilterClause", "or"),
             type = "list",
             name = "or",
@@ -30399,14 +30399,14 @@ M.RowFilter = schema.new({
             target_id = id.from(_N, "RowFilterExpression"),
             target = M.RowFilterExpression,
         }),
-        and = schema.new({
+        ["and"] = schema.new({
             id = id.from(_N, "RowFilter", "and"),
             type = "list",
             name = "and",
             target_id = prelude.Document.id,
             list_member = M.RowFilter,
         }),
-        or = schema.new({
+        ["or"] = schema.new({
             id = id.from(_N, "RowFilter", "or"),
             type = "list",
             name = "or",

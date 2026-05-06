@@ -409,7 +409,7 @@ M.AggregateColumn = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        function = schema.new({
+        ["function"] = schema.new({
             id = id.from(_N, "AggregateColumn", "function"),
             type = "string",
             name = "function",

@@ -2229,7 +2229,7 @@ M.TimePeriod = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "TimePeriod", "end"),
             type = "string",
             name = "end",

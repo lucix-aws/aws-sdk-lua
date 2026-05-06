@@ -2669,14 +2669,14 @@ M.Predicate = schema.new({
     id = id.from(_N, "Predicate"),
     type = "structure",
     members = {
-        or = schema.new({
+        ["or"] = schema.new({
             id = id.from(_N, "Predicate", "or"),
             type = "list",
             name = "or",
             target_id = prelude.Document.id,
             list_member = M.Predicate,
         }),
-        and = schema.new({
+        ["and"] = schema.new({
             id = id.from(_N, "Predicate", "and"),
             type = "list",
             name = "and",
@@ -3183,14 +3183,14 @@ M.ComponentConditionProperty = schema.new({
             name = "operand",
             target_id = prelude.String.id,
         }),
-        then = schema.new({
+        ["then"] = schema.new({
             id = id.from(_N, "ComponentConditionProperty", "then"),
             type = "structure",
             name = "then",
             target_id = id.from(_N, "ComponentProperty"),
             target = M.ComponentProperty,
         }),
-        else = schema.new({
+        ["else"] = schema.new({
             id = id.from(_N, "ComponentConditionProperty", "else"),
             type = "structure",
             name = "else",

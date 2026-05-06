@@ -1919,7 +1919,7 @@ M.MatchRange = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "MatchRange", "end"),
             type = "long",
             name = "end",

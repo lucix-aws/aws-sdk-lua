@@ -2070,7 +2070,7 @@ M.DocumentCharLocation = schema.new({
             name = "start",
             target_id = prelude.Integer.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "DocumentCharLocation", "end"),
             type = "integer",
             name = "end",
@@ -2095,7 +2095,7 @@ M.DocumentChunkLocation = schema.new({
             name = "start",
             target_id = prelude.Integer.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "DocumentChunkLocation", "end"),
             type = "integer",
             name = "end",
@@ -2120,7 +2120,7 @@ M.DocumentPageLocation = schema.new({
             name = "start",
             target_id = prelude.Integer.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "DocumentPageLocation", "end"),
             type = "integer",
             name = "end",
@@ -2145,7 +2145,7 @@ M.SearchResultLocation = schema.new({
             name = "start",
             target_id = prelude.Integer.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "SearchResultLocation", "end"),
             type = "integer",
             name = "end",

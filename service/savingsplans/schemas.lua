@@ -492,7 +492,7 @@ M.SavingsPlan = schema.new({
             name = "start",
             target_id = prelude.String.id,
         }),
-        end = schema.new({
+        ["end"] = schema.new({
             id = id.from(_N, "SavingsPlan", "end"),
             type = "string",
             name = "end",
