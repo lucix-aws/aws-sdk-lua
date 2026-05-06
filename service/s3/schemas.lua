@@ -16027,6 +16027,9 @@ M.CopyObject = schema.operation({
             CopySource = "CopySource",
             Key = "Key",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            DisableS3ExpressSessionAuth = { value = true },
+        },
     },
 })
 
@@ -16041,6 +16044,10 @@ M.CreateBucket = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+            DisableAccessPoints = { value = true },
         },
     },
 })
@@ -16057,6 +16064,9 @@ M.CreateBucketMetadataConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16071,6 +16081,9 @@ M.CreateBucketMetadataTableConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16103,6 +16116,9 @@ M.CreateSession = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            DisableS3ExpressSessionAuth = { value = true },
+        },
     },
 })
 
@@ -16117,6 +16133,9 @@ M.DeleteBucket = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16133,6 +16152,9 @@ M.DeleteBucketAnalyticsConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16147,6 +16169,9 @@ M.DeleteBucketCors = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16163,6 +16188,9 @@ M.DeleteBucketEncryption = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16177,6 +16205,9 @@ M.DeleteBucketIntelligentTieringConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16193,6 +16224,9 @@ M.DeleteBucketInventoryConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16207,6 +16241,9 @@ M.DeleteBucketLifecycle = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16223,6 +16260,9 @@ M.DeleteBucketMetadataConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16237,6 +16277,9 @@ M.DeleteBucketMetadataTableConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16253,6 +16296,9 @@ M.DeleteBucketMetricsConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16267,6 +16313,9 @@ M.DeleteBucketOwnershipControls = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16283,6 +16332,9 @@ M.DeleteBucketPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16297,6 +16349,9 @@ M.DeleteBucketReplication = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16313,6 +16368,9 @@ M.DeleteBucketTagging = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16327,6 +16385,9 @@ M.DeleteBucketWebsite = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16389,6 +16450,9 @@ M.DeletePublicAccessBlock = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16419,6 +16483,9 @@ M.GetBucketAccelerateConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16433,6 +16500,9 @@ M.GetBucketAcl = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16449,6 +16519,9 @@ M.GetBucketAnalyticsConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16463,6 +16536,9 @@ M.GetBucketCors = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16479,6 +16555,9 @@ M.GetBucketEncryption = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16493,6 +16572,9 @@ M.GetBucketIntelligentTieringConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16509,6 +16591,9 @@ M.GetBucketInventoryConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16523,6 +16608,9 @@ M.GetBucketLifecycleConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16539,6 +16627,9 @@ M.GetBucketLocation = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16553,6 +16644,9 @@ M.GetBucketLogging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16569,6 +16663,9 @@ M.GetBucketMetadataConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16583,6 +16680,9 @@ M.GetBucketMetadataTableConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16599,6 +16699,9 @@ M.GetBucketMetricsConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16613,6 +16716,9 @@ M.GetBucketNotificationConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16629,6 +16735,9 @@ M.GetBucketOwnershipControls = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16643,6 +16752,9 @@ M.GetBucketPolicy = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16659,6 +16771,9 @@ M.GetBucketPolicyStatus = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16673,6 +16788,9 @@ M.GetBucketReplication = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16689,6 +16807,9 @@ M.GetBucketRequestPayment = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16703,6 +16824,9 @@ M.GetBucketTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16719,6 +16843,9 @@ M.GetBucketVersioning = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16733,6 +16860,9 @@ M.GetBucketWebsite = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16871,6 +17001,9 @@ M.GetPublicAccessBlock = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16917,6 +17050,9 @@ M.ListBucketAnalyticsConfigurations = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16931,6 +17067,9 @@ M.ListBucketIntelligentTieringConfigurations = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16947,6 +17086,9 @@ M.ListBucketInventoryConfigurations = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -16961,6 +17103,9 @@ M.ListBucketMetricsConfigurations = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -16985,6 +17130,9 @@ M.ListDirectoryBuckets = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/?x-id=ListDirectoryBuckets" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17096,6 +17244,9 @@ M.PutBucketAccelerateConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17110,6 +17261,9 @@ M.PutBucketAcl = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17126,6 +17280,9 @@ M.PutBucketAnalyticsConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17140,6 +17297,9 @@ M.PutBucketCors = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17156,6 +17316,9 @@ M.PutBucketEncryption = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17170,6 +17333,9 @@ M.PutBucketIntelligentTieringConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17186,6 +17352,9 @@ M.PutBucketInventoryConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17200,6 +17369,9 @@ M.PutBucketLifecycleConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17216,6 +17388,9 @@ M.PutBucketLogging = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17230,6 +17405,9 @@ M.PutBucketMetricsConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17246,6 +17424,9 @@ M.PutBucketNotificationConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17260,6 +17441,9 @@ M.PutBucketOwnershipControls = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17276,6 +17460,9 @@ M.PutBucketPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17290,6 +17477,9 @@ M.PutBucketReplication = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17306,6 +17496,9 @@ M.PutBucketRequestPayment = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17320,6 +17513,9 @@ M.PutBucketTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17336,6 +17532,9 @@ M.PutBucketVersioning = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17350,6 +17549,9 @@ M.PutBucketWebsite = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17458,6 +17660,9 @@ M.PutPublicAccessBlock = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17520,6 +17725,9 @@ M.UpdateBucketMetadataInventoryTableConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -17534,6 +17742,9 @@ M.UpdateBucketMetadataJournalTableConfiguration = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -17581,6 +17792,9 @@ M.UploadPartCopy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            DisableS3ExpressSessionAuth = { value = true },
+        },
     },
 })
 
@@ -17592,6 +17806,9 @@ M.WriteGetObjectResponse = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/WriteGetObjectResponse" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseObjectLambdaEndpoint = { value = true },
         },
     },
 })

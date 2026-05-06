@@ -3116,6 +3116,9 @@ M.AddTagsToStream = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3142,6 +3145,9 @@ M.DecreaseStreamRetentionPeriod = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3156,6 +3162,9 @@ M.DeleteResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3172,6 +3181,9 @@ M.DeleteStream = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3187,6 +3199,9 @@ M.DeregisterStreamConsumer = schema.operation({
             ConsumerARN = "ConsumerARN",
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3225,6 +3240,9 @@ M.DescribeStream = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3241,6 +3259,9 @@ M.DescribeStreamConsumer = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3255,6 +3276,9 @@ M.DescribeStreamSummary = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3271,6 +3295,9 @@ M.DisableEnhancedMonitoring = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3285,6 +3312,9 @@ M.EnableEnhancedMonitoring = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3301,6 +3331,9 @@ M.GetRecords = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "data" },
+        },
     },
 })
 
@@ -3315,6 +3348,9 @@ M.GetResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3331,6 +3367,9 @@ M.GetShardIterator = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "data" },
+        },
     },
 })
 
@@ -3345,6 +3384,9 @@ M.IncreaseStreamRetentionPeriod = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3361,6 +3403,9 @@ M.ListShards = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3375,6 +3420,9 @@ M.ListStreamConsumers = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3402,6 +3450,9 @@ M.ListTagsForResource = schema.operation({
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3416,6 +3467,9 @@ M.ListTagsForStream = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3432,6 +3486,9 @@ M.MergeShards = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3446,6 +3503,9 @@ M.PutRecord = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "data" },
         },
     },
 })
@@ -3462,6 +3522,9 @@ M.PutRecords = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "data" },
+        },
     },
 })
 
@@ -3476,6 +3539,9 @@ M.PutResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3492,6 +3558,9 @@ M.RegisterStreamConsumer = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3506,6 +3575,9 @@ M.RemoveTagsFromStream = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3522,6 +3594,9 @@ M.SplitShard = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3536,6 +3611,9 @@ M.StartStreamEncryption = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3552,6 +3630,9 @@ M.StopStreamEncryption = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3566,6 +3647,9 @@ M.SubscribeToShard = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             ConsumerARN = "ConsumerARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "data" },
         },
         [traits.EVENT_STREAM] = M.SubscribeToShardEventStream,
     },
@@ -3583,6 +3667,9 @@ M.TagResource = schema.operation({
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3597,6 +3684,9 @@ M.UntagResource = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3624,6 +3714,9 @@ M.UpdateMaxRecordSize = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3638,6 +3731,9 @@ M.UpdateShardCount = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3654,6 +3750,9 @@ M.UpdateStreamMode = schema.operation({
             StreamARN = "StreamARN",
             StreamId = "StreamId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3668,6 +3767,9 @@ M.UpdateStreamWarmThroughput = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })

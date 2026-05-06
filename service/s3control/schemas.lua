@@ -9245,6 +9245,9 @@ M.AssociateAccessGrantsIdentityCenter = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9259,6 +9262,9 @@ M.CreateAccessGrant = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9275,6 +9281,9 @@ M.CreateAccessGrantsInstance = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9289,6 +9298,9 @@ M.CreateAccessGrantsLocation = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9307,6 +9319,9 @@ M.CreateAccessPoint = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9321,6 +9336,9 @@ M.CreateAccessPointForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9353,6 +9371,9 @@ M.CreateJob = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9367,6 +9388,9 @@ M.CreateMultiRegionAccessPoint = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9383,6 +9407,9 @@ M.CreateStorageLensGroup = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9397,6 +9424,9 @@ M.DeleteAccessGrant = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9413,6 +9443,9 @@ M.DeleteAccessGrantsInstance = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9428,6 +9461,9 @@ M.DeleteAccessGrantsInstanceResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9442,6 +9478,9 @@ M.DeleteAccessGrantsLocation = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9459,6 +9498,9 @@ M.DeleteAccessPoint = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9473,6 +9515,9 @@ M.DeleteAccessPointForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9490,6 +9535,9 @@ M.DeleteAccessPointPolicy = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9504,6 +9552,9 @@ M.DeleteAccessPointPolicyForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9521,6 +9572,10 @@ M.DeleteAccessPointScope = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -9536,6 +9591,9 @@ M.DeleteBucket = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9553,6 +9611,9 @@ M.DeleteBucketLifecycleConfiguration = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9568,6 +9629,9 @@ M.DeleteBucketPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9585,6 +9649,9 @@ M.DeleteBucketReplication = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9601,6 +9668,9 @@ M.DeleteBucketTagging = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9615,6 +9685,9 @@ M.DeleteJobTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9631,6 +9704,9 @@ M.DeleteMultiRegionAccessPoint = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9645,6 +9721,9 @@ M.DeletePublicAccessBlock = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9661,6 +9740,9 @@ M.DeleteStorageLensConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9675,6 +9757,9 @@ M.DeleteStorageLensConfigurationTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9691,6 +9776,9 @@ M.DeleteStorageLensGroup = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9705,6 +9793,9 @@ M.DescribeJob = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9721,6 +9812,9 @@ M.DescribeMultiRegionAccessPointOperation = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9735,6 +9829,9 @@ M.DissociateAccessGrantsIdentityCenter = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9751,6 +9848,9 @@ M.GetAccessGrant = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9765,6 +9865,9 @@ M.GetAccessGrantsInstance = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9781,6 +9884,9 @@ M.GetAccessGrantsInstanceForPrefix = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9796,6 +9902,9 @@ M.GetAccessGrantsInstanceResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9810,6 +9919,9 @@ M.GetAccessGrantsLocation = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9827,6 +9939,9 @@ M.GetAccessPoint = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9842,6 +9957,9 @@ M.GetAccessPointConfigurationForObjectLambda = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9856,6 +9974,9 @@ M.GetAccessPointForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9873,6 +9994,9 @@ M.GetAccessPointPolicy = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9887,6 +10011,9 @@ M.GetAccessPointPolicyForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9904,6 +10031,9 @@ M.GetAccessPointPolicyStatus = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9918,6 +10048,9 @@ M.GetAccessPointPolicyStatusForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9935,6 +10068,10 @@ M.GetAccessPointScope = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -9950,6 +10087,9 @@ M.GetBucket = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9967,6 +10107,9 @@ M.GetBucketLifecycleConfiguration = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -9982,6 +10125,9 @@ M.GetBucketPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -9999,6 +10145,9 @@ M.GetBucketReplication = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10014,6 +10163,9 @@ M.GetBucketTagging = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10031,6 +10183,9 @@ M.GetBucketVersioning = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10045,6 +10200,9 @@ M.GetDataAccess = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10061,6 +10219,9 @@ M.GetJobTagging = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10075,6 +10236,9 @@ M.GetMultiRegionAccessPoint = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10091,6 +10255,9 @@ M.GetMultiRegionAccessPointPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10105,6 +10272,9 @@ M.GetMultiRegionAccessPointPolicyStatus = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10121,6 +10291,9 @@ M.GetMultiRegionAccessPointRoutes = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10135,6 +10308,9 @@ M.GetPublicAccessBlock = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10151,6 +10327,9 @@ M.GetStorageLensConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10165,6 +10344,9 @@ M.GetStorageLensConfigurationTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10181,6 +10363,9 @@ M.GetStorageLensGroup = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10195,6 +10380,9 @@ M.ListAccessGrants = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10211,6 +10399,9 @@ M.ListAccessGrantsInstances = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10225,6 +10416,9 @@ M.ListAccessGrantsLocations = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10242,6 +10436,9 @@ M.ListAccessPoints = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10256,6 +10453,10 @@ M.ListAccessPointsForDirectoryBuckets = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+            UseS3ExpressControlEndpoint = { value = true },
         },
     },
 })
@@ -10272,6 +10473,9 @@ M.ListAccessPointsForObjectLambda = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10286,6 +10490,9 @@ M.ListCallerAccessGrants = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10302,6 +10509,9 @@ M.ListJobs = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10316,6 +10526,9 @@ M.ListMultiRegionAccessPoints = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10333,6 +10546,9 @@ M.ListRegionalBuckets = schema.operation({
             AccountId = "AccountId",
             OutpostId = "OutpostId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10348,6 +10564,9 @@ M.ListStorageLensConfigurations = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10362,6 +10581,9 @@ M.ListStorageLensGroups = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10379,6 +10601,9 @@ M.ListTagsForResource = schema.operation({
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10394,6 +10619,9 @@ M.PutAccessGrantsInstanceResourcePolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10408,6 +10636,9 @@ M.PutAccessPointConfigurationForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10425,6 +10656,9 @@ M.PutAccessPointPolicy = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10439,6 +10673,9 @@ M.PutAccessPointPolicyForObjectLambda = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10456,6 +10693,10 @@ M.PutAccessPointScope = schema.operation({
             AccessPointName = "Name",
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 
@@ -10471,6 +10712,9 @@ M.PutBucketLifecycleConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10488,6 +10732,9 @@ M.PutBucketPolicy = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10503,6 +10750,9 @@ M.PutBucketReplication = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
             Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10520,6 +10770,9 @@ M.PutBucketTagging = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10536,6 +10789,9 @@ M.PutBucketVersioning = schema.operation({
             AccountId = "AccountId",
             Bucket = "Bucket",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10550,6 +10806,9 @@ M.PutJobTagging = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10566,6 +10825,9 @@ M.PutMultiRegionAccessPointPolicy = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10580,6 +10842,9 @@ M.PutPublicAccessBlock = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10596,6 +10861,9 @@ M.PutStorageLensConfiguration = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10611,6 +10879,9 @@ M.PutStorageLensConfigurationTagging = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10625,6 +10896,9 @@ M.SubmitMultiRegionAccessPointRoutes = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10642,6 +10916,9 @@ M.TagResource = schema.operation({
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10658,6 +10935,9 @@ M.UntagResource = schema.operation({
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10672,6 +10952,9 @@ M.UpdateAccessGrantsLocation = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })
@@ -10688,6 +10971,9 @@ M.UpdateJobPriority = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10703,6 +10989,9 @@ M.UpdateJobStatus = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
+        },
     },
 })
 
@@ -10717,6 +11006,9 @@ M.UpdateStorageLensGroup = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             AccountId = "AccountId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            RequiresAccountId = { value = true },
         },
     },
 })

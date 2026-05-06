@@ -3302,6 +3302,9 @@ M.CreatePlan = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3313,6 +3316,9 @@ M.DeletePlan = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3323,6 +3329,9 @@ M.GetPlan = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
         },
     },
 })
@@ -3390,6 +3399,9 @@ M.ListPlans = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3411,6 +3423,9 @@ M.ListRoute53HealthChecks = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
         },
     },
 })
@@ -3434,6 +3449,9 @@ M.ListTagsForResource = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3456,6 +3474,9 @@ M.TagResource = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3467,6 +3488,9 @@ M.UntagResource = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
+        },
     },
 })
 
@@ -3477,6 +3501,9 @@ M.UpdatePlan = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseControlPlaneEndpoint = { value = true },
         },
     },
 })

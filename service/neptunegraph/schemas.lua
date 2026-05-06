@@ -4137,6 +4137,9 @@ M.CancelExportTask = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4148,6 +4151,9 @@ M.CancelImportTask = schema.operation({
         [traits.HTTP] = { method = "DELETE", path = "/importtasks/{taskIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4161,6 +4167,9 @@ M.CancelQuery = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "DataPlane" },
+        },
     },
 })
 
@@ -4172,6 +4181,9 @@ M.CreateGraph = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/graphs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4185,6 +4197,9 @@ M.CreateGraphSnapshot = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4196,6 +4211,9 @@ M.CreateGraphUsingImportTask = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/importtasks" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4209,6 +4227,9 @@ M.CreatePrivateGraphEndpoint = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4220,6 +4241,9 @@ M.DeleteGraph = schema.operation({
         [traits.HTTP] = { method = "DELETE", path = "/graphs/{graphIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4233,6 +4257,9 @@ M.DeleteGraphSnapshot = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4244,6 +4271,9 @@ M.DeletePrivateGraphEndpoint = schema.operation({
         [traits.HTTP] = { method = "DELETE", path = "/graphs/{graphIdentifier}/endpoints/{vpcId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4257,6 +4287,9 @@ M.ExecuteQuery = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "DataPlane" },
+        },
     },
 })
 
@@ -4268,6 +4301,9 @@ M.GetExportTask = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/exporttasks/{taskIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4281,6 +4317,9 @@ M.GetGraph = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4292,6 +4331,9 @@ M.GetGraphSnapshot = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/snapshots/{snapshotIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4305,6 +4347,9 @@ M.GetGraphSummary = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "DataPlane" },
+        },
     },
 })
 
@@ -4316,6 +4361,9 @@ M.GetImportTask = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/importtasks/{taskIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4329,6 +4377,9 @@ M.GetPrivateGraphEndpoint = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4340,6 +4391,9 @@ M.GetQuery = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/queries/{queryId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "DataPlane" },
         },
     },
 })
@@ -4353,6 +4407,9 @@ M.ListExportTasks = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4364,6 +4421,9 @@ M.ListGraphs = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/graphs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4377,6 +4437,9 @@ M.ListGraphSnapshots = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4388,6 +4451,9 @@ M.ListImportTasks = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/importtasks" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4401,6 +4467,9 @@ M.ListPrivateGraphEndpoints = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4412,6 +4481,9 @@ M.ListQueries = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/queries" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "DataPlane" },
         },
     },
 })
@@ -4425,6 +4497,9 @@ M.ListTagsForResource = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4436,6 +4511,9 @@ M.ResetGraph = schema.operation({
         [traits.HTTP] = { method = "PUT", path = "/graphs/{graphIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4449,6 +4527,9 @@ M.RestoreGraphFromSnapshot = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4460,6 +4541,9 @@ M.StartExportTask = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/exporttasks" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4473,6 +4557,9 @@ M.StartGraph = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4484,6 +4571,9 @@ M.StartImportTask = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/graphs/{graphIdentifier}/importtasks" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4497,6 +4587,9 @@ M.StopGraph = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4508,6 +4601,9 @@ M.TagResource = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
@@ -4521,6 +4617,9 @@ M.UntagResource = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
+        },
     },
 })
 
@@ -4532,6 +4631,9 @@ M.UpdateGraph = schema.operation({
         [traits.HTTP] = { method = "PATCH", path = "/graphs/{graphIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ApiType = { value = "ControlPlane" },
         },
     },
 })
