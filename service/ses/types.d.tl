@@ -1134,11 +1134,11 @@ local record TemplateDoesNotExistException
     message: string
 end
 
-local type IdentityType = "EmailAddress" | "Domain"
+local type BehaviorOnMXFailure = "UseDefaultValue" | "RejectMessage"
 
 local type NotificationType = "Bounce" | "Complaint" | "Delivery"
 
-local type BehaviorOnMXFailure = "UseDefaultValue" | "RejectMessage"
+local type IdentityType = "EmailAddress" | "Domain"
 
 local record M
     CloneReceiptRuleSetInput: CloneReceiptRuleSetInput

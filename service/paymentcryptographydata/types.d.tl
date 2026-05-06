@@ -522,13 +522,13 @@ local record VerificationFailedException
     Message: string
 end
 
-local type PinBlockFormatForPinData = "ISO_FORMAT_0" | "ISO_FORMAT_1" | "ISO_FORMAT_3" | "ISO_FORMAT_4"
-
 local type PinBlockFormatForEmvPinChange = "ISO_FORMAT_0" | "ISO_FORMAT_1" | "ISO_FORMAT_3"
 
-local type RandomKeySendVariantMask = "VARIANT_MASK_82C0" | "VARIANT_MASK_82"
-
 local type MajorKeyDerivationMode = "EMV_OPTION_A" | "EMV_OPTION_B"
+
+local type PinBlockFormatForPinData = "ISO_FORMAT_0" | "ISO_FORMAT_1" | "ISO_FORMAT_3" | "ISO_FORMAT_4"
+
+local type RandomKeySendVariantMask = "VARIANT_MASK_82C0" | "VARIANT_MASK_82"
 
 local record M
     DecryptDataInput: DecryptDataInput

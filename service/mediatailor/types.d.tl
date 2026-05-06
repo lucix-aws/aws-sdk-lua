@@ -707,17 +707,17 @@ end
 
 local type PlaybackMode = "LOOP" | "LINEAR"
 
-local type Tier = "BASIC" | "STANDARD"
-
-local type InsertionMode = "STITCHED_ONLY" | "PLAYER_SELECT"
+local type FunctionType = "HTTP_REQUEST" | "CUSTOM_OUTPUT" | "SEQUENTIAL_EXECUTOR"
 
 local type ListPrefetchScheduleType = "SINGLE" | "RECURRING" | "ALL"
 
+local type PrefetchScheduleType = "SINGLE" | "RECURRING"
+
 local type ChannelState = "RUNNING" | "STOPPED"
 
-local type FunctionType = "HTTP_REQUEST" | "CUSTOM_OUTPUT" | "SEQUENTIAL_EXECUTOR"
+local type InsertionMode = "STITCHED_ONLY" | "PLAYER_SELECT"
 
-local type PrefetchScheduleType = "SINGLE" | "RECURRING"
+local type Tier = "BASIC" | "STANDARD"
 
 local record M
     ConfigureLogsForChannelInput: ConfigureLogsForChannelInput

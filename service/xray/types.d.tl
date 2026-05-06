@@ -763,15 +763,15 @@ end
 
 local type EncryptionType = "NONE" | "KMS"
 
-local type RetrievalStatus = "SCHEDULED" | "RUNNING" | "COMPLETE" | "FAILED" | "CANCELLED" | "TIMEOUT"
-
-local type TraceFormatType = "XRAY" | "OTEL"
+local type TraceSegmentDestinationStatus = "PENDING" | "ACTIVE"
 
 local type TimeRangeType = "TraceId" | "Event" | "Service"
 
 local type TraceSegmentDestination = "XRay" | "CloudWatchLogs"
 
-local type TraceSegmentDestinationStatus = "PENDING" | "ACTIVE"
+local type TraceFormatType = "XRAY" | "OTEL"
+
+local type RetrievalStatus = "SCHEDULED" | "RUNNING" | "COMPLETE" | "FAILED" | "CANCELLED" | "TIMEOUT"
 
 local record M
     BatchGetTracesInput: BatchGetTracesInput

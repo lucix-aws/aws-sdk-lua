@@ -2337,11 +2337,11 @@ local record WAFStaleDataException
     message: string
 end
 
-local type ChangeTokenStatus = "PROVISIONED" | "PENDING" | "INSYNC"
-
 local type ResourceType = "APPLICATION_LOAD_BALANCER" | "API_GATEWAY"
 
 local type RateKey = "IP"
+
+local type ChangeTokenStatus = "PROVISIONED" | "PENDING" | "INSYNC"
 
 local record M
     AssociateWebACLInput: AssociateWebACLInput

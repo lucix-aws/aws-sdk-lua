@@ -1716,13 +1716,13 @@ local type TableType = "customer" | "aws"
 
 local type OpenTableFormat = "ICEBERG"
 
-local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
-
 local type TableBucketType = "customer" | "aws"
 
 local type TableRecordExpirationJobStatus = "NotYetRun" | "Successful" | "Failed" | "Disabled"
 
 local type TableBucketMaintenanceType = "icebergUnreferencedFileRemoval"
+
+local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
 
 local record M
     CreateNamespaceInput: CreateNamespaceInput

@@ -1336,11 +1336,11 @@ end
 
 local type BillingGroupStatus = "ACTIVE" | "PRIMARY_ACCOUNT_MISSING" | "PENDING"
 
-local type ComputationRuleEnum = "ITEMIZED" | "CONSOLIDATED"
+local type PricingRuleType = "MARKUP" | "DISCOUNT" | "TIERING"
 
 local type PricingRuleScope = "GLOBAL" | "SERVICE" | "BILLING_ENTITY" | "SKU"
 
-local type PricingRuleType = "MARKUP" | "DISCOUNT" | "TIERING"
+local type ComputationRuleEnum = "ITEMIZED" | "CONSOLIDATED"
 
 local record M
     AssociateAccountsInput: AssociateAccountsInput

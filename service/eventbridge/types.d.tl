@@ -1446,21 +1446,21 @@ end
 
 local type ConnectionAuthorizationType = "BASIC" | "OAUTH_CLIENT_CREDENTIALS" | "API_KEY"
 
+local type ArchiveState = "ENABLED" | "DISABLED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
+
+local type ConnectionState = "CREATING" | "UPDATING" | "DELETING" | "AUTHORIZED" | "DEAUTHORIZED" | "AUTHORIZING" | "DEAUTHORIZING" | "ACTIVE" | "FAILED_CONNECTIVITY"
+
 local type ApiDestinationHttpMethod = "POST" | "GET" | "HEAD" | "OPTIONS" | "PUT" | "PATCH" | "DELETE"
 
 local type RuleState = "ENABLED" | "DISABLED" | "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"
-
-local type ArchiveState = "ENABLED" | "DISABLED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
-
-local type EventSourceState = "PENDING" | "ACTIVE" | "DELETED"
-
-local type ReplayState = "STARTING" | "RUNNING" | "CANCELLING" | "COMPLETED" | "CANCELLED" | "FAILED"
 
 local type ApiDestinationState = "ACTIVE" | "INACTIVE"
 
 local type EndpointState = "ACTIVE" | "CREATING" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
 
-local type ConnectionState = "CREATING" | "UPDATING" | "DELETING" | "AUTHORIZED" | "DEAUTHORIZED" | "AUTHORIZING" | "DEAUTHORIZING" | "ACTIVE" | "FAILED_CONNECTIVITY"
+local type ReplayState = "STARTING" | "RUNNING" | "CANCELLING" | "COMPLETED" | "CANCELLED" | "FAILED"
+
+local type EventSourceState = "PENDING" | "ACTIVE" | "DELETED"
 
 local record M
     ActivateEventSourceInput: ActivateEventSourceInput

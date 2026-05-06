@@ -7995,125 +7995,125 @@ local record UnauthorizedException
     message: string
 end
 
+local type UserProfileType = "IAM" | "SSO"
+
 local type NotificationType = "TASK" | "EVENT"
-
-local type EdgeDirection = "UPSTREAM" | "DOWNSTREAM"
-
-local type TimeSeriesEntityType = "ASSET" | "LISTING"
 
 local type JobType = "LINEAGE"
 
-local type SubscriptionRequestStatus = "PENDING" | "ACCEPTED" | "REJECTED"
+local type AttributeEntityType = "ASSET" | "LISTING"
 
-local type DataZoneEntityType = "DOMAIN_UNIT"
+local type TaskStatus = "ACTIVE" | "INACTIVE"
 
-local type MetadataGenerationRunType = "BUSINESS_DESCRIPTIONS" | "BUSINESS_NAMES" | "BUSINESS_GLOSSARY_ASSOCIATIONS"
+local type GovernedEntityType = "ASSET"
 
 local type DataSourceRunStatus = "REQUESTED" | "RUNNING" | "FAILED" | "PARTIALLY_SUCCEEDED" | "SUCCESS"
 
 local type EnvironmentStatus = "ACTIVE" | "CREATING" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED" | "VALIDATION_FAILED" | "SUSPENDED" | "DISABLED" | "EXPIRED" | "DELETED" | "INACCESSIBLE"
 
-local type ConnectionType = "ATHENA" | "BIGQUERY" | "DATABRICKS" | "DOCUMENTDB" | "DYNAMODB" | "HYPERPOD" | "IAM" | "MYSQL" | "OPENSEARCH" | "ORACLE" | "POSTGRESQL" | "REDSHIFT" | "S3" | "SAPHANA" | "SNOWFLAKE" | "SPARK" | "SQLSERVER" | "TERADATA" | "VERTICA" | "WORKFLOWS_MWAA" | "AMAZON_Q" | "MLFLOW"
+local type MetadataGenerationRunType = "BUSINESS_DESCRIPTIONS" | "BUSINESS_NAMES" | "BUSINESS_GLOSSARY_ASSOCIATIONS"
 
-local type LineageEventProcessingStatus = "REQUESTED" | "PROCESSING" | "SUCCESS" | "FAILED"
-
-local type GovernedEntityType = "ASSET"
-
-local type SortFieldProject = "NAME"
-
-local type UserProfileType = "IAM" | "SSO"
-
-local type FilterStatus = "VALID" | "INVALID"
-
-local type SortFieldAccountPool = "NAME"
-
-local type ListingStatus = "CREATING" | "ACTIVE" | "INACTIVE"
-
-local type SubscriptionGrantStatus = "GRANT_PENDING" | "REVOKE_PENDING" | "GRANT_IN_PROGRESS" | "REVOKE_IN_PROGRESS" | "GRANTED" | "REVOKED" | "GRANT_FAILED" | "REVOKE_FAILED"
-
-local type DomainVersion = "V1" | "V2"
-
-local type SortFieldConnection = "NAME"
-
-local type RuleAction = "CREATE_LISTING_CHANGE_SET" | "CREATE_SUBSCRIPTION_REQUEST"
-
-local type TypesSearchScope = "ASSET_TYPE" | "FORM_TYPE" | "LINEAGE_NODE_TYPE"
-
-local type JobRunStatus = "SCHEDULED" | "IN_PROGRESS" | "SUCCESS" | "PARTIALLY_SUCCEEDED" | "FAILED" | "ABORTED" | "TIMED_OUT" | "CANCELED"
-
-local type DataSourceStatus = "CREATING" | "FAILED_CREATION" | "READY" | "UPDATING" | "FAILED_UPDATE" | "RUNNING" | "DELETING" | "FAILED_DELETION"
+local type ProjectStatus = "ACTIVE" | "DELETING" | "DELETE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "MOVING"
 
 local type GroupSearchType = "SSO_GROUP" | "DATAZONE_SSO_GROUP" | "IAM_ROLE_SESSION_GROUP"
 
-local type GlossaryTermStatus = "ENABLED" | "DISABLED"
+local type ConfigurationStatus = "COMPLETED" | "FAILED"
 
-local type ResolutionStrategy = "MANUAL"
+local type EdgeDirection = "UPSTREAM" | "DOWNSTREAM"
 
-local type DataProductStatus = "CREATED" | "CREATING" | "CREATE_FAILED"
+local type MetadataGenerationRunStatus = "SUBMITTED" | "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED" | "PARTIALLY_SUCCEEDED"
 
-local type SubscriptionGrantOverallStatus = "PENDING" | "IN_PROGRESS" | "GRANT_FAILED" | "REVOKE_FAILED" | "GRANT_AND_REVOKE_FAILED" | "COMPLETED" | "INACCESSIBLE"
+local type RuleTargetType = "DOMAIN_UNIT"
+
+local type NotebookRunStatus = "QUEUED" | "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED"
+
+local type SortFieldProject = "NAME"
+
+local type SortFieldAccountPool = "NAME"
+
+local type SubscriptionGrantCreationMode = "AUTOMATIC" | "MANUAL"
+
+local type ConnectionType = "ATHENA" | "BIGQUERY" | "DATABRICKS" | "DOCUMENTDB" | "DYNAMODB" | "HYPERPOD" | "IAM" | "MYSQL" | "OPENSEARCH" | "ORACLE" | "POSTGRESQL" | "REDSHIFT" | "S3" | "SAPHANA" | "SNOWFLAKE" | "SPARK" | "SQLSERVER" | "TERADATA" | "VERTICA" | "WORKFLOWS_MWAA" | "AMAZON_Q" | "MLFLOW"
+
+local type Status = "ENABLED" | "DISABLED"
+
+local type ChangeAction = "PUBLISH" | "UNPUBLISH"
+
+local type UserType = "IAM_USER" | "IAM_ROLE" | "SSO_USER" | "IAM_ROLE_SESSION"
+
+local type SubscriptionStatus = "APPROVED" | "REVOKED" | "CANCELLED"
+
+local type ManagedPolicyType = "CREATE_DOMAIN_UNIT" | "OVERRIDE_DOMAIN_UNIT_OWNERS" | "ADD_TO_PROJECT_MEMBER_POOL" | "OVERRIDE_PROJECT_OWNERS" | "CREATE_GLOSSARY" | "CREATE_FORM_TYPE" | "CREATE_ASSET_TYPE" | "CREATE_PROJECT" | "CREATE_ENVIRONMENT_PROFILE" | "DELEGATE_CREATE_ENVIRONMENT_PROFILE" | "CREATE_ENVIRONMENT" | "CREATE_ENVIRONMENT_FROM_BLUEPRINT" | "CREATE_PROJECT_FROM_PROJECT_PROFILE" | "USE_ASSET_TYPE"
+
+local type SubscriptionRequestStatus = "PENDING" | "ACCEPTED" | "REJECTED"
+
+local type FormTypeStatus = "ENABLED" | "DISABLED"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type GroupProfileStatus = "ASSIGNED" | "NOT_ASSIGNED"
 
 local type DataSourceRunType = "PRIORITIZED" | "SCHEDULED"
 
 local type UserProfileStatus = "ASSIGNED" | "NOT_ASSIGNED" | "ACTIVATED" | "DEACTIVATED"
 
-local type RuleType = "METADATA_FORM_ENFORCEMENT" | "GLOSSARY_TERM_ENFORCEMENT"
+local type SubscriptionGrantOverallStatus = "PENDING" | "IN_PROGRESS" | "GRANT_FAILED" | "REVOKE_FAILED" | "GRANT_AND_REVOKE_FAILED" | "COMPLETED" | "INACCESSIBLE"
 
 local type EnableSetting = "ENABLED" | "DISABLED"
 
-local type UserSearchType = "SSO_USER" | "DATAZONE_USER" | "DATAZONE_SSO_USER" | "DATAZONE_IAM_USER"
+local type RuleType = "METADATA_FORM_ENFORCEMENT" | "GLOSSARY_TERM_ENFORCEMENT"
 
-local type ConnectionScope = "DOMAIN" | "PROJECT"
+local type DataProductStatus = "CREATED" | "CREATING" | "CREATE_FAILED"
 
-local type JobRunMode = "SCHEDULED" | "ON_DEMAND"
-
-local type SortOrder = "ASCENDING" | "DESCENDING"
+local type UserDesignation = "PROJECT_OWNER" | "PROJECT_CONTRIBUTOR" | "PROJECT_CATALOG_VIEWER" | "PROJECT_CATALOG_CONSUMER" | "PROJECT_CATALOG_STEWARD"
 
 local type DomainStatus = "CREATING" | "AVAILABLE" | "CREATION_FAILED" | "DELETING" | "DELETED" | "DELETION_FAILED"
 
-local type UserType = "IAM_USER" | "IAM_ROLE" | "SSO_USER" | "IAM_ROLE_SESSION"
+local type SortFieldConnection = "NAME"
 
-local type Status = "ENABLED" | "DISABLED"
-
-local type GroupProfileStatus = "ASSIGNED" | "NOT_ASSIGNED"
-
-local type SortKey = "CREATED_AT" | "UPDATED_AT"
-
-local type SubscriptionGrantCreationMode = "AUTOMATIC" | "MANUAL"
-
-local type MetadataGenerationRunStatus = "SUBMITTED" | "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED" | "PARTIALLY_SUCCEEDED"
-
-local type ChangeAction = "PUBLISH" | "UNPUBLISH"
-
-local type NotebookRunStatus = "QUEUED" | "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED"
-
-local type InventorySearchScope = "ASSET" | "GLOSSARY" | "GLOSSARY_TERM" | "DATA_PRODUCT"
-
-local type ConfigurationStatus = "COMPLETED" | "FAILED"
-
-local type FormTypeStatus = "ENABLED" | "DISABLED"
-
-local type ManagedPolicyType = "CREATE_DOMAIN_UNIT" | "OVERRIDE_DOMAIN_UNIT_OWNERS" | "ADD_TO_PROJECT_MEMBER_POOL" | "OVERRIDE_PROJECT_OWNERS" | "CREATE_GLOSSARY" | "CREATE_FORM_TYPE" | "CREATE_ASSET_TYPE" | "CREATE_PROJECT" | "CREATE_ENVIRONMENT_PROFILE" | "DELEGATE_CREATE_ENVIRONMENT_PROFILE" | "CREATE_ENVIRONMENT" | "CREATE_ENVIRONMENT_FROM_BLUEPRINT" | "CREATE_PROJECT_FROM_PROJECT_PROFILE" | "USE_ASSET_TYPE"
-
-local type EntityType = "ASSET" | "DATA_PRODUCT"
-
-local type SubscriptionStatus = "APPROVED" | "REVOKED" | "CANCELLED"
-
-local type DataAssetActivityStatus = "FAILED" | "PUBLISHING_FAILED" | "SUCCEEDED_CREATED" | "SUCCEEDED_UPDATED" | "SKIPPED_ALREADY_IMPORTED" | "SKIPPED_ARCHIVED" | "SKIPPED_NO_ACCESS" | "UNCHANGED"
-
-local type TargetEntityType = "DOMAIN_UNIT" | "ENVIRONMENT_BLUEPRINT_CONFIGURATION" | "ENVIRONMENT_PROFILE" | "ASSET_TYPE"
-
-local type AttributeEntityType = "ASSET" | "LISTING"
-
-local type ProjectStatus = "ACTIVE" | "DELETING" | "DELETE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "MOVING"
-
-local type TaskStatus = "ACTIVE" | "INACTIVE"
-
-local type RuleTargetType = "DOMAIN_UNIT"
+local type UserSearchType = "SSO_USER" | "DATAZONE_USER" | "DATAZONE_SSO_USER" | "DATAZONE_IAM_USER"
 
 local type GlossaryStatus = "DISABLED" | "ENABLED"
 
-local type UserDesignation = "PROJECT_OWNER" | "PROJECT_CONTRIBUTOR" | "PROJECT_CATALOG_VIEWER" | "PROJECT_CATALOG_CONSUMER" | "PROJECT_CATALOG_STEWARD"
+local type ConnectionScope = "DOMAIN" | "PROJECT"
+
+local type TargetEntityType = "DOMAIN_UNIT" | "ENVIRONMENT_BLUEPRINT_CONFIGURATION" | "ENVIRONMENT_PROFILE" | "ASSET_TYPE"
+
+local type JobRunMode = "SCHEDULED" | "ON_DEMAND"
+
+local type GlossaryTermStatus = "ENABLED" | "DISABLED"
+
+local type DataAssetActivityStatus = "FAILED" | "PUBLISHING_FAILED" | "SUCCEEDED_CREATED" | "SUCCEEDED_UPDATED" | "SKIPPED_ALREADY_IMPORTED" | "SKIPPED_ARCHIVED" | "SKIPPED_NO_ACCESS" | "UNCHANGED"
+
+local type InventorySearchScope = "ASSET" | "GLOSSARY" | "GLOSSARY_TERM" | "DATA_PRODUCT"
+
+local type EntityType = "ASSET" | "DATA_PRODUCT"
+
+local type DomainVersion = "V1" | "V2"
+
+local type ResolutionStrategy = "MANUAL"
+
+local type DataSourceStatus = "CREATING" | "FAILED_CREATION" | "READY" | "UPDATING" | "FAILED_UPDATE" | "RUNNING" | "DELETING" | "FAILED_DELETION"
+
+local type ListingStatus = "CREATING" | "ACTIVE" | "INACTIVE"
+
+local type JobRunStatus = "SCHEDULED" | "IN_PROGRESS" | "SUCCESS" | "PARTIALLY_SUCCEEDED" | "FAILED" | "ABORTED" | "TIMED_OUT" | "CANCELED"
+
+local type SortKey = "CREATED_AT" | "UPDATED_AT"
+
+local type LineageEventProcessingStatus = "REQUESTED" | "PROCESSING" | "SUCCESS" | "FAILED"
+
+local type TypesSearchScope = "ASSET_TYPE" | "FORM_TYPE" | "LINEAGE_NODE_TYPE"
+
+local type TimeSeriesEntityType = "ASSET" | "LISTING"
+
+local type DataZoneEntityType = "DOMAIN_UNIT"
+
+local type SubscriptionGrantStatus = "GRANT_PENDING" | "REVOKE_PENDING" | "GRANT_IN_PROGRESS" | "REVOKE_IN_PROGRESS" | "GRANTED" | "REVOKED" | "GRANT_FAILED" | "REVOKE_FAILED"
+
+local type RuleAction = "CREATE_LISTING_CHANGE_SET" | "CREATE_SUBSCRIPTION_REQUEST"
+
+local type FilterStatus = "VALID" | "INVALID"
 
 local record M
     AcceptPredictionsInput: AcceptPredictionsInput

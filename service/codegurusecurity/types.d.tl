@@ -554,13 +554,13 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
+local type Status = "Closed" | "Open" | "All"
+
 local type ScanState = "InProgress" | "Successful" | "Failed"
 
 local type ScanType = "Standard" | "Express"
 
 local type AnalysisType = "Security" | "All"
-
-local type Status = "Closed" | "Open" | "All"
 
 local record M
     BatchGetFindingsInput: BatchGetFindingsInput

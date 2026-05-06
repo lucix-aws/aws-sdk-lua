@@ -1256,35 +1256,35 @@ local record ValidationException
     reason: string
 end
 
-local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
-
-local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
-
-local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
-
-local type GraphSummaryMode = "BASIC" | "DETAILED"
+local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 
 local type ExportTaskStatus = "INITIALIZING" | "EXPORTING" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
+local type GraphSummaryMode = "BASIC" | "DETAILED"
+
 local type QueryLanguage = "OPEN_CYPHER"
 
-local type BlankNodeHandling = "convertToIri"
+local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
-local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
+local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
 
-local type ExplainMode = "STATIC" | "DETAILS"
+local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
 
 local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
 
-local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
+local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
+
+local type ExplainMode = "STATIC" | "DETAILS"
 
 local type ExportFormat = "PARQUET" | "CSV"
 
 local type ParquetType = "COLUMNAR"
 
-local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
-
 local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
+
+local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
+
+local type BlankNodeHandling = "convertToIri"
 
 local record M
     CancelExportTaskInput: CancelExportTaskInput

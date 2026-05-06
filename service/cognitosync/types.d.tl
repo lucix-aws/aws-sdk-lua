@@ -549,9 +549,9 @@ local record TooManyRequestsException
     message: string
 end
 
-local type BulkPublishStatus = "NOT_STARTED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
-
 local type Platform = "APNS" | "APNS_SANDBOX" | "GCM" | "ADM"
+
+local type BulkPublishStatus = "NOT_STARTED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
 
 local record M
     BulkPublishInput: BulkPublishInput

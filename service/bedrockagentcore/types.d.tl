@@ -2251,25 +2251,25 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type BrowserSessionStatus = "READY" | "TERMINATED"
+local type ABTestExecutionStatus = "PAUSED" | "RUNNING" | "STOPPED" | "NOT_STARTED"
 
 local type SessionStatus = "IN_PROGRESS" | "FAILED"
 
-local type RecommendationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "DELETING"
-
-local type BatchEvaluationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING"
-
 local type RecommendationType = "SYSTEM_PROMPT_RECOMMENDATION" | "TOOL_DESCRIPTION_RECOMMENDATION"
+
+local type RecommendationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "DELETING"
 
 local type Oauth2FlowType = "USER_FEDERATION" | "M2M" | "ON_BEHALF_OF_TOKEN_EXCHANGE"
 
-local type ABTestExecutionStatus = "PAUSED" | "RUNNING" | "STOPPED" | "NOT_STARTED"
-
 local type ToolName = "executeCode" | "executeCommand" | "readFiles" | "listFiles" | "removeFiles" | "writeFiles" | "startCommandExecution" | "getTask" | "stopTask"
+
+local type BatchEvaluationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING"
+
+local type ABTestStatus = "CREATING" | "ACTIVE" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED" | "FAILED"
 
 local type CodeInterpreterSessionStatus = "READY" | "TERMINATED"
 
-local type ABTestStatus = "CREATING" | "ACTIVE" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED" | "FAILED"
+local type BrowserSessionStatus = "READY" | "TERMINATED"
 
 local record M
     BatchCreateMemoryRecordsInput: BatchCreateMemoryRecordsInput

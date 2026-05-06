@@ -5306,25 +5306,25 @@ local record RepositoryNameRequiredException
     message: string
 end
 
-local type PullRequestStatusEnum = "OPEN" | "CLOSED"
-
-local type OverrideStatus = "OVERRIDE" | "REVOKE"
-
-local type OrderEnum = "ascending" | "descending"
-
-local type ConflictResolutionStrategyTypeEnum = "NONE" | "ACCEPT_SOURCE" | "ACCEPT_DESTINATION" | "AUTOMERGE"
-
-local type ApprovalState = "APPROVE" | "REVOKE"
-
-local type PullRequestEventType = "PULL_REQUEST_CREATED" | "PULL_REQUEST_STATUS_CHANGED" | "PULL_REQUEST_SOURCE_REFERENCE_UPDATED" | "PULL_REQUEST_MERGE_STATE_CHANGED" | "PULL_REQUEST_APPROVAL_RULE_CREATED" | "PULL_REQUEST_APPROVAL_RULE_UPDATED" | "PULL_REQUEST_APPROVAL_RULE_DELETED" | "PULL_REQUEST_APPROVAL_RULE_OVERRIDDEN" | "PULL_REQUEST_APPROVAL_STATE_CHANGED"
+local type MergeOptionTypeEnum = "FAST_FORWARD_MERGE" | "SQUASH_MERGE" | "THREE_WAY_MERGE"
 
 local type SortByEnum = "repositoryName" | "lastModifiedDate"
 
-local type FileModeTypeEnum = "EXECUTABLE" | "NORMAL" | "SYMLINK"
+local type OrderEnum = "ascending" | "descending"
 
-local type MergeOptionTypeEnum = "FAST_FORWARD_MERGE" | "SQUASH_MERGE" | "THREE_WAY_MERGE"
+local type PullRequestStatusEnum = "OPEN" | "CLOSED"
 
 local type ConflictDetailLevelTypeEnum = "FILE_LEVEL" | "LINE_LEVEL"
+
+local type OverrideStatus = "OVERRIDE" | "REVOKE"
+
+local type FileModeTypeEnum = "EXECUTABLE" | "NORMAL" | "SYMLINK"
+
+local type ApprovalState = "APPROVE" | "REVOKE"
+
+local type ConflictResolutionStrategyTypeEnum = "NONE" | "ACCEPT_SOURCE" | "ACCEPT_DESTINATION" | "AUTOMERGE"
+
+local type PullRequestEventType = "PULL_REQUEST_CREATED" | "PULL_REQUEST_STATUS_CHANGED" | "PULL_REQUEST_SOURCE_REFERENCE_UPDATED" | "PULL_REQUEST_MERGE_STATE_CHANGED" | "PULL_REQUEST_APPROVAL_RULE_CREATED" | "PULL_REQUEST_APPROVAL_RULE_UPDATED" | "PULL_REQUEST_APPROVAL_RULE_DELETED" | "PULL_REQUEST_APPROVAL_RULE_OVERRIDDEN" | "PULL_REQUEST_APPROVAL_STATE_CHANGED"
 
 local record M
     AssociateApprovalRuleTemplateWithRepositoryInput: AssociateApprovalRuleTemplateWithRepositoryInput

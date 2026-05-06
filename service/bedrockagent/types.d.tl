@@ -2663,29 +2663,29 @@ end
 
 local type DataDeletionPolicy = "RETAIN" | "DELETE"
 
-local type KnowledgeBaseStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "FAILED" | "DELETE_UNSUCCESSFUL"
-
-local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
-
-local type AliasInvocationState = "ACCEPT_INVOCATIONS" | "REJECT_INVOCATIONS"
-
-local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
-
 local type AgentAliasStatus = "CREATING" | "PREPARED" | "FAILED" | "UPDATING" | "DELETING" | "DISSOCIATED"
 
-local type FlowStatus = "Failed" | "Prepared" | "Preparing" | "NotPrepared"
-
-local type RelayConversationHistory = "TO_COLLABORATOR" | "DISABLED"
-
-local type DataSourceStatus = "AVAILABLE" | "DELETING" | "DELETE_UNSUCCESSFUL"
-
-local type KnowledgeBaseState = "ENABLED" | "DISABLED"
-
-local type ActionGroupState = "ENABLED" | "DISABLED"
+local type KnowledgeBaseStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "FAILED" | "DELETE_UNSUCCESSFUL"
 
 local type ActionGroupSignature = "AMAZON.UserInput" | "AMAZON.CodeInterpreter" | "ANTHROPIC.Computer" | "ANTHROPIC.Bash" | "ANTHROPIC.TextEditor"
 
 local type AgentStatus = "CREATING" | "PREPARING" | "PREPARED" | "NOT_PREPARED" | "DELETING" | "FAILED" | "VERSIONING" | "UPDATING"
+
+local type KnowledgeBaseState = "ENABLED" | "DISABLED"
+
+local type DataSourceStatus = "AVAILABLE" | "DELETING" | "DELETE_UNSUCCESSFUL"
+
+local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
+
+local type AliasInvocationState = "ACCEPT_INVOCATIONS" | "REJECT_INVOCATIONS"
+
+local type RelayConversationHistory = "TO_COLLABORATOR" | "DISABLED"
+
+local type FlowStatus = "Failed" | "Prepared" | "Preparing" | "NotPrepared"
+
+local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
+
+local type ActionGroupState = "ENABLED" | "DISABLED"
 
 local record M
     AssociateAgentCollaboratorInput: AssociateAgentCollaboratorInput

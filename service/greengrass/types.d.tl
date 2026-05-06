@@ -1531,17 +1531,17 @@ local record InternalServerErrorException
     Message: string
 end
 
-local type UpdateAgentLogLevel = "NONE" | "TRACE" | "DEBUG" | "VERBOSE" | "INFO" | "WARN" | "ERROR" | "FATAL"
-
-local type DeploymentType = "NewDeployment" | "Redeployment" | "ResetDeployment" | "ForceResetDeployment"
-
-local type BulkDeploymentStatus = "Initializing" | "Running" | "Completed" | "Stopping" | "Stopped" | "Failed"
+local type SoftwareToUpdate = "core" | "ota_agent"
 
 local type UpdateTargetsArchitecture = "armv6l" | "armv7l" | "x86_64" | "aarch64"
 
+local type UpdateAgentLogLevel = "NONE" | "TRACE" | "DEBUG" | "VERBOSE" | "INFO" | "WARN" | "ERROR" | "FATAL"
+
 local type UpdateTargetsOperatingSystem = "ubuntu" | "raspbian" | "amazon_linux" | "openwrt"
 
-local type SoftwareToUpdate = "core" | "ota_agent"
+local type BulkDeploymentStatus = "Initializing" | "Running" | "Completed" | "Stopping" | "Stopped" | "Failed"
+
+local type DeploymentType = "NewDeployment" | "Redeployment" | "ResetDeployment" | "ForceResetDeployment"
 
 local record M
     AssociateRoleToGroupInput: AssociateRoleToGroupInput

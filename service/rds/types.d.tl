@@ -5459,37 +5459,37 @@ local type SourceType = "db-instance" | "db-parameter-group" | "db-security-grou
 
 local type AuditPolicyState = "locked" | "unlocked"
 
+local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
+
 local type ClusterScalabilityType = "standard" | "limitless"
 
-local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
-
-local type ReplicaMode = "open-read-only" | "mounted"
-
-local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
-
-local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
-
-local type MasterUserAuthenticationType = "password" | "iam-db-auth"
-
-local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
-
-local type AutomationMode = "full" | "all-paused"
-
-local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
-
-local type DatabaseInsightsMode = "standard" | "advanced"
-
-local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
+local type TargetConnectionNetworkType = "IPV4" | "IPV6"
 
 local type DBProxyEndpointTargetRole = "READ_WRITE" | "READ_ONLY"
 
 local type ActivityStreamMode = "sync" | "async"
 
-local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
+local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
+
+local type MasterUserAuthenticationType = "password" | "iam-db-auth"
+
+local type AutomationMode = "full" | "all-paused"
+
+local type DatabaseInsightsMode = "standard" | "advanced"
+
+local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
+
+local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
 
 local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
 
-local type TargetConnectionNetworkType = "IPV4" | "IPV6"
+local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
+
+local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
+
+local type ReplicaMode = "open-read-only" | "mounted"
+
+local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
 
 local record M
     AddRoleToDBClusterInput: AddRoleToDBClusterInput

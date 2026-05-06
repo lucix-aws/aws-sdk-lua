@@ -387,13 +387,13 @@ end
 
 local type DomainStatus = "ACTIVE" | "DELETING" | "DELETED"
 
-local type MedicalScribeLanguageCode = "en-US"
+local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
 
-local type SubscriptionStatus = "ACTIVE" | "INACTIVE" | "DELETED"
+local type MedicalScribeLanguageCode = "en-US"
 
 local type MedicalScribeMediaEncoding = "pcm" | "flac"
 
-local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
+local type SubscriptionStatus = "ACTIVE" | "INACTIVE" | "DELETED"
 
 local record M
     ActivateSubscriptionInput: ActivateSubscriptionInput

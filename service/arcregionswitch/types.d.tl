@@ -416,9 +416,13 @@ local record ResourceNotFoundException
     message: string
 end
 
+local type EvaluationStatus = "passed" | "actionRequired" | "pendingEvaluation" | "unknown"
+
 local type UpdatePlanExecutionAction = "switchToGraceful" | "switchToUngraceful" | "pause" | "resume"
 
-local type ExecutionMode = "graceful" | "ungraceful"
+local type ExecutionAction = "activate" | "deactivate" | "postRecovery"
+
+local type RecoveryApproach = "activeActive" | "activePassive"
 
 local type Approval = "approve" | "decline"
 
@@ -426,11 +430,7 @@ local type ExecutionState = "inProgress" | "pausedByFailedStep" | "pausedByOpera
 
 local type UpdatePlanExecutionStepAction = "switchToUngraceful" | "skip"
 
-local type RecoveryApproach = "activeActive" | "activePassive"
-
-local type EvaluationStatus = "passed" | "actionRequired" | "pendingEvaluation" | "unknown"
-
-local type ExecutionAction = "activate" | "deactivate" | "postRecovery"
+local type ExecutionMode = "graceful" | "ungraceful"
 
 local record M
     ApprovePlanExecutionStepInput: ApprovePlanExecutionStepInput

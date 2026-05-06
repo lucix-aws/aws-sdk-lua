@@ -2481,31 +2481,31 @@ end
 
 local type EncryptionType = "KMS_BASED_ENCRYPTION" | "FLEETWISE_DEFAULT_ENCRYPTION"
 
-local type Compression = "OFF" | "SNAPPY"
-
 local type UpdateCampaignAction = "APPROVE" | "SUSPEND" | "RESUME" | "UPDATE"
 
-local type CampaignStatus = "CREATING" | "WAITING_FOR_APPROVAL" | "RUNNING" | "SUSPENDED"
-
-local type DiagnosticsMode = "OFF" | "SEND_ACTIVE_DTCS"
-
-local type RegistrationStatus = "REGISTRATION_PENDING" | "REGISTRATION_SUCCESS" | "REGISTRATION_FAILURE"
-
-local type ManifestStatus = "ACTIVE" | "DRAFT" | "INVALID" | "VALIDATING"
-
-local type EncryptionStatus = "PENDING" | "SUCCESS" | "FAILURE"
-
-local type SignalNodeType = "SENSOR" | "ACTUATOR" | "ATTRIBUTE" | "BRANCH" | "CUSTOM_STRUCT" | "CUSTOM_PROPERTY"
-
-local type ListResponseScope = "METADATA_ONLY"
-
-local type VehicleAssociationBehavior = "CreateIotThing" | "ValidateIotThingExists"
-
-local type UpdateMode = "Overwrite" | "Merge"
+local type Compression = "OFF" | "SNAPPY"
 
 local type SpoolingMode = "OFF" | "TO_DISK"
 
+local type DiagnosticsMode = "OFF" | "SEND_ACTIVE_DTCS"
+
+local type UpdateMode = "Overwrite" | "Merge"
+
+local type ManifestStatus = "ACTIVE" | "DRAFT" | "INVALID" | "VALIDATING"
+
 local type DefaultForUnmappedSignalsType = "CUSTOM_DECODING"
+
+local type VehicleAssociationBehavior = "CreateIotThing" | "ValidateIotThingExists"
+
+local type CampaignStatus = "CREATING" | "WAITING_FOR_APPROVAL" | "RUNNING" | "SUSPENDED"
+
+local type RegistrationStatus = "REGISTRATION_PENDING" | "REGISTRATION_SUCCESS" | "REGISTRATION_FAILURE"
+
+local type ListResponseScope = "METADATA_ONLY"
+
+local type SignalNodeType = "SENSOR" | "ACTUATOR" | "ATTRIBUTE" | "BRANCH" | "CUSTOM_STRUCT" | "CUSTOM_PROPERTY"
+
+local type EncryptionStatus = "PENDING" | "SUCCESS" | "FAILURE"
 
 local record M
     AssociateVehicleFleetInput: AssociateVehicleFleetInput

@@ -714,25 +714,25 @@ local record ValidationException
     Message: string
 end
 
+local type ApprovalTeamStatus = "ACTIVE" | "INACTIVE" | "DELETING" | "PENDING"
+
+local type IdentitySourceType = "IAM_IDENTITY_CENTER"
+
+local type IdentitySourceStatus = "CREATING" | "ACTIVE" | "DELETING" | "ERROR"
+
+local type SessionExecutionStatus = "EXECUTED" | "FAILED" | "PENDING"
+
 local type IdentitySourceStatusCode = "ACCESS_DENIED" | "DELETION_FAILED" | "IDC_INSTANCE_NOT_FOUND" | "IDC_INSTANCE_NOT_VALID"
 
 local type ActionCompletionStrategy = "AUTO_COMPLETION_UPON_APPROVAL"
 
 local type PolicyType = "AWS_MANAGED" | "AWS_RAM"
 
-local type SessionExecutionStatus = "EXECUTED" | "FAILED" | "PENDING"
-
-local type ApprovalTeamStatus = "ACTIVE" | "INACTIVE" | "DELETING" | "PENDING"
-
-local type ApprovalTeamStatusCode = "VALIDATING" | "PENDING_ACTIVATION" | "FAILED_VALIDATION" | "FAILED_ACTIVATION" | "UPDATE_PENDING_APPROVAL" | "UPDATE_PENDING_ACTIVATION" | "UPDATE_FAILED_APPROVAL" | "UPDATE_FAILED_ACTIVATION" | "UPDATE_FAILED_VALIDATION" | "DELETE_PENDING_APPROVAL" | "DELETE_FAILED_APPROVAL" | "DELETE_FAILED_VALIDATION"
-
-local type IdentitySourceType = "IAM_IDENTITY_CENTER"
+local type SessionStatus = "PENDING" | "CANCELLED" | "APPROVED" | "FAILED" | "CREATING"
 
 local type SessionStatusCode = "REJECTED" | "EXPIRED" | "CONFIGURATION_CHANGED" | "ALL_APPROVERS_IN_SESSION"
 
-local type IdentitySourceStatus = "CREATING" | "ACTIVE" | "DELETING" | "ERROR"
-
-local type SessionStatus = "PENDING" | "CANCELLED" | "APPROVED" | "FAILED" | "CREATING"
+local type ApprovalTeamStatusCode = "VALIDATING" | "PENDING_ACTIVATION" | "FAILED_VALIDATION" | "FAILED_ACTIVATION" | "UPDATE_PENDING_APPROVAL" | "UPDATE_PENDING_ACTIVATION" | "UPDATE_FAILED_APPROVAL" | "UPDATE_FAILED_ACTIVATION" | "UPDATE_FAILED_VALIDATION" | "DELETE_PENDING_APPROVAL" | "DELETE_FAILED_APPROVAL" | "DELETE_FAILED_VALIDATION"
 
 local record M
     CancelSessionInput: CancelSessionInput

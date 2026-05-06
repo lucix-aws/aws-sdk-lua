@@ -3124,31 +3124,31 @@ local record UnsupportedOperationException
     Message: string
 end
 
-local type ListInsightsDataType = "InsightsEvents"
-
-local type InsightType = "ApiCallRateInsight" | "ApiErrorRateInsight"
-
 local type MaxEventSize = "Standard" | "Large"
 
-local type DashboardStatus = "CREATING" | "CREATED" | "UPDATING" | "UPDATED" | "DELETING"
+local type BillingMode = "EXTENDABLE_RETENTION_PRICING" | "FIXED_RETENTION_PRICING"
+
+local type FederationStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED"
 
 local type InsightsMetricDataType = "FillWithZeros" | "NonZeroData"
 
-local type EventCategory = "insight"
-
-local type DeliveryStatus = "SUCCESS" | "FAILED" | "FAILED_SIGNING_FILE" | "PENDING" | "RESOURCE_NOT_FOUND" | "ACCESS_DENIED" | "ACCESS_DENIED_SIGNING_FILE" | "CANCELLED" | "UNKNOWN"
+local type QueryStatus = "QUEUED" | "RUNNING" | "FINISHED" | "FAILED" | "CANCELLED" | "TIMED_OUT"
 
 local type DashboardType = "MANAGED" | "CUSTOM"
 
 local type ImportStatus = "INITIALIZING" | "IN_PROGRESS" | "FAILED" | "STOPPED" | "COMPLETED"
 
+local type DeliveryStatus = "SUCCESS" | "FAILED" | "FAILED_SIGNING_FILE" | "PENDING" | "RESOURCE_NOT_FOUND" | "ACCESS_DENIED" | "ACCESS_DENIED_SIGNING_FILE" | "CANCELLED" | "UNKNOWN"
+
+local type EventCategory = "insight"
+
 local type EventDataStoreStatus = "CREATED" | "ENABLED" | "PENDING_DELETION" | "STARTING_INGESTION" | "STOPPING_INGESTION" | "STOPPED_INGESTION"
 
-local type QueryStatus = "QUEUED" | "RUNNING" | "FINISHED" | "FAILED" | "CANCELLED" | "TIMED_OUT"
+local type ListInsightsDataType = "InsightsEvents"
 
-local type BillingMode = "EXTENDABLE_RETENTION_PRICING" | "FIXED_RETENTION_PRICING"
+local type InsightType = "ApiCallRateInsight" | "ApiErrorRateInsight"
 
-local type FederationStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED"
+local type DashboardStatus = "CREATING" | "CREATED" | "UPDATING" | "UPDATED" | "DELETING"
 
 local record M
     AddTagsInput: AddTagsInput

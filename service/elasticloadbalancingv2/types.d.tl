@@ -1327,19 +1327,19 @@ end
 
 local type TargetGroupIpAddressTypeEnum = "ipv4" | "ipv6"
 
-local type EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum = "on" | "off"
+local type LoadBalancerSchemeEnum = "internet-facing" | "internal"
 
 local type IpAddressType = "ipv4" | "dualstack" | "dualstack-without-public-ipv4"
 
-local type LoadBalancerSchemeEnum = "internet-facing" | "internal"
+local type TargetTypeEnum = "instance" | "ip" | "lambda" | "alb"
+
+local type EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum = "on" | "off"
 
 local type ProtocolEnum = "HTTP" | "HTTPS" | "TCP" | "TLS" | "UDP" | "TCP_UDP" | "GENEVE" | "QUIC" | "TCP_QUIC"
 
-local type EnablePrefixForIpv6SourceNatEnum = "on" | "off"
-
 local type LoadBalancerTypeEnum = "application" | "network" | "gateway"
 
-local type TargetTypeEnum = "instance" | "ip" | "lambda" | "alb"
+local type EnablePrefixForIpv6SourceNatEnum = "on" | "off"
 
 local record M
     AddListenerCertificatesInput: AddListenerCertificatesInput

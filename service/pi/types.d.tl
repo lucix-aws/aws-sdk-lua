@@ -321,11 +321,11 @@ end
 
 local type PeriodAlignment = "END_TIME" | "START_TIME"
 
+local type AcceptLanguage = "EN_US"
+
 local type ServiceType = "RDS" | "DOCDB"
 
 local type TextFormat = "PLAIN_TEXT" | "MARKDOWN"
-
-local type AcceptLanguage = "EN_US"
 
 local record M
     CreatePerformanceAnalysisReportInput: CreatePerformanceAnalysisReportInput

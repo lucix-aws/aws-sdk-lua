@@ -276,13 +276,13 @@ local record ValidationException
     Reason: string
 end
 
-local type ChecksumAlgorithm = "SHA256"
+local type SSEType = "sse-ebs" | "sse-kms" | "none"
 
 local type ChecksumAggregationMethod = "LINEAR"
 
-local type SSEType = "sse-ebs" | "sse-kms" | "none"
-
 local type Status = "completed" | "pending" | "error"
+
+local type ChecksumAlgorithm = "SHA256"
 
 local record M
     CompleteSnapshotInput: CompleteSnapshotInput

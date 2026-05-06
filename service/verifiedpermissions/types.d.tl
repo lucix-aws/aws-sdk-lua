@@ -1371,15 +1371,15 @@ end
 
 local type PolicyEffect = "Permit" | "Forbid"
 
+local type Decision = "ALLOW" | "DENY"
+
 local type DeletionProtection = "ENABLED" | "DISABLED"
+
+local type AliasState = "Active" | "PendingDeletion"
 
 local type PolicyType = "STATIC" | "TEMPLATE_LINKED"
 
 local type CedarVersion = "CEDAR_2" | "CEDAR_4"
-
-local type AliasState = "Active" | "PendingDeletion"
-
-local type Decision = "ALLOW" | "DENY"
 
 local record M
     BatchGetPolicyInput: BatchGetPolicyInput

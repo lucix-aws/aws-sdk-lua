@@ -728,6 +728,8 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
+local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
+
 local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type AssociationType = "DOWNSTREAM_SELLER" | "END_CUSTOMER" | "INTERNAL"
@@ -737,8 +739,6 @@ local type HandshakeType = "START_SERVICE_PERIOD" | "REVOKE_SERVICE_PERIOD" | "P
 local type ResaleAccountModel = "DISTRIBUTOR" | "END_CUSTOMER" | "SOLUTION_PROVIDER"
 
 local type Program = "SOLUTION_PROVIDER" | "DISTRIBUTION" | "DISTRIBUTION_SELLER"
-
-local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
 
 local record M
     AcceptChannelHandshakeInput: AcceptChannelHandshakeInput

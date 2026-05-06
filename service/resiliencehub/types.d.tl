@@ -2395,31 +2395,31 @@ local record ValidationException
     message: string
 end
 
+local type DataLocationConstraint = "AnyLocation" | "SameContinent" | "SameCountry"
+
 local type ResourceResolutionStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type ComplianceStatus = "PolicyBreached" | "PolicyMet" | "NotApplicable" | "MissingPolicy"
+local type RecommendationTemplateStatus = "Pending" | "InProgress" | "Failed" | "Success"
 
 local type ResourceImportStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type DataLocationConstraint = "AnyLocation" | "SameContinent" | "SameCountry"
+local type AppAssessmentScheduleType = "Disabled" | "Daily"
 
-local type AssessmentStatus = "Pending" | "InProgress" | "Failed" | "Success"
+local type ComplianceStatus = "PolicyBreached" | "PolicyMet" | "NotApplicable" | "MissingPolicy"
 
 local type ResourcesGroupingRecGenStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type AppAssessmentScheduleType = "Disabled" | "Daily"
-
-local type TemplateFormat = "CfnYaml" | "CfnJson"
+local type AssessmentInvoker = "User" | "System"
 
 local type MetricsExportStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type ResourceImportStrategyType = "AddOnly" | "ReplaceAll"
-
-local type AssessmentInvoker = "User" | "System"
-
 local type ResiliencyPolicyTier = "MissionCritical" | "Critical" | "Important" | "CoreServices" | "NonCritical" | "NotApplicable"
 
-local type RecommendationTemplateStatus = "Pending" | "InProgress" | "Failed" | "Success"
+local type TemplateFormat = "CfnYaml" | "CfnJson"
+
+local type AssessmentStatus = "Pending" | "InProgress" | "Failed" | "Success"
+
+local type ResourceImportStrategyType = "AddOnly" | "ReplaceAll"
 
 local record M
     AcceptResourceGroupingRecommendationsInput: AcceptResourceGroupingRecommendationsInput

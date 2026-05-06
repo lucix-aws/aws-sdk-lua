@@ -1962,23 +1962,23 @@ local record ValidationException
     reason: string
 end
 
-local type AllowPublish = "ALLOW" | "BLOCK"
-
-local type PackageGroupAssociationType = "STRONG" | "WEAK"
-
-local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
-
-local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
-
-local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
+local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
 
 local type EndpointType = "dualstack" | "ipv4"
 
 local type AllowUpstream = "ALLOW" | "BLOCK"
 
-local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
+local type AllowPublish = "ALLOW" | "BLOCK"
+
+local type PackageGroupAssociationType = "STRONG" | "WEAK"
+
+local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
+
+local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
 
 local type PackageVersionSortType = "PUBLISHED_TIME"
+
+local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
 
 local record M
     AssociateExternalConnectionInput: AssociateExternalConnectionInput

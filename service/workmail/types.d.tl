@@ -2759,27 +2759,27 @@ local record UnsupportedOperationException
     Message: string
 end
 
-local type ResourceType = "ROOM" | "EQUIPMENT"
-
-local type EntityType = "GROUP" | "USER" | "RESOURCE"
+local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
 
 local type EntityState = "ENABLED" | "DISABLED" | "DELETED"
-
-local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
-
-local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
-
-local type AccessEffect = "ALLOW" | "DENY"
-
-local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
-
-local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
 
 local type AccessControlRuleEffect = "ALLOW" | "DENY"
 
 local type MailboxExportJobState = "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
 
-local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
+local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
+
+local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
+
+local type ResourceType = "ROOM" | "EQUIPMENT"
+
+local type AccessEffect = "ALLOW" | "DENY"
+
+local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
+
+local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
+
+local type EntityType = "GROUP" | "USER" | "RESOURCE"
 
 local record M
     AssociateDelegateToResourceInput: AssociateDelegateToResourceInput

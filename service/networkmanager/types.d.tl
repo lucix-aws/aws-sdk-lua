@@ -4015,9 +4015,9 @@ local type AttachmentType = "CONNECT" | "SITE_TO_SITE_VPN" | "VPC" | "DIRECT_CON
 
 local type CoreNetworkPolicyAlias = "LIVE" | "LATEST"
 
-local type AttachmentState = "REJECTED" | "PENDING_ATTACHMENT_ACCEPTANCE" | "CREATING" | "FAILED" | "AVAILABLE" | "UPDATING" | "PENDING_NETWORK_UPDATE" | "PENDING_TAG_ACCEPTANCE" | "DELETING"
-
 local type RouteTableType = "TRANSIT_GATEWAY_ROUTE_TABLE" | "CORE_NETWORK_SEGMENT" | "NETWORK_FUNCTION_GROUP"
+
+local type AttachmentState = "REJECTED" | "PENDING_ATTACHMENT_ACCEPTANCE" | "CREATING" | "FAILED" | "AVAILABLE" | "UPDATING" | "PENDING_NETWORK_UPDATE" | "PENDING_TAG_ACCEPTANCE" | "DELETING"
 
 local record M
     AcceptAttachmentInput: AcceptAttachmentInput
