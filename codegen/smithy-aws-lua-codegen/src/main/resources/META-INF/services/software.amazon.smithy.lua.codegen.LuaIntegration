@@ -1,4 +1,4 @@
 software.amazon.smithy.lua.aws.codegen.AwsSdkIntegration
 software.amazon.smithy.lua.aws.codegen.service.s3.RemoveBucketPath
-software.amazon.smithy.lua.aws.codegen.service.s3.EndpointAuthSchemeResolver
-software.amazon.smithy.lua.aws.codegen.service.eventbridge.EndpointAuthSchemeResolver
+software.amazon.smithy.lua.aws.codegen.service.s3.S3EndpointAuthSchemeResolver
+software.amazon.smithy.lua.aws.codegen.service.eventbridge.EventBridgeEndpointAuthSchemeResolver
