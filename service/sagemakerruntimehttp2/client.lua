@@ -5,6 +5,7 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sagemakerruntimehttp2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schemas = require("sagemakerruntimehttp2.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
 local traits = require("smithy.traits")
 
@@ -48,6 +49,10 @@ function M.new(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
     local self = setmetatable(base_client.new(cfg), Client)
     return self
+end
+
+function Client:invokeEndpointWithBidirectionalStream(input, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeEndpointWithBidirectionalStream, input, options)
 end
 
 return M

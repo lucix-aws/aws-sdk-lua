@@ -99,6 +99,10 @@ function Client:listTagsForResource(input, options)
     return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options)
 end
 
+function Client:startMedicalScribeListeningSession(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMedicalScribeListeningSession, input, options)
+end
+
 function Client:startPatientInsightsJob(input, options)
     return self:invokeOperation(schemas.Service, schemas.StartPatientInsightsJob, input, options)
 end

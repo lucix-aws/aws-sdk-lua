@@ -55,4 +55,20 @@ function Client:getMedicalScribeStream(input, options)
     return self:invokeOperation(schemas.Service, schemas.GetMedicalScribeStream, input, options)
 end
 
+function Client:startCallAnalyticsStreamTranscription(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartCallAnalyticsStreamTranscription, input, options)
+end
+
+function Client:startMedicalScribeStream(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMedicalScribeStream, input, options)
+end
+
+function Client:startMedicalStreamTranscription(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartMedicalStreamTranscription, input, options)
+end
+
+function Client:startStreamTranscription(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartStreamTranscription, input, options)
+end
+
 return M

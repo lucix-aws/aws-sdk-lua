@@ -75,6 +75,10 @@ function Client:invokeModel(input, options)
     return self:invokeOperation(schemas.Service, schemas.InvokeModel, input, options)
 end
 
+function Client:invokeModelWithBidirectionalStream(input, options)
+    return self:invokeOperation(schemas.Service, schemas.InvokeModelWithBidirectionalStream, input, options)
+end
+
 function Client:invokeModelWithResponseStream(input, options)
     return self:invokeOperation(schemas.Service, schemas.InvokeModelWithResponseStream, input, options)
 end

@@ -79,6 +79,10 @@ function Client:putLexicon(input, options)
     return self:invokeOperation(schemas.Service, schemas.PutLexicon, input, options)
 end
 
+function Client:startSpeechSynthesisStream(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartSpeechSynthesisStream, input, options)
+end
+
 function Client:startSpeechSynthesisTask(input, options)
     return self:invokeOperation(schemas.Service, schemas.StartSpeechSynthesisTask, input, options)
 end

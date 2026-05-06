@@ -71,4 +71,8 @@ function Client:recognizeUtterance(input, options)
     return self:invokeOperation(schemas.Service, schemas.RecognizeUtterance, input, options)
 end
 
+function Client:startConversation(input, options)
+    return self:invokeOperation(schemas.Service, schemas.StartConversation, input, options)
+end
+
 return M

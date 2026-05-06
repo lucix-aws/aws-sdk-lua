@@ -67,6 +67,10 @@ function Client:cancelSubscription(input, options)
     return self:invokeOperation(schemas.Service, schemas.CancelSubscription, input, options)
 end
 
+function Client:chat(input, options)
+    return self:invokeOperation(schemas.Service, schemas.Chat, input, options)
+end
+
 function Client:chatSync(input, options)
     return self:invokeOperation(schemas.Service, schemas.ChatSync, input, options)
 end
