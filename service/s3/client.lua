@@ -4,15 +4,11 @@ local endpoint = require("smithy.endpoint")
 local endpoint_auth_resolver = require("smithy.auth.endpoint_auth_resolver")
 local endpoint_rules = require("s3.endpoint_rules")
 local restxml_protocol = require("smithy.protocol.restxml")
+local s3express_defaults = require("aws.s3express_defaults")
 local schemas = require("s3.schemas")
 local sdk_defaults = require("aws.sdk_defaults")
-local auth = require("smithy.auth")
-local s3express_signer = require("smithy.s3express_signer")
-local s3express = require("aws.s3express")
 
 local M = {}
-
-local S3EXPRESS_SCHEME_ID = "com.amazonaws.s3#sigv4express"
 
 local Client = {}
 Client.__index = Client
@@ -48,35 +44,10 @@ function M.new(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
-
-    -- Register S3Express auth scheme
-    cfg.auth_schemes[S3EXPRESS_SCHEME_ID] = {
-        scheme_id = S3EXPRESS_SCHEME_ID,
-        identity_type = "s3express_credentials",
-        signer = s3express_signer.sign,
-        identity_resolver = function(self, identity_resolvers)
-            return identity_resolvers[self.identity_type]
-        end,
-    }
-
     cfg.auth_scheme_resolver = endpoint_auth_resolver.new(cfg)
+    s3express_defaults.resolve(cfg)
     local self = setmetatable(base_client.new(cfg), Client)
-
-    -- Initialize S3Express credential provider (needs reference to client)
-    if not cfg.disable_s3_express_session_auth then
-        local provider = s3express.new({
-            s3_client = self,
-            base_credentials_resolver = cfg.identity_resolvers["aws_credentials"],
-        })
-        cfg.identity_resolvers["s3express_credentials"] = function()
-            local bucket = cfg._s3express_bucket
-            if not bucket then
-                return nil, { type = "sdk", code = "S3ExpressError", message = "no bucket in context for S3Express" }
-            end
-            return provider.resolve(bucket)
-        end
-    end
-
+    s3express_defaults.finalize(cfg, self)
     return self
 end
 
