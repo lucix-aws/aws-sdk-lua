@@ -11,7 +11,7 @@ codegen-deps:
 
 # Run the SDK smithy build + copy to service/
 smithy-build:
-	cd codegen && ./gradlew build
+	cd codegen && ./gradlew clean build
 
 SMITHY_LUA_RUNTIME := $(SMITHY_LUA_DIR)/runtime
 # Include smithy runtime at both levels:
