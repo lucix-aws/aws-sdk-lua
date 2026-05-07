@@ -16,6 +16,7 @@
 local s3 = require("s3.client")
 local async = require("smithy.async")
 local http = require("smithy.http")
+local curl_async = require("smithy.http.curl_async")
 
 local bucket = arg[1]
 local prefix = arg[2]
@@ -26,9 +27,10 @@ if not bucket or not prefix then
     os.exit(1)
 end
 
-local client = s3.new({ region = region })
+local sync_client = s3.new({ region = region })
+local async_client = s3.new({ region = region, http_client = curl_async.new() })
 local keys = {}
-for i = 1, 10 do keys[i] = prefix .. "/" .. i end
+for i = 1, 100 do keys[i] = prefix .. "/" .. i end
 
 local function body_size(body)
     if not body then return 0 end
@@ -37,11 +39,11 @@ local function body_size(body)
 end
 
 -- Sequential
-print("=== Sequential (10 GetObject) ===")
+print("=== Sequential (100 GetObject) ===")
 local t0 = os.clock()
 local total = 0
 for _, key in ipairs(keys) do
-    local r, err = client:getObject({ Bucket = bucket, Key = key }):await()
+    local r, err = sync_client:getObject({ Bucket = bucket, Key = key }):await()
     if err then io.stderr:write("ERROR " .. key .. ": " .. (err.message or "") .. "\n"); os.exit(1) end
     total = total + body_size(r.Body)
 end
@@ -49,11 +51,11 @@ local seq_time = os.clock() - t0
 print(string.format("  Total: %d bytes in %.3fs", total, seq_time))
 
 -- Concurrent
-print("\n=== Concurrent (10 GetObject) ===")
+print("\n=== Concurrent (100 GetObject) ===")
 t0 = os.clock()
 local ops = {}
 for i, key in ipairs(keys) do
-    ops[i] = client:getObject({ Bucket = bucket, Key = key })
+    ops[i] = async_client:getObject({ Bucket = bucket, Key = key })
 end
 local results = async.await_all(ops)
 total = 0
