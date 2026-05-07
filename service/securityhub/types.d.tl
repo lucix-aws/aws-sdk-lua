@@ -843,6 +843,14 @@ local record EnableSecurityHubV2Output
     HubV2Arn: string
 end
 
+local record GenerateRecommendedPolicyV2Input
+    -- The unique identifier (ID) of Security Hub OCSF findings found under the metadata.uid field of the finding.
+    MetadataUid: string
+end
+
+local record GenerateRecommendedPolicyV2Output
+end
+
 local record GetAdministratorAccountInput
 end
 
@@ -1205,6 +1213,33 @@ local record GetMembersOutput
     -- The list of Amazon Web Services accounts that could not be processed. For each account, the list
     -- includes the account ID and the email address.
     UnprocessedAccounts: {Result}
+end
+
+local record GetRecommendedPolicyV2Input
+    -- The unique identifier (ID) of Security Hub OCSF findings found under the metadata.uid field of the finding.
+    MetadataUid: string
+    -- The token used to paginate the RecommendationSteps list returned.
+    -- On your first call to GetRecommendedPolicyV2, omit this parameter or set it
+    -- to NULL. For subsequent calls, use the NextToken value returned in
+    -- the previous response to retrieve the next page of results.
+    NextToken: string
+    -- The maximum number of recommendation steps to return.
+    MaxResults: number
+end
+
+local record GetRecommendedPolicyV2Output
+    -- The pagination token to use to request the next page of results.
+    NextToken: string
+    -- The type of recommendation for the finding.
+    RecommendationType: string
+    -- The recommended steps to take to resolve the finding.
+    RecommendationSteps: {RecommendationStep}
+    -- Detailed information for a FAILED retrieval status.
+    Error: RecommendationError
+    -- The current status of the recommended policy retrieval.
+    Status: string
+    -- The ARN of the resource of the finding.
+    ResourceArn: string
 end
 
 local record GetResourcesStatisticsV2Input
@@ -3554,6 +3589,43 @@ local record ValidationException
     Code: string
 end
 
+-- You don't have permission to perform the action specified in the request.
+local record AccessDeniedException
+    Message: string
+    Code: string
+end
+
+-- The request has failed due to an internal failure of the service.
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+-- The request was rejected because you supplied an invalid or out-of-range value for an
+-- input parameter.
+local record InvalidInputException
+    Message: string
+    Code: string
+end
+
+-- The request was rejected because we can't find the specified resource.
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+end
+
+-- The limit on the number of requests per second was exceeded.
+local record ThrottlingException
+    Message: string
+    Code: string
+end
+
+-- The request has failed validation because it's missing required fields or has invalid inputs.
+local record ValidationException
+    Message: string
+    Code: string
+end
+
 -- Internal server error.
 local record InternalException
     Message: string
@@ -4144,6 +4216,43 @@ end
 
 -- The request was rejected because we can't find the specified resource.
 local record ResourceNotFoundException
+    Message: string
+    Code: string
+end
+
+-- You don't have permission to perform the action specified in the request.
+local record AccessDeniedException
+    Message: string
+    Code: string
+end
+
+-- The request has failed due to an internal failure of the service.
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+-- The request was rejected because you supplied an invalid or out-of-range value for an
+-- input parameter.
+local record InvalidInputException
+    Message: string
+    Code: string
+end
+
+-- The request was rejected because we can't find the specified resource.
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+end
+
+-- The limit on the number of requests per second was exceeded.
+local record ThrottlingException
+    Message: string
+    Code: string
+end
+
+-- The request has failed validation because it's missing required fields or has invalid inputs.
+local record ValidationException
     Message: string
     Code: string
 end
@@ -5333,6 +5442,10 @@ local type ControlStatus = "ENABLED" | "DISABLED"
 
 local type GranularityField = "Daily" | "Weekly" | "Monthly"
 
+local type RecommendationStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+
+local type RecommendationType = "UNUSED_PERMISSION_RECOMMENDATION"
+
 local type RecordState = "ACTIVE" | "ARCHIVED"
 
 local type RuleStatus = "ENABLED" | "DISABLED"
@@ -5456,6 +5569,8 @@ local record M
     EnableSecurityHubOutput: EnableSecurityHubOutput
     EnableSecurityHubV2Input: EnableSecurityHubV2Input
     EnableSecurityHubV2Output: EnableSecurityHubV2Output
+    GenerateRecommendedPolicyV2Input: GenerateRecommendedPolicyV2Input
+    GenerateRecommendedPolicyV2Output: GenerateRecommendedPolicyV2Output
     GetAdministratorAccountInput: GetAdministratorAccountInput
     GetAdministratorAccountOutput: GetAdministratorAccountOutput
     GetAggregatorV2Input: GetAggregatorV2Input
@@ -5492,6 +5607,8 @@ local record M
     GetMasterAccountOutput: GetMasterAccountOutput
     GetMembersInput: GetMembersInput
     GetMembersOutput: GetMembersOutput
+    GetRecommendedPolicyV2Input: GetRecommendedPolicyV2Input
+    GetRecommendedPolicyV2Output: GetRecommendedPolicyV2Output
     GetResourcesStatisticsV2Input: GetResourcesStatisticsV2Input
     GetResourcesStatisticsV2Output: GetResourcesStatisticsV2Output
     GetResourcesTrendsV2Input: GetResourcesTrendsV2Input

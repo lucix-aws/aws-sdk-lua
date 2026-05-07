@@ -79,6 +79,11 @@ M.StringFilterComparison = {
     CONTAINS_WORD = "CONTAINS_WORD",
 }
 
+M.DateRangeComparison = {
+    WITHIN = "WITHIN",
+    OLDER_THAN = "OLDER_THAN",
+}
+
 M.DateRangeUnit = {
     DAYS = "DAYS",
 }
@@ -498,6 +503,16 @@ M.GranularityField = {
     DAILY = "Daily",
     WEEKLY = "Weekly",
     MONTHLY = "Monthly",
+}
+
+M.RecommendationType = {
+    UNUSED_PERMISSION_RECOMMENDATION = "UNUSED_PERMISSION_RECOMMENDATION",
+}
+
+M.RecommendationStatus = {
+    IN_PROGRESS = "IN_PROGRESS",
+    SUCCEEDED = "SUCCEEDED",
+    FAILED = "FAILED",
 }
 
 M.ResourcesDateField = {

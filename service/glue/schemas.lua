@@ -21368,6 +21368,12 @@ M.DataQualityEvaluationRunAdditionalRunOptions = schema.new({
             name = "CompositeRuleEvaluationMethod",
             target_id = prelude.String.id,
         }),
+        CustomLogGroupPrefix = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CustomLogGroupPrefix"),
+            type = "string",
+            name = "CustomLogGroupPrefix",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -26560,6 +26566,12 @@ M.DataQualityRulesetEvaluationRunFilter = schema.new({
             type = "timestamp",
             name = "StartedAfter",
             target_id = prelude.Timestamp.id,
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRunFilter", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
         }),
     },
 })

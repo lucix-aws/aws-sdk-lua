@@ -18,6 +18,7 @@ M.LoggingLevel = {
 M.WebserverAccessMode = {
     PRIVATE_ONLY = "PRIVATE_ONLY",
     PUBLIC_ONLY = "PUBLIC_ONLY",
+    PUBLIC_AND_PRIVATE = "PUBLIC_AND_PRIVATE",
 }
 
 M.UpdateStatus = {

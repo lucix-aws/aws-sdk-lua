@@ -1646,6 +1646,56 @@ M.AuthorizerConfiguration = schema.new({
     },
 })
 
+M.EfsAccessPointConfiguration = schema.new({
+    id = id.from(_N, "EfsAccessPointConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "EfsAccessPointConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "EfsAccessPointConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3FilesAccessPointConfiguration = schema.new({
+    id = id.from(_N, "S3FilesAccessPointConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "S3FilesAccessPointConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "S3FilesAccessPointConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SessionStorageConfiguration = schema.new({
     id = id.from(_N, "SessionStorageConfiguration"),
     type = "structure",
@@ -1672,6 +1722,20 @@ M.FilesystemConfiguration = schema.new({
             name = "sessionStorage",
             target_id = id.from(_N, "SessionStorageConfiguration"),
             target = M.SessionStorageConfiguration,
+        }),
+        s3FilesAccessPoint = schema.new({
+            id = id.from(_N, "FilesystemConfiguration", "s3FilesAccessPoint"),
+            type = "structure",
+            name = "s3FilesAccessPoint",
+            target_id = id.from(_N, "S3FilesAccessPointConfiguration"),
+            target = M.S3FilesAccessPointConfiguration,
+        }),
+        efsAccessPoint = schema.new({
+            id = id.from(_N, "FilesystemConfiguration", "efsAccessPoint"),
+            type = "structure",
+            name = "efsAccessPoint",
+            target_id = id.from(_N, "EfsAccessPointConfiguration"),
+            target = M.EfsAccessPointConfiguration,
         }),
     },
 })

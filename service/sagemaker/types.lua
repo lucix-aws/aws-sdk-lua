@@ -1595,6 +1595,11 @@ M.ClusterEventResourceType = {
     INSTANCE = "Instance",
 }
 
+M.ClusterImageVersionStatus = {
+    UP_TO_DATE = "UpToDate",
+    UPDATE_AVAILABLE = "UpdateAvailable",
+}
+
 M.ClusterKubernetesTaintEffect = {
     NO_SCHEDULE = "NoSchedule",
     PREFER_NO_SCHEDULE = "PreferNoSchedule",

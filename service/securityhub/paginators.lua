@@ -202,6 +202,24 @@ function M.items_get_insights(client, input)
     })
 end
 
+--- Returns a page iterator for getRecommendedPolicyV2.
+function M.pages_get_recommended_policy_v2(client, input)
+    return paginator.pages(client, "getRecommendedPolicyV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommendationSteps",
+    })
+end
+
+--- Returns an item iterator for getRecommendedPolicyV2.
+function M.items_get_recommended_policy_v2(client, input)
+    return paginator.items(client, "getRecommendedPolicyV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommendationSteps",
+    })
+end
+
 --- Returns a page iterator for getResourcesTrendsV2.
 function M.pages_get_resources_trends_v2(client, input)
     return paginator.pages(client, "getResourcesTrendsV2", input, {

@@ -5854,6 +5854,20 @@ test("validates against subresource", function()
     assert_eq(err, "Invalid Arn: Outpost Access Point ARN contains sub resources", "error message")
 end)
 
+test("validates against access point host label", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:invalid.bucket#",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `invalid.bucket#`", "error message")
+end)
+
 test("object lambda @us-east-1", function()
     local params = {
         Region = "us-east-1",

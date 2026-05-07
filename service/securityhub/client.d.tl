@@ -286,6 +286,9 @@ local record Client
     enableSecurityHub: function(Client, types.EnableSecurityHubInput): types.EnableSecurityHubOutput, table
     -- Enables the service in account for the current Amazon Web Services Region or specified Amazon Web Services Region.
     enableSecurityHubV2: function(Client, types.EnableSecurityHubV2Input): types.EnableSecurityHubV2Output, table
+    -- Begins the recommended policy generation to remediate a Security Hub finding.
+    -- GenerateRecommendedPolicyV2 only supports findings for unused permissions.
+    generateRecommendedPolicyV2: function(Client, types.GenerateRecommendedPolicyV2Input): types.GenerateRecommendedPolicyV2Output, table
     -- Provides the details for the Security Hub CSPM administrator account for the current member account.
     -- Can be used by both member accounts that are managed using Organizations and accounts that were
     -- invited manually.
@@ -356,6 +359,9 @@ local record Client
     -- The results include both member accounts that are managed using Organizations and accounts that
     -- were invited manually.
     getMembers: function(Client, types.GetMembersInput): types.GetMembersOutput, table
+    -- Retrieves the recommended policy to remediate a Security Hub finding.
+    -- GetRecommendedPolicyV2 only supports findings for unused permissions.
+    getRecommendedPolicyV2: function(Client, types.GetRecommendedPolicyV2Input): types.GetRecommendedPolicyV2Output, table
     -- Retrieves statistical information about Amazon Web Services resources and their associated security findings.
     -- You can use the Scopes parameter to define the data boundary for the query. Currently, Scopes supports AwsOrganizations, which lets you aggregate resources from your entire organization or from specific organizational units. Only the delegated administrator account can use Scopes.
     getResourcesStatisticsV2: function(Client, types.GetResourcesStatisticsV2Input): types.GetResourcesStatisticsV2Output, table

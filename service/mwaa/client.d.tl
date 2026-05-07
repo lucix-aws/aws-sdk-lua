@@ -13,8 +13,7 @@ local record Client
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
     -- Describes an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
     getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
-    -- Invokes the Apache Airflow REST API on the webserver with the specified inputs. To
-    -- learn more, see Using the Apache Airflow REST API
+    -- Invokes the Apache Airflow REST API on the webserver with the specified inputs. To learn more, see Using the Apache Airflow REST API
     invokeRestApi: function(Client, types.InvokeRestApiInput): types.InvokeRestApiOutput, table
     -- Lists the Amazon Managed Workflows for Apache Airflow (MWAA) environments.
     listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table

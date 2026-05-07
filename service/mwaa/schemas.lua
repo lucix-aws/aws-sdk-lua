@@ -389,6 +389,22 @@ M.InternalServerException = schema.new({
     },
 })
 
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
     type = "structure",

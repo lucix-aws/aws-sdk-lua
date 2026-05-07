@@ -109,6 +109,8 @@ M.InsightList = schema.new({ type = "list", list_member = M.Insight })
 
 M.MemberList = schema.new({ type = "list", list_member = M.Member })
 
+M.RecommendationSteps = schema.new({ type = "list", list_member = M.RecommendationStep })
+
 M.ResourceGroupByRules = schema.new({ type = "list", list_member = M.ResourceGroupByRule })
 
 M.ResourcesTrendsMetrics = schema.new({ type = "list", list_member = M.ResourcesTrendsMetricsResult })
@@ -1879,6 +1881,12 @@ M.DateRange = schema.new({
             id = id.from(_N, "DateRange", "Unit"),
             type = "string",
             name = "Unit",
+            target_id = prelude.String.id,
+        }),
+        Comparison = schema.new({
+            id = id.from(_N, "DateRange", "Comparison"),
+            type = "string",
+            name = "Comparison",
             target_id = prelude.String.id,
         }),
     },
@@ -28759,6 +28767,28 @@ M.FindingsTrendsStringFilter = schema.new({
     },
 })
 
+M.GenerateRecommendedPolicyV2Input = schema.new({
+    id = id.from(_N, "GenerateRecommendedPolicyV2Request"),
+    type = "structure",
+    members = {
+        MetadataUid = schema.new({
+            id = id.from(_N, "GenerateRecommendedPolicyV2Input", "MetadataUid"),
+            type = "string",
+            name = "MetadataUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GenerateRecommendedPolicyV2Output = schema.new({
+    id = id.from(_N, "GenerateRecommendedPolicyV2Response"),
+    type = "structure",
+})
+
 M.GetAdministratorAccountInput = schema.new({
     id = id.from(_N, "GetAdministratorAccountRequest"),
     type = "structure",
@@ -30075,6 +30105,159 @@ M.GetMembersOutput = schema.new({
             name = "UnprocessedAccounts",
             target_id = prelude.Document.id,
             list_member = M.Result,
+        }),
+    },
+})
+
+M.GetRecommendedPolicyV2Input = schema.new({
+    id = id.from(_N, "GetRecommendedPolicyV2Request"),
+    type = "structure",
+    members = {
+        MetadataUid = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Input", "MetadataUid"),
+            type = "string",
+            name = "MetadataUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+    },
+})
+
+M.RecommendationError = schema.new({
+    id = id.from(_N, "RecommendationError"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "RecommendationError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "RecommendationError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnusedPermissionsRecommendationStep = schema.new({
+    id = id.from(_N, "UnusedPermissionsRecommendationStep"),
+    type = "structure",
+    members = {
+        RecommendedAction = schema.new({
+            id = id.from(_N, "UnusedPermissionsRecommendationStep", "RecommendedAction"),
+            type = "string",
+            name = "RecommendedAction",
+            target_id = prelude.String.id,
+        }),
+        ExistingPolicy = schema.new({
+            id = id.from(_N, "UnusedPermissionsRecommendationStep", "ExistingPolicy"),
+            type = "string",
+            name = "ExistingPolicy",
+            target_id = prelude.String.id,
+        }),
+        ExistingPolicyId = schema.new({
+            id = id.from(_N, "UnusedPermissionsRecommendationStep", "ExistingPolicyId"),
+            type = "string",
+            name = "ExistingPolicyId",
+            target_id = prelude.String.id,
+        }),
+        PolicyUpdatedAt = schema.new({
+            id = id.from(_N, "UnusedPermissionsRecommendationStep", "PolicyUpdatedAt"),
+            type = "timestamp",
+            name = "PolicyUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        RecommendedPolicy = schema.new({
+            id = id.from(_N, "UnusedPermissionsRecommendationStep", "RecommendedPolicy"),
+            type = "string",
+            name = "RecommendedPolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecommendationStep = schema.new({
+    id = id.from(_N, "RecommendationStep"),
+    type = "union",
+    members = {
+        UnusedPermissions = schema.new({
+            id = id.from(_N, "RecommendationStep", "UnusedPermissions"),
+            type = "structure",
+            name = "UnusedPermissions",
+            target_id = id.from(_N, "UnusedPermissionsRecommendationStep"),
+            target = M.UnusedPermissionsRecommendationStep,
+        }),
+    },
+})
+
+M.GetRecommendedPolicyV2Output = schema.new({
+    id = id.from(_N, "GetRecommendedPolicyV2Response"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RecommendationType = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "RecommendationType"),
+            type = "string",
+            name = "RecommendationType",
+            target_id = prelude.String.id,
+        }),
+        RecommendationSteps = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "RecommendationSteps"),
+            type = "list",
+            name = "RecommendationSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendationStep,
+        }),
+        Error = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "RecommendationError"),
+            target = M.RecommendationError,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "GetRecommendedPolicyV2Output", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -33699,6 +33882,18 @@ M.EnableSecurityHubV2 = schema.operation({
     },
 })
 
+M.GenerateRecommendedPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GenerateRecommendedPolicyV2"),
+    input = M.GenerateRecommendedPolicyV2Input,
+    output = M.GenerateRecommendedPolicyV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/recommendedPolicyV2/{MetadataUid}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAdministratorAccount = schema.operation({
     id = id.from("com.amazonaws.securityhub", "GetAdministratorAccount"),
     input = M.GetAdministratorAccountInput,
@@ -33909,6 +34104,18 @@ M.GetMembers = schema.operation({
     output = M.GetMembersOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/members/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecommendedPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetRecommendedPolicyV2"),
+    input = M.GetRecommendedPolicyV2Input,
+    output = M.GetRecommendedPolicyV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/recommendedPolicyV2/{MetadataUid}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

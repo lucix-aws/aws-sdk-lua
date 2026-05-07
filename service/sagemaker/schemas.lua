@@ -8507,6 +8507,12 @@ M.ClusterInstanceGroupDetails = schema.new({
             name = "DesiredImageId",
             target_id = prelude.String.id,
         }),
+        ImageVersionStatus = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupDetails", "ImageVersionStatus"),
+            type = "string",
+            name = "ImageVersionStatus",
+            target_id = prelude.String.id,
+        }),
         ActiveOperations = schema.new({
             id = id.from(_N, "ClusterInstanceGroupDetails", "ActiveOperations"),
             type = "map",
@@ -8982,6 +8988,12 @@ M.ClusterNodeDetails = schema.new({
             name = "DesiredImageId",
             target_id = prelude.String.id,
         }),
+        ImageVersionStatus = schema.new({
+            id = id.from(_N, "ClusterNodeDetails", "ImageVersionStatus"),
+            type = "string",
+            name = "ImageVersionStatus",
+            target_id = prelude.String.id,
+        }),
         UltraServerInfo = schema.new({
             id = id.from(_N, "ClusterNodeDetails", "UltraServerInfo"),
             type = "structure",
@@ -9085,6 +9097,12 @@ M.ClusterNodeSummary = schema.new({
             id = id.from(_N, "ClusterNodeSummary", "PrivateDnsHostname"),
             type = "string",
             name = "PrivateDnsHostname",
+            target_id = prelude.String.id,
+        }),
+        ImageVersionStatus = schema.new({
+            id = id.from(_N, "ClusterNodeSummary", "ImageVersionStatus"),
+            type = "string",
+            name = "ImageVersionStatus",
             target_id = prelude.String.id,
         }),
     },

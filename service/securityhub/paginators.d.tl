@@ -23,6 +23,8 @@ local record M
     items_get_findings_v2: function(client: table, input: table): function(): any
     pages_get_insights: function(client: table, input: table): function(): table, table
     items_get_insights: function(client: table, input: table): function(): any
+    pages_get_recommended_policy_v2: function(client: table, input: table): function(): table, table
+    items_get_recommended_policy_v2: function(client: table, input: table): function(): any
     pages_get_resources_trends_v2: function(client: table, input: table): function(): table, table
     items_get_resources_trends_v2: function(client: table, input: table): function(): any
     pages_get_resources_v2: function(client: table, input: table): function(): table, table

@@ -3620,6 +3620,11 @@ local record ServiceUnavailableException
     message: string
 end
 
+-- You do not have permissions to perform the requested operation.
+local record AccessDeniedException
+    message: string
+end
+
 -- These errors are usually caused by a client action, such as using an action or
 -- resource on behalf of a user that doesn't have permissions to use the action or
 -- resource, or specifying an invalid resource identifier.
@@ -3635,6 +3640,11 @@ end
 
 -- The service is unable to process your request at this time.
 local record ServiceUnavailableException
+    message: string
+end
+
+-- You have attempted too many requests for the specific operation.
+local record TooManyRequestsException
     message: string
 end
 

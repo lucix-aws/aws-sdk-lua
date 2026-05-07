@@ -263,6 +263,10 @@ function Client:enableSecurityHubV2(input, options)
     return self:invokeOperation(schemas.Service, schemas.EnableSecurityHubV2, input, options)
 end
 
+function Client:generateRecommendedPolicyV2(input, options)
+    return self:invokeOperation(schemas.Service, schemas.GenerateRecommendedPolicyV2, input, options)
+end
+
 function Client:getAdministratorAccount(input, options)
     return self:invokeOperation(schemas.Service, schemas.GetAdministratorAccount, input, options)
 end
@@ -333,6 +337,10 @@ end
 
 function Client:getMembers(input, options)
     return self:invokeOperation(schemas.Service, schemas.GetMembers, input, options)
+end
+
+function Client:getRecommendedPolicyV2(input, options)
+    return self:invokeOperation(schemas.Service, schemas.GetRecommendedPolicyV2, input, options)
 end
 
 function Client:getResourcesStatisticsV2(input, options)

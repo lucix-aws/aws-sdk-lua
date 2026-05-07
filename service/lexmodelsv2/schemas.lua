@@ -1411,6 +1411,46 @@ M.AudioAndDTMFInputSpecification = schema.new({
     },
 })
 
+M.AudioFillerSettings = schema.new({
+    id = id.from(_N, "AudioFillerSettings"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "AudioFillerSettings", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        audioType = schema.new({
+            id = id.from(_N, "AudioFillerSettings", "audioType"),
+            type = "string",
+            name = "audioType",
+            target_id = prelude.String.id,
+        }),
+        startDelayInMilliseconds = schema.new({
+            id = id.from(_N, "AudioFillerSettings", "startDelayInMilliseconds"),
+            type = "integer",
+            name = "startDelayInMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        minimumPlayDurationInMilliseconds = schema.new({
+            id = id.from(_N, "AudioFillerSettings", "minimumPlayDurationInMilliseconds"),
+            type = "integer",
+            name = "minimumPlayDurationInMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        responseDeliveryDelayInMilliseconds = schema.new({
+            id = id.from(_N, "AudioFillerSettings", "responseDeliveryDelayInMilliseconds"),
+            type = "integer",
+            name = "responseDeliveryDelayInMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.S3BucketLogDestination = schema.new({
     id = id.from(_N, "S3BucketLogDestination"),
     type = "structure",
@@ -2800,6 +2840,13 @@ M.BotLocaleImportSpecification = schema.new({
             name = "unifiedSpeechSettings",
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
+        }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "BotLocaleImportSpecification", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
         }),
     },
 })
@@ -4689,6 +4736,13 @@ M.CreateBotLocaleInput = schema.new({
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
         }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "CreateBotLocaleInput", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
+        }),
         speechRecognitionSettings = schema.new({
             id = id.from(_N, "CreateBotLocaleInput", "speechRecognitionSettings"),
             type = "structure",
@@ -4765,6 +4819,13 @@ M.CreateBotLocaleOutput = schema.new({
             name = "unifiedSpeechSettings",
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
+        }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "CreateBotLocaleOutput", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
         }),
         speechRecognitionSettings = schema.new({
             id = id.from(_N, "CreateBotLocaleOutput", "speechRecognitionSettings"),
@@ -7744,6 +7805,13 @@ M.DescribeBotLocaleOutput = schema.new({
             name = "unifiedSpeechSettings",
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
+        }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "DescribeBotLocaleOutput", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
         }),
         speechRecognitionSettings = schema.new({
             id = id.from(_N, "DescribeBotLocaleOutput", "speechRecognitionSettings"),
@@ -14985,6 +15053,13 @@ M.UpdateBotLocaleInput = schema.new({
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
         }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "UpdateBotLocaleInput", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
+        }),
         speechRecognitionSettings = schema.new({
             id = id.from(_N, "UpdateBotLocaleInput", "speechRecognitionSettings"),
             type = "structure",
@@ -15061,6 +15136,13 @@ M.UpdateBotLocaleOutput = schema.new({
             name = "unifiedSpeechSettings",
             target_id = id.from(_N, "UnifiedSpeechSettings"),
             target = M.UnifiedSpeechSettings,
+        }),
+        audioFillerSettings = schema.new({
+            id = id.from(_N, "UpdateBotLocaleOutput", "audioFillerSettings"),
+            type = "structure",
+            name = "audioFillerSettings",
+            target_id = id.from(_N, "AudioFillerSettings"),
+            target = M.AudioFillerSettings,
         }),
         speechRecognitionSettings = schema.new({
             id = id.from(_N, "UpdateBotLocaleOutput", "speechRecognitionSettings"),

@@ -300,6 +300,12 @@ local record CreateBotLocaleInput
     voiceSettings: VoiceSettings
     -- Unified speech settings to configure for the new bot locale.
     unifiedSpeechSettings: UnifiedSpeechSettings
+    -- Audio filler settings to configure for the new bot locale. When
+    -- enabled, Amazon Lex plays a brief background audio filler during
+    -- speech-to-speech interactions to mask processing delays. Requires
+    -- unifiedSpeechSettings (speech-to-speech) to be configured
+    -- on the bot locale.
+    audioFillerSettings: AudioFillerSettings
     -- Speech-to-text settings to configure for the new bot locale.
     speechRecognitionSettings: SpeechRecognitionSettings
     generativeAISettings: GenerativeAISettings
@@ -327,6 +333,8 @@ local record CreateBotLocaleOutput
     voiceSettings: VoiceSettings
     -- The unified speech settings configured for the created bot locale.
     unifiedSpeechSettings: UnifiedSpeechSettings
+    -- The audio filler settings configured for the created bot locale.
+    audioFillerSettings: AudioFillerSettings
     -- The speech-to-text settings configured for the created bot locale.
     speechRecognitionSettings: SpeechRecognitionSettings
     -- The status of the bot.
@@ -1280,6 +1288,8 @@ local record DescribeBotLocaleOutput
     voiceSettings: VoiceSettings
     -- The unified speech settings configured for the bot locale.
     unifiedSpeechSettings: UnifiedSpeechSettings
+    -- The audio filler settings configured for the bot locale.
+    audioFillerSettings: AudioFillerSettings
     -- The speech-to-text settings configured for the bot locale.
     speechRecognitionSettings: SpeechRecognitionSettings
     -- The number of intents defined for the locale.
@@ -3533,6 +3543,10 @@ local record UpdateBotLocaleInput
     voiceSettings: VoiceSettings
     -- Updated unified speech settings to apply to the bot locale.
     unifiedSpeechSettings: UnifiedSpeechSettings
+    -- Updated audio filler settings to apply to the bot locale. When
+    -- enabled, requires unifiedSpeechSettings (speech-to-speech)
+    -- to be configured on the bot locale.
+    audioFillerSettings: AudioFillerSettings
     -- Updated speech-to-text settings to apply to the bot locale.
     speechRecognitionSettings: SpeechRecognitionSettings
     -- Contains settings for generative AI features powered by Amazon Bedrock for your bot locale. Use this object to turn generative AI features on and off. Pricing
@@ -3563,6 +3577,8 @@ local record UpdateBotLocaleOutput
     voiceSettings: VoiceSettings
     -- The updated unified speech settings for the bot locale.
     unifiedSpeechSettings: UnifiedSpeechSettings
+    -- The updated audio filler settings for the bot locale.
+    audioFillerSettings: AudioFillerSettings
     -- The updated speech-to-text settings for the bot locale.
     speechRecognitionSettings: SpeechRecognitionSettings
     -- The current status of the locale. When the bot status is
