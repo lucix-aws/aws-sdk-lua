@@ -2,6 +2,10 @@
 
 local types = require("migrationhubrefactorspaces.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an Amazon Web Services Migration Hub Refactor Spaces application. The account that owns the environment also owns the
     -- applications created inside the environment, regardless of the account that creates the
@@ -12,7 +16,7 @@ local record Client
     -- route traffic through the application proxy to a service with a private URL endpoint. For more
     -- information, see
     -- Create an application in the Refactor Spaces User Guide.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates an Amazon Web Services Migration Hub Refactor Spaces environment. The caller owns the environment resource, and all
     -- Refactor Spaces applications, services, and routes created within the environment. They are referred
     -- to as the environment owner. The environment owner has cross-account
@@ -23,7 +27,7 @@ local record Client
     -- accounts. If CreateEnvironment:NetworkFabricType is NONE, Refactor Spaces does not create
     -- a transit gateway and you must use your network infrastructure to route traffic to services
     -- with private URL endpoints.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Creates an Amazon Web Services Migration Hub Refactor Spaces route. The account owner of the service resource is always the
     -- environment owner, regardless of which account creates the route. Routes target a service in
     -- the application. If an application does not have any routes, then the first route must be
@@ -78,7 +82,7 @@ local record Client
     -- creation from the application proxy to service endpoints will fail if your network is not
     -- configured to connect to the application proxy VPC. For more information, see Create
     -- a route in the Refactor Spaces User Guide.
-    createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    createRoute: function(Client, types.CreateRouteInput): Operation<types.CreateRouteOutput>
     -- Creates an Amazon Web Services Migration Hub Refactor Spaces service. The account owner of the service is always the
     -- environment owner, regardless of which account in the environment creates the service.
     -- Services have either a URL endpoint in a virtual private cloud (VPC), or a Lambda
@@ -87,61 +91,61 @@ local record Client
     -- accessible to all of an environment’s services with VPCs and routes, apply the
     -- RefactorSpacesSecurityGroup to the resource. Alternatively, to add more
     -- cross-account constraints, apply your own security group.
-    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    createService: function(Client, types.CreateServiceInput): Operation<types.CreateServiceOutput>
     -- Deletes an Amazon Web Services Migration Hub Refactor Spaces application. Before you can delete an application, you must first
     -- delete any services or routes within the application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Deletes an Amazon Web Services Migration Hub Refactor Spaces environment. Before you can delete an environment, you must first
     -- delete any applications and services within the environment.
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- Deletes the resource policy set for the environment.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes an Amazon Web Services Migration Hub Refactor Spaces route.
-    deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    deleteRoute: function(Client, types.DeleteRouteInput): Operation<types.DeleteRouteOutput>
     -- Deletes an Amazon Web Services Migration Hub Refactor Spaces service.
-    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): Operation<types.DeleteServiceOutput>
     -- Gets an Amazon Web Services Migration Hub Refactor Spaces application.
-    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getApplication: function(Client, types.GetApplicationInput): Operation<types.GetApplicationOutput>
     -- Gets an Amazon Web Services Migration Hub Refactor Spaces environment.
-    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): Operation<types.GetEnvironmentOutput>
     -- Gets the resource-based permission policy that is set for the given environment.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Gets an Amazon Web Services Migration Hub Refactor Spaces route.
-    getRoute: function(Client, types.GetRouteInput): types.GetRouteOutput, table
+    getRoute: function(Client, types.GetRouteInput): Operation<types.GetRouteOutput>
     -- Gets an Amazon Web Services Migration Hub Refactor Spaces service.
-    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    getService: function(Client, types.GetServiceInput): Operation<types.GetServiceOutput>
     -- Lists all the Amazon Web Services Migration Hub Refactor Spaces applications within an environment.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Lists Amazon Web Services Migration Hub Refactor Spaces environments owned by a caller account or shared with the caller
     -- account.
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- Lists all Amazon Web Services Migration Hub Refactor Spaces service virtual private clouds (VPCs) that are part of the
     -- environment.
-    listEnvironmentVpcs: function(Client, types.ListEnvironmentVpcsInput): types.ListEnvironmentVpcsOutput, table
+    listEnvironmentVpcs: function(Client, types.ListEnvironmentVpcsInput): Operation<types.ListEnvironmentVpcsOutput>
     -- Lists all the Amazon Web Services Migration Hub Refactor Spaces routes within an application.
-    listRoutes: function(Client, types.ListRoutesInput): types.ListRoutesOutput, table
+    listRoutes: function(Client, types.ListRoutesInput): Operation<types.ListRoutesOutput>
     -- Lists all the Amazon Web Services Migration Hub Refactor Spaces services within an application.
-    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServices: function(Client, types.ListServicesInput): Operation<types.ListServicesOutput>
     -- Lists the tags of a resource. The caller account must be the same as the resource’s
     -- OwnerAccountId. Listing tags in other accounts is not supported.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Attaches a resource-based permission policy to the Amazon Web Services Migration Hub Refactor Spaces environment. The policy
     -- must contain the same actions and condition statements as the
     -- arn:aws:ram::aws:permission/AWSRAMDefaultPermissionRefactorSpacesEnvironment
     -- permission in Resource Access Manager. The policy must not contain new lines or blank lines.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Removes the tags of a given resource. Tags are metadata which can be used to manage a
     -- resource. To tag a resource, the caller account must be the same as the resource’s
     -- OwnerAccountId. Tagging resources in other accounts is not supported.
     -- Amazon Web Services Migration Hub Refactor Spaces does not propagate tags to orchestrated resources, such as an
     -- environment’s transit gateway.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Adds to or modifies the tags of the given resource. Tags are metadata which can be used to
     -- manage a resource. To untag a resource, the caller account must be the same as the resource’s
     -- OwnerAccountId. Untagging resources across accounts is not supported.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an Amazon Web Services Migration Hub Refactor Spaces route.
-    updateRoute: function(Client, types.UpdateRouteInput): types.UpdateRouteOutput, table
+    updateRoute: function(Client, types.UpdateRouteInput): Operation<types.UpdateRouteOutput>
 end
 
 local record M

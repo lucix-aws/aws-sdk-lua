@@ -2,6 +2,10 @@
 
 local types = require("secretsmanager.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Retrieves the contents of the encrypted fields SecretString or
     -- SecretBinary for up to 20 secrets. To retrieve a single secret, call
@@ -23,7 +27,7 @@ local record Client
     -- permissions for the keys. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    batchGetSecretValue: function(Client, types.BatchGetSecretValueInput): types.BatchGetSecretValueOutput, table
+    batchGetSecretValue: function(Client, types.BatchGetSecretValueInput): Operation<types.BatchGetSecretValueOutput>
     -- Turns off automatic rotation, and if a rotation is currently in progress, cancels the
     -- rotation.
     -- If you cancel a rotation in progress, it can leave the VersionStage
@@ -39,7 +43,7 @@ local record Client
     -- secretsmanager:CancelRotateSecret. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    cancelRotateSecret: function(Client, types.CancelRotateSecretInput): types.CancelRotateSecretOutput, table
+    cancelRotateSecret: function(Client, types.CancelRotateSecretInput): Operation<types.CancelRotateSecretOutput>
     -- Creates a new secret. A secret can be a password, a set of
     -- credentials such as a user name and password, an OAuth token, or other secret
     -- information that you store in an encrypted form in Secrets Manager. The secret also includes the
@@ -84,7 +88,7 @@ local record Client
     -- need kms:GenerateDataKey and kms:Decrypt permission to the
     -- key.
     -- When you enter commands in a command shell, there is a risk of the command history being accessed or utilities having access to your command parameters. This is a concern if the command includes the value of a secret. Learn how to Mitigate the risks of using command-line tools to store Secrets Manager secrets.
-    createSecret: function(Client, types.CreateSecretInput): types.CreateSecretOutput, table
+    createSecret: function(Client, types.CreateSecretInput): Operation<types.CreateSecretOutput>
     -- Deletes the resource-based permission policy attached to the secret. To attach a
     -- policy to a secret, use PutResourcePolicy.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
@@ -92,7 +96,7 @@ local record Client
     -- secretsmanager:DeleteResourcePolicy. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a secret and all of its versions. You can specify a recovery window during
     -- which you can restore the secret. The minimum recovery window is 7 days. The default
     -- recovery window is 30 days. Secrets Manager attaches a DeletionDate stamp to the
@@ -122,7 +126,7 @@ local record Client
     -- secretsmanager:DeleteSecret. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    deleteSecret: function(Client, types.DeleteSecretInput): types.DeleteSecretOutput, table
+    deleteSecret: function(Client, types.DeleteSecretInput): Operation<types.DeleteSecretOutput>
     -- Retrieves the details of a secret. It does not include the encrypted secret value.
     -- Secrets Manager only returns fields that have a value in the response.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
@@ -130,7 +134,7 @@ local record Client
     -- secretsmanager:DescribeSecret. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    describeSecret: function(Client, types.DescribeSecretInput): types.DescribeSecretOutput, table
+    describeSecret: function(Client, types.DescribeSecretInput): Operation<types.DescribeSecretOutput>
     -- Generates a random password. We recommend that you specify the maximum length and
     -- include every character type that the system you are generating a password for can
     -- support. By default, Secrets Manager uses uppercase and lowercase letters, numbers, and the
@@ -142,7 +146,7 @@ local record Client
     -- secretsmanager:GetRandomPassword. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    getRandomPassword: function(Client, types.GetRandomPasswordInput): types.GetRandomPasswordOutput, table
+    getRandomPassword: function(Client, types.GetRandomPasswordInput): Operation<types.GetRandomPasswordOutput>
     -- Retrieves the JSON text of the resource-based policy document attached to the secret.
     -- For more information about permissions policies attached to a secret, see Permissions policies attached to a secret.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
@@ -150,7 +154,7 @@ local record Client
     -- secretsmanager:GetResourcePolicy. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Retrieves the contents of the encrypted fields SecretString or
     -- SecretBinary from the specified version of a secret, whichever contains
     -- content.
@@ -167,7 +171,7 @@ local record Client
     -- permissions for that key. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    getSecretValue: function(Client, types.GetSecretValueInput): types.GetSecretValueOutput, table
+    getSecretValue: function(Client, types.GetSecretValueInput): Operation<types.GetSecretValueOutput>
     -- Lists the secrets that are stored by Secrets Manager in the Amazon Web Services account, not including secrets
     -- that are marked for deletion. To see secrets marked for deletion, use the Secrets Manager
     -- console.
@@ -184,7 +188,7 @@ local record Client
     -- secretsmanager:ListSecrets. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    listSecrets: function(Client, types.ListSecretsInput): types.ListSecretsOutput, table
+    listSecrets: function(Client, types.ListSecretsInput): Operation<types.ListSecretsOutput>
     -- Lists the versions of a secret. Secrets Manager uses staging labels to indicate the different
     -- versions of a secret. For more information, see Secrets Manager
     -- concepts: Versions.
@@ -194,7 +198,7 @@ local record Client
     -- secretsmanager:ListSecretVersionIds. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput): types.ListSecretVersionIdsOutput, table
+    listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput): Operation<types.ListSecretVersionIdsOutput>
     -- Attaches a resource-based permission policy to a secret. A resource-based policy is
     -- optional. For more information, see Authentication and access control for Secrets Manager
     -- For information about attaching a policy in the console, see Attach a permissions policy to a secret.
@@ -203,7 +207,7 @@ local record Client
     -- secretsmanager:PutResourcePolicy. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Creates a new version of your secret by creating a new encrypted value and attaching
     -- it to the secret. version can contain a new SecretString value or a new
     -- SecretBinary value.
@@ -235,7 +239,7 @@ local record Client
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
     -- When you enter commands in a command shell, there is a risk of the command history being accessed or utilities having access to your command parameters. This is a concern if the command includes the value of a secret. Learn how to Mitigate the risks of using command-line tools to store Secrets Manager secrets.
-    putSecretValue: function(Client, types.PutSecretValueInput): types.PutSecretValueOutput, table
+    putSecretValue: function(Client, types.PutSecretValueInput): Operation<types.PutSecretValueOutput>
     -- For a secret that is replicated to other Regions, deletes the secret replicas from the
     -- Regions you specify.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
@@ -244,7 +248,7 @@ local record Client
     -- For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    removeRegionsFromReplication: function(Client, types.RemoveRegionsFromReplicationInput): types.RemoveRegionsFromReplicationOutput, table
+    removeRegionsFromReplication: function(Client, types.RemoveRegionsFromReplicationInput): Operation<types.RemoveRegionsFromReplicationOutput>
     -- Replicates the secret to a new Regions. See Multi-Region secrets.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
     -- Required permissions:
@@ -256,7 +260,7 @@ local record Client
     -- For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    replicateSecretToRegions: function(Client, types.ReplicateSecretToRegionsInput): types.ReplicateSecretToRegionsOutput, table
+    replicateSecretToRegions: function(Client, types.ReplicateSecretToRegionsInput): Operation<types.ReplicateSecretToRegionsOutput>
     -- Cancels the scheduled deletion of a secret by removing the DeletedDate
     -- time stamp. You can access a secret again after it has been restored.
     -- Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive information in request parameters because it might be logged. For more information, see Logging Secrets Manager events with CloudTrail.
@@ -264,7 +268,7 @@ local record Client
     -- secretsmanager:RestoreSecret. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    restoreSecret: function(Client, types.RestoreSecretInput): types.RestoreSecretOutput, table
+    restoreSecret: function(Client, types.RestoreSecretInput): Operation<types.RestoreSecretOutput>
     -- Configures and starts the asynchronous process of rotating the secret. For information
     -- about rotation, see Rotate secrets
     -- in the Secrets Manager User Guide. If you include the configuration
@@ -287,7 +291,7 @@ local record Client
     -- and access control in Secrets Manager. You also
     -- need lambda:InvokeFunction permissions on the rotation function. For more
     -- information, see Permissions for rotation.
-    rotateSecret: function(Client, types.RotateSecretInput): types.RotateSecretOutput, table
+    rotateSecret: function(Client, types.RotateSecretInput): Operation<types.RotateSecretOutput>
     -- Removes the link between the replica secret and the primary secret and promotes the
     -- replica to a primary secret in the replica Region.
     -- You must call this operation from the Region in which you want to promote the replica
@@ -297,7 +301,7 @@ local record Client
     -- secretsmanager:StopReplicationToReplica. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    stopReplicationToReplica: function(Client, types.StopReplicationToReplicaInput): types.StopReplicationToReplicaOutput, table
+    stopReplicationToReplica: function(Client, types.StopReplicationToReplicaInput): Operation<types.StopReplicationToReplicaOutput>
     -- Attaches tags to a secret. Tags consist of a key name and a value. Tags are part of
     -- the secret's metadata. They are not associated with specific versions of the secret.
     -- This operation appends tags to the existing list of tags.
@@ -312,7 +316,7 @@ local record Client
     -- secretsmanager:TagResource. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes specific tags from a secret.
     -- This operation is idempotent. If a requested tag is not attached to the secret, no
     -- error is returned and the secret metadata is unchanged.
@@ -325,7 +329,7 @@ local record Client
     -- secretsmanager:UntagResource. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Modifies the details of a secret, including metadata and the secret value. To change
     -- the secret value, you can also use PutSecretValue.
     -- To change the rotation configuration of a secret, use RotateSecret
@@ -362,7 +366,7 @@ local record Client
     -- information, see Secret encryption
     -- and decryption.
     -- When you enter commands in a command shell, there is a risk of the command history being accessed or utilities having access to your command parameters. This is a concern if the command includes the value of a secret. Learn how to Mitigate the risks of using command-line tools to store Secrets Manager secrets.
-    updateSecret: function(Client, types.UpdateSecretInput): types.UpdateSecretOutput, table
+    updateSecret: function(Client, types.UpdateSecretInput): Operation<types.UpdateSecretOutput>
     -- Modifies the staging labels attached to a version of a secret. Secrets Manager uses staging
     -- labels to track a version as it progresses through the secret rotation process. Each
     -- staging label can be attached to only one version at a time. To add a staging label to a
@@ -384,7 +388,7 @@ local record Client
     -- secretsmanager:UpdateSecretVersionStage. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    updateSecretVersionStage: function(Client, types.UpdateSecretVersionStageInput): types.UpdateSecretVersionStageOutput, table
+    updateSecretVersionStage: function(Client, types.UpdateSecretVersionStageInput): Operation<types.UpdateSecretVersionStageOutput>
     -- Validates that a resource policy does not grant a wide range of principals access to
     -- your secret. A resource-based policy is optional for secrets.
     -- The API performs three checks when validating the policy:
@@ -399,7 +403,7 @@ local record Client
     -- secretsmanager:PutResourcePolicy. For more information, see
     -- IAM policy actions for Secrets Manager and Authentication
     -- and access control in Secrets Manager.
-    validateResourcePolicy: function(Client, types.ValidateResourcePolicyInput): types.ValidateResourcePolicyOutput, table
+    validateResourcePolicy: function(Client, types.ValidateResourcePolicyInput): Operation<types.ValidateResourcePolicyOutput>
 end
 
 local record M

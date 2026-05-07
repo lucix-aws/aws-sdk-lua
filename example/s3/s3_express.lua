@@ -28,7 +28,7 @@ local client = s3.new({ region = region })
 
 -- PutObject: upload content to the directory bucket
 local body = "Hello from the AWS SDK for Lua (S3 Express One Zone)!"
-local _, err = client:putObject({ Bucket = bucket, Key = key, Body = body })
+local _, err = client:putObject({ Bucket = bucket, Key = key, Body = body }):await()
 if err then
     io.stderr:write("PutObject ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)
@@ -37,7 +37,7 @@ print("PutObject OK: s3://" .. bucket .. "/" .. key)
 
 -- GetObject: read it back
 local result
-result, err = client:getObject({ Bucket = bucket, Key = key })
+result, err = client:getObject({ Bucket = bucket, Key = key }):await()
 if err then
     io.stderr:write("GetObject ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)
@@ -57,7 +57,7 @@ end
 io.write("\n")
 
 -- DeleteObject: clean up
-_, err = client:deleteObject({ Bucket = bucket, Key = key })
+_, err = client:deleteObject({ Bucket = bucket, Key = key }):await()
 if err then
     io.stderr:write("DeleteObject ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)

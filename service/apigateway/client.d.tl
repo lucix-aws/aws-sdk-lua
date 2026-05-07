@@ -2,259 +2,263 @@
 
 local types = require("apigateway.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Create an ApiKey resource.
-    createApiKey: function(Client, types.CreateApiKeyInput): types.CreateApiKeyOutput, table
+    createApiKey: function(Client, types.CreateApiKeyInput): Operation<types.CreateApiKeyOutput>
     -- Adds a new Authorizer resource to an existing RestApi resource.
-    createAuthorizer: function(Client, types.CreateAuthorizerInput): types.CreateAuthorizerOutput, table
+    createAuthorizer: function(Client, types.CreateAuthorizerInput): Operation<types.CreateAuthorizerOutput>
     -- Creates a new BasePathMapping resource.
-    createBasePathMapping: function(Client, types.CreateBasePathMappingInput): types.CreateBasePathMappingOutput, table
+    createBasePathMapping: function(Client, types.CreateBasePathMappingInput): Operation<types.CreateBasePathMappingOutput>
     -- Creates a Deployment resource, which makes a specified RestApi callable over the internet.
-    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): Operation<types.CreateDeploymentOutput>
     -- Creates a documentation part.
-    createDocumentationPart: function(Client, types.CreateDocumentationPartInput): types.CreateDocumentationPartOutput, table
+    createDocumentationPart: function(Client, types.CreateDocumentationPartInput): Operation<types.CreateDocumentationPartOutput>
     -- Creates a documentation version
-    createDocumentationVersion: function(Client, types.CreateDocumentationVersionInput): types.CreateDocumentationVersionOutput, table
+    createDocumentationVersion: function(Client, types.CreateDocumentationVersionInput): Operation<types.CreateDocumentationVersionOutput>
     -- Creates a new domain name.
-    createDomainName: function(Client, types.CreateDomainNameInput): types.CreateDomainNameOutput, table
+    createDomainName: function(Client, types.CreateDomainNameInput): Operation<types.CreateDomainNameOutput>
     -- Creates a domain name access association resource between an access association source and a private custom
     -- domain name.
-    createDomainNameAccessAssociation: function(Client, types.CreateDomainNameAccessAssociationInput): types.CreateDomainNameAccessAssociationOutput, table
+    createDomainNameAccessAssociation: function(Client, types.CreateDomainNameAccessAssociationInput): Operation<types.CreateDomainNameAccessAssociationOutput>
     -- Adds a new Model resource to an existing RestApi resource.
-    createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    createModel: function(Client, types.CreateModelInput): Operation<types.CreateModelOutput>
     -- Creates a RequestValidator of a given RestApi.
-    createRequestValidator: function(Client, types.CreateRequestValidatorInput): types.CreateRequestValidatorOutput, table
+    createRequestValidator: function(Client, types.CreateRequestValidatorInput): Operation<types.CreateRequestValidatorOutput>
     -- Creates a Resource resource.
-    createResource: function(Client, types.CreateResourceInput): types.CreateResourceOutput, table
+    createResource: function(Client, types.CreateResourceInput): Operation<types.CreateResourceOutput>
     -- Creates a new RestApi resource.
-    createRestApi: function(Client, types.CreateRestApiInput): types.CreateRestApiOutput, table
+    createRestApi: function(Client, types.CreateRestApiInput): Operation<types.CreateRestApiOutput>
     -- Creates a new Stage resource that references a pre-existing Deployment for the API.
-    createStage: function(Client, types.CreateStageInput): types.CreateStageOutput, table
+    createStage: function(Client, types.CreateStageInput): Operation<types.CreateStageOutput>
     -- Creates a usage plan with the throttle and quota limits, as well as the associated API stages, specified in the payload.
-    createUsagePlan: function(Client, types.CreateUsagePlanInput): types.CreateUsagePlanOutput, table
+    createUsagePlan: function(Client, types.CreateUsagePlanInput): Operation<types.CreateUsagePlanOutput>
     -- Creates a usage plan key for adding an existing API key to a usage plan.
-    createUsagePlanKey: function(Client, types.CreateUsagePlanKeyInput): types.CreateUsagePlanKeyOutput, table
+    createUsagePlanKey: function(Client, types.CreateUsagePlanKeyInput): Operation<types.CreateUsagePlanKeyOutput>
     -- Creates a VPC link, under the caller's account in a selected region, in an asynchronous operation that typically takes 2-4 minutes to complete and become operational. The caller must have permissions to create and update VPC Endpoint services.
-    createVpcLink: function(Client, types.CreateVpcLinkInput): types.CreateVpcLinkOutput, table
+    createVpcLink: function(Client, types.CreateVpcLinkInput): Operation<types.CreateVpcLinkOutput>
     -- Deletes the ApiKey resource.
-    deleteApiKey: function(Client, types.DeleteApiKeyInput): types.DeleteApiKeyOutput, table
+    deleteApiKey: function(Client, types.DeleteApiKeyInput): Operation<types.DeleteApiKeyOutput>
     -- Deletes an existing Authorizer resource.
-    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): types.DeleteAuthorizerOutput, table
+    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): Operation<types.DeleteAuthorizerOutput>
     -- Deletes the BasePathMapping resource.
-    deleteBasePathMapping: function(Client, types.DeleteBasePathMappingInput): types.DeleteBasePathMappingOutput, table
+    deleteBasePathMapping: function(Client, types.DeleteBasePathMappingInput): Operation<types.DeleteBasePathMappingOutput>
     -- Deletes the ClientCertificate resource.
-    deleteClientCertificate: function(Client, types.DeleteClientCertificateInput): types.DeleteClientCertificateOutput, table
+    deleteClientCertificate: function(Client, types.DeleteClientCertificateInput): Operation<types.DeleteClientCertificateOutput>
     -- Deletes a Deployment resource. Deleting a deployment will only succeed if there are no Stage resources associated with it.
-    deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    deleteDeployment: function(Client, types.DeleteDeploymentInput): Operation<types.DeleteDeploymentOutput>
     -- Deletes a documentation part
-    deleteDocumentationPart: function(Client, types.DeleteDocumentationPartInput): types.DeleteDocumentationPartOutput, table
+    deleteDocumentationPart: function(Client, types.DeleteDocumentationPartInput): Operation<types.DeleteDocumentationPartOutput>
     -- Deletes a documentation version.
-    deleteDocumentationVersion: function(Client, types.DeleteDocumentationVersionInput): types.DeleteDocumentationVersionOutput, table
+    deleteDocumentationVersion: function(Client, types.DeleteDocumentationVersionInput): Operation<types.DeleteDocumentationVersionOutput>
     -- Deletes the DomainName resource.
-    deleteDomainName: function(Client, types.DeleteDomainNameInput): types.DeleteDomainNameOutput, table
+    deleteDomainName: function(Client, types.DeleteDomainNameInput): Operation<types.DeleteDomainNameOutput>
     -- Deletes the DomainNameAccessAssociation resource.
     -- Only the AWS account that created the DomainNameAccessAssociation resource can delete it. To stop an access association source in another AWS account from accessing your private custom domain name, use the RejectDomainNameAccessAssociation operation.
-    deleteDomainNameAccessAssociation: function(Client, types.DeleteDomainNameAccessAssociationInput): types.DeleteDomainNameAccessAssociationOutput, table
+    deleteDomainNameAccessAssociation: function(Client, types.DeleteDomainNameAccessAssociationInput): Operation<types.DeleteDomainNameAccessAssociationOutput>
     -- Clears any customization of a GatewayResponse of a specified response type on the given RestApi and resets it with the default settings.
-    deleteGatewayResponse: function(Client, types.DeleteGatewayResponseInput): types.DeleteGatewayResponseOutput, table
+    deleteGatewayResponse: function(Client, types.DeleteGatewayResponseInput): Operation<types.DeleteGatewayResponseOutput>
     -- Represents a delete integration.
-    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): Operation<types.DeleteIntegrationOutput>
     -- Represents a delete integration response.
-    deleteIntegrationResponse: function(Client, types.DeleteIntegrationResponseInput): types.DeleteIntegrationResponseOutput, table
+    deleteIntegrationResponse: function(Client, types.DeleteIntegrationResponseInput): Operation<types.DeleteIntegrationResponseOutput>
     -- Deletes an existing Method resource.
-    deleteMethod: function(Client, types.DeleteMethodInput): types.DeleteMethodOutput, table
+    deleteMethod: function(Client, types.DeleteMethodInput): Operation<types.DeleteMethodOutput>
     -- Deletes an existing MethodResponse resource.
-    deleteMethodResponse: function(Client, types.DeleteMethodResponseInput): types.DeleteMethodResponseOutput, table
+    deleteMethodResponse: function(Client, types.DeleteMethodResponseInput): Operation<types.DeleteMethodResponseOutput>
     -- Deletes a model.
-    deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    deleteModel: function(Client, types.DeleteModelInput): Operation<types.DeleteModelOutput>
     -- Deletes a RequestValidator of a given RestApi.
-    deleteRequestValidator: function(Client, types.DeleteRequestValidatorInput): types.DeleteRequestValidatorOutput, table
+    deleteRequestValidator: function(Client, types.DeleteRequestValidatorInput): Operation<types.DeleteRequestValidatorOutput>
     -- Deletes a Resource resource.
-    deleteResource: function(Client, types.DeleteResourceInput): types.DeleteResourceOutput, table
+    deleteResource: function(Client, types.DeleteResourceInput): Operation<types.DeleteResourceOutput>
     -- Deletes the specified API.
-    deleteRestApi: function(Client, types.DeleteRestApiInput): types.DeleteRestApiOutput, table
+    deleteRestApi: function(Client, types.DeleteRestApiInput): Operation<types.DeleteRestApiOutput>
     -- Deletes a Stage resource.
-    deleteStage: function(Client, types.DeleteStageInput): types.DeleteStageOutput, table
+    deleteStage: function(Client, types.DeleteStageInput): Operation<types.DeleteStageOutput>
     -- Deletes a usage plan of a given plan Id.
-    deleteUsagePlan: function(Client, types.DeleteUsagePlanInput): types.DeleteUsagePlanOutput, table
+    deleteUsagePlan: function(Client, types.DeleteUsagePlanInput): Operation<types.DeleteUsagePlanOutput>
     -- Deletes a usage plan key and remove the underlying API key from the associated usage plan.
-    deleteUsagePlanKey: function(Client, types.DeleteUsagePlanKeyInput): types.DeleteUsagePlanKeyOutput, table
+    deleteUsagePlanKey: function(Client, types.DeleteUsagePlanKeyInput): Operation<types.DeleteUsagePlanKeyOutput>
     -- Deletes an existing VpcLink of a specified identifier.
-    deleteVpcLink: function(Client, types.DeleteVpcLinkInput): types.DeleteVpcLinkOutput, table
+    deleteVpcLink: function(Client, types.DeleteVpcLinkInput): Operation<types.DeleteVpcLinkOutput>
     -- Flushes all authorizer cache entries on a stage.
-    flushStageAuthorizersCache: function(Client, types.FlushStageAuthorizersCacheInput): types.FlushStageAuthorizersCacheOutput, table
+    flushStageAuthorizersCache: function(Client, types.FlushStageAuthorizersCacheInput): Operation<types.FlushStageAuthorizersCacheOutput>
     -- Flushes a stage's cache.
-    flushStageCache: function(Client, types.FlushStageCacheInput): types.FlushStageCacheOutput, table
+    flushStageCache: function(Client, types.FlushStageCacheInput): Operation<types.FlushStageCacheOutput>
     -- Generates a ClientCertificate resource.
-    generateClientCertificate: function(Client, types.GenerateClientCertificateInput): types.GenerateClientCertificateOutput, table
+    generateClientCertificate: function(Client, types.GenerateClientCertificateInput): Operation<types.GenerateClientCertificateOutput>
     -- Gets information about the current Account resource.
-    getAccount: function(Client, types.GetAccountInput): types.GetAccountOutput, table
+    getAccount: function(Client, types.GetAccountInput): Operation<types.GetAccountOutput>
     -- Gets information about the current ApiKey resource.
-    getApiKey: function(Client, types.GetApiKeyInput): types.GetApiKeyOutput, table
+    getApiKey: function(Client, types.GetApiKeyInput): Operation<types.GetApiKeyOutput>
     -- Gets information about the current ApiKeys resource.
-    getApiKeys: function(Client, types.GetApiKeysInput): types.GetApiKeysOutput, table
+    getApiKeys: function(Client, types.GetApiKeysInput): Operation<types.GetApiKeysOutput>
     -- Describe an existing Authorizer resource.
-    getAuthorizer: function(Client, types.GetAuthorizerInput): types.GetAuthorizerOutput, table
+    getAuthorizer: function(Client, types.GetAuthorizerInput): Operation<types.GetAuthorizerOutput>
     -- Describe an existing Authorizers resource.
-    getAuthorizers: function(Client, types.GetAuthorizersInput): types.GetAuthorizersOutput, table
+    getAuthorizers: function(Client, types.GetAuthorizersInput): Operation<types.GetAuthorizersOutput>
     -- Describe a BasePathMapping resource.
-    getBasePathMapping: function(Client, types.GetBasePathMappingInput): types.GetBasePathMappingOutput, table
+    getBasePathMapping: function(Client, types.GetBasePathMappingInput): Operation<types.GetBasePathMappingOutput>
     -- Represents a collection of BasePathMapping resources.
-    getBasePathMappings: function(Client, types.GetBasePathMappingsInput): types.GetBasePathMappingsOutput, table
+    getBasePathMappings: function(Client, types.GetBasePathMappingsInput): Operation<types.GetBasePathMappingsOutput>
     -- Gets information about the current ClientCertificate resource.
-    getClientCertificate: function(Client, types.GetClientCertificateInput): types.GetClientCertificateOutput, table
+    getClientCertificate: function(Client, types.GetClientCertificateInput): Operation<types.GetClientCertificateOutput>
     -- Gets a collection of ClientCertificate resources.
-    getClientCertificates: function(Client, types.GetClientCertificatesInput): types.GetClientCertificatesOutput, table
+    getClientCertificates: function(Client, types.GetClientCertificatesInput): Operation<types.GetClientCertificatesOutput>
     -- Gets information about a Deployment resource.
-    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): Operation<types.GetDeploymentOutput>
     -- Gets information about a Deployments collection.
-    getDeployments: function(Client, types.GetDeploymentsInput): types.GetDeploymentsOutput, table
+    getDeployments: function(Client, types.GetDeploymentsInput): Operation<types.GetDeploymentsOutput>
     -- Gets a documentation part.
-    getDocumentationPart: function(Client, types.GetDocumentationPartInput): types.GetDocumentationPartOutput, table
+    getDocumentationPart: function(Client, types.GetDocumentationPartInput): Operation<types.GetDocumentationPartOutput>
     -- Gets documentation parts.
-    getDocumentationParts: function(Client, types.GetDocumentationPartsInput): types.GetDocumentationPartsOutput, table
+    getDocumentationParts: function(Client, types.GetDocumentationPartsInput): Operation<types.GetDocumentationPartsOutput>
     -- Gets a documentation version.
-    getDocumentationVersion: function(Client, types.GetDocumentationVersionInput): types.GetDocumentationVersionOutput, table
+    getDocumentationVersion: function(Client, types.GetDocumentationVersionInput): Operation<types.GetDocumentationVersionOutput>
     -- Gets documentation versions.
-    getDocumentationVersions: function(Client, types.GetDocumentationVersionsInput): types.GetDocumentationVersionsOutput, table
+    getDocumentationVersions: function(Client, types.GetDocumentationVersionsInput): Operation<types.GetDocumentationVersionsOutput>
     -- Represents a domain name that is contained in a simpler, more intuitive URL that can be called.
-    getDomainName: function(Client, types.GetDomainNameInput): types.GetDomainNameOutput, table
+    getDomainName: function(Client, types.GetDomainNameInput): Operation<types.GetDomainNameOutput>
     -- Represents a collection on DomainNameAccessAssociations resources.
-    getDomainNameAccessAssociations: function(Client, types.GetDomainNameAccessAssociationsInput): types.GetDomainNameAccessAssociationsOutput, table
+    getDomainNameAccessAssociations: function(Client, types.GetDomainNameAccessAssociationsInput): Operation<types.GetDomainNameAccessAssociationsOutput>
     -- Represents a collection of DomainName resources.
-    getDomainNames: function(Client, types.GetDomainNamesInput): types.GetDomainNamesOutput, table
+    getDomainNames: function(Client, types.GetDomainNamesInput): Operation<types.GetDomainNamesOutput>
     -- Exports a deployed version of a RestApi in a specified format.
-    getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    getExport: function(Client, types.GetExportInput): Operation<types.GetExportOutput>
     -- Gets a GatewayResponse of a specified response type on the given RestApi.
-    getGatewayResponse: function(Client, types.GetGatewayResponseInput): types.GetGatewayResponseOutput, table
+    getGatewayResponse: function(Client, types.GetGatewayResponseInput): Operation<types.GetGatewayResponseOutput>
     -- Gets the GatewayResponses collection on the given RestApi. If an API developer has not added any definitions for gateway responses, the result will be the API Gateway-generated default GatewayResponses collection for the supported response types.
-    getGatewayResponses: function(Client, types.GetGatewayResponsesInput): types.GetGatewayResponsesOutput, table
+    getGatewayResponses: function(Client, types.GetGatewayResponsesInput): Operation<types.GetGatewayResponsesOutput>
     -- Get the integration settings.
-    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): Operation<types.GetIntegrationOutput>
     -- Represents a get integration response.
-    getIntegrationResponse: function(Client, types.GetIntegrationResponseInput): types.GetIntegrationResponseOutput, table
+    getIntegrationResponse: function(Client, types.GetIntegrationResponseInput): Operation<types.GetIntegrationResponseOutput>
     -- Describe an existing Method resource.
-    getMethod: function(Client, types.GetMethodInput): types.GetMethodOutput, table
+    getMethod: function(Client, types.GetMethodInput): Operation<types.GetMethodOutput>
     -- Describes a MethodResponse resource.
-    getMethodResponse: function(Client, types.GetMethodResponseInput): types.GetMethodResponseOutput, table
+    getMethodResponse: function(Client, types.GetMethodResponseInput): Operation<types.GetMethodResponseOutput>
     -- Describes an existing model defined for a RestApi resource.
-    getModel: function(Client, types.GetModelInput): types.GetModelOutput, table
+    getModel: function(Client, types.GetModelInput): Operation<types.GetModelOutput>
     -- Describes existing Models defined for a RestApi resource.
-    getModels: function(Client, types.GetModelsInput): types.GetModelsOutput, table
+    getModels: function(Client, types.GetModelsInput): Operation<types.GetModelsOutput>
     -- Generates a sample mapping template that can be used to transform a payload into the structure of a model.
-    getModelTemplate: function(Client, types.GetModelTemplateInput): types.GetModelTemplateOutput, table
+    getModelTemplate: function(Client, types.GetModelTemplateInput): Operation<types.GetModelTemplateOutput>
     -- Gets a RequestValidator of a given RestApi.
-    getRequestValidator: function(Client, types.GetRequestValidatorInput): types.GetRequestValidatorOutput, table
+    getRequestValidator: function(Client, types.GetRequestValidatorInput): Operation<types.GetRequestValidatorOutput>
     -- Gets the RequestValidators collection of a given RestApi.
-    getRequestValidators: function(Client, types.GetRequestValidatorsInput): types.GetRequestValidatorsOutput, table
+    getRequestValidators: function(Client, types.GetRequestValidatorsInput): Operation<types.GetRequestValidatorsOutput>
     -- Lists information about a resource.
-    getResource: function(Client, types.GetResourceInput): types.GetResourceOutput, table
+    getResource: function(Client, types.GetResourceInput): Operation<types.GetResourceOutput>
     -- Lists information about a collection of Resource resources.
-    getResources: function(Client, types.GetResourcesInput): types.GetResourcesOutput, table
+    getResources: function(Client, types.GetResourcesInput): Operation<types.GetResourcesOutput>
     -- Lists the RestApi resource in the collection.
-    getRestApi: function(Client, types.GetRestApiInput): types.GetRestApiOutput, table
+    getRestApi: function(Client, types.GetRestApiInput): Operation<types.GetRestApiOutput>
     -- Lists the RestApis resources for your collection.
-    getRestApis: function(Client, types.GetRestApisInput): types.GetRestApisOutput, table
+    getRestApis: function(Client, types.GetRestApisInput): Operation<types.GetRestApisOutput>
     -- Generates a client SDK for a RestApi and Stage.
-    getSdk: function(Client, types.GetSdkInput): types.GetSdkOutput, table
+    getSdk: function(Client, types.GetSdkInput): Operation<types.GetSdkOutput>
     -- Gets an SDK type.
-    getSdkType: function(Client, types.GetSdkTypeInput): types.GetSdkTypeOutput, table
+    getSdkType: function(Client, types.GetSdkTypeInput): Operation<types.GetSdkTypeOutput>
     -- Gets SDK types
-    getSdkTypes: function(Client, types.GetSdkTypesInput): types.GetSdkTypesOutput, table
+    getSdkTypes: function(Client, types.GetSdkTypesInput): Operation<types.GetSdkTypesOutput>
     -- Gets information about a Stage resource.
-    getStage: function(Client, types.GetStageInput): types.GetStageOutput, table
+    getStage: function(Client, types.GetStageInput): Operation<types.GetStageOutput>
     -- Gets information about one or more Stage resources.
-    getStages: function(Client, types.GetStagesInput): types.GetStagesOutput, table
+    getStages: function(Client, types.GetStagesInput): Operation<types.GetStagesOutput>
     -- Gets the Tags collection for a given resource.
-    getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    getTags: function(Client, types.GetTagsInput): Operation<types.GetTagsOutput>
     -- Gets the usage data of a usage plan in a specified time interval.
-    getUsage: function(Client, types.GetUsageInput): types.GetUsageOutput, table
+    getUsage: function(Client, types.GetUsageInput): Operation<types.GetUsageOutput>
     -- Gets a usage plan of a given plan identifier.
-    getUsagePlan: function(Client, types.GetUsagePlanInput): types.GetUsagePlanOutput, table
+    getUsagePlan: function(Client, types.GetUsagePlanInput): Operation<types.GetUsagePlanOutput>
     -- Gets a usage plan key of a given key identifier.
-    getUsagePlanKey: function(Client, types.GetUsagePlanKeyInput): types.GetUsagePlanKeyOutput, table
+    getUsagePlanKey: function(Client, types.GetUsagePlanKeyInput): Operation<types.GetUsagePlanKeyOutput>
     -- Gets all the usage plan keys representing the API keys added to a specified usage plan.
-    getUsagePlanKeys: function(Client, types.GetUsagePlanKeysInput): types.GetUsagePlanKeysOutput, table
+    getUsagePlanKeys: function(Client, types.GetUsagePlanKeysInput): Operation<types.GetUsagePlanKeysOutput>
     -- Gets all the usage plans of the caller's account.
-    getUsagePlans: function(Client, types.GetUsagePlansInput): types.GetUsagePlansOutput, table
+    getUsagePlans: function(Client, types.GetUsagePlansInput): Operation<types.GetUsagePlansOutput>
     -- Gets a specified VPC link under the caller's account in a region.
-    getVpcLink: function(Client, types.GetVpcLinkInput): types.GetVpcLinkOutput, table
+    getVpcLink: function(Client, types.GetVpcLinkInput): Operation<types.GetVpcLinkOutput>
     -- Gets the VpcLinks collection under the caller's account in a selected region.
-    getVpcLinks: function(Client, types.GetVpcLinksInput): types.GetVpcLinksOutput, table
+    getVpcLinks: function(Client, types.GetVpcLinksInput): Operation<types.GetVpcLinksOutput>
     -- Import API keys from an external source, such as a CSV-formatted file.
-    importApiKeys: function(Client, types.ImportApiKeysInput): types.ImportApiKeysOutput, table
+    importApiKeys: function(Client, types.ImportApiKeysInput): Operation<types.ImportApiKeysOutput>
     -- Imports documentation parts
-    importDocumentationParts: function(Client, types.ImportDocumentationPartsInput): types.ImportDocumentationPartsOutput, table
+    importDocumentationParts: function(Client, types.ImportDocumentationPartsInput): Operation<types.ImportDocumentationPartsOutput>
     -- A feature of the API Gateway control service for creating a new API from an external API definition file.
-    importRestApi: function(Client, types.ImportRestApiInput): types.ImportRestApiOutput, table
+    importRestApi: function(Client, types.ImportRestApiInput): Operation<types.ImportRestApiOutput>
     -- Creates a customization of a GatewayResponse of a specified response type and status code on the given RestApi.
-    putGatewayResponse: function(Client, types.PutGatewayResponseInput): types.PutGatewayResponseOutput, table
+    putGatewayResponse: function(Client, types.PutGatewayResponseInput): Operation<types.PutGatewayResponseOutput>
     -- Sets up a method's integration.
-    putIntegration: function(Client, types.PutIntegrationInput): types.PutIntegrationOutput, table
+    putIntegration: function(Client, types.PutIntegrationInput): Operation<types.PutIntegrationOutput>
     -- Represents a put integration.
-    putIntegrationResponse: function(Client, types.PutIntegrationResponseInput): types.PutIntegrationResponseOutput, table
+    putIntegrationResponse: function(Client, types.PutIntegrationResponseInput): Operation<types.PutIntegrationResponseOutput>
     -- Add a method to an existing Resource resource.
-    putMethod: function(Client, types.PutMethodInput): types.PutMethodOutput, table
+    putMethod: function(Client, types.PutMethodInput): Operation<types.PutMethodOutput>
     -- Adds a MethodResponse to an existing Method resource.
-    putMethodResponse: function(Client, types.PutMethodResponseInput): types.PutMethodResponseOutput, table
+    putMethodResponse: function(Client, types.PutMethodResponseInput): Operation<types.PutMethodResponseOutput>
     -- A feature of the API Gateway control service for updating an existing API with an input of external API definitions.
     -- The update can take the form of merging the supplied definition into the existing API or overwriting the existing API.
-    putRestApi: function(Client, types.PutRestApiInput): types.PutRestApiOutput, table
+    putRestApi: function(Client, types.PutRestApiInput): Operation<types.PutRestApiOutput>
     -- Rejects a domain name access association with a private custom domain name.
     -- To reject a domain name access association with an access association source in another AWS account, use this operation. To remove a domain name access association with an access association source in your own account, use the DeleteDomainNameAccessAssociation operation.
-    rejectDomainNameAccessAssociation: function(Client, types.RejectDomainNameAccessAssociationInput): types.RejectDomainNameAccessAssociationOutput, table
+    rejectDomainNameAccessAssociation: function(Client, types.RejectDomainNameAccessAssociationInput): Operation<types.RejectDomainNameAccessAssociationOutput>
     -- Adds or updates a tag on a given resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Simulate the execution of an Authorizer in your RestApi with headers, parameters, and an incoming request body.
-    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput): types.TestInvokeAuthorizerOutput, table
+    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput): Operation<types.TestInvokeAuthorizerOutput>
     -- Simulate the invocation of a Method in your RestApi with headers, parameters, and an incoming request body.
-    testInvokeMethod: function(Client, types.TestInvokeMethodInput): types.TestInvokeMethodOutput, table
+    testInvokeMethod: function(Client, types.TestInvokeMethodInput): Operation<types.TestInvokeMethodOutput>
     -- Removes a tag from a given resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Changes information about the current Account resource.
-    updateAccount: function(Client, types.UpdateAccountInput): types.UpdateAccountOutput, table
+    updateAccount: function(Client, types.UpdateAccountInput): Operation<types.UpdateAccountOutput>
     -- Changes information about an ApiKey resource.
-    updateApiKey: function(Client, types.UpdateApiKeyInput): types.UpdateApiKeyOutput, table
+    updateApiKey: function(Client, types.UpdateApiKeyInput): Operation<types.UpdateApiKeyOutput>
     -- Updates an existing Authorizer resource.
-    updateAuthorizer: function(Client, types.UpdateAuthorizerInput): types.UpdateAuthorizerOutput, table
+    updateAuthorizer: function(Client, types.UpdateAuthorizerInput): Operation<types.UpdateAuthorizerOutput>
     -- Changes information about the BasePathMapping resource.
-    updateBasePathMapping: function(Client, types.UpdateBasePathMappingInput): types.UpdateBasePathMappingOutput, table
+    updateBasePathMapping: function(Client, types.UpdateBasePathMappingInput): Operation<types.UpdateBasePathMappingOutput>
     -- Changes information about an ClientCertificate resource.
-    updateClientCertificate: function(Client, types.UpdateClientCertificateInput): types.UpdateClientCertificateOutput, table
+    updateClientCertificate: function(Client, types.UpdateClientCertificateInput): Operation<types.UpdateClientCertificateOutput>
     -- Changes information about a Deployment resource.
-    updateDeployment: function(Client, types.UpdateDeploymentInput): types.UpdateDeploymentOutput, table
+    updateDeployment: function(Client, types.UpdateDeploymentInput): Operation<types.UpdateDeploymentOutput>
     -- Updates a documentation part.
-    updateDocumentationPart: function(Client, types.UpdateDocumentationPartInput): types.UpdateDocumentationPartOutput, table
+    updateDocumentationPart: function(Client, types.UpdateDocumentationPartInput): Operation<types.UpdateDocumentationPartOutput>
     -- Updates a documentation version.
-    updateDocumentationVersion: function(Client, types.UpdateDocumentationVersionInput): types.UpdateDocumentationVersionOutput, table
+    updateDocumentationVersion: function(Client, types.UpdateDocumentationVersionInput): Operation<types.UpdateDocumentationVersionOutput>
     -- Changes information about the DomainName resource.
-    updateDomainName: function(Client, types.UpdateDomainNameInput): types.UpdateDomainNameOutput, table
+    updateDomainName: function(Client, types.UpdateDomainNameInput): Operation<types.UpdateDomainNameOutput>
     -- Updates a GatewayResponse of a specified response type on the given RestApi.
-    updateGatewayResponse: function(Client, types.UpdateGatewayResponseInput): types.UpdateGatewayResponseOutput, table
+    updateGatewayResponse: function(Client, types.UpdateGatewayResponseInput): Operation<types.UpdateGatewayResponseOutput>
     -- Represents an update integration.
-    updateIntegration: function(Client, types.UpdateIntegrationInput): types.UpdateIntegrationOutput, table
+    updateIntegration: function(Client, types.UpdateIntegrationInput): Operation<types.UpdateIntegrationOutput>
     -- Represents an update integration response.
-    updateIntegrationResponse: function(Client, types.UpdateIntegrationResponseInput): types.UpdateIntegrationResponseOutput, table
+    updateIntegrationResponse: function(Client, types.UpdateIntegrationResponseInput): Operation<types.UpdateIntegrationResponseOutput>
     -- Updates an existing Method resource.
-    updateMethod: function(Client, types.UpdateMethodInput): types.UpdateMethodOutput, table
+    updateMethod: function(Client, types.UpdateMethodInput): Operation<types.UpdateMethodOutput>
     -- Updates an existing MethodResponse resource.
-    updateMethodResponse: function(Client, types.UpdateMethodResponseInput): types.UpdateMethodResponseOutput, table
+    updateMethodResponse: function(Client, types.UpdateMethodResponseInput): Operation<types.UpdateMethodResponseOutput>
     -- Changes information about a model. The maximum size of the model is 400 KB.
-    updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    updateModel: function(Client, types.UpdateModelInput): Operation<types.UpdateModelOutput>
     -- Updates a RequestValidator of a given RestApi.
-    updateRequestValidator: function(Client, types.UpdateRequestValidatorInput): types.UpdateRequestValidatorOutput, table
+    updateRequestValidator: function(Client, types.UpdateRequestValidatorInput): Operation<types.UpdateRequestValidatorOutput>
     -- Changes information about a Resource resource.
-    updateResource: function(Client, types.UpdateResourceInput): types.UpdateResourceOutput, table
+    updateResource: function(Client, types.UpdateResourceInput): Operation<types.UpdateResourceOutput>
     -- Changes information about the specified API.
-    updateRestApi: function(Client, types.UpdateRestApiInput): types.UpdateRestApiOutput, table
+    updateRestApi: function(Client, types.UpdateRestApiInput): Operation<types.UpdateRestApiOutput>
     -- Changes information about a Stage resource.
-    updateStage: function(Client, types.UpdateStageInput): types.UpdateStageOutput, table
+    updateStage: function(Client, types.UpdateStageInput): Operation<types.UpdateStageOutput>
     -- Grants a temporary extension to the remaining quota of a usage plan associated with a specified API key.
-    updateUsage: function(Client, types.UpdateUsageInput): types.UpdateUsageOutput, table
+    updateUsage: function(Client, types.UpdateUsageInput): Operation<types.UpdateUsageOutput>
     -- Updates a usage plan of a given plan Id.
-    updateUsagePlan: function(Client, types.UpdateUsagePlanInput): types.UpdateUsagePlanOutput, table
+    updateUsagePlan: function(Client, types.UpdateUsagePlanInput): Operation<types.UpdateUsagePlanOutput>
     -- Updates an existing VpcLink of a specified identifier.
-    updateVpcLink: function(Client, types.UpdateVpcLinkInput): types.UpdateVpcLinkOutput, table
+    updateVpcLink: function(Client, types.UpdateVpcLinkInput): Operation<types.UpdateVpcLinkOutput>
 end
 
 local record M

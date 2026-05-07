@@ -2,17 +2,21 @@
 
 local types = require("freetier.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns a specific activity record that is available to the customer.
-    getAccountActivity: function(Client, types.GetAccountActivityInput): types.GetAccountActivityOutput, table
+    getAccountActivity: function(Client, types.GetAccountActivityInput): Operation<types.GetAccountActivityOutput>
     -- This returns all of the information related to the state of the account plan related to Free Tier.
-    getAccountPlanState: function(Client, types.GetAccountPlanStateInput): types.GetAccountPlanStateOutput, table
+    getAccountPlanState: function(Client, types.GetAccountPlanStateInput): Operation<types.GetAccountPlanStateOutput>
     -- Returns a list of all Free Tier usage objects that match your filters.
-    getFreeTierUsage: function(Client, types.GetFreeTierUsageInput): types.GetFreeTierUsageOutput, table
+    getFreeTierUsage: function(Client, types.GetFreeTierUsageInput): Operation<types.GetFreeTierUsageOutput>
     -- Returns a list of activities that are available. This operation supports pagination and filtering by status.
-    listAccountActivities: function(Client, types.ListAccountActivitiesInput): types.ListAccountActivitiesOutput, table
+    listAccountActivities: function(Client, types.ListAccountActivitiesInput): Operation<types.ListAccountActivitiesOutput>
     -- The account plan type for the Amazon Web Services account.
-    upgradeAccountPlan: function(Client, types.UpgradeAccountPlanInput): types.UpgradeAccountPlanOutput, table
+    upgradeAccountPlan: function(Client, types.UpgradeAccountPlanInput): Operation<types.UpgradeAccountPlanOutput>
 end
 
 local record M

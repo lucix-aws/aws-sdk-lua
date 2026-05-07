@@ -2,19 +2,23 @@
 
 local types = require("ses.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a receipt rule set by cloning an existing one. All receipt rules and
     -- configurations are copied to the new receipt rule set and are completely independent of
     -- the source rule set.
     -- For information about setting up rule sets, see the Amazon SES Developer Guide.
     -- You can execute this operation no more than once per second.
-    cloneReceiptRuleSet: function(Client, types.CloneReceiptRuleSetInput): types.CloneReceiptRuleSetOutput, table
+    cloneReceiptRuleSet: function(Client, types.CloneReceiptRuleSetInput): Operation<types.CloneReceiptRuleSetOutput>
     -- Creates a configuration set.
     -- Configuration sets enable you to publish email sending events. For information about
     -- using configuration sets, see the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): Operation<types.CreateConfigurationSetOutput>
     -- Creates a configuration set event destination.
     -- When you create or update an event destination, you must provide one, and only
     -- one, destination. The destination can be CloudWatch, Amazon Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS).
@@ -23,49 +27,49 @@ local record Client
     -- sets, see the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): types.CreateConfigurationSetEventDestinationOutput, table
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): Operation<types.CreateConfigurationSetEventDestinationOutput>
     -- Creates an association between a configuration set and a custom domain for open and
     -- click event tracking.
     -- By default, images and links used for tracking open and click events are hosted on
     -- domains operated by Amazon SES. You can configure a subdomain of your own to handle these
     -- events. For information about using custom domains, see the Amazon SES Developer Guide.
-    createConfigurationSetTrackingOptions: function(Client, types.CreateConfigurationSetTrackingOptionsInput): types.CreateConfigurationSetTrackingOptionsOutput, table
+    createConfigurationSetTrackingOptions: function(Client, types.CreateConfigurationSetTrackingOptionsInput): Operation<types.CreateConfigurationSetTrackingOptionsOutput>
     -- Creates a new custom verification email template.
     -- For more information about custom verification email templates, see Using
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput): types.CreateCustomVerificationEmailTemplateOutput, table
+    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput): Operation<types.CreateCustomVerificationEmailTemplateOutput>
     -- Creates a new IP address filter.
     -- For information about setting up IP address filters, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    createReceiptFilter: function(Client, types.CreateReceiptFilterInput): types.CreateReceiptFilterOutput, table
+    createReceiptFilter: function(Client, types.CreateReceiptFilterInput): Operation<types.CreateReceiptFilterOutput>
     -- Creates a receipt rule.
     -- For information about setting up receipt rules, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    createReceiptRule: function(Client, types.CreateReceiptRuleInput): types.CreateReceiptRuleOutput, table
+    createReceiptRule: function(Client, types.CreateReceiptRuleInput): Operation<types.CreateReceiptRuleOutput>
     -- Creates an empty receipt rule set.
     -- For information about setting up receipt rule sets, see the Amazon SES Developer Guide.
     -- You can execute this operation no more than once per second.
-    createReceiptRuleSet: function(Client, types.CreateReceiptRuleSetInput): types.CreateReceiptRuleSetOutput, table
+    createReceiptRuleSet: function(Client, types.CreateReceiptRuleSetInput): Operation<types.CreateReceiptRuleSetOutput>
     -- Creates an email template. Email templates enable you to send personalized email to
     -- one or more destinations in a single operation. For more information, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    createTemplate: function(Client, types.CreateTemplateInput): Operation<types.CreateTemplateOutput>
     -- Deletes a configuration set. Configuration sets enable you to publish email sending
     -- events. For information about using configuration sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): Operation<types.DeleteConfigurationSetOutput>
     -- Deletes a configuration set event destination. Configuration set event destinations
     -- are associated with configuration sets, which enable you to publish email sending
     -- events. For information about using configuration sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): types.DeleteConfigurationSetEventDestinationOutput, table
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): Operation<types.DeleteConfigurationSetEventDestinationOutput>
     -- Deletes an association between a configuration set and a custom domain for open and
     -- click event tracking.
     -- By default, images and links used for tracking open and click events are hosted on
@@ -74,17 +78,17 @@ local record Client
     -- Deleting this kind of association results in emails sent using the specified
     -- configuration set to capture open and click events using the standard,
     -- Amazon SES-operated domains.
-    deleteConfigurationSetTrackingOptions: function(Client, types.DeleteConfigurationSetTrackingOptionsInput): types.DeleteConfigurationSetTrackingOptionsOutput, table
+    deleteConfigurationSetTrackingOptions: function(Client, types.DeleteConfigurationSetTrackingOptionsInput): Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
     -- Deletes an existing custom verification email template.
     -- For more information about custom verification email templates, see Using
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput): types.DeleteCustomVerificationEmailTemplateOutput, table
+    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput): Operation<types.DeleteCustomVerificationEmailTemplateOutput>
     -- Deletes the specified identity (an email address or a domain) from the list of
     -- verified identities.
     -- You can execute this operation no more than once per second.
-    deleteIdentity: function(Client, types.DeleteIdentityInput): types.DeleteIdentityOutput, table
+    deleteIdentity: function(Client, types.DeleteIdentityInput): Operation<types.DeleteIdentityOutput>
     -- Deletes the specified sending authorization policy for the given identity (an email
     -- address or a domain). This operation returns successfully even if a policy with the
     -- specified name does not exist.
@@ -95,60 +99,60 @@ local record Client
     -- the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteIdentityPolicy: function(Client, types.DeleteIdentityPolicyInput): types.DeleteIdentityPolicyOutput, table
+    deleteIdentityPolicy: function(Client, types.DeleteIdentityPolicyInput): Operation<types.DeleteIdentityPolicyOutput>
     -- Deletes the specified IP address filter.
     -- For information about managing IP address filters, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteReceiptFilter: function(Client, types.DeleteReceiptFilterInput): types.DeleteReceiptFilterOutput, table
+    deleteReceiptFilter: function(Client, types.DeleteReceiptFilterInput): Operation<types.DeleteReceiptFilterOutput>
     -- Deletes the specified receipt rule.
     -- For information about managing receipt rules, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteReceiptRule: function(Client, types.DeleteReceiptRuleInput): types.DeleteReceiptRuleOutput, table
+    deleteReceiptRule: function(Client, types.DeleteReceiptRuleInput): Operation<types.DeleteReceiptRuleOutput>
     -- Deletes the specified receipt rule set and all of the receipt rules it
     -- contains.
     -- The currently active rule set cannot be deleted.
     -- For information about managing receipt rule sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    deleteReceiptRuleSet: function(Client, types.DeleteReceiptRuleSetInput): types.DeleteReceiptRuleSetOutput, table
+    deleteReceiptRuleSet: function(Client, types.DeleteReceiptRuleSetInput): Operation<types.DeleteReceiptRuleSetOutput>
     -- Deletes an email template.
     -- You can execute this operation no more than once per second.
-    deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    deleteTemplate: function(Client, types.DeleteTemplateInput): Operation<types.DeleteTemplateOutput>
     -- Deprecated. Use the DeleteIdentity operation to delete email addresses
     -- and domains.
-    deleteVerifiedEmailAddress: function(Client, types.DeleteVerifiedEmailAddressInput): types.DeleteVerifiedEmailAddressOutput, table
+    deleteVerifiedEmailAddress: function(Client, types.DeleteVerifiedEmailAddressInput): Operation<types.DeleteVerifiedEmailAddressOutput>
     -- Returns the metadata and receipt rules for the receipt rule set that is currently
     -- active.
     -- For information about setting up receipt rule sets, see the Amazon SES Developer Guide.
     -- You can execute this operation no more than once per second.
-    describeActiveReceiptRuleSet: function(Client, types.DescribeActiveReceiptRuleSetInput): types.DescribeActiveReceiptRuleSetOutput, table
+    describeActiveReceiptRuleSet: function(Client, types.DescribeActiveReceiptRuleSetInput): Operation<types.DescribeActiveReceiptRuleSetOutput>
     -- Returns the details of the specified configuration set. For information about using
     -- configuration sets, see the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    describeConfigurationSet: function(Client, types.DescribeConfigurationSetInput): types.DescribeConfigurationSetOutput, table
+    describeConfigurationSet: function(Client, types.DescribeConfigurationSetInput): Operation<types.DescribeConfigurationSetOutput>
     -- Returns the details of the specified receipt rule.
     -- For information about setting up receipt rules, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    describeReceiptRule: function(Client, types.DescribeReceiptRuleInput): types.DescribeReceiptRuleOutput, table
+    describeReceiptRule: function(Client, types.DescribeReceiptRuleInput): Operation<types.DescribeReceiptRuleOutput>
     -- Returns the details of the specified receipt rule set.
     -- For information about managing receipt rule sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    describeReceiptRuleSet: function(Client, types.DescribeReceiptRuleSetInput): types.DescribeReceiptRuleSetOutput, table
+    describeReceiptRuleSet: function(Client, types.DescribeReceiptRuleSetInput): Operation<types.DescribeReceiptRuleSetOutput>
     -- Returns the email sending status of the Amazon SES account for the current Region.
     -- You can execute this operation no more than once per second.
-    getAccountSendingEnabled: function(Client, types.GetAccountSendingEnabledInput): types.GetAccountSendingEnabledOutput, table
+    getAccountSendingEnabled: function(Client, types.GetAccountSendingEnabledInput): Operation<types.GetAccountSendingEnabledOutput>
     -- Returns the custom email verification template for the template name you
     -- specify.
     -- For more information about custom verification email templates, see Using
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput): types.GetCustomVerificationEmailTemplateOutput, table
+    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput): Operation<types.GetCustomVerificationEmailTemplateOutput>
     -- Returns the current status of Easy DKIM signing for an entity. For domain name
     -- identities, this operation also returns the DKIM tokens that are required for Easy DKIM
     -- signing, and whether Amazon SES has successfully verified that these tokens have been
@@ -165,19 +169,19 @@ local record Client
     -- for up to 100 identities at a time.
     -- For more information about creating DNS records using DKIM tokens, go to the Amazon SES
     -- Developer Guide.
-    getIdentityDkimAttributes: function(Client, types.GetIdentityDkimAttributesInput): types.GetIdentityDkimAttributesOutput, table
+    getIdentityDkimAttributes: function(Client, types.GetIdentityDkimAttributesInput): Operation<types.GetIdentityDkimAttributesOutput>
     -- Returns the custom MAIL FROM attributes for a list of identities (email addresses :
     -- domains).
     -- This operation is throttled at one request per second and can only get custom MAIL
     -- FROM attributes for up to 100 identities at a time.
-    getIdentityMailFromDomainAttributes: function(Client, types.GetIdentityMailFromDomainAttributesInput): types.GetIdentityMailFromDomainAttributesOutput, table
+    getIdentityMailFromDomainAttributes: function(Client, types.GetIdentityMailFromDomainAttributesInput): Operation<types.GetIdentityMailFromDomainAttributesOutput>
     -- Given a list of verified identities (email addresses and/or domains), returns a
     -- structure describing identity notification attributes.
     -- This operation is throttled at one request per second and can only get notification
     -- attributes for up to 100 identities at a time.
     -- For more information about using notifications with Amazon SES, see the Amazon SES
     -- Developer Guide.
-    getIdentityNotificationAttributes: function(Client, types.GetIdentityNotificationAttributesInput): types.GetIdentityNotificationAttributesOutput, table
+    getIdentityNotificationAttributes: function(Client, types.GetIdentityNotificationAttributesInput): Operation<types.GetIdentityNotificationAttributesOutput>
     -- Returns the requested sending authorization policies for the given identity (an email
     -- address or a domain). The policies are returned as a map of policy names to policy
     -- contents. You can retrieve a maximum of 20 policies at a time.
@@ -188,7 +192,7 @@ local record Client
     -- the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    getIdentityPolicies: function(Client, types.GetIdentityPoliciesInput): types.GetIdentityPoliciesOutput, table
+    getIdentityPolicies: function(Client, types.GetIdentityPoliciesInput): Operation<types.GetIdentityPoliciesOutput>
     -- Given a list of identities (email addresses and/or domains), returns the verification
     -- status and (for domain identities) the verification token for each identity.
     -- The verification status of an email address is "Pending" until the email address owner
@@ -205,19 +209,19 @@ local record Client
     -- beginning.
     -- This operation is throttled at one request per second and can only get verification
     -- attributes for up to 100 identities at a time.
-    getIdentityVerificationAttributes: function(Client, types.GetIdentityVerificationAttributesInput): types.GetIdentityVerificationAttributesOutput, table
+    getIdentityVerificationAttributes: function(Client, types.GetIdentityVerificationAttributesInput): Operation<types.GetIdentityVerificationAttributesOutput>
     -- Provides the sending limits for the Amazon SES account.
     -- You can execute this operation no more than once per second.
-    getSendQuota: function(Client, types.GetSendQuotaInput): types.GetSendQuotaOutput, table
+    getSendQuota: function(Client, types.GetSendQuotaInput): Operation<types.GetSendQuotaOutput>
     -- Provides sending statistics for the current Amazon Web Services Region. The result is a list of data
     -- points, representing the last two weeks of sending activity. Each data point in the list
     -- contains statistics for a 15-minute period of time.
     -- You can execute this operation no more than once per second.
-    getSendStatistics: function(Client, types.GetSendStatisticsInput): types.GetSendStatisticsOutput, table
+    getSendStatistics: function(Client, types.GetSendStatisticsInput): Operation<types.GetSendStatisticsOutput>
     -- Displays the template object (which includes the Subject line, HTML part and text
     -- part) for the template you specify.
     -- You can execute this operation no more than once per second.
-    getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    getTemplate: function(Client, types.GetTemplateInput): Operation<types.GetTemplateOutput>
     -- Provides a list of the configuration sets associated with your Amazon SES account in the
     -- current Amazon Web Services Region. For information about using configuration sets, see Monitoring
     -- Your Amazon SES Sending Activity in the Amazon SES Developer
@@ -228,14 +232,14 @@ local record Client
     -- then execute the ListConfigurationSets operation again, passing the
     -- NextToken parameter and the value of the NextToken element to retrieve
     -- additional results.
-    listConfigurationSets: function(Client, types.ListConfigurationSetsInput): types.ListConfigurationSetsOutput, table
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput): Operation<types.ListConfigurationSetsOutput>
     -- Lists the existing custom verification email templates for your account in the current
     -- Amazon Web Services Region.
     -- For more information about custom verification email templates, see Using
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput): types.ListCustomVerificationEmailTemplatesOutput, table
+    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput): Operation<types.ListCustomVerificationEmailTemplatesOutput>
     -- Returns a list containing all of the identities (email addresses and domains) for your
     -- Amazon Web Services account in the current Amazon Web Services Region, regardless of verification status.
     -- You can execute this operation no more than once per second.
@@ -247,7 +251,7 @@ local record Client
     -- calls; however, if you didn't provide the IdentityType parameter in the
     -- original call, then continue to not provide it for successive pagination calls.
     -- Using this protocol will ensure consistent results.
-    listIdentities: function(Client, types.ListIdentitiesInput): types.ListIdentitiesOutput, table
+    listIdentities: function(Client, types.ListIdentitiesInput): Operation<types.ListIdentitiesOutput>
     -- Returns a list of sending authorization policies that are attached to the given
     -- identity (an email address or a domain). This operation returns only a list. To get the
     -- actual policy content, use GetIdentityPolicies.
@@ -258,13 +262,13 @@ local record Client
     -- the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    listIdentityPolicies: function(Client, types.ListIdentityPoliciesInput): types.ListIdentityPoliciesOutput, table
+    listIdentityPolicies: function(Client, types.ListIdentityPoliciesInput): Operation<types.ListIdentityPoliciesOutput>
     -- Lists the IP address filters associated with your Amazon Web Services account in the current
     -- Amazon Web Services Region.
     -- For information about managing IP address filters, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    listReceiptFilters: function(Client, types.ListReceiptFiltersInput): types.ListReceiptFiltersOutput, table
+    listReceiptFilters: function(Client, types.ListReceiptFiltersInput): Operation<types.ListReceiptFiltersOutput>
     -- Lists the receipt rule sets that exist under your Amazon Web Services account in the current
     -- Amazon Web Services Region. If there are additional receipt rule sets to be retrieved, you receive a
     -- NextToken that you can provide to the next call to
@@ -272,16 +276,16 @@ local record Client
     -- For information about managing receipt rule sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    listReceiptRuleSets: function(Client, types.ListReceiptRuleSetsInput): types.ListReceiptRuleSetsOutput, table
+    listReceiptRuleSets: function(Client, types.ListReceiptRuleSetsInput): Operation<types.ListReceiptRuleSetsOutput>
     -- Lists the email templates present in your Amazon SES account in the current
     -- Amazon Web Services Region.
     -- You can execute this operation no more than once per second.
-    listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    listTemplates: function(Client, types.ListTemplatesInput): Operation<types.ListTemplatesOutput>
     -- Deprecated. Use the ListIdentities operation to list the email addresses
     -- and domains associated with your account.
-    listVerifiedEmailAddresses: function(Client, types.ListVerifiedEmailAddressesInput): types.ListVerifiedEmailAddressesOutput, table
+    listVerifiedEmailAddresses: function(Client, types.ListVerifiedEmailAddressesInput): Operation<types.ListVerifiedEmailAddressesOutput>
     -- Adds or updates the delivery options for a configuration set.
-    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput): types.PutConfigurationSetDeliveryOptionsOutput, table
+    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput): Operation<types.PutConfigurationSetDeliveryOptionsOutput>
     -- Adds or updates a sending authorization policy for the specified identity (an email
     -- address or a domain).
     -- This operation is for the identity owner only. If you have not verified the
@@ -291,14 +295,14 @@ local record Client
     -- the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    putIdentityPolicy: function(Client, types.PutIdentityPolicyInput): types.PutIdentityPolicyOutput, table
+    putIdentityPolicy: function(Client, types.PutIdentityPolicyInput): Operation<types.PutIdentityPolicyOutput>
     -- Reorders the receipt rules within a receipt rule set.
     -- All of the rules in the rule set must be represented in this request. That is, it
     -- is error if the reorder request doesn't explicitly position all of the rules.
     -- For information about managing receipt rule sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    reorderReceiptRuleSet: function(Client, types.ReorderReceiptRuleSetInput): types.ReorderReceiptRuleSetOutput, table
+    reorderReceiptRuleSet: function(Client, types.ReorderReceiptRuleSetInput): Operation<types.ReorderReceiptRuleSetOutput>
     -- Generates and sends a bounce message to the sender of an email you received through
     -- Amazon SES. You can only use this operation on an email up to 24 hours after you receive
     -- it.
@@ -307,7 +311,7 @@ local record Client
     -- For information about receiving email through Amazon SES, see the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    sendBounce: function(Client, types.SendBounceInput): types.SendBounceOutput, table
+    sendBounce: function(Client, types.SendBounceInput): Operation<types.SendBounceOutput>
     -- Composes an email message to multiple destinations. The message body is created using
     -- an email template.
     -- To send email using this operation, your call must meet the following
@@ -334,7 +338,7 @@ local record Client
     -- message to each group.
     -- The number of destinations you can contact in a single call can be limited by
     -- your account's maximum sending rate.
-    sendBulkTemplatedEmail: function(Client, types.SendBulkTemplatedEmailInput): types.SendBulkTemplatedEmailOutput, table
+    sendBulkTemplatedEmail: function(Client, types.SendBulkTemplatedEmailInput): Operation<types.SendBulkTemplatedEmailOutput>
     -- Adds an email address to the list of identities for your Amazon SES account in the current
     -- Amazon Web Services Region and attempts to verify it. As a result of executing this operation, a
     -- customized verification email is sent to the specified address.
@@ -344,7 +348,7 @@ local record Client
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput): types.SendCustomVerificationEmailOutput, table
+    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput): Operation<types.SendCustomVerificationEmailOutput>
     -- Composes an email message and immediately queues it for sending. To send email using
     -- this operation, your message must meet the following requirements:
     -- The message must be sent from a verified email address or domain. If you
@@ -372,7 +376,7 @@ local record Client
     -- emails you can send in a 24-hour period (your sending quota).
     -- For more information about sending quotas in Amazon SES, see Managing Your Amazon SES Sending
     -- Limits in the Amazon SES Developer Guide.
-    sendEmail: function(Client, types.SendEmailInput): types.SendEmailOutput, table
+    sendEmail: function(Client, types.SendEmailInput): Operation<types.SendEmailOutput>
     -- Composes an email message and immediately queues it for sending.
     -- This operation is more flexible than the SendEmail operation. When you
     -- use the SendRawEmail operation, you can specify the headers of the message
@@ -432,7 +436,7 @@ local record Client
     -- quota). For more information about sending quotas in Amazon SES, see
     -- Managing Your Amazon SES Sending Limits in the Amazon SES Developer
     -- Guide.
-    sendRawEmail: function(Client, types.SendRawEmailInput): types.SendRawEmailOutput, table
+    sendRawEmail: function(Client, types.SendRawEmailInput): Operation<types.SendRawEmailOutput>
     -- Composes an email message using an email template and immediately queues it for
     -- sending.
     -- To send email using this operation, your call must meet the following
@@ -465,14 +469,14 @@ local record Client
     -- For these reasons, we highly recommend that you set up Amazon SES to send you
     -- notifications when Rendering Failure events occur. For more information, see Sending Personalized Email Using the Amazon SES API in the
     -- Amazon Simple Email Service Developer Guide.
-    sendTemplatedEmail: function(Client, types.SendTemplatedEmailInput): types.SendTemplatedEmailOutput, table
+    sendTemplatedEmail: function(Client, types.SendTemplatedEmailInput): Operation<types.SendTemplatedEmailOutput>
     -- Sets the specified receipt rule set as the active receipt rule set.
     -- To disable your email-receiving through Amazon SES completely, you can call this
     -- operation with RuleSetName set to null.
     -- For information about managing receipt rule sets, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    setActiveReceiptRuleSet: function(Client, types.SetActiveReceiptRuleSetInput): types.SetActiveReceiptRuleSetOutput, table
+    setActiveReceiptRuleSet: function(Client, types.SetActiveReceiptRuleSetInput): Operation<types.SetActiveReceiptRuleSetOutput>
     -- Enables or disables Easy DKIM signing of email sent from an identity. If Easy DKIM
     -- signing is enabled for a domain, then Amazon SES uses DKIM to sign all email that it sends
     -- from addresses on that domain. If Easy DKIM signing is enabled for an email address,
@@ -485,7 +489,7 @@ local record Client
     -- You can execute this operation no more than once per second.
     -- For more information about Easy DKIM signing, go to the Amazon SES Developer
     -- Guide.
-    setIdentityDkimEnabled: function(Client, types.SetIdentityDkimEnabledInput): types.SetIdentityDkimEnabledOutput, table
+    setIdentityDkimEnabled: function(Client, types.SetIdentityDkimEnabledInput): Operation<types.SetIdentityDkimEnabledOutput>
     -- Given an identity (an email address or a domain), enables or disables whether Amazon SES
     -- forwards bounce and complaint notifications as email. Feedback forwarding can only be
     -- disabled when Amazon Simple Notification Service (Amazon SNS) topics are specified for both bounces and
@@ -495,14 +499,14 @@ local record Client
     -- You can execute this operation no more than once per second.
     -- For more information about using notifications with Amazon SES, see the Amazon SES
     -- Developer Guide.
-    setIdentityFeedbackForwardingEnabled: function(Client, types.SetIdentityFeedbackForwardingEnabledInput): types.SetIdentityFeedbackForwardingEnabledOutput, table
+    setIdentityFeedbackForwardingEnabled: function(Client, types.SetIdentityFeedbackForwardingEnabledInput): Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
     -- Given an identity (an email address or a domain), sets whether Amazon SES includes the
     -- original email headers in the Amazon Simple Notification Service (Amazon SNS) notifications of a specified
     -- type.
     -- You can execute this operation no more than once per second.
     -- For more information about using notifications with Amazon SES, see the Amazon SES
     -- Developer Guide.
-    setIdentityHeadersInNotificationsEnabled: function(Client, types.SetIdentityHeadersInNotificationsEnabledInput): types.SetIdentityHeadersInNotificationsEnabledOutput, table
+    setIdentityHeadersInNotificationsEnabled: function(Client, types.SetIdentityHeadersInNotificationsEnabledInput): Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
     -- Enables or disables the custom MAIL FROM domain setup for a verified identity (an
     -- email address or a domain).
     -- To send emails using the specified MAIL FROM domain, you must add an MX record to
@@ -510,7 +514,7 @@ local record Client
     -- Framework (SPF) checks, you must also add or update an SPF record. For more
     -- information, see the Amazon SES Developer Guide.
     -- You can execute this operation no more than once per second.
-    setIdentityMailFromDomain: function(Client, types.SetIdentityMailFromDomainInput): types.SetIdentityMailFromDomainOutput, table
+    setIdentityMailFromDomain: function(Client, types.SetIdentityMailFromDomainInput): Operation<types.SetIdentityMailFromDomainOutput>
     -- Sets an Amazon Simple Notification Service (Amazon SNS) topic to use when delivering notifications. When you use
     -- this operation, you specify a verified identity, such as an email address or domain.
     -- When you send an email that uses the chosen identity in the Source field, Amazon SES sends
@@ -520,23 +524,23 @@ local record Client
     -- You can execute this operation no more than once per second.
     -- For more information about feedback notification, see the Amazon SES
     -- Developer Guide.
-    setIdentityNotificationTopic: function(Client, types.SetIdentityNotificationTopicInput): types.SetIdentityNotificationTopicOutput, table
+    setIdentityNotificationTopic: function(Client, types.SetIdentityNotificationTopicInput): Operation<types.SetIdentityNotificationTopicOutput>
     -- Sets the position of the specified receipt rule in the receipt rule set.
     -- For information about managing receipt rules, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    setReceiptRulePosition: function(Client, types.SetReceiptRulePositionInput): types.SetReceiptRulePositionOutput, table
+    setReceiptRulePosition: function(Client, types.SetReceiptRulePositionInput): Operation<types.SetReceiptRulePositionOutput>
     -- Creates a preview of the MIME content of an email when provided with a template and a
     -- set of replacement data.
     -- You can execute this operation no more than once per second.
-    testRenderTemplate: function(Client, types.TestRenderTemplateInput): types.TestRenderTemplateOutput, table
+    testRenderTemplate: function(Client, types.TestRenderTemplateInput): Operation<types.TestRenderTemplateOutput>
     -- Enables or disables email sending across your entire Amazon SES account in the current
     -- Amazon Web Services Region. You can use this operation in conjunction with Amazon CloudWatch alarms to
     -- temporarily pause email sending across your Amazon SES account in a given Amazon Web Services Region when
     -- reputation metrics (such as your bounce or complaint rates) reach certain
     -- thresholds.
     -- You can execute this operation no more than once per second.
-    updateAccountSendingEnabled: function(Client, types.UpdateAccountSendingEnabledInput): types.UpdateAccountSendingEnabledOutput, table
+    updateAccountSendingEnabled: function(Client, types.UpdateAccountSendingEnabledInput): Operation<types.UpdateAccountSendingEnabledOutput>
     -- Updates the event destination of a configuration set. Event destinations are
     -- associated with configuration sets, which enable you to publish email sending events to
     -- Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS). For information about using configuration sets,
@@ -546,42 +550,42 @@ local record Client
     -- one, destination. The destination can be Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon Simple Notification Service
     -- (Amazon SNS).
     -- You can execute this operation no more than once per second.
-    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): types.UpdateConfigurationSetEventDestinationOutput, table
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): Operation<types.UpdateConfigurationSetEventDestinationOutput>
     -- Enables or disables the publishing of reputation metrics for emails sent using a
     -- specific configuration set in a given Amazon Web Services Region. Reputation metrics include bounce
     -- and complaint rates. These metrics are published to Amazon CloudWatch. By using CloudWatch, you can
     -- create alarms when bounce or complaint rates exceed certain thresholds.
     -- You can execute this operation no more than once per second.
-    updateConfigurationSetReputationMetricsEnabled: function(Client, types.UpdateConfigurationSetReputationMetricsEnabledInput): types.UpdateConfigurationSetReputationMetricsEnabledOutput, table
+    updateConfigurationSetReputationMetricsEnabled: function(Client, types.UpdateConfigurationSetReputationMetricsEnabledInput): Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
     -- Enables or disables email sending for messages sent using a specific configuration set
     -- in a given Amazon Web Services Region. You can use this operation in conjunction with Amazon CloudWatch alarms
     -- to temporarily pause email sending for a configuration set when the reputation metrics
     -- for that configuration set (such as your bounce on complaint rate) exceed certain
     -- thresholds.
     -- You can execute this operation no more than once per second.
-    updateConfigurationSetSendingEnabled: function(Client, types.UpdateConfigurationSetSendingEnabledInput): types.UpdateConfigurationSetSendingEnabledOutput, table
+    updateConfigurationSetSendingEnabled: function(Client, types.UpdateConfigurationSetSendingEnabledInput): Operation<types.UpdateConfigurationSetSendingEnabledOutput>
     -- Modifies an association between a configuration set and a custom domain for open and
     -- click event tracking.
     -- By default, images and links used for tracking open and click events are hosted on
     -- domains operated by Amazon SES. You can configure a subdomain of your own to handle these
     -- events. For information about using custom domains, see the Amazon SES Developer Guide.
-    updateConfigurationSetTrackingOptions: function(Client, types.UpdateConfigurationSetTrackingOptionsInput): types.UpdateConfigurationSetTrackingOptionsOutput, table
+    updateConfigurationSetTrackingOptions: function(Client, types.UpdateConfigurationSetTrackingOptionsInput): Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
     -- Updates an existing custom verification email template.
     -- For more information about custom verification email templates, see Using
     -- Custom Verification Email Templates in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput): types.UpdateCustomVerificationEmailTemplateOutput, table
+    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput): Operation<types.UpdateCustomVerificationEmailTemplateOutput>
     -- Updates a receipt rule.
     -- For information about managing receipt rules, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    updateReceiptRule: function(Client, types.UpdateReceiptRuleInput): types.UpdateReceiptRuleOutput, table
+    updateReceiptRule: function(Client, types.UpdateReceiptRuleInput): Operation<types.UpdateReceiptRuleOutput>
     -- Updates an email template. Email templates enable you to send personalized email to
     -- one or more destinations in a single operation. For more information, see the Amazon SES
     -- Developer Guide.
     -- You can execute this operation no more than once per second.
-    updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+    updateTemplate: function(Client, types.UpdateTemplateInput): Operation<types.UpdateTemplateOutput>
     -- Returns a set of DKIM tokens for a domain identity.
     -- When you execute the VerifyDomainDkim operation, the domain that you
     -- specify is added to the list of identities that are associated with your account.
@@ -607,21 +611,21 @@ local record Client
     -- example.com with your domain. Repeat this process for each
     -- token that's generated by this operation.
     -- You can execute this operation no more than once per second.
-    verifyDomainDkim: function(Client, types.VerifyDomainDkimInput): types.VerifyDomainDkimOutput, table
+    verifyDomainDkim: function(Client, types.VerifyDomainDkimInput): Operation<types.VerifyDomainDkimOutput>
     -- Adds a domain to the list of identities for your Amazon SES account in the current
     -- Amazon Web Services Region and attempts to verify it. For more information about verifying domains,
     -- see Verifying Email Addresses and Domains in the Amazon SES Developer
     -- Guide.
     -- You can execute this operation no more than once per second.
-    verifyDomainIdentity: function(Client, types.VerifyDomainIdentityInput): types.VerifyDomainIdentityOutput, table
+    verifyDomainIdentity: function(Client, types.VerifyDomainIdentityInput): Operation<types.VerifyDomainIdentityOutput>
     -- Deprecated. Use the VerifyEmailIdentity operation to verify a new email
     -- address.
-    verifyEmailAddress: function(Client, types.VerifyEmailAddressInput): types.VerifyEmailAddressOutput, table
+    verifyEmailAddress: function(Client, types.VerifyEmailAddressInput): Operation<types.VerifyEmailAddressOutput>
     -- Adds an email address to the list of identities for your Amazon SES account in the current
     -- Amazon Web Services Region and attempts to verify it. As a result of executing this operation, a
     -- verification email is sent to the specified address.
     -- You can execute this operation no more than once per second.
-    verifyEmailIdentity: function(Client, types.VerifyEmailIdentityInput): types.VerifyEmailIdentityOutput, table
+    verifyEmailIdentity: function(Client, types.VerifyEmailIdentityInput): Operation<types.VerifyEmailIdentityOutput>
 end
 
 local record M

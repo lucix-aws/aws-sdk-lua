@@ -2,13 +2,17 @@
 
 local types = require("resourcegroups.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels the specified tag-sync task.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:CancelTagSyncTask on the application group
     -- resource-groups:DeleteGroup
-    cancelTagSyncTask: function(Client, types.CancelTagSyncTaskInput): types.CancelTagSyncTaskOutput, table
+    cancelTagSyncTask: function(Client, types.CancelTagSyncTaskInput): Operation<types.CancelTagSyncTaskOutput>
     -- Creates a resource group with the specified name and description. You can optionally
     -- include either a resource query or a service configuration. For more information about
     -- constructing a resource query, see Build queries and groups in
@@ -17,44 +21,44 @@ local record Client
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:CreateGroup
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Deletes the specified resource group. Deleting a resource group does not delete any
     -- resources that are members of the group; it only deletes the group structure.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:DeleteGroup
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Retrieves the current status of optional features in Resource Groups.
-    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): Operation<types.GetAccountSettingsOutput>
     -- Returns information about a specified resource group.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GetGroup
-    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getGroup: function(Client, types.GetGroupInput): Operation<types.GetGroupOutput>
     -- Retrieves the service configuration associated with the specified resource group. For
     -- details about the service configuration syntax, see Service configurations for Resource Groups.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GetGroupConfiguration
-    getGroupConfiguration: function(Client, types.GetGroupConfigurationInput): types.GetGroupConfigurationOutput, table
+    getGroupConfiguration: function(Client, types.GetGroupConfigurationInput): Operation<types.GetGroupConfigurationOutput>
     -- Retrieves the resource query associated with the specified resource group. For more
     -- information about resource queries, see Create
     -- a tag-based group in Resource Groups.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GetGroupQuery
-    getGroupQuery: function(Client, types.GetGroupQueryInput): types.GetGroupQueryOutput, table
+    getGroupQuery: function(Client, types.GetGroupQueryInput): Operation<types.GetGroupQueryOutput>
     -- Returns a list of tags that are associated with a resource group, specified by an
     -- Amazon resource name (ARN).
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GetTags
-    getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    getTags: function(Client, types.GetTagsInput): Operation<types.GetTagsOutput>
     -- Returns information about a specified tag-sync task.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GetTagSyncTask on the application group
-    getTagSyncTask: function(Client, types.GetTagSyncTaskInput): types.GetTagSyncTaskOutput, table
+    getTagSyncTask: function(Client, types.GetTagSyncTaskInput): Operation<types.GetTagSyncTaskOutput>
     -- Adds the specified resources to the specified group.
     -- You can only use this operation with the following groups:
     -- AWS::EC2::HostManagement
@@ -65,10 +69,10 @@ local record Client
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:GroupResources
-    groupResources: function(Client, types.GroupResourcesInput): types.GroupResourcesOutput, table
+    groupResources: function(Client, types.GroupResourcesInput): Operation<types.GroupResourcesOutput>
     -- Returns the status of the last grouping or ungrouping action for
     -- each resource in the specified application group.
-    listGroupingStatuses: function(Client, types.ListGroupingStatusesInput): types.ListGroupingStatusesOutput, table
+    listGroupingStatuses: function(Client, types.ListGroupingStatusesInput): Operation<types.ListGroupingStatusesOutput>
     -- Returns a list of Amazon resource names (ARNs) of the resources that are members of a specified resource
     -- group.
     -- Minimum permissions
@@ -77,25 +81,25 @@ local record Client
     -- cloudformation:DescribeStacks
     -- cloudformation:ListStackResources
     -- tag:GetResources
-    listGroupResources: function(Client, types.ListGroupResourcesInput): types.ListGroupResourcesOutput, table
+    listGroupResources: function(Client, types.ListGroupResourcesInput): Operation<types.ListGroupResourcesOutput>
     -- Returns a list of existing Resource Groups in your account.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:ListGroups
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Returns a list of tag-sync tasks.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:ListTagSyncTasks with the group passed in the filters as the resource
     -- or * if using no filters
-    listTagSyncTasks: function(Client, types.ListTagSyncTasksInput): types.ListTagSyncTasksOutput, table
+    listTagSyncTasks: function(Client, types.ListTagSyncTasksInput): Operation<types.ListTagSyncTasksOutput>
     -- Attaches a service configuration to the specified group. This occurs asynchronously,
     -- and can take time to complete. You can use GetGroupConfiguration to
     -- check the status of the update.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:PutGroupConfiguration
-    putGroupConfiguration: function(Client, types.PutGroupConfigurationInput): types.PutGroupConfigurationOutput, table
+    putGroupConfiguration: function(Client, types.PutGroupConfigurationInput): Operation<types.PutGroupConfigurationOutput>
     -- Returns a list of Amazon Web Services resource identifiers that matches the specified query. The
     -- query uses the same format as a resource query in a CreateGroup or
     -- UpdateGroupQuery operation.
@@ -105,7 +109,7 @@ local record Client
     -- cloudformation:DescribeStacks
     -- cloudformation:ListStackResources
     -- tag:GetResources
-    searchResources: function(Client, types.SearchResourcesInput): types.SearchResourcesOutput, table
+    searchResources: function(Client, types.SearchResourcesInput): Operation<types.SearchResourcesOutput>
     -- Creates a new tag-sync task to onboard and sync resources tagged with a specific tag key-value pair to an
     -- application. To start a tag-sync task, you need a resource tagging role.
     -- The resource tagging role grants permissions to tag and untag applications resources and must include a
@@ -117,7 +121,7 @@ local record Client
     -- resource-groups:StartTagSyncTask on the application group
     -- resource-groups:CreateGroup
     -- iam:PassRole on the role provided in the request
-    startTagSyncTask: function(Client, types.StartTagSyncTaskInput): types.StartTagSyncTaskOutput, table
+    startTagSyncTask: function(Client, types.StartTagSyncTaskInput): Operation<types.StartTagSyncTaskOutput>
     -- Adds tags to a resource group with the specified Amazon resource name (ARN). Existing tags on a resource
     -- group are not changed if they are not specified in the request parameters.
     -- Do not store personally identifiable information (PII) or other confidential or
@@ -127,7 +131,7 @@ local record Client
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:Tag
-    tag: function(Client, types.TagInput): types.TagOutput, table
+    tag: function(Client, types.TagInput): Operation<types.TagOutput>
     -- Removes the specified resources from the specified group. This operation works only
     -- with static groups that you populated using the GroupResources
     -- operation. It doesn't work with any resource groups that are automatically populated by
@@ -135,30 +139,30 @@ local record Client
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:UngroupResources
-    ungroupResources: function(Client, types.UngroupResourcesInput): types.UngroupResourcesOutput, table
+    ungroupResources: function(Client, types.UngroupResourcesInput): Operation<types.UngroupResourcesOutput>
     -- Deletes tags from a specified resource group.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:Untag
-    untag: function(Client, types.UntagInput): types.UntagOutput, table
+    untag: function(Client, types.UntagInput): Operation<types.UntagOutput>
     -- Turns on or turns off optional features in Resource Groups.
     -- The preceding example shows that the request to turn on group lifecycle events is
     -- IN_PROGRESS. You can call the GetAccountSettings
     -- operation to check for completion by looking for GroupLifecycleEventsStatus
     -- to change to ACTIVE.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Updates the description for an existing group. You cannot update the name of a
     -- resource group.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:UpdateGroup
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Updates the resource query of a group. For more information about resource queries,
     -- see Create a tag-based group in Resource Groups.
     -- Minimum permissions
     -- To run this command, you must have the following permissions:
     -- resource-groups:UpdateGroupQuery
-    updateGroupQuery: function(Client, types.UpdateGroupQueryInput): types.UpdateGroupQueryOutput, table
+    updateGroupQuery: function(Client, types.UpdateGroupQueryInput): Operation<types.UpdateGroupQueryOutput>
 end
 
 local record M

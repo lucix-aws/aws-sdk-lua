@@ -2,13 +2,17 @@
 
 local types = require("taxsettings.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes tax registration for multiple accounts in batch. This can be used to delete tax
     -- registrations for up to five accounts in one batch.
     -- This API operation can't be used to delete your tax registration in Brazil. Use the Payment preferences page in the Billing and Cost Management console instead.
-    batchDeleteTaxRegistration: function(Client, types.BatchDeleteTaxRegistrationInput): types.BatchDeleteTaxRegistrationOutput, table
+    batchDeleteTaxRegistration: function(Client, types.BatchDeleteTaxRegistrationInput): Operation<types.BatchDeleteTaxRegistrationOutput>
     -- Get the active tax exemptions for a given list of accounts. The IAM action is tax:GetExemptions.
-    batchGetTaxExemptions: function(Client, types.BatchGetTaxExemptionsInput): types.BatchGetTaxExemptionsOutput, table
+    batchGetTaxExemptions: function(Client, types.BatchGetTaxExemptionsInput): Operation<types.BatchGetTaxExemptionsOutput>
     -- Adds or updates tax registration for multiple accounts in batch. This can be used to add
     -- or update tax registrations for up to five accounts in one batch. You can't set a TRN if there's a pending TRN. You'll need to delete the pending TRN first.
     -- To call this API operation for specific countries, see the following country-specific
@@ -90,34 +94,34 @@ local record Client
     -- For address, you must specify districtOrCounty.
     -- Ukraine
     -- The sector valid values are Business and Individual.
-    batchPutTaxRegistration: function(Client, types.BatchPutTaxRegistrationInput): types.BatchPutTaxRegistrationOutput, table
+    batchPutTaxRegistration: function(Client, types.BatchPutTaxRegistrationInput): Operation<types.BatchPutTaxRegistrationOutput>
     -- Deletes a supplemental tax registration for a single account.
-    deleteSupplementalTaxRegistration: function(Client, types.DeleteSupplementalTaxRegistrationInput): types.DeleteSupplementalTaxRegistrationOutput, table
+    deleteSupplementalTaxRegistration: function(Client, types.DeleteSupplementalTaxRegistrationInput): Operation<types.DeleteSupplementalTaxRegistrationOutput>
     -- Deletes tax registration for a single account.
     -- This API operation can't be used to delete your tax registration in Brazil. Use the Payment preferences page in the Billing and Cost Management console instead.
-    deleteTaxRegistration: function(Client, types.DeleteTaxRegistrationInput): types.DeleteTaxRegistrationOutput, table
+    deleteTaxRegistration: function(Client, types.DeleteTaxRegistrationInput): Operation<types.DeleteTaxRegistrationOutput>
     -- Get supported tax exemption types. The IAM action is tax:GetExemptions.
-    getTaxExemptionTypes: function(Client, types.GetTaxExemptionTypesInput): types.GetTaxExemptionTypesOutput, table
+    getTaxExemptionTypes: function(Client, types.GetTaxExemptionTypesInput): Operation<types.GetTaxExemptionTypesOutput>
     -- The get account tax inheritance status.
-    getTaxInheritance: function(Client, types.GetTaxInheritanceInput): types.GetTaxInheritanceOutput, table
+    getTaxInheritance: function(Client, types.GetTaxInheritanceInput): Operation<types.GetTaxInheritanceOutput>
     -- Retrieves tax registration for a single account.
-    getTaxRegistration: function(Client, types.GetTaxRegistrationInput): types.GetTaxRegistrationOutput, table
+    getTaxRegistration: function(Client, types.GetTaxRegistrationInput): Operation<types.GetTaxRegistrationOutput>
     -- Downloads your tax documents to the Amazon S3 bucket that you specify in your
     -- request.
-    getTaxRegistrationDocument: function(Client, types.GetTaxRegistrationDocumentInput): types.GetTaxRegistrationDocumentOutput, table
+    getTaxRegistrationDocument: function(Client, types.GetTaxRegistrationDocumentInput): Operation<types.GetTaxRegistrationDocumentOutput>
     -- Retrieves supplemental tax registrations for a single account.
-    listSupplementalTaxRegistrations: function(Client, types.ListSupplementalTaxRegistrationsInput): types.ListSupplementalTaxRegistrationsOutput, table
+    listSupplementalTaxRegistrations: function(Client, types.ListSupplementalTaxRegistrationsInput): Operation<types.ListSupplementalTaxRegistrationsOutput>
     -- Retrieves the tax exemption of accounts listed in a consolidated billing family. The IAM action is tax:GetExemptions.
-    listTaxExemptions: function(Client, types.ListTaxExemptionsInput): types.ListTaxExemptionsOutput, table
+    listTaxExemptions: function(Client, types.ListTaxExemptionsInput): Operation<types.ListTaxExemptionsOutput>
     -- Retrieves the tax registration of accounts listed in a consolidated billing family. This
     -- can be used to retrieve up to 100 accounts' tax registrations in one call (default 50).
-    listTaxRegistrations: function(Client, types.ListTaxRegistrationsInput): types.ListTaxRegistrationsOutput, table
+    listTaxRegistrations: function(Client, types.ListTaxRegistrationsInput): Operation<types.ListTaxRegistrationsOutput>
     -- Stores supplemental tax registration for a single account.
-    putSupplementalTaxRegistration: function(Client, types.PutSupplementalTaxRegistrationInput): types.PutSupplementalTaxRegistrationOutput, table
+    putSupplementalTaxRegistration: function(Client, types.PutSupplementalTaxRegistrationInput): Operation<types.PutSupplementalTaxRegistrationOutput>
     -- Adds the tax exemption for a single account or all accounts listed in a consolidated billing family. The IAM action is tax:UpdateExemptions.
-    putTaxExemption: function(Client, types.PutTaxExemptionInput): types.PutTaxExemptionOutput, table
+    putTaxExemption: function(Client, types.PutTaxExemptionInput): Operation<types.PutTaxExemptionOutput>
     -- The updated tax inheritance status.
-    putTaxInheritance: function(Client, types.PutTaxInheritanceInput): types.PutTaxInheritanceOutput, table
+    putTaxInheritance: function(Client, types.PutTaxInheritanceInput): Operation<types.PutTaxInheritanceOutput>
     -- Adds or updates tax registration for a single account. You can't set a TRN if there's a pending TRN. You'll need to delete the pending TRN first.
     -- To call this API operation for specific countries, see the following country-specific
     -- requirements.
@@ -198,7 +202,7 @@ local record Client
     -- For address, you must specify districtOrCounty.
     -- Ukraine
     -- The sector valid values are Business and Individual.
-    putTaxRegistration: function(Client, types.PutTaxRegistrationInput): types.PutTaxRegistrationOutput, table
+    putTaxRegistration: function(Client, types.PutTaxRegistrationInput): Operation<types.PutTaxRegistrationOutput>
 end
 
 local record M

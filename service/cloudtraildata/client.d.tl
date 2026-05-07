@@ -2,13 +2,17 @@
 
 local types = require("cloudtraildata.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Ingests your application events into CloudTrail Lake. A required parameter,
     -- auditEvents, accepts the JSON records (also called
     -- payload) of events that you want CloudTrail to ingest. You
     -- can add up to 100 of these events (or up to 1 MB) per PutAuditEvents
     -- request.
-    putAuditEvents: function(Client, types.PutAuditEventsInput): types.PutAuditEventsOutput, table
+    putAuditEvents: function(Client, types.PutAuditEventsInput): Operation<types.PutAuditEventsOutput>
 end
 
 local record M

@@ -2,18 +2,22 @@
 
 local types = require("chimesdkmediapipelines.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a media pipeline.
-    createMediaCapturePipeline: function(Client, types.CreateMediaCapturePipelineInput): types.CreateMediaCapturePipelineOutput, table
+    createMediaCapturePipeline: function(Client, types.CreateMediaCapturePipelineInput): Operation<types.CreateMediaCapturePipelineOutput>
     -- Creates a media concatenation pipeline.
-    createMediaConcatenationPipeline: function(Client, types.CreateMediaConcatenationPipelineInput): types.CreateMediaConcatenationPipelineOutput, table
+    createMediaConcatenationPipeline: function(Client, types.CreateMediaConcatenationPipelineInput): Operation<types.CreateMediaConcatenationPipelineOutput>
     -- Creates a media insights pipeline.
-    createMediaInsightsPipeline: function(Client, types.CreateMediaInsightsPipelineInput): types.CreateMediaInsightsPipelineOutput, table
+    createMediaInsightsPipeline: function(Client, types.CreateMediaInsightsPipelineInput): Operation<types.CreateMediaInsightsPipelineOutput>
     -- A structure that contains the static configurations for a media insights
     -- pipeline.
-    createMediaInsightsPipelineConfiguration: function(Client, types.CreateMediaInsightsPipelineConfigurationInput): types.CreateMediaInsightsPipelineConfigurationOutput, table
+    createMediaInsightsPipelineConfiguration: function(Client, types.CreateMediaInsightsPipelineConfigurationInput): Operation<types.CreateMediaInsightsPipelineConfigurationOutput>
     -- Creates a media live connector pipeline in an Amazon Chime SDK meeting.
-    createMediaLiveConnectorPipeline: function(Client, types.CreateMediaLiveConnectorPipelineInput): types.CreateMediaLiveConnectorPipelineOutput, table
+    createMediaLiveConnectorPipeline: function(Client, types.CreateMediaLiveConnectorPipelineInput): Operation<types.CreateMediaLiveConnectorPipelineOutput>
     -- Creates an Amazon Kinesis Video Stream pool for use with media stream
     -- pipelines.
     -- If a meeting uses an opt-in Region as its
@@ -28,63 +32,63 @@ local record Client
     -- Amazon Chime SDK Developer Guide, and
     -- Specify which AWS Regions your account can use,
     -- in the AWS Account Management Reference Guide.
-    createMediaPipelineKinesisVideoStreamPool: function(Client, types.CreateMediaPipelineKinesisVideoStreamPoolInput): types.CreateMediaPipelineKinesisVideoStreamPoolOutput, table
+    createMediaPipelineKinesisVideoStreamPool: function(Client, types.CreateMediaPipelineKinesisVideoStreamPoolInput): Operation<types.CreateMediaPipelineKinesisVideoStreamPoolOutput>
     -- Creates a streaming media pipeline.
-    createMediaStreamPipeline: function(Client, types.CreateMediaStreamPipelineInput): types.CreateMediaStreamPipelineOutput, table
+    createMediaStreamPipeline: function(Client, types.CreateMediaStreamPipelineInput): Operation<types.CreateMediaStreamPipelineOutput>
     -- Deletes the media pipeline.
-    deleteMediaCapturePipeline: function(Client, types.DeleteMediaCapturePipelineInput): types.DeleteMediaCapturePipelineOutput, table
+    deleteMediaCapturePipeline: function(Client, types.DeleteMediaCapturePipelineInput): Operation<types.DeleteMediaCapturePipelineOutput>
     -- Deletes the specified configuration settings.
-    deleteMediaInsightsPipelineConfiguration: function(Client, types.DeleteMediaInsightsPipelineConfigurationInput): types.DeleteMediaInsightsPipelineConfigurationOutput, table
+    deleteMediaInsightsPipelineConfiguration: function(Client, types.DeleteMediaInsightsPipelineConfigurationInput): Operation<types.DeleteMediaInsightsPipelineConfigurationOutput>
     -- Deletes the media pipeline.
-    deleteMediaPipeline: function(Client, types.DeleteMediaPipelineInput): types.DeleteMediaPipelineOutput, table
+    deleteMediaPipeline: function(Client, types.DeleteMediaPipelineInput): Operation<types.DeleteMediaPipelineOutput>
     -- Deletes an Amazon Kinesis Video Stream pool.
-    deleteMediaPipelineKinesisVideoStreamPool: function(Client, types.DeleteMediaPipelineKinesisVideoStreamPoolInput): types.DeleteMediaPipelineKinesisVideoStreamPoolOutput, table
+    deleteMediaPipelineKinesisVideoStreamPool: function(Client, types.DeleteMediaPipelineKinesisVideoStreamPoolInput): Operation<types.DeleteMediaPipelineKinesisVideoStreamPoolOutput>
     -- Gets an existing media pipeline.
-    getMediaCapturePipeline: function(Client, types.GetMediaCapturePipelineInput): types.GetMediaCapturePipelineOutput, table
+    getMediaCapturePipeline: function(Client, types.GetMediaCapturePipelineInput): Operation<types.GetMediaCapturePipelineOutput>
     -- Gets the configuration settings for a media insights pipeline.
-    getMediaInsightsPipelineConfiguration: function(Client, types.GetMediaInsightsPipelineConfigurationInput): types.GetMediaInsightsPipelineConfigurationOutput, table
+    getMediaInsightsPipelineConfiguration: function(Client, types.GetMediaInsightsPipelineConfigurationInput): Operation<types.GetMediaInsightsPipelineConfigurationOutput>
     -- Gets an existing media pipeline.
-    getMediaPipeline: function(Client, types.GetMediaPipelineInput): types.GetMediaPipelineOutput, table
+    getMediaPipeline: function(Client, types.GetMediaPipelineInput): Operation<types.GetMediaPipelineOutput>
     -- Gets an Kinesis video stream pool.
-    getMediaPipelineKinesisVideoStreamPool: function(Client, types.GetMediaPipelineKinesisVideoStreamPoolInput): types.GetMediaPipelineKinesisVideoStreamPoolOutput, table
+    getMediaPipelineKinesisVideoStreamPool: function(Client, types.GetMediaPipelineKinesisVideoStreamPoolInput): Operation<types.GetMediaPipelineKinesisVideoStreamPoolOutput>
     -- Retrieves the details of the specified speaker search task.
-    getSpeakerSearchTask: function(Client, types.GetSpeakerSearchTaskInput): types.GetSpeakerSearchTaskOutput, table
+    getSpeakerSearchTask: function(Client, types.GetSpeakerSearchTaskInput): Operation<types.GetSpeakerSearchTaskOutput>
     -- Retrieves the details of a voice tone analysis task.
-    getVoiceToneAnalysisTask: function(Client, types.GetVoiceToneAnalysisTaskInput): types.GetVoiceToneAnalysisTaskOutput, table
+    getVoiceToneAnalysisTask: function(Client, types.GetVoiceToneAnalysisTaskInput): Operation<types.GetVoiceToneAnalysisTaskOutput>
     -- Returns a list of media pipelines.
-    listMediaCapturePipelines: function(Client, types.ListMediaCapturePipelinesInput): types.ListMediaCapturePipelinesOutput, table
+    listMediaCapturePipelines: function(Client, types.ListMediaCapturePipelinesInput): Operation<types.ListMediaCapturePipelinesOutput>
     -- Lists the available media insights pipeline configurations.
-    listMediaInsightsPipelineConfigurations: function(Client, types.ListMediaInsightsPipelineConfigurationsInput): types.ListMediaInsightsPipelineConfigurationsOutput, table
+    listMediaInsightsPipelineConfigurations: function(Client, types.ListMediaInsightsPipelineConfigurationsInput): Operation<types.ListMediaInsightsPipelineConfigurationsOutput>
     -- Lists the video stream pools in the media pipeline.
-    listMediaPipelineKinesisVideoStreamPools: function(Client, types.ListMediaPipelineKinesisVideoStreamPoolsInput): types.ListMediaPipelineKinesisVideoStreamPoolsOutput, table
+    listMediaPipelineKinesisVideoStreamPools: function(Client, types.ListMediaPipelineKinesisVideoStreamPoolsInput): Operation<types.ListMediaPipelineKinesisVideoStreamPoolsOutput>
     -- Returns a list of media pipelines.
-    listMediaPipelines: function(Client, types.ListMediaPipelinesInput): types.ListMediaPipelinesOutput, table
+    listMediaPipelines: function(Client, types.ListMediaPipelinesInput): Operation<types.ListMediaPipelinesOutput>
     -- Lists the tags available for a media pipeline.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts a speaker search task.
     -- Before starting any speaker search tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
     -- AWS service terms for the Amazon Chime SDK.
-    startSpeakerSearchTask: function(Client, types.StartSpeakerSearchTaskInput): types.StartSpeakerSearchTaskOutput, table
+    startSpeakerSearchTask: function(Client, types.StartSpeakerSearchTaskInput): Operation<types.StartSpeakerSearchTaskOutput>
     -- Starts a voice tone analysis task. For more information about voice tone analysis, see
     -- Using Amazon Chime SDK voice analytics
     -- in the Amazon Chime SDK Developer Guide.
     -- Before starting any voice tone analysis tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the
     -- AWS service terms for the Amazon Chime SDK.
-    startVoiceToneAnalysisTask: function(Client, types.StartVoiceToneAnalysisTaskInput): types.StartVoiceToneAnalysisTaskOutput, table
+    startVoiceToneAnalysisTask: function(Client, types.StartVoiceToneAnalysisTaskInput): Operation<types.StartVoiceToneAnalysisTaskOutput>
     -- Stops a speaker search task.
-    stopSpeakerSearchTask: function(Client, types.StopSpeakerSearchTaskInput): types.StopSpeakerSearchTaskOutput, table
+    stopSpeakerSearchTask: function(Client, types.StopSpeakerSearchTaskInput): Operation<types.StopSpeakerSearchTaskOutput>
     -- Stops a voice tone analysis task.
-    stopVoiceToneAnalysisTask: function(Client, types.StopVoiceToneAnalysisTaskInput): types.StopVoiceToneAnalysisTaskOutput, table
+    stopVoiceToneAnalysisTask: function(Client, types.StopVoiceToneAnalysisTaskInput): Operation<types.StopVoiceToneAnalysisTaskOutput>
     -- The ARN of the media pipeline that you want to tag. Consists of the pipeline's endpoint region, resource ID, and pipeline ID.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes any tags from a media pipeline.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the media insights pipeline's configuration settings.
-    updateMediaInsightsPipelineConfiguration: function(Client, types.UpdateMediaInsightsPipelineConfigurationInput): types.UpdateMediaInsightsPipelineConfigurationOutput, table
+    updateMediaInsightsPipelineConfiguration: function(Client, types.UpdateMediaInsightsPipelineConfigurationInput): Operation<types.UpdateMediaInsightsPipelineConfigurationOutput>
     -- Updates the status of a media insights pipeline.
-    updateMediaInsightsPipelineStatus: function(Client, types.UpdateMediaInsightsPipelineStatusInput): types.UpdateMediaInsightsPipelineStatusOutput, table
+    updateMediaInsightsPipelineStatus: function(Client, types.UpdateMediaInsightsPipelineStatusInput): Operation<types.UpdateMediaInsightsPipelineStatusOutput>
     -- Updates an Amazon Kinesis Video Stream pool in a media pipeline.
-    updateMediaPipelineKinesisVideoStreamPool: function(Client, types.UpdateMediaPipelineKinesisVideoStreamPoolInput): types.UpdateMediaPipelineKinesisVideoStreamPoolOutput, table
+    updateMediaPipelineKinesisVideoStreamPool: function(Client, types.UpdateMediaPipelineKinesisVideoStreamPoolInput): Operation<types.UpdateMediaPipelineKinesisVideoStreamPoolOutput>
 end
 
 local record M

@@ -2,31 +2,35 @@
 
 local types = require("elasticbeanstalk.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels in-progress environment configuration update or application version
     -- deployment.
-    abortEnvironmentUpdate: function(Client, types.AbortEnvironmentUpdateInput): types.AbortEnvironmentUpdateOutput, table
+    abortEnvironmentUpdate: function(Client, types.AbortEnvironmentUpdateInput): Operation<types.AbortEnvironmentUpdateOutput>
     -- Applies a scheduled managed action immediately. A managed action can be applied only if
     -- its status is Scheduled. Get the status and action ID of a managed action with
     -- DescribeEnvironmentManagedActions.
-    applyEnvironmentManagedAction: function(Client, types.ApplyEnvironmentManagedActionInput): types.ApplyEnvironmentManagedActionOutput, table
+    applyEnvironmentManagedAction: function(Client, types.ApplyEnvironmentManagedActionInput): Operation<types.ApplyEnvironmentManagedActionOutput>
     -- Add or change the operations role used by an environment. After this call is made, Elastic Beanstalk
     -- uses the associated operations role for permissions to downstream services during subsequent
     -- calls acting on this environment. For more information, see Operations roles in the
     -- AWS Elastic Beanstalk Developer Guide.
-    associateEnvironmentOperationsRole: function(Client, types.AssociateEnvironmentOperationsRoleInput): types.AssociateEnvironmentOperationsRoleOutput, table
+    associateEnvironmentOperationsRole: function(Client, types.AssociateEnvironmentOperationsRoleInput): Operation<types.AssociateEnvironmentOperationsRoleOutput>
     -- Checks if the specified CNAME is available.
-    checkDNSAvailability: function(Client, types.CheckDNSAvailabilityInput): types.CheckDNSAvailabilityOutput, table
+    checkDNSAvailability: function(Client, types.CheckDNSAvailabilityInput): Operation<types.CheckDNSAvailabilityOutput>
     -- Create or update a group of environments that each run a separate component of a single
     -- application. Takes a list of version labels that specify application source bundles for each
     -- of the environments to create or update. The name of each environment and other required
     -- information must be included in the source bundles in an environment manifest named
     -- env.yaml. See Compose Environments
     -- for details.
-    composeEnvironments: function(Client, types.ComposeEnvironmentsInput): types.ComposeEnvironmentsOutput, table
+    composeEnvironments: function(Client, types.ComposeEnvironmentsInput): Operation<types.ComposeEnvironmentsOutput>
     -- Creates an application that has one configuration template named default
     -- and no application versions.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates an application version for the specified application. You can create an
     -- application version from a source bundle in Amazon S3, a commit in AWS CodeCommit, or the
     -- output of an AWS CodeBuild build as follows:
@@ -41,7 +45,7 @@ local record Client
     -- location, you can't change that Amazon S3 location. If you change the Amazon S3 location,
     -- you receive an exception when you attempt to launch an environment from the application
     -- version.
-    createApplicationVersion: function(Client, types.CreateApplicationVersionInput): types.CreateApplicationVersionOutput, table
+    createApplicationVersion: function(Client, types.CreateApplicationVersionInput): Operation<types.CreateApplicationVersionOutput>
     -- Creates an AWS Elastic Beanstalk configuration template, associated with a specific Elastic Beanstalk
     -- application. You define application configuration settings in a configuration template. You
     -- can then use the configuration template to deploy different versions of the application with
@@ -52,54 +56,54 @@ local record Client
     -- DescribeConfigurationOptions
     -- DescribeConfigurationSettings
     -- ListAvailableSolutionStacks
-    createConfigurationTemplate: function(Client, types.CreateConfigurationTemplateInput): types.CreateConfigurationTemplateOutput, table
+    createConfigurationTemplate: function(Client, types.CreateConfigurationTemplateInput): Operation<types.CreateConfigurationTemplateOutput>
     -- Launches an AWS Elastic Beanstalk environment for the specified application using the specified
     -- configuration.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Create a new version of your custom platform.
-    createPlatformVersion: function(Client, types.CreatePlatformVersionInput): types.CreatePlatformVersionOutput, table
+    createPlatformVersion: function(Client, types.CreatePlatformVersionInput): Operation<types.CreatePlatformVersionOutput>
     -- Creates a bucket in Amazon S3 to store application versions, logs, and other files used
     -- by Elastic Beanstalk environments. The Elastic Beanstalk console and EB CLI call this API the
     -- first time you create an environment in a region. If the storage location already exists,
     -- CreateStorageLocation still returns the bucket name but does not create a new
     -- bucket.
-    createStorageLocation: function(Client, types.CreateStorageLocationInput): types.CreateStorageLocationOutput, table
+    createStorageLocation: function(Client, types.CreateStorageLocationInput): Operation<types.CreateStorageLocationOutput>
     -- Deletes the specified application along with all associated versions and
     -- configurations. The application versions will not be deleted from your Amazon S3
     -- bucket.
     -- You cannot delete an application that has a running environment.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Deletes the specified version from the specified application.
     -- You cannot delete an application version that is associated with a running
     -- environment.
-    deleteApplicationVersion: function(Client, types.DeleteApplicationVersionInput): types.DeleteApplicationVersionOutput, table
+    deleteApplicationVersion: function(Client, types.DeleteApplicationVersionInput): Operation<types.DeleteApplicationVersionOutput>
     -- Deletes the specified configuration template.
     -- When you launch an environment using a configuration template, the environment gets a
     -- copy of the template. You can delete or modify the environment's copy of the template
     -- without affecting the running environment.
-    deleteConfigurationTemplate: function(Client, types.DeleteConfigurationTemplateInput): types.DeleteConfigurationTemplateOutput, table
+    deleteConfigurationTemplate: function(Client, types.DeleteConfigurationTemplateInput): Operation<types.DeleteConfigurationTemplateOutput>
     -- Deletes the draft configuration associated with the running environment.
     -- Updating a running environment with any configuration changes creates a draft
     -- configuration set. You can get the draft configuration using DescribeConfigurationSettings while the update is in progress or if the update
     -- fails. The DeploymentStatus for the draft configuration indicates whether the
     -- deployment is in process or has failed. The draft configuration remains in existence until it
     -- is deleted with this action.
-    deleteEnvironmentConfiguration: function(Client, types.DeleteEnvironmentConfigurationInput): types.DeleteEnvironmentConfigurationOutput, table
+    deleteEnvironmentConfiguration: function(Client, types.DeleteEnvironmentConfigurationInput): Operation<types.DeleteEnvironmentConfigurationOutput>
     -- Deletes the specified version of a custom platform.
-    deletePlatformVersion: function(Client, types.DeletePlatformVersionInput): types.DeletePlatformVersionOutput, table
+    deletePlatformVersion: function(Client, types.DeletePlatformVersionInput): Operation<types.DeletePlatformVersionOutput>
     -- Returns attributes related to AWS Elastic Beanstalk that are associated with the calling AWS
     -- account.
     -- The result currently has one set of attributes—resource quotas.
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): Operation<types.DescribeAccountAttributesOutput>
     -- Returns the descriptions of existing applications.
-    describeApplications: function(Client, types.DescribeApplicationsInput): types.DescribeApplicationsOutput, table
+    describeApplications: function(Client, types.DescribeApplicationsInput): Operation<types.DescribeApplicationsOutput>
     -- Retrieve a list of application versions.
-    describeApplicationVersions: function(Client, types.DescribeApplicationVersionsInput): types.DescribeApplicationVersionsOutput, table
+    describeApplicationVersions: function(Client, types.DescribeApplicationVersionsInput): Operation<types.DescribeApplicationVersionsOutput>
     -- Describes the configuration options that are used in a particular configuration
     -- template or environment, or that a specified solution stack defines. The description includes
     -- the values the options, their default values, and an indication of the required action on a
     -- running environment if an option value is changed.
-    describeConfigurationOptions: function(Client, types.DescribeConfigurationOptionsInput): types.DescribeConfigurationOptionsOutput, table
+    describeConfigurationOptions: function(Client, types.DescribeConfigurationOptionsInput): Operation<types.DescribeConfigurationOptionsOutput>
     -- Returns a description of the settings for the specified configuration set, that is,
     -- either a configuration template or the configuration set associated with a running
     -- environment.
@@ -109,59 +113,59 @@ local record Client
     -- the process of deployment or that failed to deploy.
     -- Related Topics
     -- DeleteEnvironmentConfiguration
-    describeConfigurationSettings: function(Client, types.DescribeConfigurationSettingsInput): types.DescribeConfigurationSettingsOutput, table
+    describeConfigurationSettings: function(Client, types.DescribeConfigurationSettingsInput): Operation<types.DescribeConfigurationSettingsOutput>
     -- Returns information about the overall health of the specified environment. The
     -- DescribeEnvironmentHealth operation is only available with
     -- AWS Elastic Beanstalk Enhanced Health.
-    describeEnvironmentHealth: function(Client, types.DescribeEnvironmentHealthInput): types.DescribeEnvironmentHealthOutput, table
+    describeEnvironmentHealth: function(Client, types.DescribeEnvironmentHealthInput): Operation<types.DescribeEnvironmentHealthOutput>
     -- Lists an environment's completed and failed managed actions.
-    describeEnvironmentManagedActionHistory: function(Client, types.DescribeEnvironmentManagedActionHistoryInput): types.DescribeEnvironmentManagedActionHistoryOutput, table
+    describeEnvironmentManagedActionHistory: function(Client, types.DescribeEnvironmentManagedActionHistoryInput): Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
     -- Lists an environment's upcoming and in-progress managed actions.
-    describeEnvironmentManagedActions: function(Client, types.DescribeEnvironmentManagedActionsInput): types.DescribeEnvironmentManagedActionsOutput, table
+    describeEnvironmentManagedActions: function(Client, types.DescribeEnvironmentManagedActionsInput): Operation<types.DescribeEnvironmentManagedActionsOutput>
     -- Returns AWS resources for this environment.
-    describeEnvironmentResources: function(Client, types.DescribeEnvironmentResourcesInput): types.DescribeEnvironmentResourcesOutput, table
+    describeEnvironmentResources: function(Client, types.DescribeEnvironmentResourcesInput): Operation<types.DescribeEnvironmentResourcesOutput>
     -- Returns descriptions for existing environments.
-    describeEnvironments: function(Client, types.DescribeEnvironmentsInput): types.DescribeEnvironmentsOutput, table
+    describeEnvironments: function(Client, types.DescribeEnvironmentsInput): Operation<types.DescribeEnvironmentsOutput>
     -- Returns list of event descriptions matching criteria up to the last 6 weeks.
     -- This action returns the most recent 1,000 events from the specified
     -- NextToken.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Retrieves detailed information about the health of instances in your AWS Elastic
     -- Beanstalk. This operation requires enhanced health
     -- reporting.
-    describeInstancesHealth: function(Client, types.DescribeInstancesHealthInput): types.DescribeInstancesHealthOutput, table
+    describeInstancesHealth: function(Client, types.DescribeInstancesHealthInput): Operation<types.DescribeInstancesHealthOutput>
     -- Describes a platform version. Provides full details. Compare to ListPlatformVersions, which provides summary information about a list of
     -- platform versions.
     -- For definitions of platform version and other platform-related terms, see AWS Elastic Beanstalk
     -- Platforms Glossary.
-    describePlatformVersion: function(Client, types.DescribePlatformVersionInput): types.DescribePlatformVersionOutput, table
+    describePlatformVersion: function(Client, types.DescribePlatformVersionInput): Operation<types.DescribePlatformVersionOutput>
     -- Disassociate the operations role from an environment. After this call is made, Elastic Beanstalk uses
     -- the caller's permissions for permissions to downstream services during subsequent calls acting
     -- on this environment. For more information, see Operations roles in the
     -- AWS Elastic Beanstalk Developer Guide.
-    disassociateEnvironmentOperationsRole: function(Client, types.DisassociateEnvironmentOperationsRoleInput): types.DisassociateEnvironmentOperationsRoleOutput, table
+    disassociateEnvironmentOperationsRole: function(Client, types.DisassociateEnvironmentOperationsRoleInput): Operation<types.DisassociateEnvironmentOperationsRoleOutput>
     -- Returns a list of the available solution stack names, with the public version first and
     -- then in reverse chronological order.
-    listAvailableSolutionStacks: function(Client, types.ListAvailableSolutionStacksInput): types.ListAvailableSolutionStacksOutput, table
+    listAvailableSolutionStacks: function(Client, types.ListAvailableSolutionStacksInput): Operation<types.ListAvailableSolutionStacksOutput>
     -- Lists the platform branches available for your account in an AWS Region. Provides
     -- summary information about each platform branch.
     -- For definitions of platform branch and other platform-related terms, see AWS Elastic Beanstalk
     -- Platforms Glossary.
-    listPlatformBranches: function(Client, types.ListPlatformBranchesInput): types.ListPlatformBranchesOutput, table
+    listPlatformBranches: function(Client, types.ListPlatformBranchesInput): Operation<types.ListPlatformBranchesOutput>
     -- Lists the platform versions available for your account in an AWS Region. Provides
     -- summary information about each platform version. Compare to DescribePlatformVersion, which provides full details about a single platform
     -- version.
     -- For definitions of platform version and other platform-related terms, see AWS Elastic Beanstalk
     -- Platforms Glossary.
-    listPlatformVersions: function(Client, types.ListPlatformVersionsInput): types.ListPlatformVersionsOutput, table
+    listPlatformVersions: function(Client, types.ListPlatformVersionsInput): Operation<types.ListPlatformVersionsOutput>
     -- Return the tags applied to an AWS Elastic Beanstalk resource. The response contains a list of tag key-value pairs.
     -- Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see
     -- Tagging Application
     -- Resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Deletes and recreates all of the AWS resources (for example: the Auto Scaling group,
     -- load balancer, etc.) for a specified environment and forces a restart.
-    rebuildEnvironment: function(Client, types.RebuildEnvironmentInput): types.RebuildEnvironmentOutput, table
+    rebuildEnvironment: function(Client, types.RebuildEnvironmentInput): Operation<types.RebuildEnvironmentOutput>
     -- Initiates a request to compile the specified type of information of the deployed
     -- environment.
     -- Setting the InfoType to tail compiles the last lines from
@@ -175,36 +179,36 @@ local record Client
     -- Use RetrieveEnvironmentInfo to obtain the set of logs.
     -- Related Topics
     -- RetrieveEnvironmentInfo
-    requestEnvironmentInfo: function(Client, types.RequestEnvironmentInfoInput): types.RequestEnvironmentInfoOutput, table
+    requestEnvironmentInfo: function(Client, types.RequestEnvironmentInfoInput): Operation<types.RequestEnvironmentInfoOutput>
     -- Causes the environment to restart the application container server running on each
     -- Amazon EC2 instance.
-    restartAppServer: function(Client, types.RestartAppServerInput): types.RestartAppServerOutput, table
+    restartAppServer: function(Client, types.RestartAppServerInput): Operation<types.RestartAppServerOutput>
     -- Retrieves the compiled information from a RequestEnvironmentInfo
     -- request.
     -- Related Topics
     -- RequestEnvironmentInfo
-    retrieveEnvironmentInfo: function(Client, types.RetrieveEnvironmentInfoInput): types.RetrieveEnvironmentInfoOutput, table
+    retrieveEnvironmentInfo: function(Client, types.RetrieveEnvironmentInfoInput): Operation<types.RetrieveEnvironmentInfoOutput>
     -- Swaps the CNAMEs of two environments.
-    swapEnvironmentCNAMEs: function(Client, types.SwapEnvironmentCNAMEsInput): types.SwapEnvironmentCNAMEsOutput, table
+    swapEnvironmentCNAMEs: function(Client, types.SwapEnvironmentCNAMEsInput): Operation<types.SwapEnvironmentCNAMEsOutput>
     -- Terminates the specified environment.
-    terminateEnvironment: function(Client, types.TerminateEnvironmentInput): types.TerminateEnvironmentOutput, table
+    terminateEnvironment: function(Client, types.TerminateEnvironmentInput): Operation<types.TerminateEnvironmentOutput>
     -- Updates the specified application to have the specified properties.
     -- If a property (for example, description) is not provided, the value
     -- remains unchanged. To clear these properties, specify an empty string.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Modifies lifecycle settings for an application.
-    updateApplicationResourceLifecycle: function(Client, types.UpdateApplicationResourceLifecycleInput): types.UpdateApplicationResourceLifecycleOutput, table
+    updateApplicationResourceLifecycle: function(Client, types.UpdateApplicationResourceLifecycleInput): Operation<types.UpdateApplicationResourceLifecycleOutput>
     -- Updates the specified application version to have the specified properties.
     -- If a property (for example, description) is not provided, the value
     -- remains unchanged. To clear properties, specify an empty string.
-    updateApplicationVersion: function(Client, types.UpdateApplicationVersionInput): types.UpdateApplicationVersionOutput, table
+    updateApplicationVersion: function(Client, types.UpdateApplicationVersionInput): Operation<types.UpdateApplicationVersionOutput>
     -- Updates the specified configuration template to have the specified properties or
     -- configuration option values.
     -- If a property (for example, ApplicationName) is not provided, its value
     -- remains unchanged. To clear such properties, specify an empty string.
     -- Related Topics
     -- DescribeConfigurationOptions
-    updateConfigurationTemplate: function(Client, types.UpdateConfigurationTemplateInput): types.UpdateConfigurationTemplateOutput, table
+    updateConfigurationTemplate: function(Client, types.UpdateConfigurationTemplateInput): Operation<types.UpdateConfigurationTemplateOutput>
     -- Updates the environment description, deploys a new application version, updates the
     -- configuration settings to an entirely new configuration template, or updates select
     -- configuration option values in the running environment.
@@ -214,7 +218,7 @@ local record Client
     -- draft configuration is created and DescribeConfigurationSettings for this
     -- environment returns two setting descriptions with different DeploymentStatus
     -- values.
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
     -- Update the list of tags applied to an AWS Elastic Beanstalk resource. Two lists can be passed: TagsToAdd
     -- for tags to add or update, and TagsToRemove.
     -- Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see
@@ -229,12 +233,12 @@ local record Client
     -- Controls permission to call UpdateTagsForResource and pass a list of tag keys to remove in the TagsToRemove
     -- parameter.
     -- For details about creating a custom user policy, see Creating a Custom User Policy.
-    updateTagsForResource: function(Client, types.UpdateTagsForResourceInput): types.UpdateTagsForResourceOutput, table
+    updateTagsForResource: function(Client, types.UpdateTagsForResourceInput): Operation<types.UpdateTagsForResourceOutput>
     -- Takes a set of configuration settings and either a configuration template or
     -- environment, and determines whether those values are valid.
     -- This action returns a list of messages indicating any errors or warnings associated
     -- with the selection of option values.
-    validateConfigurationSettings: function(Client, types.ValidateConfigurationSettingsInput): types.ValidateConfigurationSettingsOutput, table
+    validateConfigurationSettings: function(Client, types.ValidateConfigurationSettingsInput): Operation<types.ValidateConfigurationSettingsOutput>
 end
 
 local record M

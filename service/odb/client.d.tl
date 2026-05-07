@@ -2,93 +2,97 @@
 
 local types = require("odb.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Registers the Amazon Web Services Marketplace token for your Amazon Web Services account to activate your Oracle Database@Amazon Web Services subscription.
-    acceptMarketplaceRegistration: function(Client, types.AcceptMarketplaceRegistrationInput): types.AcceptMarketplaceRegistrationOutput, table
+    acceptMarketplaceRegistration: function(Client, types.AcceptMarketplaceRegistrationInput): Operation<types.AcceptMarketplaceRegistrationOutput>
     -- Associates an Amazon Web Services Identity and Access Management (IAM) service role with a specified resource to enable Amazon Web Services service integration.
-    associateIamRoleToResource: function(Client, types.AssociateIamRoleToResourceInput): types.AssociateIamRoleToResourceOutput, table
+    associateIamRoleToResource: function(Client, types.AssociateIamRoleToResourceInput): Operation<types.AssociateIamRoleToResourceOutput>
     -- Creates a new Autonomous VM cluster in the specified Exadata infrastructure.
-    createCloudAutonomousVmCluster: function(Client, types.CreateCloudAutonomousVmClusterInput): types.CreateCloudAutonomousVmClusterOutput, table
+    createCloudAutonomousVmCluster: function(Client, types.CreateCloudAutonomousVmClusterInput): Operation<types.CreateCloudAutonomousVmClusterOutput>
     -- Creates an Exadata infrastructure.
-    createCloudExadataInfrastructure: function(Client, types.CreateCloudExadataInfrastructureInput): types.CreateCloudExadataInfrastructureOutput, table
+    createCloudExadataInfrastructure: function(Client, types.CreateCloudExadataInfrastructureInput): Operation<types.CreateCloudExadataInfrastructureOutput>
     -- Creates a VM cluster on the specified Exadata infrastructure.
-    createCloudVmCluster: function(Client, types.CreateCloudVmClusterInput): types.CreateCloudVmClusterOutput, table
+    createCloudVmCluster: function(Client, types.CreateCloudVmClusterInput): Operation<types.CreateCloudVmClusterOutput>
     -- Creates an ODB network.
-    createOdbNetwork: function(Client, types.CreateOdbNetworkInput): types.CreateOdbNetworkOutput, table
+    createOdbNetwork: function(Client, types.CreateOdbNetworkInput): Operation<types.CreateOdbNetworkOutput>
     -- Creates a peering connection between an ODB network and a VPC. A peering connection enables private connectivity between the networks for application-tier communication.
-    createOdbPeeringConnection: function(Client, types.CreateOdbPeeringConnectionInput): types.CreateOdbPeeringConnectionOutput, table
+    createOdbPeeringConnection: function(Client, types.CreateOdbPeeringConnectionInput): Operation<types.CreateOdbPeeringConnectionOutput>
     -- Deletes an Autonomous VM cluster.
-    deleteCloudAutonomousVmCluster: function(Client, types.DeleteCloudAutonomousVmClusterInput): types.DeleteCloudAutonomousVmClusterOutput, table
+    deleteCloudAutonomousVmCluster: function(Client, types.DeleteCloudAutonomousVmClusterInput): Operation<types.DeleteCloudAutonomousVmClusterOutput>
     -- Deletes the specified Exadata infrastructure. Before you use this operation, make sure to delete all of the VM clusters that are hosted on this Exadata infrastructure.
-    deleteCloudExadataInfrastructure: function(Client, types.DeleteCloudExadataInfrastructureInput): types.DeleteCloudExadataInfrastructureOutput, table
+    deleteCloudExadataInfrastructure: function(Client, types.DeleteCloudExadataInfrastructureInput): Operation<types.DeleteCloudExadataInfrastructureOutput>
     -- Deletes the specified VM cluster.
-    deleteCloudVmCluster: function(Client, types.DeleteCloudVmClusterInput): types.DeleteCloudVmClusterOutput, table
+    deleteCloudVmCluster: function(Client, types.DeleteCloudVmClusterInput): Operation<types.DeleteCloudVmClusterOutput>
     -- Deletes the specified ODB network.
-    deleteOdbNetwork: function(Client, types.DeleteOdbNetworkInput): types.DeleteOdbNetworkOutput, table
+    deleteOdbNetwork: function(Client, types.DeleteOdbNetworkInput): Operation<types.DeleteOdbNetworkOutput>
     -- Deletes an ODB peering connection. When you delete an ODB peering connection, the underlying VPC peering connection is also deleted.
-    deleteOdbPeeringConnection: function(Client, types.DeleteOdbPeeringConnectionInput): types.DeleteOdbPeeringConnectionOutput, table
+    deleteOdbPeeringConnection: function(Client, types.DeleteOdbPeeringConnectionInput): Operation<types.DeleteOdbPeeringConnectionOutput>
     -- Disassociates an Amazon Web Services Identity and Access Management (IAM) service role from a specified resource to disable Amazon Web Services service integration.
-    disassociateIamRoleFromResource: function(Client, types.DisassociateIamRoleFromResourceInput): types.DisassociateIamRoleFromResourceOutput, table
+    disassociateIamRoleFromResource: function(Client, types.DisassociateIamRoleFromResourceInput): Operation<types.DisassociateIamRoleFromResourceOutput>
     -- Gets information about a specific Autonomous VM cluster.
-    getCloudAutonomousVmCluster: function(Client, types.GetCloudAutonomousVmClusterInput): types.GetCloudAutonomousVmClusterOutput, table
+    getCloudAutonomousVmCluster: function(Client, types.GetCloudAutonomousVmClusterInput): Operation<types.GetCloudAutonomousVmClusterOutput>
     -- Returns information about the specified Exadata infrastructure.
-    getCloudExadataInfrastructure: function(Client, types.GetCloudExadataInfrastructureInput): types.GetCloudExadataInfrastructureOutput, table
+    getCloudExadataInfrastructure: function(Client, types.GetCloudExadataInfrastructureInput): Operation<types.GetCloudExadataInfrastructureOutput>
     -- Retrieves information about unallocated resources in a specified Cloud Exadata Infrastructure.
-    getCloudExadataInfrastructureUnallocatedResources: function(Client, types.GetCloudExadataInfrastructureUnallocatedResourcesInput): types.GetCloudExadataInfrastructureUnallocatedResourcesOutput, table
+    getCloudExadataInfrastructureUnallocatedResources: function(Client, types.GetCloudExadataInfrastructureUnallocatedResourcesInput): Operation<types.GetCloudExadataInfrastructureUnallocatedResourcesOutput>
     -- Returns information about the specified VM cluster.
-    getCloudVmCluster: function(Client, types.GetCloudVmClusterInput): types.GetCloudVmClusterOutput, table
+    getCloudVmCluster: function(Client, types.GetCloudVmClusterInput): Operation<types.GetCloudVmClusterOutput>
     -- Returns information about the specified DB node.
-    getDbNode: function(Client, types.GetDbNodeInput): types.GetDbNodeOutput, table
+    getDbNode: function(Client, types.GetDbNodeInput): Operation<types.GetDbNodeOutput>
     -- Returns information about the specified database server.
-    getDbServer: function(Client, types.GetDbServerInput): types.GetDbServerOutput, table
+    getDbServer: function(Client, types.GetDbServerInput): Operation<types.GetDbServerOutput>
     -- Returns the tenancy activation link and onboarding status for your Amazon Web Services account.
-    getOciOnboardingStatus: function(Client, types.GetOciOnboardingStatusInput): types.GetOciOnboardingStatusOutput, table
+    getOciOnboardingStatus: function(Client, types.GetOciOnboardingStatusInput): Operation<types.GetOciOnboardingStatusOutput>
     -- Returns information about the specified ODB network.
-    getOdbNetwork: function(Client, types.GetOdbNetworkInput): types.GetOdbNetworkOutput, table
+    getOdbNetwork: function(Client, types.GetOdbNetworkInput): Operation<types.GetOdbNetworkOutput>
     -- Retrieves information about an ODB peering connection.
-    getOdbPeeringConnection: function(Client, types.GetOdbPeeringConnectionInput): types.GetOdbPeeringConnectionOutput, table
+    getOdbPeeringConnection: function(Client, types.GetOdbPeeringConnectionInput): Operation<types.GetOdbPeeringConnectionOutput>
     -- Initializes the ODB service for the first time in an account.
-    initializeService: function(Client, types.InitializeServiceInput): types.InitializeServiceOutput, table
+    initializeService: function(Client, types.InitializeServiceInput): Operation<types.InitializeServiceOutput>
     -- Lists all Autonomous VMs in an Autonomous VM cluster.
-    listAutonomousVirtualMachines: function(Client, types.ListAutonomousVirtualMachinesInput): types.ListAutonomousVirtualMachinesOutput, table
+    listAutonomousVirtualMachines: function(Client, types.ListAutonomousVirtualMachinesInput): Operation<types.ListAutonomousVirtualMachinesOutput>
     -- Lists all Autonomous VM clusters in a specified Cloud Exadata infrastructure.
-    listCloudAutonomousVmClusters: function(Client, types.ListCloudAutonomousVmClustersInput): types.ListCloudAutonomousVmClustersOutput, table
+    listCloudAutonomousVmClusters: function(Client, types.ListCloudAutonomousVmClustersInput): Operation<types.ListCloudAutonomousVmClustersOutput>
     -- Returns information about the Exadata infrastructures owned by your Amazon Web Services account.
-    listCloudExadataInfrastructures: function(Client, types.ListCloudExadataInfrastructuresInput): types.ListCloudExadataInfrastructuresOutput, table
+    listCloudExadataInfrastructures: function(Client, types.ListCloudExadataInfrastructuresInput): Operation<types.ListCloudExadataInfrastructuresOutput>
     -- Returns information about the VM clusters owned by your Amazon Web Services account or only the ones on the specified Exadata infrastructure.
-    listCloudVmClusters: function(Client, types.ListCloudVmClustersInput): types.ListCloudVmClustersOutput, table
+    listCloudVmClusters: function(Client, types.ListCloudVmClustersInput): Operation<types.ListCloudVmClustersOutput>
     -- Returns information about the DB nodes for the specified VM cluster.
-    listDbNodes: function(Client, types.ListDbNodesInput): types.ListDbNodesOutput, table
+    listDbNodes: function(Client, types.ListDbNodesInput): Operation<types.ListDbNodesOutput>
     -- Returns information about the database servers that belong to the specified Exadata infrastructure.
-    listDbServers: function(Client, types.ListDbServersInput): types.ListDbServersOutput, table
+    listDbServers: function(Client, types.ListDbServersInput): Operation<types.ListDbServersOutput>
     -- Returns information about the shapes that are available for an Exadata infrastructure.
-    listDbSystemShapes: function(Client, types.ListDbSystemShapesInput): types.ListDbSystemShapesOutput, table
+    listDbSystemShapes: function(Client, types.ListDbSystemShapesInput): Operation<types.ListDbSystemShapesOutput>
     -- Returns information about Oracle Grid Infrastructure (GI) software versions that are available for a VM cluster for the specified shape.
-    listGiVersions: function(Client, types.ListGiVersionsInput): types.ListGiVersionsOutput, table
+    listGiVersions: function(Client, types.ListGiVersionsInput): Operation<types.ListGiVersionsOutput>
     -- Returns information about the ODB networks owned by your Amazon Web Services account.
-    listOdbNetworks: function(Client, types.ListOdbNetworksInput): types.ListOdbNetworksOutput, table
+    listOdbNetworks: function(Client, types.ListOdbNetworksInput): Operation<types.ListOdbNetworksOutput>
     -- Lists all ODB peering connections or those associated with a specific ODB network.
-    listOdbPeeringConnections: function(Client, types.ListOdbPeeringConnectionsInput): types.ListOdbPeeringConnectionsOutput, table
+    listOdbPeeringConnections: function(Client, types.ListOdbPeeringConnectionsInput): Operation<types.ListOdbPeeringConnectionsOutput>
     -- Returns information about the system versions that are available for a VM cluster for the specified giVersion and shape.
-    listSystemVersions: function(Client, types.ListSystemVersionsInput): types.ListSystemVersionsOutput, table
+    listSystemVersions: function(Client, types.ListSystemVersionsInput): Operation<types.ListSystemVersionsOutput>
     -- Returns information about the tags applied to this resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Reboots the specified DB node in a VM cluster.
-    rebootDbNode: function(Client, types.RebootDbNodeInput): types.RebootDbNodeOutput, table
+    rebootDbNode: function(Client, types.RebootDbNodeInput): Operation<types.RebootDbNodeOutput>
     -- Starts the specified DB node in a VM cluster.
-    startDbNode: function(Client, types.StartDbNodeInput): types.StartDbNodeOutput, table
+    startDbNode: function(Client, types.StartDbNodeInput): Operation<types.StartDbNodeOutput>
     -- Stops the specified DB node in a VM cluster.
-    stopDbNode: function(Client, types.StopDbNodeInput): types.StopDbNodeOutput, table
+    stopDbNode: function(Client, types.StopDbNodeInput): Operation<types.StopDbNodeOutput>
     -- Applies tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the properties of an Exadata infrastructure resource.
-    updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput): types.UpdateCloudExadataInfrastructureOutput, table
+    updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput): Operation<types.UpdateCloudExadataInfrastructureOutput>
     -- Updates properties of a specified ODB network.
-    updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput): types.UpdateOdbNetworkOutput, table
+    updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput): Operation<types.UpdateOdbNetworkOutput>
     -- Modifies the settings of an Oracle Database@Amazon Web Services peering connection. You can update the display name and add or remove CIDR blocks from the peering connection.
-    updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput): types.UpdateOdbPeeringConnectionOutput, table
+    updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput): Operation<types.UpdateOdbPeeringConnectionOutput>
 end
 
 local record M

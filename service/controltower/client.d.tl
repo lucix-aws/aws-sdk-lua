@@ -2,63 +2,67 @@
 
 local types = require("controltower.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new landing zone. This API call starts an asynchronous operation that creates and configures a landing zone, based on the parameters specified in the manifest JSON file.
-    createLandingZone: function(Client, types.CreateLandingZoneInput): types.CreateLandingZoneOutput, table
+    createLandingZone: function(Client, types.CreateLandingZoneInput): Operation<types.CreateLandingZoneOutput>
     -- Decommissions a landing zone. This API call starts an asynchronous operation that deletes Amazon Web Services Control Tower resources deployed in accounts managed by Amazon Web Services Control Tower. Decommissioning a landing zone is a process with significant consequences, and it cannot be undone. We strongly recommend that you perform this decommissioning process only if you intend to stop using your landing zone.
-    deleteLandingZone: function(Client, types.DeleteLandingZoneInput): types.DeleteLandingZoneOutput, table
+    deleteLandingZone: function(Client, types.DeleteLandingZoneInput): Operation<types.DeleteLandingZoneOutput>
     -- Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement. The resource will vary depending on the enabled baseline. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    disableBaseline: function(Client, types.DisableBaselineInput): types.DisableBaselineOutput, table
+    disableBaseline: function(Client, types.DisableBaselineInput): Operation<types.DisableBaselineOutput>
     -- This API call turns off a control. It starts an asynchronous operation that deletes Amazon Web Services resources on the specified organizational unit and the accounts it contains. The resources will vary according to the control that you specify. For usage examples, see the Controls Reference Guide .
-    disableControl: function(Client, types.DisableControlInput): types.DisableControlOutput, table
+    disableControl: function(Client, types.DisableControlInput): Operation<types.DisableControlOutput>
     -- Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    enableBaseline: function(Client, types.EnableBaselineInput): types.EnableBaselineOutput, table
+    enableBaseline: function(Client, types.EnableBaselineInput): Operation<types.EnableBaselineOutput>
     -- This API call activates a control. It starts an asynchronous operation that creates Amazon Web Services resources on the specified organizational unit and the accounts it contains. The resources created will vary according to the control that you specify. For usage examples, see the Controls Reference Guide .
-    enableControl: function(Client, types.EnableControlInput): types.EnableControlOutput, table
+    enableControl: function(Client, types.EnableControlInput): Operation<types.EnableControlOutput>
     -- Retrieve details about an existing Baseline resource by specifying its identifier. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    getBaseline: function(Client, types.GetBaselineInput): types.GetBaselineOutput, table
+    getBaseline: function(Client, types.GetBaselineInput): Operation<types.GetBaselineOutput>
     -- Returns the details of an asynchronous baseline operation, as initiated by any of these APIs: EnableBaseline, DisableBaseline, UpdateEnabledBaseline, ResetEnabledBaseline. A status message is displayed in case of operation failure. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    getBaselineOperation: function(Client, types.GetBaselineOperationInput): types.GetBaselineOperationOutput, table
+    getBaselineOperation: function(Client, types.GetBaselineOperationInput): Operation<types.GetBaselineOperationOutput>
     -- Returns the status of a particular EnableControl or DisableControl operation. Displays a message in case of error. Details for an operation are available for 90 days. For usage examples, see the Controls Reference Guide .
-    getControlOperation: function(Client, types.GetControlOperationInput): types.GetControlOperationOutput, table
+    getControlOperation: function(Client, types.GetControlOperationInput): Operation<types.GetControlOperationOutput>
     -- Retrieve details of an EnabledBaseline resource by specifying its identifier.
-    getEnabledBaseline: function(Client, types.GetEnabledBaselineInput): types.GetEnabledBaselineOutput, table
+    getEnabledBaseline: function(Client, types.GetEnabledBaselineInput): Operation<types.GetEnabledBaselineOutput>
     -- Retrieves details about an enabled control. For usage examples, see the Controls Reference Guide .
-    getEnabledControl: function(Client, types.GetEnabledControlInput): types.GetEnabledControlOutput, table
+    getEnabledControl: function(Client, types.GetEnabledControlInput): Operation<types.GetEnabledControlOutput>
     -- Returns details about the landing zone. Displays a message in case of error.
-    getLandingZone: function(Client, types.GetLandingZoneInput): types.GetLandingZoneOutput, table
+    getLandingZone: function(Client, types.GetLandingZoneInput): Operation<types.GetLandingZoneOutput>
     -- Returns the status of the specified landing zone operation. Details for an operation are available for 90 days.
-    getLandingZoneOperation: function(Client, types.GetLandingZoneOperationInput): types.GetLandingZoneOperationOutput, table
+    getLandingZoneOperation: function(Client, types.GetLandingZoneOperationInput): Operation<types.GetLandingZoneOperationOutput>
     -- Returns a summary list of all available baselines. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    listBaselines: function(Client, types.ListBaselinesInput): types.ListBaselinesOutput, table
+    listBaselines: function(Client, types.ListBaselinesInput): Operation<types.ListBaselinesOutput>
     -- Provides a list of operations in progress or queued. For usage examples, see ListControlOperation examples.
-    listControlOperations: function(Client, types.ListControlOperationsInput): types.ListControlOperationsOutput, table
+    listControlOperations: function(Client, types.ListControlOperationsInput): Operation<types.ListControlOperationsOutput>
     -- Returns a list of summaries describing EnabledBaseline resources. You can filter the list by the corresponding Baseline or Target of the EnabledBaseline resources. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    listEnabledBaselines: function(Client, types.ListEnabledBaselinesInput): types.ListEnabledBaselinesOutput, table
+    listEnabledBaselines: function(Client, types.ListEnabledBaselinesInput): Operation<types.ListEnabledBaselinesOutput>
     -- Lists the controls enabled by Amazon Web Services Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the Controls Reference Guide .
-    listEnabledControls: function(Client, types.ListEnabledControlsInput): types.ListEnabledControlsOutput, table
+    listEnabledControls: function(Client, types.ListEnabledControlsInput): Operation<types.ListEnabledControlsOutput>
     -- Lists all landing zone operations from the past 90 days. Results are sorted by time, with the most recent operation first.
-    listLandingZoneOperations: function(Client, types.ListLandingZoneOperationsInput): types.ListLandingZoneOperationsOutput, table
+    listLandingZoneOperations: function(Client, types.ListLandingZoneOperationsInput): Operation<types.ListLandingZoneOperationsOutput>
     -- Returns the landing zone ARN for the landing zone deployed in your managed account. This API also creates an ARN for existing accounts that do not yet have a landing zone ARN. Returns one landing zone ARN.
-    listLandingZones: function(Client, types.ListLandingZonesInput): types.ListLandingZonesOutput, table
+    listLandingZones: function(Client, types.ListLandingZonesInput): Operation<types.ListLandingZonesOutput>
     -- Returns a list of tags associated with the resource. For usage examples, see the Controls Reference Guide .
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    resetEnabledBaseline: function(Client, types.ResetEnabledBaselineInput): types.ResetEnabledBaselineOutput, table
+    resetEnabledBaseline: function(Client, types.ResetEnabledBaselineInput): Operation<types.ResetEnabledBaselineOutput>
     -- Resets an enabled control. Does not work for controls implemented with SCPs.
-    resetEnabledControl: function(Client, types.ResetEnabledControlInput): types.ResetEnabledControlOutput, table
+    resetEnabledControl: function(Client, types.ResetEnabledControlInput): Operation<types.ResetEnabledControlOutput>
     -- This API call resets a landing zone. It starts an asynchronous operation that resets the landing zone to the parameters specified in the original configuration, which you specified in the manifest file. Nothing in the manifest file's original landing zone configuration is changed during the reset process, by default. This API is not the same as a rollback of a landing zone version, which is not a supported operation.
-    resetLandingZone: function(Client, types.ResetLandingZoneInput): types.ResetLandingZoneOutput, table
+    resetLandingZone: function(Client, types.ResetLandingZoneInput): Operation<types.ResetLandingZoneOutput>
     -- Applies tags to a resource. For usage examples, see the Controls Reference Guide .
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a resource. For usage examples, see the Controls Reference Guide .
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an EnabledBaseline resource's applied parameters or version. For usage examples, see the Amazon Web Services Control Tower User Guide .
-    updateEnabledBaseline: function(Client, types.UpdateEnabledBaselineInput): types.UpdateEnabledBaselineOutput, table
+    updateEnabledBaseline: function(Client, types.UpdateEnabledBaselineInput): Operation<types.UpdateEnabledBaselineOutput>
     -- Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of SUCCEEDED, supply parameters that are different from the currently configured parameters. Otherwise, Amazon Web Services Control Tower will not accept the request. If the enabled control shows an EnablementStatus of FAILED, Amazon Web Services Control Tower updates the control to match any valid parameters that you supply. If the DriftSummary status for the control shows as DRIFTED, you cannot call this API. Instead, you can update the control by calling the ResetEnabledControl API. Alternatively, you can call DisableControl and then call EnableControl again. Also, you can run an extending governance operation to repair drift. For usage examples, see the Controls Reference Guide .
-    updateEnabledControl: function(Client, types.UpdateEnabledControlInput): types.UpdateEnabledControlOutput, table
+    updateEnabledControl: function(Client, types.UpdateEnabledControlInput): Operation<types.UpdateEnabledControlOutput>
     -- This API call updates the landing zone. It starts an asynchronous operation that updates the landing zone based on the new landing zone version, or on the changed parameters specified in the updated manifest file.
-    updateLandingZone: function(Client, types.UpdateLandingZoneInput): types.UpdateLandingZoneOutput, table
+    updateLandingZone: function(Client, types.UpdateLandingZoneInput): Operation<types.UpdateLandingZoneOutput>
 end
 
 local record M

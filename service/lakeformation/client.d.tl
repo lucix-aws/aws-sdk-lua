@@ -2,9 +2,13 @@
 
 local types = require("lakeformation.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Attaches one or more LF-tags to an existing resource.
-    addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput): types.AddLFTagsToResourceOutput, table
+    addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput): Operation<types.AddLFTagsToResourceOutput>
     -- Allows a caller to assume an IAM role decorated as the SAML user specified in the SAML assertion included in the request. This decoration allows Lake Formation to enforce access policies against the SAML users and groups. This API operation requires SAML federation setup in the caller’s account as it can only be called with valid SAML assertions.
     -- Lake Formation does not scope down the permission of the assumed role. All permissions attached to the role via the SAML federation setup will be included in the role session.
     -- This decorated role is expected to access data in Amazon S3 by getting temporary access from Lake Formation which is authorized via the virtual API GetDataAccess.
@@ -15,23 +19,23 @@ local record Client
     -- glue:*Partition*
     -- glue:*UserDefinedFunction*
     -- lakeformation:GetDataAccess
-    assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput): types.AssumeDecoratedRoleWithSAMLOutput, table
+    assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput): Operation<types.AssumeDecoratedRoleWithSAMLOutput>
     -- Batch operation to grant permissions to the principal.
-    batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput): types.BatchGrantPermissionsOutput, table
+    batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput): Operation<types.BatchGrantPermissionsOutput>
     -- Batch operation to revoke permissions from the principal.
-    batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput): types.BatchRevokePermissionsOutput, table
+    batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput): Operation<types.BatchRevokePermissionsOutput>
     -- Attempts to cancel the specified transaction. Returns an exception if the transaction was previously committed.
-    cancelTransaction: function(Client, types.CancelTransactionInput): types.CancelTransactionOutput, table
+    cancelTransaction: function(Client, types.CancelTransactionInput): Operation<types.CancelTransactionOutput>
     -- Attempts to commit the specified transaction. Returns an exception if the transaction was previously aborted. This API action is idempotent if called multiple times for the same transaction.
-    commitTransaction: function(Client, types.CommitTransactionInput): types.CommitTransactionOutput, table
+    commitTransaction: function(Client, types.CommitTransactionInput): Operation<types.CommitTransactionOutput>
     -- Creates a data cell filter to allow one to grant access to certain columns on certain rows.
-    createDataCellsFilter: function(Client, types.CreateDataCellsFilterInput): types.CreateDataCellsFilterOutput, table
+    createDataCellsFilter: function(Client, types.CreateDataCellsFilterInput): Operation<types.CreateDataCellsFilterOutput>
     -- Creates an IAM Identity Center connection with Lake Formation to allow IAM Identity Center users and groups to access Data Catalog resources.
-    createLakeFormationIdentityCenterConfiguration: function(Client, types.CreateLakeFormationIdentityCenterConfigurationInput): types.CreateLakeFormationIdentityCenterConfigurationOutput, table
+    createLakeFormationIdentityCenterConfiguration: function(Client, types.CreateLakeFormationIdentityCenterConfigurationInput): Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
     -- Enforce Lake Formation permissions for the given databases, tables, and principals.
-    createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput): types.CreateLakeFormationOptInOutput, table
+    createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput): Operation<types.CreateLakeFormationOptInOutput>
     -- Creates an LF-tag with the specified name and values.
-    createLFTag: function(Client, types.CreateLFTagInput): types.CreateLFTagOutput, table
+    createLFTag: function(Client, types.CreateLFTagInput): Operation<types.CreateLFTagOutput>
     -- Creates a new LF-Tag expression with the provided name, description, catalog ID, and
     -- expression body. This call fails if a LF-Tag expression with the same name already exists in
     -- the caller’s account or if the underlying LF-Tags don't exist. To call this API operation,
@@ -39,61 +43,61 @@ local record Client
     -- CREATE_LF_TAG_EXPRESSION on the root catalog resource.
     -- GRANT_WITH_LF_TAG_EXPRESSION on all underlying LF-Tag key:value pairs
     -- included in the expression.
-    createLFTagExpression: function(Client, types.CreateLFTagExpressionInput): types.CreateLFTagExpressionOutput, table
+    createLFTagExpression: function(Client, types.CreateLFTagExpressionInput): Operation<types.CreateLFTagExpressionOutput>
     -- Deletes a data cell filter.
-    deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput): types.DeleteDataCellsFilterOutput, table
+    deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput): Operation<types.DeleteDataCellsFilterOutput>
     -- Deletes an IAM Identity Center connection with Lake Formation.
-    deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput): types.DeleteLakeFormationIdentityCenterConfigurationOutput, table
+    deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput): Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
     -- Remove the Lake Formation permissions enforcement of the given databases, tables, and principals.
-    deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput): types.DeleteLakeFormationOptInOutput, table
+    deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput): Operation<types.DeleteLakeFormationOptInOutput>
     -- Deletes an LF-tag by its key name. The operation fails if the specified tag key doesn't
     -- exist. When you delete an LF-Tag:
     -- The associated LF-Tag policy becomes invalid.
     -- Resources that had this tag assigned will no longer have the tag policy applied to
     -- them.
-    deleteLFTag: function(Client, types.DeleteLFTagInput): types.DeleteLFTagOutput, table
+    deleteLFTag: function(Client, types.DeleteLFTagInput): Operation<types.DeleteLFTagOutput>
     -- Deletes the LF-Tag expression. The caller must be a data lake admin or have DROP permissions on the LF-Tag expression.
     -- Deleting a LF-Tag expression will also delete all LFTagPolicy permissions referencing the LF-Tag expression.
-    deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput): types.DeleteLFTagExpressionOutput, table
+    deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput): Operation<types.DeleteLFTagExpressionOutput>
     -- For a specific governed table, provides a list of Amazon S3 objects that will be written during the current transaction and that can be automatically deleted
     -- if the transaction is canceled. Without this call, no Amazon S3 objects are automatically deleted when a transaction cancels.
     -- The Glue ETL library function write_dynamic_frame.from_catalog() includes an option to automatically
     -- call DeleteObjectsOnCancel before writes. For more information, see
     -- Rolling Back Amazon S3 Writes.
-    deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput): types.DeleteObjectsOnCancelOutput, table
+    deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput): Operation<types.DeleteObjectsOnCancelOutput>
     -- Deregisters the resource as managed by the Data Catalog.
     -- When you deregister a path, Lake Formation removes the path from the inline policy attached to your service-linked role.
-    deregisterResource: function(Client, types.DeregisterResourceInput): types.DeregisterResourceOutput, table
+    deregisterResource: function(Client, types.DeregisterResourceInput): Operation<types.DeregisterResourceOutput>
     -- Retrieves the instance ARN and application ARN for the connection.
-    describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput): types.DescribeLakeFormationIdentityCenterConfigurationOutput, table
+    describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput): Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
     -- Retrieves the current data access role for the given resource registered in Lake Formation.
-    describeResource: function(Client, types.DescribeResourceInput): types.DescribeResourceOutput, table
+    describeResource: function(Client, types.DescribeResourceInput): Operation<types.DescribeResourceOutput>
     -- Returns the details of a single transaction.
-    describeTransaction: function(Client, types.DescribeTransactionInput): types.DescribeTransactionOutput, table
+    describeTransaction: function(Client, types.DescribeTransactionInput): Operation<types.DescribeTransactionOutput>
     -- Indicates to the service that the specified transaction is still active and should not be treated as idle and aborted.
     -- Write transactions that remain idle for a long period are automatically aborted unless explicitly extended.
-    extendTransaction: function(Client, types.ExtendTransactionInput): types.ExtendTransactionOutput, table
+    extendTransaction: function(Client, types.ExtendTransactionInput): Operation<types.ExtendTransactionOutput>
     -- Returns a data cells filter.
-    getDataCellsFilter: function(Client, types.GetDataCellsFilterInput): types.GetDataCellsFilterOutput, table
+    getDataCellsFilter: function(Client, types.GetDataCellsFilterInput): Operation<types.GetDataCellsFilterOutput>
     -- Returns the identity of the invoking principal.
-    getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput): types.GetDataLakePrincipalOutput, table
+    getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput): Operation<types.GetDataLakePrincipalOutput>
     -- Retrieves the list of the data lake administrators of a Lake Formation-managed data lake.
-    getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput): types.GetDataLakeSettingsOutput, table
+    getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput): Operation<types.GetDataLakeSettingsOutput>
     -- Returns the Lake Formation permissions for a specified table or database resource located
     -- at a path in Amazon S3. GetEffectivePermissionsForPath will not return databases and tables if the catalog is encrypted.
-    getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput): types.GetEffectivePermissionsForPathOutput, table
+    getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput): Operation<types.GetEffectivePermissionsForPathOutput>
     -- Returns an LF-tag definition.
-    getLFTag: function(Client, types.GetLFTagInput): types.GetLFTagOutput, table
+    getLFTag: function(Client, types.GetLFTagInput): Operation<types.GetLFTagOutput>
     -- Returns the details about the LF-Tag expression. The caller must be a data lake admin or must have DESCRIBE permission on the LF-Tag expression resource.
-    getLFTagExpression: function(Client, types.GetLFTagExpressionInput): types.GetLFTagExpressionOutput, table
+    getLFTagExpression: function(Client, types.GetLFTagExpressionInput): Operation<types.GetLFTagExpressionOutput>
     -- Returns the state of a query previously submitted. Clients are expected to poll GetQueryState to monitor the current state of the planning before retrieving the work units. A query state is only visible to the principal that made the initial call to StartQueryPlanning.
-    getQueryState: function(Client, types.GetQueryStateInput): types.GetQueryStateOutput, table
+    getQueryState: function(Client, types.GetQueryStateInput): Operation<types.GetQueryStateOutput>
     -- Retrieves statistics on the planning and execution of a query.
-    getQueryStatistics: function(Client, types.GetQueryStatisticsInput): types.GetQueryStatisticsOutput, table
+    getQueryStatistics: function(Client, types.GetQueryStatisticsInput): Operation<types.GetQueryStatisticsOutput>
     -- Returns the LF-tags applied to a resource.
-    getResourceLFTags: function(Client, types.GetResourceLFTagsInput): types.GetResourceLFTagsOutput, table
+    getResourceLFTags: function(Client, types.GetResourceLFTagsInput): Operation<types.GetResourceLFTagsOutput>
     -- Returns the set of Amazon S3 objects that make up the specified governed table. A transaction ID or timestamp can be specified for time-travel queries.
-    getTableObjects: function(Client, types.GetTableObjectsInput): types.GetTableObjectsOutput, table
+    getTableObjects: function(Client, types.GetTableObjectsInput): Operation<types.GetTableObjectsOutput>
     -- Allows a user or application in a secure environment to access data in a specific Amazon S3 location registered with Lake Formation by providing temporary scoped credentials that are limited to the requested data location and
     -- the caller's authorized access level.
     -- GetDataAccess is logged in CloudTrail whenever a principal requests temporary data location credentials to access data in a data lake location that is registered with Lake Formation.
@@ -107,43 +111,43 @@ local record Client
     -- The data location is in a different Amazon Web Services Region. Lake Formation doesn't
     -- support cross-Region access when vending credentials for a data location. Lake Formation only supports Amazon S3 paths registered within the same Region as the API
     -- call.
-    getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput): types.GetTemporaryDataLocationCredentialsOutput, table
+    getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput): Operation<types.GetTemporaryDataLocationCredentialsOutput>
     -- This API is identical to GetTemporaryTableCredentials except that this is used when the target Data Catalog resource is of type Partition. Lake Formation restricts the permission of the vended credentials with the same scope down policy which restricts access to a single Amazon S3 prefix.
-    getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput): types.GetTemporaryGluePartitionCredentialsOutput, table
+    getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput): Operation<types.GetTemporaryGluePartitionCredentialsOutput>
     -- Allows a caller in a secure environment to assume a role with permission to access Amazon S3. In order to vend such credentials, Lake Formation assumes the role associated with a registered location, for example an Amazon S3 bucket, with a scope down policy which restricts the access to a single prefix.
     -- To call this API, the role that the service assumes must have lakeformation:GetDataAccess permission on the resource.
-    getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput): types.GetTemporaryGlueTableCredentialsOutput, table
+    getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput): Operation<types.GetTemporaryGlueTableCredentialsOutput>
     -- Returns the work units resulting from the query. Work units can be executed in any order and in parallel.
-    getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput): types.GetWorkUnitResultsOutput, table
+    getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput): Operation<types.GetWorkUnitResultsOutput>
     -- Retrieves the work units generated by the StartQueryPlanning operation.
-    getWorkUnits: function(Client, types.GetWorkUnitsInput): types.GetWorkUnitsOutput, table
+    getWorkUnits: function(Client, types.GetWorkUnitsInput): Operation<types.GetWorkUnitsOutput>
     -- Grants permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.
     -- For information about permissions, see Security and Access Control to Metadata and Data.
-    grantPermissions: function(Client, types.GrantPermissionsInput): types.GrantPermissionsOutput, table
+    grantPermissions: function(Client, types.GrantPermissionsInput): Operation<types.GrantPermissionsOutput>
     -- Lists all the data cell filters on a table.
-    listDataCellsFilter: function(Client, types.ListDataCellsFilterInput): types.ListDataCellsFilterOutput, table
+    listDataCellsFilter: function(Client, types.ListDataCellsFilterInput): Operation<types.ListDataCellsFilterOutput>
     -- Retrieve the current list of resources and principals that are opt in to enforce Lake Formation permissions.
-    listLakeFormationOptIns: function(Client, types.ListLakeFormationOptInsInput): types.ListLakeFormationOptInsOutput, table
+    listLakeFormationOptIns: function(Client, types.ListLakeFormationOptInsInput): Operation<types.ListLakeFormationOptInsOutput>
     -- Returns the LF-Tag expressions in caller’s account filtered based on caller's permissions. Data Lake and read only admins implicitly can see all tag expressions in their account, else caller needs DESCRIBE permissions on tag expression.
-    listLFTagExpressions: function(Client, types.ListLFTagExpressionsInput): types.ListLFTagExpressionsOutput, table
+    listLFTagExpressions: function(Client, types.ListLFTagExpressionsInput): Operation<types.ListLFTagExpressionsOutput>
     -- Lists LF-tags that the requester has permission to view.
-    listLFTags: function(Client, types.ListLFTagsInput): types.ListLFTagsOutput, table
+    listLFTags: function(Client, types.ListLFTagsInput): Operation<types.ListLFTagsOutput>
     -- Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.
     -- This operation returns only those permissions that have been explicitly granted. If both
     -- Principal and Resource parameters are provided, the response
     -- returns effective permissions rather than the explicitly granted permissions.
     -- For information about permissions, see Security and Access Control to Metadata and Data.
-    listPermissions: function(Client, types.ListPermissionsInput): types.ListPermissionsOutput, table
+    listPermissions: function(Client, types.ListPermissionsInput): Operation<types.ListPermissionsOutput>
     -- Lists the resources registered to be managed by the Data Catalog.
-    listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    listResources: function(Client, types.ListResourcesInput): Operation<types.ListResourcesOutput>
     -- Returns the configuration of all storage optimizers associated with a specified table.
-    listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput): types.ListTableStorageOptimizersOutput, table
+    listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput): Operation<types.ListTableStorageOptimizersOutput>
     -- Returns metadata about transactions and their status. To prevent the response from growing indefinitely, only uncommitted transactions and those available for time-travel queries are returned.
     -- This operation can help you identify uncommitted transactions or to get information about transactions.
-    listTransactions: function(Client, types.ListTransactionsInput): types.ListTransactionsOutput, table
+    listTransactions: function(Client, types.ListTransactionsInput): Operation<types.ListTransactionsOutput>
     -- Sets the list of data lake administrators who have admin privileges on all resources managed by Lake Formation. For more information on admin privileges, see Granting Lake Formation Permissions.
     -- This API replaces the current list of data lake admins with the new list being passed. To add an admin, fetch the current list and add the new admin to that list and pass that list in this API.
-    putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput): types.PutDataLakeSettingsOutput, table
+    putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput): Operation<types.PutDataLakeSettingsOutput>
     -- Registers the resource as managed by the Data Catalog.
     -- To add or update data, Lake Formation needs read/write access to the chosen data location. Choose a role that you know has permission to do this, or choose the AWSServiceRoleForLakeFormationDataAccess service-linked role. When you register the first Amazon S3 path, the service-linked role and a new inline policy are created on your behalf. Lake Formation adds the first path to the inline policy and attaches it to the service-linked role. When you register subsequent paths, Lake Formation adds the path to the existing policy.
     -- The following request registers a new location and gives Lake Formation permission to use the service-linked role to access that location.
@@ -151,35 +155,35 @@ local record Client
     -- UseServiceLinkedRole = true
     -- If UseServiceLinkedRole is not set to true, you must provide or set the RoleArn:
     -- arn:aws:iam::12345:role/my-data-access-role
-    registerResource: function(Client, types.RegisterResourceInput): types.RegisterResourceOutput, table
+    registerResource: function(Client, types.RegisterResourceInput): Operation<types.RegisterResourceOutput>
     -- Removes an LF-tag from the resource. Only database, table, or tableWithColumns resource are allowed. To tag columns, use the column inclusion list in tableWithColumns to specify column input.
-    removeLFTagsFromResource: function(Client, types.RemoveLFTagsFromResourceInput): types.RemoveLFTagsFromResourceOutput, table
+    removeLFTagsFromResource: function(Client, types.RemoveLFTagsFromResourceInput): Operation<types.RemoveLFTagsFromResourceOutput>
     -- Revokes permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.
-    revokePermissions: function(Client, types.RevokePermissionsInput): types.RevokePermissionsOutput, table
+    revokePermissions: function(Client, types.RevokePermissionsInput): Operation<types.RevokePermissionsOutput>
     -- This operation allows a search on DATABASE resources by TagCondition. This operation is used by admins who want to grant user permissions on certain TagConditions. Before making a grant, the admin can use SearchDatabasesByTags to find all resources where the given TagConditions are valid to verify whether the returned resources can be shared.
-    searchDatabasesByLFTags: function(Client, types.SearchDatabasesByLFTagsInput): types.SearchDatabasesByLFTagsOutput, table
+    searchDatabasesByLFTags: function(Client, types.SearchDatabasesByLFTagsInput): Operation<types.SearchDatabasesByLFTagsOutput>
     -- This operation allows a search on TABLE resources by LFTags. This will be used by admins who want to grant user permissions on certain LF-tags. Before making a grant, the admin can use SearchTablesByLFTags to find all resources where the given LFTags are valid to verify whether the returned resources can be shared.
-    searchTablesByLFTags: function(Client, types.SearchTablesByLFTagsInput): types.SearchTablesByLFTagsOutput, table
+    searchTablesByLFTags: function(Client, types.SearchTablesByLFTagsInput): Operation<types.SearchTablesByLFTagsOutput>
     -- Submits a request to process a query statement.
     -- This operation generates work units that can be retrieved with the GetWorkUnits operation as soon as the query state is WORKUNITS_AVAILABLE or FINISHED.
-    startQueryPlanning: function(Client, types.StartQueryPlanningInput): types.StartQueryPlanningOutput, table
+    startQueryPlanning: function(Client, types.StartQueryPlanningInput): Operation<types.StartQueryPlanningOutput>
     -- Starts a new transaction and returns its transaction ID. Transaction IDs are opaque objects that you can use to identify a transaction.
-    startTransaction: function(Client, types.StartTransactionInput): types.StartTransactionOutput, table
+    startTransaction: function(Client, types.StartTransactionInput): Operation<types.StartTransactionOutput>
     -- Updates a data cell filter.
-    updateDataCellsFilter: function(Client, types.UpdateDataCellsFilterInput): types.UpdateDataCellsFilterOutput, table
+    updateDataCellsFilter: function(Client, types.UpdateDataCellsFilterInput): Operation<types.UpdateDataCellsFilterOutput>
     -- Updates the IAM Identity Center connection parameters.
-    updateLakeFormationIdentityCenterConfiguration: function(Client, types.UpdateLakeFormationIdentityCenterConfigurationInput): types.UpdateLakeFormationIdentityCenterConfigurationOutput, table
+    updateLakeFormationIdentityCenterConfiguration: function(Client, types.UpdateLakeFormationIdentityCenterConfigurationInput): Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
     -- Updates the list of possible values for the specified LF-tag key. If the LF-tag does not exist, the operation throws an EntityNotFoundException. The values in the delete key values will be deleted from list of possible values. If any value in the delete key values is attached to a resource, then API errors out with a 400 Exception - "Update not allowed". Untag the attribute before deleting the LF-tag key's value.
-    updateLFTag: function(Client, types.UpdateLFTagInput): types.UpdateLFTagOutput, table
+    updateLFTag: function(Client, types.UpdateLFTagInput): Operation<types.UpdateLFTagOutput>
     -- Updates the name of the LF-Tag expression to the new description and expression body provided.
     -- Updating a LF-Tag expression immediately changes the permission boundaries of all existing LFTagPolicy permission grants that reference the given LF-Tag expression.
-    updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput): types.UpdateLFTagExpressionOutput, table
+    updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput): Operation<types.UpdateLFTagExpressionOutput>
     -- Updates the data access role used for vending access to the given (registered) resource in Lake Formation.
-    updateResource: function(Client, types.UpdateResourceInput): types.UpdateResourceOutput, table
+    updateResource: function(Client, types.UpdateResourceInput): Operation<types.UpdateResourceOutput>
     -- Updates the manifest of Amazon S3 objects that make up the specified governed table.
-    updateTableObjects: function(Client, types.UpdateTableObjectsInput): types.UpdateTableObjectsOutput, table
+    updateTableObjects: function(Client, types.UpdateTableObjectsInput): Operation<types.UpdateTableObjectsOutput>
     -- Updates the configuration of the storage optimizers for a table.
-    updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput): types.UpdateTableStorageOptimizerOutput, table
+    updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput): Operation<types.UpdateTableStorageOptimizerOutput>
 end
 
 local record M

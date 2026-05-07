@@ -2,45 +2,49 @@
 
 local types = require("keyspaces.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- The CreateKeyspace operation adds a new keyspace to your account. In an Amazon Web Services account, keyspace names must be unique within each Region. CreateKeyspace is an asynchronous operation. You can monitor the creation status of the new keyspace by using the GetKeyspace operation. For more information, see Create a keyspace in the Amazon Keyspaces Developer Guide.
-    createKeyspace: function(Client, types.CreateKeyspaceInput): types.CreateKeyspaceOutput, table
+    createKeyspace: function(Client, types.CreateKeyspaceInput): Operation<types.CreateKeyspaceOutput>
     -- The CreateTable operation adds a new table to the specified keyspace. Within a keyspace, table names must be unique. CreateTable is an asynchronous operation. When the request is received, the status of the table is set to CREATING. You can monitor the creation status of the new table by using the GetTable operation, which returns the current status of the table. You can start using a table when the status is ACTIVE. For more information, see Create a table in the Amazon Keyspaces Developer Guide.
-    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createTable: function(Client, types.CreateTableInput): Operation<types.CreateTableOutput>
     -- The CreateType operation creates a new user-defined type in the specified keyspace. To configure the required permissions, see Permissions to create a UDT in the Amazon Keyspaces Developer Guide. For more information, see User-defined types (UDTs) in the Amazon Keyspaces Developer Guide.
-    createType: function(Client, types.CreateTypeInput): types.CreateTypeOutput, table
+    createType: function(Client, types.CreateTypeInput): Operation<types.CreateTypeOutput>
     -- The DeleteKeyspace operation deletes a keyspace and all of its tables.
-    deleteKeyspace: function(Client, types.DeleteKeyspaceInput): types.DeleteKeyspaceOutput, table
+    deleteKeyspace: function(Client, types.DeleteKeyspaceInput): Operation<types.DeleteKeyspaceOutput>
     -- The DeleteTable operation deletes a table and all of its data. After a DeleteTable request is received, the specified table is in the DELETING state until Amazon Keyspaces completes the deletion. If the table is in the ACTIVE state, you can delete it. If a table is either in the CREATING or UPDATING states, then Amazon Keyspaces returns a ResourceInUseException. If the specified table does not exist, Amazon Keyspaces returns a ResourceNotFoundException. If the table is already in the DELETING state, no error is returned.
-    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): Operation<types.DeleteTableOutput>
     -- The DeleteType operation deletes a user-defined type (UDT). You can only delete a type that is not used in a table or another UDT. To configure the required permissions, see Permissions to delete a UDT in the Amazon Keyspaces Developer Guide.
-    deleteType: function(Client, types.DeleteTypeInput): types.DeleteTypeOutput, table
+    deleteType: function(Client, types.DeleteTypeInput): Operation<types.DeleteTypeOutput>
     -- Returns the name of the specified keyspace, the Amazon Resource Name (ARN), the replication strategy, the Amazon Web Services Regions of a multi-Region keyspace, and the status of newly added Regions after an UpdateKeyspace operation.
-    getKeyspace: function(Client, types.GetKeyspaceInput): types.GetKeyspaceOutput, table
+    getKeyspace: function(Client, types.GetKeyspaceInput): Operation<types.GetKeyspaceOutput>
     -- Returns information about the table, including the table's name and current status, the keyspace name, configuration settings, and metadata. To read table metadata using GetTable, the IAM principal needs Select action permissions for the table and the system keyspace.
-    getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    getTable: function(Client, types.GetTableInput): Operation<types.GetTableOutput>
     -- Returns auto scaling related settings of the specified table in JSON format. If the table is a multi-Region table, the Amazon Web Services Region specific auto scaling settings of the table are included. Amazon Keyspaces auto scaling helps you provision throughput capacity for variable workloads efficiently by increasing and decreasing your table's read and write capacity automatically in response to application traffic. For more information, see Managing throughput capacity automatically with Amazon Keyspaces auto scaling in the Amazon Keyspaces Developer Guide. GetTableAutoScalingSettings can't be used as an action in an IAM policy. To define permissions for GetTableAutoScalingSettings, you must allow the following two actions in the IAM policy statement's Action element: application-autoscaling:DescribeScalableTargets application-autoscaling:DescribeScalingPolicies
-    getTableAutoScalingSettings: function(Client, types.GetTableAutoScalingSettingsInput): types.GetTableAutoScalingSettingsOutput, table
+    getTableAutoScalingSettings: function(Client, types.GetTableAutoScalingSettingsInput): Operation<types.GetTableAutoScalingSettingsOutput>
     -- The GetType operation returns information about the type, for example the field definitions, the timestamp when the type was last modified, the level of nesting, the status, and details about if the type is used in other types and tables. To read keyspace metadata using GetType, the IAM principal needs Select action permissions for the system keyspace. To configure the required permissions, see Permissions to view a UDT in the Amazon Keyspaces Developer Guide.
-    getType: function(Client, types.GetTypeInput): types.GetTypeOutput, table
+    getType: function(Client, types.GetTypeInput): Operation<types.GetTypeOutput>
     -- The ListKeyspaces operation returns a list of keyspaces.
-    listKeyspaces: function(Client, types.ListKeyspacesInput): types.ListKeyspacesOutput, table
+    listKeyspaces: function(Client, types.ListKeyspacesInput): Operation<types.ListKeyspacesOutput>
     -- The ListTables operation returns a list of tables for a specified keyspace. To read keyspace metadata using ListTables, the IAM principal needs Select action permissions for the system keyspace.
-    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTables: function(Client, types.ListTablesInput): Operation<types.ListTablesOutput>
     -- Returns a list of all tags associated with the specified Amazon Keyspaces resource. To read keyspace metadata using ListTagsForResource, the IAM principal needs Select action permissions for the specified resource and the system keyspace.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- The ListTypes operation returns a list of types for a specified keyspace. To read keyspace metadata using ListTypes, the IAM principal needs Select action permissions for the system keyspace. To configure the required permissions, see Permissions to view a UDT in the Amazon Keyspaces Developer Guide.
-    listTypes: function(Client, types.ListTypesInput): types.ListTypesOutput, table
+    listTypes: function(Client, types.ListTypesInput): Operation<types.ListTypesOutput>
     -- Restores the table to the specified point in time within the earliest_restorable_timestamp and the current time. For more information about restore points, see Time window for PITR continuous backups in the Amazon Keyspaces Developer Guide. Any number of users can execute up to 4 concurrent restores (any type of restore) in a given account. When you restore using point in time recovery, Amazon Keyspaces restores your source table's schema and data to the state based on the selected timestamp (day:hour:minute:second) to a new table. The Time to Live (TTL) settings are also restored to the state based on the selected timestamp. In addition to the table's schema, data, and TTL settings, RestoreTable restores the capacity mode, auto scaling settings, encryption settings, and point-in-time recovery settings from the source table. Unlike the table's schema data and TTL settings, which are restored based on the selected timestamp, these settings are always restored based on the table's settings as of the current time or when the table was deleted. You can also overwrite these settings during restore: Read/write capacity mode Provisioned throughput capacity units Auto scaling settings Point-in-time (PITR) settings Tags For more information, see PITR restore settings in the Amazon Keyspaces Developer Guide. Note that the following settings are not restored, and you must configure them manually for the new table: Identity and Access Management (IAM) policies Amazon CloudWatch metrics and alarms
-    restoreTable: function(Client, types.RestoreTableInput): types.RestoreTableOutput, table
+    restoreTable: function(Client, types.RestoreTableInput): Operation<types.RestoreTableOutput>
     -- Associates a set of tags with a Amazon Keyspaces resource. You can then activate these user-defined tags so that they appear on the Cost Management Console for cost allocation tracking. For more information, see Adding tags and labels to Amazon Keyspaces resources in the Amazon Keyspaces Developer Guide. For IAM policy examples that show how to control access to Amazon Keyspaces resources based on tags, see Amazon Keyspaces resource access based on tags in the Amazon Keyspaces Developer Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the association of tags from a Amazon Keyspaces resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Adds a new Amazon Web Services Region to the keyspace. You can add a new Region to a keyspace that is either a single or a multi-Region keyspace. Amazon Keyspaces is going to replicate all tables in the keyspace to the new Region. To successfully replicate all tables to the new Region, they must use client-side timestamps for conflict resolution. To enable client-side timestamps, specify clientSideTimestamps.status = enabled when invoking the API. For more information about client-side timestamps, see Client-side timestamps in Amazon Keyspaces in the Amazon Keyspaces Developer Guide. To add a Region to a keyspace using the UpdateKeyspace API, the IAM principal needs permissions for the following IAM actions: cassandra:Alter cassandra:AlterMultiRegionResource cassandra:Create cassandra:CreateMultiRegionResource cassandra:Select cassandra:SelectMultiRegionResource cassandra:Modify cassandra:ModifyMultiRegionResource If the keyspace contains a table that is configured in provisioned mode with auto scaling enabled, the following additional IAM actions need to be allowed. application-autoscaling:RegisterScalableTarget application-autoscaling:DeregisterScalableTarget application-autoscaling:DescribeScalableTargets application-autoscaling:PutScalingPolicy application-autoscaling:DescribeScalingPolicies To use the UpdateKeyspace API, the IAM principal also needs permissions to create a service-linked role with the following elements: iam:CreateServiceLinkedRole - The action the principal can perform. arn:aws:iam::*:role/aws-service-role/replication.cassandra.amazonaws.com/AWSServiceRoleForKeyspacesReplication - The resource that the action can be performed on. iam:AWSServiceName: replication.cassandra.amazonaws.com - The only Amazon Web Services service that this role can be attached to is Amazon Keyspaces. For more information, see Configure the IAM permissions required to add an Amazon Web Services Region to a keyspace in the Amazon Keyspaces Developer Guide.
-    updateKeyspace: function(Client, types.UpdateKeyspaceInput): types.UpdateKeyspaceOutput, table
+    updateKeyspace: function(Client, types.UpdateKeyspaceInput): Operation<types.UpdateKeyspaceOutput>
     -- Adds new columns to the table or updates one of the table's settings, for example capacity mode, auto scaling, encryption, point-in-time recovery, or ttl settings. Note that you can only update one specific table setting per update operation.
-    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+    updateTable: function(Client, types.UpdateTableInput): Operation<types.UpdateTableOutput>
 end
 
 local record M

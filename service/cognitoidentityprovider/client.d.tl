@@ -2,6 +2,10 @@
 
 local types = require("cognitoidentityprovider.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds additional user attributes to the user pool schema. Custom attributes can be
     -- mutable or immutable and have a custom: or dev: prefix. For
@@ -12,9 +16,9 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    addCustomAttributes: function(Client, types.AddCustomAttributesInput): types.AddCustomAttributesOutput, table
+    addCustomAttributes: function(Client, types.AddCustomAttributesInput): Operation<types.AddCustomAttributesOutput>
     -- Creates a new client secret for an existing confidential user pool app client. Supports up to 2 active secrets per app client for zero-downtime credential rotation workflows.
-    addUserPoolClientSecret: function(Client, types.AddUserPoolClientSecretInput): types.AddUserPoolClientSecretOutput, table
+    addUserPoolClientSecret: function(Client, types.AddUserPoolClientSecretInput): Operation<types.AddUserPoolClientSecretOutput>
     -- Adds a user to a group. A user who is in a group can present a preferred-role claim to
     -- an identity pool, and populates a cognito:groups claim to their access and
     -- identity tokens.
@@ -24,7 +28,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput): types.AdminAddUserToGroupOutput, table
+    adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput): Operation<types.AdminAddUserToGroupOutput>
     -- Confirms user sign-up as an administrator.
     -- This request sets a user account active in a user pool that requires confirmation of new user accounts before they can sign in. You can
     -- configure your user pool to not send confirmation codes to new users and instead confirm
@@ -38,7 +42,7 @@ local record Client
     -- To configure your user pool to require administrative confirmation of users, set
     -- AllowAdminCreateUserOnly to true in a
     -- CreateUserPool or UpdateUserPool request.
-    adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput): types.AdminConfirmSignUpOutput, table
+    adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput): Operation<types.AdminConfirmSignUpOutput>
     -- Creates a new user in the specified user pool.
     -- If MessageAction isn't set, the default is to send a welcome message via
     -- email or phone (SMS).
@@ -75,7 +79,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminCreateUser: function(Client, types.AdminCreateUserInput): types.AdminCreateUserOutput, table
+    adminCreateUser: function(Client, types.AdminCreateUserInput): Operation<types.AdminCreateUserOutput>
     -- Deletes a user profile in your user pool.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -83,7 +87,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminDeleteUser: function(Client, types.AdminDeleteUserInput): types.AdminDeleteUserOutput, table
+    adminDeleteUser: function(Client, types.AdminDeleteUserInput): Operation<types.AdminDeleteUserOutput>
     -- Deletes attribute values from a user. This operation doesn't affect tokens for
     -- existing user sessions. The next ID token that the user receives will no longer have the
     -- deleted attributes.
@@ -93,7 +97,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput): types.AdminDeleteUserAttributesOutput, table
+    adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput): Operation<types.AdminDeleteUserAttributesOutput>
     -- Prevents the user from signing in with the specified external (SAML or social)
     -- identity provider (IdP). If the user that you want to deactivate is a Amazon Cognito user pools
     -- native username + password user, they can't use their password to sign in. If the user
@@ -123,7 +127,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput): types.AdminDisableProviderForUserOutput, table
+    adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput): Operation<types.AdminDisableProviderForUserOutput>
     -- Deactivates a user profile and revokes all access tokens for the user. A deactivated
     -- user can't sign in, but still appears in the responses to ListUsers
     -- API requests.
@@ -133,7 +137,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminDisableUser: function(Client, types.AdminDisableUserInput): types.AdminDisableUserOutput, table
+    adminDisableUser: function(Client, types.AdminDisableUserInput): Operation<types.AdminDisableUserOutput>
     -- Activates sign-in for a user profile that previously had sign-in access
     -- disabled.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -142,7 +146,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminEnableUser: function(Client, types.AdminEnableUserInput): types.AdminEnableUserOutput, table
+    adminEnableUser: function(Client, types.AdminEnableUserInput): Operation<types.AdminEnableUserOutput>
     -- Forgets, or deletes, a remembered device from a user's profile. After you forget
     -- the device, the user can no longer complete device authentication with that device and
     -- when applicable, must submit MFA codes again. For more information, see Working with devices.
@@ -152,7 +156,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminForgetDevice: function(Client, types.AdminForgetDeviceInput): types.AdminForgetDeviceOutput, table
+    adminForgetDevice: function(Client, types.AdminForgetDeviceInput): Operation<types.AdminForgetDeviceOutput>
     -- Given the device key, returns details for a user's device. For more information,
     -- see Working with devices.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -161,7 +165,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminGetDevice: function(Client, types.AdminGetDeviceInput): types.AdminGetDeviceOutput, table
+    adminGetDevice: function(Client, types.AdminGetDeviceInput): Operation<types.AdminGetDeviceOutput>
     -- Given a username, returns details about a user profile in a user pool. You can specify
     -- alias attributes in the Username request parameter.
     -- This operation contributes to your monthly active user (MAU) count for the purpose of
@@ -172,7 +176,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminGetUser: function(Client, types.AdminGetUserInput): types.AdminGetUserOutput, table
+    adminGetUser: function(Client, types.AdminGetUserInput): Operation<types.AdminGetUserOutput>
     -- Starts sign-in for applications with a server-side component, for example a
     -- traditional web application. This operation specifies the authentication flow that
     -- you'd like to begin. The authentication flow that you specify must be supported in
@@ -199,7 +203,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminInitiateAuth: function(Client, types.AdminInitiateAuthInput): types.AdminInitiateAuthOutput, table
+    adminInitiateAuth: function(Client, types.AdminInitiateAuthInput): Operation<types.AdminInitiateAuthOutput>
     -- Links an existing user account in a user pool, or DestinationUser, to an
     -- identity from an external IdP, or SourceUser, based on a specified
     -- attribute name and value from the external IdP.
@@ -218,7 +222,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput): types.AdminLinkProviderForUserOutput, table
+    adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput): Operation<types.AdminLinkProviderForUserOutput>
     -- Lists a user's registered devices. Remembered devices are used in authentication
     -- services where you offer a "Remember me" option for users who you want to permit to sign
     -- in without MFA from a trusted device. Users can bypass MFA while your application
@@ -229,7 +233,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminListDevices: function(Client, types.AdminListDevicesInput): types.AdminListDevicesOutput, table
+    adminListDevices: function(Client, types.AdminListDevicesInput): Operation<types.AdminListDevicesOutput>
     -- Lists the groups that a user belongs to. User pool groups are identifiers that you can
     -- reference from the contents of ID and access tokens, and set preferred IAM roles for
     -- identity-pool authentication. For more information, see Adding groups to a user pool.
@@ -239,7 +243,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput): types.AdminListGroupsForUserOutput, table
+    adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput): Operation<types.AdminListGroupsForUserOutput>
     -- Requests a history of user activity and any risks detected as part of Amazon Cognito threat
     -- protection. For more information, see Viewing user event history.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -248,7 +252,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput): types.AdminListUserAuthEventsOutput, table
+    adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput): Operation<types.AdminListUserAuthEventsOutput>
     -- Given a username and a group name, removes them from the group. User pool groups are
     -- identifiers that you can reference from the contents of ID and access tokens, and set
     -- preferred IAM roles for identity-pool authentication. For more information, see Adding groups to a user pool.
@@ -258,7 +262,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput): types.AdminRemoveUserFromGroupOutput, table
+    adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput): Operation<types.AdminRemoveUserFromGroupOutput>
     -- Begins the password reset process. Sets the requested user’s account into a
     -- RESET_REQUIRED status, and sends them a password-reset code. Your user
     -- pool also sends the user a notification with a reset code and the information that their
@@ -288,7 +292,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput): types.AdminResetUserPasswordOutput, table
+    adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput): Operation<types.AdminResetUserPasswordOutput>
     -- Some API operations in a user pool generate a challenge, like a prompt for an MFA
     -- code, for device authentication that bypasses MFA, or for a custom authentication
     -- challenge. An AdminRespondToAuthChallenge API request provides the answer
@@ -317,7 +321,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput): types.AdminRespondToAuthChallengeOutput, table
+    adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput): Operation<types.AdminRespondToAuthChallengeOutput>
     -- Sets the user's multi-factor authentication (MFA) preference, including which MFA
     -- options are activated, and if any are preferred. Only one factor can be set as
     -- preferred. The preferred MFA factor will be used to authenticate a user if multiple
@@ -329,7 +333,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput): types.AdminSetUserMFAPreferenceOutput, table
+    adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput): Operation<types.AdminSetUserMFAPreferenceOutput>
     -- Sets the specified user's password in a user pool. This operation administratively
     -- sets a temporary or permanent password for a user. With this operation, you can bypass
     -- self-service password changes and permit immediate sign-in with the password that you
@@ -361,7 +365,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput): types.AdminSetUserPasswordOutput, table
+    adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput): Operation<types.AdminSetUserPasswordOutput>
     -- This action is no longer supported. You can use it to configure
     -- only SMS MFA. You can't use it to configure time-based one-time password (TOTP) software
     -- token MFA.
@@ -371,7 +375,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput): types.AdminSetUserSettingsOutput, table
+    adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput): Operation<types.AdminSetUserSettingsOutput>
     -- Provides the feedback for an authentication event generated by threat protection
     -- features. Your response indicates that you think that the event either was from a valid
     -- user or was an unwanted authentication attempt. This feedback improves the risk
@@ -388,7 +392,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminUpdateAuthEventFeedback: function(Client, types.AdminUpdateAuthEventFeedbackInput): types.AdminUpdateAuthEventFeedbackOutput, table
+    adminUpdateAuthEventFeedback: function(Client, types.AdminUpdateAuthEventFeedbackInput): Operation<types.AdminUpdateAuthEventFeedbackOutput>
     -- Updates the status of a user's device so that it is marked as remembered or not
     -- remembered for the purpose of device authentication. Device authentication is a
     -- "remember me" mechanism that silently completes sign-in from trusted devices with a
@@ -401,7 +405,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminUpdateDeviceStatus: function(Client, types.AdminUpdateDeviceStatusInput): types.AdminUpdateDeviceStatusOutput, table
+    adminUpdateDeviceStatus: function(Client, types.AdminUpdateDeviceStatusInput): Operation<types.AdminUpdateDeviceStatusOutput>
     -- Updates the specified user's attributes. To delete an attribute from your user,
     -- submit the attribute in your API request with a blank value.
     -- For custom attributes, you must add a custom: prefix to the attribute
@@ -431,7 +435,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    adminUpdateUserAttributes: function(Client, types.AdminUpdateUserAttributesInput): types.AdminUpdateUserAttributesOutput, table
+    adminUpdateUserAttributes: function(Client, types.AdminUpdateUserAttributesInput): Operation<types.AdminUpdateUserAttributesOutput>
     -- Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call
     -- this operation with your administrative credentials when your user signs out of your
     -- app. This results in the following behavior.
@@ -457,7 +461,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    adminUserGlobalSignOut: function(Client, types.AdminUserGlobalSignOutInput): types.AdminUserGlobalSignOutOutput, table
+    adminUserGlobalSignOut: function(Client, types.AdminUserGlobalSignOutInput): Operation<types.AdminUserGlobalSignOutOutput>
     -- Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA)
     -- for a user, with a unique private key that Amazon Cognito generates and returns in the API
     -- response. You can authorize an AssociateSoftwareToken request with either
@@ -468,18 +472,18 @@ local record Client
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
-    associateSoftwareToken: function(Client, types.AssociateSoftwareTokenInput): types.AssociateSoftwareTokenOutput, table
+    associateSoftwareToken: function(Client, types.AssociateSoftwareTokenInput): Operation<types.AssociateSoftwareTokenOutput>
     -- Changes the password for the currently signed-in user.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
     -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    changePassword: function(Client, types.ChangePasswordInput): types.ChangePasswordOutput, table
+    changePassword: function(Client, types.ChangePasswordInput): Operation<types.ChangePasswordOutput>
     -- Completes registration of a passkey authenticator for the currently signed-in
     -- user.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
-    completeWebAuthnRegistration: function(Client, types.CompleteWebAuthnRegistrationInput): types.CompleteWebAuthnRegistrationOutput, table
+    completeWebAuthnRegistration: function(Client, types.CompleteWebAuthnRegistrationInput): Operation<types.CompleteWebAuthnRegistrationOutput>
     -- Confirms a device that a user wants to remember. A remembered device is a "Remember me
     -- on this device" option for user pools that perform authentication with the device key of
     -- a trusted device in the back end, instead of a user-provided MFA code. For more
@@ -489,14 +493,14 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    confirmDevice: function(Client, types.ConfirmDeviceInput): types.ConfirmDeviceOutput, table
+    confirmDevice: function(Client, types.ConfirmDeviceInput): Operation<types.ConfirmDeviceOutput>
     -- This public API operation accepts a confirmation code that Amazon Cognito sent to a user and
     -- accepts a new password for that user.
     -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    confirmForgotPassword: function(Client, types.ConfirmForgotPasswordInput): types.ConfirmForgotPasswordOutput, table
+    confirmForgotPassword: function(Client, types.ConfirmForgotPasswordInput): Operation<types.ConfirmForgotPasswordOutput>
     -- Confirms the account of a new user. This public API operation submits a code that
     -- Amazon Cognito sent to your user when they signed up in your user pool. After your user enters
     -- their code, they confirm ownership of the email address or phone number that they
@@ -510,7 +514,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    confirmSignUp: function(Client, types.ConfirmSignUpInput): types.ConfirmSignUpOutput, table
+    confirmSignUp: function(Client, types.ConfirmSignUpInput): Operation<types.ConfirmSignUpOutput>
     -- Creates a new group in the specified user pool. For more information about user pool
     -- groups, see Adding groups to a user pool.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -519,7 +523,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Adds a configuration and trust relationship between a third-party identity provider
     -- (IdP) and a user pool. Amazon Cognito accepts sign-in with third-party identity providers through
     -- managed login and OIDC relying-party libraries. For more information, see Third-party IdP sign-in.
@@ -529,7 +533,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createIdentityProvider: function(Client, types.CreateIdentityProviderInput): types.CreateIdentityProviderOutput, table
+    createIdentityProvider: function(Client, types.CreateIdentityProviderInput): Operation<types.CreateIdentityProviderOutput>
     -- Creates a new set of branding settings for a user pool style and associates it with an
     -- app client. This operation is the programmatic option for the creation of a new style in
     -- the branding editor.
@@ -550,7 +554,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createManagedLoginBranding: function(Client, types.CreateManagedLoginBrandingInput): types.CreateManagedLoginBrandingOutput, table
+    createManagedLoginBranding: function(Client, types.CreateManagedLoginBrandingInput): Operation<types.CreateManagedLoginBrandingOutput>
     -- Creates a new OAuth2.0 resource server and defines custom scopes within it. Resource
     -- servers are associated with custom scopes and machine-to-machine (M2M) authorization.
     -- For more information, see Access control with resource servers.
@@ -560,7 +564,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createResourceServer: function(Client, types.CreateResourceServerInput): types.CreateResourceServerOutput, table
+    createResourceServer: function(Client, types.CreateResourceServerInput): Operation<types.CreateResourceServerOutput>
     -- Creates terms documents for the requested app client. When Terms and conditions and
     -- Privacy policy documents are configured, the app client displays links to them in the
     -- sign-up page of managed login for the app client.
@@ -578,7 +582,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createTerms: function(Client, types.CreateTermsInput): types.CreateTermsOutput, table
+    createTerms: function(Client, types.CreateTermsInput): Operation<types.CreateTermsOutput>
     -- Creates a user import job. You can import users into user pools from a comma-separated
     -- values (CSV) file without adding Amazon Cognito MAU costs to your Amazon Web Services bill.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -587,7 +591,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createUserImportJob: function(Client, types.CreateUserImportJobInput): types.CreateUserImportJobOutput, table
+    createUserImportJob: function(Client, types.CreateUserImportJobInput): Operation<types.CreateUserImportJobOutput>
     -- Creates a new Amazon Cognito user pool. This operation sets basic and advanced configuration
     -- options.
     -- If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
@@ -612,7 +616,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createUserPool: function(Client, types.CreateUserPoolInput): types.CreateUserPoolOutput, table
+    createUserPool: function(Client, types.CreateUserPoolInput): Operation<types.CreateUserPoolOutput>
     -- Creates an app client in a user pool. This operation sets basic and advanced
     -- configuration options.
     -- Unlike app clients created in the console, Amazon Cognito doesn't automatically assign a
@@ -625,7 +629,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createUserPoolClient: function(Client, types.CreateUserPoolClientInput): types.CreateUserPoolClientOutput, table
+    createUserPoolClient: function(Client, types.CreateUserPoolClientInput): Operation<types.CreateUserPoolClientOutput>
     -- A user pool domain hosts managed login, an authorization server and web server for
     -- authentication in your application. This operation creates a new user pool prefix domain
     -- or custom domain and sets the managed login branding version. Set the branding version
@@ -642,7 +646,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput): types.CreateUserPoolDomainOutput, table
+    createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput): Operation<types.CreateUserPoolDomainOutput>
     -- Deletes a group from the specified user pool. When you delete a group, that group no
     -- longer contributes to users' cognito:preferred_group or
     -- cognito:groups claims, and no longer influence access-control decision
@@ -654,7 +658,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Deletes a user pool identity provider (IdP). After you delete an IdP, users can no
     -- longer sign in to your user pool through that IdP. For more information about user pool
     -- IdPs, see Third-party IdP sign-in.
@@ -664,7 +668,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput): types.DeleteIdentityProviderOutput, table
+    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput): Operation<types.DeleteIdentityProviderOutput>
     -- Deletes a managed login branding style. When you delete a style, you delete the
     -- branding association for an app client. When an app client doesn't have a style
     -- assigned, your managed login pages for that app client are nonfunctional until you
@@ -675,7 +679,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput): types.DeleteManagedLoginBrandingOutput, table
+    deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput): Operation<types.DeleteManagedLoginBrandingOutput>
     -- Deletes a resource server. After you delete a resource server, users can no longer
     -- generate access tokens with scopes that are associate with that resource server.
     -- Resource servers are associated with custom scopes and machine-to-machine (M2M)
@@ -686,7 +690,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    deleteResourceServer: function(Client, types.DeleteResourceServerInput): types.DeleteResourceServerOutput, table
+    deleteResourceServer: function(Client, types.DeleteResourceServerInput): Operation<types.DeleteResourceServerOutput>
     -- Deletes the terms documents with the requested ID from your app client.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -694,7 +698,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    deleteTerms: function(Client, types.DeleteTermsInput): types.DeleteTermsOutput, table
+    deleteTerms: function(Client, types.DeleteTermsInput): Operation<types.DeleteTermsOutput>
     -- Deletes the profile of the currently signed-in user. A deleted user profile can no
     -- longer be used to sign in and can't be restored.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -702,7 +706,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- Deletes attributes from the currently signed-in user. For example, your application
     -- can submit a request to this operation when a user wants to remove their
     -- birthdate attribute value.
@@ -711,7 +715,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    deleteUserAttributes: function(Client, types.DeleteUserAttributesInput): types.DeleteUserAttributesOutput, table
+    deleteUserAttributes: function(Client, types.DeleteUserAttributesInput): Operation<types.DeleteUserAttributesOutput>
     -- Deletes a user pool. After you delete a user pool, users can no longer sign in to any
     -- associated applications.
     -- When you delete a user pool, it's no longer visible or operational in your Amazon Web Services account. Amazon Cognito retains deleted user pools in an inactive state for 14
@@ -721,16 +725,16 @@ local record Client
     -- Amazon Cognito begins full deletion of all resources from deleted user pools after 14 days. In
     -- the case of large user pools, the cleanup process might take significant additional time
     -- before all user data is permanently deleted.
-    deleteUserPool: function(Client, types.DeleteUserPoolInput): types.DeleteUserPoolOutput, table
+    deleteUserPool: function(Client, types.DeleteUserPoolInput): Operation<types.DeleteUserPoolOutput>
     -- Deletes a user pool app client. After you delete an app client, users can no longer
     -- sign in to the associated application.
-    deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput): types.DeleteUserPoolClientOutput, table
+    deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput): Operation<types.DeleteUserPoolClientOutput>
     -- Deletes a specific client secret from a user pool app client. You cannot delete the last remaining secret for an app client.
-    deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput): types.DeleteUserPoolClientSecretOutput, table
+    deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput): Operation<types.DeleteUserPoolClientSecretOutput>
     -- Given a user pool ID and domain identifier, deletes a user pool domain. After you
     -- delete a user pool domain, your managed login pages and authorization server are no
     -- longer available.
-    deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput): types.DeleteUserPoolDomainOutput, table
+    deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput): Operation<types.DeleteUserPoolDomainOutput>
     -- Deletes a registered passkey, or WebAuthn, authenticator for the currently signed-in
     -- user.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -738,23 +742,23 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput): types.DeleteWebAuthnCredentialOutput, table
+    deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput): Operation<types.DeleteWebAuthnCredentialOutput>
     -- Given a user pool ID and identity provider (IdP) name, returns details about the
     -- IdP.
-    describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput): types.DescribeIdentityProviderOutput, table
+    describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput): Operation<types.DescribeIdentityProviderOutput>
     -- Given the ID of a managed login branding style, returns detailed information about the
     -- style.
-    describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput): types.DescribeManagedLoginBrandingOutput, table
+    describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput): Operation<types.DescribeManagedLoginBrandingOutput>
     -- Given the ID of a user pool app client, returns detailed information about the style
     -- assigned to the app client.
-    describeManagedLoginBrandingByClient: function(Client, types.DescribeManagedLoginBrandingByClientInput): types.DescribeManagedLoginBrandingByClientOutput, table
+    describeManagedLoginBrandingByClient: function(Client, types.DescribeManagedLoginBrandingByClientInput): Operation<types.DescribeManagedLoginBrandingByClientOutput>
     -- Describes a resource server. For more information about resource servers, see Access control with resource servers.
-    describeResourceServer: function(Client, types.DescribeResourceServerInput): types.DescribeResourceServerOutput, table
+    describeResourceServer: function(Client, types.DescribeResourceServerInput): Operation<types.DescribeResourceServerOutput>
     -- Given an app client or user pool ID where threat protection is configured, describes
     -- the risk configuration. This operation returns details about adaptive authentication,
     -- compromised credentials, and IP-address allow- and denylists. For more information about
     -- threat protection, see Threat protection.
-    describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput): types.DescribeRiskConfigurationOutput, table
+    describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput): Operation<types.DescribeRiskConfigurationOutput>
     -- Returns details for the requested terms documents ID. For more information, see Terms documents.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -762,9 +766,9 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    describeTerms: function(Client, types.DescribeTermsInput): types.DescribeTermsOutput, table
+    describeTerms: function(Client, types.DescribeTermsInput): Operation<types.DescribeTermsOutput>
     -- Describes a user import job. For more information about user CSV import, see Importing users from a CSV file.
-    describeUserImportJob: function(Client, types.DescribeUserImportJobInput): types.DescribeUserImportJobOutput, table
+    describeUserImportJob: function(Client, types.DescribeUserImportJobInput): Operation<types.DescribeUserImportJobOutput>
     -- Given a user pool ID, returns configuration information. This operation is useful when
     -- you want to inspect an existing user pool and programmatically replicate the
     -- configuration to another user pool.
@@ -774,7 +778,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    describeUserPool: function(Client, types.DescribeUserPoolInput): types.DescribeUserPoolOutput, table
+    describeUserPool: function(Client, types.DescribeUserPoolInput): Operation<types.DescribeUserPoolOutput>
     -- Given an app client ID, returns configuration information. This operation is useful
     -- when you want to inspect an existing app client and programmatically replicate the
     -- configuration to another app client. For more information about app clients, see App clients.
@@ -784,7 +788,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput): types.DescribeUserPoolClientOutput, table
+    describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput): Operation<types.DescribeUserPoolClientOutput>
     -- Given a user pool domain name, returns information about the domain
     -- configuration.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -793,7 +797,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput): types.DescribeUserPoolDomainOutput, table
+    describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput): Operation<types.DescribeUserPoolDomainOutput>
     -- Given a device key, deletes a remembered device as the currently signed-in user. For
     -- more information about device authentication, see Working with user devices in your user pool.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -801,7 +805,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    forgetDevice: function(Client, types.ForgetDeviceInput): types.ForgetDeviceOutput, table
+    forgetDevice: function(Client, types.ForgetDeviceInput): Operation<types.ForgetDeviceOutput>
     -- Sends a password-reset confirmation code to the email address or phone number of the
     -- requested username. The message delivery method is determined by the user's
     -- available attributes and the AccountRecoverySetting configuration of the
@@ -831,7 +835,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    forgotPassword: function(Client, types.ForgotPasswordInput): types.ForgotPasswordOutput, table
+    forgotPassword: function(Client, types.ForgotPasswordInput): Operation<types.ForgotPasswordOutput>
     -- Given a user pool ID, generates a comma-separated value (CSV) list populated with
     -- available user attributes in the user pool. This list is the header for the CSV file
     -- that determines the users in a user import job. Save the content of
@@ -844,7 +848,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    getCSVHeader: function(Client, types.GetCSVHeaderInput): types.GetCSVHeaderOutput, table
+    getCSVHeader: function(Client, types.GetCSVHeaderInput): Operation<types.GetCSVHeaderOutput>
     -- Given a device key, returns information about a remembered device for the current
     -- user. For more information about device authentication, see Working with user devices in your user pool.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -852,7 +856,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    getDevice: function(Client, types.GetDeviceInput): Operation<types.GetDeviceOutput>
     -- Given a user pool ID and a group name, returns information about the user
     -- group.
     -- For more information about user pool groups, see Adding groups to a user pool.
@@ -862,11 +866,11 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getGroup: function(Client, types.GetGroupInput): Operation<types.GetGroupOutput>
     -- Given the identifier of an identity provider (IdP), for example
     -- examplecorp, returns information about the user pool configuration for
     -- that IdP. For more information about IdPs, see Third-party IdP sign-in.
-    getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput): types.GetIdentityProviderByIdentifierOutput, table
+    getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput): Operation<types.GetIdentityProviderByIdentifierOutput>
     -- Given a user pool ID, returns the logging configuration. User pools can export
     -- message-delivery error and threat-protection activity logs to external Amazon Web Services services. For more information, see Exporting user pool logs.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -875,7 +879,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput): types.GetLogDeliveryConfigurationOutput, table
+    getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput): Operation<types.GetLogDeliveryConfigurationOutput>
     -- Given a user pool ID, returns the signing certificate for SAML 2.0 federation.
     -- Issued certificates are valid for 10 years from the date of issue. Amazon Cognito issues and
     -- assigns a new signing certificate annually. This renewal process returns a new value in
@@ -888,26 +892,26 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    getSigningCertificate: function(Client, types.GetSigningCertificateInput): types.GetSigningCertificateOutput, table
+    getSigningCertificate: function(Client, types.GetSigningCertificateInput): Operation<types.GetSigningCertificateOutput>
     -- Given a refresh token, issues new ID, access, and optionally refresh tokens for the
     -- user who owns the submitted token. This operation issues a new refresh token and
     -- invalidates the original refresh token after an optional grace period when refresh token
     -- rotation is enabled. If refresh token rotation is disabled, issues new ID and access
     -- tokens only.
-    getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput): types.GetTokensFromRefreshTokenOutput, table
+    getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput): Operation<types.GetTokensFromRefreshTokenOutput>
     -- Given a user pool ID or app client, returns information about classic hosted UI
     -- branding that you applied, if any. Returns user-pool level branding information if no
     -- app client branding is applied, or if you don't specify an app client ID. Returns
     -- an empty object if you haven't applied hosted UI branding to either the client or
     -- the user pool. For more information, see Hosted UI (classic) branding.
-    getUICustomization: function(Client, types.GetUICustomizationInput): types.GetUICustomizationOutput, table
+    getUICustomization: function(Client, types.GetUICustomizationInput): Operation<types.GetUICustomizationOutput>
     -- Gets user attributes and and MFA settings for the currently signed-in user.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
     -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    getUser: function(Client, types.GetUserInput): Operation<types.GetUserOutput>
     -- Given an attribute name, sends a user attribute verification code for the specified
     -- attribute name to the currently signed-in user.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -930,7 +934,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput): types.GetUserAttributeVerificationCodeOutput, table
+    getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput): Operation<types.GetUserAttributeVerificationCodeOutput>
     -- Lists the authentication options for the currently signed-in user. Returns the
     -- following:
     -- The user's multi-factor authentication (MFA) preferences.
@@ -941,7 +945,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput): types.GetUserAuthFactorsOutput, table
+    getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput): Operation<types.GetUserAuthFactorsOutput>
     -- Given a user pool ID, returns configuration for sign-in with WebAuthn authenticators
     -- and for multi-factor authentication (MFA). This operation describes the
     -- following:
@@ -957,7 +961,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput): types.GetUserPoolMfaConfigOutput, table
+    getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput): Operation<types.GetUserPoolMfaConfigOutput>
     -- Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call
     -- this operation when your user signs out of your app. This results in the following
     -- behavior.
@@ -982,7 +986,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    globalSignOut: function(Client, types.GlobalSignOutInput): types.GlobalSignOutOutput, table
+    globalSignOut: function(Client, types.GlobalSignOutInput): Operation<types.GlobalSignOutOutput>
     -- Declares an authentication flow and initiates sign-in for a user in the Amazon Cognito user
     -- directory. Amazon Cognito might respond with an additional challenge or an
     -- AuthenticationResult that contains the outcome of a successful
@@ -1007,7 +1011,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    initiateAuth: function(Client, types.InitiateAuthInput): types.InitiateAuthOutput, table
+    initiateAuth: function(Client, types.InitiateAuthInput): Operation<types.InitiateAuthOutput>
     -- Lists the devices that Amazon Cognito has registered to the currently signed-in user. For more
     -- information about device authentication, see Working with user devices in your user pool.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -1015,7 +1019,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listDevices: function(Client, types.ListDevicesInput): Operation<types.ListDevicesOutput>
     -- Given a user pool ID, returns user pool groups and their details.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -1023,7 +1027,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Given a user pool ID, returns information about configured identity providers (IdPs).
     -- For more information about IdPs, see Third-party IdP sign-in.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1032,7 +1036,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listIdentityProviders: function(Client, types.ListIdentityProvidersInput): types.ListIdentityProvidersOutput, table
+    listIdentityProviders: function(Client, types.ListIdentityProvidersInput): Operation<types.ListIdentityProvidersOutput>
     -- Given a user pool ID, returns all resource servers and their details. For more
     -- information about resource servers, see Access control with resource servers.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1041,11 +1045,11 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listResourceServers: function(Client, types.ListResourceServersInput): types.ListResourceServersOutput, table
+    listResourceServers: function(Client, types.ListResourceServersInput): Operation<types.ListResourceServersOutput>
     -- Lists the tags that are assigned to an Amazon Cognito user pool. For more information, see
     -- Tagging
     -- resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns details about all terms documents for the requested user pool.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -1053,7 +1057,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listTerms: function(Client, types.ListTermsInput): types.ListTermsOutput, table
+    listTerms: function(Client, types.ListTermsInput): Operation<types.ListTermsOutput>
     -- Given a user pool ID, returns user import jobs and their details. Import jobs are
     -- retained in user pool configuration so that you can stage, stop, start, review, and
     -- delete them. For more information about user import, see Importing users from a CSV file.
@@ -1063,7 +1067,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listUserImportJobs: function(Client, types.ListUserImportJobsInput): types.ListUserImportJobsOutput, table
+    listUserImportJobs: function(Client, types.ListUserImportJobsInput): Operation<types.ListUserImportJobsOutput>
     -- Given a user pool ID, lists app clients. App clients are sets of rules for the access
     -- that you want a user pool to grant to one application. For more information, see App clients.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1072,9 +1076,9 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listUserPoolClients: function(Client, types.ListUserPoolClientsInput): types.ListUserPoolClientsOutput, table
+    listUserPoolClients: function(Client, types.ListUserPoolClientsInput): Operation<types.ListUserPoolClientsOutput>
     -- Lists all client secrets associated with a user pool app client. Returns metadata about the secrets. The response does not include pagination tokens as there are only 2 secrets at any given time and we return both with every ListUserPoolClientSecrets call. For security reasons, the response never reveals the actual secret value in ClientSecretValue.
-    listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput): types.ListUserPoolClientSecretsOutput, table
+    listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput): Operation<types.ListUserPoolClientSecretsOutput>
     -- Lists user pools and their details in the current Amazon Web Services account.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
     -- this operation, you must use IAM credentials to authorize requests, and you must
@@ -1082,7 +1086,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listUserPools: function(Client, types.ListUserPoolsInput): types.ListUserPoolsOutput, table
+    listUserPools: function(Client, types.ListUserPoolsInput): Operation<types.ListUserPoolsOutput>
     -- Given a user pool ID, returns a list of users and their basic details in a user
     -- pool.
     -- This operation is eventually consistent. You might experience a delay before results
@@ -1094,7 +1098,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- Given a user pool ID and a group name, returns a list of users in the group. For more
     -- information about user pool groups, see Adding groups to a user pool.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1103,7 +1107,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    listUsersInGroup: function(Client, types.ListUsersInGroupInput): types.ListUsersInGroupOutput, table
+    listUsersInGroup: function(Client, types.ListUsersInGroupInput): Operation<types.ListUsersInGroupOutput>
     -- Generates a list of the currently signed-in user's registered passkey, or
     -- WebAuthn, credentials.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
@@ -1111,7 +1115,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput): types.ListWebAuthnCredentialsOutput, table
+    listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput): Operation<types.ListWebAuthnCredentialsOutput>
     -- Resends the code that confirms a new account for a user who has signed up in your user
     -- pool. Amazon Cognito sends confirmation codes to the user attribute in the
     -- AutoVerifiedAttributes property of your user pool. When you prompt new
@@ -1136,7 +1140,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput): types.ResendConfirmationCodeOutput, table
+    resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput): Operation<types.ResendConfirmationCodeOutput>
     -- Some API operations in a user pool generate a challenge, like a prompt for an MFA
     -- code, for device authentication that bypasses MFA, or for a custom authentication
     -- challenge. A RespondToAuthChallenge API request provides the answer to that
@@ -1163,7 +1167,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput): types.RespondToAuthChallengeOutput, table
+    respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput): Operation<types.RespondToAuthChallengeOutput>
     -- Revokes all of the access tokens generated by, and at the same time as, the specified
     -- refresh token. After a token is revoked, you can't use the revoked token to access Amazon Cognito
     -- user APIs, or to authorize access to your resource server.
@@ -1171,12 +1175,12 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    revokeToken: function(Client, types.RevokeTokenInput): types.RevokeTokenOutput, table
+    revokeToken: function(Client, types.RevokeTokenInput): Operation<types.RevokeTokenOutput>
     -- Sets up or modifies the logging configuration of a user pool. User pools can export
     -- user notification logs and, when threat protection is active, user-activity logs. For
     -- more information, see Exporting user
     -- pool logs.
-    setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput): types.SetLogDeliveryConfigurationOutput, table
+    setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput): Operation<types.SetLogDeliveryConfigurationOutput>
     -- Configures threat protection for a user pool or app client. Sets configuration for the
     -- following.
     -- Responses to risks with adaptive authentication
@@ -1191,7 +1195,7 @@ local record Client
     -- off, update the value of UserPoolAddOns in an UpdateUserPool
     -- request. To activate this setting, your user pool must be on the
     -- Plus tier.
-    setRiskConfiguration: function(Client, types.SetRiskConfigurationInput): types.SetRiskConfigurationOutput, table
+    setRiskConfiguration: function(Client, types.SetRiskConfigurationInput): Operation<types.SetRiskConfigurationOutput>
     -- Configures UI branding settings for domains with the hosted UI (classic) branding
     -- version. Your user pool must have a domain. Configure a domain with .
     -- Set the default configuration for all clients with a ClientId of
@@ -1204,7 +1208,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    setUICustomization: function(Client, types.SetUICustomizationInput): types.SetUICustomizationOutput, table
+    setUICustomization: function(Client, types.SetUICustomizationInput): Operation<types.SetUICustomizationOutput>
     -- Set the user's multi-factor authentication (MFA) method preference, including which
     -- MFA factors are activated and if any are preferred. Only one factor can be set as
     -- preferred. The preferred MFA factor will be used to authenticate a user if multiple
@@ -1219,7 +1223,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput): types.SetUserMFAPreferenceOutput, table
+    setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput): Operation<types.SetUserMFAPreferenceOutput>
     -- Sets user pool multi-factor authentication (MFA) and passkey configuration. For more
     -- information about user pool MFA, see Adding MFA. For more information about WebAuthn passkeys see Authentication flows.
     -- This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers
@@ -1237,7 +1241,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput): types.SetUserPoolMfaConfigOutput, table
+    setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput): Operation<types.SetUserPoolMfaConfigOutput>
     -- This action is no longer supported. You can use it to configure
     -- only SMS MFA. You can't use it to configure time-based one-time password (TOTP) software
     -- token or email MFA.
@@ -1246,7 +1250,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    setUserSettings: function(Client, types.SetUserSettingsInput): types.SetUserSettingsOutput, table
+    setUserSettings: function(Client, types.SetUserSettingsInput): Operation<types.SetUserSettingsOutput>
     -- Registers a user with an app client and requests a user name, password, and user
     -- attributes in the user pool.
     -- Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1273,21 +1277,21 @@ local record Client
     -- automatically verifies email addresses or phone numbers. When you get this exception in
     -- the response, the user is successfully created and is in an UNCONFIRMED
     -- state.
-    signUp: function(Client, types.SignUpInput): types.SignUpOutput, table
+    signUp: function(Client, types.SignUpInput): Operation<types.SignUpOutput>
     -- Instructs your user pool to start importing users from a CSV file that contains their
     -- usernames and attributes. For more information about importing users from a CSV file,
     -- see Importing users from a CSV file.
-    startUserImportJob: function(Client, types.StartUserImportJobInput): types.StartUserImportJobOutput, table
+    startUserImportJob: function(Client, types.StartUserImportJobInput): Operation<types.StartUserImportJobOutput>
     -- Requests credential creation options from your user pool for the currently signed-in
     -- user. Returns information about the user pool, the user profile, and authentication
     -- requirements. Users must provide this information in their request to enroll your
     -- application with their passkey provider.
     -- Authorize this action with a signed-in user's access token. It must include the scope aws.cognito.signin.user.admin.
-    startWebAuthnRegistration: function(Client, types.StartWebAuthnRegistrationInput): types.StartWebAuthnRegistrationOutput, table
+    startWebAuthnRegistration: function(Client, types.StartWebAuthnRegistrationInput): Operation<types.StartWebAuthnRegistrationOutput>
     -- Instructs your user pool to stop a running job that's importing users from a CSV
     -- file that contains their usernames and attributes. For more information about importing
     -- users from a CSV file, see Importing users from a CSV file.
-    stopUserImportJob: function(Client, types.StopUserImportJobInput): types.StopUserImportJobOutput, table
+    stopUserImportJob: function(Client, types.StopUserImportJobInput): Operation<types.StopUserImportJobOutput>
     -- Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to
     -- categorize and manage user pools in different ways, such as by purpose, owner,
     -- environment, or other criteria.
@@ -1302,9 +1306,9 @@ local record Client
     -- permissions for user pools based on specific tags or tag values.
     -- You can use this action up to 5 times per second, per account. A user pool can have as
     -- many as 50 tags.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Given tag IDs that you previously assigned to a user pool, removes them.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Provides the feedback for an authentication event generated by threat protection
     -- features. The user's response indicates that you think that the event either was from a
     -- valid user or was an unwanted authentication attempt. This feedback improves the risk
@@ -1322,7 +1326,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    updateAuthEventFeedback: function(Client, types.UpdateAuthEventFeedbackInput): types.UpdateAuthEventFeedbackOutput, table
+    updateAuthEventFeedback: function(Client, types.UpdateAuthEventFeedbackInput): Operation<types.UpdateAuthEventFeedbackOutput>
     -- Updates the status of a the currently signed-in user's device so that it is
     -- marked as remembered or not remembered for the purpose of device authentication. Device
     -- authentication is a "remember me" mechanism that silently completes sign-in from trusted
@@ -1334,7 +1338,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    updateDeviceStatus: function(Client, types.UpdateDeviceStatusInput): types.UpdateDeviceStatusOutput, table
+    updateDeviceStatus: function(Client, types.UpdateDeviceStatusInput): Operation<types.UpdateDeviceStatusOutput>
     -- Given the name of a user pool group, updates any of the properties for precedence,
     -- IAM role, or description. For more information about user pool groups, see Adding groups to a user pool.
     -- Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
@@ -1343,7 +1347,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Modifies the configuration and trust relationship between a third-party identity
     -- provider (IdP) and a user pool. Amazon Cognito accepts sign-in with third-party identity
     -- providers through managed login and OIDC relying-party libraries. For more information,
@@ -1354,7 +1358,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput): types.UpdateIdentityProviderOutput, table
+    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput): Operation<types.UpdateIdentityProviderOutput>
     -- Configures the branding settings for a user pool style. This operation is the
     -- programmatic option for the configuration of a style in the branding editor.
     -- Provides values for UI customization in a Settings JSON object and image
@@ -1370,7 +1374,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput): types.UpdateManagedLoginBrandingOutput, table
+    updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput): Operation<types.UpdateManagedLoginBrandingOutput>
     -- Updates the name and scopes of a resource server. All other fields are read-only. For
     -- more information about resource servers, see Access control with resource servers.
     -- If you don't provide a value for an attribute, it is set to the default
@@ -1381,7 +1385,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateResourceServer: function(Client, types.UpdateResourceServerInput): types.UpdateResourceServerOutput, table
+    updateResourceServer: function(Client, types.UpdateResourceServerInput): Operation<types.UpdateResourceServerOutput>
     -- Modifies existing terms documents for the requested app client. When Terms and
     -- conditions and Privacy policy documents are configured, the app client displays links to
     -- them in the sign-up page of managed login for the app client.
@@ -1399,7 +1403,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateTerms: function(Client, types.UpdateTermsInput): types.UpdateTermsOutput, table
+    updateTerms: function(Client, types.UpdateTermsInput): Operation<types.UpdateTermsOutput>
     -- Updates the currently signed-in user's attributes. To delete an attribute from
     -- the user, submit the attribute in your API request with a blank value.
     -- For custom attributes, you must add a custom: prefix to the attribute
@@ -1424,7 +1428,7 @@ local record Client
     -- numbers. After you test your app while in the sandbox environment, you can move out
     -- of the sandbox and into production. For more information, see SMS message settings for Amazon Cognito user pools in the Amazon Cognito
     -- Developer Guide.
-    updateUserAttributes: function(Client, types.UpdateUserAttributesInput): types.UpdateUserAttributesOutput, table
+    updateUserAttributes: function(Client, types.UpdateUserAttributesInput): Operation<types.UpdateUserAttributesOutput>
     -- Updates the configuration of a user pool. To avoid setting parameters to Amazon Cognito
     -- defaults, construct this API request to pass the existing configuration of your user
     -- pool, modified to include the changes that you want to make.
@@ -1450,7 +1454,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateUserPool: function(Client, types.UpdateUserPoolInput): types.UpdateUserPoolOutput, table
+    updateUserPool: function(Client, types.UpdateUserPoolInput): Operation<types.UpdateUserPoolOutput>
     -- Given a user pool app client ID, updates the configuration. To avoid setting
     -- parameters to Amazon Cognito defaults, construct this API request to pass the existing
     -- configuration of your app client, modified to include the changes that you want to
@@ -1465,7 +1469,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput): types.UpdateUserPoolClientOutput, table
+    updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput): Operation<types.UpdateUserPoolClientOutput>
     -- A user pool domain hosts managed login, an authorization server and web server for
     -- authentication in your application. This operation updates the branding version for user
     -- pool domains between 1 for hosted UI (classic) and 2 for
@@ -1489,7 +1493,7 @@ local record Client
     -- Learn more
     -- Signing Amazon Web Services API Requests
     -- Using the Amazon Cognito user pools API and user pool endpoints
-    updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput): types.UpdateUserPoolDomainOutput, table
+    updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput): Operation<types.UpdateUserPoolDomainOutput>
     -- Registers the current user's time-based one-time password (TOTP) authenticator
     -- with a code generated in their authenticator app from a private key that's supplied
     -- by your user pool. Marks the user's software token MFA status as "verified" if
@@ -1498,7 +1502,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput): types.VerifySoftwareTokenOutput, table
+    verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput): Operation<types.VerifySoftwareTokenOutput>
     -- Submits a verification code for a signed-in user who has added or changed a value of
     -- an auto-verified attribute. When successful, the user's attribute becomes verified
     -- and the attribute email_verified or phone_number_verified
@@ -1510,7 +1514,7 @@ local record Client
     -- this operation, you can't use IAM credentials to authorize requests, and you can't
     -- grant IAM permissions in policies. For more information about authorization models in
     -- Amazon Cognito, see Using the Amazon Cognito user pools API and user pool endpoints.
-    verifyUserAttribute: function(Client, types.VerifyUserAttributeInput): types.VerifyUserAttributeOutput, table
+    verifyUserAttribute: function(Client, types.VerifyUserAttributeInput): Operation<types.VerifyUserAttributeOutput>
 end
 
 local record M

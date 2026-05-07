@@ -2,23 +2,27 @@
 
 local types = require("artifact.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Get the account settings for Artifact.
-    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): Operation<types.GetAccountSettingsOutput>
     -- Get the content for a single report.
-    getReport: function(Client, types.GetReportInput): types.GetReportOutput, table
+    getReport: function(Client, types.GetReportInput): Operation<types.GetReportOutput>
     -- Get the metadata for a single report.
-    getReportMetadata: function(Client, types.GetReportMetadataInput): types.GetReportMetadataOutput, table
+    getReportMetadata: function(Client, types.GetReportMetadataInput): Operation<types.GetReportMetadataOutput>
     -- Get the Term content associated with a single report.
-    getTermForReport: function(Client, types.GetTermForReportInput): types.GetTermForReportOutput, table
+    getTermForReport: function(Client, types.GetTermForReportInput): Operation<types.GetTermForReportOutput>
     -- List active customer-agreements applicable to calling identity.
-    listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput): types.ListCustomerAgreementsOutput, table
+    listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput): Operation<types.ListCustomerAgreementsOutput>
     -- List available reports.
-    listReports: function(Client, types.ListReportsInput): types.ListReportsOutput, table
+    listReports: function(Client, types.ListReportsInput): Operation<types.ListReportsOutput>
     -- List available report versions for a given report.
-    listReportVersions: function(Client, types.ListReportVersionsInput): types.ListReportVersionsOutput, table
+    listReportVersions: function(Client, types.ListReportVersionsInput): Operation<types.ListReportVersionsOutput>
     -- Put the account settings for Artifact.
-    putAccountSettings: function(Client, types.PutAccountSettingsInput): types.PutAccountSettingsOutput, table
+    putAccountSettings: function(Client, types.PutAccountSettingsInput): Operation<types.PutAccountSettingsOutput>
 end
 
 local record M

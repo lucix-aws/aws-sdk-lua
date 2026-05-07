@@ -2,6 +2,10 @@
 
 local types = require("waf.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
@@ -22,7 +26,7 @@ local record Client
     -- (for example, the header or the URI) and the value that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createByteMatchSet: function(Client, types.CreateByteMatchSetInput): types.CreateByteMatchSetOutput, table
+    createByteMatchSet: function(Client, types.CreateByteMatchSetInput): Operation<types.CreateByteMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -39,7 +43,7 @@ local record Client
     -- Submit an UpdateGeoMatchSetSet request to specify the countries that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createGeoMatchSet: function(Client, types.CreateGeoMatchSetInput): types.CreateGeoMatchSetOutput, table
+    createGeoMatchSet: function(Client, types.CreateGeoMatchSetInput): Operation<types.CreateGeoMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -61,7 +65,7 @@ local record Client
     -- Submit an UpdateIPSet request to specify the IP addresses that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createIPSet: function(Client, types.CreateIPSetInput): types.CreateIPSetOutput, table
+    createIPSet: function(Client, types.CreateIPSetInput): Operation<types.CreateIPSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -116,7 +120,7 @@ local record Client
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests,
     -- see the AWS WAF Developer
     -- Guide.
-    createRateBasedRule: function(Client, types.CreateRateBasedRuleInput): types.CreateRateBasedRuleOutput, table
+    createRateBasedRule: function(Client, types.CreateRateBasedRuleInput): Operation<types.CreateRateBasedRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -136,7 +140,7 @@ local record Client
     -- (for example, the header or the URI) and the value, using a RegexPatternSet, that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createRegexMatchSet: function(Client, types.CreateRegexMatchSetInput): types.CreateRegexMatchSetOutput, table
+    createRegexMatchSet: function(Client, types.CreateRegexMatchSetInput): Operation<types.CreateRegexMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -152,7 +156,7 @@ local record Client
     -- Submit an UpdateRegexPatternSet request to specify the string that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput): types.CreateRegexPatternSetOutput, table
+    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput): Operation<types.CreateRegexPatternSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -181,7 +185,7 @@ local record Client
     -- Create and update a WebACL that contains the Rule. For more information, see CreateWebACL.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    createRule: function(Client, types.CreateRuleInput): Operation<types.CreateRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -194,7 +198,7 @@ local record Client
     -- Ten rules per rule group.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createRuleGroup: function(Client, types.CreateRuleGroupInput): types.CreateRuleGroupOutput, table
+    createRuleGroup: function(Client, types.CreateRuleGroupInput): Operation<types.CreateRuleGroupOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -214,7 +218,7 @@ local record Client
     -- (for example, the header or the URI) and the value that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createSizeConstraintSet: function(Client, types.CreateSizeConstraintSetInput): types.CreateSizeConstraintSetOutput, table
+    createSizeConstraintSet: function(Client, types.CreateSizeConstraintSetInput): Operation<types.CreateSizeConstraintSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -232,7 +236,7 @@ local record Client
     -- allow, block, or count malicious SQL code.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createSqlInjectionMatchSet: function(Client, types.CreateSqlInjectionMatchSetInput): types.CreateSqlInjectionMatchSetOutput, table
+    createSqlInjectionMatchSet: function(Client, types.CreateSqlInjectionMatchSetInput): Operation<types.CreateSqlInjectionMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -256,7 +260,7 @@ local record Client
     -- Submit an UpdateWebACL request to specify the Rules that you want to include in the WebACL,
     -- to specify the default action, and to associate the WebACL with a CloudFront distribution.
     -- For more information about how to use the AWS WAF API, see the AWS WAF Developer Guide.
-    createWebACL: function(Client, types.CreateWebACLInput): types.CreateWebACLOutput, table
+    createWebACL: function(Client, types.CreateWebACLInput): Operation<types.CreateWebACLOutput>
     -- Creates an AWS CloudFormation WAFV2 template for the specified web ACL in the specified Amazon S3 bucket.
     -- Then, in CloudFormation, you create a stack from the template, to create the web ACL and its resources in AWS WAFV2.
     -- Use this to migrate your AWS WAF Classic web ACL to the latest version of AWS WAF.
@@ -265,7 +269,7 @@ local record Client
     -- the migration and switch over to the new web ACL, see
     -- Migrating your AWS WAF Classic resources to AWS WAF in the AWS WAF
     -- Developer Guide.
-    createWebACLMigrationStack: function(Client, types.CreateWebACLMigrationStackInput): types.CreateWebACLMigrationStackOutput, table
+    createWebACLMigrationStack: function(Client, types.CreateWebACLMigrationStackInput): Operation<types.CreateWebACLMigrationStackOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -283,7 +287,7 @@ local record Client
     -- allow, block, or count cross-site scripting attacks.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    createXssMatchSet: function(Client, types.CreateXssMatchSetInput): types.CreateXssMatchSetOutput, table
+    createXssMatchSet: function(Client, types.CreateXssMatchSetInput): Operation<types.CreateXssMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -297,7 +301,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteByteMatchSet request.
     -- Submit a DeleteByteMatchSet request.
-    deleteByteMatchSet: function(Client, types.DeleteByteMatchSetInput): types.DeleteByteMatchSetOutput, table
+    deleteByteMatchSet: function(Client, types.DeleteByteMatchSetInput): Operation<types.DeleteByteMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -311,7 +315,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteGeoMatchSet request.
     -- Submit a DeleteGeoMatchSet request.
-    deleteGeoMatchSet: function(Client, types.DeleteGeoMatchSetInput): types.DeleteGeoMatchSetOutput, table
+    deleteGeoMatchSet: function(Client, types.DeleteGeoMatchSetInput): Operation<types.DeleteGeoMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -325,7 +329,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteIPSet request.
     -- Submit a DeleteIPSet request.
-    deleteIPSet: function(Client, types.DeleteIPSetInput): types.DeleteIPSetOutput, table
+    deleteIPSet: function(Client, types.DeleteIPSetInput): Operation<types.DeleteIPSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -333,7 +337,7 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Permanently deletes the LoggingConfiguration from the specified web
     -- ACL.
-    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): Operation<types.DeleteLoggingConfigurationOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -341,7 +345,7 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Permanently deletes an IAM policy from the specified RuleGroup.
     -- The user making the request must be the owner of the RuleGroup.
-    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput): types.DeletePermissionPolicyOutput, table
+    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput): Operation<types.DeletePermissionPolicyOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -359,7 +363,7 @@ local record Client
     -- in the ChangeToken parameter of a DeleteRateBasedRule
     -- request.
     -- Submit a DeleteRateBasedRule request.
-    deleteRateBasedRule: function(Client, types.DeleteRateBasedRuleInput): types.DeleteRateBasedRuleOutput, table
+    deleteRateBasedRule: function(Client, types.DeleteRateBasedRuleInput): Operation<types.DeleteRateBasedRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -373,7 +377,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteRegexMatchSet request.
     -- Submit a DeleteRegexMatchSet request.
-    deleteRegexMatchSet: function(Client, types.DeleteRegexMatchSetInput): types.DeleteRegexMatchSetOutput, table
+    deleteRegexMatchSet: function(Client, types.DeleteRegexMatchSetInput): Operation<types.DeleteRegexMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -381,7 +385,7 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Permanently deletes a RegexPatternSet. You can't delete a RegexPatternSet if it's still used in any RegexMatchSet
     -- or if the RegexPatternSet is not empty.
-    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput): types.DeleteRegexPatternSetOutput, table
+    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput): Operation<types.DeleteRegexPatternSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -395,7 +399,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteRule request.
     -- Submit a DeleteRule request.
-    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): Operation<types.DeleteRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -409,7 +413,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteRuleGroup request.
     -- Submit a DeleteRuleGroup request.
-    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): types.DeleteRuleGroupOutput, table
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): Operation<types.DeleteRuleGroupOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -423,7 +427,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteSizeConstraintSet request.
     -- Submit a DeleteSizeConstraintSet request.
-    deleteSizeConstraintSet: function(Client, types.DeleteSizeConstraintSetInput): types.DeleteSizeConstraintSetOutput, table
+    deleteSizeConstraintSet: function(Client, types.DeleteSizeConstraintSetInput): Operation<types.DeleteSizeConstraintSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -438,7 +442,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteSqlInjectionMatchSet request.
     -- Submit a DeleteSqlInjectionMatchSet request.
-    deleteSqlInjectionMatchSet: function(Client, types.DeleteSqlInjectionMatchSetInput): types.DeleteSqlInjectionMatchSetOutput, table
+    deleteSqlInjectionMatchSet: function(Client, types.DeleteSqlInjectionMatchSetInput): Operation<types.DeleteSqlInjectionMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -450,7 +454,7 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteWebACL request.
     -- Submit a DeleteWebACL request.
-    deleteWebACL: function(Client, types.DeleteWebACLInput): types.DeleteWebACLOutput, table
+    deleteWebACL: function(Client, types.DeleteWebACLInput): Operation<types.DeleteWebACLOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -465,14 +469,14 @@ local record Client
     -- Use GetChangeToken to get the change token that you provide in the ChangeToken parameter of a
     -- DeleteXssMatchSet request.
     -- Submit a DeleteXssMatchSet request.
-    deleteXssMatchSet: function(Client, types.DeleteXssMatchSetInput): types.DeleteXssMatchSetOutput, table
+    deleteXssMatchSet: function(Client, types.DeleteXssMatchSetInput): Operation<types.DeleteXssMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the ByteMatchSet specified by ByteMatchSetId.
-    getByteMatchSet: function(Client, types.GetByteMatchSetInput): types.GetByteMatchSetOutput, table
+    getByteMatchSet: function(Client, types.GetByteMatchSetInput): Operation<types.GetByteMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -485,7 +489,7 @@ local record Client
     -- When you use a change token in a create, update, or delete request, the status of the change token changes to PENDING,
     -- which indicates that AWS WAF is propagating the change to all AWS WAF servers. Use GetChangeTokenStatus to determine the
     -- status of your change token.
-    getChangeToken: function(Client, types.GetChangeTokenInput): types.GetChangeTokenOutput, table
+    getChangeToken: function(Client, types.GetChangeTokenInput): Operation<types.GetChangeTokenOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -497,35 +501,35 @@ local record Client
     -- in a call to create, update, or delete an AWS WAF object.
     -- PENDING: AWS WAF is propagating the create, update, or delete request to all AWS WAF servers.
     -- INSYNC: Propagation is complete.
-    getChangeTokenStatus: function(Client, types.GetChangeTokenStatusInput): types.GetChangeTokenStatusOutput, table
+    getChangeTokenStatus: function(Client, types.GetChangeTokenStatusInput): Operation<types.GetChangeTokenStatusOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the GeoMatchSet that is specified by GeoMatchSetId.
-    getGeoMatchSet: function(Client, types.GetGeoMatchSetInput): types.GetGeoMatchSetOutput, table
+    getGeoMatchSet: function(Client, types.GetGeoMatchSetInput): Operation<types.GetGeoMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the IPSet that is specified by IPSetId.
-    getIPSet: function(Client, types.GetIPSetInput): types.GetIPSetOutput, table
+    getIPSet: function(Client, types.GetIPSetInput): Operation<types.GetIPSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the LoggingConfiguration for the specified web ACL.
-    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): types.GetLoggingConfigurationOutput, table
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): Operation<types.GetLoggingConfigurationOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the IAM policy attached to the RuleGroup.
-    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput): types.GetPermissionPolicyOutput, table
+    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput): Operation<types.GetPermissionPolicyOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -534,7 +538,7 @@ local record Client
     -- Returns the RateBasedRule that is specified by the
     -- RuleId that you included in the GetRateBasedRule
     -- request.
-    getRateBasedRule: function(Client, types.GetRateBasedRuleInput): types.GetRateBasedRuleOutput, table
+    getRateBasedRule: function(Client, types.GetRateBasedRuleInput): Operation<types.GetRateBasedRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -543,28 +547,28 @@ local record Client
     -- Returns an array of IP addresses currently being blocked by the RateBasedRule that is specified by the RuleId. The maximum
     -- number of managed keys that will be blocked is 10,000. If more than 10,000 addresses exceed
     -- the rate limit, the 10,000 addresses with the highest rates will be blocked.
-    getRateBasedRuleManagedKeys: function(Client, types.GetRateBasedRuleManagedKeysInput): types.GetRateBasedRuleManagedKeysOutput, table
+    getRateBasedRuleManagedKeys: function(Client, types.GetRateBasedRuleManagedKeysInput): Operation<types.GetRateBasedRuleManagedKeysOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the RegexMatchSet specified by RegexMatchSetId.
-    getRegexMatchSet: function(Client, types.GetRegexMatchSetInput): types.GetRegexMatchSetOutput, table
+    getRegexMatchSet: function(Client, types.GetRegexMatchSetInput): Operation<types.GetRegexMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the RegexPatternSet specified by RegexPatternSetId.
-    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput): types.GetRegexPatternSetOutput, table
+    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput): Operation<types.GetRegexPatternSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the Rule that is specified by the RuleId that you included in the GetRule request.
-    getRule: function(Client, types.GetRuleInput): types.GetRuleOutput, table
+    getRule: function(Client, types.GetRuleInput): Operation<types.GetRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -572,7 +576,7 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the RuleGroup that is specified by the RuleGroupId that you included in the GetRuleGroup request.
     -- To view the rules in a rule group, use ListActivatedRulesInRuleGroup.
-    getRuleGroup: function(Client, types.GetRuleGroupInput): types.GetRuleGroupOutput, table
+    getRuleGroup: function(Client, types.GetRuleGroupInput): Operation<types.GetRuleGroupOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -582,126 +586,126 @@ local record Client
     -- GetSampledRequests returns a time range, which is usually the time range that you specified. However, if your resource
     -- (such as a CloudFront distribution) received 5,000 requests before the specified time range elapsed, GetSampledRequests
     -- returns an updated time range. This new time range indicates the actual period during which AWS WAF selected the requests in the sample.
-    getSampledRequests: function(Client, types.GetSampledRequestsInput): types.GetSampledRequestsOutput, table
+    getSampledRequests: function(Client, types.GetSampledRequestsInput): Operation<types.GetSampledRequestsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the SizeConstraintSet specified by SizeConstraintSetId.
-    getSizeConstraintSet: function(Client, types.GetSizeConstraintSetInput): types.GetSizeConstraintSetOutput, table
+    getSizeConstraintSet: function(Client, types.GetSizeConstraintSetInput): Operation<types.GetSizeConstraintSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the SqlInjectionMatchSet that is specified by SqlInjectionMatchSetId.
-    getSqlInjectionMatchSet: function(Client, types.GetSqlInjectionMatchSetInput): types.GetSqlInjectionMatchSetOutput, table
+    getSqlInjectionMatchSet: function(Client, types.GetSqlInjectionMatchSetInput): Operation<types.GetSqlInjectionMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the WebACL that is specified by WebACLId.
-    getWebACL: function(Client, types.GetWebACLInput): types.GetWebACLOutput, table
+    getWebACL: function(Client, types.GetWebACLInput): Operation<types.GetWebACLOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns the XssMatchSet that is specified by XssMatchSetId.
-    getXssMatchSet: function(Client, types.GetXssMatchSetInput): types.GetXssMatchSetOutput, table
+    getXssMatchSet: function(Client, types.GetXssMatchSetInput): Operation<types.GetXssMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of ActivatedRule objects.
-    listActivatedRulesInRuleGroup: function(Client, types.ListActivatedRulesInRuleGroupInput): types.ListActivatedRulesInRuleGroupOutput, table
+    listActivatedRulesInRuleGroup: function(Client, types.ListActivatedRulesInRuleGroupInput): Operation<types.ListActivatedRulesInRuleGroupOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of ByteMatchSetSummary objects.
-    listByteMatchSets: function(Client, types.ListByteMatchSetsInput): types.ListByteMatchSetsOutput, table
+    listByteMatchSets: function(Client, types.ListByteMatchSetsInput): Operation<types.ListByteMatchSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of GeoMatchSetSummary objects in the response.
-    listGeoMatchSets: function(Client, types.ListGeoMatchSetsInput): types.ListGeoMatchSetsOutput, table
+    listGeoMatchSets: function(Client, types.ListGeoMatchSetsInput): Operation<types.ListGeoMatchSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of IPSetSummary objects in the response.
-    listIPSets: function(Client, types.ListIPSetsInput): types.ListIPSetsOutput, table
+    listIPSets: function(Client, types.ListIPSetsInput): Operation<types.ListIPSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of LoggingConfiguration objects.
-    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): types.ListLoggingConfigurationsOutput, table
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): Operation<types.ListLoggingConfigurationsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RuleSummary objects.
-    listRateBasedRules: function(Client, types.ListRateBasedRulesInput): types.ListRateBasedRulesOutput, table
+    listRateBasedRules: function(Client, types.ListRateBasedRulesInput): Operation<types.ListRateBasedRulesOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RegexMatchSetSummary objects.
-    listRegexMatchSets: function(Client, types.ListRegexMatchSetsInput): types.ListRegexMatchSetsOutput, table
+    listRegexMatchSets: function(Client, types.ListRegexMatchSetsInput): Operation<types.ListRegexMatchSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RegexPatternSetSummary objects.
-    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput): types.ListRegexPatternSetsOutput, table
+    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput): Operation<types.ListRegexPatternSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RuleGroup objects.
-    listRuleGroups: function(Client, types.ListRuleGroupsInput): types.ListRuleGroupsOutput, table
+    listRuleGroups: function(Client, types.ListRuleGroupsInput): Operation<types.ListRuleGroupsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RuleSummary objects.
-    listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    listRules: function(Client, types.ListRulesInput): Operation<types.ListRulesOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of SizeConstraintSetSummary objects.
-    listSizeConstraintSets: function(Client, types.ListSizeConstraintSetsInput): types.ListSizeConstraintSetsOutput, table
+    listSizeConstraintSets: function(Client, types.ListSizeConstraintSetsInput): Operation<types.ListSizeConstraintSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of SqlInjectionMatchSet objects.
-    listSqlInjectionMatchSets: function(Client, types.ListSqlInjectionMatchSetsInput): types.ListSqlInjectionMatchSetsOutput, table
+    listSqlInjectionMatchSets: function(Client, types.ListSqlInjectionMatchSetsInput): Operation<types.ListSqlInjectionMatchSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of RuleGroup objects that you are subscribed to.
-    listSubscribedRuleGroups: function(Client, types.ListSubscribedRuleGroupsInput): types.ListSubscribedRuleGroupsOutput, table
+    listSubscribedRuleGroups: function(Client, types.ListSubscribedRuleGroupsInput): Operation<types.ListSubscribedRuleGroupsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -709,21 +713,21 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Retrieves the tags associated with the specified AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
     -- Tagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of WebACLSummary objects in the response.
-    listWebACLs: function(Client, types.ListWebACLsInput): types.ListWebACLsOutput, table
+    listWebACLs: function(Client, types.ListWebACLsInput): Operation<types.ListWebACLsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Returns an array of XssMatchSet objects.
-    listXssMatchSets: function(Client, types.ListXssMatchSetsInput): types.ListXssMatchSetsOutput, table
+    listXssMatchSets: function(Client, types.ListXssMatchSetsInput): Operation<types.ListXssMatchSetsOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -738,7 +742,7 @@ local record Client
     -- Do not create the data firehose using a Kinesis stream as your source.
     -- Associate that firehose to your web ACL using a PutLoggingConfiguration request.
     -- When you successfully enable logging using a PutLoggingConfiguration request, AWS WAF will create a service linked role with the necessary permissions to write logs to the Amazon Kinesis Data Firehose. For more information, see Logging Web ACL Traffic Information in the AWS WAF Developer Guide.
-    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput): types.PutLoggingConfigurationOutput, table
+    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput): Operation<types.PutLoggingConfigurationOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -756,7 +760,7 @@ local record Client
     -- Your policy must be composed using IAM Policy version 2012-10-17.
     -- For more information, see IAM Policies.
     -- An example of a valid policy parameter is shown in the Examples section below.
-    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput): types.PutPermissionPolicyOutput, table
+    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput): Operation<types.PutPermissionPolicyOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -764,13 +768,13 @@ local record Client
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
     -- Associates tags with the specified AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
     -- Tagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can use this action to tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
     -- For the latest version of AWS
     -- WAF, use the AWS WAFV2 API and see the AWS WAF Developer Guide. With the latest version, AWS WAF has a single set of endpoints for regional and global use.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -795,7 +799,7 @@ local record Client
     -- (for example, the header or the URI) and the value that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateByteMatchSet: function(Client, types.UpdateByteMatchSetInput): types.UpdateByteMatchSetOutput, table
+    updateByteMatchSet: function(Client, types.UpdateByteMatchSetInput): Operation<types.UpdateByteMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -815,7 +819,7 @@ local record Client
     -- If you want to change a country, you delete the existing country and add the new one.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateGeoMatchSet: function(Client, types.UpdateGeoMatchSetInput): types.UpdateGeoMatchSetOutput, table
+    updateGeoMatchSet: function(Client, types.UpdateGeoMatchSetInput): Operation<types.UpdateGeoMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -861,7 +865,7 @@ local record Client
     -- For more information about how to use the AWS WAF API to allow or block HTTP
     -- requests, see the AWS WAF
     -- Developer Guide.
-    updateIPSet: function(Client, types.UpdateIPSetInput): types.UpdateIPSetOutput, table
+    updateIPSet: function(Client, types.UpdateIPSetInput): Operation<types.UpdateIPSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -893,7 +897,7 @@ local record Client
     -- A TargetString of login
     -- Further, you specify a RateLimit of 1,000.
     -- By adding this RateBasedRule to a WebACL, you could limit requests to your login page without affecting the rest of your site.
-    updateRateBasedRule: function(Client, types.UpdateRateBasedRuleInput): types.UpdateRateBasedRuleOutput, table
+    updateRateBasedRule: function(Client, types.UpdateRateBasedRuleInput): Operation<types.UpdateRateBasedRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -916,7 +920,7 @@ local record Client
     -- (for example, the header or the URI) and the identifier of the RegexPatternSet that contain the regular expression patters you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateRegexMatchSet: function(Client, types.UpdateRegexMatchSetInput): types.UpdateRegexMatchSetOutput, table
+    updateRegexMatchSet: function(Client, types.UpdateRegexMatchSetInput): Operation<types.UpdateRegexMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -938,7 +942,7 @@ local record Client
     -- Submit an UpdateRegexPatternSet request to specify the regular expression pattern that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput): types.UpdateRegexPatternSetOutput, table
+    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput): Operation<types.UpdateRegexPatternSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -967,7 +971,7 @@ local record Client
     -- add the new one.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateRule: function(Client, types.UpdateRuleInput): types.UpdateRuleOutput, table
+    updateRule: function(Client, types.UpdateRuleInput): Operation<types.UpdateRuleOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -986,7 +990,7 @@ local record Client
     -- add the new one.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateRuleGroup: function(Client, types.UpdateRuleGroupInput): types.UpdateRuleGroupOutput, table
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput): Operation<types.UpdateRuleGroupOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -1015,7 +1019,7 @@ local record Client
     -- (for example, the header or the URI) and the value that you want AWS WAF to watch for.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateSizeConstraintSet: function(Client, types.UpdateSizeConstraintSetInput): types.UpdateSizeConstraintSetOutput, table
+    updateSizeConstraintSet: function(Client, types.UpdateSizeConstraintSetInput): Operation<types.UpdateSizeConstraintSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -1044,7 +1048,7 @@ local record Client
     -- inspect for snippets of SQL code.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateSqlInjectionMatchSet: function(Client, types.UpdateSqlInjectionMatchSetInput): types.UpdateSqlInjectionMatchSetOutput, table
+    updateSqlInjectionMatchSet: function(Client, types.UpdateSqlInjectionMatchSetInput): Operation<types.UpdateSqlInjectionMatchSetOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -1098,7 +1102,7 @@ local record Client
     -- .
     -- Be aware that if you try to add a RATE_BASED rule to a web ACL without setting the rule type when first creating the rule, the UpdateWebACL request will fail because the request tries to add a REGULAR rule (the default rule type) with the specified ID, which does not exist.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the AWS WAF Developer Guide.
-    updateWebACL: function(Client, types.UpdateWebACLInput): types.UpdateWebACLOutput, table
+    updateWebACL: function(Client, types.UpdateWebACLInput): Operation<types.UpdateWebACLOutput>
     -- This is AWS WAF Classic documentation. For
     -- more information, see AWS
     -- WAF Classic in the developer guide.
@@ -1129,7 +1133,7 @@ local record Client
     -- inspect for cross-site scripting attacks.
     -- For more information about how to use the AWS WAF API to allow or block HTTP requests, see the
     -- AWS WAF Developer Guide.
-    updateXssMatchSet: function(Client, types.UpdateXssMatchSetInput): types.UpdateXssMatchSetOutput, table
+    updateXssMatchSet: function(Client, types.UpdateXssMatchSetInput): Operation<types.UpdateXssMatchSetOutput>
 end
 
 local record M

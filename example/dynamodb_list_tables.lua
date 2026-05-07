@@ -26,7 +26,7 @@ local client = dynamodb.new({ region = region })
 print("DynamoDB ListTables (" .. region .. ")")
 print("--------------------------------------")
 
-local result, err = client:listTables({})
+local result, err = client:listTables({}):await()
 if err then
     io.stderr:write("ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)

@@ -2,23 +2,27 @@
 
 local types = require("iotjobsdataplane.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Gets details of a job execution.
     -- Requires permission to access the DescribeJobExecution action.
-    describeJobExecution: function(Client, types.DescribeJobExecutionInput): types.DescribeJobExecutionOutput, table
+    describeJobExecution: function(Client, types.DescribeJobExecutionInput): Operation<types.DescribeJobExecutionOutput>
     -- Gets the list of all jobs for a thing that are not in a terminal status.
     -- Requires permission to access the GetPendingJobExecutions action.
-    getPendingJobExecutions: function(Client, types.GetPendingJobExecutionsInput): types.GetPendingJobExecutionsOutput, table
+    getPendingJobExecutions: function(Client, types.GetPendingJobExecutionsInput): Operation<types.GetPendingJobExecutionsOutput>
     -- Using the command created with the CreateCommand API, start a command
     -- execution on a specific device.
-    startCommandExecution: function(Client, types.StartCommandExecutionInput): types.StartCommandExecutionOutput, table
+    startCommandExecution: function(Client, types.StartCommandExecutionInput): Operation<types.StartCommandExecutionOutput>
     -- Gets and starts the next pending (status IN_PROGRESS or QUEUED) job execution for a
     -- thing.
     -- Requires permission to access the StartNextPendingJobExecution action.
-    startNextPendingJobExecution: function(Client, types.StartNextPendingJobExecutionInput): types.StartNextPendingJobExecutionOutput, table
+    startNextPendingJobExecution: function(Client, types.StartNextPendingJobExecutionInput): Operation<types.StartNextPendingJobExecutionOutput>
     -- Updates the status of a job execution.
     -- Requires permission to access the UpdateJobExecution action.
-    updateJobExecution: function(Client, types.UpdateJobExecutionInput): types.UpdateJobExecutionOutput, table
+    updateJobExecution: function(Client, types.UpdateJobExecutionInput): Operation<types.UpdateJobExecutionOutput>
 end
 
 local record M

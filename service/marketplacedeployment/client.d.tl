@@ -2,15 +2,19 @@
 
 local types = require("marketplacedeployment.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Lists all tags that have been added to a deployment parameter resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates a deployment parameter and is targeted by catalog and agreementId.
-    putDeploymentParameter: function(Client, types.PutDeploymentParameterInput): types.PutDeploymentParameterOutput, table
+    putDeploymentParameter: function(Client, types.PutDeploymentParameterInput): Operation<types.PutDeploymentParameterOutput>
     -- Tags a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag or list of tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

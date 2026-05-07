@@ -2,12 +2,16 @@
 
 local types = require("polly.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the specified pronunciation lexicon stored in an Amazon Web Services Region. A lexicon which has been deleted is not available for
     -- speech synthesis, nor is it possible to retrieve it using either the
     -- GetLexicon or ListLexicon APIs.
     -- For more information, see Managing Lexicons.
-    deleteLexicon: function(Client, types.DeleteLexiconInput): types.DeleteLexiconOutput, table
+    deleteLexicon: function(Client, types.DeleteLexiconInput): Operation<types.DeleteLexiconOutput>
     -- Returns the list of voices that are available for use when
     -- requesting speech synthesis. Each voice speaks a specified language, is
     -- either male or female, and is identified by an ID, which is the ASCII
@@ -24,34 +28,34 @@ local record Client
     -- returns a list of all available US English voices.
     -- This operation requires permissions to perform the
     -- polly:DescribeVoices action.
-    describeVoices: function(Client, types.DescribeVoicesInput): types.DescribeVoicesOutput, table
+    describeVoices: function(Client, types.DescribeVoicesInput): Operation<types.DescribeVoicesOutput>
     -- Returns the content of the specified pronunciation lexicon stored
     -- in an Amazon Web Services Region. For more information, see Managing Lexicons.
-    getLexicon: function(Client, types.GetLexiconInput): types.GetLexiconOutput, table
+    getLexicon: function(Client, types.GetLexiconInput): Operation<types.GetLexiconOutput>
     -- Retrieves a specific SpeechSynthesisTask object based on its TaskID.
     -- This object contains information about the given speech synthesis task,
     -- including the status of the task, and a link to the S3 bucket containing
     -- the output of the task.
-    getSpeechSynthesisTask: function(Client, types.GetSpeechSynthesisTaskInput): types.GetSpeechSynthesisTaskOutput, table
+    getSpeechSynthesisTask: function(Client, types.GetSpeechSynthesisTaskInput): Operation<types.GetSpeechSynthesisTaskOutput>
     -- Returns a list of pronunciation lexicons stored in an Amazon Web Services Region. For more information, see Managing Lexicons.
-    listLexicons: function(Client, types.ListLexiconsInput): types.ListLexiconsOutput, table
+    listLexicons: function(Client, types.ListLexiconsInput): Operation<types.ListLexiconsOutput>
     -- Returns a list of SpeechSynthesisTask objects ordered by their
     -- creation date. This operation can filter the tasks by their status, for
     -- example, allowing users to list only tasks that are completed.
-    listSpeechSynthesisTasks: function(Client, types.ListSpeechSynthesisTasksInput): types.ListSpeechSynthesisTasksOutput, table
+    listSpeechSynthesisTasks: function(Client, types.ListSpeechSynthesisTasksInput): Operation<types.ListSpeechSynthesisTasksOutput>
     -- Stores a pronunciation lexicon in an Amazon Web Services Region. If
     -- a lexicon with the same name already exists in the region, it is
     -- overwritten by the new lexicon. Lexicon operations have eventual
     -- consistency, therefore, it might take some time before the lexicon is
     -- available to the SynthesizeSpeech operation.
     -- For more information, see Managing Lexicons.
-    putLexicon: function(Client, types.PutLexiconInput): types.PutLexiconOutput, table
+    putLexicon: function(Client, types.PutLexiconInput): Operation<types.PutLexiconOutput>
     -- Synthesizes UTF-8 input, plain text, or SSML over a bidirectional streaming connection.
     -- Specify synthesis parameters in HTTP/2 headers, send text incrementally as events on the input stream,
     -- and receive synthesized audio as it becomes available.
     -- This operation serves as a bidirectional counterpart to SynthesizeSpeech:
     -- SynthesizeSpeech
-    startSpeechSynthesisStream: function(Client, types.StartSpeechSynthesisStreamInput): types.StartSpeechSynthesisStreamOutput, table
+    startSpeechSynthesisStream: function(Client, types.StartSpeechSynthesisStreamInput): Operation<types.StartSpeechSynthesisStreamOutput>
     -- Allows the creation of an asynchronous synthesis task, by starting a
     -- new SpeechSynthesisTask. This operation requires all the
     -- standard information needed for speech synthesis, plus the name of an
@@ -62,13 +66,13 @@ local record Client
     -- will include an identifier of this task as well as the current status. The
     -- SpeechSynthesisTask object is available for 72 hours after
     -- starting the asynchronous synthesis task.
-    startSpeechSynthesisTask: function(Client, types.StartSpeechSynthesisTaskInput): types.StartSpeechSynthesisTaskOutput, table
+    startSpeechSynthesisTask: function(Client, types.StartSpeechSynthesisTaskInput): Operation<types.StartSpeechSynthesisTaskOutput>
     -- Synthesizes UTF-8 input, plain text or SSML, to a stream of bytes.
     -- SSML input must be valid, well-formed SSML. Some alphabets might not be
     -- available with all the voices (for example, Cyrillic might not be read at
     -- all by English voices) unless phoneme mapping is used. For more
     -- information, see How it Works.
-    synthesizeSpeech: function(Client, types.SynthesizeSpeechInput): types.SynthesizeSpeechOutput, table
+    synthesizeSpeech: function(Client, types.SynthesizeSpeechInput): Operation<types.SynthesizeSpeechOutput>
 end
 
 local record M

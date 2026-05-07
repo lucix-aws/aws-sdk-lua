@@ -2,19 +2,23 @@
 
 local types = require("bedrockdataautomationruntime.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- API used to get data automation status.
-    getDataAutomationStatus: function(Client, types.GetDataAutomationStatusInput): types.GetDataAutomationStatusOutput, table
+    getDataAutomationStatus: function(Client, types.GetDataAutomationStatusInput): Operation<types.GetDataAutomationStatusOutput>
     -- Sync API: Invoke data automation.
-    invokeDataAutomation: function(Client, types.InvokeDataAutomationInput): types.InvokeDataAutomationOutput, table
+    invokeDataAutomation: function(Client, types.InvokeDataAutomationInput): Operation<types.InvokeDataAutomationOutput>
     -- Async API: Invoke data automation.
-    invokeDataAutomationAsync: function(Client, types.InvokeDataAutomationAsyncInput): types.InvokeDataAutomationAsyncOutput, table
+    invokeDataAutomationAsync: function(Client, types.InvokeDataAutomationAsyncInput): Operation<types.InvokeDataAutomationAsyncOutput>
     -- List tags for an Amazon Bedrock Data Automation resource
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Tag an Amazon Bedrock Data Automation resource
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Untag an Amazon Bedrock Data Automation resource
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

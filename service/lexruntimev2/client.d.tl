@@ -2,6 +2,10 @@
 
 local types = require("lexruntimev2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Removes session information for a specified bot, alias, and user ID.
     -- You can use this operation to restart a conversation with a bot.
@@ -16,7 +20,7 @@ local record Client
     -- If the locale doesn't exist in the bot, or if the locale hasn't been
     -- enables for the alias, you receive a
     -- BadRequestException.
-    deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    deleteSession: function(Client, types.DeleteSessionInput): Operation<types.DeleteSessionOutput>
     -- Returns session information for a specified bot, alias, and
     -- user.
     -- For example, you can use this operation to retrieve session
@@ -26,11 +30,11 @@ local record Client
     -- returns a BadRequestException. If the locale doesn't exist
     -- or is not enabled for the alias, you receive a
     -- BadRequestException.
-    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): Operation<types.GetSessionOutput>
     -- Creates a new session or modifies an existing session with an Amazon Lex V2
     -- bot. Use this operation to enable your application to set the state of
     -- the bot.
-    putSession: function(Client, types.PutSessionInput): types.PutSessionOutput, table
+    putSession: function(Client, types.PutSessionInput): Operation<types.PutSessionOutput>
     -- Sends user input to Amazon Lex V2. Client applications use this API to send
     -- requests to Amazon Lex V2 at runtime. Amazon Lex V2 then interprets the user input
     -- using the machine learning model that it build for the bot.
@@ -51,7 +55,7 @@ local record Client
     -- returned. If you configure a timeout, the timeout message is
     -- returned when the period times out.
     -- For more information, see Completion message.
-    recognizeText: function(Client, types.RecognizeTextInput): types.RecognizeTextOutput, table
+    recognizeText: function(Client, types.RecognizeTextInput): Operation<types.RecognizeTextOutput>
     -- Sends user input to Amazon Lex V2. You can send text or speech. Clients use
     -- this API to send text and audio requests to Amazon Lex V2 at runtime. Amazon Lex V2
     -- interprets the user input using the machine learning model built for
@@ -86,7 +90,7 @@ local record Client
     -- returned. If you configure a timeout, the timeout message is
     -- returned when the period times out.
     -- For more information, see Completion message.
-    recognizeUtterance: function(Client, types.RecognizeUtteranceInput): types.RecognizeUtteranceOutput, table
+    recognizeUtterance: function(Client, types.RecognizeUtteranceInput): Operation<types.RecognizeUtteranceOutput>
     -- Starts an HTTP/2 bidirectional event stream that enables you to send
     -- audio, text, or DTMF input in real time. After your application starts
     -- a conversation, users send input to Amazon Lex V2 as a stream of events. Amazon Lex V2
@@ -120,7 +124,7 @@ local record Client
     -- AWS SDK for C++
     -- AWS SDK for Java V2
     -- AWS SDK for Ruby V3
-    startConversation: function(Client, types.StartConversationInput): types.StartConversationOutput, table
+    startConversation: function(Client, types.StartConversationInput): Operation<types.StartConversationOutput>
 end
 
 local record M

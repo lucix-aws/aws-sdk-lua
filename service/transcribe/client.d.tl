@@ -2,6 +2,10 @@
 
 local types = require("transcribe.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new Call Analytics category.
     -- All categories are automatically applied to your Call Analytics transcriptions. Note that in
@@ -19,7 +23,7 @@ local record Client
     -- To learn more about Call Analytics categories, see Creating categories for post-call
     -- transcriptions and Creating categories for
     -- real-time transcriptions.
-    createCallAnalyticsCategory: function(Client, types.CreateCallAnalyticsCategoryInput): types.CreateCallAnalyticsCategoryOutput, table
+    createCallAnalyticsCategory: function(Client, types.CreateCallAnalyticsCategoryInput): Operation<types.CreateCallAnalyticsCategoryOutput>
     -- Creates a new custom language model.
     -- When creating a new custom language model, you must specify:
     -- If you want a Wideband (audio sample rates over 16,000 Hz) or Narrowband
@@ -27,7 +31,7 @@ local record Client
     -- The location of your training and tuning files (this must be an Amazon S3 URI)
     -- The language of your model
     -- A unique name for your model
-    createLanguageModel: function(Client, types.CreateLanguageModelInput): types.CreateLanguageModelOutput, table
+    createLanguageModel: function(Client, types.CreateLanguageModelInput): Operation<types.CreateLanguageModelOutput>
     -- Creates a new custom medical vocabulary.
     -- Before creating a new custom medical vocabulary, you must first upload a text file
     -- that contains your vocabulary table into an Amazon S3 bucket.
@@ -41,7 +45,7 @@ local record Client
     -- language.
     -- For more information, see Custom
     -- vocabularies.
-    createMedicalVocabulary: function(Client, types.CreateMedicalVocabularyInput): types.CreateMedicalVocabularyOutput, table
+    createMedicalVocabulary: function(Client, types.CreateMedicalVocabularyInput): Operation<types.CreateMedicalVocabularyOutput>
     -- Creates a new custom vocabulary.
     -- When creating a new custom vocabulary, you can either upload a text file that contains
     -- your new entries, phrases, and terms into an Amazon S3 bucket and include the
@@ -53,7 +57,7 @@ local record Client
     -- language.
     -- For more information, see Custom
     -- vocabularies.
-    createVocabulary: function(Client, types.CreateVocabularyInput): types.CreateVocabularyOutput, table
+    createVocabulary: function(Client, types.CreateVocabularyInput): Operation<types.CreateVocabularyOutput>
     -- Creates a new custom vocabulary filter.
     -- You can use custom vocabulary filters to mask, delete, or flag specific words from
     -- your transcript. Custom vocabulary filters are commonly used to mask profanity in
@@ -64,43 +68,43 @@ local record Client
     -- Vocabularies to get the character set for your language.
     -- For more information, see Vocabulary
     -- filtering.
-    createVocabularyFilter: function(Client, types.CreateVocabularyFilterInput): types.CreateVocabularyFilterOutput, table
+    createVocabularyFilter: function(Client, types.CreateVocabularyFilterInput): Operation<types.CreateVocabularyFilterOutput>
     -- Deletes a Call Analytics category. To use this operation, specify the name of the
     -- category you want to delete using CategoryName. Category names are case
     -- sensitive.
-    deleteCallAnalyticsCategory: function(Client, types.DeleteCallAnalyticsCategoryInput): types.DeleteCallAnalyticsCategoryOutput, table
+    deleteCallAnalyticsCategory: function(Client, types.DeleteCallAnalyticsCategoryInput): Operation<types.DeleteCallAnalyticsCategoryOutput>
     -- Deletes a Call Analytics job. To use this operation, specify the name of the job you
     -- want to delete using CallAnalyticsJobName. Job names are case
     -- sensitive.
-    deleteCallAnalyticsJob: function(Client, types.DeleteCallAnalyticsJobInput): types.DeleteCallAnalyticsJobOutput, table
+    deleteCallAnalyticsJob: function(Client, types.DeleteCallAnalyticsJobInput): Operation<types.DeleteCallAnalyticsJobOutput>
     -- Deletes a custom language model. To use this operation, specify the name of the
     -- language model you want to delete using ModelName. custom language model
     -- names are case sensitive.
-    deleteLanguageModel: function(Client, types.DeleteLanguageModelInput): types.DeleteLanguageModelOutput, table
+    deleteLanguageModel: function(Client, types.DeleteLanguageModelInput): Operation<types.DeleteLanguageModelOutput>
     -- Deletes a Medical Scribe job. To use this operation, specify the name of the
     -- job you want to delete using MedicalScribeJobName. Job names are
     -- case sensitive.
-    deleteMedicalScribeJob: function(Client, types.DeleteMedicalScribeJobInput): types.DeleteMedicalScribeJobOutput, table
+    deleteMedicalScribeJob: function(Client, types.DeleteMedicalScribeJobInput): Operation<types.DeleteMedicalScribeJobOutput>
     -- Deletes a medical transcription job. To use this operation, specify the name of the
     -- job you want to delete using MedicalTranscriptionJobName. Job names are
     -- case sensitive.
-    deleteMedicalTranscriptionJob: function(Client, types.DeleteMedicalTranscriptionJobInput): types.DeleteMedicalTranscriptionJobOutput, table
+    deleteMedicalTranscriptionJob: function(Client, types.DeleteMedicalTranscriptionJobInput): Operation<types.DeleteMedicalTranscriptionJobOutput>
     -- Deletes a custom medical vocabulary. To use this operation, specify the name of the
     -- custom vocabulary you want to delete using VocabularyName. Custom
     -- vocabulary names are case sensitive.
-    deleteMedicalVocabulary: function(Client, types.DeleteMedicalVocabularyInput): types.DeleteMedicalVocabularyOutput, table
+    deleteMedicalVocabulary: function(Client, types.DeleteMedicalVocabularyInput): Operation<types.DeleteMedicalVocabularyOutput>
     -- Deletes a transcription job. To use this operation, specify the name of the job you
     -- want to delete using TranscriptionJobName. Job names are case
     -- sensitive.
-    deleteTranscriptionJob: function(Client, types.DeleteTranscriptionJobInput): types.DeleteTranscriptionJobOutput, table
+    deleteTranscriptionJob: function(Client, types.DeleteTranscriptionJobInput): Operation<types.DeleteTranscriptionJobOutput>
     -- Deletes a custom vocabulary. To use this operation, specify the name of the custom
     -- vocabulary you want to delete using VocabularyName. Custom vocabulary names
     -- are case sensitive.
-    deleteVocabulary: function(Client, types.DeleteVocabularyInput): types.DeleteVocabularyOutput, table
+    deleteVocabulary: function(Client, types.DeleteVocabularyInput): Operation<types.DeleteVocabularyOutput>
     -- Deletes a custom vocabulary filter. To use this operation, specify the name of the
     -- custom vocabulary filter you want to delete using VocabularyFilterName.
     -- Custom vocabulary filter names are case sensitive.
-    deleteVocabularyFilter: function(Client, types.DeleteVocabularyFilterInput): types.DeleteVocabularyFilterOutput, table
+    deleteVocabularyFilter: function(Client, types.DeleteVocabularyFilterInput): Operation<types.DeleteVocabularyFilterOutput>
     -- Provides information about the specified custom language model.
     -- This operation also shows if the base language model that you used to create your
     -- custom language model has been updated. If Amazon Transcribe has updated the base
@@ -108,10 +112,10 @@ local record Client
     -- If you tried to create a new custom language model and the request wasn't successful,
     -- you can use DescribeLanguageModel to help identify the reason for this
     -- failure.
-    describeLanguageModel: function(Client, types.DescribeLanguageModelInput): types.DescribeLanguageModelOutput, table
+    describeLanguageModel: function(Client, types.DescribeLanguageModelInput): Operation<types.DescribeLanguageModelOutput>
     -- Provides information about the specified Call Analytics category.
     -- To get a list of your Call Analytics categories, use the operation.
-    getCallAnalyticsCategory: function(Client, types.GetCallAnalyticsCategoryInput): types.GetCallAnalyticsCategoryOutput, table
+    getCallAnalyticsCategory: function(Client, types.GetCallAnalyticsCategoryInput): Operation<types.GetCallAnalyticsCategoryOutput>
     -- Provides information about the specified Call Analytics job.
     -- To view the job's status, refer to CallAnalyticsJobStatus. If the status
     -- is COMPLETED, the job is finished. You can find your completed transcript
@@ -124,7 +128,7 @@ local record Client
     -- If you chose to redact the audio in your media file, you can find your redacted media
     -- file at the location specified in RedactedMediaFileUri.
     -- To get a list of your Call Analytics jobs, use the operation.
-    getCallAnalyticsJob: function(Client, types.GetCallAnalyticsJobInput): types.GetCallAnalyticsJobOutput, table
+    getCallAnalyticsJob: function(Client, types.GetCallAnalyticsJobInput): Operation<types.GetCallAnalyticsJobOutput>
     -- Provides information about the specified Medical Scribe job.
     -- To view the status of the specified medical transcription job, check the
     -- MedicalScribeJobStatus field. If the status is COMPLETED,
@@ -133,7 +137,7 @@ local record Client
     -- If the status is FAILED, FailureReason provides details on why your Medical Scribe job
     -- failed.
     -- To get a list of your Medical Scribe jobs, use the operation.
-    getMedicalScribeJob: function(Client, types.GetMedicalScribeJobInput): types.GetMedicalScribeJobOutput, table
+    getMedicalScribeJob: function(Client, types.GetMedicalScribeJobInput): Operation<types.GetMedicalScribeJobOutput>
     -- Provides information about the specified medical transcription job.
     -- To view the status of the specified medical transcription job, check the
     -- TranscriptionJobStatus field. If the status is COMPLETED,
@@ -142,14 +146,14 @@ local record Client
     -- FailureReason provides details on why your transcription job
     -- failed.
     -- To get a list of your medical transcription jobs, use the operation.
-    getMedicalTranscriptionJob: function(Client, types.GetMedicalTranscriptionJobInput): types.GetMedicalTranscriptionJobOutput, table
+    getMedicalTranscriptionJob: function(Client, types.GetMedicalTranscriptionJobInput): Operation<types.GetMedicalTranscriptionJobOutput>
     -- Provides information about the specified custom medical vocabulary.
     -- To view the status of the specified custom medical vocabulary, check the
     -- VocabularyState field. If the status is READY, your custom
     -- vocabulary is available to use. If the status is FAILED,
     -- FailureReason provides details on why your vocabulary failed.
     -- To get a list of your custom medical vocabularies, use the operation.
-    getMedicalVocabulary: function(Client, types.GetMedicalVocabularyInput): types.GetMedicalVocabularyOutput, table
+    getMedicalVocabulary: function(Client, types.GetMedicalVocabularyInput): Operation<types.GetMedicalVocabularyOutput>
     -- Provides information about the specified transcription job.
     -- To view the status of the specified transcription job, check the
     -- TranscriptionJobStatus field. If the status is COMPLETED,
@@ -160,7 +164,7 @@ local record Client
     -- If you enabled content redaction, the redacted transcript can be found at the location
     -- specified in RedactedTranscriptFileUri.
     -- To get a list of your transcription jobs, use the operation.
-    getTranscriptionJob: function(Client, types.GetTranscriptionJobInput): types.GetTranscriptionJobOutput, table
+    getTranscriptionJob: function(Client, types.GetTranscriptionJobInput): Operation<types.GetTranscriptionJobOutput>
     -- Provides information about the specified custom vocabulary.
     -- To view the status of the specified custom vocabulary, check the
     -- VocabularyState field. If the status is READY, your custom
@@ -168,51 +172,51 @@ local record Client
     -- FailureReason provides details on why your custom vocabulary
     -- failed.
     -- To get a list of your custom vocabularies, use the operation.
-    getVocabulary: function(Client, types.GetVocabularyInput): types.GetVocabularyOutput, table
+    getVocabulary: function(Client, types.GetVocabularyInput): Operation<types.GetVocabularyOutput>
     -- Provides information about the specified custom vocabulary filter.
     -- To get a list of your custom vocabulary filters, use the operation.
-    getVocabularyFilter: function(Client, types.GetVocabularyFilterInput): types.GetVocabularyFilterOutput, table
+    getVocabularyFilter: function(Client, types.GetVocabularyFilterInput): Operation<types.GetVocabularyFilterOutput>
     -- Provides a list of Call Analytics categories, including all rules that make up each
     -- category.
     -- To get detailed information about a specific Call Analytics category, use the operation.
-    listCallAnalyticsCategories: function(Client, types.ListCallAnalyticsCategoriesInput): types.ListCallAnalyticsCategoriesOutput, table
+    listCallAnalyticsCategories: function(Client, types.ListCallAnalyticsCategoriesInput): Operation<types.ListCallAnalyticsCategoriesOutput>
     -- Provides a list of Call Analytics jobs that match the specified criteria. If no
     -- criteria are specified, all Call Analytics jobs are returned.
     -- To get detailed information about a specific Call Analytics job, use the operation.
-    listCallAnalyticsJobs: function(Client, types.ListCallAnalyticsJobsInput): types.ListCallAnalyticsJobsOutput, table
+    listCallAnalyticsJobs: function(Client, types.ListCallAnalyticsJobsInput): Operation<types.ListCallAnalyticsJobsOutput>
     -- Provides a list of custom language models that match the specified criteria. If no
     -- criteria are specified, all custom language models are returned.
     -- To get detailed information about a specific custom language model, use the operation.
-    listLanguageModels: function(Client, types.ListLanguageModelsInput): types.ListLanguageModelsOutput, table
+    listLanguageModels: function(Client, types.ListLanguageModelsInput): Operation<types.ListLanguageModelsOutput>
     -- Provides a list of Medical Scribe jobs that match the specified criteria. If no
     -- criteria are specified, all Medical Scribe jobs are returned.
     -- To get detailed information about a specific Medical Scribe job, use the operation.
-    listMedicalScribeJobs: function(Client, types.ListMedicalScribeJobsInput): types.ListMedicalScribeJobsOutput, table
+    listMedicalScribeJobs: function(Client, types.ListMedicalScribeJobsInput): Operation<types.ListMedicalScribeJobsOutput>
     -- Provides a list of medical transcription jobs that match the specified criteria. If no
     -- criteria are specified, all medical transcription jobs are returned.
     -- To get detailed information about a specific medical transcription job, use the operation.
-    listMedicalTranscriptionJobs: function(Client, types.ListMedicalTranscriptionJobsInput): types.ListMedicalTranscriptionJobsOutput, table
+    listMedicalTranscriptionJobs: function(Client, types.ListMedicalTranscriptionJobsInput): Operation<types.ListMedicalTranscriptionJobsOutput>
     -- Provides a list of custom medical vocabularies that match the specified criteria. If
     -- no criteria are specified, all custom medical vocabularies are returned.
     -- To get detailed information about a specific custom medical vocabulary, use the operation.
-    listMedicalVocabularies: function(Client, types.ListMedicalVocabulariesInput): types.ListMedicalVocabulariesOutput, table
+    listMedicalVocabularies: function(Client, types.ListMedicalVocabulariesInput): Operation<types.ListMedicalVocabulariesOutput>
     -- Lists all tags associated with the specified transcription job, vocabulary, model, or
     -- resource.
     -- To learn more about using tags with Amazon Transcribe, refer to Tagging
     -- resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Provides a list of transcription jobs that match the specified criteria. If no
     -- criteria are specified, all transcription jobs are returned.
     -- To get detailed information about a specific transcription job, use the operation.
-    listTranscriptionJobs: function(Client, types.ListTranscriptionJobsInput): types.ListTranscriptionJobsOutput, table
+    listTranscriptionJobs: function(Client, types.ListTranscriptionJobsInput): Operation<types.ListTranscriptionJobsOutput>
     -- Provides a list of custom vocabularies that match the specified criteria. If no
     -- criteria are specified, all custom vocabularies are returned.
     -- To get detailed information about a specific custom vocabulary, use the operation.
-    listVocabularies: function(Client, types.ListVocabulariesInput): types.ListVocabulariesOutput, table
+    listVocabularies: function(Client, types.ListVocabulariesInput): Operation<types.ListVocabulariesOutput>
     -- Provides a list of custom vocabulary filters that match the specified criteria. If no
     -- criteria are specified, all custom vocabularies are returned.
     -- To get detailed information about a specific custom vocabulary filter, use the operation.
-    listVocabularyFilters: function(Client, types.ListVocabularyFiltersInput): types.ListVocabularyFiltersOutput, table
+    listVocabularyFilters: function(Client, types.ListVocabularyFiltersInput): Operation<types.ListVocabularyFiltersOutput>
     -- Transcribes the audio from a customer service call and applies any additional Request
     -- Parameters you choose to include in your request.
     -- In addition to many standard transcription features, Call Analytics provides you with
@@ -247,7 +251,7 @@ local record Client
     -- to specify the location of your input audio. If you choose to redact your audio, you
     -- can find your redacted media at the location specified in the
     -- RedactedMediaFileUri field of your response.
-    startCallAnalyticsJob: function(Client, types.StartCallAnalyticsJobInput): types.StartCallAnalyticsJobOutput, table
+    startCallAnalyticsJob: function(Client, types.StartCallAnalyticsJobInput): Operation<types.StartCallAnalyticsJobOutput>
     -- Transcribes patient-clinician conversations and generates clinical notes.
     -- Amazon Web Services HealthScribe automatically provides rich conversation transcripts, identifies speaker roles,
     -- classifies dialogues, extracts medical terms, and generates preliminary clinical notes.
@@ -271,7 +275,7 @@ local record Client
     -- If ShowSpeakerLabels is true, MaxSpeakerLabels must also be set.
     -- ChannelDefinitions: A MedicalScribeChannelDefinitions array should be set if and only if the ChannelIdentification
     -- value of Settings is set to true.
-    startMedicalScribeJob: function(Client, types.StartMedicalScribeJobInput): types.StartMedicalScribeJobOutput, table
+    startMedicalScribeJob: function(Client, types.StartMedicalScribeJobInput): Operation<types.StartMedicalScribeJobOutput>
     -- Transcribes the audio from a medical dictation or conversation and applies any
     -- additional Request Parameters you choose to include in your request.
     -- In addition to many standard transcription features, Amazon Transcribe Medical
@@ -298,7 +302,7 @@ local record Client
     -- Specialty: This must be PRIMARYCARE.
     -- Type: Choose whether your audio is a conversation or a
     -- dictation.
-    startMedicalTranscriptionJob: function(Client, types.StartMedicalTranscriptionJobInput): types.StartMedicalTranscriptionJobOutput, table
+    startMedicalTranscriptionJob: function(Client, types.StartMedicalTranscriptionJobInput): Operation<types.StartMedicalTranscriptionJobOutput>
     -- Transcribes the audio from a media file and applies any additional Request Parameters
     -- you choose to include in your request.
     -- To make a StartTranscriptionJob request, you must first upload your media
@@ -321,34 +325,34 @@ local record Client
     -- media, use either IdentifyLanguage or
     -- IdentifyMultipleLanguages and let Amazon Transcribe identify
     -- the languages for you.
-    startTranscriptionJob: function(Client, types.StartTranscriptionJobInput): types.StartTranscriptionJobOutput, table
+    startTranscriptionJob: function(Client, types.StartTranscriptionJobInput): Operation<types.StartTranscriptionJobOutput>
     -- Adds one or more custom tags, each in the form of a key:value pair, to the specified
     -- resource.
     -- To learn more about using tags with Amazon Transcribe, refer to Tagging
     -- resources.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified Amazon Transcribe resource.
     -- If you include UntagResource in your request, you must also include
     -- ResourceArn and TagKeys.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the specified Call Analytics category with new rules. Note that the
     -- UpdateCallAnalyticsCategory operation overwrites all existing rules
     -- contained in the specified category. You cannot append additional rules onto an existing
     -- category.
     -- To create a new category, see .
-    updateCallAnalyticsCategory: function(Client, types.UpdateCallAnalyticsCategoryInput): types.UpdateCallAnalyticsCategoryOutput, table
+    updateCallAnalyticsCategory: function(Client, types.UpdateCallAnalyticsCategoryInput): Operation<types.UpdateCallAnalyticsCategoryOutput>
     -- Updates an existing custom medical vocabulary with new values. This operation
     -- overwrites all existing information with your new values; you cannot append new terms
     -- onto an existing custom vocabulary.
-    updateMedicalVocabulary: function(Client, types.UpdateMedicalVocabularyInput): types.UpdateMedicalVocabularyOutput, table
+    updateMedicalVocabulary: function(Client, types.UpdateMedicalVocabularyInput): Operation<types.UpdateMedicalVocabularyOutput>
     -- Updates an existing custom vocabulary with new values. This operation overwrites all
     -- existing information with your new values; you cannot append new terms onto an existing
     -- custom vocabulary.
-    updateVocabulary: function(Client, types.UpdateVocabularyInput): types.UpdateVocabularyOutput, table
+    updateVocabulary: function(Client, types.UpdateVocabularyInput): Operation<types.UpdateVocabularyOutput>
     -- Updates an existing custom vocabulary filter with a new list of words. The new list
     -- you provide overwrites all previous entries; you cannot append new terms onto an
     -- existing custom vocabulary filter.
-    updateVocabularyFilter: function(Client, types.UpdateVocabularyFilterInput): types.UpdateVocabularyFilterOutput, table
+    updateVocabularyFilter: function(Client, types.UpdateVocabularyFilterInput): Operation<types.UpdateVocabularyFilterOutput>
 end
 
 local record M

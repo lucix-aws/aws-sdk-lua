@@ -2,6 +2,10 @@
 
 local types = require("kinesisvideoarchivedmedia.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Downloads an MP4 file (clip) containing the archived, on-demand media from the
     -- specified video stream over the specified time range.
@@ -32,7 +36,7 @@ local record Client
     -- using CloudWatch to monitor Kinesis Video Streams, see Monitoring Kinesis Video Streams. For pricing information, see Amazon Kinesis Video
     -- Streams Pricing and Amazon Web Services
     -- Pricing. Charges for outgoing Amazon Web Services data apply.
-    getClip: function(Client, types.GetClipInput): types.GetClipOutput, table
+    getClip: function(Client, types.GetClipInput): Operation<types.GetClipOutput>
     -- Retrieves an MPEG Dynamic Adaptive Streaming over HTTP (DASH) URL for the stream. You
     -- can then open the URL in a media player to view the stream contents.
     -- Both the StreamName and the StreamARN parameters are
@@ -129,7 +133,7 @@ local record Client
     -- might need to take in order to successfully try again.
     -- For more information, see the Errors section at
     -- the bottom of this topic, as well as Common Errors.
-    getDASHStreamingSessionURL: function(Client, types.GetDASHStreamingSessionURLInput): types.GetDASHStreamingSessionURLOutput, table
+    getDASHStreamingSessionURL: function(Client, types.GetDASHStreamingSessionURLInput): Operation<types.GetDASHStreamingSessionURLOutput>
     -- Retrieves an HTTP Live Streaming (HLS) URL for the stream. You can then open the URL
     -- in a browser or media player to view the stream contents.
     -- Both the StreamName and the StreamARN parameters are
@@ -261,10 +265,10 @@ local record Client
     -- might need to take in order to successfully try again.
     -- For more information, see the Errors section at
     -- the bottom of this topic, as well as Common Errors.
-    getHLSStreamingSessionURL: function(Client, types.GetHLSStreamingSessionURLInput): types.GetHLSStreamingSessionURLOutput, table
+    getHLSStreamingSessionURL: function(Client, types.GetHLSStreamingSessionURLInput): Operation<types.GetHLSStreamingSessionURLOutput>
     -- Retrieves a list of images corresponding to each timestamp for a given time range,
     -- sampling interval, and image format configuration.
-    getImages: function(Client, types.GetImagesInput): types.GetImagesOutput, table
+    getImages: function(Client, types.GetImagesInput): Operation<types.GetImagesOutput>
     -- Gets media for a list of fragments (specified by fragment number) from the archived
     -- data in an Amazon Kinesis video stream.
     -- You must first call the GetDataEndpoint API to get an endpoint.
@@ -286,7 +290,7 @@ local record Client
     -- might need to take in order to successfully try again.
     -- For more information, see the Errors section at
     -- the bottom of this topic, as well as Common Errors.
-    getMediaForFragmentList: function(Client, types.GetMediaForFragmentListInput): types.GetMediaForFragmentListOutput, table
+    getMediaForFragmentList: function(Client, types.GetMediaForFragmentListInput): Operation<types.GetMediaForFragmentListOutput>
     -- Returns a list of Fragment objects from the specified stream and
     -- timestamp range within the archived data.
     -- Listing fragments is eventually consistent. This means that even if the producer
@@ -310,7 +314,7 @@ local record Client
     -- might need to take in order to successfully try again.
     -- For more information, see the Errors section at
     -- the bottom of this topic, as well as Common Errors.
-    listFragments: function(Client, types.ListFragmentsInput): types.ListFragmentsOutput, table
+    listFragments: function(Client, types.ListFragmentsInput): Operation<types.ListFragmentsOutput>
 end
 
 local record M

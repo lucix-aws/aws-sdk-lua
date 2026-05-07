@@ -2,11 +2,15 @@
 
 local types = require("servicecatalogappregistry.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates an attribute group with an application to augment the application's metadata
     -- with the group's attributes. This feature enables applications to be described with
     -- user-defined details that are machine-readable, such as third-party integrations.
-    associateAttributeGroup: function(Client, types.AssociateAttributeGroupInput): types.AssociateAttributeGroupOutput, table
+    associateAttributeGroup: function(Client, types.AssociateAttributeGroupInput): Operation<types.AssociateAttributeGroupOutput>
     -- Associates a resource with an application.
     -- The resource can be specified by its ARN or name.
     -- The application can be specified by ARN, ID, or name.
@@ -21,20 +25,20 @@ local record Client
     -- cloudformation:DescribeStacks
     -- In addition, you must have the tagging permission defined by the Amazon Web Services service that creates the resource.
     -- For more information, see TagResources in the Resource Groups Tagging API Reference.
-    associateResource: function(Client, types.AssociateResourceInput): types.AssociateResourceOutput, table
+    associateResource: function(Client, types.AssociateResourceInput): Operation<types.AssociateResourceOutput>
     -- Creates a new application that is the top-level node in a hierarchy of related cloud resource abstractions.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates a new attribute group as a container for user-defined attributes. This feature
     -- enables users to have full control over their cloud application's metadata in a rich
     -- machine-readable format to facilitate integration with automated workflows and third-party
     -- tools.
-    createAttributeGroup: function(Client, types.CreateAttributeGroupInput): types.CreateAttributeGroupOutput, table
+    createAttributeGroup: function(Client, types.CreateAttributeGroupInput): Operation<types.CreateAttributeGroupOutput>
     -- Deletes an application that is specified either by its application ID, name, or ARN. All associated attribute groups and resources must be disassociated from it before deleting an application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Deletes an attribute group, specified either by its attribute group ID, name, or ARN.
-    deleteAttributeGroup: function(Client, types.DeleteAttributeGroupInput): types.DeleteAttributeGroupOutput, table
+    deleteAttributeGroup: function(Client, types.DeleteAttributeGroupInput): Operation<types.DeleteAttributeGroupOutput>
     -- Disassociates an attribute group from an application to remove the extra attributes contained in the attribute group from the application's metadata. This operation reverts AssociateAttributeGroup.
-    disassociateAttributeGroup: function(Client, types.DisassociateAttributeGroupInput): types.DisassociateAttributeGroupOutput, table
+    disassociateAttributeGroup: function(Client, types.DisassociateAttributeGroupInput): Operation<types.DisassociateAttributeGroupOutput>
     -- Disassociates a resource from application.
     -- Both the resource and the application can be specified either by ID or name.
     -- Minimum permissions
@@ -48,7 +52,7 @@ local record Client
     -- cloudformation:DescribeStacks
     -- In addition, you must have the tagging permission defined by the Amazon Web Services service that creates the resource.
     -- For more information, see UntagResources in the Resource Groups Tagging API Reference.
-    disassociateResource: function(Client, types.DisassociateResourceInput): types.DisassociateResourceOutput, table
+    disassociateResource: function(Client, types.DisassociateResourceInput): Operation<types.DisassociateResourceOutput>
     -- Retrieves metadata information
     -- about one
     -- of your applications.
@@ -66,21 +70,21 @@ local record Client
     -- to make sure
     -- that the exact same application is returned or a ResourceNotFoundException is thrown,
     -- avoiding the ABA addressing problem.
-    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getApplication: function(Client, types.GetApplicationInput): Operation<types.GetApplicationOutput>
     -- Gets the resource associated with the application.
-    getAssociatedResource: function(Client, types.GetAssociatedResourceInput): types.GetAssociatedResourceOutput, table
+    getAssociatedResource: function(Client, types.GetAssociatedResourceInput): Operation<types.GetAssociatedResourceOutput>
     -- Retrieves an attribute group
     -- by its ARN, ID, or name.
     -- The attribute group can be specified
     -- by its ARN, ID, or name.
-    getAttributeGroup: function(Client, types.GetAttributeGroupInput): types.GetAttributeGroupOutput, table
+    getAttributeGroup: function(Client, types.GetAttributeGroupInput): Operation<types.GetAttributeGroupOutput>
     -- Retrieves a TagKey configuration
     -- from an account.
-    getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    getConfiguration: function(Client, types.GetConfigurationInput): Operation<types.GetConfigurationOutput>
     -- Retrieves a list of all of your applications. Results are paginated.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Lists all attribute groups that are associated with specified application. Results are paginated.
-    listAssociatedAttributeGroups: function(Client, types.ListAssociatedAttributeGroupsInput): types.ListAssociatedAttributeGroupsOutput, table
+    listAssociatedAttributeGroups: function(Client, types.ListAssociatedAttributeGroupsInput): Operation<types.ListAssociatedAttributeGroupsOutput>
     -- Lists all
     -- of the resources
     -- that are associated
@@ -96,30 +100,30 @@ local record Client
     -- that are associated
     -- with it
     -- using this API.
-    listAssociatedResources: function(Client, types.ListAssociatedResourcesInput): types.ListAssociatedResourcesOutput, table
+    listAssociatedResources: function(Client, types.ListAssociatedResourcesInput): Operation<types.ListAssociatedResourcesOutput>
     -- Lists all attribute groups which you have access to. Results are paginated.
-    listAttributeGroups: function(Client, types.ListAttributeGroupsInput): types.ListAttributeGroupsOutput, table
+    listAttributeGroups: function(Client, types.ListAttributeGroupsInput): Operation<types.ListAttributeGroupsOutput>
     -- Lists the details of all attribute groups associated with a specific application. The results display in pages.
-    listAttributeGroupsForApplication: function(Client, types.ListAttributeGroupsForApplicationInput): types.ListAttributeGroupsForApplicationOutput, table
+    listAttributeGroupsForApplication: function(Client, types.ListAttributeGroupsForApplicationInput): Operation<types.ListAttributeGroupsForApplicationOutput>
     -- Lists all of the tags on the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Associates a TagKey configuration
     -- to an account.
-    putConfiguration: function(Client, types.PutConfigurationInput): types.PutConfigurationOutput, table
+    putConfiguration: function(Client, types.PutConfigurationInput): Operation<types.PutConfigurationOutput>
     -- Syncs the resource with current AppRegistry records.
     -- Specifically, the resource’s AppRegistry system tags sync with its associated application. We remove the resource's AppRegistry system tags if it does not associate with the application. The caller must have permissions to read and update the resource.
-    syncResource: function(Client, types.SyncResourceInput): types.SyncResourceOutput, table
+    syncResource: function(Client, types.SyncResourceInput): Operation<types.SyncResourceOutput>
     -- Assigns one or more tags (key-value pairs) to the specified resource.
     -- Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.
     -- This operation returns an empty response if the call was successful.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a resource.
     -- This operation returns an empty response if the call was successful.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing application with new attributes.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Updates an existing attribute group with new details.
-    updateAttributeGroup: function(Client, types.UpdateAttributeGroupInput): types.UpdateAttributeGroupOutput, table
+    updateAttributeGroup: function(Client, types.UpdateAttributeGroupInput): Operation<types.UpdateAttributeGroupOutput>
 end
 
 local record M

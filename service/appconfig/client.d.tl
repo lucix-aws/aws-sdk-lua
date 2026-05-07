@@ -2,13 +2,17 @@
 
 local types = require("appconfig.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an application. In AppConfig, an application is simply an
     -- organizational construct like a folder. This organizational construct has a relationship
     -- with some unit of executable code. For example, you could create an application called
     -- MyMobileApp to organize and manage configuration data for a mobile application installed by
     -- your users.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates a configuration profile, which is information that enables AppConfig
     -- to access the configuration source. Valid configuration sources include the
     -- following:
@@ -27,12 +31,12 @@ local record Client
     -- For more information, see Create a
     -- Configuration and a Configuration Profile in the AppConfig
     -- User Guide.
-    createConfigurationProfile: function(Client, types.CreateConfigurationProfileInput): types.CreateConfigurationProfileOutput, table
+    createConfigurationProfile: function(Client, types.CreateConfigurationProfileInput): Operation<types.CreateConfigurationProfileOutput>
     -- Creates a deployment strategy that defines important criteria for rolling out your
     -- configuration to the designated targets. A deployment strategy includes the overall
     -- duration required, a percentage of targets to receive the deployment during each interval,
     -- an algorithm that defines how percentage grows, and bake time.
-    createDeploymentStrategy: function(Client, types.CreateDeploymentStrategyInput): types.CreateDeploymentStrategyOutput, table
+    createDeploymentStrategy: function(Client, types.CreateDeploymentStrategyInput): Operation<types.CreateDeploymentStrategyOutput>
     -- Creates an environment. For each application, you define one or more environments. An
     -- environment is a deployment group of AppConfig targets, such as applications in a
     -- Beta or Production environment. You can also define
@@ -41,7 +45,7 @@ local record Client
     -- configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a
     -- configuration deployment. If an alarm is triggered, the system rolls back the
     -- configuration.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Creates an AppConfig extension. An extension augments your ability to inject
     -- logic or behavior at different points during the AppConfig workflow of creating
     -- or deploying a configuration.
@@ -58,7 +62,7 @@ local record Client
     -- message queue in the Uri field.
     -- For more information about extensions, see Extending
     -- workflows in the AppConfig User Guide.
-    createExtension: function(Client, types.CreateExtensionInput): types.CreateExtensionOutput, table
+    createExtension: function(Client, types.CreateExtensionInput): Operation<types.CreateExtensionOutput>
     -- When you create an extension or configure an Amazon Web Services authored extension, you
     -- associate the extension with an AppConfig application, environment, or
     -- configuration profile. For example, you can choose to run the AppConfig
@@ -71,129 +75,129 @@ local record Client
     -- application or a configuration profile. For more information about extensions and
     -- associations, see Extending
     -- workflows in the AppConfig User Guide.
-    createExtensionAssociation: function(Client, types.CreateExtensionAssociationInput): types.CreateExtensionAssociationOutput, table
+    createExtensionAssociation: function(Client, types.CreateExtensionAssociationInput): Operation<types.CreateExtensionAssociationOutput>
     -- Creates a new configuration in the AppConfig hosted configuration store. If
     -- you're creating a feature flag, we recommend you familiarize yourself with the JSON schema
     -- for feature flag data. For more information, see Type reference for AWS.AppConfig.FeatureFlags in the
     -- AppConfig User Guide.
-    createHostedConfigurationVersion: function(Client, types.CreateHostedConfigurationVersionInput): types.CreateHostedConfigurationVersionOutput, table
+    createHostedConfigurationVersion: function(Client, types.CreateHostedConfigurationVersionInput): Operation<types.CreateHostedConfigurationVersionOutput>
     -- Deletes an application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Deletes a configuration profile.
     -- To prevent users from unintentionally deleting actively-used configuration profiles,
     -- enable deletion
     -- protection.
-    deleteConfigurationProfile: function(Client, types.DeleteConfigurationProfileInput): types.DeleteConfigurationProfileOutput, table
+    deleteConfigurationProfile: function(Client, types.DeleteConfigurationProfileInput): Operation<types.DeleteConfigurationProfileOutput>
     -- Deletes a deployment strategy.
-    deleteDeploymentStrategy: function(Client, types.DeleteDeploymentStrategyInput): types.DeleteDeploymentStrategyOutput, table
+    deleteDeploymentStrategy: function(Client, types.DeleteDeploymentStrategyInput): Operation<types.DeleteDeploymentStrategyOutput>
     -- Deletes an environment.
     -- To prevent users from unintentionally deleting actively-used environments, enable deletion
     -- protection.
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- Deletes an AppConfig extension. You must delete all associations to an
     -- extension before you delete the extension.
-    deleteExtension: function(Client, types.DeleteExtensionInput): types.DeleteExtensionOutput, table
+    deleteExtension: function(Client, types.DeleteExtensionInput): Operation<types.DeleteExtensionOutput>
     -- Deletes an extension association. This action doesn't delete extensions defined in the
     -- association.
-    deleteExtensionAssociation: function(Client, types.DeleteExtensionAssociationInput): types.DeleteExtensionAssociationOutput, table
+    deleteExtensionAssociation: function(Client, types.DeleteExtensionAssociationInput): Operation<types.DeleteExtensionAssociationOutput>
     -- Deletes a version of a configuration from the AppConfig hosted configuration
     -- store.
-    deleteHostedConfigurationVersion: function(Client, types.DeleteHostedConfigurationVersionInput): types.DeleteHostedConfigurationVersionOutput, table
+    deleteHostedConfigurationVersion: function(Client, types.DeleteHostedConfigurationVersionInput): Operation<types.DeleteHostedConfigurationVersionOutput>
     -- Returns information about the status of the DeletionProtection
     -- parameter.
-    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): Operation<types.GetAccountSettingsOutput>
     -- Retrieves information about an application.
-    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getApplication: function(Client, types.GetApplicationInput): Operation<types.GetApplicationOutput>
     -- (Deprecated) Retrieves the latest deployed configuration.
     -- Note the following important information.
     -- This API action is deprecated. Calls to receive configuration data should use
     -- the StartConfigurationSession and GetLatestConfiguration APIs instead.
     -- GetConfiguration is a priced call. For more information, see
     -- Pricing.
-    getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    getConfiguration: function(Client, types.GetConfigurationInput): Operation<types.GetConfigurationOutput>
     -- Retrieves information about a configuration profile.
-    getConfigurationProfile: function(Client, types.GetConfigurationProfileInput): types.GetConfigurationProfileOutput, table
+    getConfigurationProfile: function(Client, types.GetConfigurationProfileInput): Operation<types.GetConfigurationProfileOutput>
     -- Retrieves information about a configuration deployment.
-    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): Operation<types.GetDeploymentOutput>
     -- Retrieves information about a deployment strategy. A deployment strategy defines
     -- important criteria for rolling out your configuration to the designated targets. A
     -- deployment strategy includes the overall duration required, a percentage of targets to
     -- receive the deployment during each interval, an algorithm that defines how percentage
     -- grows, and bake time.
-    getDeploymentStrategy: function(Client, types.GetDeploymentStrategyInput): types.GetDeploymentStrategyOutput, table
+    getDeploymentStrategy: function(Client, types.GetDeploymentStrategyInput): Operation<types.GetDeploymentStrategyOutput>
     -- Retrieves information about an environment. An environment is a deployment group of
     -- AppConfig applications, such as applications in a Production
     -- environment or in an EU_Region environment. Each configuration deployment
     -- targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If
     -- an alarm is triggered during a deployment, AppConfig roles back the
     -- configuration.
-    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): Operation<types.GetEnvironmentOutput>
     -- Returns information about an AppConfig extension.
-    getExtension: function(Client, types.GetExtensionInput): types.GetExtensionOutput, table
+    getExtension: function(Client, types.GetExtensionInput): Operation<types.GetExtensionOutput>
     -- Returns information about an AppConfig extension association. For more
     -- information about extensions and associations, see Extending
     -- workflows in the AppConfig User Guide.
-    getExtensionAssociation: function(Client, types.GetExtensionAssociationInput): types.GetExtensionAssociationOutput, table
+    getExtensionAssociation: function(Client, types.GetExtensionAssociationInput): Operation<types.GetExtensionAssociationOutput>
     -- Retrieves information about a specific configuration version.
-    getHostedConfigurationVersion: function(Client, types.GetHostedConfigurationVersionInput): types.GetHostedConfigurationVersionOutput, table
+    getHostedConfigurationVersion: function(Client, types.GetHostedConfigurationVersionInput): Operation<types.GetHostedConfigurationVersionOutput>
     -- Lists all applications in your Amazon Web Services account.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Lists the configuration profiles for an application.
-    listConfigurationProfiles: function(Client, types.ListConfigurationProfilesInput): types.ListConfigurationProfilesOutput, table
+    listConfigurationProfiles: function(Client, types.ListConfigurationProfilesInput): Operation<types.ListConfigurationProfilesOutput>
     -- Lists the deployments for an environment in descending deployment number order.
-    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): Operation<types.ListDeploymentsOutput>
     -- Lists deployment strategies.
-    listDeploymentStrategies: function(Client, types.ListDeploymentStrategiesInput): types.ListDeploymentStrategiesOutput, table
+    listDeploymentStrategies: function(Client, types.ListDeploymentStrategiesInput): Operation<types.ListDeploymentStrategiesOutput>
     -- Lists the environments for an application.
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- Lists all AppConfig extension associations in the account. For more
     -- information about extensions and associations, see Extending
     -- workflows in the AppConfig User Guide.
-    listExtensionAssociations: function(Client, types.ListExtensionAssociationsInput): types.ListExtensionAssociationsOutput, table
+    listExtensionAssociations: function(Client, types.ListExtensionAssociationsInput): Operation<types.ListExtensionAssociationsOutput>
     -- Lists all custom and Amazon Web Services authored AppConfig extensions in the
     -- account. For more information about extensions, see Extending
     -- workflows in the AppConfig User Guide.
-    listExtensions: function(Client, types.ListExtensionsInput): types.ListExtensionsOutput, table
+    listExtensions: function(Client, types.ListExtensionsInput): Operation<types.ListExtensionsOutput>
     -- Lists configurations stored in the AppConfig hosted configuration store by
     -- version.
-    listHostedConfigurationVersions: function(Client, types.ListHostedConfigurationVersionsInput): types.ListHostedConfigurationVersionsOutput, table
+    listHostedConfigurationVersions: function(Client, types.ListHostedConfigurationVersionsInput): Operation<types.ListHostedConfigurationVersionsOutput>
     -- Retrieves the list of key-value tags assigned to the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts a deployment.
-    startDeployment: function(Client, types.StartDeploymentInput): types.StartDeploymentOutput, table
+    startDeployment: function(Client, types.StartDeploymentInput): Operation<types.StartDeploymentOutput>
     -- Stops a deployment. This API action works only on deployments that have a status of
     -- DEPLOYING, unless an AllowRevert parameter is supplied. If the
     -- AllowRevert parameter is supplied, the status of an in-progress deployment
     -- will be ROLLED_BACK. The status of a completed deployment will be
     -- REVERTED. AppConfig only allows a revert within 72 hours of
     -- deployment completion.
-    stopDeployment: function(Client, types.StopDeploymentInput): types.StopDeploymentOutput, table
+    stopDeployment: function(Client, types.StopDeploymentInput): Operation<types.StopDeploymentOutput>
     -- Assigns metadata to an AppConfig resource. Tags help organize and categorize
     -- your AppConfig resources. Each tag consists of a key and an optional value, both
     -- of which you define. You can specify a maximum of 50 tags for a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes a tag key and value from an AppConfig resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the value of the DeletionProtection parameter.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Updates an application.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Updates a configuration profile.
-    updateConfigurationProfile: function(Client, types.UpdateConfigurationProfileInput): types.UpdateConfigurationProfileOutput, table
+    updateConfigurationProfile: function(Client, types.UpdateConfigurationProfileInput): Operation<types.UpdateConfigurationProfileOutput>
     -- Updates a deployment strategy.
-    updateDeploymentStrategy: function(Client, types.UpdateDeploymentStrategyInput): types.UpdateDeploymentStrategyOutput, table
+    updateDeploymentStrategy: function(Client, types.UpdateDeploymentStrategyInput): Operation<types.UpdateDeploymentStrategyOutput>
     -- Updates an environment.
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
     -- Updates an AppConfig extension. For more information about extensions, see
     -- Extending
     -- workflows in the AppConfig User Guide.
-    updateExtension: function(Client, types.UpdateExtensionInput): types.UpdateExtensionOutput, table
+    updateExtension: function(Client, types.UpdateExtensionInput): Operation<types.UpdateExtensionOutput>
     -- Updates an association. For more information about extensions and associations, see
     -- Extending
     -- workflows in the AppConfig User Guide.
-    updateExtensionAssociation: function(Client, types.UpdateExtensionAssociationInput): types.UpdateExtensionAssociationOutput, table
+    updateExtensionAssociation: function(Client, types.UpdateExtensionAssociationInput): Operation<types.UpdateExtensionAssociationOutput>
     -- Uses the validators in a configuration profile to validate a configuration.
-    validateConfiguration: function(Client, types.ValidateConfigurationInput): types.ValidateConfigurationOutput, table
+    validateConfiguration: function(Client, types.ValidateConfigurationInput): Operation<types.ValidateConfigurationOutput>
 end
 
 local record M

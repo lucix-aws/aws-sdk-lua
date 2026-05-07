@@ -2,6 +2,10 @@
 
 local types = require("appconfigdata.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Retrieves the latest deployed configuration. This API may return empty configuration
     -- data if the client already has the latest version. For more information about this API
@@ -15,12 +19,12 @@ local record Client
     -- one.
     -- GetLatestConfiguration is a priced call. For more information, see
     -- Pricing.
-    getLatestConfiguration: function(Client, types.GetLatestConfigurationInput): types.GetLatestConfigurationOutput, table
+    getLatestConfiguration: function(Client, types.GetLatestConfigurationInput): Operation<types.GetLatestConfigurationOutput>
     -- Starts a configuration session used to retrieve a deployed configuration. For more
     -- information about this API action and to view example CLI commands that show how to use
     -- it with the GetLatestConfiguration API action, see Retrieving the
     -- configuration in the AppConfig User Guide.
-    startConfigurationSession: function(Client, types.StartConfigurationSessionInput): types.StartConfigurationSessionOutput, table
+    startConfigurationSession: function(Client, types.StartConfigurationSessionInput): Operation<types.StartConfigurationSessionOutput>
 end
 
 local record M

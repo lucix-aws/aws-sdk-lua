@@ -2,11 +2,15 @@
 
 local types = require("transcribestreaming.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Provides details about the specified Amazon Web Services HealthScribe streaming session.
     -- To view the status of the streaming session, check the StreamStatus field in the response. To get the
     -- details of post-stream analytics, including its status, check the PostStreamAnalyticsResult field in the response.
-    getMedicalScribeStream: function(Client, types.GetMedicalScribeStreamInput): types.GetMedicalScribeStreamOutput, table
+    getMedicalScribeStream: function(Client, types.GetMedicalScribeStreamInput): Operation<types.GetMedicalScribeStreamOutput>
     -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
     -- Amazon Transcribe and the transcription results are streamed to your application. Use this operation
     -- for Call Analytics transcriptions.
@@ -15,7 +19,7 @@ local record Client
     -- media-encoding
     -- sample-rate
     -- For more information on streaming with Amazon Transcribe, see Transcribing streaming audio.
-    startCallAnalyticsStreamTranscription: function(Client, types.StartCallAnalyticsStreamTranscriptionInput): types.StartCallAnalyticsStreamTranscriptionOutput, table
+    startCallAnalyticsStreamTranscription: function(Client, types.StartCallAnalyticsStreamTranscriptionInput): Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
     -- Starts a bidirectional HTTP/2 stream, where audio is streamed to
     -- Amazon Web Services HealthScribe
     -- and the transcription results are streamed to your application.
@@ -37,7 +41,7 @@ local record Client
     -- For more information on streaming with
     -- Amazon Web Services HealthScribe,
     -- see Amazon Web Services HealthScribe.
-    startMedicalScribeStream: function(Client, types.StartMedicalScribeStreamInput): types.StartMedicalScribeStreamOutput, table
+    startMedicalScribeStream: function(Client, types.StartMedicalScribeStreamInput): Operation<types.StartMedicalScribeStreamOutput>
     -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
     -- Amazon Transcribe Medical and the transcription results are streamed to your
     -- application.
@@ -48,7 +52,7 @@ local record Client
     -- For more information on streaming with Amazon Transcribe Medical, see
     -- Transcribing
     -- streaming audio.
-    startMedicalStreamTranscription: function(Client, types.StartMedicalStreamTranscriptionInput): types.StartMedicalStreamTranscriptionOutput, table
+    startMedicalStreamTranscription: function(Client, types.StartMedicalStreamTranscriptionInput): Operation<types.StartMedicalStreamTranscriptionOutput>
     -- Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed to
     -- Amazon Transcribe and the transcription results are streamed to your application.
     -- The following parameters are required:
@@ -56,7 +60,7 @@ local record Client
     -- media-encoding
     -- sample-rate
     -- For more information on streaming with Amazon Transcribe, see Transcribing streaming audio.
-    startStreamTranscription: function(Client, types.StartStreamTranscriptionInput): types.StartStreamTranscriptionOutput, table
+    startStreamTranscription: function(Client, types.StartStreamTranscriptionInput): Operation<types.StartStreamTranscriptionOutput>
 end
 
 local record M

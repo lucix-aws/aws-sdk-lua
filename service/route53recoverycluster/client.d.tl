@@ -2,6 +2,10 @@
 
 local types = require("route53recoverycluster.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Get the state for a routing control. A routing control is a simple on/off switch that you
     -- can use to route traffic to cells. When a routing control state is set to ON, traffic flows to a cell. When
@@ -21,7 +25,7 @@ local record Client
     -- Viewing and updating routing control states
     -- Working with
     -- routing controls in Route 53 ARC
-    getRoutingControlState: function(Client, types.GetRoutingControlStateInput): types.GetRoutingControlStateOutput, table
+    getRoutingControlState: function(Client, types.GetRoutingControlStateInput): Operation<types.GetRoutingControlStateOutput>
     -- List routing control names and Amazon Resource Names (ARNs), as well as the routing control
     -- state for each routing control, along with the control panel name and control panel ARN for the routing controls.
     -- If you specify a control panel ARN, this call lists the routing controls in the control panel. Otherwise, it lists
@@ -41,7 +45,7 @@ local record Client
     -- Viewing and updating routing control states
     -- Working with
     -- routing controls in Route 53 ARC
-    listRoutingControls: function(Client, types.ListRoutingControlsInput): types.ListRoutingControlsOutput, table
+    listRoutingControls: function(Client, types.ListRoutingControlsInput): Operation<types.ListRoutingControlsOutput>
     -- Set the state of the routing control to reroute traffic. You can set the value to ON or
     -- OFF. When the state is ON, traffic flows to a cell. When the state is OFF, traffic does not
     -- flow.
@@ -62,7 +66,7 @@ local record Client
     -- in the Amazon Route 53 Application Recovery Controller Developer Guide.
     -- Viewing and updating routing control states
     -- Working with routing controls overall
-    updateRoutingControlState: function(Client, types.UpdateRoutingControlStateInput): types.UpdateRoutingControlStateOutput, table
+    updateRoutingControlState: function(Client, types.UpdateRoutingControlStateInput): Operation<types.UpdateRoutingControlStateOutput>
     -- Set multiple routing control states. You can set the value for each state to be ON or OFF.
     -- When the state is ON, traffic flows to a cell. When it's OFF, traffic does not
     -- flow.
@@ -83,7 +87,7 @@ local record Client
     -- in the Amazon Route 53 Application Recovery Controller Developer Guide.
     -- Viewing and updating routing control states
     -- Working with routing controls overall
-    updateRoutingControlStates: function(Client, types.UpdateRoutingControlStatesInput): types.UpdateRoutingControlStatesOutput, table
+    updateRoutingControlStates: function(Client, types.UpdateRoutingControlStatesInput): Operation<types.UpdateRoutingControlStatesOutput>
 end
 
 local record M

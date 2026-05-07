@@ -2,6 +2,10 @@
 
 local types = require("timestreamwrite.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new Timestream batch load task. A batch load task processes data from
     -- a CSV source in an S3 location and writes to a Timestream table. A mapping from
@@ -12,18 +16,18 @@ local record Client
     -- keys. Service quotas apply. For
     -- details, see code
     -- sample.
-    createBatchLoadTask: function(Client, types.CreateBatchLoadTaskInput): types.CreateBatchLoadTaskOutput, table
+    createBatchLoadTask: function(Client, types.CreateBatchLoadTaskInput): Operation<types.CreateBatchLoadTaskOutput>
     -- Creates a new Timestream database. If the KMS key is not
     -- specified, the database will be encrypted with a Timestream managed KMS key located in your account. For more information, see Amazon Web Services managed keys. Service quotas apply. For
     -- details, see code sample.
-    createDatabase: function(Client, types.CreateDatabaseInput): types.CreateDatabaseOutput, table
+    createDatabase: function(Client, types.CreateDatabaseInput): Operation<types.CreateDatabaseOutput>
     -- Adds a new table to an existing database in your account. In an Amazon Web Services account, table names must be at least unique within each Region if they are in the same
     -- database. You might have identical table names in the same Region if the tables are in
     -- separate databases. While creating the table, you must specify the table name, database
     -- name, and the retention properties. Service quotas apply. See
     -- code
     -- sample for details.
-    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createTable: function(Client, types.CreateTableInput): Operation<types.CreateTableOutput>
     -- Deletes a given Timestream database. This is an irreversible
     -- operation. After a database is deleted, the time-series data from its tables cannot be
     -- recovered.
@@ -33,7 +37,7 @@ local record Client
     -- a ResourceNotFoundException. Clients should consider them equivalent.
     -- See code sample
     -- for details.
-    deleteDatabase: function(Client, types.DeleteDatabaseInput): types.DeleteDatabaseOutput, table
+    deleteDatabase: function(Client, types.DeleteDatabaseInput): Operation<types.DeleteDatabaseOutput>
     -- Deletes a given Timestream table. This is an irreversible operation. After a
     -- Timestream database table is deleted, the time-series data stored in the table
     -- cannot be recovered.
@@ -41,17 +45,17 @@ local record Client
     -- a ResourceNotFoundException. Clients should consider them equivalent.
     -- See code
     -- sample for details.
-    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): Operation<types.DeleteTableOutput>
     -- Returns information about the batch load task, including configurations, mappings,
     -- progress, and other details. Service quotas apply. See
     -- code
     -- sample for details.
-    describeBatchLoadTask: function(Client, types.DescribeBatchLoadTaskInput): types.DescribeBatchLoadTaskOutput, table
+    describeBatchLoadTask: function(Client, types.DescribeBatchLoadTaskInput): Operation<types.DescribeBatchLoadTaskOutput>
     -- Returns information about the database, including the database name, time that the
     -- database was created, and the total number of tables found within the database. Service
     -- quotas apply. See code sample
     -- for details.
-    describeDatabase: function(Client, types.DescribeDatabaseInput): types.DescribeDatabaseOutput, table
+    describeDatabase: function(Client, types.DescribeDatabaseInput): Operation<types.DescribeDatabaseOutput>
     -- Returns a list of available endpoints to make Timestream API calls against.
     -- This API operation is available through both the Write and Query APIs.
     -- Because the Timestream SDKs are designed to transparently work with the
@@ -64,46 +68,46 @@ local record Client
     -- For detailed information on how and when to use and implement DescribeEndpoints, see
     -- The
     -- Endpoint Discovery Pattern.
-    describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    describeEndpoints: function(Client, types.DescribeEndpointsInput): Operation<types.DescribeEndpointsOutput>
     -- Returns information about the table, including the table name, database name, retention
     -- duration of the memory store and the magnetic store. Service quotas apply. See
     -- code
     -- sample for details.
-    describeTable: function(Client, types.DescribeTableInput): types.DescribeTableOutput, table
+    describeTable: function(Client, types.DescribeTableInput): Operation<types.DescribeTableOutput>
     -- Provides a list of batch load tasks, along with the name, status, when the task is
     -- resumable until, and other details. See code
     -- sample for details.
-    listBatchLoadTasks: function(Client, types.ListBatchLoadTasksInput): types.ListBatchLoadTasksOutput, table
+    listBatchLoadTasks: function(Client, types.ListBatchLoadTasksInput): Operation<types.ListBatchLoadTasksOutput>
     -- Returns a list of your Timestream databases. Service quotas apply. See
     -- code sample for
     -- details.
-    listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    listDatabases: function(Client, types.ListDatabasesInput): Operation<types.ListDatabasesOutput>
     -- Provides a list of tables, along with the name, status, and retention properties of each
     -- table. See code sample
     -- for details.
-    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTables: function(Client, types.ListTablesInput): Operation<types.ListTablesOutput>
     -- Lists all tags on a Timestream resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
-    resumeBatchLoadTask: function(Client, types.ResumeBatchLoadTaskInput): types.ResumeBatchLoadTaskOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
+    resumeBatchLoadTask: function(Client, types.ResumeBatchLoadTaskInput): Operation<types.ResumeBatchLoadTaskOutput>
     -- Associates a set of tags with a Timestream resource. You can then activate
     -- these user-defined tags so that they appear on the Billing and Cost Management console for
     -- cost allocation tracking.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the association of tags from a Timestream resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Modifies the KMS key for an existing database. While updating the
     -- database, you must specify the database name and the identifier of the new KMS key to be used (KmsKeyId). If there are any concurrent
     -- UpdateDatabase requests, first writer wins.
     -- See code sample
     -- for details.
-    updateDatabase: function(Client, types.UpdateDatabaseInput): types.UpdateDatabaseOutput, table
+    updateDatabase: function(Client, types.UpdateDatabaseInput): Operation<types.UpdateDatabaseOutput>
     -- Modifies the retention duration of the memory store and magnetic store for your Timestream table. Note that the change in retention duration takes effect immediately.
     -- For example, if the retention period of the memory store was initially set to 2 hours and
     -- then changed to 24 hours, the memory store will be capable of holding 24 hours of data, but
     -- will be populated with 24 hours of data 22 hours after this change was made. Timestream does not retrieve data from the magnetic store to populate the memory store.
     -- See code
     -- sample for details.
-    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+    updateTable: function(Client, types.UpdateTableInput): Operation<types.UpdateTableOutput>
     -- Enables you to write your time-series data into Timestream. You can specify a
     -- single data point or a batch of data points to be inserted into the system. Timestream offers you a flexible schema that auto detects the column names and data
     -- types for your Timestream tables based on the dimension names and data types of
@@ -141,7 +145,7 @@ local record Client
     -- would only update Version to 3. Any further updates would need to
     -- send a version number greater than 3, or the update requests would receive a
     -- RejectedRecordsException.
-    writeRecords: function(Client, types.WriteRecordsInput): types.WriteRecordsOutput, table
+    writeRecords: function(Client, types.WriteRecordsInput): Operation<types.WriteRecordsOutput>
 end
 
 local record M

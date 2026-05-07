@@ -2,6 +2,10 @@
 
 local types = require("organizations.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a handshake by sending an ACCEPTED response to the sender. You
     -- can view accepted handshakes in API responses for 30 days before they are
@@ -18,7 +22,7 @@ local record Client
     -- Invitation to join (INVITE)
     -- Approve all features request (ENABLE_ALL_FEATURES)
     -- For more information, see Responding to invitations and Enabling all features in the Organizations User Guide.
-    acceptHandshake: function(Client, types.AcceptHandshakeInput): types.AcceptHandshakeOutput, table
+    acceptHandshake: function(Client, types.AcceptHandshakeInput): Operation<types.AcceptHandshakeOutput>
     -- Attaches a policy to a root, an organizational unit (OU), or an individual account.
     -- How the policy affects accounts depends on the type of policy. Refer to the
     -- Organizations User Guide for information about each policy type:
@@ -36,13 +40,13 @@ local record Client
     -- S3_POLICY
     -- NETWORK_SECURITY_DIRECTOR_POLICY
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    attachPolicy: function(Client, types.AttachPolicyInput): types.AttachPolicyOutput, table
+    attachPolicy: function(Client, types.AttachPolicyInput): Operation<types.AttachPolicyOutput>
     -- Cancels a Handshake.
     -- Only the account that sent a handshake can call this operation. The recipient of the handshake can't cancel it, but can use DeclineHandshake to decline. After a handshake is canceled, the
     -- recipient can no longer respond to the handshake.
     -- You can view canceled handshakes in API responses for 30 days before they are
     -- deleted.
-    cancelHandshake: function(Client, types.CancelHandshakeInput): types.CancelHandshakeOutput, table
+    cancelHandshake: function(Client, types.CancelHandshakeInput): Operation<types.CancelHandshakeOutput>
     -- Closes an Amazon Web Services member account within an organization. You can close an account when
     -- all
     -- features are enabled . You can't close the management account with this API.
@@ -77,7 +81,7 @@ local record Client
     -- accounts. To learn important pre-closure details, see
     -- Closing an Amazon Web Services GovCloud (US) account in the
     -- Amazon Web Services GovCloud User Guide.
-    closeAccount: function(Client, types.CloseAccountInput): types.CloseAccountOutput, table
+    closeAccount: function(Client, types.CloseAccountInput): Operation<types.CloseAccountOutput>
     -- Creates an Amazon Web Services account that is automatically a member of the organization whose
     -- credentials made the request. This is an asynchronous request that Amazon Web Services performs in the
     -- background. Because CreateAccount operates asynchronously, it can return a
@@ -131,7 +135,7 @@ local record Client
     -- information. For information about how to disable this switch for an account, see
     -- Granting access to
     -- your billing information and tools.
-    createAccount: function(Client, types.CreateAccountInput): types.CreateAccountOutput, table
+    createAccount: function(Client, types.CreateAccountInput): Operation<types.CreateAccountOutput>
     -- This action is available if all of the following are true:
     -- You're authorized to create accounts in the Amazon Web Services GovCloud (US) Region. For
     -- more information on the Amazon Web Services GovCloud (US) Region, see the
@@ -218,7 +222,7 @@ local record Client
     -- information. For information about how to disable this switch for an account, see
     -- Granting
     -- access to your billing information and tools.
-    createGovCloudAccount: function(Client, types.CreateGovCloudAccountInput): types.CreateGovCloudAccountOutput, table
+    createGovCloudAccount: function(Client, types.CreateGovCloudAccountInput): Operation<types.CreateGovCloudAccountOutput>
     -- Creates an Amazon Web Services organization. The account whose user is calling the
     -- CreateOrganization operation automatically becomes the management account of the new organization.
     -- This operation must be called using credentials from the account that is to become the
@@ -230,7 +234,7 @@ local record Client
     -- supporting only the consolidated billing features by setting the FeatureSet
     -- parameter to CONSOLIDATED_BILLING, no policy types are enabled by default
     -- and you can't use organization policies.
-    createOrganization: function(Client, types.CreateOrganizationInput): types.CreateOrganizationOutput, table
+    createOrganization: function(Client, types.CreateOrganizationInput): Operation<types.CreateOrganizationOutput>
     -- Creates an organizational unit (OU) within a root or parent OU. An OU is a container
     -- for accounts that enables you to organize your accounts to apply policies according to
     -- your business requirements. The number of levels deep that you can nest OUs is dependent
@@ -241,7 +245,7 @@ local record Client
     -- If the request includes tags, then the requester must have the
     -- organizations:TagResource permission.
     -- You can only call this operation from the management account.
-    createOrganizationalUnit: function(Client, types.CreateOrganizationalUnitInput): types.CreateOrganizationalUnitOutput, table
+    createOrganizationalUnit: function(Client, types.CreateOrganizationalUnitInput): Operation<types.CreateOrganizationalUnitOutput>
     -- Creates a policy of a specified type that you can attach to a root, an organizational
     -- unit (OU), or an individual Amazon Web Services account.
     -- For more information about policies and their use, see Managing
@@ -249,28 +253,28 @@ local record Client
     -- If the request includes tags, then the requester must have the
     -- organizations:TagResource permission.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    createPolicy: function(Client, types.CreatePolicyInput): types.CreatePolicyOutput, table
+    createPolicy: function(Client, types.CreatePolicyInput): Operation<types.CreatePolicyOutput>
     -- Declines a Handshake.
     -- Only the account that receives a handshake can call this operation. The sender of the handshake can use CancelHandshake to
     -- cancel if the handshake hasn't yet been responded to.
     -- You can view canceled handshakes in API responses for 30 days before they are
     -- deleted.
-    declineHandshake: function(Client, types.DeclineHandshakeInput): types.DeclineHandshakeOutput, table
+    declineHandshake: function(Client, types.DeclineHandshakeInput): Operation<types.DeclineHandshakeOutput>
     -- Deletes the organization. You can delete an organization only by using credentials
     -- from the management account. The organization must be empty of member accounts.
-    deleteOrganization: function(Client, types.DeleteOrganizationInput): types.DeleteOrganizationOutput, table
+    deleteOrganization: function(Client, types.DeleteOrganizationInput): Operation<types.DeleteOrganizationOutput>
     -- Deletes an organizational unit (OU) from a root or another OU. You must first remove
     -- all accounts and child OUs from the OU that you want to delete.
     -- You can only call this operation from the management account.
-    deleteOrganizationalUnit: function(Client, types.DeleteOrganizationalUnitInput): types.DeleteOrganizationalUnitOutput, table
+    deleteOrganizationalUnit: function(Client, types.DeleteOrganizationalUnitInput): Operation<types.DeleteOrganizationalUnitOutput>
     -- Deletes the specified policy from your organization. Before you perform this
     -- operation, you must first detach the policy from all organizational units (OUs), roots,
     -- and accounts.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    deletePolicy: function(Client, types.DeletePolicyInput): Operation<types.DeletePolicyOutput>
     -- Deletes the resource policy from your organization.
     -- You can only call this operation from the management account.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Removes the specified member Amazon Web Services account as a delegated administrator for the
     -- specified Amazon Web Services service.
     -- Deregistering a delegated administrator can have unintended impacts on the
@@ -282,13 +286,13 @@ local record Client
     -- Delegated Administrator in the table at Amazon Web Services Services that you can use with
     -- Organizations in the Organizations User Guide.
     -- You can only call this operation from the management account.
-    deregisterDelegatedAdministrator: function(Client, types.DeregisterDelegatedAdministratorInput): types.DeregisterDelegatedAdministratorOutput, table
+    deregisterDelegatedAdministrator: function(Client, types.DeregisterDelegatedAdministratorInput): Operation<types.DeregisterDelegatedAdministratorOutput>
     -- Retrieves Organizations-related information about the specified account.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    describeAccount: function(Client, types.DescribeAccountInput): types.DescribeAccountOutput, table
+    describeAccount: function(Client, types.DescribeAccountInput): Operation<types.DescribeAccountOutput>
     -- Retrieves the current status of an asynchronous request to create an account.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    describeCreateAccountStatus: function(Client, types.DescribeCreateAccountStatusInput): types.DescribeCreateAccountStatusOutput, table
+    describeCreateAccountStatus: function(Client, types.DescribeCreateAccountStatusInput): Operation<types.DescribeCreateAccountStatusOutput>
     -- Returns the contents of the effective policy for specified policy type and account.
     -- The effective policy is the aggregation of any policies of the specified type that the
     -- account inherits, plus any policy of that type that is directly attached to the
@@ -299,33 +303,33 @@ local record Client
     -- management policy inheritance in the
     -- Organizations User Guide.
     -- You can call this operation from any account in a organization.
-    describeEffectivePolicy: function(Client, types.DescribeEffectivePolicyInput): types.DescribeEffectivePolicyOutput, table
+    describeEffectivePolicy: function(Client, types.DescribeEffectivePolicyInput): Operation<types.DescribeEffectivePolicyOutput>
     -- Returns details for a handshake. A handshake is the secure exchange of information
     -- between two Amazon Web Services accounts: a sender and a recipient.
     -- You can view ACCEPTED, DECLINED, or CANCELED
     -- handshakes in API Responses for 30 days before they are deleted.
     -- You can call this operation from any account in a organization.
-    describeHandshake: function(Client, types.DescribeHandshakeInput): types.DescribeHandshakeOutput, table
+    describeHandshake: function(Client, types.DescribeHandshakeInput): Operation<types.DescribeHandshakeOutput>
     -- Retrieves information about the organization that the user's account belongs
     -- to.
     -- You can call this operation from any account in a organization.
     -- Even if a policy type is shown as available in the organization, you can disable
     -- it separately at the root level with DisablePolicyType. Use ListRoots to see the status of policy types for a specified
     -- root.
-    describeOrganization: function(Client, types.DescribeOrganizationInput): types.DescribeOrganizationOutput, table
+    describeOrganization: function(Client, types.DescribeOrganizationInput): Operation<types.DescribeOrganizationOutput>
     -- Retrieves information about an organizational unit (OU).
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    describeOrganizationalUnit: function(Client, types.DescribeOrganizationalUnitInput): types.DescribeOrganizationalUnitOutput, table
+    describeOrganizationalUnit: function(Client, types.DescribeOrganizationalUnitInput): Operation<types.DescribeOrganizationalUnitOutput>
     -- Retrieves information about a policy.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    describePolicy: function(Client, types.DescribePolicyInput): types.DescribePolicyOutput, table
+    describePolicy: function(Client, types.DescribePolicyInput): Operation<types.DescribePolicyOutput>
     -- Retrieves information about a resource policy.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): Operation<types.DescribeResourcePolicyOutput>
     -- Returns details for a transfer. A transfer is an arrangement
     -- between two management accounts where one account designates the other with specified
     -- responsibilities for their organization.
-    describeResponsibilityTransfer: function(Client, types.DescribeResponsibilityTransferInput): types.DescribeResponsibilityTransferOutput, table
+    describeResponsibilityTransfer: function(Client, types.DescribeResponsibilityTransferInput): Operation<types.DescribeResponsibilityTransferOutput>
     -- Detaches a policy from a target root, organizational unit (OU), or account.
     -- If the policy being detached is a service control policy (SCP), the changes to
     -- permissions for Identity and Access Management (IAM) users and roles in affected accounts are
@@ -339,7 +343,7 @@ local record Client
     -- the FullAWSAccess policy (or any other attached SCP), you're using the
     -- authorization strategy of a "deny list".
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    detachPolicy: function(Client, types.DetachPolicyInput): types.DetachPolicyOutput, table
+    detachPolicy: function(Client, types.DetachPolicyInput): Operation<types.DetachPolicyOutput>
     -- Disables the integration of an Amazon Web Services service (the service that is specified by
     -- ServicePrincipal) with Organizations. When you disable integration, the
     -- specified service no longer can create a service-linked role in
@@ -385,7 +389,7 @@ local record Client
     -- list of services that work with Organizations, see Using Organizations with other Amazon Web Services
     -- services in the Organizations User Guide.
     -- You can only call this operation from the management account.
-    disableAWSServiceAccess: function(Client, types.DisableAWSServiceAccessInput): types.DisableAWSServiceAccessOutput, table
+    disableAWSServiceAccess: function(Client, types.DisableAWSServiceAccessInput): Operation<types.DisableAWSServiceAccessOutput>
     -- Disables an organizational policy type in a root. A policy of a certain type can be
     -- attached to entities in a root only if that type is enabled in the root. After you
     -- perform this operation, you no longer can attach policies of the specified type to that
@@ -397,7 +401,7 @@ local record Client
     -- root, and then use this operation.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
     -- To view the status of available policy types in the organization, use ListRoots.
-    disablePolicyType: function(Client, types.DisablePolicyTypeInput): types.DisablePolicyTypeOutput, table
+    disablePolicyType: function(Client, types.DisablePolicyTypeInput): Operation<types.DisablePolicyTypeOutput>
     -- Enables all features in an organization. This enables the use of organization policies
     -- that can restrict the services and actions that can be called in each account. Until you
     -- enable all features, you have access only to consolidated billing, and you can't use any
@@ -421,7 +425,7 @@ local record Client
     -- policies that prevent accounts from leaving the organization. Ensure that your account
     -- administrators are aware of this.
     -- You can only call this operation from the management account.
-    enableAllFeatures: function(Client, types.EnableAllFeaturesInput): types.EnableAllFeaturesOutput, table
+    enableAllFeatures: function(Client, types.EnableAllFeaturesInput): Operation<types.EnableAllFeaturesOutput>
     -- Provides an Amazon Web Services service (the service that is specified by
     -- ServicePrincipal) with permissions to view the structure of an
     -- organization, create a service-linked role in
@@ -438,7 +442,7 @@ local record Client
     -- Organizations with other Amazon Web Services services in the
     -- Organizations User Guide.
     -- You can only call this operation from the management account.
-    enableAWSServiceAccess: function(Client, types.EnableAWSServiceAccessInput): types.EnableAWSServiceAccessOutput, table
+    enableAWSServiceAccess: function(Client, types.EnableAWSServiceAccessInput): Operation<types.EnableAWSServiceAccessOutput>
     -- Enables a policy type in a root. After you enable a policy type in a root, you can
     -- attach policies of that type to the root, any organizational unit (OU), or account in
     -- that root. You can undo this by using the DisablePolicyType
@@ -450,7 +454,7 @@ local record Client
     -- You can enable a policy type in a root only if that policy type is available in the
     -- organization. To view the status of available policy types in the organization, use
     -- ListRoots.
-    enablePolicyType: function(Client, types.EnablePolicyTypeInput): types.EnablePolicyTypeOutput, table
+    enablePolicyType: function(Client, types.EnablePolicyTypeInput): Operation<types.EnablePolicyTypeOutput>
     -- Sends an invitation to another account to join your organization as a member account.
     -- Organizations sends email on your behalf to the email address that is associated with the
     -- other account's owner. The invitation is implemented as a Handshake
@@ -463,12 +467,12 @@ local record Client
     -- If the request includes tags, then the requester must have the
     -- organizations:TagResource permission.
     -- You can only call this operation from the management account.
-    inviteAccountToOrganization: function(Client, types.InviteAccountToOrganizationInput): types.InviteAccountToOrganizationOutput, table
+    inviteAccountToOrganization: function(Client, types.InviteAccountToOrganizationInput): Operation<types.InviteAccountToOrganizationOutput>
     -- Sends an invitation to another organization's management account to designate your
     -- account with the specified responsibilities for their organization. The invitation is
     -- implemented as a Handshake whose details are in the response.
     -- You can only call this operation from the management account.
-    inviteOrganizationToTransferResponsibility: function(Client, types.InviteOrganizationToTransferResponsibilityInput): types.InviteOrganizationToTransferResponsibilityOutput, table
+    inviteOrganizationToTransferResponsibility: function(Client, types.InviteOrganizationToTransferResponsibilityInput): Operation<types.InviteOrganizationToTransferResponsibilityOutput>
     -- Removes a member account from its parent organization. This version of the operation
     -- is performed by the account that wants to leave. To remove a member account as a user in
     -- the management account, use RemoveAccountFromOrganization
@@ -507,14 +511,14 @@ local record Client
     -- If you are using an organization principal to call
     -- LeaveOrganization across multiple accounts, you can only do
     -- this up to 5 accounts per second in a single organization.
-    leaveOrganization: function(Client, types.LeaveOrganizationInput): types.LeaveOrganizationOutput, table
+    leaveOrganization: function(Client, types.LeaveOrganizationInput): Operation<types.LeaveOrganizationOutput>
     -- Lists all the accounts in the organization. To request only the accounts in a
     -- specified root or organizational unit (OU), use the ListAccountsForParent operation instead.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listAccounts: function(Client, types.ListAccountsInput): types.ListAccountsOutput, table
+    listAccounts: function(Client, types.ListAccountsInput): Operation<types.ListAccountsOutput>
     -- Lists the accounts in an organization that are contained by the specified target root
     -- or organizational unit (OU). If you specify the root, you get a list of all the accounts
     -- that aren't in any OU. If you specify an OU, you get a list of all the accounts in only
@@ -524,13 +528,13 @@ local record Client
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listAccountsForParent: function(Client, types.ListAccountsForParentInput): types.ListAccountsForParentOutput, table
+    listAccountsForParent: function(Client, types.ListAccountsForParentInput): Operation<types.ListAccountsForParentOutput>
     -- Lists all the accounts in an organization that have invalid effective policies. An
     -- invalid effective policy is an effective
     -- policy that fails validation checks, resulting in the effective policy not
     -- being fully enforced on all the intended accounts within an organization.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listAccountsWithInvalidEffectivePolicy: function(Client, types.ListAccountsWithInvalidEffectivePolicyInput): types.ListAccountsWithInvalidEffectivePolicyOutput, table
+    listAccountsWithInvalidEffectivePolicy: function(Client, types.ListAccountsWithInvalidEffectivePolicyInput): Operation<types.ListAccountsWithInvalidEffectivePolicyOutput>
     -- Returns a list of the Amazon Web Services services that you enabled to integrate with your
     -- organization. After a service on this list creates the resources that it requires for
     -- the integration, it can perform operations on your organization and its accounts.
@@ -538,7 +542,7 @@ local record Client
     -- list of services that currently work with Organizations, see Using Organizations with other Amazon Web Services
     -- services in the Organizations User Guide.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listAWSServiceAccessForOrganization: function(Client, types.ListAWSServiceAccessForOrganizationInput): types.ListAWSServiceAccessForOrganizationOutput, table
+    listAWSServiceAccessForOrganization: function(Client, types.ListAWSServiceAccessForOrganizationInput): Operation<types.ListAWSServiceAccessForOrganizationOutput>
     -- Lists all of the organizational units (OUs) or accounts that are contained in the
     -- specified parent OU or root. This operation, along with ListParents
     -- enables you to traverse the tree structure that makes up this root.
@@ -546,26 +550,26 @@ local record Client
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listChildren: function(Client, types.ListChildrenInput): types.ListChildrenOutput, table
+    listChildren: function(Client, types.ListChildrenInput): Operation<types.ListChildrenOutput>
     -- Lists the account creation requests that match the specified status that is currently
     -- being tracked for the organization.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listCreateAccountStatus: function(Client, types.ListCreateAccountStatusInput): types.ListCreateAccountStatusOutput, table
+    listCreateAccountStatus: function(Client, types.ListCreateAccountStatusInput): Operation<types.ListCreateAccountStatusOutput>
     -- Lists the Amazon Web Services accounts that are designated as delegated administrators in this
     -- organization.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listDelegatedAdministrators: function(Client, types.ListDelegatedAdministratorsInput): types.ListDelegatedAdministratorsOutput, table
+    listDelegatedAdministrators: function(Client, types.ListDelegatedAdministratorsInput): Operation<types.ListDelegatedAdministratorsOutput>
     -- List the Amazon Web Services services for which the specified account is a delegated
     -- administrator.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listDelegatedServicesForAccount: function(Client, types.ListDelegatedServicesForAccountInput): types.ListDelegatedServicesForAccountOutput, table
+    listDelegatedServicesForAccount: function(Client, types.ListDelegatedServicesForAccountInput): Operation<types.ListDelegatedServicesForAccountOutput>
     -- Lists all the validation errors on an effective
     -- policy for a specified account and policy type.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listEffectivePolicyValidationErrors: function(Client, types.ListEffectivePolicyValidationErrorsInput): types.ListEffectivePolicyValidationErrorsOutput, table
+    listEffectivePolicyValidationErrors: function(Client, types.ListEffectivePolicyValidationErrorsInput): Operation<types.ListEffectivePolicyValidationErrorsOutput>
     -- Lists the recent handshakes that you have received.
     -- You can view CANCELED, ACCEPTED, DECLINED, or
     -- EXPIRED handshakes in API responses for 30 days before they are
@@ -574,7 +578,7 @@ local record Client
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
-    listHandshakesForAccount: function(Client, types.ListHandshakesForAccountInput): types.ListHandshakesForAccountOutput, table
+    listHandshakesForAccount: function(Client, types.ListHandshakesForAccountInput): Operation<types.ListHandshakesForAccountOutput>
     -- Lists the recent handshakes that you have sent.
     -- You can view CANCELED, ACCEPTED, DECLINED, or
     -- EXPIRED handshakes in API responses for 30 days before they are
@@ -583,26 +587,26 @@ local record Client
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
-    listHandshakesForOrganization: function(Client, types.ListHandshakesForOrganizationInput): types.ListHandshakesForOrganizationOutput, table
+    listHandshakesForOrganization: function(Client, types.ListHandshakesForOrganizationInput): Operation<types.ListHandshakesForOrganizationOutput>
     -- Lists transfers that allow you to manage the specified responsibilities for another
     -- organization. This operation returns both transfer invitations and transfers.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
-    listInboundResponsibilityTransfers: function(Client, types.ListInboundResponsibilityTransfersInput): types.ListInboundResponsibilityTransfersOutput, table
+    listInboundResponsibilityTransfers: function(Client, types.ListInboundResponsibilityTransfersInput): Operation<types.ListInboundResponsibilityTransfersOutput>
     -- Lists the organizational units (OUs) in a parent organizational unit or root.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listOrganizationalUnitsForParent: function(Client, types.ListOrganizationalUnitsForParentInput): types.ListOrganizationalUnitsForParentOutput, table
+    listOrganizationalUnitsForParent: function(Client, types.ListOrganizationalUnitsForParentInput): Operation<types.ListOrganizationalUnitsForParentOutput>
     -- Lists transfers that allow an account outside your organization to manage the
     -- specified responsibilities for your organization. This operation returns both transfer
     -- invitations and transfers.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
-    listOutboundResponsibilityTransfers: function(Client, types.ListOutboundResponsibilityTransfersInput): types.ListOutboundResponsibilityTransfersOutput, table
+    listOutboundResponsibilityTransfers: function(Client, types.ListOutboundResponsibilityTransfersInput): Operation<types.ListOutboundResponsibilityTransfersOutput>
     -- Lists the root or organizational units (OUs) that serve as the immediate parent of the
     -- specified child OU or account. This operation, along with ListChildren
     -- enables you to traverse the tree structure that makes up this root.
@@ -611,13 +615,13 @@ local record Client
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
     -- In the current release, a child can have only a single parent.
-    listParents: function(Client, types.ListParentsInput): types.ListParentsOutput, table
+    listParents: function(Client, types.ListParentsInput): Operation<types.ListParentsOutput>
     -- Retrieves the list of all policies in an organization of a specified type.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    listPolicies: function(Client, types.ListPoliciesInput): Operation<types.ListPoliciesOutput>
     -- Lists the policies that are directly attached to the specified target root,
     -- organizational unit (OU), or account. You must specify the policy type that you want
     -- included in the returned list.
@@ -625,7 +629,7 @@ local record Client
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listPoliciesForTarget: function(Client, types.ListPoliciesForTargetInput): types.ListPoliciesForTargetOutput, table
+    listPoliciesForTarget: function(Client, types.ListPoliciesForTargetInput): Operation<types.ListPoliciesForTargetOutput>
     -- Lists the roots that are defined in the current organization.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
@@ -636,7 +640,7 @@ local record Client
     -- types available for use in that organization. Individual policy types can then be
     -- enabled and disabled in a root. To see the availability of a policy type in an
     -- organization, use DescribeOrganization.
-    listRoots: function(Client, types.ListRootsInput): types.ListRootsOutput, table
+    listRoots: function(Client, types.ListRootsInput): Operation<types.ListRootsOutput>
     -- Lists tags that are attached to the specified resource.
     -- You can attach tags to the following resources in Organizations.
     -- Amazon Web Services account
@@ -644,21 +648,21 @@ local record Client
     -- Organizational unit (OU)
     -- Policy (any type)
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists all the roots, organizational units (OUs), and accounts that the specified
     -- policy is attached to.
     -- When calling List* operations, always check the NextToken response parameter value, even if you receive an empty result set.
     -- These operations can occasionally return an empty set of results even when more results are available.
     -- Continue making requests until NextToken returns null. A null NextToken value indicates that you have retrieved all available results.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput): types.ListTargetsForPolicyOutput, table
+    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput): Operation<types.ListTargetsForPolicyOutput>
     -- Moves an account from its current source parent root or organizational unit (OU) to
     -- the specified destination parent root or OU.
     -- You can only call this operation from the management account.
-    moveAccount: function(Client, types.MoveAccountInput): types.MoveAccountOutput, table
+    moveAccount: function(Client, types.MoveAccountInput): Operation<types.MoveAccountOutput>
     -- Creates or updates a resource policy.
     -- You can only call this operation from the management account..
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Enables the specified member account to administer the Organizations features of the specified
     -- Amazon Web Services service. It grants read-only access to Organizations service data. The account still
     -- requires IAM permissions to access and administer the Amazon Web Services service.
@@ -667,7 +671,7 @@ local record Client
     -- Delegated Administrator in the table at Amazon Web Services Services that you can use with
     -- Organizations in the Organizations User Guide.
     -- You can only call this operation from the management account.
-    registerDelegatedAdministrator: function(Client, types.RegisterDelegatedAdministratorInput): types.RegisterDelegatedAdministratorOutput, table
+    registerDelegatedAdministrator: function(Client, types.RegisterDelegatedAdministratorInput): Operation<types.RegisterDelegatedAdministratorOutput>
     -- Removes the specified account from the organization.
     -- The removed account becomes a standalone account that isn't a member of any
     -- organization. It's no longer subject to any policies and is responsible for its own bill
@@ -689,7 +693,7 @@ local record Client
     -- After the account leaves the organization, all tags that were attached to
     -- the account object in the organization are deleted. Amazon Web Services accounts outside
     -- of an organization do not support tags.
-    removeAccountFromOrganization: function(Client, types.RemoveAccountFromOrganizationInput): types.RemoveAccountFromOrganizationOutput, table
+    removeAccountFromOrganization: function(Client, types.RemoveAccountFromOrganizationInput): Operation<types.RemoveAccountFromOrganizationOutput>
     -- Adds one or more tags to the specified resource.
     -- Currently, you can attach tags to the following resources in Organizations.
     -- Amazon Web Services account
@@ -697,11 +701,11 @@ local record Client
     -- Organizational unit (OU)
     -- Policy (any type)
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Ends a transfer. A transfer is an arrangement between two
     -- management accounts where one account designates the other with specified
     -- responsibilities for their organization.
-    terminateResponsibilityTransfer: function(Client, types.TerminateResponsibilityTransferInput): types.TerminateResponsibilityTransferOutput, table
+    terminateResponsibilityTransfer: function(Client, types.TerminateResponsibilityTransferInput): Operation<types.TerminateResponsibilityTransferOutput>
     -- Removes any tags with the specified keys from the specified resource.
     -- You can attach tags to the following resources in Organizations.
     -- Amazon Web Services account
@@ -709,22 +713,22 @@ local record Client
     -- Organizational unit (OU)
     -- Policy (any type)
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Renames the specified organizational unit (OU). The ID and ARN don't change. The child
     -- OUs and accounts remain in place, and any attached policies of the OU remain
     -- attached.
     -- You can only call this operation from the management account.
-    updateOrganizationalUnit: function(Client, types.UpdateOrganizationalUnitInput): types.UpdateOrganizationalUnitOutput, table
+    updateOrganizationalUnit: function(Client, types.UpdateOrganizationalUnitInput): Operation<types.UpdateOrganizationalUnitOutput>
     -- Updates an existing policy with a new name, description, or content. If you don't
     -- supply any parameter, that value remains unchanged. You can't change a policy's
     -- type.
     -- You can only call this operation from the management account or a member account that is a delegated administrator.
-    updatePolicy: function(Client, types.UpdatePolicyInput): types.UpdatePolicyOutput, table
+    updatePolicy: function(Client, types.UpdatePolicyInput): Operation<types.UpdatePolicyOutput>
     -- Updates a transfer. A transfer is the arrangement between two
     -- management accounts where one account designates the other with specified
     -- responsibilities for their organization.
     -- You can update the name assigned to a transfer.
-    updateResponsibilityTransfer: function(Client, types.UpdateResponsibilityTransferInput): types.UpdateResponsibilityTransferOutput, table
+    updateResponsibilityTransfer: function(Client, types.UpdateResponsibilityTransferInput): Operation<types.UpdateResponsibilityTransferOutput>
 end
 
 local record M

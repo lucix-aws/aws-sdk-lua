@@ -2,16 +2,20 @@
 
 local types = require("sso.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns the STS short-term credentials for a given role name that is assigned to the
     -- user.
-    getRoleCredentials: function(Client, types.GetRoleCredentialsInput): types.GetRoleCredentialsOutput, table
+    getRoleCredentials: function(Client, types.GetRoleCredentialsInput): Operation<types.GetRoleCredentialsOutput>
     -- Lists all roles that are assigned to the user for a given AWS account.
-    listAccountRoles: function(Client, types.ListAccountRolesInput): types.ListAccountRolesOutput, table
+    listAccountRoles: function(Client, types.ListAccountRolesInput): Operation<types.ListAccountRolesOutput>
     -- Lists all AWS accounts assigned to the user. These AWS accounts are assigned by the
     -- administrator of the account. For more information, see Assign User Access in the IAM Identity Center User Guide. This operation
     -- returns a paginated response.
-    listAccounts: function(Client, types.ListAccountsInput): types.ListAccountsOutput, table
+    listAccounts: function(Client, types.ListAccountsInput): Operation<types.ListAccountsOutput>
     -- Removes the locally stored SSO tokens from the client-side cache and sends an API call to
     -- the IAM Identity Center service to invalidate the corresponding server-side IAM Identity Center sign in
     -- session.
@@ -24,7 +28,7 @@ local record Client
     -- For more information, see User
     -- authentications in the IAM Identity Center User
     -- Guide.
-    logout: function(Client, types.LogoutInput): types.LogoutOutput, table
+    logout: function(Client, types.LogoutInput): Operation<types.LogoutOutput>
 end
 
 local record M

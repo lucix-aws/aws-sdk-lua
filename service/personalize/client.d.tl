@@ -2,6 +2,10 @@
 
 local types = require("personalize.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Generates batch recommendations based on a list of items or users stored in Amazon S3
     -- and exports the recommendations to an Amazon S3 bucket.
@@ -18,11 +22,11 @@ local record Client
     -- For more information about generating themes, see Batch recommendations with themes from Content Generator
     -- .
     -- You can't get batch recommendations with the Trending-Now or Next-Best-Action recipes.
-    createBatchInferenceJob: function(Client, types.CreateBatchInferenceJobInput): types.CreateBatchInferenceJobOutput, table
+    createBatchInferenceJob: function(Client, types.CreateBatchInferenceJobInput): Operation<types.CreateBatchInferenceJobOutput>
     -- Creates a batch segment job. The operation can handle up to 50 million records and the
     -- input file must be in JSON format. For more information, see
     -- Getting batch recommendations and user segments.
-    createBatchSegmentJob: function(Client, types.CreateBatchSegmentJobInput): types.CreateBatchSegmentJobOutput, table
+    createBatchSegmentJob: function(Client, types.CreateBatchSegmentJobInput): Operation<types.CreateBatchSegmentJobOutput>
     -- You incur campaign costs while it is active. To avoid unnecessary costs, make sure to delete the campaign when you are finished. For information about campaign
     -- costs, see Amazon Personalize pricing.
     -- Creates a campaign that deploys a solution version. When a client calls the
@@ -60,7 +64,7 @@ local record Client
     -- DescribeCampaign
     -- UpdateCampaign
     -- DeleteCampaign
-    createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    createCampaign: function(Client, types.CreateCampaignInput): Operation<types.CreateCampaignOutput>
     -- Creates a batch job that deletes all
     -- references to specific users from an Amazon Personalize dataset group in batches. You specify the users to delete in a CSV file of userIds in
     -- an Amazon S3 bucket. After a job completes, Amazon Personalize no longer trains
@@ -86,7 +90,7 @@ local record Client
     -- Related APIs
     -- ListDataDeletionJobs
     -- DescribeDataDeletionJob
-    createDataDeletionJob: function(Client, types.CreateDataDeletionJobInput): types.CreateDataDeletionJobOutput, table
+    createDataDeletionJob: function(Client, types.CreateDataDeletionJobInput): Operation<types.CreateDataDeletionJobOutput>
     -- Creates an empty dataset and adds it to the specified dataset group.
     -- Use CreateDatasetImportJob to import your training data to a
     -- dataset.
@@ -109,7 +113,7 @@ local record Client
     -- ListDatasets
     -- DescribeDataset
     -- DeleteDataset
-    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): Operation<types.CreateDatasetOutput>
     -- Creates a job that exports data from your dataset to an Amazon S3 bucket.
     -- To allow Amazon Personalize to export the training data, you must specify an
     -- service-linked IAM role that gives Amazon Personalize PutObject
@@ -123,7 +127,7 @@ local record Client
     -- status shows as ACTIVE. If the status shows as CREATE FAILED, the response
     -- includes a failureReason key, which describes why the job
     -- failed.
-    createDatasetExportJob: function(Client, types.CreateDatasetExportJobInput): types.CreateDatasetExportJobOutput, table
+    createDatasetExportJob: function(Client, types.CreateDatasetExportJobInput): Operation<types.CreateDatasetExportJobOutput>
     -- Creates an empty dataset group. A dataset group is a container for
     -- Amazon Personalize resources. A dataset group can contain at most three datasets, one
     -- for each type of dataset:
@@ -159,7 +163,7 @@ local record Client
     -- ListDatasetGroups
     -- DescribeDatasetGroup
     -- DeleteDatasetGroup
-    createDatasetGroup: function(Client, types.CreateDatasetGroupInput): types.CreateDatasetGroupOutput, table
+    createDatasetGroup: function(Client, types.CreateDatasetGroupInput): Operation<types.CreateDatasetGroupOutput>
     -- Creates a job that imports training data from your data source (an
     -- Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the
     -- training data, you must specify an IAM service role that has permission to
@@ -188,7 +192,7 @@ local record Client
     -- Related APIs
     -- ListDatasetImportJobs
     -- DescribeDatasetImportJob
-    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput): types.CreateDatasetImportJobOutput, table
+    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput): Operation<types.CreateDatasetImportJobOutput>
     -- Creates an event tracker that you use when adding event data to a specified dataset
     -- group using the
     -- PutEvents API.
@@ -208,13 +212,13 @@ local record Client
     -- ListEventTrackers
     -- DescribeEventTracker
     -- DeleteEventTracker
-    createEventTracker: function(Client, types.CreateEventTrackerInput): types.CreateEventTrackerOutput, table
+    createEventTracker: function(Client, types.CreateEventTrackerInput): Operation<types.CreateEventTrackerOutput>
     -- Creates a recommendation filter. For more information, see Filtering recommendations and user segments.
-    createFilter: function(Client, types.CreateFilterInput): types.CreateFilterOutput, table
+    createFilter: function(Client, types.CreateFilterInput): Operation<types.CreateFilterOutput>
     -- Creates a metric attribution.
     -- A metric attribution creates reports on the data that you import into Amazon Personalize. Depending on how you imported the data, you can view reports in Amazon CloudWatch or Amazon S3.
     -- For more information, see Measuring impact of recommendations.
-    createMetricAttribution: function(Client, types.CreateMetricAttributionInput): types.CreateMetricAttributionOutput, table
+    createMetricAttribution: function(Client, types.CreateMetricAttributionInput): Operation<types.CreateMetricAttributionOutput>
     -- Creates a recommender with the recipe (a Domain dataset group use case) you specify.
     -- You create recommenders for a Domain dataset group and specify the recommender's Amazon Resource Name (ARN) when you make a
     -- GetRecommendations
@@ -251,7 +255,7 @@ local record Client
     -- DescribeRecommender
     -- UpdateRecommender
     -- DeleteRecommender
-    createRecommender: function(Client, types.CreateRecommenderInput): types.CreateRecommenderOutput, table
+    createRecommender: function(Client, types.CreateRecommenderInput): Operation<types.CreateRecommenderOutput>
     -- Creates an Amazon Personalize schema from the specified schema string. The schema you create
     -- must be in Avro JSON format.
     -- Amazon Personalize recognizes three schema variants. Each schema is associated with a dataset
@@ -262,7 +266,7 @@ local record Client
     -- ListSchemas
     -- DescribeSchema
     -- DeleteSchema
-    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): Operation<types.CreateSchemaOutput>
     -- By default, all new solutions use automatic training. With automatic training, you incur training costs while
     -- your solution is active. To avoid unnecessary costs, when you are finished you can
     -- update the solution to turn off automatic training.
@@ -301,7 +305,7 @@ local record Client
     -- DeleteSolution
     -- ListSolutionVersions
     -- DescribeSolutionVersion
-    createSolution: function(Client, types.CreateSolutionInput): types.CreateSolutionOutput, table
+    createSolution: function(Client, types.CreateSolutionInput): Operation<types.CreateSolutionOutput>
     -- Trains or retrains an active solution in a Custom dataset group. A solution is created using the CreateSolution
     -- operation and must be in the ACTIVE state before calling
     -- CreateSolutionVersion. A new version of the solution is created every time you
@@ -325,40 +329,40 @@ local record Client
     -- CreateSolution
     -- DescribeSolution
     -- DeleteSolution
-    createSolutionVersion: function(Client, types.CreateSolutionVersionInput): types.CreateSolutionVersionOutput, table
+    createSolutionVersion: function(Client, types.CreateSolutionVersionInput): Operation<types.CreateSolutionVersionOutput>
     -- Removes a campaign by deleting the solution deployment. The solution that
     -- the campaign is based on is not deleted and can be redeployed when needed. A deleted campaign can no
     -- longer be specified in a
     -- GetRecommendations
     -- request.
     -- For information on creating campaigns, see CreateCampaign.
-    deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    deleteCampaign: function(Client, types.DeleteCampaignInput): Operation<types.DeleteCampaignOutput>
     -- Deletes a dataset. You can't delete a dataset if an associated
     -- DatasetImportJob or SolutionVersion is in the
     -- CREATE PENDING or IN PROGRESS state. For more information about deleting datasets,
     -- see Deleting a dataset.
-    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): Operation<types.DeleteDatasetOutput>
     -- Deletes a dataset group. Before you delete a dataset group, you must
     -- delete the following:
     -- All associated event trackers.
     -- All associated solutions.
     -- All datasets in the dataset group.
-    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput): types.DeleteDatasetGroupOutput, table
+    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput): Operation<types.DeleteDatasetGroupOutput>
     -- Deletes the event tracker. Does not delete the dataset from
     -- the dataset group. For more
     -- information on event trackers, see CreateEventTracker.
-    deleteEventTracker: function(Client, types.DeleteEventTrackerInput): types.DeleteEventTrackerOutput, table
+    deleteEventTracker: function(Client, types.DeleteEventTrackerInput): Operation<types.DeleteEventTrackerOutput>
     -- Deletes a filter.
-    deleteFilter: function(Client, types.DeleteFilterInput): types.DeleteFilterOutput, table
+    deleteFilter: function(Client, types.DeleteFilterInput): Operation<types.DeleteFilterOutput>
     -- Deletes a metric attribution.
-    deleteMetricAttribution: function(Client, types.DeleteMetricAttributionInput): types.DeleteMetricAttributionOutput, table
+    deleteMetricAttribution: function(Client, types.DeleteMetricAttributionInput): Operation<types.DeleteMetricAttributionOutput>
     -- Deactivates and removes a recommender. A deleted recommender can no longer be specified in a GetRecommendations
     -- request.
-    deleteRecommender: function(Client, types.DeleteRecommenderInput): types.DeleteRecommenderOutput, table
+    deleteRecommender: function(Client, types.DeleteRecommenderInput): Operation<types.DeleteRecommenderOutput>
     -- Deletes a schema. Before deleting a schema, you must delete all
     -- datasets referencing the schema. For more information on schemas, see
     -- CreateSchema.
-    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): Operation<types.DeleteSchemaOutput>
     -- Deletes all versions of a solution and the Solution object itself.
     -- Before deleting a solution, you must delete all campaigns based on
     -- the solution. To determine what campaigns are using the solution, call
@@ -366,17 +370,17 @@ local record Client
     -- You can't delete a solution if an associated SolutionVersion is in the
     -- CREATE PENDING or IN PROGRESS state.
     -- For more information on solutions, see CreateSolution.
-    deleteSolution: function(Client, types.DeleteSolutionInput): types.DeleteSolutionOutput, table
+    deleteSolution: function(Client, types.DeleteSolutionInput): Operation<types.DeleteSolutionOutput>
     -- Describes the given algorithm.
-    describeAlgorithm: function(Client, types.DescribeAlgorithmInput): types.DescribeAlgorithmOutput, table
+    describeAlgorithm: function(Client, types.DescribeAlgorithmInput): Operation<types.DescribeAlgorithmOutput>
     -- Gets the properties of a batch inference job including name, Amazon Resource Name (ARN),
     -- status, input and output configurations, and the ARN of the solution version used to generate
     -- the recommendations.
-    describeBatchInferenceJob: function(Client, types.DescribeBatchInferenceJobInput): types.DescribeBatchInferenceJobOutput, table
+    describeBatchInferenceJob: function(Client, types.DescribeBatchInferenceJobInput): Operation<types.DescribeBatchInferenceJobOutput>
     -- Gets the properties of a batch segment job including name, Amazon Resource Name (ARN),
     -- status, input and output configurations, and the ARN of the solution version used to generate
     -- segments.
-    describeBatchSegmentJob: function(Client, types.DescribeBatchSegmentJobInput): types.DescribeBatchSegmentJobOutput, table
+    describeBatchSegmentJob: function(Client, types.DescribeBatchSegmentJobInput): Operation<types.DescribeBatchSegmentJobOutput>
     -- Describes the given campaign, including its status.
     -- A campaign can be in one of the following states:
     -- CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
@@ -384,29 +388,29 @@ local record Client
     -- When the status is CREATE FAILED, the response includes the
     -- failureReason key, which describes why.
     -- For more information on campaigns, see CreateCampaign.
-    describeCampaign: function(Client, types.DescribeCampaignInput): types.DescribeCampaignOutput, table
+    describeCampaign: function(Client, types.DescribeCampaignInput): Operation<types.DescribeCampaignOutput>
     -- Describes the data deletion job created by CreateDataDeletionJob, including the job status.
-    describeDataDeletionJob: function(Client, types.DescribeDataDeletionJobInput): types.DescribeDataDeletionJobOutput, table
+    describeDataDeletionJob: function(Client, types.DescribeDataDeletionJobInput): Operation<types.DescribeDataDeletionJobOutput>
     -- Describes the given dataset. For more information on datasets, see
     -- CreateDataset.
-    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): Operation<types.DescribeDatasetOutput>
     -- Describes the dataset export job created by CreateDatasetExportJob, including the export job status.
-    describeDatasetExportJob: function(Client, types.DescribeDatasetExportJobInput): types.DescribeDatasetExportJobOutput, table
+    describeDatasetExportJob: function(Client, types.DescribeDatasetExportJobInput): Operation<types.DescribeDatasetExportJobOutput>
     -- Describes the given dataset group. For more information on dataset
     -- groups, see CreateDatasetGroup.
-    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput): types.DescribeDatasetGroupOutput, table
+    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput): Operation<types.DescribeDatasetGroupOutput>
     -- Describes the dataset import job created by CreateDatasetImportJob, including the import job status.
-    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput): types.DescribeDatasetImportJobOutput, table
+    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput): Operation<types.DescribeDatasetImportJobOutput>
     -- Describes an event tracker. The response includes the trackingId and
     -- status of the event tracker.
     -- For more information on event trackers, see CreateEventTracker.
-    describeEventTracker: function(Client, types.DescribeEventTrackerInput): types.DescribeEventTrackerOutput, table
+    describeEventTracker: function(Client, types.DescribeEventTrackerInput): Operation<types.DescribeEventTrackerOutput>
     -- Describes the given feature transformation.
-    describeFeatureTransformation: function(Client, types.DescribeFeatureTransformationInput): types.DescribeFeatureTransformationOutput, table
+    describeFeatureTransformation: function(Client, types.DescribeFeatureTransformationInput): Operation<types.DescribeFeatureTransformationOutput>
     -- Describes a filter's properties.
-    describeFilter: function(Client, types.DescribeFilterInput): types.DescribeFilterOutput, table
+    describeFilter: function(Client, types.DescribeFilterInput): Operation<types.DescribeFilterOutput>
     -- Describes a metric attribution.
-    describeMetricAttribution: function(Client, types.DescribeMetricAttributionInput): types.DescribeMetricAttributionOutput, table
+    describeMetricAttribution: function(Client, types.DescribeMetricAttributionInput): Operation<types.DescribeMetricAttributionOutput>
     -- Describes a recipe.
     -- A recipe contains three items:
     -- An algorithm that trains a model.
@@ -418,7 +422,7 @@ local record Client
     -- in the specified recipe and a training dataset. The solution, when deployed as a campaign,
     -- can provide recommendations using the
     -- GetRecommendations API.
-    describeRecipe: function(Client, types.DescribeRecipeInput): types.DescribeRecipeOutput, table
+    describeRecipe: function(Client, types.DescribeRecipeInput): Operation<types.DescribeRecipeOutput>
     -- Describes the given recommender, including its status.
     -- A recommender can be in one of the following states:
     -- CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
@@ -429,28 +433,28 @@ local record Client
     -- The modelMetrics key is null when
     -- the recommender is being created or deleted.
     -- For more information on recommenders, see CreateRecommender.
-    describeRecommender: function(Client, types.DescribeRecommenderInput): types.DescribeRecommenderOutput, table
+    describeRecommender: function(Client, types.DescribeRecommenderInput): Operation<types.DescribeRecommenderOutput>
     -- Describes a schema. For more information on schemas, see
     -- CreateSchema.
-    describeSchema: function(Client, types.DescribeSchemaInput): types.DescribeSchemaOutput, table
+    describeSchema: function(Client, types.DescribeSchemaInput): Operation<types.DescribeSchemaOutput>
     -- Describes a solution.
     -- For more information on solutions, see CreateSolution.
-    describeSolution: function(Client, types.DescribeSolutionInput): types.DescribeSolutionOutput, table
+    describeSolution: function(Client, types.DescribeSolutionInput): Operation<types.DescribeSolutionOutput>
     -- Describes a specific version of a solution. For more information on solutions, see CreateSolution
-    describeSolutionVersion: function(Client, types.DescribeSolutionVersionInput): types.DescribeSolutionVersionOutput, table
+    describeSolutionVersion: function(Client, types.DescribeSolutionVersionInput): Operation<types.DescribeSolutionVersionOutput>
     -- Gets the metrics for the specified solution version.
-    getSolutionMetrics: function(Client, types.GetSolutionMetricsInput): types.GetSolutionMetricsOutput, table
+    getSolutionMetrics: function(Client, types.GetSolutionMetricsInput): Operation<types.GetSolutionMetricsOutput>
     -- Gets a list of the batch inference jobs that have been performed off of a solution
     -- version.
-    listBatchInferenceJobs: function(Client, types.ListBatchInferenceJobsInput): types.ListBatchInferenceJobsOutput, table
+    listBatchInferenceJobs: function(Client, types.ListBatchInferenceJobsInput): Operation<types.ListBatchInferenceJobsOutput>
     -- Gets a list of the batch segment jobs that have been performed off of a solution
     -- version that you specify.
-    listBatchSegmentJobs: function(Client, types.ListBatchSegmentJobsInput): types.ListBatchSegmentJobsOutput, table
+    listBatchSegmentJobs: function(Client, types.ListBatchSegmentJobsInput): Operation<types.ListBatchSegmentJobsOutput>
     -- Returns a list of campaigns that use the given solution.
     -- When a solution is not specified, all the campaigns associated with the account are listed.
     -- The response provides the properties for each campaign, including the Amazon Resource Name (ARN).
     -- For more information on campaigns, see CreateCampaign.
-    listCampaigns: function(Client, types.ListCampaignsInput): types.ListCampaignsOutput, table
+    listCampaigns: function(Client, types.ListCampaignsInput): Operation<types.ListCampaignsOutput>
     -- Returns a list of data deletion jobs for a dataset group ordered by creation time,
     -- with the most recent first.
     -- When
@@ -458,68 +462,68 @@ local record Client
     -- the account are listed. The response provides the properties for each
     -- job, including the Amazon Resource Name (ARN). For more
     -- information on data deletion jobs, see Deleting users.
-    listDataDeletionJobs: function(Client, types.ListDataDeletionJobsInput): types.ListDataDeletionJobsOutput, table
+    listDataDeletionJobs: function(Client, types.ListDataDeletionJobsInput): Operation<types.ListDataDeletionJobsOutput>
     -- Returns a list of dataset export jobs that use the given dataset. When
     -- a dataset is not specified, all the dataset export jobs associated with
     -- the account are listed. The response provides the properties for each
     -- dataset export job, including the Amazon Resource Name (ARN). For more
     -- information on dataset export jobs, see CreateDatasetExportJob. For more information on datasets, see
     -- CreateDataset.
-    listDatasetExportJobs: function(Client, types.ListDatasetExportJobsInput): types.ListDatasetExportJobsOutput, table
+    listDatasetExportJobs: function(Client, types.ListDatasetExportJobsInput): Operation<types.ListDatasetExportJobsOutput>
     -- Returns a list of dataset groups. The response provides the properties
     -- for each dataset group, including the Amazon Resource Name (ARN). For more
     -- information on dataset groups, see CreateDatasetGroup.
-    listDatasetGroups: function(Client, types.ListDatasetGroupsInput): types.ListDatasetGroupsOutput, table
+    listDatasetGroups: function(Client, types.ListDatasetGroupsInput): Operation<types.ListDatasetGroupsOutput>
     -- Returns a list of dataset import jobs that use the given dataset. When
     -- a dataset is not specified, all the dataset import jobs associated with
     -- the account are listed. The response provides the properties for each
     -- dataset import job, including the Amazon Resource Name (ARN). For more
     -- information on dataset import jobs, see CreateDatasetImportJob. For more information on datasets, see
     -- CreateDataset.
-    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput): types.ListDatasetImportJobsOutput, table
+    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput): Operation<types.ListDatasetImportJobsOutput>
     -- Returns the list of datasets contained in the given dataset group. The
     -- response provides the properties for each dataset, including the Amazon
     -- Resource Name (ARN). For more information on datasets, see CreateDataset.
-    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): Operation<types.ListDatasetsOutput>
     -- Returns the list of event trackers associated with the account.
     -- The response provides the properties for each event tracker, including the Amazon Resource
     -- Name (ARN) and tracking ID. For more
     -- information on event trackers, see CreateEventTracker.
-    listEventTrackers: function(Client, types.ListEventTrackersInput): types.ListEventTrackersOutput, table
+    listEventTrackers: function(Client, types.ListEventTrackersInput): Operation<types.ListEventTrackersOutput>
     -- Lists all filters that belong to a given dataset group.
-    listFilters: function(Client, types.ListFiltersInput): types.ListFiltersOutput, table
+    listFilters: function(Client, types.ListFiltersInput): Operation<types.ListFiltersOutput>
     -- Lists the metrics for the metric attribution.
-    listMetricAttributionMetrics: function(Client, types.ListMetricAttributionMetricsInput): types.ListMetricAttributionMetricsOutput, table
+    listMetricAttributionMetrics: function(Client, types.ListMetricAttributionMetricsInput): Operation<types.ListMetricAttributionMetricsOutput>
     -- Lists metric attributions.
-    listMetricAttributions: function(Client, types.ListMetricAttributionsInput): types.ListMetricAttributionsOutput, table
+    listMetricAttributions: function(Client, types.ListMetricAttributionsInput): Operation<types.ListMetricAttributionsOutput>
     -- Returns a list of available recipes. The response provides the properties
     -- for each recipe, including the recipe's Amazon Resource Name (ARN).
-    listRecipes: function(Client, types.ListRecipesInput): types.ListRecipesOutput, table
+    listRecipes: function(Client, types.ListRecipesInput): Operation<types.ListRecipesOutput>
     -- Returns a list of recommenders in a given Domain dataset group.
     -- When a Domain dataset group is not specified, all the recommenders associated with the account are listed.
     -- The response provides the properties for each recommender, including the Amazon Resource Name (ARN).
     -- For more information on recommenders, see CreateRecommender.
-    listRecommenders: function(Client, types.ListRecommendersInput): types.ListRecommendersOutput, table
+    listRecommenders: function(Client, types.ListRecommendersInput): Operation<types.ListRecommendersOutput>
     -- Returns the list of schemas associated with the account. The response provides the
     -- properties for each schema, including the Amazon Resource Name (ARN).
     -- For more information on schemas, see CreateSchema.
-    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): Operation<types.ListSchemasOutput>
     -- Returns a list of solutions in a given dataset group.
     -- When a dataset group is not specified, all the solutions associated with the account are listed.
     -- The response provides the properties for each solution, including the Amazon Resource Name (ARN).
     -- For more information on solutions, see CreateSolution.
-    listSolutions: function(Client, types.ListSolutionsInput): types.ListSolutionsOutput, table
+    listSolutions: function(Client, types.ListSolutionsInput): Operation<types.ListSolutionsOutput>
     -- Returns a list of solution versions for the given solution. When a solution is not
     -- specified, all the solution versions associated with the account are listed. The response
     -- provides the properties for each solution version, including the Amazon Resource Name (ARN).
-    listSolutionVersions: function(Client, types.ListSolutionVersionsInput): types.ListSolutionVersionsOutput, table
+    listSolutionVersions: function(Client, types.ListSolutionVersionsInput): Operation<types.ListSolutionVersionsOutput>
     -- Get a list of tags attached to a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts a recommender that is INACTIVE. Starting a recommender does not
     -- create any new models, but resumes billing and automatic retraining for the recommender.
-    startRecommender: function(Client, types.StartRecommenderInput): types.StartRecommenderOutput, table
+    startRecommender: function(Client, types.StartRecommenderInput): Operation<types.StartRecommenderOutput>
     -- Stops a recommender that is ACTIVE. Stopping a recommender halts billing and automatic retraining for the recommender.
-    stopRecommender: function(Client, types.StopRecommenderInput): types.StopRecommenderOutput, table
+    stopRecommender: function(Client, types.StopRecommenderInput): Operation<types.StopRecommenderOutput>
     -- Stops creating a solution version that is in a state of CREATE_PENDING or CREATE IN_PROGRESS.
     -- Depending on the current state of the solution version, the solution version state changes as follows:
     -- CREATE_PENDING > CREATE_STOPPED
@@ -527,11 +531,11 @@ local record Client
     -- CREATE_IN_PROGRESS > CREATE_STOPPING > CREATE_STOPPED
     -- You are billed for all of the training completed up
     -- until you stop the solution version creation. You cannot resume creating a solution version once it has been stopped.
-    stopSolutionVersionCreation: function(Client, types.StopSolutionVersionCreationInput): types.StopSolutionVersionCreationOutput, table
+    stopSolutionVersionCreation: function(Client, types.StopSolutionVersionCreationInput): Operation<types.StopSolutionVersionCreationOutput>
     -- Add a list of tags to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags that are attached to a resource. For more information, see Removing tags from Amazon Personalize resources.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a campaign to deploy a retrained solution version with an existing campaign, change your campaign's minProvisionedTPS,
     -- or modify your campaign's configuration. For example, you can set enableMetadataWithRecommendations to true for an existing campaign.
     -- To update a campaign to start automatically using the latest solution version, specify the following:
@@ -544,11 +548,11 @@ local record Client
     -- The campaign will use the previous solution version and campaign configuration to generate recommendations until the latest campaign update status is Active.
     -- For more information about updating a campaign, including code samples, see Updating a campaign.
     -- For more information about campaigns, see Creating a campaign.
-    updateCampaign: function(Client, types.UpdateCampaignInput): types.UpdateCampaignOutput, table
+    updateCampaign: function(Client, types.UpdateCampaignInput): Operation<types.UpdateCampaignOutput>
     -- Update a dataset to replace its schema with a new or existing one. For more information, see Replacing a dataset's schema.
-    updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    updateDataset: function(Client, types.UpdateDatasetInput): Operation<types.UpdateDatasetOutput>
     -- Updates a metric attribution.
-    updateMetricAttribution: function(Client, types.UpdateMetricAttributionInput): types.UpdateMetricAttributionOutput, table
+    updateMetricAttribution: function(Client, types.UpdateMetricAttributionInput): Operation<types.UpdateMetricAttributionOutput>
     -- Updates the recommender to modify the recommender configuration.
     -- If you update the recommender to modify the columns used in training, Amazon Personalize automatically starts a full retraining of
     -- the models backing your recommender. While the update completes, you can still get recommendations from the recommender. The recommender
@@ -556,7 +560,7 @@ local record Client
     -- To track the status of this update,
     -- use the latestRecommenderUpdate returned in the DescribeRecommender
     -- operation.
-    updateRecommender: function(Client, types.UpdateRecommenderInput): types.UpdateRecommenderOutput, table
+    updateRecommender: function(Client, types.UpdateRecommenderInput): Operation<types.UpdateRecommenderOutput>
     -- Updates an Amazon Personalize solution to use a different automatic training configuration. When you update a solution,
     -- you can change whether the solution uses
     -- automatic training, and you can change the training frequency. For more information about updating a solution, see
@@ -567,7 +571,7 @@ local record Client
     -- To get the status of a solution update, call the
     -- DescribeSolution API operation and find the status
     -- in the latestSolutionUpdate.
-    updateSolution: function(Client, types.UpdateSolutionInput): types.UpdateSolutionOutput, table
+    updateSolution: function(Client, types.UpdateSolutionInput): Operation<types.UpdateSolutionOutput>
 end
 
 local record M

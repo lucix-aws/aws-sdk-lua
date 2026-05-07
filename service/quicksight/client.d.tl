@@ -2,13 +2,17 @@
 
 local types = require("quicksight.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates new reviewed answers for a Q Topic.
-    batchCreateTopicReviewedAnswer: function(Client, types.BatchCreateTopicReviewedAnswerInput): types.BatchCreateTopicReviewedAnswerOutput, table
+    batchCreateTopicReviewedAnswer: function(Client, types.BatchCreateTopicReviewedAnswerInput): Operation<types.BatchCreateTopicReviewedAnswerOutput>
     -- Deletes reviewed answers for Q Topic.
-    batchDeleteTopicReviewedAnswer: function(Client, types.BatchDeleteTopicReviewedAnswerInput): types.BatchDeleteTopicReviewedAnswerOutput, table
+    batchDeleteTopicReviewedAnswer: function(Client, types.BatchDeleteTopicReviewedAnswerInput): Operation<types.BatchDeleteTopicReviewedAnswerOutput>
     -- Cancels an ongoing ingestion of data into SPICE.
-    cancelIngestion: function(Client, types.CancelIngestionInput): types.CancelIngestionOutput, table
+    cancelIngestion: function(Client, types.CancelIngestionInput): Operation<types.CancelIngestionOutput>
     -- Creates Amazon Quick Sight customizations. Currently, you can add a custom default theme by using the
     -- CreateAccountCustomization or UpdateAccountCustomization
     -- API operation. To further customize Amazon Quick Sight by removing Amazon Quick Sight
@@ -27,7 +31,7 @@ local record Client
     -- To share the theme, grant permissions by using the
     -- UpdateThemePermissions
     -- API operation.
-    createAccountCustomization: function(Client, types.CreateAccountCustomizationInput): types.CreateAccountCustomizationOutput, table
+    createAccountCustomization: function(Client, types.CreateAccountCustomizationInput): Operation<types.CreateAccountCustomizationOutput>
     -- Creates an Amazon Quick Sight account, or subscribes to Amazon Quick Sight Q.
     -- The Amazon Web Services Region for the account is derived from what is configured in the
     -- CLI or SDK.
@@ -50,17 +54,17 @@ local record Client
     -- Setting default resource
     -- access to Amazon Web Services services in the Amazon Quick Sight
     -- User Guide.
-    createAccountSubscription: function(Client, types.CreateAccountSubscriptionInput): types.CreateAccountSubscriptionOutput, table
+    createAccountSubscription: function(Client, types.CreateAccountSubscriptionInput): Operation<types.CreateAccountSubscriptionOutput>
     -- Creates an action connector that enables Amazon Quick Sight to connect to external services and perform actions.
     -- Action connectors support various authentication methods and can be configured with specific actions from supported connector types
     -- like Amazon S3, Salesforce, JIRA.
-    createActionConnector: function(Client, types.CreateActionConnectorInput): types.CreateActionConnectorOutput, table
+    createActionConnector: function(Client, types.CreateActionConnectorInput): Operation<types.CreateActionConnectorOutput>
     -- Creates an analysis in Amazon Quick Sight. Analyses can be created either from a template or from an AnalysisDefinition.
-    createAnalysis: function(Client, types.CreateAnalysisInput): types.CreateAnalysisOutput, table
+    createAnalysis: function(Client, types.CreateAnalysisInput): Operation<types.CreateAnalysisOutput>
     -- Creates an Quick Sight brand.
-    createBrand: function(Client, types.CreateBrandInput): types.CreateBrandOutput, table
+    createBrand: function(Client, types.CreateBrandInput): Operation<types.CreateBrandOutput>
     -- Creates a custom permissions profile.
-    createCustomPermissions: function(Client, types.CreateCustomPermissionsInput): types.CreateCustomPermissionsOutput, table
+    createCustomPermissions: function(Client, types.CreateCustomPermissionsInput): Operation<types.CreateCustomPermissionsOutput>
     -- Creates a dashboard from either a template or directly with a
     -- DashboardDefinition. To first create a template, see the
     -- CreateTemplate
@@ -70,30 +74,30 @@ local record Client
     -- right permissions, you can create scheduled email reports from them. If you have the
     -- correct permissions, you can create a dashboard from a template that exists in a
     -- different Amazon Web Services account.
-    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createDashboard: function(Client, types.CreateDashboardInput): Operation<types.CreateDashboardOutput>
     -- Creates a dataset. This operation doesn't support datasets that include uploaded files
     -- as a source.
-    createDataSet: function(Client, types.CreateDataSetInput): types.CreateDataSetOutput, table
+    createDataSet: function(Client, types.CreateDataSetInput): Operation<types.CreateDataSetOutput>
     -- Creates a data source.
-    createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    createDataSource: function(Client, types.CreateDataSourceInput): Operation<types.CreateDataSourceOutput>
     -- Creates an empty shared folder.
-    createFolder: function(Client, types.CreateFolderInput): types.CreateFolderOutput, table
+    createFolder: function(Client, types.CreateFolderInput): Operation<types.CreateFolderOutput>
     -- Adds an asset, such as a dashboard, analysis, or dataset into a folder.
-    createFolderMembership: function(Client, types.CreateFolderMembershipInput): types.CreateFolderMembershipOutput, table
+    createFolderMembership: function(Client, types.CreateFolderMembershipInput): Operation<types.CreateFolderMembershipOutput>
     -- Use the CreateGroup operation to create a group in Quick Sight. You can create up to 10,000 groups in a namespace. If you want to create more than 10,000 groups in a namespace, contact Amazon Web Services Support.
     -- The permissions resource is
     -- arn:aws:quicksight:::group/default/
     -- .
     -- The response is a group object.
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Adds an Amazon Quick Sight user to an Amazon Quick Sight group.
-    createGroupMembership: function(Client, types.CreateGroupMembershipInput): types.CreateGroupMembershipOutput, table
+    createGroupMembership: function(Client, types.CreateGroupMembershipInput): Operation<types.CreateGroupMembershipOutput>
     -- Creates an assignment with one specified IAM policy, identified by its
     -- Amazon Resource Name (ARN). This policy assignment is attached to the specified groups
     -- or users of Amazon Quick Sight. Assignment names are unique per Amazon Web Services
     -- account. To avoid overwriting rules in other namespaces, use assignment names that are
     -- unique.
-    createIAMPolicyAssignment: function(Client, types.CreateIAMPolicyAssignmentInput): types.CreateIAMPolicyAssignmentOutput, table
+    createIAMPolicyAssignment: function(Client, types.CreateIAMPolicyAssignmentInput): Operation<types.CreateIAMPolicyAssignmentOutput>
     -- Creates and starts a new SPICE ingestion for a dataset. You can manually refresh datasets in
     -- an Enterprise edition account 32 times in a 24-hour period. You can manually refresh
     -- datasets in a Standard edition account 8 times in a 24-hour period. Each 24-hour period
@@ -101,7 +105,7 @@ local record Client
     -- Any ingestions operating on tagged datasets inherit the same tags automatically for use in
     -- access control. For an example, see How do I create an IAM policy to control access to Amazon EC2 resources using
     -- tags? in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.
-    createIngestion: function(Client, types.CreateIngestionInput): types.CreateIngestionOutput, table
+    createIngestion: function(Client, types.CreateIngestionInput): Operation<types.CreateIngestionOutput>
     -- (Enterprise edition only) Creates a new namespace for you to use with Amazon Quick Sight.
     -- A namespace allows you to isolate the Quick Sight users and groups that are registered
     -- for that namespace. Users that access the namespace can share assets only with other
@@ -110,11 +114,11 @@ local record Client
     -- Quick Sight. The namespace must be unique within the Amazon Web Services account. By default, there is a
     -- limit of 100 namespaces per Amazon Web Services account. To increase your limit, create a ticket with
     -- Amazon Web Services Support.
-    createNamespace: function(Client, types.CreateNamespaceInput): types.CreateNamespaceOutput, table
+    createNamespace: function(Client, types.CreateNamespaceInput): Operation<types.CreateNamespaceOutput>
     -- Creates a refresh schedule for a dataset. You can create up to 5 different schedules for a single dataset.
-    createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput): types.CreateRefreshScheduleOutput, table
+    createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput): Operation<types.CreateRefreshScheduleOutput>
     -- Use CreateRoleMembership to add an existing Quick Sight group to an existing role.
-    createRoleMembership: function(Client, types.CreateRoleMembershipInput): types.CreateRoleMembershipOutput, table
+    createRoleMembership: function(Client, types.CreateRoleMembershipInput): Operation<types.CreateRoleMembershipOutput>
     -- Creates a template either from a TemplateDefinition or from an existing Quick Sight analysis or template. You can use the resulting
     -- template to create additional dashboards, templates, or analyses.
     -- A template is an entity in Quick Sight that encapsulates the metadata
@@ -123,31 +127,31 @@ local record Client
     -- analysis. You can use templates to create dashboards by replacing dataset placeholders
     -- with datasets that follow the same schema that was used to create the source analysis
     -- and template.
-    createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    createTemplate: function(Client, types.CreateTemplateInput): Operation<types.CreateTemplateOutput>
     -- Creates a template alias for a template.
-    createTemplateAlias: function(Client, types.CreateTemplateAliasInput): types.CreateTemplateAliasOutput, table
+    createTemplateAlias: function(Client, types.CreateTemplateAliasInput): Operation<types.CreateTemplateAliasOutput>
     -- Creates a theme.
     -- A theme is set of configuration options for color and layout.
     -- Themes apply to analyses and dashboards. For more information, see Using
     -- Themes in Amazon Quick Sight in the Amazon Quick Sight User Guide.
-    createTheme: function(Client, types.CreateThemeInput): types.CreateThemeOutput, table
+    createTheme: function(Client, types.CreateThemeInput): Operation<types.CreateThemeOutput>
     -- Creates a theme alias for a theme.
-    createThemeAlias: function(Client, types.CreateThemeAliasInput): types.CreateThemeAliasOutput, table
+    createThemeAlias: function(Client, types.CreateThemeAliasInput): Operation<types.CreateThemeAliasOutput>
     -- Creates a new Q topic.
-    createTopic: function(Client, types.CreateTopicInput): types.CreateTopicOutput, table
+    createTopic: function(Client, types.CreateTopicInput): Operation<types.CreateTopicOutput>
     -- Creates a topic refresh schedule.
-    createTopicRefreshSchedule: function(Client, types.CreateTopicRefreshScheduleInput): types.CreateTopicRefreshScheduleOutput, table
+    createTopicRefreshSchedule: function(Client, types.CreateTopicRefreshScheduleInput): Operation<types.CreateTopicRefreshScheduleOutput>
     -- Creates a new VPC connection.
-    createVPCConnection: function(Client, types.CreateVPCConnectionInput): types.CreateVPCConnectionOutput, table
+    createVPCConnection: function(Client, types.CreateVPCConnectionInput): Operation<types.CreateVPCConnectionOutput>
     -- This API permanently deletes all Quick Sight customizations for the specified Amazon Web Services account and namespace. When you delete account customizations:
     -- All customizations are removed including themes, branding, and visual settings
     -- This action cannot be undone through the API
     -- Users will see default Quick Sight styling after customizations are deleted
     -- Before proceeding: Ensure you have backups of any custom themes or branding elements you may want to recreate.
     -- Deletes all Amazon Quick Sight customizations for the specified Amazon Web Services account and Quick Sight namespace.
-    deleteAccountCustomization: function(Client, types.DeleteAccountCustomizationInput): types.DeleteAccountCustomizationOutput, table
+    deleteAccountCustomization: function(Client, types.DeleteAccountCustomizationInput): Operation<types.DeleteAccountCustomizationOutput>
     -- Unapplies a custom permissions profile from an account.
-    deleteAccountCustomPermission: function(Client, types.DeleteAccountCustomPermissionInput): types.DeleteAccountCustomPermissionOutput, table
+    deleteAccountCustomPermission: function(Client, types.DeleteAccountCustomPermissionInput): Operation<types.DeleteAccountCustomPermissionOutput>
     -- Deleting your Quick Sight account subscription has permanent, irreversible consequences across all Amazon Web Services regions:
     -- Global deletion – Running this operation from any single region will delete your Quick Sight account and all data in every Amazon Web Services region where you have Quick Sight resources.
     -- Complete data loss – All dashboards, analyses, datasets, data sources, and custom visuals will be permanently deleted across all regions.
@@ -157,9 +161,9 @@ local record Client
     -- No recovery possible – Once deleted, your Quick Sight account and all associated data cannot be restored.
     -- Consider exporting critical dashboards and data before proceeding with account deletion.
     -- Use the DeleteAccountSubscription operation to delete an Quick Sight account. This operation will result in an error message if you have configured your account termination protection settings to True. To change this setting and delete your account, call the UpdateAccountSettings API and set the value of the TerminationProtectionEnabled parameter to False, then make another call to the DeleteAccountSubscription API.
-    deleteAccountSubscription: function(Client, types.DeleteAccountSubscriptionInput): types.DeleteAccountSubscriptionOutput, table
+    deleteAccountSubscription: function(Client, types.DeleteAccountSubscriptionInput): Operation<types.DeleteAccountSubscriptionOutput>
     -- Hard deletes an action connector, making it unrecoverable. This operation removes the connector and all its associated configurations. Any resources currently using this action connector will no longer be able to perform actions through it.
-    deleteActionConnector: function(Client, types.DeleteActionConnectorInput): types.DeleteActionConnectorOutput, table
+    deleteActionConnector: function(Client, types.DeleteActionConnectorInput): Operation<types.DeleteActionConnectorOutput>
     -- Deletes an analysis from Amazon Quick Sight. You can optionally include a recovery window during
     -- which you can restore the analysis. If you don't specify a recovery window value, the
     -- operation defaults to 30 days. Amazon Quick Sight attaches a DeletionTime stamp to
@@ -172,77 +176,77 @@ local record Client
     -- An analysis that's scheduled for deletion isn't accessible in the Amazon Quick Sight console.
     -- To access it in the console, restore it. Deleting an analysis doesn't delete the
     -- dashboards that you publish from it.
-    deleteAnalysis: function(Client, types.DeleteAnalysisInput): types.DeleteAnalysisOutput, table
+    deleteAnalysis: function(Client, types.DeleteAnalysisInput): Operation<types.DeleteAnalysisOutput>
     -- This API permanently deletes the specified Quick Sight brand. When you delete a brand:
     -- The brand and all its associated branding elements are permanently removed
     -- Any applications or dashboards using this brand will revert to default styling
     -- This action cannot be undone through the API
     -- Before proceeding: Verify that the brand is no longer needed and consider the impact on any applications currently using this brand.
     -- Deletes an Quick Sight brand.
-    deleteBrand: function(Client, types.DeleteBrandInput): types.DeleteBrandOutput, table
+    deleteBrand: function(Client, types.DeleteBrandInput): Operation<types.DeleteBrandOutput>
     -- Deletes a brand assignment.
-    deleteBrandAssignment: function(Client, types.DeleteBrandAssignmentInput): types.DeleteBrandAssignmentOutput, table
+    deleteBrandAssignment: function(Client, types.DeleteBrandAssignmentInput): Operation<types.DeleteBrandAssignmentOutput>
     -- Deletes a custom permissions profile.
-    deleteCustomPermissions: function(Client, types.DeleteCustomPermissionsInput): types.DeleteCustomPermissionsOutput, table
+    deleteCustomPermissions: function(Client, types.DeleteCustomPermissionsInput): Operation<types.DeleteCustomPermissionsOutput>
     -- Deletes a dashboard.
-    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): Operation<types.DeleteDashboardOutput>
     -- Deletes a dataset.
-    deleteDataSet: function(Client, types.DeleteDataSetInput): types.DeleteDataSetOutput, table
+    deleteDataSet: function(Client, types.DeleteDataSetInput): Operation<types.DeleteDataSetOutput>
     -- Deletes the dataset refresh properties of the dataset.
-    deleteDataSetRefreshProperties: function(Client, types.DeleteDataSetRefreshPropertiesInput): types.DeleteDataSetRefreshPropertiesOutput, table
+    deleteDataSetRefreshProperties: function(Client, types.DeleteDataSetRefreshPropertiesInput): Operation<types.DeleteDataSetRefreshPropertiesOutput>
     -- Deletes the data source permanently. This operation breaks all the datasets that
     -- reference the deleted data source.
-    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): Operation<types.DeleteDataSourceOutput>
     -- Deletes a linked Amazon Q Business application from an Quick Sight account
-    deleteDefaultQBusinessApplication: function(Client, types.DeleteDefaultQBusinessApplicationInput): types.DeleteDefaultQBusinessApplicationOutput, table
+    deleteDefaultQBusinessApplication: function(Client, types.DeleteDefaultQBusinessApplicationInput): Operation<types.DeleteDefaultQBusinessApplicationOutput>
     -- Deletes an empty folder.
-    deleteFolder: function(Client, types.DeleteFolderInput): types.DeleteFolderOutput, table
+    deleteFolder: function(Client, types.DeleteFolderInput): Operation<types.DeleteFolderOutput>
     -- Removes an asset, such as a dashboard, analysis, or dataset, from a folder.
-    deleteFolderMembership: function(Client, types.DeleteFolderMembershipInput): types.DeleteFolderMembershipOutput, table
+    deleteFolderMembership: function(Client, types.DeleteFolderMembershipInput): Operation<types.DeleteFolderMembershipOutput>
     -- Removes a user group from Amazon Quick Sight.
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Removes a user from a group so that the user is no longer a member of the group.
-    deleteGroupMembership: function(Client, types.DeleteGroupMembershipInput): types.DeleteGroupMembershipOutput, table
+    deleteGroupMembership: function(Client, types.DeleteGroupMembershipInput): Operation<types.DeleteGroupMembershipOutput>
     -- Deletes an existing IAM policy assignment.
-    deleteIAMPolicyAssignment: function(Client, types.DeleteIAMPolicyAssignmentInput): types.DeleteIAMPolicyAssignmentOutput, table
+    deleteIAMPolicyAssignment: function(Client, types.DeleteIAMPolicyAssignmentInput): Operation<types.DeleteIAMPolicyAssignmentOutput>
     -- Deletes all access scopes and authorized targets that are associated with a service from the Quick Sight IAM Identity Center application.
     -- This operation is only supported for Quick Sight accounts that use IAM Identity Center.
-    deleteIdentityPropagationConfig: function(Client, types.DeleteIdentityPropagationConfigInput): types.DeleteIdentityPropagationConfigOutput, table
+    deleteIdentityPropagationConfig: function(Client, types.DeleteIdentityPropagationConfigInput): Operation<types.DeleteIdentityPropagationConfigOutput>
     -- Deletes a namespace and the users and groups that are associated with the namespace.
     -- This is an asynchronous process. Assets including dashboards, analyses, datasets and data sources are not
     -- deleted. To delete these assets, you use the API operations for the relevant asset.
-    deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    deleteNamespace: function(Client, types.DeleteNamespaceInput): Operation<types.DeleteNamespaceOutput>
     -- Deletes a refresh schedule from a dataset.
-    deleteRefreshSchedule: function(Client, types.DeleteRefreshScheduleInput): types.DeleteRefreshScheduleOutput, table
+    deleteRefreshSchedule: function(Client, types.DeleteRefreshScheduleInput): Operation<types.DeleteRefreshScheduleOutput>
     -- Removes custom permissions from the role.
-    deleteRoleCustomPermission: function(Client, types.DeleteRoleCustomPermissionInput): types.DeleteRoleCustomPermissionOutput, table
+    deleteRoleCustomPermission: function(Client, types.DeleteRoleCustomPermissionInput): Operation<types.DeleteRoleCustomPermissionOutput>
     -- Removes a group from a role.
-    deleteRoleMembership: function(Client, types.DeleteRoleMembershipInput): types.DeleteRoleMembershipOutput, table
+    deleteRoleMembership: function(Client, types.DeleteRoleMembershipInput): Operation<types.DeleteRoleMembershipOutput>
     -- Deletes a template.
-    deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    deleteTemplate: function(Client, types.DeleteTemplateInput): Operation<types.DeleteTemplateOutput>
     -- Deletes the item that the specified template alias points to. If you provide a specific
     -- alias, you delete the version of the template that the alias points to.
-    deleteTemplateAlias: function(Client, types.DeleteTemplateAliasInput): types.DeleteTemplateAliasOutput, table
+    deleteTemplateAlias: function(Client, types.DeleteTemplateAliasInput): Operation<types.DeleteTemplateAliasOutput>
     -- Deletes a theme.
-    deleteTheme: function(Client, types.DeleteThemeInput): types.DeleteThemeOutput, table
+    deleteTheme: function(Client, types.DeleteThemeInput): Operation<types.DeleteThemeOutput>
     -- Deletes the version of the theme that the specified theme alias points to.
     -- If you provide a specific alias, you delete the version of the theme
     -- that the alias points to.
-    deleteThemeAlias: function(Client, types.DeleteThemeAliasInput): types.DeleteThemeAliasOutput, table
+    deleteThemeAlias: function(Client, types.DeleteThemeAliasInput): Operation<types.DeleteThemeAliasOutput>
     -- Deletes a topic.
-    deleteTopic: function(Client, types.DeleteTopicInput): types.DeleteTopicOutput, table
+    deleteTopic: function(Client, types.DeleteTopicInput): Operation<types.DeleteTopicOutput>
     -- Deletes a topic refresh schedule.
-    deleteTopicRefreshSchedule: function(Client, types.DeleteTopicRefreshScheduleInput): types.DeleteTopicRefreshScheduleOutput, table
+    deleteTopicRefreshSchedule: function(Client, types.DeleteTopicRefreshScheduleInput): Operation<types.DeleteTopicRefreshScheduleOutput>
     -- Deletes the Amazon Quick Sight user that is associated with the identity of the
     -- IAM user or role that's making the call. The IAM user
     -- isn't deleted as a result of this call.
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- Deletes a user identified by its principal ID.
-    deleteUserByPrincipalId: function(Client, types.DeleteUserByPrincipalIdInput): types.DeleteUserByPrincipalIdOutput, table
+    deleteUserByPrincipalId: function(Client, types.DeleteUserByPrincipalIdInput): Operation<types.DeleteUserByPrincipalIdOutput>
     -- Deletes a custom permissions profile from a user.
-    deleteUserCustomPermission: function(Client, types.DeleteUserCustomPermissionInput): types.DeleteUserCustomPermissionOutput, table
+    deleteUserCustomPermission: function(Client, types.DeleteUserCustomPermissionInput): Operation<types.DeleteUserCustomPermissionOutput>
     -- Deletes a VPC connection.
-    deleteVPCConnection: function(Client, types.DeleteVPCConnectionInput): types.DeleteVPCConnectionOutput, table
+    deleteVPCConnection: function(Client, types.DeleteVPCConnectionInput): Operation<types.DeleteVPCConnectionOutput>
     -- Describes the customizations associated with the provided Amazon Web Services account and Amazon
     -- Quick Sight namespace. The Quick Sight console evaluates which
     -- customizations to apply by running this API operation with the Resolved flag
@@ -274,60 +278,60 @@ local record Client
     -- Applied customizations - Quick Sight customizations can apply to an Amazon Web Services account or to a namespace.
     -- Settings that you apply to a namespace override settings that you apply to an
     -- Amazon Web Services account.
-    describeAccountCustomization: function(Client, types.DescribeAccountCustomizationInput): types.DescribeAccountCustomizationOutput, table
+    describeAccountCustomization: function(Client, types.DescribeAccountCustomizationInput): Operation<types.DescribeAccountCustomizationOutput>
     -- Describes the custom permissions profile that is applied to an account.
-    describeAccountCustomPermission: function(Client, types.DescribeAccountCustomPermissionInput): types.DescribeAccountCustomPermissionOutput, table
+    describeAccountCustomPermission: function(Client, types.DescribeAccountCustomPermissionInput): Operation<types.DescribeAccountCustomPermissionOutput>
     -- Describes the settings that were used when your Quick Sight subscription was first
     -- created in this Amazon Web Services account.
-    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): types.DescribeAccountSettingsOutput, table
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): Operation<types.DescribeAccountSettingsOutput>
     -- Use the DescribeAccountSubscription operation to receive a description of an Quick Sight account's subscription. A successful API call returns an AccountInfo object that includes an account's name, subscription status, authentication type, edition, and notification email address.
-    describeAccountSubscription: function(Client, types.DescribeAccountSubscriptionInput): types.DescribeAccountSubscriptionOutput, table
+    describeAccountSubscription: function(Client, types.DescribeAccountSubscriptionInput): Operation<types.DescribeAccountSubscriptionOutput>
     -- Retrieves detailed information about an action connector, including its configuration, authentication settings, enabled actions, and current status.
-    describeActionConnector: function(Client, types.DescribeActionConnectorInput): types.DescribeActionConnectorOutput, table
+    describeActionConnector: function(Client, types.DescribeActionConnectorInput): Operation<types.DescribeActionConnectorOutput>
     -- Retrieves the permissions configuration for an action connector, showing which users, groups, and namespaces have access and what operations they can perform.
-    describeActionConnectorPermissions: function(Client, types.DescribeActionConnectorPermissionsInput): types.DescribeActionConnectorPermissionsOutput, table
+    describeActionConnectorPermissions: function(Client, types.DescribeActionConnectorPermissionsInput): Operation<types.DescribeActionConnectorPermissionsOutput>
     -- Provides a summary of the metadata for an analysis.
-    describeAnalysis: function(Client, types.DescribeAnalysisInput): types.DescribeAnalysisOutput, table
+    describeAnalysis: function(Client, types.DescribeAnalysisInput): Operation<types.DescribeAnalysisOutput>
     -- Provides a detailed description of the definition of an analysis.
     -- If you do not need to know details about the content of an Analysis, for instance if you
     -- are trying to check the status of a recently created or updated Analysis, use the
     -- DescribeAnalysis
     -- instead.
-    describeAnalysisDefinition: function(Client, types.DescribeAnalysisDefinitionInput): types.DescribeAnalysisDefinitionOutput, table
+    describeAnalysisDefinition: function(Client, types.DescribeAnalysisDefinitionInput): Operation<types.DescribeAnalysisDefinitionOutput>
     -- Provides the read and write permissions for an analysis.
-    describeAnalysisPermissions: function(Client, types.DescribeAnalysisPermissionsInput): types.DescribeAnalysisPermissionsOutput, table
+    describeAnalysisPermissions: function(Client, types.DescribeAnalysisPermissionsInput): Operation<types.DescribeAnalysisPermissionsOutput>
     -- Describes an existing export job.
     -- Poll job descriptions after a job starts to know the status of the job. When a job
     -- succeeds, a URL is provided to download the exported assets' data from. Download URLs
     -- are valid for five minutes after they are generated. You can call the
     -- DescribeAssetBundleExportJob API for a new download URL as needed.
     -- Job descriptions are available for 14 days after the job starts.
-    describeAssetBundleExportJob: function(Client, types.DescribeAssetBundleExportJobInput): types.DescribeAssetBundleExportJobOutput, table
+    describeAssetBundleExportJob: function(Client, types.DescribeAssetBundleExportJobInput): Operation<types.DescribeAssetBundleExportJobOutput>
     -- Describes an existing import job.
     -- Poll job descriptions after starting a job to know when it has succeeded or failed. Job
     -- descriptions are available for 14 days after job starts.
-    describeAssetBundleImportJob: function(Client, types.DescribeAssetBundleImportJobInput): types.DescribeAssetBundleImportJobOutput, table
+    describeAssetBundleImportJob: function(Client, types.DescribeAssetBundleImportJobInput): Operation<types.DescribeAssetBundleImportJobOutput>
     -- Retrieves the status and details of a specified automation job, including its status and outputs.
-    describeAutomationJob: function(Client, types.DescribeAutomationJobInput): types.DescribeAutomationJobOutput, table
+    describeAutomationJob: function(Client, types.DescribeAutomationJobInput): Operation<types.DescribeAutomationJobOutput>
     -- Describes a brand.
-    describeBrand: function(Client, types.DescribeBrandInput): types.DescribeBrandOutput, table
+    describeBrand: function(Client, types.DescribeBrandInput): Operation<types.DescribeBrandOutput>
     -- Describes a brand assignment.
-    describeBrandAssignment: function(Client, types.DescribeBrandAssignmentInput): types.DescribeBrandAssignmentOutput, table
+    describeBrandAssignment: function(Client, types.DescribeBrandAssignmentInput): Operation<types.DescribeBrandAssignmentOutput>
     -- Describes the published version of the brand.
-    describeBrandPublishedVersion: function(Client, types.DescribeBrandPublishedVersionInput): types.DescribeBrandPublishedVersionOutput, table
+    describeBrandPublishedVersion: function(Client, types.DescribeBrandPublishedVersionInput): Operation<types.DescribeBrandPublishedVersionOutput>
     -- Describes a custom permissions profile.
-    describeCustomPermissions: function(Client, types.DescribeCustomPermissionsInput): types.DescribeCustomPermissionsOutput, table
+    describeCustomPermissions: function(Client, types.DescribeCustomPermissionsInput): Operation<types.DescribeCustomPermissionsOutput>
     -- Provides a summary for a dashboard.
-    describeDashboard: function(Client, types.DescribeDashboardInput): types.DescribeDashboardOutput, table
+    describeDashboard: function(Client, types.DescribeDashboardInput): Operation<types.DescribeDashboardOutput>
     -- Provides a detailed description of the definition of a dashboard.
     -- If you do not need to know details about the content of a dashboard, for instance
     -- if you are trying to check the status of a recently created or updated dashboard,
     -- use the
     -- DescribeDashboard
     -- instead.
-    describeDashboardDefinition: function(Client, types.DescribeDashboardDefinitionInput): types.DescribeDashboardDefinitionOutput, table
+    describeDashboardDefinition: function(Client, types.DescribeDashboardDefinitionInput): Operation<types.DescribeDashboardDefinitionOutput>
     -- Describes read and write permissions for a dashboard.
-    describeDashboardPermissions: function(Client, types.DescribeDashboardPermissionsInput): types.DescribeDashboardPermissionsOutput, table
+    describeDashboardPermissions: function(Client, types.DescribeDashboardPermissionsInput): Operation<types.DescribeDashboardPermissionsOutput>
     -- Describes an existing snapshot job.
     -- Poll job descriptions after a job starts to know the status of the job. For information on available status codes, see JobStatus.
     -- Registered user support
@@ -337,7 +341,7 @@ local record Client
     -- The credentials have expired.
     -- Job has been started by a different user.
     -- Impersonated Quick Sight user doesn't have access to the specified dashboard in the job.
-    describeDashboardSnapshotJob: function(Client, types.DescribeDashboardSnapshotJobInput): types.DescribeDashboardSnapshotJobOutput, table
+    describeDashboardSnapshotJob: function(Client, types.DescribeDashboardSnapshotJobInput): Operation<types.DescribeDashboardSnapshotJobOutput>
     -- Describes the result of an existing snapshot job that has finished running.
     -- A finished snapshot job will return a COMPLETED or FAILED status when you poll the job with a DescribeDashboardSnapshotJob API call.
     -- If the job has not finished running, this operation returns a message that says Dashboard Snapshot Job with id has not reached a terminal state..
@@ -356,87 +360,87 @@ local record Client
     -- RLS_CHANGED - Row-level security settings have changed. Re-run the job with current settings.
     -- CLS_CHANGED - Column-level security settings have changed. Re-run the job with current settings.
     -- DATASET_DELETED - The dataset has been deleted. Verify the dataset exists before re-running the job.
-    describeDashboardSnapshotJobResult: function(Client, types.DescribeDashboardSnapshotJobResultInput): types.DescribeDashboardSnapshotJobResultOutput, table
+    describeDashboardSnapshotJobResult: function(Client, types.DescribeDashboardSnapshotJobResultInput): Operation<types.DescribeDashboardSnapshotJobResultOutput>
     -- Describes an existing dashboard QA configuration.
-    describeDashboardsQAConfiguration: function(Client, types.DescribeDashboardsQAConfigurationInput): types.DescribeDashboardsQAConfigurationOutput, table
+    describeDashboardsQAConfiguration: function(Client, types.DescribeDashboardsQAConfigurationInput): Operation<types.DescribeDashboardsQAConfigurationOutput>
     -- Describes a dataset. This operation doesn't support datasets that include uploaded
     -- files as a source.
-    describeDataSet: function(Client, types.DescribeDataSetInput): types.DescribeDataSetOutput, table
+    describeDataSet: function(Client, types.DescribeDataSetInput): Operation<types.DescribeDataSetOutput>
     -- Describes the permissions on a dataset.
     -- The permissions resource is
     -- arn:aws:quicksight:region:aws-account-id:dataset/data-set-id.
-    describeDataSetPermissions: function(Client, types.DescribeDataSetPermissionsInput): types.DescribeDataSetPermissionsOutput, table
+    describeDataSetPermissions: function(Client, types.DescribeDataSetPermissionsInput): Operation<types.DescribeDataSetPermissionsOutput>
     -- Describes the refresh properties of a dataset.
-    describeDataSetRefreshProperties: function(Client, types.DescribeDataSetRefreshPropertiesInput): types.DescribeDataSetRefreshPropertiesOutput, table
+    describeDataSetRefreshProperties: function(Client, types.DescribeDataSetRefreshPropertiesInput): Operation<types.DescribeDataSetRefreshPropertiesOutput>
     -- Describes a data source.
-    describeDataSource: function(Client, types.DescribeDataSourceInput): types.DescribeDataSourceOutput, table
+    describeDataSource: function(Client, types.DescribeDataSourceInput): Operation<types.DescribeDataSourceOutput>
     -- Describes the resource permissions for a data source.
-    describeDataSourcePermissions: function(Client, types.DescribeDataSourcePermissionsInput): types.DescribeDataSourcePermissionsOutput, table
+    describeDataSourcePermissions: function(Client, types.DescribeDataSourcePermissionsInput): Operation<types.DescribeDataSourcePermissionsOutput>
     -- Describes a Amazon Q Business application that is linked to an Quick Sight account.
-    describeDefaultQBusinessApplication: function(Client, types.DescribeDefaultQBusinessApplicationInput): types.DescribeDefaultQBusinessApplicationOutput, table
+    describeDefaultQBusinessApplication: function(Client, types.DescribeDefaultQBusinessApplicationInput): Operation<types.DescribeDefaultQBusinessApplicationOutput>
     -- Describes a folder.
-    describeFolder: function(Client, types.DescribeFolderInput): types.DescribeFolderOutput, table
+    describeFolder: function(Client, types.DescribeFolderInput): Operation<types.DescribeFolderOutput>
     -- Describes permissions for a folder.
-    describeFolderPermissions: function(Client, types.DescribeFolderPermissionsInput): types.DescribeFolderPermissionsOutput, table
+    describeFolderPermissions: function(Client, types.DescribeFolderPermissionsInput): Operation<types.DescribeFolderPermissionsOutput>
     -- Describes the folder resolved permissions. Permissions consists of both folder direct permissions and the inherited permissions from the ancestor folders.
-    describeFolderResolvedPermissions: function(Client, types.DescribeFolderResolvedPermissionsInput): types.DescribeFolderResolvedPermissionsOutput, table
+    describeFolderResolvedPermissions: function(Client, types.DescribeFolderResolvedPermissionsInput): Operation<types.DescribeFolderResolvedPermissionsOutput>
     -- Returns an Amazon Quick Sight group's description and Amazon Resource Name (ARN).
-    describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    describeGroup: function(Client, types.DescribeGroupInput): Operation<types.DescribeGroupOutput>
     -- Use the DescribeGroupMembership operation to determine if a user is a
     -- member of the specified group. If the user exists and is a member of the specified
     -- group, an associated GroupMember object is returned.
-    describeGroupMembership: function(Client, types.DescribeGroupMembershipInput): types.DescribeGroupMembershipOutput, table
+    describeGroupMembership: function(Client, types.DescribeGroupMembershipInput): Operation<types.DescribeGroupMembershipOutput>
     -- Describes an existing IAM policy assignment, as specified by the
     -- assignment name.
-    describeIAMPolicyAssignment: function(Client, types.DescribeIAMPolicyAssignmentInput): types.DescribeIAMPolicyAssignmentOutput, table
+    describeIAMPolicyAssignment: function(Client, types.DescribeIAMPolicyAssignmentInput): Operation<types.DescribeIAMPolicyAssignmentOutput>
     -- Describes a SPICE ingestion.
-    describeIngestion: function(Client, types.DescribeIngestionInput): types.DescribeIngestionOutput, table
+    describeIngestion: function(Client, types.DescribeIngestionInput): Operation<types.DescribeIngestionOutput>
     -- Provides a summary and status of IP rules.
-    describeIpRestriction: function(Client, types.DescribeIpRestrictionInput): types.DescribeIpRestrictionOutput, table
+    describeIpRestriction: function(Client, types.DescribeIpRestrictionInput): Operation<types.DescribeIpRestrictionOutput>
     -- Describes all customer managed key registrations in a Quick Sight account.
-    describeKeyRegistration: function(Client, types.DescribeKeyRegistrationInput): types.DescribeKeyRegistrationOutput, table
+    describeKeyRegistration: function(Client, types.DescribeKeyRegistrationInput): Operation<types.DescribeKeyRegistrationOutput>
     -- Describes the current namespace.
-    describeNamespace: function(Client, types.DescribeNamespaceInput): types.DescribeNamespaceOutput, table
+    describeNamespace: function(Client, types.DescribeNamespaceInput): Operation<types.DescribeNamespaceOutput>
     -- Describes a personalization configuration.
-    describeQPersonalizationConfiguration: function(Client, types.DescribeQPersonalizationConfigurationInput): types.DescribeQPersonalizationConfigurationOutput, table
+    describeQPersonalizationConfiguration: function(Client, types.DescribeQPersonalizationConfigurationInput): Operation<types.DescribeQPersonalizationConfigurationOutput>
     -- Describes the state of a Quick Sight Q Search configuration.
-    describeQuickSightQSearchConfiguration: function(Client, types.DescribeQuickSightQSearchConfigurationInput): types.DescribeQuickSightQSearchConfigurationOutput, table
+    describeQuickSightQSearchConfiguration: function(Client, types.DescribeQuickSightQSearchConfigurationInput): Operation<types.DescribeQuickSightQSearchConfigurationOutput>
     -- Provides a summary of a refresh schedule.
-    describeRefreshSchedule: function(Client, types.DescribeRefreshScheduleInput): types.DescribeRefreshScheduleOutput, table
+    describeRefreshSchedule: function(Client, types.DescribeRefreshScheduleInput): Operation<types.DescribeRefreshScheduleOutput>
     -- Describes all custom permissions that are mapped to a role.
-    describeRoleCustomPermission: function(Client, types.DescribeRoleCustomPermissionInput): types.DescribeRoleCustomPermissionOutput, table
+    describeRoleCustomPermission: function(Client, types.DescribeRoleCustomPermissionInput): Operation<types.DescribeRoleCustomPermissionOutput>
     -- Describes the self-upgrade configuration for a Quick account.
-    describeSelfUpgradeConfiguration: function(Client, types.DescribeSelfUpgradeConfigurationInput): types.DescribeSelfUpgradeConfigurationOutput, table
+    describeSelfUpgradeConfiguration: function(Client, types.DescribeSelfUpgradeConfigurationInput): Operation<types.DescribeSelfUpgradeConfigurationOutput>
     -- Describes a template's metadata.
-    describeTemplate: function(Client, types.DescribeTemplateInput): types.DescribeTemplateOutput, table
+    describeTemplate: function(Client, types.DescribeTemplateInput): Operation<types.DescribeTemplateOutput>
     -- Describes the template alias for a template.
-    describeTemplateAlias: function(Client, types.DescribeTemplateAliasInput): types.DescribeTemplateAliasOutput, table
+    describeTemplateAlias: function(Client, types.DescribeTemplateAliasInput): Operation<types.DescribeTemplateAliasOutput>
     -- Provides a detailed description of the definition of a template.
     -- If you do not need to know details about the content of a template, for instance if you
     -- are trying to check the status of a recently created or updated template, use the
     -- DescribeTemplate
     -- instead.
-    describeTemplateDefinition: function(Client, types.DescribeTemplateDefinitionInput): types.DescribeTemplateDefinitionOutput, table
+    describeTemplateDefinition: function(Client, types.DescribeTemplateDefinitionInput): Operation<types.DescribeTemplateDefinitionOutput>
     -- Describes read and write permissions on a template.
-    describeTemplatePermissions: function(Client, types.DescribeTemplatePermissionsInput): types.DescribeTemplatePermissionsOutput, table
+    describeTemplatePermissions: function(Client, types.DescribeTemplatePermissionsInput): Operation<types.DescribeTemplatePermissionsOutput>
     -- Describes a theme.
-    describeTheme: function(Client, types.DescribeThemeInput): types.DescribeThemeOutput, table
+    describeTheme: function(Client, types.DescribeThemeInput): Operation<types.DescribeThemeOutput>
     -- Describes the alias for a theme.
-    describeThemeAlias: function(Client, types.DescribeThemeAliasInput): types.DescribeThemeAliasOutput, table
+    describeThemeAlias: function(Client, types.DescribeThemeAliasInput): Operation<types.DescribeThemeAliasOutput>
     -- Describes the read and write permissions for a theme.
-    describeThemePermissions: function(Client, types.DescribeThemePermissionsInput): types.DescribeThemePermissionsOutput, table
+    describeThemePermissions: function(Client, types.DescribeThemePermissionsInput): Operation<types.DescribeThemePermissionsOutput>
     -- Describes a topic.
-    describeTopic: function(Client, types.DescribeTopicInput): types.DescribeTopicOutput, table
+    describeTopic: function(Client, types.DescribeTopicInput): Operation<types.DescribeTopicOutput>
     -- Describes the permissions of a topic.
-    describeTopicPermissions: function(Client, types.DescribeTopicPermissionsInput): types.DescribeTopicPermissionsOutput, table
+    describeTopicPermissions: function(Client, types.DescribeTopicPermissionsInput): Operation<types.DescribeTopicPermissionsOutput>
     -- Describes the status of a topic refresh.
-    describeTopicRefresh: function(Client, types.DescribeTopicRefreshInput): types.DescribeTopicRefreshOutput, table
+    describeTopicRefresh: function(Client, types.DescribeTopicRefreshInput): Operation<types.DescribeTopicRefreshOutput>
     -- Deletes a topic refresh schedule.
-    describeTopicRefreshSchedule: function(Client, types.DescribeTopicRefreshScheduleInput): types.DescribeTopicRefreshScheduleOutput, table
+    describeTopicRefreshSchedule: function(Client, types.DescribeTopicRefreshScheduleInput): Operation<types.DescribeTopicRefreshScheduleOutput>
     -- Returns information about a user, given the user name.
-    describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    describeUser: function(Client, types.DescribeUserInput): Operation<types.DescribeUserOutput>
     -- Describes a VPC connection.
-    describeVPCConnection: function(Client, types.DescribeVPCConnectionInput): types.DescribeVPCConnectionOutput, table
+    describeVPCConnection: function(Client, types.DescribeVPCConnectionInput): Operation<types.DescribeVPCConnectionOutput>
     -- Generates an embed URL that you can use to embed an Amazon Quick dashboard or
     -- visual in your website, without having to register any reader users. Before you use this
     -- action, make sure that you have configured the dashboards and permissions.
@@ -455,7 +459,7 @@ local record Client
     -- For more information about the high-level steps for embedding and for an interactive
     -- demo of the ways you can customize embedding, visit the Amazon Quick
     -- Developer Portal.
-    generateEmbedUrlForAnonymousUser: function(Client, types.GenerateEmbedUrlForAnonymousUserInput): types.GenerateEmbedUrlForAnonymousUserOutput, table
+    generateEmbedUrlForAnonymousUser: function(Client, types.GenerateEmbedUrlForAnonymousUserInput): Operation<types.GenerateEmbedUrlForAnonymousUserOutput>
     -- Generates an embed URL that you can use to embed an Amazon Quick experience
     -- in your website. This action can be used for any type of user registered in an Amazon Quick account. Before you use this action, make sure that you have
     -- configured the relevant Amazon Quick resource and permissions.
@@ -474,7 +478,7 @@ local record Client
     -- For more information about the high-level steps for embedding and for an interactive
     -- demo of the ways you can customize embedding, visit the Amazon Quick
     -- Developer Portal.
-    generateEmbedUrlForRegisteredUser: function(Client, types.GenerateEmbedUrlForRegisteredUserInput): types.GenerateEmbedUrlForRegisteredUserOutput, table
+    generateEmbedUrlForRegisteredUser: function(Client, types.GenerateEmbedUrlForRegisteredUserInput): Operation<types.GenerateEmbedUrlForRegisteredUserOutput>
     -- Generates an embed URL that you can use to embed an Amazon Quick Sight experience in
     -- your website. This action can be used for any type of user that is registered in an
     -- Amazon Quick Sight account that uses IAM Identity Center for authentication. This API
@@ -486,7 +490,7 @@ local record Client
     -- user has logged into needs to have trusted Identity Propagation enabled for Amazon Quick Sight with the scope
     -- value set to quicksight:read. Before you use this action, make sure that
     -- you have configured the relevant Amazon Quick Sight resource and permissions.
-    generateEmbedUrlForRegisteredUserWithIdentity: function(Client, types.GenerateEmbedUrlForRegisteredUserWithIdentityInput): types.GenerateEmbedUrlForRegisteredUserWithIdentityOutput, table
+    generateEmbedUrlForRegisteredUserWithIdentity: function(Client, types.GenerateEmbedUrlForRegisteredUserWithIdentityInput): Operation<types.GenerateEmbedUrlForRegisteredUserWithIdentityOutput>
     -- Generates a temporary session URL and authorization code(bearer token) that you can
     -- use to embed an Amazon Quick Sight read-only dashboard in your website or application.
     -- Before you use this command, make sure that you have configured the dashboards and
@@ -506,11 +510,11 @@ local record Client
     -- For more information about the high-level steps for embedding and for an interactive
     -- demo of the ways you can customize embedding, visit the Amazon Quick
     -- Developer Portal.
-    getDashboardEmbedUrl: function(Client, types.GetDashboardEmbedUrlInput): types.GetDashboardEmbedUrlOutput, table
+    getDashboardEmbedUrl: function(Client, types.GetDashboardEmbedUrlInput): Operation<types.GetDashboardEmbedUrlOutput>
     -- Retrieves the metadata of a flow, not including its definition specifying the steps.
-    getFlowMetadata: function(Client, types.GetFlowMetadataInput): types.GetFlowMetadataOutput, table
+    getFlowMetadata: function(Client, types.GetFlowMetadataInput): Operation<types.GetFlowMetadataOutput>
     -- Get permissions for a flow.
-    getFlowPermissions: function(Client, types.GetFlowPermissionsInput): types.GetFlowPermissionsOutput, table
+    getFlowPermissions: function(Client, types.GetFlowPermissionsInput): Operation<types.GetFlowPermissionsOutput>
     -- Retrieves the identity context for a Quick Sight user in a specified namespace, allowing you to obtain identity tokens that can be used with identity-enhanced IAM role sessions to call identity-aware APIs.
     -- Currently, you can call the following APIs with identity-enhanced Credentials
     -- StartDashboardSnapshotJob
@@ -531,7 +535,7 @@ local record Client
     -- Usage with STS AssumeRole
     -- The identity token returned by this API should be used with the STS AssumeRole API to obtain credentials for an identity-enhanced IAM role session. When calling AssumeRole, include the identity token in the ProvidedContexts parameter with ProviderArn set to arn:aws:iam::aws:contextProvider/QuickSight and ContextAssertion set to the identity token received from this API.
     -- The assumed role must allow the sts:SetContext action in addition to sts:AssumeRole in its trust relationship policy. The trust policy should include both actions for the principal that will be assuming the role.
-    getIdentityContext: function(Client, types.GetIdentityContextInput): types.GetIdentityContextOutput, table
+    getIdentityContext: function(Client, types.GetIdentityContextInput): Operation<types.GetIdentityContextOutput>
     -- Generates a session URL and authorization code that you can use to embed the Amazon
     -- Amazon Quick Sight console in your web server code. Use
     -- GetSessionEmbedUrl where you want to provide an authoring portal that
@@ -548,52 +552,52 @@ local record Client
     -- Embedding
     -- Analytics
     -- Customizing Access to the Amazon Quick Console
-    getSessionEmbedUrl: function(Client, types.GetSessionEmbedUrlInput): types.GetSessionEmbedUrlOutput, table
+    getSessionEmbedUrl: function(Client, types.GetSessionEmbedUrlInput): Operation<types.GetSessionEmbedUrlOutput>
     -- Lists all action connectors in the specified Amazon Web Services account. Returns summary information for each connector including its name, type, creation time, and status.
-    listActionConnectors: function(Client, types.ListActionConnectorsInput): types.ListActionConnectorsOutput, table
+    listActionConnectors: function(Client, types.ListActionConnectorsInput): Operation<types.ListActionConnectorsOutput>
     -- Lists Amazon Quick Sight analyses that exist in the specified Amazon Web Services account.
-    listAnalyses: function(Client, types.ListAnalysesInput): types.ListAnalysesOutput, table
+    listAnalyses: function(Client, types.ListAnalysesInput): Operation<types.ListAnalysesOutput>
     -- Lists all asset bundle export jobs that have been taken place in the last 14 days. Jobs
     -- created more than 14 days ago are deleted forever and are not returned. If you are using
     -- the same job ID for multiple jobs, ListAssetBundleExportJobs only returns the
     -- most recent job that uses the repeated job ID.
-    listAssetBundleExportJobs: function(Client, types.ListAssetBundleExportJobsInput): types.ListAssetBundleExportJobsOutput, table
+    listAssetBundleExportJobs: function(Client, types.ListAssetBundleExportJobsInput): Operation<types.ListAssetBundleExportJobsOutput>
     -- Lists all asset bundle import jobs that have taken place in the last 14 days. Jobs
     -- created more than 14 days ago are deleted forever and are not returned. If you are using
     -- the same job ID for multiple jobs, ListAssetBundleImportJobs only returns the
     -- most recent job that uses the repeated job ID.
-    listAssetBundleImportJobs: function(Client, types.ListAssetBundleImportJobsInput): types.ListAssetBundleImportJobsOutput, table
+    listAssetBundleImportJobs: function(Client, types.ListAssetBundleImportJobsInput): Operation<types.ListAssetBundleImportJobsOutput>
     -- Lists all brands in an Quick Sight account.
-    listBrands: function(Client, types.ListBrandsInput): types.ListBrandsOutput, table
+    listBrands: function(Client, types.ListBrandsInput): Operation<types.ListBrandsOutput>
     -- Returns a list of all the custom permissions profiles.
-    listCustomPermissions: function(Client, types.ListCustomPermissionsInput): types.ListCustomPermissionsOutput, table
+    listCustomPermissions: function(Client, types.ListCustomPermissionsInput): Operation<types.ListCustomPermissionsOutput>
     -- Lists dashboards in an Amazon Web Services account.
-    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): Operation<types.ListDashboardsOutput>
     -- Lists all the versions of the dashboards in the Amazon Quick Sight subscription.
-    listDashboardVersions: function(Client, types.ListDashboardVersionsInput): types.ListDashboardVersionsOutput, table
+    listDashboardVersions: function(Client, types.ListDashboardVersionsInput): Operation<types.ListDashboardVersionsOutput>
     -- Lists all of the datasets belonging to the current Amazon Web Services account in an
     -- Amazon Web Services Region.
     -- The permissions resource is
     -- arn:aws:quicksight:region:aws-account-id:dataset/*.
-    listDataSets: function(Client, types.ListDataSetsInput): types.ListDataSetsOutput, table
+    listDataSets: function(Client, types.ListDataSetsInput): Operation<types.ListDataSetsOutput>
     -- Lists data sources in current Amazon Web Services Region that belong to this Amazon Web Services account.
-    listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    listDataSources: function(Client, types.ListDataSourcesInput): Operation<types.ListDataSourcesOutput>
     -- Lists flows in an Amazon Web Services account.
-    listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    listFlows: function(Client, types.ListFlowsInput): Operation<types.ListFlowsOutput>
     -- List all assets (DASHBOARD, ANALYSIS, and DATASET) in a folder.
-    listFolderMembers: function(Client, types.ListFolderMembersInput): types.ListFolderMembersOutput, table
+    listFolderMembers: function(Client, types.ListFolderMembersInput): Operation<types.ListFolderMembersOutput>
     -- Lists all folders in an account.
-    listFolders: function(Client, types.ListFoldersInput): types.ListFoldersOutput, table
+    listFolders: function(Client, types.ListFoldersInput): Operation<types.ListFoldersOutput>
     -- List all folders that a resource is a member of.
-    listFoldersForResource: function(Client, types.ListFoldersForResourceInput): types.ListFoldersForResourceOutput, table
+    listFoldersForResource: function(Client, types.ListFoldersForResourceInput): Operation<types.ListFoldersForResourceOutput>
     -- Lists member users in a group.
-    listGroupMemberships: function(Client, types.ListGroupMembershipsInput): types.ListGroupMembershipsOutput, table
+    listGroupMemberships: function(Client, types.ListGroupMembershipsInput): Operation<types.ListGroupMembershipsOutput>
     -- Lists all user groups in Amazon Quick Sight.
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Lists the
     -- IAM policy assignments in the current Amazon Quick Sight
     -- account.
-    listIAMPolicyAssignments: function(Client, types.ListIAMPolicyAssignmentsInput): types.ListIAMPolicyAssignmentsOutput, table
+    listIAMPolicyAssignments: function(Client, types.ListIAMPolicyAssignmentsInput): Operation<types.ListIAMPolicyAssignmentsOutput>
     -- Lists all of
     -- the IAM policy assignments, including the Amazon
     -- Resource Names
@@ -601,80 +605,80 @@ local record Client
     -- for the IAM policies assigned to the specified user and
     -- group,
     -- or groups that the user belongs to.
-    listIAMPolicyAssignmentsForUser: function(Client, types.ListIAMPolicyAssignmentsForUserInput): types.ListIAMPolicyAssignmentsForUserOutput, table
+    listIAMPolicyAssignmentsForUser: function(Client, types.ListIAMPolicyAssignmentsForUserInput): Operation<types.ListIAMPolicyAssignmentsForUserOutput>
     -- Lists all services and authorized targets that the Quick Sight IAM Identity Center application can access.
     -- This operation is only supported for Quick Sight accounts that use IAM Identity Center.
-    listIdentityPropagationConfigs: function(Client, types.ListIdentityPropagationConfigsInput): types.ListIdentityPropagationConfigsOutput, table
+    listIdentityPropagationConfigs: function(Client, types.ListIdentityPropagationConfigsInput): Operation<types.ListIdentityPropagationConfigsOutput>
     -- Lists the history of SPICE ingestions for a dataset. Limited to 5 TPS per user and 25 TPS per account.
-    listIngestions: function(Client, types.ListIngestionsInput): types.ListIngestionsOutput, table
+    listIngestions: function(Client, types.ListIngestionsInput): Operation<types.ListIngestionsOutput>
     -- Lists the namespaces for the specified Amazon Web Services account. This operation doesn't list deleted namespaces.
-    listNamespaces: function(Client, types.ListNamespacesInput): types.ListNamespacesOutput, table
+    listNamespaces: function(Client, types.ListNamespacesInput): Operation<types.ListNamespacesOutput>
     -- Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules.
-    listRefreshSchedules: function(Client, types.ListRefreshSchedulesInput): types.ListRefreshSchedulesOutput, table
+    listRefreshSchedules: function(Client, types.ListRefreshSchedulesInput): Operation<types.ListRefreshSchedulesOutput>
     -- Lists all groups that are associated with a role.
-    listRoleMemberships: function(Client, types.ListRoleMembershipsInput): types.ListRoleMembershipsOutput, table
+    listRoleMemberships: function(Client, types.ListRoleMembershipsInput): Operation<types.ListRoleMembershipsOutput>
     -- Lists all self-upgrade requests for a Quick account.
-    listSelfUpgrades: function(Client, types.ListSelfUpgradesInput): types.ListSelfUpgradesOutput, table
+    listSelfUpgrades: function(Client, types.ListSelfUpgradesInput): Operation<types.ListSelfUpgradesOutput>
     -- Lists the tags assigned to a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists all the aliases of a template.
-    listTemplateAliases: function(Client, types.ListTemplateAliasesInput): types.ListTemplateAliasesOutput, table
+    listTemplateAliases: function(Client, types.ListTemplateAliasesInput): Operation<types.ListTemplateAliasesOutput>
     -- Lists all the templates in the current Amazon Quick Sight account.
-    listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    listTemplates: function(Client, types.ListTemplatesInput): Operation<types.ListTemplatesOutput>
     -- Lists all the versions of the templates in the current Amazon Quick Sight account.
-    listTemplateVersions: function(Client, types.ListTemplateVersionsInput): types.ListTemplateVersionsOutput, table
+    listTemplateVersions: function(Client, types.ListTemplateVersionsInput): Operation<types.ListTemplateVersionsOutput>
     -- Lists all the aliases of a theme.
-    listThemeAliases: function(Client, types.ListThemeAliasesInput): types.ListThemeAliasesOutput, table
+    listThemeAliases: function(Client, types.ListThemeAliasesInput): Operation<types.ListThemeAliasesOutput>
     -- Lists all the themes in the current Amazon Web Services account.
-    listThemes: function(Client, types.ListThemesInput): types.ListThemesOutput, table
+    listThemes: function(Client, types.ListThemesInput): Operation<types.ListThemesOutput>
     -- Lists all the versions of the themes in the current Amazon Web Services account.
-    listThemeVersions: function(Client, types.ListThemeVersionsInput): types.ListThemeVersionsOutput, table
+    listThemeVersions: function(Client, types.ListThemeVersionsInput): Operation<types.ListThemeVersionsOutput>
     -- Lists all of the refresh schedules for a topic.
-    listTopicRefreshSchedules: function(Client, types.ListTopicRefreshSchedulesInput): types.ListTopicRefreshSchedulesOutput, table
+    listTopicRefreshSchedules: function(Client, types.ListTopicRefreshSchedulesInput): Operation<types.ListTopicRefreshSchedulesOutput>
     -- Lists all reviewed answers for a Q Topic.
-    listTopicReviewedAnswers: function(Client, types.ListTopicReviewedAnswersInput): types.ListTopicReviewedAnswersOutput, table
+    listTopicReviewedAnswers: function(Client, types.ListTopicReviewedAnswersInput): Operation<types.ListTopicReviewedAnswersOutput>
     -- Lists all of the topics within an account.
-    listTopics: function(Client, types.ListTopicsInput): types.ListTopicsOutput, table
+    listTopics: function(Client, types.ListTopicsInput): Operation<types.ListTopicsOutput>
     -- Lists the Amazon Quick Sight groups that an Amazon Quick Sight user is a member of.
-    listUserGroups: function(Client, types.ListUserGroupsInput): types.ListUserGroupsOutput, table
+    listUserGroups: function(Client, types.ListUserGroupsInput): Operation<types.ListUserGroupsOutput>
     -- Returns a list of all of the Amazon Quick Sight users belonging to this account.
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- Lists all of the VPC connections in the current set Amazon Web Services Region of an
     -- Amazon Web Services account.
-    listVPCConnections: function(Client, types.ListVPCConnectionsInput): types.ListVPCConnectionsOutput, table
+    listVPCConnections: function(Client, types.ListVPCConnectionsInput): Operation<types.ListVPCConnectionsOutput>
     -- Predicts existing visuals or generates new visuals to answer a given query.
     -- This API uses trusted identity propagation to ensure that an end user is authenticated and receives the embed URL that is specific to that user. The IAM Identity Center application that the user has logged into needs to have trusted Identity Propagation enabled for Quick with the scope value set to quicksight:read. Before you use this action, make sure that you have configured the relevant Quick resource and permissions.
     -- We recommend enabling the QSearchStatus API to unlock the full potential of PredictQnA. When QSearchStatus is enabled, it first checks the specified dashboard for any existing visuals that match the question. If no matching visuals are found, PredictQnA uses generative Q&A to provide an answer. To update the QSearchStatus, see UpdateQuickSightQSearchConfiguration.
-    predictQAResults: function(Client, types.PredictQAResultsInput): types.PredictQAResultsOutput, table
+    predictQAResults: function(Client, types.PredictQAResultsInput): Operation<types.PredictQAResultsOutput>
     -- Creates or updates the dataset refresh properties for the dataset.
-    putDataSetRefreshProperties: function(Client, types.PutDataSetRefreshPropertiesInput): types.PutDataSetRefreshPropertiesOutput, table
+    putDataSetRefreshProperties: function(Client, types.PutDataSetRefreshPropertiesInput): Operation<types.PutDataSetRefreshPropertiesOutput>
     -- Creates an Amazon Quick Sight user whose identity is associated with the Identity and Access Management (IAM) identity or role specified in the request. When you register a new user from the Quick Sight API, Quick Sight generates a registration URL. The user accesses this registration URL to create their account. Quick Sight doesn't send a registration email to users who are registered from the Quick Sight API. If you want new users to receive a registration email, then add those users in the Quick Sight console. For more information on registering a new user in the Quick Sight console, see Inviting users to access Quick Sight.
-    registerUser: function(Client, types.RegisterUserInput): types.RegisterUserOutput, table
+    registerUser: function(Client, types.RegisterUserInput): Operation<types.RegisterUserOutput>
     -- Restores an analysis.
-    restoreAnalysis: function(Client, types.RestoreAnalysisInput): types.RestoreAnalysisOutput, table
+    restoreAnalysis: function(Client, types.RestoreAnalysisInput): Operation<types.RestoreAnalysisOutput>
     -- Searches for action connectors in the specified Amazon Web Services account using filters. You can search by connector name, type, or user permissions.
-    searchActionConnectors: function(Client, types.SearchActionConnectorsInput): types.SearchActionConnectorsOutput, table
+    searchActionConnectors: function(Client, types.SearchActionConnectorsInput): Operation<types.SearchActionConnectorsOutput>
     -- Searches for analyses that belong to the user specified in the filter.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
-    searchAnalyses: function(Client, types.SearchAnalysesInput): types.SearchAnalysesOutput, table
+    searchAnalyses: function(Client, types.SearchAnalysesInput): Operation<types.SearchAnalysesOutput>
     -- Searches for dashboards that belong to a user.
     -- This operation is eventually consistent. The results are best effort and may not
     -- reflect very recent updates and changes.
-    searchDashboards: function(Client, types.SearchDashboardsInput): types.SearchDashboardsOutput, table
+    searchDashboards: function(Client, types.SearchDashboardsInput): Operation<types.SearchDashboardsOutput>
     -- Use the SearchDataSets operation to search for datasets that belong to an
     -- account.
-    searchDataSets: function(Client, types.SearchDataSetsInput): types.SearchDataSetsOutput, table
+    searchDataSets: function(Client, types.SearchDataSetsInput): Operation<types.SearchDataSetsOutput>
     -- Use the SearchDataSources operation to search for data sources that
     -- belong to an account.
-    searchDataSources: function(Client, types.SearchDataSourcesInput): types.SearchDataSourcesOutput, table
+    searchDataSources: function(Client, types.SearchDataSourcesInput): Operation<types.SearchDataSourcesOutput>
     -- Search for the flows in an Amazon Web Services account.
-    searchFlows: function(Client, types.SearchFlowsInput): types.SearchFlowsOutput, table
+    searchFlows: function(Client, types.SearchFlowsInput): Operation<types.SearchFlowsOutput>
     -- Searches the subfolders in a folder.
-    searchFolders: function(Client, types.SearchFoldersInput): types.SearchFoldersOutput, table
+    searchFolders: function(Client, types.SearchFoldersInput): Operation<types.SearchFoldersOutput>
     -- Use the SearchGroups operation to search groups in a specified Quick Sight namespace using the supplied filters.
-    searchGroups: function(Client, types.SearchGroupsInput): types.SearchGroupsOutput, table
+    searchGroups: function(Client, types.SearchGroupsInput): Operation<types.SearchGroupsOutput>
     -- Searches for any Q topic that exists in an Quick account.
-    searchTopics: function(Client, types.SearchTopicsInput): types.SearchTopicsOutput, table
+    searchTopics: function(Client, types.SearchTopicsInput): Operation<types.SearchTopicsOutput>
     -- Starts an Asset Bundle export job.
     -- An Asset Bundle export job exports specified Amazon Quick Sight assets. You can also choose to
     -- export any asset dependencies in the same job. Export jobs run asynchronously and can be
@@ -685,7 +689,7 @@ local record Client
     -- run up to 5 export jobs concurrently.
     -- The API caller must have the necessary permissions in their IAM role to
     -- access each resource before the resources can be exported.
-    startAssetBundleExportJob: function(Client, types.StartAssetBundleExportJobInput): types.StartAssetBundleExportJobOutput, table
+    startAssetBundleExportJob: function(Client, types.StartAssetBundleExportJobInput): Operation<types.StartAssetBundleExportJobOutput>
     -- Starts an Asset Bundle import job.
     -- An Asset Bundle import job imports specified Amazon Quick Sight assets into an Amazon Quick
     -- Sight account. You can also choose to import a naming prefix and specified configuration
@@ -696,9 +700,9 @@ local record Client
     -- and "update" permissions in their IAM role to access each
     -- resource type that is contained in the bundle file before the resources can be
     -- imported.
-    startAssetBundleImportJob: function(Client, types.StartAssetBundleImportJobInput): types.StartAssetBundleImportJobOutput, table
+    startAssetBundleImportJob: function(Client, types.StartAssetBundleImportJobInput): Operation<types.StartAssetBundleImportJobOutput>
     -- Starts a new job for a specified automation. The job runs the automation with the provided input payload.
-    startAutomationJob: function(Client, types.StartAutomationJobInput): types.StartAutomationJobOutput, table
+    startAutomationJob: function(Client, types.StartAutomationJobInput): Operation<types.StartAutomationJobOutput>
     -- Starts an asynchronous job that generates a snapshot of a dashboard's output. You can request one or several of the following format configurations in each API call.
     -- 1 PDF
     -- 1 Excel workbook that includes up to 5 table or pivot table visuals
@@ -743,11 +747,11 @@ local record Client
     -- The credentials have expired.
     -- The impersonated Quick Sight user doesn't have access to the specified dashboard.
     -- The impersonated Quick Sight user is restricted from exporting data in the selected formats. For more information about export restrictions, see Customizing access to Amazon Quick Sight capabilities.
-    startDashboardSnapshotJob: function(Client, types.StartDashboardSnapshotJobInput): types.StartDashboardSnapshotJobOutput, table
+    startDashboardSnapshotJob: function(Client, types.StartDashboardSnapshotJobInput): Operation<types.StartDashboardSnapshotJobOutput>
     -- Starts an asynchronous job that runs an existing dashboard schedule and sends the dashboard snapshot through email.
     -- Only one job can run simultaneously in a given schedule. Repeated requests are skipped with a 202 HTTP status code.
     -- For more information, see Scheduling and sending Amazon Quick Sight reports by email and Configuring email report settings for a Amazon Quick Sight dashboard in the Amazon Quick Sight User Guide.
-    startDashboardSnapshotJobSchedule: function(Client, types.StartDashboardSnapshotJobScheduleInput): types.StartDashboardSnapshotJobScheduleOutput, table
+    startDashboardSnapshotJobSchedule: function(Client, types.StartDashboardSnapshotJobScheduleInput): Operation<types.StartDashboardSnapshotJobScheduleOutput>
     -- Assigns one or more tags (key-value pairs) to the specified Amazon Quick Sight
     -- resource.
     -- Tags can help you organize and categorize your resources. You can also use them to
@@ -764,86 +768,86 @@ local record Client
     -- tag other resources that Amazon Quick Sight costs are based on, such as storage
     -- capacoty (SPICE), session usage, alert consumption, or reporting units.
     -- Amazon Quick Sight doesn't currently support the tag editor for Resource Groups.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag or tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates Amazon Quick Sight customizations. Currently, the only customization that you can use is a theme.
     -- You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a
     -- Quick Sight namespace instead. Customizations that apply to a namespace override
     -- customizations that apply to an Amazon Web Services account. To find out which customizations apply, use
     -- the DescribeAccountCustomization API operation.
-    updateAccountCustomization: function(Client, types.UpdateAccountCustomizationInput): types.UpdateAccountCustomizationOutput, table
+    updateAccountCustomization: function(Client, types.UpdateAccountCustomizationInput): Operation<types.UpdateAccountCustomizationOutput>
     -- Applies a custom permissions profile to an account.
-    updateAccountCustomPermission: function(Client, types.UpdateAccountCustomPermissionInput): types.UpdateAccountCustomPermissionOutput, table
+    updateAccountCustomPermission: function(Client, types.UpdateAccountCustomPermissionInput): Operation<types.UpdateAccountCustomPermissionOutput>
     -- Updates the Amazon Quick Sight settings in your Amazon Web Services account.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Updates an existing action connector with new configuration details, authentication settings, or enabled actions.
     -- You can modify the connector's name, description, authentication configuration, and which actions are enabled. For more information,
     -- https://docs.aws.amazon.com/quicksuite/latest/userguide/quick-action-auth.html.
-    updateActionConnector: function(Client, types.UpdateActionConnectorInput): types.UpdateActionConnectorOutput, table
+    updateActionConnector: function(Client, types.UpdateActionConnectorInput): Operation<types.UpdateActionConnectorOutput>
     -- Updates the permissions for an action connector by granting or revoking access for specific users and groups. You can control who can view, use, or manage the action connector.
-    updateActionConnectorPermissions: function(Client, types.UpdateActionConnectorPermissionsInput): types.UpdateActionConnectorPermissionsOutput, table
+    updateActionConnectorPermissions: function(Client, types.UpdateActionConnectorPermissionsInput): Operation<types.UpdateActionConnectorPermissionsOutput>
     -- Updates an analysis in Amazon Quick Sight
-    updateAnalysis: function(Client, types.UpdateAnalysisInput): types.UpdateAnalysisOutput, table
+    updateAnalysis: function(Client, types.UpdateAnalysisInput): Operation<types.UpdateAnalysisOutput>
     -- Updates the read and write permissions for an analysis.
-    updateAnalysisPermissions: function(Client, types.UpdateAnalysisPermissionsInput): types.UpdateAnalysisPermissionsOutput, table
+    updateAnalysisPermissions: function(Client, types.UpdateAnalysisPermissionsInput): Operation<types.UpdateAnalysisPermissionsOutput>
     -- Updates an Quick application with a token exchange grant. This operation only supports Quick applications that are registered with IAM Identity Center.
-    updateApplicationWithTokenExchangeGrant: function(Client, types.UpdateApplicationWithTokenExchangeGrantInput): types.UpdateApplicationWithTokenExchangeGrantOutput, table
+    updateApplicationWithTokenExchangeGrant: function(Client, types.UpdateApplicationWithTokenExchangeGrantInput): Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
     -- Updates a brand.
-    updateBrand: function(Client, types.UpdateBrandInput): types.UpdateBrandOutput, table
+    updateBrand: function(Client, types.UpdateBrandInput): Operation<types.UpdateBrandOutput>
     -- Updates a brand assignment.
-    updateBrandAssignment: function(Client, types.UpdateBrandAssignmentInput): types.UpdateBrandAssignmentOutput, table
+    updateBrandAssignment: function(Client, types.UpdateBrandAssignmentInput): Operation<types.UpdateBrandAssignmentOutput>
     -- Updates the published version of a brand.
-    updateBrandPublishedVersion: function(Client, types.UpdateBrandPublishedVersionInput): types.UpdateBrandPublishedVersionOutput, table
+    updateBrandPublishedVersion: function(Client, types.UpdateBrandPublishedVersionInput): Operation<types.UpdateBrandPublishedVersionOutput>
     -- Updates a custom permissions profile.
-    updateCustomPermissions: function(Client, types.UpdateCustomPermissionsInput): types.UpdateCustomPermissionsOutput, table
+    updateCustomPermissions: function(Client, types.UpdateCustomPermissionsInput): Operation<types.UpdateCustomPermissionsOutput>
     -- Updates a dashboard in an Amazon Web Services account.
     -- Updating a Dashboard creates a new dashboard version but does not immediately
     -- publish the new version. You can update the published version of a dashboard by
     -- using the
     -- UpdateDashboardPublishedVersion
     -- API operation.
-    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): Operation<types.UpdateDashboardOutput>
     -- Updates the linked analyses on a dashboard.
-    updateDashboardLinks: function(Client, types.UpdateDashboardLinksInput): types.UpdateDashboardLinksOutput, table
+    updateDashboardLinks: function(Client, types.UpdateDashboardLinksInput): Operation<types.UpdateDashboardLinksOutput>
     -- Updates read and write permissions on a dashboard.
-    updateDashboardPermissions: function(Client, types.UpdateDashboardPermissionsInput): types.UpdateDashboardPermissionsOutput, table
+    updateDashboardPermissions: function(Client, types.UpdateDashboardPermissionsInput): Operation<types.UpdateDashboardPermissionsOutput>
     -- Updates the published version of a dashboard.
-    updateDashboardPublishedVersion: function(Client, types.UpdateDashboardPublishedVersionInput): types.UpdateDashboardPublishedVersionOutput, table
+    updateDashboardPublishedVersion: function(Client, types.UpdateDashboardPublishedVersionInput): Operation<types.UpdateDashboardPublishedVersionOutput>
     -- Updates a Dashboard QA configuration.
-    updateDashboardsQAConfiguration: function(Client, types.UpdateDashboardsQAConfigurationInput): types.UpdateDashboardsQAConfigurationOutput, table
+    updateDashboardsQAConfiguration: function(Client, types.UpdateDashboardsQAConfigurationInput): Operation<types.UpdateDashboardsQAConfigurationOutput>
     -- Updates a dataset. This operation doesn't support datasets that include uploaded files
     -- as a source. Partial updates are not supported by this operation.
-    updateDataSet: function(Client, types.UpdateDataSetInput): types.UpdateDataSetOutput, table
+    updateDataSet: function(Client, types.UpdateDataSetInput): Operation<types.UpdateDataSetOutput>
     -- Updates the permissions on a dataset.
     -- The permissions resource is
     -- arn:aws:quicksight:region:aws-account-id:dataset/data-set-id.
-    updateDataSetPermissions: function(Client, types.UpdateDataSetPermissionsInput): types.UpdateDataSetPermissionsOutput, table
+    updateDataSetPermissions: function(Client, types.UpdateDataSetPermissionsInput): Operation<types.UpdateDataSetPermissionsOutput>
     -- Updates a data source.
-    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): Operation<types.UpdateDataSourceOutput>
     -- Updates the permissions to a data source.
-    updateDataSourcePermissions: function(Client, types.UpdateDataSourcePermissionsInput): types.UpdateDataSourcePermissionsOutput, table
+    updateDataSourcePermissions: function(Client, types.UpdateDataSourcePermissionsInput): Operation<types.UpdateDataSourcePermissionsOutput>
     -- Updates a Amazon Q Business application that is linked to a Quick Sight account.
-    updateDefaultQBusinessApplication: function(Client, types.UpdateDefaultQBusinessApplicationInput): types.UpdateDefaultQBusinessApplicationOutput, table
+    updateDefaultQBusinessApplication: function(Client, types.UpdateDefaultQBusinessApplicationInput): Operation<types.UpdateDefaultQBusinessApplicationOutput>
     -- Updates permissions against principals on a flow.
-    updateFlowPermissions: function(Client, types.UpdateFlowPermissionsInput): types.UpdateFlowPermissionsOutput, table
+    updateFlowPermissions: function(Client, types.UpdateFlowPermissionsInput): Operation<types.UpdateFlowPermissionsOutput>
     -- Updates the name of a folder.
-    updateFolder: function(Client, types.UpdateFolderInput): types.UpdateFolderOutput, table
+    updateFolder: function(Client, types.UpdateFolderInput): Operation<types.UpdateFolderOutput>
     -- Updates permissions of a folder.
-    updateFolderPermissions: function(Client, types.UpdateFolderPermissionsInput): types.UpdateFolderPermissionsOutput, table
+    updateFolderPermissions: function(Client, types.UpdateFolderPermissionsInput): Operation<types.UpdateFolderPermissionsOutput>
     -- Changes a group description.
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Updates an existing IAM policy assignment. This operation updates only
     -- the optional parameter or parameters that are specified in the request. This overwrites
     -- all of the users included in Identities.
-    updateIAMPolicyAssignment: function(Client, types.UpdateIAMPolicyAssignmentInput): types.UpdateIAMPolicyAssignmentOutput, table
+    updateIAMPolicyAssignment: function(Client, types.UpdateIAMPolicyAssignmentInput): Operation<types.UpdateIAMPolicyAssignmentOutput>
     -- Adds or updates services and authorized targets to configure what the Quick Sight IAM Identity Center application can access.
     -- This operation is only supported for Quick Sight accounts using IAM Identity Center
-    updateIdentityPropagationConfig: function(Client, types.UpdateIdentityPropagationConfigInput): types.UpdateIdentityPropagationConfigOutput, table
+    updateIdentityPropagationConfig: function(Client, types.UpdateIdentityPropagationConfigInput): Operation<types.UpdateIdentityPropagationConfigOutput>
     -- Updates the content and status of IP rules. Traffic from a source is allowed when the source satisfies either the IpRestrictionRule, VpcIdRestrictionRule, or VpcEndpointIdRestrictionRule. To use this operation, you must provide the entire map of rules. You can use the DescribeIpRestriction operation to get the current rule map.
-    updateIpRestriction: function(Client, types.UpdateIpRestrictionInput): types.UpdateIpRestrictionOutput, table
+    updateIpRestriction: function(Client, types.UpdateIpRestrictionInput): Operation<types.UpdateIpRestrictionOutput>
     -- Updates a customer managed key in a Quick Sight account.
-    updateKeyRegistration: function(Client, types.UpdateKeyRegistrationInput): types.UpdateKeyRegistrationOutput, table
+    updateKeyRegistration: function(Client, types.UpdateKeyRegistrationInput): Operation<types.UpdateKeyRegistrationOutput>
     -- This API controls public sharing settings for your entire Quick Sight account, affecting
     -- data security and access. When you enable public sharing:
     -- Dashboards can be shared publicly
@@ -860,31 +864,31 @@ local record Client
     -- sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon
     -- Quick Sight, see Using Quick with IAM in the Amazon Quick Sight
     -- User Guide.
-    updatePublicSharingSettings: function(Client, types.UpdatePublicSharingSettingsInput): types.UpdatePublicSharingSettingsOutput, table
+    updatePublicSharingSettings: function(Client, types.UpdatePublicSharingSettingsInput): Operation<types.UpdatePublicSharingSettingsOutput>
     -- Updates a personalization configuration.
-    updateQPersonalizationConfiguration: function(Client, types.UpdateQPersonalizationConfigurationInput): types.UpdateQPersonalizationConfigurationOutput, table
+    updateQPersonalizationConfiguration: function(Client, types.UpdateQPersonalizationConfigurationInput): Operation<types.UpdateQPersonalizationConfigurationOutput>
     -- Updates the state of a Quick Sight Q Search configuration.
-    updateQuickSightQSearchConfiguration: function(Client, types.UpdateQuickSightQSearchConfigurationInput): types.UpdateQuickSightQSearchConfigurationOutput, table
+    updateQuickSightQSearchConfiguration: function(Client, types.UpdateQuickSightQSearchConfigurationInput): Operation<types.UpdateQuickSightQSearchConfigurationOutput>
     -- Updates a refresh schedule for a dataset.
-    updateRefreshSchedule: function(Client, types.UpdateRefreshScheduleInput): types.UpdateRefreshScheduleOutput, table
+    updateRefreshSchedule: function(Client, types.UpdateRefreshScheduleInput): Operation<types.UpdateRefreshScheduleOutput>
     -- Updates the custom permissions that are associated with a role.
-    updateRoleCustomPermission: function(Client, types.UpdateRoleCustomPermissionInput): types.UpdateRoleCustomPermissionOutput, table
+    updateRoleCustomPermission: function(Client, types.UpdateRoleCustomPermissionInput): Operation<types.UpdateRoleCustomPermissionOutput>
     -- Updates a self-upgrade request for a Quick user by approving, denying, or verifying the request.
-    updateSelfUpgrade: function(Client, types.UpdateSelfUpgradeInput): types.UpdateSelfUpgradeOutput, table
+    updateSelfUpgrade: function(Client, types.UpdateSelfUpgradeInput): Operation<types.UpdateSelfUpgradeOutput>
     -- Updates the self-upgrade configuration for a Quick account.
-    updateSelfUpgradeConfiguration: function(Client, types.UpdateSelfUpgradeConfigurationInput): types.UpdateSelfUpgradeConfigurationOutput, table
+    updateSelfUpgradeConfiguration: function(Client, types.UpdateSelfUpgradeConfigurationInput): Operation<types.UpdateSelfUpgradeConfigurationOutput>
     -- Updates the SPICE capacity configuration for a Quick Sight account.
-    updateSPICECapacityConfiguration: function(Client, types.UpdateSPICECapacityConfigurationInput): types.UpdateSPICECapacityConfigurationOutput, table
+    updateSPICECapacityConfiguration: function(Client, types.UpdateSPICECapacityConfigurationInput): Operation<types.UpdateSPICECapacityConfigurationOutput>
     -- Updates a template from an existing Amazon Quick Sight analysis or another template.
-    updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+    updateTemplate: function(Client, types.UpdateTemplateInput): Operation<types.UpdateTemplateOutput>
     -- Updates the template alias of a template.
-    updateTemplateAlias: function(Client, types.UpdateTemplateAliasInput): types.UpdateTemplateAliasOutput, table
+    updateTemplateAlias: function(Client, types.UpdateTemplateAliasInput): Operation<types.UpdateTemplateAliasOutput>
     -- Updates the resource permissions for a template.
-    updateTemplatePermissions: function(Client, types.UpdateTemplatePermissionsInput): types.UpdateTemplatePermissionsOutput, table
+    updateTemplatePermissions: function(Client, types.UpdateTemplatePermissionsInput): Operation<types.UpdateTemplatePermissionsOutput>
     -- Updates a theme.
-    updateTheme: function(Client, types.UpdateThemeInput): types.UpdateThemeOutput, table
+    updateTheme: function(Client, types.UpdateThemeInput): Operation<types.UpdateThemeOutput>
     -- Updates an alias of a theme.
-    updateThemeAlias: function(Client, types.UpdateThemeAliasInput): types.UpdateThemeAliasOutput, table
+    updateThemeAlias: function(Client, types.UpdateThemeAliasInput): Operation<types.UpdateThemeAliasOutput>
     -- Updates the resource permissions for a theme. Permissions apply to the action to grant or
     -- revoke permissions on, for example "quicksight:DescribeTheme".
     -- Theme permissions apply in groupings. Valid groupings include the following for the three
@@ -907,19 +911,19 @@ local record Client
     -- "quicksight:UpdateThemePermissions"
     -- "quicksight:DescribeThemePermissions"
     -- To specify no permissions, omit the permissions list.
-    updateThemePermissions: function(Client, types.UpdateThemePermissionsInput): types.UpdateThemePermissionsOutput, table
+    updateThemePermissions: function(Client, types.UpdateThemePermissionsInput): Operation<types.UpdateThemePermissionsOutput>
     -- Updates a topic.
-    updateTopic: function(Client, types.UpdateTopicInput): types.UpdateTopicOutput, table
+    updateTopic: function(Client, types.UpdateTopicInput): Operation<types.UpdateTopicOutput>
     -- Updates the permissions of a topic.
-    updateTopicPermissions: function(Client, types.UpdateTopicPermissionsInput): types.UpdateTopicPermissionsOutput, table
+    updateTopicPermissions: function(Client, types.UpdateTopicPermissionsInput): Operation<types.UpdateTopicPermissionsOutput>
     -- Updates a topic refresh schedule.
-    updateTopicRefreshSchedule: function(Client, types.UpdateTopicRefreshScheduleInput): types.UpdateTopicRefreshScheduleOutput, table
+    updateTopicRefreshSchedule: function(Client, types.UpdateTopicRefreshScheduleInput): Operation<types.UpdateTopicRefreshScheduleOutput>
     -- Updates an Amazon Quick Sight user.
-    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    updateUser: function(Client, types.UpdateUserInput): Operation<types.UpdateUserOutput>
     -- Updates a custom permissions profile for a user.
-    updateUserCustomPermission: function(Client, types.UpdateUserCustomPermissionInput): types.UpdateUserCustomPermissionOutput, table
+    updateUserCustomPermission: function(Client, types.UpdateUserCustomPermissionInput): Operation<types.UpdateUserCustomPermissionOutput>
     -- Updates a VPC connection.
-    updateVPCConnection: function(Client, types.UpdateVPCConnectionInput): types.UpdateVPCConnectionOutput, table
+    updateVPCConnection: function(Client, types.UpdateVPCConnectionInput): Operation<types.UpdateVPCConnectionOutput>
 end
 
 local record M

@@ -2,112 +2,116 @@
 
 local types = require("ssmcontacts.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Used to acknowledge an engagement to a contact channel during an incident.
-    acceptPage: function(Client, types.AcceptPageInput): types.AcceptPageOutput, table
+    acceptPage: function(Client, types.AcceptPageInput): Operation<types.AcceptPageOutput>
     -- Activates a contact's contact channel. Incident Manager can't engage a contact until the
     -- contact channel has been activated.
-    activateContactChannel: function(Client, types.ActivateContactChannelInput): types.ActivateContactChannelOutput, table
+    activateContactChannel: function(Client, types.ActivateContactChannelInput): Operation<types.ActivateContactChannelOutput>
     -- Contacts are either the contacts that Incident Manager engages during an incident or the
     -- escalation plans that Incident Manager uses to engage contacts in phases during an
     -- incident.
-    createContact: function(Client, types.CreateContactInput): types.CreateContactOutput, table
+    createContact: function(Client, types.CreateContactInput): Operation<types.CreateContactOutput>
     -- A contact channel is the method that Incident Manager uses to engage your contact.
-    createContactChannel: function(Client, types.CreateContactChannelInput): types.CreateContactChannelOutput, table
+    createContactChannel: function(Client, types.CreateContactChannelInput): Operation<types.CreateContactChannelOutput>
     -- Creates a rotation in an on-call schedule.
-    createRotation: function(Client, types.CreateRotationInput): types.CreateRotationOutput, table
+    createRotation: function(Client, types.CreateRotationInput): Operation<types.CreateRotationOutput>
     -- Creates an override for a rotation in an on-call schedule.
-    createRotationOverride: function(Client, types.CreateRotationOverrideInput): types.CreateRotationOverrideOutput, table
+    createRotationOverride: function(Client, types.CreateRotationOverrideInput): Operation<types.CreateRotationOverrideOutput>
     -- To no longer receive Incident Manager engagements to a contact channel, you can deactivate
     -- the channel.
-    deactivateContactChannel: function(Client, types.DeactivateContactChannelInput): types.DeactivateContactChannelOutput, table
+    deactivateContactChannel: function(Client, types.DeactivateContactChannelInput): Operation<types.DeactivateContactChannelOutput>
     -- To remove a contact from Incident Manager, you can delete the contact. However, deleting a
     -- contact does not remove it from escalation plans and related response plans. Deleting an
     -- escalation plan also does not remove it from all related response plans. To modify an
     -- escalation plan, we recommend using the UpdateContact action to specify a
     -- different existing contact.
-    deleteContact: function(Client, types.DeleteContactInput): types.DeleteContactOutput, table
+    deleteContact: function(Client, types.DeleteContactInput): Operation<types.DeleteContactOutput>
     -- To stop receiving engagements on a contact channel, you can delete the channel from a
     -- contact. Deleting the contact channel does not remove it from the contact's engagement
     -- plan, but the stage that includes the channel will be ignored. If you delete the only
     -- contact channel for a contact, you'll no longer be able to engage that contact during an
     -- incident.
-    deleteContactChannel: function(Client, types.DeleteContactChannelInput): types.DeleteContactChannelOutput, table
+    deleteContactChannel: function(Client, types.DeleteContactChannelInput): Operation<types.DeleteContactChannelOutput>
     -- Deletes a rotation from the system. If a rotation belongs to more than one on-call
     -- schedule, this operation deletes it from all of them.
-    deleteRotation: function(Client, types.DeleteRotationInput): types.DeleteRotationOutput, table
+    deleteRotation: function(Client, types.DeleteRotationInput): Operation<types.DeleteRotationOutput>
     -- Deletes an existing override for an on-call rotation.
-    deleteRotationOverride: function(Client, types.DeleteRotationOverrideInput): types.DeleteRotationOverrideOutput, table
+    deleteRotationOverride: function(Client, types.DeleteRotationOverrideInput): Operation<types.DeleteRotationOverrideOutput>
     -- Incident Manager uses engagements to engage contacts and escalation plans during an incident.
     -- Use this command to describe the engagement that occurred during an incident.
-    describeEngagement: function(Client, types.DescribeEngagementInput): types.DescribeEngagementOutput, table
+    describeEngagement: function(Client, types.DescribeEngagementInput): Operation<types.DescribeEngagementOutput>
     -- Lists details of the engagement to a contact channel.
-    describePage: function(Client, types.DescribePageInput): types.DescribePageOutput, table
+    describePage: function(Client, types.DescribePageInput): Operation<types.DescribePageOutput>
     -- Retrieves information about the specified contact or escalation plan.
-    getContact: function(Client, types.GetContactInput): types.GetContactOutput, table
+    getContact: function(Client, types.GetContactInput): Operation<types.GetContactOutput>
     -- List details about a specific contact channel.
-    getContactChannel: function(Client, types.GetContactChannelInput): types.GetContactChannelOutput, table
+    getContactChannel: function(Client, types.GetContactChannelInput): Operation<types.GetContactChannelOutput>
     -- Retrieves the resource policies attached to the specified contact or escalation
     -- plan.
-    getContactPolicy: function(Client, types.GetContactPolicyInput): types.GetContactPolicyOutput, table
+    getContactPolicy: function(Client, types.GetContactPolicyInput): Operation<types.GetContactPolicyOutput>
     -- Retrieves information about an on-call rotation.
-    getRotation: function(Client, types.GetRotationInput): types.GetRotationOutput, table
+    getRotation: function(Client, types.GetRotationInput): Operation<types.GetRotationOutput>
     -- Retrieves information about an override to an on-call rotation.
-    getRotationOverride: function(Client, types.GetRotationOverrideInput): types.GetRotationOverrideOutput, table
+    getRotationOverride: function(Client, types.GetRotationOverrideInput): Operation<types.GetRotationOverrideOutput>
     -- Lists all contact channels for the specified contact.
-    listContactChannels: function(Client, types.ListContactChannelsInput): types.ListContactChannelsOutput, table
+    listContactChannels: function(Client, types.ListContactChannelsInput): Operation<types.ListContactChannelsOutput>
     -- Lists all contacts and escalation plans in Incident Manager.
-    listContacts: function(Client, types.ListContactsInput): types.ListContactsOutput, table
+    listContacts: function(Client, types.ListContactsInput): Operation<types.ListContactsOutput>
     -- Lists all engagements that have happened in an incident.
-    listEngagements: function(Client, types.ListEngagementsInput): types.ListEngagementsOutput, table
+    listEngagements: function(Client, types.ListEngagementsInput): Operation<types.ListEngagementsOutput>
     -- Lists all of the engagements to contact channels that have been acknowledged.
-    listPageReceipts: function(Client, types.ListPageReceiptsInput): types.ListPageReceiptsOutput, table
+    listPageReceipts: function(Client, types.ListPageReceiptsInput): Operation<types.ListPageReceiptsOutput>
     -- Returns the resolution path of an engagement. For example, the escalation plan engaged
     -- in an incident might target an on-call schedule that includes several contacts in a
     -- rotation, but just one contact on-call when the incident starts. The resolution path
     -- indicates the hierarchy of escalation plan > on-call schedule >
     -- contact.
-    listPageResolutions: function(Client, types.ListPageResolutionsInput): types.ListPageResolutionsOutput, table
+    listPageResolutions: function(Client, types.ListPageResolutionsInput): Operation<types.ListPageResolutionsOutput>
     -- Lists the engagements to a contact's contact channels.
-    listPagesByContact: function(Client, types.ListPagesByContactInput): types.ListPagesByContactOutput, table
+    listPagesByContact: function(Client, types.ListPagesByContactInput): Operation<types.ListPagesByContactOutput>
     -- Lists the engagements to contact channels that occurred by engaging a contact.
-    listPagesByEngagement: function(Client, types.ListPagesByEngagementInput): types.ListPagesByEngagementOutput, table
+    listPagesByEngagement: function(Client, types.ListPagesByEngagementInput): Operation<types.ListPagesByEngagementOutput>
     -- Returns a list of shifts based on rotation configuration parameters.
     -- The Incident Manager primarily uses this operation to populate the Preview calendar. It is not typically run by end users.
-    listPreviewRotationShifts: function(Client, types.ListPreviewRotationShiftsInput): types.ListPreviewRotationShiftsOutput, table
+    listPreviewRotationShifts: function(Client, types.ListPreviewRotationShiftsInput): Operation<types.ListPreviewRotationShiftsOutput>
     -- Retrieves a list of overrides currently specified for an on-call rotation.
-    listRotationOverrides: function(Client, types.ListRotationOverridesInput): types.ListRotationOverridesOutput, table
+    listRotationOverrides: function(Client, types.ListRotationOverridesInput): Operation<types.ListRotationOverridesOutput>
     -- Retrieves a list of on-call rotations.
-    listRotations: function(Client, types.ListRotationsInput): types.ListRotationsOutput, table
+    listRotations: function(Client, types.ListRotationsInput): Operation<types.ListRotationsOutput>
     -- Returns a list of shifts generated by an existing rotation in the system.
-    listRotationShifts: function(Client, types.ListRotationShiftsInput): types.ListRotationShiftsOutput, table
+    listRotationShifts: function(Client, types.ListRotationShiftsInput): Operation<types.ListRotationShiftsOutput>
     -- Lists the tags of a contact, escalation plan, rotation, or on-call schedule.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds a resource policy to the specified contact or escalation plan. The resource policy
     -- is used to share the contact or escalation plan using Resource Access Manager (RAM). For more information about cross-account sharing, see Setting up
     -- cross-account functionality.
-    putContactPolicy: function(Client, types.PutContactPolicyInput): types.PutContactPolicyOutput, table
+    putContactPolicy: function(Client, types.PutContactPolicyInput): Operation<types.PutContactPolicyOutput>
     -- Sends an activation code to a contact channel. The contact can use this code to activate
     -- the contact channel in the console or with the ActivateChannel operation.
     -- Incident Manager can't engage a contact channel until it has been activated.
-    sendActivationCode: function(Client, types.SendActivationCodeInput): types.SendActivationCodeOutput, table
+    sendActivationCode: function(Client, types.SendActivationCodeInput): Operation<types.SendActivationCodeOutput>
     -- Starts an engagement to a contact or escalation plan. The engagement engages each
     -- contact specified in the incident.
-    startEngagement: function(Client, types.StartEngagementInput): types.StartEngagementOutput, table
+    startEngagement: function(Client, types.StartEngagementInput): Operation<types.StartEngagementOutput>
     -- Stops an engagement before it finishes the final stage of the escalation plan or
     -- engagement plan. Further contacts aren't engaged.
-    stopEngagement: function(Client, types.StopEngagementInput): types.StopEngagementOutput, table
+    stopEngagement: function(Client, types.StopEngagementInput): Operation<types.StopEngagementOutput>
     -- Tags a contact or escalation plan. You can tag only contacts and escalation plans in the
     -- first region of your replication set.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the contact or escalation plan specified.
-    updateContact: function(Client, types.UpdateContactInput): types.UpdateContactOutput, table
+    updateContact: function(Client, types.UpdateContactInput): Operation<types.UpdateContactOutput>
     -- Updates a contact's contact channel.
-    updateContactChannel: function(Client, types.UpdateContactChannelInput): types.UpdateContactChannelOutput, table
+    updateContactChannel: function(Client, types.UpdateContactChannelInput): Operation<types.UpdateContactChannelOutput>
     -- Updates the information specified for an on-call rotation.
-    updateRotation: function(Client, types.UpdateRotationInput): types.UpdateRotationOutput, table
+    updateRotation: function(Client, types.UpdateRotationInput): Operation<types.UpdateRotationOutput>
 end
 
 local record M

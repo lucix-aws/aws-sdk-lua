@@ -2,6 +2,10 @@
 
 local types = require("kinesisvideosignaling.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Gets the Interactive Connectivity Establishment (ICE) server configuration
     -- information, including URIs, username, and password which can be used to configure the
@@ -17,14 +21,14 @@ local record Client
     -- is unable to establish a direct peer-to-peer connection over a signaling channel. You
     -- must specify either a signaling channel ARN or the client ID in order to invoke this
     -- API.
-    getIceServerConfig: function(Client, types.GetIceServerConfigInput): types.GetIceServerConfigOutput, table
+    getIceServerConfig: function(Client, types.GetIceServerConfigInput): Operation<types.GetIceServerConfigOutput>
     -- This API allows you to connect WebRTC-enabled devices with Alexa display devices. When
     -- invoked, it sends the Alexa Session Description Protocol (SDP) offer to the master peer.
     -- The offer is delivered as soon as the master is connected to the specified signaling
     -- channel. This API returns the SDP answer from the connected master. If the master is not
     -- connected to the signaling channel, redelivery requests are made until the message
     -- expires.
-    sendAlexaOfferToMaster: function(Client, types.SendAlexaOfferToMasterInput): types.SendAlexaOfferToMasterOutput, table
+    sendAlexaOfferToMaster: function(Client, types.SendAlexaOfferToMasterInput): Operation<types.SendAlexaOfferToMasterOutput>
 end
 
 local record M

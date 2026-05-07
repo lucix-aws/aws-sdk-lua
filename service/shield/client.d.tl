@@ -2,10 +2,14 @@
 
 local types = require("shield.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Authorizes the Shield Response Team (SRT) to access the specified Amazon S3 bucket containing log data such as Application Load Balancer access logs, CloudFront logs, or logs from third party sources. You can associate up to 10 Amazon S3 buckets with your subscription.
     -- To use the services of the SRT and make an AssociateDRTLogBucket request, you must be subscribed to the Business Support plan or the Enterprise Support plan.
-    associateDRTLogBucket: function(Client, types.AssociateDRTLogBucketInput): types.AssociateDRTLogBucketOutput, table
+    associateDRTLogBucket: function(Client, types.AssociateDRTLogBucketInput): Operation<types.AssociateDRTLogBucketOutput>
     -- Authorizes the Shield Response Team (SRT) using the specified role, to access your Amazon Web Services account to assist with DDoS attack mitigation during potential attacks. This enables the SRT to inspect your WAF configuration and create or update WAF rules and web ACLs.
     -- You can associate only one RoleArn with your subscription. If you submit an AssociateDRTRole request for an account that already has an associated role, the new RoleArn will replace the existing RoleArn.
     -- Prior to making the AssociateDRTRole request, you must attach the AWSShieldDRTAccessPolicy managed policy to the role that you'll specify in the request. You can access this policy in the IAM console at AWSShieldDRTAccessPolicy. For more information see Adding and removing IAM identity permissions. The role must also trust the service principal
@@ -13,63 +17,63 @@ local record Client
     -- The SRT will have access only to your WAF and Shield resources. By submitting this request, you authorize the SRT to inspect your WAF and Shield configuration and create and update WAF rules and web ACLs on your behalf. The SRT takes these actions only if explicitly authorized by you.
     -- You must have the iam:PassRole permission to make an AssociateDRTRole request. For more information, see Granting a user permissions to pass a role to an Amazon Web Services service.
     -- To use the services of the SRT and make an AssociateDRTRole request, you must be subscribed to the Business Support plan or the Enterprise Support plan.
-    associateDRTRole: function(Client, types.AssociateDRTRoleInput): types.AssociateDRTRoleOutput, table
+    associateDRTRole: function(Client, types.AssociateDRTRoleInput): Operation<types.AssociateDRTRoleOutput>
     -- Adds health-based detection to the Shield Advanced protection for a resource. Shield Advanced health-based detection uses the health of your Amazon Web Services resource to improve responsiveness and accuracy in attack detection and response.
     -- You define the health check in Route 53 and then associate it with your Shield Advanced protection. For more information, see Shield Advanced Health-Based Detection in the WAF Developer Guide.
-    associateHealthCheck: function(Client, types.AssociateHealthCheckInput): types.AssociateHealthCheckOutput, table
+    associateHealthCheck: function(Client, types.AssociateHealthCheckInput): Operation<types.AssociateHealthCheckOutput>
     -- Initializes proactive engagement and sets the list of contacts for the Shield Response Team (SRT) to use. You must provide at least one phone number in the emergency contact list.
     -- After you have initialized proactive engagement using this call, to disable or enable proactive engagement, use the calls DisableProactiveEngagement and EnableProactiveEngagement.
     -- This call defines the list of email addresses and phone numbers that the SRT can use to contact you for escalations to the SRT and to initiate proactive customer support.
     -- The contacts that you provide in the request replace any contacts that were already defined. If you already have contacts defined and want to use them, retrieve the list using DescribeEmergencyContactSettings and then provide it to this call.
-    associateProactiveEngagementDetails: function(Client, types.AssociateProactiveEngagementDetailsInput): types.AssociateProactiveEngagementDetailsOutput, table
+    associateProactiveEngagementDetails: function(Client, types.AssociateProactiveEngagementDetailsInput): Operation<types.AssociateProactiveEngagementDetailsOutput>
     -- Enables Shield Advanced for a specific Amazon Web Services resource. The resource can be an Amazon CloudFront distribution, Amazon Route 53 hosted zone, Global Accelerator standard accelerator, Elastic IP Address, Application Load Balancer, or a Classic Load Balancer. You can protect Amazon EC2 instances and Network Load Balancers by association with protected Amazon EC2 Elastic IP addresses.
     -- You can add protection to only a single resource with each CreateProtection request. You can add protection to multiple resources
     -- at once through the Shield Advanced console at https://console.aws.amazon.com/wafv2/shieldv2#/.
     -- For more information see
     -- Getting Started with Shield Advanced
     -- and Adding Shield Advanced protection to Amazon Web Services resources.
-    createProtection: function(Client, types.CreateProtectionInput): types.CreateProtectionOutput, table
+    createProtection: function(Client, types.CreateProtectionInput): Operation<types.CreateProtectionOutput>
     -- Creates a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives.
-    createProtectionGroup: function(Client, types.CreateProtectionGroupInput): types.CreateProtectionGroupOutput, table
+    createProtectionGroup: function(Client, types.CreateProtectionGroupInput): Operation<types.CreateProtectionGroupOutput>
     -- Activates Shield Advanced for an account.
     -- For accounts that are members of an Organizations organization, Shield Advanced subscriptions are billed against the organization's payer account,
     -- regardless of whether the payer account itself is subscribed.
     -- When you initially create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request.
-    createSubscription: function(Client, types.CreateSubscriptionInput): types.CreateSubscriptionOutput, table
+    createSubscription: function(Client, types.CreateSubscriptionInput): Operation<types.CreateSubscriptionOutput>
     -- Deletes an Shield Advanced Protection.
-    deleteProtection: function(Client, types.DeleteProtectionInput): types.DeleteProtectionOutput, table
+    deleteProtection: function(Client, types.DeleteProtectionInput): Operation<types.DeleteProtectionOutput>
     -- Removes the specified protection group.
-    deleteProtectionGroup: function(Client, types.DeleteProtectionGroupInput): types.DeleteProtectionGroupOutput, table
+    deleteProtectionGroup: function(Client, types.DeleteProtectionGroupInput): Operation<types.DeleteProtectionGroupOutput>
     -- Removes Shield Advanced from an account. Shield Advanced requires a 1-year subscription commitment. You cannot delete a subscription prior to the completion of that commitment.
-    deleteSubscription: function(Client, types.DeleteSubscriptionInput): types.DeleteSubscriptionOutput, table
+    deleteSubscription: function(Client, types.DeleteSubscriptionInput): Operation<types.DeleteSubscriptionOutput>
     -- Describes the details of a DDoS attack.
-    describeAttack: function(Client, types.DescribeAttackInput): types.DescribeAttackOutput, table
+    describeAttack: function(Client, types.DescribeAttackInput): Operation<types.DescribeAttackOutput>
     -- Provides information about the number and type of attacks Shield has detected in the last year for all resources that belong to your account, regardless of whether you've defined Shield protections for them. This operation is available to Shield customers as well as to Shield Advanced customers.
     -- The operation returns data for the time range of midnight UTC, one year ago, to midnight UTC, today. For example, if the current time is 2020-10-26 15:39:32 PDT, equal to 2020-10-26 22:39:32 UTC, then the time range for the attack data returned is from 2019-10-26 00:00:00 UTC to 2020-10-26 00:00:00 UTC.
     -- The time range indicates the period covered by the attack statistics data items.
-    describeAttackStatistics: function(Client, types.DescribeAttackStatisticsInput): types.DescribeAttackStatisticsOutput, table
+    describeAttackStatistics: function(Client, types.DescribeAttackStatisticsInput): Operation<types.DescribeAttackStatisticsOutput>
     -- Returns the current role and list of Amazon S3 log buckets used by the Shield Response Team (SRT) to access your Amazon Web Services account while assisting with attack mitigation.
-    describeDRTAccess: function(Client, types.DescribeDRTAccessInput): types.DescribeDRTAccessOutput, table
+    describeDRTAccess: function(Client, types.DescribeDRTAccessInput): Operation<types.DescribeDRTAccessOutput>
     -- A list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you if you have proactive engagement enabled, for escalations to the SRT and to initiate proactive customer support.
-    describeEmergencyContactSettings: function(Client, types.DescribeEmergencyContactSettingsInput): types.DescribeEmergencyContactSettingsOutput, table
+    describeEmergencyContactSettings: function(Client, types.DescribeEmergencyContactSettingsInput): Operation<types.DescribeEmergencyContactSettingsOutput>
     -- Lists the details of a Protection object.
-    describeProtection: function(Client, types.DescribeProtectionInput): types.DescribeProtectionOutput, table
+    describeProtection: function(Client, types.DescribeProtectionInput): Operation<types.DescribeProtectionOutput>
     -- Returns the specification for the specified protection group.
-    describeProtectionGroup: function(Client, types.DescribeProtectionGroupInput): types.DescribeProtectionGroupOutput, table
+    describeProtectionGroup: function(Client, types.DescribeProtectionGroupInput): Operation<types.DescribeProtectionGroupOutput>
     -- Provides details about the Shield Advanced subscription for an account.
-    describeSubscription: function(Client, types.DescribeSubscriptionInput): types.DescribeSubscriptionOutput, table
+    describeSubscription: function(Client, types.DescribeSubscriptionInput): Operation<types.DescribeSubscriptionOutput>
     -- Disable the Shield Advanced automatic application layer DDoS mitigation feature for the protected resource. This
     -- stops Shield Advanced from creating, verifying, and applying WAF rules for attacks that it detects for the resource.
-    disableApplicationLayerAutomaticResponse: function(Client, types.DisableApplicationLayerAutomaticResponseInput): types.DisableApplicationLayerAutomaticResponseOutput, table
+    disableApplicationLayerAutomaticResponse: function(Client, types.DisableApplicationLayerAutomaticResponseInput): Operation<types.DisableApplicationLayerAutomaticResponseOutput>
     -- Removes authorization from the Shield Response Team (SRT) to notify contacts about escalations to the SRT and to initiate proactive customer support.
-    disableProactiveEngagement: function(Client, types.DisableProactiveEngagementInput): types.DisableProactiveEngagementOutput, table
+    disableProactiveEngagement: function(Client, types.DisableProactiveEngagementInput): Operation<types.DisableProactiveEngagementOutput>
     -- Removes the Shield Response Team's (SRT) access to the specified Amazon S3 bucket containing the logs that you shared previously.
-    disassociateDRTLogBucket: function(Client, types.DisassociateDRTLogBucketInput): types.DisassociateDRTLogBucketOutput, table
+    disassociateDRTLogBucket: function(Client, types.DisassociateDRTLogBucketInput): Operation<types.DisassociateDRTLogBucketOutput>
     -- Removes the Shield Response Team's (SRT) access to your Amazon Web Services account.
-    disassociateDRTRole: function(Client, types.DisassociateDRTRoleInput): types.DisassociateDRTRoleOutput, table
+    disassociateDRTRole: function(Client, types.DisassociateDRTRoleInput): Operation<types.DisassociateDRTRoleOutput>
     -- Removes health-based detection from the Shield Advanced protection for a resource. Shield Advanced health-based detection uses the health of your Amazon Web Services resource to improve responsiveness and accuracy in attack detection and response.
     -- You define the health check in Route 53 and then associate or disassociate it with your Shield Advanced protection. For more information, see Shield Advanced Health-Based Detection in the WAF Developer Guide.
-    disassociateHealthCheck: function(Client, types.DisassociateHealthCheckInput): types.DisassociateHealthCheckOutput, table
+    disassociateHealthCheck: function(Client, types.DisassociateHealthCheckInput): Operation<types.DisassociateHealthCheckOutput>
     -- Enable the Shield Advanced automatic application layer DDoS mitigation for the protected resource.
     -- This feature is available for Amazon CloudFront distributions and Application Load Balancers only.
     -- This causes Shield Advanced to create, verify, and apply WAF rules for DDoS attacks that it detects for the
@@ -81,38 +85,38 @@ local record Client
     -- at https://console.aws.amazon.com/wafv2/shieldv2#/. For more information,
     -- see Getting Started with Shield Advanced. You can also associate the web ACL to the resource through the WAF console or the WAF API, but you must manage Shield Advanced automatic mitigation through Shield Advanced. For information about WAF, see
     -- WAF Developer Guide.
-    enableApplicationLayerAutomaticResponse: function(Client, types.EnableApplicationLayerAutomaticResponseInput): types.EnableApplicationLayerAutomaticResponseOutput, table
+    enableApplicationLayerAutomaticResponse: function(Client, types.EnableApplicationLayerAutomaticResponseInput): Operation<types.EnableApplicationLayerAutomaticResponseOutput>
     -- Authorizes the Shield Response Team (SRT) to use email and phone to notify contacts about escalations to the SRT and to initiate proactive customer support.
-    enableProactiveEngagement: function(Client, types.EnableProactiveEngagementInput): types.EnableProactiveEngagementOutput, table
+    enableProactiveEngagement: function(Client, types.EnableProactiveEngagementInput): Operation<types.EnableProactiveEngagementOutput>
     -- Returns the SubscriptionState, either Active or Inactive.
-    getSubscriptionState: function(Client, types.GetSubscriptionStateInput): types.GetSubscriptionStateOutput, table
+    getSubscriptionState: function(Client, types.GetSubscriptionStateInput): Operation<types.GetSubscriptionStateOutput>
     -- Returns all ongoing DDoS attacks or all DDoS attacks during a specified time
     -- period.
-    listAttacks: function(Client, types.ListAttacksInput): types.ListAttacksOutput, table
+    listAttacks: function(Client, types.ListAttacksInput): Operation<types.ListAttacksOutput>
     -- Retrieves ProtectionGroup objects for the account. You can retrieve all protection groups or you can provide
     -- filtering criteria and retrieve just the subset of protection groups that match the criteria.
-    listProtectionGroups: function(Client, types.ListProtectionGroupsInput): types.ListProtectionGroupsOutput, table
+    listProtectionGroups: function(Client, types.ListProtectionGroupsInput): Operation<types.ListProtectionGroupsOutput>
     -- Retrieves Protection objects for the account. You can retrieve all protections or you can provide
     -- filtering criteria and retrieve just the subset of protections that match the criteria.
-    listProtections: function(Client, types.ListProtectionsInput): types.ListProtectionsOutput, table
+    listProtections: function(Client, types.ListProtectionsInput): Operation<types.ListProtectionsOutput>
     -- Retrieves the resources that are included in the protection group.
-    listResourcesInProtectionGroup: function(Client, types.ListResourcesInProtectionGroupInput): types.ListResourcesInProtectionGroupOutput, table
+    listResourcesInProtectionGroup: function(Client, types.ListResourcesInProtectionGroupInput): Operation<types.ListResourcesInProtectionGroupOutput>
     -- Gets information about Amazon Web Services tags for a specified Amazon Resource Name (ARN) in Shield.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds or updates tags for a resource in Shield.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a resource in Shield.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing Shield Advanced automatic application layer DDoS mitigation configuration for the specified resource.
-    updateApplicationLayerAutomaticResponse: function(Client, types.UpdateApplicationLayerAutomaticResponseInput): types.UpdateApplicationLayerAutomaticResponseOutput, table
+    updateApplicationLayerAutomaticResponse: function(Client, types.UpdateApplicationLayerAutomaticResponseInput): Operation<types.UpdateApplicationLayerAutomaticResponseOutput>
     -- Updates the details of the list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you if you have proactive engagement enabled, for escalations to the SRT and to initiate proactive customer support.
-    updateEmergencyContactSettings: function(Client, types.UpdateEmergencyContactSettingsInput): types.UpdateEmergencyContactSettingsOutput, table
+    updateEmergencyContactSettings: function(Client, types.UpdateEmergencyContactSettingsInput): Operation<types.UpdateEmergencyContactSettingsOutput>
     -- Updates an existing protection group. A protection group is a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives.
-    updateProtectionGroup: function(Client, types.UpdateProtectionGroupInput): types.UpdateProtectionGroupOutput, table
+    updateProtectionGroup: function(Client, types.UpdateProtectionGroupInput): Operation<types.UpdateProtectionGroupOutput>
     -- Updates the details of an existing subscription. Only enter values for parameters you want to change. Empty parameters are not updated.
     -- For accounts that are members of an Organizations organization, Shield Advanced subscriptions are billed against the organization's payer account,
     -- regardless of whether the payer account itself is subscribed.
-    updateSubscription: function(Client, types.UpdateSubscriptionInput): types.UpdateSubscriptionOutput, table
+    updateSubscription: function(Client, types.UpdateSubscriptionInput): Operation<types.UpdateSubscriptionOutput>
 end
 
 local record M

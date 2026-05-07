@@ -2,9 +2,13 @@
 
 local types = require("lightsail.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Allocates a static IP address.
-    allocateStaticIp: function(Client, types.AllocateStaticIpInput): types.AllocateStaticIpOutput, table
+    allocateStaticIp: function(Client, types.AllocateStaticIpInput): Operation<types.AllocateStaticIpOutput>
     -- Attaches an SSL/TLS certificate to your Amazon Lightsail content delivery network (CDN)
     -- distribution.
     -- After the certificate is attached, your distribution accepts HTTPS traffic for all of the
@@ -16,20 +20,20 @@ local record Client
     -- distributions are global resources that can reference an origin in any Amazon Web Services
     -- Region, and distribute its content globally. However, all distributions are located in the
     -- us-east-1 Region.
-    attachCertificateToDistribution: function(Client, types.AttachCertificateToDistributionInput): types.AttachCertificateToDistributionOutput, table
+    attachCertificateToDistribution: function(Client, types.AttachCertificateToDistributionInput): Operation<types.AttachCertificateToDistributionOutput>
     -- Attaches a block storage disk to a running or stopped Lightsail instance and exposes it
     -- to the instance with the specified disk name.
     -- The attach disk operation supports tag-based access control via resource tags
     -- applied to the resource identified by disk name. For more information, see the
     -- Amazon Lightsail Developer Guide.
-    attachDisk: function(Client, types.AttachDiskInput): types.AttachDiskOutput, table
+    attachDisk: function(Client, types.AttachDiskInput): Operation<types.AttachDiskOutput>
     -- Attaches one or more Lightsail instances to a load balancer.
     -- After some time, the instances are attached to the load balancer and the health check
     -- status is available.
     -- The attach instances to load balancer operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Lightsail Developer Guide.
-    attachInstancesToLoadBalancer: function(Client, types.AttachInstancesToLoadBalancerInput): types.AttachInstancesToLoadBalancerOutput, table
+    attachInstancesToLoadBalancer: function(Client, types.AttachInstancesToLoadBalancerInput): Operation<types.AttachInstancesToLoadBalancerOutput>
     -- Attaches a Transport Layer Security (TLS) certificate to your load balancer. TLS is just
     -- an updated, more secure version of Secure Socket Layer (SSL).
     -- Once you create and validate your certificate, you can attach it to your load balancer.
@@ -39,14 +43,14 @@ local record Client
     -- The AttachLoadBalancerTlsCertificate operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    attachLoadBalancerTlsCertificate: function(Client, types.AttachLoadBalancerTlsCertificateInput): types.AttachLoadBalancerTlsCertificateOutput, table
+    attachLoadBalancerTlsCertificate: function(Client, types.AttachLoadBalancerTlsCertificateInput): Operation<types.AttachLoadBalancerTlsCertificateOutput>
     -- Attaches a static IP address to a specific Amazon Lightsail instance.
-    attachStaticIp: function(Client, types.AttachStaticIpInput): types.AttachStaticIpOutput, table
+    attachStaticIp: function(Client, types.AttachStaticIpInput): Operation<types.AttachStaticIpOutput>
     -- Closes ports for a specific Amazon Lightsail instance.
     -- The CloseInstancePublicPorts action supports tag-based access control via
     -- resource tags applied to the resource identified by instanceName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    closeInstancePublicPorts: function(Client, types.CloseInstancePublicPortsInput): types.CloseInstancePublicPortsOutput, table
+    closeInstancePublicPorts: function(Client, types.CloseInstancePublicPortsInput): Operation<types.CloseInstancePublicPortsOutput>
     -- Copies a manual snapshot of an instance or disk as another manual snapshot, or copies an
     -- automatic snapshot of an instance or disk as a manual snapshot. This operation can also be
     -- used to copy a manual or automatic snapshot of an instance or a disk from one Amazon Web Services Region to another in Amazon Lightsail.
@@ -57,13 +61,13 @@ local record Client
     -- source region, source resource name, target snapshot
     -- name, and either the restore date or the use latest restorable
     -- auto snapshot parameters.
-    copySnapshot: function(Client, types.CopySnapshotInput): types.CopySnapshotOutput, table
+    copySnapshot: function(Client, types.CopySnapshotInput): Operation<types.CopySnapshotOutput>
     -- Creates an Amazon Lightsail bucket.
     -- A bucket is a cloud storage resource available in the Lightsail object storage service.
     -- Use buckets to store objects such as data and its descriptive metadata. For more information
     -- about buckets, see Buckets in Amazon Lightsail in the Amazon Lightsail Developer
     -- Guide.
-    createBucket: function(Client, types.CreateBucketInput): types.CreateBucketOutput, table
+    createBucket: function(Client, types.CreateBucketInput): Operation<types.CreateBucketOutput>
     -- Creates a new access key for the specified Amazon Lightsail bucket. Access keys consist of
     -- an access key ID and corresponding secret access key.
     -- Access keys grant full programmatic access to the specified bucket and its objects. You
@@ -74,7 +78,7 @@ local record Client
     -- CreateBucketAccessKey action. You can get a secret access key only when you
     -- first create an access key; you cannot get the secret access key later. If you lose the
     -- secret access key, you must create a new access key.
-    createBucketAccessKey: function(Client, types.CreateBucketAccessKeyInput): types.CreateBucketAccessKeyOutput, table
+    createBucketAccessKey: function(Client, types.CreateBucketAccessKeyInput): Operation<types.CreateBucketAccessKeyOutput>
     -- Creates an SSL/TLS certificate for an Amazon Lightsail content delivery network (CDN)
     -- distribution and a container service.
     -- After the certificate is valid, use the AttachCertificateToDistribution
@@ -86,14 +90,14 @@ local record Client
     -- distributions are global resources that can reference an origin in any Amazon Web Services
     -- Region, and distribute its content globally. However, all distributions are located in the
     -- us-east-1 Region.
-    createCertificate: function(Client, types.CreateCertificateInput): types.CreateCertificateOutput, table
+    createCertificate: function(Client, types.CreateCertificateInput): Operation<types.CreateCertificateOutput>
     -- Creates an AWS CloudFormation stack, which creates a new Amazon EC2 instance from an exported
     -- Amazon Lightsail snapshot. This operation results in a CloudFormation stack record that can be
     -- used to track the AWS CloudFormation stack created. Use the get cloud formation stack
     -- records operation to get a list of the CloudFormation stacks created.
     -- Wait until after your new Amazon EC2 instance is created before running the create
     -- cloud formation stack operation again with the same export snapshot record.
-    createCloudFormationStack: function(Client, types.CreateCloudFormationStackInput): types.CreateCloudFormationStackOutput, table
+    createCloudFormationStack: function(Client, types.CreateCloudFormationStackInput): Operation<types.CreateCloudFormationStackOutput>
     -- Creates an email or SMS text message contact method.
     -- A contact method is used to send you notifications about your Amazon Lightsail resources.
     -- You can add one email address and one mobile phone number contact method in each Amazon Web Services Region. However, SMS text messaging is not supported in some Amazon Web Services
@@ -101,12 +105,12 @@ local record Client
     -- see Notifications in Amazon Lightsail.
     -- The create contact method operation supports tag-based access control via request
     -- tags. For more information, see the Lightsail Developer Guide.
-    createContactMethod: function(Client, types.CreateContactMethodInput): types.CreateContactMethodOutput, table
+    createContactMethod: function(Client, types.CreateContactMethodInput): Operation<types.CreateContactMethodOutput>
     -- Creates an Amazon Lightsail container service.
     -- A Lightsail container service is a compute resource to which you can deploy containers.
     -- For more information, see Container services in Amazon Lightsail in the Lightsail Dev
     -- Guide.
-    createContainerService: function(Client, types.CreateContainerServiceInput): types.CreateContainerServiceOutput, table
+    createContainerService: function(Client, types.CreateContainerServiceInput): Operation<types.CreateContainerServiceOutput>
     -- Creates a deployment for your Amazon Lightsail container service.
     -- A deployment specifies the containers that will be launched on the container service and
     -- their settings, such as the ports to open, the environment variables to apply, and the launch
@@ -117,7 +121,7 @@ local record Client
     -- registry such as Amazon ECR Public, or from your local machine. For more information, see
     -- Creating container images for your Amazon Lightsail container services in the
     -- Amazon Lightsail Developer Guide.
-    createContainerServiceDeployment: function(Client, types.CreateContainerServiceDeploymentInput): types.CreateContainerServiceDeploymentOutput, table
+    createContainerServiceDeployment: function(Client, types.CreateContainerServiceDeploymentInput): Operation<types.CreateContainerServiceDeploymentOutput>
     -- Creates a temporary set of log in credentials that you can use to log in to the Docker
     -- process on your local machine. After you're logged in, you can use the native Docker commands
     -- to push your local container images to the container image registry of your Amazon Lightsail
@@ -134,19 +138,19 @@ local record Client
     -- (lightsailctl) plugin to push container images to your Lightsail container service. For
     -- more information, see Pushing and managing container images on your Amazon Lightsail container services
     -- in the Amazon Lightsail Developer Guide.
-    createContainerServiceRegistryLogin: function(Client, types.CreateContainerServiceRegistryLoginInput): types.CreateContainerServiceRegistryLoginOutput, table
+    createContainerServiceRegistryLogin: function(Client, types.CreateContainerServiceRegistryLoginInput): Operation<types.CreateContainerServiceRegistryLoginOutput>
     -- Creates a block storage disk that can be attached to an Amazon Lightsail instance in the
     -- same Availability Zone (us-east-2a).
     -- The create disk operation supports tag-based access control via request tags.
     -- For more information, see the Amazon Lightsail Developer Guide.
-    createDisk: function(Client, types.CreateDiskInput): types.CreateDiskOutput, table
+    createDisk: function(Client, types.CreateDiskInput): Operation<types.CreateDiskOutput>
     -- Creates a block storage disk from a manual or automatic snapshot of a disk. The resulting
     -- disk can be attached to an Amazon Lightsail instance in the same Availability Zone
     -- (us-east-2a).
     -- The create disk from snapshot operation supports tag-based access control via
     -- request tags and resource tags applied to the resource identified by disk snapshot
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    createDiskFromSnapshot: function(Client, types.CreateDiskFromSnapshotInput): types.CreateDiskFromSnapshotOutput, table
+    createDiskFromSnapshot: function(Client, types.CreateDiskFromSnapshotInput): Operation<types.CreateDiskFromSnapshotOutput>
     -- Creates a snapshot of a block storage disk. You can use snapshots for backups, to make
     -- copies of disks, and to save data before shutting down a Lightsail instance.
     -- You can take a snapshot of an attached disk that is in use; however, snapshots only
@@ -166,44 +170,44 @@ local record Client
     -- snapshot and attach it to a running instance to access the data on the disk.
     -- The create disk snapshot operation supports tag-based access control via
     -- request tags. For more information, see the Amazon Lightsail Developer Guide.
-    createDiskSnapshot: function(Client, types.CreateDiskSnapshotInput): types.CreateDiskSnapshotOutput, table
+    createDiskSnapshot: function(Client, types.CreateDiskSnapshotInput): Operation<types.CreateDiskSnapshotOutput>
     -- Creates an Amazon Lightsail content delivery network (CDN) distribution.
     -- A distribution is a globally distributed network of caching servers that improve the
     -- performance of your website or web application hosted on a Lightsail instance. For more
     -- information, see Content delivery networks in Amazon Lightsail.
-    createDistribution: function(Client, types.CreateDistributionInput): types.CreateDistributionOutput, table
+    createDistribution: function(Client, types.CreateDistributionInput): Operation<types.CreateDistributionOutput>
     -- Creates a domain resource for the specified domain (example.com).
     -- The create domain operation supports tag-based access control via request
     -- tags. For more information, see the Amazon Lightsail Developer Guide.
-    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createDomain: function(Client, types.CreateDomainInput): Operation<types.CreateDomainOutput>
     -- Creates one of the following domain name system (DNS) records in a domain DNS zone:
     -- Address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority
     -- (SOA), service locator (SRV), or text (TXT).
     -- The create domain entry operation supports tag-based access control via
     -- resource tags applied to the resource identified by domain name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    createDomainEntry: function(Client, types.CreateDomainEntryInput): types.CreateDomainEntryOutput, table
+    createDomainEntry: function(Client, types.CreateDomainEntryInput): Operation<types.CreateDomainEntryOutput>
     -- Creates two URLs that are used to access a virtual computer’s graphical user interface
     -- (GUI) session. The primary URL initiates a web-based Amazon DCV session to the virtual
     -- computer's application. The secondary URL initiates a web-based Amazon DCV session to the
     -- virtual computer's operating session.
     -- Use StartGUISession to open the session.
-    createGUISessionAccessDetails: function(Client, types.CreateGUISessionAccessDetailsInput): types.CreateGUISessionAccessDetailsOutput, table
+    createGUISessionAccessDetails: function(Client, types.CreateGUISessionAccessDetailsInput): Operation<types.CreateGUISessionAccessDetailsOutput>
     -- Creates one or more Amazon Lightsail instances.
     -- The create instances operation supports tag-based access control via request
     -- tags. For more information, see the Lightsail Developer Guide.
-    createInstances: function(Client, types.CreateInstancesInput): types.CreateInstancesOutput, table
+    createInstances: function(Client, types.CreateInstancesInput): Operation<types.CreateInstancesOutput>
     -- Creates one or more new instances from a manual or automatic snapshot of an
     -- instance.
     -- The create instances from snapshot operation supports tag-based access
     -- control via request tags and resource tags applied to the resource identified by
     -- instance snapshot name. For more information, see the Amazon Lightsail Developer Guide.
-    createInstancesFromSnapshot: function(Client, types.CreateInstancesFromSnapshotInput): types.CreateInstancesFromSnapshotOutput, table
+    createInstancesFromSnapshot: function(Client, types.CreateInstancesFromSnapshotInput): Operation<types.CreateInstancesFromSnapshotOutput>
     -- Creates a snapshot of a specific virtual private server, or instance.
     -- You can use a snapshot to create a new instance that is based on that snapshot.
     -- The create instance snapshot operation supports tag-based access control via
     -- request tags. For more information, see the Amazon Lightsail Developer Guide.
-    createInstanceSnapshot: function(Client, types.CreateInstanceSnapshotInput): types.CreateInstanceSnapshotOutput, table
+    createInstanceSnapshot: function(Client, types.CreateInstanceSnapshotInput): Operation<types.CreateInstanceSnapshotOutput>
     -- Creates a custom SSH key pair that you can use with an Amazon Lightsail
     -- instance.
     -- Use the DownloadDefaultKeyPair action to create a Lightsail default key
@@ -211,7 +215,7 @@ local record Client
     -- exist.
     -- The create key pair operation supports tag-based access control via request
     -- tags. For more information, see the Amazon Lightsail Developer Guide.
-    createKeyPair: function(Client, types.CreateKeyPairInput): types.CreateKeyPairOutput, table
+    createKeyPair: function(Client, types.CreateKeyPairInput): Operation<types.CreateKeyPairOutput>
     -- Creates a Lightsail load balancer. To learn more about deciding whether to load balance
     -- your application, see Configure your Lightsail instances for load balancing. You can create up to 10
     -- load balancers per AWS Region in your account.
@@ -220,17 +224,17 @@ local record Client
     -- operation.
     -- The create load balancer operation supports tag-based access control via
     -- request tags. For more information, see the Amazon Lightsail Developer Guide.
-    createLoadBalancer: function(Client, types.CreateLoadBalancerInput): types.CreateLoadBalancerOutput, table
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput): Operation<types.CreateLoadBalancerOutput>
     -- Creates an SSL/TLS certificate for an Amazon Lightsail load balancer.
     -- TLS is just an updated, more secure version of Secure Socket Layer (SSL).
     -- The CreateLoadBalancerTlsCertificate operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    createLoadBalancerTlsCertificate: function(Client, types.CreateLoadBalancerTlsCertificateInput): types.CreateLoadBalancerTlsCertificateOutput, table
+    createLoadBalancerTlsCertificate: function(Client, types.CreateLoadBalancerTlsCertificateInput): Operation<types.CreateLoadBalancerTlsCertificateOutput>
     -- Creates a new database in Amazon Lightsail.
     -- The create relational database operation supports tag-based access control
     -- via request tags. For more information, see the Amazon Lightsail Developer Guide.
-    createRelationalDatabase: function(Client, types.CreateRelationalDatabaseInput): types.CreateRelationalDatabaseOutput, table
+    createRelationalDatabase: function(Client, types.CreateRelationalDatabaseInput): Operation<types.CreateRelationalDatabaseOutput>
     -- Creates a new database from an existing database snapshot in Amazon Lightsail.
     -- You can create a new database from a snapshot in if something goes wrong with your
     -- original database, or to change it to a different plan, such as a high availability or
@@ -238,53 +242,53 @@ local record Client
     -- The create relational database from snapshot operation supports tag-based
     -- access control via request tags and resource tags applied to the resource identified by
     -- relationalDatabaseSnapshotName. For more information, see the Amazon Lightsail Developer Guide.
-    createRelationalDatabaseFromSnapshot: function(Client, types.CreateRelationalDatabaseFromSnapshotInput): types.CreateRelationalDatabaseFromSnapshotOutput, table
+    createRelationalDatabaseFromSnapshot: function(Client, types.CreateRelationalDatabaseFromSnapshotInput): Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
     -- Creates a snapshot of your database in Amazon Lightsail. You can use snapshots for backups,
     -- to make copies of a database, and to save data before deleting a database.
     -- The create relational database snapshot operation supports tag-based access
     -- control via request tags. For more information, see the Amazon Lightsail Developer Guide.
-    createRelationalDatabaseSnapshot: function(Client, types.CreateRelationalDatabaseSnapshotInput): types.CreateRelationalDatabaseSnapshotOutput, table
+    createRelationalDatabaseSnapshot: function(Client, types.CreateRelationalDatabaseSnapshotInput): Operation<types.CreateRelationalDatabaseSnapshotOutput>
     -- Deletes an alarm.
     -- An alarm is used to monitor a single metric for one of your resources. When a metric
     -- condition is met, the alarm can notify you by email, SMS text message, and a banner displayed
     -- on the Amazon Lightsail console. For more information, see Alarms
     -- in Amazon Lightsail.
-    deleteAlarm: function(Client, types.DeleteAlarmInput): types.DeleteAlarmOutput, table
+    deleteAlarm: function(Client, types.DeleteAlarmInput): Operation<types.DeleteAlarmOutput>
     -- Deletes an automatic snapshot of an instance or disk. For more information, see the Amazon Lightsail Developer Guide.
-    deleteAutoSnapshot: function(Client, types.DeleteAutoSnapshotInput): types.DeleteAutoSnapshotOutput, table
+    deleteAutoSnapshot: function(Client, types.DeleteAutoSnapshotInput): Operation<types.DeleteAutoSnapshotOutput>
     -- Deletes a Amazon Lightsail bucket.
     -- When you delete your bucket, the bucket name is released and can be reused for a new
     -- bucket in your account or another Amazon Web Services account.
-    deleteBucket: function(Client, types.DeleteBucketInput): types.DeleteBucketOutput, table
+    deleteBucket: function(Client, types.DeleteBucketInput): Operation<types.DeleteBucketOutput>
     -- Deletes an access key for the specified Amazon Lightsail bucket.
     -- We recommend that you delete an access key if the secret access key is compromised.
     -- For more information about access keys, see Creating access keys for a bucket in Amazon Lightsail in the
     -- Amazon Lightsail Developer Guide.
-    deleteBucketAccessKey: function(Client, types.DeleteBucketAccessKeyInput): types.DeleteBucketAccessKeyOutput, table
+    deleteBucketAccessKey: function(Client, types.DeleteBucketAccessKeyInput): Operation<types.DeleteBucketAccessKeyOutput>
     -- Deletes an SSL/TLS certificate for your Amazon Lightsail content delivery network (CDN)
     -- distribution.
     -- Certificates that are currently attached to a distribution cannot be deleted. Use the
     -- DetachCertificateFromDistribution action to detach a certificate from a
     -- distribution.
-    deleteCertificate: function(Client, types.DeleteCertificateInput): types.DeleteCertificateOutput, table
+    deleteCertificate: function(Client, types.DeleteCertificateInput): Operation<types.DeleteCertificateOutput>
     -- Deletes a contact method.
     -- A contact method is used to send you notifications about your Amazon Lightsail resources.
     -- You can add one email address and one mobile phone number contact method in each Amazon Web Services Region. However, SMS text messaging is not supported in some Amazon Web Services
     -- Regions, and SMS text messages cannot be sent to some countries/regions. For more information,
     -- see Notifications in Amazon Lightsail.
-    deleteContactMethod: function(Client, types.DeleteContactMethodInput): types.DeleteContactMethodOutput, table
+    deleteContactMethod: function(Client, types.DeleteContactMethodInput): Operation<types.DeleteContactMethodOutput>
     -- Deletes a container image that is registered to your Amazon Lightsail container
     -- service.
-    deleteContainerImage: function(Client, types.DeleteContainerImageInput): types.DeleteContainerImageOutput, table
+    deleteContainerImage: function(Client, types.DeleteContainerImageInput): Operation<types.DeleteContainerImageOutput>
     -- Deletes your Amazon Lightsail container service.
-    deleteContainerService: function(Client, types.DeleteContainerServiceInput): types.DeleteContainerServiceOutput, table
+    deleteContainerService: function(Client, types.DeleteContainerServiceInput): Operation<types.DeleteContainerServiceOutput>
     -- Deletes the specified block storage disk. The disk must be in the available
     -- state (not attached to a Lightsail instance).
     -- The disk may remain in the deleting state for several minutes.
     -- The delete disk operation supports tag-based access control via resource tags
     -- applied to the resource identified by disk name. For more information, see the
     -- Amazon Lightsail Developer Guide.
-    deleteDisk: function(Client, types.DeleteDiskInput): types.DeleteDiskOutput, table
+    deleteDisk: function(Client, types.DeleteDiskInput): Operation<types.DeleteDiskOutput>
     -- Deletes the specified disk snapshot.
     -- When you make periodic snapshots of a disk, the snapshots are incremental, and only the
     -- blocks on the device that have changed since your last snapshot are saved in the new snapshot.
@@ -294,30 +298,30 @@ local record Client
     -- The delete disk snapshot operation supports tag-based access control via
     -- resource tags applied to the resource identified by disk snapshot name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    deleteDiskSnapshot: function(Client, types.DeleteDiskSnapshotInput): types.DeleteDiskSnapshotOutput, table
+    deleteDiskSnapshot: function(Client, types.DeleteDiskSnapshotInput): Operation<types.DeleteDiskSnapshotOutput>
     -- Deletes your Amazon Lightsail content delivery network (CDN) distribution.
-    deleteDistribution: function(Client, types.DeleteDistributionInput): types.DeleteDistributionOutput, table
+    deleteDistribution: function(Client, types.DeleteDistributionInput): Operation<types.DeleteDistributionOutput>
     -- Deletes the specified domain recordset and all of its domain records.
     -- The delete domain operation supports tag-based access control via resource
     -- tags applied to the resource identified by domain name. For more information, see
     -- the Amazon Lightsail Developer Guide.
-    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): Operation<types.DeleteDomainOutput>
     -- Deletes a specific domain entry.
     -- The delete domain entry operation supports tag-based access control via
     -- resource tags applied to the resource identified by domain name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    deleteDomainEntry: function(Client, types.DeleteDomainEntryInput): types.DeleteDomainEntryOutput, table
+    deleteDomainEntry: function(Client, types.DeleteDomainEntryInput): Operation<types.DeleteDomainEntryOutput>
     -- Deletes an Amazon Lightsail instance.
     -- The delete instance operation supports tag-based access control via resource
     -- tags applied to the resource identified by instance name. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    deleteInstance: function(Client, types.DeleteInstanceInput): types.DeleteInstanceOutput, table
+    deleteInstance: function(Client, types.DeleteInstanceInput): Operation<types.DeleteInstanceOutput>
     -- Deletes a specific snapshot of a virtual private server (or
     -- instance).
     -- The delete instance snapshot operation supports tag-based access control via
     -- resource tags applied to the resource identified by instance snapshot name. For
     -- more information, see the Amazon Lightsail Developer Guide.
-    deleteInstanceSnapshot: function(Client, types.DeleteInstanceSnapshotInput): types.DeleteInstanceSnapshotOutput, table
+    deleteInstanceSnapshot: function(Client, types.DeleteInstanceSnapshotInput): Operation<types.DeleteInstanceSnapshotOutput>
     -- Deletes the specified key pair by removing the public key from Amazon Lightsail.
     -- You can delete key pairs that were created using the ImportKeyPair and
     -- CreateKeyPair actions, as well as the Lightsail default key pair. A new default
@@ -326,7 +330,7 @@ local record Client
     -- The delete key pair operation supports tag-based access control via resource
     -- tags applied to the resource identified by key pair name. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    deleteKeyPair: function(Client, types.DeleteKeyPairInput): types.DeleteKeyPairOutput, table
+    deleteKeyPair: function(Client, types.DeleteKeyPairInput): Operation<types.DeleteKeyPairOutput>
     -- Deletes the known host key or certificate used by the Amazon Lightsail browser-based SSH or
     -- RDP clients to authenticate an instance. This operation enables the Lightsail browser-based
     -- SSH or RDP clients to connect to the instance after a host key mismatch.
@@ -334,59 +338,59 @@ local record Client
     -- or if you are familiar with the new host key or certificate on the instance. For more
     -- information, see Troubleshooting connection issues when using the Amazon Lightsail browser-based SSH or RDP
     -- client.
-    deleteKnownHostKeys: function(Client, types.DeleteKnownHostKeysInput): types.DeleteKnownHostKeysOutput, table
+    deleteKnownHostKeys: function(Client, types.DeleteKnownHostKeysInput): Operation<types.DeleteKnownHostKeysOutput>
     -- Deletes a Lightsail load balancer and all its associated SSL/TLS certificates. Once the
     -- load balancer is deleted, you will need to create a new load balancer, create a new
     -- certificate, and verify domain ownership again.
     -- The delete load balancer operation supports tag-based access control via
     -- resource tags applied to the resource identified by load balancer name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput): types.DeleteLoadBalancerOutput, table
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput): Operation<types.DeleteLoadBalancerOutput>
     -- Deletes an SSL/TLS certificate associated with a Lightsail load balancer.
     -- The DeleteLoadBalancerTlsCertificate operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    deleteLoadBalancerTlsCertificate: function(Client, types.DeleteLoadBalancerTlsCertificateInput): types.DeleteLoadBalancerTlsCertificateOutput, table
+    deleteLoadBalancerTlsCertificate: function(Client, types.DeleteLoadBalancerTlsCertificateInput): Operation<types.DeleteLoadBalancerTlsCertificateOutput>
     -- Deletes a database in Amazon Lightsail.
     -- The delete relational database operation supports tag-based access control
     -- via resource tags applied to the resource identified by relationalDatabaseName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    deleteRelationalDatabase: function(Client, types.DeleteRelationalDatabaseInput): types.DeleteRelationalDatabaseOutput, table
+    deleteRelationalDatabase: function(Client, types.DeleteRelationalDatabaseInput): Operation<types.DeleteRelationalDatabaseOutput>
     -- Deletes a database snapshot in Amazon Lightsail.
     -- The delete relational database snapshot operation supports tag-based access
     -- control via resource tags applied to the resource identified by relationalDatabaseName. For
     -- more information, see the Amazon Lightsail Developer Guide.
-    deleteRelationalDatabaseSnapshot: function(Client, types.DeleteRelationalDatabaseSnapshotInput): types.DeleteRelationalDatabaseSnapshotOutput, table
+    deleteRelationalDatabaseSnapshot: function(Client, types.DeleteRelationalDatabaseSnapshotInput): Operation<types.DeleteRelationalDatabaseSnapshotOutput>
     -- Detaches an SSL/TLS certificate from your Amazon Lightsail content delivery network (CDN)
     -- distribution.
     -- After the certificate is detached, your distribution stops accepting traffic for all of
     -- the domains that are associated with the certificate.
-    detachCertificateFromDistribution: function(Client, types.DetachCertificateFromDistributionInput): types.DetachCertificateFromDistributionOutput, table
+    detachCertificateFromDistribution: function(Client, types.DetachCertificateFromDistributionInput): Operation<types.DetachCertificateFromDistributionOutput>
     -- Detaches a stopped block storage disk from a Lightsail instance. Make sure to unmount
     -- any file systems on the device within your operating system before stopping the instance and
     -- detaching the disk.
     -- The detach disk operation supports tag-based access control via resource tags
     -- applied to the resource identified by disk name. For more information, see the
     -- Amazon Lightsail Developer Guide.
-    detachDisk: function(Client, types.DetachDiskInput): types.DetachDiskOutput, table
+    detachDisk: function(Client, types.DetachDiskInput): Operation<types.DetachDiskOutput>
     -- Detaches the specified instances from a Lightsail load balancer.
     -- This operation waits until the instances are no longer needed before they are detached
     -- from the load balancer.
     -- The detach instances from load balancer operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    detachInstancesFromLoadBalancer: function(Client, types.DetachInstancesFromLoadBalancerInput): types.DetachInstancesFromLoadBalancerOutput, table
+    detachInstancesFromLoadBalancer: function(Client, types.DetachInstancesFromLoadBalancerInput): Operation<types.DetachInstancesFromLoadBalancerOutput>
     -- Detaches a static IP from the Amazon Lightsail instance to which it is attached.
-    detachStaticIp: function(Client, types.DetachStaticIpInput): types.DetachStaticIpOutput, table
+    detachStaticIp: function(Client, types.DetachStaticIpInput): Operation<types.DetachStaticIpOutput>
     -- Disables an add-on for an Amazon Lightsail resource. For more information, see the Amazon Lightsail Developer Guide.
-    disableAddOn: function(Client, types.DisableAddOnInput): types.DisableAddOnOutput, table
+    disableAddOn: function(Client, types.DisableAddOnInput): Operation<types.DisableAddOnOutput>
     -- Downloads the regional Amazon Lightsail default key pair.
     -- This action also creates a Lightsail default key pair if a default key pair
     -- does not currently exist in the Amazon Web Services Region.
-    downloadDefaultKeyPair: function(Client, types.DownloadDefaultKeyPairInput): types.DownloadDefaultKeyPairOutput, table
+    downloadDefaultKeyPair: function(Client, types.DownloadDefaultKeyPairInput): Operation<types.DownloadDefaultKeyPairOutput>
     -- Enables or modifies an add-on for an Amazon Lightsail resource. For more information, see
     -- the Amazon Lightsail Developer Guide.
-    enableAddOn: function(Client, types.EnableAddOnInput): types.EnableAddOnOutput, table
+    enableAddOn: function(Client, types.EnableAddOnInput): Operation<types.EnableAddOnOutput>
     -- Exports an Amazon Lightsail instance or block storage disk snapshot to Amazon Elastic Compute Cloud (Amazon EC2).
     -- This operation results in an export snapshot record that can be used with the create
     -- cloud formation stack operation to create new Amazon EC2 instances.
@@ -399,9 +403,9 @@ local record Client
     -- information, see the Amazon Lightsail Developer Guide.
     -- Use the get instance snapshots or get disk snapshots
     -- operations to get a list of snapshots that you can export to Amazon EC2.
-    exportSnapshot: function(Client, types.ExportSnapshotInput): types.ExportSnapshotOutput, table
+    exportSnapshot: function(Client, types.ExportSnapshotInput): Operation<types.ExportSnapshotOutput>
     -- Returns the names of all active (not deleted) resources.
-    getActiveNames: function(Client, types.GetActiveNamesInput): types.GetActiveNamesOutput, table
+    getActiveNames: function(Client, types.GetActiveNamesInput): Operation<types.GetActiveNamesOutput>
     -- Returns information about the configured alarms. Specify an alarm name in your request to
     -- return information about a specific alarm, or specify a monitored resource name to return
     -- information about all alarms for a specific resource.
@@ -409,10 +413,10 @@ local record Client
     -- condition is met, the alarm can notify you by email, SMS text message, and a banner displayed
     -- on the Amazon Lightsail console. For more information, see Alarms
     -- in Amazon Lightsail.
-    getAlarms: function(Client, types.GetAlarmsInput): types.GetAlarmsOutput, table
+    getAlarms: function(Client, types.GetAlarmsInput): Operation<types.GetAlarmsOutput>
     -- Returns the available automatic snapshots for an instance or disk. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    getAutoSnapshots: function(Client, types.GetAutoSnapshotsInput): types.GetAutoSnapshotsOutput, table
+    getAutoSnapshots: function(Client, types.GetAutoSnapshotsInput): Operation<types.GetAutoSnapshotsOutput>
     -- Returns the list of available instance images, or blueprints. You can
     -- use a blueprint to create a new instance already running a specific operating system, as well
     -- as a preinstalled app or development stack. The software each instance is running depends on
@@ -421,29 +425,29 @@ local record Client
     -- support customers with existing instances and are not necessarily available to create new
     -- instances. Blueprints are marked inactive when they become outdated due to operating system
     -- updates or new application releases.
-    getBlueprints: function(Client, types.GetBlueprintsInput): types.GetBlueprintsOutput, table
+    getBlueprints: function(Client, types.GetBlueprintsInput): Operation<types.GetBlueprintsOutput>
     -- Returns the existing access key IDs for the specified Amazon Lightsail bucket.
     -- This action does not return the secret access key value of an access key. You can get a
     -- secret access key only when you create it from the response of the CreateBucketAccessKey action. If you lose the secret access key, you must create
     -- a new access key.
-    getBucketAccessKeys: function(Client, types.GetBucketAccessKeysInput): types.GetBucketAccessKeysOutput, table
+    getBucketAccessKeys: function(Client, types.GetBucketAccessKeysInput): Operation<types.GetBucketAccessKeysOutput>
     -- Returns the bundles that you can apply to a Amazon Lightsail bucket.
     -- The bucket bundle specifies the monthly cost, storage quota, and data transfer quota for a
     -- bucket.
     -- Use the UpdateBucketBundle action to update the
     -- bundle for a bucket.
-    getBucketBundles: function(Client, types.GetBucketBundlesInput): types.GetBucketBundlesOutput, table
+    getBucketBundles: function(Client, types.GetBucketBundlesInput): Operation<types.GetBucketBundlesOutput>
     -- Returns the data points of a specific metric for an Amazon Lightsail bucket.
     -- Metrics report the utilization of a bucket. View and collect metric data regularly to
     -- monitor the number of objects stored in a bucket (including object versions) and the storage
     -- space used by those objects.
-    getBucketMetricData: function(Client, types.GetBucketMetricDataInput): types.GetBucketMetricDataOutput, table
+    getBucketMetricData: function(Client, types.GetBucketMetricDataInput): Operation<types.GetBucketMetricDataOutput>
     -- Returns information about one or more Amazon Lightsail buckets. The information returned
     -- includes the synchronization status of the Amazon Simple Storage Service (Amazon S3)
     -- account-level block public access feature for your Lightsail buckets.
     -- For more information about buckets, see Buckets in Amazon Lightsail in the Amazon Lightsail Developer
     -- Guide.
-    getBuckets: function(Client, types.GetBucketsInput): types.GetBucketsOutput, table
+    getBuckets: function(Client, types.GetBucketsInput): Operation<types.GetBucketsOutput>
     -- Returns the bundles that you can apply to an Amazon Lightsail instance when you create
     -- it.
     -- A bundle describes the specifications of an instance, such as the monthly cost, amount of
@@ -451,33 +455,33 @@ local record Client
     -- quota.
     -- Bundles are referred to as instance plans in the Lightsail
     -- console.
-    getBundles: function(Client, types.GetBundlesInput): types.GetBundlesOutput, table
+    getBundles: function(Client, types.GetBundlesInput): Operation<types.GetBundlesOutput>
     -- Returns information about one or more Amazon Lightsail SSL/TLS certificates.
     -- To get a summary of a certificate, omit includeCertificateDetails from your
     -- request. The response will include only the certificate Amazon Resource Name (ARN),
     -- certificate name, domain name, and tags.
-    getCertificates: function(Client, types.GetCertificatesInput): types.GetCertificatesOutput, table
+    getCertificates: function(Client, types.GetCertificatesInput): Operation<types.GetCertificatesOutput>
     -- Returns the CloudFormation stack record created as a result of the create cloud
     -- formation stack operation.
     -- An AWS CloudFormation stack is used to create a new Amazon EC2 instance from an exported Lightsail
     -- snapshot.
-    getCloudFormationStackRecords: function(Client, types.GetCloudFormationStackRecordsInput): types.GetCloudFormationStackRecordsOutput, table
+    getCloudFormationStackRecords: function(Client, types.GetCloudFormationStackRecordsInput): Operation<types.GetCloudFormationStackRecordsOutput>
     -- Returns information about the configured contact methods. Specify a protocol in your
     -- request to return information about a specific contact method.
     -- A contact method is used to send you notifications about your Amazon Lightsail resources.
     -- You can add one email address and one mobile phone number contact method in each Amazon Web Services Region. However, SMS text messaging is not supported in some Amazon Web Services
     -- Regions, and SMS text messages cannot be sent to some countries/regions. For more information,
     -- see Notifications in Amazon Lightsail.
-    getContactMethods: function(Client, types.GetContactMethodsInput): types.GetContactMethodsOutput, table
+    getContactMethods: function(Client, types.GetContactMethodsInput): Operation<types.GetContactMethodsOutput>
     -- Returns information about Amazon Lightsail containers, such as the current version of the
     -- Lightsail Control (lightsailctl) plugin.
-    getContainerAPIMetadata: function(Client, types.GetContainerAPIMetadataInput): types.GetContainerAPIMetadataOutput, table
+    getContainerAPIMetadata: function(Client, types.GetContainerAPIMetadataInput): Operation<types.GetContainerAPIMetadataOutput>
     -- Returns the container images that are registered to your Amazon Lightsail container
     -- service.
     -- If you created a deployment on your Lightsail container service that uses container
     -- images from a public registry like Docker Hub, those images are not returned as part of this
     -- action. Those images are not registered to your Lightsail container service.
-    getContainerImages: function(Client, types.GetContainerImagesInput): types.GetContainerImagesOutput, table
+    getContainerImages: function(Client, types.GetContainerImagesInput): Operation<types.GetContainerImagesOutput>
     -- Returns the log events of a container of your Amazon Lightsail container service.
     -- If your container service has more than one node (i.e., a scale greater than 1), then the
     -- log events that are returned for the specified container are merged from all nodes on your
@@ -486,7 +490,7 @@ local record Client
     -- Amazon Lightsail
     -- endpoints and quotas in the Amazon Web Services General
     -- Reference.
-    getContainerLog: function(Client, types.GetContainerLogInput): types.GetContainerLogOutput, table
+    getContainerLog: function(Client, types.GetContainerLogInput): Operation<types.GetContainerLogOutput>
     -- Returns the deployments for your Amazon Lightsail container service
     -- A deployment specifies the settings, such as the ports and launch command, of containers
     -- that are deployed to your container service.
@@ -496,183 +500,183 @@ local record Client
     -- one. For more information, see Amazon Lightsail
     -- endpoints and quotas in the Amazon Web Services General
     -- Reference.
-    getContainerServiceDeployments: function(Client, types.GetContainerServiceDeploymentsInput): types.GetContainerServiceDeploymentsOutput, table
+    getContainerServiceDeployments: function(Client, types.GetContainerServiceDeploymentsInput): Operation<types.GetContainerServiceDeploymentsOutput>
     -- Returns the data points of a specific metric of your Amazon Lightsail container
     -- service.
     -- Metrics report the utilization of your resources. Monitor and collect metric data
     -- regularly to maintain the reliability, availability, and performance of your resources.
-    getContainerServiceMetricData: function(Client, types.GetContainerServiceMetricDataInput): types.GetContainerServiceMetricDataOutput, table
+    getContainerServiceMetricData: function(Client, types.GetContainerServiceMetricDataInput): Operation<types.GetContainerServiceMetricDataOutput>
     -- Returns the list of powers that can be specified for your Amazon Lightsail container
     -- services.
     -- The power specifies the amount of memory, the number of vCPUs, and the base price of the
     -- container service.
-    getContainerServicePowers: function(Client, types.GetContainerServicePowersInput): types.GetContainerServicePowersOutput, table
+    getContainerServicePowers: function(Client, types.GetContainerServicePowersInput): Operation<types.GetContainerServicePowersOutput>
     -- Returns information about one or more of your Amazon Lightsail container services.
-    getContainerServices: function(Client, types.GetContainerServicesInput): types.GetContainerServicesOutput, table
+    getContainerServices: function(Client, types.GetContainerServicesInput): Operation<types.GetContainerServicesOutput>
     -- Retrieves information about the cost estimate for a specified resource. A cost estimate
     -- will not generate for a resource that has been deleted.
-    getCostEstimate: function(Client, types.GetCostEstimateInput): types.GetCostEstimateOutput, table
+    getCostEstimate: function(Client, types.GetCostEstimateInput): Operation<types.GetCostEstimateOutput>
     -- Returns information about a specific block storage disk.
-    getDisk: function(Client, types.GetDiskInput): types.GetDiskOutput, table
+    getDisk: function(Client, types.GetDiskInput): Operation<types.GetDiskOutput>
     -- Returns information about all block storage disks in your AWS account and region.
-    getDisks: function(Client, types.GetDisksInput): types.GetDisksOutput, table
+    getDisks: function(Client, types.GetDisksInput): Operation<types.GetDisksOutput>
     -- Returns information about a specific block storage disk snapshot.
-    getDiskSnapshot: function(Client, types.GetDiskSnapshotInput): types.GetDiskSnapshotOutput, table
+    getDiskSnapshot: function(Client, types.GetDiskSnapshotInput): Operation<types.GetDiskSnapshotOutput>
     -- Returns information about all block storage disk snapshots in your AWS account and
     -- region.
-    getDiskSnapshots: function(Client, types.GetDiskSnapshotsInput): types.GetDiskSnapshotsOutput, table
+    getDiskSnapshots: function(Client, types.GetDiskSnapshotsInput): Operation<types.GetDiskSnapshotsOutput>
     -- Returns the bundles that can be applied to your Amazon Lightsail content delivery network
     -- (CDN) distributions.
     -- A distribution bundle specifies the monthly network transfer quota and monthly cost of
     -- your distribution.
-    getDistributionBundles: function(Client, types.GetDistributionBundlesInput): types.GetDistributionBundlesOutput, table
+    getDistributionBundles: function(Client, types.GetDistributionBundlesInput): Operation<types.GetDistributionBundlesOutput>
     -- Returns the timestamp and status of the last cache reset of a specific Amazon Lightsail
     -- content delivery network (CDN) distribution.
-    getDistributionLatestCacheReset: function(Client, types.GetDistributionLatestCacheResetInput): types.GetDistributionLatestCacheResetOutput, table
+    getDistributionLatestCacheReset: function(Client, types.GetDistributionLatestCacheResetInput): Operation<types.GetDistributionLatestCacheResetOutput>
     -- Returns the data points of a specific metric for an Amazon Lightsail content delivery
     -- network (CDN) distribution.
     -- Metrics report the utilization of your resources, and the error counts generated by them.
     -- Monitor and collect metric data regularly to maintain the reliability, availability, and
     -- performance of your resources.
-    getDistributionMetricData: function(Client, types.GetDistributionMetricDataInput): types.GetDistributionMetricDataOutput, table
+    getDistributionMetricData: function(Client, types.GetDistributionMetricDataInput): Operation<types.GetDistributionMetricDataOutput>
     -- Returns information about one or more of your Amazon Lightsail content delivery network
     -- (CDN) distributions.
-    getDistributions: function(Client, types.GetDistributionsInput): types.GetDistributionsOutput, table
+    getDistributions: function(Client, types.GetDistributionsInput): Operation<types.GetDistributionsOutput>
     -- Returns information about a specific domain recordset.
-    getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    getDomain: function(Client, types.GetDomainInput): Operation<types.GetDomainOutput>
     -- Returns a list of all domains in the user's account.
-    getDomains: function(Client, types.GetDomainsInput): types.GetDomainsOutput, table
+    getDomains: function(Client, types.GetDomainsInput): Operation<types.GetDomainsOutput>
     -- Returns all export snapshot records created as a result of the export
     -- snapshot operation.
     -- An export snapshot record can be used to create a new Amazon EC2 instance and its related
     -- resources with the CreateCloudFormationStack
     -- action.
-    getExportSnapshotRecords: function(Client, types.GetExportSnapshotRecordsInput): types.GetExportSnapshotRecordsOutput, table
+    getExportSnapshotRecords: function(Client, types.GetExportSnapshotRecordsInput): Operation<types.GetExportSnapshotRecordsOutput>
     -- Returns information about a specific Amazon Lightsail instance, which is a virtual private
     -- server.
-    getInstance: function(Client, types.GetInstanceInput): types.GetInstanceOutput, table
+    getInstance: function(Client, types.GetInstanceInput): Operation<types.GetInstanceOutput>
     -- Returns temporary SSH keys you can use to connect to a specific virtual private server, or
     -- instance.
     -- The get instance access details operation supports tag-based access control
     -- via resource tags applied to the resource identified by instance name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    getInstanceAccessDetails: function(Client, types.GetInstanceAccessDetailsInput): types.GetInstanceAccessDetailsOutput, table
+    getInstanceAccessDetails: function(Client, types.GetInstanceAccessDetailsInput): Operation<types.GetInstanceAccessDetailsOutput>
     -- Returns the data points for the specified Amazon Lightsail instance metric, given an
     -- instance name.
     -- Metrics report the utilization of your resources, and the error counts generated by them.
     -- Monitor and collect metric data regularly to maintain the reliability, availability, and
     -- performance of your resources.
-    getInstanceMetricData: function(Client, types.GetInstanceMetricDataInput): types.GetInstanceMetricDataOutput, table
+    getInstanceMetricData: function(Client, types.GetInstanceMetricDataInput): Operation<types.GetInstanceMetricDataOutput>
     -- Returns the firewall port states for a specific Amazon Lightsail instance, the IP addresses
     -- allowed to connect to the instance through the ports, and the protocol.
-    getInstancePortStates: function(Client, types.GetInstancePortStatesInput): types.GetInstancePortStatesOutput, table
+    getInstancePortStates: function(Client, types.GetInstancePortStatesInput): Operation<types.GetInstancePortStatesOutput>
     -- Returns information about all Amazon Lightsail virtual private servers, or
     -- instances.
-    getInstances: function(Client, types.GetInstancesInput): types.GetInstancesOutput, table
+    getInstances: function(Client, types.GetInstancesInput): Operation<types.GetInstancesOutput>
     -- Returns information about a specific instance snapshot.
-    getInstanceSnapshot: function(Client, types.GetInstanceSnapshotInput): types.GetInstanceSnapshotOutput, table
+    getInstanceSnapshot: function(Client, types.GetInstanceSnapshotInput): Operation<types.GetInstanceSnapshotOutput>
     -- Returns all instance snapshots for the user's account.
-    getInstanceSnapshots: function(Client, types.GetInstanceSnapshotsInput): types.GetInstanceSnapshotsOutput, table
+    getInstanceSnapshots: function(Client, types.GetInstanceSnapshotsInput): Operation<types.GetInstanceSnapshotsOutput>
     -- Returns the state of a specific instance. Works on one instance at a time.
-    getInstanceState: function(Client, types.GetInstanceStateInput): types.GetInstanceStateOutput, table
+    getInstanceState: function(Client, types.GetInstanceStateInput): Operation<types.GetInstanceStateOutput>
     -- Returns information about a specific key pair.
-    getKeyPair: function(Client, types.GetKeyPairInput): types.GetKeyPairOutput, table
+    getKeyPair: function(Client, types.GetKeyPairInput): Operation<types.GetKeyPairOutput>
     -- Returns information about all key pairs in the user's account.
-    getKeyPairs: function(Client, types.GetKeyPairsInput): types.GetKeyPairsOutput, table
+    getKeyPairs: function(Client, types.GetKeyPairsInput): Operation<types.GetKeyPairsOutput>
     -- Returns information about the specified Lightsail load balancer.
-    getLoadBalancer: function(Client, types.GetLoadBalancerInput): types.GetLoadBalancerOutput, table
+    getLoadBalancer: function(Client, types.GetLoadBalancerInput): Operation<types.GetLoadBalancerOutput>
     -- Returns information about health metrics for your Lightsail load balancer.
     -- Metrics report the utilization of your resources, and the error counts generated by them.
     -- Monitor and collect metric data regularly to maintain the reliability, availability, and
     -- performance of your resources.
-    getLoadBalancerMetricData: function(Client, types.GetLoadBalancerMetricDataInput): types.GetLoadBalancerMetricDataOutput, table
+    getLoadBalancerMetricData: function(Client, types.GetLoadBalancerMetricDataInput): Operation<types.GetLoadBalancerMetricDataOutput>
     -- Returns information about all load balancers in an account.
-    getLoadBalancers: function(Client, types.GetLoadBalancersInput): types.GetLoadBalancersOutput, table
+    getLoadBalancers: function(Client, types.GetLoadBalancersInput): Operation<types.GetLoadBalancersOutput>
     -- Returns information about the TLS certificates that are associated with the specified
     -- Lightsail load balancer.
     -- TLS is just an updated, more secure version of Secure Socket Layer (SSL).
     -- You can have a maximum of 2 certificates associated with a Lightsail load balancer. One
     -- is active and the other is inactive.
-    getLoadBalancerTlsCertificates: function(Client, types.GetLoadBalancerTlsCertificatesInput): types.GetLoadBalancerTlsCertificatesOutput, table
+    getLoadBalancerTlsCertificates: function(Client, types.GetLoadBalancerTlsCertificatesInput): Operation<types.GetLoadBalancerTlsCertificatesOutput>
     -- Returns a list of TLS security policies that you can apply to Lightsail load
     -- balancers.
     -- For more information about load balancer TLS security policies, see Configuring TLS security policies on your Amazon Lightsail load
     -- balancers in the Amazon Lightsail Developer Guide.
-    getLoadBalancerTlsPolicies: function(Client, types.GetLoadBalancerTlsPoliciesInput): types.GetLoadBalancerTlsPoliciesOutput, table
+    getLoadBalancerTlsPolicies: function(Client, types.GetLoadBalancerTlsPoliciesInput): Operation<types.GetLoadBalancerTlsPoliciesOutput>
     -- Returns information about a specific operation. Operations include events such as when you
     -- create an instance, allocate a static IP, attach a static IP, and so on.
-    getOperation: function(Client, types.GetOperationInput): types.GetOperationOutput, table
+    getOperation: function(Client, types.GetOperationInput): Operation<types.GetOperationOutput>
     -- Returns information about all operations.
     -- Results are returned from oldest to newest, up to a maximum of 200. Results can be paged
     -- by making each subsequent call to GetOperations use the maximum (last)
     -- statusChangedAt value from the previous request.
-    getOperations: function(Client, types.GetOperationsInput): types.GetOperationsOutput, table
+    getOperations: function(Client, types.GetOperationsInput): Operation<types.GetOperationsOutput>
     -- Gets operations for a specific resource (an instance or a static IP).
-    getOperationsForResource: function(Client, types.GetOperationsForResourceInput): types.GetOperationsForResourceOutput, table
+    getOperationsForResource: function(Client, types.GetOperationsForResourceInput): Operation<types.GetOperationsForResourceOutput>
     -- Returns a list of all valid regions for Amazon Lightsail. Use the include
     -- availability zones parameter to also return the Availability Zones in a
     -- region.
-    getRegions: function(Client, types.GetRegionsInput): types.GetRegionsOutput, table
+    getRegions: function(Client, types.GetRegionsInput): Operation<types.GetRegionsOutput>
     -- Returns information about a specific database in Amazon Lightsail.
-    getRelationalDatabase: function(Client, types.GetRelationalDatabaseInput): types.GetRelationalDatabaseOutput, table
+    getRelationalDatabase: function(Client, types.GetRelationalDatabaseInput): Operation<types.GetRelationalDatabaseOutput>
     -- Returns a list of available database blueprints in Amazon Lightsail. A blueprint describes
     -- the major engine version of a database.
     -- You can use a blueprint ID to create a new database that runs a specific database
     -- engine.
-    getRelationalDatabaseBlueprints: function(Client, types.GetRelationalDatabaseBlueprintsInput): types.GetRelationalDatabaseBlueprintsOutput, table
+    getRelationalDatabaseBlueprints: function(Client, types.GetRelationalDatabaseBlueprintsInput): Operation<types.GetRelationalDatabaseBlueprintsOutput>
     -- Returns the list of bundles that are available in Amazon Lightsail. A bundle describes the
     -- performance specifications for a database.
     -- You can use a bundle ID to create a new database with explicit performance
     -- specifications.
-    getRelationalDatabaseBundles: function(Client, types.GetRelationalDatabaseBundlesInput): types.GetRelationalDatabaseBundlesOutput, table
+    getRelationalDatabaseBundles: function(Client, types.GetRelationalDatabaseBundlesInput): Operation<types.GetRelationalDatabaseBundlesOutput>
     -- Returns a list of events for a specific database in Amazon Lightsail.
-    getRelationalDatabaseEvents: function(Client, types.GetRelationalDatabaseEventsInput): types.GetRelationalDatabaseEventsOutput, table
+    getRelationalDatabaseEvents: function(Client, types.GetRelationalDatabaseEventsInput): Operation<types.GetRelationalDatabaseEventsOutput>
     -- Returns a list of log events for a database in Amazon Lightsail.
-    getRelationalDatabaseLogEvents: function(Client, types.GetRelationalDatabaseLogEventsInput): types.GetRelationalDatabaseLogEventsOutput, table
+    getRelationalDatabaseLogEvents: function(Client, types.GetRelationalDatabaseLogEventsInput): Operation<types.GetRelationalDatabaseLogEventsOutput>
     -- Returns a list of available log streams for a specific database in Amazon Lightsail.
-    getRelationalDatabaseLogStreams: function(Client, types.GetRelationalDatabaseLogStreamsInput): types.GetRelationalDatabaseLogStreamsOutput, table
+    getRelationalDatabaseLogStreams: function(Client, types.GetRelationalDatabaseLogStreamsInput): Operation<types.GetRelationalDatabaseLogStreamsOutput>
     -- Returns the current, previous, or pending versions of the master user password for a
     -- Lightsail database.
     -- The GetRelationalDatabaseMasterUserPassword operation supports tag-based
     -- access control via resource tags applied to the resource identified by
     -- relationalDatabaseName.
-    getRelationalDatabaseMasterUserPassword: function(Client, types.GetRelationalDatabaseMasterUserPasswordInput): types.GetRelationalDatabaseMasterUserPasswordOutput, table
+    getRelationalDatabaseMasterUserPassword: function(Client, types.GetRelationalDatabaseMasterUserPasswordInput): Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
     -- Returns the data points of the specified metric for a database in Amazon Lightsail.
     -- Metrics report the utilization of your resources, and the error counts generated by them.
     -- Monitor and collect metric data regularly to maintain the reliability, availability, and
     -- performance of your resources.
-    getRelationalDatabaseMetricData: function(Client, types.GetRelationalDatabaseMetricDataInput): types.GetRelationalDatabaseMetricDataOutput, table
+    getRelationalDatabaseMetricData: function(Client, types.GetRelationalDatabaseMetricDataInput): Operation<types.GetRelationalDatabaseMetricDataOutput>
     -- Returns all of the runtime parameters offered by the underlying database software, or
     -- engine, for a specific database in Amazon Lightsail.
     -- In addition to the parameter names and values, this operation returns other information
     -- about each parameter. This information includes whether changes require a reboot, whether the
     -- parameter is modifiable, the allowed values, and the data types.
-    getRelationalDatabaseParameters: function(Client, types.GetRelationalDatabaseParametersInput): types.GetRelationalDatabaseParametersOutput, table
+    getRelationalDatabaseParameters: function(Client, types.GetRelationalDatabaseParametersInput): Operation<types.GetRelationalDatabaseParametersOutput>
     -- Returns information about all of your databases in Amazon Lightsail.
-    getRelationalDatabases: function(Client, types.GetRelationalDatabasesInput): types.GetRelationalDatabasesOutput, table
+    getRelationalDatabases: function(Client, types.GetRelationalDatabasesInput): Operation<types.GetRelationalDatabasesOutput>
     -- Returns information about a specific database snapshot in Amazon Lightsail.
-    getRelationalDatabaseSnapshot: function(Client, types.GetRelationalDatabaseSnapshotInput): types.GetRelationalDatabaseSnapshotOutput, table
+    getRelationalDatabaseSnapshot: function(Client, types.GetRelationalDatabaseSnapshotInput): Operation<types.GetRelationalDatabaseSnapshotOutput>
     -- Returns information about all of your database snapshots in Amazon Lightsail.
-    getRelationalDatabaseSnapshots: function(Client, types.GetRelationalDatabaseSnapshotsInput): types.GetRelationalDatabaseSnapshotsOutput, table
+    getRelationalDatabaseSnapshots: function(Client, types.GetRelationalDatabaseSnapshotsInput): Operation<types.GetRelationalDatabaseSnapshotsOutput>
     -- Returns detailed information for five of the most recent SetupInstanceHttps
     -- requests that were ran on the target instance.
-    getSetupHistory: function(Client, types.GetSetupHistoryInput): types.GetSetupHistoryOutput, table
+    getSetupHistory: function(Client, types.GetSetupHistoryInput): Operation<types.GetSetupHistoryOutput>
     -- Returns information about an Amazon Lightsail static IP.
-    getStaticIp: function(Client, types.GetStaticIpInput): types.GetStaticIpOutput, table
+    getStaticIp: function(Client, types.GetStaticIpInput): Operation<types.GetStaticIpOutput>
     -- Returns information about all static IPs in the user's account.
-    getStaticIps: function(Client, types.GetStaticIpsInput): types.GetStaticIpsOutput, table
+    getStaticIps: function(Client, types.GetStaticIpsInput): Operation<types.GetStaticIpsOutput>
     -- Imports a public SSH key from a specific key pair.
-    importKeyPair: function(Client, types.ImportKeyPairInput): types.ImportKeyPairOutput, table
+    importKeyPair: function(Client, types.ImportKeyPairInput): Operation<types.ImportKeyPairOutput>
     -- Returns a Boolean value indicating whether your Lightsail VPC is peered.
-    isVpcPeered: function(Client, types.IsVpcPeeredInput): types.IsVpcPeeredOutput, table
+    isVpcPeered: function(Client, types.IsVpcPeeredInput): Operation<types.IsVpcPeeredOutput>
     -- Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses
     -- allowed to connect to the instance through the ports, and the protocol.
     -- The OpenInstancePublicPorts action supports tag-based access control via
     -- resource tags applied to the resource identified by instanceName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    openInstancePublicPorts: function(Client, types.OpenInstancePublicPortsInput): types.OpenInstancePublicPortsOutput, table
+    openInstancePublicPorts: function(Client, types.OpenInstancePublicPortsInput): Operation<types.OpenInstancePublicPortsOutput>
     -- Peers the Lightsail VPC with the user's default VPC.
-    peerVpc: function(Client, types.PeerVpcInput): types.PeerVpcOutput, table
+    peerVpc: function(Client, types.PeerVpcInput): Operation<types.PeerVpcOutput>
     -- Creates or updates an alarm, and associates it with the specified metric.
     -- An alarm is used to monitor a single metric for one of your resources. When a metric
     -- condition is met, the alarm can notify you by email, SMS text message, and a banner displayed
@@ -686,7 +690,7 @@ local record Client
     -- updated configuration.
     -- The put alarm operation supports tag-based access control via request
     -- tags. For more information, see the Lightsail Developer Guide.
-    putAlarm: function(Client, types.PutAlarmInput): types.PutAlarmOutput, table
+    putAlarm: function(Client, types.PutAlarmInput): Operation<types.PutAlarmOutput>
     -- Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses
     -- allowed to connect to the instance through the ports, and the protocol. This action also
     -- closes all currently open ports that are not included in the request. Include all of the ports
@@ -696,30 +700,30 @@ local record Client
     -- The PutInstancePublicPorts action supports tag-based access control via
     -- resource tags applied to the resource identified by instanceName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    putInstancePublicPorts: function(Client, types.PutInstancePublicPortsInput): types.PutInstancePublicPortsOutput, table
+    putInstancePublicPorts: function(Client, types.PutInstancePublicPortsInput): Operation<types.PutInstancePublicPortsOutput>
     -- Restarts a specific instance.
     -- The reboot instance operation supports tag-based access control via resource
     -- tags applied to the resource identified by instance name. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    rebootInstance: function(Client, types.RebootInstanceInput): types.RebootInstanceOutput, table
+    rebootInstance: function(Client, types.RebootInstanceInput): Operation<types.RebootInstanceOutput>
     -- Restarts a specific database in Amazon Lightsail.
     -- The reboot relational database operation supports tag-based access control
     -- via resource tags applied to the resource identified by relationalDatabaseName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    rebootRelationalDatabase: function(Client, types.RebootRelationalDatabaseInput): types.RebootRelationalDatabaseOutput, table
+    rebootRelationalDatabase: function(Client, types.RebootRelationalDatabaseInput): Operation<types.RebootRelationalDatabaseOutput>
     -- Registers a container image to your Amazon Lightsail container service.
     -- This action is not required if you install and use the Lightsail Control
     -- (lightsailctl) plugin to push container images to your Lightsail container service. For
     -- more information, see Pushing and managing container images on your Amazon Lightsail container services
     -- in the Amazon Lightsail Developer Guide.
-    registerContainerImage: function(Client, types.RegisterContainerImageInput): types.RegisterContainerImageOutput, table
+    registerContainerImage: function(Client, types.RegisterContainerImageInput): Operation<types.RegisterContainerImageOutput>
     -- Deletes a specific static IP from your account.
-    releaseStaticIp: function(Client, types.ReleaseStaticIpInput): types.ReleaseStaticIpOutput, table
+    releaseStaticIp: function(Client, types.ReleaseStaticIpInput): Operation<types.ReleaseStaticIpOutput>
     -- Deletes currently cached content from your Amazon Lightsail content delivery network (CDN)
     -- distribution.
     -- After resetting the cache, the next time a content request is made, your distribution
     -- pulls, serves, and caches it from the origin.
-    resetDistributionCache: function(Client, types.ResetDistributionCacheInput): types.ResetDistributionCacheOutput, table
+    resetDistributionCache: function(Client, types.ResetDistributionCacheInput): Operation<types.ResetDistributionCacheOutput>
     -- Sends a verification request to an email contact method to ensure it's owned by the
     -- requester. SMS contact methods don't need to be verified.
     -- A contact method is used to send you notifications about your Amazon Lightsail resources.
@@ -731,26 +735,26 @@ local record Client
     -- deleted, or has expired.
     -- Notifications are not sent to an email contact method until after it is verified, and
     -- confirmed as valid.
-    sendContactMethodVerification: function(Client, types.SendContactMethodVerificationInput): types.SendContactMethodVerificationOutput, table
+    sendContactMethodVerification: function(Client, types.SendContactMethodVerificationInput): Operation<types.SendContactMethodVerificationOutput>
     -- Sets the IP address type for an Amazon Lightsail resource.
     -- Use this action to enable dual-stack for a resource, which enables IPv4 and IPv6 for the
     -- specified resource. Alternately, you can use this action to disable dual-stack, and enable
     -- IPv4 only.
-    setIpAddressType: function(Client, types.SetIpAddressTypeInput): types.SetIpAddressTypeOutput, table
+    setIpAddressType: function(Client, types.SetIpAddressTypeInput): Operation<types.SetIpAddressTypeOutput>
     -- Sets the Amazon Lightsail resources that can access the specified Lightsail
     -- bucket.
     -- Lightsail buckets currently support setting access for Lightsail instances in the same
     -- Amazon Web Services Region.
-    setResourceAccessForBucket: function(Client, types.SetResourceAccessForBucketInput): types.SetResourceAccessForBucketOutput, table
+    setResourceAccessForBucket: function(Client, types.SetResourceAccessForBucketInput): Operation<types.SetResourceAccessForBucketOutput>
     -- Creates an SSL/TLS certificate that secures traffic for your website. After the
     -- certificate is created, it is installed on the specified Lightsail instance.
     -- If you provide more than one domain name in the request, at least one name must be less
     -- than or equal to 63 characters in length.
-    setupInstanceHttps: function(Client, types.SetupInstanceHttpsInput): types.SetupInstanceHttpsOutput, table
+    setupInstanceHttps: function(Client, types.SetupInstanceHttpsInput): Operation<types.SetupInstanceHttpsOutput>
     -- Initiates a graphical user interface (GUI) session that’s used to access a virtual
     -- computer’s operating system and application. The session will be active for 1 hour. Use this
     -- action to resume the session after it expires.
-    startGUISession: function(Client, types.StartGUISessionInput): types.StartGUISessionOutput, table
+    startGUISession: function(Client, types.StartGUISessionInput): Operation<types.StartGUISessionOutput>
     -- Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance,
     -- use the reboot instance operation.
     -- When you start a stopped instance, Lightsail assigns a new public IP address to the
@@ -759,17 +763,17 @@ local record Client
     -- The start instance operation supports tag-based access control via resource
     -- tags applied to the resource identified by instance name. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    startInstance: function(Client, types.StartInstanceInput): types.StartInstanceOutput, table
+    startInstance: function(Client, types.StartInstanceInput): Operation<types.StartInstanceOutput>
     -- Starts a specific database from a stopped state in Amazon Lightsail. To restart a database,
     -- use the reboot relational database operation.
     -- The start relational database operation supports tag-based access control via
     -- resource tags applied to the resource identified by relationalDatabaseName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    startRelationalDatabase: function(Client, types.StartRelationalDatabaseInput): types.StartRelationalDatabaseOutput, table
+    startRelationalDatabase: function(Client, types.StartRelationalDatabaseInput): Operation<types.StartRelationalDatabaseOutput>
     -- Terminates a web-based Amazon DCV session that’s used to access a virtual computer’s
     -- operating system or application. The session will close and any unsaved data will be
     -- lost.
-    stopGUISession: function(Client, types.StopGUISessionInput): types.StopGUISessionOutput, table
+    stopGUISession: function(Client, types.StopGUISessionInput): Operation<types.StopGUISessionOutput>
     -- Stops a specific Amazon Lightsail instance that is currently running.
     -- When you start a stopped instance, Lightsail assigns a new public IP address to the
     -- instance. To use the same IP address after stopping and starting an instance, create a
@@ -777,7 +781,7 @@ local record Client
     -- The stop instance operation supports tag-based access control via resource
     -- tags applied to the resource identified by instance name. For more information,
     -- see the Amazon Lightsail Developer Guide.
-    stopInstance: function(Client, types.StopInstanceInput): types.StopInstanceOutput, table
+    stopInstance: function(Client, types.StopInstanceInput): Operation<types.StopInstanceOutput>
     -- Stops a specific database that is currently running in Amazon Lightsail.
     -- If you don't manually start your database instance after it has been stopped for seven
     -- consecutive days, Amazon Lightsail automatically starts it for you. This action helps ensure
@@ -785,14 +789,14 @@ local record Client
     -- The stop relational database operation supports tag-based access control via
     -- resource tags applied to the resource identified by relationalDatabaseName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    stopRelationalDatabase: function(Client, types.StopRelationalDatabaseInput): types.StopRelationalDatabaseOutput, table
+    stopRelationalDatabase: function(Client, types.StopRelationalDatabaseInput): Operation<types.StopRelationalDatabaseOutput>
     -- Adds one or more tags to the specified Amazon Lightsail resource. Each resource can have a
     -- maximum of 50 tags. Each tag consists of a key and an optional value. Tag keys must be unique
     -- per resource. For more information about tags, see the Amazon Lightsail Developer Guide.
     -- The tag resource operation supports tag-based access control via request tags
     -- and resource tags applied to the resource identified by resource name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Tests an alarm by displaying a banner on the Amazon Lightsail console. If a notification
     -- trigger is configured for the specified alarm, the test also sends a notification to the
     -- notification protocol (Email and/or SMS) configured for the
@@ -801,19 +805,19 @@ local record Client
     -- condition is met, the alarm can notify you by email, SMS text message, and a banner displayed
     -- on the Amazon Lightsail console. For more information, see Alarms
     -- in Amazon Lightsail.
-    testAlarm: function(Client, types.TestAlarmInput): types.TestAlarmOutput, table
+    testAlarm: function(Client, types.TestAlarmInput): Operation<types.TestAlarmOutput>
     -- Unpeers the Lightsail VPC from the user's default VPC.
-    unpeerVpc: function(Client, types.UnpeerVpcInput): types.UnpeerVpcOutput, table
+    unpeerVpc: function(Client, types.UnpeerVpcInput): Operation<types.UnpeerVpcOutput>
     -- Deletes the specified set of tag keys and their values from the specified Amazon Lightsail
     -- resource.
     -- The untag resource operation supports tag-based access control via request
     -- tags and resource tags applied to the resource identified by resource name. For
     -- more information, see the Amazon Lightsail Developer Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing Amazon Lightsail bucket.
     -- Use this action to update the configuration of an existing bucket, such as versioning,
     -- public accessibility, and the Amazon Web Services accounts that can access the bucket.
-    updateBucket: function(Client, types.UpdateBucketInput): types.UpdateBucketOutput, table
+    updateBucket: function(Client, types.UpdateBucketInput): Operation<types.UpdateBucketOutput>
     -- Updates the bundle, or storage plan, of an existing Amazon Lightsail bucket.
     -- A bucket bundle specifies the monthly cost, storage space, and data transfer quota for a
     -- bucket. You can update a bucket's bundle only one time within a monthly Amazon Web Services
@@ -827,13 +831,13 @@ local record Client
     -- strategy, instead of as a short-term, monthly cost-cutting measure. Choose a bucket bundle
     -- that will provide the bucket with ample storage space and data transfer for a long time to
     -- come.
-    updateBucketBundle: function(Client, types.UpdateBucketBundleInput): types.UpdateBucketBundleOutput, table
+    updateBucketBundle: function(Client, types.UpdateBucketBundleInput): Operation<types.UpdateBucketBundleOutput>
     -- Updates the configuration of your Amazon Lightsail container service, such as its power,
     -- scale, and public domain names.
-    updateContainerService: function(Client, types.UpdateContainerServiceInput): types.UpdateContainerServiceOutput, table
+    updateContainerService: function(Client, types.UpdateContainerServiceInput): Operation<types.UpdateContainerServiceOutput>
     -- Updates an existing Amazon Lightsail content delivery network (CDN) distribution.
     -- Use this action to update the configuration of your existing distribution.
-    updateDistribution: function(Client, types.UpdateDistributionInput): types.UpdateDistributionOutput, table
+    updateDistribution: function(Client, types.UpdateDistributionInput): Operation<types.UpdateDistributionOutput>
     -- Updates the bundle of your Amazon Lightsail content delivery network (CDN)
     -- distribution.
     -- A distribution bundle specifies the monthly network transfer quota and monthly cost of
@@ -843,32 +847,32 @@ local record Client
     -- You can update your distribution's bundle only one time within your monthly Amazon Web Services billing cycle. To determine if you can update your distribution's bundle, use the
     -- GetDistributions action. The ableToUpdateBundle parameter in the
     -- result will indicate whether you can currently update your distribution's bundle.
-    updateDistributionBundle: function(Client, types.UpdateDistributionBundleInput): types.UpdateDistributionBundleOutput, table
+    updateDistributionBundle: function(Client, types.UpdateDistributionBundleInput): Operation<types.UpdateDistributionBundleOutput>
     -- Updates a domain recordset after it is created.
     -- The update domain entry operation supports tag-based access control via
     -- resource tags applied to the resource identified by domain name. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    updateDomainEntry: function(Client, types.UpdateDomainEntryInput): types.UpdateDomainEntryOutput, table
+    updateDomainEntry: function(Client, types.UpdateDomainEntryInput): Operation<types.UpdateDomainEntryOutput>
     -- Modifies the Amazon Lightsail instance metadata parameters on a running or stopped
     -- instance. When you modify the parameters on a running instance, the GetInstance
     -- or GetInstances API operation initially responds with a state of
     -- pending. After the parameter modifications are successfully applied, the state
     -- changes to applied in subsequent GetInstance or
     -- GetInstances API calls. For more information, see Use IMDSv2 with an Amazon Lightsail instance in the Amazon Lightsail Developer Guide.
-    updateInstanceMetadataOptions: function(Client, types.UpdateInstanceMetadataOptionsInput): types.UpdateInstanceMetadataOptionsOutput, table
+    updateInstanceMetadataOptions: function(Client, types.UpdateInstanceMetadataOptionsInput): Operation<types.UpdateInstanceMetadataOptionsOutput>
     -- Updates the specified attribute for a load balancer. You can only update one attribute at
     -- a time.
     -- The update load balancer attribute operation supports tag-based access
     -- control via resource tags applied to the resource identified by load balancer
     -- name. For more information, see the Amazon Lightsail Developer Guide.
-    updateLoadBalancerAttribute: function(Client, types.UpdateLoadBalancerAttributeInput): types.UpdateLoadBalancerAttributeOutput, table
+    updateLoadBalancerAttribute: function(Client, types.UpdateLoadBalancerAttributeInput): Operation<types.UpdateLoadBalancerAttributeOutput>
     -- Allows the update of one or more attributes of a database in Amazon Lightsail.
     -- Updates are applied immediately, or in cases where the updates could result in an outage,
     -- are applied during the database's predefined maintenance window.
     -- The update relational database operation supports tag-based access control
     -- via resource tags applied to the resource identified by relationalDatabaseName. For more
     -- information, see the Amazon Lightsail Developer Guide.
-    updateRelationalDatabase: function(Client, types.UpdateRelationalDatabaseInput): types.UpdateRelationalDatabaseOutput, table
+    updateRelationalDatabase: function(Client, types.UpdateRelationalDatabaseInput): Operation<types.UpdateRelationalDatabaseOutput>
     -- Allows the update of one or more parameters of a database in Amazon Lightsail.
     -- Parameter updates don't cause outages; therefore, their application is not subject to the
     -- preferred maintenance window. However, there are two ways in which parameter updates are
@@ -879,7 +883,7 @@ local record Client
     -- The update relational database parameters operation supports tag-based access
     -- control via resource tags applied to the resource identified by relationalDatabaseName. For
     -- more information, see the Amazon Lightsail Developer Guide.
-    updateRelationalDatabaseParameters: function(Client, types.UpdateRelationalDatabaseParametersInput): types.UpdateRelationalDatabaseParametersOutput, table
+    updateRelationalDatabaseParameters: function(Client, types.UpdateRelationalDatabaseParametersInput): Operation<types.UpdateRelationalDatabaseParametersOutput>
 end
 
 local record M

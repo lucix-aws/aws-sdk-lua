@@ -2,6 +2,10 @@
 
 local types = require("kendraranking.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a rescore execution plan. A rescore execution
     -- plan is an Amazon Kendra Intelligent Ranking resource
@@ -13,46 +17,46 @@ local record Client
     -- CreateRescoreExecutionPlan API, including using
     -- the Python and Java SDKs, see Semantically
     -- ranking a search service's results.
-    createRescoreExecutionPlan: function(Client, types.CreateRescoreExecutionPlanInput): types.CreateRescoreExecutionPlanOutput, table
+    createRescoreExecutionPlan: function(Client, types.CreateRescoreExecutionPlanInput): Operation<types.CreateRescoreExecutionPlanOutput>
     -- Deletes a rescore execution plan. A rescore execution
     -- plan is an Amazon Kendra Intelligent Ranking resource
     -- used for provisioning the Rescore API.
-    deleteRescoreExecutionPlan: function(Client, types.DeleteRescoreExecutionPlanInput): types.DeleteRescoreExecutionPlanOutput, table
+    deleteRescoreExecutionPlan: function(Client, types.DeleteRescoreExecutionPlanInput): Operation<types.DeleteRescoreExecutionPlanOutput>
     -- Gets information about a rescore execution plan. A rescore
     -- execution plan is an Amazon Kendra Intelligent Ranking
     -- resource used for provisioning the Rescore API.
-    describeRescoreExecutionPlan: function(Client, types.DescribeRescoreExecutionPlanInput): types.DescribeRescoreExecutionPlanOutput, table
+    describeRescoreExecutionPlan: function(Client, types.DescribeRescoreExecutionPlanInput): Operation<types.DescribeRescoreExecutionPlanOutput>
     -- Lists your rescore execution plans. A rescore execution plan
     -- is an Amazon Kendra Intelligent Ranking resource used for
     -- provisioning the Rescore API.
-    listRescoreExecutionPlans: function(Client, types.ListRescoreExecutionPlansInput): types.ListRescoreExecutionPlansOutput, table
+    listRescoreExecutionPlans: function(Client, types.ListRescoreExecutionPlansInput): Operation<types.ListRescoreExecutionPlansOutput>
     -- Gets a list of tags associated with a specified resource.
     -- A rescore execution plan is an example of a resource that
     -- can have tags associated with it.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Rescores or re-ranks search results from a search service
     -- such as OpenSearch (self managed). You use the semantic search
     -- capabilities of Amazon Kendra Intelligent Ranking to
     -- improve the search service's results.
-    rescore: function(Client, types.RescoreInput): types.RescoreOutput, table
+    rescore: function(Client, types.RescoreInput): Operation<types.RescoreOutput>
     -- Adds a specified tag to a specified rescore execution
     -- plan. A rescore execution plan is an Amazon Kendra
     -- Intelligent Ranking resource used for provisioning the
     -- Rescore API. If the tag already exists,
     -- the existing value is replaced with the new value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a rescore execution plan. A rescore
     -- execution plan is an Amazon Kendra Intelligent
     -- Ranking resource used for provisioning the
     -- Rescore operation.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a rescore execution plan. A rescore execution plan
     -- is an Amazon Kendra Intelligent Ranking resource used for
     -- provisioning the Rescore API. You can update the
     -- number of capacity units you require for Amazon Kendra
     -- Intelligent Ranking to rescore or re-rank a search service's
     -- results.
-    updateRescoreExecutionPlan: function(Client, types.UpdateRescoreExecutionPlanInput): types.UpdateRescoreExecutionPlanOutput, table
+    updateRescoreExecutionPlan: function(Client, types.UpdateRescoreExecutionPlanInput): Operation<types.UpdateRescoreExecutionPlanOutput>
 end
 
 local record M

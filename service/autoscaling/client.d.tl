@@ -2,6 +2,10 @@
 
 local types = require("autoscaling.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Attaches one or more EC2 instances to the specified Auto Scaling group.
     -- When you attach instances, Amazon EC2 Auto Scaling increases the desired capacity of the group by the
@@ -13,7 +17,7 @@ local record Client
     -- group, the instances are also registered with the target groups.
     -- For more information, see Detach
     -- or attach instances in the Amazon EC2 Auto Scaling User Guide.
-    attachInstances: function(Client, types.AttachInstancesInput): types.AttachInstancesOutput, table
+    attachInstances: function(Client, types.AttachInstancesInput): Operation<types.AttachInstancesOutput>
     -- This API operation is superseded by AttachTrafficSources, which
     -- can attach multiple traffic sources types. We recommend using
     -- AttachTrafficSources to simplify how you manage traffic sources.
@@ -30,7 +34,7 @@ local record Client
     -- For more information, see Use Elastic Load Balancing to
     -- distribute traffic across the instances in your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    attachLoadBalancers: function(Client, types.AttachLoadBalancersInput): types.AttachLoadBalancersOutput, table
+    attachLoadBalancers: function(Client, types.AttachLoadBalancersInput): Operation<types.AttachLoadBalancersOutput>
     -- This API operation is superseded by AttachTrafficSources, which
     -- can attach multiple traffic sources types. We recommend using
     -- AttachTrafficSources to simplify how you manage traffic sources.
@@ -52,7 +56,7 @@ local record Client
     -- For more information, see Use Elastic Load Balancing to
     -- distribute traffic across the instances in your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    attachLoadBalancerTargetGroups: function(Client, types.AttachLoadBalancerTargetGroupsInput): types.AttachLoadBalancerTargetGroupsOutput, table
+    attachLoadBalancerTargetGroups: function(Client, types.AttachLoadBalancerTargetGroupsInput): Operation<types.AttachLoadBalancerTargetGroupsOutput>
     -- Attaches one or more traffic sources to the specified Auto Scaling group.
     -- You can use any of the following as traffic sources for an Auto Scaling group:
     -- Application Load Balancer
@@ -66,11 +70,11 @@ local record Client
     -- return details about the state of the attachments between traffic sources and your Auto Scaling
     -- group. To detach a traffic source from the Auto Scaling group, call the
     -- DetachTrafficSources API.
-    attachTrafficSources: function(Client, types.AttachTrafficSourcesInput): types.AttachTrafficSourcesOutput, table
+    attachTrafficSources: function(Client, types.AttachTrafficSourcesInput): Operation<types.AttachTrafficSourcesOutput>
     -- Deletes one or more scheduled actions for the specified Auto Scaling group.
-    batchDeleteScheduledAction: function(Client, types.BatchDeleteScheduledActionInput): types.BatchDeleteScheduledActionOutput, table
+    batchDeleteScheduledAction: function(Client, types.BatchDeleteScheduledActionInput): Operation<types.BatchDeleteScheduledActionOutput>
     -- Creates or updates one or more scheduled scaling actions for an Auto Scaling group.
-    batchPutScheduledUpdateGroupAction: function(Client, types.BatchPutScheduledUpdateGroupActionInput): types.BatchPutScheduledUpdateGroupActionOutput, table
+    batchPutScheduledUpdateGroupAction: function(Client, types.BatchPutScheduledUpdateGroupActionInput): Operation<types.BatchPutScheduledUpdateGroupActionOutput>
     -- Cancels an instance refresh or rollback that is in progress. If an instance refresh or
     -- rollback is not in progress, an ActiveInstanceRefreshNotFound error
     -- occurs.
@@ -79,7 +83,7 @@ local record Client
     -- after you make configuration changes.
     -- When you cancel an instance refresh, this does not roll back any changes that it made.
     -- Use the RollbackInstanceRefresh API to roll back instead.
-    cancelInstanceRefresh: function(Client, types.CancelInstanceRefreshInput): types.CancelInstanceRefreshOutput, table
+    cancelInstanceRefresh: function(Client, types.CancelInstanceRefreshInput): Operation<types.CancelInstanceRefreshOutput>
     -- Completes the lifecycle action for the specified token or instance with the specified
     -- result.
     -- This step is a part of the procedure for adding a lifecycle hook to an Auto Scaling
@@ -102,7 +106,7 @@ local record Client
     -- call.
     -- For more information, see Complete a lifecycle
     -- action in the Amazon EC2 Auto Scaling User Guide.
-    completeLifecycleAction: function(Client, types.CompleteLifecycleActionInput): types.CompleteLifecycleActionOutput, table
+    completeLifecycleAction: function(Client, types.CompleteLifecycleActionInput): Operation<types.CompleteLifecycleActionOutput>
     -- We strongly recommend using a launch template when calling this operation to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
     -- Creates an Auto Scaling group with the specified name and attributes.
     -- If you exceed your maximum limit of Auto Scaling groups, the call fails. To query this limit,
@@ -116,7 +120,7 @@ local record Client
     -- on a specific number of instances. However, if you configure a mixed instances policy
     -- that defines weights for the instance types, you must specify these sizes with the same
     -- units that you use for weighting instances.
-    createAutoScalingGroup: function(Client, types.CreateAutoScalingGroupInput): types.CreateAutoScalingGroupOutput, table
+    createAutoScalingGroup: function(Client, types.CreateAutoScalingGroupInput): Operation<types.CreateAutoScalingGroupOutput>
     -- Creates a launch configuration.
     -- If you exceed your maximum limit of launch configurations, the call fails. To query
     -- this limit, call the DescribeAccountLimits API.
@@ -128,13 +132,13 @@ local record Client
     -- launch template or a launch configuration. We strongly recommend that you do not use
     -- launch configurations. They do not provide full functionality for Amazon EC2 Auto Scaling or Amazon EC2.
     -- For information about using launch templates, see Launch templates in the Amazon EC2 Auto Scaling User Guide.
-    createLaunchConfiguration: function(Client, types.CreateLaunchConfigurationInput): types.CreateLaunchConfigurationOutput, table
+    createLaunchConfiguration: function(Client, types.CreateLaunchConfigurationInput): Operation<types.CreateLaunchConfigurationOutput>
     -- Creates or updates tags for the specified Auto Scaling group.
     -- When you specify a tag with a key that already exists, the operation overwrites the
     -- previous tag definition, and you do not get an error message.
     -- For more information, see Tag Auto Scaling groups and
     -- instances in the Amazon EC2 Auto Scaling User Guide.
-    createOrUpdateTags: function(Client, types.CreateOrUpdateTagsInput): types.CreateOrUpdateTagsOutput, table
+    createOrUpdateTags: function(Client, types.CreateOrUpdateTagsInput): Operation<types.CreateOrUpdateTagsOutput>
     -- Deletes the specified Auto Scaling group.
     -- If the group has instances or scaling activities in progress, you must specify the
     -- option to force the deletion in order for it to succeed. The force delete operation will
@@ -152,46 +156,46 @@ local record Client
     -- underlying alarm actions, and any alarm that no longer has an associated action.
     -- For more information, see Delete your Auto Scaling
     -- infrastructure in the Amazon EC2 Auto Scaling User Guide.
-    deleteAutoScalingGroup: function(Client, types.DeleteAutoScalingGroupInput): types.DeleteAutoScalingGroupOutput, table
+    deleteAutoScalingGroup: function(Client, types.DeleteAutoScalingGroupInput): Operation<types.DeleteAutoScalingGroupOutput>
     -- Deletes the specified launch configuration.
     -- The launch configuration must not be attached to an Auto Scaling group. When this call
     -- completes, the launch configuration is no longer available for use.
-    deleteLaunchConfiguration: function(Client, types.DeleteLaunchConfigurationInput): types.DeleteLaunchConfigurationOutput, table
+    deleteLaunchConfiguration: function(Client, types.DeleteLaunchConfigurationInput): Operation<types.DeleteLaunchConfigurationOutput>
     -- Deletes the specified lifecycle hook.
     -- If there are any outstanding lifecycle actions, they are completed first
     -- (ABANDON for launching instances, CONTINUE for terminating
     -- instances).
-    deleteLifecycleHook: function(Client, types.DeleteLifecycleHookInput): types.DeleteLifecycleHookOutput, table
+    deleteLifecycleHook: function(Client, types.DeleteLifecycleHookInput): Operation<types.DeleteLifecycleHookOutput>
     -- Deletes the specified notification.
-    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput): types.DeleteNotificationConfigurationOutput, table
+    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput): Operation<types.DeleteNotificationConfigurationOutput>
     -- Deletes the specified scaling policy.
     -- Deleting either a step scaling policy or a simple scaling policy deletes the
     -- underlying alarm action, but does not delete the alarm, even if it no longer has an
     -- associated action.
     -- For more information, see Delete a scaling
     -- policy in the Amazon EC2 Auto Scaling User Guide.
-    deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    deletePolicy: function(Client, types.DeletePolicyInput): Operation<types.DeletePolicyOutput>
     -- Deletes the specified scheduled action.
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): types.DeleteScheduledActionOutput, table
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): Operation<types.DeleteScheduledActionOutput>
     -- Deletes the specified tags.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Deletes the warm pool for the specified Auto Scaling group.
     -- For more information, see Warm pools for
     -- Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    deleteWarmPool: function(Client, types.DeleteWarmPoolInput): types.DeleteWarmPoolOutput, table
+    deleteWarmPool: function(Client, types.DeleteWarmPoolInput): Operation<types.DeleteWarmPoolOutput>
     -- Describes the current Amazon EC2 Auto Scaling resource quotas for your account.
     -- When you establish an Amazon Web Services account, the account has initial quotas on the maximum
     -- number of Auto Scaling groups and launch configurations that you can create in a given Region.
     -- For more information, see Quotas for
     -- Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): Operation<types.DescribeAccountLimitsOutput>
     -- Describes the available adjustment types for step scaling and simple scaling
     -- policies.
     -- The following adjustment types are supported:
     -- ChangeInCapacity
     -- ExactCapacity
     -- PercentChangeInCapacity
-    describeAdjustmentTypes: function(Client, types.DescribeAdjustmentTypesInput): types.DescribeAdjustmentTypesOutput, table
+    describeAdjustmentTypes: function(Client, types.DescribeAdjustmentTypesInput): Operation<types.DescribeAdjustmentTypesOutput>
     -- Gets information about the Auto Scaling groups in the account and Region.
     -- If you specify Auto Scaling group names, the output includes information for only the
     -- specified Auto Scaling groups. If you specify filters, the output includes information for only
@@ -200,11 +204,11 @@ local record Client
     -- This operation also returns information about instances in Auto Scaling groups. To retrieve
     -- information about the instances in a warm pool, you must call the
     -- DescribeWarmPool API.
-    describeAutoScalingGroups: function(Client, types.DescribeAutoScalingGroupsInput): types.DescribeAutoScalingGroupsOutput, table
+    describeAutoScalingGroups: function(Client, types.DescribeAutoScalingGroupsInput): Operation<types.DescribeAutoScalingGroupsOutput>
     -- Gets information about the Auto Scaling instances in the account and Region.
-    describeAutoScalingInstances: function(Client, types.DescribeAutoScalingInstancesInput): types.DescribeAutoScalingInstancesOutput, table
+    describeAutoScalingInstances: function(Client, types.DescribeAutoScalingInstancesInput): Operation<types.DescribeAutoScalingInstancesOutput>
     -- Describes the notification types that are supported by Amazon EC2 Auto Scaling.
-    describeAutoScalingNotificationTypes: function(Client, types.DescribeAutoScalingNotificationTypesInput): types.DescribeAutoScalingNotificationTypesOutput, table
+    describeAutoScalingNotificationTypes: function(Client, types.DescribeAutoScalingNotificationTypesInput): Operation<types.DescribeAutoScalingNotificationTypesOutput>
     -- Gets information about the instance refreshes for the specified Auto Scaling group from the
     -- previous six weeks.
     -- This operation is part of the instance refresh
@@ -216,16 +220,16 @@ local record Client
     -- of instances remaining to update before the instance refresh is complete. If a rollback
     -- is initiated while an instance refresh is in progress, Amazon EC2 Auto Scaling also returns information
     -- about the rollback of the instance refresh.
-    describeInstanceRefreshes: function(Client, types.DescribeInstanceRefreshesInput): types.DescribeInstanceRefreshesOutput, table
+    describeInstanceRefreshes: function(Client, types.DescribeInstanceRefreshesInput): Operation<types.DescribeInstanceRefreshesOutput>
     -- Gets information about the launch configurations in the account and Region.
-    describeLaunchConfigurations: function(Client, types.DescribeLaunchConfigurationsInput): types.DescribeLaunchConfigurationsOutput, table
+    describeLaunchConfigurations: function(Client, types.DescribeLaunchConfigurationsInput): Operation<types.DescribeLaunchConfigurationsOutput>
     -- Gets information about the lifecycle hooks for the specified Auto Scaling group.
-    describeLifecycleHooks: function(Client, types.DescribeLifecycleHooksInput): types.DescribeLifecycleHooksOutput, table
+    describeLifecycleHooks: function(Client, types.DescribeLifecycleHooksInput): Operation<types.DescribeLifecycleHooksOutput>
     -- Describes the available types of lifecycle hooks.
     -- The following hook types are supported:
     -- autoscaling:EC2_INSTANCE_LAUNCHING
     -- autoscaling:EC2_INSTANCE_TERMINATING
-    describeLifecycleHookTypes: function(Client, types.DescribeLifecycleHookTypesInput): types.DescribeLifecycleHookTypesOutput, table
+    describeLifecycleHookTypes: function(Client, types.DescribeLifecycleHookTypesInput): Operation<types.DescribeLifecycleHookTypesOutput>
     -- This API operation is superseded by DescribeTrafficSources,
     -- which can describe multiple traffic sources types. We recommend using
     -- DescribeTrafficSources to simplify how you manage traffic sources.
@@ -255,7 +259,7 @@ local record Client
     -- information, see Use Elastic Load Balancing to
     -- distribute traffic across the instances in your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput): types.DescribeLoadBalancersOutput, table
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput): Operation<types.DescribeLoadBalancersOutput>
     -- This API operation is superseded by DescribeTrafficSources,
     -- which can describe multiple traffic sources types. We recommend using
     -- DetachTrafficSources to simplify how you manage traffic sources.
@@ -285,14 +289,14 @@ local record Client
     -- You can use this operation to describe target groups that were attached by using
     -- AttachLoadBalancerTargetGroups, but not for target groups that
     -- were attached by using AttachTrafficSources.
-    describeLoadBalancerTargetGroups: function(Client, types.DescribeLoadBalancerTargetGroupsInput): types.DescribeLoadBalancerTargetGroupsOutput, table
+    describeLoadBalancerTargetGroups: function(Client, types.DescribeLoadBalancerTargetGroupsInput): Operation<types.DescribeLoadBalancerTargetGroupsOutput>
     -- Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
-    describeMetricCollectionTypes: function(Client, types.DescribeMetricCollectionTypesInput): types.DescribeMetricCollectionTypesOutput, table
+    describeMetricCollectionTypes: function(Client, types.DescribeMetricCollectionTypesInput): Operation<types.DescribeMetricCollectionTypesOutput>
     -- Gets information about the Amazon SNS notifications that are configured for one or more
     -- Auto Scaling groups.
-    describeNotificationConfigurations: function(Client, types.DescribeNotificationConfigurationsInput): types.DescribeNotificationConfigurationsOutput, table
+    describeNotificationConfigurations: function(Client, types.DescribeNotificationConfigurationsInput): Operation<types.DescribeNotificationConfigurationsOutput>
     -- Gets information about the scaling policies in the account and Region.
-    describePolicies: function(Client, types.DescribePoliciesInput): types.DescribePoliciesOutput, table
+    describePolicies: function(Client, types.DescribePoliciesInput): Operation<types.DescribePoliciesOutput>
     -- Gets information about the scaling activities in the account and Region.
     -- When scaling events occur, you see a record of the scaling activity in the scaling
     -- activities. For more information, see Verify a scaling
@@ -302,15 +306,15 @@ local record Client
     -- StatusCode value is Failed or Cancelled and
     -- the StatusMessage element in the response indicates the cause of the
     -- failure. For help interpreting the StatusMessage, see Troubleshooting Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput): types.DescribeScalingActivitiesOutput, table
+    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput): Operation<types.DescribeScalingActivitiesOutput>
     -- Describes the scaling process types for use with the ResumeProcesses
     -- and SuspendProcesses APIs.
-    describeScalingProcessTypes: function(Client, types.DescribeScalingProcessTypesInput): types.DescribeScalingProcessTypesOutput, table
+    describeScalingProcessTypes: function(Client, types.DescribeScalingProcessTypesInput): Operation<types.DescribeScalingProcessTypesOutput>
     -- Gets information about the scheduled actions that haven't run or that have not reached
     -- their end time.
     -- To describe the scaling activities for scheduled actions that have already run, call
     -- the DescribeScalingActivities API.
-    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): types.DescribeScheduledActionsOutput, table
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): Operation<types.DescribeScheduledActionsOutput>
     -- Describes the specified tags.
     -- You can use filters to limit the results. For example, you can query for the tags for
     -- a specific Auto Scaling group. You can specify multiple values for a filter. A tag must match at
@@ -320,22 +324,22 @@ local record Client
     -- message is returned.
     -- For more information, see Tag Auto Scaling groups and
     -- instances in the Amazon EC2 Auto Scaling User Guide.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Describes the termination policies supported by Amazon EC2 Auto Scaling.
     -- For more information, see Configure
     -- termination policies for Amazon EC2 Auto Scaling in the
     -- Amazon EC2 Auto Scaling User Guide.
-    describeTerminationPolicyTypes: function(Client, types.DescribeTerminationPolicyTypesInput): types.DescribeTerminationPolicyTypesOutput, table
+    describeTerminationPolicyTypes: function(Client, types.DescribeTerminationPolicyTypesInput): Operation<types.DescribeTerminationPolicyTypesOutput>
     -- Gets information about the traffic sources for the specified Auto Scaling group.
     -- You can optionally provide a traffic source type. If you provide a traffic source
     -- type, then the results only include that traffic source type.
     -- If you do not provide a traffic source type, then the results include all the traffic
     -- sources for the specified Auto Scaling group.
-    describeTrafficSources: function(Client, types.DescribeTrafficSourcesInput): types.DescribeTrafficSourcesOutput, table
+    describeTrafficSources: function(Client, types.DescribeTrafficSourcesInput): Operation<types.DescribeTrafficSourcesOutput>
     -- Gets information about a warm pool and its instances.
     -- For more information, see Warm pools for
     -- Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    describeWarmPool: function(Client, types.DescribeWarmPoolInput): types.DescribeWarmPoolOutput, table
+    describeWarmPool: function(Client, types.DescribeWarmPoolInput): Operation<types.DescribeWarmPoolOutput>
     -- Removes one or more instances from the specified Auto Scaling group.
     -- After the instances are detached, you can manage them independent of the Auto Scaling
     -- group.
@@ -346,7 +350,7 @@ local record Client
     -- group, the instances are deregistered from the target groups.
     -- For more information, see Detach
     -- or attach instances in the Amazon EC2 Auto Scaling User Guide.
-    detachInstances: function(Client, types.DetachInstancesInput): types.DetachInstancesOutput, table
+    detachInstances: function(Client, types.DetachInstancesInput): Operation<types.DetachInstancesOutput>
     -- This API operation is superseded by DetachTrafficSources, which
     -- can detach multiple traffic sources types. We recommend using
     -- DetachTrafficSources to simplify how you manage traffic sources.
@@ -360,7 +364,7 @@ local record Client
     -- deregistering the instances in the group. When all instances are deregistered, then you
     -- can no longer describe the load balancer using the DescribeLoadBalancers
     -- API call. The instances remain running.
-    detachLoadBalancers: function(Client, types.DetachLoadBalancersInput): types.DetachLoadBalancersOutput, table
+    detachLoadBalancers: function(Client, types.DetachLoadBalancersInput): Operation<types.DetachLoadBalancersOutput>
     -- This API operation is superseded by DetachTrafficSources, which
     -- can detach multiple traffic sources types. We recommend using
     -- DetachTrafficSources to simplify how you manage traffic sources.
@@ -376,23 +380,23 @@ local record Client
     -- You can use this operation to detach target groups that were attached by using
     -- AttachLoadBalancerTargetGroups, but not for target groups that
     -- were attached by using AttachTrafficSources.
-    detachLoadBalancerTargetGroups: function(Client, types.DetachLoadBalancerTargetGroupsInput): types.DetachLoadBalancerTargetGroupsOutput, table
+    detachLoadBalancerTargetGroups: function(Client, types.DetachLoadBalancerTargetGroupsInput): Operation<types.DetachLoadBalancerTargetGroupsOutput>
     -- Detaches one or more traffic sources from the specified Auto Scaling group.
     -- When you detach a traffic source, it enters the Removing state while
     -- deregistering the instances in the group. When all instances are deregistered, then you
     -- can no longer describe the traffic source using the
     -- DescribeTrafficSources
     -- API call. The instances continue to run.
-    detachTrafficSources: function(Client, types.DetachTrafficSourcesInput): types.DetachTrafficSourcesOutput, table
+    detachTrafficSources: function(Client, types.DetachTrafficSourcesInput): Operation<types.DetachTrafficSourcesOutput>
     -- Disables group metrics collection for the specified Auto Scaling group.
-    disableMetricsCollection: function(Client, types.DisableMetricsCollectionInput): types.DisableMetricsCollectionOutput, table
+    disableMetricsCollection: function(Client, types.DisableMetricsCollectionInput): Operation<types.DisableMetricsCollectionOutput>
     -- Enables group metrics collection for the specified Auto Scaling group.
     -- You can use these metrics to track changes in an Auto Scaling group and to set alarms on
     -- threshold values. You can view group metrics using the Amazon EC2 Auto Scaling console or the CloudWatch
     -- console. For more information, see Monitor
     -- CloudWatch metrics for your Auto Scaling groups and instances in the
     -- Amazon EC2 Auto Scaling User Guide.
-    enableMetricsCollection: function(Client, types.EnableMetricsCollectionInput): types.EnableMetricsCollectionOutput, table
+    enableMetricsCollection: function(Client, types.EnableMetricsCollectionInput): Operation<types.EnableMetricsCollectionOutput>
     -- Moves the specified instances into the standby state.
     -- If you choose to decrement the desired capacity of the Auto Scaling group, the instances can
     -- enter standby as long as the desired capacity of the Auto Scaling group after the instances are
@@ -403,17 +407,17 @@ local record Client
     -- For more information, see Temporarily removing
     -- instances from your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    enterStandby: function(Client, types.EnterStandbyInput): types.EnterStandbyOutput, table
+    enterStandby: function(Client, types.EnterStandbyInput): Operation<types.EnterStandbyOutput>
     -- Executes the specified policy. This can be useful for testing the design of your
     -- scaling policy.
-    executePolicy: function(Client, types.ExecutePolicyInput): types.ExecutePolicyOutput, table
+    executePolicy: function(Client, types.ExecutePolicyInput): Operation<types.ExecutePolicyOutput>
     -- Moves the specified instances out of the standby state.
     -- After you put the instances back in service, the desired capacity is
     -- incremented.
     -- For more information, see Temporarily removing
     -- instances from your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    exitStandby: function(Client, types.ExitStandbyInput): types.ExitStandbyOutput, table
+    exitStandby: function(Client, types.ExitStandbyInput): Operation<types.ExitStandbyOutput>
     -- Retrieves the forecast data for a predictive scaling policy.
     -- Load forecasts are predictions of the hourly load values using historical load data
     -- from CloudWatch and an analysis of historical trends. Capacity forecasts are represented as
@@ -423,10 +427,10 @@ local record Client
     -- having a full 14 days of historical data results in more accurate forecasts.
     -- For more information, see Predictive
     -- scaling for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput): types.GetPredictiveScalingForecastOutput, table
+    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput): Operation<types.GetPredictiveScalingForecastOutput>
     -- Launches a specified number of instances in an Auto Scaling group. Returns instance IDs and
     -- other details if launch is successful or error details if launch is unsuccessful.
-    launchInstances: function(Client, types.LaunchInstancesInput): types.LaunchInstancesOutput, table
+    launchInstances: function(Client, types.LaunchInstancesInput): Operation<types.LaunchInstancesOutput>
     -- Creates or updates a lifecycle hook for the specified Auto Scaling group.
     -- Lifecycle hooks let you create solutions that are aware of events in the Auto Scaling instance
     -- lifecycle, and then perform a custom action on instances when the corresponding
@@ -455,7 +459,7 @@ local record Client
     -- You can view the lifecycle hooks for an Auto Scaling group using the
     -- DescribeLifecycleHooks API call. If you are no longer using a lifecycle
     -- hook, you can delete it by calling the DeleteLifecycleHook API.
-    putLifecycleHook: function(Client, types.PutLifecycleHookInput): types.PutLifecycleHookOutput, table
+    putLifecycleHook: function(Client, types.PutLifecycleHookInput): Operation<types.PutLifecycleHookOutput>
     -- Configures an Auto Scaling group to send notifications when specified events take place.
     -- Subscribers to the specified topic can have messages delivered to an endpoint such as a
     -- web server or an email address.
@@ -465,7 +469,7 @@ local record Client
     -- Amazon EC2 Auto Scaling User Guide.
     -- If you exceed your maximum limit of SNS topics, which is 10 per Auto Scaling group, the call
     -- fails.
-    putNotificationConfiguration: function(Client, types.PutNotificationConfigurationInput): types.PutNotificationConfigurationOutput, table
+    putNotificationConfiguration: function(Client, types.PutNotificationConfigurationInput): Operation<types.PutNotificationConfigurationOutput>
     -- Creates or updates a scaling policy for an Auto Scaling group. Scaling policies are used to
     -- scale an Auto Scaling group based on configurable metrics. If no policies are defined, the
     -- dynamic scaling and predictive scaling features are not used.
@@ -477,7 +481,7 @@ local record Client
     -- You can view the scaling policies for an Auto Scaling group using the
     -- DescribePolicies API call. If you are no longer using a scaling policy,
     -- you can delete it by calling the DeletePolicy API.
-    putScalingPolicy: function(Client, types.PutScalingPolicyInput): types.PutScalingPolicyOutput, table
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput): Operation<types.PutScalingPolicyOutput>
     -- Creates or updates a scheduled scaling action for an Auto Scaling group.
     -- For more information, see Scheduled scaling in the
     -- Amazon EC2 Auto Scaling User Guide.
@@ -487,7 +491,7 @@ local record Client
     -- DeleteScheduledAction API.
     -- If you try to schedule your action in the past, Amazon EC2 Auto Scaling returns an error
     -- message.
-    putScheduledUpdateGroupAction: function(Client, types.PutScheduledUpdateGroupActionInput): types.PutScheduledUpdateGroupActionOutput, table
+    putScheduledUpdateGroupAction: function(Client, types.PutScheduledUpdateGroupActionInput): Operation<types.PutScheduledUpdateGroupActionOutput>
     -- Creates or updates a warm pool for the specified Auto Scaling group. A warm pool is a pool of
     -- pre-initialized EC2 instances that sits alongside the Auto Scaling group. Whenever your
     -- application needs to scale out, the Auto Scaling group can draw on the warm pool to meet its new
@@ -498,7 +502,7 @@ local record Client
     -- If you are no longer using a warm pool, you can delete it by calling the DeleteWarmPool API.
     -- For more information, see Warm pools for
     -- Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
-    putWarmPool: function(Client, types.PutWarmPoolInput): types.PutWarmPoolOutput, table
+    putWarmPool: function(Client, types.PutWarmPoolInput): Operation<types.PutWarmPoolOutput>
     -- Records a heartbeat for the lifecycle action associated with the specified token or
     -- instance. This extends the timeout by the length of time defined using the
     -- PutLifecycleHook API call.
@@ -521,12 +525,12 @@ local record Client
     -- CompleteLifecycleAction API call.
     -- For more information, see Amazon EC2 Auto Scaling lifecycle
     -- hooks in the Amazon EC2 Auto Scaling User Guide.
-    recordLifecycleActionHeartbeat: function(Client, types.RecordLifecycleActionHeartbeatInput): types.RecordLifecycleActionHeartbeatOutput, table
+    recordLifecycleActionHeartbeat: function(Client, types.RecordLifecycleActionHeartbeatInput): Operation<types.RecordLifecycleActionHeartbeatOutput>
     -- Resumes the specified suspended auto scaling processes, or all suspended process, for
     -- the specified Auto Scaling group.
     -- For more information, see Suspend and resume
     -- Amazon EC2 Auto Scaling processes in the Amazon EC2 Auto Scaling User Guide.
-    resumeProcesses: function(Client, types.ResumeProcessesInput): types.ResumeProcessesOutput, table
+    resumeProcesses: function(Client, types.ResumeProcessesInput): Operation<types.ResumeProcessesOutput>
     -- Cancels an instance refresh that is in progress and rolls back any changes that it
     -- made. Amazon EC2 Auto Scaling replaces any instances that were replaced during the instance refresh.
     -- This restores your Auto Scaling group to the configuration that it was using before the start of
@@ -543,19 +547,19 @@ local record Client
     -- When you receive a successful response from this operation, Amazon EC2 Auto Scaling immediately
     -- begins replacing instances. You can check the status of this operation through the
     -- DescribeInstanceRefreshes API operation.
-    rollbackInstanceRefresh: function(Client, types.RollbackInstanceRefreshInput): types.RollbackInstanceRefreshOutput, table
+    rollbackInstanceRefresh: function(Client, types.RollbackInstanceRefreshInput): Operation<types.RollbackInstanceRefreshOutput>
     -- Sets the size of the specified Auto Scaling group.
     -- If a scale-in activity occurs as a result of a new DesiredCapacity value
     -- that is lower than the current size of the group, the Auto Scaling group uses its termination
     -- policy to determine which instances to terminate.
     -- For more information, see Manual
     -- scaling in the Amazon EC2 Auto Scaling User Guide.
-    setDesiredCapacity: function(Client, types.SetDesiredCapacityInput): types.SetDesiredCapacityOutput, table
+    setDesiredCapacity: function(Client, types.SetDesiredCapacityInput): Operation<types.SetDesiredCapacityOutput>
     -- Sets the health status of the specified instance.
     -- For more information, see Set up a custom
     -- health check for your Auto Scaling group in the
     -- Amazon EC2 Auto Scaling User Guide.
-    setInstanceHealth: function(Client, types.SetInstanceHealthInput): types.SetInstanceHealthOutput, table
+    setInstanceHealth: function(Client, types.SetInstanceHealthInput): Operation<types.SetInstanceHealthOutput>
     -- Updates the instance protection settings of the specified instances. This operation
     -- cannot be called on instances in a warm pool.
     -- For more information, see Use
@@ -563,7 +567,7 @@ local record Client
     -- Amazon EC2 Auto Scaling User Guide.
     -- If you exceed your maximum limit of instance IDs, which is 50 per Auto Scaling group, the call
     -- fails.
-    setInstanceProtection: function(Client, types.SetInstanceProtectionInput): types.SetInstanceProtectionOutput, table
+    setInstanceProtection: function(Client, types.SetInstanceProtectionInput): Operation<types.SetInstanceProtectionOutput>
     -- Starts an instance refresh.
     -- This operation is part of the instance refresh
     -- feature in Amazon EC2 Auto Scaling, which helps you update instances in your Auto Scaling group.
@@ -587,7 +591,7 @@ local record Client
     -- refresh by specifying the AutoRollback property in the instance refresh
     -- preferences. Otherwise, to roll back an instance refresh before it finishes, use the
     -- RollbackInstanceRefresh API.
-    startInstanceRefresh: function(Client, types.StartInstanceRefreshInput): types.StartInstanceRefreshOutput, table
+    startInstanceRefresh: function(Client, types.StartInstanceRefreshInput): Operation<types.StartInstanceRefreshOutput>
     -- Suspends the specified auto scaling processes, or all processes, for the specified
     -- Auto Scaling group.
     -- If you suspend either the Launch or Terminate process types,
@@ -595,7 +599,7 @@ local record Client
     -- Suspend and resume
     -- Amazon EC2 Auto Scaling processes in the Amazon EC2 Auto Scaling User Guide.
     -- To resume processes that have been suspended, call the ResumeProcesses API.
-    suspendProcesses: function(Client, types.SuspendProcessesInput): types.SuspendProcessesOutput, table
+    suspendProcesses: function(Client, types.SuspendProcessesInput): Operation<types.SuspendProcessesOutput>
     -- Terminates the specified instance and optionally adjusts the desired group size. This
     -- operation cannot be called on instances in a warm pool.
     -- This call simply makes a termination request. The instance is not terminated
@@ -609,7 +613,7 @@ local record Client
     -- Availability Zones. Amazon EC2 Auto Scaling tries to rebalance the group, and rebalancing might
     -- terminate instances in other zones. For more information, see Manual
     -- scaling in the Amazon EC2 Auto Scaling User Guide.
-    terminateInstanceInAutoScalingGroup: function(Client, types.TerminateInstanceInAutoScalingGroupInput): types.TerminateInstanceInAutoScalingGroupOutput, table
+    terminateInstanceInAutoScalingGroup: function(Client, types.TerminateInstanceInAutoScalingGroupInput): Operation<types.TerminateInstanceInAutoScalingGroupOutput>
     -- We strongly recommend that all Auto Scaling groups use launch templates to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
     -- Updates the configuration for the specified Auto Scaling group.
     -- To update an Auto Scaling group, specify the name of the group and the property that you want
@@ -643,7 +647,7 @@ local record Client
     -- To view the scaling policies for an Auto Scaling
     -- group, call the DescribePolicies API. If the group has scaling
     -- policies, you can update them by calling the PutScalingPolicy API.
-    updateAutoScalingGroup: function(Client, types.UpdateAutoScalingGroupInput): types.UpdateAutoScalingGroupOutput, table
+    updateAutoScalingGroup: function(Client, types.UpdateAutoScalingGroupInput): Operation<types.UpdateAutoScalingGroupOutput>
 end
 
 local record M

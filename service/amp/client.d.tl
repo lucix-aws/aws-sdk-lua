@@ -2,95 +2,99 @@
 
 local types = require("amp.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- The CreateAlertManagerDefinition operation creates the alert manager definition in a workspace. If a workspace already has an alert manager definition, don't use this operation to update it. Instead, use PutAlertManagerDefinition.
-    createAlertManagerDefinition: function(Client, types.CreateAlertManagerDefinitionInput): types.CreateAlertManagerDefinitionOutput, table
+    createAlertManagerDefinition: function(Client, types.CreateAlertManagerDefinitionInput): Operation<types.CreateAlertManagerDefinitionOutput>
     -- Creates an anomaly detector within a workspace using the Random Cut Forest algorithm for time-series analysis. The anomaly detector analyzes Amazon Managed Service for Prometheus metrics to identify unusual patterns and behaviors.
-    createAnomalyDetector: function(Client, types.CreateAnomalyDetectorInput): types.CreateAnomalyDetectorOutput, table
+    createAnomalyDetector: function(Client, types.CreateAnomalyDetectorInput): Operation<types.CreateAnomalyDetectorOutput>
     -- The CreateLoggingConfiguration operation creates rules and alerting logging configuration for the workspace. Use this operation to set the CloudWatch log group to which the logs will be published to. These logging configurations are only for rules and alerting logs.
-    createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput): types.CreateLoggingConfigurationOutput, table
+    createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput): Operation<types.CreateLoggingConfigurationOutput>
     -- Creates a query logging configuration for the specified workspace. This operation enables logging of queries that exceed the specified QSP threshold.
-    createQueryLoggingConfiguration: function(Client, types.CreateQueryLoggingConfigurationInput): types.CreateQueryLoggingConfigurationOutput, table
+    createQueryLoggingConfiguration: function(Client, types.CreateQueryLoggingConfigurationInput): Operation<types.CreateQueryLoggingConfigurationOutput>
     -- The CreateRuleGroupsNamespace operation creates a rule groups namespace within a workspace. A rule groups namespace is associated with exactly one rules file. A workspace can have multiple rule groups namespaces. The combined length of a rule group namespace and a rule group name cannot exceed 721 UTF-8 bytes. Use this operation only to create new rule groups namespaces. To update an existing rule groups namespace, use PutRuleGroupsNamespace.
-    createRuleGroupsNamespace: function(Client, types.CreateRuleGroupsNamespaceInput): types.CreateRuleGroupsNamespaceOutput, table
+    createRuleGroupsNamespace: function(Client, types.CreateRuleGroupsNamespaceInput): Operation<types.CreateRuleGroupsNamespaceOutput>
     -- The CreateScraper operation creates a scraper to collect metrics. A scraper pulls metrics from Prometheus-compatible sources and sends them to your Amazon Managed Service for Prometheus workspace. You can configure scrapers to collect metrics from Amazon EKS clusters, Amazon MSK clusters, or from VPC-based sources that support DNS-based service discovery. Scrapers are flexible, and can be configured to control what metrics are collected, the frequency of collection, what transformations are applied to the metrics, and more. An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your source. You must configure this role with a policy that allows it to scrape metrics from your source. For Amazon EKS sources, see Configuring your Amazon EKS cluster in the Amazon Managed Service for Prometheus User Guide. The scrapeConfiguration parameter contains the base-64 encoded YAML configuration for the scraper. When creating a scraper, the service creates a Network Interface in each Availability Zone that are passed into CreateScraper through subnets. These network interfaces are used to connect to your source within the VPC for scraping metrics. For more information about collectors, including what metrics are collected, and how to configure the scraper, see Using an Amazon Web Services managed collector in the Amazon Managed Service for Prometheus User Guide.
-    createScraper: function(Client, types.CreateScraperInput): types.CreateScraperOutput, table
+    createScraper: function(Client, types.CreateScraperInput): Operation<types.CreateScraperOutput>
     -- Creates a Prometheus workspace. A workspace is a logical space dedicated to the storage and querying of Prometheus metrics. You can have one or more workspaces in each Region in your account.
-    createWorkspace: function(Client, types.CreateWorkspaceInput): types.CreateWorkspaceOutput, table
+    createWorkspace: function(Client, types.CreateWorkspaceInput): Operation<types.CreateWorkspaceOutput>
     -- Deletes the alert manager definition from a workspace.
-    deleteAlertManagerDefinition: function(Client, types.DeleteAlertManagerDefinitionInput): types.DeleteAlertManagerDefinitionOutput, table
+    deleteAlertManagerDefinition: function(Client, types.DeleteAlertManagerDefinitionInput): Operation<types.DeleteAlertManagerDefinitionOutput>
     -- Removes an anomaly detector from a workspace. This operation is idempotent.
-    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput): types.DeleteAnomalyDetectorOutput, table
+    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput): Operation<types.DeleteAnomalyDetectorOutput>
     -- Deletes the rules and alerting logging configuration for a workspace. These logging configurations are only for rules and alerting logs.
-    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): Operation<types.DeleteLoggingConfigurationOutput>
     -- Deletes the query logging configuration for the specified workspace.
-    deleteQueryLoggingConfiguration: function(Client, types.DeleteQueryLoggingConfigurationInput): types.DeleteQueryLoggingConfigurationOutput, table
+    deleteQueryLoggingConfiguration: function(Client, types.DeleteQueryLoggingConfigurationInput): Operation<types.DeleteQueryLoggingConfigurationOutput>
     -- Deletes the resource-based policy attached to an Amazon Managed Service for Prometheus workspace.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes one rule groups namespace and its associated rule groups definition.
-    deleteRuleGroupsNamespace: function(Client, types.DeleteRuleGroupsNamespaceInput): types.DeleteRuleGroupsNamespaceOutput, table
+    deleteRuleGroupsNamespace: function(Client, types.DeleteRuleGroupsNamespaceInput): Operation<types.DeleteRuleGroupsNamespaceOutput>
     -- The DeleteScraper operation deletes one scraper, and stops any metrics collection that the scraper performs.
-    deleteScraper: function(Client, types.DeleteScraperInput): types.DeleteScraperOutput, table
+    deleteScraper: function(Client, types.DeleteScraperInput): Operation<types.DeleteScraperOutput>
     -- Deletes the logging configuration for a Amazon Managed Service for Prometheus scraper.
-    deleteScraperLoggingConfiguration: function(Client, types.DeleteScraperLoggingConfigurationInput): types.DeleteScraperLoggingConfigurationOutput, table
+    deleteScraperLoggingConfiguration: function(Client, types.DeleteScraperLoggingConfigurationInput): Operation<types.DeleteScraperLoggingConfigurationOutput>
     -- Deletes an existing workspace. When you delete a workspace, the data that has been ingested into it is not immediately deleted. It will be permanently deleted within one month.
-    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): types.DeleteWorkspaceOutput, table
+    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): Operation<types.DeleteWorkspaceOutput>
     -- Retrieves the full information about the alert manager definition for a workspace.
-    describeAlertManagerDefinition: function(Client, types.DescribeAlertManagerDefinitionInput): types.DescribeAlertManagerDefinitionOutput, table
+    describeAlertManagerDefinition: function(Client, types.DescribeAlertManagerDefinitionInput): Operation<types.DescribeAlertManagerDefinitionOutput>
     -- Retrieves detailed information about a specific anomaly detector, including its status and configuration.
-    describeAnomalyDetector: function(Client, types.DescribeAnomalyDetectorInput): types.DescribeAnomalyDetectorOutput, table
+    describeAnomalyDetector: function(Client, types.DescribeAnomalyDetectorInput): Operation<types.DescribeAnomalyDetectorOutput>
     -- Returns complete information about the current rules and alerting logging configuration of the workspace. These logging configurations are only for rules and alerting logs.
-    describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput): types.DescribeLoggingConfigurationOutput, table
+    describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput): Operation<types.DescribeLoggingConfigurationOutput>
     -- Retrieves the details of the query logging configuration for the specified workspace.
-    describeQueryLoggingConfiguration: function(Client, types.DescribeQueryLoggingConfigurationInput): types.DescribeQueryLoggingConfigurationOutput, table
+    describeQueryLoggingConfiguration: function(Client, types.DescribeQueryLoggingConfigurationInput): Operation<types.DescribeQueryLoggingConfigurationOutput>
     -- Returns information about the resource-based policy attached to an Amazon Managed Service for Prometheus workspace.
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): Operation<types.DescribeResourcePolicyOutput>
     -- Returns complete information about one rule groups namespace. To retrieve a list of rule groups namespaces, use ListRuleGroupsNamespaces.
-    describeRuleGroupsNamespace: function(Client, types.DescribeRuleGroupsNamespaceInput): types.DescribeRuleGroupsNamespaceOutput, table
+    describeRuleGroupsNamespace: function(Client, types.DescribeRuleGroupsNamespaceInput): Operation<types.DescribeRuleGroupsNamespaceOutput>
     -- The DescribeScraper operation displays information about an existing scraper.
-    describeScraper: function(Client, types.DescribeScraperInput): types.DescribeScraperOutput, table
+    describeScraper: function(Client, types.DescribeScraperInput): Operation<types.DescribeScraperOutput>
     -- Describes the logging configuration for a Amazon Managed Service for Prometheus scraper.
-    describeScraperLoggingConfiguration: function(Client, types.DescribeScraperLoggingConfigurationInput): types.DescribeScraperLoggingConfigurationOutput, table
+    describeScraperLoggingConfiguration: function(Client, types.DescribeScraperLoggingConfigurationInput): Operation<types.DescribeScraperLoggingConfigurationOutput>
     -- Returns information about an existing workspace.
-    describeWorkspace: function(Client, types.DescribeWorkspaceInput): types.DescribeWorkspaceOutput, table
+    describeWorkspace: function(Client, types.DescribeWorkspaceInput): Operation<types.DescribeWorkspaceOutput>
     -- Use this operation to return information about the configuration of a workspace. The configuration details returned include workspace configuration status, label set limits, and retention period.
-    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput): types.DescribeWorkspaceConfigurationOutput, table
+    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput): Operation<types.DescribeWorkspaceConfigurationOutput>
     -- The GetDefaultScraperConfiguration operation returns the default scraper configuration used when Amazon EKS creates a scraper for you.
-    getDefaultScraperConfiguration: function(Client, types.GetDefaultScraperConfigurationInput): types.GetDefaultScraperConfigurationOutput, table
+    getDefaultScraperConfiguration: function(Client, types.GetDefaultScraperConfigurationInput): Operation<types.GetDefaultScraperConfigurationOutput>
     -- Returns a paginated list of anomaly detectors for a workspace with optional filtering by alias.
-    listAnomalyDetectors: function(Client, types.ListAnomalyDetectorsInput): types.ListAnomalyDetectorsOutput, table
+    listAnomalyDetectors: function(Client, types.ListAnomalyDetectorsInput): Operation<types.ListAnomalyDetectorsOutput>
     -- Returns a list of rule groups namespaces in a workspace.
-    listRuleGroupsNamespaces: function(Client, types.ListRuleGroupsNamespacesInput): types.ListRuleGroupsNamespacesOutput, table
+    listRuleGroupsNamespaces: function(Client, types.ListRuleGroupsNamespacesInput): Operation<types.ListRuleGroupsNamespacesOutput>
     -- The ListScrapers operation lists all of the scrapers in your account. This includes scrapers being created or deleted. You can optionally filter the returned list.
-    listScrapers: function(Client, types.ListScrapersInput): types.ListScrapersOutput, table
+    listScrapers: function(Client, types.ListScrapersInput): Operation<types.ListScrapersOutput>
     -- The ListTagsForResource operation returns the tags that are associated with an Amazon Managed Service for Prometheus resource. Currently, the only resources that can be tagged are scrapers, workspaces, and rule groups namespaces.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists all of the Amazon Managed Service for Prometheus workspaces in your account. This includes workspaces being created or deleted.
-    listWorkspaces: function(Client, types.ListWorkspacesInput): types.ListWorkspacesOutput, table
+    listWorkspaces: function(Client, types.ListWorkspacesInput): Operation<types.ListWorkspacesOutput>
     -- Updates an existing alert manager definition in a workspace. If the workspace does not already have an alert manager definition, don't use this operation to create it. Instead, use CreateAlertManagerDefinition.
-    putAlertManagerDefinition: function(Client, types.PutAlertManagerDefinitionInput): types.PutAlertManagerDefinitionOutput, table
+    putAlertManagerDefinition: function(Client, types.PutAlertManagerDefinitionInput): Operation<types.PutAlertManagerDefinitionOutput>
     -- When you call PutAnomalyDetector, the operation creates a new anomaly detector if one doesn't exist, or updates an existing one. Each call to this operation triggers a complete retraining of the detector, which includes querying the minimum required samples and backfilling the detector with historical data. This process occurs regardless of whether you're making a minor change like updating the evaluation interval or making more substantial modifications. The operation serves as the single method for creating, updating, and retraining anomaly detectors.
-    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput): types.PutAnomalyDetectorOutput, table
+    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput): Operation<types.PutAnomalyDetectorOutput>
     -- Creates or updates a resource-based policy for an Amazon Managed Service for Prometheus workspace. Use resource-based policies to grant permissions to other AWS accounts or services to access your workspace. Only Prometheus-compatible APIs can be used for workspace sharing. You can add non-Prometheus-compatible APIs to the policy, but they will be ignored. For more information, see Prometheus-compatible APIs in the Amazon Managed Service for Prometheus User Guide. If your workspace uses customer-managed KMS keys for encryption, you must grant the principals in your resource-based policy access to those KMS keys. You can do this by creating KMS grants. For more information, see CreateGrant in the AWS Key Management Service API Reference and Encryption at rest in the Amazon Managed Service for Prometheus User Guide. For more information about working with IAM, see Using Amazon Managed Service for Prometheus with IAM in the Amazon Managed Service for Prometheus User Guide.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Updates an existing rule groups namespace within a workspace. A rule groups namespace is associated with exactly one rules file. A workspace can have multiple rule groups namespaces. The combined length of a rule group namespace and a rule group name cannot exceed 721 UTF-8 bytes. Use this operation only to update existing rule groups namespaces. To create a new rule groups namespace, use CreateRuleGroupsNamespace. You can't use this operation to add tags to an existing rule groups namespace. Instead, use TagResource.
-    putRuleGroupsNamespace: function(Client, types.PutRuleGroupsNamespaceInput): types.PutRuleGroupsNamespaceOutput, table
+    putRuleGroupsNamespace: function(Client, types.PutRuleGroupsNamespaceInput): Operation<types.PutRuleGroupsNamespaceOutput>
     -- The TagResource operation associates tags with an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are rule groups namespaces, scrapers, and workspaces. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. To remove a tag, use UntagResource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are rule groups namespaces, scrapers, and workspaces.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the log group ARN or the workspace ID of the current rules and alerting logging configuration. These logging configurations are only for rules and alerting logs.
-    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): types.UpdateLoggingConfigurationOutput, table
+    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): Operation<types.UpdateLoggingConfigurationOutput>
     -- Updates the query logging configuration for the specified workspace.
-    updateQueryLoggingConfiguration: function(Client, types.UpdateQueryLoggingConfigurationInput): types.UpdateQueryLoggingConfigurationOutput, table
+    updateQueryLoggingConfiguration: function(Client, types.UpdateQueryLoggingConfigurationInput): Operation<types.UpdateQueryLoggingConfigurationOutput>
     -- Updates an existing scraper. You can't use this function to update the source from which the scraper is collecting metrics. To change the source, delete the scraper and create a new one.
-    updateScraper: function(Client, types.UpdateScraperInput): types.UpdateScraperOutput, table
+    updateScraper: function(Client, types.UpdateScraperInput): Operation<types.UpdateScraperOutput>
     -- Updates the logging configuration for a Amazon Managed Service for Prometheus scraper.
-    updateScraperLoggingConfiguration: function(Client, types.UpdateScraperLoggingConfigurationInput): types.UpdateScraperLoggingConfigurationOutput, table
+    updateScraperLoggingConfiguration: function(Client, types.UpdateScraperLoggingConfigurationInput): Operation<types.UpdateScraperLoggingConfigurationOutput>
     -- Updates the alias of an existing workspace.
-    updateWorkspaceAlias: function(Client, types.UpdateWorkspaceAliasInput): types.UpdateWorkspaceAliasOutput, table
+    updateWorkspaceAlias: function(Client, types.UpdateWorkspaceAliasInput): Operation<types.UpdateWorkspaceAliasOutput>
     -- Use this operation to create or update the label sets, label set limits, and retention period of a workspace. You must specify at least one of limitsPerLabelSet or retentionPeriodInDays for the request to be valid.
-    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput): types.UpdateWorkspaceConfigurationOutput, table
+    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput): Operation<types.UpdateWorkspaceConfigurationOutput>
 end
 
 local record M

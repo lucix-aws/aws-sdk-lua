@@ -2,28 +2,32 @@
 
 local types = require("autoscalingplans.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a scaling plan.
-    createScalingPlan: function(Client, types.CreateScalingPlanInput): types.CreateScalingPlanOutput, table
+    createScalingPlan: function(Client, types.CreateScalingPlanInput): Operation<types.CreateScalingPlanOutput>
     -- Deletes the specified scaling plan.
     -- Deleting a scaling plan deletes the underlying ScalingInstruction for
     -- all of the scalable resources that are covered by the plan.
     -- If the plan has launched resources or has scaling activities in progress, you must
     -- delete those resources separately.
-    deleteScalingPlan: function(Client, types.DeleteScalingPlanInput): types.DeleteScalingPlanOutput, table
+    deleteScalingPlan: function(Client, types.DeleteScalingPlanInput): Operation<types.DeleteScalingPlanOutput>
     -- Describes the scalable resources in the specified scaling plan.
-    describeScalingPlanResources: function(Client, types.DescribeScalingPlanResourcesInput): types.DescribeScalingPlanResourcesOutput, table
+    describeScalingPlanResources: function(Client, types.DescribeScalingPlanResourcesInput): Operation<types.DescribeScalingPlanResourcesOutput>
     -- Describes one or more of your scaling plans.
-    describeScalingPlans: function(Client, types.DescribeScalingPlansInput): types.DescribeScalingPlansOutput, table
+    describeScalingPlans: function(Client, types.DescribeScalingPlansInput): Operation<types.DescribeScalingPlansOutput>
     -- Retrieves the forecast data for a scalable resource.
     -- Capacity forecasts are represented as predicted values, or data points, that are
     -- calculated using historical data points from a specified CloudWatch load metric. Data points are
     -- available for up to 56 days.
-    getScalingPlanResourceForecastData: function(Client, types.GetScalingPlanResourceForecastDataInput): types.GetScalingPlanResourceForecastDataOutput, table
+    getScalingPlanResourceForecastData: function(Client, types.GetScalingPlanResourceForecastDataInput): Operation<types.GetScalingPlanResourceForecastDataOutput>
     -- Updates the specified scaling plan.
     -- You cannot update a scaling plan if it is in the process of being created, updated, or
     -- deleted.
-    updateScalingPlan: function(Client, types.UpdateScalingPlanInput): types.UpdateScalingPlanOutput, table
+    updateScalingPlan: function(Client, types.UpdateScalingPlanInput): Operation<types.UpdateScalingPlanOutput>
 end
 
 local record M

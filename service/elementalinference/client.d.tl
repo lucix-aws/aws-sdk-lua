@@ -2,27 +2,31 @@
 
 local types = require("elementalinference.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a resource with the feed. The resource provides the input that Elemental Inference needs needs in order to perform an Elemental Inference feature, such as cropping video. You always provide the resource by associating it with a feed. You can associate only one resource with each feed.
-    associateFeed: function(Client, types.AssociateFeedInput): types.AssociateFeedOutput, table
+    associateFeed: function(Client, types.AssociateFeedInput): Operation<types.AssociateFeedOutput>
     -- Creates a feed. The feed is the target for live streams being sent by the calling application. An example of a calling application is AWS Elemental MediaLive. After you create the feed, you can associate a resource with the feed.
-    createFeed: function(Client, types.CreateFeedInput): types.CreateFeedOutput, table
+    createFeed: function(Client, types.CreateFeedInput): Operation<types.CreateFeedOutput>
     -- Deletes the specified feed. The feed can be deleted at any time.
-    deleteFeed: function(Client, types.DeleteFeedInput): types.DeleteFeedOutput, table
+    deleteFeed: function(Client, types.DeleteFeedInput): Operation<types.DeleteFeedOutput>
     -- Releases the resource (for example, an MediaLive channel) that is associated with this feed. The outputs in the feed become disabled.
-    disassociateFeed: function(Client, types.DisassociateFeedInput): types.DisassociateFeedOutput, table
+    disassociateFeed: function(Client, types.DisassociateFeedInput): Operation<types.DisassociateFeedOutput>
     -- Retrieves information about the specified feed.
-    getFeed: function(Client, types.GetFeedInput): types.GetFeedOutput, table
+    getFeed: function(Client, types.GetFeedInput): Operation<types.GetFeedOutput>
     -- Displays a list of feeds that belong to this AWS account.
-    listFeeds: function(Client, types.ListFeedsInput): types.ListFeedsOutput, table
+    listFeeds: function(Client, types.ListFeedsInput): Operation<types.ListFeedsOutput>
     -- List all tags that are on an Elemental Inference resource in the current region.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Associates the specified tags to the resource identified by the specified resourceArn in the current region. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are also deleted.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes specified tags from the specified resource in the current region.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the name and/or outputs in a feed.
-    updateFeed: function(Client, types.UpdateFeedInput): types.UpdateFeedOutput, table
+    updateFeed: function(Client, types.UpdateFeedInput): Operation<types.UpdateFeedOutput>
 end
 
 local record M

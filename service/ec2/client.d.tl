@@ -2,36 +2,40 @@
 
 local types = require("ec2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts an Elastic IP address transfer. For more information, see Accept a transferred Elastic IP address in the Amazon VPC User Guide.
-    acceptAddressTransfer: function(Client, types.AcceptAddressTransferInput): types.AcceptAddressTransferOutput, table
+    acceptAddressTransfer: function(Client, types.AcceptAddressTransferInput): Operation<types.AcceptAddressTransferOutput>
     -- Accepts a request to assign billing of the available capacity of a shared Capacity
     -- Reservation to your account. For more information, see Billing assignment for shared
     -- Amazon EC2 Capacity Reservations.
-    acceptCapacityReservationBillingOwnership: function(Client, types.AcceptCapacityReservationBillingOwnershipInput): types.AcceptCapacityReservationBillingOwnershipOutput, table
+    acceptCapacityReservationBillingOwnership: function(Client, types.AcceptCapacityReservationBillingOwnershipInput): Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
     -- Accepts the Convertible Reserved Instance exchange quote described in the GetReservedInstancesExchangeQuote call.
-    acceptReservedInstancesExchangeQuote: function(Client, types.AcceptReservedInstancesExchangeQuoteInput): types.AcceptReservedInstancesExchangeQuoteOutput, table
+    acceptReservedInstancesExchangeQuote: function(Client, types.AcceptReservedInstancesExchangeQuoteInput): Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
     -- Accepts a Transit Gateway attachment request for a Client VPN endpoint. The Transit Gateway owner must accept the attachment request before the Client VPN endpoint can route traffic through the Transit Gateway.
-    acceptTransitGatewayClientVpnAttachment: function(Client, types.AcceptTransitGatewayClientVpnAttachmentInput): types.AcceptTransitGatewayClientVpnAttachmentOutput, table
+    acceptTransitGatewayClientVpnAttachment: function(Client, types.AcceptTransitGatewayClientVpnAttachmentInput): Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
     -- Accepts a request to associate subnets with a transit gateway multicast domain.
-    acceptTransitGatewayMulticastDomainAssociations: function(Client, types.AcceptTransitGatewayMulticastDomainAssociationsInput): types.AcceptTransitGatewayMulticastDomainAssociationsOutput, table
+    acceptTransitGatewayMulticastDomainAssociations: function(Client, types.AcceptTransitGatewayMulticastDomainAssociationsInput): Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
     -- Accepts a transit gateway peering attachment request. The peering attachment must be
     -- in the pendingAcceptance state.
-    acceptTransitGatewayPeeringAttachment: function(Client, types.AcceptTransitGatewayPeeringAttachmentInput): types.AcceptTransitGatewayPeeringAttachmentOutput, table
+    acceptTransitGatewayPeeringAttachment: function(Client, types.AcceptTransitGatewayPeeringAttachmentInput): Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
     -- Accepts a request to attach a VPC to a transit gateway.
     -- The VPC attachment must be in the pendingAcceptance state.
     -- Use DescribeTransitGatewayVpcAttachments to view your pending VPC attachment requests.
     -- Use RejectTransitGatewayVpcAttachment to reject a VPC attachment request.
-    acceptTransitGatewayVpcAttachment: function(Client, types.AcceptTransitGatewayVpcAttachmentInput): types.AcceptTransitGatewayVpcAttachmentOutput, table
+    acceptTransitGatewayVpcAttachment: function(Client, types.AcceptTransitGatewayVpcAttachmentInput): Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
     -- Accepts connection requests to your VPC endpoint service.
-    acceptVpcEndpointConnections: function(Client, types.AcceptVpcEndpointConnectionsInput): types.AcceptVpcEndpointConnectionsOutput, table
+    acceptVpcEndpointConnections: function(Client, types.AcceptVpcEndpointConnectionsInput): Operation<types.AcceptVpcEndpointConnectionsOutput>
     -- Accept a VPC peering connection request. To accept a request, the VPC peering connection must
     -- be in the pending-acceptance state, and you must be the owner of the peer VPC.
     -- Use DescribeVpcPeeringConnections to view your outstanding VPC
     -- peering connection requests.
     -- For an inter-Region VPC peering connection request, you must accept the VPC peering
     -- connection in the Region of the accepter VPC.
-    acceptVpcPeeringConnection: function(Client, types.AcceptVpcPeeringConnectionInput): types.AcceptVpcPeeringConnectionOutput, table
+    acceptVpcPeeringConnection: function(Client, types.AcceptVpcPeeringConnectionInput): Operation<types.AcceptVpcPeeringConnectionOutput>
     -- Advertises an IPv4 or IPv6 address range that is provisioned for use with your Amazon Web Services resources through
     -- bring your own IP addresses (BYOIP).
     -- You can perform this operation at most once every 10 seconds, even if you specify different
@@ -42,7 +46,7 @@ local record Client
     -- location and start advertising it through Amazon Web Services.
     -- It can take a few minutes before traffic to the specified addresses starts routing to Amazon Web Services
     -- because of BGP propagation delays.
-    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput): types.AdvertiseByoipCidrOutput, table
+    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput): Operation<types.AdvertiseByoipCidrOutput>
     -- Allocates an Elastic IP address to your Amazon Web Services account. After you allocate the Elastic IP address you can associate
     -- it with an instance or network interface. After you release an Elastic IP address, it is released to the IP address
     -- pool and can be allocated to a different Amazon Web Services account.
@@ -60,18 +64,18 @@ local record Client
     -- it in this operation.
     -- You can allocate a carrier IP address which is a public IP address from a telecommunication carrier,
     -- to a network interface which resides in a subnet in a Wavelength Zone (for example an EC2 instance).
-    allocateAddress: function(Client, types.AllocateAddressInput): types.AllocateAddressOutput, table
+    allocateAddress: function(Client, types.AllocateAddressInput): Operation<types.AllocateAddressOutput>
     -- Allocates a Dedicated Host to your account. At a minimum, specify the supported
     -- instance type or instance family, the Availability Zone in which to allocate the host,
     -- and the number of hosts to allocate.
-    allocateHosts: function(Client, types.AllocateHostsInput): types.AllocateHostsOutput, table
+    allocateHosts: function(Client, types.AllocateHostsInput): Operation<types.AllocateHostsOutput>
     -- Allocate a CIDR from an IPAM pool. The Region you use should be the IPAM pool locale. The locale is the Amazon Web Services Region where this IPAM pool is available for allocations.
     -- In IPAM, an allocation is a CIDR assignment from an IPAM pool to another IPAM pool or to a resource. For more information, see Allocate CIDRs in the Amazon VPC IPAM User Guide.
     -- This action creates an allocation with strong consistency. The returned CIDR will not overlap with any other allocations from the same pool.
-    allocateIpamPoolCidr: function(Client, types.AllocateIpamPoolCidrInput): types.AllocateIpamPoolCidrOutput, table
+    allocateIpamPoolCidr: function(Client, types.AllocateIpamPoolCidrInput): Operation<types.AllocateIpamPoolCidrOutput>
     -- Applies a security group to the association between the target network and the Client VPN endpoint. This action replaces the existing
     -- security groups with the specified security groups.
-    applySecurityGroupsToClientVpnTargetNetwork: function(Client, types.ApplySecurityGroupsToClientVpnTargetNetworkInput): types.ApplySecurityGroupsToClientVpnTargetNetworkOutput, table
+    applySecurityGroupsToClientVpnTargetNetwork: function(Client, types.ApplySecurityGroupsToClientVpnTargetNetworkInput): Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
     -- Assigns the specified IPv6 addresses to the specified network interface. You can
     -- specify specific IPv6 addresses, or you can specify the number of IPv6 addresses to be
     -- automatically assigned from the subnet's IPv6 CIDR block range. You can assign as many
@@ -82,7 +86,7 @@ local record Client
     -- either the IPV6 Prefix Delegation prefixes, or the IPv6 Prefix Delegation count. For
     -- information, see Assigning prefixes to network
     -- interfaces in the Amazon EC2 User Guide.
-    assignIpv6Addresses: function(Client, types.AssignIpv6AddressesInput): types.AssignIpv6AddressesOutput, table
+    assignIpv6Addresses: function(Client, types.AssignIpv6AddressesInput): Operation<types.AssignIpv6AddressesOutput>
     -- Assigns the specified secondary private IP addresses to the specified network
     -- interface.
     -- You can specify specific secondary IP addresses, or you can specify the number of
@@ -102,10 +106,10 @@ local record Client
     -- either the IPv4 Prefix Delegation prefixes, or the IPv4 Prefix Delegation count. For
     -- information, see Assigning prefixes to network
     -- interfaces in the Amazon EC2 User Guide.
-    assignPrivateIpAddresses: function(Client, types.AssignPrivateIpAddressesInput): types.AssignPrivateIpAddressesOutput, table
+    assignPrivateIpAddresses: function(Client, types.AssignPrivateIpAddressesInput): Operation<types.AssignPrivateIpAddressesOutput>
     -- Assigns private IPv4 addresses to a private NAT gateway. For more information, see
     -- Work with NAT gateways in the Amazon VPC User Guide.
-    assignPrivateNatGatewayAddress: function(Client, types.AssignPrivateNatGatewayAddressInput): types.AssignPrivateNatGatewayAddressOutput, table
+    assignPrivateNatGatewayAddress: function(Client, types.AssignPrivateNatGatewayAddressInput): Operation<types.AssignPrivateNatGatewayAddressOutput>
     -- Associates an Elastic IP address, or carrier IP address (for instances that are in
     -- subnets in Wavelength Zones) with an instance or a network interface. Before you can use an
     -- Elastic IP address, you must allocate it to your account.
@@ -122,20 +126,20 @@ local record Client
     -- remapped to the same instance. For more information, see the Elastic IP
     -- Addresses section of Amazon EC2
     -- Pricing.
-    associateAddress: function(Client, types.AssociateAddressInput): types.AssociateAddressOutput, table
+    associateAddress: function(Client, types.AssociateAddressInput): Operation<types.AssociateAddressOutput>
     -- Initiates a request to assign billing of the unused capacity of a shared Capacity
     -- Reservation to a consumer account that is consolidated under the same Amazon Web Services
     -- organizations payer account. For more information, see Billing assignment for shared
     -- Amazon EC2 Capacity Reservations.
-    associateCapacityReservationBillingOwner: function(Client, types.AssociateCapacityReservationBillingOwnerInput): types.AssociateCapacityReservationBillingOwnerOutput, table
+    associateCapacityReservationBillingOwner: function(Client, types.AssociateCapacityReservationBillingOwnerInput): Operation<types.AssociateCapacityReservationBillingOwnerOutput>
     -- Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.
     -- If you specified a VPC when you created the Client VPN endpoint or if you have previous subnet associations, the specified subnet must be in the same VPC. To specify a subnet that's in a different VPC, you must first modify the Client VPN endpoint (ModifyClientVpnEndpoint) and change the VPC that's associated with it.
-    associateClientVpnTargetNetwork: function(Client, types.AssociateClientVpnTargetNetworkInput): types.AssociateClientVpnTargetNetworkOutput, table
+    associateClientVpnTargetNetwork: function(Client, types.AssociateClientVpnTargetNetworkInput): Operation<types.AssociateClientVpnTargetNetworkOutput>
     -- Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.
     -- After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.
     -- For more information, see DHCP option sets
     -- in the Amazon VPC User Guide.
-    associateDhcpOptions: function(Client, types.AssociateDhcpOptionsInput): types.AssociateDhcpOptionsOutput, table
+    associateDhcpOptions: function(Client, types.AssociateDhcpOptionsInput): Operation<types.AssociateDhcpOptionsOutput>
     -- Associates an Identity and Access Management (IAM) role with an Certificate Manager (ACM) certificate.
     -- This enables the certificate to be used by the ACM for Nitro Enclaves application inside an enclave. For more
     -- information, see Certificate Manager for Nitro Enclaves in the Amazon Web Services Nitro Enclaves
@@ -149,22 +153,22 @@ local record Client
     -- For more information, see
     -- Grant the role permission to access the certificate and encryption key in the
     -- Amazon Web Services Nitro Enclaves User Guide.
-    associateEnclaveCertificateIamRole: function(Client, types.AssociateEnclaveCertificateIamRoleInput): types.AssociateEnclaveCertificateIamRoleOutput, table
+    associateEnclaveCertificateIamRole: function(Client, types.AssociateEnclaveCertificateIamRoleInput): Operation<types.AssociateEnclaveCertificateIamRoleOutput>
     -- Associates an IAM instance profile with a running or stopped instance. You cannot
     -- associate more than one IAM instance profile with an instance.
-    associateIamInstanceProfile: function(Client, types.AssociateIamInstanceProfileInput): types.AssociateIamInstanceProfileOutput, table
+    associateIamInstanceProfile: function(Client, types.AssociateIamInstanceProfileInput): Operation<types.AssociateIamInstanceProfileOutput>
     -- Associates one or more targets with an event window. Only one type of target (instance
     -- IDs, Dedicated Host IDs, or tags) can be specified with an event window.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    associateInstanceEventWindow: function(Client, types.AssociateInstanceEventWindowInput): types.AssociateInstanceEventWindowOutput, table
+    associateInstanceEventWindow: function(Client, types.AssociateInstanceEventWindowInput): Operation<types.AssociateInstanceEventWindowOutput>
     -- Associates your Autonomous System Number (ASN) with a BYOIP CIDR that you own in the same Amazon Web Services Region.
     -- For more information, see Tutorial: Bring your ASN to IPAM in the Amazon VPC IPAM guide.
     -- After the association succeeds, the ASN is eligible for
     -- advertisement. You can view the association with DescribeByoipCidrs. You can advertise the CIDR with AdvertiseByoipCidr.
-    associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput): types.AssociateIpamByoasnOutput, table
+    associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput): Operation<types.AssociateIpamByoasnOutput>
     -- Associates an IPAM resource discovery with an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput): types.AssociateIpamResourceDiscoveryOutput, table
+    associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput): Operation<types.AssociateIpamResourceDiscoveryOutput>
     -- Associates Elastic IP addresses (EIPs) and private IPv4 addresses with a public NAT gateway. For more information,
     -- see Work with NAT gateways in the Amazon VPC User Guide.
     -- By default, you can associate up to 2 Elastic IP addresses per public NAT gateway. You can increase the limit by requesting a quota adjustment.
@@ -174,11 +178,11 @@ local record Client
     -- the EIP will fail to associate. You can see the network border group for the subnet's AZ by viewing the details of the subnet.
     -- Similarly, you can view the network border group of an EIP by viewing the details of the EIP address. For more information
     -- about network border groups and EIPs, see Allocate an Elastic IP address in the Amazon VPC User Guide.
-    associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput): types.AssociateNatGatewayAddressOutput, table
+    associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput): Operation<types.AssociateNatGatewayAddressOutput>
     -- Associates a route server with a VPC to enable dynamic route updates.
     -- A route server association is the connection established between a route server and a VPC.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    associateRouteServer: function(Client, types.AssociateRouteServerInput): types.AssociateRouteServerOutput, table
+    associateRouteServer: function(Client, types.AssociateRouteServerInput): Operation<types.AssociateRouteServerOutput>
     -- Associates a subnet in your VPC or an internet gateway or virtual private gateway
     -- attached to your VPC with a route table in your VPC. This association causes traffic
     -- from the subnet or gateway to be routed according to the routes in the route table. The
@@ -186,32 +190,32 @@ local record Client
     -- table later. A route table can be associated with multiple subnets.
     -- For more information, see Route tables in the
     -- Amazon VPC User Guide.
-    associateRouteTable: function(Client, types.AssociateRouteTableInput): types.AssociateRouteTableOutput, table
+    associateRouteTable: function(Client, types.AssociateRouteTableInput): Operation<types.AssociateRouteTableOutput>
     -- Associates a security group with another VPC in the same Region. This enables you to use the same security group with network interfaces and instances in the specified VPC.
     -- The VPC you want to associate the security group with must be in the same Region.
     -- You can associate the security group with another VPC if your account owns the VPC or if the VPC was shared with you.
     -- You must own the security group.
     -- You cannot use this feature with default security groups.
     -- You cannot use this feature with the default VPC.
-    associateSecurityGroupVpc: function(Client, types.AssociateSecurityGroupVpcInput): types.AssociateSecurityGroupVpcOutput, table
+    associateSecurityGroupVpc: function(Client, types.AssociateSecurityGroupVpcInput): Operation<types.AssociateSecurityGroupVpcOutput>
     -- Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR
     -- block with your subnet.
-    associateSubnetCidrBlock: function(Client, types.AssociateSubnetCidrBlockInput): types.AssociateSubnetCidrBlockOutput, table
+    associateSubnetCidrBlock: function(Client, types.AssociateSubnetCidrBlockInput): Operation<types.AssociateSubnetCidrBlockOutput>
     -- Associates the specified subnets and transit gateway attachments with the specified transit gateway multicast domain.
     -- The transit gateway attachment must be in the available state before you can add a resource. Use DescribeTransitGatewayAttachments
     -- to see the state of the attachment.
-    associateTransitGatewayMulticastDomain: function(Client, types.AssociateTransitGatewayMulticastDomainInput): types.AssociateTransitGatewayMulticastDomainOutput, table
+    associateTransitGatewayMulticastDomain: function(Client, types.AssociateTransitGatewayMulticastDomainInput): Operation<types.AssociateTransitGatewayMulticastDomainOutput>
     -- Associates the specified transit gateway attachment with a transit gateway policy table.
-    associateTransitGatewayPolicyTable: function(Client, types.AssociateTransitGatewayPolicyTableInput): types.AssociateTransitGatewayPolicyTableOutput, table
+    associateTransitGatewayPolicyTable: function(Client, types.AssociateTransitGatewayPolicyTableInput): Operation<types.AssociateTransitGatewayPolicyTableOutput>
     -- Associates the specified attachment with the specified transit gateway route table. You can
     -- associate only one route table with an attachment.
-    associateTransitGatewayRouteTable: function(Client, types.AssociateTransitGatewayRouteTableInput): types.AssociateTransitGatewayRouteTableOutput, table
+    associateTransitGatewayRouteTable: function(Client, types.AssociateTransitGatewayRouteTableInput): Operation<types.AssociateTransitGatewayRouteTableOutput>
     -- Associates a branch network interface with a trunk network interface.
     -- Before you create the association, use CreateNetworkInterface command and set the interface type
     -- to trunk. You must also create a network interface for
     -- each branch network interface that you want to associate with the trunk
     -- network interface.
-    associateTrunkInterface: function(Client, types.AssociateTrunkInterfaceInput): types.AssociateTrunkInterfaceOutput, table
+    associateTrunkInterface: function(Client, types.AssociateTrunkInterfaceInput): Operation<types.AssociateTrunkInterfaceOutput>
     -- Associates a CIDR block with your VPC. You can associate a secondary IPv4 CIDR block,
     -- an Amazon-provided IPv6 CIDR block, or an IPv6 CIDR block from an IPv6 address pool that
     -- you provisioned through bring your own IP addresses (BYOIP).
@@ -220,7 +224,7 @@ local record Client
     -- For more information about associating CIDR blocks with your VPC and applicable
     -- restrictions, see IP addressing for your VPCs and subnets
     -- in the Amazon VPC User Guide.
-    associateVpcCidrBlock: function(Client, types.AssociateVpcCidrBlockInput): types.AssociateVpcCidrBlockOutput, table
+    associateVpcCidrBlock: function(Client, types.AssociateVpcCidrBlockInput): Operation<types.AssociateVpcCidrBlockOutput>
     -- This action is deprecated.
     -- Links an EC2-Classic instance to a ClassicLink-enabled VPC through one or more of the VPC
     -- security groups. You cannot link an EC2-Classic instance to more than one VPC at a time. You
@@ -229,15 +233,15 @@ local record Client
     -- you restart it.
     -- After you've linked an instance, you cannot change the VPC security groups that are associated with it. To change the security groups, you must first unlink the instance, and then link it again.
     -- Linking your instance to a VPC is sometimes referred to as attaching your instance.
-    attachClassicLinkVpc: function(Client, types.AttachClassicLinkVpcInput): types.AttachClassicLinkVpcOutput, table
+    attachClassicLinkVpc: function(Client, types.AttachClassicLinkVpcInput): Operation<types.AttachClassicLinkVpcOutput>
     -- Attaches an internet gateway or a virtual private gateway to a VPC, enabling connectivity
     -- between the internet and the VPC. For more information, see Internet gateways in the
     -- Amazon VPC User Guide.
-    attachInternetGateway: function(Client, types.AttachInternetGatewayInput): types.AttachInternetGatewayOutput, table
+    attachInternetGateway: function(Client, types.AttachInternetGatewayInput): Operation<types.AttachInternetGatewayOutput>
     -- Attaches a network interface to an instance.
-    attachNetworkInterface: function(Client, types.AttachNetworkInterfaceInput): types.AttachNetworkInterfaceOutput, table
+    attachNetworkInterface: function(Client, types.AttachNetworkInterfaceInput): Operation<types.AttachNetworkInterfaceOutput>
     -- Attaches the specified Amazon Web Services Verified Access trust provider to the specified Amazon Web Services Verified Access instance.
-    attachVerifiedAccessTrustProvider: function(Client, types.AttachVerifiedAccessTrustProviderInput): types.AttachVerifiedAccessTrustProviderOutput, table
+    attachVerifiedAccessTrustProvider: function(Client, types.AttachVerifiedAccessTrustProviderInput): Operation<types.AttachVerifiedAccessTrustProviderOutput>
     -- Attaches an Amazon EBS volume to a running or stopped
     -- instance, and exposes it to the instance with the specified device name.
     -- The maximum number of Amazon EBS volumes that you can attach to an instance depends on the
@@ -257,16 +261,16 @@ local record Client
     -- instance.
     -- For more information, see Attach an Amazon EBS volume to an instance in the
     -- Amazon EBS User Guide.
-    attachVolume: function(Client, types.AttachVolumeInput): types.AttachVolumeOutput, table
+    attachVolume: function(Client, types.AttachVolumeInput): Operation<types.AttachVolumeOutput>
     -- Attaches an available virtual private gateway to a VPC. You can attach one virtual private
     -- gateway to one VPC at a time.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    attachVpnGateway: function(Client, types.AttachVpnGatewayInput): types.AttachVpnGatewayOutput, table
+    attachVpnGateway: function(Client, types.AttachVpnGatewayInput): Operation<types.AttachVpnGatewayOutput>
     -- Adds an ingress authorization rule to a Client VPN endpoint. Ingress authorization rules act as
     -- firewall rules that grant access to networks. You must configure ingress authorization rules to
     -- enable clients to access resources in Amazon Web Services or on-premises networks.
-    authorizeClientVpnIngress: function(Client, types.AuthorizeClientVpnIngressInput): types.AuthorizeClientVpnIngressOutput, table
+    authorizeClientVpnIngress: function(Client, types.AuthorizeClientVpnIngressInput): Operation<types.AuthorizeClientVpnIngressOutput>
     -- Adds the specified outbound (egress) rules to a security group.
     -- An outbound rule permits instances to send traffic to the specified IPv4 or IPv6
     -- address ranges, the IP address ranges specified by a prefix list, or the instances
@@ -280,7 +284,7 @@ local record Client
     -- For examples of rules that you can add to security groups for specific access scenarios,
     -- see Security group rules for different use cases in the Amazon EC2 User Guide.
     -- For information about security group quotas, see Amazon VPC quotas in the Amazon VPC User Guide.
-    authorizeSecurityGroupEgress: function(Client, types.AuthorizeSecurityGroupEgressInput): types.AuthorizeSecurityGroupEgressOutput, table
+    authorizeSecurityGroupEgress: function(Client, types.AuthorizeSecurityGroupEgressInput): Operation<types.AuthorizeSecurityGroupEgressOutput>
     -- Adds the specified inbound (ingress) rules to a security group.
     -- An inbound rule permits instances to receive traffic from the specified IPv4 or IPv6
     -- address range, the IP address ranges that are specified by a prefix list, or the instances
@@ -294,7 +298,7 @@ local record Client
     -- For examples of rules that you can add to security groups for specific access scenarios,
     -- see Security group rules for different use cases in the Amazon EC2 User Guide.
     -- For more information about security group quotas, see Amazon VPC quotas in the Amazon VPC User Guide.
-    authorizeSecurityGroupIngress: function(Client, types.AuthorizeSecurityGroupIngressInput): types.AuthorizeSecurityGroupIngressOutput, table
+    authorizeSecurityGroupIngress: function(Client, types.AuthorizeSecurityGroupIngressInput): Operation<types.AuthorizeSecurityGroupIngressOutput>
     -- Bundles an Amazon instance store-backed Windows instance.
     -- During bundling, only the root device volume (C:\) is bundled. Data on other instance
     -- store volumes is not preserved.
@@ -302,9 +306,9 @@ local record Client
     -- CreateImage.
     -- For more information, see
     -- Create an Amazon EBS-backed AMI in the Amazon EC2 User Guide.
-    bundleInstance: function(Client, types.BundleInstanceInput): types.BundleInstanceOutput, table
+    bundleInstance: function(Client, types.BundleInstanceInput): Operation<types.BundleInstanceOutput>
     -- Cancels a bundling operation for an instance store-backed Windows instance.
-    cancelBundleTask: function(Client, types.CancelBundleTaskInput): types.CancelBundleTaskOutput, table
+    cancelBundleTask: function(Client, types.CancelBundleTaskInput): Operation<types.CancelBundleTaskOutput>
     -- Cancels the specified Capacity Reservation, releases the reserved capacity, and
     -- changes the Capacity Reservation's state to cancelled.
     -- You can cancel a Capacity Reservation that is in the following states:
@@ -321,7 +325,7 @@ local record Client
     -- these instances to either target a different Capacity Reservation, launch On-Demand
     -- Instance capacity, or run in any open Capacity Reservation that has matching attributes
     -- and sufficient capacity.
-    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput): types.CancelCapacityReservationOutput, table
+    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput): Operation<types.CancelCapacityReservationOutput>
     -- Cancels one or more Capacity Reservation Fleets. When you cancel a Capacity
     -- Reservation Fleet, the following happens:
     -- The Capacity Reservation Fleet's status changes to
@@ -330,33 +334,33 @@ local record Client
     -- running in the Capacity Reservations at the time of cancelling the Fleet
     -- continue to run in shared capacity.
     -- The Fleet stops creating new Capacity Reservations.
-    cancelCapacityReservationFleets: function(Client, types.CancelCapacityReservationFleetsInput): types.CancelCapacityReservationFleetsOutput, table
+    cancelCapacityReservationFleets: function(Client, types.CancelCapacityReservationFleetsInput): Operation<types.CancelCapacityReservationFleetsOutput>
     -- Cancels an active conversion task. The task can be the import of an instance or volume. The action removes all
     -- artifacts of the conversion, including a partially uploaded volume or instance. If the conversion is complete or is
     -- in the process of transferring the final disk image, the command fails and returns an exception.
-    cancelConversionTask: function(Client, types.CancelConversionTaskInput): types.CancelConversionTaskOutput, table
+    cancelConversionTask: function(Client, types.CancelConversionTaskInput): Operation<types.CancelConversionTaskOutput>
     -- Cancels the generation of an account status report.
     -- You can only cancel a report while it has the running status. Reports
     -- with other statuses (complete, cancelled, or
     -- error) can't be canceled.
     -- For more information, see Generating the account status report for declarative policies in the
     -- Amazon Web Services Organizations User Guide.
-    cancelDeclarativePoliciesReport: function(Client, types.CancelDeclarativePoliciesReportInput): types.CancelDeclarativePoliciesReportOutput, table
+    cancelDeclarativePoliciesReport: function(Client, types.CancelDeclarativePoliciesReportInput): Operation<types.CancelDeclarativePoliciesReportOutput>
     -- Cancels an active export task. The request removes all artifacts of the export, including any partially-created
     -- Amazon S3 objects. If the export task is complete or is in the process of transferring the final disk image, the
     -- command fails and returns an error.
-    cancelExportTask: function(Client, types.CancelExportTaskInput): types.CancelExportTaskOutput, table
+    cancelExportTask: function(Client, types.CancelExportTaskInput): Operation<types.CancelExportTaskOutput>
     -- Removes your Amazon Web Services account from the launch permissions for the specified AMI.
     -- For more information, see Cancel having an AMI shared with
     -- your Amazon Web Services account in the Amazon EC2 User Guide.
-    cancelImageLaunchPermission: function(Client, types.CancelImageLaunchPermissionInput): types.CancelImageLaunchPermissionOutput, table
+    cancelImageLaunchPermission: function(Client, types.CancelImageLaunchPermissionInput): Operation<types.CancelImageLaunchPermissionOutput>
     -- Cancels an in-process import virtual machine or import snapshot task.
-    cancelImportTask: function(Client, types.CancelImportTaskInput): types.CancelImportTaskOutput, table
+    cancelImportTask: function(Client, types.CancelImportTaskInput): Operation<types.CancelImportTaskOutput>
     -- Cancels the specified Reserved Instance listing in the Reserved Instance
     -- Marketplace.
     -- For more information, see Sell in the Reserved Instance
     -- Marketplace in the Amazon EC2 User Guide.
-    cancelReservedInstancesListing: function(Client, types.CancelReservedInstancesListingInput): types.CancelReservedInstancesListingOutput, table
+    cancelReservedInstancesListing: function(Client, types.CancelReservedInstancesListingInput): Operation<types.CancelReservedInstancesListingOutput>
     -- Cancels the specified Spot Fleet requests.
     -- After you cancel a Spot Fleet request, the Spot Fleet launches no new instances.
     -- You must also specify whether a canceled Spot Fleet request should terminate its instances. If you
@@ -375,17 +379,17 @@ local record Client
     -- Restrictions
     -- You can delete up to 100 fleets in a single request. If you exceed the specified
     -- number, no fleets are deleted.
-    cancelSpotFleetRequests: function(Client, types.CancelSpotFleetRequestsInput): types.CancelSpotFleetRequestsOutput, table
+    cancelSpotFleetRequests: function(Client, types.CancelSpotFleetRequestsInput): Operation<types.CancelSpotFleetRequestsOutput>
     -- Cancels one or more Spot Instance requests.
     -- Canceling a Spot Instance request does not terminate running Spot Instances
     -- associated with the request.
-    cancelSpotInstanceRequests: function(Client, types.CancelSpotInstanceRequestsInput): types.CancelSpotInstanceRequestsOutput, table
+    cancelSpotInstanceRequests: function(Client, types.CancelSpotInstanceRequestsInput): Operation<types.CancelSpotInstanceRequestsOutput>
     -- Determines whether a product code is associated with an instance. This action can only
     -- be used by the owner of the product code. It is useful when a product code owner must
     -- verify whether another user's instance is eligible for support.
-    confirmProductInstance: function(Client, types.ConfirmProductInstanceInput): types.ConfirmProductInstanceOutput, table
+    confirmProductInstance: function(Client, types.ConfirmProductInstanceInput): Operation<types.ConfirmProductInstanceOutput>
     -- Copies the specified Amazon FPGA Image (AFI) to the current Region.
-    copyFpgaImage: function(Client, types.CopyFpgaImageInput): types.CopyFpgaImageOutput, table
+    copyFpgaImage: function(Client, types.CopyFpgaImageInput): Operation<types.CopyFpgaImageOutput>
     -- Initiates an AMI copy operation. You must specify the source AMI ID and both the source
     -- and destination locations. The copy operation must be initiated in the destination
     -- Region.
@@ -425,7 +429,7 @@ local record Client
     -- default.
     -- For more information, including the required permissions for copying an AMI, see Copy an Amazon EC2 AMI in the
     -- Amazon EC2 User Guide.
-    copyImage: function(Client, types.CopyImageInput): types.CopyImageOutput, table
+    copyImage: function(Client, types.CopyImageInput): Operation<types.CopyImageOutput>
     -- Creates an exact copy of an Amazon EBS snapshot.
     -- The location of the source snapshot determines whether you can copy it or not,
     -- and the allowed destinations for the snapshot copy.
@@ -447,14 +451,14 @@ local record Client
     -- any purpose.
     -- For more information, see Copy an Amazon EBS snapshot in the
     -- Amazon EBS User Guide.
-    copySnapshot: function(Client, types.CopySnapshotInput): types.CopySnapshotOutput, table
+    copySnapshot: function(Client, types.CopySnapshotInput): Operation<types.CopySnapshotOutput>
     -- Creates a crash-consistent, point-in-time copy of an existing Amazon EBS volume within the same
     -- Availability Zone. The volume copy can be attached to an Amazon EC2 instance once it reaches the
     -- available state. For more information, see Copy an Amazon EBS volume.
-    copyVolumes: function(Client, types.CopyVolumesInput): types.CopyVolumesOutput, table
+    copyVolumes: function(Client, types.CopyVolumesInput): Operation<types.CopyVolumesOutput>
     -- Creates a new data export configuration for EC2 Capacity Manager. This allows you to automatically export capacity usage data to an S3 bucket on a scheduled basis.
     -- The exported data includes metrics for On-Demand, Spot, and Capacity Reservations usage across your organization.
-    createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput): types.CreateCapacityManagerDataExportOutput, table
+    createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput): Operation<types.CreateCapacityManagerDataExportOutput>
     -- Creates a new Capacity Reservation with the specified attributes. Capacity
     -- Reservations enable you to reserve capacity for your Amazon EC2 instances in a specific
     -- Availability Zone for any duration.
@@ -474,29 +478,29 @@ local record Client
     -- again. For more information, see
     -- Amazon EC2 Service Quotas in the
     -- Amazon EC2 User Guide.
-    createCapacityReservation: function(Client, types.CreateCapacityReservationInput): types.CreateCapacityReservationOutput, table
+    createCapacityReservation: function(Client, types.CreateCapacityReservationInput): Operation<types.CreateCapacityReservationOutput>
     -- Create a new Capacity Reservation by splitting the capacity of the source Capacity
     -- Reservation. The new Capacity Reservation will have the same attributes as the source
     -- Capacity Reservation except for tags. The source Capacity Reservation must be
     -- active and owned by your Amazon Web Services account.
-    createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput): types.CreateCapacityReservationBySplittingOutput, table
+    createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput): Operation<types.CreateCapacityReservationBySplittingOutput>
     -- Creates a Capacity Reservation Fleet. For more information, see Create a
     -- Capacity Reservation Fleet in the
     -- Amazon EC2 User Guide.
-    createCapacityReservationFleet: function(Client, types.CreateCapacityReservationFleetInput): types.CreateCapacityReservationFleetOutput, table
+    createCapacityReservationFleet: function(Client, types.CreateCapacityReservationFleetInput): Operation<types.CreateCapacityReservationFleetOutput>
     -- Creates a carrier gateway. For more information about carrier gateways, see Carrier gateways in the Amazon Web Services Wavelength Developer Guide.
-    createCarrierGateway: function(Client, types.CreateCarrierGatewayInput): types.CreateCarrierGatewayOutput, table
+    createCarrierGateway: function(Client, types.CreateCarrierGatewayInput): Operation<types.CreateCarrierGatewayOutput>
     -- Creates a Client VPN endpoint. A Client VPN endpoint is the resource you create and configure to
     -- enable and manage client VPN sessions. It is the destination endpoint at which all client VPN sessions
     -- are terminated.
-    createClientVpnEndpoint: function(Client, types.CreateClientVpnEndpointInput): types.CreateClientVpnEndpointOutput, table
+    createClientVpnEndpoint: function(Client, types.CreateClientVpnEndpointInput): Operation<types.CreateClientVpnEndpointOutput>
     -- Adds a route to a network to a Client VPN endpoint. Each Client VPN endpoint has a route table that describes the
     -- available destination network routes. Each route in the route table specifies the path for traﬃc to speciﬁc resources or networks.
-    createClientVpnRoute: function(Client, types.CreateClientVpnRouteInput): types.CreateClientVpnRouteOutput, table
+    createClientVpnRoute: function(Client, types.CreateClientVpnRouteInput): Operation<types.CreateClientVpnRouteOutput>
     -- Creates a range of customer-owned IP addresses.
-    createCoipCidr: function(Client, types.CreateCoipCidrInput): types.CreateCoipCidrOutput, table
+    createCoipCidr: function(Client, types.CreateCoipCidrInput): Operation<types.CreateCoipCidrOutput>
     -- Creates a pool of customer-owned IP (CoIP) addresses.
-    createCoipPool: function(Client, types.CreateCoipPoolInput): types.CreateCoipPoolOutput, table
+    createCoipPool: function(Client, types.CreateCoipPoolInput): Operation<types.CreateCoipPoolOutput>
     -- Provides information to Amazon Web Services about your customer gateway device. The
     -- customer gateway device is the appliance at your end of the VPN connection. You
     -- must provide the IP address of the customer gateway device’s external
@@ -511,12 +515,12 @@ local record Client
     -- BGP ASN, specify a unique device name for each customer gateway. An identical request
     -- returns information about the existing customer gateway; it doesn't create a new customer
     -- gateway.
-    createCustomerGateway: function(Client, types.CreateCustomerGatewayInput): types.CreateCustomerGatewayOutput, table
+    createCustomerGateway: function(Client, types.CreateCustomerGatewayInput): Operation<types.CreateCustomerGatewayOutput>
     -- Creates a default subnet with a size /20 IPv4 CIDR block in the
     -- specified Availability Zone in your default VPC. You can have only one default subnet
     -- per Availability Zone. For more information, see Create a default
     -- subnet in the Amazon VPC User Guide.
-    createDefaultSubnet: function(Client, types.CreateDefaultSubnetInput): types.CreateDefaultSubnetOutput, table
+    createDefaultSubnet: function(Client, types.CreateDefaultSubnetInput): Operation<types.CreateDefaultSubnetOutput>
     -- Creates a default VPC with a size /16 IPv4 CIDR block and a default subnet
     -- in each Availability Zone. For more information about the components of a default VPC,
     -- see Default VPCs
@@ -524,10 +528,10 @@ local record Client
     -- default VPC yourself.
     -- If you deleted your previous default VPC, you can create a default VPC. You cannot have
     -- more than one default VPC per Region.
-    createDefaultVpc: function(Client, types.CreateDefaultVpcInput): types.CreateDefaultVpcOutput, table
+    createDefaultVpc: function(Client, types.CreateDefaultVpcInput): Operation<types.CreateDefaultVpcOutput>
     -- Delegates ownership of the Amazon EBS root volume for an Apple silicon
     -- Mac instance to an administrative user.
-    createDelegateMacVolumeOwnershipTask: function(Client, types.CreateDelegateMacVolumeOwnershipTaskInput): types.CreateDelegateMacVolumeOwnershipTaskOutput, table
+    createDelegateMacVolumeOwnershipTask: function(Client, types.CreateDelegateMacVolumeOwnershipTaskInput): Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
     -- Creates a custom set of DHCP options. After you create a DHCP option set, you associate
     -- it with a VPC. After you associate a DHCP option set with a VPC, all existing and newly
     -- launched instances in the VPC use this set of DHCP options.
@@ -558,18 +562,18 @@ local record Client
     -- ipv6-address-preferred-lease-time - A value (in seconds, minutes, hours, or years) for how frequently a running instance with an IPv6 assigned to it goes through DHCPv6 lease renewal.
     -- Acceptable values are between 140 and 2147483647 seconds (approximately 68 years). If no value is entered, the default lease time is 140 seconds. If you use long-term addressing for EC2 instances, you can increase the lease time and avoid frequent
     -- lease renewal requests. Lease renewal typically occurs when half of the lease time has elapsed.
-    createDhcpOptions: function(Client, types.CreateDhcpOptionsInput): types.CreateDhcpOptionsOutput, table
+    createDhcpOptions: function(Client, types.CreateDhcpOptionsInput): Operation<types.CreateDhcpOptionsOutput>
     -- [IPv6 only] Creates an egress-only internet gateway for your VPC. An egress-only
     -- internet gateway is used to enable outbound communication over IPv6 from instances in
     -- your VPC to the internet, and prevents hosts outside of your VPC from initiating an IPv6
     -- connection with your instance.
-    createEgressOnlyInternetGateway: function(Client, types.CreateEgressOnlyInternetGatewayInput): types.CreateEgressOnlyInternetGatewayOutput, table
+    createEgressOnlyInternetGateway: function(Client, types.CreateEgressOnlyInternetGatewayInput): Operation<types.CreateEgressOnlyInternetGatewayOutput>
     -- Creates an EC2 Fleet that contains the configuration information for On-Demand Instances and Spot Instances.
     -- Instances are launched immediately if there is available capacity.
     -- A single EC2 Fleet can include multiple launch specifications that vary by instance type,
     -- AMI, Availability Zone, or subnet.
     -- For more information, see EC2 Fleet in the Amazon EC2 User Guide.
-    createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    createFleet: function(Client, types.CreateFleetInput): Operation<types.CreateFleetOutput>
     -- Creates one or more flow logs to capture information about IP traffic for a specific network interface,
     -- subnet, or VPC.
     -- Flow log data for a monitored network interface is recorded as flow log records, which are log events
@@ -582,14 +586,14 @@ local record Client
     -- bucket.
     -- For more information, see VPC Flow Logs
     -- in the Amazon VPC User Guide.
-    createFlowLogs: function(Client, types.CreateFlowLogsInput): types.CreateFlowLogsOutput, table
+    createFlowLogs: function(Client, types.CreateFlowLogsInput): Operation<types.CreateFlowLogsOutput>
     -- Creates an Amazon FPGA Image (AFI) from the specified design checkpoint (DCP).
     -- The create operation is asynchronous. To verify that the AFI was successfully
     -- created and is ready for use, check the output logs.
     -- An AFI contains the FPGA bitstream that is ready to download to an FPGA.
     -- You can securely deploy an AFI on multiple FPGA-accelerated instances.
     -- For more information, see the Amazon Web Services FPGA Hardware Development Kit.
-    createFpgaImage: function(Client, types.CreateFpgaImageInput): types.CreateFpgaImageOutput, table
+    createFpgaImage: function(Client, types.CreateFpgaImageInput): Operation<types.CreateFpgaImageOutput>
     -- Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or
     -- stopped.
     -- If you customized your instance with instance store volumes or Amazon EBS volumes in addition
@@ -604,19 +608,19 @@ local record Client
     -- Local Zone or in its parent Region.
     -- For more information, see Create an Amazon EBS-backed AMI in
     -- the Amazon Elastic Compute Cloud User Guide.
-    createImage: function(Client, types.CreateImageInput): types.CreateImageOutput, table
+    createImage: function(Client, types.CreateImageInput): Operation<types.CreateImageOutput>
     -- Creates a report that shows how your image is used across other Amazon Web Services accounts. The report
     -- provides visibility into which accounts are using the specified image, and how many resources
     -- (EC2 instances or launch templates) are referencing it.
     -- For more information, see View your AMI usage in the
     -- Amazon EC2 User Guide.
-    createImageUsageReport: function(Client, types.CreateImageUsageReportInput): types.CreateImageUsageReportOutput, table
+    createImageUsageReport: function(Client, types.CreateImageUsageReportInput): Operation<types.CreateImageUsageReportOutput>
     -- Creates an EC2 Instance Connect Endpoint.
     -- An EC2 Instance Connect Endpoint allows you to connect to an instance, without
     -- requiring the instance to have a public IPv4 or public IPv6 address. For more
     -- information, see Connect to your instances using EC2 Instance Connect Endpoint in the
     -- Amazon EC2 User Guide.
-    createInstanceConnectEndpoint: function(Client, types.CreateInstanceConnectEndpointInput): types.CreateInstanceConnectEndpointOutput, table
+    createInstanceConnectEndpoint: function(Client, types.CreateInstanceConnectEndpointInput): Operation<types.CreateInstanceConnectEndpointOutput>
     -- Creates an event window in which scheduled events for the associated Amazon EC2 instances can
     -- run.
     -- You can define either a set of time ranges or a cron expression when creating the event
@@ -632,48 +636,48 @@ local record Client
     -- Unscheduled maintenance such as AutoRecovery and unplanned reboots.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    createInstanceEventWindow: function(Client, types.CreateInstanceEventWindowInput): types.CreateInstanceEventWindowOutput, table
+    createInstanceEventWindow: function(Client, types.CreateInstanceEventWindowInput): Operation<types.CreateInstanceEventWindowOutput>
     -- Exports a running or stopped instance to an Amazon S3 bucket.
     -- For information about the prerequisites for your Amazon S3 bucket, supported operating systems,
     -- image formats, and known limitations for the types of instances you can export, see Exporting an instance as a VM Using VM
     -- Import/Export in the VM Import/Export User Guide.
-    createInstanceExportTask: function(Client, types.CreateInstanceExportTaskInput): types.CreateInstanceExportTaskOutput, table
+    createInstanceExportTask: function(Client, types.CreateInstanceExportTaskInput): Operation<types.CreateInstanceExportTaskOutput>
     -- Creates an internet gateway for use with a VPC. After creating the internet gateway,
     -- you attach it to a VPC using AttachInternetGateway.
     -- For more information, see Internet gateways in the
     -- Amazon VPC User Guide.
-    createInternetGateway: function(Client, types.CreateInternetGatewayInput): types.CreateInternetGatewayOutput, table
+    createInternetGateway: function(Client, types.CreateInternetGatewayInput): Operation<types.CreateInternetGatewayOutput>
     -- Creates an interruptible Capacity Reservation by specifying the number of unused instances you want to allocate from your source reservation. This helps you make unused capacity available for other workloads within your account while maintaining control to reclaim it.
-    createInterruptibleCapacityReservationAllocation: function(Client, types.CreateInterruptibleCapacityReservationAllocationInput): types.CreateInterruptibleCapacityReservationAllocationOutput, table
+    createInterruptibleCapacityReservationAllocation: function(Client, types.CreateInterruptibleCapacityReservationAllocationInput): Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
     -- Create an IPAM. Amazon VPC IP Address Manager (IPAM) is a VPC feature that you can use
     -- to automate your IP address management workflows including assigning, tracking,
     -- troubleshooting, and auditing IP addresses across Amazon Web Services Regions and accounts
     -- throughout your Amazon Web Services Organization.
     -- For more information, see Create an IPAM in the Amazon VPC IPAM User Guide.
-    createIpam: function(Client, types.CreateIpamInput): types.CreateIpamOutput, table
+    createIpam: function(Client, types.CreateIpamInput): Operation<types.CreateIpamOutput>
     -- Create a verification token.
     -- A verification token is an Amazon Web Services-generated random value that you can use to prove ownership of an external resource. For example, you can use a verification token to validate that you control a public IP address range when you bring an IP address range to Amazon Web Services (BYOIP).
-    createIpamExternalResourceVerificationToken: function(Client, types.CreateIpamExternalResourceVerificationTokenInput): types.CreateIpamExternalResourceVerificationTokenOutput, table
+    createIpamExternalResourceVerificationToken: function(Client, types.CreateIpamExternalResourceVerificationTokenInput): Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
     -- Creates an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
     -- For more information, see Define public IPv4 allocation strategy with IPAM policies in the Amazon VPC IPAM User Guide.
-    createIpamPolicy: function(Client, types.CreateIpamPolicyInput): types.CreateIpamPolicyOutput, table
+    createIpamPolicy: function(Client, types.CreateIpamPolicyInput): Operation<types.CreateIpamPolicyOutput>
     -- Create an IP address pool for Amazon VPC IP Address Manager (IPAM). In IPAM, a pool is a collection of contiguous IP addresses CIDRs. Pools enable you to organize your IP addresses according to your routing and security needs. For example, if you have separate routing and security needs for development and production applications, you can create a pool for each.
     -- For more information, see Create a top-level pool in the Amazon VPC IPAM User Guide.
-    createIpamPool: function(Client, types.CreateIpamPoolInput): types.CreateIpamPoolOutput, table
+    createIpamPool: function(Client, types.CreateIpamPoolInput): Operation<types.CreateIpamPoolOutput>
     -- Creates an IPAM prefix list resolver.
     -- An IPAM prefix list resolver is a component that manages the synchronization between IPAM's CIDR selection rules and customer-managed prefix lists. It automates connectivity configurations by selecting CIDRs from IPAM's database based on your business logic and synchronizing them with prefix lists used in resources such as VPC route tables and security groups.
     -- For more information about IPAM prefix list resolver, see Automate prefix list updates with IPAM in the Amazon VPC IPAM User Guide.
-    createIpamPrefixListResolver: function(Client, types.CreateIpamPrefixListResolverInput): types.CreateIpamPrefixListResolverOutput, table
+    createIpamPrefixListResolver: function(Client, types.CreateIpamPrefixListResolverInput): Operation<types.CreateIpamPrefixListResolverOutput>
     -- Creates an IPAM prefix list resolver target.
     -- An IPAM prefix list resolver target is an association between a specific customer-managed prefix list and an IPAM prefix list resolver. The target enables the resolver to synchronize CIDRs selected by its rules into the specified prefix list, which can then be referenced in Amazon Web Services resources.
     -- For more information about IPAM prefix list resolver, see Automate prefix list updates with IPAM in the Amazon VPC IPAM User Guide.
-    createIpamPrefixListResolverTarget: function(Client, types.CreateIpamPrefixListResolverTargetInput): types.CreateIpamPrefixListResolverTargetOutput, table
+    createIpamPrefixListResolverTarget: function(Client, types.CreateIpamPrefixListResolverTargetInput): Operation<types.CreateIpamPrefixListResolverTargetOutput>
     -- Creates an IPAM resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    createIpamResourceDiscovery: function(Client, types.CreateIpamResourceDiscoveryInput): types.CreateIpamResourceDiscoveryOutput, table
+    createIpamResourceDiscovery: function(Client, types.CreateIpamResourceDiscoveryInput): Operation<types.CreateIpamResourceDiscoveryOutput>
     -- Create an IPAM scope. In IPAM, a scope is the highest-level container within IPAM. An IPAM contains two default scopes. Each scope represents the IP space for a single network. The private scope is intended for all private IP address space. The public scope is intended for all public IP address space. Scopes enable you to reuse IP addresses across multiple unconnected networks without causing IP address overlap or conflict.
     -- For more information, see Add a scope in the Amazon VPC IPAM User Guide.
-    createIpamScope: function(Client, types.CreateIpamScopeInput): types.CreateIpamScopeOutput, table
+    createIpamScope: function(Client, types.CreateIpamScopeInput): Operation<types.CreateIpamScopeOutput>
     -- Creates an ED25519 or 2048-bit RSA key pair with the specified name and in the
     -- specified format. Amazon EC2 stores the public key and displays the private
     -- key for you to save to a file. The private key is returned as an unencrypted PEM encoded
@@ -685,7 +689,7 @@ local record Client
     -- You can have up to 5,000 key pairs per Amazon Web Services Region.
     -- For more information, see Amazon EC2 key pairs in the
     -- Amazon EC2 User Guide.
-    createKeyPair: function(Client, types.CreateKeyPairInput): types.CreateKeyPairOutput, table
+    createKeyPair: function(Client, types.CreateKeyPairInput): Operation<types.CreateKeyPairOutput>
     -- Creates a launch template.
     -- A launch template contains the parameters to launch an instance. When you launch an
     -- instance using RunInstances, you can specify a launch template instead
@@ -696,7 +700,7 @@ local record Client
     -- Amazon EC2 console. The API, SDKs, and CLI do not support cloning a template. For more
     -- information, see Create a launch template from an existing launch template in the
     -- Amazon EC2 User Guide.
-    createLaunchTemplate: function(Client, types.CreateLaunchTemplateInput): types.CreateLaunchTemplateOutput, table
+    createLaunchTemplate: function(Client, types.CreateLaunchTemplateInput): Operation<types.CreateLaunchTemplateOutput>
     -- Creates a new version of a launch template. You must specify an existing launch
     -- template, either by name or ID. You can determine whether the new version inherits
     -- parameters from a source version, and add or overwrite parameters as needed.
@@ -708,22 +712,22 @@ local record Client
     -- For more information, see Modify a launch
     -- template (manage launch template versions) in the
     -- Amazon EC2 User Guide.
-    createLaunchTemplateVersion: function(Client, types.CreateLaunchTemplateVersionInput): types.CreateLaunchTemplateVersionOutput, table
+    createLaunchTemplateVersion: function(Client, types.CreateLaunchTemplateVersionInput): Operation<types.CreateLaunchTemplateVersionOutput>
     -- Creates a static route for the specified local gateway route table. You must specify one of the
     -- following targets:
     -- LocalGatewayVirtualInterfaceGroupId
     -- NetworkInterfaceId
-    createLocalGatewayRoute: function(Client, types.CreateLocalGatewayRouteInput): types.CreateLocalGatewayRouteOutput, table
+    createLocalGatewayRoute: function(Client, types.CreateLocalGatewayRouteInput): Operation<types.CreateLocalGatewayRouteOutput>
     -- Creates a local gateway route table.
-    createLocalGatewayRouteTable: function(Client, types.CreateLocalGatewayRouteTableInput): types.CreateLocalGatewayRouteTableOutput, table
+    createLocalGatewayRouteTable: function(Client, types.CreateLocalGatewayRouteTableInput): Operation<types.CreateLocalGatewayRouteTableOutput>
     -- Creates a local gateway route table virtual interface group association.
-    createLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput): types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput, table
+    createLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput): Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
     -- Associates the specified VPC with the specified local gateway route table.
-    createLocalGatewayRouteTableVpcAssociation: function(Client, types.CreateLocalGatewayRouteTableVpcAssociationInput): types.CreateLocalGatewayRouteTableVpcAssociationOutput, table
+    createLocalGatewayRouteTableVpcAssociation: function(Client, types.CreateLocalGatewayRouteTableVpcAssociationInput): Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
     -- Create a virtual interface for a local gateway.
-    createLocalGatewayVirtualInterface: function(Client, types.CreateLocalGatewayVirtualInterfaceInput): types.CreateLocalGatewayVirtualInterfaceOutput, table
+    createLocalGatewayVirtualInterface: function(Client, types.CreateLocalGatewayVirtualInterfaceInput): Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
     -- Create a local gateway virtual interface group.
-    createLocalGatewayVirtualInterfaceGroup: function(Client, types.CreateLocalGatewayVirtualInterfaceGroupInput): types.CreateLocalGatewayVirtualInterfaceGroupOutput, table
+    createLocalGatewayVirtualInterfaceGroup: function(Client, types.CreateLocalGatewayVirtualInterfaceGroupInput): Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
     -- Creates a System Integrity Protection (SIP) modification task to configure the SIP settings
     -- for an x86 Mac instance or Apple silicon Mac instance. For more information, see
     -- Configure SIP for Amazon EC2 instances in the Amazon EC2 User Guide.
@@ -749,10 +753,10 @@ local record Client
     -- specify the following:
     -- MacSystemIntegrityProtectionStatus=enabled
     -- MacSystemIntegrityProtectionConfigurationRequest "NvramProtections=disabled"
-    createMacSystemIntegrityProtectionModificationTask: function(Client, types.CreateMacSystemIntegrityProtectionModificationTaskInput): types.CreateMacSystemIntegrityProtectionModificationTaskOutput, table
+    createMacSystemIntegrityProtectionModificationTask: function(Client, types.CreateMacSystemIntegrityProtectionModificationTaskInput): Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
     -- Creates a managed prefix list. You can specify entries for the prefix list.
     -- Each entry consists of a CIDR block and an optional description.
-    createManagedPrefixList: function(Client, types.CreateManagedPrefixListInput): types.CreateManagedPrefixListOutput, table
+    createManagedPrefixList: function(Client, types.CreateManagedPrefixListInput): Operation<types.CreateManagedPrefixListOutput>
     -- Creates a NAT gateway in the specified subnet. This action creates a network interface
     -- in the specified subnet with a private IP address from the IP address range of the
     -- subnet. You can create either a public NAT gateway or a private NAT gateway.
@@ -770,11 +774,11 @@ local record Client
     -- Similarly, you can view the network border group of an EIP by viewing the details of the EIP address.
     -- For more information about network border groups and EIPs, see Allocate an Elastic IP address
     -- in the Amazon VPC User Guide.
-    createNatGateway: function(Client, types.CreateNatGatewayInput): types.CreateNatGatewayOutput, table
+    createNatGateway: function(Client, types.CreateNatGatewayInput): Operation<types.CreateNatGatewayOutput>
     -- Creates a network ACL in a VPC. Network ACLs provide an optional layer of security (in addition to security groups) for the instances in your VPC.
     -- For more information, see Network ACLs in the
     -- Amazon VPC User Guide.
-    createNetworkAcl: function(Client, types.CreateNetworkAclInput): types.CreateNetworkAclOutput, table
+    createNetworkAcl: function(Client, types.CreateNetworkAclInput): Operation<types.CreateNetworkAclOutput>
     -- Creates an entry (a rule) in a network ACL with the specified rule number. Each network ACL has a set of numbered ingress rules
     -- and a separate set of numbered egress rules. When determining whether a packet should be allowed in or out of a subnet associated
     -- with the ACL, we process the entries in the ACL according to the rule numbers, in ascending order. Each network ACL has a set of
@@ -784,28 +788,28 @@ local record Client
     -- After you add an entry, you can't modify it; you must either replace it, or create an entry and delete the old one.
     -- For more information about network ACLs, see Network ACLs
     -- in the Amazon VPC User Guide.
-    createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput): types.CreateNetworkAclEntryOutput, table
+    createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput): Operation<types.CreateNetworkAclEntryOutput>
     -- Creates a Network Access Scope.
     -- Amazon Web Services Network Access Analyzer enables cloud networking and cloud operations teams
     -- to verify that their networks on Amazon Web Services conform to their network security and governance
     -- objectives. For more information, see the Amazon Web Services Network Access Analyzer Guide.
-    createNetworkInsightsAccessScope: function(Client, types.CreateNetworkInsightsAccessScopeInput): types.CreateNetworkInsightsAccessScopeOutput, table
+    createNetworkInsightsAccessScope: function(Client, types.CreateNetworkInsightsAccessScopeInput): Operation<types.CreateNetworkInsightsAccessScopeOutput>
     -- Creates a path to analyze for reachability.
     -- Reachability Analyzer enables you to analyze and debug network reachability between
     -- two resources in your virtual private cloud (VPC). For more information, see the
     -- Reachability Analyzer Guide.
-    createNetworkInsightsPath: function(Client, types.CreateNetworkInsightsPathInput): types.CreateNetworkInsightsPathOutput, table
+    createNetworkInsightsPath: function(Client, types.CreateNetworkInsightsPathInput): Operation<types.CreateNetworkInsightsPathOutput>
     -- Creates a network interface in the specified subnet.
     -- The number of IP addresses you can assign to a network interface varies by instance
     -- type.
     -- For more information about network interfaces, see Elastic network interfaces in the
     -- Amazon EC2 User Guide.
-    createNetworkInterface: function(Client, types.CreateNetworkInterfaceInput): types.CreateNetworkInterfaceOutput, table
+    createNetworkInterface: function(Client, types.CreateNetworkInterfaceInput): Operation<types.CreateNetworkInterfaceOutput>
     -- Grants an Amazon Web Services-authorized account permission to attach the specified
     -- network interface to an instance in their account.
     -- You can grant permission to a single Amazon Web Services account only, and only one
     -- account at a time.
-    createNetworkInterfacePermission: function(Client, types.CreateNetworkInterfacePermissionInput): types.CreateNetworkInterfacePermissionOutput, table
+    createNetworkInterfacePermission: function(Client, types.CreateNetworkInterfacePermissionInput): Operation<types.CreateNetworkInterfacePermissionOutput>
     -- Creates a placement group in which to launch instances. The strategy of the placement
     -- group determines how the instances are organized within the group.
     -- A cluster placement group is a logical grouping of instances within a
@@ -816,15 +820,15 @@ local record Client
     -- instances in another partition.
     -- For more information, see Placement groups in the
     -- Amazon EC2 User Guide.
-    createPlacementGroup: function(Client, types.CreatePlacementGroupInput): types.CreatePlacementGroupOutput, table
+    createPlacementGroup: function(Client, types.CreatePlacementGroupInput): Operation<types.CreatePlacementGroupOutput>
     -- Creates a public IPv4 address pool. A public IPv4 pool is an EC2 IP address pool required for the public IPv4 CIDRs that you own and bring to Amazon Web Services to manage with IPAM. IPv6 addresses you bring to Amazon Web Services, however, use IPAM pools only. To monitor the status of pool creation, use DescribePublicIpv4Pools.
-    createPublicIpv4Pool: function(Client, types.CreatePublicIpv4PoolInput): types.CreatePublicIpv4PoolOutput, table
+    createPublicIpv4Pool: function(Client, types.CreatePublicIpv4PoolInput): Operation<types.CreatePublicIpv4PoolOutput>
     -- Replaces the EBS-backed root volume for a running instance with a new
     -- volume that is restored to the original root volume's launch state, that is restored to a
     -- specific snapshot taken from the original root volume, or that is restored from an AMI
     -- that has the same key characteristics as that of the instance.
     -- For more information, see Replace a root volume in the Amazon EC2 User Guide.
-    createReplaceRootVolumeTask: function(Client, types.CreateReplaceRootVolumeTaskInput): types.CreateReplaceRootVolumeTaskOutput, table
+    createReplaceRootVolumeTask: function(Client, types.CreateReplaceRootVolumeTaskInput): Operation<types.CreateReplaceRootVolumeTaskOutput>
     -- Creates a listing for Amazon EC2 Standard Reserved Instances to be sold in the Reserved
     -- Instance Marketplace. You can submit one Standard Reserved Instance listing at a time. To get
     -- a list of your Standard Reserved Instances, you can use the DescribeReservedInstances operation.
@@ -842,14 +846,14 @@ local record Client
     -- you can use the DescribeReservedInstancesListings operation.
     -- For more information, see Sell in the Reserved Instance
     -- Marketplace in the Amazon EC2 User Guide.
-    createReservedInstancesListing: function(Client, types.CreateReservedInstancesListingInput): types.CreateReservedInstancesListingOutput, table
+    createReservedInstancesListing: function(Client, types.CreateReservedInstancesListingInput): Operation<types.CreateReservedInstancesListingOutput>
     -- Starts a task that restores an AMI from an Amazon S3 object that was previously created by
     -- using CreateStoreImageTask.
     -- To use this API, you must have the required permissions. For more information, see Permissions for storing and restoring AMIs using S3 in the
     -- Amazon EC2 User Guide.
     -- For more information, see Store and restore an AMI using
     -- S3 in the Amazon EC2 User Guide.
-    createRestoreImageTask: function(Client, types.CreateRestoreImageTaskInput): types.CreateRestoreImageTaskOutput, table
+    createRestoreImageTask: function(Client, types.CreateRestoreImageTaskInput): Operation<types.CreateRestoreImageTaskOutput>
     -- Creates a route in a route table within a VPC.
     -- You must specify either a destination CIDR block or a prefix list ID. You must also specify
     -- exactly one of the resources from the parameter list.
@@ -863,7 +867,7 @@ local record Client
     -- so we use that route to determine where to target the traffic.
     -- For more information about route tables, see Route tables in the
     -- Amazon VPC User Guide.
-    createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    createRoute: function(Client, types.CreateRouteInput): Operation<types.CreateRouteOutput>
     -- Creates a new route server to manage dynamic routing in a VPC.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
     -- VPC Route Server dynamically updates VPC and internet gateway route tables with your preferred IPv4 or IPv6 routes to achieve routing fault tolerance for those workloads. This enables you to automatically reroute traffic within a VPC, which increases the manageability of VPC routing and interoperability with third-party workloads.
@@ -873,29 +877,29 @@ local record Client
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    createRouteServer: function(Client, types.CreateRouteServerInput): types.CreateRouteServerOutput, table
+    createRouteServer: function(Client, types.CreateRouteServerInput): Operation<types.CreateRouteServerOutput>
     -- Creates a new endpoint for a route server in a specified subnet.
     -- A route server endpoint is an Amazon Web Services-managed component inside a subnet that facilitates BGP (Border Gateway Protocol) connections between your route server and your BGP peers.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    createRouteServerEndpoint: function(Client, types.CreateRouteServerEndpointInput): types.CreateRouteServerEndpointOutput, table
+    createRouteServerEndpoint: function(Client, types.CreateRouteServerEndpointInput): Operation<types.CreateRouteServerEndpointOutput>
     -- Creates a new BGP peer for a specified route server endpoint.
     -- A route server peer is a session between a route server endpoint and the device deployed in Amazon Web Services (such as a firewall appliance or other network security function running on an EC2 instance). The device must meet these requirements:
     -- Have an elastic network interface in the VPC
     -- Support BGP (Border Gateway Protocol)
     -- Can initiate BGP sessions
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    createRouteServerPeer: function(Client, types.CreateRouteServerPeerInput): types.CreateRouteServerPeerOutput, table
+    createRouteServerPeer: function(Client, types.CreateRouteServerPeerInput): Operation<types.CreateRouteServerPeerOutput>
     -- Creates a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.
     -- For more information, see Route tables in the
     -- Amazon VPC User Guide.
-    createRouteTable: function(Client, types.CreateRouteTableInput): types.CreateRouteTableOutput, table
+    createRouteTable: function(Client, types.CreateRouteTableInput): Operation<types.CreateRouteTableOutput>
     -- Creates a secondary network.
     -- The allowed size for a secondary network CIDR block is between /28 netmask (16 IP addresses) and /12 netmask (1,048,576 IP addresses).
-    createSecondaryNetwork: function(Client, types.CreateSecondaryNetworkInput): types.CreateSecondaryNetworkOutput, table
+    createSecondaryNetwork: function(Client, types.CreateSecondaryNetworkInput): Operation<types.CreateSecondaryNetworkOutput>
     -- Creates a secondary subnet in a secondary network.
     -- A secondary subnet CIDR block must not overlap with the CIDR block of an existing secondary subnet in the secondary network. After you create a secondary subnet, you can't change its CIDR block.
     -- The allowed size for a secondary subnet CIDR block is between /28 netmask (16 IP addresses) and /12 netmask (1,048,576 IP addresses). Amazon reserves the first four IP addresses and the last IP address in each secondary subnet for internal use.
-    createSecondarySubnet: function(Client, types.CreateSecondarySubnetInput): types.CreateSecondarySubnetOutput, table
+    createSecondarySubnet: function(Client, types.CreateSecondarySubnetInput): Operation<types.CreateSecondarySubnetOutput>
     -- Creates a security group.
     -- A security group acts as a virtual firewall for your instance to control inbound and outbound traffic.
     -- For more information, see
@@ -915,7 +919,7 @@ local record Client
     -- RevokeSecurityGroupIngress, and
     -- RevokeSecurityGroupEgress.
     -- For more information about VPC security group limits, see Amazon VPC Limits.
-    createSecurityGroup: function(Client, types.CreateSecurityGroupInput): types.CreateSecurityGroupOutput, table
+    createSecurityGroup: function(Client, types.CreateSecurityGroupInput): Operation<types.CreateSecurityGroupOutput>
     -- Creates a snapshot of an EBS volume and stores it in Amazon S3. You can use snapshots for
     -- backups, to make copies of EBS volumes, and to save data before shutting down an
     -- instance.
@@ -942,7 +946,7 @@ local record Client
     -- are created from encrypted snapshots are also automatically encrypted. Your encrypted volumes
     -- and any associated snapshots always remain protected. For more information, see Amazon EBS encryption
     -- in the Amazon EBS User Guide.
-    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): Operation<types.CreateSnapshotOutput>
     -- Creates crash-consistent snapshots of multiple EBS volumes attached to an Amazon EC2 instance.
     -- Volumes are chosen by specifying an instance. Each volume attached to the specified instance
     -- will produce one snapshot that is crash-consistent across the instance. You can include all of
@@ -955,18 +959,18 @@ local record Client
     -- Local Zone or in its parent Amazon Web Services Region.
     -- If the source instance is on an Outpost, you can create the snapshots on the same
     -- Outpost or in its parent Amazon Web Services Region.
-    createSnapshots: function(Client, types.CreateSnapshotsInput): types.CreateSnapshotsOutput, table
+    createSnapshots: function(Client, types.CreateSnapshotsInput): Operation<types.CreateSnapshotsOutput>
     -- Creates a data feed for Spot Instances, enabling you to view Spot Instance usage logs.
     -- You can create one data feed per Amazon Web Services account. For more information, see
     -- Spot Instance data feed
     -- in the Amazon EC2 User Guide.
-    createSpotDatafeedSubscription: function(Client, types.CreateSpotDatafeedSubscriptionInput): types.CreateSpotDatafeedSubscriptionOutput, table
+    createSpotDatafeedSubscription: function(Client, types.CreateSpotDatafeedSubscriptionInput): Operation<types.CreateSpotDatafeedSubscriptionOutput>
     -- Stores an AMI as a single object in an Amazon S3 bucket.
     -- To use this API, you must have the required permissions. For more information, see Permissions for storing and restoring AMIs using S3 in the
     -- Amazon EC2 User Guide.
     -- For more information, see Store and restore an AMI using
     -- S3 in the Amazon EC2 User Guide.
-    createStoreImageTask: function(Client, types.CreateStoreImageTaskInput): types.CreateStoreImageTaskOutput, table
+    createStoreImageTask: function(Client, types.CreateStoreImageTaskInput): Operation<types.CreateStoreImageTaskOutput>
     -- Creates a subnet in the specified VPC. For an IPv4 only subnet, specify an IPv4 CIDR block.
     -- If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead.
     -- For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both
@@ -984,11 +988,11 @@ local record Client
     -- therefore possible to have a subnet with no running instances (they're all stopped), but
     -- no remaining IP addresses available.
     -- For more information, see Subnets in the Amazon VPC User Guide.
-    createSubnet: function(Client, types.CreateSubnetInput): types.CreateSubnetOutput, table
+    createSubnet: function(Client, types.CreateSubnetInput): Operation<types.CreateSubnetOutput>
     -- Creates a subnet CIDR reservation. For more information, see Subnet CIDR reservations
     -- in the Amazon VPC User Guide and Manage prefixes
     -- for your network interfaces in the Amazon EC2 User Guide.
-    createSubnetCidrReservation: function(Client, types.CreateSubnetCidrReservationInput): types.CreateSubnetCidrReservationOutput, table
+    createSubnetCidrReservation: function(Client, types.CreateSubnetCidrReservationInput): Operation<types.CreateSubnetCidrReservationOutput>
     -- Adds or overwrites only the specified tags for the specified Amazon EC2 resource or
     -- resources. When you specify an existing tag key, the value is overwritten with
     -- the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and
@@ -998,17 +1002,17 @@ local record Client
     -- creating IAM policies that control users' access to resources based on tags, see Supported
     -- resource-level permissions for Amazon EC2 API actions in the Amazon
     -- Elastic Compute Cloud User Guide.
-    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createTags: function(Client, types.CreateTagsInput): Operation<types.CreateTagsOutput>
     -- Creates a Traffic Mirror filter.
     -- A Traffic Mirror filter is a set of rules that defines the traffic to mirror.
     -- By default, no traffic is mirrored. To mirror traffic, use CreateTrafficMirrorFilterRule
     -- to add Traffic Mirror rules to the filter. The rules you add define what traffic gets mirrored.
     -- You can also use ModifyTrafficMirrorFilterNetworkServices to mirror supported network services.
-    createTrafficMirrorFilter: function(Client, types.CreateTrafficMirrorFilterInput): types.CreateTrafficMirrorFilterOutput, table
+    createTrafficMirrorFilter: function(Client, types.CreateTrafficMirrorFilterInput): Operation<types.CreateTrafficMirrorFilterOutput>
     -- Creates a Traffic Mirror filter rule.
     -- A Traffic Mirror rule defines the Traffic Mirror source traffic to mirror.
     -- You need the Traffic Mirror filter ID when you create the rule.
-    createTrafficMirrorFilterRule: function(Client, types.CreateTrafficMirrorFilterRuleInput): types.CreateTrafficMirrorFilterRuleOutput, table
+    createTrafficMirrorFilterRule: function(Client, types.CreateTrafficMirrorFilterRuleInput): Operation<types.CreateTrafficMirrorFilterRuleOutput>
     -- Creates a Traffic Mirror session.
     -- A Traffic Mirror session actively copies packets from a Traffic Mirror source to a Traffic Mirror target. Create a filter, and then assign it
     -- to the session to define a subset of the traffic to mirror, for example all TCP
@@ -1016,14 +1020,14 @@ local record Client
     -- The Traffic Mirror source and the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in a different VPC connected via VPC peering or a transit gateway.
     -- By default, no traffic is mirrored. Use CreateTrafficMirrorFilter to
     -- create filter rules that specify the traffic to mirror.
-    createTrafficMirrorSession: function(Client, types.CreateTrafficMirrorSessionInput): types.CreateTrafficMirrorSessionOutput, table
+    createTrafficMirrorSession: function(Client, types.CreateTrafficMirrorSessionInput): Operation<types.CreateTrafficMirrorSessionOutput>
     -- Creates a target for your Traffic Mirror session.
     -- A Traffic Mirror target is the destination for mirrored traffic. The Traffic Mirror source and
     -- the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in
     -- different VPCs connected via VPC peering or a transit gateway.
     -- A Traffic Mirror target can be a network interface, a Network Load Balancer, or a Gateway Load Balancer endpoint.
     -- To use the target in a Traffic Mirror session, use CreateTrafficMirrorSession.
-    createTrafficMirrorTarget: function(Client, types.CreateTrafficMirrorTargetInput): types.CreateTrafficMirrorTargetOutput, table
+    createTrafficMirrorTarget: function(Client, types.CreateTrafficMirrorTargetInput): Operation<types.CreateTrafficMirrorTargetOutput>
     -- Creates a transit gateway.
     -- You can use a transit gateway to interconnect your virtual private clouds (VPC) and on-premises networks.
     -- After the transit gateway enters the available state, you can attach your VPCs and VPN
@@ -1037,59 +1041,59 @@ local record Client
     -- additional transit gateway route tables. If you disable automatic route propagation, we do not create a default transit gateway route table.
     -- You can use EnableTransitGatewayRouteTablePropagation to propagate routes from a resource
     -- attachment to a transit gateway route table. If you disable automatic associations, you can use AssociateTransitGatewayRouteTable to associate a resource attachment with a transit gateway route table.
-    createTransitGateway: function(Client, types.CreateTransitGatewayInput): types.CreateTransitGatewayOutput, table
+    createTransitGateway: function(Client, types.CreateTransitGatewayInput): Operation<types.CreateTransitGatewayOutput>
     -- Creates a Connect attachment from a specified transit gateway attachment. A Connect attachment is a GRE-based tunnel attachment that you can use to establish a connection between a transit gateway and an appliance.
     -- A Connect attachment uses an existing VPC or Amazon Web Services Direct Connect attachment as the underlying transport mechanism.
-    createTransitGatewayConnect: function(Client, types.CreateTransitGatewayConnectInput): types.CreateTransitGatewayConnectOutput, table
+    createTransitGatewayConnect: function(Client, types.CreateTransitGatewayConnectInput): Operation<types.CreateTransitGatewayConnectOutput>
     -- Creates a Connect peer for a specified transit gateway Connect attachment between a
     -- transit gateway and an appliance.
     -- The peer address and transit gateway address must be the same IP address family (IPv4 or IPv6).
     -- For more information, see Connect peers
     -- in the Amazon Web Services Transit Gateways Guide.
-    createTransitGatewayConnectPeer: function(Client, types.CreateTransitGatewayConnectPeerInput): types.CreateTransitGatewayConnectPeerOutput, table
+    createTransitGatewayConnectPeer: function(Client, types.CreateTransitGatewayConnectPeerInput): Operation<types.CreateTransitGatewayConnectPeerOutput>
     -- Creates a metering policy for a transit gateway to track and measure network traffic.
-    createTransitGatewayMeteringPolicy: function(Client, types.CreateTransitGatewayMeteringPolicyInput): types.CreateTransitGatewayMeteringPolicyOutput, table
+    createTransitGatewayMeteringPolicy: function(Client, types.CreateTransitGatewayMeteringPolicyInput): Operation<types.CreateTransitGatewayMeteringPolicyOutput>
     -- Creates an entry in a transit gateway metering policy to define traffic measurement rules.
-    createTransitGatewayMeteringPolicyEntry: function(Client, types.CreateTransitGatewayMeteringPolicyEntryInput): types.CreateTransitGatewayMeteringPolicyEntryOutput, table
+    createTransitGatewayMeteringPolicyEntry: function(Client, types.CreateTransitGatewayMeteringPolicyEntryInput): Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
     -- Creates a multicast domain using the specified transit gateway.
     -- The transit gateway must be in the available state before you create a domain. Use DescribeTransitGateways to see the state of transit gateway.
-    createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput): types.CreateTransitGatewayMulticastDomainOutput, table
+    createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput): Operation<types.CreateTransitGatewayMulticastDomainOutput>
     -- Requests a transit gateway peering attachment between the specified transit gateway
     -- (requester) and a peer transit gateway (accepter). The peer transit gateway can be in
     -- your account or a different Amazon Web Services account.
     -- After you create the peering attachment, the owner of the accepter transit gateway
     -- must accept the attachment request.
-    createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput): types.CreateTransitGatewayPeeringAttachmentOutput, table
+    createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput): Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
     -- Creates a transit gateway policy table.
-    createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput): types.CreateTransitGatewayPolicyTableOutput, table
+    createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput): Operation<types.CreateTransitGatewayPolicyTableOutput>
     -- Creates a reference (route) to a prefix list in a specified transit gateway route table.
-    createTransitGatewayPrefixListReference: function(Client, types.CreateTransitGatewayPrefixListReferenceInput): types.CreateTransitGatewayPrefixListReferenceOutput, table
+    createTransitGatewayPrefixListReference: function(Client, types.CreateTransitGatewayPrefixListReferenceInput): Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
     -- Creates a static route for the specified transit gateway route table.
-    createTransitGatewayRoute: function(Client, types.CreateTransitGatewayRouteInput): types.CreateTransitGatewayRouteOutput, table
+    createTransitGatewayRoute: function(Client, types.CreateTransitGatewayRouteInput): Operation<types.CreateTransitGatewayRouteOutput>
     -- Creates a route table for the specified transit gateway.
-    createTransitGatewayRouteTable: function(Client, types.CreateTransitGatewayRouteTableInput): types.CreateTransitGatewayRouteTableOutput, table
+    createTransitGatewayRouteTable: function(Client, types.CreateTransitGatewayRouteTableInput): Operation<types.CreateTransitGatewayRouteTableOutput>
     -- Advertises a new transit gateway route table.
-    createTransitGatewayRouteTableAnnouncement: function(Client, types.CreateTransitGatewayRouteTableAnnouncementInput): types.CreateTransitGatewayRouteTableAnnouncementOutput, table
+    createTransitGatewayRouteTableAnnouncement: function(Client, types.CreateTransitGatewayRouteTableAnnouncementInput): Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
     -- Attaches the specified VPC to the specified transit gateway.
     -- If you attach a VPC with a CIDR range that overlaps the CIDR range of a VPC that is already attached,
     -- the new VPC CIDR range is not propagated to the default propagation route table.
     -- To send VPC traffic to an attached transit gateway, add a route to the VPC route table using CreateRoute.
-    createTransitGatewayVpcAttachment: function(Client, types.CreateTransitGatewayVpcAttachmentInput): types.CreateTransitGatewayVpcAttachmentOutput, table
+    createTransitGatewayVpcAttachment: function(Client, types.CreateTransitGatewayVpcAttachmentInput): Operation<types.CreateTransitGatewayVpcAttachmentOutput>
     -- An Amazon Web Services Verified Access endpoint is where you define your application along with an optional endpoint-level access policy.
-    createVerifiedAccessEndpoint: function(Client, types.CreateVerifiedAccessEndpointInput): types.CreateVerifiedAccessEndpointOutput, table
+    createVerifiedAccessEndpoint: function(Client, types.CreateVerifiedAccessEndpointInput): Operation<types.CreateVerifiedAccessEndpointOutput>
     -- An Amazon Web Services Verified Access group is a collection of Amazon Web Services Verified Access endpoints who's associated applications have
     -- similar security requirements. Each instance within a Verified Access group shares an Verified Access policy. For
     -- example, you can group all Verified Access instances associated with "sales" applications together and
     -- use one common Verified Access policy.
-    createVerifiedAccessGroup: function(Client, types.CreateVerifiedAccessGroupInput): types.CreateVerifiedAccessGroupOutput, table
+    createVerifiedAccessGroup: function(Client, types.CreateVerifiedAccessGroupInput): Operation<types.CreateVerifiedAccessGroupOutput>
     -- An Amazon Web Services Verified Access instance is a regional entity that evaluates application requests and grants
     -- access only when your security requirements are met.
-    createVerifiedAccessInstance: function(Client, types.CreateVerifiedAccessInstanceInput): types.CreateVerifiedAccessInstanceOutput, table
+    createVerifiedAccessInstance: function(Client, types.CreateVerifiedAccessInstanceInput): Operation<types.CreateVerifiedAccessInstanceOutput>
     -- A trust provider is a third-party entity that creates, maintains, and manages identity
     -- information for users and devices. When an application request is made, the identity
     -- information sent by the trust provider is evaluated by Verified Access before allowing or
     -- denying the application request.
-    createVerifiedAccessTrustProvider: function(Client, types.CreateVerifiedAccessTrustProviderInput): types.CreateVerifiedAccessTrustProviderOutput, table
+    createVerifiedAccessTrustProvider: function(Client, types.CreateVerifiedAccessTrustProviderInput): Operation<types.CreateVerifiedAccessTrustProviderOutput>
     -- Creates an EBS volume that can be attached to an instance in the same Availability Zone.
     -- You can create a new empty volume or restore a volume from an EBS snapshot.
     -- Any Amazon Web Services Marketplace product codes from the snapshot are propagated to the volume.
@@ -1101,7 +1105,7 @@ local record Client
     -- resources in the Amazon EC2 User Guide.
     -- For more information, see Create an Amazon EBS volume in the
     -- Amazon EBS User Guide.
-    createVolume: function(Client, types.CreateVolumeInput): types.CreateVolumeOutput, table
+    createVolume: function(Client, types.CreateVolumeInput): Operation<types.CreateVolumeOutput>
     -- Creates a VPC with the specified CIDR blocks.
     -- A VPC must have an associated IPv4 CIDR block. You can choose an IPv4 CIDR block or an
     -- IPAM-allocated IPv4 CIDR block. You can optionally associate an IPv6 CIDR block with a
@@ -1115,23 +1119,23 @@ local record Client
     -- You can specify DNS options and tenancy for a VPC when you create it. You can't change
     -- the tenancy of a VPC after you create it. For more information, see VPC configuration options in the
     -- Amazon VPC User Guide.
-    createVpc: function(Client, types.CreateVpcInput): types.CreateVpcOutput, table
+    createVpc: function(Client, types.CreateVpcInput): Operation<types.CreateVpcOutput>
     -- Create a VPC Block Public Access (BPA) exclusion. A VPC BPA exclusion is a mode that can be applied to a single VPC or subnet that exempts it from the account’s BPA mode and will allow bidirectional or egress-only access. You can create BPA exclusions for VPCs and subnets even when BPA is not enabled on the account to ensure that there is no traffic disruption to the exclusions when VPC BPA is turned on. To learn more about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
-    createVpcBlockPublicAccessExclusion: function(Client, types.CreateVpcBlockPublicAccessExclusionInput): types.CreateVpcBlockPublicAccessExclusionOutput, table
+    createVpcBlockPublicAccessExclusion: function(Client, types.CreateVpcBlockPublicAccessExclusionInput): Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
     -- Creates a VPC Encryption Control configuration for a specified VPC. VPC Encryption Control enables you to enforce encryption for all data in transit within and between VPCs to meet compliance requirements for standards like HIPAA, FedRAMP, and PCI DSS.
     -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
-    createVpcEncryptionControl: function(Client, types.CreateVpcEncryptionControlInput): types.CreateVpcEncryptionControlOutput, table
+    createVpcEncryptionControl: function(Client, types.CreateVpcEncryptionControlInput): Operation<types.CreateVpcEncryptionControlOutput>
     -- Creates a VPC endpoint. A VPC endpoint provides a private connection between the
     -- specified VPC and the specified endpoint service. You can use an endpoint service
     -- provided by Amazon Web Services, an Amazon Web Services Marketplace Partner, or another
     -- Amazon Web Services account. For more information, see the Amazon Web Services PrivateLink User Guide.
-    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): types.CreateVpcEndpointOutput, table
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): Operation<types.CreateVpcEndpointOutput>
     -- Creates a connection notification for a specified VPC endpoint or VPC endpoint
     -- service. A connection notification notifies you of specific endpoint events. You must
     -- create an SNS topic to receive notifications. For more information, see Creating an Amazon SNS topic in
     -- the Amazon SNS Developer Guide.
     -- You can create a connection notification for interface endpoints only.
-    createVpcEndpointConnectionNotification: function(Client, types.CreateVpcEndpointConnectionNotificationInput): types.CreateVpcEndpointConnectionNotificationOutput, table
+    createVpcEndpointConnectionNotification: function(Client, types.CreateVpcEndpointConnectionNotificationInput): Operation<types.CreateVpcEndpointConnectionNotificationOutput>
     -- Creates a VPC endpoint service to which service consumers (Amazon Web Services accounts,
     -- users, and IAM roles) can connect.
     -- Before you create an endpoint service, you must create one of the following for your service:
@@ -1143,7 +1147,7 @@ local record Client
     -- name.
     -- For more information, see the Amazon Web Services PrivateLink
     -- Guide.
-    createVpcEndpointServiceConfiguration: function(Client, types.CreateVpcEndpointServiceConfigurationInput): types.CreateVpcEndpointServiceConfigurationOutput, table
+    createVpcEndpointServiceConfiguration: function(Client, types.CreateVpcEndpointServiceConfigurationInput): Operation<types.CreateVpcEndpointServiceConfigurationOutput>
     -- Requests a VPC peering connection between two VPCs: a requester VPC that you own and
     -- an accepter VPC with which to create the connection. The accepter VPC can belong to
     -- another Amazon Web Services account and can be in a different Region to the requester VPC.
@@ -1155,9 +1159,9 @@ local record Client
     -- cannot be accepted or rejected.
     -- If you create a VPC peering connection request between VPCs with overlapping CIDR
     -- blocks, the VPC peering connection has a status of failed.
-    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput): types.CreateVpcPeeringConnectionOutput, table
+    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput): Operation<types.CreateVpcPeeringConnectionOutput>
     -- Creates a VPN concentrator that aggregates multiple VPN connections to a transit gateway.
-    createVpnConcentrator: function(Client, types.CreateVpnConcentratorInput): types.CreateVpnConcentratorOutput, table
+    createVpnConcentrator: function(Client, types.CreateVpnConcentratorInput): Operation<types.CreateVpnConcentratorOutput>
     -- Creates a VPN connection between an existing virtual private gateway or transit
     -- gateway and a customer gateway. The supported connection type is
     -- ipsec.1.
@@ -1173,45 +1177,45 @@ local record Client
     -- EC2 doesn't return an error.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    createVpnConnection: function(Client, types.CreateVpnConnectionInput): types.CreateVpnConnectionOutput, table
+    createVpnConnection: function(Client, types.CreateVpnConnectionInput): Operation<types.CreateVpnConnectionOutput>
     -- Creates a static route associated with a VPN connection between an existing virtual
     -- private gateway and a VPN customer gateway. The static route allows traffic to be routed
     -- from the virtual private gateway to the VPN customer gateway.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    createVpnConnectionRoute: function(Client, types.CreateVpnConnectionRouteInput): types.CreateVpnConnectionRouteOutput, table
+    createVpnConnectionRoute: function(Client, types.CreateVpnConnectionRouteInput): Operation<types.CreateVpnConnectionRouteOutput>
     -- Creates a virtual private gateway. A virtual private gateway is the endpoint on the
     -- VPC side of your VPN connection. You can create a virtual private gateway before
     -- creating the VPC itself.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    createVpnGateway: function(Client, types.CreateVpnGatewayInput): types.CreateVpnGatewayOutput, table
+    createVpnGateway: function(Client, types.CreateVpnGatewayInput): Operation<types.CreateVpnGatewayOutput>
     -- Deletes an existing Capacity Manager data export configuration. This stops future scheduled exports but does not delete previously exported files from S3.
-    deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput): types.DeleteCapacityManagerDataExportOutput, table
+    deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput): Operation<types.DeleteCapacityManagerDataExportOutput>
     -- Deletes a carrier gateway.
     -- If you do not delete the route that contains the carrier gateway as the
     -- Target, the route is a blackhole route. For information about how to delete a route, see
     -- DeleteRoute.
-    deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput): types.DeleteCarrierGatewayOutput, table
+    deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput): Operation<types.DeleteCarrierGatewayOutput>
     -- Deletes the specified Client VPN endpoint. You must disassociate all target networks before you
     -- can delete a Client VPN endpoint.
-    deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput): types.DeleteClientVpnEndpointOutput, table
+    deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput): Operation<types.DeleteClientVpnEndpointOutput>
     -- Deletes a route from a Client VPN endpoint. You can only delete routes that you manually added using
     -- the CreateClientVpnRoute action. You cannot delete routes that were
     -- automatically added when associating a subnet. To remove routes that have been automatically added,
     -- disassociate the target subnet from the Client VPN endpoint.
-    deleteClientVpnRoute: function(Client, types.DeleteClientVpnRouteInput): types.DeleteClientVpnRouteOutput, table
+    deleteClientVpnRoute: function(Client, types.DeleteClientVpnRouteInput): Operation<types.DeleteClientVpnRouteOutput>
     -- Deletes a range of customer-owned IP addresses.
-    deleteCoipCidr: function(Client, types.DeleteCoipCidrInput): types.DeleteCoipCidrOutput, table
+    deleteCoipCidr: function(Client, types.DeleteCoipCidrInput): Operation<types.DeleteCoipCidrOutput>
     -- Deletes a pool of customer-owned IP (CoIP) addresses.
-    deleteCoipPool: function(Client, types.DeleteCoipPoolInput): types.DeleteCoipPoolOutput, table
+    deleteCoipPool: function(Client, types.DeleteCoipPoolInput): Operation<types.DeleteCoipPoolOutput>
     -- Deletes the specified customer gateway. You must delete the VPN connection before you
     -- can delete the customer gateway.
-    deleteCustomerGateway: function(Client, types.DeleteCustomerGatewayInput): types.DeleteCustomerGatewayOutput, table
+    deleteCustomerGateway: function(Client, types.DeleteCustomerGatewayInput): Operation<types.DeleteCustomerGatewayOutput>
     -- Deletes the specified set of DHCP options. You must disassociate the set of DHCP options before you can delete it. You can disassociate the set of DHCP options by associating either a new set of options or the default set of options with the VPC.
-    deleteDhcpOptions: function(Client, types.DeleteDhcpOptionsInput): types.DeleteDhcpOptionsOutput, table
+    deleteDhcpOptions: function(Client, types.DeleteDhcpOptionsInput): Operation<types.DeleteDhcpOptionsOutput>
     -- Deletes an egress-only internet gateway.
-    deleteEgressOnlyInternetGateway: function(Client, types.DeleteEgressOnlyInternetGatewayInput): types.DeleteEgressOnlyInternetGatewayOutput, table
+    deleteEgressOnlyInternetGateway: function(Client, types.DeleteEgressOnlyInternetGatewayInput): Operation<types.DeleteEgressOnlyInternetGatewayOutput>
     -- Deletes the specified EC2 Fleet request.
     -- After you delete an EC2 Fleet request, it launches no new instances.
     -- You must also specify whether a deleted EC2 Fleet request should terminate its instances. If
@@ -1243,54 +1247,54 @@ local record Client
     -- deleted.
     -- For more information, see Delete an EC2 Fleet request and the instances
     -- in the fleet in the Amazon EC2 User Guide.
-    deleteFleets: function(Client, types.DeleteFleetsInput): types.DeleteFleetsOutput, table
+    deleteFleets: function(Client, types.DeleteFleetsInput): Operation<types.DeleteFleetsOutput>
     -- Deletes one or more flow logs.
-    deleteFlowLogs: function(Client, types.DeleteFlowLogsInput): types.DeleteFlowLogsOutput, table
+    deleteFlowLogs: function(Client, types.DeleteFlowLogsInput): Operation<types.DeleteFlowLogsOutput>
     -- Deletes the specified Amazon FPGA Image (AFI).
-    deleteFpgaImage: function(Client, types.DeleteFpgaImageInput): types.DeleteFpgaImageOutput, table
+    deleteFpgaImage: function(Client, types.DeleteFpgaImageInput): Operation<types.DeleteFpgaImageOutput>
     -- Deletes the specified image usage report.
     -- For more information, see View your AMI usage in the
     -- Amazon EC2 User Guide.
-    deleteImageUsageReport: function(Client, types.DeleteImageUsageReportInput): types.DeleteImageUsageReportOutput, table
+    deleteImageUsageReport: function(Client, types.DeleteImageUsageReportInput): Operation<types.DeleteImageUsageReportOutput>
     -- Deletes the specified EC2 Instance Connect Endpoint.
-    deleteInstanceConnectEndpoint: function(Client, types.DeleteInstanceConnectEndpointInput): types.DeleteInstanceConnectEndpointOutput, table
+    deleteInstanceConnectEndpoint: function(Client, types.DeleteInstanceConnectEndpointInput): Operation<types.DeleteInstanceConnectEndpointOutput>
     -- Deletes the specified event window.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    deleteInstanceEventWindow: function(Client, types.DeleteInstanceEventWindowInput): types.DeleteInstanceEventWindowOutput, table
+    deleteInstanceEventWindow: function(Client, types.DeleteInstanceEventWindowInput): Operation<types.DeleteInstanceEventWindowOutput>
     -- Deletes the specified internet gateway. You must detach the internet gateway from the
     -- VPC before you can delete it.
-    deleteInternetGateway: function(Client, types.DeleteInternetGatewayInput): types.DeleteInternetGatewayOutput, table
+    deleteInternetGateway: function(Client, types.DeleteInternetGatewayInput): Operation<types.DeleteInternetGatewayOutput>
     -- Delete an IPAM. Deleting an IPAM removes all monitored data associated with the IPAM including the historical data for CIDRs.
     -- For more information, see Delete an IPAM in the Amazon VPC IPAM User Guide.
-    deleteIpam: function(Client, types.DeleteIpamInput): types.DeleteIpamOutput, table
+    deleteIpam: function(Client, types.DeleteIpamInput): Operation<types.DeleteIpamOutput>
     -- Delete a verification token.
     -- A verification token is an Amazon Web Services-generated random value that you can use to prove ownership of an external resource. For example, you can use a verification token to validate that you control a public IP address range when you bring an IP address range to Amazon Web Services (BYOIP).
-    deleteIpamExternalResourceVerificationToken: function(Client, types.DeleteIpamExternalResourceVerificationTokenInput): types.DeleteIpamExternalResourceVerificationTokenOutput, table
+    deleteIpamExternalResourceVerificationToken: function(Client, types.DeleteIpamExternalResourceVerificationTokenInput): Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
     -- Deletes an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
-    deleteIpamPolicy: function(Client, types.DeleteIpamPolicyInput): types.DeleteIpamPolicyOutput, table
+    deleteIpamPolicy: function(Client, types.DeleteIpamPolicyInput): Operation<types.DeleteIpamPolicyOutput>
     -- Delete an IPAM pool.
     -- You cannot delete an IPAM pool if there are allocations in it or CIDRs provisioned to it. To release
     -- allocations, see ReleaseIpamPoolAllocation. To deprovision pool
     -- CIDRs, see DeprovisionIpamPoolCidr.
     -- For more information, see Delete a pool in the Amazon VPC IPAM User Guide.
-    deleteIpamPool: function(Client, types.DeleteIpamPoolInput): types.DeleteIpamPoolOutput, table
+    deleteIpamPool: function(Client, types.DeleteIpamPoolInput): Operation<types.DeleteIpamPoolOutput>
     -- Deletes an IPAM prefix list resolver. Before deleting a resolver, you must first delete all resolver targets associated with it.
-    deleteIpamPrefixListResolver: function(Client, types.DeleteIpamPrefixListResolverInput): types.DeleteIpamPrefixListResolverOutput, table
+    deleteIpamPrefixListResolver: function(Client, types.DeleteIpamPrefixListResolverInput): Operation<types.DeleteIpamPrefixListResolverOutput>
     -- Deletes an IPAM prefix list resolver target. This removes the association between the resolver and the managed prefix list, stopping automatic CIDR synchronization.
     -- For more information about IPAM prefix list resolver, see Automate prefix list updates with IPAM in the Amazon VPC IPAM User Guide.
-    deleteIpamPrefixListResolverTarget: function(Client, types.DeleteIpamPrefixListResolverTargetInput): types.DeleteIpamPrefixListResolverTargetOutput, table
+    deleteIpamPrefixListResolverTarget: function(Client, types.DeleteIpamPrefixListResolverTargetInput): Operation<types.DeleteIpamPrefixListResolverTargetOutput>
     -- Deletes an IPAM resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    deleteIpamResourceDiscovery: function(Client, types.DeleteIpamResourceDiscoveryInput): types.DeleteIpamResourceDiscoveryOutput, table
+    deleteIpamResourceDiscovery: function(Client, types.DeleteIpamResourceDiscoveryInput): Operation<types.DeleteIpamResourceDiscoveryOutput>
     -- Delete the scope for an IPAM. You cannot delete the default scopes.
     -- For more information, see Delete a scope in the Amazon VPC IPAM User Guide.
-    deleteIpamScope: function(Client, types.DeleteIpamScopeInput): types.DeleteIpamScopeOutput, table
+    deleteIpamScope: function(Client, types.DeleteIpamScopeInput): Operation<types.DeleteIpamScopeOutput>
     -- Deletes the specified key pair, by removing the public key from Amazon EC2.
-    deleteKeyPair: function(Client, types.DeleteKeyPairInput): types.DeleteKeyPairOutput, table
+    deleteKeyPair: function(Client, types.DeleteKeyPairInput): Operation<types.DeleteKeyPairOutput>
     -- Deletes a launch template. Deleting a launch template deletes all of its
     -- versions.
-    deleteLaunchTemplate: function(Client, types.DeleteLaunchTemplateInput): types.DeleteLaunchTemplateOutput, table
+    deleteLaunchTemplate: function(Client, types.DeleteLaunchTemplateInput): Operation<types.DeleteLaunchTemplateOutput>
     -- Deletes one or more versions of a launch template.
     -- You can't delete the default version of a launch template; you must first assign a
     -- different version as the default. If the default version is the only version for the
@@ -1300,55 +1304,55 @@ local record Client
     -- deletes the launch template and all of its versions.
     -- For more information, see Delete a launch template version in the
     -- Amazon EC2 User Guide.
-    deleteLaunchTemplateVersions: function(Client, types.DeleteLaunchTemplateVersionsInput): types.DeleteLaunchTemplateVersionsOutput, table
+    deleteLaunchTemplateVersions: function(Client, types.DeleteLaunchTemplateVersionsInput): Operation<types.DeleteLaunchTemplateVersionsOutput>
     -- Deletes the specified route from the specified local gateway route table.
-    deleteLocalGatewayRoute: function(Client, types.DeleteLocalGatewayRouteInput): types.DeleteLocalGatewayRouteOutput, table
+    deleteLocalGatewayRoute: function(Client, types.DeleteLocalGatewayRouteInput): Operation<types.DeleteLocalGatewayRouteOutput>
     -- Deletes a local gateway route table.
-    deleteLocalGatewayRouteTable: function(Client, types.DeleteLocalGatewayRouteTableInput): types.DeleteLocalGatewayRouteTableOutput, table
+    deleteLocalGatewayRouteTable: function(Client, types.DeleteLocalGatewayRouteTableInput): Operation<types.DeleteLocalGatewayRouteTableOutput>
     -- Deletes a local gateway route table virtual interface group association.
-    deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput): types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput, table
+    deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput): Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
     -- Deletes the specified association between a VPC and local gateway route table.
-    deleteLocalGatewayRouteTableVpcAssociation: function(Client, types.DeleteLocalGatewayRouteTableVpcAssociationInput): types.DeleteLocalGatewayRouteTableVpcAssociationOutput, table
+    deleteLocalGatewayRouteTableVpcAssociation: function(Client, types.DeleteLocalGatewayRouteTableVpcAssociationInput): Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
     -- Deletes the specified local gateway virtual interface.
-    deleteLocalGatewayVirtualInterface: function(Client, types.DeleteLocalGatewayVirtualInterfaceInput): types.DeleteLocalGatewayVirtualInterfaceOutput, table
+    deleteLocalGatewayVirtualInterface: function(Client, types.DeleteLocalGatewayVirtualInterfaceInput): Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
     -- Delete the specified local gateway interface group.
-    deleteLocalGatewayVirtualInterfaceGroup: function(Client, types.DeleteLocalGatewayVirtualInterfaceGroupInput): types.DeleteLocalGatewayVirtualInterfaceGroupOutput, table
+    deleteLocalGatewayVirtualInterfaceGroup: function(Client, types.DeleteLocalGatewayVirtualInterfaceGroupInput): Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
     -- Deletes the specified managed prefix list. You must first remove all references to the prefix list in your resources.
-    deleteManagedPrefixList: function(Client, types.DeleteManagedPrefixListInput): types.DeleteManagedPrefixListOutput, table
+    deleteManagedPrefixList: function(Client, types.DeleteManagedPrefixListInput): Operation<types.DeleteManagedPrefixListOutput>
     -- Deletes the specified NAT gateway. Deleting a public NAT gateway disassociates its Elastic IP address,
     -- but does not release the address from your account. Deleting a NAT gateway does not delete any NAT gateway
     -- routes in your route tables.
-    deleteNatGateway: function(Client, types.DeleteNatGatewayInput): types.DeleteNatGatewayOutput, table
+    deleteNatGateway: function(Client, types.DeleteNatGatewayInput): Operation<types.DeleteNatGatewayOutput>
     -- Deletes the specified network ACL. You can't delete the ACL if it's associated with any subnets. You can't delete the default network ACL.
-    deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput): types.DeleteNetworkAclOutput, table
+    deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput): Operation<types.DeleteNetworkAclOutput>
     -- Deletes the specified ingress or egress entry (rule) from the specified network ACL.
-    deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput): types.DeleteNetworkAclEntryOutput, table
+    deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput): Operation<types.DeleteNetworkAclEntryOutput>
     -- Deletes the specified Network Access Scope.
-    deleteNetworkInsightsAccessScope: function(Client, types.DeleteNetworkInsightsAccessScopeInput): types.DeleteNetworkInsightsAccessScopeOutput, table
+    deleteNetworkInsightsAccessScope: function(Client, types.DeleteNetworkInsightsAccessScopeInput): Operation<types.DeleteNetworkInsightsAccessScopeOutput>
     -- Deletes the specified Network Access Scope analysis.
-    deleteNetworkInsightsAccessScopeAnalysis: function(Client, types.DeleteNetworkInsightsAccessScopeAnalysisInput): types.DeleteNetworkInsightsAccessScopeAnalysisOutput, table
+    deleteNetworkInsightsAccessScopeAnalysis: function(Client, types.DeleteNetworkInsightsAccessScopeAnalysisInput): Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
     -- Deletes the specified network insights analysis.
-    deleteNetworkInsightsAnalysis: function(Client, types.DeleteNetworkInsightsAnalysisInput): types.DeleteNetworkInsightsAnalysisOutput, table
+    deleteNetworkInsightsAnalysis: function(Client, types.DeleteNetworkInsightsAnalysisInput): Operation<types.DeleteNetworkInsightsAnalysisOutput>
     -- Deletes the specified path.
-    deleteNetworkInsightsPath: function(Client, types.DeleteNetworkInsightsPathInput): types.DeleteNetworkInsightsPathOutput, table
+    deleteNetworkInsightsPath: function(Client, types.DeleteNetworkInsightsPathInput): Operation<types.DeleteNetworkInsightsPathOutput>
     -- Deletes the specified network interface. You must detach the network interface before
     -- you can delete it.
-    deleteNetworkInterface: function(Client, types.DeleteNetworkInterfaceInput): types.DeleteNetworkInterfaceOutput, table
+    deleteNetworkInterface: function(Client, types.DeleteNetworkInterfaceInput): Operation<types.DeleteNetworkInterfaceOutput>
     -- Deletes a permission for a network interface. By default, you cannot delete the
     -- permission if the account for which you're removing the permission has attached the
     -- network interface to an instance. However, you can force delete the permission,
     -- regardless of any attachment.
-    deleteNetworkInterfacePermission: function(Client, types.DeleteNetworkInterfacePermissionInput): types.DeleteNetworkInterfacePermissionOutput, table
+    deleteNetworkInterfacePermission: function(Client, types.DeleteNetworkInterfacePermissionInput): Operation<types.DeleteNetworkInterfacePermissionOutput>
     -- Deletes the specified placement group. You must terminate all instances in the
     -- placement group before you can delete the placement group. For more information, see
     -- Placement groups in the Amazon EC2 User Guide.
-    deletePlacementGroup: function(Client, types.DeletePlacementGroupInput): types.DeletePlacementGroupOutput, table
+    deletePlacementGroup: function(Client, types.DeletePlacementGroupInput): Operation<types.DeletePlacementGroupOutput>
     -- Delete a public IPv4 pool. A public IPv4 pool is an EC2 IP address pool required for the public IPv4 CIDRs that you own and bring to Amazon Web Services to manage with IPAM. IPv6 addresses you bring to Amazon Web Services, however, use IPAM pools only.
-    deletePublicIpv4Pool: function(Client, types.DeletePublicIpv4PoolInput): types.DeletePublicIpv4PoolOutput, table
+    deletePublicIpv4Pool: function(Client, types.DeletePublicIpv4PoolInput): Operation<types.DeletePublicIpv4PoolOutput>
     -- Deletes the queued purchases for the specified Reserved Instances.
-    deleteQueuedReservedInstances: function(Client, types.DeleteQueuedReservedInstancesInput): types.DeleteQueuedReservedInstancesOutput, table
+    deleteQueuedReservedInstances: function(Client, types.DeleteQueuedReservedInstancesInput): Operation<types.DeleteQueuedReservedInstancesOutput>
     -- Deletes the specified route from the specified route table.
-    deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    deleteRoute: function(Client, types.DeleteRouteInput): Operation<types.DeleteRouteOutput>
     -- Deletes the specified route server.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
     -- VPC Route Server dynamically updates VPC and internet gateway route tables with your preferred IPv4 or IPv6 routes to achieve routing fault tolerance for those workloads. This enables you to automatically reroute traffic within a VPC, which increases the manageability of VPC routing and interoperability with third-party workloads.
@@ -1358,27 +1362,27 @@ local record Client
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    deleteRouteServer: function(Client, types.DeleteRouteServerInput): types.DeleteRouteServerOutput, table
+    deleteRouteServer: function(Client, types.DeleteRouteServerInput): Operation<types.DeleteRouteServerOutput>
     -- Deletes the specified route server endpoint.
     -- A route server endpoint is an Amazon Web Services-managed component inside a subnet that facilitates BGP (Border Gateway Protocol) connections between your route server and your BGP peers.
-    deleteRouteServerEndpoint: function(Client, types.DeleteRouteServerEndpointInput): types.DeleteRouteServerEndpointOutput, table
+    deleteRouteServerEndpoint: function(Client, types.DeleteRouteServerEndpointInput): Operation<types.DeleteRouteServerEndpointOutput>
     -- Deletes the specified BGP peer from a route server.
     -- A route server peer is a session between a route server endpoint and the device deployed in Amazon Web Services (such as a firewall appliance or other network security function running on an EC2 instance). The device must meet these requirements:
     -- Have an elastic network interface in the VPC
     -- Support BGP (Border Gateway Protocol)
     -- Can initiate BGP sessions
-    deleteRouteServerPeer: function(Client, types.DeleteRouteServerPeerInput): types.DeleteRouteServerPeerOutput, table
+    deleteRouteServerPeer: function(Client, types.DeleteRouteServerPeerInput): Operation<types.DeleteRouteServerPeerOutput>
     -- Deletes the specified route table. You must disassociate the route table from any subnets before you can delete it. You can't delete the main route table.
-    deleteRouteTable: function(Client, types.DeleteRouteTableInput): types.DeleteRouteTableOutput, table
+    deleteRouteTable: function(Client, types.DeleteRouteTableInput): Operation<types.DeleteRouteTableOutput>
     -- Deletes a secondary network. You must delete all secondary subnets in the secondary network before you can delete the secondary network.
-    deleteSecondaryNetwork: function(Client, types.DeleteSecondaryNetworkInput): types.DeleteSecondaryNetworkOutput, table
+    deleteSecondaryNetwork: function(Client, types.DeleteSecondaryNetworkInput): Operation<types.DeleteSecondaryNetworkOutput>
     -- Deletes a secondary subnet. A secondary subnet must not contain any secondary interfaces prior to deletion.
-    deleteSecondarySubnet: function(Client, types.DeleteSecondarySubnetInput): types.DeleteSecondarySubnetOutput, table
+    deleteSecondarySubnet: function(Client, types.DeleteSecondarySubnetInput): Operation<types.DeleteSecondarySubnetOutput>
     -- Deletes a security group.
     -- If you attempt to delete a security group that is associated with an instance or network interface, is
     -- referenced by another security group in the same VPC, or has a VPC association, the operation fails with
     -- DependencyViolation.
-    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput): types.DeleteSecurityGroupOutput, table
+    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput): Operation<types.DeleteSecurityGroupOutput>
     -- Deletes the specified snapshot.
     -- When you make periodic snapshots of a volume, the snapshots are incremental, and only the
     -- blocks on the device that have changed since your last snapshot are saved in the new snapshot.
@@ -1389,73 +1393,73 @@ local record Client
     -- You must first deregister the AMI before you can delete the snapshot.
     -- For more information, see Delete an Amazon EBS snapshot in the
     -- Amazon EBS User Guide.
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): Operation<types.DeleteSnapshotOutput>
     -- Deletes the data feed for Spot Instances.
-    deleteSpotDatafeedSubscription: function(Client, types.DeleteSpotDatafeedSubscriptionInput): types.DeleteSpotDatafeedSubscriptionOutput, table
+    deleteSpotDatafeedSubscription: function(Client, types.DeleteSpotDatafeedSubscriptionInput): Operation<types.DeleteSpotDatafeedSubscriptionOutput>
     -- Deletes the specified subnet. You must terminate all running instances in the subnet before you can delete the subnet.
-    deleteSubnet: function(Client, types.DeleteSubnetInput): types.DeleteSubnetOutput, table
+    deleteSubnet: function(Client, types.DeleteSubnetInput): Operation<types.DeleteSubnetOutput>
     -- Deletes a subnet CIDR reservation.
-    deleteSubnetCidrReservation: function(Client, types.DeleteSubnetCidrReservationInput): types.DeleteSubnetCidrReservationOutput, table
+    deleteSubnetCidrReservation: function(Client, types.DeleteSubnetCidrReservationInput): Operation<types.DeleteSubnetCidrReservationOutput>
     -- Deletes the specified set of tags from the specified set of resources.
     -- To list the current tags, use DescribeTags. For more information about
     -- tags, see Tag
     -- your Amazon EC2 resources in the Amazon Elastic Compute Cloud User
     -- Guide.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Deletes the specified Traffic Mirror filter.
     -- You cannot delete a Traffic Mirror filter that is in use by a Traffic Mirror session.
-    deleteTrafficMirrorFilter: function(Client, types.DeleteTrafficMirrorFilterInput): types.DeleteTrafficMirrorFilterOutput, table
+    deleteTrafficMirrorFilter: function(Client, types.DeleteTrafficMirrorFilterInput): Operation<types.DeleteTrafficMirrorFilterOutput>
     -- Deletes the specified Traffic Mirror rule.
-    deleteTrafficMirrorFilterRule: function(Client, types.DeleteTrafficMirrorFilterRuleInput): types.DeleteTrafficMirrorFilterRuleOutput, table
+    deleteTrafficMirrorFilterRule: function(Client, types.DeleteTrafficMirrorFilterRuleInput): Operation<types.DeleteTrafficMirrorFilterRuleOutput>
     -- Deletes the specified Traffic Mirror session.
-    deleteTrafficMirrorSession: function(Client, types.DeleteTrafficMirrorSessionInput): types.DeleteTrafficMirrorSessionOutput, table
+    deleteTrafficMirrorSession: function(Client, types.DeleteTrafficMirrorSessionInput): Operation<types.DeleteTrafficMirrorSessionOutput>
     -- Deletes the specified Traffic Mirror target.
     -- You cannot delete a Traffic Mirror target that is in use by a Traffic Mirror session.
-    deleteTrafficMirrorTarget: function(Client, types.DeleteTrafficMirrorTargetInput): types.DeleteTrafficMirrorTargetOutput, table
+    deleteTrafficMirrorTarget: function(Client, types.DeleteTrafficMirrorTargetInput): Operation<types.DeleteTrafficMirrorTargetOutput>
     -- Deletes the specified transit gateway.
-    deleteTransitGateway: function(Client, types.DeleteTransitGatewayInput): types.DeleteTransitGatewayOutput, table
+    deleteTransitGateway: function(Client, types.DeleteTransitGatewayInput): Operation<types.DeleteTransitGatewayOutput>
     -- Deletes a Transit Gateway attachment for a Client VPN endpoint. The Transit Gateway owner can delete the attachment to remove the association between the Client VPN endpoint and the Transit Gateway.
-    deleteTransitGatewayClientVpnAttachment: function(Client, types.DeleteTransitGatewayClientVpnAttachmentInput): types.DeleteTransitGatewayClientVpnAttachmentOutput, table
+    deleteTransitGatewayClientVpnAttachment: function(Client, types.DeleteTransitGatewayClientVpnAttachmentInput): Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
     -- Deletes the specified Connect attachment. You must first delete any Connect peers for
     -- the attachment.
-    deleteTransitGatewayConnect: function(Client, types.DeleteTransitGatewayConnectInput): types.DeleteTransitGatewayConnectOutput, table
+    deleteTransitGatewayConnect: function(Client, types.DeleteTransitGatewayConnectInput): Operation<types.DeleteTransitGatewayConnectOutput>
     -- Deletes the specified Connect peer.
-    deleteTransitGatewayConnectPeer: function(Client, types.DeleteTransitGatewayConnectPeerInput): types.DeleteTransitGatewayConnectPeerOutput, table
+    deleteTransitGatewayConnectPeer: function(Client, types.DeleteTransitGatewayConnectPeerInput): Operation<types.DeleteTransitGatewayConnectPeerOutput>
     -- Deletes a transit gateway metering policy.
-    deleteTransitGatewayMeteringPolicy: function(Client, types.DeleteTransitGatewayMeteringPolicyInput): types.DeleteTransitGatewayMeteringPolicyOutput, table
+    deleteTransitGatewayMeteringPolicy: function(Client, types.DeleteTransitGatewayMeteringPolicyInput): Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
     -- Deletes an entry from a transit gateway metering policy.
-    deleteTransitGatewayMeteringPolicyEntry: function(Client, types.DeleteTransitGatewayMeteringPolicyEntryInput): types.DeleteTransitGatewayMeteringPolicyEntryOutput, table
+    deleteTransitGatewayMeteringPolicyEntry: function(Client, types.DeleteTransitGatewayMeteringPolicyEntryInput): Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
     -- Deletes the specified transit gateway multicast domain.
-    deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput): types.DeleteTransitGatewayMulticastDomainOutput, table
+    deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput): Operation<types.DeleteTransitGatewayMulticastDomainOutput>
     -- Deletes a transit gateway peering attachment.
-    deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput): types.DeleteTransitGatewayPeeringAttachmentOutput, table
+    deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput): Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
     -- Deletes the specified transit gateway policy table.
-    deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput): types.DeleteTransitGatewayPolicyTableOutput, table
+    deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput): Operation<types.DeleteTransitGatewayPolicyTableOutput>
     -- Deletes a reference (route) to a prefix list in a specified transit gateway route table.
-    deleteTransitGatewayPrefixListReference: function(Client, types.DeleteTransitGatewayPrefixListReferenceInput): types.DeleteTransitGatewayPrefixListReferenceOutput, table
+    deleteTransitGatewayPrefixListReference: function(Client, types.DeleteTransitGatewayPrefixListReferenceInput): Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
     -- Deletes the specified route from the specified transit gateway route table.
-    deleteTransitGatewayRoute: function(Client, types.DeleteTransitGatewayRouteInput): types.DeleteTransitGatewayRouteOutput, table
+    deleteTransitGatewayRoute: function(Client, types.DeleteTransitGatewayRouteInput): Operation<types.DeleteTransitGatewayRouteOutput>
     -- Deletes the specified transit gateway route table. If there are any route tables associated with
     -- the transit gateway route table, you must first run DisassociateRouteTable before you can delete the transit gateway route table. This removes any route tables associated with the transit gateway route table.
-    deleteTransitGatewayRouteTable: function(Client, types.DeleteTransitGatewayRouteTableInput): types.DeleteTransitGatewayRouteTableOutput, table
+    deleteTransitGatewayRouteTable: function(Client, types.DeleteTransitGatewayRouteTableInput): Operation<types.DeleteTransitGatewayRouteTableOutput>
     -- Advertises to the transit gateway that a transit gateway route table is deleted.
-    deleteTransitGatewayRouteTableAnnouncement: function(Client, types.DeleteTransitGatewayRouteTableAnnouncementInput): types.DeleteTransitGatewayRouteTableAnnouncementOutput, table
+    deleteTransitGatewayRouteTableAnnouncement: function(Client, types.DeleteTransitGatewayRouteTableAnnouncementInput): Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
     -- Deletes the specified VPC attachment.
-    deleteTransitGatewayVpcAttachment: function(Client, types.DeleteTransitGatewayVpcAttachmentInput): types.DeleteTransitGatewayVpcAttachmentOutput, table
+    deleteTransitGatewayVpcAttachment: function(Client, types.DeleteTransitGatewayVpcAttachmentInput): Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
     -- Delete an Amazon Web Services Verified Access endpoint.
-    deleteVerifiedAccessEndpoint: function(Client, types.DeleteVerifiedAccessEndpointInput): types.DeleteVerifiedAccessEndpointOutput, table
+    deleteVerifiedAccessEndpoint: function(Client, types.DeleteVerifiedAccessEndpointInput): Operation<types.DeleteVerifiedAccessEndpointOutput>
     -- Delete an Amazon Web Services Verified Access group.
-    deleteVerifiedAccessGroup: function(Client, types.DeleteVerifiedAccessGroupInput): types.DeleteVerifiedAccessGroupOutput, table
+    deleteVerifiedAccessGroup: function(Client, types.DeleteVerifiedAccessGroupInput): Operation<types.DeleteVerifiedAccessGroupOutput>
     -- Delete an Amazon Web Services Verified Access instance.
-    deleteVerifiedAccessInstance: function(Client, types.DeleteVerifiedAccessInstanceInput): types.DeleteVerifiedAccessInstanceOutput, table
+    deleteVerifiedAccessInstance: function(Client, types.DeleteVerifiedAccessInstanceInput): Operation<types.DeleteVerifiedAccessInstanceOutput>
     -- Delete an Amazon Web Services Verified Access trust provider.
-    deleteVerifiedAccessTrustProvider: function(Client, types.DeleteVerifiedAccessTrustProviderInput): types.DeleteVerifiedAccessTrustProviderOutput, table
+    deleteVerifiedAccessTrustProvider: function(Client, types.DeleteVerifiedAccessTrustProviderInput): Operation<types.DeleteVerifiedAccessTrustProviderOutput>
     -- Deletes the specified EBS volume. The volume must be in the available state
     -- (not attached to an instance).
     -- The volume can remain in the deleting state for several minutes.
     -- For more information, see Delete an Amazon EBS volume in the
     -- Amazon EBS User Guide.
-    deleteVolume: function(Client, types.DeleteVolumeInput): types.DeleteVolumeOutput, table
+    deleteVolume: function(Client, types.DeleteVolumeInput): Operation<types.DeleteVolumeOutput>
     -- Deletes the specified VPC. You must detach or delete all gateways and resources that are associated
     -- with the VPC before you can delete it. For example, you must terminate all instances running in the VPC,
     -- delete all security groups associated with the VPC (except the default one), delete all route tables
@@ -1463,33 +1467,33 @@ local record Client
     -- default security group, network ACL, and route table for the VPC.
     -- If you created a flow log for the VPC that you are deleting, note that flow logs for deleted
     -- VPCs are eventually automatically removed.
-    deleteVpc: function(Client, types.DeleteVpcInput): types.DeleteVpcOutput, table
+    deleteVpc: function(Client, types.DeleteVpcInput): Operation<types.DeleteVpcOutput>
     -- Delete a VPC Block Public Access (BPA) exclusion. A VPC BPA exclusion is a mode that can be applied to a single VPC or subnet that exempts it from the account’s BPA mode and will allow bidirectional or egress-only access. You can create BPA exclusions for VPCs and subnets even when BPA is not enabled on the account to ensure that there is no traffic disruption to the exclusions when VPC BPA is turned on. To learn more about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
-    deleteVpcBlockPublicAccessExclusion: function(Client, types.DeleteVpcBlockPublicAccessExclusionInput): types.DeleteVpcBlockPublicAccessExclusionOutput, table
+    deleteVpcBlockPublicAccessExclusion: function(Client, types.DeleteVpcBlockPublicAccessExclusionInput): Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
     -- Deletes a VPC Encryption Control configuration. This removes the encryption policy enforcement from the specified VPC.
     -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
-    deleteVpcEncryptionControl: function(Client, types.DeleteVpcEncryptionControlInput): types.DeleteVpcEncryptionControlOutput, table
+    deleteVpcEncryptionControl: function(Client, types.DeleteVpcEncryptionControlInput): Operation<types.DeleteVpcEncryptionControlOutput>
     -- Deletes the specified VPC endpoint connection notifications.
-    deleteVpcEndpointConnectionNotifications: function(Client, types.DeleteVpcEndpointConnectionNotificationsInput): types.DeleteVpcEndpointConnectionNotificationsOutput, table
+    deleteVpcEndpointConnectionNotifications: function(Client, types.DeleteVpcEndpointConnectionNotificationsInput): Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
     -- Deletes the specified VPC endpoints.
     -- When you delete a gateway endpoint, we delete the endpoint routes in the route tables for the endpoint.
     -- When you delete a Gateway Load Balancer endpoint, we delete its endpoint network interfaces.
     -- You can only delete Gateway Load Balancer endpoints when the routes that are associated with the endpoint are deleted.
     -- When you delete an interface endpoint, we delete its endpoint network interfaces.
-    deleteVpcEndpoints: function(Client, types.DeleteVpcEndpointsInput): types.DeleteVpcEndpointsOutput, table
+    deleteVpcEndpoints: function(Client, types.DeleteVpcEndpointsInput): Operation<types.DeleteVpcEndpointsOutput>
     -- Deletes the specified VPC endpoint service configurations. Before you can delete
     -- an endpoint service configuration, you must reject any Available or
     -- PendingAcceptance interface endpoint connections that are attached to
     -- the service.
-    deleteVpcEndpointServiceConfigurations: function(Client, types.DeleteVpcEndpointServiceConfigurationsInput): types.DeleteVpcEndpointServiceConfigurationsOutput, table
+    deleteVpcEndpointServiceConfigurations: function(Client, types.DeleteVpcEndpointServiceConfigurationsInput): Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
     -- Deletes a VPC peering connection. Either the owner of the requester VPC or the owner
     -- of the accepter VPC can delete the VPC peering connection if it's in the
     -- active state. The owner of the requester VPC can delete a VPC peering
     -- connection in the pending-acceptance state. You cannot delete a VPC peering
     -- connection that's in the failed or rejected state.
-    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput): types.DeleteVpcPeeringConnectionOutput, table
+    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput): Operation<types.DeleteVpcPeeringConnectionOutput>
     -- Deletes the specified VPN concentrator.
-    deleteVpnConcentrator: function(Client, types.DeleteVpnConcentratorInput): types.DeleteVpnConcentratorOutput, table
+    deleteVpnConcentrator: function(Client, types.DeleteVpnConcentratorInput): Operation<types.DeleteVpnConcentratorOutput>
     -- Deletes the specified VPN connection.
     -- If you're deleting the VPC and its associated components, we recommend that you detach
     -- the virtual private gateway from the VPC and delete the VPC before deleting the VPN
@@ -1501,29 +1505,29 @@ local record Client
     -- For certificate-based authentication, delete all Certificate Manager (ACM) private
     -- certificates used for the Amazon Web Services-side tunnel endpoints for the VPN
     -- connection before deleting the VPN connection.
-    deleteVpnConnection: function(Client, types.DeleteVpnConnectionInput): types.DeleteVpnConnectionOutput, table
+    deleteVpnConnection: function(Client, types.DeleteVpnConnectionInput): Operation<types.DeleteVpnConnectionOutput>
     -- Deletes the specified static route associated with a VPN connection between an
     -- existing virtual private gateway and a VPN customer gateway. The static route allows
     -- traffic to be routed from the virtual private gateway to the VPN customer
     -- gateway.
-    deleteVpnConnectionRoute: function(Client, types.DeleteVpnConnectionRouteInput): types.DeleteVpnConnectionRouteOutput, table
+    deleteVpnConnectionRoute: function(Client, types.DeleteVpnConnectionRouteInput): Operation<types.DeleteVpnConnectionRouteOutput>
     -- Deletes the specified virtual private gateway. You must first detach the virtual
     -- private gateway from the VPC. Note that you don't need to delete the virtual private
     -- gateway if you plan to delete and recreate the VPN connection between your VPC and your
     -- network.
-    deleteVpnGateway: function(Client, types.DeleteVpnGatewayInput): types.DeleteVpnGatewayOutput, table
+    deleteVpnGateway: function(Client, types.DeleteVpnGatewayInput): Operation<types.DeleteVpnGatewayOutput>
     -- Releases the specified address range that you provisioned for use with your Amazon Web Services resources
     -- through bring your own IP addresses (BYOIP) and deletes the corresponding address pool.
     -- Before you can release an address range, you must stop advertising it and you must not
     -- have any IP addresses allocated from its address range.
-    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput): types.DeprovisionByoipCidrOutput, table
+    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput): Operation<types.DeprovisionByoipCidrOutput>
     -- Deprovisions your Autonomous System Number (ASN) from your Amazon Web Services account. This action can only be called after any BYOIP CIDR associations are removed from your Amazon Web Services account with DisassociateIpamByoasn.
     -- For more information, see Tutorial: Bring your ASN to IPAM in the Amazon VPC IPAM guide.
-    deprovisionIpamByoasn: function(Client, types.DeprovisionIpamByoasnInput): types.DeprovisionIpamByoasnOutput, table
+    deprovisionIpamByoasn: function(Client, types.DeprovisionIpamByoasnInput): Operation<types.DeprovisionIpamByoasnOutput>
     -- Deprovision a CIDR provisioned from an IPAM pool. If you deprovision a CIDR from a pool that has a source pool, the CIDR is recycled back into the source pool. For more information, see Deprovision pool CIDRs in the Amazon VPC IPAM User Guide.
-    deprovisionIpamPoolCidr: function(Client, types.DeprovisionIpamPoolCidrInput): types.DeprovisionIpamPoolCidrOutput, table
+    deprovisionIpamPoolCidr: function(Client, types.DeprovisionIpamPoolCidrInput): Operation<types.DeprovisionIpamPoolCidrOutput>
     -- Deprovision a CIDR from a public IPv4 pool.
-    deprovisionPublicIpv4PoolCidr: function(Client, types.DeprovisionPublicIpv4PoolCidrInput): types.DeprovisionPublicIpv4PoolCidrOutput, table
+    deprovisionPublicIpv4PoolCidr: function(Client, types.DeprovisionPublicIpv4PoolCidrInput): Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
     -- Deregisters the specified AMI. A deregistered AMI can't be used to launch new
     -- instances.
     -- If a deregistered EBS-backed AMI matches a Recycle Bin retention rule, it moves to the
@@ -1544,14 +1548,14 @@ local record Client
     -- continue to incur S3 storage costs.
     -- For more information, see Deregister an Amazon EC2 AMI in the
     -- Amazon EC2 User Guide.
-    deregisterImage: function(Client, types.DeregisterImageInput): types.DeregisterImageOutput, table
+    deregisterImage: function(Client, types.DeregisterImageInput): Operation<types.DeregisterImageOutput>
     -- Deregisters tag keys to prevent tags that have the specified tag keys from being
     -- included in scheduled event notifications for resources in the Region.
-    deregisterInstanceEventNotificationAttributes: function(Client, types.DeregisterInstanceEventNotificationAttributesInput): types.DeregisterInstanceEventNotificationAttributesOutput, table
+    deregisterInstanceEventNotificationAttributes: function(Client, types.DeregisterInstanceEventNotificationAttributesInput): Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
     -- Deregisters the specified members (network interfaces) from the transit gateway multicast group.
-    deregisterTransitGatewayMulticastGroupMembers: function(Client, types.DeregisterTransitGatewayMulticastGroupMembersInput): types.DeregisterTransitGatewayMulticastGroupMembersOutput, table
+    deregisterTransitGatewayMulticastGroupMembers: function(Client, types.DeregisterTransitGatewayMulticastGroupMembersInput): Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
     -- Deregisters the specified sources (network interfaces) from the transit gateway multicast group.
-    deregisterTransitGatewayMulticastGroupSources: function(Client, types.DeregisterTransitGatewayMulticastGroupSourcesInput): types.DeregisterTransitGatewayMulticastGroupSourcesOutput, table
+    deregisterTransitGatewayMulticastGroupSources: function(Client, types.DeregisterTransitGatewayMulticastGroupSourcesInput): Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
     -- Describes attributes of your Amazon Web Services account. The following are the supported account attributes:
     -- default-vpc: The ID of the default VPC for your account, or none.
     -- max-instances: This attribute is no longer supported. The returned
@@ -1566,11 +1570,11 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): Operation<types.DescribeAccountAttributesOutput>
     -- Describes the specified Elastic IP addresses or all of your Elastic IP addresses.
-    describeAddresses: function(Client, types.DescribeAddressesInput): types.DescribeAddressesOutput, table
+    describeAddresses: function(Client, types.DescribeAddressesInput): Operation<types.DescribeAddressesOutput>
     -- Describes the attributes of the specified Elastic IP addresses. For requirements, see Using reverse DNS for email applications.
-    describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput): types.DescribeAddressesAttributeOutput, table
+    describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput): Operation<types.DescribeAddressesAttributeOutput>
     -- Describes an Elastic IP address transfer. For more information, see Transfer Elastic IP addresses in the Amazon VPC User Guide.
     -- When you transfer an Elastic IP address, there is a two-step handshake
     -- between the source and transfer Amazon Web Services accounts. When the source account starts the transfer,
@@ -1581,7 +1585,7 @@ local record Client
     -- address returns to the source
     -- account. Accepted transfers are visible to the source account for 14 days
     -- after the transfers have been accepted.
-    describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput): types.DescribeAddressTransfersOutput, table
+    describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput): Operation<types.DescribeAddressTransfersOutput>
     -- Describes the longer ID format settings for all resource types in a specific
     -- Region. This request is useful for performing a quick audit to determine whether a
     -- specific Region is fully opted in for longer IDs (17-character IDs).
@@ -1599,7 +1603,7 @@ local record Client
     -- subnet-cidr-block-association | volume | vpc |
     -- vpc-cidr-block-association | vpc-endpoint |
     -- vpc-peering-connection | vpn-connection | vpn-gateway.
-    describeAggregateIdFormat: function(Client, types.DescribeAggregateIdFormatInput): types.DescribeAggregateIdFormatOutput, table
+    describeAggregateIdFormat: function(Client, types.DescribeAggregateIdFormatInput): Operation<types.DescribeAggregateIdFormatOutput>
     -- Describes the Availability Zones, Local Zones, and Wavelength Zones that are available to
     -- you.
     -- For more information about Availability Zones, Local Zones, and Wavelength Zones, see
@@ -1608,9 +1612,9 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeAvailabilityZones: function(Client, types.DescribeAvailabilityZonesInput): types.DescribeAvailabilityZonesOutput, table
+    describeAvailabilityZones: function(Client, types.DescribeAvailabilityZonesInput): Operation<types.DescribeAvailabilityZonesOutput>
     -- Describes the current Infrastructure Performance metric subscriptions.
-    describeAwsNetworkPerformanceMetricSubscriptions: function(Client, types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput): types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput, table
+    describeAwsNetworkPerformanceMetricSubscriptions: function(Client, types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput): Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
     -- Describes the specified bundle tasks or all of your bundle tasks.
     -- Completed bundle tasks are listed for only a limited time. If your bundle task is no
     -- longer in the list, you can still register an AMI from it. Just use
@@ -1618,37 +1622,37 @@ local record Client
     -- to the bundle task.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeBundleTasks: function(Client, types.DescribeBundleTasksInput): types.DescribeBundleTasksOutput, table
+    describeBundleTasks: function(Client, types.DescribeBundleTasksInput): Operation<types.DescribeBundleTasksOutput>
     -- Describes the IP address ranges that were provisioned for use with Amazon Web Services resources
     -- through through bring your own IP addresses (BYOIP).
-    describeByoipCidrs: function(Client, types.DescribeByoipCidrsInput): types.DescribeByoipCidrsOutput, table
+    describeByoipCidrs: function(Client, types.DescribeByoipCidrsInput): Operation<types.DescribeByoipCidrsOutput>
     -- Describes the events for the specified Capacity Block extension during the specified
     -- time.
-    describeCapacityBlockExtensionHistory: function(Client, types.DescribeCapacityBlockExtensionHistoryInput): types.DescribeCapacityBlockExtensionHistoryOutput, table
+    describeCapacityBlockExtensionHistory: function(Client, types.DescribeCapacityBlockExtensionHistoryInput): Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
     -- Describes Capacity Block extension offerings available for purchase in the Amazon Web Services
     -- Region that you're currently using.
-    describeCapacityBlockExtensionOfferings: function(Client, types.DescribeCapacityBlockExtensionOfferingsInput): types.DescribeCapacityBlockExtensionOfferingsOutput, table
+    describeCapacityBlockExtensionOfferings: function(Client, types.DescribeCapacityBlockExtensionOfferingsInput): Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
     -- Describes Capacity Block offerings available for purchase in the Amazon Web Services Region that you're currently using. With Capacity Blocks, you can
     -- purchase a specific GPU instance type or EC2 UltraServer for a period of time.
     -- To search for an available Capacity Block offering, you specify a reservation duration
     -- and instance count.
-    describeCapacityBlockOfferings: function(Client, types.DescribeCapacityBlockOfferingsInput): types.DescribeCapacityBlockOfferingsOutput, table
+    describeCapacityBlockOfferings: function(Client, types.DescribeCapacityBlockOfferingsInput): Operation<types.DescribeCapacityBlockOfferingsOutput>
     -- Describes details about Capacity Blocks in the Amazon Web Services Region that you're currently using.
-    describeCapacityBlocks: function(Client, types.DescribeCapacityBlocksInput): types.DescribeCapacityBlocksOutput, table
+    describeCapacityBlocks: function(Client, types.DescribeCapacityBlocksInput): Operation<types.DescribeCapacityBlocksOutput>
     -- Describes the availability of capacity for the specified Capacity blocks, or all of your Capacity Blocks.
-    describeCapacityBlockStatus: function(Client, types.DescribeCapacityBlockStatusInput): types.DescribeCapacityBlockStatusOutput, table
+    describeCapacityBlockStatus: function(Client, types.DescribeCapacityBlockStatusInput): Operation<types.DescribeCapacityBlockStatusOutput>
     -- Describes one or more Capacity Manager data export configurations. Returns information about export settings, delivery status, and recent export activity.
-    describeCapacityManagerDataExports: function(Client, types.DescribeCapacityManagerDataExportsInput): types.DescribeCapacityManagerDataExportsOutput, table
+    describeCapacityManagerDataExports: function(Client, types.DescribeCapacityManagerDataExportsInput): Operation<types.DescribeCapacityManagerDataExportsOutput>
     -- Describes a request to assign the billing of the unused capacity of a Capacity
     -- Reservation. For more information, see Billing assignment for shared
     -- Amazon EC2 Capacity Reservations.
-    describeCapacityReservationBillingRequests: function(Client, types.DescribeCapacityReservationBillingRequestsInput): types.DescribeCapacityReservationBillingRequestsOutput, table
+    describeCapacityReservationBillingRequests: function(Client, types.DescribeCapacityReservationBillingRequestsInput): Operation<types.DescribeCapacityReservationBillingRequestsOutput>
     -- Describes one or more Capacity Reservation Fleets.
-    describeCapacityReservationFleets: function(Client, types.DescribeCapacityReservationFleetsInput): types.DescribeCapacityReservationFleetsOutput, table
+    describeCapacityReservationFleets: function(Client, types.DescribeCapacityReservationFleetsInput): Operation<types.DescribeCapacityReservationFleetsOutput>
     -- Describes one or more of your Capacity Reservations. The results describe only the
     -- Capacity Reservations in the Amazon Web Services Region that you're currently
     -- using.
-    describeCapacityReservations: function(Client, types.DescribeCapacityReservationsInput): types.DescribeCapacityReservationsOutput, table
+    describeCapacityReservations: function(Client, types.DescribeCapacityReservationsInput): Operation<types.DescribeCapacityReservationsOutput>
     -- Describes a tree-based hierarchy that represents the physical host placement of your
     -- pending or active Capacity Reservations within an Availability Zone or Local Zone. You
     -- can use this information to determine the relative proximity of your capacity within the
@@ -1668,35 +1672,35 @@ local record Client
     -- Guide.
     -- For more information, see Amazon EC2 topology in
     -- the Amazon EC2 User Guide.
-    describeCapacityReservationTopology: function(Client, types.DescribeCapacityReservationTopologyInput): types.DescribeCapacityReservationTopologyOutput, table
+    describeCapacityReservationTopology: function(Client, types.DescribeCapacityReservationTopologyInput): Operation<types.DescribeCapacityReservationTopologyOutput>
     -- Describes one or more of your carrier gateways.
-    describeCarrierGateways: function(Client, types.DescribeCarrierGatewaysInput): types.DescribeCarrierGatewaysOutput, table
+    describeCarrierGateways: function(Client, types.DescribeCarrierGatewaysInput): Operation<types.DescribeCarrierGatewaysOutput>
     -- This action is deprecated.
     -- Describes your linked EC2-Classic instances. This request only returns
     -- information about EC2-Classic instances linked to a VPC through ClassicLink. You cannot
     -- use this request to return information about other instances.
-    describeClassicLinkInstances: function(Client, types.DescribeClassicLinkInstancesInput): types.DescribeClassicLinkInstancesOutput, table
+    describeClassicLinkInstances: function(Client, types.DescribeClassicLinkInstancesInput): Operation<types.DescribeClassicLinkInstancesOutput>
     -- Describes the authorization rules for a specified Client VPN endpoint.
-    describeClientVpnAuthorizationRules: function(Client, types.DescribeClientVpnAuthorizationRulesInput): types.DescribeClientVpnAuthorizationRulesOutput, table
+    describeClientVpnAuthorizationRules: function(Client, types.DescribeClientVpnAuthorizationRulesInput): Operation<types.DescribeClientVpnAuthorizationRulesOutput>
     -- Describes active client connections and connections that have been terminated within the last 60
     -- minutes for the specified Client VPN endpoint.
-    describeClientVpnConnections: function(Client, types.DescribeClientVpnConnectionsInput): types.DescribeClientVpnConnectionsOutput, table
+    describeClientVpnConnections: function(Client, types.DescribeClientVpnConnectionsInput): Operation<types.DescribeClientVpnConnectionsOutput>
     -- Describes one or more Client VPN endpoints in the account.
-    describeClientVpnEndpoints: function(Client, types.DescribeClientVpnEndpointsInput): types.DescribeClientVpnEndpointsOutput, table
+    describeClientVpnEndpoints: function(Client, types.DescribeClientVpnEndpointsInput): Operation<types.DescribeClientVpnEndpointsOutput>
     -- Describes the routes for the specified Client VPN endpoint.
-    describeClientVpnRoutes: function(Client, types.DescribeClientVpnRoutesInput): types.DescribeClientVpnRoutesOutput, table
+    describeClientVpnRoutes: function(Client, types.DescribeClientVpnRoutesInput): Operation<types.DescribeClientVpnRoutesOutput>
     -- Describes the target networks associated with the specified Client VPN endpoint.
-    describeClientVpnTargetNetworks: function(Client, types.DescribeClientVpnTargetNetworksInput): types.DescribeClientVpnTargetNetworksOutput, table
+    describeClientVpnTargetNetworks: function(Client, types.DescribeClientVpnTargetNetworksInput): Operation<types.DescribeClientVpnTargetNetworksOutput>
     -- Describes the specified customer-owned address pools or all of your customer-owned address pools.
-    describeCoipPools: function(Client, types.DescribeCoipPoolsInput): types.DescribeCoipPoolsOutput, table
+    describeCoipPools: function(Client, types.DescribeCoipPoolsInput): Operation<types.DescribeCoipPoolsOutput>
     -- Describes the specified conversion tasks or all your conversion tasks. For more information, see the
     -- VM Import/Export User Guide.
     -- For information about the import manifest referenced by this API action, see VM Import Manifest.
-    describeConversionTasks: function(Client, types.DescribeConversionTasksInput): types.DescribeConversionTasksOutput, table
+    describeConversionTasks: function(Client, types.DescribeConversionTasksInput): Operation<types.DescribeConversionTasksOutput>
     -- Describes one or more of your VPN customer gateways.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    describeCustomerGateways: function(Client, types.DescribeCustomerGatewaysInput): types.DescribeCustomerGatewaysOutput, table
+    describeCustomerGateways: function(Client, types.DescribeCustomerGatewaysInput): Operation<types.DescribeCustomerGatewaysOutput>
     -- Describes the metadata of an account status report, including the status of the
     -- report.
     -- To view the full report, download it from the Amazon S3 bucket where it was saved.
@@ -1707,58 +1711,58 @@ local record Client
     -- the Amazon Simple Storage Service User Guide.
     -- For more information, see Generating the account status report for declarative policies in the
     -- Amazon Web Services Organizations User Guide.
-    describeDeclarativePoliciesReports: function(Client, types.DescribeDeclarativePoliciesReportsInput): types.DescribeDeclarativePoliciesReportsOutput, table
+    describeDeclarativePoliciesReports: function(Client, types.DescribeDeclarativePoliciesReportsInput): Operation<types.DescribeDeclarativePoliciesReportsOutput>
     -- Describes your DHCP option sets. The default is to describe all your DHCP option sets.
     -- Alternatively, you can specify specific DHCP option set IDs or filter the results to
     -- include only the DHCP option sets that match specific criteria.
     -- For more information, see DHCP option sets in the
     -- Amazon VPC User Guide.
-    describeDhcpOptions: function(Client, types.DescribeDhcpOptionsInput): types.DescribeDhcpOptionsOutput, table
+    describeDhcpOptions: function(Client, types.DescribeDhcpOptionsInput): Operation<types.DescribeDhcpOptionsOutput>
     -- Describes your egress-only internet gateways. The default is to describe all your egress-only internet gateways.
     -- Alternatively, you can specify specific egress-only internet gateway IDs or filter the results to
     -- include only the egress-only internet gateways that match specific criteria.
-    describeEgressOnlyInternetGateways: function(Client, types.DescribeEgressOnlyInternetGatewaysInput): types.DescribeEgressOnlyInternetGatewaysOutput, table
+    describeEgressOnlyInternetGateways: function(Client, types.DescribeEgressOnlyInternetGatewaysInput): Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
     -- Amazon Elastic Graphics reached end of life on January 8, 2024.
     -- Describes the Elastic Graphics accelerator associated with your instances.
-    describeElasticGpus: function(Client, types.DescribeElasticGpusInput): types.DescribeElasticGpusOutput, table
+    describeElasticGpus: function(Client, types.DescribeElasticGpusInput): Operation<types.DescribeElasticGpusOutput>
     -- Describes the specified export image tasks or all of your export image tasks.
-    describeExportImageTasks: function(Client, types.DescribeExportImageTasksInput): types.DescribeExportImageTasksOutput, table
+    describeExportImageTasks: function(Client, types.DescribeExportImageTasksInput): Operation<types.DescribeExportImageTasksOutput>
     -- Describes the specified export instance tasks or all of your export instance tasks.
-    describeExportTasks: function(Client, types.DescribeExportTasksInput): types.DescribeExportTasksOutput, table
+    describeExportTasks: function(Client, types.DescribeExportTasksInput): Operation<types.DescribeExportTasksOutput>
     -- Describe details for Windows AMIs that are configured for Windows fast launch.
-    describeFastLaunchImages: function(Client, types.DescribeFastLaunchImagesInput): types.DescribeFastLaunchImagesOutput, table
+    describeFastLaunchImages: function(Client, types.DescribeFastLaunchImagesInput): Operation<types.DescribeFastLaunchImagesOutput>
     -- Describes the state of fast snapshot restores for your snapshots.
-    describeFastSnapshotRestores: function(Client, types.DescribeFastSnapshotRestoresInput): types.DescribeFastSnapshotRestoresOutput, table
+    describeFastSnapshotRestores: function(Client, types.DescribeFastSnapshotRestoresInput): Operation<types.DescribeFastSnapshotRestoresOutput>
     -- Describes the events for the specified EC2 Fleet during the specified time.
     -- EC2 Fleet events are delayed by up to 30 seconds before they can be described. This ensures
     -- that you can query by the last evaluated time and not miss a recorded event. EC2 Fleet events
     -- are available for 48 hours.
     -- For more information, see Monitor fleet events using Amazon EventBridge in the
     -- Amazon EC2 User Guide.
-    describeFleetHistory: function(Client, types.DescribeFleetHistoryInput): types.DescribeFleetHistoryOutput, table
+    describeFleetHistory: function(Client, types.DescribeFleetHistoryInput): Operation<types.DescribeFleetHistoryOutput>
     -- Describes the running instances for the specified EC2 Fleet.
     -- Currently, DescribeFleetInstances does not support fleets of type
     -- instant. Instead, use DescribeFleets, specifying the
     -- instant fleet ID in the request.
     -- For more information, see Describe your
     -- EC2 Fleet in the Amazon EC2 User Guide.
-    describeFleetInstances: function(Client, types.DescribeFleetInstancesInput): types.DescribeFleetInstancesOutput, table
+    describeFleetInstances: function(Client, types.DescribeFleetInstancesInput): Operation<types.DescribeFleetInstancesOutput>
     -- Describes the specified EC2 Fleet or all of your EC2 Fleets.
     -- If a fleet is of type instant, you must specify the fleet ID in the
     -- request, otherwise the fleet does not appear in the response.
     -- For more information, see Describe your
     -- EC2 Fleet in the Amazon EC2 User Guide.
-    describeFleets: function(Client, types.DescribeFleetsInput): types.DescribeFleetsOutput, table
+    describeFleets: function(Client, types.DescribeFleetsInput): Operation<types.DescribeFleetsOutput>
     -- Describes one or more flow logs.
     -- To view the published flow log records, you must view the log destination. For example,
     -- the CloudWatch Logs log group, the Amazon S3 bucket, or the Kinesis Data Firehose delivery stream.
-    describeFlowLogs: function(Client, types.DescribeFlowLogsInput): types.DescribeFlowLogsOutput, table
+    describeFlowLogs: function(Client, types.DescribeFlowLogsInput): Operation<types.DescribeFlowLogsOutput>
     -- Describes the specified attribute of the specified Amazon FPGA Image (AFI).
-    describeFpgaImageAttribute: function(Client, types.DescribeFpgaImageAttributeInput): types.DescribeFpgaImageAttributeOutput, table
+    describeFpgaImageAttribute: function(Client, types.DescribeFpgaImageAttributeInput): Operation<types.DescribeFpgaImageAttributeOutput>
     -- Describes the Amazon FPGA Images (AFIs) available to you. These include public AFIs,
     -- private AFIs that you own, and AFIs owned by other Amazon Web Services accounts for which you have load
     -- permissions.
-    describeFpgaImages: function(Client, types.DescribeFpgaImagesInput): types.DescribeFpgaImagesOutput, table
+    describeFpgaImages: function(Client, types.DescribeFpgaImagesInput): Operation<types.DescribeFpgaImagesOutput>
     -- Describes the Dedicated Host reservations that are available to purchase.
     -- The results describe all of the Dedicated Host reservation offerings, including
     -- offerings that might not match the instance family and Region of your Dedicated Hosts.
@@ -1766,17 +1770,17 @@ local record Client
     -- matches that of the Dedicated Hosts with which it is to be associated. For more
     -- information about supported instance types, see Dedicated Hosts
     -- in the Amazon EC2 User Guide.
-    describeHostReservationOfferings: function(Client, types.DescribeHostReservationOfferingsInput): types.DescribeHostReservationOfferingsOutput, table
+    describeHostReservationOfferings: function(Client, types.DescribeHostReservationOfferingsInput): Operation<types.DescribeHostReservationOfferingsOutput>
     -- Describes reservations that are associated with Dedicated Hosts in your
     -- account.
-    describeHostReservations: function(Client, types.DescribeHostReservationsInput): types.DescribeHostReservationsOutput, table
+    describeHostReservations: function(Client, types.DescribeHostReservationsInput): Operation<types.DescribeHostReservationsOutput>
     -- Describes the specified Dedicated Hosts or all your Dedicated Hosts.
     -- The results describe only the Dedicated Hosts in the Region you're currently using.
     -- All listed instances consume capacity on your Dedicated Host. Dedicated Hosts that have
     -- recently been released are listed with the state released.
-    describeHosts: function(Client, types.DescribeHostsInput): types.DescribeHostsOutput, table
+    describeHosts: function(Client, types.DescribeHostsInput): Operation<types.DescribeHostsOutput>
     -- Describes your IAM instance profile associations.
-    describeIamInstanceProfileAssociations: function(Client, types.DescribeIamInstanceProfileAssociationsInput): types.DescribeIamInstanceProfileAssociationsOutput, table
+    describeIamInstanceProfileAssociations: function(Client, types.DescribeIamInstanceProfileAssociationsInput): Operation<types.DescribeIamInstanceProfileAssociationsOutput>
     -- Describes the ID format settings for resources for the specified IAM user, IAM role, or root
     -- user. For example, you can view the resource types that are enabled for longer IDs. This request only
     -- returns information about resource types whose ID formats can be modified; it does not return
@@ -1796,7 +1800,7 @@ local record Client
     -- vpc-peering-connection | vpn-connection | vpn-gateway.
     -- These settings apply to the principal specified in the request. They do not apply to the
     -- principal that makes the request.
-    describeIdentityIdFormat: function(Client, types.DescribeIdentityIdFormatInput): types.DescribeIdentityIdFormatOutput, table
+    describeIdentityIdFormat: function(Client, types.DescribeIdentityIdFormatInput): Operation<types.DescribeIdentityIdFormatOutput>
     -- Describes the ID format settings for your resources on a per-Region basis, for example, to view which resource types are enabled for longer IDs. This request only returns information about resource types whose ID formats can be modified; it does not return information about other resource types.
     -- The following resource types support longer IDs: bundle |
     -- conversion-task | customer-gateway | dhcp-options |
@@ -1817,16 +1821,16 @@ local record Client
     -- created with longer IDs are visible to all IAM users, regardless of these settings and
     -- provided that they have permission to use the relevant Describe command for the
     -- resource type.
-    describeIdFormat: function(Client, types.DescribeIdFormatInput): types.DescribeIdFormatOutput, table
+    describeIdFormat: function(Client, types.DescribeIdFormatInput): Operation<types.DescribeIdFormatOutput>
     -- Describes the specified attribute of the specified AMI. You can specify only one attribute
     -- at a time.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeImageAttribute: function(Client, types.DescribeImageAttributeInput): types.DescribeImageAttributeOutput, table
+    describeImageAttribute: function(Client, types.DescribeImageAttributeInput): Operation<types.DescribeImageAttributeOutput>
     -- Describes your Amazon Web Services resources that are referencing the specified images.
     -- For more information, see Identify your resources referencing
     -- specified AMIs in the Amazon EC2 User Guide.
-    describeImageReferences: function(Client, types.DescribeImageReferencesInput): types.DescribeImageReferencesOutput, table
+    describeImageReferences: function(Client, types.DescribeImageReferencesInput): Operation<types.DescribeImageReferencesOutput>
     -- Describes the specified images (AMIs, AKIs, and ARIs) available to you or all of the
     -- images available to you.
     -- The images available to you include public images, private images that you own, and
@@ -1850,27 +1854,27 @@ local record Client
     -- susceptible to throttling and timeouts.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeImages: function(Client, types.DescribeImagesInput): types.DescribeImagesOutput, table
+    describeImages: function(Client, types.DescribeImagesInput): Operation<types.DescribeImagesOutput>
     -- Describes the entries in image usage reports, showing how your images are used across
     -- other Amazon Web Services accounts.
     -- For more information, see View your AMI usage in the
     -- Amazon EC2 User Guide.
-    describeImageUsageReportEntries: function(Client, types.DescribeImageUsageReportEntriesInput): types.DescribeImageUsageReportEntriesOutput, table
+    describeImageUsageReportEntries: function(Client, types.DescribeImageUsageReportEntriesInput): Operation<types.DescribeImageUsageReportEntriesOutput>
     -- Describes the configuration and status of image usage reports, filtered by report IDs or
     -- image IDs.
     -- For more information, see View your AMI usage in the
     -- Amazon EC2 User Guide.
-    describeImageUsageReports: function(Client, types.DescribeImageUsageReportsInput): types.DescribeImageUsageReportsOutput, table
+    describeImageUsageReports: function(Client, types.DescribeImageUsageReportsInput): Operation<types.DescribeImageUsageReportsOutput>
     -- Displays details about an import virtual machine or import snapshot tasks that are already created.
-    describeImportImageTasks: function(Client, types.DescribeImportImageTasksInput): types.DescribeImportImageTasksOutput, table
+    describeImportImageTasks: function(Client, types.DescribeImportImageTasksInput): Operation<types.DescribeImportImageTasksOutput>
     -- Describes your import snapshot tasks.
-    describeImportSnapshotTasks: function(Client, types.DescribeImportSnapshotTasksInput): types.DescribeImportSnapshotTasksOutput, table
+    describeImportSnapshotTasks: function(Client, types.DescribeImportSnapshotTasksInput): Operation<types.DescribeImportSnapshotTasksOutput>
     -- Describes the specified attribute of the specified instance. You can specify only one
     -- attribute at a time. Available attributes include SQL license exemption configuration
     -- for instances registered with the SQL LE service.
-    describeInstanceAttribute: function(Client, types.DescribeInstanceAttributeInput): types.DescribeInstanceAttributeOutput, table
+    describeInstanceAttribute: function(Client, types.DescribeInstanceAttributeInput): Operation<types.DescribeInstanceAttributeOutput>
     -- Describes the specified EC2 Instance Connect Endpoints or all EC2 Instance Connect Endpoints.
-    describeInstanceConnectEndpoints: function(Client, types.DescribeInstanceConnectEndpointsInput): types.DescribeInstanceConnectEndpointsOutput, table
+    describeInstanceConnectEndpoints: function(Client, types.DescribeInstanceConnectEndpointsInput): Operation<types.DescribeInstanceConnectEndpointsOutput>
     -- Describes the credit option for CPU usage of the specified burstable performance
     -- instances. The credit options are standard and
     -- unlimited.
@@ -1891,10 +1895,10 @@ local record Client
     -- you specify only instance IDs in an unaffected zone, the call works normally.
     -- For more information, see Burstable
     -- performance instances in the Amazon EC2 User Guide.
-    describeInstanceCreditSpecifications: function(Client, types.DescribeInstanceCreditSpecificationsInput): types.DescribeInstanceCreditSpecificationsOutput, table
+    describeInstanceCreditSpecifications: function(Client, types.DescribeInstanceCreditSpecificationsInput): Operation<types.DescribeInstanceCreditSpecificationsOutput>
     -- Describes the tag keys that are registered to appear in scheduled event notifications
     -- for resources in the current Region.
-    describeInstanceEventNotificationAttributes: function(Client, types.DescribeInstanceEventNotificationAttributesInput): types.DescribeInstanceEventNotificationAttributesOutput, table
+    describeInstanceEventNotificationAttributes: function(Client, types.DescribeInstanceEventNotificationAttributesInput): Operation<types.DescribeInstanceEventNotificationAttributesOutput>
     -- Describes the specified event windows or all event windows.
     -- If you specify event window IDs, the output includes information for only the specified
     -- event windows. If you specify filters, the output includes information for only those event
@@ -1904,7 +1908,7 @@ local record Client
     -- successfully.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    describeInstanceEventWindows: function(Client, types.DescribeInstanceEventWindowsInput): types.DescribeInstanceEventWindowsOutput, table
+    describeInstanceEventWindows: function(Client, types.DescribeInstanceEventWindowsInput): Operation<types.DescribeInstanceEventWindowsOutput>
     -- Describes the AMI that was used to launch an instance, even if the AMI is deprecated,
     -- deregistered, made private (no longer public or shared with your account), or not
     -- allowed.
@@ -1923,7 +1927,7 @@ local record Client
     -- unaffected Availability Zone, the call works normally.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeInstanceImageMetadata: function(Client, types.DescribeInstanceImageMetadataInput): types.DescribeInstanceImageMetadataOutput, table
+    describeInstanceImageMetadata: function(Client, types.DescribeInstanceImageMetadataInput): Operation<types.DescribeInstanceImageMetadataOutput>
     -- Describes the specified instances or all instances.
     -- If you specify instance IDs, the output includes information for only the specified
     -- instances. If you specify filters, the output includes information for only those
@@ -1953,13 +1957,13 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeInstances: function(Client, types.DescribeInstancesInput): types.DescribeInstancesOutput, table
+    describeInstances: function(Client, types.DescribeInstancesInput): Operation<types.DescribeInstancesOutput>
     -- Describes the historical SQL Server High Availability states for Amazon EC2
     -- instances that are enabled for Amazon EC2 High Availability for SQL Server monitoring.
-    describeInstanceSqlHaHistoryStates: function(Client, types.DescribeInstanceSqlHaHistoryStatesInput): types.DescribeInstanceSqlHaHistoryStatesOutput, table
+    describeInstanceSqlHaHistoryStates: function(Client, types.DescribeInstanceSqlHaHistoryStatesInput): Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
     -- Describes the SQL Server High Availability states for Amazon EC2 instances that are
     -- enabled for Amazon EC2 High Availability for SQL Server monitoring.
-    describeInstanceSqlHaStates: function(Client, types.DescribeInstanceSqlHaStatesInput): types.DescribeInstanceSqlHaStatesOutput, table
+    describeInstanceSqlHaStates: function(Client, types.DescribeInstanceSqlHaStatesInput): Operation<types.DescribeInstanceSqlHaStatesOutput>
     -- Describes the status of the specified instances or all of your instances. By default,
     -- only running instances are described, unless you specifically indicate to return the
     -- status of all instances.
@@ -1987,7 +1991,7 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeInstanceStatus: function(Client, types.DescribeInstanceStatusInput): types.DescribeInstanceStatusOutput, table
+    describeInstanceStatus: function(Client, types.DescribeInstanceStatusInput): Operation<types.DescribeInstanceStatusOutput>
     -- Describes a tree-based hierarchy that represents the physical host placement of your
     -- EC2 instances within an Availability Zone or Local Zone. You can use this information to
     -- determine the relative proximity of your EC2 instances within the Amazon Web Services network to
@@ -2006,105 +2010,105 @@ local record Client
     -- Guide.
     -- For more information, see Amazon EC2 topology in
     -- the Amazon EC2 User Guide.
-    describeInstanceTopology: function(Client, types.DescribeInstanceTopologyInput): types.DescribeInstanceTopologyOutput, table
+    describeInstanceTopology: function(Client, types.DescribeInstanceTopologyInput): Operation<types.DescribeInstanceTopologyOutput>
     -- Lists the instance types that are offered for the specified location. If no location is
     -- specified, the default is to list the instance types that are offered in the current
     -- Region.
-    describeInstanceTypeOfferings: function(Client, types.DescribeInstanceTypeOfferingsInput): types.DescribeInstanceTypeOfferingsOutput, table
+    describeInstanceTypeOfferings: function(Client, types.DescribeInstanceTypeOfferingsInput): Operation<types.DescribeInstanceTypeOfferingsOutput>
     -- Describes the specified instance types. By default, all instance types for the current
     -- Region are described. Alternatively, you can filter the results.
-    describeInstanceTypes: function(Client, types.DescribeInstanceTypesInput): types.DescribeInstanceTypesOutput, table
+    describeInstanceTypes: function(Client, types.DescribeInstanceTypesInput): Operation<types.DescribeInstanceTypesOutput>
     -- Describes your internet gateways. The default is to describe all your internet gateways.
     -- Alternatively, you can specify specific internet gateway IDs or filter the results to
     -- include only the internet gateways that match specific criteria.
-    describeInternetGateways: function(Client, types.DescribeInternetGatewaysInput): types.DescribeInternetGatewaysOutput, table
+    describeInternetGateways: function(Client, types.DescribeInternetGatewaysInput): Operation<types.DescribeInternetGatewaysOutput>
     -- Describes your Autonomous System Numbers (ASNs), their provisioning statuses, and the BYOIP CIDRs with which they are associated. For more information, see Tutorial: Bring your ASN to IPAM in the Amazon VPC IPAM guide.
-    describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput): types.DescribeIpamByoasnOutput, table
+    describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput): Operation<types.DescribeIpamByoasnOutput>
     -- Describe verification tokens.
     -- A verification token is an Amazon Web Services-generated random value that you can use to prove ownership of an external resource. For example, you can use a verification token to validate that you control a public IP address range when you bring an IP address range to Amazon Web Services (BYOIP).
-    describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput): types.DescribeIpamExternalResourceVerificationTokensOutput, table
+    describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput): Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
     -- Describes one or more IPAM policies.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
-    describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput): types.DescribeIpamPoliciesOutput, table
+    describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput): Operation<types.DescribeIpamPoliciesOutput>
     -- Get information about your IPAM pools.
-    describeIpamPools: function(Client, types.DescribeIpamPoolsInput): types.DescribeIpamPoolsOutput, table
+    describeIpamPools: function(Client, types.DescribeIpamPoolsInput): Operation<types.DescribeIpamPoolsOutput>
     -- Describes one or more IPAM prefix list resolvers. Use this operation to view the configuration, status, and properties of your resolvers.
-    describeIpamPrefixListResolvers: function(Client, types.DescribeIpamPrefixListResolversInput): types.DescribeIpamPrefixListResolversOutput, table
+    describeIpamPrefixListResolvers: function(Client, types.DescribeIpamPrefixListResolversInput): Operation<types.DescribeIpamPrefixListResolversOutput>
     -- Describes one or more IPAM prefix list resolver Targets. Use this operation to view the configuration and status of resolver targets.
-    describeIpamPrefixListResolverTargets: function(Client, types.DescribeIpamPrefixListResolverTargetsInput): types.DescribeIpamPrefixListResolverTargetsOutput, table
+    describeIpamPrefixListResolverTargets: function(Client, types.DescribeIpamPrefixListResolverTargetsInput): Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
     -- Describes IPAM resource discoveries. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    describeIpamResourceDiscoveries: function(Client, types.DescribeIpamResourceDiscoveriesInput): types.DescribeIpamResourceDiscoveriesOutput, table
+    describeIpamResourceDiscoveries: function(Client, types.DescribeIpamResourceDiscoveriesInput): Operation<types.DescribeIpamResourceDiscoveriesOutput>
     -- Describes resource discovery association with an Amazon VPC IPAM. An associated resource discovery is a resource discovery that has been associated with an IPAM..
-    describeIpamResourceDiscoveryAssociations: function(Client, types.DescribeIpamResourceDiscoveryAssociationsInput): types.DescribeIpamResourceDiscoveryAssociationsOutput, table
+    describeIpamResourceDiscoveryAssociations: function(Client, types.DescribeIpamResourceDiscoveryAssociationsInput): Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
     -- Get information about your IPAM pools.
     -- For more information, see What is IPAM? in the Amazon VPC IPAM User Guide.
-    describeIpams: function(Client, types.DescribeIpamsInput): types.DescribeIpamsOutput, table
+    describeIpams: function(Client, types.DescribeIpamsInput): Operation<types.DescribeIpamsOutput>
     -- Get information about your IPAM scopes.
-    describeIpamScopes: function(Client, types.DescribeIpamScopesInput): types.DescribeIpamScopesOutput, table
+    describeIpamScopes: function(Client, types.DescribeIpamScopesInput): Operation<types.DescribeIpamScopesOutput>
     -- Describes your IPv6 address pools.
-    describeIpv6Pools: function(Client, types.DescribeIpv6PoolsInput): types.DescribeIpv6PoolsOutput, table
+    describeIpv6Pools: function(Client, types.DescribeIpv6PoolsInput): Operation<types.DescribeIpv6PoolsOutput>
     -- Describes the specified key pairs or all of your key pairs.
     -- For more information about key pairs, see Amazon EC2 key pairs
     -- in the Amazon EC2 User Guide.
-    describeKeyPairs: function(Client, types.DescribeKeyPairsInput): types.DescribeKeyPairsOutput, table
+    describeKeyPairs: function(Client, types.DescribeKeyPairsInput): Operation<types.DescribeKeyPairsOutput>
     -- Describes one or more launch templates.
-    describeLaunchTemplates: function(Client, types.DescribeLaunchTemplatesInput): types.DescribeLaunchTemplatesOutput, table
+    describeLaunchTemplates: function(Client, types.DescribeLaunchTemplatesInput): Operation<types.DescribeLaunchTemplatesOutput>
     -- Describes one or more versions of a specified launch template. You can describe all
     -- versions, individual versions, or a range of versions. You can also describe all the
     -- latest versions or all the default versions of all the launch templates in your
     -- account.
-    describeLaunchTemplateVersions: function(Client, types.DescribeLaunchTemplateVersionsInput): types.DescribeLaunchTemplateVersionsOutput, table
+    describeLaunchTemplateVersions: function(Client, types.DescribeLaunchTemplateVersionsInput): Operation<types.DescribeLaunchTemplateVersionsOutput>
     -- Describes one or more local gateway route tables. By default, all local gateway route tables are described.
     -- Alternatively, you can filter the results.
-    describeLocalGatewayRouteTables: function(Client, types.DescribeLocalGatewayRouteTablesInput): types.DescribeLocalGatewayRouteTablesOutput, table
+    describeLocalGatewayRouteTables: function(Client, types.DescribeLocalGatewayRouteTablesInput): Operation<types.DescribeLocalGatewayRouteTablesOutput>
     -- Describes the associations between virtual interface groups and local gateway route tables.
-    describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations: function(Client, types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput): types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput, table
+    describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations: function(Client, types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput): Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
     -- Describes the specified associations between VPCs and local gateway route tables.
-    describeLocalGatewayRouteTableVpcAssociations: function(Client, types.DescribeLocalGatewayRouteTableVpcAssociationsInput): types.DescribeLocalGatewayRouteTableVpcAssociationsOutput, table
+    describeLocalGatewayRouteTableVpcAssociations: function(Client, types.DescribeLocalGatewayRouteTableVpcAssociationsInput): Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
     -- Describes one or more local gateways. By default, all local gateways are described.
     -- Alternatively, you can filter the results.
-    describeLocalGateways: function(Client, types.DescribeLocalGatewaysInput): types.DescribeLocalGatewaysOutput, table
+    describeLocalGateways: function(Client, types.DescribeLocalGatewaysInput): Operation<types.DescribeLocalGatewaysOutput>
     -- Describes the specified local gateway virtual interface groups.
-    describeLocalGatewayVirtualInterfaceGroups: function(Client, types.DescribeLocalGatewayVirtualInterfaceGroupsInput): types.DescribeLocalGatewayVirtualInterfaceGroupsOutput, table
+    describeLocalGatewayVirtualInterfaceGroups: function(Client, types.DescribeLocalGatewayVirtualInterfaceGroupsInput): Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
     -- Describes the specified local gateway virtual interfaces.
-    describeLocalGatewayVirtualInterfaces: function(Client, types.DescribeLocalGatewayVirtualInterfacesInput): types.DescribeLocalGatewayVirtualInterfacesOutput, table
+    describeLocalGatewayVirtualInterfaces: function(Client, types.DescribeLocalGatewayVirtualInterfacesInput): Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
     -- Describes the lock status for a snapshot.
-    describeLockedSnapshots: function(Client, types.DescribeLockedSnapshotsInput): types.DescribeLockedSnapshotsOutput, table
+    describeLockedSnapshots: function(Client, types.DescribeLockedSnapshotsInput): Operation<types.DescribeLockedSnapshotsOutput>
     -- Describes the specified EC2 Mac Dedicated Host or all of your EC2 Mac Dedicated Hosts.
-    describeMacHosts: function(Client, types.DescribeMacHostsInput): types.DescribeMacHostsOutput, table
+    describeMacHosts: function(Client, types.DescribeMacHostsInput): Operation<types.DescribeMacHostsOutput>
     -- Describes a System Integrity Protection (SIP) modification task or volume ownership delegation
     -- task for an Amazon EC2 Mac instance. For more information, see Configure
     -- SIP for Amazon EC2 instances in the Amazon EC2 User Guide.
-    describeMacModificationTasks: function(Client, types.DescribeMacModificationTasksInput): types.DescribeMacModificationTasksOutput, table
+    describeMacModificationTasks: function(Client, types.DescribeMacModificationTasksInput): Operation<types.DescribeMacModificationTasksOutput>
     -- Describes your managed prefix lists and any Amazon Web Services-managed prefix lists.
-    describeManagedPrefixLists: function(Client, types.DescribeManagedPrefixListsInput): types.DescribeManagedPrefixListsOutput, table
+    describeManagedPrefixLists: function(Client, types.DescribeManagedPrefixListsInput): Operation<types.DescribeManagedPrefixListsOutput>
     -- This action is deprecated.
     -- Describes your Elastic IP addresses that are being moved from or being restored to the EC2-Classic platform.
     -- This request does not return information about any other Elastic IP addresses in your account.
-    describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput): types.DescribeMovingAddressesOutput, table
+    describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput): Operation<types.DescribeMovingAddressesOutput>
     -- Describes your NAT gateways. The default is to describe all your NAT gateways.
     -- Alternatively, you can specify specific NAT gateway IDs or filter the results to
     -- include only the NAT gateways that match specific criteria.
-    describeNatGateways: function(Client, types.DescribeNatGatewaysInput): types.DescribeNatGatewaysOutput, table
+    describeNatGateways: function(Client, types.DescribeNatGatewaysInput): Operation<types.DescribeNatGatewaysOutput>
     -- Describes your network ACLs. The default is to describe all your network ACLs.
     -- Alternatively, you can specify specific network ACL IDs or filter the results to
     -- include only the network ACLs that match specific criteria.
     -- For more information, see Network ACLs in the
     -- Amazon VPC User Guide.
-    describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput): types.DescribeNetworkAclsOutput, table
+    describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput): Operation<types.DescribeNetworkAclsOutput>
     -- Describes the specified Network Access Scope analyses.
-    describeNetworkInsightsAccessScopeAnalyses: function(Client, types.DescribeNetworkInsightsAccessScopeAnalysesInput): types.DescribeNetworkInsightsAccessScopeAnalysesOutput, table
+    describeNetworkInsightsAccessScopeAnalyses: function(Client, types.DescribeNetworkInsightsAccessScopeAnalysesInput): Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
     -- Describes the specified Network Access Scopes.
-    describeNetworkInsightsAccessScopes: function(Client, types.DescribeNetworkInsightsAccessScopesInput): types.DescribeNetworkInsightsAccessScopesOutput, table
+    describeNetworkInsightsAccessScopes: function(Client, types.DescribeNetworkInsightsAccessScopesInput): Operation<types.DescribeNetworkInsightsAccessScopesOutput>
     -- Describes one or more of your network insights analyses.
-    describeNetworkInsightsAnalyses: function(Client, types.DescribeNetworkInsightsAnalysesInput): types.DescribeNetworkInsightsAnalysesOutput, table
+    describeNetworkInsightsAnalyses: function(Client, types.DescribeNetworkInsightsAnalysesInput): Operation<types.DescribeNetworkInsightsAnalysesOutput>
     -- Describes one or more of your paths.
-    describeNetworkInsightsPaths: function(Client, types.DescribeNetworkInsightsPathsInput): types.DescribeNetworkInsightsPathsOutput, table
+    describeNetworkInsightsPaths: function(Client, types.DescribeNetworkInsightsPathsInput): Operation<types.DescribeNetworkInsightsPathsOutput>
     -- Describes a network interface attribute. You can specify only one attribute at a
     -- time.
-    describeNetworkInterfaceAttribute: function(Client, types.DescribeNetworkInterfaceAttributeInput): types.DescribeNetworkInterfaceAttributeOutput, table
+    describeNetworkInterfaceAttribute: function(Client, types.DescribeNetworkInterfaceAttributeInput): Operation<types.DescribeNetworkInterfaceAttributeOutput>
     -- Describes the permissions for your network interfaces.
-    describeNetworkInterfacePermissions: function(Client, types.DescribeNetworkInterfacePermissionsInput): types.DescribeNetworkInterfacePermissionsOutput, table
+    describeNetworkInterfacePermissions: function(Client, types.DescribeNetworkInterfacePermissionsInput): Operation<types.DescribeNetworkInterfacePermissionsOutput>
     -- Describes the specified network interfaces or all your network interfaces.
     -- If you have a large number of network interfaces, the operation fails unless you use
     -- pagination or one of the following filters: group-id,
@@ -2113,10 +2117,10 @@ local record Client
     -- vpc-id.
     -- We strongly recommend using only paginated requests. Unpaginated requests are
     -- susceptible to throttling and timeouts.
-    describeNetworkInterfaces: function(Client, types.DescribeNetworkInterfacesInput): types.DescribeNetworkInterfacesOutput, table
+    describeNetworkInterfaces: function(Client, types.DescribeNetworkInterfacesInput): Operation<types.DescribeNetworkInterfacesOutput>
     -- Describes the Outposts link aggregation groups (LAGs).
     -- LAGs are only available for second-generation Outposts racks at this time.
-    describeOutpostLags: function(Client, types.DescribeOutpostLagsInput): types.DescribeOutpostLagsOutput, table
+    describeOutpostLags: function(Client, types.DescribeOutpostLagsInput): Operation<types.DescribeOutpostLagsOutput>
     -- Describes the specified placement groups or all of your placement groups.
     -- To describe a specific placement group that is shared with
     -- your account, you must specify the ID of the placement group using the
@@ -2125,10 +2129,10 @@ local record Client
     -- parameter will result in an error.
     -- For more information, see Placement groups in the
     -- Amazon EC2 User Guide.
-    describePlacementGroups: function(Client, types.DescribePlacementGroupsInput): types.DescribePlacementGroupsOutput, table
+    describePlacementGroups: function(Client, types.DescribePlacementGroupsInput): Operation<types.DescribePlacementGroupsOutput>
     -- Describes available Amazon Web Services services in a prefix list format, which includes the prefix list
     -- name and prefix list ID of the service and the IP address range for the service.
-    describePrefixLists: function(Client, types.DescribePrefixListsInput): types.DescribePrefixListsOutput, table
+    describePrefixLists: function(Client, types.DescribePrefixListsInput): Operation<types.DescribePrefixListsOutput>
     -- Describes the ID format settings for the root user and all IAM roles and IAM users
     -- that have explicitly specified a longer ID (17-character ID) preference.
     -- By default, all IAM roles and IAM users default to the same ID settings as the root user, unless they
@@ -2147,25 +2151,25 @@ local record Client
     -- subnet-cidr-block-association | volume | vpc
     -- | vpc-cidr-block-association | vpc-endpoint |
     -- vpc-peering-connection | vpn-connection | vpn-gateway.
-    describePrincipalIdFormat: function(Client, types.DescribePrincipalIdFormatInput): types.DescribePrincipalIdFormatOutput, table
+    describePrincipalIdFormat: function(Client, types.DescribePrincipalIdFormatInput): Operation<types.DescribePrincipalIdFormatOutput>
     -- Describes the specified IPv4 address pools.
-    describePublicIpv4Pools: function(Client, types.DescribePublicIpv4PoolsInput): types.DescribePublicIpv4PoolsOutput, table
+    describePublicIpv4Pools: function(Client, types.DescribePublicIpv4PoolsInput): Operation<types.DescribePublicIpv4PoolsOutput>
     -- Describes the Regions that are enabled for your account, or all Regions.
     -- For a list of the Regions supported by Amazon EC2, see Amazon EC2 service endpoints.
     -- For information about enabling and disabling Regions for your account, see Specify which Amazon Web Services Regions
     -- your account can use in the Amazon Web Services Account Management Reference Guide.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeRegions: function(Client, types.DescribeRegionsInput): types.DescribeRegionsOutput, table
+    describeRegions: function(Client, types.DescribeRegionsInput): Operation<types.DescribeRegionsOutput>
     -- Describes a root volume replacement task. For more information, see
     -- Replace a root volume in the Amazon EC2 User Guide.
-    describeReplaceRootVolumeTasks: function(Client, types.DescribeReplaceRootVolumeTasksInput): types.DescribeReplaceRootVolumeTasksOutput, table
+    describeReplaceRootVolumeTasks: function(Client, types.DescribeReplaceRootVolumeTasksInput): Operation<types.DescribeReplaceRootVolumeTasksOutput>
     -- Describes one or more of the Reserved Instances that you purchased.
     -- For more information about Reserved Instances, see Reserved
     -- Instances in the Amazon EC2 User Guide.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput): types.DescribeReservedInstancesOutput, table
+    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput): Operation<types.DescribeReservedInstancesOutput>
     -- Describes your account's Reserved Instance listings in the Reserved Instance
     -- Marketplace.
     -- The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance
@@ -2184,7 +2188,7 @@ local record Client
     -- Marketplace in the Amazon EC2 User Guide.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeReservedInstancesListings: function(Client, types.DescribeReservedInstancesListingsInput): types.DescribeReservedInstancesListingsOutput, table
+    describeReservedInstancesListings: function(Client, types.DescribeReservedInstancesListingsInput): Operation<types.DescribeReservedInstancesListingsOutput>
     -- Describes the modifications made to your Reserved Instances. If no parameter is specified,
     -- information about all your Reserved Instances modification requests is returned. If a
     -- modification ID is specified, only information about the specific modification is
@@ -2193,7 +2197,7 @@ local record Client
     -- Amazon EC2 User Guide.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeReservedInstancesModifications: function(Client, types.DescribeReservedInstancesModificationsInput): types.DescribeReservedInstancesModificationsOutput, table
+    describeReservedInstancesModifications: function(Client, types.DescribeReservedInstancesModificationsInput): Operation<types.DescribeReservedInstancesModificationsOutput>
     -- Describes Reserved Instance offerings that are available for purchase. With Reserved
     -- Instances, you purchase the right to launch instances for a period of time. During that time
     -- period, you do not receive insufficient capacity errors, and you pay a lower usage rate than
@@ -2205,18 +2209,18 @@ local record Client
     -- Marketplace in the Amazon EC2 User Guide.
     -- The order of the elements in the response, including those within nested structures,
     -- might vary. Applications should not assume the elements appear in a particular order.
-    describeReservedInstancesOfferings: function(Client, types.DescribeReservedInstancesOfferingsInput): types.DescribeReservedInstancesOfferingsOutput, table
+    describeReservedInstancesOfferings: function(Client, types.DescribeReservedInstancesOfferingsInput): Operation<types.DescribeReservedInstancesOfferingsOutput>
     -- Describes one or more route server endpoints.
     -- A route server endpoint is an Amazon Web Services-managed component inside a subnet that facilitates BGP (Border Gateway Protocol) connections between your route server and your BGP peers.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    describeRouteServerEndpoints: function(Client, types.DescribeRouteServerEndpointsInput): types.DescribeRouteServerEndpointsOutput, table
+    describeRouteServerEndpoints: function(Client, types.DescribeRouteServerEndpointsInput): Operation<types.DescribeRouteServerEndpointsOutput>
     -- Describes one or more route server peers.
     -- A route server peer is a session between a route server endpoint and the device deployed in Amazon Web Services (such as a firewall appliance or other network security function running on an EC2 instance). The device must meet these requirements:
     -- Have an elastic network interface in the VPC
     -- Support BGP (Border Gateway Protocol)
     -- Can initiate BGP sessions
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    describeRouteServerPeers: function(Client, types.DescribeRouteServerPeersInput): types.DescribeRouteServerPeersOutput, table
+    describeRouteServerPeers: function(Client, types.DescribeRouteServerPeersInput): Operation<types.DescribeRouteServerPeersOutput>
     -- Describes one or more route servers.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
     -- VPC Route Server dynamically updates VPC and internet gateway route tables with your preferred IPv4 or IPv6 routes to achieve routing fault tolerance for those workloads. This enables you to automatically reroute traffic within a VPC, which increases the manageability of VPC routing and interoperability with third-party workloads.
@@ -2226,41 +2230,41 @@ local record Client
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    describeRouteServers: function(Client, types.DescribeRouteServersInput): types.DescribeRouteServersOutput, table
+    describeRouteServers: function(Client, types.DescribeRouteServersInput): Operation<types.DescribeRouteServersOutput>
     -- Describes your route tables. The default is to describe all your route tables.
     -- Alternatively, you can specify specific route table IDs or filter the results to
     -- include only the route tables that match specific criteria.
     -- Each subnet in your VPC must be associated with a route table. If a subnet is not explicitly associated with any route table, it is implicitly associated with the main route table. This command does not return the subnet ID for implicit associations.
     -- For more information, see Route tables in the
     -- Amazon VPC User Guide.
-    describeRouteTables: function(Client, types.DescribeRouteTablesInput): types.DescribeRouteTablesOutput, table
+    describeRouteTables: function(Client, types.DescribeRouteTablesInput): Operation<types.DescribeRouteTablesOutput>
     -- Finds available schedules that meet the specified criteria.
     -- You can search for an available schedule no more than 3 months in advance. You must meet the minimum required duration of 1,200 hours per year. For example, the minimum daily schedule is 4 hours, the minimum weekly schedule is 24 hours, and the minimum monthly schedule is 100 hours.
     -- After you find a schedule that meets your needs, call PurchaseScheduledInstances
     -- to purchase Scheduled Instances with that schedule.
-    describeScheduledInstanceAvailability: function(Client, types.DescribeScheduledInstanceAvailabilityInput): types.DescribeScheduledInstanceAvailabilityOutput, table
+    describeScheduledInstanceAvailability: function(Client, types.DescribeScheduledInstanceAvailabilityInput): Operation<types.DescribeScheduledInstanceAvailabilityOutput>
     -- Describes the specified Scheduled Instances or all your Scheduled Instances.
-    describeScheduledInstances: function(Client, types.DescribeScheduledInstancesInput): types.DescribeScheduledInstancesOutput, table
+    describeScheduledInstances: function(Client, types.DescribeScheduledInstancesInput): Operation<types.DescribeScheduledInstancesOutput>
     -- Describes one or more of your secondary interfaces.
-    describeSecondaryInterfaces: function(Client, types.DescribeSecondaryInterfacesInput): types.DescribeSecondaryInterfacesOutput, table
+    describeSecondaryInterfaces: function(Client, types.DescribeSecondaryInterfacesInput): Operation<types.DescribeSecondaryInterfacesOutput>
     -- Describes one or more secondary networks.
-    describeSecondaryNetworks: function(Client, types.DescribeSecondaryNetworksInput): types.DescribeSecondaryNetworksOutput, table
+    describeSecondaryNetworks: function(Client, types.DescribeSecondaryNetworksInput): Operation<types.DescribeSecondaryNetworksOutput>
     -- Describes one or more of your secondary subnets.
-    describeSecondarySubnets: function(Client, types.DescribeSecondarySubnetsInput): types.DescribeSecondarySubnetsOutput, table
+    describeSecondarySubnets: function(Client, types.DescribeSecondarySubnetsInput): Operation<types.DescribeSecondarySubnetsOutput>
     -- Describes the VPCs on the other side of a VPC peering or Transit Gateway connection that are referencing the security groups you've specified in this request.
-    describeSecurityGroupReferences: function(Client, types.DescribeSecurityGroupReferencesInput): types.DescribeSecurityGroupReferencesOutput, table
+    describeSecurityGroupReferences: function(Client, types.DescribeSecurityGroupReferencesInput): Operation<types.DescribeSecurityGroupReferencesOutput>
     -- Describes one or more of your security group rules.
-    describeSecurityGroupRules: function(Client, types.DescribeSecurityGroupRulesInput): types.DescribeSecurityGroupRulesOutput, table
+    describeSecurityGroupRules: function(Client, types.DescribeSecurityGroupRulesInput): Operation<types.DescribeSecurityGroupRulesOutput>
     -- Describes the specified security groups or all of your security groups.
-    describeSecurityGroups: function(Client, types.DescribeSecurityGroupsInput): types.DescribeSecurityGroupsOutput, table
+    describeSecurityGroups: function(Client, types.DescribeSecurityGroupsInput): Operation<types.DescribeSecurityGroupsOutput>
     -- Describes security group VPC associations made with AssociateSecurityGroupVpc.
-    describeSecurityGroupVpcAssociations: function(Client, types.DescribeSecurityGroupVpcAssociationsInput): types.DescribeSecurityGroupVpcAssociationsOutput, table
+    describeSecurityGroupVpcAssociations: function(Client, types.DescribeSecurityGroupVpcAssociationsInput): Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
     -- Describes the Outpost service link virtual interfaces.
-    describeServiceLinkVirtualInterfaces: function(Client, types.DescribeServiceLinkVirtualInterfacesInput): types.DescribeServiceLinkVirtualInterfacesOutput, table
+    describeServiceLinkVirtualInterfaces: function(Client, types.DescribeServiceLinkVirtualInterfacesInput): Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
     -- Describes the specified attribute of the specified snapshot. You can specify only one
     -- attribute at a time.
     -- For more information about EBS snapshots, see Amazon EBS snapshots in the Amazon EBS User Guide.
-    describeSnapshotAttribute: function(Client, types.DescribeSnapshotAttributeInput): types.DescribeSnapshotAttributeOutput, table
+    describeSnapshotAttribute: function(Client, types.DescribeSnapshotAttributeInput): Operation<types.DescribeSnapshotAttributeOutput>
     -- Describes the specified EBS snapshots available to you or all of the EBS snapshots
     -- available to you.
     -- The snapshots available to you include public snapshots, private snapshots that you own,
@@ -2294,14 +2298,14 @@ local record Client
     -- For more information about EBS snapshots, see Amazon EBS snapshots in the Amazon EBS User Guide.
     -- We strongly recommend using only paginated requests. Unpaginated requests are
     -- susceptible to throttling and timeouts.
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): Operation<types.DescribeSnapshotsOutput>
     -- Describes the storage tier status of one or more Amazon EBS snapshots.
-    describeSnapshotTierStatus: function(Client, types.DescribeSnapshotTierStatusInput): types.DescribeSnapshotTierStatusOutput, table
+    describeSnapshotTierStatus: function(Client, types.DescribeSnapshotTierStatusInput): Operation<types.DescribeSnapshotTierStatusOutput>
     -- Describes the data feed for Spot Instances. For more information, see Spot
     -- Instance data feed in the Amazon EC2 User Guide.
-    describeSpotDatafeedSubscription: function(Client, types.DescribeSpotDatafeedSubscriptionInput): types.DescribeSpotDatafeedSubscriptionOutput, table
+    describeSpotDatafeedSubscription: function(Client, types.DescribeSpotDatafeedSubscriptionInput): Operation<types.DescribeSpotDatafeedSubscriptionOutput>
     -- Describes the running instances for the specified Spot Fleet.
-    describeSpotFleetInstances: function(Client, types.DescribeSpotFleetInstancesInput): types.DescribeSpotFleetInstancesOutput, table
+    describeSpotFleetInstances: function(Client, types.DescribeSpotFleetInstancesInput): Operation<types.DescribeSpotFleetInstancesOutput>
     -- Describes the events for the specified Spot Fleet request during the specified
     -- time.
     -- Spot Fleet events are delayed by up to 30 seconds before they can be described. This
@@ -2309,11 +2313,11 @@ local record Client
     -- Spot Fleet events are available for 48 hours.
     -- For more information, see Monitor fleet events using Amazon
     -- EventBridge in the Amazon EC2 User Guide.
-    describeSpotFleetRequestHistory: function(Client, types.DescribeSpotFleetRequestHistoryInput): types.DescribeSpotFleetRequestHistoryOutput, table
+    describeSpotFleetRequestHistory: function(Client, types.DescribeSpotFleetRequestHistoryInput): Operation<types.DescribeSpotFleetRequestHistoryOutput>
     -- Describes your Spot Fleet requests.
     -- Spot Fleet requests are deleted 48 hours after they are canceled and their instances
     -- are terminated.
-    describeSpotFleetRequests: function(Client, types.DescribeSpotFleetRequestsInput): types.DescribeSpotFleetRequestsOutput, table
+    describeSpotFleetRequests: function(Client, types.DescribeSpotFleetRequestsInput): Operation<types.DescribeSpotFleetRequestsOutput>
     -- Describes the specified Spot Instance requests.
     -- You can use DescribeSpotInstanceRequests to find a running Spot Instance by
     -- examining the response. If the status of the Spot Instance is fulfilled, the
@@ -2330,13 +2334,13 @@ local record Client
     -- items.
     -- Spot Instance requests are deleted four hours after they are canceled and their instances are
     -- terminated.
-    describeSpotInstanceRequests: function(Client, types.DescribeSpotInstanceRequestsInput): types.DescribeSpotInstanceRequestsOutput, table
+    describeSpotInstanceRequests: function(Client, types.DescribeSpotInstanceRequestsInput): Operation<types.DescribeSpotInstanceRequestsOutput>
     -- Describes the Spot price history. For more information, see Spot Instance pricing history in the
     -- Amazon EC2 User Guide.
     -- When you specify a start and end time, the operation returns the prices of the
     -- instance types within that time range. It also returns the last price change before the
     -- start time, which is the effective price as of the start time.
-    describeSpotPriceHistory: function(Client, types.DescribeSpotPriceHistoryInput): types.DescribeSpotPriceHistoryOutput, table
+    describeSpotPriceHistory: function(Client, types.DescribeSpotPriceHistoryInput): Operation<types.DescribeSpotPriceHistoryOutput>
     -- Describes the stale security group rules for security groups referenced across a VPC
     -- peering connection, transit gateway connection, or with a security group VPC
     -- association. Rules are stale when they reference a deleted security group. Rules can
@@ -2345,7 +2349,7 @@ local record Client
     -- deleted (or the transit
     -- gateway security group referencing feature has been disabled), or if a
     -- security group VPC association has been disassociated.
-    describeStaleSecurityGroups: function(Client, types.DescribeStaleSecurityGroupsInput): types.DescribeStaleSecurityGroupsOutput, table
+    describeStaleSecurityGroups: function(Client, types.DescribeStaleSecurityGroupsInput): Operation<types.DescribeStaleSecurityGroupsOutput>
     -- Describes the progress of the AMI store tasks. You can describe the store tasks for
     -- specified AMIs. If you don't specify the AMIs, you get a paginated list of store tasks from
     -- the last 31 days.
@@ -2358,13 +2362,13 @@ local record Client
     -- Amazon EC2 User Guide.
     -- For more information, see Store and restore an AMI using
     -- S3 in the Amazon EC2 User Guide.
-    describeStoreImageTasks: function(Client, types.DescribeStoreImageTasksInput): types.DescribeStoreImageTasksOutput, table
+    describeStoreImageTasks: function(Client, types.DescribeStoreImageTasksInput): Operation<types.DescribeStoreImageTasksOutput>
     -- Describes your subnets. The default is to describe all your subnets.
     -- Alternatively, you can specify specific subnet IDs or filter the results to
     -- include only the subnets that match specific criteria.
     -- For more information, see Subnets in the
     -- Amazon VPC User Guide.
-    describeSubnets: function(Client, types.DescribeSubnetsInput): types.DescribeSubnetsOutput, table
+    describeSubnets: function(Client, types.DescribeSubnetsInput): Operation<types.DescribeSubnetsOutput>
     -- Describes the specified tags for your EC2 resources.
     -- For more information about tags, see Tag your Amazon EC2 resources in the
     -- Amazon Elastic Compute Cloud User Guide.
@@ -2373,57 +2377,57 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Describe traffic mirror filters that determine the traffic that is mirrored.
-    describeTrafficMirrorFilterRules: function(Client, types.DescribeTrafficMirrorFilterRulesInput): types.DescribeTrafficMirrorFilterRulesOutput, table
+    describeTrafficMirrorFilterRules: function(Client, types.DescribeTrafficMirrorFilterRulesInput): Operation<types.DescribeTrafficMirrorFilterRulesOutput>
     -- Describes one or more Traffic Mirror filters.
-    describeTrafficMirrorFilters: function(Client, types.DescribeTrafficMirrorFiltersInput): types.DescribeTrafficMirrorFiltersOutput, table
+    describeTrafficMirrorFilters: function(Client, types.DescribeTrafficMirrorFiltersInput): Operation<types.DescribeTrafficMirrorFiltersOutput>
     -- Describes one or more Traffic Mirror sessions. By default, all Traffic Mirror sessions are described. Alternatively, you can filter the results.
-    describeTrafficMirrorSessions: function(Client, types.DescribeTrafficMirrorSessionsInput): types.DescribeTrafficMirrorSessionsOutput, table
+    describeTrafficMirrorSessions: function(Client, types.DescribeTrafficMirrorSessionsInput): Operation<types.DescribeTrafficMirrorSessionsOutput>
     -- Information about one or more Traffic Mirror targets.
-    describeTrafficMirrorTargets: function(Client, types.DescribeTrafficMirrorTargetsInput): types.DescribeTrafficMirrorTargetsOutput, table
+    describeTrafficMirrorTargets: function(Client, types.DescribeTrafficMirrorTargetsInput): Operation<types.DescribeTrafficMirrorTargetsOutput>
     -- Describes one or more attachments between resources and transit gateways. By default, all attachments are described.
     -- Alternatively, you can filter the results by attachment ID, attachment state, resource ID, or resource owner.
-    describeTransitGatewayAttachments: function(Client, types.DescribeTransitGatewayAttachmentsInput): types.DescribeTransitGatewayAttachmentsOutput, table
+    describeTransitGatewayAttachments: function(Client, types.DescribeTransitGatewayAttachmentsInput): Operation<types.DescribeTransitGatewayAttachmentsOutput>
     -- Describes one or more Connect peers.
-    describeTransitGatewayConnectPeers: function(Client, types.DescribeTransitGatewayConnectPeersInput): types.DescribeTransitGatewayConnectPeersOutput, table
+    describeTransitGatewayConnectPeers: function(Client, types.DescribeTransitGatewayConnectPeersInput): Operation<types.DescribeTransitGatewayConnectPeersOutput>
     -- Describes one or more Connect attachments.
-    describeTransitGatewayConnects: function(Client, types.DescribeTransitGatewayConnectsInput): types.DescribeTransitGatewayConnectsOutput, table
+    describeTransitGatewayConnects: function(Client, types.DescribeTransitGatewayConnectsInput): Operation<types.DescribeTransitGatewayConnectsOutput>
     -- Describes one or more transit gateway metering policies.
-    describeTransitGatewayMeteringPolicies: function(Client, types.DescribeTransitGatewayMeteringPoliciesInput): types.DescribeTransitGatewayMeteringPoliciesOutput, table
+    describeTransitGatewayMeteringPolicies: function(Client, types.DescribeTransitGatewayMeteringPoliciesInput): Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
     -- Describes one or more transit gateway multicast domains.
-    describeTransitGatewayMulticastDomains: function(Client, types.DescribeTransitGatewayMulticastDomainsInput): types.DescribeTransitGatewayMulticastDomainsOutput, table
+    describeTransitGatewayMulticastDomains: function(Client, types.DescribeTransitGatewayMulticastDomainsInput): Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
     -- Describes your transit gateway peering attachments.
-    describeTransitGatewayPeeringAttachments: function(Client, types.DescribeTransitGatewayPeeringAttachmentsInput): types.DescribeTransitGatewayPeeringAttachmentsOutput, table
+    describeTransitGatewayPeeringAttachments: function(Client, types.DescribeTransitGatewayPeeringAttachmentsInput): Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
     -- Describes one or more transit gateway route policy tables.
-    describeTransitGatewayPolicyTables: function(Client, types.DescribeTransitGatewayPolicyTablesInput): types.DescribeTransitGatewayPolicyTablesOutput, table
+    describeTransitGatewayPolicyTables: function(Client, types.DescribeTransitGatewayPolicyTablesInput): Operation<types.DescribeTransitGatewayPolicyTablesOutput>
     -- Describes one or more transit gateway route table advertisements.
-    describeTransitGatewayRouteTableAnnouncements: function(Client, types.DescribeTransitGatewayRouteTableAnnouncementsInput): types.DescribeTransitGatewayRouteTableAnnouncementsOutput, table
+    describeTransitGatewayRouteTableAnnouncements: function(Client, types.DescribeTransitGatewayRouteTableAnnouncementsInput): Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
     -- Describes one or more transit gateway route tables. By default, all transit gateway route tables are described.
     -- Alternatively, you can filter the results.
-    describeTransitGatewayRouteTables: function(Client, types.DescribeTransitGatewayRouteTablesInput): types.DescribeTransitGatewayRouteTablesOutput, table
+    describeTransitGatewayRouteTables: function(Client, types.DescribeTransitGatewayRouteTablesInput): Operation<types.DescribeTransitGatewayRouteTablesOutput>
     -- Describes one or more transit gateways. By default, all transit gateways are described. Alternatively, you can
     -- filter the results.
-    describeTransitGateways: function(Client, types.DescribeTransitGatewaysInput): types.DescribeTransitGatewaysOutput, table
+    describeTransitGateways: function(Client, types.DescribeTransitGatewaysInput): Operation<types.DescribeTransitGatewaysOutput>
     -- Describes one or more VPC attachments. By default, all VPC attachments are described.
     -- Alternatively, you can filter the results.
-    describeTransitGatewayVpcAttachments: function(Client, types.DescribeTransitGatewayVpcAttachmentsInput): types.DescribeTransitGatewayVpcAttachmentsOutput, table
+    describeTransitGatewayVpcAttachments: function(Client, types.DescribeTransitGatewayVpcAttachmentsInput): Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
     -- Describes one or more network interface trunk associations.
-    describeTrunkInterfaceAssociations: function(Client, types.DescribeTrunkInterfaceAssociationsInput): types.DescribeTrunkInterfaceAssociationsOutput, table
+    describeTrunkInterfaceAssociations: function(Client, types.DescribeTrunkInterfaceAssociationsInput): Operation<types.DescribeTrunkInterfaceAssociationsOutput>
     -- Describes the specified Amazon Web Services Verified Access endpoints.
-    describeVerifiedAccessEndpoints: function(Client, types.DescribeVerifiedAccessEndpointsInput): types.DescribeVerifiedAccessEndpointsOutput, table
+    describeVerifiedAccessEndpoints: function(Client, types.DescribeVerifiedAccessEndpointsInput): Operation<types.DescribeVerifiedAccessEndpointsOutput>
     -- Describes the specified Verified Access groups.
-    describeVerifiedAccessGroups: function(Client, types.DescribeVerifiedAccessGroupsInput): types.DescribeVerifiedAccessGroupsOutput, table
+    describeVerifiedAccessGroups: function(Client, types.DescribeVerifiedAccessGroupsInput): Operation<types.DescribeVerifiedAccessGroupsOutput>
     -- Describes the specified Amazon Web Services Verified Access instances.
-    describeVerifiedAccessInstanceLoggingConfigurations: function(Client, types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput): types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput, table
+    describeVerifiedAccessInstanceLoggingConfigurations: function(Client, types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput): Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
     -- Describes the specified Amazon Web Services Verified Access instances.
-    describeVerifiedAccessInstances: function(Client, types.DescribeVerifiedAccessInstancesInput): types.DescribeVerifiedAccessInstancesOutput, table
+    describeVerifiedAccessInstances: function(Client, types.DescribeVerifiedAccessInstancesInput): Operation<types.DescribeVerifiedAccessInstancesOutput>
     -- Describes the specified Amazon Web Services Verified Access trust providers.
-    describeVerifiedAccessTrustProviders: function(Client, types.DescribeVerifiedAccessTrustProvidersInput): types.DescribeVerifiedAccessTrustProvidersOutput, table
+    describeVerifiedAccessTrustProviders: function(Client, types.DescribeVerifiedAccessTrustProvidersInput): Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
     -- Describes the specified attribute of the specified volume. You can specify only one
     -- attribute at a time.
     -- For more information about EBS volumes, see Amazon EBS volumes in the Amazon EBS User Guide.
-    describeVolumeAttribute: function(Client, types.DescribeVolumeAttributeInput): types.DescribeVolumeAttributeOutput, table
+    describeVolumeAttribute: function(Client, types.DescribeVolumeAttributeInput): Operation<types.DescribeVolumeAttributeOutput>
     -- Describes the specified EBS volumes or all of your EBS volumes.
     -- If you are describing a long list of volumes, we recommend that you paginate the output to make the list
     -- more manageable. For more information, see Pagination.
@@ -2433,11 +2437,11 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeVolumes: function(Client, types.DescribeVolumesInput): types.DescribeVolumesOutput, table
+    describeVolumes: function(Client, types.DescribeVolumesInput): Operation<types.DescribeVolumesOutput>
     -- Describes the most recent volume modification request for the specified EBS volumes.
     -- For more information, see
     -- Monitor the progress of volume modifications in the Amazon EBS User Guide.
-    describeVolumesModifications: function(Client, types.DescribeVolumesModificationsInput): types.DescribeVolumesModificationsOutput, table
+    describeVolumesModifications: function(Client, types.DescribeVolumesModificationsInput): Operation<types.DescribeVolumesModificationsOutput>
     -- Describes the status of the specified volumes. Volume status provides the result of the
     -- checks performed on your volumes to determine events that can impair the performance of your
     -- volumes. The performance of a volume can be affected if an issue occurs on the volume's
@@ -2472,44 +2476,44 @@ local record Client
     -- The order of the elements in the response, including those within nested
     -- structures, might vary. Applications should not assume the elements appear in a
     -- particular order.
-    describeVolumeStatus: function(Client, types.DescribeVolumeStatusInput): types.DescribeVolumeStatusOutput, table
+    describeVolumeStatus: function(Client, types.DescribeVolumeStatusInput): Operation<types.DescribeVolumeStatusOutput>
     -- Describes the specified attribute of the specified VPC. You can specify only one attribute at a time.
-    describeVpcAttribute: function(Client, types.DescribeVpcAttributeInput): types.DescribeVpcAttributeOutput, table
+    describeVpcAttribute: function(Client, types.DescribeVpcAttributeInput): Operation<types.DescribeVpcAttributeOutput>
     -- Describe VPC Block Public Access (BPA) exclusions. A VPC BPA exclusion is a mode that can be applied to a single VPC or subnet that exempts it from the account’s BPA mode and will allow bidirectional or egress-only access. You can create BPA exclusions for VPCs and subnets even when BPA is not enabled on the account to ensure that there is no traffic disruption to the exclusions when VPC BPA is turned on. To learn more about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
-    describeVpcBlockPublicAccessExclusions: function(Client, types.DescribeVpcBlockPublicAccessExclusionsInput): types.DescribeVpcBlockPublicAccessExclusionsOutput, table
+    describeVpcBlockPublicAccessExclusions: function(Client, types.DescribeVpcBlockPublicAccessExclusionsInput): Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
     -- Describe VPC Block Public Access (BPA) options. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. To learn more about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
-    describeVpcBlockPublicAccessOptions: function(Client, types.DescribeVpcBlockPublicAccessOptionsInput): types.DescribeVpcBlockPublicAccessOptionsOutput, table
+    describeVpcBlockPublicAccessOptions: function(Client, types.DescribeVpcBlockPublicAccessOptionsInput): Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
     -- This action is deprecated.
     -- Describes the ClassicLink status of the specified VPCs.
-    describeVpcClassicLink: function(Client, types.DescribeVpcClassicLinkInput): types.DescribeVpcClassicLinkOutput, table
+    describeVpcClassicLink: function(Client, types.DescribeVpcClassicLinkInput): Operation<types.DescribeVpcClassicLinkOutput>
     -- This action is deprecated.
     -- Describes the ClassicLink DNS support status of one or more VPCs. If enabled, the DNS
     -- hostname of a linked EC2-Classic instance resolves to its private IP address when
     -- addressed from an instance in the VPC to which it's linked. Similarly, the DNS hostname
     -- of an instance in a VPC resolves to its private IP address when addressed from a linked
     -- EC2-Classic instance.
-    describeVpcClassicLinkDnsSupport: function(Client, types.DescribeVpcClassicLinkDnsSupportInput): types.DescribeVpcClassicLinkDnsSupportOutput, table
+    describeVpcClassicLinkDnsSupport: function(Client, types.DescribeVpcClassicLinkDnsSupportInput): Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
     -- Describes one or more VPC Encryption Control configurations. VPC Encryption Control enables you to enforce encryption for all data in transit within and between VPCs to meet compliance requirements You can filter the results to return information about specific encryption controls or VPCs.
     -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
-    describeVpcEncryptionControls: function(Client, types.DescribeVpcEncryptionControlsInput): types.DescribeVpcEncryptionControlsOutput, table
+    describeVpcEncryptionControls: function(Client, types.DescribeVpcEncryptionControlsInput): Operation<types.DescribeVpcEncryptionControlsOutput>
     -- Describes the VPC resources, VPC endpoint services, Amazon Lattice services, or service networks
     -- associated with the VPC endpoint.
-    describeVpcEndpointAssociations: function(Client, types.DescribeVpcEndpointAssociationsInput): types.DescribeVpcEndpointAssociationsOutput, table
+    describeVpcEndpointAssociations: function(Client, types.DescribeVpcEndpointAssociationsInput): Operation<types.DescribeVpcEndpointAssociationsOutput>
     -- Describes the connection notifications for VPC endpoints and VPC endpoint
     -- services.
-    describeVpcEndpointConnectionNotifications: function(Client, types.DescribeVpcEndpointConnectionNotificationsInput): types.DescribeVpcEndpointConnectionNotificationsOutput, table
+    describeVpcEndpointConnectionNotifications: function(Client, types.DescribeVpcEndpointConnectionNotificationsInput): Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
     -- Describes the VPC endpoint connections to your VPC endpoint services, including any
     -- endpoints that are pending your acceptance.
-    describeVpcEndpointConnections: function(Client, types.DescribeVpcEndpointConnectionsInput): types.DescribeVpcEndpointConnectionsOutput, table
+    describeVpcEndpointConnections: function(Client, types.DescribeVpcEndpointConnectionsInput): Operation<types.DescribeVpcEndpointConnectionsOutput>
     -- Describes your VPC endpoints. The default is to describe all your VPC endpoints.
     -- Alternatively, you can specify specific VPC endpoint IDs or filter the results to
     -- include only the VPC endpoints that match specific criteria.
-    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput): types.DescribeVpcEndpointsOutput, table
+    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput): Operation<types.DescribeVpcEndpointsOutput>
     -- Describes the VPC endpoint service configurations in your account (your services).
-    describeVpcEndpointServiceConfigurations: function(Client, types.DescribeVpcEndpointServiceConfigurationsInput): types.DescribeVpcEndpointServiceConfigurationsOutput, table
+    describeVpcEndpointServiceConfigurations: function(Client, types.DescribeVpcEndpointServiceConfigurationsInput): Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
     -- Describes the principals (service consumers) that are permitted to discover your VPC
     -- endpoint service. Principal ARNs with path components aren't supported.
-    describeVpcEndpointServicePermissions: function(Client, types.DescribeVpcEndpointServicePermissionsInput): types.DescribeVpcEndpointServicePermissionsOutput, table
+    describeVpcEndpointServicePermissions: function(Client, types.DescribeVpcEndpointServicePermissionsInput): Operation<types.DescribeVpcEndpointServicePermissionsOutput>
     -- Describes available services to which you can create a VPC endpoint.
     -- When the service provider and the consumer have different accounts in multiple
     -- Availability Zones, and the consumer views the VPC endpoint service information, the
@@ -2518,38 +2522,38 @@ local record Client
     -- consumer uses us-east-1a and us-east-1b, the response includes
     -- the VPC endpoint services in the common Availability Zone,
     -- us-east-1a.
-    describeVpcEndpointServices: function(Client, types.DescribeVpcEndpointServicesInput): types.DescribeVpcEndpointServicesOutput, table
+    describeVpcEndpointServices: function(Client, types.DescribeVpcEndpointServicesInput): Operation<types.DescribeVpcEndpointServicesOutput>
     -- Describes your VPC peering connections. The default is to describe all your VPC peering connections.
     -- Alternatively, you can specify specific VPC peering connection IDs or filter the results to
     -- include only the VPC peering connections that match specific criteria.
-    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput): types.DescribeVpcPeeringConnectionsOutput, table
+    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput): Operation<types.DescribeVpcPeeringConnectionsOutput>
     -- Describes your VPCs. The default is to describe all your VPCs.
     -- Alternatively, you can specify specific VPC IDs or filter the results to
     -- include only the VPCs that match specific criteria.
-    describeVpcs: function(Client, types.DescribeVpcsInput): types.DescribeVpcsOutput, table
+    describeVpcs: function(Client, types.DescribeVpcsInput): Operation<types.DescribeVpcsOutput>
     -- Describes one or more of your VPN concentrators.
-    describeVpnConcentrators: function(Client, types.DescribeVpnConcentratorsInput): types.DescribeVpnConcentratorsOutput, table
+    describeVpnConcentrators: function(Client, types.DescribeVpnConcentratorsInput): Operation<types.DescribeVpnConcentratorsOutput>
     -- Describes one or more of your VPN connections.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    describeVpnConnections: function(Client, types.DescribeVpnConnectionsInput): types.DescribeVpnConnectionsOutput, table
+    describeVpnConnections: function(Client, types.DescribeVpnConnectionsInput): Operation<types.DescribeVpnConnectionsOutput>
     -- Describes one or more of your virtual private gateways.
     -- For more information, see Amazon Web Services Site-to-Site VPN in the Amazon Web Services Site-to-Site VPN
     -- User Guide.
-    describeVpnGateways: function(Client, types.DescribeVpnGatewaysInput): types.DescribeVpnGatewaysOutput, table
+    describeVpnGateways: function(Client, types.DescribeVpnGatewaysInput): Operation<types.DescribeVpnGatewaysOutput>
     -- This action is deprecated.
     -- Unlinks (detaches) a linked EC2-Classic instance from a VPC. After the instance has been unlinked,
     -- the VPC security groups are no longer associated with it. An instance is automatically unlinked from
     -- a VPC when it's stopped.
-    detachClassicLinkVpc: function(Client, types.DetachClassicLinkVpcInput): types.DetachClassicLinkVpcOutput, table
+    detachClassicLinkVpc: function(Client, types.DetachClassicLinkVpcInput): Operation<types.DetachClassicLinkVpcOutput>
     -- Detaches an internet gateway from a VPC, disabling connectivity between the internet
     -- and the VPC. The VPC must not contain any running instances with Elastic IP addresses or
     -- public IPv4 addresses.
-    detachInternetGateway: function(Client, types.DetachInternetGatewayInput): types.DetachInternetGatewayOutput, table
+    detachInternetGateway: function(Client, types.DetachInternetGatewayInput): Operation<types.DetachInternetGatewayOutput>
     -- Detaches a network interface from an instance.
-    detachNetworkInterface: function(Client, types.DetachNetworkInterfaceInput): types.DetachNetworkInterfaceOutput, table
+    detachNetworkInterface: function(Client, types.DetachNetworkInterfaceInput): Operation<types.DetachNetworkInterfaceOutput>
     -- Detaches the specified Amazon Web Services Verified Access trust provider from the specified Amazon Web Services Verified Access instance.
-    detachVerifiedAccessTrustProvider: function(Client, types.DetachVerifiedAccessTrustProviderInput): types.DetachVerifiedAccessTrustProviderOutput, table
+    detachVerifiedAccessTrustProvider: function(Client, types.DetachVerifiedAccessTrustProviderInput): Operation<types.DetachVerifiedAccessTrustProviderOutput>
     -- Detaches an EBS volume from an instance. Make sure to unmount any file systems on the
     -- device within your operating system before detaching the volume. Failure to do so can result
     -- in the volume becoming stuck in the busy state while detaching. If this happens,
@@ -2564,16 +2568,16 @@ local record Client
     -- exception.
     -- For more information, see Detach an Amazon EBS volume in the
     -- Amazon EBS User Guide.
-    detachVolume: function(Client, types.DetachVolumeInput): types.DetachVolumeOutput, table
+    detachVolume: function(Client, types.DetachVolumeInput): Operation<types.DetachVolumeOutput>
     -- Detaches a virtual private gateway from a VPC. You do this if you're planning to turn
     -- off the VPC and not use it anymore. You can confirm a virtual private gateway has been
     -- completely detached from a VPC by describing the virtual private gateway (any
     -- attachments to the virtual private gateway are also described).
     -- You must wait for the attachment's state to switch to detached before you
     -- can delete the VPC or attach a different VPC to the virtual private gateway.
-    detachVpnGateway: function(Client, types.DetachVpnGatewayInput): types.DetachVpnGatewayOutput, table
+    detachVpnGateway: function(Client, types.DetachVpnGatewayInput): Operation<types.DetachVpnGatewayOutput>
     -- Disables Elastic IP address transfer. For more information, see Transfer Elastic IP addresses in the Amazon VPC User Guide.
-    disableAddressTransfer: function(Client, types.DisableAddressTransferInput): types.DisableAddressTransferOutput, table
+    disableAddressTransfer: function(Client, types.DisableAddressTransferInput): Operation<types.DisableAddressTransferOutput>
     -- Disables Allowed AMIs for your account in the specified Amazon Web Services Region. When set to
     -- disabled, the image criteria in your Allowed AMIs settings do not apply, and no
     -- restrictions are placed on AMI discoverability or usage. Users in your account can launch
@@ -2584,12 +2588,12 @@ local record Client
     -- For more information, see Control the discovery and use of AMIs in
     -- Amazon EC2 with Allowed AMIs in
     -- Amazon EC2 User Guide.
-    disableAllowedImagesSettings: function(Client, types.DisableAllowedImagesSettingsInput): types.DisableAllowedImagesSettingsOutput, table
+    disableAllowedImagesSettings: function(Client, types.DisableAllowedImagesSettingsInput): Operation<types.DisableAllowedImagesSettingsOutput>
     -- Disables Infrastructure Performance metric subscriptions.
-    disableAwsNetworkPerformanceMetricSubscription: function(Client, types.DisableAwsNetworkPerformanceMetricSubscriptionInput): types.DisableAwsNetworkPerformanceMetricSubscriptionOutput, table
+    disableAwsNetworkPerformanceMetricSubscription: function(Client, types.DisableAwsNetworkPerformanceMetricSubscriptionInput): Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
     -- Disables EC2 Capacity Manager for your account. This stops data ingestion and removes access to capacity analytics and optimization recommendations.
     -- Previously collected data is retained but no new data will be processed.
-    disableCapacityManager: function(Client, types.DisableCapacityManagerInput): types.DisableCapacityManagerOutput, table
+    disableCapacityManager: function(Client, types.DisableCapacityManagerInput): Operation<types.DisableCapacityManagerOutput>
     -- Disables EBS encryption by default for your account in the current Region.
     -- After you disable encryption by default, you can still create encrypted volumes by
     -- enabling encryption when you create each volume.
@@ -2597,16 +2601,16 @@ local record Client
     -- existing volumes.
     -- For more information, see Amazon EBS encryption in the
     -- Amazon EBS User Guide.
-    disableEbsEncryptionByDefault: function(Client, types.DisableEbsEncryptionByDefaultInput): types.DisableEbsEncryptionByDefaultOutput, table
+    disableEbsEncryptionByDefault: function(Client, types.DisableEbsEncryptionByDefaultInput): Operation<types.DisableEbsEncryptionByDefaultOutput>
     -- Discontinue Windows fast launch for a Windows AMI, and clean up existing pre-provisioned
     -- snapshots. After you disable Windows fast launch, the AMI uses the standard launch process for
     -- each new instance. Amazon EC2 must remove all pre-provisioned snapshots before you can enable
     -- Windows fast launch again.
     -- You can only change these settings for Windows AMIs that you own or that have been
     -- shared with you.
-    disableFastLaunch: function(Client, types.DisableFastLaunchInput): types.DisableFastLaunchOutput, table
+    disableFastLaunch: function(Client, types.DisableFastLaunchInput): Operation<types.DisableFastLaunchOutput>
     -- Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.
-    disableFastSnapshotRestores: function(Client, types.DisableFastSnapshotRestoresInput): types.DisableFastSnapshotRestoresOutput, table
+    disableFastSnapshotRestores: function(Client, types.DisableFastSnapshotRestoresInput): Operation<types.DisableFastSnapshotRestoresOutput>
     -- Sets the AMI state to disabled and removes all launch permissions from the
     -- AMI. A disabled AMI can't be used for instance launches.
     -- A disabled AMI can't be shared. If an AMI was public or previously shared, it is made
@@ -2618,18 +2622,18 @@ local record Client
     -- You can re-enable a disabled AMI using EnableImage.
     -- For more information, see Disable an AMI in the
     -- Amazon EC2 User Guide.
-    disableImage: function(Client, types.DisableImageInput): types.DisableImageOutput, table
+    disableImage: function(Client, types.DisableImageInput): Operation<types.DisableImageOutput>
     -- Disables block public access for AMIs at the account level in the
     -- specified Amazon Web Services Region. This removes the block public access restriction
     -- from your account. With the restriction removed, you can publicly share your AMIs in the
     -- specified Amazon Web Services Region.
     -- For more information, see Block
     -- public access to your AMIs in the Amazon EC2 User Guide.
-    disableImageBlockPublicAccess: function(Client, types.DisableImageBlockPublicAccessInput): types.DisableImageBlockPublicAccessOutput, table
+    disableImageBlockPublicAccess: function(Client, types.DisableImageBlockPublicAccessInput): Operation<types.DisableImageBlockPublicAccessOutput>
     -- Cancels the deprecation of the specified AMI.
     -- For more information, see Deprecate an Amazon EC2 AMI in the
     -- Amazon EC2 User Guide.
-    disableImageDeprecation: function(Client, types.DisableImageDeprecationInput): types.DisableImageDeprecationOutput, table
+    disableImageDeprecation: function(Client, types.DisableImageDeprecationInput): Operation<types.DisableImageDeprecationOutput>
     -- Disables deregistration protection for an AMI. When deregistration protection is disabled,
     -- the AMI can be deregistered.
     -- If you chose to include a 24-hour cooldown period when you enabled deregistration
@@ -2637,17 +2641,17 @@ local record Client
     -- immediately be able to deregister the AMI.
     -- For more information, see Protect an Amazon EC2 AMI from
     -- deregistration in the Amazon EC2 User Guide.
-    disableImageDeregistrationProtection: function(Client, types.DisableImageDeregistrationProtectionInput): types.DisableImageDeregistrationProtectionOutput, table
+    disableImageDeregistrationProtection: function(Client, types.DisableImageDeregistrationProtectionInput): Operation<types.DisableImageDeregistrationProtectionOutput>
     -- Disable Amazon EC2 instances running in an SQL Server High Availability cluster from SQL Server High Availability
     -- instance standby detection monitoring. Once disabled, Amazon Web Services no longer monitors the
     -- metadata for the instances to determine whether they are active or standby nodes in the
     -- SQL Server High Availability cluster.
-    disableInstanceSqlHaStandbyDetections: function(Client, types.DisableInstanceSqlHaStandbyDetectionsInput): types.DisableInstanceSqlHaStandbyDetectionsOutput, table
+    disableInstanceSqlHaStandbyDetections: function(Client, types.DisableInstanceSqlHaStandbyDetectionsInput): Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
     -- Disable the IPAM account. For more information, see Enable integration with Organizations in the Amazon VPC IPAM User Guide.
-    disableIpamOrganizationAdminAccount: function(Client, types.DisableIpamOrganizationAdminAccountInput): types.DisableIpamOrganizationAdminAccountOutput, table
+    disableIpamOrganizationAdminAccount: function(Client, types.DisableIpamOrganizationAdminAccountInput): Operation<types.DisableIpamOrganizationAdminAccountOutput>
     -- Disables an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
-    disableIpamPolicy: function(Client, types.DisableIpamPolicyInput): types.DisableIpamPolicyOutput, table
+    disableIpamPolicy: function(Client, types.DisableIpamPolicyInput): Operation<types.DisableIpamPolicyOutput>
     -- Disables route propagation from a route server to a specified route table.
     -- When enabled, route server propagation installs the routes in the FIB on the route table you've specified. Route server supports IPv4 and IPv6 route propagation.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
@@ -2658,12 +2662,12 @@ local record Client
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    disableRouteServerPropagation: function(Client, types.DisableRouteServerPropagationInput): types.DisableRouteServerPropagationOutput, table
+    disableRouteServerPropagation: function(Client, types.DisableRouteServerPropagationInput): Operation<types.DisableRouteServerPropagationOutput>
     -- Disables access to the EC2 serial console of all instances for your account. By default,
     -- access to the EC2 serial console is disabled for your account. For more information, see
     -- Manage account access to the EC2 serial console in the Amazon EC2
     -- User Guide.
-    disableSerialConsoleAccess: function(Client, types.DisableSerialConsoleAccessInput): types.DisableSerialConsoleAccessOutput, table
+    disableSerialConsoleAccess: function(Client, types.DisableSerialConsoleAccessInput): Operation<types.DisableSerialConsoleAccessOutput>
     -- Disables the block public access for snapshots setting at
     -- the account level for the specified Amazon Web Services Region. After you disable block public
     -- access for snapshots in a Region, users can publicly share snapshots in that Region.
@@ -2676,61 +2680,61 @@ local record Client
     -- again.
     -- For more information, see
     -- Block public access for snapshots in the Amazon EBS User Guide .
-    disableSnapshotBlockPublicAccess: function(Client, types.DisableSnapshotBlockPublicAccessInput): types.DisableSnapshotBlockPublicAccessOutput, table
+    disableSnapshotBlockPublicAccess: function(Client, types.DisableSnapshotBlockPublicAccessInput): Operation<types.DisableSnapshotBlockPublicAccessOutput>
     -- Disables the specified resource attachment from propagating routes to the specified
     -- propagation route table.
-    disableTransitGatewayRouteTablePropagation: function(Client, types.DisableTransitGatewayRouteTablePropagationInput): types.DisableTransitGatewayRouteTablePropagationOutput, table
+    disableTransitGatewayRouteTablePropagation: function(Client, types.DisableTransitGatewayRouteTablePropagationInput): Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
     -- Disables a virtual private gateway (VGW) from propagating routes to a specified route
     -- table of a VPC.
-    disableVgwRoutePropagation: function(Client, types.DisableVgwRoutePropagationInput): types.DisableVgwRoutePropagationOutput, table
+    disableVgwRoutePropagation: function(Client, types.DisableVgwRoutePropagationInput): Operation<types.DisableVgwRoutePropagationOutput>
     -- This action is deprecated.
     -- Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC that has EC2-Classic instances
     -- linked to it.
-    disableVpcClassicLink: function(Client, types.DisableVpcClassicLinkInput): types.DisableVpcClassicLinkOutput, table
+    disableVpcClassicLink: function(Client, types.DisableVpcClassicLinkInput): Operation<types.DisableVpcClassicLinkOutput>
     -- This action is deprecated.
     -- Disables ClassicLink DNS support for a VPC. If disabled, DNS hostnames resolve to
     -- public IP addresses when addressed between a linked EC2-Classic instance and instances
     -- in the VPC to which it's linked.
     -- You must specify a VPC ID in the request.
-    disableVpcClassicLinkDnsSupport: function(Client, types.DisableVpcClassicLinkDnsSupportInput): types.DisableVpcClassicLinkDnsSupportOutput, table
+    disableVpcClassicLinkDnsSupport: function(Client, types.DisableVpcClassicLinkDnsSupportInput): Operation<types.DisableVpcClassicLinkDnsSupportOutput>
     -- Disassociates an Elastic IP address from the instance or network interface it's associated with.
     -- This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.
     -- An address cannot be disassociated if the all of the following conditions are met:
     -- Network interface has a publicDualStackDnsName publicDnsName
     -- Public IPv4 address is the primary public IPv4 address
     -- Network interface only has one remaining public IPv4 address
-    disassociateAddress: function(Client, types.DisassociateAddressInput): types.DisassociateAddressOutput, table
+    disassociateAddress: function(Client, types.DisassociateAddressInput): Operation<types.DisassociateAddressOutput>
     -- Cancels a pending request to assign billing of the unused capacity of a Capacity
     -- Reservation to a consumer account, or revokes a request that has already been accepted.
     -- For more information, see Billing assignment for shared
     -- Amazon EC2 Capacity Reservations.
-    disassociateCapacityReservationBillingOwner: function(Client, types.DisassociateCapacityReservationBillingOwnerInput): types.DisassociateCapacityReservationBillingOwnerOutput, table
+    disassociateCapacityReservationBillingOwner: function(Client, types.DisassociateCapacityReservationBillingOwnerInput): Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
     -- Disassociates a target network from the specified Client VPN endpoint. When you disassociate the
     -- last target network from a Client VPN, the following happens:
     -- The route that was automatically added for the VPC is deleted
     -- All active client connections are terminated
     -- New client connections are disallowed
     -- The Client VPN endpoint's status changes to pending-associate
-    disassociateClientVpnTargetNetwork: function(Client, types.DisassociateClientVpnTargetNetworkInput): types.DisassociateClientVpnTargetNetworkOutput, table
+    disassociateClientVpnTargetNetwork: function(Client, types.DisassociateClientVpnTargetNetworkInput): Operation<types.DisassociateClientVpnTargetNetworkOutput>
     -- Disassociates an IAM role from an Certificate Manager (ACM) certificate. Disassociating an IAM role
     -- from an ACM certificate removes the Amazon S3 object that contains the certificate, certificate chain, and
     -- encrypted private key from the Amazon S3 bucket. It also revokes the IAM role's permission to use the
     -- KMS key used to encrypt the private key. This effectively revokes the role's permission
     -- to use the certificate.
-    disassociateEnclaveCertificateIamRole: function(Client, types.DisassociateEnclaveCertificateIamRoleInput): types.DisassociateEnclaveCertificateIamRoleOutput, table
+    disassociateEnclaveCertificateIamRole: function(Client, types.DisassociateEnclaveCertificateIamRoleInput): Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
     -- Disassociates an IAM instance profile from a running or stopped instance.
     -- Use DescribeIamInstanceProfileAssociations to get the association
     -- ID.
-    disassociateIamInstanceProfile: function(Client, types.DisassociateIamInstanceProfileInput): types.DisassociateIamInstanceProfileOutput, table
+    disassociateIamInstanceProfile: function(Client, types.DisassociateIamInstanceProfileInput): Operation<types.DisassociateIamInstanceProfileOutput>
     -- Disassociates one or more targets from an event window.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    disassociateInstanceEventWindow: function(Client, types.DisassociateInstanceEventWindowInput): types.DisassociateInstanceEventWindowOutput, table
+    disassociateInstanceEventWindow: function(Client, types.DisassociateInstanceEventWindowInput): Operation<types.DisassociateInstanceEventWindowOutput>
     -- Remove the association between your Autonomous System Number (ASN) and your BYOIP CIDR. You may want to use this action to disassociate an ASN from a CIDR or if you want to swap ASNs.
     -- For more information, see Tutorial: Bring your ASN to IPAM in the Amazon VPC IPAM guide.
-    disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput): types.DisassociateIpamByoasnOutput, table
+    disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput): Operation<types.DisassociateIpamByoasnOutput>
     -- Disassociates a resource discovery from an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput): types.DisassociateIpamResourceDiscoveryOutput, table
+    disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput): Operation<types.DisassociateIpamResourceDiscoveryOutput>
     -- Disassociates secondary Elastic IP addresses (EIPs) from a public NAT gateway.
     -- You cannot disassociate your primary EIP. For more information, see Edit secondary IP address associations in the Amazon VPC User Guide.
     -- While disassociating is in progress, you cannot associate/disassociate additional EIPs while the connections are being drained. You are, however, allowed to delete the NAT gateway.
@@ -2739,39 +2743,39 @@ local record Client
     -- (new connections are distributed across the remaining associated EIPs). As the existing
     -- connections drain out, the EIPs (and the corresponding private IP addresses mapped to them)
     -- are released.
-    disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput): types.DisassociateNatGatewayAddressOutput, table
+    disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput): Operation<types.DisassociateNatGatewayAddressOutput>
     -- Disassociates a route server from a VPC.
     -- A route server association is the connection established between a route server and a VPC.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    disassociateRouteServer: function(Client, types.DisassociateRouteServerInput): types.DisassociateRouteServerOutput, table
+    disassociateRouteServer: function(Client, types.DisassociateRouteServerInput): Operation<types.DisassociateRouteServerOutput>
     -- Disassociates a subnet or gateway from a route table.
     -- After you perform this action, the subnet no longer uses the routes in the route table.
     -- Instead, it uses the routes in the VPC's main route table. For more information
     -- about route tables, see Route
     -- tables in the Amazon VPC User Guide.
-    disassociateRouteTable: function(Client, types.DisassociateRouteTableInput): types.DisassociateRouteTableOutput, table
+    disassociateRouteTable: function(Client, types.DisassociateRouteTableInput): Operation<types.DisassociateRouteTableOutput>
     -- Disassociates a security group from a VPC. You cannot disassociate the security group if any Elastic network interfaces in the associated VPC are still associated with the security group.
     -- Note that the disassociation is asynchronous and you can check the status of the request with DescribeSecurityGroupVpcAssociations.
-    disassociateSecurityGroupVpc: function(Client, types.DisassociateSecurityGroupVpcInput): types.DisassociateSecurityGroupVpcOutput, table
+    disassociateSecurityGroupVpc: function(Client, types.DisassociateSecurityGroupVpcInput): Operation<types.DisassociateSecurityGroupVpcOutput>
     -- Disassociates a CIDR block from a subnet. Currently, you can disassociate an IPv6 CIDR block only. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it.
-    disassociateSubnetCidrBlock: function(Client, types.DisassociateSubnetCidrBlockInput): types.DisassociateSubnetCidrBlockOutput, table
+    disassociateSubnetCidrBlock: function(Client, types.DisassociateSubnetCidrBlockInput): Operation<types.DisassociateSubnetCidrBlockOutput>
     -- Disassociates the specified subnets from the transit gateway multicast domain.
-    disassociateTransitGatewayMulticastDomain: function(Client, types.DisassociateTransitGatewayMulticastDomainInput): types.DisassociateTransitGatewayMulticastDomainOutput, table
+    disassociateTransitGatewayMulticastDomain: function(Client, types.DisassociateTransitGatewayMulticastDomainInput): Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
     -- Removes the association between an an attachment and a policy table.
-    disassociateTransitGatewayPolicyTable: function(Client, types.DisassociateTransitGatewayPolicyTableInput): types.DisassociateTransitGatewayPolicyTableOutput, table
+    disassociateTransitGatewayPolicyTable: function(Client, types.DisassociateTransitGatewayPolicyTableInput): Operation<types.DisassociateTransitGatewayPolicyTableOutput>
     -- Disassociates a resource attachment from a transit gateway route table.
-    disassociateTransitGatewayRouteTable: function(Client, types.DisassociateTransitGatewayRouteTableInput): types.DisassociateTransitGatewayRouteTableOutput, table
+    disassociateTransitGatewayRouteTable: function(Client, types.DisassociateTransitGatewayRouteTableInput): Operation<types.DisassociateTransitGatewayRouteTableOutput>
     -- Removes an association between a branch network interface with a trunk network interface.
-    disassociateTrunkInterface: function(Client, types.DisassociateTrunkInterfaceInput): types.DisassociateTrunkInterfaceOutput, table
+    disassociateTrunkInterface: function(Client, types.DisassociateTrunkInterfaceInput): Operation<types.DisassociateTrunkInterfaceOutput>
     -- Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must
     -- specify its association ID. You can get the association ID by using
     -- DescribeVpcs. You must detach or delete all gateways and resources that
     -- are associated with the CIDR block before you can disassociate it.
     -- You cannot disassociate the CIDR block with which you originally created the VPC (the
     -- primary CIDR block).
-    disassociateVpcCidrBlock: function(Client, types.DisassociateVpcCidrBlockInput): types.DisassociateVpcCidrBlockOutput, table
+    disassociateVpcCidrBlock: function(Client, types.DisassociateVpcCidrBlockInput): Operation<types.DisassociateVpcCidrBlockOutput>
     -- Enables Elastic IP address transfer. For more information, see Transfer Elastic IP addresses in the Amazon VPC User Guide.
-    enableAddressTransfer: function(Client, types.EnableAddressTransferInput): types.EnableAddressTransferOutput, table
+    enableAddressTransfer: function(Client, types.EnableAddressTransferInput): Operation<types.EnableAddressTransferOutput>
     -- Enables Allowed AMIs for your account in the specified Amazon Web Services Region. Two values are
     -- accepted:
     -- enabled: The image criteria in your Allowed AMIs settings are applied. As
@@ -2791,12 +2795,12 @@ local record Client
     -- For more information, see Control the discovery and use of AMIs in
     -- Amazon EC2 with Allowed AMIs in
     -- Amazon EC2 User Guide.
-    enableAllowedImagesSettings: function(Client, types.EnableAllowedImagesSettingsInput): types.EnableAllowedImagesSettingsOutput, table
+    enableAllowedImagesSettings: function(Client, types.EnableAllowedImagesSettingsInput): Operation<types.EnableAllowedImagesSettingsOutput>
     -- Enables Infrastructure Performance subscriptions.
-    enableAwsNetworkPerformanceMetricSubscription: function(Client, types.EnableAwsNetworkPerformanceMetricSubscriptionInput): types.EnableAwsNetworkPerformanceMetricSubscriptionOutput, table
+    enableAwsNetworkPerformanceMetricSubscription: function(Client, types.EnableAwsNetworkPerformanceMetricSubscriptionInput): Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
     -- Enables EC2 Capacity Manager for your account. This starts data ingestion for your EC2 capacity usage across On-Demand, Spot, and Capacity Reservations.
     -- Initial data processing may take several hours to complete.
-    enableCapacityManager: function(Client, types.EnableCapacityManagerInput): types.EnableCapacityManagerOutput, table
+    enableCapacityManager: function(Client, types.EnableCapacityManagerInput): Operation<types.EnableCapacityManagerOutput>
     -- Enables EBS encryption by default for your account in the current Region.
     -- After you enable encryption by default, the EBS volumes that you create are
     -- always encrypted, either using the default KMS key or the KMS key that you specified
@@ -2807,7 +2811,7 @@ local record Client
     -- After you enable encryption by default, you can no longer launch instances
     -- using instance types that do not support encryption. For more information, see Supported
     -- instance types.
-    enableEbsEncryptionByDefault: function(Client, types.EnableEbsEncryptionByDefaultInput): types.EnableEbsEncryptionByDefaultOutput, table
+    enableEbsEncryptionByDefault: function(Client, types.EnableEbsEncryptionByDefaultInput): Operation<types.EnableEbsEncryptionByDefaultOutput>
     -- When you enable Windows fast launch for a Windows AMI, images are pre-provisioned, using
     -- snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2
     -- launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a
@@ -2816,12 +2820,12 @@ local record Client
     -- frequency.
     -- You can only change these settings for Windows AMIs that you own or that have been
     -- shared with you.
-    enableFastLaunch: function(Client, types.EnableFastLaunchInput): types.EnableFastLaunchOutput, table
+    enableFastLaunch: function(Client, types.EnableFastLaunchInput): Operation<types.EnableFastLaunchOutput>
     -- Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.
     -- You get the full benefit of fast snapshot restores after they enter the enabled state.
     -- For more information, see Amazon EBS fast snapshot
     -- restore in the Amazon EBS User Guide.
-    enableFastSnapshotRestores: function(Client, types.EnableFastSnapshotRestoresInput): types.EnableFastSnapshotRestoresOutput, table
+    enableFastSnapshotRestores: function(Client, types.EnableFastSnapshotRestoresInput): Operation<types.EnableFastSnapshotRestoresOutput>
     -- Re-enables a disabled AMI. The re-enabled AMI is marked as available and can
     -- be used for instance launches, appears in describe operations, and can be shared. Amazon Web Services
     -- accounts, organizations, and Organizational Units that lost access to the AMI when it was
@@ -2830,7 +2834,7 @@ local record Client
     -- Only the AMI owner can re-enable a disabled AMI.
     -- For more information, see Disable an Amazon EC2 AMI
     -- in the Amazon EC2 User Guide.
-    enableImage: function(Client, types.EnableImageInput): types.EnableImageOutput, table
+    enableImage: function(Client, types.EnableImageInput): Operation<types.EnableImageOutput>
     -- Enables block public access for AMIs at the account level in the
     -- specified Amazon Web Services Region. This prevents the public sharing of your AMIs. However, if you already
     -- have public AMIs, they will remain publicly available.
@@ -2840,17 +2844,17 @@ local record Client
     -- block-new-sharing.
     -- For more information, see Block
     -- public access to your AMIs in the Amazon EC2 User Guide.
-    enableImageBlockPublicAccess: function(Client, types.EnableImageBlockPublicAccessInput): types.EnableImageBlockPublicAccessOutput, table
+    enableImageBlockPublicAccess: function(Client, types.EnableImageBlockPublicAccessInput): Operation<types.EnableImageBlockPublicAccessOutput>
     -- Enables deprecation of the specified AMI at the specified date and time.
     -- For more information, see Deprecate an AMI in the
     -- Amazon EC2 User Guide.
-    enableImageDeprecation: function(Client, types.EnableImageDeprecationInput): types.EnableImageDeprecationOutput, table
+    enableImageDeprecation: function(Client, types.EnableImageDeprecationInput): Operation<types.EnableImageDeprecationOutput>
     -- Enables deregistration protection for an AMI. When deregistration protection is enabled,
     -- the AMI can't be deregistered.
     -- To allow the AMI to be deregistered, you must first disable deregistration protection.
     -- For more information, see Protect an
     -- Amazon EC2 AMI from deregistration in the Amazon EC2 User Guide.
-    enableImageDeregistrationProtection: function(Client, types.EnableImageDeregistrationProtectionInput): types.EnableImageDeregistrationProtectionOutput, table
+    enableImageDeregistrationProtection: function(Client, types.EnableImageDeregistrationProtectionInput): Operation<types.EnableImageDeregistrationProtectionOutput>
     -- Enable Amazon EC2 instances running in an SQL Server High Availability cluster for SQL Server High Availability
     -- instance standby detection monitoring. Once enabled, Amazon Web Services monitors the metadata for
     -- the instances to determine whether they are active or standby nodes in the SQL Server High Availability cluster.
@@ -2861,27 +2865,27 @@ local record Client
     -- and SQL Server (Standard and Enterprise editions) 2017 and later are supported. For more
     -- information, see
     -- Prerequisites for using SQL Server High Availability instance standby detection.
-    enableInstanceSqlHaStandbyDetections: function(Client, types.EnableInstanceSqlHaStandbyDetectionsInput): types.EnableInstanceSqlHaStandbyDetectionsOutput, table
+    enableInstanceSqlHaStandbyDetections: function(Client, types.EnableInstanceSqlHaStandbyDetectionsInput): Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
     -- Enable an Organizations member account as the IPAM admin account. You cannot select the Organizations management account as the IPAM admin account. For more information, see Enable integration with Organizations in the Amazon VPC IPAM User Guide.
-    enableIpamOrganizationAdminAccount: function(Client, types.EnableIpamOrganizationAdminAccountInput): types.EnableIpamOrganizationAdminAccountOutput, table
+    enableIpamOrganizationAdminAccount: function(Client, types.EnableIpamOrganizationAdminAccountInput): Operation<types.EnableIpamOrganizationAdminAccountOutput>
     -- Enables an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
     -- For more information, see Define public IPv4 allocation strategy with IPAM policies in the Amazon VPC IPAM User Guide.
-    enableIpamPolicy: function(Client, types.EnableIpamPolicyInput): types.EnableIpamPolicyOutput, table
+    enableIpamPolicy: function(Client, types.EnableIpamPolicyInput): Operation<types.EnableIpamPolicyOutput>
     -- Establishes a trust relationship between Reachability Analyzer and Organizations.
     -- This operation must be performed by the management account for the organization.
     -- After you establish a trust relationship, a user in the management account or
     -- a delegated administrator account can run a cross-account analysis using resources
     -- from the member accounts.
-    enableReachabilityAnalyzerOrganizationSharing: function(Client, types.EnableReachabilityAnalyzerOrganizationSharingInput): types.EnableReachabilityAnalyzerOrganizationSharingOutput, table
+    enableReachabilityAnalyzerOrganizationSharing: function(Client, types.EnableReachabilityAnalyzerOrganizationSharingInput): Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
     -- Defines which route tables the route server can update with routes.
     -- When enabled, route server propagation installs the routes in the FIB on the route table you've specified. Route server supports IPv4 and IPv6 route propagation.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    enableRouteServerPropagation: function(Client, types.EnableRouteServerPropagationInput): types.EnableRouteServerPropagationOutput, table
+    enableRouteServerPropagation: function(Client, types.EnableRouteServerPropagationInput): Operation<types.EnableRouteServerPropagationOutput>
     -- Enables access to the EC2 serial console of all instances for your account. By default,
     -- access to the EC2 serial console is disabled for your account. For more information, see Manage account access to the EC2 serial console
     -- in the Amazon EC2 User Guide.
-    enableSerialConsoleAccess: function(Client, types.EnableSerialConsoleAccessInput): types.EnableSerialConsoleAccessOutput, table
+    enableSerialConsoleAccess: function(Client, types.EnableSerialConsoleAccessInput): Operation<types.EnableSerialConsoleAccessOutput>
     -- Enables or modifies the block public access for snapshots
     -- setting at the account level for the specified Amazon Web Services Region. After you enable block
     -- public access for snapshots in a Region, users can no longer request public sharing
@@ -2897,16 +2901,16 @@ local record Client
     -- sharing, these snapshots will become publicly available again.
     -- For more information, see
     -- Block public access for snapshots in the Amazon EBS User Guide.
-    enableSnapshotBlockPublicAccess: function(Client, types.EnableSnapshotBlockPublicAccessInput): types.EnableSnapshotBlockPublicAccessOutput, table
+    enableSnapshotBlockPublicAccess: function(Client, types.EnableSnapshotBlockPublicAccessInput): Operation<types.EnableSnapshotBlockPublicAccessOutput>
     -- Enables the specified attachment to propagate routes to the specified
     -- propagation route table.
-    enableTransitGatewayRouteTablePropagation: function(Client, types.EnableTransitGatewayRouteTablePropagationInput): types.EnableTransitGatewayRouteTablePropagationOutput, table
+    enableTransitGatewayRouteTablePropagation: function(Client, types.EnableTransitGatewayRouteTablePropagationInput): Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
     -- Enables a virtual private gateway (VGW) to propagate routes to the specified route
     -- table of a VPC.
-    enableVgwRoutePropagation: function(Client, types.EnableVgwRoutePropagationInput): types.EnableVgwRoutePropagationOutput, table
+    enableVgwRoutePropagation: function(Client, types.EnableVgwRoutePropagationInput): Operation<types.EnableVgwRoutePropagationOutput>
     -- Enables I/O operations for a volume that had I/O operations disabled because the data on
     -- the volume was potentially inconsistent.
-    enableVolumeIO: function(Client, types.EnableVolumeIOInput): types.EnableVolumeIOOutput, table
+    enableVolumeIO: function(Client, types.EnableVolumeIOInput): Operation<types.EnableVolumeIOOutput>
     -- This action is deprecated.
     -- Enables a VPC for ClassicLink. You can then link EC2-Classic instances to your
     -- ClassicLink-enabled VPC to allow communication over private IP addresses. You cannot
@@ -2914,7 +2918,7 @@ local record Client
     -- address ranges within the 10.0.0.0/8 IP address range, excluding local
     -- routes for VPCs in the 10.0.0.0/16 and 10.1.0.0/16 IP address
     -- ranges.
-    enableVpcClassicLink: function(Client, types.EnableVpcClassicLinkInput): types.EnableVpcClassicLinkOutput, table
+    enableVpcClassicLink: function(Client, types.EnableVpcClassicLinkInput): Operation<types.EnableVpcClassicLinkOutput>
     -- This action is deprecated.
     -- Enables a VPC to support DNS hostname resolution for ClassicLink. If enabled, the DNS
     -- hostname of a linked EC2-Classic instance resolves to its private IP address when
@@ -2922,27 +2926,27 @@ local record Client
     -- of an instance in a VPC resolves to its private IP address when addressed from a linked
     -- EC2-Classic instance.
     -- You must specify a VPC ID in the request.
-    enableVpcClassicLinkDnsSupport: function(Client, types.EnableVpcClassicLinkDnsSupportInput): types.EnableVpcClassicLinkDnsSupportOutput, table
+    enableVpcClassicLinkDnsSupport: function(Client, types.EnableVpcClassicLinkDnsSupportInput): Operation<types.EnableVpcClassicLinkDnsSupportOutput>
     -- Downloads the client certificate revocation list for the specified Client VPN endpoint.
-    exportClientVpnClientCertificateRevocationList: function(Client, types.ExportClientVpnClientCertificateRevocationListInput): types.ExportClientVpnClientCertificateRevocationListOutput, table
+    exportClientVpnClientCertificateRevocationList: function(Client, types.ExportClientVpnClientCertificateRevocationListInput): Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
     -- Downloads the contents of the Client VPN endpoint configuration file for the specified Client VPN endpoint. The Client VPN endpoint configuration
     -- file includes the Client VPN endpoint and certificate information clients need to establish a connection
     -- with the Client VPN endpoint.
-    exportClientVpnClientConfiguration: function(Client, types.ExportClientVpnClientConfigurationInput): types.ExportClientVpnClientConfigurationOutput, table
+    exportClientVpnClientConfiguration: function(Client, types.ExportClientVpnClientConfigurationInput): Operation<types.ExportClientVpnClientConfigurationOutput>
     -- Exports an Amazon Machine Image (AMI) to a VM file. For more information, see Exporting a VM
     -- directly from an Amazon Machine Image (AMI) in the
     -- VM Import/Export User Guide.
-    exportImage: function(Client, types.ExportImageInput): types.ExportImageOutput, table
+    exportImage: function(Client, types.ExportImageInput): Operation<types.ExportImageOutput>
     -- Exports routes from the specified transit gateway route table to the specified S3 bucket.
     -- By default, all routes are exported. Alternatively, you can filter by CIDR range.
     -- The routes are saved to the specified bucket in a JSON file. For more information, see
     -- Export route tables
     -- to Amazon S3 in the Amazon Web Services Transit Gateways Guide.
-    exportTransitGatewayRoutes: function(Client, types.ExportTransitGatewayRoutesInput): types.ExportTransitGatewayRoutesOutput, table
+    exportTransitGatewayRoutes: function(Client, types.ExportTransitGatewayRoutesInput): Operation<types.ExportTransitGatewayRoutesOutput>
     -- Exports the client configuration for a Verified Access instance.
-    exportVerifiedAccessInstanceClientConfiguration: function(Client, types.ExportVerifiedAccessInstanceClientConfigurationInput): types.ExportVerifiedAccessInstanceClientConfigurationOutput, table
+    exportVerifiedAccessInstanceClientConfiguration: function(Client, types.ExportVerifiedAccessInstanceClientConfigurationInput): Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
     -- Returns the currently negotiated security parameters for an active VPN tunnel, including IKE version, DH groups, encryption algorithms, and integrity algorithms.
-    getActiveVpnTunnelStatus: function(Client, types.GetActiveVpnTunnelStatusInput): types.GetActiveVpnTunnelStatusOutput, table
+    getActiveVpnTunnelStatus: function(Client, types.GetActiveVpnTunnelStatusInput): Operation<types.GetActiveVpnTunnelStatusOutput>
     -- Gets the current state of the Allowed AMIs setting and the list of Allowed AMIs criteria
     -- at the account level in the specified Region.
     -- The Allowed AMIs feature does not restrict the AMIs owned by your account. Regardless of
@@ -2951,44 +2955,44 @@ local record Client
     -- For more information, see Control the discovery and use of AMIs in
     -- Amazon EC2 with Allowed AMIs in
     -- Amazon EC2 User Guide.
-    getAllowedImagesSettings: function(Client, types.GetAllowedImagesSettingsInput): types.GetAllowedImagesSettingsOutput, table
+    getAllowedImagesSettings: function(Client, types.GetAllowedImagesSettingsInput): Operation<types.GetAllowedImagesSettingsOutput>
     -- Returns the IAM roles that are associated with the specified ACM (ACM) certificate.
     -- It also returns the name of the Amazon S3 bucket and the Amazon S3 object key where the certificate,
     -- certificate chain, and encrypted private key bundle are stored, and the ARN of the KMS key
     -- that's used to encrypt the private key.
-    getAssociatedEnclaveCertificateIamRoles: function(Client, types.GetAssociatedEnclaveCertificateIamRolesInput): types.GetAssociatedEnclaveCertificateIamRolesOutput, table
+    getAssociatedEnclaveCertificateIamRoles: function(Client, types.GetAssociatedEnclaveCertificateIamRolesInput): Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
     -- Gets information about the IPv6 CIDR block associations for a specified IPv6 address pool.
-    getAssociatedIpv6PoolCidrs: function(Client, types.GetAssociatedIpv6PoolCidrsInput): types.GetAssociatedIpv6PoolCidrsOutput, table
+    getAssociatedIpv6PoolCidrs: function(Client, types.GetAssociatedIpv6PoolCidrsInput): Operation<types.GetAssociatedIpv6PoolCidrsOutput>
     -- Gets network performance data.
-    getAwsNetworkPerformanceData: function(Client, types.GetAwsNetworkPerformanceDataInput): types.GetAwsNetworkPerformanceDataOutput, table
+    getAwsNetworkPerformanceData: function(Client, types.GetAwsNetworkPerformanceDataInput): Operation<types.GetAwsNetworkPerformanceDataOutput>
     -- Retrieves the current configuration and status of EC2 Capacity Manager for your account, including enablement status, Organizations access settings, and data ingestion status.
-    getCapacityManagerAttributes: function(Client, types.GetCapacityManagerAttributesInput): types.GetCapacityManagerAttributesOutput, table
+    getCapacityManagerAttributes: function(Client, types.GetCapacityManagerAttributesInput): Operation<types.GetCapacityManagerAttributesOutput>
     -- Retrieves capacity usage metrics for your EC2 resources. Returns time-series data for metrics like unused capacity, utilization rates, and costs
     -- across On-Demand, Spot, and Capacity Reservations. Data can be grouped and filtered by various dimensions such as region, account, and instance family.
-    getCapacityManagerMetricData: function(Client, types.GetCapacityManagerMetricDataInput): types.GetCapacityManagerMetricDataOutput, table
+    getCapacityManagerMetricData: function(Client, types.GetCapacityManagerMetricDataInput): Operation<types.GetCapacityManagerMetricDataOutput>
     -- Retrieves the available dimension values for capacity metrics within a specified time range. This is useful for discovering what accounts,
     -- regions, instance families, and other dimensions have data available for filtering and grouping.
-    getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput): types.GetCapacityManagerMetricDimensionsOutput, table
+    getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput): Operation<types.GetCapacityManagerMetricDimensionsOutput>
     -- Retrieves the tag keys that are currently being monitored by EC2 Capacity Manager. Monitored tag keys are included as dimensions in capacity metric data, enabling you to group and filter metrics by tag values.
-    getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput): types.GetCapacityManagerMonitoredTagKeysOutput, table
+    getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput): Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
     -- Gets usage information about a Capacity Reservation. If the Capacity Reservation is
     -- shared, it shows usage information for the Capacity Reservation owner and each Amazon Web Services account that is currently using the shared capacity. If the Capacity
     -- Reservation is not shared, it shows only the Capacity Reservation owner's usage.
-    getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput): types.GetCapacityReservationUsageOutput, table
+    getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput): Operation<types.GetCapacityReservationUsageOutput>
     -- Describes the allocations from the specified customer-owned address pool.
-    getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput): types.GetCoipPoolUsageOutput, table
+    getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput): Operation<types.GetCoipPoolUsageOutput>
     -- Gets the console output for the specified instance. For Linux instances, the instance
     -- console output displays the exact console output that would normally be displayed on a
     -- physical monitor attached to a computer. For Windows instances, the instance console
     -- output includes the last three system event log errors.
     -- For more information, see Instance
     -- console output in the Amazon EC2 User Guide.
-    getConsoleOutput: function(Client, types.GetConsoleOutputInput): types.GetConsoleOutputOutput, table
+    getConsoleOutput: function(Client, types.GetConsoleOutputInput): Operation<types.GetConsoleOutputOutput>
     -- Retrieve a JPG-format screenshot of a running instance to help with
     -- troubleshooting.
     -- The returned content is Base64-encoded.
     -- For more information, see Instance console output in the Amazon EC2 User Guide.
-    getConsoleScreenshot: function(Client, types.GetConsoleScreenshotInput): types.GetConsoleScreenshotOutput, table
+    getConsoleScreenshot: function(Client, types.GetConsoleScreenshotInput): Operation<types.GetConsoleScreenshotOutput>
     -- Retrieves a summary of the account status report.
     -- To view the full report, download it from the Amazon S3 bucket where it was saved.
     -- Reports are accessible only when they have the complete status. Reports
@@ -2998,24 +3002,24 @@ local record Client
     -- the Amazon Simple Storage Service User Guide.
     -- For more information, see Generating the account status report for declarative policies in the
     -- Amazon Web Services Organizations User Guide.
-    getDeclarativePoliciesReportSummary: function(Client, types.GetDeclarativePoliciesReportSummaryInput): types.GetDeclarativePoliciesReportSummaryOutput, table
+    getDeclarativePoliciesReportSummary: function(Client, types.GetDeclarativePoliciesReportSummaryInput): Operation<types.GetDeclarativePoliciesReportSummaryOutput>
     -- Describes the default credit option for CPU usage of a burstable performance instance
     -- family.
     -- For more information, see Burstable
     -- performance instances in the Amazon EC2 User Guide.
-    getDefaultCreditSpecification: function(Client, types.GetDefaultCreditSpecificationInput): types.GetDefaultCreditSpecificationOutput, table
+    getDefaultCreditSpecification: function(Client, types.GetDefaultCreditSpecificationInput): Operation<types.GetDefaultCreditSpecificationOutput>
     -- Describes the default KMS key for EBS encryption by default for your account in this Region.
     -- For more information, see Amazon EBS encryption
     -- in the Amazon EBS User Guide.
-    getEbsDefaultKmsKeyId: function(Client, types.GetEbsDefaultKmsKeyIdInput): types.GetEbsDefaultKmsKeyIdOutput, table
+    getEbsDefaultKmsKeyId: function(Client, types.GetEbsDefaultKmsKeyIdInput): Operation<types.GetEbsDefaultKmsKeyIdOutput>
     -- Describes whether EBS encryption by default is enabled for your account in the current
     -- Region.
     -- For more information, see Amazon EBS encryption
     -- in the Amazon EBS User Guide.
-    getEbsEncryptionByDefault: function(Client, types.GetEbsEncryptionByDefaultInput): types.GetEbsEncryptionByDefaultOutput, table
+    getEbsEncryptionByDefault: function(Client, types.GetEbsEncryptionByDefaultInput): Operation<types.GetEbsEncryptionByDefaultOutput>
     -- Gets the enabled IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
-    getEnabledIpamPolicy: function(Client, types.GetEnabledIpamPolicyInput): types.GetEnabledIpamPolicyOutput, table
+    getEnabledIpamPolicy: function(Client, types.GetEnabledIpamPolicyInput): Operation<types.GetEnabledIpamPolicyOutput>
     -- Generates a CloudFormation template that streamlines and automates the integration of VPC flow logs
     -- with Amazon Athena. This make it easier for you to query and gain insights from VPC flow logs data.
     -- Based on the information that you provide, we configure resources in the template to do the following:
@@ -3026,32 +3030,32 @@ local record Client
     -- Create a set of named queries in Athena that you can use to get started quickly
     -- GetFlowLogsIntegrationTemplate does not support integration between
     -- Amazon Web Services Transit Gateway Flow Logs and Amazon Athena.
-    getFlowLogsIntegrationTemplate: function(Client, types.GetFlowLogsIntegrationTemplateInput): types.GetFlowLogsIntegrationTemplateOutput, table
+    getFlowLogsIntegrationTemplate: function(Client, types.GetFlowLogsIntegrationTemplateInput): Operation<types.GetFlowLogsIntegrationTemplateOutput>
     -- Lists the resource groups to which a Capacity Reservation has been added.
-    getGroupsForCapacityReservation: function(Client, types.GetGroupsForCapacityReservationInput): types.GetGroupsForCapacityReservationOutput, table
+    getGroupsForCapacityReservation: function(Client, types.GetGroupsForCapacityReservationInput): Operation<types.GetGroupsForCapacityReservationOutput>
     -- Preview a reservation purchase with configurations that match those of your Dedicated
     -- Host. You must have active Dedicated Hosts in your account before you purchase a
     -- reservation.
     -- This is a preview of the PurchaseHostReservation action and does not
     -- result in the offering being purchased.
-    getHostReservationPurchasePreview: function(Client, types.GetHostReservationPurchasePreviewInput): types.GetHostReservationPurchasePreviewOutput, table
+    getHostReservationPurchasePreview: function(Client, types.GetHostReservationPurchasePreviewInput): Operation<types.GetHostReservationPurchasePreviewOutput>
     -- Retrieves the ancestry chain of the specified AMI, tracing its lineage back to the root
     -- AMI. For more information, see AMI ancestry in
     -- Amazon EC2 User Guide.
-    getImageAncestry: function(Client, types.GetImageAncestryInput): types.GetImageAncestryOutput, table
+    getImageAncestry: function(Client, types.GetImageAncestryInput): Operation<types.GetImageAncestryOutput>
     -- Gets the current state of block public access for AMIs at the account
     -- level in the specified Amazon Web Services Region.
     -- For more information, see Block
     -- public access to your AMIs in the Amazon EC2 User Guide.
-    getImageBlockPublicAccessState: function(Client, types.GetImageBlockPublicAccessStateInput): types.GetImageBlockPublicAccessStateOutput, table
+    getImageBlockPublicAccessState: function(Client, types.GetImageBlockPublicAccessStateInput): Operation<types.GetImageBlockPublicAccessStateOutput>
     -- Gets the default instance metadata service (IMDS) settings that are set at the account
     -- level in the specified Amazon Web Services  Region.
     -- For more information, see Order of precedence for instance metadata options in the
     -- Amazon EC2 User Guide.
-    getInstanceMetadataDefaults: function(Client, types.GetInstanceMetadataDefaultsInput): types.GetInstanceMetadataDefaultsOutput, table
+    getInstanceMetadataDefaults: function(Client, types.GetInstanceMetadataDefaultsInput): Operation<types.GetInstanceMetadataDefaultsOutput>
     -- Gets the public endorsement key associated with the Nitro Trusted
     -- Platform Module (NitroTPM) for the specified instance.
-    getInstanceTpmEkPub: function(Client, types.GetInstanceTpmEkPubInput): types.GetInstanceTpmEkPubOutput, table
+    getInstanceTpmEkPub: function(Client, types.GetInstanceTpmEkPubInput): Operation<types.GetInstanceTpmEkPubOutput>
     -- Returns a list of instance types with the specified instance attributes. You can
     -- use the response to preview the instance types without launching instances. Note
     -- that the response does not consider capacity.
@@ -3062,7 +3066,7 @@ local record Client
     -- placement score in the Amazon EC2 User Guide, and Creating
     -- mixed instance groups using attribute-based instance type selection in the
     -- Amazon EC2 Auto Scaling User Guide.
-    getInstanceTypesFromInstanceRequirements: function(Client, types.GetInstanceTypesFromInstanceRequirementsInput): types.GetInstanceTypesFromInstanceRequirementsOutput, table
+    getInstanceTypesFromInstanceRequirements: function(Client, types.GetInstanceTypesFromInstanceRequirementsInput): Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
     -- A binary representation of the UEFI variable store. Only non-volatile variables are
     -- stored. This is a base64 encoded and zlib compressed binary value that must be properly
     -- encoded.
@@ -3074,32 +3078,32 @@ local record Client
     -- to use with register-image.
     -- For more information, see UEFI Secure Boot in the
     -- Amazon EC2 User Guide.
-    getInstanceUefiData: function(Client, types.GetInstanceUefiDataInput): types.GetInstanceUefiDataOutput, table
+    getInstanceUefiData: function(Client, types.GetInstanceUefiDataInput): Operation<types.GetInstanceUefiDataOutput>
     -- Retrieve historical information about a CIDR within an IPAM scope. For more information, see View the history of IP addresses in the Amazon VPC IPAM User Guide.
-    getIpamAddressHistory: function(Client, types.GetIpamAddressHistoryInput): types.GetIpamAddressHistoryOutput, table
+    getIpamAddressHistory: function(Client, types.GetIpamAddressHistoryInput): Operation<types.GetIpamAddressHistoryOutput>
     -- Gets IPAM discovered accounts. A discovered account is an Amazon Web Services account that is monitored under a resource discovery. If you have integrated IPAM with Amazon Web Services Organizations, all accounts in the organization are discovered accounts. Only the IPAM account can get all discovered accounts in the organization.
-    getIpamDiscoveredAccounts: function(Client, types.GetIpamDiscoveredAccountsInput): types.GetIpamDiscoveredAccountsOutput, table
+    getIpamDiscoveredAccounts: function(Client, types.GetIpamDiscoveredAccountsInput): Operation<types.GetIpamDiscoveredAccountsOutput>
     -- Gets the public IP addresses that have been discovered by IPAM.
-    getIpamDiscoveredPublicAddresses: function(Client, types.GetIpamDiscoveredPublicAddressesInput): types.GetIpamDiscoveredPublicAddressesOutput, table
+    getIpamDiscoveredPublicAddresses: function(Client, types.GetIpamDiscoveredPublicAddressesInput): Operation<types.GetIpamDiscoveredPublicAddressesOutput>
     -- Returns the resource CIDRs that are monitored as part of a resource discovery. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses.
-    getIpamDiscoveredResourceCidrs: function(Client, types.GetIpamDiscoveredResourceCidrsInput): types.GetIpamDiscoveredResourceCidrsOutput, table
+    getIpamDiscoveredResourceCidrs: function(Client, types.GetIpamDiscoveredResourceCidrsInput): Operation<types.GetIpamDiscoveredResourceCidrsOutput>
     -- Gets the allocation rules for an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
     -- Allocation rules are optional configurations within an IPAM policy that map Amazon Web Services resource types to specific IPAM pools. If no rules are defined, the resource types default to using Amazon-provided IP addresses.
-    getIpamPolicyAllocationRules: function(Client, types.GetIpamPolicyAllocationRulesInput): types.GetIpamPolicyAllocationRulesOutput, table
+    getIpamPolicyAllocationRules: function(Client, types.GetIpamPolicyAllocationRulesInput): Operation<types.GetIpamPolicyAllocationRulesOutput>
     -- Gets the Amazon Web Services Organizations targets for an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
     -- A target can be an individual Amazon Web Services account or an entity within an Amazon Web Services Organization to which an IPAM policy can be applied.
-    getIpamPolicyOrganizationTargets: function(Client, types.GetIpamPolicyOrganizationTargetsInput): types.GetIpamPolicyOrganizationTargetsOutput, table
+    getIpamPolicyOrganizationTargets: function(Client, types.GetIpamPolicyOrganizationTargetsInput): Operation<types.GetIpamPolicyOrganizationTargetsOutput>
     -- Get a list of all the CIDR allocations in an IPAM pool. The Region you use should be the IPAM pool locale. The locale is the Amazon Web Services Region where this IPAM pool is available for allocations.
     -- If you use this action after AllocateIpamPoolCidr or ReleaseIpamPoolAllocation, note that all EC2 API actions follow an eventual consistency model.
-    getIpamPoolAllocations: function(Client, types.GetIpamPoolAllocationsInput): types.GetIpamPoolAllocationsOutput, table
+    getIpamPoolAllocations: function(Client, types.GetIpamPoolAllocationsInput): Operation<types.GetIpamPoolAllocationsOutput>
     -- Get the CIDRs provisioned to an IPAM pool.
-    getIpamPoolCidrs: function(Client, types.GetIpamPoolCidrsInput): types.GetIpamPoolCidrsOutput, table
+    getIpamPoolCidrs: function(Client, types.GetIpamPoolCidrsInput): Operation<types.GetIpamPoolCidrsOutput>
     -- Retrieves the CIDR selection rules for an IPAM prefix list resolver. Use this operation to view the business logic that determines which CIDRs are selected for synchronization with prefix lists.
-    getIpamPrefixListResolverRules: function(Client, types.GetIpamPrefixListResolverRulesInput): types.GetIpamPrefixListResolverRulesOutput, table
+    getIpamPrefixListResolverRules: function(Client, types.GetIpamPrefixListResolverRulesInput): Operation<types.GetIpamPrefixListResolverRulesOutput>
     -- Retrieves the CIDR entries for a specific version of an IPAM prefix list resolver. This shows the actual CIDRs that were selected and synchronized at a particular point in time.
-    getIpamPrefixListResolverVersionEntries: function(Client, types.GetIpamPrefixListResolverVersionEntriesInput): types.GetIpamPrefixListResolverVersionEntriesOutput, table
+    getIpamPrefixListResolverVersionEntries: function(Client, types.GetIpamPrefixListResolverVersionEntriesInput): Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
     -- Retrieves version information for an IPAM prefix list resolver.
     -- Each version is a snapshot of what CIDRs matched your rules at that moment in time. The version number increments every time the CIDR list
     -- changes due to infrastructure changes.
@@ -3115,9 +3119,9 @@ local record Client
     -- vpc-prod-api (10.3.0.0/16) - tagged env=prod
     -- IPAM automatically detects the change and creates a new version.
     -- Version 2 CIDRs: 10.1.0.0/16, 10.2.0.0/16, 10.3.0.0/16
-    getIpamPrefixListResolverVersions: function(Client, types.GetIpamPrefixListResolverVersionsInput): types.GetIpamPrefixListResolverVersionsOutput, table
+    getIpamPrefixListResolverVersions: function(Client, types.GetIpamPrefixListResolverVersionsInput): Operation<types.GetIpamPrefixListResolverVersionsOutput>
     -- Returns resource CIDRs managed by IPAM in a given scope. If an IPAM is associated with more than one resource discovery, the resource CIDRs across all of the resource discoveries is returned. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    getIpamResourceCidrs: function(Client, types.GetIpamResourceCidrsInput): types.GetIpamResourceCidrsOutput, table
+    getIpamResourceCidrs: function(Client, types.GetIpamResourceCidrsInput): Operation<types.GetIpamResourceCidrsOutput>
     -- Retrieves the configuration data of the specified instance. You can use this data to
     -- create a launch template.
     -- This action calls on other describe actions to get instance information. Depending on
@@ -3126,18 +3130,18 @@ local record Client
     -- DescribeInstanceCreditSpecifications, DescribeVolumes, and
     -- DescribeInstanceAttribute.
     -- Or, you can allow describe* depending on your instance requirements.
-    getLaunchTemplateData: function(Client, types.GetLaunchTemplateDataInput): types.GetLaunchTemplateDataOutput, table
+    getLaunchTemplateData: function(Client, types.GetLaunchTemplateDataInput): Operation<types.GetLaunchTemplateDataOutput>
     -- Gets information about the resources that are associated with the specified managed prefix list.
-    getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput): types.GetManagedPrefixListAssociationsOutput, table
+    getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput): Operation<types.GetManagedPrefixListAssociationsOutput>
     -- Gets information about the entries for a specified managed prefix list.
-    getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput): types.GetManagedPrefixListEntriesOutput, table
+    getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput): Operation<types.GetManagedPrefixListEntriesOutput>
     -- Retrieves the managed resource visibility configuration for the account. The response
     -- indicates whether managed resources are hidden or visible by default.
-    getManagedResourceVisibility: function(Client, types.GetManagedResourceVisibilityInput): types.GetManagedResourceVisibilityOutput, table
+    getManagedResourceVisibility: function(Client, types.GetManagedResourceVisibilityInput): Operation<types.GetManagedResourceVisibilityOutput>
     -- Gets the findings for the specified Network Access Scope analysis.
-    getNetworkInsightsAccessScopeAnalysisFindings: function(Client, types.GetNetworkInsightsAccessScopeAnalysisFindingsInput): types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput, table
+    getNetworkInsightsAccessScopeAnalysisFindings: function(Client, types.GetNetworkInsightsAccessScopeAnalysisFindingsInput): Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
     -- Gets the content for the specified Network Access Scope.
-    getNetworkInsightsAccessScopeContent: function(Client, types.GetNetworkInsightsAccessScopeContentInput): types.GetNetworkInsightsAccessScopeContentOutput, table
+    getNetworkInsightsAccessScopeContent: function(Client, types.GetNetworkInsightsAccessScopeContentInput): Operation<types.GetNetworkInsightsAccessScopeContentOutput>
     -- Retrieves the encrypted administrator password for a running Windows instance.
     -- The Windows password is generated at boot by the EC2Config service or
     -- EC2Launch scripts (Windows Server 2016 and later). This usually only
@@ -3151,15 +3155,15 @@ local record Client
     -- minutes. If you try to retrieve the password before it's available, the output returns
     -- an empty string. We recommend that you wait up to 15 minutes after launching an instance
     -- before trying to retrieve the generated password.
-    getPasswordData: function(Client, types.GetPasswordDataInput): types.GetPasswordDataOutput, table
+    getPasswordData: function(Client, types.GetPasswordDataInput): Operation<types.GetPasswordDataOutput>
     -- Returns a quote and exchange information for exchanging one or more specified Convertible
     -- Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be
     -- performed, the reason is returned in the response. Use AcceptReservedInstancesExchangeQuote to perform the exchange.
-    getReservedInstancesExchangeQuote: function(Client, types.GetReservedInstancesExchangeQuoteInput): types.GetReservedInstancesExchangeQuoteOutput, table
+    getReservedInstancesExchangeQuote: function(Client, types.GetReservedInstancesExchangeQuoteInput): Operation<types.GetReservedInstancesExchangeQuoteOutput>
     -- Gets information about the associations for the specified route server.
     -- A route server association is the connection established between a route server and a VPC.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    getRouteServerAssociations: function(Client, types.GetRouteServerAssociationsInput): types.GetRouteServerAssociationsOutput, table
+    getRouteServerAssociations: function(Client, types.GetRouteServerAssociationsInput): Operation<types.GetRouteServerAssociationsOutput>
     -- Gets information about the route propagations for the specified route server.
     -- When enabled, route server propagation installs the routes in the FIB on the route table you've specified. Route server supports IPv4 and IPv6 route propagation.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
@@ -3169,7 +3173,7 @@ local record Client
     -- Subnet route tables
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
-    getRouteServerPropagations: function(Client, types.GetRouteServerPropagationsInput): types.GetRouteServerPropagationsOutput, table
+    getRouteServerPropagations: function(Client, types.GetRouteServerPropagationsInput): Operation<types.GetRouteServerPropagationsOutput>
     -- Gets the routing database for the specified route server. The Routing Information Base (RIB) serves as a database that stores all the routing information and network topology data collected by a router or routing system, such as routes learned from BGP peers. The RIB is constantly updated as new routing information is received or existing routes change. This ensures that the route server always has the most current view of the network topology and can make optimal routing decisions.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
     -- VPC Route Server dynamically updates VPC and internet gateway route tables with your preferred IPv4 or IPv6 routes to achieve routing fault tolerance for those workloads. This enables you to automatically reroute traffic within a VPC, which increases the manageability of VPC routing and interoperability with third-party workloads.
@@ -3178,19 +3182,19 @@ local record Client
     -- Subnet route tables
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
-    getRouteServerRoutingDatabase: function(Client, types.GetRouteServerRoutingDatabaseInput): types.GetRouteServerRoutingDatabaseOutput, table
+    getRouteServerRoutingDatabase: function(Client, types.GetRouteServerRoutingDatabaseInput): Operation<types.GetRouteServerRoutingDatabaseOutput>
     -- Gets security groups that can be associated by the Amazon Web Services account making the request with network interfaces in the specified VPC.
-    getSecurityGroupsForVpc: function(Client, types.GetSecurityGroupsForVpcInput): types.GetSecurityGroupsForVpcOutput, table
+    getSecurityGroupsForVpc: function(Client, types.GetSecurityGroupsForVpcInput): Operation<types.GetSecurityGroupsForVpcOutput>
     -- Retrieves the access status of your account to the EC2 serial console of all instances. By
     -- default, access to the EC2 serial console is disabled for your account. For more
     -- information, see Manage account access to the EC2 serial console in the Amazon EC2
     -- User Guide.
-    getSerialConsoleAccessStatus: function(Client, types.GetSerialConsoleAccessStatusInput): types.GetSerialConsoleAccessStatusOutput, table
+    getSerialConsoleAccessStatus: function(Client, types.GetSerialConsoleAccessStatusInput): Operation<types.GetSerialConsoleAccessStatusOutput>
     -- Gets the current state of block public access for snapshots setting
     -- for the account and Region.
     -- For more information, see
     -- Block public access for snapshots in the Amazon EBS User Guide.
-    getSnapshotBlockPublicAccessState: function(Client, types.GetSnapshotBlockPublicAccessStateInput): types.GetSnapshotBlockPublicAccessStateOutput, table
+    getSnapshotBlockPublicAccessState: function(Client, types.GetSnapshotBlockPublicAccessStateInput): Operation<types.GetSnapshotBlockPublicAccessStateOutput>
     -- Calculates the Spot placement score for a Region or Availability Zone based on the
     -- specified target capacity and compute requirements.
     -- You can specify your compute requirements either by using
@@ -3199,47 +3203,47 @@ local record Client
     -- InstanceTypes.
     -- For more information, see Spot placement score in
     -- the Amazon EC2 User Guide.
-    getSpotPlacementScores: function(Client, types.GetSpotPlacementScoresInput): types.GetSpotPlacementScoresOutput, table
+    getSpotPlacementScores: function(Client, types.GetSpotPlacementScoresInput): Operation<types.GetSpotPlacementScoresOutput>
     -- Gets information about the subnet CIDR reservations.
-    getSubnetCidrReservations: function(Client, types.GetSubnetCidrReservationsInput): types.GetSubnetCidrReservationsOutput, table
+    getSubnetCidrReservations: function(Client, types.GetSubnetCidrReservationsInput): Operation<types.GetSubnetCidrReservationsOutput>
     -- Lists the route tables to which the specified resource attachment propagates routes.
-    getTransitGatewayAttachmentPropagations: function(Client, types.GetTransitGatewayAttachmentPropagationsInput): types.GetTransitGatewayAttachmentPropagationsOutput, table
+    getTransitGatewayAttachmentPropagations: function(Client, types.GetTransitGatewayAttachmentPropagationsInput): Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
     -- Retrieves the entries for a transit gateway metering policy.
-    getTransitGatewayMeteringPolicyEntries: function(Client, types.GetTransitGatewayMeteringPolicyEntriesInput): types.GetTransitGatewayMeteringPolicyEntriesOutput, table
+    getTransitGatewayMeteringPolicyEntries: function(Client, types.GetTransitGatewayMeteringPolicyEntriesInput): Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
     -- Gets information about the associations for the transit gateway multicast domain.
-    getTransitGatewayMulticastDomainAssociations: function(Client, types.GetTransitGatewayMulticastDomainAssociationsInput): types.GetTransitGatewayMulticastDomainAssociationsOutput, table
+    getTransitGatewayMulticastDomainAssociations: function(Client, types.GetTransitGatewayMulticastDomainAssociationsInput): Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
     -- Gets a list of the transit gateway policy table associations.
-    getTransitGatewayPolicyTableAssociations: function(Client, types.GetTransitGatewayPolicyTableAssociationsInput): types.GetTransitGatewayPolicyTableAssociationsOutput, table
+    getTransitGatewayPolicyTableAssociations: function(Client, types.GetTransitGatewayPolicyTableAssociationsInput): Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
     -- Returns a list of transit gateway policy table entries.
-    getTransitGatewayPolicyTableEntries: function(Client, types.GetTransitGatewayPolicyTableEntriesInput): types.GetTransitGatewayPolicyTableEntriesOutput, table
+    getTransitGatewayPolicyTableEntries: function(Client, types.GetTransitGatewayPolicyTableEntriesInput): Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
     -- Gets information about the prefix list references in a specified transit gateway route table.
-    getTransitGatewayPrefixListReferences: function(Client, types.GetTransitGatewayPrefixListReferencesInput): types.GetTransitGatewayPrefixListReferencesOutput, table
+    getTransitGatewayPrefixListReferences: function(Client, types.GetTransitGatewayPrefixListReferencesInput): Operation<types.GetTransitGatewayPrefixListReferencesOutput>
     -- Gets information about the associations for the specified transit gateway route table.
-    getTransitGatewayRouteTableAssociations: function(Client, types.GetTransitGatewayRouteTableAssociationsInput): types.GetTransitGatewayRouteTableAssociationsOutput, table
+    getTransitGatewayRouteTableAssociations: function(Client, types.GetTransitGatewayRouteTableAssociationsInput): Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
     -- Gets information about the route table propagations for the specified transit gateway route table.
-    getTransitGatewayRouteTablePropagations: function(Client, types.GetTransitGatewayRouteTablePropagationsInput): types.GetTransitGatewayRouteTablePropagationsOutput, table
+    getTransitGatewayRouteTablePropagations: function(Client, types.GetTransitGatewayRouteTablePropagationsInput): Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
     -- Get the Verified Access policy associated with the endpoint.
-    getVerifiedAccessEndpointPolicy: function(Client, types.GetVerifiedAccessEndpointPolicyInput): types.GetVerifiedAccessEndpointPolicyOutput, table
+    getVerifiedAccessEndpointPolicy: function(Client, types.GetVerifiedAccessEndpointPolicyInput): Operation<types.GetVerifiedAccessEndpointPolicyOutput>
     -- Gets the targets for the specified network CIDR endpoint for Verified Access.
-    getVerifiedAccessEndpointTargets: function(Client, types.GetVerifiedAccessEndpointTargetsInput): types.GetVerifiedAccessEndpointTargetsOutput, table
+    getVerifiedAccessEndpointTargets: function(Client, types.GetVerifiedAccessEndpointTargetsInput): Operation<types.GetVerifiedAccessEndpointTargetsOutput>
     -- Shows the contents of the Verified Access policy associated with the group.
-    getVerifiedAccessGroupPolicy: function(Client, types.GetVerifiedAccessGroupPolicyInput): types.GetVerifiedAccessGroupPolicyOutput, table
+    getVerifiedAccessGroupPolicy: function(Client, types.GetVerifiedAccessGroupPolicyInput): Operation<types.GetVerifiedAccessGroupPolicyOutput>
     -- Gets information about resources in a VPC that are blocking encryption enforcement.
     -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
-    getVpcResourcesBlockingEncryptionEnforcement: function(Client, types.GetVpcResourcesBlockingEncryptionEnforcementInput): types.GetVpcResourcesBlockingEncryptionEnforcementOutput, table
+    getVpcResourcesBlockingEncryptionEnforcement: function(Client, types.GetVpcResourcesBlockingEncryptionEnforcementInput): Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
     -- Download an Amazon Web Services-provided sample configuration file to be used with the customer
     -- gateway device specified for your Site-to-Site VPN connection.
-    getVpnConnectionDeviceSampleConfiguration: function(Client, types.GetVpnConnectionDeviceSampleConfigurationInput): types.GetVpnConnectionDeviceSampleConfigurationOutput, table
+    getVpnConnectionDeviceSampleConfiguration: function(Client, types.GetVpnConnectionDeviceSampleConfigurationInput): Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
     -- Obtain a list of customer gateway devices for which sample configuration
     -- files can be provided. The request has no additional parameters. You can also see the
     -- list of device types with sample configuration files available under Your customer gateway
     -- device in the Amazon Web Services Site-to-Site VPN User Guide.
-    getVpnConnectionDeviceTypes: function(Client, types.GetVpnConnectionDeviceTypesInput): types.GetVpnConnectionDeviceTypesOutput, table
+    getVpnConnectionDeviceTypes: function(Client, types.GetVpnConnectionDeviceTypesInput): Operation<types.GetVpnConnectionDeviceTypesOutput>
     -- Get details of available tunnel endpoint maintenance.
-    getVpnTunnelReplacementStatus: function(Client, types.GetVpnTunnelReplacementStatusInput): types.GetVpnTunnelReplacementStatusOutput, table
+    getVpnTunnelReplacementStatus: function(Client, types.GetVpnTunnelReplacementStatusInput): Operation<types.GetVpnTunnelReplacementStatusOutput>
     -- Uploads a client certificate revocation list to the specified Client VPN endpoint. Uploading a client certificate revocation list overwrites the existing client certificate revocation list.
     -- Uploading a client certificate revocation list resets existing client connections.
-    importClientVpnClientCertificateRevocationList: function(Client, types.ImportClientVpnClientCertificateRevocationListInput): types.ImportClientVpnClientCertificateRevocationListOutput, table
+    importClientVpnClientCertificateRevocationList: function(Client, types.ImportClientVpnClientCertificateRevocationListInput): Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
     -- To import your virtual machines (VMs) with a console-based experience, you can use the
     -- Import virtual machine images to Amazon Web Services template in the Migration Hub Orchestrator console. For more
     -- information, see the
@@ -3252,7 +3256,7 @@ local record Client
     -- optimized.
     -- For more information, see Importing a
     -- VM as an image using VM Import/Export in the VM Import/Export User Guide.
-    importImage: function(Client, types.ImportImageInput): types.ImportImageOutput, table
+    importImage: function(Client, types.ImportImageInput): Operation<types.ImportImageOutput>
     -- We recommend that you use the
     -- ImportImage
     -- API instead. For more information, see Importing a VM as an image using VM
@@ -3262,30 +3266,30 @@ local record Client
     -- instead.
     -- For information about the import manifest referenced by this API action, see VM Import Manifest.
     -- This API action is not supported by the Command Line Interface (CLI).
-    importInstance: function(Client, types.ImportInstanceInput): types.ImportInstanceOutput, table
+    importInstance: function(Client, types.ImportInstanceInput): Operation<types.ImportInstanceOutput>
     -- Imports the public key from an RSA or ED25519 key pair that you created using a third-party tool.
     -- You give Amazon Web Services only the public key. The private key is never transferred between you and Amazon Web Services.
     -- For more information about the requirements for importing a key pair, see Create a key pair and import the public key to Amazon EC2 in the Amazon EC2 User Guide.
-    importKeyPair: function(Client, types.ImportKeyPairInput): types.ImportKeyPairOutput, table
+    importKeyPair: function(Client, types.ImportKeyPairInput): Operation<types.ImportKeyPairOutput>
     -- Imports a disk into an EBS snapshot.
     -- For more information, see Importing a disk as a snapshot using VM Import/Export in the
     -- VM Import/Export User Guide.
-    importSnapshot: function(Client, types.ImportSnapshotInput): types.ImportSnapshotOutput, table
+    importSnapshot: function(Client, types.ImportSnapshotInput): Operation<types.ImportSnapshotOutput>
     -- This API action supports only single-volume VMs. To import multi-volume VMs, use
     -- ImportImage instead. To import a disk to a snapshot, use
     -- ImportSnapshot instead.
     -- Creates an import volume task using metadata from the specified disk image.
     -- For information about the import manifest referenced by this API action, see VM Import Manifest.
     -- This API action is not supported by the Command Line Interface (CLI).
-    importVolume: function(Client, types.ImportVolumeInput): types.ImportVolumeOutput, table
+    importVolume: function(Client, types.ImportVolumeInput): Operation<types.ImportVolumeOutput>
     -- Lists one or more AMIs that are currently in the Recycle Bin. For more information, see
     -- Recycle
     -- Bin in the Amazon EC2 User Guide.
-    listImagesInRecycleBin: function(Client, types.ListImagesInRecycleBinInput): types.ListImagesInRecycleBinOutput, table
+    listImagesInRecycleBin: function(Client, types.ListImagesInRecycleBinInput): Operation<types.ListImagesInRecycleBinOutput>
     -- Lists one or more snapshots that are currently in the Recycle Bin.
-    listSnapshotsInRecycleBin: function(Client, types.ListSnapshotsInRecycleBinInput): types.ListSnapshotsInRecycleBinOutput, table
+    listSnapshotsInRecycleBin: function(Client, types.ListSnapshotsInRecycleBinInput): Operation<types.ListSnapshotsInRecycleBinOutput>
     -- Lists one or more volumes that are currently in the Recycle Bin.
-    listVolumesInRecycleBin: function(Client, types.ListVolumesInRecycleBinInput): types.ListVolumesInRecycleBinOutput, table
+    listVolumesInRecycleBin: function(Client, types.ListVolumesInRecycleBinInput): Operation<types.ListVolumesInRecycleBinOutput>
     -- Locks an Amazon EBS snapshot in either governance or compliance
     -- mode to protect it against accidental or malicious deletions for a specific duration. A locked snapshot
     -- can't be deleted.
@@ -3297,11 +3301,11 @@ local record Client
     -- the lock mode and the lock duration or lock expiration date.
     -- If the snapshot is locked in compliance mode and the cooling-off period has lapsed, you can
     -- only increase the lock duration or extend the lock expiration date.
-    lockSnapshot: function(Client, types.LockSnapshotInput): types.LockSnapshotOutput, table
+    lockSnapshot: function(Client, types.LockSnapshotInput): Operation<types.LockSnapshotOutput>
     -- Modifies an attribute of the specified Elastic IP address. For requirements, see Using reverse DNS for email applications.
-    modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput): types.ModifyAddressAttributeOutput, table
+    modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput): Operation<types.ModifyAddressAttributeOutput>
     -- Changes the opt-in status of the specified zone group for your account.
-    modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput): types.ModifyAvailabilityZoneGroupOutput, table
+    modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput): Operation<types.ModifyAvailabilityZoneGroupOutput>
     -- Modifies a Capacity Reservation's capacity, instance eligibility, and the conditions
     -- under which it is to be released. You can't modify a Capacity Reservation's instance
     -- type, EBS optimization, platform, instance store settings, Availability Zone, or
@@ -3322,16 +3326,16 @@ local record Client
     -- expired, cancelled, unsupported, or
     -- failed state - You can't modify the Capacity Reservation in any
     -- way.
-    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput): types.ModifyCapacityReservationOutput, table
+    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput): Operation<types.ModifyCapacityReservationOutput>
     -- Modifies a Capacity Reservation Fleet.
     -- When you modify the total target capacity of a Capacity Reservation Fleet, the Fleet
     -- automatically creates new Capacity Reservations, or modifies or cancels existing
     -- Capacity Reservations in the Fleet to meet the new total target capacity. When you
     -- modify the end date for the Fleet, the end dates for all of the individual Capacity
     -- Reservations in the Fleet are updated accordingly.
-    modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput): types.ModifyCapacityReservationFleetOutput, table
+    modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput): Operation<types.ModifyCapacityReservationFleetOutput>
     -- Modifies the specified Client VPN endpoint. Modifying the DNS server resets existing client connections.
-    modifyClientVpnEndpoint: function(Client, types.ModifyClientVpnEndpointInput): types.ModifyClientVpnEndpointOutput, table
+    modifyClientVpnEndpoint: function(Client, types.ModifyClientVpnEndpointInput): Operation<types.ModifyClientVpnEndpointOutput>
     -- Modifies the default credit option for CPU usage of burstable performance instances.
     -- The default credit option is set at the account level per Amazon Web Services Region, and
     -- is specified per instance family. All new burstable performance instances in the account
@@ -3345,7 +3349,7 @@ local record Client
     -- DefaultCreditSpecification for updates.
     -- For more information, see Burstable
     -- performance instances in the Amazon EC2 User Guide.
-    modifyDefaultCreditSpecification: function(Client, types.ModifyDefaultCreditSpecificationInput): types.ModifyDefaultCreditSpecificationOutput, table
+    modifyDefaultCreditSpecification: function(Client, types.ModifyDefaultCreditSpecificationInput): Operation<types.ModifyDefaultCreditSpecificationOutput>
     -- Changes the default KMS key for EBS encryption by default for your account in this Region.
     -- Amazon Web Services creates a unique Amazon Web Services managed KMS key in each Region for use with encryption by default. If
     -- you change the default KMS key to a symmetric customer managed KMS key, it is used instead of the Amazon Web Services
@@ -3354,7 +3358,7 @@ local record Client
     -- encryption by default, your instances will fail to launch.
     -- For more information, see Amazon EBS encryption
     -- in the Amazon EBS User Guide.
-    modifyEbsDefaultKmsKeyId: function(Client, types.ModifyEbsDefaultKmsKeyIdInput): types.ModifyEbsDefaultKmsKeyIdOutput, table
+    modifyEbsDefaultKmsKeyId: function(Client, types.ModifyEbsDefaultKmsKeyIdInput): Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
     -- Modifies the specified EC2 Fleet.
     -- You can only modify an EC2 Fleet request of type maintain.
     -- While the EC2 Fleet is being modified, it is in the modifying state.
@@ -3377,9 +3381,9 @@ local record Client
     -- that you terminate manually.
     -- If you are finished with your EC2 Fleet for now, but will use it again later, you can set the
     -- target capacity to 0.
-    modifyFleet: function(Client, types.ModifyFleetInput): types.ModifyFleetOutput, table
+    modifyFleet: function(Client, types.ModifyFleetInput): Operation<types.ModifyFleetOutput>
     -- Modifies the specified attribute of the specified Amazon FPGA Image (AFI).
-    modifyFpgaImageAttribute: function(Client, types.ModifyFpgaImageAttributeInput): types.ModifyFpgaImageAttributeOutput, table
+    modifyFpgaImageAttribute: function(Client, types.ModifyFpgaImageAttributeInput): Operation<types.ModifyFpgaImageAttributeOutput>
     -- Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled,
     -- any instances that you launch with a tenancy of host but without a specific
     -- host ID are placed onto any available Dedicated Host in your account that has
@@ -3389,7 +3393,7 @@ local record Client
     -- You can also use this API action to modify a Dedicated Host to support either multiple
     -- instance types in an instance family, or to support a specific instance type
     -- only.
-    modifyHosts: function(Client, types.ModifyHostsInput): types.ModifyHostsOutput, table
+    modifyHosts: function(Client, types.ModifyHostsInput): Operation<types.ModifyHostsOutput>
     -- Modifies the ID format of a resource for a specified IAM user, IAM role, or the root
     -- user for an account; or all IAM users, IAM roles, and the root user for an account. You can
     -- specify that resources should receive longer IDs (17-character IDs) when they are created.
@@ -3412,7 +3416,7 @@ local record Client
     -- Resources created with longer IDs are visible to all IAM roles and users, regardless of these
     -- settings and provided that they have permission to use the relevant Describe
     -- command for the resource type.
-    modifyIdentityIdFormat: function(Client, types.ModifyIdentityIdFormatInput): types.ModifyIdentityIdFormatOutput, table
+    modifyIdentityIdFormat: function(Client, types.ModifyIdentityIdFormatInput): Operation<types.ModifyIdentityIdFormatOutput>
     -- Modifies the ID format for the specified resource on a per-Region basis. You can
     -- specify that resources should receive longer IDs (17-character IDs) when they are
     -- created.
@@ -3437,7 +3441,7 @@ local record Client
     -- Resources created with longer IDs are visible to all IAM roles and users, regardless
     -- of these settings and provided that they have permission to use the relevant
     -- Describe command for the resource type.
-    modifyIdFormat: function(Client, types.ModifyIdFormatInput): types.ModifyIdFormatOutput, table
+    modifyIdFormat: function(Client, types.ModifyIdFormatInput): Operation<types.ModifyIdFormatOutput>
     -- Modifies the specified attribute of the specified AMI. You can specify only one attribute
     -- at a time.
     -- To specify the attribute, you can use the Attribute parameter, or one of the
@@ -3446,7 +3450,7 @@ local record Client
     -- Images with an Amazon Web Services Marketplace product code cannot be made public.
     -- To enable the SriovNetSupport enhanced networking attribute of an image, enable
     -- SriovNetSupport on an instance and create an AMI from the instance.
-    modifyImageAttribute: function(Client, types.ModifyImageAttributeInput): types.ModifyImageAttributeOutput, table
+    modifyImageAttribute: function(Client, types.ModifyImageAttributeInput): Operation<types.ModifyImageAttributeOutput>
     -- Modifies the specified attribute of the specified instance. You can specify only one
     -- attribute at a time.
     -- Note: Using this action to change the security groups
@@ -3457,17 +3461,17 @@ local record Client
     -- To modify some attributes, the instance must be stopped. For more information, see
     -- Modify a stopped instance in the
     -- Amazon EC2 User Guide.
-    modifyInstanceAttribute: function(Client, types.ModifyInstanceAttributeInput): types.ModifyInstanceAttributeOutput, table
+    modifyInstanceAttribute: function(Client, types.ModifyInstanceAttributeInput): Operation<types.ModifyInstanceAttributeOutput>
     -- Modifies the Capacity Reservation settings for a stopped instance. Use this action to
     -- configure an instance to target a specific Capacity Reservation, run in any
     -- open Capacity Reservation with matching attributes, run in On-Demand
     -- Instance capacity, or only run in a Capacity Reservation.
-    modifyInstanceCapacityReservationAttributes: function(Client, types.ModifyInstanceCapacityReservationAttributesInput): types.ModifyInstanceCapacityReservationAttributesOutput, table
+    modifyInstanceCapacityReservationAttributes: function(Client, types.ModifyInstanceCapacityReservationAttributesInput): Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
     -- Modifies the specified EC2 Instance Connect Endpoint.
     -- For more information, see Modify an
     -- EC2 Instance Connect Endpoint in the
     -- Amazon EC2 User Guide.
-    modifyInstanceConnectEndpoint: function(Client, types.ModifyInstanceConnectEndpointInput): types.ModifyInstanceConnectEndpointOutput, table
+    modifyInstanceConnectEndpoint: function(Client, types.ModifyInstanceConnectEndpointInput): Operation<types.ModifyInstanceConnectEndpointOutput>
     -- By default, all vCPUs for the instance type are active when you launch an instance. When you
     -- configure the number of active vCPUs for the instance, it can help you save on licensing costs and
     -- optimize performance. The base cost of the instance remains unchanged.
@@ -3476,15 +3480,15 @@ local record Client
     -- Some instance type options do not support this capability. For more information, see
     -- Supported CPU
     -- options in the Amazon EC2 User Guide.
-    modifyInstanceCpuOptions: function(Client, types.ModifyInstanceCpuOptionsInput): types.ModifyInstanceCpuOptionsOutput, table
+    modifyInstanceCpuOptions: function(Client, types.ModifyInstanceCpuOptionsInput): Operation<types.ModifyInstanceCpuOptionsOutput>
     -- Modifies the credit option for CPU usage on a running or stopped burstable performance
     -- instance. The credit options are standard and
     -- unlimited.
     -- For more information, see Burstable
     -- performance instances in the Amazon EC2 User Guide.
-    modifyInstanceCreditSpecification: function(Client, types.ModifyInstanceCreditSpecificationInput): types.ModifyInstanceCreditSpecificationOutput, table
+    modifyInstanceCreditSpecification: function(Client, types.ModifyInstanceCreditSpecificationInput): Operation<types.ModifyInstanceCreditSpecificationOutput>
     -- Modifies the start time for a scheduled Amazon EC2 instance event.
-    modifyInstanceEventStartTime: function(Client, types.ModifyInstanceEventStartTimeInput): types.ModifyInstanceEventStartTimeOutput, table
+    modifyInstanceEventStartTime: function(Client, types.ModifyInstanceEventStartTimeInput): Operation<types.ModifyInstanceEventStartTimeOutput>
     -- Modifies the specified event window.
     -- You can define either a set of time ranges or a cron expression when modifying the event
     -- window, but not both.
@@ -3493,14 +3497,14 @@ local record Client
     -- of the scheduled event.
     -- For more information, see Define event windows for scheduled
     -- events in the Amazon EC2 User Guide.
-    modifyInstanceEventWindow: function(Client, types.ModifyInstanceEventWindowInput): types.ModifyInstanceEventWindowOutput, table
+    modifyInstanceEventWindow: function(Client, types.ModifyInstanceEventWindowInput): Operation<types.ModifyInstanceEventWindowOutput>
     -- Modifies the recovery behavior of your instance to disable simplified automatic
     -- recovery or set the recovery behavior to default. The default configuration will not
     -- enable simplified automatic recovery for an unsupported instance type. For more
     -- information, see Simplified automatic recovery.
     -- Modifies the reboot migration behavior during a user-initiated reboot of an instance
     -- that has a pending system-reboot event. For more information, see Enable or disable reboot migration.
-    modifyInstanceMaintenanceOptions: function(Client, types.ModifyInstanceMaintenanceOptionsInput): types.ModifyInstanceMaintenanceOptionsOutput, table
+    modifyInstanceMaintenanceOptions: function(Client, types.ModifyInstanceMaintenanceOptionsInput): Operation<types.ModifyInstanceMaintenanceOptionsOutput>
     -- Modifies the default instance metadata service (IMDS) settings at the account level in
     -- the specified Amazon Web Services  Region.
     -- To remove a parameter's account-level default setting, specify
@@ -3508,7 +3512,7 @@ local record Client
     -- no-preference, then the instance launch considers the other
     -- instance metadata settings. For more information, see Order of precedence for instance metadata options in the
     -- Amazon EC2 User Guide.
-    modifyInstanceMetadataDefaults: function(Client, types.ModifyInstanceMetadataDefaultsInput): types.ModifyInstanceMetadataDefaultsOutput, table
+    modifyInstanceMetadataDefaults: function(Client, types.ModifyInstanceMetadataDefaultsInput): Operation<types.ModifyInstanceMetadataDefaultsOutput>
     -- Modify the instance metadata parameters on a running or stopped instance. When you
     -- modify the parameters on a stopped instance, they are applied when the instance is
     -- started. When you modify the parameters on a running instance, the API responds with a
@@ -3516,10 +3520,10 @@ local record Client
     -- instance, the state of the modifications changes from “pending” to “applied” in
     -- subsequent describe-instances API calls. For more information, see Instance metadata and user data in the
     -- Amazon EC2 User Guide.
-    modifyInstanceMetadataOptions: function(Client, types.ModifyInstanceMetadataOptionsInput): types.ModifyInstanceMetadataOptionsOutput, table
+    modifyInstanceMetadataOptions: function(Client, types.ModifyInstanceMetadataOptionsInput): Operation<types.ModifyInstanceMetadataOptionsOutput>
     -- Change the configuration of the network performance options for an existing
     -- instance.
-    modifyInstanceNetworkPerformanceOptions: function(Client, types.ModifyInstanceNetworkPerformanceOptionsInput): types.ModifyInstanceNetworkPerformanceOptionsOutput, table
+    modifyInstanceNetworkPerformanceOptions: function(Client, types.ModifyInstanceNetworkPerformanceOptionsInput): Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
     -- Modifies the placement attributes for a specified instance. You can do the
     -- following:
     -- Modify the affinity between an instance and a Dedicated
@@ -3536,58 +3540,58 @@ local record Client
     -- request.
     -- To modify the host ID, tenancy, placement group, or partition for an instance, the
     -- instance must be in the stopped state.
-    modifyInstancePlacement: function(Client, types.ModifyInstancePlacementInput): types.ModifyInstancePlacementOutput, table
+    modifyInstancePlacement: function(Client, types.ModifyInstancePlacementInput): Operation<types.ModifyInstancePlacementOutput>
     -- Modify the configurations of an IPAM.
-    modifyIpam: function(Client, types.ModifyIpamInput): types.ModifyIpamOutput, table
+    modifyIpam: function(Client, types.ModifyIpamInput): Operation<types.ModifyIpamOutput>
     -- Modifies the allocation rules in an IPAM policy.
     -- An IPAM policy is a set of rules that define how public IPv4 addresses from IPAM pools are allocated to Amazon Web Services resources. Each rule maps an Amazon Web Services service to IPAM pools that the service will use to get IP addresses. A single policy can have multiple rules and be applied to multiple Amazon Web Services Regions. If the IPAM pool run out of addresses then the services fallback to Amazon-provided IP addresses. A policy can be applied to an individual Amazon Web Services account or an entity within Amazon Web Services Organizations.
     -- Allocation rules are optional configurations within an IPAM policy that map Amazon Web Services resource types to specific IPAM pools. If no rules are defined, the resource types default to using Amazon-provided IP addresses.
-    modifyIpamPolicyAllocationRules: function(Client, types.ModifyIpamPolicyAllocationRulesInput): types.ModifyIpamPolicyAllocationRulesOutput, table
+    modifyIpamPolicyAllocationRules: function(Client, types.ModifyIpamPolicyAllocationRulesInput): Operation<types.ModifyIpamPolicyAllocationRulesOutput>
     -- Modify the configurations of an IPAM pool.
     -- For more information, see Modify a pool in the Amazon VPC IPAM User Guide.
-    modifyIpamPool: function(Client, types.ModifyIpamPoolInput): types.ModifyIpamPoolOutput, table
+    modifyIpamPool: function(Client, types.ModifyIpamPoolInput): Operation<types.ModifyIpamPoolOutput>
     -- Modifies an IPAM prefix list resolver. You can update the description and CIDR selection rules. Changes to rules will trigger re-evaluation and potential updates to associated prefix lists.
-    modifyIpamPrefixListResolver: function(Client, types.ModifyIpamPrefixListResolverInput): types.ModifyIpamPrefixListResolverOutput, table
+    modifyIpamPrefixListResolver: function(Client, types.ModifyIpamPrefixListResolverInput): Operation<types.ModifyIpamPrefixListResolverOutput>
     -- Modifies an IPAM prefix list resolver target. You can update version tracking settings and the desired version of the target prefix list.
-    modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput): types.ModifyIpamPrefixListResolverTargetOutput, table
+    modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput): Operation<types.ModifyIpamPrefixListResolverTargetOutput>
     -- Modify a resource CIDR. You can use this action to transfer resource CIDRs between scopes and ignore resource CIDRs that you do not want to manage. If set to false, the resource will not be tracked for overlap, it cannot be auto-imported into a pool, and it will be removed from any pool it has an allocation in.
     -- For more information, see Move resource CIDRs between scopes and Change the monitoring state of resource CIDRs in the Amazon VPC IPAM User Guide.
-    modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput): types.ModifyIpamResourceCidrOutput, table
+    modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput): Operation<types.ModifyIpamResourceCidrOutput>
     -- Modifies a resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.
-    modifyIpamResourceDiscovery: function(Client, types.ModifyIpamResourceDiscoveryInput): types.ModifyIpamResourceDiscoveryOutput, table
+    modifyIpamResourceDiscovery: function(Client, types.ModifyIpamResourceDiscoveryInput): Operation<types.ModifyIpamResourceDiscoveryOutput>
     -- Modify an IPAM scope.
-    modifyIpamScope: function(Client, types.ModifyIpamScopeInput): types.ModifyIpamScopeOutput, table
+    modifyIpamScope: function(Client, types.ModifyIpamScopeInput): Operation<types.ModifyIpamScopeOutput>
     -- Modifies a launch template. You can specify which version of the launch template to
     -- set as the default version. When launching an instance, the default version applies when
     -- a launch template version is not specified.
-    modifyLaunchTemplate: function(Client, types.ModifyLaunchTemplateInput): types.ModifyLaunchTemplateOutput, table
+    modifyLaunchTemplate: function(Client, types.ModifyLaunchTemplateInput): Operation<types.ModifyLaunchTemplateOutput>
     -- Modifies the specified local gateway route.
-    modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput): types.ModifyLocalGatewayRouteOutput, table
+    modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput): Operation<types.ModifyLocalGatewayRouteOutput>
     -- Modifies the specified managed prefix list.
     -- Adding or removing entries in a prefix list creates a new version of the prefix list.
     -- Changing the name of the prefix list does not affect the version.
     -- If you specify a current version number that does not match the true current version
     -- number, the request fails.
-    modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput): types.ModifyManagedPrefixListOutput, table
+    modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput): Operation<types.ModifyManagedPrefixListOutput>
     -- Modifies the managed resource visibility configuration for the account. Use this
     -- operation to control whether managed resources are hidden or visible by default.
     -- Visibility settings are account-wide and affect all IAM principals uniformly. Hidden
     -- resources remain fully operational and billable.
-    modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput): types.ModifyManagedResourceVisibilityOutput, table
+    modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput): Operation<types.ModifyManagedResourceVisibilityOutput>
     -- Modifies the specified network interface attribute. You can specify only one attribute
     -- at a time. You can use this action to attach and detach security groups from an existing
     -- EC2 instance.
-    modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput): types.ModifyNetworkInterfaceAttributeOutput, table
+    modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput): Operation<types.ModifyNetworkInterfaceAttributeOutput>
     -- Modifies the options for instance hostnames for the specified instance.
-    modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput): types.ModifyPrivateDnsNameOptionsOutput, table
+    modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput): Operation<types.ModifyPrivateDnsNameOptionsOutput>
     -- Modify public hostname options for a network interface. For more information, see EC2 instance hostnames, DNS names, and domains in the Amazon EC2 User Guide.
-    modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput): types.ModifyPublicIpDnsNameOptionsOutput, table
+    modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput): Operation<types.ModifyPublicIpDnsNameOptionsOutput>
     -- Modifies the configuration of your Reserved Instances, such as the Availability Zone,
     -- instance count, or instance type. The Reserved Instances to be modified must be identical,
     -- except for Availability Zone, network platform, and instance type.
     -- For more information, see Modify Reserved Instances in the
     -- Amazon EC2 User Guide.
-    modifyReservedInstances: function(Client, types.ModifyReservedInstancesInput): types.ModifyReservedInstancesOutput, table
+    modifyReservedInstances: function(Client, types.ModifyReservedInstancesInput): Operation<types.ModifyReservedInstancesOutput>
     -- Modifies the configuration of an existing route server.
     -- Amazon VPC Route Server simplifies routing for traffic between workloads that are deployed within a VPC and its internet gateways. With this feature,
     -- VPC Route Server dynamically updates VPC and internet gateway route tables with your preferred IPv4 or IPv6 routes to achieve routing fault tolerance for those workloads. This enables you to automatically reroute traffic within a VPC, which increases the manageability of VPC routing and interoperability with third-party workloads.
@@ -3597,9 +3601,9 @@ local record Client
     -- Internet gateway route tables
     -- Route server does not support route tables associated with virtual private gateways. To propagate routes into a transit gateway route table, use Transit Gateway Connect.
     -- For more information see Dynamic routing in your VPC with VPC Route Server in the Amazon VPC User Guide.
-    modifyRouteServer: function(Client, types.ModifyRouteServerInput): types.ModifyRouteServerOutput, table
+    modifyRouteServer: function(Client, types.ModifyRouteServerInput): Operation<types.ModifyRouteServerOutput>
     -- Modifies the rules of a security group.
-    modifySecurityGroupRules: function(Client, types.ModifySecurityGroupRulesInput): types.ModifySecurityGroupRulesOutput, table
+    modifySecurityGroupRules: function(Client, types.ModifySecurityGroupRulesInput): Operation<types.ModifySecurityGroupRulesOutput>
     -- Adds or removes permission settings for the specified snapshot. You may add or remove
     -- specified Amazon Web Services account IDs from a snapshot's list of create volume permissions, but you cannot
     -- do both in a single operation. If you need to both add and remove account IDs for a snapshot,
@@ -3608,13 +3612,13 @@ local record Client
     -- public. Snapshots encrypted with your default KMS key cannot be shared with other accounts.
     -- For more information about modifying snapshot permissions, see Share a snapshot in the
     -- Amazon EBS User Guide.
-    modifySnapshotAttribute: function(Client, types.ModifySnapshotAttributeInput): types.ModifySnapshotAttributeOutput, table
+    modifySnapshotAttribute: function(Client, types.ModifySnapshotAttributeInput): Operation<types.ModifySnapshotAttributeOutput>
     -- Archives an Amazon EBS snapshot. When you archive a snapshot, it is converted to a full
     -- snapshot that includes all of the blocks of data that were written to the volume at the
     -- time the snapshot was created, and moved from the standard tier to the archive
     -- tier. For more information, see Archive Amazon EBS snapshots
     -- in the Amazon EBS User Guide.
-    modifySnapshotTier: function(Client, types.ModifySnapshotTierInput): types.ModifySnapshotTierOutput, table
+    modifySnapshotTier: function(Client, types.ModifySnapshotTierInput): Operation<types.ModifySnapshotTierOutput>
     -- Modifies the specified Spot Fleet request.
     -- You can only modify a Spot Fleet request of type maintain.
     -- While the Spot Fleet request is being modified, it is in the modifying
@@ -3640,7 +3644,7 @@ local record Client
     -- terminate manually.
     -- If you are finished with your Spot Fleet for now, but will use it again later, you can
     -- set the target capacity to 0.
-    modifySpotFleetRequest: function(Client, types.ModifySpotFleetRequestInput): types.ModifySpotFleetRequestOutput, table
+    modifySpotFleetRequest: function(Client, types.ModifySpotFleetRequestInput): Operation<types.ModifySpotFleetRequestOutput>
     -- Modifies a subnet attribute. You can only modify one attribute at a time.
     -- Use this action to modify subnets on Amazon Web Services Outposts.
     -- To modify a subnet on an Outpost rack, set both
@@ -3653,39 +3657,39 @@ local record Client
     -- For more information about Amazon Web Services Outposts, see the following:
     -- Outpost servers
     -- Outpost racks
-    modifySubnetAttribute: function(Client, types.ModifySubnetAttributeInput): types.ModifySubnetAttributeOutput, table
+    modifySubnetAttribute: function(Client, types.ModifySubnetAttributeInput): Operation<types.ModifySubnetAttributeOutput>
     -- Allows or restricts mirroring network services.
     -- By default, Amazon DNS network services are not eligible for Traffic Mirror. Use AddNetworkServices to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored.
     -- When you no longer want to mirror network services, use RemoveNetworkServices to remove the network services from the Traffic Mirror filter.
-    modifyTrafficMirrorFilterNetworkServices: function(Client, types.ModifyTrafficMirrorFilterNetworkServicesInput): types.ModifyTrafficMirrorFilterNetworkServicesOutput, table
+    modifyTrafficMirrorFilterNetworkServices: function(Client, types.ModifyTrafficMirrorFilterNetworkServicesInput): Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
     -- Modifies the specified Traffic Mirror rule.
     -- DestinationCidrBlock and SourceCidrBlock must both be an IPv4
     -- range or an IPv6 range.
-    modifyTrafficMirrorFilterRule: function(Client, types.ModifyTrafficMirrorFilterRuleInput): types.ModifyTrafficMirrorFilterRuleOutput, table
+    modifyTrafficMirrorFilterRule: function(Client, types.ModifyTrafficMirrorFilterRuleInput): Operation<types.ModifyTrafficMirrorFilterRuleOutput>
     -- Modifies a Traffic Mirror session.
-    modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput): types.ModifyTrafficMirrorSessionOutput, table
+    modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput): Operation<types.ModifyTrafficMirrorSessionOutput>
     -- Modifies the specified transit gateway. When you modify a transit gateway, the modified options are applied to new transit gateway attachments only. Your existing transit gateway attachments are not modified.
-    modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput): types.ModifyTransitGatewayOutput, table
+    modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput): Operation<types.ModifyTransitGatewayOutput>
     -- Modifies a transit gateway metering policy.
-    modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput): types.ModifyTransitGatewayMeteringPolicyOutput, table
+    modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput): Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
     -- Modifies a reference (route) to a prefix list in a specified transit gateway route table.
-    modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput): types.ModifyTransitGatewayPrefixListReferenceOutput, table
+    modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput): Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
     -- Modifies the specified VPC attachment.
-    modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput): types.ModifyTransitGatewayVpcAttachmentOutput, table
+    modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput): Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
     -- Modifies the configuration of the specified Amazon Web Services Verified Access endpoint.
-    modifyVerifiedAccessEndpoint: function(Client, types.ModifyVerifiedAccessEndpointInput): types.ModifyVerifiedAccessEndpointOutput, table
+    modifyVerifiedAccessEndpoint: function(Client, types.ModifyVerifiedAccessEndpointInput): Operation<types.ModifyVerifiedAccessEndpointOutput>
     -- Modifies the specified Amazon Web Services Verified Access endpoint policy.
-    modifyVerifiedAccessEndpointPolicy: function(Client, types.ModifyVerifiedAccessEndpointPolicyInput): types.ModifyVerifiedAccessEndpointPolicyOutput, table
+    modifyVerifiedAccessEndpointPolicy: function(Client, types.ModifyVerifiedAccessEndpointPolicyInput): Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
     -- Modifies the specified Amazon Web Services Verified Access group configuration.
-    modifyVerifiedAccessGroup: function(Client, types.ModifyVerifiedAccessGroupInput): types.ModifyVerifiedAccessGroupOutput, table
+    modifyVerifiedAccessGroup: function(Client, types.ModifyVerifiedAccessGroupInput): Operation<types.ModifyVerifiedAccessGroupOutput>
     -- Modifies the specified Amazon Web Services Verified Access group policy.
-    modifyVerifiedAccessGroupPolicy: function(Client, types.ModifyVerifiedAccessGroupPolicyInput): types.ModifyVerifiedAccessGroupPolicyOutput, table
+    modifyVerifiedAccessGroupPolicy: function(Client, types.ModifyVerifiedAccessGroupPolicyInput): Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
     -- Modifies the configuration of the specified Amazon Web Services Verified Access instance.
-    modifyVerifiedAccessInstance: function(Client, types.ModifyVerifiedAccessInstanceInput): types.ModifyVerifiedAccessInstanceOutput, table
+    modifyVerifiedAccessInstance: function(Client, types.ModifyVerifiedAccessInstanceInput): Operation<types.ModifyVerifiedAccessInstanceOutput>
     -- Modifies the logging configuration for the specified Amazon Web Services Verified Access instance.
-    modifyVerifiedAccessInstanceLoggingConfiguration: function(Client, types.ModifyVerifiedAccessInstanceLoggingConfigurationInput): types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput, table
+    modifyVerifiedAccessInstanceLoggingConfiguration: function(Client, types.ModifyVerifiedAccessInstanceLoggingConfigurationInput): Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
     -- Modifies the configuration of the specified Amazon Web Services Verified Access trust provider.
-    modifyVerifiedAccessTrustProvider: function(Client, types.ModifyVerifiedAccessTrustProviderInput): types.ModifyVerifiedAccessTrustProviderOutput, table
+    modifyVerifiedAccessTrustProvider: function(Client, types.ModifyVerifiedAccessTrustProviderInput): Operation<types.ModifyVerifiedAccessTrustProviderOutput>
     -- You can modify several parameters of an existing EBS volume, including volume size, volume
     -- type, and IOPS capacity. If your EBS volume is attached to a current-generation EC2 instance
     -- type, you might be able to apply these changes without stopping the instance or detaching the
@@ -3702,7 +3706,7 @@ local record Client
     -- is in the in-use or available state, and all previous modifications
     -- for that volume are completed. If you exceed this limit, you get an error message
     -- that indicates when you can perform your next modification.
-    modifyVolume: function(Client, types.ModifyVolumeInput): types.ModifyVolumeOutput, table
+    modifyVolume: function(Client, types.ModifyVolumeInput): Operation<types.ModifyVolumeOutput>
     -- Modifies a volume attribute.
     -- By default, all I/O operations for the volume are suspended when the data on the volume is
     -- determined to be potentially inconsistent, to prevent undetectable, latent data corruption.
@@ -3710,37 +3714,37 @@ local record Client
     -- data consistency on your volume.
     -- You can change the default behavior to resume I/O operations. We recommend that you change
     -- this only for boot volumes or for volumes that are stateless or disposable.
-    modifyVolumeAttribute: function(Client, types.ModifyVolumeAttributeInput): types.ModifyVolumeAttributeOutput, table
+    modifyVolumeAttribute: function(Client, types.ModifyVolumeAttributeInput): Operation<types.ModifyVolumeAttributeOutput>
     -- Modifies the specified attribute of the specified VPC.
-    modifyVpcAttribute: function(Client, types.ModifyVpcAttributeInput): types.ModifyVpcAttributeOutput, table
+    modifyVpcAttribute: function(Client, types.ModifyVpcAttributeInput): Operation<types.ModifyVpcAttributeOutput>
     -- Modify VPC Block Public Access (BPA) exclusions. A VPC BPA exclusion is a mode that can be applied to a single VPC or subnet that exempts it from the account’s BPA mode and will allow bidirectional or egress-only access. You can create BPA exclusions for VPCs and subnets even when BPA is not enabled on the account to ensure that there is no traffic disruption to the exclusions when VPC BPA is turned on.
-    modifyVpcBlockPublicAccessExclusion: function(Client, types.ModifyVpcBlockPublicAccessExclusionInput): types.ModifyVpcBlockPublicAccessExclusionOutput, table
+    modifyVpcBlockPublicAccessExclusion: function(Client, types.ModifyVpcBlockPublicAccessExclusionInput): Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
     -- Modify VPC Block Public Access (BPA) options. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. To learn more about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.
-    modifyVpcBlockPublicAccessOptions: function(Client, types.ModifyVpcBlockPublicAccessOptionsInput): types.ModifyVpcBlockPublicAccessOptionsOutput, table
+    modifyVpcBlockPublicAccessOptions: function(Client, types.ModifyVpcBlockPublicAccessOptionsInput): Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
     -- Modifies the encryption control configuration for a VPC. You can update the encryption mode and exclusion settings for various gateway types and peering connections.
     -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
-    modifyVpcEncryptionControl: function(Client, types.ModifyVpcEncryptionControlInput): types.ModifyVpcEncryptionControlOutput, table
+    modifyVpcEncryptionControl: function(Client, types.ModifyVpcEncryptionControlInput): Operation<types.ModifyVpcEncryptionControlOutput>
     -- Modifies attributes of a specified VPC endpoint. The attributes that you can modify
     -- depend on the type of VPC endpoint (interface, gateway, or Gateway Load Balancer). For more information,
     -- see the Amazon Web Services PrivateLink
     -- Guide.
-    modifyVpcEndpoint: function(Client, types.ModifyVpcEndpointInput): types.ModifyVpcEndpointOutput, table
+    modifyVpcEndpoint: function(Client, types.ModifyVpcEndpointInput): Operation<types.ModifyVpcEndpointOutput>
     -- Modifies a connection notification for VPC endpoint or VPC endpoint service. You
     -- can change the SNS topic for the notification, or the events for which to be notified.
-    modifyVpcEndpointConnectionNotification: function(Client, types.ModifyVpcEndpointConnectionNotificationInput): types.ModifyVpcEndpointConnectionNotificationOutput, table
+    modifyVpcEndpointConnectionNotification: function(Client, types.ModifyVpcEndpointConnectionNotificationInput): Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
     -- Modifies the attributes of the specified VPC endpoint service configuration.
     -- If you set or modify the private DNS name, you must prove that you own the private DNS
     -- domain name.
-    modifyVpcEndpointServiceConfiguration: function(Client, types.ModifyVpcEndpointServiceConfigurationInput): types.ModifyVpcEndpointServiceConfigurationOutput, table
+    modifyVpcEndpointServiceConfiguration: function(Client, types.ModifyVpcEndpointServiceConfigurationInput): Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
     -- Modifies the payer responsibility for your VPC endpoint service.
-    modifyVpcEndpointServicePayerResponsibility: function(Client, types.ModifyVpcEndpointServicePayerResponsibilityInput): types.ModifyVpcEndpointServicePayerResponsibilityOutput, table
+    modifyVpcEndpointServicePayerResponsibility: function(Client, types.ModifyVpcEndpointServicePayerResponsibilityInput): Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
     -- Modifies the permissions for your VPC endpoint service. You can add or remove permissions
     -- for service consumers (Amazon Web Services accounts, users, and IAM roles) to connect to
     -- your endpoint service. Principal ARNs with path components aren't supported.
     -- If you grant permissions to all principals, the service is public. Any users who know the name of a
     -- public service can send a request to attach an endpoint. If the service does not require manual approval,
     -- attachments are automatically approved.
-    modifyVpcEndpointServicePermissions: function(Client, types.ModifyVpcEndpointServicePermissionsInput): types.ModifyVpcEndpointServicePermissionsOutput, table
+    modifyVpcEndpointServicePermissions: function(Client, types.ModifyVpcEndpointServicePermissionsInput): Operation<types.ModifyVpcEndpointServicePermissionsOutput>
     -- Modifies the VPC peering connection options on one side of a VPC peering connection.
     -- If the peered VPCs are in the same Amazon Web Services account, you can enable DNS
     -- resolution for queries from the local VPC. This ensures that queries from the local VPC
@@ -3752,7 +3756,7 @@ local record Client
     -- modify the requester VPC peering options and the Region for the accepter VPC to modify
     -- the accepter VPC peering options. To verify which VPCs are the accepter and the
     -- requester for a VPC peering connection, use the DescribeVpcPeeringConnections command.
-    modifyVpcPeeringConnectionOptions: function(Client, types.ModifyVpcPeeringConnectionOptionsInput): types.ModifyVpcPeeringConnectionOptionsOutput, table
+    modifyVpcPeeringConnectionOptions: function(Client, types.ModifyVpcPeeringConnectionOptionsInput): Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
     -- Modifies the instance tenancy attribute of the specified VPC. You can change the
     -- instance tenancy attribute of a VPC to default only. You cannot change the
     -- instance tenancy attribute to dedicated.
@@ -3761,7 +3765,7 @@ local record Client
     -- The tenancy of any existing instances in the VPC is not affected.
     -- For more information, see Dedicated Instances in the
     -- Amazon EC2 User Guide.
-    modifyVpcTenancy: function(Client, types.ModifyVpcTenancyInput): types.ModifyVpcTenancyOutput, table
+    modifyVpcTenancy: function(Client, types.ModifyVpcTenancyInput): Operation<types.ModifyVpcTenancyOutput>
     -- Modifies the customer gateway or the target gateway of an Amazon Web Services Site-to-Site VPN connection. To
     -- modify the target gateway, the following migration options are available:
     -- An existing virtual private gateway to a new virtual private gateway
@@ -3788,35 +3792,35 @@ local record Client
     -- After you perform this operation, the VPN endpoint's IP addresses on the Amazon Web Services side and the tunnel options remain intact. Your Amazon Web Services Site-to-Site VPN connection will
     -- be temporarily unavailable for a brief period while we provision the new
     -- endpoints.
-    modifyVpnConnection: function(Client, types.ModifyVpnConnectionInput): types.ModifyVpnConnectionOutput, table
+    modifyVpnConnection: function(Client, types.ModifyVpnConnectionInput): Operation<types.ModifyVpnConnectionOutput>
     -- Modifies the connection options for your Site-to-Site VPN connection.
     -- When you modify the VPN connection options, the VPN endpoint IP addresses on the
     -- Amazon Web Services side do not change, and the tunnel options do not change. Your
     -- VPN connection will be temporarily unavailable for a brief period while the VPN
     -- connection is updated.
-    modifyVpnConnectionOptions: function(Client, types.ModifyVpnConnectionOptionsInput): types.ModifyVpnConnectionOptionsOutput, table
+    modifyVpnConnectionOptions: function(Client, types.ModifyVpnConnectionOptionsInput): Operation<types.ModifyVpnConnectionOptionsOutput>
     -- Modifies the VPN tunnel endpoint certificate.
-    modifyVpnTunnelCertificate: function(Client, types.ModifyVpnTunnelCertificateInput): types.ModifyVpnTunnelCertificateOutput, table
+    modifyVpnTunnelCertificate: function(Client, types.ModifyVpnTunnelCertificateInput): Operation<types.ModifyVpnTunnelCertificateOutput>
     -- Modifies the options for a VPN tunnel in an Amazon Web Services Site-to-Site VPN connection. You can modify
     -- multiple options for a tunnel in a single request, but you can only modify one tunnel at
     -- a time. For more information, see Site-to-Site VPN tunnel options for your Site-to-Site VPN
     -- connection in the Amazon Web Services Site-to-Site VPN User Guide.
-    modifyVpnTunnelOptions: function(Client, types.ModifyVpnTunnelOptionsInput): types.ModifyVpnTunnelOptionsOutput, table
+    modifyVpnTunnelOptions: function(Client, types.ModifyVpnTunnelOptionsInput): Operation<types.ModifyVpnTunnelOptionsOutput>
     -- Enables detailed monitoring for a running instance. Otherwise, basic monitoring is
     -- enabled. For more information, see Monitor your instances using
     -- CloudWatch in the Amazon EC2 User Guide.
     -- To disable detailed monitoring, see UnmonitorInstances.
-    monitorInstances: function(Client, types.MonitorInstancesInput): types.MonitorInstancesOutput, table
+    monitorInstances: function(Client, types.MonitorInstancesInput): Operation<types.MonitorInstancesOutput>
     -- This action is deprecated.
     -- Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The
     -- Elastic IP address must be allocated to your account for more than 24 hours, and it must not
     -- be associated with an instance. After the Elastic IP address is moved, it is no longer
     -- available for use in the EC2-Classic platform. You cannot move an Elastic IP address that was
     -- originally allocated for use in the EC2-VPC platform to the EC2-Classic platform.
-    moveAddressToVpc: function(Client, types.MoveAddressToVpcInput): types.MoveAddressToVpcOutput, table
+    moveAddressToVpc: function(Client, types.MoveAddressToVpcInput): Operation<types.MoveAddressToVpcOutput>
     -- Move a BYOIPv4 CIDR to IPAM from a public IPv4 pool.
     -- If you already have a BYOIPv4 CIDR with Amazon Web Services, you can move the CIDR to IPAM from a public IPv4 pool. You cannot move an IPv6 CIDR to IPAM. If you are bringing a new IP address to Amazon Web Services for the first time, complete the steps in Tutorial: BYOIP address CIDRs to IPAM.
-    moveByoipCidrToIpam: function(Client, types.MoveByoipCidrToIpamInput): types.MoveByoipCidrToIpamOutput, table
+    moveByoipCidrToIpam: function(Client, types.MoveByoipCidrToIpamInput): Operation<types.MoveByoipCidrToIpamOutput>
     -- Move available capacity from a source Capacity Reservation to a destination Capacity
     -- Reservation. The source Capacity Reservation and the destination Capacity Reservation
     -- must be active, owned by your Amazon Web Services account, and share the following:
@@ -3827,7 +3831,7 @@ local record Client
     -- Placement group
     -- Capacity Reservation end time - At specific time or
     -- Manually.
-    moveCapacityReservationInstances: function(Client, types.MoveCapacityReservationInstancesInput): types.MoveCapacityReservationInstancesOutput, table
+    moveCapacityReservationInstances: function(Client, types.MoveCapacityReservationInstancesInput): Operation<types.MoveCapacityReservationInstancesOutput>
     -- Provisions an IPv4 or IPv6 address range for use with your Amazon Web Services resources through bring your own IP
     -- addresses (BYOIP) and creates a corresponding address pool. After the address range is
     -- provisioned, it is ready to be advertised.
@@ -3838,27 +3842,27 @@ local record Client
     -- Provisioning an address range is an asynchronous operation, so the call returns immediately,
     -- but the address range is not ready to use until its status changes from pending-provision
     -- to provisioned. For more information, see Onboard your address range.
-    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput): types.ProvisionByoipCidrOutput, table
+    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput): Operation<types.ProvisionByoipCidrOutput>
     -- Provisions your Autonomous System Number (ASN) for use in your Amazon Web Services account. This action requires authorization context for Amazon to bring the ASN to an Amazon Web Services account. For more information, see Tutorial: Bring your ASN to IPAM in the Amazon VPC IPAM guide.
-    provisionIpamByoasn: function(Client, types.ProvisionIpamByoasnInput): types.ProvisionIpamByoasnOutput, table
+    provisionIpamByoasn: function(Client, types.ProvisionIpamByoasnInput): Operation<types.ProvisionIpamByoasnOutput>
     -- Provision a CIDR to an IPAM pool. You can use this action to provision new CIDRs to a top-level pool or to transfer a CIDR from a top-level pool to a pool within it.
     -- For more information, see Provision CIDRs to pools in the Amazon VPC IPAM User Guide.
-    provisionIpamPoolCidr: function(Client, types.ProvisionIpamPoolCidrInput): types.ProvisionIpamPoolCidrOutput, table
+    provisionIpamPoolCidr: function(Client, types.ProvisionIpamPoolCidrInput): Operation<types.ProvisionIpamPoolCidrOutput>
     -- Provision a CIDR to a public IPv4 pool.
     -- For more information about IPAM, see What is IPAM? in the Amazon VPC IPAM User Guide.
-    provisionPublicIpv4PoolCidr: function(Client, types.ProvisionPublicIpv4PoolCidrInput): types.ProvisionPublicIpv4PoolCidrOutput, table
+    provisionPublicIpv4PoolCidr: function(Client, types.ProvisionPublicIpv4PoolCidrInput): Operation<types.ProvisionPublicIpv4PoolCidrOutput>
     -- Purchase the Capacity Block for use with your account. With Capacity Blocks you ensure
     -- GPU capacity is available for machine learning (ML) workloads. You must specify the ID
     -- of the Capacity Block offering you are purchasing.
-    purchaseCapacityBlock: function(Client, types.PurchaseCapacityBlockInput): types.PurchaseCapacityBlockOutput, table
+    purchaseCapacityBlock: function(Client, types.PurchaseCapacityBlockInput): Operation<types.PurchaseCapacityBlockOutput>
     -- Purchase the Capacity Block extension for use with your account. You must specify the
     -- ID of the Capacity Block extension offering you are purchasing.
-    purchaseCapacityBlockExtension: function(Client, types.PurchaseCapacityBlockExtensionInput): types.PurchaseCapacityBlockExtensionOutput, table
+    purchaseCapacityBlockExtension: function(Client, types.PurchaseCapacityBlockExtensionInput): Operation<types.PurchaseCapacityBlockExtensionOutput>
     -- Purchase a reservation with configurations that match those of your Dedicated Host.
     -- You must have active Dedicated Hosts in your account before you purchase a reservation.
     -- This action results in the specified reservation being purchased and charged to your
     -- account.
-    purchaseHostReservation: function(Client, types.PurchaseHostReservationInput): types.PurchaseHostReservationOutput, table
+    purchaseHostReservation: function(Client, types.PurchaseHostReservationInput): Operation<types.PurchaseHostReservationOutput>
     -- Purchases a Reserved Instance for use with your account. With Reserved Instances, you pay
     -- a lower hourly rate compared to On-Demand instance pricing.
     -- Use DescribeReservedInstancesOfferings to get a list of Reserved
@@ -3869,7 +3873,7 @@ local record Client
     -- For more information, see Reserved
     -- Instances and Sell in the Reserved Instance
     -- Marketplace in the Amazon EC2 User Guide.
-    purchaseReservedInstancesOffering: function(Client, types.PurchaseReservedInstancesOfferingInput): types.PurchaseReservedInstancesOfferingOutput, table
+    purchaseReservedInstancesOffering: function(Client, types.PurchaseReservedInstancesOfferingInput): Operation<types.PurchaseReservedInstancesOfferingOutput>
     -- You can no longer purchase Scheduled Instances.
     -- Purchases the Scheduled Instances with the specified schedule.
     -- Scheduled Instances enable you to purchase Amazon EC2 compute capacity by the hour for a one-year term.
@@ -3877,7 +3881,7 @@ local record Client
     -- to check for available schedules and obtain a purchase token. After you purchase a Scheduled Instance,
     -- you must call RunScheduledInstances during each scheduled time period.
     -- After you purchase a Scheduled Instance, you can't cancel, modify, or resell your purchase.
-    purchaseScheduledInstances: function(Client, types.PurchaseScheduledInstancesInput): types.PurchaseScheduledInstancesOutput, table
+    purchaseScheduledInstances: function(Client, types.PurchaseScheduledInstancesInput): Operation<types.PurchaseScheduledInstancesOutput>
     -- Requests a reboot of the specified instances. This operation is asynchronous; it only
     -- queues a request to reboot the specified instances. The operation succeeds if the
     -- instances are valid and belong to you. Requests to reboot terminated instances are
@@ -3886,7 +3890,7 @@ local record Client
     -- hard reboot.
     -- For more information about troubleshooting, see Troubleshoot an unreachable
     -- instance in the Amazon EC2 User Guide.
-    rebootInstances: function(Client, types.RebootInstancesInput): types.RebootInstancesOutput, table
+    rebootInstances: function(Client, types.RebootInstancesInput): Operation<types.RebootInstancesOutput>
     -- Registers an AMI. When you're creating an instance-store backed AMI, registering the AMI
     -- is the final step in the creation process. For more information about creating AMIs, see
     -- Create an AMI from a snapshot and Create an instance-store
@@ -3921,47 +3925,47 @@ local record Client
     -- code, the Reserved Instance is not applied to the On-Demand Instance. For information
     -- about how to obtain the platform details and billing information of an AMI, see Understand AMI
     -- billing information in the Amazon EC2 User Guide.
-    registerImage: function(Client, types.RegisterImageInput): types.RegisterImageOutput, table
+    registerImage: function(Client, types.RegisterImageInput): Operation<types.RegisterImageOutput>
     -- Registers a set of tag keys to include in scheduled event notifications for your
     -- resources.
     -- To remove tags, use DeregisterInstanceEventNotificationAttributes.
-    registerInstanceEventNotificationAttributes: function(Client, types.RegisterInstanceEventNotificationAttributesInput): types.RegisterInstanceEventNotificationAttributesOutput, table
+    registerInstanceEventNotificationAttributes: function(Client, types.RegisterInstanceEventNotificationAttributesInput): Operation<types.RegisterInstanceEventNotificationAttributesOutput>
     -- Registers members (network interfaces) with the transit gateway multicast group. A member is a network interface associated
     -- with a supported EC2 instance that receives multicast traffic. For more information, see
     -- Multicast
     -- on transit gateways in the Amazon Web Services Transit Gateways Guide.
     -- After you add the members, use SearchTransitGatewayMulticastGroups to verify that the members were added
     -- to the transit gateway multicast group.
-    registerTransitGatewayMulticastGroupMembers: function(Client, types.RegisterTransitGatewayMulticastGroupMembersInput): types.RegisterTransitGatewayMulticastGroupMembersOutput, table
+    registerTransitGatewayMulticastGroupMembers: function(Client, types.RegisterTransitGatewayMulticastGroupMembersInput): Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
     -- Registers sources (network interfaces) with the specified transit gateway multicast group.
     -- A multicast source is a network interface attached to a supported instance that sends
     -- multicast traffic. For more information about supported instances, see Multicast
     -- on transit gateways in the Amazon Web Services Transit Gateways Guide.
     -- After you add the source, use SearchTransitGatewayMulticastGroups to verify that the source was added to the multicast
     -- group.
-    registerTransitGatewayMulticastGroupSources: function(Client, types.RegisterTransitGatewayMulticastGroupSourcesInput): types.RegisterTransitGatewayMulticastGroupSourcesOutput, table
+    registerTransitGatewayMulticastGroupSources: function(Client, types.RegisterTransitGatewayMulticastGroupSourcesInput): Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
     -- Rejects a request to assign billing of the available capacity of a shared Capacity
     -- Reservation to your account. For more information, see Billing assignment for shared
     -- Amazon EC2 Capacity Reservations.
-    rejectCapacityReservationBillingOwnership: function(Client, types.RejectCapacityReservationBillingOwnershipInput): types.RejectCapacityReservationBillingOwnershipOutput, table
+    rejectCapacityReservationBillingOwnership: function(Client, types.RejectCapacityReservationBillingOwnershipInput): Operation<types.RejectCapacityReservationBillingOwnershipOutput>
     -- Rejects a Transit Gateway attachment request for a Client VPN endpoint. The Transit Gateway owner can reject the attachment request to prevent the Client VPN endpoint from routing traffic through the Transit Gateway.
-    rejectTransitGatewayClientVpnAttachment: function(Client, types.RejectTransitGatewayClientVpnAttachmentInput): types.RejectTransitGatewayClientVpnAttachmentOutput, table
+    rejectTransitGatewayClientVpnAttachment: function(Client, types.RejectTransitGatewayClientVpnAttachmentInput): Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
     -- Rejects a request to associate cross-account subnets with a transit gateway multicast domain.
-    rejectTransitGatewayMulticastDomainAssociations: function(Client, types.RejectTransitGatewayMulticastDomainAssociationsInput): types.RejectTransitGatewayMulticastDomainAssociationsOutput, table
+    rejectTransitGatewayMulticastDomainAssociations: function(Client, types.RejectTransitGatewayMulticastDomainAssociationsInput): Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
     -- Rejects a transit gateway peering attachment request.
-    rejectTransitGatewayPeeringAttachment: function(Client, types.RejectTransitGatewayPeeringAttachmentInput): types.RejectTransitGatewayPeeringAttachmentOutput, table
+    rejectTransitGatewayPeeringAttachment: function(Client, types.RejectTransitGatewayPeeringAttachmentInput): Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
     -- Rejects a request to attach a VPC to a transit gateway.
     -- The VPC attachment must be in the pendingAcceptance state.
     -- Use DescribeTransitGatewayVpcAttachments to view your pending VPC attachment requests.
     -- Use AcceptTransitGatewayVpcAttachment to accept a VPC attachment request.
-    rejectTransitGatewayVpcAttachment: function(Client, types.RejectTransitGatewayVpcAttachmentInput): types.RejectTransitGatewayVpcAttachmentOutput, table
+    rejectTransitGatewayVpcAttachment: function(Client, types.RejectTransitGatewayVpcAttachmentInput): Operation<types.RejectTransitGatewayVpcAttachmentOutput>
     -- Rejects VPC endpoint connection requests to your VPC endpoint service.
-    rejectVpcEndpointConnections: function(Client, types.RejectVpcEndpointConnectionsInput): types.RejectVpcEndpointConnectionsOutput, table
+    rejectVpcEndpointConnections: function(Client, types.RejectVpcEndpointConnectionsInput): Operation<types.RejectVpcEndpointConnectionsOutput>
     -- Rejects a VPC peering connection request. The VPC peering connection must be in the
     -- pending-acceptance state. Use the DescribeVpcPeeringConnections request
     -- to view your outstanding VPC peering connection requests. To delete an active VPC peering
     -- connection, or to delete a VPC peering connection request that you initiated, use	DeleteVpcPeeringConnection.
-    rejectVpcPeeringConnection: function(Client, types.RejectVpcPeeringConnectionInput): types.RejectVpcPeeringConnectionOutput, table
+    rejectVpcPeeringConnection: function(Client, types.RejectVpcPeeringConnectionInput): Operation<types.RejectVpcPeeringConnectionOutput>
     -- Releases the specified Elastic IP address.
     -- [Default VPC] Releasing an Elastic IP address automatically disassociates it
     -- from any instance that it's associated with. Alternatively, you can disassociate an Elastic IP address without
@@ -3974,7 +3978,7 @@ local record Client
     -- AuthFailure error if the address is already allocated to another Amazon Web Services account.
     -- After you release an Elastic IP address, you might be able to recover it.
     -- For more information, see Release an Elastic IP address.
-    releaseAddress: function(Client, types.ReleaseAddressInput): types.ReleaseAddressOutput, table
+    releaseAddress: function(Client, types.ReleaseAddressInput): Operation<types.ReleaseAddressOutput>
     -- When you no longer want to use an On-Demand Dedicated Host it can be released.
     -- On-Demand billing is stopped and the host goes into released state. The
     -- host ID of Dedicated Hosts that have been released can no longer be specified in another
@@ -3984,16 +3988,16 @@ local record Client
     -- toward your limit and you may receive capacity errors when trying to allocate new
     -- Dedicated Hosts. Wait a few minutes and then try again.
     -- Released hosts still appear in a DescribeHosts response.
-    releaseHosts: function(Client, types.ReleaseHostsInput): types.ReleaseHostsOutput, table
+    releaseHosts: function(Client, types.ReleaseHostsInput): Operation<types.ReleaseHostsOutput>
     -- Release an allocation within an IPAM pool. The Region you use should be the IPAM pool locale. The locale is the Amazon Web Services Region where this IPAM pool is available for allocations. You can only use this action to release manual allocations. To remove an allocation for a resource without deleting the resource, set its monitored state to false using ModifyIpamResourceCidr. For more information, see Release an allocation in the Amazon VPC IPAM User Guide.
     -- All EC2 API actions follow an eventual consistency model.
-    releaseIpamPoolAllocation: function(Client, types.ReleaseIpamPoolAllocationInput): types.ReleaseIpamPoolAllocationOutput, table
+    releaseIpamPoolAllocation: function(Client, types.ReleaseIpamPoolAllocationInput): Operation<types.ReleaseIpamPoolAllocationOutput>
     -- Replaces an IAM instance profile for the specified running instance. You can use
     -- this action to change the IAM instance profile that's associated with an instance
     -- without having to disassociate the existing IAM instance profile first.
     -- Use DescribeIamInstanceProfileAssociations to get the association
     -- ID.
-    replaceIamInstanceProfileAssociation: function(Client, types.ReplaceIamInstanceProfileAssociationInput): types.ReplaceIamInstanceProfileAssociationOutput, table
+    replaceIamInstanceProfileAssociation: function(Client, types.ReplaceIamInstanceProfileAssociationInput): Operation<types.ReplaceIamInstanceProfileAssociationOutput>
     -- Sets or replaces the criteria for Allowed AMIs.
     -- The Allowed AMIs feature does not restrict the AMIs owned by your account. Regardless of
     -- the criteria you set, the AMIs created by your account will always be discoverable and
@@ -4001,38 +4005,38 @@ local record Client
     -- For more information, see Control the discovery and use of AMIs in
     -- Amazon EC2 with Allowed AMIs in
     -- Amazon EC2 User Guide.
-    replaceImageCriteriaInAllowedImagesSettings: function(Client, types.ReplaceImageCriteriaInAllowedImagesSettingsInput): types.ReplaceImageCriteriaInAllowedImagesSettingsOutput, table
+    replaceImageCriteriaInAllowedImagesSettings: function(Client, types.ReplaceImageCriteriaInAllowedImagesSettingsInput): Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
     -- Changes which network ACL a subnet is associated with. By default when you create a
     -- subnet, it's automatically associated with the default network ACL. For more
     -- information, see Network ACLs in the Amazon VPC User Guide.
     -- This is an idempotent operation.
-    replaceNetworkAclAssociation: function(Client, types.ReplaceNetworkAclAssociationInput): types.ReplaceNetworkAclAssociationOutput, table
+    replaceNetworkAclAssociation: function(Client, types.ReplaceNetworkAclAssociationInput): Operation<types.ReplaceNetworkAclAssociationOutput>
     -- Replaces an entry (rule) in a network ACL. For more information, see Network ACLs in the
     -- Amazon VPC User Guide.
-    replaceNetworkAclEntry: function(Client, types.ReplaceNetworkAclEntryInput): types.ReplaceNetworkAclEntryOutput, table
+    replaceNetworkAclEntry: function(Client, types.ReplaceNetworkAclEntryInput): Operation<types.ReplaceNetworkAclEntryOutput>
     -- Replaces an existing route within a route table in a VPC.
     -- You must specify either a destination CIDR block or a prefix list ID. You must also specify
     -- exactly one of the resources from the parameter list, or reset the local route to its default
     -- target.
     -- For more information, see Route tables in the
     -- Amazon VPC User Guide.
-    replaceRoute: function(Client, types.ReplaceRouteInput): types.ReplaceRouteOutput, table
+    replaceRoute: function(Client, types.ReplaceRouteInput): Operation<types.ReplaceRouteOutput>
     -- Changes the route table associated with a given subnet, internet gateway, or virtual private gateway in a VPC. After the operation
     -- completes, the subnet or gateway uses the routes in the new route table. For more
     -- information about route tables, see Route
     -- tables in the Amazon VPC User Guide.
     -- You can also use this operation to change which table is the main route table in the VPC. Specify the main route table's association ID and the route table ID of the new main route table.
-    replaceRouteTableAssociation: function(Client, types.ReplaceRouteTableAssociationInput): types.ReplaceRouteTableAssociationOutput, table
+    replaceRouteTableAssociation: function(Client, types.ReplaceRouteTableAssociationInput): Operation<types.ReplaceRouteTableAssociationOutput>
     -- Replaces the specified route in the specified transit gateway route table.
-    replaceTransitGatewayRoute: function(Client, types.ReplaceTransitGatewayRouteInput): types.ReplaceTransitGatewayRouteOutput, table
+    replaceTransitGatewayRoute: function(Client, types.ReplaceTransitGatewayRouteInput): Operation<types.ReplaceTransitGatewayRouteOutput>
     -- Trigger replacement of specified VPN tunnel.
-    replaceVpnTunnel: function(Client, types.ReplaceVpnTunnelInput): types.ReplaceVpnTunnelOutput, table
+    replaceVpnTunnel: function(Client, types.ReplaceVpnTunnelInput): Operation<types.ReplaceVpnTunnelOutput>
     -- Submits feedback about the status of an instance. The instance must be in the
     -- running state. If your experience with the instance differs from the
     -- instance status returned by DescribeInstanceStatus, use ReportInstanceStatus to report your experience with the instance. Amazon
     -- EC2 collects this information to improve the accuracy of status checks.
     -- Use of this action does not change the value returned by DescribeInstanceStatus.
-    reportInstanceStatus: function(Client, types.ReportInstanceStatusInput): types.ReportInstanceStatusOutput, table
+    reportInstanceStatus: function(Client, types.ReportInstanceStatusInput): Operation<types.ReportInstanceStatusOutput>
     -- Creates a Spot Fleet request.
     -- The Spot Fleet request specifies the total target capacity and the On-Demand target
     -- capacity. Amazon EC2 calculates the difference between the total capacity and On-Demand
@@ -4058,7 +4062,7 @@ local record Client
     -- Which
     -- is the best Spot request method to use? in the
     -- Amazon EC2 User Guide.
-    requestSpotFleet: function(Client, types.RequestSpotFleetInput): types.RequestSpotFleetOutput, table
+    requestSpotFleet: function(Client, types.RequestSpotFleetInput): Operation<types.RequestSpotFleetOutput>
     -- Creates a Spot Instance request.
     -- For more information, see Work with Spot Instance in
     -- the Amazon EC2 User Guide.
@@ -4067,21 +4071,21 @@ local record Client
     -- Which
     -- is the best Spot request method to use? in the
     -- Amazon EC2 User Guide.
-    requestSpotInstances: function(Client, types.RequestSpotInstancesInput): types.RequestSpotInstancesOutput, table
+    requestSpotInstances: function(Client, types.RequestSpotInstancesInput): Operation<types.RequestSpotInstancesOutput>
     -- Resets the attribute of the specified IP address. For requirements, see Using reverse DNS for email applications.
-    resetAddressAttribute: function(Client, types.ResetAddressAttributeInput): types.ResetAddressAttributeOutput, table
+    resetAddressAttribute: function(Client, types.ResetAddressAttributeInput): Operation<types.ResetAddressAttributeOutput>
     -- Resets the default KMS key for EBS encryption for your account in this Region
     -- to the Amazon Web Services managed KMS key for EBS.
     -- After resetting the default KMS key to the Amazon Web Services managed KMS key, you can continue to encrypt by a
     -- customer managed KMS key by specifying it when you create the volume. For more information, see
     -- Amazon EBS encryption
     -- in the Amazon EBS User Guide.
-    resetEbsDefaultKmsKeyId: function(Client, types.ResetEbsDefaultKmsKeyIdInput): types.ResetEbsDefaultKmsKeyIdOutput, table
+    resetEbsDefaultKmsKeyId: function(Client, types.ResetEbsDefaultKmsKeyIdInput): Operation<types.ResetEbsDefaultKmsKeyIdOutput>
     -- Resets the specified attribute of the specified Amazon FPGA Image (AFI) to its default value.
     -- You can only reset the load permission attribute.
-    resetFpgaImageAttribute: function(Client, types.ResetFpgaImageAttributeInput): types.ResetFpgaImageAttributeOutput, table
+    resetFpgaImageAttribute: function(Client, types.ResetFpgaImageAttributeInput): Operation<types.ResetFpgaImageAttributeOutput>
     -- Resets an attribute of an AMI to its default value.
-    resetImageAttribute: function(Client, types.ResetImageAttributeInput): types.ResetImageAttributeOutput, table
+    resetImageAttribute: function(Client, types.ResetImageAttributeInput): Operation<types.ResetImageAttributeOutput>
     -- Resets an attribute of an instance to its default value. To reset the
     -- kernel or ramdisk, the instance must be in a stopped
     -- state. To reset the sourceDestCheck, the instance can be either running or
@@ -4091,37 +4095,37 @@ local record Client
     -- enabled. This value must be false for a NAT instance to perform NAT. For
     -- more information, see NAT instances in the
     -- Amazon VPC User Guide.
-    resetInstanceAttribute: function(Client, types.ResetInstanceAttributeInput): types.ResetInstanceAttributeOutput, table
+    resetInstanceAttribute: function(Client, types.ResetInstanceAttributeInput): Operation<types.ResetInstanceAttributeOutput>
     -- Resets a network interface attribute. You can specify only one attribute at a
     -- time.
-    resetNetworkInterfaceAttribute: function(Client, types.ResetNetworkInterfaceAttributeInput): types.ResetNetworkInterfaceAttributeOutput, table
+    resetNetworkInterfaceAttribute: function(Client, types.ResetNetworkInterfaceAttributeInput): Operation<types.ResetNetworkInterfaceAttributeOutput>
     -- Resets permission settings for the specified snapshot.
     -- For more information about modifying snapshot permissions, see Share a snapshot in the
     -- Amazon EBS User Guide.
-    resetSnapshotAttribute: function(Client, types.ResetSnapshotAttributeInput): types.ResetSnapshotAttributeOutput, table
+    resetSnapshotAttribute: function(Client, types.ResetSnapshotAttributeInput): Operation<types.ResetSnapshotAttributeOutput>
     -- This action is deprecated.
     -- Restores an Elastic IP address that was previously moved to the EC2-VPC platform back to the EC2-Classic platform. You cannot move an Elastic IP address that was originally allocated for use in EC2-VPC. The Elastic IP address must not be associated with an instance or network interface.
-    restoreAddressToClassic: function(Client, types.RestoreAddressToClassicInput): types.RestoreAddressToClassicOutput, table
+    restoreAddressToClassic: function(Client, types.RestoreAddressToClassicInput): Operation<types.RestoreAddressToClassicOutput>
     -- Restores an AMI from the Recycle Bin. For more information, see Recover deleted Amazon EBS
     -- snapshots and EBS-back AMIs with Recycle Bin in the
     -- Amazon EC2 User Guide.
-    restoreImageFromRecycleBin: function(Client, types.RestoreImageFromRecycleBinInput): types.RestoreImageFromRecycleBinOutput, table
+    restoreImageFromRecycleBin: function(Client, types.RestoreImageFromRecycleBinInput): Operation<types.RestoreImageFromRecycleBinOutput>
     -- Restores the entries from a previous version of a managed prefix list to a new version of the prefix list.
-    restoreManagedPrefixListVersion: function(Client, types.RestoreManagedPrefixListVersionInput): types.RestoreManagedPrefixListVersionOutput, table
+    restoreManagedPrefixListVersion: function(Client, types.RestoreManagedPrefixListVersionInput): Operation<types.RestoreManagedPrefixListVersionOutput>
     -- Restores a snapshot from the Recycle Bin. For more information, see Restore
     -- snapshots from the Recycle Bin in the Amazon EBS User Guide.
-    restoreSnapshotFromRecycleBin: function(Client, types.RestoreSnapshotFromRecycleBinInput): types.RestoreSnapshotFromRecycleBinOutput, table
+    restoreSnapshotFromRecycleBin: function(Client, types.RestoreSnapshotFromRecycleBinInput): Operation<types.RestoreSnapshotFromRecycleBinOutput>
     -- Restores an archived Amazon EBS snapshot for use temporarily or permanently, or modifies the restore
     -- period or restore type for a snapshot that was previously temporarily restored.
     -- For more information see
     -- Restore an archived snapshot and
     -- modify the restore period or restore type for a temporarily restored snapshot in the Amazon EBS User Guide.
-    restoreSnapshotTier: function(Client, types.RestoreSnapshotTierInput): types.RestoreSnapshotTierOutput, table
+    restoreSnapshotTier: function(Client, types.RestoreSnapshotTierInput): Operation<types.RestoreSnapshotTierOutput>
     -- Restores a volume from the Recycle Bin. For more information, see Restore
     -- volumes from the Recycle Bin in the Amazon EBS User Guide.
-    restoreVolumeFromRecycleBin: function(Client, types.RestoreVolumeFromRecycleBinInput): types.RestoreVolumeFromRecycleBinOutput, table
+    restoreVolumeFromRecycleBin: function(Client, types.RestoreVolumeFromRecycleBinInput): Operation<types.RestoreVolumeFromRecycleBinOutput>
     -- Removes an ingress authorization rule from a Client VPN endpoint.
-    revokeClientVpnIngress: function(Client, types.RevokeClientVpnIngressInput): types.RevokeClientVpnIngressOutput, table
+    revokeClientVpnIngress: function(Client, types.RevokeClientVpnIngressInput): Operation<types.RevokeClientVpnIngressOutput>
     -- Removes the specified outbound (egress) rules from the specified security group.
     -- You can specify rules using either rule IDs or security group rule properties. If you use
     -- rule properties, the values that you specify (for example, ports) must match the existing rule's
@@ -4135,7 +4139,7 @@ local record Client
     -- Amazon Web Services recommends that you describe the security group to verify that the rules were removed.
     -- Rule changes are propagated to instances within the security group as quickly as possible. However,
     -- a small delay might occur.
-    revokeSecurityGroupEgress: function(Client, types.RevokeSecurityGroupEgressInput): types.RevokeSecurityGroupEgressOutput, table
+    revokeSecurityGroupEgress: function(Client, types.RevokeSecurityGroupEgressInput): Operation<types.RevokeSecurityGroupEgressOutput>
     -- Removes the specified inbound (ingress) rules from a security group.
     -- You can specify rules using either rule IDs or security group rule properties. If you use
     -- rule properties, the values that you specify (for example, ports) must match the existing rule's
@@ -4153,7 +4157,7 @@ local record Client
     -- Amazon Web Services recommends that you describe the security group to verify that the rules were removed.
     -- Rule changes are propagated to instances within the security group as quickly as possible.
     -- However, a small delay might occur.
-    revokeSecurityGroupIngress: function(Client, types.RevokeSecurityGroupIngressInput): types.RevokeSecurityGroupIngressOutput, table
+    revokeSecurityGroupIngress: function(Client, types.RevokeSecurityGroupIngressInput): Operation<types.RevokeSecurityGroupIngressOutput>
     -- Launches the specified number of instances using an AMI for which you have
     -- permissions.
     -- You can specify a number of options, or leave the default options. The following rules
@@ -4192,20 +4196,20 @@ local record Client
     -- pairs.
     -- For troubleshooting, see What to do if
     -- an instance immediately terminates, and Troubleshooting connecting to your instance.
-    runInstances: function(Client, types.RunInstancesInput): types.RunInstancesOutput, table
+    runInstances: function(Client, types.RunInstancesInput): Operation<types.RunInstancesOutput>
     -- Launches the specified Scheduled Instances.
     -- Before you can launch a Scheduled Instance, you must purchase it and obtain an identifier using PurchaseScheduledInstances.
     -- You must launch a Scheduled Instance during its scheduled time period. You can't stop or
     -- reboot a Scheduled Instance, but you can terminate it as needed. If you terminate a
     -- Scheduled Instance before the current scheduled time period ends, you can launch it again
     -- after a few minutes.
-    runScheduledInstances: function(Client, types.RunScheduledInstancesInput): types.RunScheduledInstancesOutput, table
+    runScheduledInstances: function(Client, types.RunScheduledInstancesInput): Operation<types.RunScheduledInstancesOutput>
     -- Searches for routes in the specified local gateway route table.
-    searchLocalGatewayRoutes: function(Client, types.SearchLocalGatewayRoutesInput): types.SearchLocalGatewayRoutesOutput, table
+    searchLocalGatewayRoutes: function(Client, types.SearchLocalGatewayRoutesInput): Operation<types.SearchLocalGatewayRoutesOutput>
     -- Searches one or more transit gateway multicast groups and returns the group membership information.
-    searchTransitGatewayMulticastGroups: function(Client, types.SearchTransitGatewayMulticastGroupsInput): types.SearchTransitGatewayMulticastGroupsOutput, table
+    searchTransitGatewayMulticastGroups: function(Client, types.SearchTransitGatewayMulticastGroupsInput): Operation<types.SearchTransitGatewayMulticastGroupsOutput>
     -- Searches for routes in the specified transit gateway route table.
-    searchTransitGatewayRoutes: function(Client, types.SearchTransitGatewayRoutesInput): types.SearchTransitGatewayRoutesOutput, table
+    searchTransitGatewayRoutes: function(Client, types.SearchTransitGatewayRoutesInput): Operation<types.SearchTransitGatewayRoutesOutput>
     -- Sends a diagnostic interrupt to the specified Amazon EC2 instance to trigger a
     -- kernel panic (on Linux instances), or a blue
     -- screen/stop error (on Windows instances). For
@@ -4220,7 +4224,7 @@ local record Client
     -- For more information about configuring your operating system to generate a crash dump
     -- when a kernel panic or stop error occurs, see Send a diagnostic interrupt
     -- (for advanced users) in the Amazon EC2 User Guide.
-    sendDiagnosticInterrupt: function(Client, types.SendDiagnosticInterruptInput): types.SendDiagnosticInterruptOutput, table
+    sendDiagnosticInterrupt: function(Client, types.SendDiagnosticInterruptInput): Operation<types.SendDiagnosticInterruptOutput>
     -- Generates an account status report. The report is generated asynchronously, and can
     -- take several hours to complete.
     -- The report provides the current status of all attributes supported by declarative
@@ -4251,7 +4255,7 @@ local record Client
     -- For more information, including the required IAM permissions to run this API, see
     -- Generating the account status report for declarative policies in the
     -- Amazon Web Services Organizations User Guide.
-    startDeclarativePoliciesReport: function(Client, types.StartDeclarativePoliciesReportInput): types.StartDeclarativePoliciesReportOutput, table
+    startDeclarativePoliciesReport: function(Client, types.StartDeclarativePoliciesReportInput): Operation<types.StartDeclarativePoliciesReportOutput>
     -- Starts an Amazon EBS-backed instance that you've previously stopped.
     -- Instances that use Amazon EBS volumes as their root devices can be quickly stopped and
     -- started. When an instance is stopped, the compute resources are released and you are not
@@ -4271,17 +4275,17 @@ local record Client
     -- change its tenancy to default or dedicated.
     -- For more information, see Stop and start Amazon EC2
     -- instances in the Amazon EC2 User Guide.
-    startInstances: function(Client, types.StartInstancesInput): types.StartInstancesOutput, table
+    startInstances: function(Client, types.StartInstancesInput): Operation<types.StartInstancesOutput>
     -- Starts analyzing the specified Network Access Scope.
-    startNetworkInsightsAccessScopeAnalysis: function(Client, types.StartNetworkInsightsAccessScopeAnalysisInput): types.StartNetworkInsightsAccessScopeAnalysisOutput, table
+    startNetworkInsightsAccessScopeAnalysis: function(Client, types.StartNetworkInsightsAccessScopeAnalysisInput): Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
     -- Starts analyzing the specified path. If the path is reachable, the
     -- operation returns the shortest feasible path.
-    startNetworkInsightsAnalysis: function(Client, types.StartNetworkInsightsAnalysisInput): types.StartNetworkInsightsAnalysisOutput, table
+    startNetworkInsightsAnalysis: function(Client, types.StartNetworkInsightsAnalysisInput): Operation<types.StartNetworkInsightsAnalysisOutput>
     -- Initiates the verification process to prove that the service provider owns the private
     -- DNS name domain for the endpoint service.
     -- The service provider must successfully perform the verification before the consumer can use the name to access the service.
     -- Before the service provider runs this command, they must add a record to the DNS server.
-    startVpcEndpointServicePrivateDnsVerification: function(Client, types.StartVpcEndpointServicePrivateDnsVerificationInput): types.StartVpcEndpointServicePrivateDnsVerificationOutput, table
+    startVpcEndpointServicePrivateDnsVerification: function(Client, types.StartVpcEndpointServicePrivateDnsVerificationInput): Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
     -- Stops an Amazon EBS-backed instance. You can restart your instance at any time using
     -- the StartInstances API. For more information, see Stop and start Amazon EC2
     -- instances in the Amazon EC2 User Guide.
@@ -4313,9 +4317,9 @@ local record Client
     -- and you're charged for volume usage. Every time you start your instance, Amazon EC2 charges a one-minute minimum for instance usage, followed by per-second
     -- billing.
     -- You can't stop or hibernate instance store-backed instances.
-    stopInstances: function(Client, types.StopInstancesInput): types.StopInstancesOutput, table
+    stopInstances: function(Client, types.StopInstancesInput): Operation<types.StopInstancesOutput>
     -- Terminates active Client VPN endpoint connections. This action can be used to terminate a specific client connection, or up to five connections established by a specific user.
-    terminateClientVpnConnections: function(Client, types.TerminateClientVpnConnectionsInput): types.TerminateClientVpnConnectionsOutput, table
+    terminateClientVpnConnections: function(Client, types.TerminateClientVpnConnectionsInput): Operation<types.TerminateClientVpnConnectionsOutput>
     -- Terminates (deletes) the specified instances. This operation is idempotent; if you
     -- terminate an instance more than once, each call succeeds.
     -- Terminating an instance is permanent and irreversible.
@@ -4369,13 +4373,13 @@ local record Client
     -- terminating and troubleshooting terminating your instances, see Terminate Amazon EC2 instances and
     -- Troubleshooting terminating your instance in the
     -- Amazon EC2 User Guide.
-    terminateInstances: function(Client, types.TerminateInstancesInput): types.TerminateInstancesOutput, table
+    terminateInstances: function(Client, types.TerminateInstancesInput): Operation<types.TerminateInstancesOutput>
     -- Unassigns the specified IPv6 addresses or Prefix Delegation prefixes from a network
     -- interface.
-    unassignIpv6Addresses: function(Client, types.UnassignIpv6AddressesInput): types.UnassignIpv6AddressesOutput, table
+    unassignIpv6Addresses: function(Client, types.UnassignIpv6AddressesInput): Operation<types.UnassignIpv6AddressesOutput>
     -- Unassigns the specified secondary private IP addresses or IPv4 Prefix Delegation
     -- prefixes from a network interface.
-    unassignPrivateIpAddresses: function(Client, types.UnassignPrivateIpAddressesInput): types.UnassignPrivateIpAddressesOutput, table
+    unassignPrivateIpAddresses: function(Client, types.UnassignPrivateIpAddressesInput): Operation<types.UnassignPrivateIpAddressesOutput>
     -- Unassigns secondary private IPv4 addresses from a private NAT gateway. You cannot unassign your primary private IP. For more information,
     -- see Edit secondary IP address associations
     -- in the Amazon VPC User Guide.
@@ -4385,38 +4389,38 @@ local record Client
     -- support any new connections (new connections are distributed across the remaining
     -- assigned private IP address). After the existing connections drain out, the private IP
     -- addresses are released.
-    unassignPrivateNatGatewayAddress: function(Client, types.UnassignPrivateNatGatewayAddressInput): types.UnassignPrivateNatGatewayAddressOutput, table
+    unassignPrivateNatGatewayAddress: function(Client, types.UnassignPrivateNatGatewayAddressInput): Operation<types.UnassignPrivateNatGatewayAddressOutput>
     -- Unlocks a snapshot that is locked in governance mode or that is locked in compliance mode
     -- but still in the cooling-off period. You can't unlock a snapshot that is locked in compliance
     -- mode after the cooling-off period has expired.
-    unlockSnapshot: function(Client, types.UnlockSnapshotInput): types.UnlockSnapshotOutput, table
+    unlockSnapshot: function(Client, types.UnlockSnapshotInput): Operation<types.UnlockSnapshotOutput>
     -- Disables detailed monitoring for a running instance. For more information, see Monitoring
     -- your instances and volumes in the
     -- Amazon EC2 User Guide.
-    unmonitorInstances: function(Client, types.UnmonitorInstancesInput): types.UnmonitorInstancesOutput, table
+    unmonitorInstances: function(Client, types.UnmonitorInstancesInput): Operation<types.UnmonitorInstancesOutput>
     -- Activates or deactivates tag keys for monitoring by EC2 Capacity Manager. Activated tag keys are included as dimensions in capacity metric data, enabling you to group and filter metrics by tag values.
-    updateCapacityManagerMonitoredTagKeys: function(Client, types.UpdateCapacityManagerMonitoredTagKeysInput): types.UpdateCapacityManagerMonitoredTagKeysOutput, table
+    updateCapacityManagerMonitoredTagKeys: function(Client, types.UpdateCapacityManagerMonitoredTagKeysInput): Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
     -- Updates the Organizations access setting for EC2 Capacity Manager. This controls whether Capacity Manager can aggregate
     -- data from all accounts in your Amazon Web Services Organization or only from the current account.
-    updateCapacityManagerOrganizationsAccess: function(Client, types.UpdateCapacityManagerOrganizationsAccessInput): types.UpdateCapacityManagerOrganizationsAccessOutput, table
+    updateCapacityManagerOrganizationsAccess: function(Client, types.UpdateCapacityManagerOrganizationsAccessInput): Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
     -- Modifies the number of instances allocated to an interruptible reservation, allowing you to add more capacity or reclaim capacity to your source Capacity Reservation.
-    updateInterruptibleCapacityReservationAllocation: function(Client, types.UpdateInterruptibleCapacityReservationAllocationInput): types.UpdateInterruptibleCapacityReservationAllocationOutput, table
+    updateInterruptibleCapacityReservationAllocation: function(Client, types.UpdateInterruptibleCapacityReservationAllocationInput): Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
     -- Updates the description of an egress (outbound) security group rule. You
     -- can replace an existing description, or add a description to a rule that did not have one
     -- previously. You can remove a description for a security group rule by omitting the
     -- description parameter in the request.
-    updateSecurityGroupRuleDescriptionsEgress: function(Client, types.UpdateSecurityGroupRuleDescriptionsEgressInput): types.UpdateSecurityGroupRuleDescriptionsEgressOutput, table
+    updateSecurityGroupRuleDescriptionsEgress: function(Client, types.UpdateSecurityGroupRuleDescriptionsEgressInput): Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
     -- Updates the description of an ingress (inbound) security group rule. You can replace an
     -- existing description, or add a description to a rule that did not have one previously.
     -- You can remove a description for a security group rule by omitting the description
     -- parameter in the request.
-    updateSecurityGroupRuleDescriptionsIngress: function(Client, types.UpdateSecurityGroupRuleDescriptionsIngressInput): types.UpdateSecurityGroupRuleDescriptionsIngressOutput, table
+    updateSecurityGroupRuleDescriptionsIngress: function(Client, types.UpdateSecurityGroupRuleDescriptionsIngressInput): Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
     -- Stops advertising an address range that is provisioned as an address pool.
     -- You can perform this operation at most once every 10 seconds, even if you specify different
     -- address ranges each time.
     -- It can take a few minutes before traffic to the specified addresses stops routing to Amazon Web Services
     -- because of BGP propagation delays.
-    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput): types.WithdrawByoipCidrOutput, table
+    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput): Operation<types.WithdrawByoipCidrOutput>
 end
 
 local record M

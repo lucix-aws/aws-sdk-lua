@@ -2,6 +2,10 @@
 
 local types = require("internetmonitor.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a monitor in Amazon CloudWatch Internet Monitor. A monitor is built based on information from the application resources that you add: VPCs,
     -- Network Load Balancers (NLBs), Amazon CloudFront distributions, and Amazon WorkSpaces directories. Internet Monitor then publishes internet measurements from Amazon Web Services
@@ -12,31 +16,31 @@ local record Client
     -- number of city-networks where client traffic is monitored, that caps the total traffic that Internet Monitor monitors. A city-network
     -- maximum is the limit of city-networks, but you only pay for the number of city-networks that are actually monitored. You can update your monitor
     -- at any time to change the percentage of traffic to monitor or the city-networks maximum. For more information, see Choosing a city-network maximum value in the Amazon CloudWatch User Guide.
-    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createMonitor: function(Client, types.CreateMonitorInput): Operation<types.CreateMonitorOutput>
     -- Deletes a monitor in Amazon CloudWatch Internet Monitor.
-    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): Operation<types.DeleteMonitorOutput>
     -- Gets information that Amazon CloudWatch Internet Monitor has created and stored about a health event for a specified monitor. This information includes the impacted locations,
     -- and all the information related to the event, by location.
     -- The information returned includes the impact on performance, availability, and round-trip time, information about the network providers (ASNs),
     -- the event type, and so on.
     -- Information rolled up at the global traffic level is also returned, including the impact type and total traffic impact.
-    getHealthEvent: function(Client, types.GetHealthEventInput): types.GetHealthEventOutput, table
+    getHealthEvent: function(Client, types.GetHealthEventInput): Operation<types.GetHealthEventOutput>
     -- Gets information that Amazon CloudWatch Internet Monitor has generated about an internet event. Internet Monitor displays information about
     -- recent global health events, called internet events, on a global outages map that is available to all Amazon Web Services
     -- customers.
     -- The information returned here includes the impacted location,
     -- when the event started and (if the event is over) ended, the type of event (PERFORMANCE or AVAILABILITY),
     -- and the status (ACTIVE or RESOLVED).
-    getInternetEvent: function(Client, types.GetInternetEventInput): types.GetInternetEventOutput, table
+    getInternetEvent: function(Client, types.GetInternetEventInput): Operation<types.GetInternetEventOutput>
     -- Gets information about a monitor in Amazon CloudWatch Internet Monitor based on a monitor name. The information returned includes the Amazon Resource Name (ARN), create time,
     -- modified time, resources included in the monitor, and status information.
-    getMonitor: function(Client, types.GetMonitorInput): types.GetMonitorOutput, table
+    getMonitor: function(Client, types.GetMonitorInput): Operation<types.GetMonitorOutput>
     -- Return the data for a query with the Amazon CloudWatch Internet Monitor query interface. Specify the query that you want to return results for by providing
     -- a QueryId and a monitor name.
     -- For more information about using the query interface, including examples, see
     -- Using the Amazon CloudWatch Internet Monitor query interface
     -- in the Amazon CloudWatch Internet Monitor User Guide.
-    getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    getQueryResults: function(Client, types.GetQueryResultsInput): Operation<types.GetQueryResultsOutput>
     -- Returns the current status of a query for the Amazon CloudWatch Internet Monitor query interface, for a specified query ID and monitor.
     -- When you run a query, check the status to make sure that the query has SUCCEEDED before you review the results.
     -- QUEUED: The query is scheduled to run.
@@ -44,11 +48,11 @@ local record Client
     -- SUCCEEDED: The query completed sucessfully.
     -- FAILED: The query failed due to an error.
     -- CANCELED: The query was canceled.
-    getQueryStatus: function(Client, types.GetQueryStatusInput): types.GetQueryStatusOutput, table
+    getQueryStatus: function(Client, types.GetQueryStatusInput): Operation<types.GetQueryStatusOutput>
     -- Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns information for health events including the event start and end times, and
     -- the status.
     -- Health events that have start times during the time frame that is requested are not included in the list of health events.
-    listHealthEvents: function(Client, types.ListHealthEventsInput): types.ListHealthEventsOutput, table
+    listHealthEvents: function(Client, types.ListHealthEventsInput): Operation<types.ListHealthEventsOutput>
     -- Lists internet events that cause performance or availability issues for client locations. Amazon CloudWatch Internet Monitor displays information about
     -- recent global health events, called internet events, on a global outages map that is available to all Amazon Web Services
     -- customers.
@@ -57,30 +61,30 @@ local record Client
     -- is optional. If you don't include it, the default end time is the current time.
     -- You can also limit the events returned to a specific status
     -- (ACTIVE or RESOLVED) or type (PERFORMANCE or AVAILABILITY).
-    listInternetEvents: function(Client, types.ListInternetEventsInput): types.ListInternetEventsOutput, table
+    listInternetEvents: function(Client, types.ListInternetEventsInput): Operation<types.ListInternetEventsOutput>
     -- Lists all of your monitors for Amazon CloudWatch Internet Monitor and their statuses, along with the Amazon Resource Name (ARN) and name of each monitor.
-    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): Operation<types.ListMonitorsOutput>
     -- Lists the tags for a resource. Tags are supported only for monitors in Amazon CloudWatch Internet Monitor.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Start a query to return data for a specific query type for the Amazon CloudWatch Internet Monitor query interface. Specify a time period
     -- for the data that you want returned by using StartTime and EndTime. You filter the query
     -- results to return by providing parameters that you specify with FilterParameters.
     -- For more information about using the query interface, including examples, see
     -- Using the Amazon CloudWatch Internet Monitor query interface
     -- in the Amazon CloudWatch Internet Monitor User Guide.
-    startQuery: function(Client, types.StartQueryInput): types.StartQueryOutput, table
+    startQuery: function(Client, types.StartQueryInput): Operation<types.StartQueryOutput>
     -- Stop a query that is progress for a specific monitor.
-    stopQuery: function(Client, types.StopQueryInput): types.StopQueryOutput, table
+    stopQuery: function(Client, types.StopQueryInput): Operation<types.StopQueryOutput>
     -- Adds a tag to a resource. Tags are supported only for monitors in Amazon CloudWatch Internet Monitor. You can add a maximum of 50 tags in Internet Monitor.
     -- A minimum of one tag is required for this call. It returns an error if you use the TagResource request with 0 tags.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a monitor. You can update a monitor to change the percentage of traffic to monitor or the maximum number of city-networks
     -- (locations and ASNs), to add or remove resources, or to change the status of the monitor. Note that you can't change the name of a monitor.
     -- The city-network maximum that you choose is the limit, but you only pay for the number of city-networks that are actually monitored.
     -- For more information, see Choosing a city-network maximum value in the Amazon CloudWatch User Guide.
-    updateMonitor: function(Client, types.UpdateMonitorInput): types.UpdateMonitorOutput, table
+    updateMonitor: function(Client, types.UpdateMonitorInput): Operation<types.UpdateMonitorOutput>
 end
 
 local record M

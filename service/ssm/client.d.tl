@@ -2,6 +2,10 @@
 
 local types = require("ssm.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds or overwrites one or more tags for the specified resource. Tags
     -- are metadata that you can assign to your automations, documents, managed nodes, maintenance
@@ -24,18 +28,18 @@ local record Client
     -- to and are interpreted strictly as a string of characters.
     -- For more information about using tags with Amazon Elastic Compute Cloud (Amazon EC2) instances, see Tag your Amazon EC2
     -- resources in the Amazon EC2 User Guide.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Associates a related item to a Systems Manager OpsCenter OpsItem. For example, you can associate an
     -- Incident Manager incident or analysis with an OpsItem. Incident Manager and OpsCenter are tools in
     -- Amazon Web Services Systems Manager.
-    associateOpsItemRelatedItem: function(Client, types.AssociateOpsItemRelatedItemInput): types.AssociateOpsItemRelatedItemOutput, table
+    associateOpsItemRelatedItem: function(Client, types.AssociateOpsItemRelatedItemInput): Operation<types.AssociateOpsItemRelatedItemOutput>
     -- Attempts to cancel the command specified by the Command ID. There is no guarantee that the
     -- command will be terminated and the underlying process stopped.
-    cancelCommand: function(Client, types.CancelCommandInput): types.CancelCommandOutput, table
+    cancelCommand: function(Client, types.CancelCommandInput): Operation<types.CancelCommandOutput>
     -- Stops a maintenance window execution that is already in progress and cancels any tasks in
     -- the window that haven't already starting running. Tasks already in progress will continue to
     -- completion.
-    cancelMaintenanceWindowExecution: function(Client, types.CancelMaintenanceWindowExecutionInput): types.CancelMaintenanceWindowExecutionOutput, table
+    cancelMaintenanceWindowExecution: function(Client, types.CancelMaintenanceWindowExecutionInput): Operation<types.CancelMaintenanceWindowExecutionOutput>
     -- Generates an activation code and activation ID you can use to register your on-premises
     -- servers, edge devices, or virtual machine (VM) with Amazon Web Services Systems Manager. Registering these machines with
     -- Systems Manager makes it possible to manage them using Systems Manager tools. You use the activation code and ID when
@@ -44,7 +48,7 @@ local record Client
     -- hybrid and multicloud environments in the Amazon Web Services Systems Manager User Guide.
     -- Amazon Elastic Compute Cloud (Amazon EC2) instances, edge devices, and on-premises servers and VMs that are
     -- configured for Systems Manager are all called managed nodes.
-    createActivation: function(Client, types.CreateActivationInput): types.CreateActivationOutput, table
+    createActivation: function(Client, types.CreateActivationInput): Operation<types.CreateActivationOutput>
     -- A State Manager association defines the state that you want to maintain on your managed
     -- nodes. For example, an association can specify that anti-virus software must be installed and
     -- running on your managed nodes, or that certain ports must be closed. For static targets, the
@@ -55,7 +59,7 @@ local record Client
     -- anti-virus software might run once a day. If the software isn't installed, then State Manager
     -- installs it. If the software is installed, but the service isn't running, then the association
     -- might instruct State Manager to start the service.
-    createAssociation: function(Client, types.CreateAssociationInput): types.CreateAssociationOutput, table
+    createAssociation: function(Client, types.CreateAssociationInput): Operation<types.CreateAssociationOutput>
     -- Associates the specified Amazon Web Services Systems Manager document (SSM document) with the specified managed nodes
     -- or targets.
     -- When you associate a document with one or more managed nodes using IDs or tags, Amazon Web Services Systems Manager
@@ -63,12 +67,12 @@ local record Client
     -- specified.
     -- If you associate a document with a managed node that already has an associated document, the
     -- system returns the AssociationAlreadyExists exception.
-    createAssociationBatch: function(Client, types.CreateAssociationBatchInput): types.CreateAssociationBatchOutput, table
+    createAssociationBatch: function(Client, types.CreateAssociationBatchInput): Operation<types.CreateAssociationBatchOutput>
     -- Creates a Amazon Web Services Systems Manager (SSM document). An SSM document defines the actions that Systems Manager performs
     -- on your managed nodes. For more information about SSM documents, including information about
     -- supported schemas, features, and syntax, see Amazon Web Services Systems Manager Documents in the
     -- Amazon Web Services Systems Manager User Guide.
-    createDocument: function(Client, types.CreateDocumentInput): types.CreateDocumentOutput, table
+    createDocument: function(Client, types.CreateDocumentInput): Operation<types.CreateDocumentOutput>
     -- Creates a new maintenance window.
     -- The value you specify for Duration determines the specific end time for the
     -- maintenance window based on the time it begins. No maintenance window tasks are permitted to
@@ -76,21 +80,21 @@ local record Client
     -- For example, if the maintenance window starts at 3 PM, the duration is three hours, and the
     -- value you specify for Cutoff is one hour, no maintenance window tasks can start
     -- after 5 PM.
-    createMaintenanceWindow: function(Client, types.CreateMaintenanceWindowInput): types.CreateMaintenanceWindowOutput, table
+    createMaintenanceWindow: function(Client, types.CreateMaintenanceWindowInput): Operation<types.CreateMaintenanceWindowOutput>
     -- Creates a new OpsItem. You must have permission in Identity and Access Management (IAM) to create a new OpsItem. For more information, see Set up OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
     -- Operations engineers and IT professionals use Amazon Web Services Systems Manager OpsCenter to view, investigate, and
     -- remediate operational issues impacting the performance and health of their Amazon Web Services resources. For
     -- more information, see Amazon Web Services Systems Manager OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
-    createOpsItem: function(Client, types.CreateOpsItemInput): types.CreateOpsItemOutput, table
+    createOpsItem: function(Client, types.CreateOpsItemInput): Operation<types.CreateOpsItemOutput>
     -- If you create a new application in Application Manager, Amazon Web Services Systems Manager calls this API operation to specify
     -- information about the new application, including the application type.
-    createOpsMetadata: function(Client, types.CreateOpsMetadataInput): types.CreateOpsMetadataOutput, table
+    createOpsMetadata: function(Client, types.CreateOpsMetadataInput): Operation<types.CreateOpsMetadataOutput>
     -- Creates a patch baseline.
     -- For information about valid key-value pairs in PatchFilters for each supported
     -- operating system type, see PatchFilter.
-    createPatchBaseline: function(Client, types.CreatePatchBaselineInput): types.CreatePatchBaselineOutput, table
+    createPatchBaseline: function(Client, types.CreatePatchBaselineInput): Operation<types.CreatePatchBaselineOutput>
     -- A resource data sync helps you view data from multiple sources in a single location.
     -- Amazon Web Services Systems Manager offers two types of resource data sync: SyncToDestination and
     -- SyncFromSource.
@@ -110,11 +114,11 @@ local record Client
     -- By default, data isn't encrypted in Amazon S3. We strongly recommend that you
     -- enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you
     -- secure access to the Amazon S3 bucket by creating a restrictive bucket policy.
-    createResourceDataSync: function(Client, types.CreateResourceDataSyncInput): types.CreateResourceDataSyncOutput, table
+    createResourceDataSync: function(Client, types.CreateResourceDataSyncInput): Operation<types.CreateResourceDataSyncOutput>
     -- Deletes an activation. You aren't required to delete an activation. If you delete an
     -- activation, you can no longer use it to register additional managed nodes. Deleting an activation
     -- doesn't de-register managed nodes. You must manually de-register managed nodes.
-    deleteActivation: function(Client, types.DeleteActivationInput): types.DeleteActivationOutput, table
+    deleteActivation: function(Client, types.DeleteActivationInput): Operation<types.DeleteActivationOutput>
     -- Disassociates the specified Amazon Web Services Systems Manager document (SSM document) from the specified managed
     -- node. If you created the association by using the Targets parameter, then you must
     -- delete the association by using the association ID.
@@ -122,16 +126,16 @@ local record Client
     -- the node. To change the configuration state of a managed node after you disassociate a document,
     -- you must create a new document with the desired configuration and associate it with the
     -- node.
-    deleteAssociation: function(Client, types.DeleteAssociationInput): types.DeleteAssociationOutput, table
+    deleteAssociation: function(Client, types.DeleteAssociationInput): Operation<types.DeleteAssociationOutput>
     -- Deletes the Amazon Web Services Systems Manager document (SSM document) and all managed node associations to the
     -- document.
     -- Before you delete the document, we recommend that you use DeleteAssociation to disassociate all managed nodes that are associated with the document.
-    deleteDocument: function(Client, types.DeleteDocumentInput): types.DeleteDocumentOutput, table
+    deleteDocument: function(Client, types.DeleteDocumentInput): Operation<types.DeleteDocumentOutput>
     -- Delete a custom inventory type or the data associated with a custom Inventory type. Deleting
     -- a custom inventory type is also referred to as deleting a custom inventory schema.
-    deleteInventory: function(Client, types.DeleteInventoryInput): types.DeleteInventoryOutput, table
+    deleteInventory: function(Client, types.DeleteInventoryInput): Operation<types.DeleteInventoryOutput>
     -- Deletes a maintenance window.
-    deleteMaintenanceWindow: function(Client, types.DeleteMaintenanceWindowInput): types.DeleteMaintenanceWindowOutput, table
+    deleteMaintenanceWindow: function(Client, types.DeleteMaintenanceWindowInput): Operation<types.DeleteMaintenanceWindowOutput>
     -- Delete an OpsItem. You must have permission in Identity and Access Management (IAM) to
     -- delete an OpsItem.
     -- Note the following important information about this operation.
@@ -148,21 +152,21 @@ local record Client
     -- cross-account administration. For more information about cross-account administration, see
     -- Setting up
     -- OpsCenter to centrally manage OpsItems across accounts in the Systems Manager User Guide.
-    deleteOpsItem: function(Client, types.DeleteOpsItemInput): types.DeleteOpsItemOutput, table
+    deleteOpsItem: function(Client, types.DeleteOpsItemInput): Operation<types.DeleteOpsItemOutput>
     -- Delete OpsMetadata related to an application.
-    deleteOpsMetadata: function(Client, types.DeleteOpsMetadataInput): types.DeleteOpsMetadataOutput, table
+    deleteOpsMetadata: function(Client, types.DeleteOpsMetadataInput): Operation<types.DeleteOpsMetadataOutput>
     -- Delete a parameter from the system. After deleting a parameter, wait for at least 30 seconds
     -- to create a parameter with the same name.
-    deleteParameter: function(Client, types.DeleteParameterInput): types.DeleteParameterOutput, table
+    deleteParameter: function(Client, types.DeleteParameterInput): Operation<types.DeleteParameterOutput>
     -- Delete a list of parameters. After deleting a parameter, wait for at least 30 seconds to
     -- create a parameter with the same name.
-    deleteParameters: function(Client, types.DeleteParametersInput): types.DeleteParametersOutput, table
+    deleteParameters: function(Client, types.DeleteParametersInput): Operation<types.DeleteParametersOutput>
     -- Deletes a patch baseline.
-    deletePatchBaseline: function(Client, types.DeletePatchBaselineInput): types.DeletePatchBaselineOutput, table
+    deletePatchBaseline: function(Client, types.DeletePatchBaselineInput): Operation<types.DeletePatchBaselineOutput>
     -- Deletes a resource data sync configuration. After the configuration is deleted, changes to
     -- data on managed nodes are no longer synced to or from the target. Deleting a sync configuration
     -- doesn't delete data.
-    deleteResourceDataSync: function(Client, types.DeleteResourceDataSyncInput): types.DeleteResourceDataSyncOutput, table
+    deleteResourceDataSync: function(Client, types.DeleteResourceDataSyncInput): Operation<types.DeleteResourceDataSyncOutput>
     -- Deletes a Systems Manager resource policy. A resource policy helps you to define the IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources. The following
     -- resources support Systems Manager resource policies.
     -- OpsItemGroup - The resource policy for OpsItemGroup enables
@@ -171,7 +175,7 @@ local record Client
     -- accounts using Resource Access Manager (RAM). For more information about
     -- cross-account sharing of parameters, see Working with
     -- shared parameters in the Amazon Web Services Systems Manager User Guide.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Removes the server or virtual machine from the list of registered servers.
     -- If you want to reregister an on-premises server, edge device, or VM, you must use a
     -- different Activation Code and Activation ID than used to register the machine previously. The
@@ -179,48 +183,48 @@ local record Client
     -- activations specified when they were created. For more information, see Deregistering
     -- managed nodes in a hybrid and multicloud environment in the
     -- Amazon Web Services Systems Manager User Guide.
-    deregisterManagedInstance: function(Client, types.DeregisterManagedInstanceInput): types.DeregisterManagedInstanceOutput, table
+    deregisterManagedInstance: function(Client, types.DeregisterManagedInstanceInput): Operation<types.DeregisterManagedInstanceOutput>
     -- Removes a patch group from a patch baseline.
-    deregisterPatchBaselineForPatchGroup: function(Client, types.DeregisterPatchBaselineForPatchGroupInput): types.DeregisterPatchBaselineForPatchGroupOutput, table
+    deregisterPatchBaselineForPatchGroup: function(Client, types.DeregisterPatchBaselineForPatchGroupInput): Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
     -- Removes a target from a maintenance window.
-    deregisterTargetFromMaintenanceWindow: function(Client, types.DeregisterTargetFromMaintenanceWindowInput): types.DeregisterTargetFromMaintenanceWindowOutput, table
+    deregisterTargetFromMaintenanceWindow: function(Client, types.DeregisterTargetFromMaintenanceWindowInput): Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
     -- Removes a task from a maintenance window.
-    deregisterTaskFromMaintenanceWindow: function(Client, types.DeregisterTaskFromMaintenanceWindowInput): types.DeregisterTaskFromMaintenanceWindowOutput, table
+    deregisterTaskFromMaintenanceWindow: function(Client, types.DeregisterTaskFromMaintenanceWindowInput): Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
     -- Describes details about the activation, such as the date and time the activation was
     -- created, its expiration date, the Identity and Access Management (IAM) role assigned to
     -- the managed nodes in the activation, and the number of nodes registered by using this
     -- activation.
-    describeActivations: function(Client, types.DescribeActivationsInput): types.DescribeActivationsOutput, table
+    describeActivations: function(Client, types.DescribeActivationsInput): Operation<types.DescribeActivationsOutput>
     -- Describes the association for the specified target or managed node. If you created the
     -- association by using the Targets parameter, then you must retrieve the association
     -- by using the association ID.
-    describeAssociation: function(Client, types.DescribeAssociationInput): types.DescribeAssociationOutput, table
+    describeAssociation: function(Client, types.DescribeAssociationInput): Operation<types.DescribeAssociationOutput>
     -- Views all executions for a specific association ID.
-    describeAssociationExecutions: function(Client, types.DescribeAssociationExecutionsInput): types.DescribeAssociationExecutionsOutput, table
+    describeAssociationExecutions: function(Client, types.DescribeAssociationExecutionsInput): Operation<types.DescribeAssociationExecutionsOutput>
     -- Views information about a specific execution of a specific association.
-    describeAssociationExecutionTargets: function(Client, types.DescribeAssociationExecutionTargetsInput): types.DescribeAssociationExecutionTargetsOutput, table
+    describeAssociationExecutionTargets: function(Client, types.DescribeAssociationExecutionTargetsInput): Operation<types.DescribeAssociationExecutionTargetsOutput>
     -- Provides details about all active and terminated Automation executions.
-    describeAutomationExecutions: function(Client, types.DescribeAutomationExecutionsInput): types.DescribeAutomationExecutionsOutput, table
+    describeAutomationExecutions: function(Client, types.DescribeAutomationExecutionsInput): Operation<types.DescribeAutomationExecutionsOutput>
     -- Information about all active and terminated step executions in an Automation
     -- workflow.
-    describeAutomationStepExecutions: function(Client, types.DescribeAutomationStepExecutionsInput): types.DescribeAutomationStepExecutionsOutput, table
+    describeAutomationStepExecutions: function(Client, types.DescribeAutomationStepExecutionsInput): Operation<types.DescribeAutomationStepExecutionsOutput>
     -- Lists all patches eligible to be included in a patch baseline.
     -- Currently, DescribeAvailablePatches supports only the Amazon Linux 1, Amazon
     -- Linux 2, and Windows Server operating systems.
-    describeAvailablePatches: function(Client, types.DescribeAvailablePatchesInput): types.DescribeAvailablePatchesOutput, table
+    describeAvailablePatches: function(Client, types.DescribeAvailablePatchesInput): Operation<types.DescribeAvailablePatchesOutput>
     -- Describes the specified Amazon Web Services Systems Manager document (SSM document).
-    describeDocument: function(Client, types.DescribeDocumentInput): types.DescribeDocumentOutput, table
+    describeDocument: function(Client, types.DescribeDocumentInput): Operation<types.DescribeDocumentOutput>
     -- Describes the permissions for a Amazon Web Services Systems Manager document (SSM document). If you created the
     -- document, you are the owner. If a document is shared, it can either be shared privately (by
     -- specifying a user's Amazon Web Services account ID) or publicly (All).
-    describeDocumentPermission: function(Client, types.DescribeDocumentPermissionInput): types.DescribeDocumentPermissionOutput, table
+    describeDocumentPermission: function(Client, types.DescribeDocumentPermissionInput): Operation<types.DescribeDocumentPermissionOutput>
     -- All associations for the managed nodes.
-    describeEffectiveInstanceAssociations: function(Client, types.DescribeEffectiveInstanceAssociationsInput): types.DescribeEffectiveInstanceAssociationsOutput, table
+    describeEffectiveInstanceAssociations: function(Client, types.DescribeEffectiveInstanceAssociationsInput): Operation<types.DescribeEffectiveInstanceAssociationsOutput>
     -- Retrieves the current effective patches (the patch and the approval state) for the specified
     -- patch baseline. Applies to patch baselines for Windows only.
-    describeEffectivePatchesForPatchBaseline: function(Client, types.DescribeEffectivePatchesForPatchBaselineInput): types.DescribeEffectivePatchesForPatchBaselineOutput, table
+    describeEffectivePatchesForPatchBaseline: function(Client, types.DescribeEffectivePatchesForPatchBaselineInput): Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
     -- The status of the associations for the managed nodes.
-    describeInstanceAssociationsStatus: function(Client, types.DescribeInstanceAssociationsStatusInput): types.DescribeInstanceAssociationsStatusOutput, table
+    describeInstanceAssociationsStatus: function(Client, types.DescribeInstanceAssociationsStatusInput): Operation<types.DescribeInstanceAssociationsStatusOutput>
     -- Provides information about one or more of your managed nodes, including the operating system
     -- platform, SSM Agent version, association status, and IP address. This operation does not return
     -- information for nodes that are either Stopped or Terminated.
@@ -230,51 +234,51 @@ local record Client
     -- The IamRole field returned for this API operation is the role assigned to an
     -- Amazon EC2 instance configured with a Systems Manager Quick Setup host management configuration or
     -- the role assigned to an on-premises managed node.
-    describeInstanceInformation: function(Client, types.DescribeInstanceInformationInput): types.DescribeInstanceInformationOutput, table
+    describeInstanceInformation: function(Client, types.DescribeInstanceInformationInput): Operation<types.DescribeInstanceInformationOutput>
     -- Retrieves information about the patches on the specified managed node and their state
     -- relative to the patch baseline being used for the node.
-    describeInstancePatches: function(Client, types.DescribeInstancePatchesInput): types.DescribeInstancePatchesOutput, table
+    describeInstancePatches: function(Client, types.DescribeInstancePatchesInput): Operation<types.DescribeInstancePatchesOutput>
     -- Retrieves the high-level patch state of one or more managed nodes.
-    describeInstancePatchStates: function(Client, types.DescribeInstancePatchStatesInput): types.DescribeInstancePatchStatesOutput, table
+    describeInstancePatchStates: function(Client, types.DescribeInstancePatchStatesInput): Operation<types.DescribeInstancePatchStatesOutput>
     -- Retrieves the high-level patch state for the managed nodes in the specified patch
     -- group.
-    describeInstancePatchStatesForPatchGroup: function(Client, types.DescribeInstancePatchStatesForPatchGroupInput): types.DescribeInstancePatchStatesForPatchGroupOutput, table
+    describeInstancePatchStatesForPatchGroup: function(Client, types.DescribeInstancePatchStatesForPatchGroupInput): Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
     -- An API operation used by the Systems Manager console to display information about Systems Manager managed
     -- nodes.
-    describeInstanceProperties: function(Client, types.DescribeInstancePropertiesInput): types.DescribeInstancePropertiesOutput, table
+    describeInstanceProperties: function(Client, types.DescribeInstancePropertiesInput): Operation<types.DescribeInstancePropertiesOutput>
     -- Describes a specific delete inventory operation.
-    describeInventoryDeletions: function(Client, types.DescribeInventoryDeletionsInput): types.DescribeInventoryDeletionsOutput, table
+    describeInventoryDeletions: function(Client, types.DescribeInventoryDeletionsInput): Operation<types.DescribeInventoryDeletionsOutput>
     -- Lists the executions of a maintenance window. This includes information about when the
     -- maintenance window was scheduled to be active, and information about tasks registered and run
     -- with the maintenance window.
-    describeMaintenanceWindowExecutions: function(Client, types.DescribeMaintenanceWindowExecutionsInput): types.DescribeMaintenanceWindowExecutionsOutput, table
+    describeMaintenanceWindowExecutions: function(Client, types.DescribeMaintenanceWindowExecutionsInput): Operation<types.DescribeMaintenanceWindowExecutionsOutput>
     -- Retrieves the individual task executions (one per target) for a particular task run as part
     -- of a maintenance window execution.
-    describeMaintenanceWindowExecutionTaskInvocations: function(Client, types.DescribeMaintenanceWindowExecutionTaskInvocationsInput): types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput, table
+    describeMaintenanceWindowExecutionTaskInvocations: function(Client, types.DescribeMaintenanceWindowExecutionTaskInvocationsInput): Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
     -- For a given maintenance window execution, lists the tasks that were run.
-    describeMaintenanceWindowExecutionTasks: function(Client, types.DescribeMaintenanceWindowExecutionTasksInput): types.DescribeMaintenanceWindowExecutionTasksOutput, table
+    describeMaintenanceWindowExecutionTasks: function(Client, types.DescribeMaintenanceWindowExecutionTasksInput): Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
     -- Retrieves the maintenance windows in an Amazon Web Services account.
-    describeMaintenanceWindows: function(Client, types.DescribeMaintenanceWindowsInput): types.DescribeMaintenanceWindowsOutput, table
+    describeMaintenanceWindows: function(Client, types.DescribeMaintenanceWindowsInput): Operation<types.DescribeMaintenanceWindowsOutput>
     -- Retrieves information about upcoming executions of a maintenance window.
-    describeMaintenanceWindowSchedule: function(Client, types.DescribeMaintenanceWindowScheduleInput): types.DescribeMaintenanceWindowScheduleOutput, table
+    describeMaintenanceWindowSchedule: function(Client, types.DescribeMaintenanceWindowScheduleInput): Operation<types.DescribeMaintenanceWindowScheduleOutput>
     -- Retrieves information about the maintenance window targets or tasks that a managed node is
     -- associated with.
-    describeMaintenanceWindowsForTarget: function(Client, types.DescribeMaintenanceWindowsForTargetInput): types.DescribeMaintenanceWindowsForTargetOutput, table
+    describeMaintenanceWindowsForTarget: function(Client, types.DescribeMaintenanceWindowsForTargetInput): Operation<types.DescribeMaintenanceWindowsForTargetOutput>
     -- Lists the targets registered with the maintenance window.
-    describeMaintenanceWindowTargets: function(Client, types.DescribeMaintenanceWindowTargetsInput): types.DescribeMaintenanceWindowTargetsOutput, table
+    describeMaintenanceWindowTargets: function(Client, types.DescribeMaintenanceWindowTargetsInput): Operation<types.DescribeMaintenanceWindowTargetsOutput>
     -- Lists the tasks in a maintenance window.
     -- For maintenance window tasks without a specified target, you can't supply values for
     -- --max-errors and --max-concurrency. Instead, the system inserts a
     -- placeholder value of 1, which may be reported in the response to this command.
     -- These values don't affect the running of your task and can be ignored.
-    describeMaintenanceWindowTasks: function(Client, types.DescribeMaintenanceWindowTasksInput): types.DescribeMaintenanceWindowTasksOutput, table
+    describeMaintenanceWindowTasks: function(Client, types.DescribeMaintenanceWindowTasksInput): Operation<types.DescribeMaintenanceWindowTasksOutput>
     -- Query a set of OpsItems. You must have permission in Identity and Access Management (IAM) to query a list of OpsItems. For more information, see Set up OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
     -- Operations engineers and IT professionals use Amazon Web Services Systems Manager OpsCenter to view, investigate, and
     -- remediate operational issues impacting the performance and health of their Amazon Web Services resources. For
     -- more information, see Amazon Web Services Systems Manager OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
-    describeOpsItems: function(Client, types.DescribeOpsItemsInput): types.DescribeOpsItemsOutput, table
+    describeOpsItems: function(Client, types.DescribeOpsItemsInput): Operation<types.DescribeOpsItemsOutput>
     -- Lists the parameters in your Amazon Web Services account or the parameters shared with you when you enable
     -- the Shared option.
     -- Request results are returned on a best-effort basis. If you specify MaxResults
@@ -290,13 +294,13 @@ local record Client
     -- then you must also update the key alias the parameter uses to reference KMS. Otherwise,
     -- DescribeParameters retrieves whatever the original key alias was
     -- referencing.
-    describeParameters: function(Client, types.DescribeParametersInput): types.DescribeParametersOutput, table
+    describeParameters: function(Client, types.DescribeParametersInput): Operation<types.DescribeParametersOutput>
     -- Lists the patch baselines in your Amazon Web Services account.
-    describePatchBaselines: function(Client, types.DescribePatchBaselinesInput): types.DescribePatchBaselinesOutput, table
+    describePatchBaselines: function(Client, types.DescribePatchBaselinesInput): Operation<types.DescribePatchBaselinesOutput>
     -- Lists all patch groups that have been registered with patch baselines.
-    describePatchGroups: function(Client, types.DescribePatchGroupsInput): types.DescribePatchGroupsOutput, table
+    describePatchGroups: function(Client, types.DescribePatchGroupsInput): Operation<types.DescribePatchGroupsOutput>
     -- Returns high-level aggregated patch compliance state information for a patch group.
-    describePatchGroupState: function(Client, types.DescribePatchGroupStateInput): types.DescribePatchGroupStateOutput, table
+    describePatchGroupState: function(Client, types.DescribePatchGroupStateInput): Operation<types.DescribePatchGroupStateOutput>
     -- Lists the properties of available patches organized by product, product family,
     -- classification, severity, and other properties of available patches. You can use the reported
     -- properties in the filters you specify in requests for operations such as CreatePatchBaseline, UpdatePatchBaseline, DescribeAvailablePatches, and DescribePatchBaselines.
@@ -332,18 +336,18 @@ local record Client
     -- WINDOWS
     -- Valid properties: PRODUCT | PRODUCT_FAMILY |
     -- CLASSIFICATION | MSRC_SEVERITY
-    describePatchProperties: function(Client, types.DescribePatchPropertiesInput): types.DescribePatchPropertiesOutput, table
+    describePatchProperties: function(Client, types.DescribePatchPropertiesInput): Operation<types.DescribePatchPropertiesOutput>
     -- Retrieves a list of all active sessions (both connected and disconnected) or terminated
     -- sessions from the past 30 days.
-    describeSessions: function(Client, types.DescribeSessionsInput): types.DescribeSessionsOutput, table
+    describeSessions: function(Client, types.DescribeSessionsInput): Operation<types.DescribeSessionsOutput>
     -- Deletes the association between an OpsItem and a related item. For example, this API
     -- operation can delete an Incident Manager incident from an OpsItem. Incident Manager is a tool in
     -- Amazon Web Services Systems Manager.
-    disassociateOpsItemRelatedItem: function(Client, types.DisassociateOpsItemRelatedItemInput): types.DisassociateOpsItemRelatedItemOutput, table
+    disassociateOpsItemRelatedItem: function(Client, types.DisassociateOpsItemRelatedItemInput): Operation<types.DisassociateOpsItemRelatedItemOutput>
     -- Returns a credentials set to be used with just-in-time node access.
-    getAccessToken: function(Client, types.GetAccessTokenInput): types.GetAccessTokenOutput, table
+    getAccessToken: function(Client, types.GetAccessTokenInput): Operation<types.GetAccessTokenOutput>
     -- Get detailed information about a particular Automation execution.
-    getAutomationExecution: function(Client, types.GetAutomationExecutionInput): types.GetAutomationExecutionOutput, table
+    getAutomationExecution: function(Client, types.GetAutomationExecutionInput): Operation<types.GetAutomationExecutionOutput>
     -- Gets the state of a Amazon Web Services Systems Manager change calendar at the current time or a specified time. If
     -- you specify a time, GetCalendarState returns the state of the calendar at that
     -- specific time, and returns the next time that the change calendar state will transition. If you
@@ -353,7 +357,7 @@ local record Client
     -- OPEN only if all calendars in the request are open. If one or more calendars in the
     -- request are closed, the status returned is CLOSED.
     -- For more information about Change Calendar, a tool in Amazon Web Services Systems Manager, see Amazon Web Services Systems Manager Change Calendar in the Amazon Web Services Systems Manager User Guide.
-    getCalendarState: function(Client, types.GetCalendarStateInput): types.GetCalendarStateOutput, table
+    getCalendarState: function(Client, types.GetCalendarStateInput): Operation<types.GetCalendarStateOutput>
     -- Returns detailed information about command execution for an invocation or plugin. The Run
     -- Command API follows an eventual consistency model, due to the distributed nature of the system
     -- supporting the API. This means that the result of an API command you run that affects your
@@ -363,15 +367,15 @@ local record Client
     -- GetCommandInvocation only gives the execution status of a plugin in a document.
     -- To get the command execution status on a specific managed node, use ListCommandInvocations. To get the command execution status across managed nodes,
     -- use ListCommands.
-    getCommandInvocation: function(Client, types.GetCommandInvocationInput): types.GetCommandInvocationOutput, table
+    getCommandInvocation: function(Client, types.GetCommandInvocationInput): Operation<types.GetCommandInvocationOutput>
     -- Retrieves the Session Manager connection status for a managed node to determine whether it is running
     -- and ready to receive Session Manager connections.
-    getConnectionStatus: function(Client, types.GetConnectionStatusInput): types.GetConnectionStatusOutput, table
+    getConnectionStatus: function(Client, types.GetConnectionStatusInput): Operation<types.GetConnectionStatusOutput>
     -- Retrieves the default patch baseline. Amazon Web Services Systems Manager supports creating multiple default patch
     -- baselines. For example, you can create a default patch baseline for each operating system.
     -- If you don't specify an operating system value, the default patch baseline for Windows is
     -- returned.
-    getDefaultPatchBaseline: function(Client, types.GetDefaultPatchBaselineInput): types.GetDefaultPatchBaselineOutput, table
+    getDefaultPatchBaseline: function(Client, types.GetDefaultPatchBaselineInput): Operation<types.GetDefaultPatchBaselineOutput>
     -- Retrieves the current snapshot for the patch baseline the managed node uses. This API is
     -- primarily used by the AWS-RunPatchBaseline Systems Manager document (SSM document).
     -- If you run the command locally, such as with the Command Line Interface (CLI), the system attempts to use your local Amazon Web Services credentials and the operation fails. To avoid
@@ -379,34 +383,34 @@ local record Client
     -- with an SSM document that enables you to target a managed node with a script or command. For
     -- example, run the command using the AWS-RunShellScript document or the
     -- AWS-RunPowerShellScript document.
-    getDeployablePatchSnapshotForInstance: function(Client, types.GetDeployablePatchSnapshotForInstanceInput): types.GetDeployablePatchSnapshotForInstanceOutput, table
+    getDeployablePatchSnapshotForInstance: function(Client, types.GetDeployablePatchSnapshotForInstanceInput): Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
     -- Gets the contents of the specified Amazon Web Services Systems Manager document (SSM document).
-    getDocument: function(Client, types.GetDocumentInput): types.GetDocumentOutput, table
+    getDocument: function(Client, types.GetDocumentInput): Operation<types.GetDocumentOutput>
     -- Initiates the process of retrieving an existing preview that shows the effects that running
     -- a specified Automation runbook would have on the targeted resources.
-    getExecutionPreview: function(Client, types.GetExecutionPreviewInput): types.GetExecutionPreviewOutput, table
+    getExecutionPreview: function(Client, types.GetExecutionPreviewInput): Operation<types.GetExecutionPreviewOutput>
     -- Query inventory information. This includes managed node status, such as Stopped
     -- or Terminated.
-    getInventory: function(Client, types.GetInventoryInput): types.GetInventoryOutput, table
+    getInventory: function(Client, types.GetInventoryInput): Operation<types.GetInventoryOutput>
     -- Return a list of inventory type names for the account, or return a list of attribute names
     -- for a specific Inventory item type.
-    getInventorySchema: function(Client, types.GetInventorySchemaInput): types.GetInventorySchemaOutput, table
+    getInventorySchema: function(Client, types.GetInventorySchemaInput): Operation<types.GetInventorySchemaOutput>
     -- Retrieves a maintenance window.
-    getMaintenanceWindow: function(Client, types.GetMaintenanceWindowInput): types.GetMaintenanceWindowOutput, table
+    getMaintenanceWindow: function(Client, types.GetMaintenanceWindowInput): Operation<types.GetMaintenanceWindowOutput>
     -- Retrieves details about a specific a maintenance window execution.
-    getMaintenanceWindowExecution: function(Client, types.GetMaintenanceWindowExecutionInput): types.GetMaintenanceWindowExecutionOutput, table
+    getMaintenanceWindowExecution: function(Client, types.GetMaintenanceWindowExecutionInput): Operation<types.GetMaintenanceWindowExecutionOutput>
     -- Retrieves the details about a specific task run as part of a maintenance window
     -- execution.
-    getMaintenanceWindowExecutionTask: function(Client, types.GetMaintenanceWindowExecutionTaskInput): types.GetMaintenanceWindowExecutionTaskOutput, table
+    getMaintenanceWindowExecutionTask: function(Client, types.GetMaintenanceWindowExecutionTaskInput): Operation<types.GetMaintenanceWindowExecutionTaskOutput>
     -- Retrieves information about a specific task running on a specific target.
-    getMaintenanceWindowExecutionTaskInvocation: function(Client, types.GetMaintenanceWindowExecutionTaskInvocationInput): types.GetMaintenanceWindowExecutionTaskInvocationOutput, table
+    getMaintenanceWindowExecutionTaskInvocation: function(Client, types.GetMaintenanceWindowExecutionTaskInvocationInput): Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
     -- Retrieves the details of a maintenance window task.
     -- For maintenance window tasks without a specified target, you can't supply values for
     -- --max-errors and --max-concurrency. Instead, the system inserts a
     -- placeholder value of 1, which may be reported in the response to this command.
     -- These values don't affect the running of your task and can be ignored.
     -- To retrieve a list of tasks in a maintenance window, instead use the DescribeMaintenanceWindowTasks command.
-    getMaintenanceWindowTask: function(Client, types.GetMaintenanceWindowTaskInput): types.GetMaintenanceWindowTaskOutput, table
+    getMaintenanceWindowTask: function(Client, types.GetMaintenanceWindowTaskInput): Operation<types.GetMaintenanceWindowTaskOutput>
     -- Get information about an OpsItem by using the ID. You must have permission in Identity and Access Management (IAM) to view information about an OpsItem. For more information,
     -- see Set
     -- up OpsCenter in the Amazon Web Services Systems Manager User Guide.
@@ -414,20 +418,20 @@ local record Client
     -- remediate operational issues impacting the performance and health of their Amazon Web Services resources. For
     -- more information, see Amazon Web Services Systems Manager OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
-    getOpsItem: function(Client, types.GetOpsItemInput): types.GetOpsItemOutput, table
+    getOpsItem: function(Client, types.GetOpsItemInput): Operation<types.GetOpsItemOutput>
     -- View operational metadata related to an application in Application Manager.
-    getOpsMetadata: function(Client, types.GetOpsMetadataInput): types.GetOpsMetadataOutput, table
+    getOpsMetadata: function(Client, types.GetOpsMetadataInput): Operation<types.GetOpsMetadataOutput>
     -- View a summary of operations metadata (OpsData) based on specified filters and aggregators.
     -- OpsData can include information about Amazon Web Services Systems Manager OpsCenter operational workitems (OpsItems) as
     -- well as information about any Amazon Web Services resource or service configured to report OpsData to Amazon Web Services Systems Manager
     -- Explorer.
-    getOpsSummary: function(Client, types.GetOpsSummaryInput): types.GetOpsSummaryOutput, table
+    getOpsSummary: function(Client, types.GetOpsSummaryInput): Operation<types.GetOpsSummaryOutput>
     -- Get information about a single parameter by specifying the parameter name.
     -- Parameter names can't contain spaces. The service removes any spaces specified for the
     -- beginning or end of a parameter name. If the specified name for a parameter contains spaces
     -- between characters, the request fails with a ValidationException error.
     -- To get information about more than one parameter at a time, use the GetParameters operation.
-    getParameter: function(Client, types.GetParameterInput): types.GetParameterOutput, table
+    getParameter: function(Client, types.GetParameterInput): Operation<types.GetParameterOutput>
     -- Retrieves the history of all changes to a parameter.
     -- Parameter names can't contain spaces. The service removes any spaces specified for the
     -- beginning or end of a parameter name. If the specified name for a parameter contains spaces
@@ -436,14 +440,14 @@ local record Client
     -- then you must also update the key alias the parameter uses to reference KMS. Otherwise,
     -- GetParameterHistory retrieves whatever the original key alias was
     -- referencing.
-    getParameterHistory: function(Client, types.GetParameterHistoryInput): types.GetParameterHistoryOutput, table
+    getParameterHistory: function(Client, types.GetParameterHistoryInput): Operation<types.GetParameterHistoryOutput>
     -- Get information about one or more parameters by specifying multiple parameter names.
     -- To get information about a single parameter, you can use the GetParameter
     -- operation instead.
     -- Parameter names can't contain spaces. The service removes any spaces specified for the
     -- beginning or end of a parameter name. If the specified name for a parameter contains spaces
     -- between characters, the request fails with a ValidationException error.
-    getParameters: function(Client, types.GetParametersInput): types.GetParametersOutput, table
+    getParameters: function(Client, types.GetParametersInput): Operation<types.GetParametersOutput>
     -- Retrieve information about one or more parameters under a specified level in a hierarchy.
     -- Request results are returned on a best-effort basis. If you specify MaxResults
     -- in the request, the response includes information up to the limit specified. The number of items
@@ -454,13 +458,13 @@ local record Client
     -- Parameter names can't contain spaces. The service removes any spaces specified for the
     -- beginning or end of a parameter name. If the specified name for a parameter contains spaces
     -- between characters, the request fails with a ValidationException error.
-    getParametersByPath: function(Client, types.GetParametersByPathInput): types.GetParametersByPathOutput, table
+    getParametersByPath: function(Client, types.GetParametersByPathInput): Operation<types.GetParametersByPathOutput>
     -- Retrieves information about a patch baseline.
-    getPatchBaseline: function(Client, types.GetPatchBaselineInput): types.GetPatchBaselineOutput, table
+    getPatchBaseline: function(Client, types.GetPatchBaselineInput): Operation<types.GetPatchBaselineOutput>
     -- Retrieves the patch baseline that should be used for the specified patch group.
-    getPatchBaselineForPatchGroup: function(Client, types.GetPatchBaselineForPatchGroupInput): types.GetPatchBaselineForPatchGroupOutput, table
+    getPatchBaselineForPatchGroup: function(Client, types.GetPatchBaselineForPatchGroupInput): Operation<types.GetPatchBaselineForPatchGroupOutput>
     -- Returns an array of the Policy object.
-    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): types.GetResourcePoliciesOutput, table
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): Operation<types.GetResourcePoliciesOutput>
     -- ServiceSetting is an account-level setting for an Amazon Web Services service. This setting
     -- defines how a user interacts with or uses a service or a feature of a service. For example, if an
     -- Amazon Web Services service charges money to the account based on feature or service usage, then the Amazon Web Services
@@ -474,7 +478,7 @@ local record Client
     -- change the default setting. Or use the ResetServiceSetting to change the value
     -- back to the original value defined by the Amazon Web Services service team.
     -- Query the current service setting for the Amazon Web Services account.
-    getServiceSetting: function(Client, types.GetServiceSettingInput): types.GetServiceSettingOutput, table
+    getServiceSetting: function(Client, types.GetServiceSettingInput): Operation<types.GetServiceSettingOutput>
     -- A parameter label is a user-defined alias to help you manage different versions of a
     -- parameter. When you modify a parameter, Amazon Web Services Systems Manager automatically saves a new version and
     -- increments the version number by one. A label can help you remember the purpose of a parameter
@@ -497,59 +501,59 @@ local record Client
     -- Parameter names can't contain spaces. The service removes any spaces specified for
     -- the beginning or end of a parameter name. If the specified name for a parameter contains spaces
     -- between characters, the request fails with a ValidationException error.
-    labelParameterVersion: function(Client, types.LabelParameterVersionInput): types.LabelParameterVersionOutput, table
+    labelParameterVersion: function(Client, types.LabelParameterVersionInput): Operation<types.LabelParameterVersionOutput>
     -- Returns all State Manager associations in the current Amazon Web Services account and Amazon Web Services Region. You
     -- can limit the results to a specific State Manager association document or managed node by
     -- specifying a filter. State Manager is a tool in Amazon Web Services Systems Manager.
-    listAssociations: function(Client, types.ListAssociationsInput): types.ListAssociationsOutput, table
+    listAssociations: function(Client, types.ListAssociationsInput): Operation<types.ListAssociationsOutput>
     -- Retrieves all versions of an association for a specific association ID.
-    listAssociationVersions: function(Client, types.ListAssociationVersionsInput): types.ListAssociationVersionsOutput, table
+    listAssociationVersions: function(Client, types.ListAssociationVersionsInput): Operation<types.ListAssociationVersionsOutput>
     -- An invocation is copy of a command sent to a specific managed node. A command can apply to
     -- one or more managed nodes. A command invocation applies to one managed node. For example, if a
     -- user runs SendCommand against three managed nodes, then a command invocation is
     -- created for each requested managed node ID. ListCommandInvocations provide status
     -- about command execution.
-    listCommandInvocations: function(Client, types.ListCommandInvocationsInput): types.ListCommandInvocationsOutput, table
+    listCommandInvocations: function(Client, types.ListCommandInvocationsInput): Operation<types.ListCommandInvocationsOutput>
     -- Lists the commands requested by users of the Amazon Web Services account.
-    listCommands: function(Client, types.ListCommandsInput): types.ListCommandsOutput, table
+    listCommands: function(Client, types.ListCommandsInput): Operation<types.ListCommandsOutput>
     -- For a specified resource ID, this API operation returns a list of compliance statuses for
     -- different resource types. Currently, you can only specify one resource ID per call. List results
     -- depend on the criteria specified in the filter.
-    listComplianceItems: function(Client, types.ListComplianceItemsInput): types.ListComplianceItemsOutput, table
+    listComplianceItems: function(Client, types.ListComplianceItemsInput): Operation<types.ListComplianceItemsOutput>
     -- Returns a summary count of compliant and non-compliant resources for a compliance type. For
     -- example, this call can return State Manager associations, patches, or custom compliance types
     -- according to the filter criteria that you specify.
-    listComplianceSummaries: function(Client, types.ListComplianceSummariesInput): types.ListComplianceSummariesOutput, table
+    listComplianceSummaries: function(Client, types.ListComplianceSummariesInput): Operation<types.ListComplianceSummariesOutput>
     -- Amazon Web Services Systems Manager Change Manager is no longer open to new customers. Existing customers can
     -- continue to use the service as normal. For more information, see
     -- Amazon Web Services Systems Manager Change Manager availability change.
     -- Information about approval reviews for a version of a change template in Change Manager.
-    listDocumentMetadataHistory: function(Client, types.ListDocumentMetadataHistoryInput): types.ListDocumentMetadataHistoryOutput, table
+    listDocumentMetadataHistory: function(Client, types.ListDocumentMetadataHistoryInput): Operation<types.ListDocumentMetadataHistoryOutput>
     -- Returns all Systems Manager (SSM) documents in the current Amazon Web Services account and Amazon Web Services Region. You can
     -- limit the results of this request by using a filter.
-    listDocuments: function(Client, types.ListDocumentsInput): types.ListDocumentsOutput, table
+    listDocuments: function(Client, types.ListDocumentsInput): Operation<types.ListDocumentsOutput>
     -- List all versions for a document.
-    listDocumentVersions: function(Client, types.ListDocumentVersionsInput): types.ListDocumentVersionsOutput, table
+    listDocumentVersions: function(Client, types.ListDocumentVersionsInput): Operation<types.ListDocumentVersionsOutput>
     -- A list of inventory items returned by the request.
-    listInventoryEntries: function(Client, types.ListInventoryEntriesInput): types.ListInventoryEntriesOutput, table
+    listInventoryEntries: function(Client, types.ListInventoryEntriesInput): Operation<types.ListInventoryEntriesOutput>
     -- Takes in filters and returns a list of managed nodes matching the filter criteria.
-    listNodes: function(Client, types.ListNodesInput): types.ListNodesOutput, table
+    listNodes: function(Client, types.ListNodesInput): Operation<types.ListNodesOutput>
     -- Generates a summary of managed instance/node metadata based on the filters and aggregators
     -- you specify. Results are grouped by the input aggregator you specify.
-    listNodesSummary: function(Client, types.ListNodesSummaryInput): types.ListNodesSummaryOutput, table
+    listNodesSummary: function(Client, types.ListNodesSummaryInput): Operation<types.ListNodesSummaryOutput>
     -- Returns a list of all OpsItem events in the current Amazon Web Services Region and Amazon Web Services account. You can
     -- limit the results to events associated with specific OpsItems by specifying a filter.
-    listOpsItemEvents: function(Client, types.ListOpsItemEventsInput): types.ListOpsItemEventsOutput, table
+    listOpsItemEvents: function(Client, types.ListOpsItemEventsInput): Operation<types.ListOpsItemEventsOutput>
     -- Lists all related-item resources associated with a Systems Manager OpsCenter OpsItem. OpsCenter is a
     -- tool in Amazon Web Services Systems Manager.
-    listOpsItemRelatedItems: function(Client, types.ListOpsItemRelatedItemsInput): types.ListOpsItemRelatedItemsOutput, table
+    listOpsItemRelatedItems: function(Client, types.ListOpsItemRelatedItemsInput): Operation<types.ListOpsItemRelatedItemsOutput>
     -- Amazon Web Services Systems Manager calls this API operation when displaying all Application Manager OpsMetadata objects or
     -- blobs.
-    listOpsMetadata: function(Client, types.ListOpsMetadataInput): types.ListOpsMetadataOutput, table
+    listOpsMetadata: function(Client, types.ListOpsMetadataInput): Operation<types.ListOpsMetadataOutput>
     -- Returns a resource-level summary count. The summary includes information about compliant and
     -- non-compliant statuses and detailed compliance-item severity counts, according to the filter
     -- criteria you specify.
-    listResourceComplianceSummaries: function(Client, types.ListResourceComplianceSummariesInput): types.ListResourceComplianceSummariesOutput, table
+    listResourceComplianceSummaries: function(Client, types.ListResourceComplianceSummariesInput): Operation<types.ListResourceComplianceSummariesOutput>
     -- Lists your resource data sync configurations. Includes information about the last time a
     -- sync attempted to start, the last sync status, and the last time a sync successfully
     -- completed.
@@ -559,15 +563,15 @@ local record Client
     -- configurations to list, check the value of NextToken in the output. If there are
     -- more sync configurations to list, you can request them by specifying the NextToken
     -- returned in the call to the parameter of a subsequent call.
-    listResourceDataSync: function(Client, types.ListResourceDataSyncInput): types.ListResourceDataSyncOutput, table
+    listResourceDataSync: function(Client, types.ListResourceDataSyncInput): Operation<types.ListResourceDataSyncOutput>
     -- Returns a list of the tags assigned to the specified resource.
     -- For information about the ID format for each supported resource type, see AddTagsToResource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Shares a Amazon Web Services Systems Manager document (SSM document)publicly or privately. If you share a document
     -- privately, you must specify the Amazon Web Services user IDs for those people who can use the document. If
     -- you share a document publicly, you must specify All as the account
     -- ID.
-    modifyDocumentPermission: function(Client, types.ModifyDocumentPermissionInput): types.ModifyDocumentPermissionOutput, table
+    modifyDocumentPermission: function(Client, types.ModifyDocumentPermissionInput): Operation<types.ModifyDocumentPermissionOutput>
     -- Registers a compliance type and other compliance details on a designated resource. This
     -- operation lets you register custom compliance details with a resource. This call overwrites
     -- existing compliance information on the resource, so you must provide a full list of compliance
@@ -598,13 +602,13 @@ local record Client
     -- InstalledTime: The time the association, patch, or custom compliance item was applied to
     -- the resource. Specify the time by using the following format:
     -- yyyy-MM-dd'T'HH:mm:ss'Z'
-    putComplianceItems: function(Client, types.PutComplianceItemsInput): types.PutComplianceItemsOutput, table
+    putComplianceItems: function(Client, types.PutComplianceItemsInput): Operation<types.PutComplianceItemsOutput>
     -- Bulk update custom inventory items on one or more managed nodes. The request adds an
     -- inventory item, if it doesn't already exist, or updates an inventory item, if it does
     -- exist.
-    putInventory: function(Client, types.PutInventoryInput): types.PutInventoryOutput, table
+    putInventory: function(Client, types.PutInventoryInput): Operation<types.PutInventoryOutput>
     -- Create or update a parameter in Parameter Store.
-    putParameter: function(Client, types.PutParameterInput): types.PutParameterOutput, table
+    putParameter: function(Client, types.PutParameterInput): Operation<types.PutParameterOutput>
     -- Creates or updates a Systems Manager resource policy. A resource policy helps you to define the
     -- IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources.
     -- The following resources support Systems Manager resource policies.
@@ -626,21 +630,21 @@ local record Client
     -- be returned by the Systems Manager DescribeParameters API operation using the --shared option.
     -- For more information, see Sharing a
     -- parameter in the Amazon Web Services Systems Manager User Guide
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Defines the default patch baseline for the relevant operating system.
     -- To reset the Amazon Web Services-predefined patch baseline as the default, specify the full patch baseline
     -- Amazon Resource Name (ARN) as the baseline ID value. For example, for CentOS, specify
     -- arn:aws:ssm:us-east-2:733109147000:patchbaseline/pb-0574b43a65ea646ed instead of
     -- pb-0574b43a65ea646ed.
-    registerDefaultPatchBaseline: function(Client, types.RegisterDefaultPatchBaselineInput): types.RegisterDefaultPatchBaselineOutput, table
+    registerDefaultPatchBaseline: function(Client, types.RegisterDefaultPatchBaselineInput): Operation<types.RegisterDefaultPatchBaselineOutput>
     -- Registers a patch baseline for a patch group.
-    registerPatchBaselineForPatchGroup: function(Client, types.RegisterPatchBaselineForPatchGroupInput): types.RegisterPatchBaselineForPatchGroupOutput, table
+    registerPatchBaselineForPatchGroup: function(Client, types.RegisterPatchBaselineForPatchGroupInput): Operation<types.RegisterPatchBaselineForPatchGroupOutput>
     -- Registers a target with a maintenance window.
-    registerTargetWithMaintenanceWindow: function(Client, types.RegisterTargetWithMaintenanceWindowInput): types.RegisterTargetWithMaintenanceWindowOutput, table
+    registerTargetWithMaintenanceWindow: function(Client, types.RegisterTargetWithMaintenanceWindowInput): Operation<types.RegisterTargetWithMaintenanceWindowOutput>
     -- Adds a new task to a maintenance window.
-    registerTaskWithMaintenanceWindow: function(Client, types.RegisterTaskWithMaintenanceWindowInput): types.RegisterTaskWithMaintenanceWindowOutput, table
+    registerTaskWithMaintenanceWindow: function(Client, types.RegisterTaskWithMaintenanceWindowInput): Operation<types.RegisterTaskWithMaintenanceWindowOutput>
     -- Removes tag keys from the specified resource.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- ServiceSetting is an account-level setting for an Amazon Web Services service. This setting
     -- defines how a user interacts with or uses a service or a feature of a service. For example, if an
     -- Amazon Web Services service charges money to the account based on feature or service usage, then the Amazon Web Services
@@ -655,34 +659,34 @@ local record Client
     -- setting.
     -- Reset the service setting for the account to the default value as provisioned by the Amazon Web Services
     -- service team.
-    resetServiceSetting: function(Client, types.ResetServiceSettingInput): types.ResetServiceSettingOutput, table
+    resetServiceSetting: function(Client, types.ResetServiceSettingInput): Operation<types.ResetServiceSettingOutput>
     -- Reconnects a session to a managed node after it has been disconnected. Connections can be
     -- resumed for disconnected sessions, but not terminated sessions.
     -- This command is primarily for use by client machines to automatically reconnect during
     -- intermittent network issues. It isn't intended for any other use.
-    resumeSession: function(Client, types.ResumeSessionInput): types.ResumeSessionOutput, table
+    resumeSession: function(Client, types.ResumeSessionInput): Operation<types.ResumeSessionOutput>
     -- Sends a signal to an Automation execution to change the current behavior or status of the
     -- execution.
-    sendAutomationSignal: function(Client, types.SendAutomationSignalInput): types.SendAutomationSignalOutput, table
+    sendAutomationSignal: function(Client, types.SendAutomationSignalInput): Operation<types.SendAutomationSignalOutput>
     -- Runs commands on one or more managed nodes.
-    sendCommand: function(Client, types.SendCommandInput): types.SendCommandOutput, table
+    sendCommand: function(Client, types.SendCommandInput): Operation<types.SendCommandOutput>
     -- Starts the workflow for just-in-time node access sessions.
-    startAccessRequest: function(Client, types.StartAccessRequestInput): types.StartAccessRequestOutput, table
+    startAccessRequest: function(Client, types.StartAccessRequestInput): Operation<types.StartAccessRequestOutput>
     -- Runs an association immediately and only one time. This operation can be helpful when
     -- troubleshooting associations.
-    startAssociationsOnce: function(Client, types.StartAssociationsOnceInput): types.StartAssociationsOnceOutput, table
+    startAssociationsOnce: function(Client, types.StartAssociationsOnceInput): Operation<types.StartAssociationsOnceOutput>
     -- Initiates execution of an Automation runbook.
-    startAutomationExecution: function(Client, types.StartAutomationExecutionInput): types.StartAutomationExecutionOutput, table
+    startAutomationExecution: function(Client, types.StartAutomationExecutionInput): Operation<types.StartAutomationExecutionOutput>
     -- Amazon Web Services Systems Manager Change Manager is no longer open to new customers. Existing customers can
     -- continue to use the service as normal. For more information, see
     -- Amazon Web Services Systems Manager Change Manager availability change.
     -- Creates a change request for Change Manager. The Automation runbooks specified in the
     -- change request run only after all required approvals for the change request have been
     -- received.
-    startChangeRequestExecution: function(Client, types.StartChangeRequestExecutionInput): types.StartChangeRequestExecutionOutput, table
+    startChangeRequestExecution: function(Client, types.StartChangeRequestExecutionInput): Operation<types.StartChangeRequestExecutionOutput>
     -- Initiates the process of creating a preview showing the effects that running a specified
     -- Automation runbook would have on the targeted resources.
-    startExecutionPreview: function(Client, types.StartExecutionPreviewInput): types.StartExecutionPreviewOutput, table
+    startExecutionPreview: function(Client, types.StartExecutionPreviewInput): Operation<types.StartExecutionPreviewOutput>
     -- Initiates a connection to a target (for example, a managed node) for a Session Manager session.
     -- Returns a URL and token that can be used to open a WebSocket connection for sending input and
     -- receiving outputs.
@@ -691,17 +695,17 @@ local record Client
     -- the Session Manager plugin for the Amazon Web Services CLI in the Amazon Web Services Systems Manager User Guide.
     -- Amazon Web Services Tools for PowerShell usage: Start-SSMSession isn't currently supported by Amazon Web Services Tools
     -- for PowerShell on Windows local machines.
-    startSession: function(Client, types.StartSessionInput): types.StartSessionOutput, table
+    startSession: function(Client, types.StartSessionInput): Operation<types.StartSessionOutput>
     -- Stop an Automation that is currently running.
-    stopAutomationExecution: function(Client, types.StopAutomationExecutionInput): types.StopAutomationExecutionOutput, table
+    stopAutomationExecution: function(Client, types.StopAutomationExecutionInput): Operation<types.StopAutomationExecutionOutput>
     -- Permanently ends a session and closes the data connection between the Session Manager client and
     -- SSM Agent on the managed node. A terminated session can't be resumed.
-    terminateSession: function(Client, types.TerminateSessionInput): types.TerminateSessionOutput, table
+    terminateSession: function(Client, types.TerminateSessionInput): Operation<types.TerminateSessionOutput>
     -- Remove a label or labels from a parameter.
     -- Parameter names can't contain spaces. The service removes any spaces specified for the
     -- beginning or end of a parameter name. If the specified name for a parameter contains spaces
     -- between characters, the request fails with a ValidationException error.
-    unlabelParameterVersion: function(Client, types.UnlabelParameterVersionInput): types.UnlabelParameterVersionOutput, table
+    unlabelParameterVersion: function(Client, types.UnlabelParameterVersionInput): Operation<types.UnlabelParameterVersionOutput>
     -- Updates an association. You can update the association name and version, the document
     -- version, schedule, parameters, and Amazon Simple Storage Service (Amazon S3) output. When you
     -- call UpdateAssociation, the system removes all optional parameters from the request
@@ -718,26 +722,26 @@ local record Client
     -- When you update an association, the association immediately runs against the specified
     -- targets. You can add the ApplyOnlyAtCronInterval parameter to run the association
     -- during the next schedule run.
-    updateAssociation: function(Client, types.UpdateAssociationInput): types.UpdateAssociationOutput, table
+    updateAssociation: function(Client, types.UpdateAssociationInput): Operation<types.UpdateAssociationOutput>
     -- Updates the status of the Amazon Web Services Systems Manager document (SSM document) associated with the specified
     -- managed node.
     -- UpdateAssociationStatus is primarily used by the Amazon Web Services Systems Manager Agent (SSM Agent) to
     -- report status updates about your associations and is only used for associations created with the
     -- InstanceId legacy parameter.
-    updateAssociationStatus: function(Client, types.UpdateAssociationStatusInput): types.UpdateAssociationStatusOutput, table
+    updateAssociationStatus: function(Client, types.UpdateAssociationStatusInput): Operation<types.UpdateAssociationStatusOutput>
     -- Updates one or more values for an SSM document.
-    updateDocument: function(Client, types.UpdateDocumentInput): types.UpdateDocumentOutput, table
+    updateDocument: function(Client, types.UpdateDocumentInput): Operation<types.UpdateDocumentOutput>
     -- Set the default version of a document.
     -- If you change a document version for a State Manager association, Systems Manager immediately runs
     -- the association unless you previously specifed the apply-only-at-cron-interval
     -- parameter.
-    updateDocumentDefaultVersion: function(Client, types.UpdateDocumentDefaultVersionInput): types.UpdateDocumentDefaultVersionOutput, table
+    updateDocumentDefaultVersion: function(Client, types.UpdateDocumentDefaultVersionInput): Operation<types.UpdateDocumentDefaultVersionOutput>
     -- Amazon Web Services Systems Manager Change Manager is no longer open to new customers. Existing customers can
     -- continue to use the service as normal. For more information, see
     -- Amazon Web Services Systems Manager Change Manager availability change.
     -- Updates information related to approval reviews for a specific version of a change template
     -- in Change Manager.
-    updateDocumentMetadata: function(Client, types.UpdateDocumentMetadataInput): types.UpdateDocumentMetadataOutput, table
+    updateDocumentMetadata: function(Client, types.UpdateDocumentMetadataInput): Operation<types.UpdateDocumentMetadataOutput>
     -- Updates an existing maintenance window. Only specified parameters are modified.
     -- The value you specify for Duration determines the specific end time for the
     -- maintenance window based on the time it begins. No maintenance window tasks are permitted to
@@ -745,7 +749,7 @@ local record Client
     -- For example, if the maintenance window starts at 3 PM, the duration is three hours, and the
     -- value you specify for Cutoff is one hour, no maintenance window tasks can start
     -- after 5 PM.
-    updateMaintenanceWindow: function(Client, types.UpdateMaintenanceWindowInput): types.UpdateMaintenanceWindowOutput, table
+    updateMaintenanceWindow: function(Client, types.UpdateMaintenanceWindowInput): Operation<types.UpdateMaintenanceWindowOutput>
     -- Modifies the target of an existing maintenance window. You
     -- can change the following:
     -- Name
@@ -756,7 +760,7 @@ local record Client
     -- From any supported tag type to another. The three supported tag types are ID target, Tag
     -- target, and resource group. For more information, see Target.
     -- If a parameter is null, then the corresponding field isn't modified.
-    updateMaintenanceWindowTarget: function(Client, types.UpdateMaintenanceWindowTargetInput): types.UpdateMaintenanceWindowTargetOutput, table
+    updateMaintenanceWindowTarget: function(Client, types.UpdateMaintenanceWindowTargetInput): Operation<types.UpdateMaintenanceWindowTargetOutput>
     -- Modifies a task assigned to a maintenance window. You can't change the task type, but you
     -- can change the following values:
     -- TaskARN. For example, you can change a RUN_COMMAND task from
@@ -784,25 +788,25 @@ local record Client
     -- NotificationConfig, and OutputS3BucketName. If you update the
     -- maintenance window task and specify only a different OutputS3BucketName value, the
     -- values for Comment and NotificationConfig are removed.
-    updateMaintenanceWindowTask: function(Client, types.UpdateMaintenanceWindowTaskInput): types.UpdateMaintenanceWindowTaskOutput, table
+    updateMaintenanceWindowTask: function(Client, types.UpdateMaintenanceWindowTaskInput): Operation<types.UpdateMaintenanceWindowTaskOutput>
     -- Changes the Identity and Access Management (IAM) role that is assigned to the
     -- on-premises server, edge device, or virtual machines (VM). IAM roles are first
     -- assigned to these hybrid nodes during the activation process. For more information, see CreateActivation.
-    updateManagedInstanceRole: function(Client, types.UpdateManagedInstanceRoleInput): types.UpdateManagedInstanceRoleOutput, table
+    updateManagedInstanceRole: function(Client, types.UpdateManagedInstanceRoleInput): Operation<types.UpdateManagedInstanceRoleOutput>
     -- Edit or change an OpsItem. You must have permission in Identity and Access Management (IAM) to update an OpsItem. For more information, see Set up OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
     -- Operations engineers and IT professionals use Amazon Web Services Systems Manager OpsCenter to view, investigate, and
     -- remediate operational issues impacting the performance and health of their Amazon Web Services resources. For
     -- more information, see Amazon Web Services Systems Manager OpsCenter in the
     -- Amazon Web Services Systems Manager User Guide.
-    updateOpsItem: function(Client, types.UpdateOpsItemInput): types.UpdateOpsItemOutput, table
+    updateOpsItem: function(Client, types.UpdateOpsItemInput): Operation<types.UpdateOpsItemOutput>
     -- Amazon Web Services Systems Manager calls this API operation when you edit OpsMetadata in Application Manager.
-    updateOpsMetadata: function(Client, types.UpdateOpsMetadataInput): types.UpdateOpsMetadataOutput, table
+    updateOpsMetadata: function(Client, types.UpdateOpsMetadataInput): Operation<types.UpdateOpsMetadataOutput>
     -- Modifies an existing patch baseline. Fields not specified in the request are left
     -- unchanged.
     -- For information about valid key-value pairs in PatchFilters for each supported
     -- operating system type, see PatchFilter.
-    updatePatchBaseline: function(Client, types.UpdatePatchBaselineInput): types.UpdatePatchBaselineOutput, table
+    updatePatchBaseline: function(Client, types.UpdatePatchBaselineInput): Operation<types.UpdatePatchBaselineOutput>
     -- Update a resource data sync. After you create a resource data sync for a Region, you can't
     -- change the account options for that sync. For example, if you create a sync in the us-east-2
     -- (Ohio) Region and you choose the Include only the current account option, you can't
@@ -811,7 +815,7 @@ local record Client
     -- new one.
     -- This API operation only supports a resource data sync that was created with a
     -- SyncFromSource SyncType.
-    updateResourceDataSync: function(Client, types.UpdateResourceDataSyncInput): types.UpdateResourceDataSyncOutput, table
+    updateResourceDataSync: function(Client, types.UpdateResourceDataSyncInput): Operation<types.UpdateResourceDataSyncOutput>
     -- ServiceSetting is an account-level setting for an Amazon Web Services service. This setting
     -- defines how a user interacts with or uses a service or a feature of a service. For example, if an
     -- Amazon Web Services service charges money to the account based on feature or service usage, then the Amazon Web Services
@@ -825,7 +829,7 @@ local record Client
     -- current value. Or, use the ResetServiceSetting to change the value back to the
     -- original value defined by the Amazon Web Services service team.
     -- Update the service setting for the account.
-    updateServiceSetting: function(Client, types.UpdateServiceSettingInput): types.UpdateServiceSettingOutput, table
+    updateServiceSetting: function(Client, types.UpdateServiceSettingInput): Operation<types.UpdateServiceSettingOutput>
 end
 
 local record M

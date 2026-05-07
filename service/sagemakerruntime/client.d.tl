@@ -2,6 +2,10 @@
 
 local types = require("sagemakerruntime.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- After you deploy a model into production using Amazon SageMaker AI hosting services,
     -- your client applications use this API to get inferences from the model hosted at the
@@ -20,7 +24,7 @@ local record Client
     -- Endpoints are scoped to an individual account, and are not public. The URL does
     -- not contain the account ID, but Amazon SageMaker AI determines the account ID from
     -- the authentication token that is supplied by the caller.
-    invokeEndpoint: function(Client, types.InvokeEndpointInput): types.InvokeEndpointOutput, table
+    invokeEndpoint: function(Client, types.InvokeEndpointInput): Operation<types.InvokeEndpointOutput>
     -- After you deploy a model into production using Amazon SageMaker AI hosting services,
     -- your client applications use this API to get inferences from the model hosted at the
     -- specified endpoint in an asynchronous manner.
@@ -33,7 +37,7 @@ local record Client
     -- enumerated in the request syntax.
     -- Calls to InvokeEndpointAsync are authenticated by using Amazon Web Services Signature Version 4. For information, see Authenticating
     -- Requests (Amazon Web Services Signature Version 4) in the Amazon S3 API Reference.
-    invokeEndpointAsync: function(Client, types.InvokeEndpointAsyncInput): types.InvokeEndpointAsyncOutput, table
+    invokeEndpointAsync: function(Client, types.InvokeEndpointAsyncInput): Operation<types.InvokeEndpointAsyncOutput>
     -- Invokes a model at the specified endpoint to return the inference response as a
     -- stream. The inference stream provides the response payload incrementally as a series of
     -- parts. Before you can get an inference stream, you must have access to a model that's
@@ -52,7 +56,7 @@ local record Client
     -- Calls to InvokeEndpointWithResponseStream are authenticated by using
     -- Amazon Web Services Signature Version 4. For information, see Authenticating Requests (Amazon Web Services Signature Version 4) in the
     -- Amazon S3 API Reference.
-    invokeEndpointWithResponseStream: function(Client, types.InvokeEndpointWithResponseStreamInput): types.InvokeEndpointWithResponseStreamOutput, table
+    invokeEndpointWithResponseStream: function(Client, types.InvokeEndpointWithResponseStreamInput): Operation<types.InvokeEndpointWithResponseStreamOutput>
 end
 
 local record M

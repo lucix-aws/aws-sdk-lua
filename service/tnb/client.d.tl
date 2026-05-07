@@ -2,24 +2,28 @@
 
 local types = require("tnb.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels a network operation.
     -- A network operation is any operation that is done to your network, such as network instance instantiation or termination.
-    cancelSolNetworkOperation: function(Client, types.CancelSolNetworkOperationInput): types.CancelSolNetworkOperationOutput, table
+    cancelSolNetworkOperation: function(Client, types.CancelSolNetworkOperationInput): Operation<types.CancelSolNetworkOperationOutput>
     -- Creates a function package.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network. For more information, see Function packages in the
     -- Amazon Web Services Telco Network Builder User Guide.
     -- Creating a function package is the first step for creating a network in AWS TNB. This
     -- request creates an empty container with an ID. The next step is to upload the actual CSAR
     -- zip file into that empty container. To upload function package content, see PutSolFunctionPackageContent.
-    createSolFunctionPackage: function(Client, types.CreateSolFunctionPackageInput): types.CreateSolFunctionPackageOutput, table
+    createSolFunctionPackage: function(Client, types.CreateSolFunctionPackageInput): Operation<types.CreateSolFunctionPackageOutput>
     -- Creates a network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed. Creating a network instance is the third step after creating a network
     -- package. For more information about network instances, Network instances in the
     -- Amazon Web Services Telco Network Builder User Guide.
     -- Once you create a network instance, you can instantiate it. To instantiate a network,
     -- see InstantiateSolNetworkInstance.
-    createSolNetworkInstance: function(Client, types.CreateSolNetworkInstanceInput): types.CreateSolNetworkInstanceOutput, table
+    createSolNetworkInstance: function(Client, types.CreateSolNetworkInstanceInput): Operation<types.CreateSolNetworkInstanceOutput>
     -- Creates a network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on. For more information, see Network instances in the
     -- Amazon Web Services Telco Network Builder User Guide.
@@ -29,111 +33,111 @@ local record Client
     -- which network functions should run in certain VPCs, subnets, or EKS clusters.
     -- This request creates an empty network package container with an ID. Once you create a
     -- network package, you can upload the network package content using PutSolNetworkPackageContent.
-    createSolNetworkPackage: function(Client, types.CreateSolNetworkPackageInput): types.CreateSolNetworkPackageOutput, table
+    createSolNetworkPackage: function(Client, types.CreateSolNetworkPackageInput): Operation<types.CreateSolNetworkPackageOutput>
     -- Deletes a function package.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
     -- To delete a function package, the package must be in a disabled state. To disable a
     -- function package, see UpdateSolFunctionPackage.
-    deleteSolFunctionPackage: function(Client, types.DeleteSolFunctionPackageInput): types.DeleteSolFunctionPackageOutput, table
+    deleteSolFunctionPackage: function(Client, types.DeleteSolFunctionPackageInput): Operation<types.DeleteSolFunctionPackageOutput>
     -- Deletes a network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
     -- To delete a network instance, the instance must be in a stopped or terminated state. To
     -- terminate a network instance, see TerminateSolNetworkInstance.
-    deleteSolNetworkInstance: function(Client, types.DeleteSolNetworkInstanceInput): types.DeleteSolNetworkInstanceOutput, table
+    deleteSolNetworkInstance: function(Client, types.DeleteSolNetworkInstanceInput): Operation<types.DeleteSolNetworkInstanceOutput>
     -- Deletes network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
     -- To delete a network package, the package must be in a disable state. To disable a
     -- network package, see UpdateSolNetworkPackage.
-    deleteSolNetworkPackage: function(Client, types.DeleteSolNetworkPackageInput): types.DeleteSolNetworkPackageOutput, table
+    deleteSolNetworkPackage: function(Client, types.DeleteSolNetworkPackageInput): Operation<types.DeleteSolNetworkPackageOutput>
     -- Gets the details of a network function instance, including the instantiation state and
     -- metadata from the function package descriptor in the network function package.
     -- A network function instance is a function in a function package .
-    getSolFunctionInstance: function(Client, types.GetSolFunctionInstanceInput): types.GetSolFunctionInstanceOutput, table
+    getSolFunctionInstance: function(Client, types.GetSolFunctionInstanceInput): Operation<types.GetSolFunctionInstanceOutput>
     -- Gets the details of an individual function package, such as the operational state and
     -- whether the package is in use.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network..
-    getSolFunctionPackage: function(Client, types.GetSolFunctionPackageInput): types.GetSolFunctionPackageOutput, table
+    getSolFunctionPackage: function(Client, types.GetSolFunctionPackageInput): Operation<types.GetSolFunctionPackageOutput>
     -- Gets the contents of a function package.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    getSolFunctionPackageContent: function(Client, types.GetSolFunctionPackageContentInput): types.GetSolFunctionPackageContentOutput, table
+    getSolFunctionPackageContent: function(Client, types.GetSolFunctionPackageContentInput): Operation<types.GetSolFunctionPackageContentOutput>
     -- Gets a function package descriptor in a function package.
     -- A function package descriptor is a .yaml file in a function package that uses the TOSCA standard to describe how the network function in the function package should run on your network.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    getSolFunctionPackageDescriptor: function(Client, types.GetSolFunctionPackageDescriptorInput): types.GetSolFunctionPackageDescriptorOutput, table
+    getSolFunctionPackageDescriptor: function(Client, types.GetSolFunctionPackageDescriptorInput): Operation<types.GetSolFunctionPackageDescriptorOutput>
     -- Gets the details of the network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
-    getSolNetworkInstance: function(Client, types.GetSolNetworkInstanceInput): types.GetSolNetworkInstanceOutput, table
+    getSolNetworkInstance: function(Client, types.GetSolNetworkInstanceInput): Operation<types.GetSolNetworkInstanceOutput>
     -- Gets the details of a network operation, including the tasks involved in the network
     -- operation and the status of the tasks.
     -- A network operation is any operation that is done to your network, such as network instance instantiation or termination.
-    getSolNetworkOperation: function(Client, types.GetSolNetworkOperationInput): types.GetSolNetworkOperationOutput, table
+    getSolNetworkOperation: function(Client, types.GetSolNetworkOperationInput): Operation<types.GetSolNetworkOperationOutput>
     -- Gets the details of a network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
-    getSolNetworkPackage: function(Client, types.GetSolNetworkPackageInput): types.GetSolNetworkPackageOutput, table
+    getSolNetworkPackage: function(Client, types.GetSolNetworkPackageInput): Operation<types.GetSolNetworkPackageOutput>
     -- Gets the contents of a network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
-    getSolNetworkPackageContent: function(Client, types.GetSolNetworkPackageContentInput): types.GetSolNetworkPackageContentOutput, table
+    getSolNetworkPackageContent: function(Client, types.GetSolNetworkPackageContentInput): Operation<types.GetSolNetworkPackageContentOutput>
     -- Gets the content of the network service descriptor.
     -- A network service descriptor is a .yaml file in a network package that uses the TOSCA standard to describe the network functions you want to deploy and the Amazon Web Services infrastructure you want to deploy the network functions on.
-    getSolNetworkPackageDescriptor: function(Client, types.GetSolNetworkPackageDescriptorInput): types.GetSolNetworkPackageDescriptorOutput, table
+    getSolNetworkPackageDescriptor: function(Client, types.GetSolNetworkPackageDescriptorInput): Operation<types.GetSolNetworkPackageDescriptorOutput>
     -- Instantiates a network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
     -- Before you can instantiate a network instance, you have to create a network instance.
     -- For more information, see CreateSolNetworkInstance.
-    instantiateSolNetworkInstance: function(Client, types.InstantiateSolNetworkInstanceInput): types.InstantiateSolNetworkInstanceOutput, table
+    instantiateSolNetworkInstance: function(Client, types.InstantiateSolNetworkInstanceInput): Operation<types.InstantiateSolNetworkInstanceOutput>
     -- Lists network function instances.
     -- A network function instance is a function in a function package .
-    listSolFunctionInstances: function(Client, types.ListSolFunctionInstancesInput): types.ListSolFunctionInstancesOutput, table
+    listSolFunctionInstances: function(Client, types.ListSolFunctionInstancesInput): Operation<types.ListSolFunctionInstancesOutput>
     -- Lists information about function packages.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    listSolFunctionPackages: function(Client, types.ListSolFunctionPackagesInput): types.ListSolFunctionPackagesOutput, table
+    listSolFunctionPackages: function(Client, types.ListSolFunctionPackagesInput): Operation<types.ListSolFunctionPackagesOutput>
     -- Lists your network instances.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
-    listSolNetworkInstances: function(Client, types.ListSolNetworkInstancesInput): types.ListSolNetworkInstancesOutput, table
+    listSolNetworkInstances: function(Client, types.ListSolNetworkInstancesInput): Operation<types.ListSolNetworkInstancesOutput>
     -- Lists details for a network operation, including when the operation started and the
     -- status of the operation.
     -- A network operation is any operation that is done to your network, such as network instance instantiation or termination.
-    listSolNetworkOperations: function(Client, types.ListSolNetworkOperationsInput): types.ListSolNetworkOperationsOutput, table
+    listSolNetworkOperations: function(Client, types.ListSolNetworkOperationsInput): Operation<types.ListSolNetworkOperationsOutput>
     -- Lists network packages.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
-    listSolNetworkPackages: function(Client, types.ListSolNetworkPackagesInput): types.ListSolNetworkPackagesOutput, table
+    listSolNetworkPackages: function(Client, types.ListSolNetworkPackagesInput): Operation<types.ListSolNetworkPackagesOutput>
     -- Lists tags for AWS TNB resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Uploads the contents of a function package.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    putSolFunctionPackageContent: function(Client, types.PutSolFunctionPackageContentInput): types.PutSolFunctionPackageContentOutput, table
+    putSolFunctionPackageContent: function(Client, types.PutSolFunctionPackageContentInput): Operation<types.PutSolFunctionPackageContentOutput>
     -- Uploads the contents of a network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
-    putSolNetworkPackageContent: function(Client, types.PutSolNetworkPackageContentInput): types.PutSolNetworkPackageContentOutput, table
+    putSolNetworkPackageContent: function(Client, types.PutSolNetworkPackageContentInput): Operation<types.PutSolNetworkPackageContentOutput>
     -- Tags an AWS TNB resource.
     -- A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Terminates a network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
     -- You must terminate a network instance before you can delete it.
-    terminateSolNetworkInstance: function(Client, types.TerminateSolNetworkInstanceInput): types.TerminateSolNetworkInstanceOutput, table
+    terminateSolNetworkInstance: function(Client, types.TerminateSolNetworkInstanceInput): Operation<types.TerminateSolNetworkInstanceOutput>
     -- Untags an AWS TNB resource.
     -- A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the operational state of function package.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    updateSolFunctionPackage: function(Client, types.UpdateSolFunctionPackageInput): types.UpdateSolFunctionPackageOutput, table
+    updateSolFunctionPackage: function(Client, types.UpdateSolFunctionPackageInput): Operation<types.UpdateSolFunctionPackageOutput>
     -- Update a network instance.
     -- A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.
     -- Choose the updateType parameter to target the necessary update of the network instance.
-    updateSolNetworkInstance: function(Client, types.UpdateSolNetworkInstanceInput): types.UpdateSolNetworkInstanceOutput, table
+    updateSolNetworkInstance: function(Client, types.UpdateSolNetworkInstanceInput): Operation<types.UpdateSolNetworkInstanceOutput>
     -- Updates the operational state of a network package.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
     -- A network service descriptor is a .yaml file in a network package that uses the TOSCA standard to describe the network functions you want to deploy and the Amazon Web Services infrastructure you want to deploy the network functions on.
-    updateSolNetworkPackage: function(Client, types.UpdateSolNetworkPackageInput): types.UpdateSolNetworkPackageOutput, table
+    updateSolNetworkPackage: function(Client, types.UpdateSolNetworkPackageInput): Operation<types.UpdateSolNetworkPackageOutput>
     -- Validates function package content. This can be used as a dry run before uploading
     -- function package content with PutSolFunctionPackageContent.
     -- A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.
-    validateSolFunctionPackageContent: function(Client, types.ValidateSolFunctionPackageContentInput): types.ValidateSolFunctionPackageContentOutput, table
+    validateSolFunctionPackageContent: function(Client, types.ValidateSolFunctionPackageContentInput): Operation<types.ValidateSolFunctionPackageContentOutput>
     -- Validates network package content. This can be used as a dry run before uploading
     -- network package content with PutSolNetworkPackageContent.
     -- A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.
-    validateSolNetworkPackageContent: function(Client, types.ValidateSolNetworkPackageContentInput): types.ValidateSolNetworkPackageContentOutput, table
+    validateSolNetworkPackageContent: function(Client, types.ValidateSolNetworkPackageContentInput): Operation<types.ValidateSolNetworkPackageContentOutput>
 end
 
 local record M

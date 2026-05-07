@@ -2,44 +2,48 @@
 
 local types = require("clouddirectory.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a new Facet to an object. An object can have more than one facet applied on it.
-    addFacetToObject: function(Client, types.AddFacetToObjectInput): types.AddFacetToObjectOutput, table
+    addFacetToObject: function(Client, types.AddFacetToObjectInput): Operation<types.AddFacetToObjectOutput>
     -- Copies the input published schema, at the specified version, into the Directory with the same
     -- name and version as that of the published schema.
-    applySchema: function(Client, types.ApplySchemaInput): types.ApplySchemaOutput, table
+    applySchema: function(Client, types.ApplySchemaInput): Operation<types.ApplySchemaOutput>
     -- Attaches an existing object to another object. An object can be accessed in two
     -- ways:
     -- Using the path
     -- Using ObjectIdentifier
-    attachObject: function(Client, types.AttachObjectInput): types.AttachObjectOutput, table
+    attachObject: function(Client, types.AttachObjectInput): Operation<types.AttachObjectOutput>
     -- Attaches a policy object to a regular object. An object can have a limited number of attached
     -- policies.
-    attachPolicy: function(Client, types.AttachPolicyInput): types.AttachPolicyOutput, table
+    attachPolicy: function(Client, types.AttachPolicyInput): Operation<types.AttachPolicyOutput>
     -- Attaches the specified object to the specified index.
-    attachToIndex: function(Client, types.AttachToIndexInput): types.AttachToIndexOutput, table
+    attachToIndex: function(Client, types.AttachToIndexInput): Operation<types.AttachToIndexOutput>
     -- Attaches a typed link to a specified source and target object. For more information, see Typed Links.
-    attachTypedLink: function(Client, types.AttachTypedLinkInput): types.AttachTypedLinkOutput, table
+    attachTypedLink: function(Client, types.AttachTypedLinkInput): Operation<types.AttachTypedLinkOutput>
     -- Performs all the read operations in a batch.
-    batchRead: function(Client, types.BatchReadInput): types.BatchReadOutput, table
+    batchRead: function(Client, types.BatchReadInput): Operation<types.BatchReadOutput>
     -- Performs all the write operations in a batch. Either all the operations succeed or
     -- none.
-    batchWrite: function(Client, types.BatchWriteInput): types.BatchWriteOutput, table
+    batchWrite: function(Client, types.BatchWriteInput): Operation<types.BatchWriteOutput>
     -- Creates a Directory by copying the published schema into the
     -- directory. A directory cannot be created without a schema.
     -- You can also quickly create a directory using a managed schema, called the
     -- QuickStartSchema. For more information, see Managed Schema in the Amazon Cloud Directory Developer Guide.
-    createDirectory: function(Client, types.CreateDirectoryInput): types.CreateDirectoryOutput, table
+    createDirectory: function(Client, types.CreateDirectoryInput): Operation<types.CreateDirectoryOutput>
     -- Creates a new Facet in a schema. Facet creation is allowed only
     -- in development or applied schemas.
-    createFacet: function(Client, types.CreateFacetInput): types.CreateFacetOutput, table
+    createFacet: function(Client, types.CreateFacetInput): Operation<types.CreateFacetOutput>
     -- Creates an index object. See Indexing and search for more information.
-    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createIndex: function(Client, types.CreateIndexInput): Operation<types.CreateIndexOutput>
     -- Creates an object in a Directory. Additionally attaches the object to
     -- a parent, if a parent reference and LinkName is specified. An object is simply a
     -- collection of Facet attributes. You can also use this API call to create a
     -- policy object, if the facet from which you create the object is a policy facet.
-    createObject: function(Client, types.CreateObjectInput): types.CreateObjectOutput, table
+    createObject: function(Client, types.CreateObjectInput): Operation<types.CreateObjectOutput>
     -- Creates a new schema in a development state. A schema can exist in three
     -- phases:
     -- Development: This is a mutable phase of the schema. All new
@@ -50,82 +54,82 @@ local record Client
     -- Applied: Applied schemas are mutable in a way that allows you
     -- to add new schema facets. You can also add new, nonrequired attributes to existing schema
     -- facets. You can apply only published schemas to directories.
-    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): Operation<types.CreateSchemaOutput>
     -- Creates a TypedLinkFacet. For more information, see Typed Links.
-    createTypedLinkFacet: function(Client, types.CreateTypedLinkFacetInput): types.CreateTypedLinkFacetOutput, table
+    createTypedLinkFacet: function(Client, types.CreateTypedLinkFacetInput): Operation<types.CreateTypedLinkFacetOutput>
     -- Deletes a directory. Only disabled directories can be deleted. A deleted directory cannot be undone. Exercise extreme
     -- caution
     -- when deleting directories.
-    deleteDirectory: function(Client, types.DeleteDirectoryInput): types.DeleteDirectoryOutput, table
+    deleteDirectory: function(Client, types.DeleteDirectoryInput): Operation<types.DeleteDirectoryOutput>
     -- Deletes a given Facet. All attributes and Rules
     -- that are associated with the facet will be deleted. Only development schema facets are allowed
     -- deletion.
-    deleteFacet: function(Client, types.DeleteFacetInput): types.DeleteFacetOutput, table
+    deleteFacet: function(Client, types.DeleteFacetInput): Operation<types.DeleteFacetOutput>
     -- Deletes an object and its associated attributes. Only objects with no children and no
     -- parents can be deleted. The maximum number of attributes that can be deleted during an object deletion is 30. For more information, see Amazon Cloud Directory Limits.
-    deleteObject: function(Client, types.DeleteObjectInput): types.DeleteObjectOutput, table
+    deleteObject: function(Client, types.DeleteObjectInput): Operation<types.DeleteObjectOutput>
     -- Deletes a given schema. Schemas in a development and published state can only be deleted.
-    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): Operation<types.DeleteSchemaOutput>
     -- Deletes a TypedLinkFacet. For more information, see Typed Links.
-    deleteTypedLinkFacet: function(Client, types.DeleteTypedLinkFacetInput): types.DeleteTypedLinkFacetOutput, table
+    deleteTypedLinkFacet: function(Client, types.DeleteTypedLinkFacetInput): Operation<types.DeleteTypedLinkFacetOutput>
     -- Detaches the specified object from the specified index.
-    detachFromIndex: function(Client, types.DetachFromIndexInput): types.DetachFromIndexOutput, table
+    detachFromIndex: function(Client, types.DetachFromIndexInput): Operation<types.DetachFromIndexOutput>
     -- Detaches a given object from the parent object. The object that is to be detached from the
     -- parent is specified by the link name.
-    detachObject: function(Client, types.DetachObjectInput): types.DetachObjectOutput, table
+    detachObject: function(Client, types.DetachObjectInput): Operation<types.DetachObjectOutput>
     -- Detaches a policy from an object.
-    detachPolicy: function(Client, types.DetachPolicyInput): types.DetachPolicyOutput, table
+    detachPolicy: function(Client, types.DetachPolicyInput): Operation<types.DetachPolicyOutput>
     -- Detaches a typed link from a specified source and target object. For more information, see Typed Links.
-    detachTypedLink: function(Client, types.DetachTypedLinkInput): types.DetachTypedLinkOutput, table
+    detachTypedLink: function(Client, types.DetachTypedLinkInput): Operation<types.DetachTypedLinkOutput>
     -- Disables the specified directory. Disabled directories cannot be read or written to.
     -- Only enabled directories can be disabled. Disabled directories may be reenabled.
-    disableDirectory: function(Client, types.DisableDirectoryInput): types.DisableDirectoryOutput, table
+    disableDirectory: function(Client, types.DisableDirectoryInput): Operation<types.DisableDirectoryOutput>
     -- Enables the specified directory. Only disabled directories can be enabled. Once
     -- enabled, the directory can then be read and written to.
-    enableDirectory: function(Client, types.EnableDirectoryInput): types.EnableDirectoryOutput, table
+    enableDirectory: function(Client, types.EnableDirectoryInput): Operation<types.EnableDirectoryOutput>
     -- Returns current applied schema version ARN, including the minor version in use.
-    getAppliedSchemaVersion: function(Client, types.GetAppliedSchemaVersionInput): types.GetAppliedSchemaVersionOutput, table
+    getAppliedSchemaVersion: function(Client, types.GetAppliedSchemaVersionInput): Operation<types.GetAppliedSchemaVersionOutput>
     -- Retrieves metadata about a directory.
-    getDirectory: function(Client, types.GetDirectoryInput): types.GetDirectoryOutput, table
+    getDirectory: function(Client, types.GetDirectoryInput): Operation<types.GetDirectoryOutput>
     -- Gets details of the Facet, such as facet name, attributes, Rules, or ObjectType. You can call this on all kinds of schema
     -- facets -- published, development, or applied.
-    getFacet: function(Client, types.GetFacetInput): types.GetFacetOutput, table
+    getFacet: function(Client, types.GetFacetInput): Operation<types.GetFacetOutput>
     -- Retrieves attributes that are associated with a typed link.
-    getLinkAttributes: function(Client, types.GetLinkAttributesInput): types.GetLinkAttributesOutput, table
+    getLinkAttributes: function(Client, types.GetLinkAttributesInput): Operation<types.GetLinkAttributesOutput>
     -- Retrieves attributes within a facet that are associated with an object.
-    getObjectAttributes: function(Client, types.GetObjectAttributesInput): types.GetObjectAttributesOutput, table
+    getObjectAttributes: function(Client, types.GetObjectAttributesInput): Operation<types.GetObjectAttributesOutput>
     -- Retrieves metadata about an object.
-    getObjectInformation: function(Client, types.GetObjectInformationInput): types.GetObjectInformationOutput, table
+    getObjectInformation: function(Client, types.GetObjectInformationInput): Operation<types.GetObjectInformationOutput>
     -- Retrieves a JSON representation of the schema. See JSON Schema Format for more information.
-    getSchemaAsJson: function(Client, types.GetSchemaAsJsonInput): types.GetSchemaAsJsonOutput, table
+    getSchemaAsJson: function(Client, types.GetSchemaAsJsonInput): Operation<types.GetSchemaAsJsonOutput>
     -- Returns the identity attribute order for a specific TypedLinkFacet. For more information, see Typed Links.
-    getTypedLinkFacetInformation: function(Client, types.GetTypedLinkFacetInformationInput): types.GetTypedLinkFacetInformationOutput, table
+    getTypedLinkFacetInformation: function(Client, types.GetTypedLinkFacetInformationInput): Operation<types.GetTypedLinkFacetInformationOutput>
     -- Lists schema major versions applied to a directory. If SchemaArn is provided, lists the minor version.
-    listAppliedSchemaArns: function(Client, types.ListAppliedSchemaArnsInput): types.ListAppliedSchemaArnsOutput, table
+    listAppliedSchemaArns: function(Client, types.ListAppliedSchemaArnsInput): Operation<types.ListAppliedSchemaArnsOutput>
     -- Lists indices attached to the specified object.
-    listAttachedIndices: function(Client, types.ListAttachedIndicesInput): types.ListAttachedIndicesOutput, table
+    listAttachedIndices: function(Client, types.ListAttachedIndicesInput): Operation<types.ListAttachedIndicesOutput>
     -- Retrieves each Amazon Resource Name (ARN) of schemas in the development
     -- state.
-    listDevelopmentSchemaArns: function(Client, types.ListDevelopmentSchemaArnsInput): types.ListDevelopmentSchemaArnsOutput, table
+    listDevelopmentSchemaArns: function(Client, types.ListDevelopmentSchemaArnsInput): Operation<types.ListDevelopmentSchemaArnsOutput>
     -- Lists directories created within an account.
-    listDirectories: function(Client, types.ListDirectoriesInput): types.ListDirectoriesOutput, table
+    listDirectories: function(Client, types.ListDirectoriesInput): Operation<types.ListDirectoriesOutput>
     -- Retrieves attributes attached to the facet.
-    listFacetAttributes: function(Client, types.ListFacetAttributesInput): types.ListFacetAttributesOutput, table
+    listFacetAttributes: function(Client, types.ListFacetAttributesInput): Operation<types.ListFacetAttributesOutput>
     -- Retrieves the names of facets that exist in a schema.
-    listFacetNames: function(Client, types.ListFacetNamesInput): types.ListFacetNamesOutput, table
+    listFacetNames: function(Client, types.ListFacetNamesInput): Operation<types.ListFacetNamesOutput>
     -- Returns a paginated list of all the incoming TypedLinkSpecifier
     -- information for an object. It also supports filtering by typed link facet and identity
     -- attributes. For more information, see Typed Links.
-    listIncomingTypedLinks: function(Client, types.ListIncomingTypedLinksInput): types.ListIncomingTypedLinksOutput, table
+    listIncomingTypedLinks: function(Client, types.ListIncomingTypedLinksInput): Operation<types.ListIncomingTypedLinksOutput>
     -- Lists objects attached to the specified index.
-    listIndex: function(Client, types.ListIndexInput): types.ListIndexOutput, table
+    listIndex: function(Client, types.ListIndexInput): Operation<types.ListIndexOutput>
     -- Lists the major version families of each managed schema. If a major version ARN is provided as SchemaArn, the minor version revisions in that family are listed instead.
-    listManagedSchemaArns: function(Client, types.ListManagedSchemaArnsInput): types.ListManagedSchemaArnsOutput, table
+    listManagedSchemaArns: function(Client, types.ListManagedSchemaArnsInput): Operation<types.ListManagedSchemaArnsOutput>
     -- Lists all attributes that are associated with an object.
-    listObjectAttributes: function(Client, types.ListObjectAttributesInput): types.ListObjectAttributesOutput, table
+    listObjectAttributes: function(Client, types.ListObjectAttributesInput): Operation<types.ListObjectAttributesOutput>
     -- Returns a paginated list of child objects that are associated with a given
     -- object.
-    listObjectChildren: function(Client, types.ListObjectChildrenInput): types.ListObjectChildrenOutput, table
+    listObjectChildren: function(Client, types.ListObjectChildrenInput): Operation<types.ListObjectChildrenOutput>
     -- Retrieves all available parent paths for any object type such as node, leaf node,
     -- policy node, and index node objects. For more information about objects, see Directory Structure.
     -- Use this API to evaluate all parents for an object. The call returns all objects from
@@ -134,64 +138,64 @@ local record Client
     -- The order of the paths and nodes returned is consistent among multiple API calls unless the
     -- objects are deleted or moved. Paths not leading to the directory root are ignored from the
     -- target object.
-    listObjectParentPaths: function(Client, types.ListObjectParentPathsInput): types.ListObjectParentPathsOutput, table
+    listObjectParentPaths: function(Client, types.ListObjectParentPathsInput): Operation<types.ListObjectParentPathsOutput>
     -- Lists parent objects that are associated with a given object in pagination
     -- fashion.
-    listObjectParents: function(Client, types.ListObjectParentsInput): types.ListObjectParentsOutput, table
+    listObjectParents: function(Client, types.ListObjectParentsInput): Operation<types.ListObjectParentsOutput>
     -- Returns policies attached to an object in pagination fashion.
-    listObjectPolicies: function(Client, types.ListObjectPoliciesInput): types.ListObjectPoliciesOutput, table
+    listObjectPolicies: function(Client, types.ListObjectPoliciesInput): Operation<types.ListObjectPoliciesOutput>
     -- Returns a paginated list of all the outgoing TypedLinkSpecifier
     -- information for an object. It also supports filtering by typed link facet and identity
     -- attributes. For more information, see Typed Links.
-    listOutgoingTypedLinks: function(Client, types.ListOutgoingTypedLinksInput): types.ListOutgoingTypedLinksOutput, table
+    listOutgoingTypedLinks: function(Client, types.ListOutgoingTypedLinksInput): Operation<types.ListOutgoingTypedLinksOutput>
     -- Returns all of the ObjectIdentifiers to which a given policy is attached.
-    listPolicyAttachments: function(Client, types.ListPolicyAttachmentsInput): types.ListPolicyAttachmentsOutput, table
+    listPolicyAttachments: function(Client, types.ListPolicyAttachmentsInput): Operation<types.ListPolicyAttachmentsOutput>
     -- Lists the major version families of each published schema. If a major version ARN is provided as SchemaArn, the minor version revisions in that family are listed instead.
-    listPublishedSchemaArns: function(Client, types.ListPublishedSchemaArnsInput): types.ListPublishedSchemaArnsOutput, table
+    listPublishedSchemaArns: function(Client, types.ListPublishedSchemaArnsInput): Operation<types.ListPublishedSchemaArnsOutput>
     -- Returns tags for a resource. Tagging is currently supported only for directories with a
     -- limit of 50 tags per directory. All 50 tags are returned for a given directory with this API
     -- call.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a paginated list of all attribute definitions for a particular TypedLinkFacet. For more information, see Typed Links.
-    listTypedLinkFacetAttributes: function(Client, types.ListTypedLinkFacetAttributesInput): types.ListTypedLinkFacetAttributesOutput, table
+    listTypedLinkFacetAttributes: function(Client, types.ListTypedLinkFacetAttributesInput): Operation<types.ListTypedLinkFacetAttributesOutput>
     -- Returns a paginated list of TypedLink facet names for a particular schema.
     -- For more information, see Typed Links.
-    listTypedLinkFacetNames: function(Client, types.ListTypedLinkFacetNamesInput): types.ListTypedLinkFacetNamesOutput, table
+    listTypedLinkFacetNames: function(Client, types.ListTypedLinkFacetNamesInput): Operation<types.ListTypedLinkFacetNamesOutput>
     -- Lists all policies from the root of the Directory to the object
     -- specified. If there are no policies present, an empty list is returned. If policies are
     -- present, and if some objects don't have the policies attached, it returns the ObjectIdentifier
     -- for such objects. If policies are present, it returns ObjectIdentifier, policyId, and
     -- policyType. Paths that don't lead to the root from the target object are ignored. For more
     -- information, see Policies.
-    lookupPolicy: function(Client, types.LookupPolicyInput): types.LookupPolicyOutput, table
+    lookupPolicy: function(Client, types.LookupPolicyInput): Operation<types.LookupPolicyOutput>
     -- Publishes a development schema with a major version and a recommended minor version.
-    publishSchema: function(Client, types.PublishSchemaInput): types.PublishSchemaOutput, table
+    publishSchema: function(Client, types.PublishSchemaInput): Operation<types.PublishSchemaOutput>
     -- Allows a schema to be updated using JSON upload. Only available for development schemas. See JSON Schema Format for more information.
-    putSchemaFromJson: function(Client, types.PutSchemaFromJsonInput): types.PutSchemaFromJsonOutput, table
+    putSchemaFromJson: function(Client, types.PutSchemaFromJsonInput): Operation<types.PutSchemaFromJsonOutput>
     -- Removes the specified facet from the specified object.
-    removeFacetFromObject: function(Client, types.RemoveFacetFromObjectInput): types.RemoveFacetFromObjectOutput, table
+    removeFacetFromObject: function(Client, types.RemoveFacetFromObjectInput): Operation<types.RemoveFacetFromObjectOutput>
     -- An API operation for adding tags to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- An API operation for removing tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Does the following:
     -- Adds new Attributes, Rules, or ObjectTypes.
     -- Updates existing Attributes, Rules, or ObjectTypes.
     -- Deletes existing Attributes, Rules, or ObjectTypes.
-    updateFacet: function(Client, types.UpdateFacetInput): types.UpdateFacetOutput, table
+    updateFacet: function(Client, types.UpdateFacetInput): Operation<types.UpdateFacetOutput>
     -- Updates a given typed link’s attributes. Attributes to be updated must not contribute to the typed link’s identity, as defined by its IdentityAttributeOrder.
-    updateLinkAttributes: function(Client, types.UpdateLinkAttributesInput): types.UpdateLinkAttributesOutput, table
+    updateLinkAttributes: function(Client, types.UpdateLinkAttributesInput): Operation<types.UpdateLinkAttributesOutput>
     -- Updates a given object's attributes.
-    updateObjectAttributes: function(Client, types.UpdateObjectAttributesInput): types.UpdateObjectAttributesOutput, table
+    updateObjectAttributes: function(Client, types.UpdateObjectAttributesInput): Operation<types.UpdateObjectAttributesOutput>
     -- Updates the schema name with a new name. Only development schema names can be
     -- updated.
-    updateSchema: function(Client, types.UpdateSchemaInput): types.UpdateSchemaOutput, table
+    updateSchema: function(Client, types.UpdateSchemaInput): Operation<types.UpdateSchemaOutput>
     -- Updates a TypedLinkFacet. For more information, see Typed Links.
-    updateTypedLinkFacet: function(Client, types.UpdateTypedLinkFacetInput): types.UpdateTypedLinkFacetOutput, table
+    updateTypedLinkFacet: function(Client, types.UpdateTypedLinkFacetInput): Operation<types.UpdateTypedLinkFacetOutput>
     -- Upgrades a single directory in-place using the PublishedSchemaArn with schema updates found in MinorVersion. Backwards-compatible minor version upgrades are instantaneously available for readers on all objects in the directory. Note: This is a synchronous API call and upgrades only one schema on a given directory per call. To upgrade multiple directories from one schema, you would need to call this API on each directory.
-    upgradeAppliedSchema: function(Client, types.UpgradeAppliedSchemaInput): types.UpgradeAppliedSchemaOutput, table
+    upgradeAppliedSchema: function(Client, types.UpgradeAppliedSchemaInput): Operation<types.UpgradeAppliedSchemaOutput>
     -- Upgrades a published schema under a new minor version revision using the current contents of DevelopmentSchemaArn.
-    upgradePublishedSchema: function(Client, types.UpgradePublishedSchemaInput): types.UpgradePublishedSchemaOutput, table
+    upgradePublishedSchema: function(Client, types.UpgradePublishedSchemaInput): Operation<types.UpgradePublishedSchemaOutput>
 end
 
 local record M

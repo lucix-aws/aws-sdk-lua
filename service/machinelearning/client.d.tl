@@ -2,11 +2,15 @@
 
 local types = require("machinelearning.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds one or more tags to an object, up to a limit of 10. Each tag consists of a key
     -- and an optional value. If you add a tag using a key that is already associated with the ML object,
     -- AddTags updates the tag's value.
-    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    addTags: function(Client, types.AddTagsInput): Operation<types.AddTagsOutput>
     -- Generates predictions for a group of observations. The observations to process exist in one or more data files referenced
     -- by a DataSource. This operation creates a new BatchPrediction, and uses an MLModel and the data
     -- files referenced by the DataSource as information sources.
@@ -15,7 +19,7 @@ local record Client
     -- After the BatchPrediction completes, Amazon ML sets the status to COMPLETED.
     -- You can poll for status updates by using the GetBatchPrediction operation and checking the Status parameter of the result. After the COMPLETED status appears,
     -- the results are available in the location specified by the OutputUri parameter.
-    createBatchPrediction: function(Client, types.CreateBatchPredictionInput): types.CreateBatchPredictionOutput, table
+    createBatchPrediction: function(Client, types.CreateBatchPredictionInput): Operation<types.CreateBatchPredictionOutput>
     -- Creates a DataSource object from an Amazon Relational Database Service (Amazon RDS). A DataSource references data that can be used to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.
     -- CreateDataSourceFromRDS is an asynchronous operation. In response to CreateDataSourceFromRDS,
     -- Amazon Machine Learning (Amazon ML) immediately returns and sets the DataSource status to PENDING.
@@ -23,7 +27,7 @@ local record Client
     -- DataSource in the COMPLETED or PENDING state can
     -- be used only to perform >CreateMLModel>, CreateEvaluation, or CreateBatchPrediction operations.
     -- If Amazon ML cannot accept the input source, it sets the Status parameter to FAILED and includes an error message in the Message attribute of the GetDataSource operation response.
-    createDataSourceFromRDS: function(Client, types.CreateDataSourceFromRDSInput): types.CreateDataSourceFromRDSOutput, table
+    createDataSourceFromRDS: function(Client, types.CreateDataSourceFromRDSInput): Operation<types.CreateDataSourceFromRDSOutput>
     -- Creates a DataSource from a database hosted on an Amazon Redshift cluster. A
     -- DataSource references data that can be used to perform either CreateMLModel, CreateEvaluation, or CreateBatchPrediction
     -- operations.
@@ -49,7 +53,7 @@ local record Client
     -- GetDataSource for an existing datasource and copy the values to a
     -- CreateDataSource call. Change the settings that you want to change and
     -- make sure that all required fields have the appropriate values.
-    createDataSourceFromRedshift: function(Client, types.CreateDataSourceFromRedshiftInput): types.CreateDataSourceFromRedshiftOutput, table
+    createDataSourceFromRedshift: function(Client, types.CreateDataSourceFromRedshiftInput): Operation<types.CreateDataSourceFromRedshiftOutput>
     -- Creates a DataSource object. A DataSource references data that
     -- can be used to perform CreateMLModel, CreateEvaluation, or
     -- CreateBatchPrediction operations.
@@ -77,7 +81,7 @@ local record Client
     -- the variable be included or excluded from training? Will the variable be manipulated;
     -- for example, will it be combined with another variable or will it be split apart into
     -- word combinations? The recipe provides answers to these questions.
-    createDataSourceFromS3: function(Client, types.CreateDataSourceFromS3Input): types.CreateDataSourceFromS3Output, table
+    createDataSourceFromS3: function(Client, types.CreateDataSourceFromS3Input): Operation<types.CreateDataSourceFromS3Output>
     -- Creates a new Evaluation of an MLModel. An MLModel is evaluated on a set of observations associated to a DataSource. Like a DataSource
     -- for an MLModel, the DataSource for an Evaluation contains values for the Target Variable. The Evaluation compares the predicted result for each observation to the actual outcome and provides a
     -- summary so that you know how effective the MLModel functions on the test
@@ -86,7 +90,7 @@ local record Client
     -- returns and sets the evaluation status to PENDING. After the Evaluation is created and ready for use,
     -- Amazon ML sets the status to COMPLETED.
     -- You can use the GetEvaluation operation to check progress of the evaluation during the creation operation.
-    createEvaluation: function(Client, types.CreateEvaluationInput): types.CreateEvaluationOutput, table
+    createEvaluation: function(Client, types.CreateEvaluationInput): Operation<types.CreateEvaluationOutput>
     -- Creates a new MLModel using the DataSource and the recipe as
     -- information sources.
     -- An MLModel is nearly immutable. Users can update only the
@@ -103,71 +107,71 @@ local record Client
     -- which can be created by setting ComputeStatistics to true in
     -- CreateDataSourceFromRDS, CreateDataSourceFromS3, or
     -- CreateDataSourceFromRedshift operations.
-    createMLModel: function(Client, types.CreateMLModelInput): types.CreateMLModelOutput, table
+    createMLModel: function(Client, types.CreateMLModelInput): Operation<types.CreateMLModelOutput>
     -- Creates a real-time endpoint for the MLModel. The endpoint contains the URI of the MLModel; that is, the location to send real-time prediction requests for the specified MLModel.
-    createRealtimeEndpoint: function(Client, types.CreateRealtimeEndpointInput): types.CreateRealtimeEndpointOutput, table
+    createRealtimeEndpoint: function(Client, types.CreateRealtimeEndpointInput): Operation<types.CreateRealtimeEndpointOutput>
     -- Assigns the DELETED status to a BatchPrediction, rendering it unusable.
     -- After using the DeleteBatchPrediction operation, you can use the GetBatchPrediction
     -- operation to verify that the status of the BatchPrediction changed to DELETED.
     -- Caution: The result of the DeleteBatchPrediction operation is irreversible.
-    deleteBatchPrediction: function(Client, types.DeleteBatchPredictionInput): types.DeleteBatchPredictionOutput, table
+    deleteBatchPrediction: function(Client, types.DeleteBatchPredictionInput): Operation<types.DeleteBatchPredictionOutput>
     -- Assigns the DELETED status to a DataSource, rendering it unusable.
     -- After using the DeleteDataSource operation, you can use the GetDataSource operation to verify that the status of the DataSource changed to DELETED.
     -- Caution: The results of the DeleteDataSource operation are irreversible.
-    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): Operation<types.DeleteDataSourceOutput>
     -- Assigns the DELETED status to an Evaluation, rendering it unusable.
     -- After invoking the DeleteEvaluation operation, you can use the
     -- GetEvaluation operation to verify that the status of the Evaluation changed to DELETED.
     -- Caution: The results of the DeleteEvaluation operation are irreversible.
-    deleteEvaluation: function(Client, types.DeleteEvaluationInput): types.DeleteEvaluationOutput, table
+    deleteEvaluation: function(Client, types.DeleteEvaluationInput): Operation<types.DeleteEvaluationOutput>
     -- Assigns the DELETED status to an MLModel, rendering it unusable.
     -- After using the DeleteMLModel operation, you can use the
     -- GetMLModel operation to verify that the status of the MLModel changed to DELETED.
     -- Caution: The result of the DeleteMLModel operation is irreversible.
-    deleteMLModel: function(Client, types.DeleteMLModelInput): types.DeleteMLModelOutput, table
+    deleteMLModel: function(Client, types.DeleteMLModelInput): Operation<types.DeleteMLModelOutput>
     -- Deletes a real time endpoint of an MLModel.
-    deleteRealtimeEndpoint: function(Client, types.DeleteRealtimeEndpointInput): types.DeleteRealtimeEndpointOutput, table
+    deleteRealtimeEndpoint: function(Client, types.DeleteRealtimeEndpointInput): Operation<types.DeleteRealtimeEndpointOutput>
     -- Deletes the specified tags associated with an ML object. After this operation is complete, you can't recover deleted tags.
     -- If you specify a tag that doesn't exist, Amazon ML ignores it.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Returns a list of BatchPrediction operations that match the search criteria in the request.
-    describeBatchPredictions: function(Client, types.DescribeBatchPredictionsInput): types.DescribeBatchPredictionsOutput, table
+    describeBatchPredictions: function(Client, types.DescribeBatchPredictionsInput): Operation<types.DescribeBatchPredictionsOutput>
     -- Returns a list of DataSource that match the search criteria in the request.
-    describeDataSources: function(Client, types.DescribeDataSourcesInput): types.DescribeDataSourcesOutput, table
+    describeDataSources: function(Client, types.DescribeDataSourcesInput): Operation<types.DescribeDataSourcesOutput>
     -- Returns a list of DescribeEvaluations that match the search criteria in the request.
-    describeEvaluations: function(Client, types.DescribeEvaluationsInput): types.DescribeEvaluationsOutput, table
+    describeEvaluations: function(Client, types.DescribeEvaluationsInput): Operation<types.DescribeEvaluationsOutput>
     -- Returns a list of MLModel that match the search criteria in the request.
-    describeMLModels: function(Client, types.DescribeMLModelsInput): types.DescribeMLModelsOutput, table
+    describeMLModels: function(Client, types.DescribeMLModelsInput): Operation<types.DescribeMLModelsOutput>
     -- Describes one or more of the tags for your Amazon ML object.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Returns a BatchPrediction that includes detailed metadata, status, and data file information for a
     -- Batch Prediction request.
-    getBatchPrediction: function(Client, types.GetBatchPredictionInput): types.GetBatchPredictionOutput, table
+    getBatchPrediction: function(Client, types.GetBatchPredictionInput): Operation<types.GetBatchPredictionOutput>
     -- Returns a DataSource that includes metadata and data file information, as well as the current status of the DataSource.
     -- GetDataSource provides results in normal or verbose format. The verbose format
     -- adds the schema description and the list of files pointed to by the DataSource to the normal format.
-    getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    getDataSource: function(Client, types.GetDataSourceInput): Operation<types.GetDataSourceOutput>
     -- Returns an Evaluation that includes metadata as well as the current status of the Evaluation.
-    getEvaluation: function(Client, types.GetEvaluationInput): types.GetEvaluationOutput, table
+    getEvaluation: function(Client, types.GetEvaluationInput): Operation<types.GetEvaluationOutput>
     -- Returns an MLModel that includes detailed metadata, data source information, and the current status of the MLModel.
     -- GetMLModel provides results in normal or verbose format.
-    getMLModel: function(Client, types.GetMLModelInput): types.GetMLModelOutput, table
+    getMLModel: function(Client, types.GetMLModelInput): Operation<types.GetMLModelOutput>
     -- Generates a prediction for the observation using the specified ML Model.
     -- Note: Not all response parameters will be populated. Whether a
     -- response parameter is populated depends on the type of model requested.
-    predict: function(Client, types.PredictInput): types.PredictOutput, table
+    predict: function(Client, types.PredictInput): Operation<types.PredictOutput>
     -- Updates the BatchPredictionName of a BatchPrediction.
     -- You can use the GetBatchPrediction operation to view the contents of the updated data element.
-    updateBatchPrediction: function(Client, types.UpdateBatchPredictionInput): types.UpdateBatchPredictionOutput, table
+    updateBatchPrediction: function(Client, types.UpdateBatchPredictionInput): Operation<types.UpdateBatchPredictionOutput>
     -- Updates the DataSourceName of a DataSource.
     -- You can use the GetDataSource operation to view the contents of the updated data element.
-    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): Operation<types.UpdateDataSourceOutput>
     -- Updates the EvaluationName of an Evaluation.
     -- You can use the GetEvaluation operation to view the contents of the updated data element.
-    updateEvaluation: function(Client, types.UpdateEvaluationInput): types.UpdateEvaluationOutput, table
+    updateEvaluation: function(Client, types.UpdateEvaluationInput): Operation<types.UpdateEvaluationOutput>
     -- Updates the MLModelName and the ScoreThreshold of an MLModel.
     -- You can use the GetMLModel operation to view the contents of the updated data element.
-    updateMLModel: function(Client, types.UpdateMLModelInput): types.UpdateMLModelOutput, table
+    updateMLModel: function(Client, types.UpdateMLModelInput): Operation<types.UpdateMLModelOutput>
 end
 
 local record M

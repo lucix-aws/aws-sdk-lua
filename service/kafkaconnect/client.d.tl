@@ -2,43 +2,47 @@
 
 local types = require("kafkaconnect.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a connector using the specified properties.
-    createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    createConnector: function(Client, types.CreateConnectorInput): Operation<types.CreateConnectorOutput>
     -- Creates a custom plugin using the specified properties.
-    createCustomPlugin: function(Client, types.CreateCustomPluginInput): types.CreateCustomPluginOutput, table
+    createCustomPlugin: function(Client, types.CreateCustomPluginInput): Operation<types.CreateCustomPluginOutput>
     -- Creates a worker configuration using the specified properties.
-    createWorkerConfiguration: function(Client, types.CreateWorkerConfigurationInput): types.CreateWorkerConfigurationOutput, table
+    createWorkerConfiguration: function(Client, types.CreateWorkerConfigurationInput): Operation<types.CreateWorkerConfigurationOutput>
     -- Deletes the specified connector.
-    deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    deleteConnector: function(Client, types.DeleteConnectorInput): Operation<types.DeleteConnectorOutput>
     -- Deletes a custom plugin.
-    deleteCustomPlugin: function(Client, types.DeleteCustomPluginInput): types.DeleteCustomPluginOutput, table
+    deleteCustomPlugin: function(Client, types.DeleteCustomPluginInput): Operation<types.DeleteCustomPluginOutput>
     -- Deletes the specified worker configuration.
-    deleteWorkerConfiguration: function(Client, types.DeleteWorkerConfigurationInput): types.DeleteWorkerConfigurationOutput, table
+    deleteWorkerConfiguration: function(Client, types.DeleteWorkerConfigurationInput): Operation<types.DeleteWorkerConfigurationOutput>
     -- Returns summary information about the connector.
-    describeConnector: function(Client, types.DescribeConnectorInput): types.DescribeConnectorOutput, table
+    describeConnector: function(Client, types.DescribeConnectorInput): Operation<types.DescribeConnectorOutput>
     -- Returns information about the specified connector's operations.
-    describeConnectorOperation: function(Client, types.DescribeConnectorOperationInput): types.DescribeConnectorOperationOutput, table
+    describeConnectorOperation: function(Client, types.DescribeConnectorOperationInput): Operation<types.DescribeConnectorOperationOutput>
     -- A summary description of the custom plugin.
-    describeCustomPlugin: function(Client, types.DescribeCustomPluginInput): types.DescribeCustomPluginOutput, table
+    describeCustomPlugin: function(Client, types.DescribeCustomPluginInput): Operation<types.DescribeCustomPluginOutput>
     -- Returns information about a worker configuration.
-    describeWorkerConfiguration: function(Client, types.DescribeWorkerConfigurationInput): types.DescribeWorkerConfigurationOutput, table
+    describeWorkerConfiguration: function(Client, types.DescribeWorkerConfigurationInput): Operation<types.DescribeWorkerConfigurationOutput>
     -- Lists information about a connector's operation(s).
-    listConnectorOperations: function(Client, types.ListConnectorOperationsInput): types.ListConnectorOperationsOutput, table
+    listConnectorOperations: function(Client, types.ListConnectorOperationsInput): Operation<types.ListConnectorOperationsOutput>
     -- Returns a list of all the connectors in this account and Region. The list is limited to connectors whose name starts with the specified prefix. The response also includes a description of each of the listed connectors.
-    listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    listConnectors: function(Client, types.ListConnectorsInput): Operation<types.ListConnectorsOutput>
     -- Returns a list of all of the custom plugins in this account and Region.
-    listCustomPlugins: function(Client, types.ListCustomPluginsInput): types.ListCustomPluginsOutput, table
+    listCustomPlugins: function(Client, types.ListCustomPluginsInput): Operation<types.ListCustomPluginsOutput>
     -- Lists all the tags attached to the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of all of the worker configurations in this account and Region.
-    listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput): types.ListWorkerConfigurationsOutput, table
+    listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput): Operation<types.ListWorkerConfigurationsOutput>
     -- Attaches tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the specified connector. For request body, specify only one parameter: either capacity or connectorConfiguration.
-    updateConnector: function(Client, types.UpdateConnectorInput): types.UpdateConnectorOutput, table
+    updateConnector: function(Client, types.UpdateConnectorInput): Operation<types.UpdateConnectorOutput>
 end
 
 local record M

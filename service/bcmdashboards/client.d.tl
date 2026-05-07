@@ -2,37 +2,41 @@
 
 local types = require("bcmdashboards.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new dashboard that can contain multiple widgets displaying cost and usage data. You can add custom widgets or use predefined widgets, arranging them in your preferred layout.
-    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createDashboard: function(Client, types.CreateDashboardInput): Operation<types.CreateDashboardOutput>
     -- Creates a new scheduled report for a dashboard. A scheduled report automatically generates and delivers dashboard snapshots on a recurring schedule. Reports are delivered within 15 minutes of the scheduled delivery time.
-    createScheduledReport: function(Client, types.CreateScheduledReportInput): types.CreateScheduledReportOutput, table
+    createScheduledReport: function(Client, types.CreateScheduledReportInput): Operation<types.CreateScheduledReportOutput>
     -- Deletes a specified dashboard. This action cannot be undone.
-    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): Operation<types.DeleteDashboardOutput>
     -- Deletes a specified scheduled report. This is an irreversible operation.
-    deleteScheduledReport: function(Client, types.DeleteScheduledReportInput): types.DeleteScheduledReportOutput, table
+    deleteScheduledReport: function(Client, types.DeleteScheduledReportInput): Operation<types.DeleteScheduledReportOutput>
     -- Triggers an immediate execution of a scheduled report, outside of its regular schedule. The scheduled report must be in ENABLED state. Calling this operation on a DISABLED scheduled report returns a ValidationException. If a clientToken is provided, the service uses it for idempotency. Requests with the same client token will not trigger a new execution within the same minute.
-    executeScheduledReport: function(Client, types.ExecuteScheduledReportInput): types.ExecuteScheduledReportOutput, table
+    executeScheduledReport: function(Client, types.ExecuteScheduledReportInput): Operation<types.ExecuteScheduledReportOutput>
     -- Retrieves the configuration and metadata of a specified dashboard, including its widgets and layout settings.
-    getDashboard: function(Client, types.GetDashboardInput): types.GetDashboardOutput, table
+    getDashboard: function(Client, types.GetDashboardInput): Operation<types.GetDashboardOutput>
     -- Retrieves the resource-based policy attached to a dashboard, showing sharing configurations and permissions.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Retrieves the configuration and metadata of a specified scheduled report.
-    getScheduledReport: function(Client, types.GetScheduledReportInput): types.GetScheduledReportOutput, table
+    getScheduledReport: function(Client, types.GetScheduledReportInput): Operation<types.GetScheduledReportOutput>
     -- Returns a list of all dashboards in your account.
-    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): Operation<types.ListDashboardsOutput>
     -- Returns a list of scheduled reports in your account.
-    listScheduledReports: function(Client, types.ListScheduledReportsInput): types.ListScheduledReportsOutput, table
+    listScheduledReports: function(Client, types.ListScheduledReportsInput): Operation<types.ListScheduledReportsOutput>
     -- Returns a list of all tags associated with a specified dashboard resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds or updates tags for a specified dashboard resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes specified tags from a dashboard resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing dashboard's properties, including its name, description, and widget configurations.
-    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): Operation<types.UpdateDashboardOutput>
     -- Updates an existing scheduled report's properties, including its name, description, schedule configuration, and widget settings. Only the parameters included in the request are updated; all other properties remain unchanged.
-    updateScheduledReport: function(Client, types.UpdateScheduledReportInput): types.UpdateScheduledReportOutput, table
+    updateScheduledReport: function(Client, types.UpdateScheduledReportInput): Operation<types.UpdateScheduledReportOutput>
 end
 
 local record M

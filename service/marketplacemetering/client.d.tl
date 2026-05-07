@@ -2,6 +2,10 @@
 
 local types = require("marketplacemetering.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Amazon Web Services Marketplace is introducing Concurrent Agreements, enabling buyers to make multiple purchases per Amazon Web Services account. Starting June 1, 2026, new SaaS products must use CustomerAWSAccountId (instead of CustomerIdentifier), LicenseArn (instead of ProductCode) to support this feature. Existing integrations will continue to work. Review the new integration for Concurrent Agreements here.
     -- To post metering records for customers, SaaS applications call
@@ -26,7 +30,7 @@ local record Client
     -- For Amazon Web Services Regions that support BatchMeterUsage, see BatchMeterUsage Region support.
     -- For an example of BatchMeterUsage, see BatchMeterUsage code example in the Amazon Web Services Marketplace Seller
     -- Guide.
-    batchMeterUsage: function(Client, types.BatchMeterUsageInput): types.BatchMeterUsageOutput, table
+    batchMeterUsage: function(Client, types.BatchMeterUsageInput): Operation<types.BatchMeterUsageOutput>
     -- As a seller, your software hosted in the buyer's Amazon Web Services account uses this API action to emit metering records directly to Amazon Web Services Marketplace.
     -- You must use the following buyer Amazon Web Services account credentials to sign the API request.
     -- For Amazon EC2 deployments, your software must use the
@@ -56,7 +60,7 @@ local record Client
     -- If you submit records more than six hours after events occur, the records won't be accepted. The timestamp in your request determines when an event is recorded.
     -- You can optionally include multiple usage allocations, to provide customers with usage data split into buckets by tags that you define or allow the customer to define.
     -- For Amazon Web Services Regions that support MeterUsage, see MeterUsage Region support for Amazon EC2 and MeterUsage Region support for Amazon ECS and Amazon EKS.
-    meterUsage: function(Client, types.MeterUsageInput): types.MeterUsageOutput, table
+    meterUsage: function(Client, types.MeterUsageInput): Operation<types.MeterUsageOutput>
     -- Paid container software products sold through Amazon Web Services Marketplace must integrate with the Amazon Web Services Marketplace
     -- Metering Service and call the RegisterUsage operation for software
     -- entitlement and metering. Free and BYOL products for Amazon ECS or Amazon EKS aren't required to call RegisterUsage, but you may choose to
@@ -93,7 +97,7 @@ local record Client
     -- current month forward until the container ends. RegisterUsage is
     -- for metering paid hourly container products.
     -- For Amazon Web Services Regions that support RegisterUsage, see RegisterUsage Region support.
-    registerUsage: function(Client, types.RegisterUsageInput): types.RegisterUsageOutput, table
+    registerUsage: function(Client, types.RegisterUsageInput): Operation<types.RegisterUsageOutput>
     -- ResolveCustomer is called by a SaaS application during the registration
     -- process. When a buyer visits your website during the registration process, the buyer
     -- submits a registration token through their browser. The registration token is resolved
@@ -107,7 +111,7 @@ local record Client
     -- action. For more information, see Actions, resources, and condition keys for Amazon Web Services Marketplace Metering Service in
     -- the Service Authorization Reference.
     -- For Amazon Web Services Regions that support ResolveCustomer, see ResolveCustomer Region support.
-    resolveCustomer: function(Client, types.ResolveCustomerInput): types.ResolveCustomerOutput, table
+    resolveCustomer: function(Client, types.ResolveCustomerInput): Operation<types.ResolveCustomerOutput>
 end
 
 local record M

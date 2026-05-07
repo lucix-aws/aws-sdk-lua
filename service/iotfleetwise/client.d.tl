@@ -2,21 +2,25 @@
 
 local types = require("iotfleetwise.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds, or associates, a vehicle with a fleet.
-    associateVehicleFleet: function(Client, types.AssociateVehicleFleetInput): types.AssociateVehicleFleetOutput, table
+    associateVehicleFleet: function(Client, types.AssociateVehicleFleetInput): Operation<types.AssociateVehicleFleetOutput>
     -- Creates a group, or batch, of vehicles.
     -- You must specify a decoder manifest and a vehicle model (model manifest) for each
     -- vehicle.
     -- For more information, see Create multiple
     -- vehicles (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide.
-    batchCreateVehicle: function(Client, types.BatchCreateVehicleInput): types.BatchCreateVehicleOutput, table
+    batchCreateVehicle: function(Client, types.BatchCreateVehicleInput): Operation<types.BatchCreateVehicleOutput>
     -- Updates a group, or batch, of vehicles.
     -- You must specify a decoder manifest and a vehicle model (model manifest) for each
     -- vehicle.
     -- For more information, see Update multiple
     -- vehicles (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide.
-    batchUpdateVehicle: function(Client, types.BatchUpdateVehicleInput): types.BatchUpdateVehicleOutput, table
+    batchUpdateVehicle: function(Client, types.BatchUpdateVehicleInput): Operation<types.BatchUpdateVehicleOutput>
     -- Creates an orchestration of data collection rules. The Amazon Web Services IoT FleetWise Edge Agent software
     -- running in vehicles uses campaigns to decide how to collect and transfer data to the
     -- cloud. You create campaigns in the cloud. After you or your team approve campaigns,
@@ -24,30 +28,30 @@ local record Client
     -- For more information, see Collect and transfer data
     -- with campaigns in the Amazon Web Services IoT FleetWise Developer Guide.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    createCampaign: function(Client, types.CreateCampaignInput): Operation<types.CreateCampaignOutput>
     -- Creates the decoder manifest associated with a model manifest. To create a decoder
     -- manifest, the following must be true:
     -- Every signal decoder has a unique name.
     -- Each signal decoder is associated with a network interface.
     -- Each network interface has a unique ID.
     -- The signal decoders are specified in the model manifest.
-    createDecoderManifest: function(Client, types.CreateDecoderManifestInput): types.CreateDecoderManifestOutput, table
+    createDecoderManifest: function(Client, types.CreateDecoderManifestInput): Operation<types.CreateDecoderManifestOutput>
     -- Creates a fleet that represents a group of vehicles.
     -- You must create both a signal catalog and vehicles before you can create a fleet.
     -- For more information, see Fleets in the
     -- Amazon Web Services IoT FleetWise Developer Guide.
-    createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    createFleet: function(Client, types.CreateFleetInput): Operation<types.CreateFleetOutput>
     -- Creates a vehicle model (model manifest) that specifies signals (attributes,
     -- branches, sensors, and actuators).
     -- For more information, see Vehicle models
     -- in the Amazon Web Services IoT FleetWise Developer Guide.
-    createModelManifest: function(Client, types.CreateModelManifestInput): types.CreateModelManifestOutput, table
+    createModelManifest: function(Client, types.CreateModelManifestInput): Operation<types.CreateModelManifestOutput>
     -- Creates a collection of standardized signals that can be reused to create vehicle
     -- models.
-    createSignalCatalog: function(Client, types.CreateSignalCatalogInput): types.CreateSignalCatalogOutput, table
+    createSignalCatalog: function(Client, types.CreateSignalCatalogInput): Operation<types.CreateSignalCatalogOutput>
     -- Creates a state template. State templates contain state properties, which are signals that belong to a signal catalog that is synchronized between the Amazon Web Services IoT FleetWise Edge and the Amazon Web Services Cloud.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    createStateTemplate: function(Client, types.CreateStateTemplateInput): types.CreateStateTemplateOutput, table
+    createStateTemplate: function(Client, types.CreateStateTemplateInput): Operation<types.CreateStateTemplateOutput>
     -- Creates a vehicle, which is an instance of a vehicle model (model manifest). Vehicles
     -- created from the same vehicle model consist of the same signals inherited from the
     -- vehicle model.
@@ -55,113 +59,113 @@ local record Client
     -- vehicle and collect data from your thing.
     -- For more information, see Create a vehicle
     -- (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide.
-    createVehicle: function(Client, types.CreateVehicleInput): types.CreateVehicleOutput, table
+    createVehicle: function(Client, types.CreateVehicleInput): Operation<types.CreateVehicleOutput>
     -- Deletes a data collection campaign. Deleting a campaign suspends all data collection
     -- and removes it from any vehicles.
-    deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    deleteCampaign: function(Client, types.DeleteCampaignInput): Operation<types.DeleteCampaignOutput>
     -- Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles
     -- associated with it.
-    deleteDecoderManifest: function(Client, types.DeleteDecoderManifestInput): types.DeleteDecoderManifestOutput, table
+    deleteDecoderManifest: function(Client, types.DeleteDecoderManifestInput): Operation<types.DeleteDecoderManifestOutput>
     -- Deletes a fleet. Before you delete a fleet, all vehicles must be
     -- dissociated from the fleet. For more information, see Delete a fleet (AWS
     -- CLI) in the Amazon Web Services IoT FleetWise Developer Guide.
-    deleteFleet: function(Client, types.DeleteFleetInput): types.DeleteFleetOutput, table
+    deleteFleet: function(Client, types.DeleteFleetInput): Operation<types.DeleteFleetOutput>
     -- Deletes a vehicle model (model manifest).
-    deleteModelManifest: function(Client, types.DeleteModelManifestInput): types.DeleteModelManifestOutput, table
+    deleteModelManifest: function(Client, types.DeleteModelManifestInput): Operation<types.DeleteModelManifestOutput>
     -- Deletes a signal catalog.
-    deleteSignalCatalog: function(Client, types.DeleteSignalCatalogInput): types.DeleteSignalCatalogOutput, table
+    deleteSignalCatalog: function(Client, types.DeleteSignalCatalogInput): Operation<types.DeleteSignalCatalogOutput>
     -- Deletes a state template.
-    deleteStateTemplate: function(Client, types.DeleteStateTemplateInput): types.DeleteStateTemplateOutput, table
+    deleteStateTemplate: function(Client, types.DeleteStateTemplateInput): Operation<types.DeleteStateTemplateOutput>
     -- Deletes a vehicle and removes it from any campaigns.
-    deleteVehicle: function(Client, types.DeleteVehicleInput): types.DeleteVehicleOutput, table
+    deleteVehicle: function(Client, types.DeleteVehicleInput): Operation<types.DeleteVehicleOutput>
     -- Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a
     -- fleet doesn't delete the vehicle.
-    disassociateVehicleFleet: function(Client, types.DisassociateVehicleFleetInput): types.DisassociateVehicleFleetOutput, table
+    disassociateVehicleFleet: function(Client, types.DisassociateVehicleFleetInput): Operation<types.DisassociateVehicleFleetOutput>
     -- Retrieves information about a campaign.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    getCampaign: function(Client, types.GetCampaignInput): types.GetCampaignOutput, table
+    getCampaign: function(Client, types.GetCampaignInput): Operation<types.GetCampaignOutput>
     -- Retrieves information about a created decoder manifest.
-    getDecoderManifest: function(Client, types.GetDecoderManifestInput): types.GetDecoderManifestOutput, table
+    getDecoderManifest: function(Client, types.GetDecoderManifestInput): Operation<types.GetDecoderManifestOutput>
     -- Retrieves the encryption configuration for resources and data in Amazon Web Services IoT FleetWise.
-    getEncryptionConfiguration: function(Client, types.GetEncryptionConfigurationInput): types.GetEncryptionConfigurationOutput, table
+    getEncryptionConfiguration: function(Client, types.GetEncryptionConfigurationInput): Operation<types.GetEncryptionConfigurationOutput>
     -- Retrieves information about a fleet.
-    getFleet: function(Client, types.GetFleetInput): types.GetFleetOutput, table
+    getFleet: function(Client, types.GetFleetInput): Operation<types.GetFleetOutput>
     -- Retrieves the logging options.
-    getLoggingOptions: function(Client, types.GetLoggingOptionsInput): types.GetLoggingOptionsOutput, table
+    getLoggingOptions: function(Client, types.GetLoggingOptionsInput): Operation<types.GetLoggingOptionsOutput>
     -- Retrieves information about a vehicle model (model manifest).
-    getModelManifest: function(Client, types.GetModelManifestInput): types.GetModelManifestOutput, table
+    getModelManifest: function(Client, types.GetModelManifestInput): Operation<types.GetModelManifestOutput>
     -- Retrieves information about the status of registering your Amazon Web Services account, IAM, and
     -- Amazon Timestream resources so that Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services
     -- Cloud.
     -- For more information, including step-by-step procedures, see Setting up Amazon Web Services IoT FleetWise.
     -- This API operation doesn't require input parameters.
-    getRegisterAccountStatus: function(Client, types.GetRegisterAccountStatusInput): types.GetRegisterAccountStatusOutput, table
+    getRegisterAccountStatus: function(Client, types.GetRegisterAccountStatusInput): Operation<types.GetRegisterAccountStatusOutput>
     -- Retrieves information about a signal catalog.
-    getSignalCatalog: function(Client, types.GetSignalCatalogInput): types.GetSignalCatalogOutput, table
+    getSignalCatalog: function(Client, types.GetSignalCatalogInput): Operation<types.GetSignalCatalogOutput>
     -- Retrieves information about a state template.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    getStateTemplate: function(Client, types.GetStateTemplateInput): types.GetStateTemplateOutput, table
+    getStateTemplate: function(Client, types.GetStateTemplateInput): Operation<types.GetStateTemplateOutput>
     -- Retrieves information about a vehicle.
-    getVehicle: function(Client, types.GetVehicleInput): types.GetVehicleOutput, table
+    getVehicle: function(Client, types.GetVehicleInput): Operation<types.GetVehicleOutput>
     -- Retrieves information about the status of campaigns, decoder manifests, or state templates
     -- associated with a vehicle.
-    getVehicleStatus: function(Client, types.GetVehicleStatusInput): types.GetVehicleStatusOutput, table
+    getVehicleStatus: function(Client, types.GetVehicleStatusInput): Operation<types.GetVehicleStatusOutput>
     -- Creates a decoder manifest using your existing CAN DBC file from your local device.
     -- The CAN signal name must be unique and not repeated across CAN message definitions in a .dbc file.
-    importDecoderManifest: function(Client, types.ImportDecoderManifestInput): types.ImportDecoderManifestOutput, table
+    importDecoderManifest: function(Client, types.ImportDecoderManifestInput): Operation<types.ImportDecoderManifestOutput>
     -- Creates a signal catalog using your existing VSS formatted content from your local
     -- device.
-    importSignalCatalog: function(Client, types.ImportSignalCatalogInput): types.ImportSignalCatalogOutput, table
+    importSignalCatalog: function(Client, types.ImportSignalCatalogInput): Operation<types.ImportSignalCatalogOutput>
     -- Lists information about created campaigns.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listCampaigns: function(Client, types.ListCampaignsInput): types.ListCampaignsOutput, table
+    listCampaigns: function(Client, types.ListCampaignsInput): Operation<types.ListCampaignsOutput>
     -- Lists the network interfaces specified in a decoder manifest.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listDecoderManifestNetworkInterfaces: function(Client, types.ListDecoderManifestNetworkInterfacesInput): types.ListDecoderManifestNetworkInterfacesOutput, table
+    listDecoderManifestNetworkInterfaces: function(Client, types.ListDecoderManifestNetworkInterfacesInput): Operation<types.ListDecoderManifestNetworkInterfacesOutput>
     -- Lists decoder manifests.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listDecoderManifests: function(Client, types.ListDecoderManifestsInput): types.ListDecoderManifestsOutput, table
+    listDecoderManifests: function(Client, types.ListDecoderManifestsInput): Operation<types.ListDecoderManifestsOutput>
     -- A list of information about signal decoders specified in a decoder manifest.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listDecoderManifestSignals: function(Client, types.ListDecoderManifestSignalsInput): types.ListDecoderManifestSignalsOutput, table
+    listDecoderManifestSignals: function(Client, types.ListDecoderManifestSignalsInput): Operation<types.ListDecoderManifestSignalsOutput>
     -- Retrieves information for each created fleet in an Amazon Web Services account.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listFleets: function(Client, types.ListFleetsInput): types.ListFleetsOutput, table
+    listFleets: function(Client, types.ListFleetsInput): Operation<types.ListFleetsOutput>
     -- Retrieves a list of IDs for all fleets that the vehicle is associated with.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listFleetsForVehicle: function(Client, types.ListFleetsForVehicleInput): types.ListFleetsForVehicleOutput, table
+    listFleetsForVehicle: function(Client, types.ListFleetsForVehicleInput): Operation<types.ListFleetsForVehicleOutput>
     -- Lists information about nodes specified in a vehicle model (model manifest).
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listModelManifestNodes: function(Client, types.ListModelManifestNodesInput): types.ListModelManifestNodesOutput, table
+    listModelManifestNodes: function(Client, types.ListModelManifestNodesInput): Operation<types.ListModelManifestNodesOutput>
     -- Retrieves a list of vehicle models (model manifests).
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listModelManifests: function(Client, types.ListModelManifestsInput): types.ListModelManifestsOutput, table
+    listModelManifests: function(Client, types.ListModelManifestsInput): Operation<types.ListModelManifestsOutput>
     -- Lists of information about the signals (nodes) specified in a signal catalog.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listSignalCatalogNodes: function(Client, types.ListSignalCatalogNodesInput): types.ListSignalCatalogNodesOutput, table
+    listSignalCatalogNodes: function(Client, types.ListSignalCatalogNodesInput): Operation<types.ListSignalCatalogNodesOutput>
     -- Lists all the created signal catalogs in an Amazon Web Services account.
     -- You can use to list information about
     -- each signal (node) specified in a signal catalog.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listSignalCatalogs: function(Client, types.ListSignalCatalogsInput): types.ListSignalCatalogsOutput, table
+    listSignalCatalogs: function(Client, types.ListSignalCatalogsInput): Operation<types.ListSignalCatalogsOutput>
     -- Lists information about created state templates.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    listStateTemplates: function(Client, types.ListStateTemplatesInput): types.ListStateTemplatesOutput, table
+    listStateTemplates: function(Client, types.ListStateTemplatesInput): Operation<types.ListStateTemplatesOutput>
     -- Lists the tags (metadata) you have assigned to the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves a list of summaries of created vehicles.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listVehicles: function(Client, types.ListVehiclesInput): types.ListVehiclesOutput, table
+    listVehicles: function(Client, types.ListVehiclesInput): Operation<types.ListVehiclesOutput>
     -- Retrieves a list of summaries of all vehicles associated with a fleet.
     -- This API operation uses pagination. Specify the nextToken parameter in the request to return more results.
-    listVehiclesInFleet: function(Client, types.ListVehiclesInFleetInput): types.ListVehiclesInFleetOutput, table
+    listVehiclesInFleet: function(Client, types.ListVehiclesInFleetInput): Operation<types.ListVehiclesInFleetOutput>
     -- Creates or updates the encryption configuration. Amazon Web Services IoT FleetWise can encrypt your data and
     -- resources using an Amazon Web Services managed key. Or, you can use a KMS key that you own and
     -- manage. For more information, see Data
     -- encryption in the Amazon Web Services IoT FleetWise Developer Guide.
-    putEncryptionConfiguration: function(Client, types.PutEncryptionConfigurationInput): types.PutEncryptionConfigurationOutput, table
+    putEncryptionConfiguration: function(Client, types.PutEncryptionConfigurationInput): Operation<types.PutEncryptionConfigurationOutput>
     -- Creates or updates the logging option.
-    putLoggingOptions: function(Client, types.PutLoggingOptionsInput): types.PutLoggingOptionsOutput, table
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput): Operation<types.PutLoggingOptionsOutput>
     -- This API operation contains deprecated parameters. Register your account again
     -- without the Timestream resources parameter so that Amazon Web Services IoT FleetWise can remove the Timestream
     -- metadata stored. You should then pass the data destination into the CreateCampaign API operation.
@@ -181,31 +185,31 @@ local record Client
     -- takes the form of either an IAM user or an IAM role, both
     -- with credentials. A single Amazon Web Services account can, and typically does,
     -- contain many users and roles.
-    registerAccount: function(Client, types.RegisterAccountInput): types.RegisterAccountOutput, table
+    registerAccount: function(Client, types.RegisterAccountInput): Operation<types.RegisterAccountOutput>
     -- Adds to or modifies the tags of the given resource. Tags are metadata which can be
     -- used to manage a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the given tags (metadata) from the resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a campaign.
-    updateCampaign: function(Client, types.UpdateCampaignInput): types.UpdateCampaignOutput, table
+    updateCampaign: function(Client, types.UpdateCampaignInput): Operation<types.UpdateCampaignOutput>
     -- Updates a decoder manifest.
     -- A decoder manifest can only be updated when the status is DRAFT. Only
     -- ACTIVE decoder manifests can be associated with vehicles.
-    updateDecoderManifest: function(Client, types.UpdateDecoderManifestInput): types.UpdateDecoderManifestOutput, table
+    updateDecoderManifest: function(Client, types.UpdateDecoderManifestInput): Operation<types.UpdateDecoderManifestOutput>
     -- Updates the description of an existing fleet.
-    updateFleet: function(Client, types.UpdateFleetInput): types.UpdateFleetOutput, table
+    updateFleet: function(Client, types.UpdateFleetInput): Operation<types.UpdateFleetOutput>
     -- Updates a vehicle model (model manifest). If created vehicles are associated with a
     -- vehicle model, it can't be updated.
-    updateModelManifest: function(Client, types.UpdateModelManifestInput): types.UpdateModelManifestOutput, table
+    updateModelManifest: function(Client, types.UpdateModelManifestInput): Operation<types.UpdateModelManifestOutput>
     -- Updates a signal catalog.
-    updateSignalCatalog: function(Client, types.UpdateSignalCatalogInput): types.UpdateSignalCatalogOutput, table
+    updateSignalCatalog: function(Client, types.UpdateSignalCatalogInput): Operation<types.UpdateSignalCatalogOutput>
     -- Updates a state template.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    updateStateTemplate: function(Client, types.UpdateStateTemplateInput): types.UpdateStateTemplateOutput, table
+    updateStateTemplate: function(Client, types.UpdateStateTemplateInput): Operation<types.UpdateStateTemplateOutput>
     -- Updates a vehicle.
     -- Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide.
-    updateVehicle: function(Client, types.UpdateVehicleInput): types.UpdateVehicleOutput, table
+    updateVehicle: function(Client, types.UpdateVehicleInput): Operation<types.UpdateVehicleOutput>
 end
 
 local record M

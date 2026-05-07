@@ -2,13 +2,17 @@
 
 local types = require("eksauth.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- The Amazon EKS Auth API and the AssumeRoleForPodIdentity action are only used
     -- by the EKS Pod Identity Agent.
     -- We recommend that applications use the Amazon Web Services SDKs to connect to Amazon Web Services services; if
     -- credentials from an EKS Pod Identity association are available in the pod, the latest versions of the
     -- SDKs use them automatically.
-    assumeRoleForPodIdentity: function(Client, types.AssumeRoleForPodIdentityInput): types.AssumeRoleForPodIdentityOutput, table
+    assumeRoleForPodIdentity: function(Client, types.AssumeRoleForPodIdentityInput): Operation<types.AssumeRoleForPodIdentityOutput>
 end
 
 local record M

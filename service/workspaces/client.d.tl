@@ -2,25 +2,29 @@
 
 local types = require("workspaces.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts the account link invitation.
     -- There's currently no unlinking capability after you accept the account linking invitation.
-    acceptAccountLinkInvitation: function(Client, types.AcceptAccountLinkInvitationInput): types.AcceptAccountLinkInvitationOutput, table
+    acceptAccountLinkInvitation: function(Client, types.AcceptAccountLinkInvitationInput): Operation<types.AcceptAccountLinkInvitationOutput>
     -- Associates the specified connection alias with the specified directory to enable
     -- cross-Region redirection. For more information, see Cross-Region
     -- Redirection for Amazon WorkSpaces.
     -- Before performing this operation, call
     -- DescribeConnectionAliases to make sure that the current state of the
     -- connection alias is CREATED.
-    associateConnectionAlias: function(Client, types.AssociateConnectionAliasInput): types.AssociateConnectionAliasOutput, table
+    associateConnectionAlias: function(Client, types.AssociateConnectionAliasInput): Operation<types.AssociateConnectionAliasOutput>
     -- Associates the specified IP access control group with the specified directory.
-    associateIpGroups: function(Client, types.AssociateIpGroupsInput): types.AssociateIpGroupsOutput, table
+    associateIpGroups: function(Client, types.AssociateIpGroupsInput): Operation<types.AssociateIpGroupsOutput>
     -- Associates the specified application to the specified WorkSpace.
-    associateWorkspaceApplication: function(Client, types.AssociateWorkspaceApplicationInput): types.AssociateWorkspaceApplicationOutput, table
+    associateWorkspaceApplication: function(Client, types.AssociateWorkspaceApplicationInput): Operation<types.AssociateWorkspaceApplicationOutput>
     -- Adds one or more rules to the specified IP access control group.
     -- This action gives users permission to access their WorkSpaces from the CIDR address
     -- ranges specified in the rules.
-    authorizeIpRules: function(Client, types.AuthorizeIpRulesInput): types.AuthorizeIpRulesOutput, table
+    authorizeIpRules: function(Client, types.AuthorizeIpRulesInput): Operation<types.AuthorizeIpRulesOutput>
     -- Copies the specified image from the specified Region to the current Region. For more
     -- information about copying images, see Copy a Custom WorkSpaces
     -- Image.
@@ -29,17 +33,17 @@ local record Client
     -- Before copying a shared image, be sure to verify that it has been shared from the
     -- correct Amazon Web Services account. To determine if an image has been shared and to see
     -- the ID of the Amazon Web Services account that owns an image, use the DescribeWorkSpaceImages and DescribeWorkspaceImagePermissions API operations.
-    copyWorkspaceImage: function(Client, types.CopyWorkspaceImageInput): types.CopyWorkspaceImageOutput, table
+    copyWorkspaceImage: function(Client, types.CopyWorkspaceImageInput): Operation<types.CopyWorkspaceImageOutput>
     -- Creates the account link invitation.
-    createAccountLinkInvitation: function(Client, types.CreateAccountLinkInvitationInput): types.CreateAccountLinkInvitationOutput, table
+    createAccountLinkInvitation: function(Client, types.CreateAccountLinkInvitationInput): Operation<types.CreateAccountLinkInvitationOutput>
     -- Creates a client-add-in for Amazon Connect within a directory. You can create only
     -- one Amazon Connect client add-in within a directory.
     -- This client add-in allows WorkSpaces users to seamlessly connect to Amazon Connect.
-    createConnectClientAddIn: function(Client, types.CreateConnectClientAddInInput): types.CreateConnectClientAddInOutput, table
+    createConnectClientAddIn: function(Client, types.CreateConnectClientAddInInput): Operation<types.CreateConnectClientAddInOutput>
     -- Creates the specified connection alias for use with cross-Region redirection. For more
     -- information, see Cross-Region
     -- Redirection for Amazon WorkSpaces.
-    createConnectionAlias: function(Client, types.CreateConnectionAliasInput): types.CreateConnectionAliasOutput, table
+    createConnectionAlias: function(Client, types.CreateConnectionAliasInput): Operation<types.CreateConnectionAliasOutput>
     -- Creates an IP access control group.
     -- An IP access control group provides you with the ability to control the IP addresses
     -- from which users are allowed to access their WorkSpaces. To specify the CIDR address
@@ -49,11 +53,11 @@ local record Client
     -- associate an IP access control group with your directory, the default group is used. The
     -- default group includes a default rule that allows users to access their WorkSpaces from
     -- anywhere. You cannot modify the default IP access control group for your directory.
-    createIpGroup: function(Client, types.CreateIpGroupInput): types.CreateIpGroupOutput, table
+    createIpGroup: function(Client, types.CreateIpGroupInput): Operation<types.CreateIpGroupOutput>
     -- Creates a standby WorkSpace in a secondary Region.
-    createStandbyWorkspaces: function(Client, types.CreateStandbyWorkspacesInput): types.CreateStandbyWorkspacesOutput, table
+    createStandbyWorkspaces: function(Client, types.CreateStandbyWorkspacesInput): Operation<types.CreateStandbyWorkspacesOutput>
     -- Creates the specified tags for the specified WorkSpaces resource.
-    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createTags: function(Client, types.CreateTagsInput): Operation<types.CreateTagsOutput>
     -- Creates a new updated WorkSpace image based on the specified source image. The new
     -- updated WorkSpace image has the latest drivers and other updates required by the
     -- Amazon WorkSpaces components.
@@ -66,12 +70,12 @@ local record Client
     -- update process.
     -- The source WorkSpace image is not deleted. You can delete the source image
     -- after you've verified your new updated image and created a new bundle.
-    createUpdatedWorkspaceImage: function(Client, types.CreateUpdatedWorkspaceImageInput): types.CreateUpdatedWorkspaceImageOutput, table
+    createUpdatedWorkspaceImage: function(Client, types.CreateUpdatedWorkspaceImageInput): Operation<types.CreateUpdatedWorkspaceImageOutput>
     -- Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see
     -- Create a Custom WorkSpaces Image and Bundle.
-    createWorkspaceBundle: function(Client, types.CreateWorkspaceBundleInput): types.CreateWorkspaceBundleOutput, table
+    createWorkspaceBundle: function(Client, types.CreateWorkspaceBundleInput): Operation<types.CreateWorkspaceBundleOutput>
     -- Creates a new WorkSpace image from an existing WorkSpace.
-    createWorkspaceImage: function(Client, types.CreateWorkspaceImageInput): types.CreateWorkspaceImageOutput, table
+    createWorkspaceImage: function(Client, types.CreateWorkspaceImageInput): Operation<types.CreateWorkspaceImageOutput>
     -- Creates one or more WorkSpaces.
     -- This operation is asynchronous and returns before the WorkSpaces are created.
     -- The MANUAL running mode value is only supported by Amazon WorkSpaces
@@ -85,21 +89,21 @@ local record Client
     -- Review your running mode to ensure you are using one that is optimal for your needs and budget.
     -- For more information on switching running modes, see
     -- Can I switch between hourly and monthly billing?
-    createWorkspaces: function(Client, types.CreateWorkspacesInput): types.CreateWorkspacesOutput, table
+    createWorkspaces: function(Client, types.CreateWorkspacesInput): Operation<types.CreateWorkspacesOutput>
     -- Creates a pool of WorkSpaces.
-    createWorkspacesPool: function(Client, types.CreateWorkspacesPoolInput): types.CreateWorkspacesPoolOutput, table
+    createWorkspacesPool: function(Client, types.CreateWorkspacesPoolInput): Operation<types.CreateWorkspacesPoolOutput>
     -- Deletes the account link invitation.
-    deleteAccountLinkInvitation: function(Client, types.DeleteAccountLinkInvitationInput): types.DeleteAccountLinkInvitationOutput, table
+    deleteAccountLinkInvitation: function(Client, types.DeleteAccountLinkInvitationInput): Operation<types.DeleteAccountLinkInvitationOutput>
     -- Deletes customized client branding. Client branding allows you to customize your
     -- WorkSpace's client login portal. You can tailor your login portal company logo, the support
     -- email address, support link, link to reset password, and a custom message for users trying
     -- to sign in.
     -- After you delete your customized client branding, your login portal reverts to the
     -- default client branding.
-    deleteClientBranding: function(Client, types.DeleteClientBrandingInput): types.DeleteClientBrandingOutput, table
+    deleteClientBranding: function(Client, types.DeleteClientBrandingInput): Operation<types.DeleteClientBrandingOutput>
     -- Deletes a client-add-in for Amazon Connect that is configured within a
     -- directory.
-    deleteConnectClientAddIn: function(Client, types.DeleteConnectClientAddInInput): types.DeleteConnectClientAddInOutput, table
+    deleteConnectClientAddIn: function(Client, types.DeleteConnectClientAddInInput): Operation<types.DeleteConnectClientAddInOutput>
     -- Deletes the specified connection alias. For more information, see
     -- Cross-Region Redirection for Amazon WorkSpaces.
     -- If you will no longer be using a fully qualified domain name
@@ -111,21 +115,21 @@ local record Client
     -- you must unshare the connection alias from the account it has been shared with. You can
     -- delete a connection alias only after it is no longer shared with any accounts or
     -- associated with any directories.
-    deleteConnectionAlias: function(Client, types.DeleteConnectionAliasInput): types.DeleteConnectionAliasOutput, table
+    deleteConnectionAlias: function(Client, types.DeleteConnectionAliasInput): Operation<types.DeleteConnectionAliasOutput>
     -- Deletes the specified IP access control group.
     -- You cannot delete an IP access control group that is associated with a directory.
-    deleteIpGroup: function(Client, types.DeleteIpGroupInput): types.DeleteIpGroupOutput, table
+    deleteIpGroup: function(Client, types.DeleteIpGroupInput): Operation<types.DeleteIpGroupOutput>
     -- Deletes the specified tags from the specified WorkSpaces resource.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Deletes the specified WorkSpace bundle. For more information about deleting WorkSpace bundles, see
     -- Delete a Custom WorkSpaces Bundle or Image.
-    deleteWorkspaceBundle: function(Client, types.DeleteWorkspaceBundleInput): types.DeleteWorkspaceBundleOutput, table
+    deleteWorkspaceBundle: function(Client, types.DeleteWorkspaceBundleInput): Operation<types.DeleteWorkspaceBundleOutput>
     -- Deletes the specified image from your account. To delete an image, you must first delete
     -- any bundles that are associated with the image and unshare the image if it is shared with
     -- other accounts.
-    deleteWorkspaceImage: function(Client, types.DeleteWorkspaceImageInput): types.DeleteWorkspaceImageOutput, table
+    deleteWorkspaceImage: function(Client, types.DeleteWorkspaceImageInput): Operation<types.DeleteWorkspaceImageOutput>
     -- Deploys associated applications to the specified WorkSpace
-    deployWorkspaceApplications: function(Client, types.DeployWorkspaceApplicationsInput): types.DeployWorkspaceApplicationsOutput, table
+    deployWorkspaceApplications: function(Client, types.DeployWorkspaceApplicationsInput): Operation<types.DeployWorkspaceApplicationsOutput>
     -- Deregisters the specified directory. This operation is asynchronous and returns before
     -- the WorkSpace directory is deregistered. If any WorkSpaces are registered to this
     -- directory, you must remove them before you can deregister the directory.
@@ -138,71 +142,71 @@ local record Client
     -- Directory for Your WorkSpaces. If you delete your Simple AD or AD Connector
     -- directory, you can always create a new one when you want to start using WorkSpaces
     -- again.
-    deregisterWorkspaceDirectory: function(Client, types.DeregisterWorkspaceDirectoryInput): types.DeregisterWorkspaceDirectoryOutput, table
+    deregisterWorkspaceDirectory: function(Client, types.DeregisterWorkspaceDirectoryInput): Operation<types.DeregisterWorkspaceDirectoryOutput>
     -- Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for
     -- the specified account.
-    describeAccount: function(Client, types.DescribeAccountInput): types.DescribeAccountOutput, table
+    describeAccount: function(Client, types.DescribeAccountInput): Operation<types.DescribeAccountOutput>
     -- Retrieves a list that describes modifications to the configuration of Bring Your Own
     -- License (BYOL) for the specified account.
-    describeAccountModifications: function(Client, types.DescribeAccountModificationsInput): types.DescribeAccountModificationsOutput, table
+    describeAccountModifications: function(Client, types.DescribeAccountModificationsInput): Operation<types.DescribeAccountModificationsOutput>
     -- Describes the associations between the application and the specified associated resources.
-    describeApplicationAssociations: function(Client, types.DescribeApplicationAssociationsInput): types.DescribeApplicationAssociationsOutput, table
+    describeApplicationAssociations: function(Client, types.DescribeApplicationAssociationsInput): Operation<types.DescribeApplicationAssociationsOutput>
     -- Describes the specified applications by filtering based on their compute types, license availability, operating systems, and owners.
-    describeApplications: function(Client, types.DescribeApplicationsInput): types.DescribeApplicationsOutput, table
+    describeApplications: function(Client, types.DescribeApplicationsInput): Operation<types.DescribeApplicationsOutput>
     -- Describes the associations between the applications and the specified bundle.
-    describeBundleAssociations: function(Client, types.DescribeBundleAssociationsInput): types.DescribeBundleAssociationsOutput, table
+    describeBundleAssociations: function(Client, types.DescribeBundleAssociationsInput): Operation<types.DescribeBundleAssociationsOutput>
     -- Describes the specified client branding. Client branding allows you to customize the log
     -- in page of various device types for your users. You can add your company logo, the support
     -- email address, support link, link to reset password, and a custom message for users trying
     -- to sign in.
     -- Only device types that have branding information configured will be shown in the
     -- response.
-    describeClientBranding: function(Client, types.DescribeClientBrandingInput): types.DescribeClientBrandingOutput, table
+    describeClientBranding: function(Client, types.DescribeClientBrandingInput): Operation<types.DescribeClientBrandingOutput>
     -- Retrieves a list that describes one or more specified Amazon WorkSpaces clients.
-    describeClientProperties: function(Client, types.DescribeClientPropertiesInput): types.DescribeClientPropertiesOutput, table
+    describeClientProperties: function(Client, types.DescribeClientPropertiesInput): Operation<types.DescribeClientPropertiesOutput>
     -- Retrieves a list of Amazon Connect client add-ins that have been created.
-    describeConnectClientAddIns: function(Client, types.DescribeConnectClientAddInsInput): types.DescribeConnectClientAddInsOutput, table
+    describeConnectClientAddIns: function(Client, types.DescribeConnectClientAddInsInput): Operation<types.DescribeConnectClientAddInsOutput>
     -- Retrieves a list that describes the connection aliases used for cross-Region
     -- redirection. For more information, see Cross-Region
     -- Redirection for Amazon WorkSpaces.
-    describeConnectionAliases: function(Client, types.DescribeConnectionAliasesInput): types.DescribeConnectionAliasesOutput, table
+    describeConnectionAliases: function(Client, types.DescribeConnectionAliasesInput): Operation<types.DescribeConnectionAliasesOutput>
     -- Describes the permissions that the owner of a connection alias has granted to another
     -- Amazon Web Services account for the specified connection alias. For more information, see
     -- Cross-Region
     -- Redirection for Amazon WorkSpaces.
-    describeConnectionAliasPermissions: function(Client, types.DescribeConnectionAliasPermissionsInput): types.DescribeConnectionAliasPermissionsOutput, table
+    describeConnectionAliasPermissions: function(Client, types.DescribeConnectionAliasPermissionsInput): Operation<types.DescribeConnectionAliasPermissionsOutput>
     -- Retrieves information about a WorkSpace BYOL image being imported via ImportCustomWorkspaceImage.
-    describeCustomWorkspaceImageImport: function(Client, types.DescribeCustomWorkspaceImageImportInput): types.DescribeCustomWorkspaceImageImportOutput, table
+    describeCustomWorkspaceImageImport: function(Client, types.DescribeCustomWorkspaceImageImportInput): Operation<types.DescribeCustomWorkspaceImageImportOutput>
     -- Describes the associations between the applications and the specified image.
-    describeImageAssociations: function(Client, types.DescribeImageAssociationsInput): types.DescribeImageAssociationsOutput, table
+    describeImageAssociations: function(Client, types.DescribeImageAssociationsInput): Operation<types.DescribeImageAssociationsOutput>
     -- Describes one or more of your IP access control groups.
-    describeIpGroups: function(Client, types.DescribeIpGroupsInput): types.DescribeIpGroupsOutput, table
+    describeIpGroups: function(Client, types.DescribeIpGroupsInput): Operation<types.DescribeIpGroupsOutput>
     -- Describes the specified tags for the specified WorkSpaces resource.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Describes the associations betweens applications and the specified WorkSpace.
-    describeWorkspaceAssociations: function(Client, types.DescribeWorkspaceAssociationsInput): types.DescribeWorkspaceAssociationsOutput, table
+    describeWorkspaceAssociations: function(Client, types.DescribeWorkspaceAssociationsInput): Operation<types.DescribeWorkspaceAssociationsOutput>
     -- Retrieves a list that describes the available WorkSpace bundles.
     -- You can filter the results using either bundle ID or owner, but not both.
-    describeWorkspaceBundles: function(Client, types.DescribeWorkspaceBundlesInput): types.DescribeWorkspaceBundlesOutput, table
+    describeWorkspaceBundles: function(Client, types.DescribeWorkspaceBundlesInput): Operation<types.DescribeWorkspaceBundlesOutput>
     -- Describes the available directories that are registered with Amazon WorkSpaces.
-    describeWorkspaceDirectories: function(Client, types.DescribeWorkspaceDirectoriesInput): types.DescribeWorkspaceDirectoriesOutput, table
+    describeWorkspaceDirectories: function(Client, types.DescribeWorkspaceDirectoriesInput): Operation<types.DescribeWorkspaceDirectoriesOutput>
     -- Describes the permissions that the owner of an image has granted to other Amazon Web Services accounts for an image.
-    describeWorkspaceImagePermissions: function(Client, types.DescribeWorkspaceImagePermissionsInput): types.DescribeWorkspaceImagePermissionsOutput, table
+    describeWorkspaceImagePermissions: function(Client, types.DescribeWorkspaceImagePermissionsInput): Operation<types.DescribeWorkspaceImagePermissionsOutput>
     -- Retrieves a list that describes one or more specified images, if the image identifiers
     -- are provided. Otherwise, all images in the account are described.
-    describeWorkspaceImages: function(Client, types.DescribeWorkspaceImagesInput): types.DescribeWorkspaceImagesOutput, table
+    describeWorkspaceImages: function(Client, types.DescribeWorkspaceImagesInput): Operation<types.DescribeWorkspaceImagesOutput>
     -- Describes the specified WorkSpaces.
     -- You can filter the results by using the bundle identifier, directory identifier, or
     -- owner, but you can specify only one filter at a time.
-    describeWorkspaces: function(Client, types.DescribeWorkspacesInput): types.DescribeWorkspacesOutput, table
+    describeWorkspaces: function(Client, types.DescribeWorkspacesInput): Operation<types.DescribeWorkspacesOutput>
     -- Describes the connection status of the specified WorkSpaces.
-    describeWorkspacesConnectionStatus: function(Client, types.DescribeWorkspacesConnectionStatusInput): types.DescribeWorkspacesConnectionStatusOutput, table
+    describeWorkspacesConnectionStatus: function(Client, types.DescribeWorkspacesConnectionStatusInput): Operation<types.DescribeWorkspacesConnectionStatusOutput>
     -- Describes the snapshots for the specified WorkSpace.
-    describeWorkspaceSnapshots: function(Client, types.DescribeWorkspaceSnapshotsInput): types.DescribeWorkspaceSnapshotsOutput, table
+    describeWorkspaceSnapshots: function(Client, types.DescribeWorkspaceSnapshotsInput): Operation<types.DescribeWorkspaceSnapshotsOutput>
     -- Describes the specified WorkSpaces Pools.
-    describeWorkspacesPools: function(Client, types.DescribeWorkspacesPoolsInput): types.DescribeWorkspacesPoolsOutput, table
+    describeWorkspacesPools: function(Client, types.DescribeWorkspacesPoolsInput): Operation<types.DescribeWorkspacesPoolsOutput>
     -- Retrieves a list that describes the streaming sessions for a specified pool.
-    describeWorkspacesPoolSessions: function(Client, types.DescribeWorkspacesPoolSessionsInput): types.DescribeWorkspacesPoolSessionsOutput, table
+    describeWorkspacesPoolSessions: function(Client, types.DescribeWorkspacesPoolSessionsInput): Operation<types.DescribeWorkspacesPoolSessionsOutput>
     -- Disassociates a connection alias from a directory. Disassociating a connection alias
     -- disables cross-Region redirection between two directories in different Regions. For more
     -- information, see Cross-Region
@@ -210,13 +214,13 @@ local record Client
     -- Before performing this operation, call
     -- DescribeConnectionAliases to make sure that the current state of the
     -- connection alias is CREATED.
-    disassociateConnectionAlias: function(Client, types.DisassociateConnectionAliasInput): types.DisassociateConnectionAliasOutput, table
+    disassociateConnectionAlias: function(Client, types.DisassociateConnectionAliasInput): Operation<types.DisassociateConnectionAliasOutput>
     -- Disassociates the specified IP access control group from the specified directory.
-    disassociateIpGroups: function(Client, types.DisassociateIpGroupsInput): types.DisassociateIpGroupsOutput, table
+    disassociateIpGroups: function(Client, types.DisassociateIpGroupsInput): Operation<types.DisassociateIpGroupsOutput>
     -- Disassociates the specified application from a WorkSpace.
-    disassociateWorkspaceApplication: function(Client, types.DisassociateWorkspaceApplicationInput): types.DisassociateWorkspaceApplicationOutput, table
+    disassociateWorkspaceApplication: function(Client, types.DisassociateWorkspaceApplicationInput): Operation<types.DisassociateWorkspaceApplicationOutput>
     -- Retrieves account link information.
-    getAccountLink: function(Client, types.GetAccountLinkInput): types.GetAccountLinkOutput, table
+    getAccountLink: function(Client, types.GetAccountLinkInput): Operation<types.GetAccountLinkOutput>
     -- Imports client branding. Client branding allows you to customize your WorkSpace's client
     -- login portal. You can tailor your login portal company logo, the support email address,
     -- support link, link to reset password, and a custom message for users trying to sign
@@ -233,21 +237,21 @@ local record Client
     -- only one parameter for each platform type, but not both.
     -- Imported data can take up to a minute to appear in the WorkSpaces
     -- client.
-    importClientBranding: function(Client, types.ImportClientBrandingInput): types.ImportClientBrandingOutput, table
+    importClientBranding: function(Client, types.ImportClientBrandingInput): Operation<types.ImportClientBrandingOutput>
     -- Imports the specified Windows 10 or 11 Bring Your Own License (BYOL)
     -- image into Amazon WorkSpaces using EC2 Image Builder. The image must be an already licensed image that is
     -- in your Amazon Web Services account, and you must own the image. For more information about
     -- creating BYOL images, see Bring Your Own Windows
     -- Desktop Licenses.
-    importCustomWorkspaceImage: function(Client, types.ImportCustomWorkspaceImageInput): types.ImportCustomWorkspaceImageOutput, table
+    importCustomWorkspaceImage: function(Client, types.ImportCustomWorkspaceImageInput): Operation<types.ImportCustomWorkspaceImageOutput>
     -- Imports the specified Windows 10 or 11 Bring Your Own License (BYOL)
     -- image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is
     -- in your Amazon Web Services account, and you must own the image. For more information about
     -- creating BYOL images, see Bring Your Own Windows
     -- Desktop Licenses.
-    importWorkspaceImage: function(Client, types.ImportWorkspaceImageInput): types.ImportWorkspaceImageOutput, table
+    importWorkspaceImage: function(Client, types.ImportWorkspaceImageInput): Operation<types.ImportWorkspaceImageOutput>
     -- Lists all account links.
-    listAccountLinks: function(Client, types.ListAccountLinksInput): types.ListAccountLinksOutput, table
+    listAccountLinks: function(Client, types.ListAccountLinksInput): Operation<types.ListAccountLinksOutput>
     -- Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use
     -- for the network management interface when you enable Bring Your Own License (BYOL).
     -- This operation can be run only by Amazon Web Services accounts that are enabled for BYOL.
@@ -256,7 +260,7 @@ local record Client
     -- The management network interface is connected to a secure Amazon WorkSpaces management
     -- network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces
     -- clients, and to allow Amazon WorkSpaces to manage the WorkSpace.
-    listAvailableManagementCidrRanges: function(Client, types.ListAvailableManagementCidrRangesInput): types.ListAvailableManagementCidrRangesOutput, table
+    listAvailableManagementCidrRanges: function(Client, types.ListAvailableManagementCidrRangesInput): Operation<types.ListAvailableManagementCidrRangesOutput>
     -- Migrates a WorkSpace from one operating system or bundle type to another, while
     -- retaining the data on the user volume.
     -- The migration process recreates the WorkSpace by using a new root volume from the target
@@ -268,53 +272,53 @@ local record Client
     -- For available migration scenarios, details about what happens during migration, and best
     -- practices, see Migrate a
     -- WorkSpace.
-    migrateWorkspace: function(Client, types.MigrateWorkspaceInput): types.MigrateWorkspaceOutput, table
+    migrateWorkspace: function(Client, types.MigrateWorkspaceInput): Operation<types.MigrateWorkspaceOutput>
     -- Modifies the configuration of Bring Your Own License (BYOL) for the specified
     -- account.
-    modifyAccount: function(Client, types.ModifyAccountInput): types.ModifyAccountOutput, table
+    modifyAccount: function(Client, types.ModifyAccountInput): Operation<types.ModifyAccountOutput>
     -- Modifies the properties of the certificate-based authentication you want
     -- to use with your WorkSpaces.
-    modifyCertificateBasedAuthProperties: function(Client, types.ModifyCertificateBasedAuthPropertiesInput): types.ModifyCertificateBasedAuthPropertiesOutput, table
+    modifyCertificateBasedAuthProperties: function(Client, types.ModifyCertificateBasedAuthPropertiesInput): Operation<types.ModifyCertificateBasedAuthPropertiesOutput>
     -- Modifies the properties of the specified Amazon WorkSpaces clients.
-    modifyClientProperties: function(Client, types.ModifyClientPropertiesInput): types.ModifyClientPropertiesOutput, table
+    modifyClientProperties: function(Client, types.ModifyClientPropertiesInput): Operation<types.ModifyClientPropertiesOutput>
     -- Modifies the endpoint encryption mode that allows you to configure the specified
     -- directory between Standard TLS and FIPS 140-2 validated mode.
-    modifyEndpointEncryptionMode: function(Client, types.ModifyEndpointEncryptionModeInput): types.ModifyEndpointEncryptionModeOutput, table
+    modifyEndpointEncryptionMode: function(Client, types.ModifyEndpointEncryptionModeInput): Operation<types.ModifyEndpointEncryptionModeOutput>
     -- Modifies multiple properties related to SAML 2.0 authentication, including the enablement status,
     -- user access URL, and relay state parameter name that are used for configuring federation with an
     -- SAML 2.0 identity provider.
-    modifySamlProperties: function(Client, types.ModifySamlPropertiesInput): types.ModifySamlPropertiesOutput, table
+    modifySamlProperties: function(Client, types.ModifySamlPropertiesInput): Operation<types.ModifySamlPropertiesOutput>
     -- Modifies the self-service WorkSpace management capabilities for your users. For more
     -- information, see Enable Self-Service WorkSpace Management Capabilities for Your Users.
-    modifySelfservicePermissions: function(Client, types.ModifySelfservicePermissionsInput): types.ModifySelfservicePermissionsOutput, table
+    modifySelfservicePermissions: function(Client, types.ModifySelfservicePermissionsInput): Operation<types.ModifySelfservicePermissionsOutput>
     -- Modifies the specified streaming properties.
-    modifyStreamingProperties: function(Client, types.ModifyStreamingPropertiesInput): types.ModifyStreamingPropertiesOutput, table
+    modifyStreamingProperties: function(Client, types.ModifyStreamingPropertiesInput): Operation<types.ModifyStreamingPropertiesOutput>
     -- Specifies which devices and operating systems users can use to access their WorkSpaces.
     -- For more information, see
     -- Control Device Access.
-    modifyWorkspaceAccessProperties: function(Client, types.ModifyWorkspaceAccessPropertiesInput): types.ModifyWorkspaceAccessPropertiesOutput, table
+    modifyWorkspaceAccessProperties: function(Client, types.ModifyWorkspaceAccessPropertiesInput): Operation<types.ModifyWorkspaceAccessPropertiesOutput>
     -- Modify the default properties used to create WorkSpaces.
-    modifyWorkspaceCreationProperties: function(Client, types.ModifyWorkspaceCreationPropertiesInput): types.ModifyWorkspaceCreationPropertiesOutput, table
+    modifyWorkspaceCreationProperties: function(Client, types.ModifyWorkspaceCreationPropertiesInput): Operation<types.ModifyWorkspaceCreationPropertiesOutput>
     -- Modifies the specified WorkSpace properties. For important information about how to
     -- modify the size of the root and user volumes, see Modify a WorkSpace.
     -- The MANUAL running mode value is only supported by Amazon WorkSpaces
     -- Core. Contact your account team to be allow-listed to use this value. For more
     -- information, see Amazon WorkSpaces
     -- Core.
-    modifyWorkspaceProperties: function(Client, types.ModifyWorkspacePropertiesInput): types.ModifyWorkspacePropertiesOutput, table
+    modifyWorkspaceProperties: function(Client, types.ModifyWorkspacePropertiesInput): Operation<types.ModifyWorkspacePropertiesOutput>
     -- Sets the state of the specified WorkSpace.
     -- To maintain a WorkSpace without being interrupted, set the WorkSpace state to
     -- ADMIN_MAINTENANCE. WorkSpaces in this state do not respond to requests to
     -- reboot, stop, start, rebuild, or restore. An AutoStop WorkSpace in this state is not
     -- stopped. Users cannot log into a WorkSpace in the ADMIN_MAINTENANCE
     -- state.
-    modifyWorkspaceState: function(Client, types.ModifyWorkspaceStateInput): types.ModifyWorkspaceStateOutput, table
+    modifyWorkspaceState: function(Client, types.ModifyWorkspaceStateInput): Operation<types.ModifyWorkspaceStateOutput>
     -- Reboots the specified WorkSpaces.
     -- You cannot reboot a WorkSpace unless its state is AVAILABLE,
     -- UNHEALTHY, or REBOOTING. Reboot a WorkSpace in the REBOOTING
     -- state only if your WorkSpace has been stuck in the REBOOTING state for over 20 minutes.
     -- This operation is asynchronous and returns before the WorkSpaces have rebooted.
-    rebootWorkspaces: function(Client, types.RebootWorkspacesInput): types.RebootWorkspacesOutput, table
+    rebootWorkspaces: function(Client, types.RebootWorkspacesInput): Operation<types.RebootWorkspacesOutput>
     -- Rebuilds the specified WorkSpace.
     -- You cannot rebuild a WorkSpace unless its state is AVAILABLE,
     -- ERROR, UNHEALTHY, STOPPED, or
@@ -324,15 +328,15 @@ local record Client
     -- WorkSpace.
     -- This operation is asynchronous and returns before the WorkSpaces have been completely
     -- rebuilt.
-    rebuildWorkspaces: function(Client, types.RebuildWorkspacesInput): types.RebuildWorkspacesOutput, table
+    rebuildWorkspaces: function(Client, types.RebuildWorkspacesInput): Operation<types.RebuildWorkspacesOutput>
     -- Registers the specified directory. This operation is asynchronous and returns before the
     -- WorkSpace directory is registered. If this is the first time you are registering a
     -- directory, you will need to create the workspaces_DefaultRole role before you can register
     -- a directory. For more information, see
     -- Creating the workspaces_DefaultRole Role.
-    registerWorkspaceDirectory: function(Client, types.RegisterWorkspaceDirectoryInput): types.RegisterWorkspaceDirectoryOutput, table
+    registerWorkspaceDirectory: function(Client, types.RegisterWorkspaceDirectoryInput): Operation<types.RegisterWorkspaceDirectoryOutput>
     -- Rejects the account link invitation.
-    rejectAccountLinkInvitation: function(Client, types.RejectAccountLinkInvitationInput): types.RejectAccountLinkInvitationOutput, table
+    rejectAccountLinkInvitation: function(Client, types.RejectAccountLinkInvitationInput): Operation<types.RejectAccountLinkInvitationOutput>
     -- Restores the specified WorkSpace to its last known healthy state.
     -- You cannot restore a WorkSpace unless its state is AVAILABLE,
     -- ERROR, UNHEALTHY, or STOPPED.
@@ -341,26 +345,26 @@ local record Client
     -- WorkSpace.
     -- This operation is asynchronous and returns before the WorkSpace is completely
     -- restored.
-    restoreWorkspace: function(Client, types.RestoreWorkspaceInput): types.RestoreWorkspaceOutput, table
+    restoreWorkspace: function(Client, types.RestoreWorkspaceInput): Operation<types.RestoreWorkspaceOutput>
     -- Removes one or more rules from the specified IP access control group.
-    revokeIpRules: function(Client, types.RevokeIpRulesInput): types.RevokeIpRulesOutput, table
+    revokeIpRules: function(Client, types.RevokeIpRulesInput): Operation<types.RevokeIpRulesOutput>
     -- Starts the specified WorkSpaces.
     -- You cannot start a WorkSpace unless it has a running mode of AutoStop or
     -- Manual and a state of STOPPED.
-    startWorkspaces: function(Client, types.StartWorkspacesInput): types.StartWorkspacesOutput, table
+    startWorkspaces: function(Client, types.StartWorkspacesInput): Operation<types.StartWorkspacesOutput>
     -- Starts the specified pool.
     -- You cannot start a pool unless it has a running mode of
     -- AutoStop and a state of STOPPED.
-    startWorkspacesPool: function(Client, types.StartWorkspacesPoolInput): types.StartWorkspacesPoolOutput, table
+    startWorkspacesPool: function(Client, types.StartWorkspacesPoolInput): Operation<types.StartWorkspacesPoolOutput>
     -- Stops the specified WorkSpaces.
     -- You cannot stop a WorkSpace unless it has a running mode of AutoStop or
     -- Manual and a state of AVAILABLE, IMPAIRED,
     -- UNHEALTHY, or ERROR.
-    stopWorkspaces: function(Client, types.StopWorkspacesInput): types.StopWorkspacesOutput, table
+    stopWorkspaces: function(Client, types.StopWorkspacesInput): Operation<types.StopWorkspacesOutput>
     -- Stops the specified pool.
     -- You cannot stop a WorkSpace pool unless it has a running mode of AutoStop
     -- and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.
-    stopWorkspacesPool: function(Client, types.StopWorkspacesPoolInput): types.StopWorkspacesPoolOutput, table
+    stopWorkspacesPool: function(Client, types.StopWorkspacesPoolInput): Operation<types.StopWorkspacesPoolOutput>
     -- Terminates the specified WorkSpaces.
     -- Terminating a WorkSpace is a permanent action and cannot be undone. The user's data
     -- is destroyed. If you need to archive any user data, contact Amazon Web Services Support before
@@ -381,14 +385,14 @@ local record Client
     -- Directory for Your WorkSpaces. If you delete your Simple AD or AD Connector
     -- directory, you can always create a new one when you want to start using WorkSpaces
     -- again.
-    terminateWorkspaces: function(Client, types.TerminateWorkspacesInput): types.TerminateWorkspacesOutput, table
+    terminateWorkspaces: function(Client, types.TerminateWorkspacesInput): Operation<types.TerminateWorkspacesOutput>
     -- Terminates the specified pool.
-    terminateWorkspacesPool: function(Client, types.TerminateWorkspacesPoolInput): types.TerminateWorkspacesPoolOutput, table
+    terminateWorkspacesPool: function(Client, types.TerminateWorkspacesPoolInput): Operation<types.TerminateWorkspacesPoolOutput>
     -- Terminates the pool session.
-    terminateWorkspacesPoolSession: function(Client, types.TerminateWorkspacesPoolSessionInput): types.TerminateWorkspacesPoolSessionOutput, table
+    terminateWorkspacesPoolSession: function(Client, types.TerminateWorkspacesPoolSessionInput): Operation<types.TerminateWorkspacesPoolSessionOutput>
     -- Updates a Amazon Connect client add-in. Use this action to update the name and
     -- endpoint URL of a Amazon Connect client add-in.
-    updateConnectClientAddIn: function(Client, types.UpdateConnectClientAddInInput): types.UpdateConnectClientAddInOutput, table
+    updateConnectClientAddIn: function(Client, types.UpdateConnectClientAddInInput): Operation<types.UpdateConnectClientAddInOutput>
     -- Shares or unshares a connection alias with one account by specifying whether that
     -- account has permission to associate the connection alias with a directory. If the
     -- association permission is granted, the connection alias is shared with that account. If the
@@ -403,16 +407,16 @@ local record Client
     -- associated with. Then you must unshare the connection alias from the account it
     -- has been shared with. You can delete a connection alias only after it is no longer
     -- shared with any accounts or associated with any directories.
-    updateConnectionAliasPermission: function(Client, types.UpdateConnectionAliasPermissionInput): types.UpdateConnectionAliasPermissionOutput, table
+    updateConnectionAliasPermission: function(Client, types.UpdateConnectionAliasPermissionInput): Operation<types.UpdateConnectionAliasPermissionOutput>
     -- Replaces the current rules of the specified IP access control group with the specified
     -- rules.
-    updateRulesOfIpGroup: function(Client, types.UpdateRulesOfIpGroupInput): types.UpdateRulesOfIpGroupOutput, table
+    updateRulesOfIpGroup: function(Client, types.UpdateRulesOfIpGroupInput): Operation<types.UpdateRulesOfIpGroupOutput>
     -- Updates a WorkSpace bundle with a new image. For more information about updating WorkSpace bundles, see
     -- Update a Custom WorkSpaces Bundle.
     -- Existing WorkSpaces aren't automatically updated when you update the bundle that they're
     -- based on. To update existing WorkSpaces that are based on a bundle that you've updated, you
     -- must either rebuild the WorkSpaces or delete and recreate them.
-    updateWorkspaceBundle: function(Client, types.UpdateWorkspaceBundleInput): types.UpdateWorkspaceBundleOutput, table
+    updateWorkspaceBundle: function(Client, types.UpdateWorkspaceBundleInput): Operation<types.UpdateWorkspaceBundleOutput>
     -- Shares or unshares an image with one account in the same Amazon Web Services Region by
     -- specifying whether that account has permission to copy the image. If the copy image
     -- permission is granted, the image is shared with that account. If the copy image permission
@@ -428,9 +432,9 @@ local record Client
     -- Sharing Bring Your Own License (BYOL) images across Amazon Web Services accounts
     -- isn't supported at this time in Amazon Web Services GovCloud (US). To share BYOL images
     -- across accounts in Amazon Web Services GovCloud (US), contact Amazon Web Services Support.
-    updateWorkspaceImagePermission: function(Client, types.UpdateWorkspaceImagePermissionInput): types.UpdateWorkspaceImagePermissionOutput, table
+    updateWorkspaceImagePermission: function(Client, types.UpdateWorkspaceImagePermissionInput): Operation<types.UpdateWorkspaceImagePermissionOutput>
     -- Updates the specified pool.
-    updateWorkspacesPool: function(Client, types.UpdateWorkspacesPoolInput): types.UpdateWorkspacesPoolOutput, table
+    updateWorkspacesPool: function(Client, types.UpdateWorkspacesPoolInput): Operation<types.UpdateWorkspacesPoolOutput>
 end
 
 local record M

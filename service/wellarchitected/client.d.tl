@@ -2,6 +2,10 @@
 
 local types = require("wellarchitected.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associate a lens to a workload.
     -- Up to 10 lenses can be associated with a workload in a single API operation. A
@@ -10,9 +14,9 @@ local record Client
     -- By accessing and/or applying custom lenses created by another Amazon Web Services user or account,
     -- you acknowledge that custom lenses created by other users and shared with you are
     -- Third Party Content as defined in the Amazon Web Services Customer Agreement.
-    associateLenses: function(Client, types.AssociateLensesInput): types.AssociateLensesOutput, table
+    associateLenses: function(Client, types.AssociateLensesInput): Operation<types.AssociateLensesOutput>
     -- Associate a profile with a workload.
-    associateProfiles: function(Client, types.AssociateProfilesInput): types.AssociateProfilesOutput, table
+    associateProfiles: function(Client, types.AssociateProfilesInput): Operation<types.AssociateProfilesOutput>
     -- Create a lens share.
     -- The owner of a lens can share it with other Amazon Web Services accounts, users, an organization,
     -- and organizational units (OUs) in the same Amazon Web Services Region.
@@ -29,20 +33,20 @@ local record Client
     -- shared custom lenses even if you delete the custom lenses
     -- from your own Amazon Web Services account or terminate
     -- your Amazon Web Services account.
-    createLensShare: function(Client, types.CreateLensShareInput): types.CreateLensShareOutput, table
+    createLensShare: function(Client, types.CreateLensShareInput): Operation<types.CreateLensShareOutput>
     -- Create a new lens version.
     -- A lens can have up to 100 versions.
     -- Use this operation to publish a new lens version after you have imported a lens. The LensAlias
     -- is used to identify the lens to be published.
     -- The owner of a lens can share the lens with other
     -- Amazon Web Services accounts and users in the same Amazon Web Services Region. Only the owner of a lens can delete it.
-    createLensVersion: function(Client, types.CreateLensVersionInput): types.CreateLensVersionOutput, table
+    createLensVersion: function(Client, types.CreateLensVersionInput): Operation<types.CreateLensVersionOutput>
     -- Create a milestone for an existing workload.
-    createMilestone: function(Client, types.CreateMilestoneInput): types.CreateMilestoneOutput, table
+    createMilestone: function(Client, types.CreateMilestoneInput): Operation<types.CreateMilestoneOutput>
     -- Create a profile.
-    createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    createProfile: function(Client, types.CreateProfileInput): Operation<types.CreateProfileOutput>
     -- Create a profile share.
-    createProfileShare: function(Client, types.CreateProfileShareInput): types.CreateProfileShareOutput, table
+    createProfileShare: function(Client, types.CreateProfileShareInput): Operation<types.CreateProfileShareOutput>
     -- Create a review template.
     -- Disclaimer
     -- Do not include or gather personal identifiable information (PII) of end users or
@@ -51,7 +55,7 @@ local record Client
     -- you are responsible for: ensuring that the included PII is processed in accordance
     -- with applicable law, providing adequate privacy notices, and obtaining necessary
     -- consents for processing such data.
-    createReviewTemplate: function(Client, types.CreateReviewTemplateInput): types.CreateReviewTemplateOutput, table
+    createReviewTemplate: function(Client, types.CreateReviewTemplateInput): Operation<types.CreateReviewTemplateOutput>
     -- Create a review template share.
     -- The owner of a review template can share it with other Amazon Web Services accounts,
     -- users, an organization, and organizational units (OUs) in the same Amazon Web Services Region.
@@ -63,7 +67,7 @@ local record Client
     -- By sharing your review template with other Amazon Web Services accounts, you
     -- acknowledge that Amazon Web Services will make your review template available to
     -- those other accounts.
-    createTemplateShare: function(Client, types.CreateTemplateShareInput): types.CreateTemplateShareOutput, table
+    createTemplateShare: function(Client, types.CreateTemplateShareInput): Operation<types.CreateTemplateShareOutput>
     -- Create a new workload.
     -- The owner of a workload can share the workload with other Amazon Web Services accounts, users,
     -- an organization, and organizational units (OUs)
@@ -79,7 +83,7 @@ local record Client
     -- wellarchitected:GetReviewTemplateAnswer
     -- wellarchitected:ListReviewTemplateAnswers
     -- wellarchitected:GetReviewTemplateLensReview
-    createWorkload: function(Client, types.CreateWorkloadInput): types.CreateWorkloadOutput, table
+    createWorkload: function(Client, types.CreateWorkloadInput): Operation<types.CreateWorkloadOutput>
     -- Create a workload share.
     -- The owner of a workload can share it with other Amazon Web Services accounts and users in the same
     -- Amazon Web Services Region. Shared access to a workload is not removed until the workload invitation is
@@ -88,7 +92,7 @@ local record Client
     -- are granted access to the workload.
     -- For more information, see Sharing a workload in the
     -- Well-Architected Tool User Guide.
-    createWorkloadShare: function(Client, types.CreateWorkloadShareInput): types.CreateWorkloadShareOutput, table
+    createWorkloadShare: function(Client, types.CreateWorkloadShareInput): Operation<types.CreateWorkloadShareOutput>
     -- Delete an existing lens.
     -- Only the owner of a lens can delete it. After the lens is deleted, Amazon Web Services accounts and users
     -- that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads.
@@ -99,7 +103,7 @@ local record Client
     -- shared custom lenses even if you delete the custom lenses
     -- from your own Amazon Web Services account or terminate
     -- your Amazon Web Services account.
-    deleteLens: function(Client, types.DeleteLensInput): types.DeleteLensOutput, table
+    deleteLens: function(Client, types.DeleteLensInput): Operation<types.DeleteLensOutput>
     -- Delete a lens share.
     -- After the lens share is deleted, Amazon Web Services accounts, users, organizations,
     -- and organizational units (OUs)
@@ -111,7 +115,7 @@ local record Client
     -- shared custom lenses even if you delete the custom lenses
     -- from your own Amazon Web Services account or terminate
     -- your Amazon Web Services account.
-    deleteLensShare: function(Client, types.DeleteLensShareInput): types.DeleteLensShareOutput, table
+    deleteLensShare: function(Client, types.DeleteLensShareInput): Operation<types.DeleteLensShareOutput>
     -- Delete a profile.
     -- Disclaimer
     -- By sharing your profile with other Amazon Web Services accounts,
@@ -120,31 +124,31 @@ local record Client
     -- shared profile even if you delete the profile
     -- from your own Amazon Web Services account or terminate
     -- your Amazon Web Services account.
-    deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    deleteProfile: function(Client, types.DeleteProfileInput): Operation<types.DeleteProfileOutput>
     -- Delete a profile share.
-    deleteProfileShare: function(Client, types.DeleteProfileShareInput): types.DeleteProfileShareOutput, table
+    deleteProfileShare: function(Client, types.DeleteProfileShareInput): Operation<types.DeleteProfileShareOutput>
     -- Delete a review template.
     -- Only the owner of a review template can delete it.
     -- After the review template is deleted, Amazon Web Services accounts, users,
     -- organizations, and organizational units (OUs) that you shared the review template with
     -- will no longer be able to apply it to new workloads.
-    deleteReviewTemplate: function(Client, types.DeleteReviewTemplateInput): types.DeleteReviewTemplateOutput, table
+    deleteReviewTemplate: function(Client, types.DeleteReviewTemplateInput): Operation<types.DeleteReviewTemplateOutput>
     -- Delete a review template share.
     -- After the review template share is deleted, Amazon Web Services accounts, users,
     -- organizations, and organizational units (OUs) that you shared the review template with
     -- will no longer be able to apply it to new workloads.
-    deleteTemplateShare: function(Client, types.DeleteTemplateShareInput): types.DeleteTemplateShareOutput, table
+    deleteTemplateShare: function(Client, types.DeleteTemplateShareInput): Operation<types.DeleteTemplateShareOutput>
     -- Delete an existing workload.
-    deleteWorkload: function(Client, types.DeleteWorkloadInput): types.DeleteWorkloadOutput, table
+    deleteWorkload: function(Client, types.DeleteWorkloadInput): Operation<types.DeleteWorkloadOutput>
     -- Delete a workload share.
-    deleteWorkloadShare: function(Client, types.DeleteWorkloadShareInput): types.DeleteWorkloadShareOutput, table
+    deleteWorkloadShare: function(Client, types.DeleteWorkloadShareInput): Operation<types.DeleteWorkloadShareOutput>
     -- Disassociate a lens from a workload.
     -- Up to 10 lenses can be disassociated from a workload in a single API operation.
     -- The Amazon Web Services Well-Architected Framework lens (wellarchitected) cannot be
     -- removed from a workload.
-    disassociateLenses: function(Client, types.DisassociateLensesInput): types.DisassociateLensesOutput, table
+    disassociateLenses: function(Client, types.DisassociateLensesInput): Operation<types.DisassociateLensesOutput>
     -- Disassociate a profile from a workload.
-    disassociateProfiles: function(Client, types.DisassociateProfilesInput): types.DisassociateProfilesOutput, table
+    disassociateProfiles: function(Client, types.DisassociateProfilesInput): Operation<types.DisassociateProfilesOutput>
     -- Export an existing lens.
     -- Only the owner of a lens can export it. Lenses provided by Amazon Web Services (Amazon Web Services Official Content)
     -- cannot be exported.
@@ -157,36 +161,36 @@ local record Client
     -- PII you are responsible for: ensuring that the included PII is processed in accordance
     -- with applicable law, providing adequate privacy notices, and obtaining necessary
     -- consents for processing such data.
-    exportLens: function(Client, types.ExportLensInput): types.ExportLensOutput, table
+    exportLens: function(Client, types.ExportLensInput): Operation<types.ExportLensOutput>
     -- Get the answer to a specific question in a workload review.
-    getAnswer: function(Client, types.GetAnswerInput): types.GetAnswerOutput, table
+    getAnswer: function(Client, types.GetAnswerInput): Operation<types.GetAnswerOutput>
     -- Get a consolidated report of your workloads.
     -- You can optionally choose to include workloads that have been shared with you.
-    getConsolidatedReport: function(Client, types.GetConsolidatedReportInput): types.GetConsolidatedReportOutput, table
+    getConsolidatedReport: function(Client, types.GetConsolidatedReportInput): Operation<types.GetConsolidatedReportOutput>
     -- Global settings for all workloads.
-    getGlobalSettings: function(Client, types.GetGlobalSettingsInput): types.GetGlobalSettingsOutput, table
+    getGlobalSettings: function(Client, types.GetGlobalSettingsInput): Operation<types.GetGlobalSettingsOutput>
     -- Get an existing lens.
-    getLens: function(Client, types.GetLensInput): types.GetLensOutput, table
+    getLens: function(Client, types.GetLensInput): Operation<types.GetLensOutput>
     -- Get lens review.
-    getLensReview: function(Client, types.GetLensReviewInput): types.GetLensReviewOutput, table
+    getLensReview: function(Client, types.GetLensReviewInput): Operation<types.GetLensReviewOutput>
     -- Get lens review report.
-    getLensReviewReport: function(Client, types.GetLensReviewReportInput): types.GetLensReviewReportOutput, table
+    getLensReviewReport: function(Client, types.GetLensReviewReportInput): Operation<types.GetLensReviewReportOutput>
     -- Get lens version differences.
-    getLensVersionDifference: function(Client, types.GetLensVersionDifferenceInput): types.GetLensVersionDifferenceOutput, table
+    getLensVersionDifference: function(Client, types.GetLensVersionDifferenceInput): Operation<types.GetLensVersionDifferenceOutput>
     -- Get a milestone for an existing workload.
-    getMilestone: function(Client, types.GetMilestoneInput): types.GetMilestoneOutput, table
+    getMilestone: function(Client, types.GetMilestoneInput): Operation<types.GetMilestoneOutput>
     -- Get profile information.
-    getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    getProfile: function(Client, types.GetProfileInput): Operation<types.GetProfileOutput>
     -- Get profile template.
-    getProfileTemplate: function(Client, types.GetProfileTemplateInput): types.GetProfileTemplateOutput, table
+    getProfileTemplate: function(Client, types.GetProfileTemplateInput): Operation<types.GetProfileTemplateOutput>
     -- Get review template.
-    getReviewTemplate: function(Client, types.GetReviewTemplateInput): types.GetReviewTemplateOutput, table
+    getReviewTemplate: function(Client, types.GetReviewTemplateInput): Operation<types.GetReviewTemplateOutput>
     -- Get review template answer.
-    getReviewTemplateAnswer: function(Client, types.GetReviewTemplateAnswerInput): types.GetReviewTemplateAnswerOutput, table
+    getReviewTemplateAnswer: function(Client, types.GetReviewTemplateAnswerInput): Operation<types.GetReviewTemplateAnswerOutput>
     -- Get a lens review associated with a review template.
-    getReviewTemplateLensReview: function(Client, types.GetReviewTemplateLensReviewInput): types.GetReviewTemplateLensReviewOutput, table
+    getReviewTemplateLensReview: function(Client, types.GetReviewTemplateLensReviewInput): Operation<types.GetReviewTemplateLensReviewOutput>
     -- Get an existing workload.
-    getWorkload: function(Client, types.GetWorkloadInput): types.GetWorkloadOutput, table
+    getWorkload: function(Client, types.GetWorkloadInput): Operation<types.GetWorkloadOutput>
     -- Import a new custom lens or update an existing custom lens.
     -- To update an existing custom lens, specify its ARN as the LensAlias. If
     -- no ARN is specified, a new custom lens is created.
@@ -203,86 +207,86 @@ local record Client
     -- PII you are responsible for: ensuring that the included PII is processed in accordance
     -- with applicable law, providing adequate privacy notices, and obtaining necessary
     -- consents for processing such data.
-    importLens: function(Client, types.ImportLensInput): types.ImportLensOutput, table
+    importLens: function(Client, types.ImportLensInput): Operation<types.ImportLensOutput>
     -- List of answers for a particular workload and lens.
-    listAnswers: function(Client, types.ListAnswersInput): types.ListAnswersOutput, table
+    listAnswers: function(Client, types.ListAnswersInput): Operation<types.ListAnswersOutput>
     -- List of Trusted Advisor check details by account related to the workload.
-    listCheckDetails: function(Client, types.ListCheckDetailsInput): types.ListCheckDetailsOutput, table
+    listCheckDetails: function(Client, types.ListCheckDetailsInput): Operation<types.ListCheckDetailsOutput>
     -- List of Trusted Advisor checks summarized for all accounts related to the workload.
-    listCheckSummaries: function(Client, types.ListCheckSummariesInput): types.ListCheckSummariesOutput, table
+    listCheckSummaries: function(Client, types.ListCheckSummariesInput): Operation<types.ListCheckSummariesOutput>
     -- List the available lenses.
-    listLenses: function(Client, types.ListLensesInput): types.ListLensesOutput, table
+    listLenses: function(Client, types.ListLensesInput): Operation<types.ListLensesOutput>
     -- List the improvements of a particular lens review.
-    listLensReviewImprovements: function(Client, types.ListLensReviewImprovementsInput): types.ListLensReviewImprovementsOutput, table
+    listLensReviewImprovements: function(Client, types.ListLensReviewImprovementsInput): Operation<types.ListLensReviewImprovementsOutput>
     -- List lens reviews for a particular workload.
-    listLensReviews: function(Client, types.ListLensReviewsInput): types.ListLensReviewsOutput, table
+    listLensReviews: function(Client, types.ListLensReviewsInput): Operation<types.ListLensReviewsOutput>
     -- List the lens shares associated with the lens.
-    listLensShares: function(Client, types.ListLensSharesInput): types.ListLensSharesOutput, table
+    listLensShares: function(Client, types.ListLensSharesInput): Operation<types.ListLensSharesOutput>
     -- List all milestones for an existing workload.
-    listMilestones: function(Client, types.ListMilestonesInput): types.ListMilestonesOutput, table
+    listMilestones: function(Client, types.ListMilestonesInput): Operation<types.ListMilestonesOutput>
     -- List lens notifications.
-    listNotifications: function(Client, types.ListNotificationsInput): types.ListNotificationsOutput, table
+    listNotifications: function(Client, types.ListNotificationsInput): Operation<types.ListNotificationsOutput>
     -- List profile notifications.
-    listProfileNotifications: function(Client, types.ListProfileNotificationsInput): types.ListProfileNotificationsOutput, table
+    listProfileNotifications: function(Client, types.ListProfileNotificationsInput): Operation<types.ListProfileNotificationsOutput>
     -- List profiles.
-    listProfiles: function(Client, types.ListProfilesInput): types.ListProfilesOutput, table
+    listProfiles: function(Client, types.ListProfilesInput): Operation<types.ListProfilesOutput>
     -- List profile shares.
-    listProfileShares: function(Client, types.ListProfileSharesInput): types.ListProfileSharesOutput, table
+    listProfileShares: function(Client, types.ListProfileSharesInput): Operation<types.ListProfileSharesOutput>
     -- List the answers of a review template.
-    listReviewTemplateAnswers: function(Client, types.ListReviewTemplateAnswersInput): types.ListReviewTemplateAnswersOutput, table
+    listReviewTemplateAnswers: function(Client, types.ListReviewTemplateAnswersInput): Operation<types.ListReviewTemplateAnswersOutput>
     -- List review templates.
-    listReviewTemplates: function(Client, types.ListReviewTemplatesInput): types.ListReviewTemplatesOutput, table
+    listReviewTemplates: function(Client, types.ListReviewTemplatesInput): Operation<types.ListReviewTemplatesOutput>
     -- List the share invitations.
     -- WorkloadNamePrefix, LensNamePrefix,
     -- ProfileNamePrefix, and TemplateNamePrefix are mutually
     -- exclusive. Use the parameter that matches your ShareResourceType.
-    listShareInvitations: function(Client, types.ListShareInvitationsInput): types.ListShareInvitationsOutput, table
+    listShareInvitations: function(Client, types.ListShareInvitationsInput): Operation<types.ListShareInvitationsOutput>
     -- List the tags for a resource.
     -- The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- List review template shares.
-    listTemplateShares: function(Client, types.ListTemplateSharesInput): types.ListTemplateSharesOutput, table
+    listTemplateShares: function(Client, types.ListTemplateSharesInput): Operation<types.ListTemplateSharesOutput>
     -- Paginated list of workloads.
-    listWorkloads: function(Client, types.ListWorkloadsInput): types.ListWorkloadsOutput, table
+    listWorkloads: function(Client, types.ListWorkloadsInput): Operation<types.ListWorkloadsOutput>
     -- List the workload shares associated with the workload.
-    listWorkloadShares: function(Client, types.ListWorkloadSharesInput): types.ListWorkloadSharesOutput, table
+    listWorkloadShares: function(Client, types.ListWorkloadSharesInput): Operation<types.ListWorkloadSharesOutput>
     -- Adds one or more tags to the specified resource.
     -- The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes specified tags from a resource.
     -- The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.
     -- To specify multiple tags, use separate tagKeys parameters, for example:
     -- DELETE /tags/WorkloadArn?tagKeys=key1&tagKeys=key2
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update the answer to a specific question in a workload review.
-    updateAnswer: function(Client, types.UpdateAnswerInput): types.UpdateAnswerOutput, table
+    updateAnswer: function(Client, types.UpdateAnswerInput): Operation<types.UpdateAnswerOutput>
     -- Update whether the Amazon Web Services account is opted into organization sharing and discovery integration features.
-    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput): types.UpdateGlobalSettingsOutput, table
+    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput): Operation<types.UpdateGlobalSettingsOutput>
     -- Update integration features.
-    updateIntegration: function(Client, types.UpdateIntegrationInput): types.UpdateIntegrationOutput, table
+    updateIntegration: function(Client, types.UpdateIntegrationInput): Operation<types.UpdateIntegrationOutput>
     -- Update lens review for a particular workload.
-    updateLensReview: function(Client, types.UpdateLensReviewInput): types.UpdateLensReviewOutput, table
+    updateLensReview: function(Client, types.UpdateLensReviewInput): Operation<types.UpdateLensReviewOutput>
     -- Update a profile.
-    updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    updateProfile: function(Client, types.UpdateProfileInput): Operation<types.UpdateProfileOutput>
     -- Update a review template.
-    updateReviewTemplate: function(Client, types.UpdateReviewTemplateInput): types.UpdateReviewTemplateOutput, table
+    updateReviewTemplate: function(Client, types.UpdateReviewTemplateInput): Operation<types.UpdateReviewTemplateOutput>
     -- Update a review template answer.
-    updateReviewTemplateAnswer: function(Client, types.UpdateReviewTemplateAnswerInput): types.UpdateReviewTemplateAnswerOutput, table
+    updateReviewTemplateAnswer: function(Client, types.UpdateReviewTemplateAnswerInput): Operation<types.UpdateReviewTemplateAnswerOutput>
     -- Update a lens review associated with a review template.
-    updateReviewTemplateLensReview: function(Client, types.UpdateReviewTemplateLensReviewInput): types.UpdateReviewTemplateLensReviewOutput, table
+    updateReviewTemplateLensReview: function(Client, types.UpdateReviewTemplateLensReviewInput): Operation<types.UpdateReviewTemplateLensReviewOutput>
     -- Update a workload or custom lens share invitation.
     -- This API operation can be called independently of any resource. Previous documentation implied that a workload ARN must be specified.
-    updateShareInvitation: function(Client, types.UpdateShareInvitationInput): types.UpdateShareInvitationOutput, table
+    updateShareInvitation: function(Client, types.UpdateShareInvitationInput): Operation<types.UpdateShareInvitationOutput>
     -- Update an existing workload.
-    updateWorkload: function(Client, types.UpdateWorkloadInput): types.UpdateWorkloadOutput, table
+    updateWorkload: function(Client, types.UpdateWorkloadInput): Operation<types.UpdateWorkloadOutput>
     -- Update a workload share.
-    updateWorkloadShare: function(Client, types.UpdateWorkloadShareInput): types.UpdateWorkloadShareOutput, table
+    updateWorkloadShare: function(Client, types.UpdateWorkloadShareInput): Operation<types.UpdateWorkloadShareOutput>
     -- Upgrade lens review for a particular workload.
-    upgradeLensReview: function(Client, types.UpgradeLensReviewInput): types.UpgradeLensReviewOutput, table
+    upgradeLensReview: function(Client, types.UpgradeLensReviewInput): Operation<types.UpgradeLensReviewOutput>
     -- Upgrade a profile.
-    upgradeProfileVersion: function(Client, types.UpgradeProfileVersionInput): types.UpgradeProfileVersionOutput, table
+    upgradeProfileVersion: function(Client, types.UpgradeProfileVersionInput): Operation<types.UpgradeProfileVersionOutput>
     -- Upgrade the lens review of a review template.
-    upgradeReviewTemplateLensReview: function(Client, types.UpgradeReviewTemplateLensReviewInput): types.UpgradeReviewTemplateLensReviewOutput, table
+    upgradeReviewTemplateLensReview: function(Client, types.UpgradeReviewTemplateLensReviewInput): Operation<types.UpgradeReviewTemplateLensReviewOutput>
 end
 
 local record M

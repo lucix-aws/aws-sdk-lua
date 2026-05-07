@@ -2,25 +2,29 @@
 
 local types = require("directoryservicedata.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds an existing user, group, or computer as a group member.
-    addGroupMember: function(Client, types.AddGroupMemberInput): types.AddGroupMemberOutput, table
+    addGroupMember: function(Client, types.AddGroupMemberInput): Operation<types.AddGroupMemberOutput>
     -- Creates a new group.
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Creates a new user.
-    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUser: function(Client, types.CreateUserInput): Operation<types.CreateUserOutput>
     -- Deletes a group.
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Deletes a user.
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- Returns information about a specific group.
-    describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    describeGroup: function(Client, types.DescribeGroupInput): Operation<types.DescribeGroupOutput>
     -- Returns information about a specific user.
-    describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    describeUser: function(Client, types.DescribeUserInput): Operation<types.DescribeUserOutput>
     -- Deactivates an active user account. For information about how to enable an inactive user
     -- account, see ResetUserPassword
     -- in the Directory Service API Reference.
-    disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    disableUser: function(Client, types.DisableUserInput): Operation<types.DisableUserOutput>
     -- Returns member information for the specified group.
     -- This operation supports pagination with the use of the NextToken request and
     -- response parameters. If more results are available, the
@@ -28,7 +32,7 @@ local record Client
     -- call to ListGroupMembers. This retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    listGroupMembers: function(Client, types.ListGroupMembersInput): types.ListGroupMembersOutput, table
+    listGroupMembers: function(Client, types.ListGroupMembersInput): Operation<types.ListGroupMembersOutput>
     -- Returns group information for the specified directory.
     -- This operation supports pagination with the use of the NextToken request and
     -- response parameters. If more results are available, the ListGroups.NextToken
@@ -36,7 +40,7 @@ local record Client
     -- retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Returns group information for the specified member.
     -- This operation supports pagination with the use of the NextToken request and
     -- response parameters. If more results are available, the
@@ -44,7 +48,7 @@ local record Client
     -- call to ListGroupsForMember. This retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    listGroupsForMember: function(Client, types.ListGroupsForMemberInput): types.ListGroupsForMemberOutput, table
+    listGroupsForMember: function(Client, types.ListGroupsForMemberInput): Operation<types.ListGroupsForMemberOutput>
     -- Returns user information for the specified directory.
     -- This operation supports pagination with the use of the NextToken request and
     -- response parameters. If more results are available, the ListUsers.NextToken
@@ -52,9 +56,9 @@ local record Client
     -- retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- Removes a member from a group.
-    removeGroupMember: function(Client, types.RemoveGroupMemberInput): types.RemoveGroupMemberOutput, table
+    removeGroupMember: function(Client, types.RemoveGroupMemberInput): Operation<types.RemoveGroupMemberOutput>
     -- Searches the specified directory for a group. You can find groups that match the
     -- SearchString parameter with the value of their attributes included in the
     -- SearchString parameter.
@@ -64,7 +68,7 @@ local record Client
     -- retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    searchGroups: function(Client, types.SearchGroupsInput): types.SearchGroupsOutput, table
+    searchGroups: function(Client, types.SearchGroupsInput): Operation<types.SearchGroupsOutput>
     -- Searches the specified directory for a user. You can find users that match the
     -- SearchString parameter with the value of their attributes included in the
     -- SearchString parameter.
@@ -74,11 +78,11 @@ local record Client
     -- retrieves the next set of items.
     -- You can also specify a maximum number of return results with the MaxResults
     -- parameter.
-    searchUsers: function(Client, types.SearchUsersInput): types.SearchUsersOutput, table
+    searchUsers: function(Client, types.SearchUsersInput): Operation<types.SearchUsersOutput>
     -- Updates group information.
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Updates user information.
-    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    updateUser: function(Client, types.UpdateUserInput): Operation<types.UpdateUserOutput>
 end
 
 local record M

@@ -2,75 +2,79 @@
 
 local types = require("neptunegraph.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancel the specified export task.
-    cancelExportTask: function(Client, types.CancelExportTaskInput): types.CancelExportTaskOutput, table
+    cancelExportTask: function(Client, types.CancelExportTaskInput): Operation<types.CancelExportTaskOutput>
     -- Deletes the specified import task.
-    cancelImportTask: function(Client, types.CancelImportTaskInput): types.CancelImportTaskOutput, table
+    cancelImportTask: function(Client, types.CancelImportTaskInput): Operation<types.CancelImportTaskOutput>
     -- Cancels a specified query.
-    cancelQuery: function(Client, types.CancelQueryInput): types.CancelQueryOutput, table
+    cancelQuery: function(Client, types.CancelQueryInput): Operation<types.CancelQueryOutput>
     -- Creates a new Neptune Analytics graph.
-    createGraph: function(Client, types.CreateGraphInput): types.CreateGraphOutput, table
+    createGraph: function(Client, types.CreateGraphInput): Operation<types.CreateGraphOutput>
     -- Creates a snapshot of the specific graph.
-    createGraphSnapshot: function(Client, types.CreateGraphSnapshotInput): types.CreateGraphSnapshotOutput, table
+    createGraphSnapshot: function(Client, types.CreateGraphSnapshotInput): Operation<types.CreateGraphSnapshotOutput>
     -- Creates a new Neptune Analytics graph and imports data into it, either from Amazon Simple Storage Service (S3) or from a Neptune database or a Neptune database snapshot. The data can be loaded from files in S3 that in either the Gremlin CSV format or the openCypher load format.
-    createGraphUsingImportTask: function(Client, types.CreateGraphUsingImportTaskInput): types.CreateGraphUsingImportTaskOutput, table
+    createGraphUsingImportTask: function(Client, types.CreateGraphUsingImportTaskInput): Operation<types.CreateGraphUsingImportTaskOutput>
     -- Create a private graph endpoint to allow private access to the graph from within a VPC. You can attach security groups to the private graph endpoint. VPC endpoint charges apply.
-    createPrivateGraphEndpoint: function(Client, types.CreatePrivateGraphEndpointInput): types.CreatePrivateGraphEndpointOutput, table
+    createPrivateGraphEndpoint: function(Client, types.CreatePrivateGraphEndpointInput): Operation<types.CreatePrivateGraphEndpointOutput>
     -- Deletes the specified graph. Graphs cannot be deleted if delete-protection is enabled.
-    deleteGraph: function(Client, types.DeleteGraphInput): types.DeleteGraphOutput, table
+    deleteGraph: function(Client, types.DeleteGraphInput): Operation<types.DeleteGraphOutput>
     -- Deletes the specified graph snapshot.
-    deleteGraphSnapshot: function(Client, types.DeleteGraphSnapshotInput): types.DeleteGraphSnapshotOutput, table
+    deleteGraphSnapshot: function(Client, types.DeleteGraphSnapshotInput): Operation<types.DeleteGraphSnapshotOutput>
     -- Deletes a private graph endpoint.
-    deletePrivateGraphEndpoint: function(Client, types.DeletePrivateGraphEndpointInput): types.DeletePrivateGraphEndpointOutput, table
+    deletePrivateGraphEndpoint: function(Client, types.DeletePrivateGraphEndpointInput): Operation<types.DeletePrivateGraphEndpointOutput>
     -- Execute an openCypher query. When invoking this operation in a Neptune Analytics cluster, the IAM user or role making the request must have a policy attached that allows one of the following IAM actions in that cluster, depending on the query: neptune-graph:ReadDataViaQuery neptune-graph:WriteDataViaQuery neptune-graph:DeleteDataViaQuery
-    executeQuery: function(Client, types.ExecuteQueryInput): types.ExecuteQueryOutput, table
+    executeQuery: function(Client, types.ExecuteQueryInput): Operation<types.ExecuteQueryOutput>
     -- Retrieves a specified export task.
-    getExportTask: function(Client, types.GetExportTaskInput): types.GetExportTaskOutput, table
+    getExportTask: function(Client, types.GetExportTaskInput): Operation<types.GetExportTaskOutput>
     -- Gets information about a specified graph.
-    getGraph: function(Client, types.GetGraphInput): types.GetGraphOutput, table
+    getGraph: function(Client, types.GetGraphInput): Operation<types.GetGraphOutput>
     -- Retrieves a specified graph snapshot.
-    getGraphSnapshot: function(Client, types.GetGraphSnapshotInput): types.GetGraphSnapshotOutput, table
+    getGraphSnapshot: function(Client, types.GetGraphSnapshotInput): Operation<types.GetGraphSnapshotOutput>
     -- Gets a graph summary for a property graph.
-    getGraphSummary: function(Client, types.GetGraphSummaryInput): types.GetGraphSummaryOutput, table
+    getGraphSummary: function(Client, types.GetGraphSummaryInput): Operation<types.GetGraphSummaryOutput>
     -- Retrieves a specified import task.
-    getImportTask: function(Client, types.GetImportTaskInput): types.GetImportTaskOutput, table
+    getImportTask: function(Client, types.GetImportTaskInput): Operation<types.GetImportTaskOutput>
     -- Retrieves information about a specified private endpoint.
-    getPrivateGraphEndpoint: function(Client, types.GetPrivateGraphEndpointInput): types.GetPrivateGraphEndpointOutput, table
+    getPrivateGraphEndpoint: function(Client, types.GetPrivateGraphEndpointInput): Operation<types.GetPrivateGraphEndpointOutput>
     -- Retrieves the status of a specified query. When invoking this operation in a Neptune Analytics cluster, the IAM user or role making the request must have the neptune-graph:GetQueryStatus IAM action attached.
-    getQuery: function(Client, types.GetQueryInput): types.GetQueryOutput, table
+    getQuery: function(Client, types.GetQueryInput): Operation<types.GetQueryOutput>
     -- Retrieves a list of export tasks.
-    listExportTasks: function(Client, types.ListExportTasksInput): types.ListExportTasksOutput, table
+    listExportTasks: function(Client, types.ListExportTasksInput): Operation<types.ListExportTasksOutput>
     -- Lists available Neptune Analytics graphs.
-    listGraphs: function(Client, types.ListGraphsInput): types.ListGraphsOutput, table
+    listGraphs: function(Client, types.ListGraphsInput): Operation<types.ListGraphsOutput>
     -- Lists available snapshots of a specified Neptune Analytics graph.
-    listGraphSnapshots: function(Client, types.ListGraphSnapshotsInput): types.ListGraphSnapshotsOutput, table
+    listGraphSnapshots: function(Client, types.ListGraphSnapshotsInput): Operation<types.ListGraphSnapshotsOutput>
     -- Lists import tasks.
-    listImportTasks: function(Client, types.ListImportTasksInput): types.ListImportTasksOutput, table
+    listImportTasks: function(Client, types.ListImportTasksInput): Operation<types.ListImportTasksOutput>
     -- Lists private endpoints for a specified Neptune Analytics graph.
-    listPrivateGraphEndpoints: function(Client, types.ListPrivateGraphEndpointsInput): types.ListPrivateGraphEndpointsOutput, table
+    listPrivateGraphEndpoints: function(Client, types.ListPrivateGraphEndpointsInput): Operation<types.ListPrivateGraphEndpointsOutput>
     -- Lists active openCypher queries.
-    listQueries: function(Client, types.ListQueriesInput): types.ListQueriesOutput, table
+    listQueries: function(Client, types.ListQueriesInput): Operation<types.ListQueriesOutput>
     -- Lists tags associated with a specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Empties the data from a specified Neptune Analytics graph.
-    resetGraph: function(Client, types.ResetGraphInput): types.ResetGraphOutput, table
+    resetGraph: function(Client, types.ResetGraphInput): Operation<types.ResetGraphOutput>
     -- Restores a graph from a snapshot.
-    restoreGraphFromSnapshot: function(Client, types.RestoreGraphFromSnapshotInput): types.RestoreGraphFromSnapshotOutput, table
+    restoreGraphFromSnapshot: function(Client, types.RestoreGraphFromSnapshotInput): Operation<types.RestoreGraphFromSnapshotOutput>
     -- Export data from an existing Neptune Analytics graph to Amazon S3. The graph state should be AVAILABLE.
-    startExportTask: function(Client, types.StartExportTaskInput): types.StartExportTaskOutput, table
+    startExportTask: function(Client, types.StartExportTaskInput): Operation<types.StartExportTaskOutput>
     -- Starts the specific graph.
-    startGraph: function(Client, types.StartGraphInput): types.StartGraphOutput, table
+    startGraph: function(Client, types.StartGraphInput): Operation<types.StartGraphOutput>
     -- Import data into existing Neptune Analytics graph from Amazon Simple Storage Service (S3). The graph needs to be empty and in the AVAILABLE state.
-    startImportTask: function(Client, types.StartImportTaskInput): types.StartImportTaskOutput, table
+    startImportTask: function(Client, types.StartImportTaskInput): Operation<types.StartImportTaskOutput>
     -- Stops the specific graph.
-    stopGraph: function(Client, types.StopGraphInput): types.StopGraphOutput, table
+    stopGraph: function(Client, types.StopGraphInput): Operation<types.StopGraphOutput>
     -- Adds tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the configuration of a specified Neptune Analytics graph
-    updateGraph: function(Client, types.UpdateGraphInput): types.UpdateGraphOutput, table
+    updateGraph: function(Client, types.UpdateGraphInput): Operation<types.UpdateGraphOutput>
 end
 
 local record M

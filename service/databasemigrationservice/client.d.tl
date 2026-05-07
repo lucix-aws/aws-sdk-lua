@@ -2,6 +2,10 @@
 
 local types = require("databasemigrationservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds metadata tags to an DMS resource, including replication instance, endpoint,
     -- subnet group, and migration task. These tags can also be used with cost allocation
@@ -10,10 +14,10 @@ local record Client
     -- Tag
     -- data type
     -- description.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Applies a pending maintenance action to a resource (for example, to a replication
     -- instance).
-    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): types.ApplyPendingMaintenanceActionOutput, table
+    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): Operation<types.ApplyPendingMaintenanceActionOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Starts the analysis of up to 20 source databases to recommend target engines for each
     -- source database. This is a batch version of StartRecommendations.
@@ -21,21 +25,21 @@ local record Client
     -- response. Because the batch request can result in a combination of successful and
     -- unsuccessful actions, you should check for batch errors even when the call returns an
     -- HTTP status code of 200.
-    batchStartRecommendations: function(Client, types.BatchStartRecommendationsInput): types.BatchStartRecommendationsOutput, table
+    batchStartRecommendations: function(Client, types.BatchStartRecommendationsInput): Operation<types.BatchStartRecommendationsOutput>
     -- Cancels a single metadata model conversion operation that was started with StartMetadataModelConversion.
-    cancelMetadataModelConversion: function(Client, types.CancelMetadataModelConversionInput): types.CancelMetadataModelConversionOutput, table
+    cancelMetadataModelConversion: function(Client, types.CancelMetadataModelConversionInput): Operation<types.CancelMetadataModelConversionOutput>
     -- Cancels a single metadata model creation operation that was started with StartMetadataModelCreation.
-    cancelMetadataModelCreation: function(Client, types.CancelMetadataModelCreationInput): types.CancelMetadataModelCreationOutput, table
+    cancelMetadataModelCreation: function(Client, types.CancelMetadataModelCreationInput): Operation<types.CancelMetadataModelCreationOutput>
     -- Cancels a single premigration assessment run.
     -- This operation prevents any individual assessments from running if they haven't started
     -- running. It also attempts to cancel any individual assessments that are currently
     -- running.
-    cancelReplicationTaskAssessmentRun: function(Client, types.CancelReplicationTaskAssessmentRunInput): types.CancelReplicationTaskAssessmentRunOutput, table
+    cancelReplicationTaskAssessmentRun: function(Client, types.CancelReplicationTaskAssessmentRunInput): Operation<types.CancelReplicationTaskAssessmentRunOutput>
     -- Creates a data migration using the provided settings.
-    createDataMigration: function(Client, types.CreateDataMigrationInput): types.CreateDataMigrationOutput, table
+    createDataMigration: function(Client, types.CreateDataMigrationInput): Operation<types.CreateDataMigrationOutput>
     -- Creates a data provider using the provided settings. A data provider stores a data store
     -- type and location information about your database.
-    createDataProvider: function(Client, types.CreateDataProviderInput): types.CreateDataProviderOutput, table
+    createDataProvider: function(Client, types.CreateDataProviderInput): Operation<types.CreateDataProviderOutput>
     -- Creates an endpoint using the provided settings.
     -- For a MySQL source or target endpoint, don't explicitly specify the database using
     -- the DatabaseName request parameter on the CreateEndpoint API
@@ -43,7 +47,7 @@ local record Client
     -- all the task tables to this single database. For MySQL endpoints, you specify the
     -- database only when you specify the schema in the table-mapping rules of the DMS
     -- task.
-    createEndpoint: function(Client, types.CreateEndpointInput): types.CreateEndpointOutput, table
+    createEndpoint: function(Client, types.CreateEndpointInput): Operation<types.CreateEndpointOutput>
     -- Creates an DMS event notification subscription.
     -- You can specify the type of source (SourceType) you want to be notified of,
     -- provide a list of DMS source IDs (SourceIds) that triggers the events, and
@@ -58,20 +62,20 @@ local record Client
     -- sources belonging to your customer account.
     -- For more information about DMS events, see Working with Events and
     -- Notifications in the Database Migration Service User Guide.
-    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): types.CreateEventSubscriptionOutput, table
+    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): Operation<types.CreateEventSubscriptionOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Creates a Fleet Advisor collector using the specified parameters.
-    createFleetAdvisorCollector: function(Client, types.CreateFleetAdvisorCollectorInput): types.CreateFleetAdvisorCollectorOutput, table
+    createFleetAdvisorCollector: function(Client, types.CreateFleetAdvisorCollectorInput): Operation<types.CreateFleetAdvisorCollectorOutput>
     -- Creates the instance profile using the specified parameters.
-    createInstanceProfile: function(Client, types.CreateInstanceProfileInput): types.CreateInstanceProfileOutput, table
+    createInstanceProfile: function(Client, types.CreateInstanceProfileInput): Operation<types.CreateInstanceProfileOutput>
     -- Creates the migration project using the specified parameters.
     -- You can run this action only after you create an instance profile and data providers
     -- using CreateInstanceProfile and CreateDataProvider.
-    createMigrationProject: function(Client, types.CreateMigrationProjectInput): types.CreateMigrationProjectOutput, table
+    createMigrationProject: function(Client, types.CreateMigrationProjectInput): Operation<types.CreateMigrationProjectOutput>
     -- Creates a configuration that you can later provide to configure and start an DMS
     -- Serverless replication. You can also provide options to validate the configuration inputs
     -- before you start the replication.
-    createReplicationConfig: function(Client, types.CreateReplicationConfigInput): types.CreateReplicationConfigOutput, table
+    createReplicationConfig: function(Client, types.CreateReplicationConfigInput): Operation<types.CreateReplicationConfigOutput>
     -- Creates the replication instance using the specified parameters.
     -- DMS requires that your account have certain roles with appropriate permissions before
     -- you can create a replication instance. For information on the required roles, see Creating the IAM Roles to Use With the CLI and DMS API. For information on
@@ -80,7 +84,7 @@ local record Client
     -- If you don't specify a version when creating a replication instance, DMS will
     -- create the instance using the default engine version. For information about the default
     -- engine version, see Release Notes.
-    createReplicationInstance: function(Client, types.CreateReplicationInstanceInput): types.CreateReplicationInstanceOutput, table
+    createReplicationInstance: function(Client, types.CreateReplicationInstanceInput): Operation<types.CreateReplicationInstanceOutput>
     -- Creates a replication subnet group given a list of the subnet IDs in a VPC.
     -- The VPC needs to have at least one subnet in at least two availability zones in the
     -- Amazon Web Services Region, otherwise the service will throw a
@@ -90,56 +94,56 @@ local record Client
     -- Subnet Group already exists. In this case, delete the existing replication subnet group. To
     -- do so, use the DeleteReplicationSubnetGroup action. Optionally, choose Subnet groups in the
     -- DMS console, then choose your subnet group. Next, choose Delete from Actions.
-    createReplicationSubnetGroup: function(Client, types.CreateReplicationSubnetGroupInput): types.CreateReplicationSubnetGroupOutput, table
+    createReplicationSubnetGroup: function(Client, types.CreateReplicationSubnetGroupInput): Operation<types.CreateReplicationSubnetGroupOutput>
     -- Creates a replication task using the specified parameters.
-    createReplicationTask: function(Client, types.CreateReplicationTaskInput): types.CreateReplicationTaskOutput, table
+    createReplicationTask: function(Client, types.CreateReplicationTaskInput): Operation<types.CreateReplicationTaskOutput>
     -- Deletes the specified certificate.
-    deleteCertificate: function(Client, types.DeleteCertificateInput): types.DeleteCertificateOutput, table
+    deleteCertificate: function(Client, types.DeleteCertificateInput): Operation<types.DeleteCertificateOutput>
     -- Deletes the connection between a replication instance and an endpoint.
-    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): Operation<types.DeleteConnectionOutput>
     -- Deletes the specified data migration.
-    deleteDataMigration: function(Client, types.DeleteDataMigrationInput): types.DeleteDataMigrationOutput, table
+    deleteDataMigration: function(Client, types.DeleteDataMigrationInput): Operation<types.DeleteDataMigrationOutput>
     -- Deletes the specified data provider.
     -- All migration projects associated with the data provider must be deleted or modified
     -- before you can delete the data provider.
-    deleteDataProvider: function(Client, types.DeleteDataProviderInput): types.DeleteDataProviderOutput, table
+    deleteDataProvider: function(Client, types.DeleteDataProviderInput): Operation<types.DeleteDataProviderOutput>
     -- Deletes the specified endpoint.
     -- All tasks associated with the endpoint must be deleted before you can delete the
     -- endpoint.
-    deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    deleteEndpoint: function(Client, types.DeleteEndpointInput): Operation<types.DeleteEndpointOutput>
     -- Deletes an DMS event subscription.
-    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): types.DeleteEventSubscriptionOutput, table
+    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): Operation<types.DeleteEventSubscriptionOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Deletes the specified Fleet Advisor collector.
-    deleteFleetAdvisorCollector: function(Client, types.DeleteFleetAdvisorCollectorInput): types.DeleteFleetAdvisorCollectorOutput, table
+    deleteFleetAdvisorCollector: function(Client, types.DeleteFleetAdvisorCollectorInput): Operation<types.DeleteFleetAdvisorCollectorOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Deletes the specified Fleet Advisor collector databases.
-    deleteFleetAdvisorDatabases: function(Client, types.DeleteFleetAdvisorDatabasesInput): types.DeleteFleetAdvisorDatabasesOutput, table
+    deleteFleetAdvisorDatabases: function(Client, types.DeleteFleetAdvisorDatabasesInput): Operation<types.DeleteFleetAdvisorDatabasesOutput>
     -- Deletes the specified instance profile.
     -- All migration projects associated with the instance profile must be deleted or
     -- modified before you can delete the instance profile.
-    deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput): types.DeleteInstanceProfileOutput, table
+    deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput): Operation<types.DeleteInstanceProfileOutput>
     -- Deletes the specified migration project.
     -- The migration project must be closed before you can delete it.
-    deleteMigrationProject: function(Client, types.DeleteMigrationProjectInput): types.DeleteMigrationProjectOutput, table
+    deleteMigrationProject: function(Client, types.DeleteMigrationProjectInput): Operation<types.DeleteMigrationProjectOutput>
     -- Deletes an DMS Serverless replication configuration. This effectively deprovisions any
     -- and all replications that use this configuration. You can't delete the configuration for an
     -- DMS Serverless replication that is ongoing. You can delete the configuration when the
     -- replication is in a non-RUNNING and non-STARTING state.
-    deleteReplicationConfig: function(Client, types.DeleteReplicationConfigInput): types.DeleteReplicationConfigOutput, table
+    deleteReplicationConfig: function(Client, types.DeleteReplicationConfigInput): Operation<types.DeleteReplicationConfigOutput>
     -- Deletes the specified replication instance.
     -- You must delete any migration tasks that are associated with the replication instance
     -- before you can delete it.
-    deleteReplicationInstance: function(Client, types.DeleteReplicationInstanceInput): types.DeleteReplicationInstanceOutput, table
+    deleteReplicationInstance: function(Client, types.DeleteReplicationInstanceInput): Operation<types.DeleteReplicationInstanceOutput>
     -- Deletes a subnet group.
-    deleteReplicationSubnetGroup: function(Client, types.DeleteReplicationSubnetGroupInput): types.DeleteReplicationSubnetGroupOutput, table
+    deleteReplicationSubnetGroup: function(Client, types.DeleteReplicationSubnetGroupInput): Operation<types.DeleteReplicationSubnetGroupOutput>
     -- Deletes the specified replication task.
-    deleteReplicationTask: function(Client, types.DeleteReplicationTaskInput): types.DeleteReplicationTaskOutput, table
+    deleteReplicationTask: function(Client, types.DeleteReplicationTaskInput): Operation<types.DeleteReplicationTaskOutput>
     -- Deletes the record of a single premigration assessment run.
     -- This operation removes all metadata that DMS maintains about this assessment run.
     -- However, the operation leaves untouched all information about this assessment run that is
     -- stored in your Amazon S3 bucket.
-    deleteReplicationTaskAssessmentRun: function(Client, types.DeleteReplicationTaskAssessmentRunInput): types.DeleteReplicationTaskAssessmentRunOutput, table
+    deleteReplicationTaskAssessmentRun: function(Client, types.DeleteReplicationTaskAssessmentRunInput): Operation<types.DeleteReplicationTaskAssessmentRunOutput>
     -- Lists all of the DMS attributes for a customer account. These attributes include DMS
     -- quotas for the account and a unique account identifier in a particular DMS region. DMS
     -- quotas include a list of resource quotas supported by the account, such as the number of
@@ -147,7 +151,7 @@ local record Client
     -- name, current usage toward that quota, and the quota's maximum value. DMS uses the unique
     -- account identifier to name each artifact used by DMS in the given region.
     -- This command does not take any parameters.
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): Operation<types.DescribeAccountAttributesOutput>
     -- Provides a list of individual assessments that you can specify for a new premigration
     -- assessment run, given one or more parameters.
     -- If you specify an existing migration task, this operation provides the default
@@ -164,124 +168,124 @@ local record Client
     -- individual assessments. The only parameter that you can specify alone is for an existing
     -- migration task. The specified task definition then determines the default list of
     -- individual assessments that you can specify in an assessment run for the task.
-    describeApplicableIndividualAssessments: function(Client, types.DescribeApplicableIndividualAssessmentsInput): types.DescribeApplicableIndividualAssessmentsOutput, table
+    describeApplicableIndividualAssessments: function(Client, types.DescribeApplicableIndividualAssessmentsInput): Operation<types.DescribeApplicableIndividualAssessmentsOutput>
     -- Provides a description of the certificate.
-    describeCertificates: function(Client, types.DescribeCertificatesInput): types.DescribeCertificatesOutput, table
+    describeCertificates: function(Client, types.DescribeCertificatesInput): Operation<types.DescribeCertificatesOutput>
     -- Describes the status of the connections that have been made between the replication
     -- instance and an endpoint. Connections are created when you test an endpoint.
-    describeConnections: function(Client, types.DescribeConnectionsInput): types.DescribeConnectionsOutput, table
+    describeConnections: function(Client, types.DescribeConnectionsInput): Operation<types.DescribeConnectionsOutput>
     -- Returns configuration parameters for a schema conversion project.
-    describeConversionConfiguration: function(Client, types.DescribeConversionConfigurationInput): types.DescribeConversionConfigurationOutput, table
+    describeConversionConfiguration: function(Client, types.DescribeConversionConfigurationInput): Operation<types.DescribeConversionConfigurationOutput>
     -- Returns information about data migrations.
-    describeDataMigrations: function(Client, types.DescribeDataMigrationsInput): types.DescribeDataMigrationsOutput, table
+    describeDataMigrations: function(Client, types.DescribeDataMigrationsInput): Operation<types.DescribeDataMigrationsOutput>
     -- Returns a paginated list of data providers for your account in the current
     -- region.
-    describeDataProviders: function(Client, types.DescribeDataProvidersInput): types.DescribeDataProvidersOutput, table
+    describeDataProviders: function(Client, types.DescribeDataProvidersInput): Operation<types.DescribeDataProvidersOutput>
     -- Returns information about the endpoints for your account in the current region.
-    describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    describeEndpoints: function(Client, types.DescribeEndpointsInput): Operation<types.DescribeEndpointsOutput>
     -- Returns information about the possible endpoint settings available when you create an
     -- endpoint for a specific database engine.
-    describeEndpointSettings: function(Client, types.DescribeEndpointSettingsInput): types.DescribeEndpointSettingsOutput, table
+    describeEndpointSettings: function(Client, types.DescribeEndpointSettingsInput): Operation<types.DescribeEndpointSettingsOutput>
     -- Returns information about the type of endpoints available.
-    describeEndpointTypes: function(Client, types.DescribeEndpointTypesInput): types.DescribeEndpointTypesOutput, table
+    describeEndpointTypes: function(Client, types.DescribeEndpointTypesInput): Operation<types.DescribeEndpointTypesOutput>
     -- Returns information about the replication instance versions used in the project.
-    describeEngineVersions: function(Client, types.DescribeEngineVersionsInput): types.DescribeEngineVersionsOutput, table
+    describeEngineVersions: function(Client, types.DescribeEngineVersionsInput): Operation<types.DescribeEngineVersionsOutput>
     -- Lists categories for all event source types, or, if specified, for a specified source
     -- type. You can see a list of the event categories and source types in Working with Events
     -- and Notifications in the Database Migration Service User Guide.
-    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): types.DescribeEventCategoriesOutput, table
+    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): Operation<types.DescribeEventCategoriesOutput>
     -- Lists events for a given source identifier and source type. You can also specify a
     -- start and end time. For more information on DMS events, see Working with Events and
     -- Notifications in the Database Migration Service User Guide.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Lists all the event subscriptions for a customer account. The description of a
     -- subscription includes SubscriptionName, SNSTopicARN,
     -- CustomerID, SourceType, SourceID,
     -- CreationTime, and Status.
     -- If you specify SubscriptionName, this action lists the description for that
     -- subscription.
-    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): types.DescribeEventSubscriptionsOutput, table
+    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): Operation<types.DescribeEventSubscriptionsOutput>
     -- Returns a paginated list of extension pack associations for the specified migration
     -- project. An extension pack is an add-on module that emulates functions present in a source
     -- database that are required when converting objects to the target database.
-    describeExtensionPackAssociations: function(Client, types.DescribeExtensionPackAssociationsInput): types.DescribeExtensionPackAssociationsOutput, table
+    describeExtensionPackAssociations: function(Client, types.DescribeExtensionPackAssociationsInput): Operation<types.DescribeExtensionPackAssociationsOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Returns a list of the Fleet Advisor collectors in your account.
-    describeFleetAdvisorCollectors: function(Client, types.DescribeFleetAdvisorCollectorsInput): types.DescribeFleetAdvisorCollectorsOutput, table
+    describeFleetAdvisorCollectors: function(Client, types.DescribeFleetAdvisorCollectorsInput): Operation<types.DescribeFleetAdvisorCollectorsOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Returns a list of Fleet Advisor databases in your account.
-    describeFleetAdvisorDatabases: function(Client, types.DescribeFleetAdvisorDatabasesInput): types.DescribeFleetAdvisorDatabasesOutput, table
+    describeFleetAdvisorDatabases: function(Client, types.DescribeFleetAdvisorDatabasesInput): Operation<types.DescribeFleetAdvisorDatabasesOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Provides descriptions of large-scale assessment (LSA) analyses produced by your Fleet
     -- Advisor collectors.
-    describeFleetAdvisorLsaAnalysis: function(Client, types.DescribeFleetAdvisorLsaAnalysisInput): types.DescribeFleetAdvisorLsaAnalysisOutput, table
+    describeFleetAdvisorLsaAnalysis: function(Client, types.DescribeFleetAdvisorLsaAnalysisInput): Operation<types.DescribeFleetAdvisorLsaAnalysisOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Provides descriptions of the schemas discovered by your Fleet Advisor
     -- collectors.
-    describeFleetAdvisorSchemaObjectSummary: function(Client, types.DescribeFleetAdvisorSchemaObjectSummaryInput): types.DescribeFleetAdvisorSchemaObjectSummaryOutput, table
+    describeFleetAdvisorSchemaObjectSummary: function(Client, types.DescribeFleetAdvisorSchemaObjectSummaryInput): Operation<types.DescribeFleetAdvisorSchemaObjectSummaryOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Returns a list of schemas detected by Fleet Advisor Collectors in your account.
-    describeFleetAdvisorSchemas: function(Client, types.DescribeFleetAdvisorSchemasInput): types.DescribeFleetAdvisorSchemasOutput, table
+    describeFleetAdvisorSchemas: function(Client, types.DescribeFleetAdvisorSchemasInput): Operation<types.DescribeFleetAdvisorSchemasOutput>
     -- Returns a paginated list of instance profiles for your account in the current
     -- region.
-    describeInstanceProfiles: function(Client, types.DescribeInstanceProfilesInput): types.DescribeInstanceProfilesOutput, table
+    describeInstanceProfiles: function(Client, types.DescribeInstanceProfilesInput): Operation<types.DescribeInstanceProfilesOutput>
     -- Gets detailed information about the specified metadata model, including its definition and corresponding converted objects in the target database if applicable.
-    describeMetadataModel: function(Client, types.DescribeMetadataModelInput): types.DescribeMetadataModelOutput, table
+    describeMetadataModel: function(Client, types.DescribeMetadataModelInput): Operation<types.DescribeMetadataModelOutput>
     -- Returns a paginated list of metadata model assessments for your account in the current
     -- region.
-    describeMetadataModelAssessments: function(Client, types.DescribeMetadataModelAssessmentsInput): types.DescribeMetadataModelAssessmentsOutput, table
+    describeMetadataModelAssessments: function(Client, types.DescribeMetadataModelAssessmentsInput): Operation<types.DescribeMetadataModelAssessmentsOutput>
     -- Gets a list of child metadata models for the specified metadata model in the database hierarchy.
-    describeMetadataModelChildren: function(Client, types.DescribeMetadataModelChildrenInput): types.DescribeMetadataModelChildrenOutput, table
+    describeMetadataModelChildren: function(Client, types.DescribeMetadataModelChildrenInput): Operation<types.DescribeMetadataModelChildrenOutput>
     -- Returns a paginated list of metadata model conversions for a migration project.
-    describeMetadataModelConversions: function(Client, types.DescribeMetadataModelConversionsInput): types.DescribeMetadataModelConversionsOutput, table
+    describeMetadataModelConversions: function(Client, types.DescribeMetadataModelConversionsInput): Operation<types.DescribeMetadataModelConversionsOutput>
     -- Returns a paginated list of metadata model creation requests for a migration project.
-    describeMetadataModelCreations: function(Client, types.DescribeMetadataModelCreationsInput): types.DescribeMetadataModelCreationsOutput, table
+    describeMetadataModelCreations: function(Client, types.DescribeMetadataModelCreationsInput): Operation<types.DescribeMetadataModelCreationsOutput>
     -- Returns a paginated list of metadata model exports.
-    describeMetadataModelExportsAsScript: function(Client, types.DescribeMetadataModelExportsAsScriptInput): types.DescribeMetadataModelExportsAsScriptOutput, table
+    describeMetadataModelExportsAsScript: function(Client, types.DescribeMetadataModelExportsAsScriptInput): Operation<types.DescribeMetadataModelExportsAsScriptOutput>
     -- Returns a paginated list of metadata model exports.
-    describeMetadataModelExportsToTarget: function(Client, types.DescribeMetadataModelExportsToTargetInput): types.DescribeMetadataModelExportsToTargetOutput, table
+    describeMetadataModelExportsToTarget: function(Client, types.DescribeMetadataModelExportsToTargetInput): Operation<types.DescribeMetadataModelExportsToTargetOutput>
     -- Returns a paginated list of metadata model imports.
-    describeMetadataModelImports: function(Client, types.DescribeMetadataModelImportsInput): types.DescribeMetadataModelImportsOutput, table
+    describeMetadataModelImports: function(Client, types.DescribeMetadataModelImportsInput): Operation<types.DescribeMetadataModelImportsOutput>
     -- Returns a paginated list of migration projects for your account in the current
     -- region.
-    describeMigrationProjects: function(Client, types.DescribeMigrationProjectsInput): types.DescribeMigrationProjectsOutput, table
+    describeMigrationProjects: function(Client, types.DescribeMigrationProjectsInput): Operation<types.DescribeMigrationProjectsOutput>
     -- Returns information about the replication instance types that can be created in the
     -- specified region.
-    describeOrderableReplicationInstances: function(Client, types.DescribeOrderableReplicationInstancesInput): types.DescribeOrderableReplicationInstancesOutput, table
+    describeOrderableReplicationInstances: function(Client, types.DescribeOrderableReplicationInstancesInput): Operation<types.DescribeOrderableReplicationInstancesOutput>
     -- Returns a list of upcoming maintenance events for replication instances in your account
     -- in the current Region.
-    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): types.DescribePendingMaintenanceActionsOutput, table
+    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): Operation<types.DescribePendingMaintenanceActionsOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Returns a paginated list of limitations for recommendations of target Amazon Web Services
     -- engines.
-    describeRecommendationLimitations: function(Client, types.DescribeRecommendationLimitationsInput): types.DescribeRecommendationLimitationsOutput, table
+    describeRecommendationLimitations: function(Client, types.DescribeRecommendationLimitationsInput): Operation<types.DescribeRecommendationLimitationsOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Returns a paginated list of target engine recommendations for your source
     -- databases.
-    describeRecommendations: function(Client, types.DescribeRecommendationsInput): types.DescribeRecommendationsOutput, table
+    describeRecommendations: function(Client, types.DescribeRecommendationsInput): Operation<types.DescribeRecommendationsOutput>
     -- Returns the status of the RefreshSchemas operation.
-    describeRefreshSchemasStatus: function(Client, types.DescribeRefreshSchemasStatusInput): types.DescribeRefreshSchemasStatusOutput, table
+    describeRefreshSchemasStatus: function(Client, types.DescribeRefreshSchemasStatusInput): Operation<types.DescribeRefreshSchemasStatusOutput>
     -- Returns one or more existing DMS Serverless replication configurations as a list of
     -- structures.
-    describeReplicationConfigs: function(Client, types.DescribeReplicationConfigsInput): types.DescribeReplicationConfigsOutput, table
+    describeReplicationConfigs: function(Client, types.DescribeReplicationConfigsInput): Operation<types.DescribeReplicationConfigsOutput>
     -- Returns information about replication instances for your account in the current
     -- region.
-    describeReplicationInstances: function(Client, types.DescribeReplicationInstancesInput): types.DescribeReplicationInstancesOutput, table
+    describeReplicationInstances: function(Client, types.DescribeReplicationInstancesInput): Operation<types.DescribeReplicationInstancesOutput>
     -- Returns information about the task logs for the specified task.
-    describeReplicationInstanceTaskLogs: function(Client, types.DescribeReplicationInstanceTaskLogsInput): types.DescribeReplicationInstanceTaskLogsOutput, table
+    describeReplicationInstanceTaskLogs: function(Client, types.DescribeReplicationInstanceTaskLogsInput): Operation<types.DescribeReplicationInstanceTaskLogsOutput>
     -- Provides details on replication progress by returning status information for one or more
     -- provisioned DMS Serverless replications.
-    describeReplications: function(Client, types.DescribeReplicationsInput): types.DescribeReplicationsOutput, table
+    describeReplications: function(Client, types.DescribeReplicationsInput): Operation<types.DescribeReplicationsOutput>
     -- Returns information about the replication subnet groups.
-    describeReplicationSubnetGroups: function(Client, types.DescribeReplicationSubnetGroupsInput): types.DescribeReplicationSubnetGroupsOutput, table
+    describeReplicationSubnetGroups: function(Client, types.DescribeReplicationSubnetGroupsInput): Operation<types.DescribeReplicationSubnetGroupsOutput>
     -- Returns table and schema statistics for one or more provisioned replications that use a
     -- given DMS Serverless replication configuration.
-    describeReplicationTableStatistics: function(Client, types.DescribeReplicationTableStatisticsInput): types.DescribeReplicationTableStatisticsOutput, table
+    describeReplicationTableStatistics: function(Client, types.DescribeReplicationTableStatisticsInput): Operation<types.DescribeReplicationTableStatisticsOutput>
     -- Returns the task assessment results from the Amazon S3 bucket that DMS creates in your
     -- Amazon Web Services account. This action always returns the latest results.
     -- For more information about DMS task assessments, see Creating a task assessment
     -- report in the Database Migration Service User Guide.
-    describeReplicationTaskAssessmentResults: function(Client, types.DescribeReplicationTaskAssessmentResultsInput): types.DescribeReplicationTaskAssessmentResultsOutput, table
+    describeReplicationTaskAssessmentResults: function(Client, types.DescribeReplicationTaskAssessmentResultsInput): Operation<types.DescribeReplicationTaskAssessmentResultsOutput>
     -- Returns a paginated list of premigration assessment runs based on filter
     -- settings.
     -- These filter settings can specify a combination of premigration assessment runs,
@@ -289,42 +293,42 @@ local record Client
     -- This operation doesn't return information about individual assessments. For this
     -- information, see the DescribeReplicationTaskIndividualAssessments
     -- operation.
-    describeReplicationTaskAssessmentRuns: function(Client, types.DescribeReplicationTaskAssessmentRunsInput): types.DescribeReplicationTaskAssessmentRunsOutput, table
+    describeReplicationTaskAssessmentRuns: function(Client, types.DescribeReplicationTaskAssessmentRunsInput): Operation<types.DescribeReplicationTaskAssessmentRunsOutput>
     -- Returns a paginated list of individual assessments based on filter settings.
     -- These filter settings can specify a combination of premigration assessment runs,
     -- migration tasks, and assessment status values.
-    describeReplicationTaskIndividualAssessments: function(Client, types.DescribeReplicationTaskIndividualAssessmentsInput): types.DescribeReplicationTaskIndividualAssessmentsOutput, table
+    describeReplicationTaskIndividualAssessments: function(Client, types.DescribeReplicationTaskIndividualAssessmentsInput): Operation<types.DescribeReplicationTaskIndividualAssessmentsOutput>
     -- Returns information about replication tasks for your account in the current
     -- region.
-    describeReplicationTasks: function(Client, types.DescribeReplicationTasksInput): types.DescribeReplicationTasksOutput, table
+    describeReplicationTasks: function(Client, types.DescribeReplicationTasksInput): Operation<types.DescribeReplicationTasksOutput>
     -- Returns information about the schema for the specified endpoint.
-    describeSchemas: function(Client, types.DescribeSchemasInput): types.DescribeSchemasOutput, table
+    describeSchemas: function(Client, types.DescribeSchemasInput): Operation<types.DescribeSchemasOutput>
     -- Returns table statistics on the database migration task, including table name, rows
     -- inserted, rows updated, and rows deleted.
     -- Note that the "last updated" column the DMS console only indicates the time that DMS
     -- last updated the table statistics record for a table. It does not indicate the time of the
     -- last update to the table.
-    describeTableStatistics: function(Client, types.DescribeTableStatisticsInput): types.DescribeTableStatisticsOutput, table
+    describeTableStatistics: function(Client, types.DescribeTableStatisticsInput): Operation<types.DescribeTableStatisticsOutput>
     -- Saves a copy of a database migration assessment report to your Amazon S3 bucket. DMS can
     -- save your assessment report as a comma-separated value (CSV) or a PDF file.
-    exportMetadataModelAssessment: function(Client, types.ExportMetadataModelAssessmentInput): types.ExportMetadataModelAssessmentOutput, table
+    exportMetadataModelAssessment: function(Client, types.ExportMetadataModelAssessmentInput): Operation<types.ExportMetadataModelAssessmentOutput>
     -- Converts source selection rules into their target counterparts for schema conversion operations.
-    getTargetSelectionRules: function(Client, types.GetTargetSelectionRulesInput): types.GetTargetSelectionRulesOutput, table
+    getTargetSelectionRules: function(Client, types.GetTargetSelectionRulesInput): Operation<types.GetTargetSelectionRulesOutput>
     -- Uploads the specified certificate.
-    importCertificate: function(Client, types.ImportCertificateInput): types.ImportCertificateOutput, table
+    importCertificate: function(Client, types.ImportCertificateInput): Operation<types.ImportCertificateOutput>
     -- Lists all metadata tags attached to an DMS resource, including replication instance,
     -- endpoint, subnet group, and migration task. For more information, see
     -- Tag
     -- data type description.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Modifies the specified schema conversion configuration using the provided parameters.
-    modifyConversionConfiguration: function(Client, types.ModifyConversionConfigurationInput): types.ModifyConversionConfigurationOutput, table
+    modifyConversionConfiguration: function(Client, types.ModifyConversionConfigurationInput): Operation<types.ModifyConversionConfigurationOutput>
     -- Modifies an existing DMS data migration.
-    modifyDataMigration: function(Client, types.ModifyDataMigrationInput): types.ModifyDataMigrationOutput, table
+    modifyDataMigration: function(Client, types.ModifyDataMigrationInput): Operation<types.ModifyDataMigrationOutput>
     -- Modifies the specified data provider using the provided settings.
     -- You must remove the data provider from all migration projects before you can modify
     -- it.
-    modifyDataProvider: function(Client, types.ModifyDataProviderInput): types.ModifyDataProviderOutput, table
+    modifyDataProvider: function(Client, types.ModifyDataProviderInput): Operation<types.ModifyDataProviderOutput>
     -- Modifies the specified endpoint.
     -- For a MySQL source or target endpoint, don't explicitly specify the database using
     -- the DatabaseName request parameter on the ModifyEndpoint API
@@ -332,16 +336,16 @@ local record Client
     -- all the task tables to this single database. For MySQL endpoints, you specify the
     -- database only when you specify the schema in the table-mapping rules of the DMS
     -- task.
-    modifyEndpoint: function(Client, types.ModifyEndpointInput): types.ModifyEndpointOutput, table
+    modifyEndpoint: function(Client, types.ModifyEndpointInput): Operation<types.ModifyEndpointOutput>
     -- Modifies an existing DMS event notification subscription.
-    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): types.ModifyEventSubscriptionOutput, table
+    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): Operation<types.ModifyEventSubscriptionOutput>
     -- Modifies the specified instance profile using the provided parameters.
     -- All migration projects associated with the instance profile must be deleted or
     -- modified before you can modify the instance profile.
-    modifyInstanceProfile: function(Client, types.ModifyInstanceProfileInput): types.ModifyInstanceProfileOutput, table
+    modifyInstanceProfile: function(Client, types.ModifyInstanceProfileInput): Operation<types.ModifyInstanceProfileOutput>
     -- Modifies the specified migration project using the provided parameters.
     -- The migration project must be closed before you can modify it.
-    modifyMigrationProject: function(Client, types.ModifyMigrationProjectInput): types.ModifyMigrationProjectOutput, table
+    modifyMigrationProject: function(Client, types.ModifyMigrationProjectInput): Operation<types.ModifyMigrationProjectOutput>
     -- Modifies an existing DMS Serverless replication configuration that you can use to
     -- start a replication. This command includes input validation and logic to check the state of
     -- any replication that uses this configuration. You can only modify a replication
@@ -350,87 +354,87 @@ local record Client
     -- configuration, even if you stop it.
     -- Other run statuses that allow you to run this command include FAILED and CREATED. A
     -- provisioning state that allows you to run this command is FAILED_PROVISION.
-    modifyReplicationConfig: function(Client, types.ModifyReplicationConfigInput): types.ModifyReplicationConfigOutput, table
+    modifyReplicationConfig: function(Client, types.ModifyReplicationConfigInput): Operation<types.ModifyReplicationConfigOutput>
     -- Modifies the replication instance to apply new settings. You can change one or more
     -- parameters by specifying these parameters and the new values in the request.
     -- Some settings are applied during the maintenance window.
-    modifyReplicationInstance: function(Client, types.ModifyReplicationInstanceInput): types.ModifyReplicationInstanceOutput, table
+    modifyReplicationInstance: function(Client, types.ModifyReplicationInstanceInput): Operation<types.ModifyReplicationInstanceOutput>
     -- Modifies the settings for the specified replication subnet group.
-    modifyReplicationSubnetGroup: function(Client, types.ModifyReplicationSubnetGroupInput): types.ModifyReplicationSubnetGroupOutput, table
+    modifyReplicationSubnetGroup: function(Client, types.ModifyReplicationSubnetGroupInput): Operation<types.ModifyReplicationSubnetGroupOutput>
     -- Modifies the specified replication task.
     -- You can't modify the task endpoints. The task must be stopped before you can modify it.
     -- For more information about DMS tasks, see Working with Migration Tasks in the
     -- Database Migration Service User Guide.
-    modifyReplicationTask: function(Client, types.ModifyReplicationTaskInput): types.ModifyReplicationTaskOutput, table
+    modifyReplicationTask: function(Client, types.ModifyReplicationTaskInput): Operation<types.ModifyReplicationTaskOutput>
     -- Moves a replication task from its current replication instance to a different target
     -- replication instance using the specified parameters. The target replication instance must
     -- be created with the same or later DMS version as the current replication instance.
-    moveReplicationTask: function(Client, types.MoveReplicationTaskInput): types.MoveReplicationTaskOutput, table
+    moveReplicationTask: function(Client, types.MoveReplicationTaskInput): Operation<types.MoveReplicationTaskOutput>
     -- Reboots a replication instance. Rebooting results in a momentary outage, until the
     -- replication instance becomes available again.
-    rebootReplicationInstance: function(Client, types.RebootReplicationInstanceInput): types.RebootReplicationInstanceOutput, table
+    rebootReplicationInstance: function(Client, types.RebootReplicationInstanceInput): Operation<types.RebootReplicationInstanceOutput>
     -- Populates the schema for the specified endpoint. This is an asynchronous operation and
     -- can take several minutes. You can check the status of this operation by calling the
     -- DescribeRefreshSchemasStatus operation.
-    refreshSchemas: function(Client, types.RefreshSchemasInput): types.RefreshSchemasOutput, table
+    refreshSchemas: function(Client, types.RefreshSchemasInput): Operation<types.RefreshSchemasOutput>
     -- Reloads the target database table with the source data for a given DMS Serverless
     -- replication configuration.
     -- You can only use this operation with a task in the RUNNING state, otherwise the service
     -- will throw an InvalidResourceStateFault exception.
-    reloadReplicationTables: function(Client, types.ReloadReplicationTablesInput): types.ReloadReplicationTablesOutput, table
+    reloadReplicationTables: function(Client, types.ReloadReplicationTablesInput): Operation<types.ReloadReplicationTablesOutput>
     -- Reloads the target database table with the source data.
     -- You can only use this operation with a task in the RUNNING state, otherwise
     -- the service will throw an InvalidResourceStateFault exception.
-    reloadTables: function(Client, types.ReloadTablesInput): types.ReloadTablesOutput, table
+    reloadTables: function(Client, types.ReloadTablesInput): Operation<types.ReloadTablesOutput>
     -- Removes metadata tags from an DMS resource, including replication instance, endpoint,
     -- subnet group, and migration task. For more information, see
     -- Tag
     -- data type
     -- description.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Runs large-scale assessment (LSA) analysis on every Fleet Advisor collector in your account.
-    runFleetAdvisorLsaAnalysis: function(Client, types.RunFleetAdvisorLsaAnalysisInput): types.RunFleetAdvisorLsaAnalysisOutput, table
+    runFleetAdvisorLsaAnalysis: function(Client, types.RunFleetAdvisorLsaAnalysisInput): Operation<types.RunFleetAdvisorLsaAnalysisOutput>
     -- Starts the specified data migration.
-    startDataMigration: function(Client, types.StartDataMigrationInput): types.StartDataMigrationOutput, table
+    startDataMigration: function(Client, types.StartDataMigrationInput): Operation<types.StartDataMigrationOutput>
     -- Applies the extension pack to your target database. An extension pack is an add-on
     -- module that emulates functions present in a source database that are required when
     -- converting objects to the target database.
-    startExtensionPackAssociation: function(Client, types.StartExtensionPackAssociationInput): types.StartExtensionPackAssociationOutput, table
+    startExtensionPackAssociation: function(Client, types.StartExtensionPackAssociationInput): Operation<types.StartExtensionPackAssociationOutput>
     -- Creates a database migration assessment report by assessing the migration complexity for
     -- your source database. A database migration assessment report summarizes all of the schema
     -- conversion tasks. It also details the action items for database objects that can't be
     -- converted to the database engine of your target database instance.
-    startMetadataModelAssessment: function(Client, types.StartMetadataModelAssessmentInput): types.StartMetadataModelAssessmentOutput, table
+    startMetadataModelAssessment: function(Client, types.StartMetadataModelAssessmentInput): Operation<types.StartMetadataModelAssessmentOutput>
     -- Converts your source database objects to a format compatible with the target database.
-    startMetadataModelConversion: function(Client, types.StartMetadataModelConversionInput): types.StartMetadataModelConversionOutput, table
+    startMetadataModelConversion: function(Client, types.StartMetadataModelConversionInput): Operation<types.StartMetadataModelConversionOutput>
     -- Creates source metadata model of the given type with the specified properties for schema conversion operations.
     -- This action supports only these directions: from SQL Server to Aurora PostgreSQL, or from SQL Server to RDS for PostgreSQL.
-    startMetadataModelCreation: function(Client, types.StartMetadataModelCreationInput): types.StartMetadataModelCreationOutput, table
+    startMetadataModelCreation: function(Client, types.StartMetadataModelCreationInput): Operation<types.StartMetadataModelCreationOutput>
     -- Saves your converted code to a file as a SQL script, and stores this file on your Amazon S3
     -- bucket.
-    startMetadataModelExportAsScript: function(Client, types.StartMetadataModelExportAsScriptInput): types.StartMetadataModelExportAsScriptOutput, table
+    startMetadataModelExportAsScript: function(Client, types.StartMetadataModelExportAsScriptInput): Operation<types.StartMetadataModelExportAsScriptOutput>
     -- Applies converted database objects to your target database.
-    startMetadataModelExportToTarget: function(Client, types.StartMetadataModelExportToTargetInput): types.StartMetadataModelExportToTargetOutput, table
+    startMetadataModelExportToTarget: function(Client, types.StartMetadataModelExportToTargetInput): Operation<types.StartMetadataModelExportToTargetOutput>
     -- Loads the metadata for all the dependent database objects of the parent object.
     -- This operation uses your project's Amazon S3 bucket as a metadata cache to improve
     -- performance.
-    startMetadataModelImport: function(Client, types.StartMetadataModelImportInput): types.StartMetadataModelImportOutput, table
+    startMetadataModelImport: function(Client, types.StartMetadataModelImportInput): Operation<types.StartMetadataModelImportOutput>
     -- End of support notice: On May 20, 2026, Amazon Web Services will end support for Amazon Web Services DMS Fleet Advisor;. After May 20, 2026, you will no longer be able to access the Amazon Web Services DMS Fleet Advisor; console or Amazon Web Services DMS Fleet Advisor; resources. For more information, see Amazon Web Services DMS Fleet Advisor end of support.
     -- Starts the analysis of your source database to provide recommendations of target
     -- engines.
     -- You can create recommendations for multiple source databases using BatchStartRecommendations.
-    startRecommendations: function(Client, types.StartRecommendationsInput): types.StartRecommendationsOutput, table
+    startRecommendations: function(Client, types.StartRecommendationsInput): Operation<types.StartRecommendationsOutput>
     -- For a given DMS Serverless replication configuration, DMS connects to the source
     -- endpoint and collects the metadata to analyze the replication workload. Using this
     -- metadata, DMS then computes and provisions the required capacity and starts replicating
     -- to the target endpoint using the server resources that DMS has provisioned for the DMS
     -- Serverless replication.
-    startReplication: function(Client, types.StartReplicationInput): types.StartReplicationOutput, table
+    startReplication: function(Client, types.StartReplicationInput): Operation<types.StartReplicationOutput>
     -- Starts the replication task.
     -- For more information about DMS tasks, see Working with Migration Tasks in the
     -- Database Migration Service User Guide.
-    startReplicationTask: function(Client, types.StartReplicationTaskInput): types.StartReplicationTaskOutput, table
+    startReplicationTask: function(Client, types.StartReplicationTaskInput): Operation<types.StartReplicationTaskOutput>
     -- Starts the replication task assessment for unsupported data types in the source
     -- database.
     -- You can only use this operation for a task if the following conditions are true:
@@ -440,7 +444,7 @@ local record Client
     -- error will result.
     -- For information about DMS task assessments, see Creating a task assessment report in the Database Migration Service User
     -- Guide.
-    startReplicationTaskAssessment: function(Client, types.StartReplicationTaskAssessmentInput): types.StartReplicationTaskAssessmentOutput, table
+    startReplicationTaskAssessment: function(Client, types.StartReplicationTaskAssessmentInput): Operation<types.StartReplicationTaskAssessmentOutput>
     -- Starts a new premigration assessment run for one or more individual assessments of a
     -- migration task.
     -- The assessments that you can specify depend on the source and target database engine and
@@ -448,17 +452,17 @@ local record Client
     -- must already be created. After you run this operation, you can review the status of each
     -- individual assessment. You can also run the migration task manually after the assessment
     -- run and its individual assessments complete.
-    startReplicationTaskAssessmentRun: function(Client, types.StartReplicationTaskAssessmentRunInput): types.StartReplicationTaskAssessmentRunOutput, table
+    startReplicationTaskAssessmentRun: function(Client, types.StartReplicationTaskAssessmentRunInput): Operation<types.StartReplicationTaskAssessmentRunOutput>
     -- Stops the specified data migration.
-    stopDataMigration: function(Client, types.StopDataMigrationInput): types.StopDataMigrationOutput, table
+    stopDataMigration: function(Client, types.StopDataMigrationInput): Operation<types.StopDataMigrationOutput>
     -- For a given DMS Serverless replication configuration, DMS stops any and all ongoing
     -- DMS Serverless replications. This command doesn't deprovision the stopped
     -- replications.
-    stopReplication: function(Client, types.StopReplicationInput): types.StopReplicationOutput, table
+    stopReplication: function(Client, types.StopReplicationInput): Operation<types.StopReplicationOutput>
     -- Stops the replication task.
-    stopReplicationTask: function(Client, types.StopReplicationTaskInput): types.StopReplicationTaskOutput, table
+    stopReplicationTask: function(Client, types.StopReplicationTaskInput): Operation<types.StopReplicationTaskOutput>
     -- Tests the connection between the replication instance and the endpoint.
-    testConnection: function(Client, types.TestConnectionInput): types.TestConnectionOutput, table
+    testConnection: function(Client, types.TestConnectionInput): Operation<types.TestConnectionOutput>
     -- Migrates 10 active and enabled Amazon SNS subscriptions at a time and converts them to
     -- corresponding Amazon EventBridge rules. By default, this operation migrates subscriptions
     -- only when all your replication instance versions are 3.4.5 or higher. If any replication
@@ -470,7 +474,7 @@ local record Client
     -- To call this operation, make sure that you have certain permissions added to your user
     -- account. For more information, see Migrating event subscriptions to Amazon EventBridge in the
     -- Amazon Web Services Database Migration Service User Guide.
-    updateSubscriptionsToEventBridge: function(Client, types.UpdateSubscriptionsToEventBridgeInput): types.UpdateSubscriptionsToEventBridgeOutput, table
+    updateSubscriptionsToEventBridge: function(Client, types.UpdateSubscriptionsToEventBridgeInput): Operation<types.UpdateSubscriptionsToEventBridgeOutput>
 end
 
 local record M

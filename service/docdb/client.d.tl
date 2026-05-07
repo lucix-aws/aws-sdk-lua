@@ -2,20 +2,24 @@
 
 local types = require("docdb.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a source identifier to an existing event notification
     -- subscription.
-    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput): types.AddSourceIdentifierToSubscriptionOutput, table
+    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput): Operation<types.AddSourceIdentifierToSubscriptionOutput>
     -- Adds metadata tags to an Amazon DocumentDB resource. You can use these tags
     -- with cost allocation reporting to track costs that are associated
     -- with Amazon DocumentDB resources or in a Condition statement in
     -- an Identity and Access Management (IAM) policy for Amazon DocumentDB.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Applies a pending maintenance action to a resource (for example,
     -- to an Amazon DocumentDB instance).
-    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): types.ApplyPendingMaintenanceActionOutput, table
+    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): Operation<types.ApplyPendingMaintenanceActionOutput>
     -- Copies the specified cluster parameter group.
-    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput): types.CopyDBClusterParameterGroupOutput, table
+    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput): Operation<types.CopyDBClusterParameterGroupOutput>
     -- Copies a snapshot of a cluster.
     -- To copy a cluster snapshot from a shared manual cluster snapshot,
     -- SourceDBClusterSnapshotIdentifier must be the Amazon
@@ -26,9 +30,9 @@ local record Client
     -- target cluster snapshot identified by
     -- TargetDBClusterSnapshotIdentifier while that cluster
     -- snapshot is in the copying status.
-    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput): types.CopyDBClusterSnapshotOutput, table
+    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput): Operation<types.CopyDBClusterSnapshotOutput>
     -- Creates a new Amazon DocumentDB cluster.
-    createDBCluster: function(Client, types.CreateDBClusterInput): types.CreateDBClusterOutput, table
+    createDBCluster: function(Client, types.CreateDBClusterInput): Operation<types.CreateDBClusterOutput>
     -- Creates a new cluster parameter group.
     -- Parameters in a cluster parameter group apply to all of the
     -- instances in a cluster.
@@ -47,104 +51,104 @@ local record Client
     -- without failover. For more information,
     -- see
     -- Modifying Amazon DocumentDB Cluster Parameter Groups.
-    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput): types.CreateDBClusterParameterGroupOutput, table
+    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput): Operation<types.CreateDBClusterParameterGroupOutput>
     -- Creates a snapshot of a cluster.
-    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput): types.CreateDBClusterSnapshotOutput, table
+    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput): Operation<types.CreateDBClusterSnapshotOutput>
     -- Creates a new instance.
-    createDBInstance: function(Client, types.CreateDBInstanceInput): types.CreateDBInstanceOutput, table
+    createDBInstance: function(Client, types.CreateDBInstanceInput): Operation<types.CreateDBInstanceOutput>
     -- Creates a new subnet group. subnet groups must contain at least one subnet in at
     -- least two Availability Zones in the Amazon Web Services Region.
-    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput): types.CreateDBSubnetGroupOutput, table
+    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput): Operation<types.CreateDBSubnetGroupOutput>
     -- Creates an Amazon DocumentDB event notification subscription. This action requires a topic Amazon Resource Name (ARN) created by using the Amazon DocumentDB console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the Amazon SNS console.
     -- You can specify the type of source (SourceType) that you want to be notified of. You can also provide a list of Amazon DocumentDB sources (SourceIds) that trigger the events, and you can provide a list of event categories (EventCategories) for events that you want to be notified of. For example, you can specify SourceType = db-instance, SourceIds = mydbinstance1, mydbinstance2 and EventCategories = Availability, Backup.
     -- If you specify both the SourceType and SourceIds (such as SourceType = db-instance and SourceIdentifier = myDBInstance1), you are notified of all the db-instance events for the specified source. If you specify a SourceType but do not specify a SourceIdentifier, you receive notice of the events for that source type for all your Amazon DocumentDB sources. If you do not specify either the SourceType or the SourceIdentifier, you are notified of events generated from all Amazon DocumentDB sources belonging to your customer account.
-    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): types.CreateEventSubscriptionOutput, table
+    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): Operation<types.CreateEventSubscriptionOutput>
     -- Creates an Amazon DocumentDB global cluster that can span multiple multiple Amazon Web Services Regions.
     -- The global cluster contains one primary cluster with read-write capability, and up-to 10 read-only secondary clusters. Global clusters uses storage-based fast replication across regions with latencies less than one second, using dedicated infrastructure with no impact to your workload’s performance.
     -- You can create a global cluster that is initially empty, and then add a primary and a secondary to it.
     -- Or you can specify an existing cluster during the create operation, and this cluster becomes the primary of the global cluster.
     -- This action only applies to Amazon DocumentDB clusters.
-    createGlobalCluster: function(Client, types.CreateGlobalClusterInput): types.CreateGlobalClusterOutput, table
+    createGlobalCluster: function(Client, types.CreateGlobalClusterInput): Operation<types.CreateGlobalClusterOutput>
     -- Deletes a previously provisioned cluster. When you delete a cluster, all automated backups for that cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified cluster are not deleted.
-    deleteDBCluster: function(Client, types.DeleteDBClusterInput): types.DeleteDBClusterOutput, table
+    deleteDBCluster: function(Client, types.DeleteDBClusterInput): Operation<types.DeleteDBClusterOutput>
     -- Deletes a specified cluster parameter group. The cluster parameter group to be deleted can't be associated with any clusters.
-    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput): types.DeleteDBClusterParameterGroupOutput, table
+    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput): Operation<types.DeleteDBClusterParameterGroupOutput>
     -- Deletes a cluster snapshot. If the snapshot is being copied, the copy operation is terminated.
     -- The cluster snapshot must be in the available state to be deleted.
-    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput): types.DeleteDBClusterSnapshotOutput, table
+    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput): Operation<types.DeleteDBClusterSnapshotOutput>
     -- Deletes a previously provisioned instance.
-    deleteDBInstance: function(Client, types.DeleteDBInstanceInput): types.DeleteDBInstanceOutput, table
+    deleteDBInstance: function(Client, types.DeleteDBInstanceInput): Operation<types.DeleteDBInstanceOutput>
     -- Deletes a subnet group.
     -- The specified database subnet group must not be associated with any DB
     -- instances.
-    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput): types.DeleteDBSubnetGroupOutput, table
+    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput): Operation<types.DeleteDBSubnetGroupOutput>
     -- Deletes an Amazon DocumentDB event notification subscription.
-    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): types.DeleteEventSubscriptionOutput, table
+    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): Operation<types.DeleteEventSubscriptionOutput>
     -- Deletes a global cluster. The primary and secondary clusters must already be detached or deleted before attempting to delete a global cluster.
     -- This action only applies to Amazon DocumentDB clusters.
-    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput): types.DeleteGlobalClusterOutput, table
+    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput): Operation<types.DeleteGlobalClusterOutput>
     -- Returns a list of certificate authority (CA) certificates provided by Amazon DocumentDB for this Amazon Web Services account.
-    describeCertificates: function(Client, types.DescribeCertificatesInput): types.DescribeCertificatesOutput, table
+    describeCertificates: function(Client, types.DescribeCertificatesInput): Operation<types.DescribeCertificatesOutput>
     -- Returns a list of DBClusterParameterGroup descriptions. If a DBClusterParameterGroupName parameter is specified, the list contains only the description of the specified cluster parameter group.
-    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput): types.DescribeDBClusterParameterGroupsOutput, table
+    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput): Operation<types.DescribeDBClusterParameterGroupsOutput>
     -- Returns the detailed parameter list for a particular cluster parameter
     -- group.
-    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput): types.DescribeDBClusterParametersOutput, table
+    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput): Operation<types.DescribeDBClusterParametersOutput>
     -- Returns information about provisioned Amazon DocumentDB clusters. This API
     -- operation supports pagination. For certain management features
     -- such as cluster and instance lifecycle management, Amazon DocumentDB leverages
     -- operational technology that is shared with Amazon RDS and Amazon
     -- Neptune. Use the filterName=engine,Values=docdb filter
     -- parameter to return only Amazon DocumentDB clusters.
-    describeDBClusters: function(Client, types.DescribeDBClustersInput): types.DescribeDBClustersOutput, table
+    describeDBClusters: function(Client, types.DescribeDBClustersInput): Operation<types.DescribeDBClustersOutput>
     -- Returns a list of cluster snapshot attribute names and values for a manual DB
     -- cluster snapshot.
     -- When you share snapshots with other Amazon Web Services accounts,
     -- DescribeDBClusterSnapshotAttributes returns the restore attribute and a list of IDs for the Amazon Web Services accounts that are authorized to copy or restore the manual cluster snapshot. If all is included in the list of values for the restore attribute, then the manual cluster snapshot is public and can be copied or restored by all Amazon Web Services accounts.
-    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput): types.DescribeDBClusterSnapshotAttributesOutput, table
+    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput): Operation<types.DescribeDBClusterSnapshotAttributesOutput>
     -- Returns information about cluster snapshots. This API operation supports pagination.
-    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput): types.DescribeDBClusterSnapshotsOutput, table
+    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput): Operation<types.DescribeDBClusterSnapshotsOutput>
     -- Returns a list of the available engines.
-    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput): types.DescribeDBEngineVersionsOutput, table
+    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput): Operation<types.DescribeDBEngineVersionsOutput>
     -- Returns information about provisioned Amazon DocumentDB instances. This API supports pagination.
-    describeDBInstances: function(Client, types.DescribeDBInstancesInput): types.DescribeDBInstancesOutput, table
+    describeDBInstances: function(Client, types.DescribeDBInstancesInput): Operation<types.DescribeDBInstancesOutput>
     -- Returns a list of DBSubnetGroup descriptions. If a
     -- DBSubnetGroupName is specified, the list will contain only the descriptions of the specified DBSubnetGroup.
-    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput): types.DescribeDBSubnetGroupsOutput, table
+    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput): Operation<types.DescribeDBSubnetGroupsOutput>
     -- Returns the default engine and system parameter information for the cluster database
     -- engine.
-    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput): types.DescribeEngineDefaultClusterParametersOutput, table
+    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput): Operation<types.DescribeEngineDefaultClusterParametersOutput>
     -- Displays a list of categories for all event source types, or, if specified, for a
     -- specified source type.
-    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): types.DescribeEventCategoriesOutput, table
+    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): Operation<types.DescribeEventCategoriesOutput>
     -- Returns events related to instances, security groups, snapshots, and DB parameter groups for the past 14 days. You can obtain events specific to a particular DB instance, security group, snapshot, or parameter group by providing the name as a parameter. By default, the events of the past hour are returned.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Lists all the subscription descriptions for a customer account. The description for a subscription includes SubscriptionName, SNSTopicARN, CustomerID, SourceType, SourceID, CreationTime, and Status.
     -- If you specify a SubscriptionName, lists the description for that subscription.
-    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): types.DescribeEventSubscriptionsOutput, table
+    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): Operation<types.DescribeEventSubscriptionsOutput>
     -- Returns information about Amazon DocumentDB global clusters. This API supports pagination.
     -- This action only applies to Amazon DocumentDB clusters.
-    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput): types.DescribeGlobalClustersOutput, table
+    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput): Operation<types.DescribeGlobalClustersOutput>
     -- Returns a list of orderable instance options for the specified engine.
-    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput): types.DescribeOrderableDBInstanceOptionsOutput, table
+    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput): Operation<types.DescribeOrderableDBInstanceOptionsOutput>
     -- Returns a list of resources (for example, instances) that have at least one pending
     -- maintenance action.
-    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): types.DescribePendingMaintenanceActionsOutput, table
+    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): Operation<types.DescribePendingMaintenanceActionsOutput>
     -- Forces a failover for a cluster.
     -- A failover for a cluster promotes one of the Amazon DocumentDB replicas (read-only instances) in the cluster to be the primary instance (the cluster writer).
     -- If the primary instance fails, Amazon DocumentDB automatically fails over to an Amazon DocumentDB replica, if one exists. You can force a failover when you want to simulate a failure of a primary instance for testing.
-    failoverDBCluster: function(Client, types.FailoverDBClusterInput): types.FailoverDBClusterOutput, table
+    failoverDBCluster: function(Client, types.FailoverDBClusterInput): Operation<types.FailoverDBClusterOutput>
     -- Promotes the specified secondary DB cluster to be the primary DB cluster in the global cluster when failing over a global cluster occurs.
     -- Use this operation to respond to an unplanned event, such as a regional disaster in the primary region.
     -- Failing over can result in a loss of write transaction data that wasn't replicated to the chosen secondary before the failover event occurred.
     -- However, the recovery process that promotes a DB instance on the chosen seconday DB cluster to be the primary writer DB instance guarantees that the data is in a transactionally consistent state.
-    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput): types.FailoverGlobalClusterOutput, table
+    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput): Operation<types.FailoverGlobalClusterOutput>
     -- Lists all tags on an Amazon DocumentDB resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Modifies a setting for an Amazon DocumentDB cluster. You can change one or more database
     -- configuration parameters by specifying these parameters and the new values in the
     -- request.
-    modifyDBCluster: function(Client, types.ModifyDBClusterInput): types.ModifyDBClusterOutput, table
+    modifyDBCluster: function(Client, types.ModifyDBClusterInput): Operation<types.ModifyDBClusterOutput>
     -- Modifies the parameters of a cluster parameter group. To modify more than one
     -- parameter, submit a list of the following: ParameterName,
     -- ParameterValue, and ApplyMethod. A maximum of 20
@@ -159,19 +163,19 @@ local record Client
     -- especially important for parameters that are critical when creating the default
     -- database for a cluster, such as the character set for the default database
     -- defined by the character_set_database parameter.
-    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput): types.ModifyDBClusterParameterGroupOutput, table
+    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput): Operation<types.ModifyDBClusterParameterGroupOutput>
     -- Adds an attribute and values to, or removes an attribute and values from, a manual cluster snapshot.
     -- To share a manual cluster snapshot with other Amazon Web Services accounts, specify restore as the AttributeName, and use the ValuesToAdd parameter to add a list of IDs of the Amazon Web Services accounts that are authorized to restore the manual cluster snapshot. Use the value all to make the manual cluster snapshot public, which means that it can be copied or restored by all Amazon Web Services accounts. Do not add the all value for any manual cluster snapshots that contain private information that you don't want available to all Amazon Web Services accounts. If a manual cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized Amazon Web Services account IDs for the ValuesToAdd parameter. You can't use all as a value for that parameter in this case.
-    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput): types.ModifyDBClusterSnapshotAttributeOutput, table
+    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput): Operation<types.ModifyDBClusterSnapshotAttributeOutput>
     -- Modifies settings for an instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.
-    modifyDBInstance: function(Client, types.ModifyDBInstanceInput): types.ModifyDBInstanceOutput, table
+    modifyDBInstance: function(Client, types.ModifyDBInstanceInput): Operation<types.ModifyDBInstanceOutput>
     -- Modifies an existing subnet group. subnet groups must contain at least one subnet in at least two Availability Zones in the Amazon Web Services Region.
-    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput): types.ModifyDBSubnetGroupOutput, table
+    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput): Operation<types.ModifyDBSubnetGroupOutput>
     -- Modifies an existing Amazon DocumentDB event notification subscription.
-    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): types.ModifyEventSubscriptionOutput, table
+    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): Operation<types.ModifyEventSubscriptionOutput>
     -- Modify a setting for an Amazon DocumentDB global cluster. You can change one or more configuration parameters (for example: deletion protection), or the global cluster identifier by specifying these parameters and the new values in the request.
     -- This action only applies to Amazon DocumentDB clusters.
-    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput): types.ModifyGlobalClusterOutput, table
+    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput): Operation<types.ModifyGlobalClusterOutput>
     -- You might need to reboot your instance, usually for maintenance reasons. For
     -- example, if you make certain changes, or if you change the cluster parameter group
     -- that is associated with the instance, you must reboot the instance for the changes to
@@ -179,15 +183,15 @@ local record Client
     -- Rebooting an instance restarts the database engine service. Rebooting an instance
     -- results in a momentary outage, during which the instance status is set to
     -- rebooting.
-    rebootDBInstance: function(Client, types.RebootDBInstanceInput): types.RebootDBInstanceOutput, table
+    rebootDBInstance: function(Client, types.RebootDBInstanceInput): Operation<types.RebootDBInstanceOutput>
     -- Detaches an Amazon DocumentDB secondary cluster from a global cluster. The cluster becomes a standalone cluster with read-write capability instead of being read-only and receiving data from a primary in a different region.
     -- This action only applies to Amazon DocumentDB clusters.
-    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput): types.RemoveFromGlobalClusterOutput, table
+    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput): Operation<types.RemoveFromGlobalClusterOutput>
     -- Removes a source identifier from an existing Amazon DocumentDB event notification
     -- subscription.
-    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput): types.RemoveSourceIdentifierFromSubscriptionOutput, table
+    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput): Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
     -- Removes metadata tags from an Amazon DocumentDB resource.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- Modifies the parameters of a cluster parameter group to the default value. To
     -- reset specific parameters, submit a list of the following: ParameterName
     -- and ApplyMethod. To reset the entire cluster parameter group, specify
@@ -196,28 +200,28 @@ local record Client
     -- When you reset the entire group, dynamic parameters are updated immediately and
     -- static parameters are set to pending-reboot to take effect on the next DB
     -- instance reboot.
-    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput): types.ResetDBClusterParameterGroupOutput, table
+    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput): Operation<types.ResetDBClusterParameterGroupOutput>
     -- Creates a new cluster from a snapshot or cluster snapshot.
     -- If a snapshot is specified, the target cluster is created from the source DB snapshot with a default configuration and default security group.
     -- If a cluster snapshot is specified, the target cluster is created from the source cluster restore point with the same configuration as the original source DB cluster, except that the new cluster is created with the default security group.
-    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput): types.RestoreDBClusterFromSnapshotOutput, table
+    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput): Operation<types.RestoreDBClusterFromSnapshotOutput>
     -- Restores a cluster to an arbitrary point in time. Users can restore to any point in
     -- time before LatestRestorableTime for up to
     -- BackupRetentionPeriod days. The target cluster is created from the
     -- source cluster with the same configuration as the original cluster, except that
     -- the new cluster is created with the default security group.
-    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput): types.RestoreDBClusterToPointInTimeOutput, table
+    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput): Operation<types.RestoreDBClusterToPointInTimeOutput>
     -- Restarts the stopped cluster that is specified by DBClusterIdentifier.
     -- For more information, see Stopping and
     -- Starting an Amazon DocumentDB Cluster.
-    startDBCluster: function(Client, types.StartDBClusterInput): types.StartDBClusterOutput, table
+    startDBCluster: function(Client, types.StartDBClusterInput): Operation<types.StartDBClusterOutput>
     -- Stops the running cluster that is specified by DBClusterIdentifier. The
     -- cluster must be in the available state. For more information, see
     -- Stopping and
     -- Starting an Amazon DocumentDB Cluster.
-    stopDBCluster: function(Client, types.StopDBClusterInput): types.StopDBClusterOutput, table
+    stopDBCluster: function(Client, types.StopDBClusterInput): Operation<types.StopDBClusterOutput>
     -- Switches over the specified secondary Amazon DocumentDB cluster to be the new primary Amazon DocumentDB cluster in the global database cluster.
-    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput): types.SwitchoverGlobalClusterOutput, table
+    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput): Operation<types.SwitchoverGlobalClusterOutput>
 end
 
 local record M

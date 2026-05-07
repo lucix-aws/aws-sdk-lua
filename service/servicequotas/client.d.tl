@@ -2,30 +2,34 @@
 
 local types = require("servicequotas.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates your quota request template with your organization. When a new
     -- Amazon Web Services account is created in your organization, the quota increase requests in the
     -- template are automatically applied to the account. You can add a quota increase request
     -- for any adjustable quota to your template.
-    associateServiceQuotaTemplate: function(Client, types.AssociateServiceQuotaTemplateInput): types.AssociateServiceQuotaTemplateOutput, table
+    associateServiceQuotaTemplate: function(Client, types.AssociateServiceQuotaTemplateInput): Operation<types.AssociateServiceQuotaTemplateOutput>
     -- Creates a Support case for an existing quota increase request. This call only creates
     -- a Support case if the request has a Pending status.
-    createSupportCase: function(Client, types.CreateSupportCaseInput): types.CreateSupportCaseOutput, table
+    createSupportCase: function(Client, types.CreateSupportCaseInput): Operation<types.CreateSupportCaseOutput>
     -- Deletes the quota increase request for the specified quota from your quota request
     -- template.
-    deleteServiceQuotaIncreaseRequestFromTemplate: function(Client, types.DeleteServiceQuotaIncreaseRequestFromTemplateInput): types.DeleteServiceQuotaIncreaseRequestFromTemplateOutput, table
+    deleteServiceQuotaIncreaseRequestFromTemplate: function(Client, types.DeleteServiceQuotaIncreaseRequestFromTemplateInput): Operation<types.DeleteServiceQuotaIncreaseRequestFromTemplateOutput>
     -- Disables your quota request template. After a template is disabled, the quota increase
     -- requests in the template are not applied to new Amazon Web Services accounts in your organization.
     -- Disabling a quota request template does not apply its quota increase requests.
-    disassociateServiceQuotaTemplate: function(Client, types.DisassociateServiceQuotaTemplateInput): types.DisassociateServiceQuotaTemplateOutput, table
+    disassociateServiceQuotaTemplate: function(Client, types.DisassociateServiceQuotaTemplateInput): Operation<types.DisassociateServiceQuotaTemplateOutput>
     -- Retrieves the status of the association for the quota request template.
-    getAssociationForServiceQuotaTemplate: function(Client, types.GetAssociationForServiceQuotaTemplateInput): types.GetAssociationForServiceQuotaTemplateOutput, table
+    getAssociationForServiceQuotaTemplate: function(Client, types.GetAssociationForServiceQuotaTemplateInput): Operation<types.GetAssociationForServiceQuotaTemplateOutput>
     -- Retrieves information about your Service Quotas Automatic Management configuration. Automatic Management monitors your Service Quotas utilization and notifies you before you
     -- run out of your allocated quotas.
-    getAutoManagementConfiguration: function(Client, types.GetAutoManagementConfigurationInput): types.GetAutoManagementConfigurationOutput, table
+    getAutoManagementConfiguration: function(Client, types.GetAutoManagementConfigurationInput): Operation<types.GetAutoManagementConfigurationOutput>
     -- Retrieves the default value for the specified quota. The default value does not
     -- reflect any quota increases.
-    getAWSDefaultServiceQuota: function(Client, types.GetAWSDefaultServiceQuotaInput): types.GetAWSDefaultServiceQuotaOutput, table
+    getAWSDefaultServiceQuota: function(Client, types.GetAWSDefaultServiceQuotaInput): Operation<types.GetAWSDefaultServiceQuotaOutput>
     -- Retrieves the quota utilization report for your Amazon Web Services account. This operation returns
     -- paginated results showing your quota usage across all Amazon Web Services services, sorted by utilization
     -- percentage in descending order (highest utilization first).
@@ -36,67 +40,67 @@ local record Client
     -- Each report contains up to 1,000 quota records per page. Use the NextToken
     -- parameter to retrieve additional pages of results. Reports are automatically deleted after
     -- 15 minutes.
-    getQuotaUtilizationReport: function(Client, types.GetQuotaUtilizationReportInput): types.GetQuotaUtilizationReportOutput, table
+    getQuotaUtilizationReport: function(Client, types.GetQuotaUtilizationReportInput): Operation<types.GetQuotaUtilizationReportOutput>
     -- Retrieves information about the specified quota increase request.
-    getRequestedServiceQuotaChange: function(Client, types.GetRequestedServiceQuotaChangeInput): types.GetRequestedServiceQuotaChangeOutput, table
+    getRequestedServiceQuotaChange: function(Client, types.GetRequestedServiceQuotaChangeInput): Operation<types.GetRequestedServiceQuotaChangeOutput>
     -- Retrieves the applied quota value for the specified account-level or resource-level
     -- quota. For some quotas, only the default values are available. If the applied quota
     -- value is not available for a quota, the quota is not retrieved.
-    getServiceQuota: function(Client, types.GetServiceQuotaInput): types.GetServiceQuotaOutput, table
+    getServiceQuota: function(Client, types.GetServiceQuotaInput): Operation<types.GetServiceQuotaOutput>
     -- Retrieves information about the specified quota increase request in your quota request
     -- template.
-    getServiceQuotaIncreaseRequestFromTemplate: function(Client, types.GetServiceQuotaIncreaseRequestFromTemplateInput): types.GetServiceQuotaIncreaseRequestFromTemplateOutput, table
+    getServiceQuotaIncreaseRequestFromTemplate: function(Client, types.GetServiceQuotaIncreaseRequestFromTemplateInput): Operation<types.GetServiceQuotaIncreaseRequestFromTemplateOutput>
     -- Lists the default values for the quotas for the specified Amazon Web Services service. A default
     -- value does not reflect any quota increases.
-    listAWSDefaultServiceQuotas: function(Client, types.ListAWSDefaultServiceQuotasInput): types.ListAWSDefaultServiceQuotasOutput, table
+    listAWSDefaultServiceQuotas: function(Client, types.ListAWSDefaultServiceQuotasInput): Operation<types.ListAWSDefaultServiceQuotasOutput>
     -- Retrieves the quota increase requests for the specified Amazon Web Services service. Filter
     -- responses to return quota requests at either the account level, resource level, or all
     -- levels. Responses include any open or closed requests within 90 days.
-    listRequestedServiceQuotaChangeHistory: function(Client, types.ListRequestedServiceQuotaChangeHistoryInput): types.ListRequestedServiceQuotaChangeHistoryOutput, table
+    listRequestedServiceQuotaChangeHistory: function(Client, types.ListRequestedServiceQuotaChangeHistoryInput): Operation<types.ListRequestedServiceQuotaChangeHistoryOutput>
     -- Retrieves the quota increase requests for the specified quota. Filter responses to
     -- return quota requests at either the account level, resource level, or all levels.
-    listRequestedServiceQuotaChangeHistoryByQuota: function(Client, types.ListRequestedServiceQuotaChangeHistoryByQuotaInput): types.ListRequestedServiceQuotaChangeHistoryByQuotaOutput, table
+    listRequestedServiceQuotaChangeHistoryByQuota: function(Client, types.ListRequestedServiceQuotaChangeHistoryByQuotaInput): Operation<types.ListRequestedServiceQuotaChangeHistoryByQuotaOutput>
     -- Lists the quota increase requests in the specified quota request template.
-    listServiceQuotaIncreaseRequestsInTemplate: function(Client, types.ListServiceQuotaIncreaseRequestsInTemplateInput): types.ListServiceQuotaIncreaseRequestsInTemplateOutput, table
+    listServiceQuotaIncreaseRequestsInTemplate: function(Client, types.ListServiceQuotaIncreaseRequestsInTemplateInput): Operation<types.ListServiceQuotaIncreaseRequestsInTemplateOutput>
     -- Lists the applied quota values for the specified Amazon Web Services service. For some quotas, only
     -- the default values are available. If the applied quota value is not available for a
     -- quota, the quota is not retrieved. Filter responses to return applied quota values at
     -- either the account level, resource level, or all levels.
-    listServiceQuotas: function(Client, types.ListServiceQuotasInput): types.ListServiceQuotasOutput, table
+    listServiceQuotas: function(Client, types.ListServiceQuotasInput): Operation<types.ListServiceQuotasOutput>
     -- Lists the names and codes for the Amazon Web Services services integrated with Service Quotas.
-    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServices: function(Client, types.ListServicesInput): Operation<types.ListServicesOutput>
     -- Returns a list of the tags assigned to the specified applied quota.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds a quota increase request to your quota request template.
-    putServiceQuotaIncreaseRequestIntoTemplate: function(Client, types.PutServiceQuotaIncreaseRequestIntoTemplateInput): types.PutServiceQuotaIncreaseRequestIntoTemplateOutput, table
+    putServiceQuotaIncreaseRequestIntoTemplate: function(Client, types.PutServiceQuotaIncreaseRequestIntoTemplateInput): Operation<types.PutServiceQuotaIncreaseRequestIntoTemplateOutput>
     -- Submits a quota increase request for the specified quota at the account or resource
     -- level.
-    requestServiceQuotaIncrease: function(Client, types.RequestServiceQuotaIncreaseInput): types.RequestServiceQuotaIncreaseOutput, table
+    requestServiceQuotaIncrease: function(Client, types.RequestServiceQuotaIncreaseInput): Operation<types.RequestServiceQuotaIncreaseOutput>
     -- Starts Service Quotas Automatic Management for an Amazon Web Services account, including notification preferences
     -- and excluded quotas configurations. Automatic Management monitors your Service Quotas utilization and notifies you before you
     -- run out of your allocated quotas.
-    startAutoManagement: function(Client, types.StartAutoManagementInput): types.StartAutoManagementOutput, table
+    startAutoManagement: function(Client, types.StartAutoManagementInput): Operation<types.StartAutoManagementOutput>
     -- Initiates the generation of a quota utilization report for your Amazon Web Services account. This
     -- asynchronous operation analyzes your quota usage across all Amazon Web Services services and returns
     -- a unique report identifier that you can use to retrieve the results.
     -- The report generation process may take several seconds to complete, depending on the
     -- number of quotas in your account. Use the GetQuotaUtilizationReport operation
     -- to check the status and retrieve the results when the report is ready.
-    startQuotaUtilizationReport: function(Client, types.StartQuotaUtilizationReportInput): types.StartQuotaUtilizationReportOutput, table
+    startQuotaUtilizationReport: function(Client, types.StartQuotaUtilizationReportInput): Operation<types.StartQuotaUtilizationReportOutput>
     -- Stops Service Quotas Automatic Management for an Amazon Web Services account and removes all associated
     -- configurations. Automatic Management monitors your Service Quotas utilization and notifies you before you
     -- run out of your allocated quotas.
-    stopAutoManagement: function(Client, types.StopAutoManagementInput): types.StopAutoManagementOutput, table
+    stopAutoManagement: function(Client, types.StopAutoManagementInput): Operation<types.StopAutoManagementOutput>
     -- Adds tags to the specified applied quota. You can include one or more tags to add to
     -- the quota.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified applied quota. You can specify one or more tags to
     -- remove.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates your Service Quotas Automatic Management configuration, including notification preferences and
     -- excluded quotas. Automatic Management monitors your Service Quotas utilization and notifies you before you
     -- run out of your allocated quotas.
-    updateAutoManagement: function(Client, types.UpdateAutoManagementInput): types.UpdateAutoManagementOutput, table
+    updateAutoManagement: function(Client, types.UpdateAutoManagementInput): Operation<types.UpdateAutoManagementOutput>
 end
 
 local record M

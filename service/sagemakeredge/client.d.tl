@@ -2,13 +2,17 @@
 
 local types = require("sagemakeredge.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Use to get the active deployments from a device.
-    getDeployments: function(Client, types.GetDeploymentsInput): types.GetDeploymentsOutput, table
+    getDeployments: function(Client, types.GetDeploymentsInput): Operation<types.GetDeploymentsOutput>
     -- Use to check if a device is registered with SageMaker Edge Manager.
-    getDeviceRegistration: function(Client, types.GetDeviceRegistrationInput): types.GetDeviceRegistrationOutput, table
+    getDeviceRegistration: function(Client, types.GetDeviceRegistrationInput): Operation<types.GetDeviceRegistrationOutput>
     -- Use to get the current status of devices registered on SageMaker Edge Manager.
-    sendHeartbeat: function(Client, types.SendHeartbeatInput): types.SendHeartbeatOutput, table
+    sendHeartbeat: function(Client, types.SendHeartbeatInput): Operation<types.SendHeartbeatOutput>
 end
 
 local record M

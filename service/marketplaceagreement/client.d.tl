@@ -2,57 +2,61 @@
 
 local types = require("marketplaceagreement.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Allows buyers (acceptors) to accept a cancellation request that is in PENDING_APPROVAL status. Once accepted, the cancellation request transitions to APPROVED status and the agreement cancellation will be processed. Only cancellation requests in PENDING_APPROVAL status can be accepted. A ConflictException is thrown if the cancellation request is in any other status.
-    acceptAgreementCancellationRequest: function(Client, types.AcceptAgreementCancellationRequestInput): types.AcceptAgreementCancellationRequestOutput, table
+    acceptAgreementCancellationRequest: function(Client, types.AcceptAgreementCancellationRequestInput): Operation<types.AcceptAgreementCancellationRequestOutput>
     -- Allows buyers (acceptors) to accept a payment request that is in PENDING_APPROVAL status. Once accepted, the payment request transitions to APPROVED status and the charge will be processed. Buyers can optionally provide a purchase order reference for their internal tracking. Only payment requests in PENDING_APPROVAL status can be accepted. A ConflictException is thrown if the payment request is in any other status.
-    acceptAgreementPaymentRequest: function(Client, types.AcceptAgreementPaymentRequestInput): types.AcceptAgreementPaymentRequestOutput, table
+    acceptAgreementPaymentRequest: function(Client, types.AcceptAgreementPaymentRequestInput): Operation<types.AcceptAgreementPaymentRequestOutput>
     -- Accepts an agreement request to finalize the agreement. The acceptor can optionally provide purchase orders to associate with the agreement charges.
-    acceptAgreementRequest: function(Client, types.AcceptAgreementRequestInput): types.AcceptAgreementRequestOutput, table
+    acceptAgreementRequest: function(Client, types.AcceptAgreementRequestInput): Operation<types.AcceptAgreementRequestOutput>
     -- Allows sellers (proposers) to submit billing adjustment requests for one or more invoices within an agreement. Each entry in the batch specifies an invoice and the adjustment amount. The operation returns successfully created adjustment request IDs and any errors for entries that failed to process. Each entry requires a unique clientToken for idempotency.
-    batchCreateBillingAdjustmentRequest: function(Client, types.BatchCreateBillingAdjustmentRequestInput): types.BatchCreateBillingAdjustmentRequestOutput, table
+    batchCreateBillingAdjustmentRequest: function(Client, types.BatchCreateBillingAdjustmentRequestInput): Operation<types.BatchCreateBillingAdjustmentRequestOutput>
     -- Allows an acceptor to cancel an active agreement. Not all agreements are eligible for cancellation. Use the error response to determine why a cancellation request was rejected.
-    cancelAgreement: function(Client, types.CancelAgreementInput): types.CancelAgreementOutput, table
+    cancelAgreement: function(Client, types.CancelAgreementInput): Operation<types.CancelAgreementOutput>
     -- Allows sellers (proposers) to withdraw an existing agreement cancellation request that is in a pending state. Once cancelled, the cancellation request transitions to CANCELLED status and can no longer be approved or rejected by the buyer. Only cancellation requests in PENDING_APPROVAL status can be cancelled. A ConflictException is thrown if the cancellation request is in any other status.
-    cancelAgreementCancellationRequest: function(Client, types.CancelAgreementCancellationRequestInput): types.CancelAgreementCancellationRequestOutput, table
+    cancelAgreementCancellationRequest: function(Client, types.CancelAgreementCancellationRequestInput): Operation<types.CancelAgreementCancellationRequestOutput>
     -- Allows sellers (proposers) to cancel a payment request that is in PENDING_APPROVAL status. Once cancelled, the payment request transitions to CANCELLED status and can no longer be accepted or rejected by the buyer. Only payment requests in PENDING_APPROVAL status can be cancelled. A ConflictException is thrown if the payment request is in any other status.
-    cancelAgreementPaymentRequest: function(Client, types.CancelAgreementPaymentRequestInput): types.CancelAgreementPaymentRequestOutput, table
+    cancelAgreementPaymentRequest: function(Client, types.CancelAgreementPaymentRequestInput): Operation<types.CancelAgreementPaymentRequestOutput>
     -- Creates an agreement request that acts as a quote for the terms you want to accept. The agreement request captures the requested terms, calculates charges, and returns a summary. Use AcceptAgreementRequest with the returned agreementRequestId to finalize the agreement.
-    createAgreementRequest: function(Client, types.CreateAgreementRequestInput): types.CreateAgreementRequestOutput, table
+    createAgreementRequest: function(Client, types.CreateAgreementRequestInput): Operation<types.CreateAgreementRequestOutput>
     -- Provides details about an agreement, such as the proposer, acceptor, start date, and end date.
-    describeAgreement: function(Client, types.DescribeAgreementInput): types.DescribeAgreementOutput, table
+    describeAgreement: function(Client, types.DescribeAgreementInput): Operation<types.DescribeAgreementOutput>
     -- Retrieves detailed information about a specific agreement cancellation request. Both sellers (proposers) and buyers (acceptors) can use this operation to view cancellation requests associated with their agreements.
-    getAgreementCancellationRequest: function(Client, types.GetAgreementCancellationRequestInput): types.GetAgreementCancellationRequestOutput, table
+    getAgreementCancellationRequest: function(Client, types.GetAgreementCancellationRequestInput): Operation<types.GetAgreementCancellationRequestOutput>
     -- Obtains details about the entitlements of an agreement.
-    getAgreementEntitlements: function(Client, types.GetAgreementEntitlementsInput): types.GetAgreementEntitlementsOutput, table
+    getAgreementEntitlements: function(Client, types.GetAgreementEntitlementsInput): Operation<types.GetAgreementEntitlementsOutput>
     -- Retrieves detailed information about a specific payment request. Both sellers (proposers) and buyers (acceptors) can use this operation to view payment requests associated with their agreements. The response includes the current status, charge details, timestamps, and the charge ID if the request has been approved. The calling identity must be either the acceptor or proposer of the payment request. A ResourceNotFoundException is returned if the payment request does not exist.
-    getAgreementPaymentRequest: function(Client, types.GetAgreementPaymentRequestInput): types.GetAgreementPaymentRequestOutput, table
+    getAgreementPaymentRequest: function(Client, types.GetAgreementPaymentRequestInput): Operation<types.GetAgreementPaymentRequestOutput>
     -- Obtains details about the terms in an agreement that you participated in as proposer or acceptor. The details include: TermType – The type of term, such as LegalTerm, RenewalTerm, or ConfigurableUpfrontPricingTerm. TermID – The ID of the particular term, which is common between offer and agreement. TermPayload – The key information contained in the term, such as the EULA for LegalTerm or pricing and dimensions for various pricing terms, such as ConfigurableUpfrontPricingTerm or UsageBasedPricingTerm. Configuration – The buyer/acceptor's selection at the time of agreement creation, such as the number of units purchased for a dimension or setting the EnableAutoRenew flag.
-    getAgreementTerms: function(Client, types.GetAgreementTermsInput): types.GetAgreementTermsOutput, table
+    getAgreementTerms: function(Client, types.GetAgreementTermsInput): Operation<types.GetAgreementTermsOutput>
     -- Retrieves detailed information about a specific billing adjustment request. Sellers (proposers) can use this operation to view the status and details of a billing adjustment request they submitted.
-    getBillingAdjustmentRequest: function(Client, types.GetBillingAdjustmentRequestInput): types.GetBillingAdjustmentRequestOutput, table
+    getBillingAdjustmentRequest: function(Client, types.GetBillingAdjustmentRequestInput): Operation<types.GetBillingAdjustmentRequestOutput>
     -- Lists agreement cancellation requests available to you as a seller or buyer. Both sellers (proposers) and buyers (acceptors) can use this operation to find cancellation requests by specifying their party type and applying optional filters. PartyType is a required parameter. A ValidationException is returned if PartyType is not provided.
-    listAgreementCancellationRequests: function(Client, types.ListAgreementCancellationRequestsInput): types.ListAgreementCancellationRequestsOutput, table
+    listAgreementCancellationRequests: function(Client, types.ListAgreementCancellationRequestsInput): Operation<types.ListAgreementCancellationRequestsOutput>
     -- Allows acceptors to view charges and purchase orders that are associated with an agreement. The response includes details about all charges regardless of whether a purchase order is linked to each charge.
-    listAgreementCharges: function(Client, types.ListAgreementChargesInput): types.ListAgreementChargesOutput, table
+    listAgreementCharges: function(Client, types.ListAgreementChargesInput): Operation<types.ListAgreementChargesOutput>
     -- Allows sellers (proposers) to retrieve aggregated billing data from AWS Marketplace agreements using flexible grouping. Supports invoice-level aggregation with filtering by billing period, invoice type, and issued date. The groupBy parameter is required and supports only INVOICE_ID as a value. The agreementId parameter is required.
-    listAgreementInvoiceLineItems: function(Client, types.ListAgreementInvoiceLineItemsInput): types.ListAgreementInvoiceLineItemsOutput, table
+    listAgreementInvoiceLineItems: function(Client, types.ListAgreementInvoiceLineItemsInput): Operation<types.ListAgreementInvoiceLineItemsOutput>
     -- Lists payment requests available to you as a seller or buyer. Both sellers (proposers) and buyers (acceptors) can use this operation to find payment requests by specifying their party type and applying optional parameters. PartyType is a required parameter. A ValidationException is returned if PartyType is not provided. Pagination is supported through maxResults (1-50, default 50) and nextToken parameters.
-    listAgreementPaymentRequests: function(Client, types.ListAgreementPaymentRequestsInput): types.ListAgreementPaymentRequestsOutput, table
+    listAgreementPaymentRequests: function(Client, types.ListAgreementPaymentRequestsInput): Operation<types.ListAgreementPaymentRequestsOutput>
     -- Lists billing adjustment requests for a specific agreement. Sellers (proposers) can use this operation to view all billing adjustment requests associated with an agreement.
-    listBillingAdjustmentRequests: function(Client, types.ListBillingAdjustmentRequestsInput): types.ListBillingAdjustmentRequestsOutput, table
+    listBillingAdjustmentRequests: function(Client, types.ListBillingAdjustmentRequestsInput): Operation<types.ListBillingAdjustmentRequestsOutput>
     -- Allows buyers (acceptors) to reject a cancellation request that is in PENDING_APPROVAL status. Once rejected, the cancellation request transitions to REJECTED status and the agreement remains active. Buyers must provide a reason for the rejection. Only cancellation requests in PENDING_APPROVAL status can be rejected. A ConflictException is thrown if the cancellation request is in any other status.
-    rejectAgreementCancellationRequest: function(Client, types.RejectAgreementCancellationRequestInput): types.RejectAgreementCancellationRequestOutput, table
+    rejectAgreementCancellationRequest: function(Client, types.RejectAgreementCancellationRequestInput): Operation<types.RejectAgreementCancellationRequestOutput>
     -- Allows buyers (acceptors) to reject a payment request that is in PENDING_APPROVAL status. Once rejected, the payment request transitions to REJECTED status and cannot be accepted. Buyers can optionally provide a reason for the rejection. Only payment requests in PENDING_APPROVAL status can be rejected. A ConflictException is thrown if the payment request is in any other status.
-    rejectAgreementPaymentRequest: function(Client, types.RejectAgreementPaymentRequestInput): types.RejectAgreementPaymentRequestOutput, table
+    rejectAgreementPaymentRequest: function(Client, types.RejectAgreementPaymentRequestInput): Operation<types.RejectAgreementPaymentRequestOutput>
     -- Searches across all agreements that a proposer or an acceptor has in AWS Marketplace. The search returns a list of agreements with basic agreement information. The following filter combinations are supported when the PartyType is Proposer: AgreementType AgreementType + EndTime AgreementType + ResourceType AgreementType + ResourceType + EndTime AgreementType + ResourceType + Status AgreementType + ResourceType + Status + EndTime AgreementType + ResourceIdentifier AgreementType + ResourceIdentifier + EndTime AgreementType + ResourceIdentifier + Status AgreementType + ResourceIdentifier + Status + EndTime AgreementType + AcceptorAccountId AgreementType + AcceptorAccountId + EndTime AgreementType + AcceptorAccountId + Status AgreementType + AcceptorAccountId + Status + EndTime AgreementType + AcceptorAccountId + OfferId AgreementType + AcceptorAccountId + OfferId + Status AgreementType + AcceptorAccountId + OfferId + EndTime AgreementType + AcceptorAccountId + OfferId + Status + EndTime AgreementType + AcceptorAccountId + ResourceIdentifier AgreementType + AcceptorAccountId + ResourceIdentifier + Status AgreementType + AcceptorAccountId + ResourceIdentifier + EndTime AgreementType + AcceptorAccountId + ResourceIdentifier + Status + EndTime AgreementType + AcceptorAccountId + ResourceType AgreementType + AcceptorAccountId + ResourceType + EndTime AgreementType + AcceptorAccountId + ResourceType + Status AgreementType + AcceptorAccountId + ResourceType + Status + EndTime AgreementType + Status AgreementType + Status + EndTime AgreementType + OfferId AgreementType + OfferId + EndTime AgreementType + OfferId + Status AgreementType + OfferId + Status + EndTime AgreementType + OfferSetId AgreementType + OfferSetId + EndTime AgreementType + OfferSetId + Status AgreementType + OfferSetId + Status + EndTime To filter by EndTime, you can use BeforeEndTime and/or AfterEndTime. Only EndTime is supported for sorting. The following filter combinations are supported when the PartyType is Acceptor: AgreementType AgreementType + Status AgreementType + EndTime AgreementType + Status + EndTime AgreementType + ResourceIdentifier AgreementType + ResourceIdentifier + EndTime AgreementType + ResourceIdentifier + Status AgreementType + ResourceIdentifier + Status + EndTime AgreementType + ResourceType AgreementType + ResourceType + EndTime AgreementType + OfferId AgreementType + OfferId + EndTime AgreementType + OfferId + Status AgreementType + OfferId + Status + EndTime AgreementType + OfferSetId AgreementType + OfferSetId + EndTime AgreementType + OfferSetId + Status AgreementType + OfferSetId + Status + EndTime
-    searchAgreements: function(Client, types.SearchAgreementsInput): types.SearchAgreementsOutput, table
+    searchAgreements: function(Client, types.SearchAgreementsInput): Operation<types.SearchAgreementsOutput>
     -- Allows sellers (proposers) to submit a cancellation request for an active agreement. The cancellation request is created in PENDING_APPROVAL status, at which point the buyer can review it.
-    sendAgreementCancellationRequest: function(Client, types.SendAgreementCancellationRequestInput): types.SendAgreementCancellationRequestOutput, table
+    sendAgreementCancellationRequest: function(Client, types.SendAgreementCancellationRequestInput): Operation<types.SendAgreementCancellationRequestOutput>
     -- Allows sellers (proposers) to submit a payment request to buyers (acceptors) for a specific charge amount for an agreement that includes a VariablePaymentTerm. The payment request is created in PENDING_APPROVAL status, at which point the buyer can accept or reject it. The agreement must be active and have a VariablePaymentTerm to support payment requests. The chargeAmount must not exceed the remaining available balance under the VariablePaymentTerm maxTotalChargeAmount.
-    sendAgreementPaymentRequest: function(Client, types.SendAgreementPaymentRequestInput): types.SendAgreementPaymentRequestOutput, table
+    sendAgreementPaymentRequest: function(Client, types.SendAgreementPaymentRequestInput): Operation<types.SendAgreementPaymentRequestOutput>
     -- Allows acceptors to associate purchase orders with agreement charges after an agreement is created.
-    updatePurchaseOrders: function(Client, types.UpdatePurchaseOrdersInput): types.UpdatePurchaseOrdersOutput, table
+    updatePurchaseOrders: function(Client, types.UpdatePurchaseOrdersInput): Operation<types.UpdatePurchaseOrdersOutput>
 end
 
 local record M

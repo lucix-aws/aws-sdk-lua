@@ -2,125 +2,129 @@
 
 local types = require("cleanroomsml.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Submits a request to cancel the trained model job.
-    cancelTrainedModel: function(Client, types.CancelTrainedModelInput): types.CancelTrainedModelOutput, table
+    cancelTrainedModel: function(Client, types.CancelTrainedModelInput): Operation<types.CancelTrainedModelOutput>
     -- Submits a request to cancel a trained model inference job.
-    cancelTrainedModelInferenceJob: function(Client, types.CancelTrainedModelInferenceJobInput): types.CancelTrainedModelInferenceJobOutput, table
+    cancelTrainedModelInferenceJob: function(Client, types.CancelTrainedModelInferenceJobInput): Operation<types.CancelTrainedModelInferenceJobOutput>
     -- Defines the information necessary to create an audience model. An audience model is a machine learning model that Clean Rooms ML trains to measure similarity between users. Clean Rooms ML manages training and storing the audience model. The audience model can be used in multiple calls to the StartAudienceGenerationJob API.
-    createAudienceModel: function(Client, types.CreateAudienceModelInput): types.CreateAudienceModelOutput, table
+    createAudienceModel: function(Client, types.CreateAudienceModelInput): Operation<types.CreateAudienceModelOutput>
     -- Defines the information necessary to create a configured audience model.
-    createConfiguredAudienceModel: function(Client, types.CreateConfiguredAudienceModelInput): types.CreateConfiguredAudienceModelOutput, table
+    createConfiguredAudienceModel: function(Client, types.CreateConfiguredAudienceModelInput): Operation<types.CreateConfiguredAudienceModelOutput>
     -- Creates a configured model algorithm using a container image stored in an ECR repository.
-    createConfiguredModelAlgorithm: function(Client, types.CreateConfiguredModelAlgorithmInput): types.CreateConfiguredModelAlgorithmOutput, table
+    createConfiguredModelAlgorithm: function(Client, types.CreateConfiguredModelAlgorithmInput): Operation<types.CreateConfiguredModelAlgorithmOutput>
     -- Associates a configured model algorithm to a collaboration for use by any member of the collaboration.
-    createConfiguredModelAlgorithmAssociation: function(Client, types.CreateConfiguredModelAlgorithmAssociationInput): types.CreateConfiguredModelAlgorithmAssociationOutput, table
+    createConfiguredModelAlgorithmAssociation: function(Client, types.CreateConfiguredModelAlgorithmAssociationInput): Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
     -- Provides the information to create an ML input channel. An ML input channel is the result of a query that can be used for ML modeling.
-    createMLInputChannel: function(Client, types.CreateMLInputChannelInput): types.CreateMLInputChannelOutput, table
+    createMLInputChannel: function(Client, types.CreateMLInputChannelInput): Operation<types.CreateMLInputChannelOutput>
     -- Creates a trained model from an associated configured model algorithm using data from any member of the collaboration.
-    createTrainedModel: function(Client, types.CreateTrainedModelInput): types.CreateTrainedModelOutput, table
+    createTrainedModel: function(Client, types.CreateTrainedModelInput): Operation<types.CreateTrainedModelOutput>
     -- Defines the information necessary to create a training dataset. In Clean Rooms ML, the TrainingDataset is metadata that points to a Glue table, which is read only during AudienceModel creation.
-    createTrainingDataset: function(Client, types.CreateTrainingDatasetInput): types.CreateTrainingDatasetOutput, table
+    createTrainingDataset: function(Client, types.CreateTrainingDatasetInput): Operation<types.CreateTrainingDatasetOutput>
     -- Deletes the specified audience generation job, and removes all data associated with the job.
-    deleteAudienceGenerationJob: function(Client, types.DeleteAudienceGenerationJobInput): types.DeleteAudienceGenerationJobOutput, table
+    deleteAudienceGenerationJob: function(Client, types.DeleteAudienceGenerationJobInput): Operation<types.DeleteAudienceGenerationJobOutput>
     -- Specifies an audience model that you want to delete. You can't delete an audience model if there are any configured audience models that depend on the audience model.
-    deleteAudienceModel: function(Client, types.DeleteAudienceModelInput): types.DeleteAudienceModelOutput, table
+    deleteAudienceModel: function(Client, types.DeleteAudienceModelInput): Operation<types.DeleteAudienceModelOutput>
     -- Deletes the specified configured audience model. You can't delete a configured audience model if there are any lookalike models that use the configured audience model. If you delete a configured audience model, it will be removed from any collaborations that it is associated to.
-    deleteConfiguredAudienceModel: function(Client, types.DeleteConfiguredAudienceModelInput): types.DeleteConfiguredAudienceModelOutput, table
+    deleteConfiguredAudienceModel: function(Client, types.DeleteConfiguredAudienceModelInput): Operation<types.DeleteConfiguredAudienceModelOutput>
     -- Deletes the specified configured audience model policy.
-    deleteConfiguredAudienceModelPolicy: function(Client, types.DeleteConfiguredAudienceModelPolicyInput): types.DeleteConfiguredAudienceModelPolicyOutput, table
+    deleteConfiguredAudienceModelPolicy: function(Client, types.DeleteConfiguredAudienceModelPolicyInput): Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
     -- Deletes a configured model algorithm.
-    deleteConfiguredModelAlgorithm: function(Client, types.DeleteConfiguredModelAlgorithmInput): types.DeleteConfiguredModelAlgorithmOutput, table
+    deleteConfiguredModelAlgorithm: function(Client, types.DeleteConfiguredModelAlgorithmInput): Operation<types.DeleteConfiguredModelAlgorithmOutput>
     -- Deletes a configured model algorithm association.
-    deleteConfiguredModelAlgorithmAssociation: function(Client, types.DeleteConfiguredModelAlgorithmAssociationInput): types.DeleteConfiguredModelAlgorithmAssociationOutput, table
+    deleteConfiguredModelAlgorithmAssociation: function(Client, types.DeleteConfiguredModelAlgorithmAssociationInput): Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
     -- Deletes a ML modeling configuration.
-    deleteMLConfiguration: function(Client, types.DeleteMLConfigurationInput): types.DeleteMLConfigurationOutput, table
+    deleteMLConfiguration: function(Client, types.DeleteMLConfigurationInput): Operation<types.DeleteMLConfigurationOutput>
     -- Provides the information necessary to delete an ML input channel.
-    deleteMLInputChannelData: function(Client, types.DeleteMLInputChannelDataInput): types.DeleteMLInputChannelDataOutput, table
+    deleteMLInputChannelData: function(Client, types.DeleteMLInputChannelDataInput): Operation<types.DeleteMLInputChannelDataOutput>
     -- Deletes the model artifacts stored by the service.
-    deleteTrainedModelOutput: function(Client, types.DeleteTrainedModelOutputInput): types.DeleteTrainedModelOutputOutput, table
+    deleteTrainedModelOutput: function(Client, types.DeleteTrainedModelOutputInput): Operation<types.DeleteTrainedModelOutputOutput>
     -- Specifies a training dataset that you want to delete. You can't delete a training dataset if there are any audience models that depend on the training dataset. In Clean Rooms ML, the TrainingDataset is metadata that points to a Glue table, which is read only during AudienceModel creation. This action deletes the metadata.
-    deleteTrainingDataset: function(Client, types.DeleteTrainingDatasetInput): types.DeleteTrainingDatasetOutput, table
+    deleteTrainingDataset: function(Client, types.DeleteTrainingDatasetInput): Operation<types.DeleteTrainingDatasetOutput>
     -- Returns information about an audience generation job.
-    getAudienceGenerationJob: function(Client, types.GetAudienceGenerationJobInput): types.GetAudienceGenerationJobOutput, table
+    getAudienceGenerationJob: function(Client, types.GetAudienceGenerationJobInput): Operation<types.GetAudienceGenerationJobOutput>
     -- Returns information about an audience model
-    getAudienceModel: function(Client, types.GetAudienceModelInput): types.GetAudienceModelOutput, table
+    getAudienceModel: function(Client, types.GetAudienceModelInput): Operation<types.GetAudienceModelOutput>
     -- Returns information about the configured model algorithm association in a collaboration.
-    getCollaborationConfiguredModelAlgorithmAssociation: function(Client, types.GetCollaborationConfiguredModelAlgorithmAssociationInput): types.GetCollaborationConfiguredModelAlgorithmAssociationOutput, table
+    getCollaborationConfiguredModelAlgorithmAssociation: function(Client, types.GetCollaborationConfiguredModelAlgorithmAssociationInput): Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
     -- Returns information about a specific ML input channel in a collaboration.
-    getCollaborationMLInputChannel: function(Client, types.GetCollaborationMLInputChannelInput): types.GetCollaborationMLInputChannelOutput, table
+    getCollaborationMLInputChannel: function(Client, types.GetCollaborationMLInputChannelInput): Operation<types.GetCollaborationMLInputChannelOutput>
     -- Returns information about a trained model in a collaboration.
-    getCollaborationTrainedModel: function(Client, types.GetCollaborationTrainedModelInput): types.GetCollaborationTrainedModelOutput, table
+    getCollaborationTrainedModel: function(Client, types.GetCollaborationTrainedModelInput): Operation<types.GetCollaborationTrainedModelOutput>
     -- Returns information about a specified configured audience model.
-    getConfiguredAudienceModel: function(Client, types.GetConfiguredAudienceModelInput): types.GetConfiguredAudienceModelOutput, table
+    getConfiguredAudienceModel: function(Client, types.GetConfiguredAudienceModelInput): Operation<types.GetConfiguredAudienceModelOutput>
     -- Returns information about a configured audience model policy.
-    getConfiguredAudienceModelPolicy: function(Client, types.GetConfiguredAudienceModelPolicyInput): types.GetConfiguredAudienceModelPolicyOutput, table
+    getConfiguredAudienceModelPolicy: function(Client, types.GetConfiguredAudienceModelPolicyInput): Operation<types.GetConfiguredAudienceModelPolicyOutput>
     -- Returns information about a configured model algorithm.
-    getConfiguredModelAlgorithm: function(Client, types.GetConfiguredModelAlgorithmInput): types.GetConfiguredModelAlgorithmOutput, table
+    getConfiguredModelAlgorithm: function(Client, types.GetConfiguredModelAlgorithmInput): Operation<types.GetConfiguredModelAlgorithmOutput>
     -- Returns information about a configured model algorithm association.
-    getConfiguredModelAlgorithmAssociation: function(Client, types.GetConfiguredModelAlgorithmAssociationInput): types.GetConfiguredModelAlgorithmAssociationOutput, table
+    getConfiguredModelAlgorithmAssociation: function(Client, types.GetConfiguredModelAlgorithmAssociationInput): Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
     -- Returns information about a specific ML configuration.
-    getMLConfiguration: function(Client, types.GetMLConfigurationInput): types.GetMLConfigurationOutput, table
+    getMLConfiguration: function(Client, types.GetMLConfigurationInput): Operation<types.GetMLConfigurationOutput>
     -- Returns information about an ML input channel.
-    getMLInputChannel: function(Client, types.GetMLInputChannelInput): types.GetMLInputChannelOutput, table
+    getMLInputChannel: function(Client, types.GetMLInputChannelInput): Operation<types.GetMLInputChannelOutput>
     -- Returns information about a trained model.
-    getTrainedModel: function(Client, types.GetTrainedModelInput): types.GetTrainedModelOutput, table
+    getTrainedModel: function(Client, types.GetTrainedModelInput): Operation<types.GetTrainedModelOutput>
     -- Returns information about a trained model inference job.
-    getTrainedModelInferenceJob: function(Client, types.GetTrainedModelInferenceJobInput): types.GetTrainedModelInferenceJobOutput, table
+    getTrainedModelInferenceJob: function(Client, types.GetTrainedModelInferenceJobInput): Operation<types.GetTrainedModelInferenceJobOutput>
     -- Returns information about a training dataset.
-    getTrainingDataset: function(Client, types.GetTrainingDatasetInput): types.GetTrainingDatasetOutput, table
+    getTrainingDataset: function(Client, types.GetTrainingDatasetInput): Operation<types.GetTrainingDatasetOutput>
     -- Returns a list of the audience export jobs.
-    listAudienceExportJobs: function(Client, types.ListAudienceExportJobsInput): types.ListAudienceExportJobsOutput, table
+    listAudienceExportJobs: function(Client, types.ListAudienceExportJobsInput): Operation<types.ListAudienceExportJobsOutput>
     -- Returns a list of audience generation jobs.
-    listAudienceGenerationJobs: function(Client, types.ListAudienceGenerationJobsInput): types.ListAudienceGenerationJobsOutput, table
+    listAudienceGenerationJobs: function(Client, types.ListAudienceGenerationJobsInput): Operation<types.ListAudienceGenerationJobsOutput>
     -- Returns a list of audience models.
-    listAudienceModels: function(Client, types.ListAudienceModelsInput): types.ListAudienceModelsOutput, table
+    listAudienceModels: function(Client, types.ListAudienceModelsInput): Operation<types.ListAudienceModelsOutput>
     -- Returns a list of the configured model algorithm associations in a collaboration.
-    listCollaborationConfiguredModelAlgorithmAssociations: function(Client, types.ListCollaborationConfiguredModelAlgorithmAssociationsInput): types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput, table
+    listCollaborationConfiguredModelAlgorithmAssociations: function(Client, types.ListCollaborationConfiguredModelAlgorithmAssociationsInput): Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
     -- Returns a list of the ML input channels in a collaboration.
-    listCollaborationMLInputChannels: function(Client, types.ListCollaborationMLInputChannelsInput): types.ListCollaborationMLInputChannelsOutput, table
+    listCollaborationMLInputChannels: function(Client, types.ListCollaborationMLInputChannelsInput): Operation<types.ListCollaborationMLInputChannelsOutput>
     -- Returns a list of the export jobs for a trained model in a collaboration.
-    listCollaborationTrainedModelExportJobs: function(Client, types.ListCollaborationTrainedModelExportJobsInput): types.ListCollaborationTrainedModelExportJobsOutput, table
+    listCollaborationTrainedModelExportJobs: function(Client, types.ListCollaborationTrainedModelExportJobsInput): Operation<types.ListCollaborationTrainedModelExportJobsOutput>
     -- Returns a list of trained model inference jobs in a specified collaboration.
-    listCollaborationTrainedModelInferenceJobs: function(Client, types.ListCollaborationTrainedModelInferenceJobsInput): types.ListCollaborationTrainedModelInferenceJobsOutput, table
+    listCollaborationTrainedModelInferenceJobs: function(Client, types.ListCollaborationTrainedModelInferenceJobsInput): Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
     -- Returns a list of the trained models in a collaboration.
-    listCollaborationTrainedModels: function(Client, types.ListCollaborationTrainedModelsInput): types.ListCollaborationTrainedModelsOutput, table
+    listCollaborationTrainedModels: function(Client, types.ListCollaborationTrainedModelsInput): Operation<types.ListCollaborationTrainedModelsOutput>
     -- Returns a list of the configured audience models.
-    listConfiguredAudienceModels: function(Client, types.ListConfiguredAudienceModelsInput): types.ListConfiguredAudienceModelsOutput, table
+    listConfiguredAudienceModels: function(Client, types.ListConfiguredAudienceModelsInput): Operation<types.ListConfiguredAudienceModelsOutput>
     -- Returns a list of configured model algorithm associations.
-    listConfiguredModelAlgorithmAssociations: function(Client, types.ListConfiguredModelAlgorithmAssociationsInput): types.ListConfiguredModelAlgorithmAssociationsOutput, table
+    listConfiguredModelAlgorithmAssociations: function(Client, types.ListConfiguredModelAlgorithmAssociationsInput): Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
     -- Returns a list of configured model algorithms.
-    listConfiguredModelAlgorithms: function(Client, types.ListConfiguredModelAlgorithmsInput): types.ListConfiguredModelAlgorithmsOutput, table
+    listConfiguredModelAlgorithms: function(Client, types.ListConfiguredModelAlgorithmsInput): Operation<types.ListConfiguredModelAlgorithmsOutput>
     -- Returns a list of ML input channels.
-    listMLInputChannels: function(Client, types.ListMLInputChannelsInput): types.ListMLInputChannelsOutput, table
+    listMLInputChannels: function(Client, types.ListMLInputChannelsInput): Operation<types.ListMLInputChannelsOutput>
     -- Returns a list of tags for a provided resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of trained model inference jobs that match the request parameters.
-    listTrainedModelInferenceJobs: function(Client, types.ListTrainedModelInferenceJobsInput): types.ListTrainedModelInferenceJobsOutput, table
+    listTrainedModelInferenceJobs: function(Client, types.ListTrainedModelInferenceJobsInput): Operation<types.ListTrainedModelInferenceJobsOutput>
     -- Returns a list of trained models.
-    listTrainedModels: function(Client, types.ListTrainedModelsInput): types.ListTrainedModelsOutput, table
+    listTrainedModels: function(Client, types.ListTrainedModelsInput): Operation<types.ListTrainedModelsOutput>
     -- Returns a list of trained model versions for a specified trained model. This operation allows you to view all versions of a trained model, including information about their status and creation details. You can use this to track the evolution of your trained models and select specific versions for inference or further training.
-    listTrainedModelVersions: function(Client, types.ListTrainedModelVersionsInput): types.ListTrainedModelVersionsOutput, table
+    listTrainedModelVersions: function(Client, types.ListTrainedModelVersionsInput): Operation<types.ListTrainedModelVersionsOutput>
     -- Returns a list of training datasets.
-    listTrainingDatasets: function(Client, types.ListTrainingDatasetsInput): types.ListTrainingDatasetsOutput, table
+    listTrainingDatasets: function(Client, types.ListTrainingDatasetsInput): Operation<types.ListTrainingDatasetsOutput>
     -- Create or update the resource policy for a configured audience model.
-    putConfiguredAudienceModelPolicy: function(Client, types.PutConfiguredAudienceModelPolicyInput): types.PutConfiguredAudienceModelPolicyOutput, table
+    putConfiguredAudienceModelPolicy: function(Client, types.PutConfiguredAudienceModelPolicyInput): Operation<types.PutConfiguredAudienceModelPolicyOutput>
     -- Assigns information about an ML configuration.
-    putMLConfiguration: function(Client, types.PutMLConfigurationInput): types.PutMLConfigurationOutput, table
+    putMLConfiguration: function(Client, types.PutMLConfigurationInput): Operation<types.PutMLConfigurationOutput>
     -- Export an audience of a specified size after you have generated an audience.
-    startAudienceExportJob: function(Client, types.StartAudienceExportJobInput): types.StartAudienceExportJobOutput, table
+    startAudienceExportJob: function(Client, types.StartAudienceExportJobInput): Operation<types.StartAudienceExportJobOutput>
     -- Information necessary to start the audience generation job.
-    startAudienceGenerationJob: function(Client, types.StartAudienceGenerationJobInput): types.StartAudienceGenerationJobOutput, table
+    startAudienceGenerationJob: function(Client, types.StartAudienceGenerationJobInput): Operation<types.StartAudienceGenerationJobOutput>
     -- Provides the information necessary to start a trained model export job.
-    startTrainedModelExportJob: function(Client, types.StartTrainedModelExportJobInput): types.StartTrainedModelExportJobOutput, table
+    startTrainedModelExportJob: function(Client, types.StartTrainedModelExportJobInput): Operation<types.StartTrainedModelExportJobOutput>
     -- Defines the information necessary to begin a trained model inference job.
-    startTrainedModelInferenceJob: function(Client, types.StartTrainedModelInferenceJobInput): types.StartTrainedModelInferenceJobOutput, table
+    startTrainedModelInferenceJob: function(Client, types.StartTrainedModelInferenceJobInput): Operation<types.StartTrainedModelInferenceJobOutput>
     -- Adds metadata tags to a specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes metadata tags from a specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Provides the information necessary to update a configured audience model. Updates that impact audience generation jobs take effect when a new job starts, but do not impact currently running jobs.
-    updateConfiguredAudienceModel: function(Client, types.UpdateConfiguredAudienceModelInput): types.UpdateConfiguredAudienceModelOutput, table
+    updateConfiguredAudienceModel: function(Client, types.UpdateConfiguredAudienceModelInput): Operation<types.UpdateConfiguredAudienceModelOutput>
 end
 
 local record M

@@ -2,25 +2,29 @@
 
 local types = require("marketplacediscovery.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Provides details about a listing, such as descriptions, badges, categories, pricing model summaries, reviews, and associated products and offers.
-    getListing: function(Client, types.GetListingInput): types.GetListingOutput, table
+    getListing: function(Client, types.GetListingInput): Operation<types.GetListingOutput>
     -- Provides details about an offer, such as the pricing model, seller of record, availability dates, badges, and associated products.
-    getOffer: function(Client, types.GetOfferInput): types.GetOfferOutput, table
+    getOffer: function(Client, types.GetOfferInput): Operation<types.GetOfferOutput>
     -- Provides details about an offer set, which is a bundle of offers across multiple products. Includes the seller, availability dates, buyer notes, and associated product-offer pairs.
-    getOfferSet: function(Client, types.GetOfferSetInput): types.GetOfferSetOutput, table
+    getOfferSet: function(Client, types.GetOfferSetInput): Operation<types.GetOfferSetOutput>
     -- Returns the terms attached to an offer, such as pricing terms (usage-based, contract, BYOL, free trial), legal terms, payment schedules, validity terms, support terms, and renewal terms.
-    getOfferTerms: function(Client, types.GetOfferTermsInput): types.GetOfferTermsOutput, table
+    getOfferTerms: function(Client, types.GetOfferTermsInput): Operation<types.GetOfferTermsOutput>
     -- Provides details about a product, such as descriptions, highlights, categories, fulfillment option summaries, promotional media, and seller engagement options.
-    getProduct: function(Client, types.GetProductInput): types.GetProductOutput, table
+    getProduct: function(Client, types.GetProductInput): Operation<types.GetProductOutput>
     -- Returns the fulfillment options available for a product, including deployment details such as version information, operating systems, usage instructions, and release notes.
-    listFulfillmentOptions: function(Client, types.ListFulfillmentOptionsInput): types.ListFulfillmentOptionsOutput, table
+    listFulfillmentOptions: function(Client, types.ListFulfillmentOptionsInput): Operation<types.ListFulfillmentOptionsOutput>
     -- Returns the purchase options (offers and offer sets) available to the buyer. You can filter results by product, seller, purchase option type, visibility scope, and availability status. You must include at least one of the following filters in the request: a PRODUCT_ID filter to specify the product for which to retrieve purchase options, or a VISIBILITY_SCOPE filter to retrieve purchase options by visibility.
-    listPurchaseOptions: function(Client, types.ListPurchaseOptionsInput): types.ListPurchaseOptionsOutput, table
+    listPurchaseOptions: function(Client, types.ListPurchaseOptionsInput): Operation<types.ListPurchaseOptionsOutput>
     -- Returns available facet values for filtering listings, such as categories, pricing models, fulfillment option types, publishers, and customer ratings. Each facet value includes a count of matching listings.
-    searchFacets: function(Client, types.SearchFacetsInput): types.SearchFacetsOutput, table
+    searchFacets: function(Client, types.SearchFacetsInput): Operation<types.SearchFacetsOutput>
     -- Returns a list of product listings based on search criteria and filters. You can search by keyword, filter by category, pricing model, fulfillment type, and other attributes, and sort results by relevance or customer rating.
-    searchListings: function(Client, types.SearchListingsInput): types.SearchListingsOutput, table
+    searchListings: function(Client, types.SearchListingsInput): Operation<types.SearchListingsOutput>
 end
 
 local record M

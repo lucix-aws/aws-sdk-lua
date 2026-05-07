@@ -2,6 +2,10 @@
 
 local types = require("migrationhub.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a created artifact of an AWS cloud resource, the target receiving the
     -- migration, with the migration task performed by a migration tool. This API has the
@@ -13,19 +17,19 @@ local record Client
     -- arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b.
     -- Examples of the AWS resource behind the created artifact are, AMI's, EC2 instance,
     -- or DMS endpoint, etc.
-    associateCreatedArtifact: function(Client, types.AssociateCreatedArtifactInput): types.AssociateCreatedArtifactOutput, table
+    associateCreatedArtifact: function(Client, types.AssociateCreatedArtifactInput): Operation<types.AssociateCreatedArtifactOutput>
     -- Associates a discovered resource ID from Application Discovery Service with a migration
     -- task.
-    associateDiscoveredResource: function(Client, types.AssociateDiscoveredResourceInput): types.AssociateDiscoveredResourceOutput, table
+    associateDiscoveredResource: function(Client, types.AssociateDiscoveredResourceInput): Operation<types.AssociateDiscoveredResourceOutput>
     -- Associates a source resource with a migration task. For example, the source resource can
     -- be a source server, an application, or a migration wave.
-    associateSourceResource: function(Client, types.AssociateSourceResourceInput): types.AssociateSourceResourceOutput, table
+    associateSourceResource: function(Client, types.AssociateSourceResourceInput): Operation<types.AssociateSourceResourceOutput>
     -- Creates a progress update stream which is an AWS resource used for access control as
     -- well as a namespace for migration task names that is implicitly linked to your AWS account.
     -- It must uniquely identify the migration tool as it is used for all updates made by the
     -- tool; however, it does not need to be unique for each AWS account because it is scoped to
     -- the AWS account.
-    createProgressUpdateStream: function(Client, types.CreateProgressUpdateStreamInput): types.CreateProgressUpdateStreamOutput, table
+    createProgressUpdateStream: function(Client, types.CreateProgressUpdateStreamInput): Operation<types.CreateProgressUpdateStreamOutput>
     -- Deletes a progress update stream, including all of its tasks, which was previously
     -- created as an AWS resource used for access control. This API has the following
     -- traits:
@@ -44,11 +48,11 @@ local record Client
     -- CreateProgressUpdateStream for a stream of the same name will
     -- succeed, and that stream will be an entirely new logical resource (without any
     -- resources associated with the old stream).
-    deleteProgressUpdateStream: function(Client, types.DeleteProgressUpdateStreamInput): types.DeleteProgressUpdateStreamOutput, table
+    deleteProgressUpdateStream: function(Client, types.DeleteProgressUpdateStreamInput): Operation<types.DeleteProgressUpdateStreamOutput>
     -- Gets the migration status of an application.
-    describeApplicationState: function(Client, types.DescribeApplicationStateInput): types.DescribeApplicationStateOutput, table
+    describeApplicationState: function(Client, types.DescribeApplicationStateInput): Operation<types.DescribeApplicationStateOutput>
     -- Retrieves a list of all attributes associated with a specific migration task.
-    describeMigrationTask: function(Client, types.DescribeMigrationTaskInput): types.DescribeMigrationTaskOutput, table
+    describeMigrationTask: function(Client, types.DescribeMigrationTaskInput): Operation<types.DescribeMigrationTaskOutput>
     -- Disassociates a created artifact of an AWS resource with a migration task performed by a
     -- migration tool that was previously associated. This API has the following traits:
     -- A migration user can call the DisassociateCreatedArtifacts operation
@@ -58,21 +62,21 @@ local record Client
     -- arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b.
     -- Examples of the AWS resource behind the created artifact are, AMI's, EC2 instance,
     -- or RDS instance, etc.
-    disassociateCreatedArtifact: function(Client, types.DisassociateCreatedArtifactInput): types.DisassociateCreatedArtifactOutput, table
+    disassociateCreatedArtifact: function(Client, types.DisassociateCreatedArtifactInput): Operation<types.DisassociateCreatedArtifactOutput>
     -- Disassociate an Application Discovery Service discovered resource from a migration
     -- task.
-    disassociateDiscoveredResource: function(Client, types.DisassociateDiscoveredResourceInput): types.DisassociateDiscoveredResourceOutput, table
+    disassociateDiscoveredResource: function(Client, types.DisassociateDiscoveredResourceInput): Operation<types.DisassociateDiscoveredResourceOutput>
     -- Removes the association between a source resource and a migration task.
-    disassociateSourceResource: function(Client, types.DisassociateSourceResourceInput): types.DisassociateSourceResourceOutput, table
+    disassociateSourceResource: function(Client, types.DisassociateSourceResourceInput): Operation<types.DisassociateSourceResourceOutput>
     -- Registers a new migration task which represents a server, database, etc., being migrated
     -- to AWS by a migration tool.
     -- This API is a prerequisite to calling the NotifyMigrationTaskState API as
     -- the migration tool must first register the migration task with Migration Hub.
-    importMigrationTask: function(Client, types.ImportMigrationTaskInput): types.ImportMigrationTaskOutput, table
+    importMigrationTask: function(Client, types.ImportMigrationTaskInput): Operation<types.ImportMigrationTaskOutput>
     -- Lists all the migration statuses for your applications. If you use the optional
     -- ApplicationIds parameter, only the migration statuses for those
     -- applications will be returned.
-    listApplicationStates: function(Client, types.ListApplicationStatesInput): types.ListApplicationStatesOutput, table
+    listApplicationStates: function(Client, types.ListApplicationStatesInput): Operation<types.ListApplicationStatesOutput>
     -- Lists the created artifacts attached to a given migration task in an update stream. This
     -- API has the following traits:
     -- Gets the list of the created artifacts while
@@ -80,29 +84,29 @@ local record Client
     -- Shows the artifacts created by the migration tool that was associated by the
     -- AssociateCreatedArtifact API.
     -- Lists created artifacts in a paginated interface.
-    listCreatedArtifacts: function(Client, types.ListCreatedArtifactsInput): types.ListCreatedArtifactsOutput, table
+    listCreatedArtifacts: function(Client, types.ListCreatedArtifactsInput): Operation<types.ListCreatedArtifactsOutput>
     -- Lists discovered resources associated with the given MigrationTask.
-    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput): types.ListDiscoveredResourcesOutput, table
+    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput): Operation<types.ListDiscoveredResourcesOutput>
     -- Lists all, or filtered by resource name, migration tasks associated with the user
     -- account making this call. This API has the following traits:
     -- Can show a summary list of the most recent migration tasks.
     -- Can show a summary list of migration tasks associated with a given discovered
     -- resource.
     -- Lists migration tasks in a paginated interface.
-    listMigrationTasks: function(Client, types.ListMigrationTasksInput): types.ListMigrationTasksOutput, table
+    listMigrationTasks: function(Client, types.ListMigrationTasksInput): Operation<types.ListMigrationTasksOutput>
     -- This is a paginated API that returns all the migration-task states for the specified
     -- MigrationTaskName and ProgressUpdateStream.
-    listMigrationTaskUpdates: function(Client, types.ListMigrationTaskUpdatesInput): types.ListMigrationTaskUpdatesOutput, table
+    listMigrationTaskUpdates: function(Client, types.ListMigrationTaskUpdatesInput): Operation<types.ListMigrationTaskUpdatesOutput>
     -- Lists progress update streams associated with the user account making this call.
-    listProgressUpdateStreams: function(Client, types.ListProgressUpdateStreamsInput): types.ListProgressUpdateStreamsOutput, table
+    listProgressUpdateStreams: function(Client, types.ListProgressUpdateStreamsInput): Operation<types.ListProgressUpdateStreamsOutput>
     -- Lists all the source resource that are associated with the specified
     -- MigrationTaskName and ProgressUpdateStream.
-    listSourceResources: function(Client, types.ListSourceResourcesInput): types.ListSourceResourcesOutput, table
+    listSourceResources: function(Client, types.ListSourceResourcesInput): Operation<types.ListSourceResourcesOutput>
     -- Sets the migration state of an application. For a given application identified by the
     -- value passed to ApplicationId, its status is set or updated by passing one of
     -- three values to Status: NOT_STARTED | IN_PROGRESS |
     -- COMPLETED.
-    notifyApplicationState: function(Client, types.NotifyApplicationStateInput): types.NotifyApplicationStateOutput, table
+    notifyApplicationState: function(Client, types.NotifyApplicationStateInput): Operation<types.NotifyApplicationStateOutput>
     -- Notifies Migration Hub of the current status, progress, or other detail regarding a
     -- migration task. This API has the following traits:
     -- Migration tools will call the NotifyMigrationTaskState API to share
@@ -111,7 +115,7 @@ local record Client
     -- target.
     -- ProgressUpdateStream is used for access control and to provide a
     -- namespace for each migration tool.
-    notifyMigrationTaskState: function(Client, types.NotifyMigrationTaskStateInput): types.NotifyMigrationTaskStateOutput, table
+    notifyMigrationTaskState: function(Client, types.NotifyMigrationTaskStateInput): Operation<types.NotifyMigrationTaskStateOutput>
     -- Provides identifying details of the resource being migrated so that it can be associated
     -- in the Application Discovery Service repository. This association occurs asynchronously
     -- after PutResourceAttributes returns.
@@ -127,7 +131,7 @@ local record Client
     -- Because this is an asynchronous call, it will always return 200, whether an
     -- association occurs or not. To confirm if an association was found based on the provided
     -- details, call ListDiscoveredResources.
-    putResourceAttributes: function(Client, types.PutResourceAttributesInput): types.PutResourceAttributesOutput, table
+    putResourceAttributes: function(Client, types.PutResourceAttributesInput): Operation<types.PutResourceAttributesOutput>
 end
 
 local record M

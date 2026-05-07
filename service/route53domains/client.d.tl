@@ -2,6 +2,10 @@
 
 local types = require("route53domains.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts the transfer of a domain from another Amazon Web Services account to the
     -- currentAmazon Web Services account. You initiate a transfer between Amazon Web Services accounts using TransferDomainToAnotherAwsAccount.
@@ -10,7 +14,7 @@ local record Client
     -- transfer input that includes single quotes.
     -- Use either ListOperations or GetOperationDetail to determine whether the operation succeeded. GetOperationDetail provides additional information, for example,
     -- Domain Transfer from Aws Account 111122223333 has been cancelled.
-    acceptDomainTransferFromAnotherAwsAccount: function(Client, types.AcceptDomainTransferFromAnotherAwsAccountInput): types.AcceptDomainTransferFromAnotherAwsAccountOutput, table
+    acceptDomainTransferFromAnotherAwsAccount: function(Client, types.AcceptDomainTransferFromAnotherAwsAccountInput): Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
     -- Creates a delegation signer (DS) record in the registry zone for this domain
     -- name.
     -- Note that creating DS record at the registry impacts DNSSEC validation of your DNS
@@ -19,20 +23,20 @@ local record Client
     -- about DNSSEC signing, see Configuring DNSSEC
     -- signing in the Route 53 developer
     -- guide.
-    associateDelegationSignerToDomain: function(Client, types.AssociateDelegationSignerToDomainInput): types.AssociateDelegationSignerToDomainOutput, table
+    associateDelegationSignerToDomain: function(Client, types.AssociateDelegationSignerToDomainInput): Operation<types.AssociateDelegationSignerToDomainOutput>
     -- Cancels the transfer of a domain from the current Amazon Web Services account to
     -- another Amazon Web Services account. You initiate a transfer betweenAmazon Web Services accounts using TransferDomainToAnotherAwsAccount.
     -- You must cancel the transfer before the other Amazon Web Services account accepts
     -- the transfer using AcceptDomainTransferFromAnotherAwsAccount.
     -- Use either ListOperations or GetOperationDetail to determine whether the operation succeeded. GetOperationDetail provides additional information, for example,
     -- Domain Transfer from Aws Account 111122223333 has been cancelled.
-    cancelDomainTransferToAnotherAwsAccount: function(Client, types.CancelDomainTransferToAnotherAwsAccountInput): types.CancelDomainTransferToAnotherAwsAccountOutput, table
+    cancelDomainTransferToAnotherAwsAccount: function(Client, types.CancelDomainTransferToAnotherAwsAccountInput): Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
     -- This operation checks the availability of one domain name. Note that if the
     -- availability status of a domain is pending, you must submit another request to determine
     -- the availability of the domain name.
-    checkDomainAvailability: function(Client, types.CheckDomainAvailabilityInput): types.CheckDomainAvailabilityOutput, table
+    checkDomainAvailability: function(Client, types.CheckDomainAvailabilityInput): Operation<types.CheckDomainAvailabilityOutput>
     -- Checks whether a domain name can be transferred to Amazon Route 53.
-    checkDomainTransferability: function(Client, types.CheckDomainTransferabilityInput): types.CheckDomainTransferabilityOutput, table
+    checkDomainTransferability: function(Client, types.CheckDomainTransferabilityInput): Operation<types.CheckDomainTransferabilityOutput>
     -- This operation deletes the specified domain. This action is permanent. For more
     -- information, see Deleting a domain name
     -- registration.
@@ -47,24 +51,24 @@ local record Client
     -- noreply@domainnameverification.net or
     -- noreply@emailverification.info or
     -- noreply@registrar.amazon.
-    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): Operation<types.DeleteDomainOutput>
     -- This operation deletes the specified tags for a domain.
     -- All tag operations are eventually consistent; subsequent operations might not
     -- immediately represent all issued operations.
-    deleteTagsForDomain: function(Client, types.DeleteTagsForDomainInput): types.DeleteTagsForDomainOutput, table
+    deleteTagsForDomain: function(Client, types.DeleteTagsForDomainInput): Operation<types.DeleteTagsForDomainOutput>
     -- This operation disables automatic renewal of domain registration for the specified
     -- domain.
-    disableDomainAutoRenew: function(Client, types.DisableDomainAutoRenewInput): types.DisableDomainAutoRenewOutput, table
+    disableDomainAutoRenew: function(Client, types.DisableDomainAutoRenewInput): Operation<types.DisableDomainAutoRenewOutput>
     -- This operation removes the transfer lock on the domain (specifically the
     -- clientTransferProhibited status) to allow domain transfers. We
     -- recommend you refrain from performing this action unless you intend to transfer the
     -- domain to a different registrar. Successful submission returns an operation ID that you
     -- can use to track the progress and completion of the action. If the request is not
     -- completed successfully, the domain registrant will be notified by email.
-    disableDomainTransferLock: function(Client, types.DisableDomainTransferLockInput): types.DisableDomainTransferLockOutput, table
+    disableDomainTransferLock: function(Client, types.DisableDomainTransferLockInput): Operation<types.DisableDomainTransferLockOutput>
     -- Deletes a delegation signer (DS) record in the registry zone for this domain
     -- name.
-    disassociateDelegationSignerFromDomain: function(Client, types.DisassociateDelegationSignerFromDomainInput): types.DisassociateDelegationSignerFromDomainOutput, table
+    disassociateDelegationSignerFromDomain: function(Client, types.DisassociateDelegationSignerFromDomainInput): Operation<types.DisassociateDelegationSignerFromDomainOutput>
     -- This operation configures Amazon Route 53 to automatically renew the specified domain
     -- before the domain registration expires. The cost of renewing your domain registration is
     -- billed to your Amazon Web Services account.
@@ -73,35 +77,35 @@ local record Client
     -- Register with Amazon Route 53 in the Amazon Route 53 Developer
     -- Guide. Route 53 requires that you renew before the end of the renewal
     -- period so we can complete processing before the deadline.
-    enableDomainAutoRenew: function(Client, types.EnableDomainAutoRenewInput): types.EnableDomainAutoRenewOutput, table
+    enableDomainAutoRenew: function(Client, types.EnableDomainAutoRenewInput): Operation<types.EnableDomainAutoRenewOutput>
     -- This operation sets the transfer lock on the domain (specifically the
     -- clientTransferProhibited status) to prevent domain transfers.
     -- Successful submission returns an operation ID that you can use to track the progress and
     -- completion of the action. If the request is not completed successfully, the domain
     -- registrant will be notified by email.
-    enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput): types.EnableDomainTransferLockOutput, table
+    enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput): Operation<types.EnableDomainTransferLockOutput>
     -- For operations that require confirmation that the email address for the registrant
     -- contact is valid, such as registering a new domain, this operation returns information
     -- about whether the registrant contact has responded.
     -- If you want us to resend the email, use the
     -- ResendContactReachabilityEmail operation.
-    getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput): types.GetContactReachabilityStatusOutput, table
+    getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput): Operation<types.GetContactReachabilityStatusOutput>
     -- This operation returns detailed information about a specified domain that is
     -- associated with the current Amazon Web Services account. Contact information for the
     -- domain is also returned as part of the output.
-    getDomainDetail: function(Client, types.GetDomainDetailInput): types.GetDomainDetailOutput, table
+    getDomainDetail: function(Client, types.GetDomainDetailInput): Operation<types.GetDomainDetailOutput>
     -- The GetDomainSuggestions operation returns a list of suggested domain names.
-    getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput): types.GetDomainSuggestionsOutput, table
+    getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput): Operation<types.GetDomainSuggestionsOutput>
     -- This operation returns the current status of an operation that is not
     -- completed.
-    getOperationDetail: function(Client, types.GetOperationDetailInput): types.GetOperationDetailOutput, table
+    getOperationDetail: function(Client, types.GetOperationDetailInput): Operation<types.GetOperationDetailOutput>
     -- This operation returns all the domain names registered with Amazon Route 53 for the
     -- current Amazon Web Services account if no filtering conditions are used.
-    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): Operation<types.ListDomainsOutput>
     -- Returns information about all of the operations that return an operation ID and that
     -- have ever been performed on domains that were registered by the current account.
     -- This command runs only in the us-east-1 Region.
-    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listOperations: function(Client, types.ListOperationsInput): Operation<types.ListOperationsOutput>
     -- Lists the following prices for either all the TLDs supported by Route 53, or
     -- the specified TLD:
     -- Registration
@@ -109,17 +113,17 @@ local record Client
     -- Owner change
     -- Domain renewal
     -- Domain restoration
-    listPrices: function(Client, types.ListPricesInput): types.ListPricesOutput, table
+    listPrices: function(Client, types.ListPricesInput): Operation<types.ListPricesOutput>
     -- This operation returns all of the tags that are associated with the specified
     -- domain.
     -- All tag operations are eventually consistent; subsequent operations might not
     -- immediately represent all issued operations.
-    listTagsForDomain: function(Client, types.ListTagsForDomainInput): types.ListTagsForDomainOutput, table
+    listTagsForDomain: function(Client, types.ListTagsForDomainInput): Operation<types.ListTagsForDomainOutput>
     -- Moves a domain from Amazon Web Services to another registrar.
     -- Supported actions:
     -- Changes the IPS tags of a .uk domain, and pushes it to transit. Transit means
     -- that the domain is ready to be transferred to another registrar.
-    pushDomain: function(Client, types.PushDomainInput): types.PushDomainOutput, table
+    pushDomain: function(Client, types.PushDomainInput): Operation<types.PushDomainOutput>
     -- This operation registers a domain. For some top-level domains (TLDs), this operation
     -- requires extra parameters.
     -- When you register a domain, Amazon Route 53 does the following:
@@ -141,12 +145,12 @@ local record Client
     -- successfully, the domain registrant is notified by email.
     -- Charges your Amazon Web Services account an amount based on the top-level
     -- domain. For more information, see Amazon Route 53 Pricing.
-    registerDomain: function(Client, types.RegisterDomainInput): types.RegisterDomainOutput, table
+    registerDomain: function(Client, types.RegisterDomainInput): Operation<types.RegisterDomainOutput>
     -- Rejects the transfer of a domain from another Amazon Web Services account to the
     -- current Amazon Web Services account. You initiate a transfer betweenAmazon Web Services accounts using TransferDomainToAnotherAwsAccount.
     -- Use either ListOperations or GetOperationDetail to determine whether the operation succeeded. GetOperationDetail provides additional information, for example,
     -- Domain Transfer from Aws Account 111122223333 has been cancelled.
-    rejectDomainTransferFromAnotherAwsAccount: function(Client, types.RejectDomainTransferFromAnotherAwsAccountInput): types.RejectDomainTransferFromAnotherAwsAccountOutput, table
+    rejectDomainTransferFromAnotherAwsAccount: function(Client, types.RejectDomainTransferFromAnotherAwsAccountInput): Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
     -- This operation renews a domain for the specified number of years. The cost of renewing
     -- your domain is billed to your Amazon Web Services account.
     -- We recommend that you renew your domain several weeks before the expiration date. Some
@@ -154,16 +158,16 @@ local record Client
     -- enough in advance. For more information about renewing domain registration, see Renewing
     -- Registration for a Domain in the Amazon Route 53 Developer
     -- Guide.
-    renewDomain: function(Client, types.RenewDomainInput): types.RenewDomainOutput, table
+    renewDomain: function(Client, types.RenewDomainInput): Operation<types.RenewDomainOutput>
     -- For operations that require confirmation that the email address for the registrant
     -- contact is valid, such as registering a new domain, this operation resends the
     -- confirmation email to the current email address for the registrant contact.
-    resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput): types.ResendContactReachabilityEmailOutput, table
+    resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput): Operation<types.ResendContactReachabilityEmailOutput>
     -- Resend the form of authorization email for this operation.
-    resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput): types.ResendOperationAuthorizationOutput, table
+    resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput): Operation<types.ResendOperationAuthorizationOutput>
     -- This operation returns the authorization code for the domain. To transfer a domain to
     -- another registrar, you provide this value to the new registrar.
-    retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput): types.RetrieveDomainAuthCodeOutput, table
+    retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput): Operation<types.RetrieveDomainAuthCodeOutput>
     -- Transfers a domain from another registrar to Amazon Route 53.
     -- For more information about transferring domains, see the following topics:
     -- For transfer requirements, a detailed procedure, and information about viewing
@@ -190,7 +194,7 @@ local record Client
     -- If the transfer is successful, this method returns an operation ID that you can use to
     -- track the progress and completion of the action. If the transfer doesn't complete
     -- successfully, the domain registrant will be notified by email.
-    transferDomain: function(Client, types.TransferDomainInput): types.TransferDomainOutput, table
+    transferDomain: function(Client, types.TransferDomainInput): Operation<types.TransferDomainOutput>
     -- Transfers a domain from the current Amazon Web Services account to another Amazon Web Services account. Note the following:
     -- The Amazon Web Services account that you're transferring the domain to must
     -- accept the transfer. If the other account doesn't accept the transfer within 3
@@ -206,14 +210,14 @@ local record Client
     -- Amazon Route 53 Developer Guide.
     -- Use either ListOperations or GetOperationDetail to determine whether the operation succeeded. GetOperationDetail provides additional information, for example,
     -- Domain Transfer from Aws Account 111122223333 has been cancelled.
-    transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput): types.TransferDomainToAnotherAwsAccountOutput, table
+    transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput): Operation<types.TransferDomainToAnotherAwsAccountOutput>
     -- This operation updates the contact information for a particular domain. You must
     -- specify information for at least one contact: registrant, administrator, or
     -- technical.
     -- If the update is successful, this method returns an operation ID that you can use to
     -- track the progress and completion of the operation. If the request is not completed
     -- successfully, the domain registrant will be notified by email.
-    updateDomainContact: function(Client, types.UpdateDomainContactInput): types.UpdateDomainContactOutput, table
+    updateDomainContact: function(Client, types.UpdateDomainContactInput): Operation<types.UpdateDomainContactOutput>
     -- This operation updates the specified domain contact's privacy setting. When privacy
     -- protection is enabled, your contact information is replaced with contact information for
     -- the registrar or with the phrase "REDACTED FOR PRIVACY", or "On behalf of owner."
@@ -232,20 +236,20 @@ local record Client
     -- console. Enabling privacy protection removes the contact information provided for
     -- this domain from the WHOIS database. For more information on our privacy practices,
     -- see https://aws.amazon.com/privacy/.
-    updateDomainContactPrivacy: function(Client, types.UpdateDomainContactPrivacyInput): types.UpdateDomainContactPrivacyOutput, table
+    updateDomainContactPrivacy: function(Client, types.UpdateDomainContactPrivacyInput): Operation<types.UpdateDomainContactPrivacyOutput>
     -- This operation replaces the current set of name servers for the domain with the
     -- specified set of name servers. If you use Amazon Route 53 as your DNS service, specify
     -- the four name servers in the delegation set for the hosted zone for the domain.
     -- If successful, this operation returns an operation ID that you can use to track the
     -- progress and completion of the action. If the request is not completed successfully, the
     -- domain registrant will be notified by email.
-    updateDomainNameservers: function(Client, types.UpdateDomainNameserversInput): types.UpdateDomainNameserversOutput, table
+    updateDomainNameservers: function(Client, types.UpdateDomainNameserversInput): Operation<types.UpdateDomainNameserversOutput>
     -- This operation adds or updates tags for a specified domain.
     -- All tag operations are eventually consistent; subsequent operations might not
     -- immediately represent all issued operations.
-    updateTagsForDomain: function(Client, types.UpdateTagsForDomainInput): types.UpdateTagsForDomainOutput, table
+    updateTagsForDomain: function(Client, types.UpdateTagsForDomainInput): Operation<types.UpdateTagsForDomainOutput>
     -- Returns all the domain-related billing records for the current Amazon Web Services account for a specified period
-    viewBilling: function(Client, types.ViewBillingInput): types.ViewBillingOutput, table
+    viewBilling: function(Client, types.ViewBillingInput): Operation<types.ViewBillingOutput>
 end
 
 local record M

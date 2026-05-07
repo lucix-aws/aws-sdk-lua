@@ -2,6 +2,10 @@
 
 local types = require("efs.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an EFS access point. An access point is an application-specific view
     -- into an EFS file system that applies an operating system user and group, and a file
@@ -23,7 +27,7 @@ local record Client
     -- permissions to use the elasticfilesystem:TagResource action. For more
     -- information, see Granting
     -- permissions to tag resources during creation.
-    createAccessPoint: function(Client, types.CreateAccessPointInput): types.CreateAccessPointOutput, table
+    createAccessPoint: function(Client, types.CreateAccessPointInput): Operation<types.CreateAccessPointOutput>
     -- Creates a new, empty file system. The operation requires a creation token in the
     -- request that Amazon EFS uses to ensure idempotent creation (calling the operation with same
     -- creation token has no effect). If a file system does not currently exist that is owned by the
@@ -72,7 +76,7 @@ local record Client
     -- verify if users have permissions to create tags. Therefore, you must grant explicit
     -- permissions to use the elasticfilesystem:TagResource action. For more
     -- information, see Granting permissions to tag resources during creation.
-    createFileSystem: function(Client, types.CreateFileSystemInput): types.CreateFileSystemOutput, table
+    createFileSystem: function(Client, types.CreateFileSystemInput): Operation<types.CreateFileSystemOutput>
     -- Creates a mount target for a file system. You can then mount the file system on EC2
     -- instances by using the mount target.
     -- You can create one mount target in each Availability Zone in your VPC. All EC2 instances
@@ -155,7 +159,7 @@ local record Client
     -- ec2:DescribeSubnets
     -- ec2:DescribeNetworkInterfaces
     -- ec2:CreateNetworkInterface
-    createMountTarget: function(Client, types.CreateMountTargetInput): types.CreateMountTargetOutput, table
+    createMountTarget: function(Client, types.CreateMountTargetInput): Operation<types.CreateMountTargetOutput>
     -- Creates a replication conﬁguration to either a new or existing EFS file system.
     -- For more information, see Amazon EFS replication in the Amazon EFS User
     -- Guide. The replication configuration specifies the following:
@@ -173,7 +177,7 @@ local record Client
     -- For more information, see Required permissions for replication
     -- in the Amazon EFS User
     -- Guide.
-    createReplicationConfiguration: function(Client, types.CreateReplicationConfigurationInput): types.CreateReplicationConfigurationOutput, table
+    createReplicationConfiguration: function(Client, types.CreateReplicationConfigurationInput): Operation<types.CreateReplicationConfigurationOutput>
     -- DEPRECATED - CreateTags is deprecated and not maintained. To create tags for EFS
     -- resources, use the API action.
     -- Creates or overwrites tags associated with a file system. Each tag is a key-value pair. If
@@ -182,12 +186,12 @@ local record Client
     -- tag to your file system, Amazon EFS returns it in the response to the DescribeFileSystems operation.
     -- This operation requires permission for the elasticfilesystem:CreateTags
     -- action.
-    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createTags: function(Client, types.CreateTagsInput): Operation<types.CreateTagsOutput>
     -- Deletes the specified access point. After deletion is complete, new clients can no
     -- longer connect to the access points. Clients connected to the access point at the time of
     -- deletion will continue to function until they terminate their connection.
     -- This operation requires permissions for the elasticfilesystem:DeleteAccessPoint action.
-    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): types.DeleteAccessPointOutput, table
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): Operation<types.DeleteAccessPointOutput>
     -- Deletes a file system, permanently severing access to its contents. Upon return, the
     -- file system no longer exists and you can't access any contents of the deleted file
     -- system.
@@ -204,12 +208,12 @@ local record Client
     -- error.
     -- This operation requires permissions for the
     -- elasticfilesystem:DeleteFileSystem action.
-    deleteFileSystem: function(Client, types.DeleteFileSystemInput): types.DeleteFileSystemOutput, table
+    deleteFileSystem: function(Client, types.DeleteFileSystemInput): Operation<types.DeleteFileSystemOutput>
     -- Deletes the FileSystemPolicy for the specified file system.
     -- The default FileSystemPolicy goes into effect once the existing policy is deleted.
     -- For more information about the default file system policy, see Using Resource-based Policies with EFS.
     -- This operation requires permissions for the elasticfilesystem:DeleteFileSystemPolicy action.
-    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput): types.DeleteFileSystemPolicyOutput, table
+    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput): Operation<types.DeleteFileSystemPolicyOutput>
     -- Deletes the specified mount target.
     -- This operation forcibly breaks any mounts of the file system by using the mount target
     -- that is being deleted, which might disrupt instances or applications using those mounts. To
@@ -227,14 +231,14 @@ local record Client
     -- The operation also requires permissions for the following Amazon EC2 action on the
     -- mount target's network interface:
     -- ec2:DeleteNetworkInterface
-    deleteMountTarget: function(Client, types.DeleteMountTargetInput): types.DeleteMountTargetOutput, table
+    deleteMountTarget: function(Client, types.DeleteMountTargetInput): Operation<types.DeleteMountTargetOutput>
     -- Deletes a replication configuration. Deleting a replication configuration ends the
     -- replication process. After a replication configuration is deleted, the destination file system
     -- becomes Writeable and its replication overwrite protection is re-enabled. For
     -- more information, see Delete a replication configuration.
     -- This operation requires permissions for the
     -- elasticfilesystem:DeleteReplicationConfiguration action.
-    deleteReplicationConfiguration: function(Client, types.DeleteReplicationConfigurationInput): types.DeleteReplicationConfigurationOutput, table
+    deleteReplicationConfiguration: function(Client, types.DeleteReplicationConfigurationInput): Operation<types.DeleteReplicationConfigurationOutput>
     -- DEPRECATED - DeleteTags is deprecated and not maintained. To remove tags from EFS
     -- resources, use the API action.
     -- Deletes the specified tags from a file system. If the DeleteTags request
@@ -243,22 +247,22 @@ local record Client
     -- Billing and Cost Management User Guide.
     -- This operation requires permissions for the elasticfilesystem:DeleteTags
     -- action.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Returns the description of a specific Amazon EFS access point if the
     -- AccessPointId is provided. If you provide an EFS
     -- FileSystemId, it returns descriptions of all access points for that file
     -- system. You can provide either an AccessPointId or a FileSystemId in
     -- the request, but not both.
     -- This operation requires permissions for the elasticfilesystem:DescribeAccessPoints action.
-    describeAccessPoints: function(Client, types.DescribeAccessPointsInput): types.DescribeAccessPointsOutput, table
+    describeAccessPoints: function(Client, types.DescribeAccessPointsInput): Operation<types.DescribeAccessPointsOutput>
     -- Returns the account preferences settings for the Amazon Web Services account associated with the user making the request, in the current Amazon Web Services Region.
-    describeAccountPreferences: function(Client, types.DescribeAccountPreferencesInput): types.DescribeAccountPreferencesOutput, table
+    describeAccountPreferences: function(Client, types.DescribeAccountPreferencesInput): Operation<types.DescribeAccountPreferencesOutput>
     -- Returns the backup policy for the specified EFS file system.
-    describeBackupPolicy: function(Client, types.DescribeBackupPolicyInput): types.DescribeBackupPolicyOutput, table
+    describeBackupPolicy: function(Client, types.DescribeBackupPolicyInput): Operation<types.DescribeBackupPolicyOutput>
     -- Returns the FileSystemPolicy for the specified EFS file
     -- system.
     -- This operation requires permissions for the elasticfilesystem:DescribeFileSystemPolicy action.
-    describeFileSystemPolicy: function(Client, types.DescribeFileSystemPolicyInput): types.DescribeFileSystemPolicyOutput, table
+    describeFileSystemPolicy: function(Client, types.DescribeFileSystemPolicyInput): Operation<types.DescribeFileSystemPolicyOutput>
     -- Returns the description of a specific Amazon EFS file system if either the file system
     -- CreationToken or the FileSystemId is provided. Otherwise, it
     -- returns descriptions of all file systems owned by the caller's Amazon Web Services account in the
@@ -279,7 +283,7 @@ local record Client
     -- responses of a multi-call iteration is unspecified.
     -- This operation requires permissions for the
     -- elasticfilesystem:DescribeFileSystems action.
-    describeFileSystems: function(Client, types.DescribeFileSystemsInput): types.DescribeFileSystemsOutput, table
+    describeFileSystems: function(Client, types.DescribeFileSystemsInput): Operation<types.DescribeFileSystemsOutput>
     -- Returns the current LifecycleConfiguration object for the specified
     -- EFS file system. Lifecycle management uses the LifecycleConfiguration
     -- object to identify when to move files between storage classes. For a file system without a
@@ -287,7 +291,7 @@ local record Client
     -- response.
     -- This operation requires permissions for the
     -- elasticfilesystem:DescribeLifecycleConfiguration operation.
-    describeLifecycleConfiguration: function(Client, types.DescribeLifecycleConfigurationInput): types.DescribeLifecycleConfigurationOutput, table
+    describeLifecycleConfiguration: function(Client, types.DescribeLifecycleConfigurationInput): Operation<types.DescribeLifecycleConfigurationOutput>
     -- Returns the descriptions of all the current mount targets, or a specific mount target,
     -- for a file system. When requesting all of the current mount targets, the order of mount
     -- targets returned in the response is unspecified.
@@ -295,7 +299,7 @@ local record Client
     -- elasticfilesystem:DescribeMountTargets action, on either the file system ID
     -- that you specify in FileSystemId, or on the file system of the mount target that
     -- you specify in MountTargetId.
-    describeMountTargets: function(Client, types.DescribeMountTargetsInput): types.DescribeMountTargetsOutput, table
+    describeMountTargets: function(Client, types.DescribeMountTargetsInput): Operation<types.DescribeMountTargetsOutput>
     -- Returns the security groups currently in effect for a mount target. This operation
     -- requires that the network interface of the mount target has been created and the lifecycle
     -- state of the mount target is not deleted.
@@ -304,11 +308,11 @@ local record Client
     -- target's file system.
     -- ec2:DescribeNetworkInterfaceAttribute action on the mount target's
     -- network interface.
-    describeMountTargetSecurityGroups: function(Client, types.DescribeMountTargetSecurityGroupsInput): types.DescribeMountTargetSecurityGroupsOutput, table
+    describeMountTargetSecurityGroups: function(Client, types.DescribeMountTargetSecurityGroupsInput): Operation<types.DescribeMountTargetSecurityGroupsOutput>
     -- Retrieves the replication configuration for a specific file system. If a file system is
     -- not specified, all of the replication configurations for the Amazon Web Services account in an
     -- Amazon Web Services Region are retrieved.
-    describeReplicationConfigurations: function(Client, types.DescribeReplicationConfigurationsInput): types.DescribeReplicationConfigurationsOutput, table
+    describeReplicationConfigurations: function(Client, types.DescribeReplicationConfigurationsInput): Operation<types.DescribeReplicationConfigurationsOutput>
     -- DEPRECATED - The DescribeTags action is deprecated and not maintained. To view
     -- tags associated with EFS resources, use the ListTagsForResource API
     -- action.
@@ -317,11 +321,11 @@ local record Client
     -- responses of a multiple-call iteration (when using pagination) is unspecified.
     -- This operation requires permissions for the
     -- elasticfilesystem:DescribeTags action.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Lists all tags for a top-level EFS resource. You must provide the ID of the
     -- resource that you want to retrieve the tags for.
     -- This operation requires permissions for the elasticfilesystem:DescribeAccessPoints action.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Modifies the set of security groups in effect for a mount target.
     -- When you create a mount target, Amazon EFS also creates a new network interface. For
     -- more information, see CreateMountTarget. This operation replaces the security groups in effect for the
@@ -334,7 +338,7 @@ local record Client
     -- target's file system.
     -- ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
     -- interface.
-    modifyMountTargetSecurityGroups: function(Client, types.ModifyMountTargetSecurityGroupsInput): types.ModifyMountTargetSecurityGroupsOutput, table
+    modifyMountTargetSecurityGroups: function(Client, types.ModifyMountTargetSecurityGroupsInput): Operation<types.ModifyMountTargetSecurityGroupsOutput>
     -- Use this operation to set the account preference in the current Amazon Web Services Region
     -- to use long 17 character (63 bit) or short 8 character (32 bit) resource IDs for new
     -- EFS file system and mount target resources. All existing resource IDs are not
@@ -343,9 +347,9 @@ local record Client
     -- Starting in October, 2021, you will receive an error if you try to set the account preference
     -- to use the short 8 character format resource ID. Contact Amazon Web Services support if you
     -- receive an error and must use short IDs for file system and mount target resources.
-    putAccountPreferences: function(Client, types.PutAccountPreferencesInput): types.PutAccountPreferencesOutput, table
+    putAccountPreferences: function(Client, types.PutAccountPreferencesInput): Operation<types.PutAccountPreferencesOutput>
     -- Updates the file system's backup policy. Use this action to start or stop automatic backups of the file system.
-    putBackupPolicy: function(Client, types.PutBackupPolicyInput): types.PutBackupPolicyOutput, table
+    putBackupPolicy: function(Client, types.PutBackupPolicyInput): Operation<types.PutBackupPolicyOutput>
     -- Applies an Amazon EFS
     -- FileSystemPolicy to an Amazon EFS file system. A file system policy is an
     -- IAM resource-based policy and can contain multiple policy statements. A file system always has
@@ -356,7 +360,7 @@ local record Client
     -- Default EFS file system policy.
     -- EFS file system policies have a 20,000 character limit.
     -- This operation requires permissions for the elasticfilesystem:PutFileSystemPolicy action.
-    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput): types.PutFileSystemPolicyOutput, table
+    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput): Operation<types.PutFileSystemPolicyOutput>
     -- Use this action to manage storage for your file system. A
     -- LifecycleConfiguration consists of one or more LifecyclePolicy
     -- objects that define the following:
@@ -395,22 +399,22 @@ local record Client
     -- This operation requires permissions for the elasticfilesystem:PutLifecycleConfiguration operation.
     -- To apply a LifecycleConfiguration object to an encrypted file system, you
     -- need the same Key Management Service permissions as when you created the encrypted file system.
-    putLifecycleConfiguration: function(Client, types.PutLifecycleConfigurationInput): types.PutLifecycleConfigurationOutput, table
+    putLifecycleConfiguration: function(Client, types.PutLifecycleConfigurationInput): Operation<types.PutLifecycleConfigurationOutput>
     -- Creates a tag for an EFS resource. You can create tags for EFS file
     -- systems and access points using this API operation.
     -- This operation requires permissions for the elasticfilesystem:TagResource action.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from an EFS resource. You can remove tags from EFS file
     -- systems and access points using this API operation.
     -- This operation requires permissions for the elasticfilesystem:UntagResource action.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the throughput mode or the amount of provisioned throughput of an existing file
     -- system.
-    updateFileSystem: function(Client, types.UpdateFileSystemInput): types.UpdateFileSystemOutput, table
+    updateFileSystem: function(Client, types.UpdateFileSystemInput): Operation<types.UpdateFileSystemOutput>
     -- Updates protection on the file system.
     -- This operation requires permissions for the
     -- elasticfilesystem:UpdateFileSystemProtection action.
-    updateFileSystemProtection: function(Client, types.UpdateFileSystemProtectionInput): types.UpdateFileSystemProtectionOutput, table
+    updateFileSystemProtection: function(Client, types.UpdateFileSystemProtectionInput): Operation<types.UpdateFileSystemProtectionOutput>
 end
 
 local record M

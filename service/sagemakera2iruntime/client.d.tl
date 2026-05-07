@@ -2,20 +2,24 @@
 
 local types = require("sagemakera2iruntime.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the specified human loop for a flow definition.
     -- If the human loop was deleted, this operation will return a
     -- ResourceNotFoundException.
-    deleteHumanLoop: function(Client, types.DeleteHumanLoopInput): types.DeleteHumanLoopOutput, table
+    deleteHumanLoop: function(Client, types.DeleteHumanLoopInput): Operation<types.DeleteHumanLoopOutput>
     -- Returns information about the specified human loop. If the human loop was deleted, this
     -- operation will return a ResourceNotFoundException error.
-    describeHumanLoop: function(Client, types.DescribeHumanLoopInput): types.DescribeHumanLoopOutput, table
+    describeHumanLoop: function(Client, types.DescribeHumanLoopInput): Operation<types.DescribeHumanLoopOutput>
     -- Returns information about human loops, given the specified parameters. If a human loop was deleted, it will not be included.
-    listHumanLoops: function(Client, types.ListHumanLoopsInput): types.ListHumanLoopsOutput, table
+    listHumanLoops: function(Client, types.ListHumanLoopsInput): Operation<types.ListHumanLoopsOutput>
     -- Starts a human loop, provided that at least one activation condition is met.
-    startHumanLoop: function(Client, types.StartHumanLoopInput): types.StartHumanLoopOutput, table
+    startHumanLoop: function(Client, types.StartHumanLoopInput): Operation<types.StartHumanLoopOutput>
     -- Stops the specified human loop.
-    stopHumanLoop: function(Client, types.StopHumanLoopInput): types.StopHumanLoopOutput, table
+    stopHumanLoop: function(Client, types.StopHumanLoopInput): Operation<types.StopHumanLoopOutput>
 end
 
 local record M

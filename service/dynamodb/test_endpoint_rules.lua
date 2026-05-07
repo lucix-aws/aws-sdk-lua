@@ -2,6507 +2,6485 @@
 
 -- Generated endpoint ruleset tests — do not edit
 
-package.path = "runtime/?.lua;runtime/?/init.lua;" .. package.path
-
 local endpoint = require("smithy.endpoint")
 local ruleset = require("dynamodb.endpoint_rules")
 
-local pass_count = 0
-local fail_count = 0
-
-local function test(name, fn)
-    local ok, err = pcall(fn)
-    if ok then
-        pass_count = pass_count + 1
-        print("PASS: " .. name)
-    else
-        fail_count = fail_count + 1
-        print("FAIL: " .. name .. "\n  " .. tostring(err))
-    end
-end
-
-local function assert_eq(a, b, msg)
-    if a ~= b then
-        error((msg or "assert_eq") .. ": expected " .. tostring(b) .. ", got " .. tostring(a), 2)
-    end
-end
-
-test("For region af-south-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "af-south-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.af-south-1.amazonaws.com", "url")
-end)
-
-test("For region ap-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-east-1.amazonaws.com", "url")
-end)
-
-test("For region ap-northeast-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-northeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-northeast-1.amazonaws.com", "url")
-end)
-
-test("For region ap-northeast-2 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-northeast-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-northeast-2.amazonaws.com", "url")
-end)
-
-test("For region ap-northeast-3 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-northeast-3",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-northeast-3.amazonaws.com", "url")
-end)
-
-test("For region ap-south-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-south-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-south-1.amazonaws.com", "url")
-end)
-
-test("For region ap-southeast-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-southeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-southeast-1.amazonaws.com", "url")
-end)
-
-test("For region ap-southeast-2 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-southeast-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-southeast-2.amazonaws.com", "url")
-end)
-
-test("For region ap-southeast-3 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ap-southeast-3",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ap-southeast-3.amazonaws.com", "url")
-end)
-
-test("For region ca-central-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "ca-central-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.ca-central-1.amazonaws.com", "url")
-end)
-
-test("For region ca-central-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "ca-central-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.ca-central-1.amazonaws.com", "url")
-end)
-
-test("For region eu-central-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-central-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-central-1.amazonaws.com", "url")
-end)
-
-test("For region eu-north-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-north-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-north-1.amazonaws.com", "url")
-end)
-
-test("For region eu-south-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-south-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-south-1.amazonaws.com", "url")
-end)
-
-test("For region eu-west-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-west-1.amazonaws.com", "url")
-end)
-
-test("For region eu-west-2 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-west-2.amazonaws.com", "url")
-end)
-
-test("For region eu-west-3 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "eu-west-3",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.eu-west-3.amazonaws.com", "url")
-end)
-
-test("For region local with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "local",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        name = "sigv4",
-        signingName = "dynamodb",
-        signingRegion = "us-east-1",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("For region me-south-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "me-south-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.me-south-1.amazonaws.com", "url")
-end)
-
-test("For region sa-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "sa-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.sa-east-1.amazonaws.com", "url")
-end)
-
-test("For region us-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("For region us-east-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("For region us-east-2 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-east-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-2.amazonaws.com", "url")
-end)
-
-test("For region us-east-2 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-east-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-2.amazonaws.com", "url")
-end)
-
-test("For region us-west-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-west-1.amazonaws.com", "url")
-end)
-
-test("For region us-west-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-west-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-west-1.amazonaws.com", "url")
-end)
-
-test("For region us-west-2 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-west-2.amazonaws.com", "url")
-end)
-
-test("For region us-west-2 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-west-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-west-2.amazonaws.com", "url")
-end)
-
-test("For region us-east-1 with FIPS enabled and DualStack enabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("For region us-east-1 with FIPS disabled and DualStack enabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.api.aws", "url")
-end)
-
-test("For region cn-north-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "cn-north-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("For region cn-northwest-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "cn-northwest-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-northwest-1.amazonaws.com.cn", "url")
-end)
-
-test("For region cn-north-1 with FIPS enabled and DualStack enabled", function()
-    local params = {
-        Region = "cn-north-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("For region cn-north-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "cn-north-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("For region cn-north-1 with FIPS disabled and DualStack enabled", function()
-    local params = {
-        Region = "cn-north-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("For region us-gov-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-gov-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("For region us-gov-east-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-gov-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("For region us-gov-west-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-gov-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-west-1.amazonaws.com", "url")
-end)
-
-test("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-gov-west-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-west-1.amazonaws.com", "url")
-end)
-
-test("For region us-gov-east-1 with FIPS enabled and DualStack enabled", function()
-    local params = {
-        Region = "us-gov-east-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-gov-east-1.api.aws", "url")
-end)
-
-test("For region us-gov-east-1 with FIPS disabled and DualStack enabled", function()
-    local params = {
-        Region = "us-gov-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.api.aws", "url")
-end)
-
-test("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-iso-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("For region us-iso-west-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-iso-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-west-1.c2s.ic.gov", "url")
-end)
-
-test("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-iso-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
-    local params = {
-        Region = "us-isob-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-isob-east-1.sc2s.sgov.gov", "url")
-end)
-
-test("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
-    local params = {
-        Region = "us-isob-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-isob-east-1.sc2s.sgov.gov", "url")
-end)
-
-test("For custom endpoint with region set and fips disabled and dualstack disabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("For custom endpoint with region not set and fips disabled and dualstack disabled", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("For custom endpoint with fips enabled and dualstack disabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("For custom endpoint with fips disabled and dualstack enabled", function()
-    local params = {
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("Missing region", function()
-    local params = {}
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Missing Region", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-        Endpoint = "https://example.com",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://example.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "disabled",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and local endpoint are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=local}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "required",
-        Region = "local",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "http://localhost:8000", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        authSchemes = {
-        {
-        signingRegion = "us-east-1",
-        name = "sigv4",
-        signingName = "dynamodb",
-    },
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Credentials-sourced account ID parameter is invalid", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Credentials-sourced account ID parameter is invalid", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.api.aws", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://333333333333.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
-end)
+describe("endpoint rules", function()
+    it("For region af-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "af-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.af-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-northeast-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-northeast-2.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-northeast-3.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-southeast-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-southeast-2.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ap-southeast-3.amazonaws.com", result.url)
+    end)
+
+    it("For region ca-central-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ca-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.ca-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ca-central-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "ca-central-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.ca-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-central-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-north-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-north-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-north-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-west-2.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.eu-west-3.amazonaws.com", result.url)
+    end)
+
+    it("For region local with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "local",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingName = "dynamodb",
+            signingRegion = "us-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region me-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "me-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region sa-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "sa-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.sa-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-2 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-2 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS enabled and DualStack enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS disabled and DualStack enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("For region cn-north-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("For region cn-northwest-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "cn-northwest-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("For region cn-north-1 with FIPS enabled and DualStack enabled", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("For region cn-north-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("For region cn-north-1 with FIPS disabled and DualStack enabled", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS enabled and DualStack enabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS disabled and DualStack enabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("For region us-iso-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-iso-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-west-1.c2s.ic.gov", result.url)
+    end)
+
+    it("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-isob-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-isob-east-1.sc2s.sgov.gov", result.url)
+    end)
+
+    it("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-isob-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
+    end)
+
+    it("For custom endpoint with region set and fips disabled and dualstack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("For custom endpoint with region not set and fips disabled and dualstack disabled", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("For custom endpoint with fips enabled and dualstack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("For custom endpoint with fips disabled and dualstack enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("Missing region", function()
+        local params = {}
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Missing Region", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=us-east-1, Endpoint=https://example.com}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "disabled",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and local endpoint are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=local}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "required",
+            Region = "local",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("http://localhost:8000", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            signingRegion = "us-east-1",
+            name = "sigv4",
+            signingName = "dynamodb",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Credentials-sourced account ID parameter is invalid", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Credentials-sourced account ID parameter is invalid", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.ddb.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "required",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "required",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "disabled",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "us-iso-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "111111111111",
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            ResourceArnList = {
+            "arn:aws:s3:us-east-1:333333333333:stream/testStream",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountId = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "",
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = true,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = true,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
+            ResourceArnList = {
+            "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
+        },
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            AccountIdEndpointMode = "preferred",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{Endpoint=https://dynamodb.cn-north-1.api.amazonwebservices.com.cn, Region=cn-north-1}", function()
+        local params = {
+            Endpoint = "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn",
+            Region = "cn-north-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", err)
+    end)
+
+    it("{Endpoint=https://dynamodb.us-gov-east-1.api.aws, Region=us-gov-east-1}", function()
+        local params = {
+            Endpoint = "https://dynamodb.us-gov-east-1.api.aws",
+            Region = "us-gov-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", err)
+    end)
+
+    it("{Endpoint=https://dynamodb.us-east-1.api.aws, Region=us-east-1}", function()
+        local params = {
+            Endpoint = "https://dynamodb.us-east-1.api.aws",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", err)
+    end)
+
+    it("{Endpoint=https://111111111111.ddb.us-east-1.api.aws, Region=us-east-1}", function()
+        local params = {
+            Endpoint = "https://111111111111.ddb.us-east-1.api.aws",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{Endpoint=https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws, Region=us-east-1}", function()
+        local params = {
+            Endpoint = "https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws", result.url)
+    end)
+
+    it("{Endpoint=https://dynamodb.eu-west-1.api.aws, Region=eu-west-1}", function()
+        local params = {
+            Endpoint = "https://dynamodb.eu-west-1.api.aws",
+            Region = "eu-west-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", err)
+    end)
+
+    it("{Endpoint=https://dynamodb.us-west-2.api.aws, Region=us-west-2}", function()
+        local params = {
+            Endpoint = "https://dynamodb.us-west-2.api.aws",
+            Region = "us-west-2",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", err)
+    end)
 
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://222222222222.ddb.us-east-1.amazonaws.com", "url")
-    assert(result.properties ~= nil, "missing properties")
-    local expected_props = {
-        metricValues = {
-        "O",
-    },
-    }
-    local function deep_eq(a, b)
-        if type(a) ~= type(b) then return false end
-        if type(a) ~= "table" then return a == b end
-        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-        for k, _ in pairs(b) do if a[k] == nil then return false end end
-        return true
-    end
-    assert(deep_eq(result.properties, expected_props), "properties mismatch")
 end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "required",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=required, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "required",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", "error message")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=disabled, Region=us-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "disabled",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=cn-north-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.cn-north-1.amazonaws.com.cn", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.api.aws.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-iso-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "us-iso-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-iso-east-1.c2s.ic.gov", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-west-2:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-west-2:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=111111111111, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, ResourceArnList=[arn:aws:s3:us-east-1:333333333333:stream/testStream], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "111111111111",
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        ResourceArnList = {
-        "arn:aws:s3:us-east-1:333333333333:stream/testStream",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountId=, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountId = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-west-2:222222222222:table/table_name, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-west-2:222222222222:table/table_name",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:s3:us-west-2:222222222222:stream/testStream, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:s3:us-west-2:222222222222:stream/testStream",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "",
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb-fips.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=true, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = true,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=true, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = true,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.api.aws", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, ResourceArn=arn:aws:dynamodb:us-east-1:222222222222:table/table_name, ResourceArnList=[arn:aws:dynamodb:us-east-1:333333333333:table/table_name], AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        ResourceArn = "arn:aws:dynamodb:us-east-1:222222222222:table/table_name",
-        ResourceArnList = {
-        "arn:aws:dynamodb:us-east-1:333333333333:table/table_name",
-    },
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{UseFIPS=false, UseDualStack=false, AccountIdEndpointMode=preferred, Region=us-gov-east-1}", function()
-    local params = {
-        UseFIPS = false,
-        UseDualStack = false,
-        AccountIdEndpointMode = "preferred",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://dynamodb.us-gov-east-1.amazonaws.com", "url")
-end)
-
-test("{Endpoint=https://dynamodb.cn-north-1.api.amazonwebservices.com.cn, Region=cn-north-1}", function()
-    local params = {
-        Endpoint = "https://dynamodb.cn-north-1.api.amazonwebservices.com.cn",
-        Region = "cn-north-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", "error message")
-end)
-
-test("{Endpoint=https://dynamodb.us-gov-east-1.api.aws, Region=us-gov-east-1}", function()
-    local params = {
-        Endpoint = "https://dynamodb.us-gov-east-1.api.aws",
-        Region = "us-gov-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", "error message")
-end)
-
-test("{Endpoint=https://dynamodb.us-east-1.api.aws, Region=us-east-1}", function()
-    local params = {
-        Endpoint = "https://dynamodb.us-east-1.api.aws",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", "error message")
-end)
-
-test("{Endpoint=https://111111111111.ddb.us-east-1.api.aws, Region=us-east-1}", function()
-    local params = {
-        Endpoint = "https://111111111111.ddb.us-east-1.api.aws",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://111111111111.ddb.us-east-1.api.aws", "url")
-end)
-
-test("{Endpoint=https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws, Region=us-east-1}", function()
-    local params = {
-        Endpoint = "https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://vpce-1a2b3c4d-5e6f.dynamodb.us-east-1.vpce.api.aws", "url")
-end)
-
-test("{Endpoint=https://dynamodb.eu-west-1.api.aws, Region=eu-west-1}", function()
-    local params = {
-        Endpoint = "https://dynamodb.eu-west-1.api.aws",
-        Region = "eu-west-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", "error message")
-end)
-
-test("{Endpoint=https://dynamodb.us-west-2.api.aws, Region=us-west-2}", function()
-    local params = {
-        Endpoint = "https://dynamodb.us-west-2.api.aws",
-        Region = "us-west-2",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html", "error message")
-end)
-
-print(string.format("\n%d passed, %d failed", pass_count, fail_count))
-if fail_count > 0 then os.exit(1) end

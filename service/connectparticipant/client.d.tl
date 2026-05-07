@@ -2,6 +2,10 @@
 
 local types = require("connectparticipant.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels the authentication session. The opted out branch of the Authenticate Customer
     -- flow block will be taken.
@@ -11,7 +15,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    cancelParticipantAuthentication: function(Client, types.CancelParticipantAuthenticationInput): types.CancelParticipantAuthenticationOutput, table
+    cancelParticipantAuthentication: function(Client, types.CancelParticipantAuthenticationInput): Operation<types.CancelParticipantAuthenticationOutput>
     -- Allows you to confirm that the attachment has been uploaded using the pre-signed URL
     -- provided in StartAttachmentUpload API. A conflict exception is thrown when an attachment
     -- with that identifier is already being uploaded.
@@ -20,7 +24,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    completeAttachmentUpload: function(Client, types.CompleteAttachmentUploadInput): types.CompleteAttachmentUploadOutput, table
+    completeAttachmentUpload: function(Client, types.CompleteAttachmentUploadInput): Operation<types.CompleteAttachmentUploadOutput>
     -- Creates the participant's connection.
     -- For security recommendations, see Amazon Connect Chat security best practices.
     -- For WebRTC security recommendations, see Amazon Connect WebRTC security best practices.
@@ -67,17 +71,17 @@ local record Client
     -- Guide.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    createParticipantConnection: function(Client, types.CreateParticipantConnectionInput): types.CreateParticipantConnectionOutput, table
+    createParticipantConnection: function(Client, types.CreateParticipantConnectionInput): Operation<types.CreateParticipantConnectionOutput>
     -- Retrieves the view for the specified view token.
     -- For security recommendations, see Amazon Connect Chat security best practices.
-    describeView: function(Client, types.DescribeViewInput): types.DescribeViewOutput, table
+    describeView: function(Client, types.DescribeViewInput): Operation<types.DescribeViewOutput>
     -- Disconnects a participant.
     -- For security recommendations, see Amazon Connect Chat security best practices.
     -- ConnectionToken is used for invoking this API instead of
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    disconnectParticipant: function(Client, types.DisconnectParticipantInput): types.DisconnectParticipantOutput, table
+    disconnectParticipant: function(Client, types.DisconnectParticipantInput): Operation<types.DisconnectParticipantOutput>
     -- Provides a pre-signed URL for download of a completed attachment. This is an
     -- asynchronous API for use with active contacts.
     -- For security recommendations, see Amazon Connect Chat security best practices.
@@ -89,7 +93,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    getAttachment: function(Client, types.GetAttachmentInput): types.GetAttachmentOutput, table
+    getAttachment: function(Client, types.GetAttachmentInput): Operation<types.GetAttachmentOutput>
     -- Retrieves the AuthenticationUrl for the current authentication session for the
     -- AuthenticateCustomer flow block.
     -- For security recommendations, see Amazon Connect Chat security best practices.
@@ -101,7 +105,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    getAuthenticationUrl: function(Client, types.GetAuthenticationUrlInput): types.GetAuthenticationUrlOutput, table
+    getAuthenticationUrl: function(Client, types.GetAuthenticationUrlInput): Operation<types.GetAuthenticationUrlOutput>
     -- Retrieves a transcript of the session, including details about any attachments. For
     -- information about accessing past chat contact transcripts for a persistent chat, see
     -- Enable persistent chat.
@@ -119,7 +123,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    getTranscript: function(Client, types.GetTranscriptInput): types.GetTranscriptOutput, table
+    getTranscript: function(Client, types.GetTranscriptInput): Operation<types.GetTranscriptOutput>
     -- The application/vnd.amazonaws.connect.event.connection.acknowledged
     -- ContentType is no longer maintained since December 31, 2024. This event has been
     -- migrated to the CreateParticipantConnection API using the
@@ -132,14 +136,14 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    sendEvent: function(Client, types.SendEventInput): Operation<types.SendEventOutput>
     -- Sends a message.
     -- For security recommendations, see Amazon Connect Chat security best practices.
     -- ConnectionToken is used for invoking this API instead of
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    sendMessage: function(Client, types.SendMessageInput): Operation<types.SendMessageOutput>
     -- Provides a pre-signed Amazon S3 URL in response for uploading the file directly to
     -- S3.
     -- For security recommendations, see Amazon Connect Chat security best practices.
@@ -147,7 +151,7 @@ local record Client
     -- ParticipantToken.
     -- The Amazon Connect Participant Service APIs do not use Signature Version 4
     -- authentication.
-    startAttachmentUpload: function(Client, types.StartAttachmentUploadInput): types.StartAttachmentUploadOutput, table
+    startAttachmentUpload: function(Client, types.StartAttachmentUploadInput): Operation<types.StartAttachmentUploadOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("swf.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns the number of closed workflow executions within the given domain that meet the
     -- specified filtering criteria.
@@ -27,7 +31,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    countClosedWorkflowExecutions: function(Client, types.CountClosedWorkflowExecutionsInput): types.CountClosedWorkflowExecutionsOutput, table
+    countClosedWorkflowExecutions: function(Client, types.CountClosedWorkflowExecutionsInput): Operation<types.CountClosedWorkflowExecutionsOutput>
     -- Returns the number of open workflow executions within the given domain that meet the
     -- specified filtering criteria.
     -- This operation is eventually consistent. The results are best effort and may not
@@ -52,7 +56,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    countOpenWorkflowExecutions: function(Client, types.CountOpenWorkflowExecutionsInput): types.CountOpenWorkflowExecutionsOutput, table
+    countOpenWorkflowExecutions: function(Client, types.CountOpenWorkflowExecutionsInput): Operation<types.CountOpenWorkflowExecutionsOutput>
     -- Returns the estimated number of activity tasks in the specified task list. The count
     -- returned is an approximation and isn't guaranteed to be exact. If you specify a task list that
     -- no activity task was ever scheduled in then 0 is returned.
@@ -71,7 +75,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    countPendingActivityTasks: function(Client, types.CountPendingActivityTasksInput): types.CountPendingActivityTasksOutput, table
+    countPendingActivityTasks: function(Client, types.CountPendingActivityTasksInput): Operation<types.CountPendingActivityTasksOutput>
     -- Returns the estimated number of decision tasks in the specified task list. The count
     -- returned is an approximation and isn't guaranteed to be exact. If you specify a task list that
     -- no decision task was ever scheduled in then 0 is returned.
@@ -90,7 +94,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    countPendingDecisionTasks: function(Client, types.CountPendingDecisionTasksInput): types.CountPendingDecisionTasksOutput, table
+    countPendingDecisionTasks: function(Client, types.CountPendingDecisionTasksInput): Operation<types.CountPendingDecisionTasksOutput>
     -- Deletes the specified activity type.
     -- Note: Prior to deletion, activity types must first be deprecated.
     -- After an activity type has been deleted, you cannot schedule new activities of that type. Activities that started before the type was deleted will continue to run.
@@ -111,7 +115,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    deleteActivityType: function(Client, types.DeleteActivityTypeInput): types.DeleteActivityTypeOutput, table
+    deleteActivityType: function(Client, types.DeleteActivityTypeInput): Operation<types.DeleteActivityTypeOutput>
     -- Deletes the specified workflow type.
     -- Note: Prior to deletion, workflow types must first be deprecated.
     -- After a workflow type has been deleted, you cannot create new executions of that type. Executions that
@@ -133,7 +137,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    deleteWorkflowType: function(Client, types.DeleteWorkflowTypeInput): types.DeleteWorkflowTypeOutput, table
+    deleteWorkflowType: function(Client, types.DeleteWorkflowTypeInput): Operation<types.DeleteWorkflowTypeOutput>
     -- Deprecates the specified activity type. After an activity type has
     -- been deprecated, you cannot create new tasks of that activity type. Tasks of this type that
     -- were scheduled before the type was deprecated continue to run.
@@ -155,7 +159,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    deprecateActivityType: function(Client, types.DeprecateActivityTypeInput): types.DeprecateActivityTypeOutput, table
+    deprecateActivityType: function(Client, types.DeprecateActivityTypeInput): Operation<types.DeprecateActivityTypeOutput>
     -- Deprecates the specified domain. After a domain has been deprecated it cannot be used
     -- to create new workflow executions or register new types. However, you can still use visibility
     -- actions on this domain. Deprecating a domain also deprecates all activity and workflow types
@@ -176,7 +180,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    deprecateDomain: function(Client, types.DeprecateDomainInput): types.DeprecateDomainOutput, table
+    deprecateDomain: function(Client, types.DeprecateDomainInput): Operation<types.DeprecateDomainOutput>
     -- Deprecates the specified workflow type. After a workflow type has
     -- been deprecated, you cannot create new executions of that type. Executions that were started
     -- before the type was deprecated continues to run. A deprecated workflow type may still be used
@@ -201,7 +205,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    deprecateWorkflowType: function(Client, types.DeprecateWorkflowTypeInput): types.DeprecateWorkflowTypeOutput, table
+    deprecateWorkflowType: function(Client, types.DeprecateWorkflowTypeInput): Operation<types.DeprecateWorkflowTypeOutput>
     -- Returns information about the specified activity type. This includes configuration
     -- settings provided when the type was registered and other general information about the
     -- type.
@@ -223,7 +227,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    describeActivityType: function(Client, types.DescribeActivityTypeInput): types.DescribeActivityTypeOutput, table
+    describeActivityType: function(Client, types.DescribeActivityTypeInput): Operation<types.DescribeActivityTypeOutput>
     -- Returns information about the specified domain, including description and
     -- status.
     -- Access Control
@@ -239,7 +243,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    describeDomain: function(Client, types.DescribeDomainInput): types.DescribeDomainOutput, table
+    describeDomain: function(Client, types.DescribeDomainInput): Operation<types.DescribeDomainOutput>
     -- Returns information about the specified workflow execution including its type and some
     -- statistics.
     -- This operation is eventually consistent. The results are best effort and may not
@@ -257,7 +261,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    describeWorkflowExecution: function(Client, types.DescribeWorkflowExecutionInput): types.DescribeWorkflowExecutionOutput, table
+    describeWorkflowExecution: function(Client, types.DescribeWorkflowExecutionInput): Operation<types.DescribeWorkflowExecutionOutput>
     -- Returns information about the specified workflow type. This
     -- includes configuration settings specified when the type was registered and other information
     -- such as creation date, current status, etc.
@@ -279,7 +283,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    describeWorkflowType: function(Client, types.DescribeWorkflowTypeInput): types.DescribeWorkflowTypeOutput, table
+    describeWorkflowType: function(Client, types.DescribeWorkflowTypeInput): Operation<types.DescribeWorkflowTypeOutput>
     -- Returns the history of the specified workflow execution. The results may be split into
     -- multiple pages. To retrieve subsequent pages, make the call again using the
     -- nextPageToken returned by the initial call.
@@ -298,7 +302,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    getWorkflowExecutionHistory: function(Client, types.GetWorkflowExecutionHistoryInput): types.GetWorkflowExecutionHistoryOutput, table
+    getWorkflowExecutionHistory: function(Client, types.GetWorkflowExecutionHistoryInput): Operation<types.GetWorkflowExecutionHistoryOutput>
     -- Returns information about all activities registered in the specified domain that match
     -- the specified name and registration status. The result includes information like creation
     -- date, current status of the activity, etc. The results may be split into multiple pages. To
@@ -317,7 +321,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    listActivityTypes: function(Client, types.ListActivityTypesInput): types.ListActivityTypesOutput, table
+    listActivityTypes: function(Client, types.ListActivityTypesInput): Operation<types.ListActivityTypesOutput>
     -- Returns a list of closed workflow executions in the specified domain that meet the
     -- filtering criteria. The results may be split into multiple pages. To retrieve subsequent
     -- pages, make the call again using the nextPageToken returned by the initial call.
@@ -343,7 +347,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    listClosedWorkflowExecutions: function(Client, types.ListClosedWorkflowExecutionsInput): types.ListClosedWorkflowExecutionsOutput, table
+    listClosedWorkflowExecutions: function(Client, types.ListClosedWorkflowExecutionsInput): Operation<types.ListClosedWorkflowExecutionsOutput>
     -- Returns the list of domains registered in the account. The results may be split into
     -- multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken
     -- returned by the initial call.
@@ -364,7 +368,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): Operation<types.ListDomainsOutput>
     -- Returns a list of open workflow executions in the specified domain that meet the
     -- filtering criteria. The results may be split into multiple pages. To retrieve subsequent
     -- pages, make the call again using the nextPageToken returned by the initial call.
@@ -390,9 +394,9 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    listOpenWorkflowExecutions: function(Client, types.ListOpenWorkflowExecutionsInput): types.ListOpenWorkflowExecutionsOutput, table
+    listOpenWorkflowExecutions: function(Client, types.ListOpenWorkflowExecutionsInput): Operation<types.ListOpenWorkflowExecutionsOutput>
     -- List tags for a given domain.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns information about workflow types in the specified domain. The results may be
     -- split into multiple pages that can be retrieved by making the call repeatedly.
     -- Access Control
@@ -408,7 +412,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    listWorkflowTypes: function(Client, types.ListWorkflowTypesInput): types.ListWorkflowTypesOutput, table
+    listWorkflowTypes: function(Client, types.ListWorkflowTypesInput): Operation<types.ListWorkflowTypesOutput>
     -- Used by workers to get an ActivityTask from the specified activity
     -- taskList. This initiates a long poll, where the service holds the HTTP
     -- connection open and responds as soon as a task becomes available. The maximum time the service
@@ -433,7 +437,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    pollForActivityTask: function(Client, types.PollForActivityTaskInput): types.PollForActivityTaskOutput, table
+    pollForActivityTask: function(Client, types.PollForActivityTaskInput): Operation<types.PollForActivityTaskOutput>
     -- Used by deciders to get a DecisionTask from the specified decision
     -- taskList. A decision task may be returned for any open workflow execution that
     -- is using the specified task list. The task includes a paginated view of the history of the
@@ -468,7 +472,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    pollForDecisionTask: function(Client, types.PollForDecisionTaskInput): types.PollForDecisionTaskOutput, table
+    pollForDecisionTask: function(Client, types.PollForDecisionTaskInput): Operation<types.PollForDecisionTaskOutput>
     -- Used by activity workers to report to the service that the ActivityTask represented by the specified taskToken is still making progress. The worker
     -- can also specify details of the progress, for example percent complete, using the
     -- details parameter. This action can also be used by the worker as a mechanism to
@@ -501,7 +505,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    recordActivityTaskHeartbeat: function(Client, types.RecordActivityTaskHeartbeatInput): types.RecordActivityTaskHeartbeatOutput, table
+    recordActivityTaskHeartbeat: function(Client, types.RecordActivityTaskHeartbeatInput): Operation<types.RecordActivityTaskHeartbeatOutput>
     -- Registers a new activity type along with its configuration
     -- settings in the specified domain.
     -- A TypeAlreadyExists fault is returned if the type already exists in the
@@ -526,7 +530,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    registerActivityType: function(Client, types.RegisterActivityTypeInput): types.RegisterActivityTypeOutput, table
+    registerActivityType: function(Client, types.RegisterActivityTypeInput): Operation<types.RegisterActivityTypeOutput>
     -- Registers a new domain.
     -- Access Control
     -- You can use IAM policies to control this action's access to Amazon SWF resources as
@@ -541,7 +545,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    registerDomain: function(Client, types.RegisterDomainInput): types.RegisterDomainOutput, table
+    registerDomain: function(Client, types.RegisterDomainInput): Operation<types.RegisterDomainOutput>
     -- Registers a new workflow type and its configuration settings in
     -- the specified domain.
     -- The retention period for the workflow history is set by the RegisterDomain action.
@@ -567,7 +571,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    registerWorkflowType: function(Client, types.RegisterWorkflowTypeInput): types.RegisterWorkflowTypeOutput, table
+    registerWorkflowType: function(Client, types.RegisterWorkflowTypeInput): Operation<types.RegisterWorkflowTypeOutput>
     -- Records a WorkflowExecutionCancelRequested event in the currently running
     -- workflow execution identified by the given domain, workflowId, and runId. This logically
     -- requests the cancellation of the workflow execution as a whole. It is up to the decider to
@@ -591,7 +595,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    requestCancelWorkflowExecution: function(Client, types.RequestCancelWorkflowExecutionInput): types.RequestCancelWorkflowExecutionOutput, table
+    requestCancelWorkflowExecution: function(Client, types.RequestCancelWorkflowExecutionInput): Operation<types.RequestCancelWorkflowExecutionOutput>
     -- Used by workers to tell the service that the ActivityTask identified
     -- by the taskToken was successfully canceled. Additional details can
     -- be provided using the details argument.
@@ -618,7 +622,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    respondActivityTaskCanceled: function(Client, types.RespondActivityTaskCanceledInput): types.RespondActivityTaskCanceledOutput, table
+    respondActivityTaskCanceled: function(Client, types.RespondActivityTaskCanceledInput): Operation<types.RespondActivityTaskCanceledOutput>
     -- Used by workers to tell the service that the ActivityTask identified
     -- by the taskToken completed successfully with a result (if provided).
     -- The result appears in the ActivityTaskCompleted event in the
@@ -644,7 +648,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    respondActivityTaskCompleted: function(Client, types.RespondActivityTaskCompletedInput): types.RespondActivityTaskCompletedOutput, table
+    respondActivityTaskCompleted: function(Client, types.RespondActivityTaskCompletedInput): Operation<types.RespondActivityTaskCompletedOutput>
     -- Used by workers to tell the service that the ActivityTask identified
     -- by the taskToken has failed with reason (if specified). The
     -- reason and details appear in the ActivityTaskFailed
@@ -666,7 +670,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    respondActivityTaskFailed: function(Client, types.RespondActivityTaskFailedInput): types.RespondActivityTaskFailedOutput, table
+    respondActivityTaskFailed: function(Client, types.RespondActivityTaskFailedInput): Operation<types.RespondActivityTaskFailedOutput>
     -- Used by deciders to tell the service that the DecisionTask identified
     -- by the taskToken has successfully completed. The decisions argument
     -- specifies the list of decisions made while processing the task.
@@ -682,7 +686,7 @@ local record Client
     -- see Using
     -- IAM to Manage Access to Amazon SWF Workflows in the
     -- Amazon SWF Developer Guide.
-    respondDecisionTaskCompleted: function(Client, types.RespondDecisionTaskCompletedInput): types.RespondDecisionTaskCompletedOutput, table
+    respondDecisionTaskCompleted: function(Client, types.RespondDecisionTaskCompletedInput): Operation<types.RespondDecisionTaskCompletedOutput>
     -- Records a WorkflowExecutionSignaled event in the workflow execution
     -- history and creates a decision task for the workflow execution identified by the given domain,
     -- workflowId and runId. The event is recorded with the specified user defined signalName and
@@ -705,7 +709,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    signalWorkflowExecution: function(Client, types.SignalWorkflowExecutionInput): types.SignalWorkflowExecutionOutput, table
+    signalWorkflowExecution: function(Client, types.SignalWorkflowExecutionInput): Operation<types.SignalWorkflowExecutionOutput>
     -- Starts an execution of the workflow type in the specified domain using the provided
     -- workflowId and input data.
     -- This action returns the newly started workflow execution.
@@ -734,10 +738,10 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    startWorkflowExecution: function(Client, types.StartWorkflowExecutionInput): types.StartWorkflowExecutionOutput, table
+    startWorkflowExecution: function(Client, types.StartWorkflowExecutionInput): Operation<types.StartWorkflowExecutionOutput>
     -- Add a tag to a Amazon SWF domain.
     -- Amazon SWF supports a maximum of 50 tags per resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Records a WorkflowExecutionTerminated event and forces closure of the
     -- workflow execution identified by the given domain, runId, and workflowId. The child policy,
     -- registered with the workflow type or specified when starting this execution, is applied to any
@@ -762,7 +766,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    terminateWorkflowExecution: function(Client, types.TerminateWorkflowExecutionInput): types.TerminateWorkflowExecutionOutput, table
+    terminateWorkflowExecution: function(Client, types.TerminateWorkflowExecutionInput): Operation<types.TerminateWorkflowExecutionOutput>
     -- Undeprecates a previously deprecated activity type. After an activity type has
     -- been undeprecated, you can create new tasks of that activity type.
     -- This operation is eventually consistent. The results are best effort and may not
@@ -785,7 +789,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    undeprecateActivityType: function(Client, types.UndeprecateActivityTypeInput): types.UndeprecateActivityTypeOutput, table
+    undeprecateActivityType: function(Client, types.UndeprecateActivityTypeInput): Operation<types.UndeprecateActivityTypeOutput>
     -- Undeprecates a previously deprecated domain. After a domain has been undeprecated it can be used
     -- to create new workflow executions or register new types.
     -- This operation is eventually consistent. The results are best effort and may not
@@ -803,7 +807,7 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    undeprecateDomain: function(Client, types.UndeprecateDomainInput): types.UndeprecateDomainOutput, table
+    undeprecateDomain: function(Client, types.UndeprecateDomainInput): Operation<types.UndeprecateDomainOutput>
     -- Undeprecates a previously deprecated workflow type. After a workflow type has
     -- been undeprecated, you can create new executions of that type.
     -- This operation is eventually consistent. The results are best effort and may not
@@ -826,9 +830,9 @@ local record Client
     -- event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
     -- For details and example IAM policies, see Using IAM to Manage Access to Amazon SWF
     -- Workflows in the Amazon SWF Developer Guide.
-    undeprecateWorkflowType: function(Client, types.UndeprecateWorkflowTypeInput): types.UndeprecateWorkflowTypeOutput, table
+    undeprecateWorkflowType: function(Client, types.UndeprecateWorkflowTypeInput): Operation<types.UndeprecateWorkflowTypeOutput>
     -- Remove a tag from a Amazon SWF domain.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

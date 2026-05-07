@@ -2,81 +2,85 @@
 
 local types = require("connectcampaignsv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a campaign for the specified Amazon Connect account. This API is idempotent.
-    createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    createCampaign: function(Client, types.CreateCampaignInput): Operation<types.CreateCampaignOutput>
     -- Deletes a campaign from the specified Amazon Connect account.
-    deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    deleteCampaign: function(Client, types.DeleteCampaignInput): Operation<types.DeleteCampaignOutput>
     -- Deletes the channel subtype config of a campaign. This API is idempotent.
-    deleteCampaignChannelSubtypeConfig: function(Client, types.DeleteCampaignChannelSubtypeConfigInput): types.DeleteCampaignChannelSubtypeConfigOutput, table
+    deleteCampaignChannelSubtypeConfig: function(Client, types.DeleteCampaignChannelSubtypeConfigInput): Operation<types.DeleteCampaignChannelSubtypeConfigOutput>
     -- Deletes the communication limits config for a campaign. This API is idempotent.
-    deleteCampaignCommunicationLimits: function(Client, types.DeleteCampaignCommunicationLimitsInput): types.DeleteCampaignCommunicationLimitsOutput, table
+    deleteCampaignCommunicationLimits: function(Client, types.DeleteCampaignCommunicationLimitsInput): Operation<types.DeleteCampaignCommunicationLimitsOutput>
     -- Deletes the communication time config for a campaign. This API is idempotent.
-    deleteCampaignCommunicationTime: function(Client, types.DeleteCampaignCommunicationTimeInput): types.DeleteCampaignCommunicationTimeOutput, table
+    deleteCampaignCommunicationTime: function(Client, types.DeleteCampaignCommunicationTimeInput): Operation<types.DeleteCampaignCommunicationTimeOutput>
     -- Deletes the entry limits config for a campaign. This API is idempotent.
-    deleteCampaignEntryLimits: function(Client, types.DeleteCampaignEntryLimitsInput): types.DeleteCampaignEntryLimitsOutput, table
+    deleteCampaignEntryLimits: function(Client, types.DeleteCampaignEntryLimitsInput): Operation<types.DeleteCampaignEntryLimitsOutput>
     -- Deletes a connect instance config from the specified AWS account.
-    deleteConnectInstanceConfig: function(Client, types.DeleteConnectInstanceConfigInput): types.DeleteConnectInstanceConfigOutput, table
+    deleteConnectInstanceConfig: function(Client, types.DeleteConnectInstanceConfigInput): Operation<types.DeleteConnectInstanceConfigOutput>
     -- Delete the integration for the specified Amazon Connect instance.
-    deleteConnectInstanceIntegration: function(Client, types.DeleteConnectInstanceIntegrationInput): types.DeleteConnectInstanceIntegrationOutput, table
+    deleteConnectInstanceIntegration: function(Client, types.DeleteConnectInstanceIntegrationInput): Operation<types.DeleteConnectInstanceIntegrationOutput>
     -- Delete the Connect Campaigns onboarding job for the specified Amazon Connect instance.
-    deleteInstanceOnboardingJob: function(Client, types.DeleteInstanceOnboardingJobInput): types.DeleteInstanceOnboardingJobOutput, table
+    deleteInstanceOnboardingJob: function(Client, types.DeleteInstanceOnboardingJobInput): Operation<types.DeleteInstanceOnboardingJobOutput>
     -- Describes the specific campaign.
-    describeCampaign: function(Client, types.DescribeCampaignInput): types.DescribeCampaignOutput, table
+    describeCampaign: function(Client, types.DescribeCampaignInput): Operation<types.DescribeCampaignOutput>
     -- Get state of a campaign for the specified Amazon Connect account.
-    getCampaignState: function(Client, types.GetCampaignStateInput): types.GetCampaignStateOutput, table
+    getCampaignState: function(Client, types.GetCampaignStateInput): Operation<types.GetCampaignStateOutput>
     -- Get state of campaigns for the specified Amazon Connect account.
-    getCampaignStateBatch: function(Client, types.GetCampaignStateBatchInput): types.GetCampaignStateBatchOutput, table
+    getCampaignStateBatch: function(Client, types.GetCampaignStateBatchInput): Operation<types.GetCampaignStateBatchOutput>
     -- Get the specific Connect instance config.
-    getConnectInstanceConfig: function(Client, types.GetConnectInstanceConfigInput): types.GetConnectInstanceConfigOutput, table
+    getConnectInstanceConfig: function(Client, types.GetConnectInstanceConfigInput): Operation<types.GetConnectInstanceConfigOutput>
     -- Get the instance communication limits.
-    getInstanceCommunicationLimits: function(Client, types.GetInstanceCommunicationLimitsInput): types.GetInstanceCommunicationLimitsOutput, table
+    getInstanceCommunicationLimits: function(Client, types.GetInstanceCommunicationLimitsInput): Operation<types.GetInstanceCommunicationLimitsOutput>
     -- Get the specific instance onboarding job status.
-    getInstanceOnboardingJobStatus: function(Client, types.GetInstanceOnboardingJobStatusInput): types.GetInstanceOnboardingJobStatusOutput, table
+    getInstanceOnboardingJobStatus: function(Client, types.GetInstanceOnboardingJobStatusInput): Operation<types.GetInstanceOnboardingJobStatusOutput>
     -- Provides summary information about the campaigns under the specified Amazon Connect account.
-    listCampaigns: function(Client, types.ListCampaignsInput): types.ListCampaignsOutput, table
+    listCampaigns: function(Client, types.ListCampaignsInput): Operation<types.ListCampaignsOutput>
     -- Provides summary information about the integration under the specified Connect instance.
-    listConnectInstanceIntegrations: function(Client, types.ListConnectInstanceIntegrationsInput): types.ListConnectInstanceIntegrationsOutput, table
+    listConnectInstanceIntegrations: function(Client, types.ListConnectInstanceIntegrationsInput): Operation<types.ListConnectInstanceIntegrationsOutput>
     -- List tags for a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Pauses a campaign for the specified Amazon Connect account.
-    pauseCampaign: function(Client, types.PauseCampaignInput): types.PauseCampaignOutput, table
+    pauseCampaign: function(Client, types.PauseCampaignInput): Operation<types.PauseCampaignOutput>
     -- Put or update the integration for the specified Amazon Connect instance.
-    putConnectInstanceIntegration: function(Client, types.PutConnectInstanceIntegrationInput): types.PutConnectInstanceIntegrationOutput, table
+    putConnectInstanceIntegration: function(Client, types.PutConnectInstanceIntegrationInput): Operation<types.PutConnectInstanceIntegrationOutput>
     -- Put the instance communication limits. This API is idempotent.
-    putInstanceCommunicationLimits: function(Client, types.PutInstanceCommunicationLimitsInput): types.PutInstanceCommunicationLimitsOutput, table
+    putInstanceCommunicationLimits: function(Client, types.PutInstanceCommunicationLimitsInput): Operation<types.PutInstanceCommunicationLimitsOutput>
     -- Creates outbound requests for the specified campaign Amazon Connect account. This API is idempotent.
-    putOutboundRequestBatch: function(Client, types.PutOutboundRequestBatchInput): types.PutOutboundRequestBatchOutput, table
+    putOutboundRequestBatch: function(Client, types.PutOutboundRequestBatchInput): Operation<types.PutOutboundRequestBatchOutput>
     -- Takes in a list of profile outbound requests to be placed as part of an outbound campaign. This API is idempotent.
-    putProfileOutboundRequestBatch: function(Client, types.PutProfileOutboundRequestBatchInput): types.PutProfileOutboundRequestBatchOutput, table
+    putProfileOutboundRequestBatch: function(Client, types.PutProfileOutboundRequestBatchInput): Operation<types.PutProfileOutboundRequestBatchOutput>
     -- Stops a campaign for the specified Amazon Connect account.
-    resumeCampaign: function(Client, types.ResumeCampaignInput): types.ResumeCampaignOutput, table
+    resumeCampaign: function(Client, types.ResumeCampaignInput): Operation<types.ResumeCampaignOutput>
     -- Starts a campaign for the specified Amazon Connect account.
-    startCampaign: function(Client, types.StartCampaignInput): types.StartCampaignOutput, table
+    startCampaign: function(Client, types.StartCampaignInput): Operation<types.StartCampaignOutput>
     -- Onboard the specific Amazon Connect instance to Connect Campaigns.
-    startInstanceOnboardingJob: function(Client, types.StartInstanceOnboardingJobInput): types.StartInstanceOnboardingJobOutput, table
+    startInstanceOnboardingJob: function(Client, types.StartInstanceOnboardingJobInput): Operation<types.StartInstanceOnboardingJobOutput>
     -- Stops a campaign for the specified Amazon Connect account.
-    stopCampaign: function(Client, types.StopCampaignInput): types.StopCampaignOutput, table
+    stopCampaign: function(Client, types.StopCampaignInput): Operation<types.StopCampaignOutput>
     -- Tag a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Untag a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the channel subtype config of a campaign. This API is idempotent.
-    updateCampaignChannelSubtypeConfig: function(Client, types.UpdateCampaignChannelSubtypeConfigInput): types.UpdateCampaignChannelSubtypeConfigOutput, table
+    updateCampaignChannelSubtypeConfig: function(Client, types.UpdateCampaignChannelSubtypeConfigInput): Operation<types.UpdateCampaignChannelSubtypeConfigOutput>
     -- Updates the communication limits config for a campaign. This API is idempotent.
-    updateCampaignCommunicationLimits: function(Client, types.UpdateCampaignCommunicationLimitsInput): types.UpdateCampaignCommunicationLimitsOutput, table
+    updateCampaignCommunicationLimits: function(Client, types.UpdateCampaignCommunicationLimitsInput): Operation<types.UpdateCampaignCommunicationLimitsOutput>
     -- Updates the communication time config for a campaign. This API is idempotent.
-    updateCampaignCommunicationTime: function(Client, types.UpdateCampaignCommunicationTimeInput): types.UpdateCampaignCommunicationTimeOutput, table
+    updateCampaignCommunicationTime: function(Client, types.UpdateCampaignCommunicationTimeInput): Operation<types.UpdateCampaignCommunicationTimeOutput>
     -- Updates the entry limits config for a campaign. This API is idempotent.
-    updateCampaignEntryLimits: function(Client, types.UpdateCampaignEntryLimitsInput): types.UpdateCampaignEntryLimitsOutput, table
+    updateCampaignEntryLimits: function(Client, types.UpdateCampaignEntryLimitsInput): Operation<types.UpdateCampaignEntryLimitsOutput>
     -- Updates the campaign flow associated with a campaign. This API is idempotent.
-    updateCampaignFlowAssociation: function(Client, types.UpdateCampaignFlowAssociationInput): types.UpdateCampaignFlowAssociationOutput, table
+    updateCampaignFlowAssociation: function(Client, types.UpdateCampaignFlowAssociationInput): Operation<types.UpdateCampaignFlowAssociationOutput>
     -- Updates the name of a campaign. This API is idempotent.
-    updateCampaignName: function(Client, types.UpdateCampaignNameInput): types.UpdateCampaignNameOutput, table
+    updateCampaignName: function(Client, types.UpdateCampaignNameInput): Operation<types.UpdateCampaignNameOutput>
     -- Updates the schedule for a campaign. This API is idempotent.
-    updateCampaignSchedule: function(Client, types.UpdateCampaignScheduleInput): types.UpdateCampaignScheduleOutput, table
+    updateCampaignSchedule: function(Client, types.UpdateCampaignScheduleInput): Operation<types.UpdateCampaignScheduleOutput>
     -- Updates the campaign source with a campaign. This API is idempotent.
-    updateCampaignSource: function(Client, types.UpdateCampaignSourceInput): types.UpdateCampaignSourceOutput, table
+    updateCampaignSource: function(Client, types.UpdateCampaignSourceInput): Operation<types.UpdateCampaignSourceOutput>
 end
 
 local record M

@@ -2,22 +2,26 @@
 
 local types = require("iot.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a pending certificate transfer. The default state of the certificate is
     -- INACTIVE.
     -- To check for pending certificate transfers, call ListCertificates
     -- to enumerate your certificates.
     -- Requires permission to access the AcceptCertificateTransfer action.
-    acceptCertificateTransfer: function(Client, types.AcceptCertificateTransferInput): types.AcceptCertificateTransferOutput, table
+    acceptCertificateTransfer: function(Client, types.AcceptCertificateTransferInput): Operation<types.AcceptCertificateTransferOutput>
     -- Adds a thing to a billing group.
     -- Requires permission to access the AddThingToBillingGroup action.
-    addThingToBillingGroup: function(Client, types.AddThingToBillingGroupInput): types.AddThingToBillingGroupOutput, table
+    addThingToBillingGroup: function(Client, types.AddThingToBillingGroupInput): Operation<types.AddThingToBillingGroupOutput>
     -- Adds a thing to a thing group.
     -- Requires permission to access the AddThingToThingGroup action.
-    addThingToThingGroup: function(Client, types.AddThingToThingGroupInput): types.AddThingToThingGroupOutput, table
+    addThingToThingGroup: function(Client, types.AddThingToThingGroupInput): Operation<types.AddThingToThingGroupOutput>
     -- Associates the selected software bill of materials (SBOM) with a specific software package version.
     -- Requires permission to access the AssociateSbomWithPackageVersion action.
-    associateSbomWithPackageVersion: function(Client, types.AssociateSbomWithPackageVersionInput): types.AssociateSbomWithPackageVersionOutput, table
+    associateSbomWithPackageVersion: function(Client, types.AssociateSbomWithPackageVersionInput): Operation<types.AssociateSbomWithPackageVersionOutput>
     -- Associates a group with a continuous job. The following criteria must be met:
     -- The job must have been created with the targetSelection field
     -- set to "CONTINUOUS".
@@ -25,33 +29,33 @@ local record Client
     -- The total number of targets associated with a job must not exceed
     -- 100.
     -- Requires permission to access the AssociateTargetsWithJob action.
-    associateTargetsWithJob: function(Client, types.AssociateTargetsWithJobInput): types.AssociateTargetsWithJobOutput, table
+    associateTargetsWithJob: function(Client, types.AssociateTargetsWithJobInput): Operation<types.AssociateTargetsWithJobOutput>
     -- Attaches the specified policy to the specified principal (certificate or other
     -- credential).
     -- Requires permission to access the AttachPolicy action.
-    attachPolicy: function(Client, types.AttachPolicyInput): types.AttachPolicyOutput, table
+    attachPolicy: function(Client, types.AttachPolicyInput): Operation<types.AttachPolicyOutput>
     -- Attaches the specified policy to the specified principal (certificate or other
     -- credential).
     -- Note: This action is deprecated and works as
     -- expected for backward compatibility, but we won't add enhancements. Use AttachPolicy instead.
     -- Requires permission to access the AttachPrincipalPolicy action.
-    attachPrincipalPolicy: function(Client, types.AttachPrincipalPolicyInput): types.AttachPrincipalPolicyOutput, table
+    attachPrincipalPolicy: function(Client, types.AttachPrincipalPolicyInput): Operation<types.AttachPrincipalPolicyOutput>
     -- Associates a Device Defender security profile with a thing group or this account. Each
     -- thing group or account can have up to five security profiles associated with it.
     -- Requires permission to access the AttachSecurityProfile action.
-    attachSecurityProfile: function(Client, types.AttachSecurityProfileInput): types.AttachSecurityProfileOutput, table
+    attachSecurityProfile: function(Client, types.AttachSecurityProfileInput): Operation<types.AttachSecurityProfileOutput>
     -- Attaches the specified principal to the specified thing. A principal can be X.509
     -- certificates, Amazon Cognito identities or federated identities.
     -- Requires permission to access the AttachThingPrincipal action.
-    attachThingPrincipal: function(Client, types.AttachThingPrincipalInput): types.AttachThingPrincipalOutput, table
+    attachThingPrincipal: function(Client, types.AttachThingPrincipalInput): Operation<types.AttachThingPrincipalOutput>
     -- Cancels a mitigation action task that is in progress. If the task
     -- is not
     -- in progress, an InvalidRequestException occurs.
     -- Requires permission to access the CancelAuditMitigationActionsTask action.
-    cancelAuditMitigationActionsTask: function(Client, types.CancelAuditMitigationActionsTaskInput): types.CancelAuditMitigationActionsTaskOutput, table
+    cancelAuditMitigationActionsTask: function(Client, types.CancelAuditMitigationActionsTaskInput): Operation<types.CancelAuditMitigationActionsTaskOutput>
     -- Cancels an audit that is in progress. The audit can be either scheduled or on demand. If the audit isn't in progress, an "InvalidRequestException" occurs.
     -- Requires permission to access the CancelAuditTask action.
-    cancelAuditTask: function(Client, types.CancelAuditTaskInput): types.CancelAuditTaskOutput, table
+    cancelAuditTask: function(Client, types.CancelAuditTaskInput): Operation<types.CancelAuditTaskOutput>
     -- Cancels a pending transfer for the specified certificate.
     -- Note Only the transfer source account can use this
     -- operation to cancel a transfer. (Transfer destinations can use RejectCertificateTransfer instead.) After transfer, IoT returns the
@@ -60,36 +64,36 @@ local record Client
     -- After a certificate transfer is cancelled, the status of the certificate changes from
     -- PENDING_TRANSFER to INACTIVE.
     -- Requires permission to access the CancelCertificateTransfer action.
-    cancelCertificateTransfer: function(Client, types.CancelCertificateTransferInput): types.CancelCertificateTransferOutput, table
+    cancelCertificateTransfer: function(Client, types.CancelCertificateTransferInput): Operation<types.CancelCertificateTransferOutput>
     -- Cancels a Device Defender ML Detect mitigation action.
     -- Requires permission to access the CancelDetectMitigationActionsTask action.
-    cancelDetectMitigationActionsTask: function(Client, types.CancelDetectMitigationActionsTaskInput): types.CancelDetectMitigationActionsTaskOutput, table
+    cancelDetectMitigationActionsTask: function(Client, types.CancelDetectMitigationActionsTaskInput): Operation<types.CancelDetectMitigationActionsTaskOutput>
     -- Cancels a job.
     -- Requires permission to access the CancelJob action.
-    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    cancelJob: function(Client, types.CancelJobInput): Operation<types.CancelJobOutput>
     -- Cancels the execution of a job for a given thing.
     -- Requires permission to access the CancelJobExecution action.
-    cancelJobExecution: function(Client, types.CancelJobExecutionInput): types.CancelJobExecutionOutput, table
+    cancelJobExecution: function(Client, types.CancelJobExecutionInput): Operation<types.CancelJobExecutionOutput>
     -- Clears the default authorizer.
     -- Requires permission to access the ClearDefaultAuthorizer action.
-    clearDefaultAuthorizer: function(Client, types.ClearDefaultAuthorizerInput): types.ClearDefaultAuthorizerOutput, table
+    clearDefaultAuthorizer: function(Client, types.ClearDefaultAuthorizerInput): Operation<types.ClearDefaultAuthorizerOutput>
     -- Confirms a topic rule destination. When you create a rule requiring a destination, IoT
     -- sends a confirmation message to the endpoint or base address you specify. The message
     -- includes a token which you pass back when calling ConfirmTopicRuleDestination
     -- to confirm that you own or have access to the endpoint.
     -- Requires permission to access the ConfirmTopicRuleDestination action.
-    confirmTopicRuleDestination: function(Client, types.ConfirmTopicRuleDestinationInput): types.ConfirmTopicRuleDestinationOutput, table
+    confirmTopicRuleDestination: function(Client, types.ConfirmTopicRuleDestinationInput): Operation<types.ConfirmTopicRuleDestinationOutput>
     -- Creates a Device Defender audit suppression.
     -- Requires permission to access the CreateAuditSuppression action.
-    createAuditSuppression: function(Client, types.CreateAuditSuppressionInput): types.CreateAuditSuppressionOutput, table
+    createAuditSuppression: function(Client, types.CreateAuditSuppressionInput): Operation<types.CreateAuditSuppressionOutput>
     -- Creates an authorizer.
     -- Requires permission to access the CreateAuthorizer action.
-    createAuthorizer: function(Client, types.CreateAuthorizerInput): types.CreateAuthorizerOutput, table
+    createAuthorizer: function(Client, types.CreateAuthorizerInput): Operation<types.CreateAuthorizerOutput>
     -- Creates a billing group. If this call is made multiple times using
     -- the same billing group name and configuration, the call will succeed. If this call is made with
     -- the same billing group name but different configuration a ResourceAlreadyExistsException is thrown.
     -- Requires permission to access the CreateBillingGroup action.
-    createBillingGroup: function(Client, types.CreateBillingGroupInput): types.CreateBillingGroupOutput, table
+    createBillingGroup: function(Client, types.CreateBillingGroupInput): Operation<types.CreateBillingGroupOutput>
     -- Creates an X.509 certificate using the specified certificate signing
     -- request.
     -- Requires permission to access the CreateCertificateFromCsr action.
@@ -121,7 +125,7 @@ local record Client
     -- my-csr-directory is:
     -- > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
     -- --certificate-signing-request file://@path"
-    createCertificateFromCsr: function(Client, types.CreateCertificateFromCsrInput): types.CreateCertificateFromCsrOutput, table
+    createCertificateFromCsr: function(Client, types.CreateCertificateFromCsrInput): Operation<types.CreateCertificateFromCsrOutput>
     -- Creates an Amazon Web Services IoT Core certificate provider. You can use Amazon Web Services IoT Core certificate provider to
     -- customize how to sign a certificate signing request (CSR) in IoT fleet provisioning. For
     -- more information, see Customizing certificate
@@ -133,61 +137,61 @@ local record Client
     -- change and all API calls to CreateCertificateFromCsr will invoke the
     -- certificate provider to create the certificates. It can take up to a few minutes for
     -- this behavior to change after a certificate provider is created.
-    createCertificateProvider: function(Client, types.CreateCertificateProviderInput): types.CreateCertificateProviderOutput, table
+    createCertificateProvider: function(Client, types.CreateCertificateProviderInput): Operation<types.CreateCertificateProviderOutput>
     -- Creates a command. A command contains reusable configurations that can be applied
     -- before they are sent to the devices.
-    createCommand: function(Client, types.CreateCommandInput): types.CreateCommandOutput, table
+    createCommand: function(Client, types.CreateCommandInput): Operation<types.CreateCommandOutput>
     -- Use this API to define a
     -- Custom
     -- Metric
     -- published by your devices to Device Defender.
     -- Requires permission to access the CreateCustomMetric action.
-    createCustomMetric: function(Client, types.CreateCustomMetricInput): types.CreateCustomMetricOutput, table
+    createCustomMetric: function(Client, types.CreateCustomMetricInput): Operation<types.CreateCustomMetricOutput>
     -- Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender.
     -- For example, using a TOPIC_FILTER dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.
     -- Requires permission to access the CreateDimension action.
-    createDimension: function(Client, types.CreateDimensionInput): types.CreateDimensionOutput, table
+    createDimension: function(Client, types.CreateDimensionInput): Operation<types.CreateDimensionOutput>
     -- Creates a domain configuration.
     -- Requires permission to access the CreateDomainConfiguration action.
-    createDomainConfiguration: function(Client, types.CreateDomainConfigurationInput): types.CreateDomainConfigurationOutput, table
+    createDomainConfiguration: function(Client, types.CreateDomainConfigurationInput): Operation<types.CreateDomainConfigurationOutput>
     -- Creates a dynamic thing group.
     -- Requires permission to access the CreateDynamicThingGroup action.
-    createDynamicThingGroup: function(Client, types.CreateDynamicThingGroupInput): types.CreateDynamicThingGroupOutput, table
+    createDynamicThingGroup: function(Client, types.CreateDynamicThingGroupInput): Operation<types.CreateDynamicThingGroupOutput>
     -- Creates a fleet metric.
     -- Requires permission to access the CreateFleetMetric action.
-    createFleetMetric: function(Client, types.CreateFleetMetricInput): types.CreateFleetMetricOutput, table
+    createFleetMetric: function(Client, types.CreateFleetMetricInput): Operation<types.CreateFleetMetricOutput>
     -- Creates a job.
     -- Requires permission to access the CreateJob action.
-    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createJob: function(Client, types.CreateJobInput): Operation<types.CreateJobOutput>
     -- Creates a job template.
     -- Requires permission to access the CreateJobTemplate action.
-    createJobTemplate: function(Client, types.CreateJobTemplateInput): types.CreateJobTemplateOutput, table
+    createJobTemplate: function(Client, types.CreateJobTemplateInput): Operation<types.CreateJobTemplateOutput>
     -- Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued
     -- public key. You can also call CreateKeysAndCertificate over MQTT from a
     -- device, for more information, see Provisioning MQTT API.
     -- Note This is the only time IoT issues the private key
     -- for this certificate, so it is important to keep it in a secure location.
     -- Requires permission to access the CreateKeysAndCertificate action.
-    createKeysAndCertificate: function(Client, types.CreateKeysAndCertificateInput): types.CreateKeysAndCertificateOutput, table
+    createKeysAndCertificate: function(Client, types.CreateKeysAndCertificateInput): Operation<types.CreateKeysAndCertificateOutput>
     -- Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Only certain types of mitigation actions can be applied to specific check names.
     -- For more information, see Mitigation actions. Each mitigation action can apply only one type of change.
     -- Requires permission to access the CreateMitigationAction action.
-    createMitigationAction: function(Client, types.CreateMitigationActionInput): types.CreateMitigationActionOutput, table
+    createMitigationAction: function(Client, types.CreateMitigationActionInput): Operation<types.CreateMitigationActionOutput>
     -- Creates an IoT OTA update on a target group of things or groups.
     -- Requires permission to access the CreateOTAUpdate action.
-    createOTAUpdate: function(Client, types.CreateOTAUpdateInput): types.CreateOTAUpdateOutput, table
+    createOTAUpdate: function(Client, types.CreateOTAUpdateInput): Operation<types.CreateOTAUpdateOutput>
     -- Creates an IoT software package that can be deployed to your fleet.
     -- Requires permission to access the CreatePackage and GetIndexingConfiguration actions.
-    createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    createPackage: function(Client, types.CreatePackageInput): Operation<types.CreatePackageOutput>
     -- Creates a new version for an existing IoT software package.
     -- Requires permission to access the CreatePackageVersion and GetIndexingConfiguration actions.
-    createPackageVersion: function(Client, types.CreatePackageVersionInput): types.CreatePackageVersionOutput, table
+    createPackageVersion: function(Client, types.CreatePackageVersionInput): Operation<types.CreatePackageVersionOutput>
     -- Creates an IoT policy.
     -- The created policy is the default version for the policy. This operation creates a
     -- policy version with a version identifier of 1 and sets
     -- 1 as the policy's default version.
     -- Requires permission to access the CreatePolicy action.
-    createPolicy: function(Client, types.CreatePolicyInput): types.CreatePolicyOutput, table
+    createPolicy: function(Client, types.CreatePolicyInput): Operation<types.CreatePolicyOutput>
     -- Creates a new version of the specified IoT policy. To update a policy, create a
     -- new policy version. A managed policy can have up to five versions. If the policy has five
     -- versions, you must use DeletePolicyVersion to delete an existing version
@@ -196,16 +200,16 @@ local record Client
     -- version is the operative version (that is, the version that is in effect for the
     -- certificates to which the policy is attached).
     -- Requires permission to access the CreatePolicyVersion action.
-    createPolicyVersion: function(Client, types.CreatePolicyVersionInput): types.CreatePolicyVersionOutput, table
+    createPolicyVersion: function(Client, types.CreatePolicyVersionInput): Operation<types.CreatePolicyVersionOutput>
     -- Creates a provisioning claim.
     -- Requires permission to access the CreateProvisioningClaim action.
-    createProvisioningClaim: function(Client, types.CreateProvisioningClaimInput): types.CreateProvisioningClaimOutput, table
+    createProvisioningClaim: function(Client, types.CreateProvisioningClaimInput): Operation<types.CreateProvisioningClaimOutput>
     -- Creates a provisioning template.
     -- Requires permission to access the CreateProvisioningTemplate action.
-    createProvisioningTemplate: function(Client, types.CreateProvisioningTemplateInput): types.CreateProvisioningTemplateOutput, table
+    createProvisioningTemplate: function(Client, types.CreateProvisioningTemplateInput): Operation<types.CreateProvisioningTemplateOutput>
     -- Creates a new version of a provisioning template.
     -- Requires permission to access the CreateProvisioningTemplateVersion action.
-    createProvisioningTemplateVersion: function(Client, types.CreateProvisioningTemplateVersionInput): types.CreateProvisioningTemplateVersionOutput, table
+    createProvisioningTemplateVersion: function(Client, types.CreateProvisioningTemplateVersionInput): Operation<types.CreateProvisioningTemplateVersionOutput>
     -- Creates a role alias.
     -- Requires permission to access the CreateRoleAlias action.
     -- The value of
@@ -213,19 +217,19 @@ local record Client
     -- must be less than or equal to the maximum session
     -- duration of the IAM role that the role alias references. For more information, see
     -- Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services Identity and Access Management User Guide.
-    createRoleAlias: function(Client, types.CreateRoleAliasInput): types.CreateRoleAliasOutput, table
+    createRoleAlias: function(Client, types.CreateRoleAliasInput): Operation<types.CreateRoleAliasOutput>
     -- Creates a scheduled audit that is run at a specified
     -- time interval.
     -- Requires permission to access the CreateScheduledAudit action.
-    createScheduledAudit: function(Client, types.CreateScheduledAuditInput): types.CreateScheduledAuditOutput, table
+    createScheduledAudit: function(Client, types.CreateScheduledAuditInput): Operation<types.CreateScheduledAuditOutput>
     -- Creates a Device Defender security profile.
     -- Requires permission to access the CreateSecurityProfile action.
-    createSecurityProfile: function(Client, types.CreateSecurityProfileInput): types.CreateSecurityProfileOutput, table
+    createSecurityProfile: function(Client, types.CreateSecurityProfileInput): Operation<types.CreateSecurityProfileOutput>
     -- Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data
     -- bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files
     -- associated with a stream.
     -- Requires permission to access the CreateStream action.
-    createStream: function(Client, types.CreateStreamInput): types.CreateStreamOutput, table
+    createStream: function(Client, types.CreateStreamInput): Operation<types.CreateStreamOutput>
     -- Creates a thing record in the registry. If this call is made multiple times using
     -- the same thing name and configuration, the call will succeed. If this call is made with
     -- the same thing name but different configuration a
@@ -233,61 +237,61 @@ local record Client
     -- This is a control plane operation. See Authorization for
     -- information about authorizing control plane actions.
     -- Requires permission to access the CreateThing action.
-    createThing: function(Client, types.CreateThingInput): types.CreateThingOutput, table
+    createThing: function(Client, types.CreateThingInput): Operation<types.CreateThingOutput>
     -- Create a thing group.
     -- This is a control plane operation. See Authorization for
     -- information about authorizing control plane actions.
     -- If the ThingGroup that you create has the exact same attributes as an existing
     -- ThingGroup, you will get a 200 success response.
     -- Requires permission to access the CreateThingGroup action.
-    createThingGroup: function(Client, types.CreateThingGroupInput): types.CreateThingGroupOutput, table
+    createThingGroup: function(Client, types.CreateThingGroupInput): Operation<types.CreateThingGroupOutput>
     -- Creates a new thing type. If this call is made multiple times using
     -- the same thing type name and configuration, the call will succeed. If this call is made with
     -- the same thing type name but different configuration a ResourceAlreadyExistsException is thrown.
     -- Requires permission to access the CreateThingType action.
-    createThingType: function(Client, types.CreateThingTypeInput): types.CreateThingTypeOutput, table
+    createThingType: function(Client, types.CreateThingTypeInput): Operation<types.CreateThingTypeOutput>
     -- Creates a rule. Creating rules is an administrator-level action. Any user who has
     -- permission to create rules will be able to access data processed by the rule.
     -- Requires permission to access the CreateTopicRule action.
-    createTopicRule: function(Client, types.CreateTopicRuleInput): types.CreateTopicRuleOutput, table
+    createTopicRule: function(Client, types.CreateTopicRuleInput): Operation<types.CreateTopicRuleOutput>
     -- Creates a topic rule destination. The destination must be confirmed prior to use.
     -- Requires permission to access the CreateTopicRuleDestination action.
-    createTopicRuleDestination: function(Client, types.CreateTopicRuleDestinationInput): types.CreateTopicRuleDestinationOutput, table
+    createTopicRuleDestination: function(Client, types.CreateTopicRuleDestinationInput): Operation<types.CreateTopicRuleDestinationOutput>
     -- Restores the default settings for Device Defender audits for this account. Any
     -- configuration data you entered is deleted and all audit checks are reset to
     -- disabled.
     -- Requires permission to access the DeleteAccountAuditConfiguration action.
-    deleteAccountAuditConfiguration: function(Client, types.DeleteAccountAuditConfigurationInput): types.DeleteAccountAuditConfigurationOutput, table
+    deleteAccountAuditConfiguration: function(Client, types.DeleteAccountAuditConfigurationInput): Operation<types.DeleteAccountAuditConfigurationOutput>
     -- Deletes a Device Defender audit suppression.
     -- Requires permission to access the DeleteAuditSuppression action.
-    deleteAuditSuppression: function(Client, types.DeleteAuditSuppressionInput): types.DeleteAuditSuppressionOutput, table
+    deleteAuditSuppression: function(Client, types.DeleteAuditSuppressionInput): Operation<types.DeleteAuditSuppressionOutput>
     -- Deletes an authorizer.
     -- Requires permission to access the DeleteAuthorizer action.
-    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): types.DeleteAuthorizerOutput, table
+    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): Operation<types.DeleteAuthorizerOutput>
     -- Deletes the billing group.
     -- Requires permission to access the DeleteBillingGroup action.
-    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput): types.DeleteBillingGroupOutput, table
+    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput): Operation<types.DeleteBillingGroupOutput>
     -- Deletes a registered CA certificate.
     -- Requires permission to access the DeleteCACertificate action.
-    deleteCACertificate: function(Client, types.DeleteCACertificateInput): types.DeleteCACertificateOutput, table
+    deleteCACertificate: function(Client, types.DeleteCACertificateInput): Operation<types.DeleteCACertificateOutput>
     -- Deletes the specified certificate.
     -- A certificate cannot be deleted if it has a policy or IoT thing attached to it or if
     -- its status is set to ACTIVE. To delete a certificate, first use the DetachPolicy action to detach all policies. Next, use the UpdateCertificate action to set the certificate to the INACTIVE
     -- status.
     -- Requires permission to access the DeleteCertificate action.
-    deleteCertificate: function(Client, types.DeleteCertificateInput): types.DeleteCertificateOutput, table
+    deleteCertificate: function(Client, types.DeleteCertificateInput): Operation<types.DeleteCertificateOutput>
     -- Deletes a certificate provider.
     -- Requires permission to access the DeleteCertificateProvider action.
     -- If you delete the certificate provider resource, the behavior of
     -- CreateCertificateFromCsr will resume, and IoT will create
     -- certificates signed by IoT from a certificate signing request (CSR).
-    deleteCertificateProvider: function(Client, types.DeleteCertificateProviderInput): types.DeleteCertificateProviderOutput, table
+    deleteCertificateProvider: function(Client, types.DeleteCertificateProviderInput): Operation<types.DeleteCertificateProviderOutput>
     -- Delete a command resource.
-    deleteCommand: function(Client, types.DeleteCommandInput): types.DeleteCommandOutput, table
+    deleteCommand: function(Client, types.DeleteCommandInput): Operation<types.DeleteCommandOutput>
     -- Delete a command execution.
     -- Only command executions that enter a terminal state can be deleted from
     -- your account.
-    deleteCommandExecution: function(Client, types.DeleteCommandExecutionInput): types.DeleteCommandExecutionOutput, table
+    deleteCommandExecution: function(Client, types.DeleteCommandExecutionInput): Operation<types.DeleteCommandExecutionOutput>
     -- Deletes a Device Defender detect custom metric.
     -- Requires permission to access the DeleteCustomMetric action.
     -- Before you can delete a custom metric, you must first remove the custom metric from all
@@ -296,20 +300,20 @@ local record Client
     -- security
     -- profile associated with the custom metric can be found using the ListSecurityProfiles
     -- API with metricName set to your custom metric name.
-    deleteCustomMetric: function(Client, types.DeleteCustomMetricInput): types.DeleteCustomMetricOutput, table
+    deleteCustomMetric: function(Client, types.DeleteCustomMetricInput): Operation<types.DeleteCustomMetricOutput>
     -- Removes the specified dimension from your Amazon Web Services accounts.
     -- Requires permission to access the DeleteDimension action.
-    deleteDimension: function(Client, types.DeleteDimensionInput): types.DeleteDimensionOutput, table
+    deleteDimension: function(Client, types.DeleteDimensionInput): Operation<types.DeleteDimensionOutput>
     -- Deletes the specified domain configuration.
     -- Requires permission to access the DeleteDomainConfiguration action.
-    deleteDomainConfiguration: function(Client, types.DeleteDomainConfigurationInput): types.DeleteDomainConfigurationOutput, table
+    deleteDomainConfiguration: function(Client, types.DeleteDomainConfigurationInput): Operation<types.DeleteDomainConfigurationOutput>
     -- Deletes a dynamic thing group.
     -- Requires permission to access the DeleteDynamicThingGroup action.
-    deleteDynamicThingGroup: function(Client, types.DeleteDynamicThingGroupInput): types.DeleteDynamicThingGroupOutput, table
+    deleteDynamicThingGroup: function(Client, types.DeleteDynamicThingGroupInput): Operation<types.DeleteDynamicThingGroupOutput>
     -- Deletes the specified fleet metric.
     -- Returns successfully with no error if the deletion is successful or you specify a fleet metric that doesn't exist.
     -- Requires permission to access the DeleteFleetMetric action.
-    deleteFleetMetric: function(Client, types.DeleteFleetMetricInput): types.DeleteFleetMetricOutput, table
+    deleteFleetMetric: function(Client, types.DeleteFleetMetricInput): Operation<types.DeleteFleetMetricOutput>
     -- Deletes a job and its related job executions.
     -- Deleting a job may take time, depending on the number of job executions created for
     -- the job and various other factors. While the job is being deleted, the status of the job
@@ -318,25 +322,25 @@ local record Client
     -- Only 10 jobs may have status "DELETION_IN_PROGRESS" at the same time, or a
     -- LimitExceededException will occur.
     -- Requires permission to access the DeleteJob action.
-    deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    deleteJob: function(Client, types.DeleteJobInput): Operation<types.DeleteJobOutput>
     -- Deletes a job execution.
     -- Requires permission to access the DeleteJobExecution action.
-    deleteJobExecution: function(Client, types.DeleteJobExecutionInput): types.DeleteJobExecutionOutput, table
+    deleteJobExecution: function(Client, types.DeleteJobExecutionInput): Operation<types.DeleteJobExecutionOutput>
     -- Deletes the specified job template.
-    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): types.DeleteJobTemplateOutput, table
+    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): Operation<types.DeleteJobTemplateOutput>
     -- Deletes a defined mitigation action from your Amazon Web Services accounts.
     -- Requires permission to access the DeleteMitigationAction action.
-    deleteMitigationAction: function(Client, types.DeleteMitigationActionInput): types.DeleteMitigationActionOutput, table
+    deleteMitigationAction: function(Client, types.DeleteMitigationActionInput): Operation<types.DeleteMitigationActionOutput>
     -- Delete an OTA update.
     -- Requires permission to access the DeleteOTAUpdate action.
-    deleteOTAUpdate: function(Client, types.DeleteOTAUpdateInput): types.DeleteOTAUpdateOutput, table
+    deleteOTAUpdate: function(Client, types.DeleteOTAUpdateInput): Operation<types.DeleteOTAUpdateOutput>
     -- Deletes a specific version from a software package.
     -- Note: All package versions must be deleted before deleting the software package.
     -- Requires permission to access the DeletePackageVersion action.
-    deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    deletePackage: function(Client, types.DeletePackageInput): Operation<types.DeletePackageOutput>
     -- Deletes a specific version from a software package.
     -- Note: If a package version is designated as default, you must remove the designation from the software package using the UpdatePackage action.
-    deletePackageVersion: function(Client, types.DeletePackageVersionInput): types.DeletePackageVersionOutput, table
+    deletePackageVersion: function(Client, types.DeletePackageVersionInput): Operation<types.DeletePackageVersionOutput>
     -- Deletes the specified policy.
     -- A policy cannot be deleted if it has non-default versions or it is attached to any
     -- certificate.
@@ -348,237 +352,237 @@ local record Client
     -- Because of the distributed nature of Amazon Web Services, it can take up to five minutes after
     -- a policy is detached before it's ready to be deleted.
     -- Requires permission to access the DeletePolicy action.
-    deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    deletePolicy: function(Client, types.DeletePolicyInput): Operation<types.DeletePolicyOutput>
     -- Deletes the specified version of the specified policy. You cannot delete the default
     -- version of a policy using this action. To delete the default version of a policy, use DeletePolicy. To find out which version of a policy is marked as the default
     -- version, use ListPolicyVersions.
     -- Requires permission to access the DeletePolicyVersion action.
-    deletePolicyVersion: function(Client, types.DeletePolicyVersionInput): types.DeletePolicyVersionOutput, table
+    deletePolicyVersion: function(Client, types.DeletePolicyVersionInput): Operation<types.DeletePolicyVersionOutput>
     -- Deletes a provisioning template.
     -- Requires permission to access the DeleteProvisioningTemplate action.
-    deleteProvisioningTemplate: function(Client, types.DeleteProvisioningTemplateInput): types.DeleteProvisioningTemplateOutput, table
+    deleteProvisioningTemplate: function(Client, types.DeleteProvisioningTemplateInput): Operation<types.DeleteProvisioningTemplateOutput>
     -- Deletes a provisioning template version.
     -- Requires permission to access the DeleteProvisioningTemplateVersion action.
-    deleteProvisioningTemplateVersion: function(Client, types.DeleteProvisioningTemplateVersionInput): types.DeleteProvisioningTemplateVersionOutput, table
+    deleteProvisioningTemplateVersion: function(Client, types.DeleteProvisioningTemplateVersionInput): Operation<types.DeleteProvisioningTemplateVersionOutput>
     -- Deletes a CA certificate registration code.
     -- Requires permission to access the DeleteRegistrationCode action.
-    deleteRegistrationCode: function(Client, types.DeleteRegistrationCodeInput): types.DeleteRegistrationCodeOutput, table
+    deleteRegistrationCode: function(Client, types.DeleteRegistrationCodeInput): Operation<types.DeleteRegistrationCodeOutput>
     -- Deletes a role alias
     -- Requires permission to access the DeleteRoleAlias action.
-    deleteRoleAlias: function(Client, types.DeleteRoleAliasInput): types.DeleteRoleAliasOutput, table
+    deleteRoleAlias: function(Client, types.DeleteRoleAliasInput): Operation<types.DeleteRoleAliasOutput>
     -- Deletes a scheduled audit.
     -- Requires permission to access the DeleteScheduledAudit action.
-    deleteScheduledAudit: function(Client, types.DeleteScheduledAuditInput): types.DeleteScheduledAuditOutput, table
+    deleteScheduledAudit: function(Client, types.DeleteScheduledAuditInput): Operation<types.DeleteScheduledAuditOutput>
     -- Deletes a Device Defender security profile.
     -- Requires permission to access the DeleteSecurityProfile action.
-    deleteSecurityProfile: function(Client, types.DeleteSecurityProfileInput): types.DeleteSecurityProfileOutput, table
+    deleteSecurityProfile: function(Client, types.DeleteSecurityProfileInput): Operation<types.DeleteSecurityProfileOutput>
     -- Deletes a stream.
     -- Requires permission to access the DeleteStream action.
-    deleteStream: function(Client, types.DeleteStreamInput): types.DeleteStreamOutput, table
+    deleteStream: function(Client, types.DeleteStreamInput): Operation<types.DeleteStreamOutput>
     -- Deletes the specified thing. Returns successfully with no error if the deletion is
     -- successful or you specify a thing that doesn't exist.
     -- Requires permission to access the DeleteThing action.
-    deleteThing: function(Client, types.DeleteThingInput): types.DeleteThingOutput, table
+    deleteThing: function(Client, types.DeleteThingInput): Operation<types.DeleteThingOutput>
     -- Deletes a thing group.
     -- Requires permission to access the DeleteThingGroup action.
-    deleteThingGroup: function(Client, types.DeleteThingGroupInput): types.DeleteThingGroupOutput, table
+    deleteThingGroup: function(Client, types.DeleteThingGroupInput): Operation<types.DeleteThingGroupOutput>
     -- Deletes the specified thing type. You cannot delete a thing type if it has things
     -- associated with it. To delete a thing type, first mark it as deprecated by calling DeprecateThingType, then remove any associated things by calling UpdateThing to change the thing type on any associated thing, and
     -- finally use DeleteThingType to delete the thing type.
     -- Requires permission to access the DeleteThingType action.
-    deleteThingType: function(Client, types.DeleteThingTypeInput): types.DeleteThingTypeOutput, table
+    deleteThingType: function(Client, types.DeleteThingTypeInput): Operation<types.DeleteThingTypeOutput>
     -- Deletes the rule.
     -- Requires permission to access the DeleteTopicRule action.
-    deleteTopicRule: function(Client, types.DeleteTopicRuleInput): types.DeleteTopicRuleOutput, table
+    deleteTopicRule: function(Client, types.DeleteTopicRuleInput): Operation<types.DeleteTopicRuleOutput>
     -- Deletes a topic rule destination.
     -- Requires permission to access the DeleteTopicRuleDestination action.
-    deleteTopicRuleDestination: function(Client, types.DeleteTopicRuleDestinationInput): types.DeleteTopicRuleDestinationOutput, table
+    deleteTopicRuleDestination: function(Client, types.DeleteTopicRuleDestinationInput): Operation<types.DeleteTopicRuleDestinationOutput>
     -- Deletes a logging level.
     -- Requires permission to access the DeleteV2LoggingLevel action.
-    deleteV2LoggingLevel: function(Client, types.DeleteV2LoggingLevelInput): types.DeleteV2LoggingLevelOutput, table
+    deleteV2LoggingLevel: function(Client, types.DeleteV2LoggingLevelInput): Operation<types.DeleteV2LoggingLevelOutput>
     -- Deprecates a thing type. You can not associate new things with deprecated thing
     -- type.
     -- Requires permission to access the DeprecateThingType action.
-    deprecateThingType: function(Client, types.DeprecateThingTypeInput): types.DeprecateThingTypeOutput, table
+    deprecateThingType: function(Client, types.DeprecateThingTypeInput): Operation<types.DeprecateThingTypeOutput>
     -- Gets information about the Device Defender audit settings for this account.
     -- Settings include how audit notifications are sent and which audit checks are
     -- enabled or disabled.
     -- Requires permission to access the DescribeAccountAuditConfiguration action.
-    describeAccountAuditConfiguration: function(Client, types.DescribeAccountAuditConfigurationInput): types.DescribeAccountAuditConfigurationOutput, table
+    describeAccountAuditConfiguration: function(Client, types.DescribeAccountAuditConfigurationInput): Operation<types.DescribeAccountAuditConfigurationOutput>
     -- Gets information about a single audit finding. Properties include the reason for
     -- noncompliance, the severity of the issue,
     -- and the start time
     -- when the audit that returned the
     -- finding.
     -- Requires permission to access the DescribeAuditFinding action.
-    describeAuditFinding: function(Client, types.DescribeAuditFindingInput): types.DescribeAuditFindingOutput, table
+    describeAuditFinding: function(Client, types.DescribeAuditFindingInput): Operation<types.DescribeAuditFindingOutput>
     -- Gets information about an audit mitigation task that is used to apply mitigation actions to a set of audit findings. Properties include the actions being applied, the audit checks to which they're being applied, the task status, and aggregated task statistics.
-    describeAuditMitigationActionsTask: function(Client, types.DescribeAuditMitigationActionsTaskInput): types.DescribeAuditMitigationActionsTaskOutput, table
+    describeAuditMitigationActionsTask: function(Client, types.DescribeAuditMitigationActionsTaskInput): Operation<types.DescribeAuditMitigationActionsTaskOutput>
     -- Gets information about a Device Defender audit suppression.
-    describeAuditSuppression: function(Client, types.DescribeAuditSuppressionInput): types.DescribeAuditSuppressionOutput, table
+    describeAuditSuppression: function(Client, types.DescribeAuditSuppressionInput): Operation<types.DescribeAuditSuppressionOutput>
     -- Gets information about a Device Defender audit.
     -- Requires permission to access the DescribeAuditTask action.
-    describeAuditTask: function(Client, types.DescribeAuditTaskInput): types.DescribeAuditTaskOutput, table
+    describeAuditTask: function(Client, types.DescribeAuditTaskInput): Operation<types.DescribeAuditTaskOutput>
     -- Describes an authorizer.
     -- Requires permission to access the DescribeAuthorizer action.
-    describeAuthorizer: function(Client, types.DescribeAuthorizerInput): types.DescribeAuthorizerOutput, table
+    describeAuthorizer: function(Client, types.DescribeAuthorizerInput): Operation<types.DescribeAuthorizerOutput>
     -- Returns information about a billing group.
     -- Requires permission to access the DescribeBillingGroup action.
-    describeBillingGroup: function(Client, types.DescribeBillingGroupInput): types.DescribeBillingGroupOutput, table
+    describeBillingGroup: function(Client, types.DescribeBillingGroupInput): Operation<types.DescribeBillingGroupOutput>
     -- Describes a registered CA certificate.
     -- Requires permission to access the DescribeCACertificate action.
-    describeCACertificate: function(Client, types.DescribeCACertificateInput): types.DescribeCACertificateOutput, table
+    describeCACertificate: function(Client, types.DescribeCACertificateInput): Operation<types.DescribeCACertificateOutput>
     -- Gets information about the specified certificate.
     -- Requires permission to access the DescribeCertificate action.
-    describeCertificate: function(Client, types.DescribeCertificateInput): types.DescribeCertificateOutput, table
+    describeCertificate: function(Client, types.DescribeCertificateInput): Operation<types.DescribeCertificateOutput>
     -- Describes a certificate provider.
     -- Requires permission to access the DescribeCertificateProvider action.
-    describeCertificateProvider: function(Client, types.DescribeCertificateProviderInput): types.DescribeCertificateProviderOutput, table
+    describeCertificateProvider: function(Client, types.DescribeCertificateProviderInput): Operation<types.DescribeCertificateProviderOutput>
     -- Gets information about a Device Defender detect custom metric.
     -- Requires permission to access the DescribeCustomMetric action.
-    describeCustomMetric: function(Client, types.DescribeCustomMetricInput): types.DescribeCustomMetricOutput, table
+    describeCustomMetric: function(Client, types.DescribeCustomMetricInput): Operation<types.DescribeCustomMetricOutput>
     -- Describes the default authorizer.
     -- Requires permission to access the DescribeDefaultAuthorizer action.
-    describeDefaultAuthorizer: function(Client, types.DescribeDefaultAuthorizerInput): types.DescribeDefaultAuthorizerOutput, table
+    describeDefaultAuthorizer: function(Client, types.DescribeDefaultAuthorizerInput): Operation<types.DescribeDefaultAuthorizerOutput>
     -- Gets information about a Device Defender ML Detect mitigation action.
     -- Requires permission to access the DescribeDetectMitigationActionsTask action.
-    describeDetectMitigationActionsTask: function(Client, types.DescribeDetectMitigationActionsTaskInput): types.DescribeDetectMitigationActionsTaskOutput, table
+    describeDetectMitigationActionsTask: function(Client, types.DescribeDetectMitigationActionsTaskInput): Operation<types.DescribeDetectMitigationActionsTaskOutput>
     -- Provides details about a dimension that is defined in your Amazon Web Services accounts.
     -- Requires permission to access the DescribeDimension action.
-    describeDimension: function(Client, types.DescribeDimensionInput): types.DescribeDimensionOutput, table
+    describeDimension: function(Client, types.DescribeDimensionInput): Operation<types.DescribeDimensionOutput>
     -- Gets summary information about a domain configuration.
     -- Requires permission to access the DescribeDomainConfiguration action.
-    describeDomainConfiguration: function(Client, types.DescribeDomainConfigurationInput): types.DescribeDomainConfigurationOutput, table
+    describeDomainConfiguration: function(Client, types.DescribeDomainConfigurationInput): Operation<types.DescribeDomainConfigurationOutput>
     -- Retrieves the encryption configuration for resources and data of your Amazon Web Services account in
     -- Amazon Web Services IoT Core. For more information, see Data encryption at rest in
     -- the Amazon Web Services IoT Core Developer Guide.
-    describeEncryptionConfiguration: function(Client, types.DescribeEncryptionConfigurationInput): types.DescribeEncryptionConfigurationOutput, table
+    describeEncryptionConfiguration: function(Client, types.DescribeEncryptionConfigurationInput): Operation<types.DescribeEncryptionConfigurationOutput>
     -- Returns or creates a unique endpoint specific to the Amazon Web Services account making the
     -- call.
     -- The first time DescribeEndpoint is called, an endpoint is created. All subsequent calls to DescribeEndpoint return the same endpoint.
     -- Requires permission to access the DescribeEndpoint action.
-    describeEndpoint: function(Client, types.DescribeEndpointInput): types.DescribeEndpointOutput, table
+    describeEndpoint: function(Client, types.DescribeEndpointInput): Operation<types.DescribeEndpointOutput>
     -- Describes event configurations.
     -- Requires permission to access the DescribeEventConfigurations action.
-    describeEventConfigurations: function(Client, types.DescribeEventConfigurationsInput): types.DescribeEventConfigurationsOutput, table
+    describeEventConfigurations: function(Client, types.DescribeEventConfigurationsInput): Operation<types.DescribeEventConfigurationsOutput>
     -- Gets information about the specified fleet metric.
     -- Requires permission to access the DescribeFleetMetric action.
-    describeFleetMetric: function(Client, types.DescribeFleetMetricInput): types.DescribeFleetMetricOutput, table
+    describeFleetMetric: function(Client, types.DescribeFleetMetricInput): Operation<types.DescribeFleetMetricOutput>
     -- Describes a search index.
     -- Requires permission to access the DescribeIndex action.
-    describeIndex: function(Client, types.DescribeIndexInput): types.DescribeIndexOutput, table
+    describeIndex: function(Client, types.DescribeIndexInput): Operation<types.DescribeIndexOutput>
     -- Describes a job.
     -- Requires permission to access the DescribeJob action.
-    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeJob: function(Client, types.DescribeJobInput): Operation<types.DescribeJobOutput>
     -- Describes a job execution.
     -- Requires permission to access the DescribeJobExecution action.
-    describeJobExecution: function(Client, types.DescribeJobExecutionInput): types.DescribeJobExecutionOutput, table
+    describeJobExecution: function(Client, types.DescribeJobExecutionInput): Operation<types.DescribeJobExecutionOutput>
     -- Returns information about a job template.
-    describeJobTemplate: function(Client, types.DescribeJobTemplateInput): types.DescribeJobTemplateOutput, table
+    describeJobTemplate: function(Client, types.DescribeJobTemplateInput): Operation<types.DescribeJobTemplateOutput>
     -- View details of a managed job template.
-    describeManagedJobTemplate: function(Client, types.DescribeManagedJobTemplateInput): types.DescribeManagedJobTemplateOutput, table
+    describeManagedJobTemplate: function(Client, types.DescribeManagedJobTemplateInput): Operation<types.DescribeManagedJobTemplateOutput>
     -- Gets information about a mitigation action.
     -- Requires permission to access the DescribeMitigationAction action.
-    describeMitigationAction: function(Client, types.DescribeMitigationActionInput): types.DescribeMitigationActionOutput, table
+    describeMitigationAction: function(Client, types.DescribeMitigationActionInput): Operation<types.DescribeMitigationActionOutput>
     -- Returns information about a provisioning template.
     -- Requires permission to access the DescribeProvisioningTemplate action.
-    describeProvisioningTemplate: function(Client, types.DescribeProvisioningTemplateInput): types.DescribeProvisioningTemplateOutput, table
+    describeProvisioningTemplate: function(Client, types.DescribeProvisioningTemplateInput): Operation<types.DescribeProvisioningTemplateOutput>
     -- Returns information about a provisioning template version.
     -- Requires permission to access the DescribeProvisioningTemplateVersion action.
-    describeProvisioningTemplateVersion: function(Client, types.DescribeProvisioningTemplateVersionInput): types.DescribeProvisioningTemplateVersionOutput, table
+    describeProvisioningTemplateVersion: function(Client, types.DescribeProvisioningTemplateVersionInput): Operation<types.DescribeProvisioningTemplateVersionOutput>
     -- Describes a role alias.
     -- Requires permission to access the DescribeRoleAlias action.
-    describeRoleAlias: function(Client, types.DescribeRoleAliasInput): types.DescribeRoleAliasOutput, table
+    describeRoleAlias: function(Client, types.DescribeRoleAliasInput): Operation<types.DescribeRoleAliasOutput>
     -- Gets information about a scheduled audit.
     -- Requires permission to access the DescribeScheduledAudit action.
-    describeScheduledAudit: function(Client, types.DescribeScheduledAuditInput): types.DescribeScheduledAuditOutput, table
+    describeScheduledAudit: function(Client, types.DescribeScheduledAuditInput): Operation<types.DescribeScheduledAuditOutput>
     -- Gets information about a Device Defender security profile.
     -- Requires permission to access the DescribeSecurityProfile action.
-    describeSecurityProfile: function(Client, types.DescribeSecurityProfileInput): types.DescribeSecurityProfileOutput, table
+    describeSecurityProfile: function(Client, types.DescribeSecurityProfileInput): Operation<types.DescribeSecurityProfileOutput>
     -- Gets information about a stream.
     -- Requires permission to access the DescribeStream action.
-    describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    describeStream: function(Client, types.DescribeStreamInput): Operation<types.DescribeStreamOutput>
     -- Gets information about the specified thing.
     -- Requires permission to access the DescribeThing action.
-    describeThing: function(Client, types.DescribeThingInput): types.DescribeThingOutput, table
+    describeThing: function(Client, types.DescribeThingInput): Operation<types.DescribeThingOutput>
     -- Describe a thing group.
     -- Requires permission to access the DescribeThingGroup action.
-    describeThingGroup: function(Client, types.DescribeThingGroupInput): types.DescribeThingGroupOutput, table
+    describeThingGroup: function(Client, types.DescribeThingGroupInput): Operation<types.DescribeThingGroupOutput>
     -- Describes a bulk thing provisioning task.
     -- Requires permission to access the DescribeThingRegistrationTask action.
-    describeThingRegistrationTask: function(Client, types.DescribeThingRegistrationTaskInput): types.DescribeThingRegistrationTaskOutput, table
+    describeThingRegistrationTask: function(Client, types.DescribeThingRegistrationTaskInput): Operation<types.DescribeThingRegistrationTaskOutput>
     -- Gets information about the specified thing type.
     -- Requires permission to access the DescribeThingType action.
-    describeThingType: function(Client, types.DescribeThingTypeInput): types.DescribeThingTypeOutput, table
+    describeThingType: function(Client, types.DescribeThingTypeInput): Operation<types.DescribeThingTypeOutput>
     -- Detaches a policy from the specified target.
     -- Because of the distributed nature of Amazon Web Services, it can take up to five minutes after
     -- a policy is detached before it's ready to be deleted.
     -- Requires permission to access the DetachPolicy action.
-    detachPolicy: function(Client, types.DetachPolicyInput): types.DetachPolicyOutput, table
+    detachPolicy: function(Client, types.DetachPolicyInput): Operation<types.DetachPolicyOutput>
     -- Removes the specified policy from the specified certificate.
     -- Note: This action is deprecated and works as
     -- expected for backward compatibility, but we won't add enhancements. Use DetachPolicy instead.
     -- Requires permission to access the DetachPrincipalPolicy action.
-    detachPrincipalPolicy: function(Client, types.DetachPrincipalPolicyInput): types.DetachPrincipalPolicyOutput, table
+    detachPrincipalPolicy: function(Client, types.DetachPrincipalPolicyInput): Operation<types.DetachPrincipalPolicyOutput>
     -- Disassociates a Device Defender security profile from a thing group or from this account.
     -- Requires permission to access the DetachSecurityProfile action.
-    detachSecurityProfile: function(Client, types.DetachSecurityProfileInput): types.DetachSecurityProfileOutput, table
+    detachSecurityProfile: function(Client, types.DetachSecurityProfileInput): Operation<types.DetachSecurityProfileOutput>
     -- Detaches the specified principal from the specified thing. A principal can be X.509
     -- certificates, IAM users, groups, and roles, Amazon Cognito identities or federated
     -- identities.
     -- This call is asynchronous. It might take several seconds for the detachment to
     -- propagate.
     -- Requires permission to access the DetachThingPrincipal action.
-    detachThingPrincipal: function(Client, types.DetachThingPrincipalInput): types.DetachThingPrincipalOutput, table
+    detachThingPrincipal: function(Client, types.DetachThingPrincipalInput): Operation<types.DetachThingPrincipalOutput>
     -- Disables the rule.
     -- Requires permission to access the DisableTopicRule action.
-    disableTopicRule: function(Client, types.DisableTopicRuleInput): types.DisableTopicRuleOutput, table
+    disableTopicRule: function(Client, types.DisableTopicRuleInput): Operation<types.DisableTopicRuleOutput>
     -- Disassociates the selected software bill of materials (SBOM) from a specific software package version.
     -- Requires permission to access the DisassociateSbomWithPackageVersion action.
-    disassociateSbomFromPackageVersion: function(Client, types.DisassociateSbomFromPackageVersionInput): types.DisassociateSbomFromPackageVersionOutput, table
+    disassociateSbomFromPackageVersion: function(Client, types.DisassociateSbomFromPackageVersionInput): Operation<types.DisassociateSbomFromPackageVersionOutput>
     -- Enables the rule.
     -- Requires permission to access the EnableTopicRule action.
-    enableTopicRule: function(Client, types.EnableTopicRuleInput): types.EnableTopicRuleOutput, table
+    enableTopicRule: function(Client, types.EnableTopicRuleInput): Operation<types.EnableTopicRuleOutput>
     -- Returns a Device Defender's ML Detect Security Profile training model's status.
     -- Requires permission to access the GetBehaviorModelTrainingSummaries action.
-    getBehaviorModelTrainingSummaries: function(Client, types.GetBehaviorModelTrainingSummariesInput): types.GetBehaviorModelTrainingSummariesOutput, table
+    getBehaviorModelTrainingSummaries: function(Client, types.GetBehaviorModelTrainingSummariesInput): Operation<types.GetBehaviorModelTrainingSummariesOutput>
     -- Aggregates on indexed data with search queries pertaining to particular fields.
     -- Requires permission to access the GetBucketsAggregation action.
-    getBucketsAggregation: function(Client, types.GetBucketsAggregationInput): types.GetBucketsAggregationOutput, table
+    getBucketsAggregation: function(Client, types.GetBucketsAggregationInput): Operation<types.GetBucketsAggregationOutput>
     -- Returns the approximate count of unique values that match the query.
     -- Requires permission to access the GetCardinality action.
-    getCardinality: function(Client, types.GetCardinalityInput): types.GetCardinalityOutput, table
+    getCardinality: function(Client, types.GetCardinalityInput): Operation<types.GetCardinalityOutput>
     -- Gets information about the specified command.
-    getCommand: function(Client, types.GetCommandInput): types.GetCommandOutput, table
+    getCommand: function(Client, types.GetCommandInput): Operation<types.GetCommandOutput>
     -- Gets information about the specific command execution on a single device.
-    getCommandExecution: function(Client, types.GetCommandExecutionInput): types.GetCommandExecutionOutput, table
+    getCommandExecution: function(Client, types.GetCommandExecutionInput): Operation<types.GetCommandExecutionOutput>
     -- Gets a list of the policies that have an effect on the authorization behavior of the
     -- specified device when it connects to the IoT device gateway.
     -- Requires permission to access the GetEffectivePolicies action.
-    getEffectivePolicies: function(Client, types.GetEffectivePoliciesInput): types.GetEffectivePoliciesOutput, table
+    getEffectivePolicies: function(Client, types.GetEffectivePoliciesInput): Operation<types.GetEffectivePoliciesOutput>
     -- Gets the indexing configuration.
     -- Requires permission to access the GetIndexingConfiguration action.
-    getIndexingConfiguration: function(Client, types.GetIndexingConfigurationInput): types.GetIndexingConfigurationOutput, table
+    getIndexingConfiguration: function(Client, types.GetIndexingConfigurationInput): Operation<types.GetIndexingConfigurationOutput>
     -- Gets a job document.
     -- Requires permission to access the GetJobDocument action.
-    getJobDocument: function(Client, types.GetJobDocumentInput): types.GetJobDocumentOutput, table
+    getJobDocument: function(Client, types.GetJobDocumentInput): Operation<types.GetJobDocumentOutput>
     -- Gets the logging options.
     -- NOTE: use of this command is not recommended. Use GetV2LoggingOptions
     -- instead.
     -- Requires permission to access the GetLoggingOptions action.
-    getLoggingOptions: function(Client, types.GetLoggingOptionsInput): types.GetLoggingOptionsOutput, table
+    getLoggingOptions: function(Client, types.GetLoggingOptionsInput): Operation<types.GetLoggingOptionsOutput>
     -- Gets an OTA update.
     -- Requires permission to access the GetOTAUpdate action.
-    getOTAUpdate: function(Client, types.GetOTAUpdateInput): types.GetOTAUpdateOutput, table
+    getOTAUpdate: function(Client, types.GetOTAUpdateInput): Operation<types.GetOTAUpdateOutput>
     -- Gets information about the specified software package.
     -- Requires permission to access the GetPackage action.
-    getPackage: function(Client, types.GetPackageInput): types.GetPackageOutput, table
+    getPackage: function(Client, types.GetPackageInput): Operation<types.GetPackageOutput>
     -- Gets information about the specified software package's configuration.
     -- Requires permission to access the GetPackageConfiguration action.
-    getPackageConfiguration: function(Client, types.GetPackageConfigurationInput): types.GetPackageConfigurationOutput, table
+    getPackageConfiguration: function(Client, types.GetPackageConfigurationInput): Operation<types.GetPackageConfigurationOutput>
     -- Gets information about the specified package version.
     -- Requires permission to access the GetPackageVersion action.
-    getPackageVersion: function(Client, types.GetPackageVersionInput): types.GetPackageVersionOutput, table
+    getPackageVersion: function(Client, types.GetPackageVersionInput): Operation<types.GetPackageVersionOutput>
     -- Groups the aggregated values that match the query into percentile groupings. The default
     -- percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own
     -- when you call GetPercentiles. This function returns a value for each
@@ -589,82 +593,82 @@ local record Client
     -- The result is an approximation, the more values that match the query, the more accurate
     -- the percentile values.
     -- Requires permission to access the GetPercentiles action.
-    getPercentiles: function(Client, types.GetPercentilesInput): types.GetPercentilesOutput, table
+    getPercentiles: function(Client, types.GetPercentilesInput): Operation<types.GetPercentilesOutput>
     -- Gets information about the specified policy with the policy document of the default
     -- version.
     -- Requires permission to access the GetPolicy action.
-    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): Operation<types.GetPolicyOutput>
     -- Gets information about the specified policy version.
     -- Requires permission to access the GetPolicyVersion action.
-    getPolicyVersion: function(Client, types.GetPolicyVersionInput): types.GetPolicyVersionOutput, table
+    getPolicyVersion: function(Client, types.GetPolicyVersionInput): Operation<types.GetPolicyVersionOutput>
     -- Gets a registration code used to register a CA certificate with IoT.
     -- IoT will create a registration code as part of this API call if the registration
     -- code doesn't exist or has been deleted. If you already have a registration code, this API
     -- call will return the same registration code.
     -- Requires permission to access the GetRegistrationCode action.
-    getRegistrationCode: function(Client, types.GetRegistrationCodeInput): types.GetRegistrationCodeOutput, table
+    getRegistrationCode: function(Client, types.GetRegistrationCodeInput): Operation<types.GetRegistrationCodeOutput>
     -- Returns the count, average, sum, minimum, maximum, sum of squares, variance,
     -- and standard deviation for the specified aggregated field. If the aggregation field is of type
     -- String, only the count statistic is returned.
     -- Requires permission to access the GetStatistics action.
-    getStatistics: function(Client, types.GetStatisticsInput): types.GetStatisticsOutput, table
+    getStatistics: function(Client, types.GetStatisticsInput): Operation<types.GetStatisticsOutput>
     -- Retrieves the live connectivity status per device.
-    getThingConnectivityData: function(Client, types.GetThingConnectivityDataInput): types.GetThingConnectivityDataOutput, table
+    getThingConnectivityData: function(Client, types.GetThingConnectivityDataInput): Operation<types.GetThingConnectivityDataOutput>
     -- Gets information about the rule.
     -- Requires permission to access the GetTopicRule action.
-    getTopicRule: function(Client, types.GetTopicRuleInput): types.GetTopicRuleOutput, table
+    getTopicRule: function(Client, types.GetTopicRuleInput): Operation<types.GetTopicRuleOutput>
     -- Gets information about a topic rule destination.
     -- Requires permission to access the GetTopicRuleDestination action.
-    getTopicRuleDestination: function(Client, types.GetTopicRuleDestinationInput): types.GetTopicRuleDestinationOutput, table
+    getTopicRuleDestination: function(Client, types.GetTopicRuleDestinationInput): Operation<types.GetTopicRuleDestinationOutput>
     -- Gets the fine grained logging options.
     -- Requires permission to access the GetV2LoggingOptions action.
-    getV2LoggingOptions: function(Client, types.GetV2LoggingOptionsInput): types.GetV2LoggingOptionsOutput, table
+    getV2LoggingOptions: function(Client, types.GetV2LoggingOptionsInput): Operation<types.GetV2LoggingOptionsOutput>
     -- Lists the active violations for a given Device Defender security profile.
     -- Requires permission to access the ListActiveViolations action.
-    listActiveViolations: function(Client, types.ListActiveViolationsInput): types.ListActiveViolationsOutput, table
+    listActiveViolations: function(Client, types.ListActiveViolationsInput): Operation<types.ListActiveViolationsOutput>
     -- Lists the policies attached to the specified thing group.
     -- Requires permission to access the ListAttachedPolicies action.
-    listAttachedPolicies: function(Client, types.ListAttachedPoliciesInput): types.ListAttachedPoliciesOutput, table
+    listAttachedPolicies: function(Client, types.ListAttachedPoliciesInput): Operation<types.ListAttachedPoliciesOutput>
     -- Lists the findings (results) of a Device Defender audit or of the audits
     -- performed during a specified time period. (Findings are retained for 90 days.)
     -- Requires permission to access the ListAuditFindings action.
-    listAuditFindings: function(Client, types.ListAuditFindingsInput): types.ListAuditFindingsOutput, table
+    listAuditFindings: function(Client, types.ListAuditFindingsInput): Operation<types.ListAuditFindingsOutput>
     -- Gets the status of audit mitigation action tasks that were
     -- executed.
     -- Requires permission to access the ListAuditMitigationActionsExecutions action.
-    listAuditMitigationActionsExecutions: function(Client, types.ListAuditMitigationActionsExecutionsInput): types.ListAuditMitigationActionsExecutionsOutput, table
+    listAuditMitigationActionsExecutions: function(Client, types.ListAuditMitigationActionsExecutionsInput): Operation<types.ListAuditMitigationActionsExecutionsOutput>
     -- Gets a list of audit mitigation action tasks that match the specified filters.
     -- Requires permission to access the ListAuditMitigationActionsTasks action.
-    listAuditMitigationActionsTasks: function(Client, types.ListAuditMitigationActionsTasksInput): types.ListAuditMitigationActionsTasksOutput, table
+    listAuditMitigationActionsTasks: function(Client, types.ListAuditMitigationActionsTasksInput): Operation<types.ListAuditMitigationActionsTasksOutput>
     -- Lists your Device Defender audit listings.
     -- Requires permission to access the ListAuditSuppressions action.
-    listAuditSuppressions: function(Client, types.ListAuditSuppressionsInput): types.ListAuditSuppressionsOutput, table
+    listAuditSuppressions: function(Client, types.ListAuditSuppressionsInput): Operation<types.ListAuditSuppressionsOutput>
     -- Lists the Device Defender audits that have been performed during a given
     -- time period.
     -- Requires permission to access the ListAuditTasks action.
-    listAuditTasks: function(Client, types.ListAuditTasksInput): types.ListAuditTasksOutput, table
+    listAuditTasks: function(Client, types.ListAuditTasksInput): Operation<types.ListAuditTasksOutput>
     -- Lists the authorizers registered in your account.
     -- Requires permission to access the ListAuthorizers action.
-    listAuthorizers: function(Client, types.ListAuthorizersInput): types.ListAuthorizersOutput, table
+    listAuthorizers: function(Client, types.ListAuthorizersInput): Operation<types.ListAuthorizersOutput>
     -- Lists the billing groups you have created.
     -- Requires permission to access the ListBillingGroups action.
-    listBillingGroups: function(Client, types.ListBillingGroupsInput): types.ListBillingGroupsOutput, table
+    listBillingGroups: function(Client, types.ListBillingGroupsInput): Operation<types.ListBillingGroupsOutput>
     -- Lists the CA certificates registered for your Amazon Web Services account.
     -- The results are paginated with a default page size of 25. You can use the returned
     -- marker to retrieve additional results.
     -- Requires permission to access the ListCACertificates action.
-    listCACertificates: function(Client, types.ListCACertificatesInput): types.ListCACertificatesOutput, table
+    listCACertificates: function(Client, types.ListCACertificatesInput): Operation<types.ListCACertificatesOutput>
     -- Lists all your certificate providers in your Amazon Web Services account.
     -- Requires permission to access the ListCertificateProviders action.
-    listCertificateProviders: function(Client, types.ListCertificateProvidersInput): types.ListCertificateProvidersOutput, table
+    listCertificateProviders: function(Client, types.ListCertificateProvidersInput): Operation<types.ListCertificateProvidersOutput>
     -- Lists the certificates registered in your Amazon Web Services account.
     -- The results are paginated with a default page size of 25. You can use the returned
     -- marker to retrieve additional results.
     -- Requires permission to access the ListCertificates action.
-    listCertificates: function(Client, types.ListCertificatesInput): types.ListCertificatesOutput, table
+    listCertificates: function(Client, types.ListCertificatesInput): Operation<types.ListCertificatesOutput>
     -- List the device certificates signed by the specified CA certificate.
     -- Requires permission to access the ListCertificatesByCA action.
-    listCertificatesByCA: function(Client, types.ListCertificatesByCAInput): types.ListCertificatesByCAOutput, table
+    listCertificatesByCA: function(Client, types.ListCertificatesByCAInput): Operation<types.ListCertificatesByCAOutput>
     -- List all command executions.
     -- You must provide only the startedTimeFilter or
     -- the completedTimeFilter information. If you provide
@@ -678,96 +682,96 @@ local record Client
     -- For more information about considerations for using this API, see
     -- List
     -- command executions in your account (CLI).
-    listCommandExecutions: function(Client, types.ListCommandExecutionsInput): types.ListCommandExecutionsOutput, table
+    listCommandExecutions: function(Client, types.ListCommandExecutionsInput): Operation<types.ListCommandExecutionsOutput>
     -- List all commands in your account.
-    listCommands: function(Client, types.ListCommandsInput): types.ListCommandsOutput, table
+    listCommands: function(Client, types.ListCommandsInput): Operation<types.ListCommandsOutput>
     -- Lists your Device Defender detect custom metrics.
     -- Requires permission to access the ListCustomMetrics action.
-    listCustomMetrics: function(Client, types.ListCustomMetricsInput): types.ListCustomMetricsOutput, table
+    listCustomMetrics: function(Client, types.ListCustomMetricsInput): Operation<types.ListCustomMetricsOutput>
     -- Lists mitigation actions executions for a Device Defender ML Detect Security Profile.
     -- Requires permission to access the ListDetectMitigationActionsExecutions action.
-    listDetectMitigationActionsExecutions: function(Client, types.ListDetectMitigationActionsExecutionsInput): types.ListDetectMitigationActionsExecutionsOutput, table
+    listDetectMitigationActionsExecutions: function(Client, types.ListDetectMitigationActionsExecutionsInput): Operation<types.ListDetectMitigationActionsExecutionsOutput>
     -- List of Device Defender ML Detect mitigation actions tasks.
     -- Requires permission to access the ListDetectMitigationActionsTasks action.
-    listDetectMitigationActionsTasks: function(Client, types.ListDetectMitigationActionsTasksInput): types.ListDetectMitigationActionsTasksOutput, table
+    listDetectMitigationActionsTasks: function(Client, types.ListDetectMitigationActionsTasksInput): Operation<types.ListDetectMitigationActionsTasksOutput>
     -- List the set of dimensions that are defined for your Amazon Web Services accounts.
     -- Requires permission to access the ListDimensions action.
-    listDimensions: function(Client, types.ListDimensionsInput): types.ListDimensionsOutput, table
+    listDimensions: function(Client, types.ListDimensionsInput): Operation<types.ListDimensionsOutput>
     -- Gets a list of domain configurations for the user. This list is sorted
     -- alphabetically by domain configuration name.
     -- Requires permission to access the ListDomainConfigurations action.
-    listDomainConfigurations: function(Client, types.ListDomainConfigurationsInput): types.ListDomainConfigurationsOutput, table
+    listDomainConfigurations: function(Client, types.ListDomainConfigurationsInput): Operation<types.ListDomainConfigurationsOutput>
     -- Lists all your fleet metrics.
     -- Requires permission to access the ListFleetMetrics action.
-    listFleetMetrics: function(Client, types.ListFleetMetricsInput): types.ListFleetMetricsOutput, table
+    listFleetMetrics: function(Client, types.ListFleetMetricsInput): Operation<types.ListFleetMetricsOutput>
     -- Lists the search indices.
     -- Requires permission to access the ListIndices action.
-    listIndices: function(Client, types.ListIndicesInput): types.ListIndicesOutput, table
+    listIndices: function(Client, types.ListIndicesInput): Operation<types.ListIndicesOutput>
     -- Lists the job executions for a job.
     -- Requires permission to access the ListJobExecutionsForJob action.
-    listJobExecutionsForJob: function(Client, types.ListJobExecutionsForJobInput): types.ListJobExecutionsForJobOutput, table
+    listJobExecutionsForJob: function(Client, types.ListJobExecutionsForJobInput): Operation<types.ListJobExecutionsForJobOutput>
     -- Lists the job executions for the specified thing.
     -- Requires permission to access the ListJobExecutionsForThing action.
-    listJobExecutionsForThing: function(Client, types.ListJobExecutionsForThingInput): types.ListJobExecutionsForThingOutput, table
+    listJobExecutionsForThing: function(Client, types.ListJobExecutionsForThingInput): Operation<types.ListJobExecutionsForThingOutput>
     -- Lists jobs.
     -- Requires permission to access the ListJobs action.
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- Returns a list of job templates.
     -- Requires permission to access the ListJobTemplates action.
-    listJobTemplates: function(Client, types.ListJobTemplatesInput): types.ListJobTemplatesOutput, table
+    listJobTemplates: function(Client, types.ListJobTemplatesInput): Operation<types.ListJobTemplatesOutput>
     -- Returns a list of managed job templates.
-    listManagedJobTemplates: function(Client, types.ListManagedJobTemplatesInput): types.ListManagedJobTemplatesOutput, table
+    listManagedJobTemplates: function(Client, types.ListManagedJobTemplatesInput): Operation<types.ListManagedJobTemplatesOutput>
     -- Lists the values reported for an IoT Device Defender metric (device-side metric, cloud-side metric, or custom metric)
     -- by the given thing during the specified time period.
-    listMetricValues: function(Client, types.ListMetricValuesInput): types.ListMetricValuesOutput, table
+    listMetricValues: function(Client, types.ListMetricValuesInput): Operation<types.ListMetricValuesOutput>
     -- Gets a list of all mitigation actions that match the specified filter criteria.
     -- Requires permission to access the ListMitigationActions action.
-    listMitigationActions: function(Client, types.ListMitigationActionsInput): types.ListMitigationActionsOutput, table
+    listMitigationActions: function(Client, types.ListMitigationActionsInput): Operation<types.ListMitigationActionsOutput>
     -- Lists OTA updates.
     -- Requires permission to access the ListOTAUpdates action.
-    listOTAUpdates: function(Client, types.ListOTAUpdatesInput): types.ListOTAUpdatesOutput, table
+    listOTAUpdates: function(Client, types.ListOTAUpdatesInput): Operation<types.ListOTAUpdatesOutput>
     -- Lists certificates that are being transferred but not yet accepted.
     -- Requires permission to access the ListOutgoingCertificates action.
-    listOutgoingCertificates: function(Client, types.ListOutgoingCertificatesInput): types.ListOutgoingCertificatesOutput, table
+    listOutgoingCertificates: function(Client, types.ListOutgoingCertificatesInput): Operation<types.ListOutgoingCertificatesOutput>
     -- Lists the software packages associated to the account.
     -- Requires permission to access the ListPackages action.
-    listPackages: function(Client, types.ListPackagesInput): types.ListPackagesOutput, table
+    listPackages: function(Client, types.ListPackagesInput): Operation<types.ListPackagesOutput>
     -- Lists the software package versions associated to the account.
     -- Requires permission to access the ListPackageVersions action.
-    listPackageVersions: function(Client, types.ListPackageVersionsInput): types.ListPackageVersionsOutput, table
+    listPackageVersions: function(Client, types.ListPackageVersionsInput): Operation<types.ListPackageVersionsOutput>
     -- Lists your policies.
     -- Requires permission to access the ListPolicies action.
-    listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    listPolicies: function(Client, types.ListPoliciesInput): Operation<types.ListPoliciesOutput>
     -- Lists the principals associated with the specified policy.
     -- Note: This action is deprecated and works as
     -- expected for backward compatibility, but we won't add enhancements. Use ListTargetsForPolicy instead.
     -- Requires permission to access the ListPolicyPrincipals action.
-    listPolicyPrincipals: function(Client, types.ListPolicyPrincipalsInput): types.ListPolicyPrincipalsOutput, table
+    listPolicyPrincipals: function(Client, types.ListPolicyPrincipalsInput): Operation<types.ListPolicyPrincipalsOutput>
     -- Lists the versions of the specified policy and identifies the default
     -- version.
     -- Requires permission to access the ListPolicyVersions action.
-    listPolicyVersions: function(Client, types.ListPolicyVersionsInput): types.ListPolicyVersionsOutput, table
+    listPolicyVersions: function(Client, types.ListPolicyVersionsInput): Operation<types.ListPolicyVersionsOutput>
     -- Lists the policies attached to the specified principal. If you use an Cognito
     -- identity, the ID must be in AmazonCognito Identity format.
     -- Note: This action is deprecated and works as
     -- expected for backward compatibility, but we won't add enhancements. Use ListAttachedPolicies instead.
     -- Requires permission to access the ListPrincipalPolicies action.
-    listPrincipalPolicies: function(Client, types.ListPrincipalPoliciesInput): types.ListPrincipalPoliciesOutput, table
+    listPrincipalPolicies: function(Client, types.ListPrincipalPoliciesInput): Operation<types.ListPrincipalPoliciesOutput>
     -- Lists the things associated with the specified principal. A principal can be X.509
     -- certificates, IAM users, groups, and roles, Amazon Cognito identities or federated
     -- identities.
     -- Requires permission to access the ListPrincipalThings action.
-    listPrincipalThings: function(Client, types.ListPrincipalThingsInput): types.ListPrincipalThingsOutput, table
+    listPrincipalThings: function(Client, types.ListPrincipalThingsInput): Operation<types.ListPrincipalThingsOutput>
     -- Lists the things associated with the specified principal. A principal can be an X.509
     -- certificate or an Amazon Cognito ID.
     -- Requires permission to access the ListPrincipalThings action.
-    listPrincipalThingsV2: function(Client, types.ListPrincipalThingsV2Input): types.ListPrincipalThingsV2Output, table
+    listPrincipalThingsV2: function(Client, types.ListPrincipalThingsV2Input): Operation<types.ListPrincipalThingsV2Output>
     -- Lists the provisioning templates in your Amazon Web Services account.
     -- Requires permission to access the ListProvisioningTemplates action.
-    listProvisioningTemplates: function(Client, types.ListProvisioningTemplatesInput): types.ListProvisioningTemplatesOutput, table
+    listProvisioningTemplates: function(Client, types.ListProvisioningTemplatesInput): Operation<types.ListProvisioningTemplatesOutput>
     -- A list of provisioning template versions.
     -- Requires permission to access the ListProvisioningTemplateVersions action.
-    listProvisioningTemplateVersions: function(Client, types.ListProvisioningTemplateVersionsInput): types.ListProvisioningTemplateVersionsOutput, table
+    listProvisioningTemplateVersions: function(Client, types.ListProvisioningTemplateVersionsInput): Operation<types.ListProvisioningTemplateVersionsOutput>
     -- The related resources of an Audit finding.
     -- The following resources can be returned from calling this API:
     -- DEVICE_CERTIFICATE
@@ -783,57 +787,57 @@ local record Client
     -- but provides pagination and is not limited to 10 resources.
     -- When calling DescribeAuditFinding for the intermediate CA revoked for
     -- active device certificates check, RelatedResources will not be populated. You must use this API, ListRelatedResourcesForAuditFinding, to list the certificates.
-    listRelatedResourcesForAuditFinding: function(Client, types.ListRelatedResourcesForAuditFindingInput): types.ListRelatedResourcesForAuditFindingOutput, table
+    listRelatedResourcesForAuditFinding: function(Client, types.ListRelatedResourcesForAuditFindingInput): Operation<types.ListRelatedResourcesForAuditFindingOutput>
     -- Lists the role aliases registered in your account.
     -- Requires permission to access the ListRoleAliases action.
-    listRoleAliases: function(Client, types.ListRoleAliasesInput): types.ListRoleAliasesOutput, table
+    listRoleAliases: function(Client, types.ListRoleAliasesInput): Operation<types.ListRoleAliasesOutput>
     -- The validation results for all software bill of materials (SBOM) attached to a specific software package version.
     -- Requires permission to access the ListSbomValidationResults action.
-    listSbomValidationResults: function(Client, types.ListSbomValidationResultsInput): types.ListSbomValidationResultsOutput, table
+    listSbomValidationResults: function(Client, types.ListSbomValidationResultsInput): Operation<types.ListSbomValidationResultsOutput>
     -- Lists all of your scheduled audits.
     -- Requires permission to access the ListScheduledAudits action.
-    listScheduledAudits: function(Client, types.ListScheduledAuditsInput): types.ListScheduledAuditsOutput, table
+    listScheduledAudits: function(Client, types.ListScheduledAuditsInput): Operation<types.ListScheduledAuditsOutput>
     -- Lists the Device Defender security profiles
     -- you've
     -- created. You can filter security profiles by dimension or custom metric.
     -- Requires permission to access the ListSecurityProfiles action.
     -- dimensionName and metricName cannot be used in the same request.
-    listSecurityProfiles: function(Client, types.ListSecurityProfilesInput): types.ListSecurityProfilesOutput, table
+    listSecurityProfiles: function(Client, types.ListSecurityProfilesInput): Operation<types.ListSecurityProfilesOutput>
     -- Lists the Device Defender security profiles attached to a target (thing group).
     -- Requires permission to access the ListSecurityProfilesForTarget action.
-    listSecurityProfilesForTarget: function(Client, types.ListSecurityProfilesForTargetInput): types.ListSecurityProfilesForTargetOutput, table
+    listSecurityProfilesForTarget: function(Client, types.ListSecurityProfilesForTargetInput): Operation<types.ListSecurityProfilesForTargetOutput>
     -- Lists all of the streams in your Amazon Web Services account.
     -- Requires permission to access the ListStreams action.
-    listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+    listStreams: function(Client, types.ListStreamsInput): Operation<types.ListStreamsOutput>
     -- Lists the tags (metadata) you have assigned to the resource.
     -- Requires permission to access the ListTagsForResource action.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- List targets for the specified policy.
     -- Requires permission to access the ListTargetsForPolicy action.
-    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput): types.ListTargetsForPolicyOutput, table
+    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput): Operation<types.ListTargetsForPolicyOutput>
     -- Lists the targets (thing groups) associated with a given Device Defender security profile.
     -- Requires permission to access the ListTargetsForSecurityProfile action.
-    listTargetsForSecurityProfile: function(Client, types.ListTargetsForSecurityProfileInput): types.ListTargetsForSecurityProfileOutput, table
+    listTargetsForSecurityProfile: function(Client, types.ListTargetsForSecurityProfileInput): Operation<types.ListTargetsForSecurityProfileOutput>
     -- List the thing groups in your account.
     -- Requires permission to access the ListThingGroups action.
-    listThingGroups: function(Client, types.ListThingGroupsInput): types.ListThingGroupsOutput, table
+    listThingGroups: function(Client, types.ListThingGroupsInput): Operation<types.ListThingGroupsOutput>
     -- List the thing groups to which the specified thing belongs.
     -- Requires permission to access the ListThingGroupsForThing action.
-    listThingGroupsForThing: function(Client, types.ListThingGroupsForThingInput): types.ListThingGroupsForThingOutput, table
+    listThingGroupsForThing: function(Client, types.ListThingGroupsForThingInput): Operation<types.ListThingGroupsForThingOutput>
     -- Lists the principals associated with the specified thing. A principal can be X.509
     -- certificates, IAM users, groups, and roles, Amazon Cognito identities or federated
     -- identities.
     -- Requires permission to access the ListThingPrincipals action.
-    listThingPrincipals: function(Client, types.ListThingPrincipalsInput): types.ListThingPrincipalsOutput, table
+    listThingPrincipals: function(Client, types.ListThingPrincipalsInput): Operation<types.ListThingPrincipalsOutput>
     -- Lists the principals associated with the specified thing. A principal can be an X.509
     -- certificate or an Amazon Cognito ID.
     -- Requires permission to access the ListThingPrincipals action.
-    listThingPrincipalsV2: function(Client, types.ListThingPrincipalsV2Input): types.ListThingPrincipalsV2Output, table
+    listThingPrincipalsV2: function(Client, types.ListThingPrincipalsV2Input): Operation<types.ListThingPrincipalsV2Output>
     -- Information about the thing registration tasks.
-    listThingRegistrationTaskReports: function(Client, types.ListThingRegistrationTaskReportsInput): types.ListThingRegistrationTaskReportsOutput, table
+    listThingRegistrationTaskReports: function(Client, types.ListThingRegistrationTaskReportsInput): Operation<types.ListThingRegistrationTaskReportsOutput>
     -- List bulk thing provisioning tasks.
     -- Requires permission to access the ListThingRegistrationTasks action.
-    listThingRegistrationTasks: function(Client, types.ListThingRegistrationTasksInput): types.ListThingRegistrationTasksOutput, table
+    listThingRegistrationTasks: function(Client, types.ListThingRegistrationTasksInput): Operation<types.ListThingRegistrationTasksOutput>
     -- Lists your things. Use the attributeName and attributeValue parameters to filter your things. For example,
     -- calling ListThings with attributeName=Color and attributeValue=Red
     -- retrieves all things in the registry that contain an attribute Color with the value Red. For more
@@ -841,52 +845,52 @@ local record Client
     -- Guide.
     -- Requires permission to access the ListThings action.
     -- You will not be charged for calling this API if an Access denied error is returned. You will also not be charged if no attributes or pagination token was provided in request and no pagination token and no results were returned.
-    listThings: function(Client, types.ListThingsInput): types.ListThingsOutput, table
+    listThings: function(Client, types.ListThingsInput): Operation<types.ListThingsOutput>
     -- Lists the things you have added to the given billing group.
     -- Requires permission to access the ListThingsInBillingGroup action.
-    listThingsInBillingGroup: function(Client, types.ListThingsInBillingGroupInput): types.ListThingsInBillingGroupOutput, table
+    listThingsInBillingGroup: function(Client, types.ListThingsInBillingGroupInput): Operation<types.ListThingsInBillingGroupOutput>
     -- Lists the things in the specified group.
     -- Requires permission to access the ListThingsInThingGroup action.
-    listThingsInThingGroup: function(Client, types.ListThingsInThingGroupInput): types.ListThingsInThingGroupOutput, table
+    listThingsInThingGroup: function(Client, types.ListThingsInThingGroupInput): Operation<types.ListThingsInThingGroupOutput>
     -- Lists the existing thing types.
     -- Requires permission to access the ListThingTypes action.
-    listThingTypes: function(Client, types.ListThingTypesInput): types.ListThingTypesOutput, table
+    listThingTypes: function(Client, types.ListThingTypesInput): Operation<types.ListThingTypesOutput>
     -- Lists all the topic rule destinations in your Amazon Web Services account.
     -- Requires permission to access the ListTopicRuleDestinations action.
-    listTopicRuleDestinations: function(Client, types.ListTopicRuleDestinationsInput): types.ListTopicRuleDestinationsOutput, table
+    listTopicRuleDestinations: function(Client, types.ListTopicRuleDestinationsInput): Operation<types.ListTopicRuleDestinationsOutput>
     -- Lists the rules for the specific topic.
     -- Requires permission to access the ListTopicRules action.
-    listTopicRules: function(Client, types.ListTopicRulesInput): types.ListTopicRulesOutput, table
+    listTopicRules: function(Client, types.ListTopicRulesInput): Operation<types.ListTopicRulesOutput>
     -- Lists logging levels.
     -- Requires permission to access the ListV2LoggingLevels action.
-    listV2LoggingLevels: function(Client, types.ListV2LoggingLevelsInput): types.ListV2LoggingLevelsOutput, table
+    listV2LoggingLevels: function(Client, types.ListV2LoggingLevelsInput): Operation<types.ListV2LoggingLevelsOutput>
     -- Lists the Device Defender security profile violations discovered during the given time period.
     -- You can use filters to limit the results to those alerts issued for a particular security profile,
     -- behavior, or thing (device).
     -- Requires permission to access the ListViolationEvents action.
-    listViolationEvents: function(Client, types.ListViolationEventsInput): types.ListViolationEventsOutput, table
+    listViolationEvents: function(Client, types.ListViolationEventsInput): Operation<types.ListViolationEventsOutput>
     -- Set a verification state and provide a description of that verification state on a violation (detect alarm).
-    putVerificationStateOnViolation: function(Client, types.PutVerificationStateOnViolationInput): types.PutVerificationStateOnViolationOutput, table
+    putVerificationStateOnViolation: function(Client, types.PutVerificationStateOnViolationInput): Operation<types.PutVerificationStateOnViolationOutput>
     -- Registers a CA certificate with Amazon Web Services IoT Core. There is no limit to the number of CA
     -- certificates you can register in your Amazon Web Services account. You can register up to 10 CA
     -- certificates with the same CA subject field per Amazon Web Services account.
     -- Requires permission to access the RegisterCACertificate action.
-    registerCACertificate: function(Client, types.RegisterCACertificateInput): types.RegisterCACertificateOutput, table
+    registerCACertificate: function(Client, types.RegisterCACertificateInput): Operation<types.RegisterCACertificateOutput>
     -- Registers a device certificate with IoT in the same certificate mode as the signing CA. If you have more than one CA certificate that has the same subject field, you must
     -- specify the CA certificate that was used to sign the device certificate being
     -- registered.
     -- Requires permission to access the RegisterCertificate action.
-    registerCertificate: function(Client, types.RegisterCertificateInput): types.RegisterCertificateOutput, table
+    registerCertificate: function(Client, types.RegisterCertificateInput): Operation<types.RegisterCertificateOutput>
     -- Register a certificate that does not have a certificate authority (CA).
     -- For supported certificates, consult
     -- Certificate signing algorithms supported by IoT.
-    registerCertificateWithoutCA: function(Client, types.RegisterCertificateWithoutCAInput): types.RegisterCertificateWithoutCAOutput, table
+    registerCertificateWithoutCA: function(Client, types.RegisterCertificateWithoutCAInput): Operation<types.RegisterCertificateWithoutCAOutput>
     -- Provisions a thing in the device registry. RegisterThing calls other IoT control
     -- plane APIs. These calls might exceed your account level
     -- IoT Throttling Limits and cause throttle errors. Please contact Amazon Web Services Customer Support to raise
     -- your throttling limits if necessary.
     -- Requires permission to access the RegisterThing action.
-    registerThing: function(Client, types.RegisterThingInput): types.RegisterThingOutput, table
+    registerThing: function(Client, types.RegisterThingInput): Operation<types.RegisterThingOutput>
     -- Rejects a pending certificate transfer. After IoT rejects a certificate transfer,
     -- the certificate status changes from PENDING_TRANSFER to
     -- INACTIVE.
@@ -895,76 +899,76 @@ local record Client
     -- This operation can only be called by the transfer destination. After it is called,
     -- the certificate will be returned to the source's account in the INACTIVE state.
     -- Requires permission to access the RejectCertificateTransfer action.
-    rejectCertificateTransfer: function(Client, types.RejectCertificateTransferInput): types.RejectCertificateTransferOutput, table
+    rejectCertificateTransfer: function(Client, types.RejectCertificateTransferInput): Operation<types.RejectCertificateTransferOutput>
     -- Removes the given thing from the billing group.
     -- Requires permission to access the RemoveThingFromBillingGroup action.
     -- This call is asynchronous. It might take several seconds for the detachment to propagate.
-    removeThingFromBillingGroup: function(Client, types.RemoveThingFromBillingGroupInput): types.RemoveThingFromBillingGroupOutput, table
+    removeThingFromBillingGroup: function(Client, types.RemoveThingFromBillingGroupInput): Operation<types.RemoveThingFromBillingGroupOutput>
     -- Remove the specified thing from the specified group.
     -- You must specify either a thingGroupArn or a
     -- thingGroupName to identify the thing group and
     -- either a thingArn or a thingName to
     -- identify the thing to remove from the thing group.
     -- Requires permission to access the RemoveThingFromThingGroup action.
-    removeThingFromThingGroup: function(Client, types.RemoveThingFromThingGroupInput): types.RemoveThingFromThingGroupOutput, table
+    removeThingFromThingGroup: function(Client, types.RemoveThingFromThingGroupInput): Operation<types.RemoveThingFromThingGroupOutput>
     -- Replaces the rule. You must specify all parameters for the new rule. Creating rules
     -- is an administrator-level action. Any user who has permission to create rules will be able
     -- to access data processed by the rule.
     -- Requires permission to access the ReplaceTopicRule action.
-    replaceTopicRule: function(Client, types.ReplaceTopicRuleInput): types.ReplaceTopicRuleOutput, table
+    replaceTopicRule: function(Client, types.ReplaceTopicRuleInput): Operation<types.ReplaceTopicRuleOutput>
     -- The query search index.
     -- Requires permission to access the SearchIndex action.
-    searchIndex: function(Client, types.SearchIndexInput): types.SearchIndexOutput, table
+    searchIndex: function(Client, types.SearchIndexInput): Operation<types.SearchIndexOutput>
     -- Sets the default authorizer. This will be used if a websocket connection is made
     -- without specifying an authorizer.
     -- Requires permission to access the SetDefaultAuthorizer action.
-    setDefaultAuthorizer: function(Client, types.SetDefaultAuthorizerInput): types.SetDefaultAuthorizerOutput, table
+    setDefaultAuthorizer: function(Client, types.SetDefaultAuthorizerInput): Operation<types.SetDefaultAuthorizerOutput>
     -- Sets the specified version of the specified policy as the policy's default
     -- (operative) version. This action affects all certificates to which the policy is attached.
     -- To list the principals the policy is attached to, use the ListPrincipalPolicies
     -- action.
     -- Requires permission to access the SetDefaultPolicyVersion action.
-    setDefaultPolicyVersion: function(Client, types.SetDefaultPolicyVersionInput): types.SetDefaultPolicyVersionOutput, table
+    setDefaultPolicyVersion: function(Client, types.SetDefaultPolicyVersionInput): Operation<types.SetDefaultPolicyVersionOutput>
     -- Sets the logging options.
     -- NOTE: use of this command is not recommended. Use SetV2LoggingOptions
     -- instead.
     -- Requires permission to access the SetLoggingOptions action.
-    setLoggingOptions: function(Client, types.SetLoggingOptionsInput): types.SetLoggingOptionsOutput, table
+    setLoggingOptions: function(Client, types.SetLoggingOptionsInput): Operation<types.SetLoggingOptionsOutput>
     -- Sets the logging level.
     -- Requires permission to access the SetV2LoggingLevel action.
-    setV2LoggingLevel: function(Client, types.SetV2LoggingLevelInput): types.SetV2LoggingLevelOutput, table
+    setV2LoggingLevel: function(Client, types.SetV2LoggingLevelInput): Operation<types.SetV2LoggingLevelOutput>
     -- Sets the logging options for the V2 logging service.
     -- Requires permission to access the SetV2LoggingOptions action.
-    setV2LoggingOptions: function(Client, types.SetV2LoggingOptionsInput): types.SetV2LoggingOptionsOutput, table
+    setV2LoggingOptions: function(Client, types.SetV2LoggingOptionsInput): Operation<types.SetV2LoggingOptionsOutput>
     -- Starts a task that applies a set of mitigation actions to the specified target.
     -- Requires permission to access the StartAuditMitigationActionsTask action.
-    startAuditMitigationActionsTask: function(Client, types.StartAuditMitigationActionsTaskInput): types.StartAuditMitigationActionsTaskOutput, table
+    startAuditMitigationActionsTask: function(Client, types.StartAuditMitigationActionsTaskInput): Operation<types.StartAuditMitigationActionsTaskOutput>
     -- Starts a Device Defender ML Detect mitigation actions task.
     -- Requires permission to access the StartDetectMitigationActionsTask action.
-    startDetectMitigationActionsTask: function(Client, types.StartDetectMitigationActionsTaskInput): types.StartDetectMitigationActionsTaskOutput, table
+    startDetectMitigationActionsTask: function(Client, types.StartDetectMitigationActionsTaskInput): Operation<types.StartDetectMitigationActionsTaskOutput>
     -- Starts an on-demand Device Defender audit.
     -- Requires permission to access the StartOnDemandAuditTask action.
-    startOnDemandAuditTask: function(Client, types.StartOnDemandAuditTaskInput): types.StartOnDemandAuditTaskOutput, table
+    startOnDemandAuditTask: function(Client, types.StartOnDemandAuditTaskInput): Operation<types.StartOnDemandAuditTaskOutput>
     -- Creates a bulk thing provisioning task.
     -- Requires permission to access the StartThingRegistrationTask action.
-    startThingRegistrationTask: function(Client, types.StartThingRegistrationTaskInput): types.StartThingRegistrationTaskOutput, table
+    startThingRegistrationTask: function(Client, types.StartThingRegistrationTaskInput): Operation<types.StartThingRegistrationTaskOutput>
     -- Cancels a bulk thing provisioning task.
     -- Requires permission to access the StopThingRegistrationTask action.
-    stopThingRegistrationTask: function(Client, types.StopThingRegistrationTaskInput): types.StopThingRegistrationTaskOutput, table
+    stopThingRegistrationTask: function(Client, types.StopThingRegistrationTaskInput): Operation<types.StopThingRegistrationTaskOutput>
     -- Adds to or modifies the tags of the given resource. Tags are metadata which can be
     -- used to manage a resource.
     -- Requires permission to access the TagResource action.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Tests if a specified principal is authorized to perform an IoT action on a
     -- specified resource. Use this to test and debug the authorization behavior of devices that
     -- connect to the IoT device gateway.
     -- Requires permission to access the TestAuthorization action.
-    testAuthorization: function(Client, types.TestAuthorizationInput): types.TestAuthorizationOutput, table
+    testAuthorization: function(Client, types.TestAuthorizationInput): Operation<types.TestAuthorizationOutput>
     -- Tests a custom authorization behavior by invoking a specified custom authorizer. Use
     -- this to test and debug the custom authorization behavior of devices that connect to the IoT
     -- device gateway.
     -- Requires permission to access the TestInvokeAuthorizer action.
-    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput): types.TestInvokeAuthorizerOutput, table
+    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput): Operation<types.TestInvokeAuthorizerOutput>
     -- Transfers the specified certificate to the specified Amazon Web Services account.
     -- Requires permission to access the TransferCertificate action.
     -- You can cancel the transfer until it is accepted by the recipient.
@@ -982,26 +986,26 @@ local record Client
     -- the certificate after the transfer operation:
     -- If the transfer is accepted: The certificate is encrypted by the target account's customer managed key configuration.
     -- If the transfer is rejected or cancelled: The certificate is protected by the source account's customer managed key configuration.
-    transferCertificate: function(Client, types.TransferCertificateInput): types.TransferCertificateOutput, table
+    transferCertificate: function(Client, types.TransferCertificateInput): Operation<types.TransferCertificateOutput>
     -- Removes the given tags (metadata) from the resource.
     -- Requires permission to access the UntagResource action.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Configures or reconfigures the Device Defender audit settings for this account.
     -- Settings include how audit notifications are sent and which audit checks are
     -- enabled or disabled.
     -- Requires permission to access the UpdateAccountAuditConfiguration action.
-    updateAccountAuditConfiguration: function(Client, types.UpdateAccountAuditConfigurationInput): types.UpdateAccountAuditConfigurationOutput, table
+    updateAccountAuditConfiguration: function(Client, types.UpdateAccountAuditConfigurationInput): Operation<types.UpdateAccountAuditConfigurationOutput>
     -- Updates a Device Defender audit suppression.
-    updateAuditSuppression: function(Client, types.UpdateAuditSuppressionInput): types.UpdateAuditSuppressionOutput, table
+    updateAuditSuppression: function(Client, types.UpdateAuditSuppressionInput): Operation<types.UpdateAuditSuppressionOutput>
     -- Updates an authorizer.
     -- Requires permission to access the UpdateAuthorizer action.
-    updateAuthorizer: function(Client, types.UpdateAuthorizerInput): types.UpdateAuthorizerOutput, table
+    updateAuthorizer: function(Client, types.UpdateAuthorizerInput): Operation<types.UpdateAuthorizerOutput>
     -- Updates information about the billing group.
     -- Requires permission to access the UpdateBillingGroup action.
-    updateBillingGroup: function(Client, types.UpdateBillingGroupInput): types.UpdateBillingGroupOutput, table
+    updateBillingGroup: function(Client, types.UpdateBillingGroupInput): Operation<types.UpdateBillingGroupOutput>
     -- Updates a registered CA certificate.
     -- Requires permission to access the UpdateCACertificate action.
-    updateCACertificate: function(Client, types.UpdateCACertificateInput): types.UpdateCACertificateOutput, table
+    updateCACertificate: function(Client, types.UpdateCACertificateInput): Operation<types.UpdateCACertificateOutput>
     -- Updates the status of the specified certificate. This operation is
     -- idempotent.
     -- Requires permission to access the UpdateCertificate action.
@@ -1010,16 +1014,16 @@ local record Client
     -- Within a few minutes of updating a certificate from the ACTIVE state to any other
     -- state, IoT disconnects all devices that used that certificate to connect. Devices cannot
     -- use a certificate that is not in the ACTIVE state to reconnect.
-    updateCertificate: function(Client, types.UpdateCertificateInput): types.UpdateCertificateOutput, table
+    updateCertificate: function(Client, types.UpdateCertificateInput): Operation<types.UpdateCertificateOutput>
     -- Updates a certificate provider.
     -- Requires permission to access the UpdateCertificateProvider action.
-    updateCertificateProvider: function(Client, types.UpdateCertificateProviderInput): types.UpdateCertificateProviderOutput, table
+    updateCertificateProvider: function(Client, types.UpdateCertificateProviderInput): Operation<types.UpdateCertificateProviderOutput>
     -- Update information about a command or mark a command for deprecation.
-    updateCommand: function(Client, types.UpdateCommandInput): types.UpdateCommandOutput, table
+    updateCommand: function(Client, types.UpdateCommandInput): Operation<types.UpdateCommandOutput>
     -- Updates a
     -- Device Defender detect custom metric.
     -- Requires permission to access the UpdateCustomMetric action.
-    updateCustomMetric: function(Client, types.UpdateCustomMetricInput): types.UpdateCustomMetricOutput, table
+    updateCustomMetric: function(Client, types.UpdateCustomMetricInput): Operation<types.UpdateCustomMetricOutput>
     -- Updates the definition for a dimension. You
     -- cannot
     -- change the type of a dimension after
@@ -1027,46 +1031,46 @@ local record Client
     -- recreate
     -- it).
     -- Requires permission to access the UpdateDimension action.
-    updateDimension: function(Client, types.UpdateDimensionInput): types.UpdateDimensionOutput, table
+    updateDimension: function(Client, types.UpdateDimensionInput): Operation<types.UpdateDimensionOutput>
     -- Updates values stored in the domain configuration. Domain configurations for default
     -- endpoints can't be updated.
     -- Requires permission to access the UpdateDomainConfiguration action.
-    updateDomainConfiguration: function(Client, types.UpdateDomainConfigurationInput): types.UpdateDomainConfigurationOutput, table
+    updateDomainConfiguration: function(Client, types.UpdateDomainConfigurationInput): Operation<types.UpdateDomainConfigurationOutput>
     -- Updates a dynamic thing group.
     -- Requires permission to access the UpdateDynamicThingGroup action.
-    updateDynamicThingGroup: function(Client, types.UpdateDynamicThingGroupInput): types.UpdateDynamicThingGroupOutput, table
+    updateDynamicThingGroup: function(Client, types.UpdateDynamicThingGroupInput): Operation<types.UpdateDynamicThingGroupOutput>
     -- Updates the encryption configuration. By default, Amazon Web Services IoT Core encrypts your data at rest using Amazon Web Services owned keys. Amazon Web Services IoT Core also supports symmetric customer managed keys
     -- from Key Management Service (KMS). With customer managed keys, you create, own, and
     -- manage the KMS keys in your Amazon Web Services account.
     -- Before using this API, you must set up permissions for Amazon Web Services IoT Core to access KMS. For more information, see Data encryption at rest in the Amazon Web Services IoT Core Developer Guide.
-    updateEncryptionConfiguration: function(Client, types.UpdateEncryptionConfigurationInput): types.UpdateEncryptionConfigurationOutput, table
+    updateEncryptionConfiguration: function(Client, types.UpdateEncryptionConfigurationInput): Operation<types.UpdateEncryptionConfigurationOutput>
     -- Updates the event configurations.
     -- Requires permission to access the UpdateEventConfigurations action.
-    updateEventConfigurations: function(Client, types.UpdateEventConfigurationsInput): types.UpdateEventConfigurationsOutput, table
+    updateEventConfigurations: function(Client, types.UpdateEventConfigurationsInput): Operation<types.UpdateEventConfigurationsOutput>
     -- Updates the data for a fleet metric.
     -- Requires permission to access the UpdateFleetMetric action.
-    updateFleetMetric: function(Client, types.UpdateFleetMetricInput): types.UpdateFleetMetricOutput, table
+    updateFleetMetric: function(Client, types.UpdateFleetMetricInput): Operation<types.UpdateFleetMetricOutput>
     -- Updates the search configuration.
     -- Requires permission to access the UpdateIndexingConfiguration action.
-    updateIndexingConfiguration: function(Client, types.UpdateIndexingConfigurationInput): types.UpdateIndexingConfigurationOutput, table
+    updateIndexingConfiguration: function(Client, types.UpdateIndexingConfigurationInput): Operation<types.UpdateIndexingConfigurationOutput>
     -- Updates supported fields of the specified job.
     -- Requires permission to access the UpdateJob action.
-    updateJob: function(Client, types.UpdateJobInput): types.UpdateJobOutput, table
+    updateJob: function(Client, types.UpdateJobInput): Operation<types.UpdateJobOutput>
     -- Updates the definition for the specified mitigation action.
     -- Requires permission to access the UpdateMitigationAction action.
-    updateMitigationAction: function(Client, types.UpdateMitigationActionInput): types.UpdateMitigationActionOutput, table
+    updateMitigationAction: function(Client, types.UpdateMitigationActionInput): Operation<types.UpdateMitigationActionOutput>
     -- Updates the supported fields for a specific software package.
     -- Requires permission to access the UpdatePackage and GetIndexingConfiguration actions.
-    updatePackage: function(Client, types.UpdatePackageInput): types.UpdatePackageOutput, table
+    updatePackage: function(Client, types.UpdatePackageInput): Operation<types.UpdatePackageOutput>
     -- Updates the software package configuration.
     -- Requires permission to access the UpdatePackageConfiguration and iam:PassRole actions.
-    updatePackageConfiguration: function(Client, types.UpdatePackageConfigurationInput): types.UpdatePackageConfigurationOutput, table
+    updatePackageConfiguration: function(Client, types.UpdatePackageConfigurationInput): Operation<types.UpdatePackageConfigurationOutput>
     -- Updates the supported fields for a specific package version.
     -- Requires permission to access the UpdatePackageVersion and GetIndexingConfiguration actions.
-    updatePackageVersion: function(Client, types.UpdatePackageVersionInput): types.UpdatePackageVersionOutput, table
+    updatePackageVersion: function(Client, types.UpdatePackageVersionInput): Operation<types.UpdatePackageVersionOutput>
     -- Updates a provisioning template.
     -- Requires permission to access the UpdateProvisioningTemplate action.
-    updateProvisioningTemplate: function(Client, types.UpdateProvisioningTemplateInput): types.UpdateProvisioningTemplateOutput, table
+    updateProvisioningTemplate: function(Client, types.UpdateProvisioningTemplateInput): Operation<types.UpdateProvisioningTemplateOutput>
     -- Updates a role alias.
     -- Requires permission to access the UpdateRoleAlias action.
     -- The value of
@@ -1075,35 +1079,35 @@ local record Client
     -- maximum session duration of the IAM role that the role alias references. For more
     -- information, see Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services
     -- Identity and Access Management User Guide.
-    updateRoleAlias: function(Client, types.UpdateRoleAliasInput): types.UpdateRoleAliasOutput, table
+    updateRoleAlias: function(Client, types.UpdateRoleAliasInput): Operation<types.UpdateRoleAliasOutput>
     -- Updates a scheduled audit, including which checks are performed and
     -- how often the audit takes place.
     -- Requires permission to access the UpdateScheduledAudit action.
-    updateScheduledAudit: function(Client, types.UpdateScheduledAuditInput): types.UpdateScheduledAuditOutput, table
+    updateScheduledAudit: function(Client, types.UpdateScheduledAuditInput): Operation<types.UpdateScheduledAuditOutput>
     -- Updates a Device Defender security profile.
     -- Requires permission to access the UpdateSecurityProfile action.
-    updateSecurityProfile: function(Client, types.UpdateSecurityProfileInput): types.UpdateSecurityProfileOutput, table
+    updateSecurityProfile: function(Client, types.UpdateSecurityProfileInput): Operation<types.UpdateSecurityProfileOutput>
     -- Updates an existing stream. The stream version will be incremented by one.
     -- Requires permission to access the UpdateStream action.
-    updateStream: function(Client, types.UpdateStreamInput): types.UpdateStreamOutput, table
+    updateStream: function(Client, types.UpdateStreamInput): Operation<types.UpdateStreamOutput>
     -- Updates the data for a thing.
     -- Requires permission to access the UpdateThing action.
-    updateThing: function(Client, types.UpdateThingInput): types.UpdateThingOutput, table
+    updateThing: function(Client, types.UpdateThingInput): Operation<types.UpdateThingOutput>
     -- Update a thing group.
     -- Requires permission to access the UpdateThingGroup action.
-    updateThingGroup: function(Client, types.UpdateThingGroupInput): types.UpdateThingGroupOutput, table
+    updateThingGroup: function(Client, types.UpdateThingGroupInput): Operation<types.UpdateThingGroupOutput>
     -- Updates the groups to which the thing belongs.
     -- Requires permission to access the UpdateThingGroupsForThing action.
-    updateThingGroupsForThing: function(Client, types.UpdateThingGroupsForThingInput): types.UpdateThingGroupsForThingOutput, table
+    updateThingGroupsForThing: function(Client, types.UpdateThingGroupsForThingInput): Operation<types.UpdateThingGroupsForThingOutput>
     -- Updates a thing type.
-    updateThingType: function(Client, types.UpdateThingTypeInput): types.UpdateThingTypeOutput, table
+    updateThingType: function(Client, types.UpdateThingTypeInput): Operation<types.UpdateThingTypeOutput>
     -- Updates a topic rule destination. You use this to change the status, endpoint URL, or
     -- confirmation URL of the destination.
     -- Requires permission to access the UpdateTopicRuleDestination action.
-    updateTopicRuleDestination: function(Client, types.UpdateTopicRuleDestinationInput): types.UpdateTopicRuleDestinationOutput, table
+    updateTopicRuleDestination: function(Client, types.UpdateTopicRuleDestinationInput): Operation<types.UpdateTopicRuleDestinationOutput>
     -- Validates a Device Defender security profile behaviors specification.
     -- Requires permission to access the ValidateSecurityProfileBehaviors action.
-    validateSecurityProfileBehaviors: function(Client, types.ValidateSecurityProfileBehaviorsInput): types.ValidateSecurityProfileBehaviorsOutput, table
+    validateSecurityProfileBehaviors: function(Client, types.ValidateSecurityProfileBehaviorsInput): Operation<types.ValidateSecurityProfileBehaviorsOutput>
 end
 
 local record M

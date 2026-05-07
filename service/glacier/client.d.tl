@@ -2,6 +2,10 @@
 
 local types = require("glacier.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This operation aborts a multipart upload identified by the upload ID.
     -- After the Abort Multipart Upload request succeeds, you cannot upload any more parts
@@ -17,7 +21,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Working with Archives in
     -- Amazon Glacier and Abort Multipart
     -- Upload in the Amazon Glacier Developer Guide.
-    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): types.AbortMultipartUploadOutput, table
+    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): Operation<types.AbortMultipartUploadOutput>
     -- This operation aborts the vault locking process if the vault lock is not in the
     -- Locked state. If the vault lock is in the Locked state when
     -- this operation is requested, the operation returns an AccessDeniedException
@@ -32,13 +36,13 @@ local record Client
     -- This operation is idempotent. You can successfully invoke this operation multiple
     -- times, if the vault lock is in the InProgress state or if there is no policy
     -- associated with the vault.
-    abortVaultLock: function(Client, types.AbortVaultLockInput): types.AbortVaultLockOutput, table
+    abortVaultLock: function(Client, types.AbortVaultLockInput): Operation<types.AbortVaultLockOutput>
     -- This operation adds the specified tags to a vault. Each tag is composed of a key and
     -- a value. Each vault can have up to 10 tags. If your request would cause the tag limit for
     -- the vault to be exceeded, the operation throws the LimitExceededException
     -- error. If a tag already exists on the vault under a specified key, the existing key value
     -- will be overwritten. For more information about tags, see Tagging Amazon Glacier Resources.
-    addTagsToVault: function(Client, types.AddTagsToVaultInput): types.AddTagsToVaultOutput, table
+    addTagsToVault: function(Client, types.AddTagsToVaultInput): Operation<types.AddTagsToVaultOutput>
     -- You call this operation to inform Amazon Glacier (Glacier) that all the archive parts have been
     -- uploaded and that Glacier can now assemble the archive from the uploaded parts.
     -- After assembling and saving the archive to the vault, Glacier returns the URI path
@@ -73,7 +77,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Uploading Large Archives in
     -- Parts (Multipart Upload) and Complete Multipart
     -- Upload in the Amazon Glacier Developer Guide.
-    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): types.CompleteMultipartUploadOutput, table
+    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): Operation<types.CompleteMultipartUploadOutput>
     -- This operation completes the vault locking process by transitioning the vault lock
     -- from the InProgress state to the Locked state, which causes the
     -- vault lock policy to become unchangeable. A vault lock is put into the
@@ -88,7 +92,7 @@ local record Client
     -- error. If an invalid lock ID is passed in the request when the vault lock is in the
     -- InProgress state, the operation throws an InvalidParameter
     -- error.
-    completeVaultLock: function(Client, types.CompleteVaultLockInput): types.CompleteVaultLockOutput, table
+    completeVaultLock: function(Client, types.CompleteVaultLockInput): Operation<types.CompleteVaultLockOutput>
     -- This operation creates a new vault with the specified name. The name of the vault
     -- must be unique within a region for an AWS account. You can create up to 1,000 vaults per
     -- account. If you need to create more vaults, contact Amazon Glacier.
@@ -105,7 +109,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Creating a Vault in Amazon
     -- Glacier and Create Vault in the
     -- Amazon Glacier Developer Guide.
-    createVault: function(Client, types.CreateVaultInput): types.CreateVaultOutput, table
+    createVault: function(Client, types.CreateVaultInput): Operation<types.CreateVaultOutput>
     -- This operation deletes an archive from a vault. Subsequent requests to initiate a
     -- retrieval of this archive will fail. Archive retrievals that are in progress for this
     -- archive ID may or may not succeed according to the following scenarios:
@@ -125,7 +129,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Deleting an Archive in Amazon
     -- Glacier and Delete Archive in the
     -- Amazon Glacier Developer Guide.
-    deleteArchive: function(Client, types.DeleteArchiveInput): types.DeleteArchiveOutput, table
+    deleteArchive: function(Client, types.DeleteArchiveInput): Operation<types.DeleteArchiveOutput>
     -- This operation deletes a vault. Amazon Glacier will delete a vault only if there are
     -- no archives in the vault as of the last inventory and there have been no writes to the
     -- vault since the last inventory. If either of these conditions is not satisfied, the vault
@@ -144,7 +148,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Deleting a Vault in Amazon
     -- Glacier and Delete Vault in the
     -- Amazon Glacier Developer Guide.
-    deleteVault: function(Client, types.DeleteVaultInput): types.DeleteVaultOutput, table
+    deleteVault: function(Client, types.DeleteVaultInput): Operation<types.DeleteVaultOutput>
     -- This operation deletes the access policy associated with the specified vault. The
     -- operation is eventually consistent; that is, it might take some time for Amazon Glacier to
     -- completely remove the access policy, and you might still see the effect of the policy for a
@@ -152,7 +156,7 @@ local record Client
     -- This operation is idempotent. You can invoke delete multiple times, even if there is
     -- no policy associated with the vault. For more information about vault access policies, see
     -- Amazon Glacier Access Control with Vault Access Policies.
-    deleteVaultAccessPolicy: function(Client, types.DeleteVaultAccessPolicyInput): types.DeleteVaultAccessPolicyOutput, table
+    deleteVaultAccessPolicy: function(Client, types.DeleteVaultAccessPolicyInput): Operation<types.DeleteVaultAccessPolicyOutput>
     -- This operation deletes the notification configuration set for a vault. The operation
     -- is eventually consistent; that is, it might take some time for Amazon Glacier to completely
     -- disable the notifications and you might still receive some notifications for a short time
@@ -165,7 +169,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Configuring Vault
     -- Notifications in Amazon Glacier and Delete Vault
     -- Notification Configuration in the Amazon Glacier Developer Guide.
-    deleteVaultNotifications: function(Client, types.DeleteVaultNotificationsInput): types.DeleteVaultNotificationsOutput, table
+    deleteVaultNotifications: function(Client, types.DeleteVaultNotificationsInput): Operation<types.DeleteVaultNotificationsOutput>
     -- This operation returns information about a job you previously initiated, including
     -- the job initiation date, the user who initiated the job, the job status code/message and
     -- the Amazon SNS topic to notify after Amazon Glacier (Glacier) completes the job. For more information
@@ -184,7 +188,7 @@ local record Client
     -- For more information about using this operation,
     -- see the documentation for the underlying REST API Describe Job
     -- in the Amazon Glacier Developer Guide.
-    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeJob: function(Client, types.DescribeJobInput): Operation<types.DescribeJobOutput>
     -- This operation returns information about a vault, including the vault's Amazon
     -- Resource Name (ARN), the date the vault was created, the number of archives it contains,
     -- and the total size of all the archives in the vault. The number of archives and their total
@@ -202,11 +206,11 @@ local record Client
     -- For conceptual information and underlying REST API, see Retrieving Vault Metadata in
     -- Amazon Glacier and Describe Vault in the
     -- Amazon Glacier Developer Guide.
-    describeVault: function(Client, types.DescribeVaultInput): types.DescribeVaultOperationOutput, table
+    describeVault: function(Client, types.DescribeVaultInput): Operation<types.DescribeVaultOperationOutput>
     -- This operation returns the current data retrieval policy for the account and region
     -- specified in the GET request. For more information about data retrieval policies, see
     -- Amazon Glacier Data Retrieval Policies.
-    getDataRetrievalPolicy: function(Client, types.GetDataRetrievalPolicyInput): types.GetDataRetrievalPolicyOutput, table
+    getDataRetrievalPolicy: function(Client, types.GetDataRetrievalPolicyInput): Operation<types.GetDataRetrievalPolicyOutput>
     -- This operation downloads the output of the job you initiated using InitiateJob. Depending on the job type you specified when you initiated the
     -- job, the output will be either the content of an archive or a vault inventory.
     -- You can download all the job output or download a portion of the output by specifying
@@ -240,14 +244,14 @@ local record Client
     -- For conceptual information and the underlying REST API, see Downloading a
     -- Vault Inventory, Downloading an
     -- Archive, and Get Job Output
-    getJobOutput: function(Client, types.GetJobOutputInput): types.GetJobOutputOutput, table
+    getJobOutput: function(Client, types.GetJobOutputInput): Operation<types.GetJobOutputOutput>
     -- This operation retrieves the access-policy subresource set on the vault;
     -- for more information on setting this subresource, see Set Vault Access Policy
     -- (PUT access-policy). If there is no access policy set on the vault, the
     -- operation returns a 404 Not found error. For more information about vault
     -- access policies, see Amazon Glacier Access Control
     -- with Vault Access Policies.
-    getVaultAccessPolicy: function(Client, types.GetVaultAccessPolicyInput): types.GetVaultAccessPolicyOutput, table
+    getVaultAccessPolicy: function(Client, types.GetVaultAccessPolicyInput): Operation<types.GetVaultAccessPolicyOutput>
     -- This operation retrieves the following attributes from the lock-policy
     -- subresource set on the specified vault:
     -- The vault lock policy set on the vault.
@@ -265,7 +269,7 @@ local record Client
     -- If there is no vault lock policy set on the vault, the operation returns a 404
     -- Not found error. For more information about vault lock policies, Amazon
     -- Glacier Access Control with Vault Lock Policies.
-    getVaultLock: function(Client, types.GetVaultLockInput): types.GetVaultLockOutput, table
+    getVaultLock: function(Client, types.GetVaultLockInput): Operation<types.GetVaultLockOutput>
     -- This operation retrieves the notification-configuration subresource of
     -- the specified vault.
     -- For information about setting a notification configuration on a vault, see SetVaultNotifications. If a notification configuration for a vault is not
@@ -280,12 +284,12 @@ local record Client
     -- For conceptual information and underlying REST API, see Configuring Vault
     -- Notifications in Amazon Glacier and Get Vault Notification
     -- Configuration in the Amazon Glacier Developer Guide.
-    getVaultNotifications: function(Client, types.GetVaultNotificationsInput): types.GetVaultNotificationsOutput, table
+    getVaultNotifications: function(Client, types.GetVaultNotificationsInput): Operation<types.GetVaultNotificationsOutput>
     -- This operation initiates a job of the specified type, which can be a select, an archival retrieval,
     -- or a vault retrieval. For more information about using this operation,
     -- see the documentation for the underlying REST API Initiate
     -- a Job.
-    initiateJob: function(Client, types.InitiateJobInput): types.InitiateJobOutput, table
+    initiateJob: function(Client, types.InitiateJobInput): Operation<types.InitiateJobOutput>
     -- This operation initiates a multipart upload. Amazon Glacier creates a multipart
     -- upload resource and returns its ID in the response. The multipart upload ID is used in
     -- subsequent requests to upload parts of an archive (see UploadMultipartPart).
@@ -313,7 +317,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Uploading Large Archives in
     -- Parts (Multipart Upload) and Initiate Multipart
     -- Upload in the Amazon Glacier Developer Guide.
-    initiateMultipartUpload: function(Client, types.InitiateMultipartUploadInput): types.InitiateMultipartUploadOutput, table
+    initiateMultipartUpload: function(Client, types.InitiateMultipartUploadInput): Operation<types.InitiateMultipartUploadOutput>
     -- This operation initiates the vault locking process by doing the following:
     -- Installing a vault lock policy on the specified vault.
     -- Setting the lock state of vault lock to InProgress.
@@ -338,7 +342,7 @@ local record Client
     -- state, the operation returns an AccessDeniedException error. When the vault
     -- lock is in the InProgress state you must call AbortVaultLock
     -- before you can initiate a new vault lock policy.
-    initiateVaultLock: function(Client, types.InitiateVaultLockInput): types.InitiateVaultLockOutput, table
+    initiateVaultLock: function(Client, types.InitiateVaultLockInput): Operation<types.InitiateVaultLockOutput>
     -- This operation lists jobs for a vault, including jobs that are in-progress and jobs
     -- that have recently finished. The List Job operation returns a list of these jobs sorted by job initiation
     -- time.
@@ -368,7 +372,7 @@ local record Client
     -- (false).
     -- For more information about using this operation,
     -- see the documentation for the underlying REST API List Jobs.
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- This operation lists in-progress multipart uploads for the specified vault. An
     -- in-progress multipart upload is a multipart upload that has been initiated by an InitiateMultipartUpload request, but has not yet been completed or aborted.
     -- The list returned in the List Multipart Upload response has no guaranteed order.
@@ -391,7 +395,7 @@ local record Client
     -- For conceptual information and the underlying REST API, see Working
     -- with Archives in Amazon Glacier and List Multipart Uploads
     -- in the Amazon Glacier Developer Guide.
-    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): types.ListMultipartUploadsOutput, table
+    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): Operation<types.ListMultipartUploadsOutput>
     -- This operation lists the parts of an archive that have been uploaded in a specific
     -- multipart upload. You can make this request at any time during an in-progress multipart
     -- upload before you complete the upload (see CompleteMultipartUpload. List
@@ -412,14 +416,14 @@ local record Client
     -- For conceptual information and the underlying REST API, see Working
     -- with Archives in Amazon Glacier and List Parts in the
     -- Amazon Glacier Developer Guide.
-    listParts: function(Client, types.ListPartsInput): types.ListPartsOutput, table
+    listParts: function(Client, types.ListPartsInput): Operation<types.ListPartsOutput>
     -- This operation lists the provisioned capacity units for the specified AWS
     -- account.
-    listProvisionedCapacity: function(Client, types.ListProvisionedCapacityInput): types.ListProvisionedCapacityOutput, table
+    listProvisionedCapacity: function(Client, types.ListProvisionedCapacityInput): Operation<types.ListProvisionedCapacityOutput>
     -- This operation lists all the tags attached to a vault. The operation returns an empty
     -- map if there are no tags. For more information about tags, see Tagging Amazon Glacier
     -- Resources.
-    listTagsForVault: function(Client, types.ListTagsForVaultInput): types.ListTagsForVaultOutput, table
+    listTagsForVault: function(Client, types.ListTagsForVaultInput): Operation<types.ListTagsForVaultOutput>
     -- This operation lists all vaults owned by the calling user's account. The list
     -- returned in the response is ASCII-sorted by vault name.
     -- By default, this operation returns up to 10 items. If there are more vaults to
@@ -437,28 +441,28 @@ local record Client
     -- For conceptual information and underlying REST API, see Retrieving Vault Metadata in
     -- Amazon Glacier and List Vaults in the
     -- Amazon Glacier Developer Guide.
-    listVaults: function(Client, types.ListVaultsInput): types.ListVaultsOutput, table
+    listVaults: function(Client, types.ListVaultsInput): Operation<types.ListVaultsOutput>
     -- This operation purchases a provisioned capacity unit for an AWS account.
-    purchaseProvisionedCapacity: function(Client, types.PurchaseProvisionedCapacityInput): types.PurchaseProvisionedCapacityOutput, table
+    purchaseProvisionedCapacity: function(Client, types.PurchaseProvisionedCapacityInput): Operation<types.PurchaseProvisionedCapacityOutput>
     -- This operation removes one or more tags from the set of tags attached to a vault. For
     -- more information about tags, see Tagging Amazon Glacier Resources.
     -- This operation is idempotent. The operation will be successful, even if there are no tags
     -- attached to the vault.
-    removeTagsFromVault: function(Client, types.RemoveTagsFromVaultInput): types.RemoveTagsFromVaultOutput, table
+    removeTagsFromVault: function(Client, types.RemoveTagsFromVaultInput): Operation<types.RemoveTagsFromVaultOutput>
     -- This operation sets and then enacts a data retrieval policy in the region specified
     -- in the PUT request. You can set one policy per region for an AWS account. The policy is
     -- enacted within a few minutes of a successful PUT operation.
     -- The set policy operation does not affect retrieval jobs that were in progress before
     -- the policy was enacted. For more information about data retrieval policies, see Amazon
     -- Glacier Data Retrieval Policies.
-    setDataRetrievalPolicy: function(Client, types.SetDataRetrievalPolicyInput): types.SetDataRetrievalPolicyOutput, table
+    setDataRetrievalPolicy: function(Client, types.SetDataRetrievalPolicyInput): Operation<types.SetDataRetrievalPolicyOutput>
     -- This operation configures an access policy for a vault and will overwrite an existing
     -- policy. To configure a vault access policy, send a PUT request to the
     -- access-policy subresource of the vault. An access policy is specific to a
     -- vault and is also called a vault subresource. You can set one access policy per vault and
     -- the policy can be up to 20 KB in size. For more information about vault access policies,
     -- see Amazon Glacier Access Control with Vault Access Policies.
-    setVaultAccessPolicy: function(Client, types.SetVaultAccessPolicyInput): types.SetVaultAccessPolicyOutput, table
+    setVaultAccessPolicy: function(Client, types.SetVaultAccessPolicyInput): Operation<types.SetVaultAccessPolicyOutput>
     -- This operation configures notifications that will be sent when specific events happen
     -- to a vault. By default, you don't get any notifications.
     -- To configure vault notifications, send a PUT request to the
@@ -484,7 +488,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Configuring Vault
     -- Notifications in Amazon Glacier and Set Vault Notification
     -- Configuration in the Amazon Glacier Developer Guide.
-    setVaultNotifications: function(Client, types.SetVaultNotificationsInput): types.SetVaultNotificationsOutput, table
+    setVaultNotifications: function(Client, types.SetVaultNotificationsInput): Operation<types.SetVaultNotificationsOutput>
     -- This operation adds an archive to a vault. This is a synchronous operation, and for a
     -- successful upload, your data is durably persisted. Amazon Glacier returns the archive ID in
     -- the x-amz-archive-id header of the response.
@@ -512,7 +516,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Uploading an Archive in Amazon
     -- Glacier and Upload Archive in the
     -- Amazon Glacier Developer Guide.
-    uploadArchive: function(Client, types.UploadArchiveInput): types.UploadArchiveOutput, table
+    uploadArchive: function(Client, types.UploadArchiveInput): Operation<types.UploadArchiveOutput>
     -- This operation uploads a part of an archive. You can upload archive parts in any
     -- order. You can also upload them in parallel. You can upload up to 10,000 parts for a
     -- multipart upload.
@@ -547,7 +551,7 @@ local record Client
     -- For conceptual information and underlying REST API, see Uploading Large Archives in
     -- Parts (Multipart Upload) and Upload Part in the
     -- Amazon Glacier Developer Guide.
-    uploadMultipartPart: function(Client, types.UploadMultipartPartInput): types.UploadMultipartPartOutput, table
+    uploadMultipartPart: function(Client, types.UploadMultipartPartInput): Operation<types.UploadMultipartPartOutput>
 end
 
 local record M

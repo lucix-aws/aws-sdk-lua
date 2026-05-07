@@ -2,6 +2,10 @@
 
 local types = require("kms.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels the deletion of a KMS key. When this operation succeeds, the key state of the KMS
     -- key is Disabled. To enable the KMS key, use EnableKey.
@@ -14,7 +18,7 @@ local record Client
     -- Related operations: ScheduleKeyDeletion
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    cancelKeyDeletion: function(Client, types.CancelKeyDeletionInput): types.CancelKeyDeletionOutput, table
+    cancelKeyDeletion: function(Client, types.CancelKeyDeletionInput): Operation<types.CancelKeyDeletionOutput>
     -- Connects or reconnects a custom key store to its backing key store. For an CloudHSM key
     -- store, ConnectCustomKeyStore connects the key store to its associated CloudHSM
     -- cluster. For an external key store, ConnectCustomKeyStore connects the key store
@@ -74,7 +78,7 @@ local record Client
     -- UpdateCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    connectCustomKeyStore: function(Client, types.ConnectCustomKeyStoreInput): types.ConnectCustomKeyStoreOutput, table
+    connectCustomKeyStore: function(Client, types.ConnectCustomKeyStoreInput): Operation<types.ConnectCustomKeyStoreOutput>
     -- Creates a friendly name for a KMS key.
     -- Adding, deleting, or updating an alias can allow or deny permission to the KMS key. For details, see ABAC for KMS in the Key Management Service Developer Guide.
     -- You can use an alias to identify a KMS key in the KMS console, in the DescribeKey operation and in cryptographic operations, such as Encrypt and
@@ -104,7 +108,7 @@ local record Client
     -- UpdateAlias
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createAlias: function(Client, types.CreateAliasInput): Operation<types.CreateAliasOutput>
     -- Creates a custom key store backed by a key store that you own and manage. When you use a
     -- KMS key in a custom key store for a cryptographic operation, the cryptographic operation is
     -- actually performed in your key store using your keys. KMS supports CloudHSM key stores
@@ -160,7 +164,7 @@ local record Client
     -- UpdateCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput): types.CreateCustomKeyStoreOutput, table
+    createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput): Operation<types.CreateCustomKeyStoreOutput>
     -- Adds a grant to a KMS key.
     -- A grant is a policy instrument that allows Amazon Web Services principals to use
     -- KMS keys in cryptographic operations. It also can allow them to view a KMS key (DescribeKey) and create and manage grants. When authorizing access to a KMS key,
@@ -196,7 +200,7 @@ local record Client
     -- RevokeGrant
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    createGrant: function(Client, types.CreateGrantInput): types.CreateGrantOutput, table
+    createGrant: function(Client, types.CreateGrantInput): Operation<types.CreateGrantOutput>
     -- Creates a unique customer managed KMS key in your Amazon Web Services account and Region.
     -- You can use a KMS key in cryptographic operations, such as encryption and signing. Some Amazon Web Services
     -- services let you use KMS keys that you create and manage to protect your service
@@ -324,7 +328,7 @@ local record Client
     -- ScheduleKeyDeletion
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    createKey: function(Client, types.CreateKeyInput): types.CreateKeyOutput, table
+    createKey: function(Client, types.CreateKeyInput): Operation<types.CreateKeyOutput>
     -- Decrypts ciphertext that was encrypted by a KMS key using any of the following
     -- operations:
     -- Encrypt
@@ -378,7 +382,7 @@ local record Client
     -- ReEncrypt
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    decrypt: function(Client, types.DecryptInput): types.DecryptOutput, table
+    decrypt: function(Client, types.DecryptInput): Operation<types.DecryptOutput>
     -- Deletes the specified alias.
     -- Adding, deleting, or updating an alias can allow or deny permission to the KMS key. For details, see ABAC for KMS in the Key Management Service Developer Guide.
     -- Because an alias is not a property of a KMS key, you can delete and change the aliases of
@@ -400,7 +404,7 @@ local record Client
     -- UpdateAlias
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    deleteAlias: function(Client, types.DeleteAliasInput): types.DeleteAliasOutput, table
+    deleteAlias: function(Client, types.DeleteAliasInput): Operation<types.DeleteAliasOutput>
     -- Deletes a custom key store. This operation does not affect any backing elements of the
     -- custom key store. It does not delete the CloudHSM cluster that is associated with an CloudHSM key
     -- store, or affect any users or keys in the cluster. For an external key store, it does not
@@ -436,7 +440,7 @@ local record Client
     -- UpdateCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput): types.DeleteCustomKeyStoreOutput, table
+    deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput): Operation<types.DeleteCustomKeyStoreOutput>
     -- Deletes key material that was previously imported. This operation makes the specified KMS
     -- key temporarily unusable. To restore the usability of the KMS key, reimport the same key
     -- material. For more information about importing key material into KMS, see Importing Key Material
@@ -460,7 +464,7 @@ local record Client
     -- ImportKeyMaterial
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    deleteImportedKeyMaterial: function(Client, types.DeleteImportedKeyMaterialInput): types.DeleteImportedKeyMaterialOutput, table
+    deleteImportedKeyMaterial: function(Client, types.DeleteImportedKeyMaterialInput): Operation<types.DeleteImportedKeyMaterialOutput>
     -- Derives a shared secret using a key agreement algorithm.
     -- You must use an asymmetric NIST-standard elliptic curve (ECC) or SM2 (China Regions
     -- only) KMS key pair with a KeyUsage value of KEY_AGREEMENT to call
@@ -513,7 +517,7 @@ local record Client
     -- DescribeKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    deriveSharedSecret: function(Client, types.DeriveSharedSecretInput): types.DeriveSharedSecretOutput, table
+    deriveSharedSecret: function(Client, types.DeriveSharedSecretInput): Operation<types.DeriveSharedSecretOutput>
     -- Gets information about custom key stores in the account and Region.
     -- This operation is part of the custom key stores feature in KMS, which
     -- combines the convenience and extensive integration of KMS with the isolation and control of a
@@ -549,7 +553,7 @@ local record Client
     -- UpdateCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    describeCustomKeyStores: function(Client, types.DescribeCustomKeyStoresInput): types.DescribeCustomKeyStoresOutput, table
+    describeCustomKeyStores: function(Client, types.DescribeCustomKeyStoresInput): Operation<types.DescribeCustomKeyStoresOutput>
     -- Provides detailed information about a KMS key. You can run DescribeKey on a
     -- customer
     -- managed key or an Amazon Web Services managed key.
@@ -588,7 +592,7 @@ local record Client
     -- ListRetirableGrants
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    describeKey: function(Client, types.DescribeKeyInput): types.DescribeKeyOutput, table
+    describeKey: function(Client, types.DescribeKeyInput): Operation<types.DescribeKeyOutput>
     -- Sets the state of a KMS key to disabled. This change temporarily prevents use of the KMS
     -- key for cryptographic operations.
     -- The KMS key that you use for this operation must be in a compatible key state. For more
@@ -600,7 +604,7 @@ local record Client
     -- Related operations: EnableKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    disableKey: function(Client, types.DisableKeyInput): types.DisableKeyOutput, table
+    disableKey: function(Client, types.DisableKeyInput): Operation<types.DisableKeyOutput>
     -- Disables automatic rotation of the key material of the specified symmetric encryption KMS
     -- key.
     -- Automatic key rotation is supported only on symmetric encryption KMS keys.
@@ -622,7 +626,7 @@ local record Client
     -- RotateKeyOnDemand
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    disableKeyRotation: function(Client, types.DisableKeyRotationInput): types.DisableKeyRotationOutput, table
+    disableKeyRotation: function(Client, types.DisableKeyRotationInput): Operation<types.DisableKeyRotationOutput>
     -- Disconnects the custom key store from its backing key store. This operation disconnects an
     -- CloudHSM key store from its associated CloudHSM cluster or disconnects an external key store from
     -- the external key store proxy that communicates with your external key manager.
@@ -649,7 +653,7 @@ local record Client
     -- UpdateCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput): types.DisconnectCustomKeyStoreOutput, table
+    disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput): Operation<types.DisconnectCustomKeyStoreOutput>
     -- Sets the key state of a KMS key to enabled. This allows you to use the KMS key for
     -- cryptographic operations.
     -- The KMS key that you use for this operation must be in a compatible key state. For
@@ -659,7 +663,7 @@ local record Client
     -- Related operations: DisableKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    enableKey: function(Client, types.EnableKeyInput): types.EnableKeyOutput, table
+    enableKey: function(Client, types.EnableKeyInput): Operation<types.EnableKeyOutput>
     -- Enables automatic rotation of the key material of the specified symmetric encryption KMS
     -- key.
     -- By default, when you enable automatic rotation of a customer managed KMS key, KMS
@@ -696,7 +700,7 @@ local record Client
     -- rotation is enabled.
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    enableKeyRotation: function(Client, types.EnableKeyRotationInput): types.EnableKeyRotationOutput, table
+    enableKeyRotation: function(Client, types.EnableKeyRotationInput): Operation<types.EnableKeyRotationOutput>
     -- Encrypts plaintext of up to 4,096 bytes using a KMS key. You can use a symmetric or
     -- asymmetric KMS key with a KeyUsage of ENCRYPT_DECRYPT.
     -- You can use this operation to encrypt small amounts of arbitrary data, such as a personal
@@ -740,7 +744,7 @@ local record Client
     -- GenerateDataKeyPair
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    encrypt: function(Client, types.EncryptInput): types.EncryptOutput, table
+    encrypt: function(Client, types.EncryptInput): Operation<types.EncryptOutput>
     -- Returns a unique symmetric data key for use outside of KMS. This operation returns a
     -- plaintext copy of the data key and a copy that is encrypted under a symmetric encryption KMS
     -- key that you specify. The bytes in the plaintext key are random; they are not related to the
@@ -803,7 +807,7 @@ local record Client
     -- GenerateDataKeyWithoutPlaintext
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateDataKey: function(Client, types.GenerateDataKeyInput): types.GenerateDataKeyOutput, table
+    generateDataKey: function(Client, types.GenerateDataKeyInput): Operation<types.GenerateDataKeyOutput>
     -- Returns a unique asymmetric data key pair for use outside of KMS. This operation returns
     -- a plaintext public key, a plaintext private key, and a copy of the private key that is
     -- encrypted under the symmetric encryption KMS key you specify. You can use the data key pair to
@@ -860,7 +864,7 @@ local record Client
     -- GenerateDataKeyWithoutPlaintext
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput): types.GenerateDataKeyPairOutput, table
+    generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput): Operation<types.GenerateDataKeyPairOutput>
     -- Returns a unique asymmetric data key pair for use outside of KMS. This operation returns
     -- a plaintext public key and a copy of the private key that is encrypted under the symmetric
     -- encryption KMS key you specify. Unlike GenerateDataKeyPair, this operation
@@ -900,7 +904,7 @@ local record Client
     -- GenerateDataKeyWithoutPlaintext
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateDataKeyPairWithoutPlaintext: function(Client, types.GenerateDataKeyPairWithoutPlaintextInput): types.GenerateDataKeyPairWithoutPlaintextOutput, table
+    generateDataKeyPairWithoutPlaintext: function(Client, types.GenerateDataKeyPairWithoutPlaintextInput): Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
     -- Returns a unique symmetric data key for use outside of KMS. This operation returns a
     -- data key that is encrypted under a symmetric encryption KMS key that you specify. The bytes in
     -- the key are random; they are not related to the caller or to the KMS key.
@@ -949,7 +953,7 @@ local record Client
     -- GenerateDataKeyPairWithoutPlaintext
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateDataKeyWithoutPlaintext: function(Client, types.GenerateDataKeyWithoutPlaintextInput): types.GenerateDataKeyWithoutPlaintextOutput, table
+    generateDataKeyWithoutPlaintext: function(Client, types.GenerateDataKeyWithoutPlaintextInput): Operation<types.GenerateDataKeyWithoutPlaintextOutput>
     -- Generates a hash-based message authentication code (HMAC) for a message using an HMAC KMS
     -- key and a MAC algorithm that the key supports. HMAC KMS keys and the HMAC algorithms that
     -- KMS uses conform to industry standards defined in RFC 2104.
@@ -975,7 +979,7 @@ local record Client
     -- Related operations: VerifyMac
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateMac: function(Client, types.GenerateMacInput): types.GenerateMacOutput, table
+    generateMac: function(Client, types.GenerateMacInput): Operation<types.GenerateMacOutput>
     -- Returns a random byte string that is cryptographically secure.
     -- You must use the NumberOfBytes parameter to specify the length of the random
     -- byte string. There is no default value for string length.
@@ -995,7 +999,7 @@ local record Client
     -- Required permissions: kms:GenerateRandom (IAM policy)
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    generateRandom: function(Client, types.GenerateRandomInput): types.GenerateRandomOutput, table
+    generateRandom: function(Client, types.GenerateRandomInput): Operation<types.GenerateRandomOutput>
     -- Returns usage information about the last successful cryptographic operation performed with a
     -- specified KMS key, including the operation type, timestamp, and associated CloudTrail event
     -- ID.
@@ -1035,14 +1039,14 @@ local record Client
     -- ScheduleKeyDeletion
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    getKeyLastUsage: function(Client, types.GetKeyLastUsageInput): types.GetKeyLastUsageOutput, table
+    getKeyLastUsage: function(Client, types.GetKeyLastUsageInput): Operation<types.GetKeyLastUsageOutput>
     -- Gets a key policy attached to the specified KMS key.
     -- Cross-account use: No. You cannot perform this operation on a KMS key in a different Amazon Web Services account.
     -- Required permissions: kms:GetKeyPolicy (key policy)
     -- Related operations: PutKeyPolicy
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    getKeyPolicy: function(Client, types.GetKeyPolicyInput): types.GetKeyPolicyOutput, table
+    getKeyPolicy: function(Client, types.GetKeyPolicyInput): Operation<types.GetKeyPolicyOutput>
     -- Provides detailed information about the rotation status for a KMS key, including whether
     -- automatic
     -- rotation of the key material is enabled for the specified KMS key, the rotation
@@ -1081,7 +1085,7 @@ local record Client
     -- RotateKeyOnDemand
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    getKeyRotationStatus: function(Client, types.GetKeyRotationStatusInput): types.GetKeyRotationStatusOutput, table
+    getKeyRotationStatus: function(Client, types.GetKeyRotationStatusInput): Operation<types.GetKeyRotationStatusOutput>
     -- Returns the public key and an import token you need to import or reimport key material for
     -- a KMS key.
     -- By default, KMS keys are created with key material that KMS generates. This operation
@@ -1128,7 +1132,7 @@ local record Client
     -- DeleteImportedKeyMaterial
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    getParametersForImport: function(Client, types.GetParametersForImportInput): types.GetParametersForImportOutput, table
+    getParametersForImport: function(Client, types.GetParametersForImportInput): Operation<types.GetParametersForImportOutput>
     -- Returns the public key of an asymmetric KMS key. Unlike the private key of a asymmetric
     -- KMS key, which never leaves KMS unencrypted, callers with kms:GetPublicKey
     -- permission can download the public key of an asymmetric KMS key. You can share the public key
@@ -1165,7 +1169,7 @@ local record Client
     -- Related operations: CreateKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    getPublicKey: function(Client, types.GetPublicKeyInput): types.GetPublicKeyOutput, table
+    getPublicKey: function(Client, types.GetPublicKeyInput): Operation<types.GetPublicKeyOutput>
     -- Imports or reimports key material into an existing KMS key that was created without key
     -- material. You can also use this operation to set or update the expiration model and expiration
     -- date of the imported key material.
@@ -1250,7 +1254,7 @@ local record Client
     -- RotateKeyOnDemand
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    importKeyMaterial: function(Client, types.ImportKeyMaterialInput): types.ImportKeyMaterialOutput, table
+    importKeyMaterial: function(Client, types.ImportKeyMaterialInput): Operation<types.ImportKeyMaterialOutput>
     -- Gets a list of aliases in the caller's Amazon Web Services account and region. For more information
     -- about aliases, see CreateAlias.
     -- By default, the ListAliases operation returns all aliases in the account and
@@ -1275,7 +1279,7 @@ local record Client
     -- UpdateAlias
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listAliases: function(Client, types.ListAliasesInput): types.ListAliasesOutput, table
+    listAliases: function(Client, types.ListAliasesInput): Operation<types.ListAliasesOutput>
     -- Gets a list of all grants for the specified KMS key.
     -- You must specify the KMS key in all requests. You can filter the grant list by grant ID or
     -- grantee principal.
@@ -1298,7 +1302,7 @@ local record Client
     -- RevokeGrant
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listGrants: function(Client, types.ListGrantsInput): types.ListGrantsOutput, table
+    listGrants: function(Client, types.ListGrantsInput): Operation<types.ListGrantsOutput>
     -- Gets the names of the key policies that are attached to a KMS key. This operation is
     -- designed to get policy names that you can use in a GetKeyPolicy operation.
     -- However, the only valid policy name is default.
@@ -1309,7 +1313,7 @@ local record Client
     -- PutKeyPolicy
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listKeyPolicies: function(Client, types.ListKeyPoliciesInput): types.ListKeyPoliciesOutput, table
+    listKeyPolicies: function(Client, types.ListKeyPoliciesInput): Operation<types.ListKeyPoliciesOutput>
     -- Returns information about the key materials associated with the specified KMS key. You can
     -- use the optional IncludeKeyMaterial parameter to control which key materials are
     -- included in the response.
@@ -1328,7 +1332,7 @@ local record Client
     -- RotateKeyOnDemand
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listKeyRotations: function(Client, types.ListKeyRotationsInput): types.ListKeyRotationsOutput, table
+    listKeyRotations: function(Client, types.ListKeyRotationsInput): Operation<types.ListKeyRotationsOutput>
     -- Gets a list of all KMS keys in the caller's Amazon Web Services account and Region.
     -- Cross-account use: No. You cannot perform this operation on a KMS key in a different Amazon Web Services account.
     -- Required permissions: kms:ListKeys (IAM policy)
@@ -1339,7 +1343,7 @@ local record Client
     -- ListResourceTags
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listKeys: function(Client, types.ListKeysInput): types.ListKeysOutput, table
+    listKeys: function(Client, types.ListKeysInput): Operation<types.ListKeysOutput>
     -- Returns all tags on the specified KMS key.
     -- For general information about tags, including the format and syntax, see Tagging Amazon Web Services resources in
     -- the Amazon Web Services General Reference. For information about using
@@ -1354,7 +1358,7 @@ local record Client
     -- UntagResource
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listResourceTags: function(Client, types.ListResourceTagsInput): types.ListResourceTagsOutput, table
+    listResourceTags: function(Client, types.ListResourceTagsInput): Operation<types.ListResourceTagsOutput>
     -- Returns information about all grants in the Amazon Web Services account and Region that have the
     -- specified retiring principal.
     -- You can specify any principal in your Amazon Web Services account. The grants that are returned include
@@ -1384,7 +1388,7 @@ local record Client
     -- RevokeGrant
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    listRetirableGrants: function(Client, types.ListRetirableGrantsInput): types.ListRetirableGrantsOutput, table
+    listRetirableGrants: function(Client, types.ListRetirableGrantsInput): Operation<types.ListRetirableGrantsOutput>
     -- Attaches a key policy to the specified KMS key.
     -- For more information about key policies, see Key Policies in the Key Management Service Developer Guide.
     -- For help writing and formatting a JSON policy document, see the IAM JSON Policy Reference in the
@@ -1397,7 +1401,7 @@ local record Client
     -- Related operations: GetKeyPolicy
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    putKeyPolicy: function(Client, types.PutKeyPolicyInput): types.PutKeyPolicyOutput, table
+    putKeyPolicy: function(Client, types.PutKeyPolicyInput): Operation<types.PutKeyPolicyOutput>
     -- Decrypts ciphertext and then reencrypts it entirely within KMS. You can use this
     -- operation to change the KMS key under which data is encrypted, such as when you manually rotate a
     -- KMS key or change the KMS key that protects a ciphertext. You can also use it to reencrypt
@@ -1454,7 +1458,7 @@ local record Client
     -- GenerateDataKeyPair
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    reEncrypt: function(Client, types.ReEncryptInput): types.ReEncryptOutput, table
+    reEncrypt: function(Client, types.ReEncryptInput): Operation<types.ReEncryptOutput>
     -- Replicates a multi-Region key into the specified Region. This operation creates a
     -- multi-Region replica key based on a multi-Region primary key in a different Region of the same
     -- Amazon Web Services partition. You can create multiple replicas of a primary key, but each must be in a
@@ -1509,7 +1513,7 @@ local record Client
     -- UpdatePrimaryRegion
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    replicateKey: function(Client, types.ReplicateKeyInput): types.ReplicateKeyOutput, table
+    replicateKey: function(Client, types.ReplicateKeyInput): Operation<types.ReplicateKeyOutput>
     -- Deletes a grant. Typically, you retire a grant when you no longer need its permissions. To
     -- identify the grant to retire, use a grant token, or both the grant ID and a
     -- key identifier (key ID or key ARN) of the KMS key. The CreateGrant operation
@@ -1534,7 +1538,7 @@ local record Client
     -- RevokeGrant
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    retireGrant: function(Client, types.RetireGrantInput): types.RetireGrantOutput, table
+    retireGrant: function(Client, types.RetireGrantInput): Operation<types.RetireGrantOutput>
     -- Deletes the specified grant. You revoke a grant to terminate the permissions that the
     -- grant allows. For more information, see Retiring and revoking grants in the
     -- Key Management Service Developer Guide
@@ -1557,7 +1561,7 @@ local record Client
     -- RetireGrant
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    revokeGrant: function(Client, types.RevokeGrantInput): types.RevokeGrantOutput, table
+    revokeGrant: function(Client, types.RevokeGrantInput): Operation<types.RevokeGrantOutput>
     -- Immediately initiates rotation of the key material of the specified symmetric encryption
     -- KMS key.
     -- You can perform on-demand rotation of the key
@@ -1598,7 +1602,7 @@ local record Client
     -- ListKeyRotations
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    rotateKeyOnDemand: function(Client, types.RotateKeyOnDemandInput): types.RotateKeyOnDemandOutput, table
+    rotateKeyOnDemand: function(Client, types.RotateKeyOnDemandInput): Operation<types.RotateKeyOnDemandOutput>
     -- Schedules the deletion of a KMS key. By default, KMS applies a waiting period of 30
     -- days, but you can specify a waiting period of 7-30 days. When this operation is successful,
     -- the key state of the KMS key changes to PendingDeletion and the key can't be used
@@ -1642,7 +1646,7 @@ local record Client
     -- DisableKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    scheduleKeyDeletion: function(Client, types.ScheduleKeyDeletionInput): types.ScheduleKeyDeletionOutput, table
+    scheduleKeyDeletion: function(Client, types.ScheduleKeyDeletionInput): Operation<types.ScheduleKeyDeletionOutput>
     -- Creates a digital
     -- signature for a message or message digest by using the private key in an asymmetric
     -- signing KMS key. To verify the signature, use the Verify operation, or use
@@ -1681,7 +1685,7 @@ local record Client
     -- Related operations: Verify
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    sign: function(Client, types.SignInput): types.SignOutput, table
+    sign: function(Client, types.SignInput): Operation<types.SignOutput>
     -- Adds or edits tags on a customer managed key.
     -- Tagging or untagging a KMS key can allow or deny permission to the KMS key. For details, see ABAC for KMS in the Key Management Service Developer Guide.
     -- Each tag consists of a tag key and a tag value, both of which are case-sensitive strings.
@@ -1706,7 +1710,7 @@ local record Client
     -- UntagResource
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes tags from a customer managed key. To delete a
     -- tag, specify the tag key and the KMS key.
     -- Tagging or untagging a KMS key can allow or deny permission to the KMS key. For details, see ABAC for KMS in the Key Management Service Developer Guide.
@@ -1727,7 +1731,7 @@ local record Client
     -- TagResource
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Associates an existing KMS alias with a different KMS key. Each alias is associated with
     -- only one KMS key at a time, although a KMS key can have multiple aliases. The alias and the
     -- KMS key must be in the same Amazon Web Services account and Region.
@@ -1761,7 +1765,7 @@ local record Client
     -- ListAliases
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    updateAlias: function(Client, types.UpdateAliasInput): types.UpdateAliasOutput, table
+    updateAlias: function(Client, types.UpdateAliasInput): Operation<types.UpdateAliasOutput>
     -- Changes the properties of a custom key store. You can use this operation to change the
     -- properties of an CloudHSM key store or an external key store.
     -- Use the required CustomKeyStoreId parameter to identify the custom key store.
@@ -1827,7 +1831,7 @@ local record Client
     -- DisconnectCustomKeyStore
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    updateCustomKeyStore: function(Client, types.UpdateCustomKeyStoreInput): types.UpdateCustomKeyStoreOutput, table
+    updateCustomKeyStore: function(Client, types.UpdateCustomKeyStoreInput): Operation<types.UpdateCustomKeyStoreOutput>
     -- Updates the description of a KMS key. To see the description of a KMS key, use DescribeKey.
     -- The KMS key that you use for this operation must be in a compatible key state. For
     -- details, see Key states of KMS keys in the Key Management Service Developer Guide.
@@ -1838,7 +1842,7 @@ local record Client
     -- DescribeKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    updateKeyDescription: function(Client, types.UpdateKeyDescriptionInput): types.UpdateKeyDescriptionOutput, table
+    updateKeyDescription: function(Client, types.UpdateKeyDescriptionInput): Operation<types.UpdateKeyDescriptionOutput>
     -- Changes the primary key of a multi-Region key.
     -- This operation changes the replica key in the specified Region to a primary key and
     -- changes the former primary key to a replica key. For example, suppose you have a primary key
@@ -1885,7 +1889,7 @@ local record Client
     -- ReplicateKey
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    updatePrimaryRegion: function(Client, types.UpdatePrimaryRegionInput): types.UpdatePrimaryRegionOutput, table
+    updatePrimaryRegion: function(Client, types.UpdatePrimaryRegionInput): Operation<types.UpdatePrimaryRegionOutput>
     -- Verifies a digital signature that was generated by the Sign operation.
     -- Verification confirms that an authorized user signed the message with the specified KMS
     -- key and signing algorithm, and the message hasn't changed since it was signed. If the
@@ -1918,7 +1922,7 @@ local record Client
     -- Related operations: Sign
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    verify: function(Client, types.VerifyInput): types.VerifyOutput, table
+    verify: function(Client, types.VerifyInput): Operation<types.VerifyOutput>
     -- Verifies the hash-based message authentication code (HMAC) for a specified message, HMAC
     -- KMS key, and MAC algorithm. To verify the HMAC, VerifyMac computes an HMAC using
     -- the message, HMAC KMS key, and MAC algorithm that you specify, and compares the computed HMAC
@@ -1938,7 +1942,7 @@ local record Client
     -- Related operations: GenerateMac
     -- Eventual consistency: The KMS API follows an eventual consistency model.
     -- For more information, see KMS eventual consistency.
-    verifyMac: function(Client, types.VerifyMacInput): types.VerifyMacOutput, table
+    verifyMac: function(Client, types.VerifyMacInput): Operation<types.VerifyMacOutput>
 end
 
 local record M

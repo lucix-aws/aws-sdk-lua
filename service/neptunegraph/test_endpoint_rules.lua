@@ -2,920 +2,898 @@
 
 -- Generated endpoint ruleset tests — do not edit
 
-package.path = "runtime/?.lua;runtime/?/init.lua;" .. package.path
-
 local endpoint = require("smithy.endpoint")
 local ruleset = require("neptunegraph.endpoint_rules")
 
-local pass_count = 0
-local fail_count = 0
-
-local function test(name, fn)
-    local ok, err = pcall(fn)
-    if ok then
-        pass_count = pass_count + 1
-        print("PASS: " .. name)
-    else
-        fail_count = fail_count + 1
-        print("FAIL: " .. name .. "\n  " .. tostring(err))
-    end
-end
-
-local function assert_eq(a, b, msg)
-    if a ~= b then
-        error((msg or "assert_eq") .. ": expected " .. tostring(b) .. ", got " .. tostring(a), 2)
-    end
-end
-
-test("Region and CP ApiType are provided", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://mycustomDomain.com", "url")
-end)
-
-test("Region and DP ApiType are provided", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "DataPlane",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://mycustomDomain.com", "url")
-end)
-
-test("Region and invalid ApiType are provided", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "someInvalidApiType",
-        Region = "us-east-1",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://mycustomDomain.com", "url")
-end)
-
-test("Only invalid ApiType is provided", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "someInvalidApiType",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://mycustomDomain.com", "url")
-end)
-
-test("Validate CP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-east-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-east-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-1.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://us-east-1.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-east-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-east-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-2.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-east-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-east-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-east-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://us-east-2.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-west-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-west-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-west-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-west-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.us-west-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-west-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-west-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-west-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-west-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-west-2.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "us-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.us-west-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "us-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://us-west-2.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-west-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-west-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-1.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://eu-west-1.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-west-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-2",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-west-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-2",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-2.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-2",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-2.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-west-2.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-west-2",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://eu-west-2.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-central-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-central-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-central-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-central-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.eu-central-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-central-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-central-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-central-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-central-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-central-1.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "eu-central-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.eu-central-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "eu-central-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://eu-central-1.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.ap-southeast-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.ap-southeast-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-southeast-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-southeast-1.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-southeast-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-southeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://ap-southeast-1.neptune-graph.amazonaws.com", "url")
-end)
-
-test("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.ap-northeast-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph-fips.ap-northeast-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: fips endpoint is not supported for this API", "error message")
-end)
-
-test("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-northeast-1.api.aws", "url")
-end)
-
-test("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-northeast-1.on.aws", "url")
-end)
-
-test("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "ControlPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://neptune-graph.ap-northeast-1.amazonaws.com", "url")
-end)
-
-test("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
-    local params = {
-        ApiType = "DataPlane",
-        Region = "ap-northeast-1",
-        UseFIPS = false,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
-    assert_eq(result.url, "https://ap-northeast-1.neptune-graph.amazonaws.com", "url")
-end)
+describe("endpoint rules", function()
+    it("Region and CP ApiType are provided", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://mycustomDomain.com", result.url)
+    end)
+
+    it("Region and DP ApiType are provided", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "DataPlane",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://mycustomDomain.com", result.url)
+    end)
+
+    it("Region and invalid ApiType are provided", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "someInvalidApiType",
+            Region = "us-east-1",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://mycustomDomain.com", result.url)
+    end)
+
+    it("Only invalid ApiType is provided", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "someInvalidApiType",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://mycustomDomain.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-1.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-east-1.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-east-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-2.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-east-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-east-2.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-west-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-west-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-west-2.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: us-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-west-2.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-1.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://eu-west-1.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-west-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-2.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-2.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-west-2, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://eu-west-2.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-central-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-central-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-central-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-central-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.eu-central-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-central-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-central-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-central-1.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.eu-central-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: eu-central-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://eu-central-1.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.ap-southeast-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.ap-southeast-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-southeast-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-southeast-1.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-southeast-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-southeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://ap-southeast-1.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.ap-northeast-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph-fips.ap-northeast-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: true, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: fips endpoint is not supported for this API", err)
+    end)
+
+    it("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-northeast-1.api.aws", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: true", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-northeast-1.on.aws", result.url)
+    end)
+
+    it("Validate CP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "ControlPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://neptune-graph.ap-northeast-1.amazonaws.com", result.url)
+    end)
+
+    it("Validate DP endpoint in region: ap-northeast-1, useFipsEndpoint: false, useDualStackEndpoint: false", function()
+        local params = {
+            ApiType = "DataPlane",
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://ap-northeast-1.neptune-graph.amazonaws.com", result.url)
+    end)
+
+    it("Validate When no region is provided", function()
+        local params = {
+            ApiType = "DataPlane",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Missing Region", err)
+    end)
+
+    it("Validate When invalid/unknown ApiType provided", function()
+        local params = {
+            Region = "us-east-1",
+            ApiType = "someUnknownValue",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Unknown ApiType", err)
+    end)
+
+    it("Both Fips and dualstack enabled", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("Fips enabled and dualstack disabled", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("Fips disabled and dualstack enabled", function()
+        local params = {
+            Endpoint = "https://mycustomDomain.com",
+            ApiType = "ControlPlane",
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
 
-test("Validate When no region is provided", function()
-    local params = {
-        ApiType = "DataPlane",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Missing Region", "error message")
 end)
-
-test("Validate When invalid/unknown ApiType provided", function()
-    local params = {
-        Region = "us-east-1",
-        ApiType = "someUnknownValue",
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Unknown ApiType", "error message")
-end)
-
-test("Both Fips and dualstack enabled", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("Fips enabled and dualstack disabled", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = true,
-        UseDualStack = false,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: FIPS and custom endpoint are not supported", "error message")
-end)
-
-test("Fips disabled and dualstack enabled", function()
-    local params = {
-        Endpoint = "https://mycustomDomain.com",
-        ApiType = "ControlPlane",
-        Region = "us-east-1",
-        UseFIPS = false,
-        UseDualStack = true,
-    }
-    local result, err = endpoint.resolve(ruleset, params)
-    assert(result == nil, "expected error but got result")
-    assert(err ~= nil, "expected error but got nil")
-    assert_eq(err, "Invalid Configuration: Dualstack and custom endpoint are not supported", "error message")
-end)
-
-print(string.format("\n%d passed, %d failed", pass_count, fail_count))
-if fail_count > 0 then os.exit(1) end

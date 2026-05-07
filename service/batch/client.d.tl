@@ -2,6 +2,10 @@
 
 local types = require("batch.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels a job in an Batch job queue. Jobs that are in a SUBMITTED, PENDING, or RUNNABLE state are cancelled and the job status is updated to FAILED.
     -- A PENDING job is canceled after all dependency jobs are completed.
@@ -14,7 +18,7 @@ local record Client
     -- RUNNING state aren't canceled. However, the API operation still succeeds, even
     -- if no job is canceled. These jobs must be terminated with the TerminateJob
     -- operation.
-    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    cancelJob: function(Client, types.CancelJobInput): Operation<types.CancelJobOutput>
     -- Creates an Batch compute environment. You can create MANAGED or
     -- UNMANAGED compute environments. MANAGED compute environments can
     -- use Amazon EC2 or Fargate resources. UNMANAGED compute environments can only use
@@ -38,9 +42,9 @@ local record Client
     -- instance in the Amazon Elastic Container Service Developer Guide.
     -- Batch doesn't automatically upgrade the AMIs in a compute environment after it's
     -- created. For more information on how to update a compute environment's AMI, see Updating compute environments in the Batch User Guide.
-    createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput): types.CreateComputeEnvironmentOutput, table
+    createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput): Operation<types.CreateComputeEnvironmentOutput>
     -- Creates an Batch consumable resource.
-    createConsumableResource: function(Client, types.CreateConsumableResourceInput): types.CreateConsumableResourceOutput, table
+    createConsumableResource: function(Client, types.CreateConsumableResourceInput): Operation<types.CreateConsumableResourceOutput>
     -- Creates an Batch job queue. When you create a job queue, you associate one or more
     -- compute environments to the queue and assign an order of preference for the compute
     -- environments.
@@ -48,13 +52,13 @@ local record Client
     -- scheduler places jobs onto its associated compute environments. For example, if a compute
     -- environment is associated with more than one job queue, the job queue with a higher priority
     -- is given preference for scheduling jobs to that compute environment.
-    createJobQueue: function(Client, types.CreateJobQueueInput): types.CreateJobQueueOutput, table
+    createJobQueue: function(Client, types.CreateJobQueueInput): Operation<types.CreateJobQueueOutput>
     -- Creates an Batch quota share. Each quota share operates as a virtual queue with a configured compute capacity, resource sharing strategy, and borrow limits.
-    createQuotaShare: function(Client, types.CreateQuotaShareInput): types.CreateQuotaShareOutput, table
+    createQuotaShare: function(Client, types.CreateQuotaShareInput): Operation<types.CreateQuotaShareOutput>
     -- Creates an Batch scheduling policy.
-    createSchedulingPolicy: function(Client, types.CreateSchedulingPolicyInput): types.CreateSchedulingPolicyOutput, table
+    createSchedulingPolicy: function(Client, types.CreateSchedulingPolicyInput): Operation<types.CreateSchedulingPolicyOutput>
     -- Creates a service environment for running service jobs. Service environments define capacity limits for specific service types such as SageMaker Training jobs.
-    createServiceEnvironment: function(Client, types.CreateServiceEnvironmentInput): types.CreateServiceEnvironmentOutput, table
+    createServiceEnvironment: function(Client, types.CreateServiceEnvironmentInput): Operation<types.CreateServiceEnvironmentOutput>
     -- Deletes an Batch compute environment.
     -- Before you can delete a compute environment, you must set its state to
     -- DISABLED with the UpdateComputeEnvironment API operation and
@@ -62,75 +66,75 @@ local record Client
     -- Compute environments that use Fargate resources must terminate all active jobs on that
     -- compute environment before deleting the compute environment. If this isn't done, the compute
     -- environment enters an invalid state.
-    deleteComputeEnvironment: function(Client, types.DeleteComputeEnvironmentInput): types.DeleteComputeEnvironmentOutput, table
+    deleteComputeEnvironment: function(Client, types.DeleteComputeEnvironmentInput): Operation<types.DeleteComputeEnvironmentOutput>
     -- Deletes the specified consumable resource.
-    deleteConsumableResource: function(Client, types.DeleteConsumableResourceInput): types.DeleteConsumableResourceOutput, table
+    deleteConsumableResource: function(Client, types.DeleteConsumableResourceInput): Operation<types.DeleteConsumableResourceOutput>
     -- Deletes the specified job queue. You must first disable submissions for a queue with the
     -- UpdateJobQueue operation. All jobs in the queue are eventually terminated
     -- when you delete a job queue.
     -- It's not necessary to disassociate compute environments from a queue before submitting a
     -- DeleteJobQueue request.
-    deleteJobQueue: function(Client, types.DeleteJobQueueInput): types.DeleteJobQueueOutput, table
+    deleteJobQueue: function(Client, types.DeleteJobQueueInput): Operation<types.DeleteJobQueueOutput>
     -- Deletes the specified quota share. You must first disable submissions for the share by
     -- updating the state to DISABLED using the UpdateQuotaShare operation.
     -- All jobs in the share are eventually terminated when you delete a quota share.
-    deleteQuotaShare: function(Client, types.DeleteQuotaShareInput): types.DeleteQuotaShareOutput, table
+    deleteQuotaShare: function(Client, types.DeleteQuotaShareInput): Operation<types.DeleteQuotaShareOutput>
     -- Deletes the specified scheduling policy.
     -- You can't delete a scheduling policy that's used in any job queues.
-    deleteSchedulingPolicy: function(Client, types.DeleteSchedulingPolicyInput): types.DeleteSchedulingPolicyOutput, table
+    deleteSchedulingPolicy: function(Client, types.DeleteSchedulingPolicyInput): Operation<types.DeleteSchedulingPolicyOutput>
     -- Deletes a Service environment. Before you can delete a service environment, you must first set its state to DISABLED with the UpdateServiceEnvironment API operation and disassociate it from any job queues with the UpdateJobQueue API operation.
-    deleteServiceEnvironment: function(Client, types.DeleteServiceEnvironmentInput): types.DeleteServiceEnvironmentOutput, table
+    deleteServiceEnvironment: function(Client, types.DeleteServiceEnvironmentInput): Operation<types.DeleteServiceEnvironmentOutput>
     -- Deregisters an Batch job definition. Job definitions are permanently deleted after 180
     -- days.
-    deregisterJobDefinition: function(Client, types.DeregisterJobDefinitionInput): types.DeregisterJobDefinitionOutput, table
+    deregisterJobDefinition: function(Client, types.DeregisterJobDefinitionInput): Operation<types.DeregisterJobDefinitionOutput>
     -- Describes one or more of your compute environments.
     -- If you're using an unmanaged compute environment, you can use the
     -- DescribeComputeEnvironment operation to determine the
     -- ecsClusterArn that you launch your Amazon ECS container instances into.
-    describeComputeEnvironments: function(Client, types.DescribeComputeEnvironmentsInput): types.DescribeComputeEnvironmentsOutput, table
+    describeComputeEnvironments: function(Client, types.DescribeComputeEnvironmentsInput): Operation<types.DescribeComputeEnvironmentsOutput>
     -- Returns a description of the specified consumable resource.
-    describeConsumableResource: function(Client, types.DescribeConsumableResourceInput): types.DescribeConsumableResourceOutput, table
+    describeConsumableResource: function(Client, types.DescribeConsumableResourceInput): Operation<types.DescribeConsumableResourceOutput>
     -- Describes a list of job definitions. You can specify a status (such as
     -- ACTIVE) to only return job definitions that match that status.
-    describeJobDefinitions: function(Client, types.DescribeJobDefinitionsInput): types.DescribeJobDefinitionsOutput, table
+    describeJobDefinitions: function(Client, types.DescribeJobDefinitionsInput): Operation<types.DescribeJobDefinitionsOutput>
     -- Describes one or more of your job queues.
-    describeJobQueues: function(Client, types.DescribeJobQueuesInput): types.DescribeJobQueuesOutput, table
+    describeJobQueues: function(Client, types.DescribeJobQueuesInput): Operation<types.DescribeJobQueuesOutput>
     -- Describes a list of Batch jobs.
-    describeJobs: function(Client, types.DescribeJobsInput): types.DescribeJobsOutput, table
+    describeJobs: function(Client, types.DescribeJobsInput): Operation<types.DescribeJobsOutput>
     -- Returns a description of the specified quota share.
-    describeQuotaShare: function(Client, types.DescribeQuotaShareInput): types.DescribeQuotaShareOutput, table
+    describeQuotaShare: function(Client, types.DescribeQuotaShareInput): Operation<types.DescribeQuotaShareOutput>
     -- Describes one or more of your scheduling policies.
-    describeSchedulingPolicies: function(Client, types.DescribeSchedulingPoliciesInput): types.DescribeSchedulingPoliciesOutput, table
+    describeSchedulingPolicies: function(Client, types.DescribeSchedulingPoliciesInput): Operation<types.DescribeSchedulingPoliciesOutput>
     -- Describes one or more of your service environments.
-    describeServiceEnvironments: function(Client, types.DescribeServiceEnvironmentsInput): types.DescribeServiceEnvironmentsOutput, table
+    describeServiceEnvironments: function(Client, types.DescribeServiceEnvironmentsInput): Operation<types.DescribeServiceEnvironmentsOutput>
     -- The details of a service job.
-    describeServiceJob: function(Client, types.DescribeServiceJobInput): types.DescribeServiceJobOutput, table
+    describeServiceJob: function(Client, types.DescribeServiceJobInput): Operation<types.DescribeServiceJobOutput>
     -- Provides a snapshot of job queue state, including ordering of RUNNABLE jobs, as well as capacity utilization for already dispatched jobs.
     -- The first 100 RUNNABLE jobs in the job queue are listed in order of dispatch. For job queues with an attached
     -- quota-share policy, the first RUNNABLE job in each quota share is also listed. Capacity utilization for the job queue is provided, as well as
     -- break downs by share for job queues with attached fair-share or quota-share scheduling policies.
-    getJobQueueSnapshot: function(Client, types.GetJobQueueSnapshotInput): types.GetJobQueueSnapshotOutput, table
+    getJobQueueSnapshot: function(Client, types.GetJobQueueSnapshotInput): Operation<types.GetJobQueueSnapshotOutput>
     -- Returns a list of Batch consumable resources.
-    listConsumableResources: function(Client, types.ListConsumableResourcesInput): types.ListConsumableResourcesOutput, table
+    listConsumableResources: function(Client, types.ListConsumableResourcesInput): Operation<types.ListConsumableResourcesOutput>
     -- Returns a list of Batch jobs.
     -- You must specify only one of the following items:
     -- A job queue ID to return a list of jobs in that job queue
     -- A multi-node parallel job ID to return a list of nodes for that job
     -- An array job ID to return a list of the children for that job
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- Returns a list of Batch jobs that require a specific consumable resource.
-    listJobsByConsumableResource: function(Client, types.ListJobsByConsumableResourceInput): types.ListJobsByConsumableResourceOutput, table
+    listJobsByConsumableResource: function(Client, types.ListJobsByConsumableResourceInput): Operation<types.ListJobsByConsumableResourceOutput>
     -- Returns a list of Batch quota shares associated with a job queue.
-    listQuotaShares: function(Client, types.ListQuotaSharesInput): types.ListQuotaSharesOutput, table
+    listQuotaShares: function(Client, types.ListQuotaSharesInput): Operation<types.ListQuotaSharesOutput>
     -- Returns a list of Batch scheduling policies.
-    listSchedulingPolicies: function(Client, types.ListSchedulingPoliciesInput): types.ListSchedulingPoliciesOutput, table
+    listSchedulingPolicies: function(Client, types.ListSchedulingPoliciesInput): Operation<types.ListSchedulingPoliciesOutput>
     -- Returns a list of service jobs for a specified job queue.
-    listServiceJobs: function(Client, types.ListServiceJobsInput): types.ListServiceJobsOutput, table
+    listServiceJobs: function(Client, types.ListServiceJobsInput): Operation<types.ListServiceJobsOutput>
     -- Lists the tags for an Batch resource. Batch resources that support tags are compute environments, jobs, job definitions, job queues,
     -- and scheduling policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs aren't supported.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Registers an Batch job definition.
-    registerJobDefinition: function(Client, types.RegisterJobDefinitionInput): types.RegisterJobDefinitionOutput, table
+    registerJobDefinition: function(Client, types.RegisterJobDefinitionInput): Operation<types.RegisterJobDefinitionOutput>
     -- Submits an Batch job from a job definition. Parameters that are specified during SubmitJob override parameters defined in the job definition. vCPU and memory
     -- requirements that are specified in the resourceRequirements objects in the job
     -- definition are the exception. They can't be overridden this way using the memory
@@ -142,38 +146,38 @@ local record Client
     -- Jobs that run on Fargate resources can't be guaranteed to run for more than 14 days.
     -- This is because, after 14 days, Fargate resources might become unavailable and job might be
     -- terminated.
-    submitJob: function(Client, types.SubmitJobInput): types.SubmitJobOutput, table
+    submitJob: function(Client, types.SubmitJobInput): Operation<types.SubmitJobOutput>
     -- Submits a service job to a specified job queue to run on SageMaker AI. A service job is a unit of work that you submit to Batch for execution on SageMaker AI.
-    submitServiceJob: function(Client, types.SubmitServiceJobInput): types.SubmitServiceJobOutput, table
+    submitServiceJob: function(Client, types.SubmitServiceJobInput): Operation<types.SubmitServiceJobOutput>
     -- Associates the specified tags to a resource with the specified resourceArn.
     -- If existing tags on a resource aren't specified in the request parameters, they aren't
     -- changed. When a resource is deleted, the tags that are associated with that resource are
     -- deleted as well. Batch resources that support tags are compute environments, jobs, job definitions, job queues,
     -- and scheduling policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs aren't supported.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Terminates a job in a job queue. Jobs that are in the STARTING or
     -- RUNNING state are terminated, which causes them to transition to
     -- FAILED. Jobs that have not progressed to the STARTING state are
     -- cancelled.
-    terminateJob: function(Client, types.TerminateJobInput): types.TerminateJobOutput, table
+    terminateJob: function(Client, types.TerminateJobInput): Operation<types.TerminateJobOutput>
     -- Terminates a service job in a job queue.
-    terminateServiceJob: function(Client, types.TerminateServiceJobInput): types.TerminateServiceJobOutput, table
+    terminateServiceJob: function(Client, types.TerminateServiceJobInput): Operation<types.TerminateServiceJobOutput>
     -- Deletes specified tags from an Batch resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an Batch compute environment.
-    updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput): types.UpdateComputeEnvironmentOutput, table
+    updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput): Operation<types.UpdateComputeEnvironmentOutput>
     -- Updates a consumable resource.
-    updateConsumableResource: function(Client, types.UpdateConsumableResourceInput): types.UpdateConsumableResourceOutput, table
+    updateConsumableResource: function(Client, types.UpdateConsumableResourceInput): Operation<types.UpdateConsumableResourceOutput>
     -- Updates a job queue.
-    updateJobQueue: function(Client, types.UpdateJobQueueInput): types.UpdateJobQueueOutput, table
+    updateJobQueue: function(Client, types.UpdateJobQueueInput): Operation<types.UpdateJobQueueOutput>
     -- Updates a quota share.
-    updateQuotaShare: function(Client, types.UpdateQuotaShareInput): types.UpdateQuotaShareOutput, table
+    updateQuotaShare: function(Client, types.UpdateQuotaShareInput): Operation<types.UpdateQuotaShareOutput>
     -- Updates a scheduling policy.
-    updateSchedulingPolicy: function(Client, types.UpdateSchedulingPolicyInput): types.UpdateSchedulingPolicyOutput, table
+    updateSchedulingPolicy: function(Client, types.UpdateSchedulingPolicyInput): Operation<types.UpdateSchedulingPolicyOutput>
     -- Updates a service environment. You can update the state of a service environment from ENABLED to DISABLED to prevent new service jobs from being placed in the service environment.
-    updateServiceEnvironment: function(Client, types.UpdateServiceEnvironmentInput): types.UpdateServiceEnvironmentOutput, table
+    updateServiceEnvironment: function(Client, types.UpdateServiceEnvironmentInput): Operation<types.UpdateServiceEnvironmentOutput>
     -- Updates the priority of a specified service job in an Batch job queue.
-    updateServiceJob: function(Client, types.UpdateServiceJobInput): types.UpdateServiceJobOutput, table
+    updateServiceJob: function(Client, types.UpdateServiceJobInput): Operation<types.UpdateServiceJobOutput>
 end
 
 local record M

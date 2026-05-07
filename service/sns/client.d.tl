@@ -2,25 +2,29 @@
 
 local types = require("sns.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a statement to a topic's access control policy, granting access for the specified
     -- Amazon Web Services accounts to the specified actions.
     -- To remove the ability to change topic permissions, you must deny permissions to
     -- the AddPermission, RemovePermission, and
     -- SetTopicAttributes actions in your IAM policy.
-    addPermission: function(Client, types.AddPermissionInput): types.AddPermissionOutput, table
+    addPermission: function(Client, types.AddPermissionInput): Operation<types.AddPermissionOutput>
     -- Accepts a phone number and indicates whether the phone holder has opted out of
     -- receiving SMS messages from your Amazon Web Services account. You cannot send SMS messages to a number
     -- that is opted out.
     -- To resume sending messages, you can opt in the number by using the
     -- OptInPhoneNumber action.
-    checkIfPhoneNumberIsOptedOut: function(Client, types.CheckIfPhoneNumberIsOptedOutInput): types.CheckIfPhoneNumberIsOptedOutOutput, table
+    checkIfPhoneNumberIsOptedOut: function(Client, types.CheckIfPhoneNumberIsOptedOutInput): Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
     -- Verifies an endpoint owner's intent to receive messages by validating the token sent
     -- to the endpoint by an earlier Subscribe action. If the token is valid, the
     -- action creates a new subscription and returns its Amazon Resource Name (ARN). This call
     -- requires an AWS signature only when the AuthenticateOnUnsubscribe flag is
     -- set to "true".
-    confirmSubscription: function(Client, types.ConfirmSubscriptionInput): types.ConfirmSubscriptionOutput, table
+    confirmSubscription: function(Client, types.ConfirmSubscriptionInput): Operation<types.ConfirmSubscriptionOutput>
     -- Creates a platform application object for one of the supported push notification
     -- services, such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile
     -- apps may register. You must specify PlatformPrincipal and
@@ -54,7 +58,7 @@ local record Client
     -- key.
     -- You can use the returned PlatformApplicationArn as an attribute for the
     -- CreatePlatformEndpoint action.
-    createPlatformApplication: function(Client, types.CreatePlatformApplicationInput): types.CreatePlatformApplicationOutput, table
+    createPlatformApplication: function(Client, types.CreatePlatformApplicationInput): Operation<types.CreatePlatformApplicationOutput>
     -- Creates an endpoint for a device and mobile app on one of the supported push
     -- notification services, such as GCM (Firebase Cloud Messaging) and APNS.
     -- CreatePlatformEndpoint requires the PlatformApplicationArn
@@ -69,7 +73,7 @@ local record Client
     -- provided: ChannelId and UserId. The token field must also contain the ChannelId. For
     -- more information, see Creating an Amazon SNS Endpoint for
     -- Baidu.
-    createPlatformEndpoint: function(Client, types.CreatePlatformEndpointInput): types.CreatePlatformEndpointOutput, table
+    createPlatformEndpoint: function(Client, types.CreatePlatformEndpointInput): Operation<types.CreatePlatformEndpointOutput>
     -- Adds a destination phone number to an Amazon Web Services account in the SMS sandbox and sends a
     -- one-time password (OTP) to that phone number.
     -- When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
@@ -80,24 +84,24 @@ local record Client
     -- move out of the sandbox to send messages without restrictions,
     -- see SMS sandbox in
     -- the Amazon SNS Developer Guide.
-    createSMSSandboxPhoneNumber: function(Client, types.CreateSMSSandboxPhoneNumberInput): types.CreateSMSSandboxPhoneNumberOutput, table
+    createSMSSandboxPhoneNumber: function(Client, types.CreateSMSSandboxPhoneNumberInput): Operation<types.CreateSMSSandboxPhoneNumberOutput>
     -- Creates a topic to which notifications can be published. Users can create at most
     -- 100,000 standard topics (at most 1,000 FIFO topics). For more information, see Creating an Amazon SNS
     -- topic in the Amazon SNS Developer Guide. This action is
     -- idempotent, so if the requester already owns a topic with the specified name, that
     -- topic's ARN is returned without creating a new topic.
-    createTopic: function(Client, types.CreateTopicInput): types.CreateTopicOutput, table
+    createTopic: function(Client, types.CreateTopicInput): Operation<types.CreateTopicOutput>
     -- Deletes the endpoint for a device and mobile app from Amazon SNS. This action is
     -- idempotent. For more information, see Using Amazon SNS Mobile Push
     -- Notifications.
     -- When you delete an endpoint that is also subscribed to a topic, then you must also
     -- unsubscribe the endpoint from the topic.
-    deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    deleteEndpoint: function(Client, types.DeleteEndpointInput): Operation<types.DeleteEndpointOutput>
     -- Deletes a platform application object for one of the supported push notification
     -- services, such as APNS and GCM (Firebase Cloud Messaging). For more information, see
     -- Using Amazon SNS
     -- Mobile Push Notifications.
-    deletePlatformApplication: function(Client, types.DeletePlatformApplicationInput): types.DeletePlatformApplicationOutput, table
+    deletePlatformApplication: function(Client, types.DeletePlatformApplicationInput): Operation<types.DeletePlatformApplicationOutput>
     -- Deletes an Amazon Web Services account's verified or pending phone number from the SMS
     -- sandbox.
     -- When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
@@ -108,26 +112,26 @@ local record Client
     -- move out of the sandbox to send messages without restrictions,
     -- see SMS sandbox in
     -- the Amazon SNS Developer Guide.
-    deleteSMSSandboxPhoneNumber: function(Client, types.DeleteSMSSandboxPhoneNumberInput): types.DeleteSMSSandboxPhoneNumberOutput, table
+    deleteSMSSandboxPhoneNumber: function(Client, types.DeleteSMSSandboxPhoneNumberInput): Operation<types.DeleteSMSSandboxPhoneNumberOutput>
     -- Deletes a topic and all its subscriptions. Deleting a topic might prevent some
     -- messages previously sent to the topic from being delivered to subscribers. This action
     -- is idempotent, so deleting a topic that does not exist does not result in an
     -- error.
-    deleteTopic: function(Client, types.DeleteTopicInput): types.DeleteTopicOutput, table
+    deleteTopic: function(Client, types.DeleteTopicInput): Operation<types.DeleteTopicOutput>
     -- Retrieves the specified inline DataProtectionPolicy document that is
     -- stored in the specified Amazon SNS topic.
-    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput): types.GetDataProtectionPolicyOutput, table
+    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput): Operation<types.GetDataProtectionPolicyOutput>
     -- Retrieves the endpoint attributes for a device on one of the supported push
     -- notification services, such as GCM (Firebase Cloud Messaging) and APNS. For more
     -- information, see Using Amazon SNS Mobile Push Notifications.
-    getEndpointAttributes: function(Client, types.GetEndpointAttributesInput): types.GetEndpointAttributesOutput, table
+    getEndpointAttributes: function(Client, types.GetEndpointAttributesInput): Operation<types.GetEndpointAttributesOutput>
     -- Retrieves the attributes of the platform application object for the supported push
     -- notification services, such as APNS and GCM (Firebase Cloud Messaging). For more
     -- information, see Using Amazon SNS Mobile Push Notifications.
-    getPlatformApplicationAttributes: function(Client, types.GetPlatformApplicationAttributesInput): types.GetPlatformApplicationAttributesOutput, table
+    getPlatformApplicationAttributes: function(Client, types.GetPlatformApplicationAttributesInput): Operation<types.GetPlatformApplicationAttributesOutput>
     -- Returns the settings for sending SMS messages from your Amazon Web Services account.
     -- These settings are set with the SetSMSAttributes action.
-    getSMSAttributes: function(Client, types.GetSMSAttributesInput): types.GetSMSAttributesOutput, table
+    getSMSAttributes: function(Client, types.GetSMSAttributesInput): Operation<types.GetSMSAttributesOutput>
     -- Retrieves the SMS sandbox status for the calling Amazon Web Services account in the target
     -- Amazon Web Services Region.
     -- When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
@@ -138,12 +142,12 @@ local record Client
     -- move out of the sandbox to send messages without restrictions,
     -- see SMS sandbox in
     -- the Amazon SNS Developer Guide.
-    getSMSSandboxAccountStatus: function(Client, types.GetSMSSandboxAccountStatusInput): types.GetSMSSandboxAccountStatusOutput, table
+    getSMSSandboxAccountStatus: function(Client, types.GetSMSSandboxAccountStatusInput): Operation<types.GetSMSSandboxAccountStatusOutput>
     -- Returns all of the properties of a subscription.
-    getSubscriptionAttributes: function(Client, types.GetSubscriptionAttributesInput): types.GetSubscriptionAttributesOutput, table
+    getSubscriptionAttributes: function(Client, types.GetSubscriptionAttributesInput): Operation<types.GetSubscriptionAttributesOutput>
     -- Returns all of the properties of a topic. Topic properties returned might differ based
     -- on the authorization of the user.
-    getTopicAttributes: function(Client, types.GetTopicAttributesInput): types.GetTopicAttributesOutput, table
+    getTopicAttributes: function(Client, types.GetTopicAttributesInput): Operation<types.GetTopicAttributesOutput>
     -- Lists the endpoints and endpoint attributes for devices in a supported push
     -- notification service, such as GCM (Firebase Cloud Messaging) and APNS. The results for
     -- ListEndpointsByPlatformApplication are paginated and return a limited
@@ -154,11 +158,11 @@ local record Client
     -- will be null. For more information, see Using Amazon SNS Mobile Push
     -- Notifications.
     -- This action is throttled at 30 transactions per second (TPS).
-    listEndpointsByPlatformApplication: function(Client, types.ListEndpointsByPlatformApplicationInput): types.ListEndpointsByPlatformApplicationOutput, table
+    listEndpointsByPlatformApplication: function(Client, types.ListEndpointsByPlatformApplicationInput): Operation<types.ListEndpointsByPlatformApplicationOutput>
     -- Lists the calling Amazon Web Services account's dedicated origination numbers and their metadata.
     -- For more information about origination numbers, see Origination numbers in the Amazon SNS Developer
     -- Guide.
-    listOriginationNumbers: function(Client, types.ListOriginationNumbersInput): types.ListOriginationNumbersOutput, table
+    listOriginationNumbers: function(Client, types.ListOriginationNumbersInput): Operation<types.ListOriginationNumbersOutput>
     -- Returns a list of phone numbers that are opted out, meaning you cannot send SMS
     -- messages to them.
     -- The results for ListPhoneNumbersOptedOut are paginated, and each page
@@ -167,7 +171,7 @@ local record Client
     -- the next page, you call ListPhoneNumbersOptedOut again using the
     -- NextToken string received from the previous call. When there are no
     -- more records to return, NextToken will be null.
-    listPhoneNumbersOptedOut: function(Client, types.ListPhoneNumbersOptedOutInput): types.ListPhoneNumbersOptedOutOutput, table
+    listPhoneNumbersOptedOut: function(Client, types.ListPhoneNumbersOptedOutInput): Operation<types.ListPhoneNumbersOptedOutOutput>
     -- Lists the platform application objects for the supported push notification services,
     -- such as APNS and GCM (Firebase Cloud Messaging). The results for
     -- ListPlatformApplications are paginated and return a limited list of
@@ -178,7 +182,7 @@ local record Client
     -- null. For more information, see Using Amazon SNS Mobile Push
     -- Notifications.
     -- This action is throttled at 15 transactions per second (TPS).
-    listPlatformApplications: function(Client, types.ListPlatformApplicationsInput): types.ListPlatformApplicationsOutput, table
+    listPlatformApplications: function(Client, types.ListPlatformApplicationsInput): Operation<types.ListPlatformApplicationsOutput>
     -- Lists the calling Amazon Web Services account's current verified and pending destination phone
     -- numbers in the SMS sandbox.
     -- When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
@@ -189,32 +193,32 @@ local record Client
     -- move out of the sandbox to send messages without restrictions,
     -- see SMS sandbox in
     -- the Amazon SNS Developer Guide.
-    listSMSSandboxPhoneNumbers: function(Client, types.ListSMSSandboxPhoneNumbersInput): types.ListSMSSandboxPhoneNumbersOutput, table
+    listSMSSandboxPhoneNumbers: function(Client, types.ListSMSSandboxPhoneNumbersInput): Operation<types.ListSMSSandboxPhoneNumbersOutput>
     -- Returns a list of the requester's subscriptions. Each call returns a limited list of
     -- subscriptions, up to 100. If there are more subscriptions, a NextToken is
     -- also returned. Use the NextToken parameter in a new
     -- ListSubscriptions call to get further results.
     -- This action is throttled at 30 transactions per second (TPS).
-    listSubscriptions: function(Client, types.ListSubscriptionsInput): types.ListSubscriptionsOutput, table
+    listSubscriptions: function(Client, types.ListSubscriptionsInput): Operation<types.ListSubscriptionsOutput>
     -- Returns a list of the subscriptions to a specific topic. Each call returns a limited
     -- list of subscriptions, up to 100. If there are more subscriptions, a
     -- NextToken is also returned. Use the NextToken parameter in
     -- a new ListSubscriptionsByTopic call to get further results.
     -- This action is throttled at 30 transactions per second (TPS).
-    listSubscriptionsByTopic: function(Client, types.ListSubscriptionsByTopicInput): types.ListSubscriptionsByTopicOutput, table
+    listSubscriptionsByTopic: function(Client, types.ListSubscriptionsByTopicInput): Operation<types.ListSubscriptionsByTopicOutput>
     -- List all tags added to the specified Amazon SNS topic. For an overview, see Amazon SNS Tags in the
     -- Amazon Simple Notification Service Developer Guide.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of the requester's topics. Each call returns a limited list of topics,
     -- up to 100. If there are more topics, a NextToken is also returned. Use the
     -- NextToken parameter in a new ListTopics call to get
     -- further results.
     -- This action is throttled at 30 transactions per second (TPS).
-    listTopics: function(Client, types.ListTopicsInput): types.ListTopicsOutput, table
+    listTopics: function(Client, types.ListTopicsInput): Operation<types.ListTopicsOutput>
     -- Use this request to opt in a phone number that is opted out, which enables you to
     -- resume sending SMS messages to the number.
     -- You can opt in a phone number only once every 30 days.
-    optInPhoneNumber: function(Client, types.OptInPhoneNumberInput): types.OptInPhoneNumberOutput, table
+    optInPhoneNumber: function(Client, types.OptInPhoneNumberInput): Operation<types.OptInPhoneNumberOutput>
     -- Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a phone
     -- number, or a message to a mobile platform endpoint (when you specify the
     -- TargetArn).
@@ -231,7 +235,7 @@ local record Client
     -- Platform-Specific Payloads in Messages to Mobile Devices.
     -- You can publish messages only to topics and endpoints in the same
     -- Amazon Web Services Region.
-    publish: function(Client, types.PublishInput): types.PublishOutput, table
+    publish: function(Client, types.PublishInput): Operation<types.PublishOutput>
     -- Publishes up to 10 messages to the specified topic in a single batch. This is a batch
     -- version of the Publish API. If you try to send more than 10 messages in a
     -- single batch request, you will receive a TooManyEntriesInBatchRequest
@@ -261,25 +265,25 @@ local record Client
     -- notification protocol for each subscribed endpoint.
     -- When a messageId is returned, the batch message is saved, and Amazon SNS
     -- immediately delivers the message to subscribers.
-    publishBatch: function(Client, types.PublishBatchInput): types.PublishBatchOutput, table
+    publishBatch: function(Client, types.PublishBatchInput): Operation<types.PublishBatchOutput>
     -- Adds or updates an inline policy document that is stored in the specified Amazon SNS
     -- topic.
-    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput): types.PutDataProtectionPolicyOutput, table
+    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput): Operation<types.PutDataProtectionPolicyOutput>
     -- Removes a statement from a topic's access control policy.
     -- To remove the ability to change topic permissions, you must deny permissions to
     -- the AddPermission, RemovePermission, and
     -- SetTopicAttributes actions in your IAM policy.
-    removePermission: function(Client, types.RemovePermissionInput): types.RemovePermissionOutput, table
+    removePermission: function(Client, types.RemovePermissionInput): Operation<types.RemovePermissionOutput>
     -- Sets the attributes for an endpoint for a device on one of the supported push
     -- notification services, such as GCM (Firebase Cloud Messaging) and APNS. For more
     -- information, see Using Amazon SNS Mobile Push Notifications.
-    setEndpointAttributes: function(Client, types.SetEndpointAttributesInput): types.SetEndpointAttributesOutput, table
+    setEndpointAttributes: function(Client, types.SetEndpointAttributesInput): Operation<types.SetEndpointAttributesOutput>
     -- Sets the attributes of the platform application object for the supported push
     -- notification services, such as APNS and GCM (Firebase Cloud Messaging). For more
     -- information, see Using Amazon SNS Mobile Push Notifications. For information on configuring
     -- attributes for message delivery status, see Using Amazon SNS Application Attributes for
     -- Message Delivery Status.
-    setPlatformApplicationAttributes: function(Client, types.SetPlatformApplicationAttributesInput): types.SetPlatformApplicationAttributesOutput, table
+    setPlatformApplicationAttributes: function(Client, types.SetPlatformApplicationAttributesInput): Operation<types.SetPlatformApplicationAttributesOutput>
     -- Use this request to set the default settings for sending SMS messages and receiving
     -- daily SMS usage reports.
     -- You can override some of these settings for a single message when you use the
@@ -289,22 +293,22 @@ local record Client
     -- To use this operation, you must grant the Amazon SNS service principal
     -- (sns.amazonaws.com) permission to perform the
     -- s3:ListBucket action.
-    setSMSAttributes: function(Client, types.SetSMSAttributesInput): types.SetSMSAttributesOutput, table
+    setSMSAttributes: function(Client, types.SetSMSAttributesInput): Operation<types.SetSMSAttributesOutput>
     -- Allows a subscription owner to set an attribute of the subscription to a new
     -- value.
-    setSubscriptionAttributes: function(Client, types.SetSubscriptionAttributesInput): types.SetSubscriptionAttributesOutput, table
+    setSubscriptionAttributes: function(Client, types.SetSubscriptionAttributesInput): Operation<types.SetSubscriptionAttributesOutput>
     -- Allows a topic owner to set an attribute of the topic to a new value.
     -- To remove the ability to change topic permissions, you must deny permissions to
     -- the AddPermission, RemovePermission, and
     -- SetTopicAttributes actions in your IAM policy.
-    setTopicAttributes: function(Client, types.SetTopicAttributesInput): types.SetTopicAttributesOutput, table
+    setTopicAttributes: function(Client, types.SetTopicAttributesInput): Operation<types.SetTopicAttributesOutput>
     -- Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or
     -- if the endpoint and the topic are not in the same Amazon Web Services account, the endpoint owner must
     -- run the ConfirmSubscription action to confirm the subscription.
     -- You call the ConfirmSubscription action with the token from the
     -- subscription response. Confirmation tokens are valid for two days.
     -- This action is throttled at 100 transactions per second (TPS).
-    subscribe: function(Client, types.SubscribeInput): types.SubscribeOutput, table
+    subscribe: function(Client, types.SubscribeInput): Operation<types.SubscribeOutput>
     -- Add tags to the specified Amazon SNS topic. For an overview, see Amazon SNS Tags in the
     -- Amazon SNS Developer Guide.
     -- When you use topic tags, keep the following guidelines in mind:
@@ -316,7 +320,7 @@ local record Client
     -- existing tag.
     -- Tagging actions are limited to 10 TPS per Amazon Web Services account, per Amazon Web Services Region. If
     -- your application requires a higher throughput, file a technical support request.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes a subscription. If the subscription requires authentication for deletion, only
     -- the owner of the subscription or the topic's owner can unsubscribe, and an Amazon Web Services
     -- signature is required. If the Unsubscribe call does not require
@@ -324,10 +328,10 @@ local record Client
     -- message is delivered to the endpoint, so that the endpoint owner can easily resubscribe
     -- to the topic if the Unsubscribe request was unintended.
     -- This action is throttled at 100 transactions per second (TPS).
-    unsubscribe: function(Client, types.UnsubscribeInput): types.UnsubscribeOutput, table
+    unsubscribe: function(Client, types.UnsubscribeInput): Operation<types.UnsubscribeOutput>
     -- Remove tags from the specified Amazon SNS topic. For an overview, see Amazon SNS Tags in the
     -- Amazon SNS Developer Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Verifies a destination phone number with a one-time password (OTP) for the calling
     -- Amazon Web Services account.
     -- When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
@@ -338,7 +342,7 @@ local record Client
     -- move out of the sandbox to send messages without restrictions,
     -- see SMS sandbox in
     -- the Amazon SNS Developer Guide.
-    verifySMSSandboxPhoneNumber: function(Client, types.VerifySMSSandboxPhoneNumberInput): types.VerifySMSSandboxPhoneNumberOutput, table
+    verifySMSSandboxPhoneNumber: function(Client, types.VerifySMSSandboxPhoneNumberInput): Operation<types.VerifySMSSandboxPhoneNumberOutput>
 end
 
 local record M

@@ -2,18 +2,22 @@
 
 local types = require("personalizeruntime.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns a list of recommended actions in sorted in descending order by prediction score.
     -- Use the GetActionRecommendations API if you have a custom
     -- campaign that deploys a solution version trained with a PERSONALIZED_ACTIONS recipe.
     -- For more information about PERSONALIZED_ACTIONS recipes, see PERSONALIZED_ACTIONS recipes.
     -- For more information about getting action recommendations, see Getting action recommendations.
-    getActionRecommendations: function(Client, types.GetActionRecommendationsInput): types.GetActionRecommendationsOutput, table
+    getActionRecommendations: function(Client, types.GetActionRecommendationsInput): Operation<types.GetActionRecommendationsOutput>
     -- Re-ranks a list of recommended items for the given user. The first item in the list is
     -- deemed the most likely item to be of interest to the user.
     -- The solution backing the campaign must have been created using a recipe of type
     -- PERSONALIZED_RANKING.
-    getPersonalizedRanking: function(Client, types.GetPersonalizedRankingInput): types.GetPersonalizedRankingOutput, table
+    getPersonalizedRanking: function(Client, types.GetPersonalizedRankingInput): Operation<types.GetPersonalizedRankingOutput>
     -- Returns a list of recommended items. For campaigns, the campaign's Amazon Resource Name (ARN) is required and the required user and item input depends on the recipe type used to
     -- create the solution backing the campaign as follows:
     -- USER_PERSONALIZATION - userId required, itemId not used
@@ -22,7 +26,7 @@ local record Client
     -- PERSONALIZED_RANKING use the API.
     -- For recommenders, the recommender's ARN is required and the required item and user input depends on the use case (domain-based recipe) backing the recommender.
     -- For information on use case requirements see Choosing recommender use cases.
-    getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    getRecommendations: function(Client, types.GetRecommendationsInput): Operation<types.GetRecommendationsOutput>
 end
 
 local record M

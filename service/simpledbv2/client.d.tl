@@ -2,13 +2,17 @@
 
 local types = require("simpledbv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns information for an existing domain export.
-    getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    getExport: function(Client, types.GetExportInput): Operation<types.GetExportOutput>
     -- Lists all exports that were created. The results are paginated and can be filtered by domain name.
-    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listExports: function(Client, types.ListExportsInput): Operation<types.ListExportsOutput>
     -- Initiates the export of a SimpleDB domain to an S3 bucket.
-    startDomainExport: function(Client, types.StartDomainExportInput): types.StartDomainExportOutput, table
+    startDomainExport: function(Client, types.StartDomainExportInput): Operation<types.StartDomainExportOutput>
 end
 
 local record M

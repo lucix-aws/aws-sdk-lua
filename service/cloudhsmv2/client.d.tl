@@ -2,37 +2,41 @@
 
 local types = require("cloudhsmv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Copy an CloudHSM cluster backup to a different region.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM backup in a different Amazon Web Services account.
-    copyBackupToRegion: function(Client, types.CopyBackupToRegionInput): types.CopyBackupToRegionOutput, table
+    copyBackupToRegion: function(Client, types.CopyBackupToRegionInput): Operation<types.CopyBackupToRegionOutput>
     -- Creates a new CloudHSM cluster.
     -- Cross-account use: Yes. To perform this operation with an CloudHSM backup in a different AWS account, specify the full backup
     -- ARN in the value of the SourceBackupId parameter.
-    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createCluster: function(Client, types.CreateClusterInput): Operation<types.CreateClusterOutput>
     -- Creates a new hardware security module (HSM) in the specified CloudHSM
     -- cluster.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM cluster in a different Amazon Web Service account.
-    createHsm: function(Client, types.CreateHsmInput): types.CreateHsmOutput, table
+    createHsm: function(Client, types.CreateHsmInput): Operation<types.CreateHsmOutput>
     -- Deletes a specified CloudHSM backup. A backup can be restored up to 7 days
     -- after the DeleteBackup request is made. For more information on restoring a backup, see
     -- RestoreBackup.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM backup in a different Amazon Web Services account.
-    deleteBackup: function(Client, types.DeleteBackupInput): types.DeleteBackupOutput, table
+    deleteBackup: function(Client, types.DeleteBackupInput): Operation<types.DeleteBackupOutput>
     -- Deletes the specified CloudHSM cluster. Before you can delete a cluster, you must
     -- delete all HSMs in the cluster. To see if the cluster contains any HSMs, use DescribeClusters. To delete an HSM, use DeleteHsm.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM cluster in a different Amazon Web Services account.
-    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): Operation<types.DeleteClusterOutput>
     -- Deletes the specified HSM. To specify an HSM, you can use its identifier (ID), the IP
     -- address of the HSM's elastic network interface (ENI), or the ID of the HSM's ENI. You need to
     -- specify only one of these values. To find these values, use DescribeClusters.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM hsm in a different Amazon Web Services account.
-    deleteHsm: function(Client, types.DeleteHsmInput): types.DeleteHsmOutput, table
+    deleteHsm: function(Client, types.DeleteHsmInput): Operation<types.DeleteHsmOutput>
     -- Deletes an CloudHSM resource policy. Deleting a resource policy will result in the resource being unshared and removed from
     -- any RAM resource shares. Deleting the resource policy attached to a backup will not impact any clusters created from that
     -- backup.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Gets information about backups of CloudHSM clusters. Lists either the backups you own or the backups shared with you when the Shared parameter is true.
     -- This is a paginated operation, which means that each response might contain only a
     -- subset of all the backups. When the response contains only a subset of backups, it includes a
@@ -40,7 +44,7 @@ local record Client
     -- request to get more backups. When you receive a response with no NextToken (or an
     -- empty or null value), that means there are no more backups to get.
     -- Cross-account use: Yes. Customers can describe backups in other Amazon Web Services accounts that are shared with them.
-    describeBackups: function(Client, types.DescribeBackupsInput): types.DescribeBackupsOutput, table
+    describeBackups: function(Client, types.DescribeBackupsInput): Operation<types.DescribeBackupsOutput>
     -- Gets information about CloudHSM clusters.
     -- This is a paginated operation, which means that each response might contain only a
     -- subset of all the clusters. When the response contains only a subset of clusters, it includes
@@ -48,16 +52,16 @@ local record Client
     -- request to get more clusters. When you receive a response with no NextToken (or
     -- an empty or null value), that means there are no more clusters to get.
     -- Cross-account use: No. You cannot perform this operation on CloudHSM clusters in a different Amazon Web Services account.
-    describeClusters: function(Client, types.DescribeClustersInput): types.DescribeClustersOutput, table
+    describeClusters: function(Client, types.DescribeClustersInput): Operation<types.DescribeClustersOutput>
     -- Retrieves the resource policy document attached to a given resource.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Claims an CloudHSM cluster by submitting the cluster certificate issued by your
     -- issuing certificate authority (CA) and the CA's root certificate. Before you can claim a
     -- cluster, you must sign the cluster's certificate signing request (CSR) with your issuing CA.
     -- To get the cluster's CSR, use DescribeClusters.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM cluster in a different Amazon Web Services account.
-    initializeCluster: function(Client, types.InitializeClusterInput): types.InitializeClusterOutput, table
+    initializeCluster: function(Client, types.InitializeClusterInput): Operation<types.InitializeClusterOutput>
     -- Gets a list of tags for the specified CloudHSM cluster.
     -- This is a paginated operation, which means that each response might contain only a
     -- subset of all the tags. When the response contains only a subset of tags, it includes a
@@ -65,13 +69,13 @@ local record Client
     -- get more tags. When you receive a response with no NextToken (or an empty or null
     -- value), that means there are no more tags to get.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    listTags: function(Client, types.ListTagsInput): Operation<types.ListTagsOutput>
     -- Modifies attributes for CloudHSM backup.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM backup in a different Amazon Web Services account.
-    modifyBackupAttributes: function(Client, types.ModifyBackupAttributesInput): types.ModifyBackupAttributesOutput, table
+    modifyBackupAttributes: function(Client, types.ModifyBackupAttributesInput): Operation<types.ModifyBackupAttributesOutput>
     -- Modifies CloudHSM cluster.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM cluster in a different Amazon Web Services account.
-    modifyCluster: function(Client, types.ModifyClusterInput): types.ModifyClusterOutput, table
+    modifyCluster: function(Client, types.ModifyClusterInput): Operation<types.ModifyClusterOutput>
     -- Creates or updates an CloudHSM resource policy. A resource policy helps you to define the IAM entity
     -- (for example, an Amazon Web Services account) that can manage your CloudHSM resources. The following resources support
     -- CloudHSM resource policies:
@@ -84,18 +88,18 @@ local record Client
     -- Resource Share using the RAM PromoteResourceShareCreatedFromPolicy API operation.
     -- For more information, see Working with shared backups in the CloudHSM User Guide
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Restores a specified CloudHSM backup that is in the
     -- PENDING_DELETION state. For more information on deleting a backup, see
     -- DeleteBackup.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM backup in a different Amazon Web Services account.
-    restoreBackup: function(Client, types.RestoreBackupInput): types.RestoreBackupOutput, table
+    restoreBackup: function(Client, types.RestoreBackupInput): Operation<types.RestoreBackupOutput>
     -- Adds or overwrites one or more tags for the specified CloudHSM cluster.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tag or tags from the specified CloudHSM cluster.
     -- Cross-account use: No. You cannot perform this operation on an CloudHSM resource in a different Amazon Web Services account.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

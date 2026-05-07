@@ -2,17 +2,21 @@
 
 local types = require("proton.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- In a management account, an environment account connection request is accepted. When the environment account connection request is accepted, Proton
     -- can use the associated IAM role to provision environment infrastructure resources in the associated environment account.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    acceptEnvironmentAccountConnection: function(Client, types.AcceptEnvironmentAccountConnectionInput): types.AcceptEnvironmentAccountConnectionOutput, table
+    acceptEnvironmentAccountConnection: function(Client, types.AcceptEnvironmentAccountConnectionInput): Operation<types.AcceptEnvironmentAccountConnectionOutput>
     -- Attempts to cancel a component deployment (for a component that is in the IN_PROGRESS deployment status).
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    cancelComponentDeployment: function(Client, types.CancelComponentDeploymentInput): types.CancelComponentDeploymentOutput, table
+    cancelComponentDeployment: function(Client, types.CancelComponentDeploymentInput): Operation<types.CancelComponentDeploymentOutput>
     -- Attempts to cancel an environment deployment on an UpdateEnvironment action, if the deployment is IN_PROGRESS. For more
     -- information, see Update an environment in the Proton
     -- User guide.
@@ -21,7 +25,7 @@ local record Client
     -- If the cancellation attempt fails, the resulting deployment state is FAILED.
     -- If the current UpdateEnvironment action succeeds before the cancellation attempt starts, the resulting deployment state is
     -- SUCCEEDED and the cancellation attempt has no effect.
-    cancelEnvironmentDeployment: function(Client, types.CancelEnvironmentDeploymentInput): types.CancelEnvironmentDeploymentOutput, table
+    cancelEnvironmentDeployment: function(Client, types.CancelEnvironmentDeploymentInput): Operation<types.CancelEnvironmentDeploymentOutput>
     -- Attempts to cancel a service instance deployment on an UpdateServiceInstance action, if the deployment is IN_PROGRESS. For
     -- more information, see Update a service instance
     -- in the Proton User guide.
@@ -33,7 +37,7 @@ local record Client
     -- If the current UpdateServiceInstance action succeeds before the
     -- cancellation attempt starts, the resulting deployment state is SUCCEEDED and
     -- the cancellation attempt has no effect.
-    cancelServiceInstanceDeployment: function(Client, types.CancelServiceInstanceDeploymentInput): types.CancelServiceInstanceDeploymentOutput, table
+    cancelServiceInstanceDeployment: function(Client, types.CancelServiceInstanceDeploymentInput): Operation<types.CancelServiceInstanceDeploymentOutput>
     -- Attempts to cancel a service pipeline deployment on an UpdateServicePipeline action, if the deployment is IN_PROGRESS. For
     -- more information, see Update a service pipeline
     -- in the Proton User guide.
@@ -45,12 +49,12 @@ local record Client
     -- If the current UpdateServicePipeline action succeeds before the
     -- cancellation attempt starts, the resulting deployment state is SUCCEEDED and
     -- the cancellation attempt has no effect.
-    cancelServicePipelineDeployment: function(Client, types.CancelServicePipelineDeploymentInput): types.CancelServicePipelineDeploymentOutput, table
+    cancelServicePipelineDeployment: function(Client, types.CancelServicePipelineDeploymentInput): Operation<types.CancelServicePipelineDeploymentOutput>
     -- Create an Proton component. A component is an infrastructure extension for a service instance.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    createComponent: function(Client, types.CreateComponentInput): Operation<types.CreateComponentOutput>
     -- Deploy a new environment. An Proton environment is created from an environment template that defines infrastructure and resources that can be
     -- shared across services.
     -- You can provision environments using the following methods:
@@ -59,13 +63,13 @@ local record Client
     -- engine uses to provision resources.
     -- For more information, see Environments and Provisioning methods in the Proton User
     -- Guide.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Create an environment account connection in an environment account so that environment infrastructure resources can be provisioned in the environment
     -- account from a management account.
     -- An environment account connection is a secure bi-directional connection between a management account and an environment
     -- account that maintains authorization and permissions. For more information, see Environment account connections in the Proton User
     -- guide.
-    createEnvironmentAccountConnection: function(Client, types.CreateEnvironmentAccountConnectionInput): types.CreateEnvironmentAccountConnectionOutput, table
+    createEnvironmentAccountConnection: function(Client, types.CreateEnvironmentAccountConnectionInput): Operation<types.CreateEnvironmentAccountConnectionOutput>
     -- Create an environment template for Proton. For more information, see Environment Templates in the Proton User Guide.
     -- You can create an environment template in one of the two following ways:
     -- Register and publish a standard environment template that instructs Proton to deploy and manage environment
@@ -75,83 +79,83 @@ local record Client
     -- template for customer provisioned and managed infrastructure, include the provisioning parameter and set the value to
     -- CUSTOMER_MANAGED. For more information, see Register
     -- and publish an environment template in the Proton User Guide.
-    createEnvironmentTemplate: function(Client, types.CreateEnvironmentTemplateInput): types.CreateEnvironmentTemplateOutput, table
+    createEnvironmentTemplate: function(Client, types.CreateEnvironmentTemplateInput): Operation<types.CreateEnvironmentTemplateOutput>
     -- Create a new major or minor version of an environment template. A major version of an environment template is a version that
     -- isn't backwards compatible. A minor version of an environment template is a version that's backwards compatible within its major
     -- version.
-    createEnvironmentTemplateVersion: function(Client, types.CreateEnvironmentTemplateVersionInput): types.CreateEnvironmentTemplateVersionOutput, table
+    createEnvironmentTemplateVersion: function(Client, types.CreateEnvironmentTemplateVersionInput): Operation<types.CreateEnvironmentTemplateVersionOutput>
     -- Create and register a link to a repository. Proton uses the link to repeatedly access the repository, to either push to it (self-managed
     -- provisioning) or pull from it (template sync). You can share a linked repository across multiple resources (like environments using self-managed
     -- provisioning, or synced templates). When you create a repository link, Proton creates a service-linked role for you.
     -- For more information, see Self-managed provisioning, Template bundles, and
     -- Template sync configurations in the Proton
     -- User Guide.
-    createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    createRepository: function(Client, types.CreateRepositoryInput): Operation<types.CreateRepositoryOutput>
     -- Create an Proton service. An Proton service is an instantiation of a service
     -- template and often includes several service instances and pipeline. For more information, see
     -- Services
     -- in the Proton User Guide.
-    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    createService: function(Client, types.CreateServiceInput): Operation<types.CreateServiceOutput>
     -- Create a service instance.
-    createServiceInstance: function(Client, types.CreateServiceInstanceInput): types.CreateServiceInstanceOutput, table
+    createServiceInstance: function(Client, types.CreateServiceInstanceInput): Operation<types.CreateServiceInstanceOutput>
     -- Create the Proton Ops configuration file.
-    createServiceSyncConfig: function(Client, types.CreateServiceSyncConfigInput): types.CreateServiceSyncConfigOutput, table
+    createServiceSyncConfig: function(Client, types.CreateServiceSyncConfigInput): Operation<types.CreateServiceSyncConfigOutput>
     -- Create a service template. The administrator creates a service template to define
     -- standardized infrastructure and an optional CI/CD service pipeline. Developers, in turn,
     -- select the service template from Proton. If the selected service template includes a
     -- service pipeline definition, they provide a link to their source code repository. Proton
     -- then deploys and manages the infrastructure defined by the selected service template. For more
     -- information, see Proton templates in the Proton User Guide.
-    createServiceTemplate: function(Client, types.CreateServiceTemplateInput): types.CreateServiceTemplateOutput, table
+    createServiceTemplate: function(Client, types.CreateServiceTemplateInput): Operation<types.CreateServiceTemplateOutput>
     -- Create a new major or minor version of a service template. A major version of a service
     -- template is a version that isn't backward compatible. A minor version of
     -- a service template is a version that's backward compatible within its major version.
-    createServiceTemplateVersion: function(Client, types.CreateServiceTemplateVersionInput): types.CreateServiceTemplateVersionOutput, table
+    createServiceTemplateVersion: function(Client, types.CreateServiceTemplateVersionInput): Operation<types.CreateServiceTemplateVersionOutput>
     -- Set up a template to create new template versions automatically by tracking a linked repository. A linked repository is a repository that has
     -- been registered with Proton. For more information, see CreateRepository.
     -- When a commit is pushed to your linked repository, Proton checks for changes to your repository template bundles. If it detects a template
     -- bundle change, a new major or minor version of its template is created, if the version doesn’t already exist. For more information, see Template sync configurations in the Proton
     -- User Guide.
-    createTemplateSyncConfig: function(Client, types.CreateTemplateSyncConfigInput): types.CreateTemplateSyncConfigOutput, table
+    createTemplateSyncConfig: function(Client, types.CreateTemplateSyncConfigInput): Operation<types.CreateTemplateSyncConfigOutput>
     -- Delete an Proton component resource.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    deleteComponent: function(Client, types.DeleteComponentInput): Operation<types.DeleteComponentOutput>
     -- Delete the deployment.
-    deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    deleteDeployment: function(Client, types.DeleteDeploymentInput): Operation<types.DeleteDeploymentOutput>
     -- Delete an environment.
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- In an environment account, delete an environment account connection.
     -- After you delete an environment account connection that’s in use by an Proton environment, Proton can’t manage the
     -- environment infrastructure resources until a new environment account connection is accepted for the environment account and associated environment. You're
     -- responsible for cleaning up provisioned resources that remain without an environment connection.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    deleteEnvironmentAccountConnection: function(Client, types.DeleteEnvironmentAccountConnectionInput): types.DeleteEnvironmentAccountConnectionOutput, table
+    deleteEnvironmentAccountConnection: function(Client, types.DeleteEnvironmentAccountConnectionInput): Operation<types.DeleteEnvironmentAccountConnectionOutput>
     -- If no other major or minor versions of an environment template exist, delete the environment template.
-    deleteEnvironmentTemplate: function(Client, types.DeleteEnvironmentTemplateInput): types.DeleteEnvironmentTemplateOutput, table
+    deleteEnvironmentTemplate: function(Client, types.DeleteEnvironmentTemplateInput): Operation<types.DeleteEnvironmentTemplateOutput>
     -- If no other minor versions of an environment template exist, delete a major version of the environment template if it's not the
     -- Recommended version. Delete the Recommended version of the environment template if no other major versions or minor versions
     -- of the environment template exist. A major version of an environment template is a version that's not backward compatible.
     -- Delete a minor version of an environment template if it isn't the Recommended version. Delete a
     -- Recommended minor version of the environment template if no other minor versions of the environment template exist. A minor version of an
     -- environment template is a version that's backward compatible.
-    deleteEnvironmentTemplateVersion: function(Client, types.DeleteEnvironmentTemplateVersionInput): types.DeleteEnvironmentTemplateVersionOutput, table
+    deleteEnvironmentTemplateVersion: function(Client, types.DeleteEnvironmentTemplateVersionInput): Operation<types.DeleteEnvironmentTemplateVersionOutput>
     -- De-register and unlink your repository.
-    deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    deleteRepository: function(Client, types.DeleteRepositoryInput): Operation<types.DeleteRepositoryOutput>
     -- Delete a service, with its instances and pipeline.
     -- You can't delete a service if it has any service instances that have components attached
     -- to them.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): Operation<types.DeleteServiceOutput>
     -- Delete the Proton Ops file.
-    deleteServiceSyncConfig: function(Client, types.DeleteServiceSyncConfigInput): types.DeleteServiceSyncConfigOutput, table
+    deleteServiceSyncConfig: function(Client, types.DeleteServiceSyncConfigInput): Operation<types.DeleteServiceSyncConfigOutput>
     -- If no other major or minor versions of the service template exist, delete the service
     -- template.
-    deleteServiceTemplate: function(Client, types.DeleteServiceTemplateInput): types.DeleteServiceTemplateOutput, table
+    deleteServiceTemplate: function(Client, types.DeleteServiceTemplateInput): Operation<types.DeleteServiceTemplateOutput>
     -- If no other minor versions of a service template exist, delete a major version of the
     -- service template if it's not the Recommended version. Delete the
     -- Recommended version of the service template if no other major versions or minor
@@ -161,37 +165,37 @@ local record Client
     -- version. Delete a Recommended minor version of the service template if no other
     -- minor versions of the service template exist. A minor version of a service template is a
     -- version that's backwards compatible.
-    deleteServiceTemplateVersion: function(Client, types.DeleteServiceTemplateVersionInput): types.DeleteServiceTemplateVersionOutput, table
+    deleteServiceTemplateVersion: function(Client, types.DeleteServiceTemplateVersionInput): Operation<types.DeleteServiceTemplateVersionOutput>
     -- Delete a template sync configuration.
-    deleteTemplateSyncConfig: function(Client, types.DeleteTemplateSyncConfigInput): types.DeleteTemplateSyncConfigOutput, table
+    deleteTemplateSyncConfig: function(Client, types.DeleteTemplateSyncConfigInput): Operation<types.DeleteTemplateSyncConfigOutput>
     -- Get detail data for Proton account-wide settings.
-    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): Operation<types.GetAccountSettingsOutput>
     -- Get detailed data for a component.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    getComponent: function(Client, types.GetComponentInput): Operation<types.GetComponentOutput>
     -- Get detailed data for a deployment.
-    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): Operation<types.GetDeploymentOutput>
     -- Get detailed data for an environment.
-    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): Operation<types.GetEnvironmentOutput>
     -- In an environment account, get the detailed data for an environment account connection.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    getEnvironmentAccountConnection: function(Client, types.GetEnvironmentAccountConnectionInput): types.GetEnvironmentAccountConnectionOutput, table
+    getEnvironmentAccountConnection: function(Client, types.GetEnvironmentAccountConnectionInput): Operation<types.GetEnvironmentAccountConnectionOutput>
     -- Get detailed data for an environment template.
-    getEnvironmentTemplate: function(Client, types.GetEnvironmentTemplateInput): types.GetEnvironmentTemplateOutput, table
+    getEnvironmentTemplate: function(Client, types.GetEnvironmentTemplateInput): Operation<types.GetEnvironmentTemplateOutput>
     -- Get detailed data for a major or minor version of an environment template.
-    getEnvironmentTemplateVersion: function(Client, types.GetEnvironmentTemplateVersionInput): types.GetEnvironmentTemplateVersionOutput, table
+    getEnvironmentTemplateVersion: function(Client, types.GetEnvironmentTemplateVersionInput): Operation<types.GetEnvironmentTemplateVersionOutput>
     -- Get detail data for a linked repository.
-    getRepository: function(Client, types.GetRepositoryInput): types.GetRepositoryOutput, table
+    getRepository: function(Client, types.GetRepositoryInput): Operation<types.GetRepositoryOutput>
     -- Get the sync status of a repository used for Proton template sync. For more information about template sync, see .
     -- A repository sync status isn't tied to the Proton Repository resource (or any other Proton resource). Therefore, tags on an Proton Repository resource
     -- have no effect on this action. Specifically, you can't use these tags to control access to this action using Attribute-based access control
     -- (ABAC).
     -- For more information about ABAC, see ABAC in the Proton User
     -- Guide.
-    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput): types.GetRepositorySyncStatusOutput, table
+    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput): Operation<types.GetRepositorySyncStatusOutput>
     -- Get counts of Proton resources.
     -- For infrastructure-provisioning resources (environments, services, service instances, pipelines), the action returns staleness counts. A
     -- resource is stale when it's behind the recommended version of the Proton template that it uses and it needs an update to become current.
@@ -202,101 +206,101 @@ local record Client
     -- For context, the action also returns the total number of each type of Proton template in the Amazon Web Services account.
     -- For more information, see Proton dashboard in the
     -- Proton User Guide.
-    getResourcesSummary: function(Client, types.GetResourcesSummaryInput): types.GetResourcesSummaryOutput, table
+    getResourcesSummary: function(Client, types.GetResourcesSummaryInput): Operation<types.GetResourcesSummaryOutput>
     -- Get detailed data for a service.
-    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    getService: function(Client, types.GetServiceInput): Operation<types.GetServiceOutput>
     -- Get detailed data for a service instance. A service instance is an instantiation of
     -- service template and it runs in a specific environment.
-    getServiceInstance: function(Client, types.GetServiceInstanceInput): types.GetServiceInstanceOutput, table
+    getServiceInstance: function(Client, types.GetServiceInstanceInput): Operation<types.GetServiceInstanceOutput>
     -- Get the status of the synced service instance.
-    getServiceInstanceSyncStatus: function(Client, types.GetServiceInstanceSyncStatusInput): types.GetServiceInstanceSyncStatusOutput, table
+    getServiceInstanceSyncStatus: function(Client, types.GetServiceInstanceSyncStatusInput): Operation<types.GetServiceInstanceSyncStatusOutput>
     -- Get detailed data for the service sync blocker summary.
-    getServiceSyncBlockerSummary: function(Client, types.GetServiceSyncBlockerSummaryInput): types.GetServiceSyncBlockerSummaryOutput, table
+    getServiceSyncBlockerSummary: function(Client, types.GetServiceSyncBlockerSummaryInput): Operation<types.GetServiceSyncBlockerSummaryOutput>
     -- Get detailed information for the service sync configuration.
-    getServiceSyncConfig: function(Client, types.GetServiceSyncConfigInput): types.GetServiceSyncConfigOutput, table
+    getServiceSyncConfig: function(Client, types.GetServiceSyncConfigInput): Operation<types.GetServiceSyncConfigOutput>
     -- Get detailed data for a service template.
-    getServiceTemplate: function(Client, types.GetServiceTemplateInput): types.GetServiceTemplateOutput, table
+    getServiceTemplate: function(Client, types.GetServiceTemplateInput): Operation<types.GetServiceTemplateOutput>
     -- Get detailed data for a major or minor version of a service template.
-    getServiceTemplateVersion: function(Client, types.GetServiceTemplateVersionInput): types.GetServiceTemplateVersionOutput, table
+    getServiceTemplateVersion: function(Client, types.GetServiceTemplateVersionInput): Operation<types.GetServiceTemplateVersionOutput>
     -- Get detail data for a template sync configuration.
-    getTemplateSyncConfig: function(Client, types.GetTemplateSyncConfigInput): types.GetTemplateSyncConfigOutput, table
+    getTemplateSyncConfig: function(Client, types.GetTemplateSyncConfigInput): Operation<types.GetTemplateSyncConfigOutput>
     -- Get the status of a template sync.
-    getTemplateSyncStatus: function(Client, types.GetTemplateSyncStatusInput): types.GetTemplateSyncStatusOutput, table
+    getTemplateSyncStatus: function(Client, types.GetTemplateSyncStatusInput): Operation<types.GetTemplateSyncStatusOutput>
     -- Get a list of component Infrastructure as Code (IaC) outputs.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    listComponentOutputs: function(Client, types.ListComponentOutputsInput): types.ListComponentOutputsOutput, table
+    listComponentOutputs: function(Client, types.ListComponentOutputsInput): Operation<types.ListComponentOutputsOutput>
     -- List provisioned resources for a component with details.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    listComponentProvisionedResources: function(Client, types.ListComponentProvisionedResourcesInput): types.ListComponentProvisionedResourcesOutput, table
+    listComponentProvisionedResources: function(Client, types.ListComponentProvisionedResourcesInput): Operation<types.ListComponentProvisionedResourcesOutput>
     -- List components with summary data. You can filter the result list by environment, service, or a single service instance.
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): Operation<types.ListComponentsOutput>
     -- List deployments. You can filter the result list by environment, service, or a single service instance.
-    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): Operation<types.ListDeploymentsOutput>
     -- View a list of environment account connections.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    listEnvironmentAccountConnections: function(Client, types.ListEnvironmentAccountConnectionsInput): types.ListEnvironmentAccountConnectionsOutput, table
+    listEnvironmentAccountConnections: function(Client, types.ListEnvironmentAccountConnectionsInput): Operation<types.ListEnvironmentAccountConnectionsOutput>
     -- List the infrastructure as code outputs for your environment.
-    listEnvironmentOutputs: function(Client, types.ListEnvironmentOutputsInput): types.ListEnvironmentOutputsOutput, table
+    listEnvironmentOutputs: function(Client, types.ListEnvironmentOutputsInput): Operation<types.ListEnvironmentOutputsOutput>
     -- List the provisioned resources for your environment.
-    listEnvironmentProvisionedResources: function(Client, types.ListEnvironmentProvisionedResourcesInput): types.ListEnvironmentProvisionedResourcesOutput, table
+    listEnvironmentProvisionedResources: function(Client, types.ListEnvironmentProvisionedResourcesInput): Operation<types.ListEnvironmentProvisionedResourcesOutput>
     -- List environments with detail data summaries.
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- List environment templates.
-    listEnvironmentTemplates: function(Client, types.ListEnvironmentTemplatesInput): types.ListEnvironmentTemplatesOutput, table
+    listEnvironmentTemplates: function(Client, types.ListEnvironmentTemplatesInput): Operation<types.ListEnvironmentTemplatesOutput>
     -- List major or minor versions of an environment template with detail data.
-    listEnvironmentTemplateVersions: function(Client, types.ListEnvironmentTemplateVersionsInput): types.ListEnvironmentTemplateVersionsOutput, table
+    listEnvironmentTemplateVersions: function(Client, types.ListEnvironmentTemplateVersionsInput): Operation<types.ListEnvironmentTemplateVersionsOutput>
     -- List linked repositories with detail data.
-    listRepositories: function(Client, types.ListRepositoriesInput): types.ListRepositoriesOutput, table
+    listRepositories: function(Client, types.ListRepositoriesInput): Operation<types.ListRepositoriesOutput>
     -- List repository sync definitions with detail data.
-    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput): types.ListRepositorySyncDefinitionsOutput, table
+    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput): Operation<types.ListRepositorySyncDefinitionsOutput>
     -- Get a list service of instance Infrastructure as Code (IaC) outputs.
-    listServiceInstanceOutputs: function(Client, types.ListServiceInstanceOutputsInput): types.ListServiceInstanceOutputsOutput, table
+    listServiceInstanceOutputs: function(Client, types.ListServiceInstanceOutputsInput): Operation<types.ListServiceInstanceOutputsOutput>
     -- List provisioned resources for a service instance with details.
-    listServiceInstanceProvisionedResources: function(Client, types.ListServiceInstanceProvisionedResourcesInput): types.ListServiceInstanceProvisionedResourcesOutput, table
+    listServiceInstanceProvisionedResources: function(Client, types.ListServiceInstanceProvisionedResourcesInput): Operation<types.ListServiceInstanceProvisionedResourcesOutput>
     -- List service instances with summary data. This action lists service instances of all
     -- services in the Amazon Web Services account.
-    listServiceInstances: function(Client, types.ListServiceInstancesInput): types.ListServiceInstancesOutput, table
+    listServiceInstances: function(Client, types.ListServiceInstancesInput): Operation<types.ListServiceInstancesOutput>
     -- Get a list of service pipeline Infrastructure as Code (IaC) outputs.
-    listServicePipelineOutputs: function(Client, types.ListServicePipelineOutputsInput): types.ListServicePipelineOutputsOutput, table
+    listServicePipelineOutputs: function(Client, types.ListServicePipelineOutputsInput): Operation<types.ListServicePipelineOutputsOutput>
     -- List provisioned resources for a service and pipeline with details.
-    listServicePipelineProvisionedResources: function(Client, types.ListServicePipelineProvisionedResourcesInput): types.ListServicePipelineProvisionedResourcesOutput, table
+    listServicePipelineProvisionedResources: function(Client, types.ListServicePipelineProvisionedResourcesInput): Operation<types.ListServicePipelineProvisionedResourcesOutput>
     -- List services with summaries of detail data.
-    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServices: function(Client, types.ListServicesInput): Operation<types.ListServicesOutput>
     -- List service templates with detail data.
-    listServiceTemplates: function(Client, types.ListServiceTemplatesInput): types.ListServiceTemplatesOutput, table
+    listServiceTemplates: function(Client, types.ListServiceTemplatesInput): Operation<types.ListServiceTemplatesOutput>
     -- List major or minor versions of a service template with detail data.
-    listServiceTemplateVersions: function(Client, types.ListServiceTemplateVersionsInput): types.ListServiceTemplateVersionsOutput, table
+    listServiceTemplateVersions: function(Client, types.ListServiceTemplateVersionsInput): Operation<types.ListServiceTemplateVersionsOutput>
     -- List tags for a resource. For more information, see Proton
     -- resources and tagging in the Proton User Guide.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Notify Proton of status changes to a provisioned resource when you use self-managed provisioning.
     -- For more information, see Self-managed provisioning in the Proton User Guide.
-    notifyResourceDeploymentStatusChange: function(Client, types.NotifyResourceDeploymentStatusChangeInput): types.NotifyResourceDeploymentStatusChangeOutput, table
+    notifyResourceDeploymentStatusChange: function(Client, types.NotifyResourceDeploymentStatusChangeInput): Operation<types.NotifyResourceDeploymentStatusChangeOutput>
     -- In a management account, reject an environment account connection from another environment account.
     -- After you reject an environment account connection request, you can't accept or use the rejected environment account
     -- connection.
     -- You can’t reject an environment account connection that's connected to an environment.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    rejectEnvironmentAccountConnection: function(Client, types.RejectEnvironmentAccountConnectionInput): types.RejectEnvironmentAccountConnectionOutput, table
+    rejectEnvironmentAccountConnection: function(Client, types.RejectEnvironmentAccountConnectionInput): Operation<types.RejectEnvironmentAccountConnectionOutput>
     -- Tag a resource. A tag is a key-value pair of metadata that you associate with an Proton resource.
     -- For more information, see Proton resources and tagging in
     -- the Proton User Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Remove a customer tag from a resource. A tag is a key-value pair of metadata associated with an Proton resource.
     -- For more information, see Proton resources and tagging in
     -- the Proton User Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update Proton settings that are used for multiple services in the Amazon Web Services account.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Update a component.
     -- There are a few modes for updating a component. The deploymentType field defines the mode.
     -- You can't update a component while its deployment status, or the deployment status of a service instance attached to it, is
@@ -304,7 +308,7 @@ local record Client
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    updateComponent: function(Client, types.UpdateComponentInput): types.UpdateComponentOutput, table
+    updateComponent: function(Client, types.UpdateComponentInput): Operation<types.UpdateComponentOutput>
     -- Update an environment.
     -- If the environment is associated with an environment account connection, don't update or include the
     -- protonServiceRoleArn and provisioningRepository parameter to update or connect to an environment account connection.
@@ -332,15 +336,15 @@ local record Client
     -- MAJOR_VERSION
     -- In this mode, the environment is deployed and updated with the published, recommended (latest) major and minor version of the current template,
     -- by default. You can also specify a different major version that's higher than the major version in use and a minor version.
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
     -- In an environment account, update an environment account connection to use a new IAM role.
     -- For more information, see Environment account
     -- connections in the Proton User guide.
-    updateEnvironmentAccountConnection: function(Client, types.UpdateEnvironmentAccountConnectionInput): types.UpdateEnvironmentAccountConnectionOutput, table
+    updateEnvironmentAccountConnection: function(Client, types.UpdateEnvironmentAccountConnectionInput): Operation<types.UpdateEnvironmentAccountConnectionOutput>
     -- Update an environment template.
-    updateEnvironmentTemplate: function(Client, types.UpdateEnvironmentTemplateInput): types.UpdateEnvironmentTemplateOutput, table
+    updateEnvironmentTemplate: function(Client, types.UpdateEnvironmentTemplateInput): Operation<types.UpdateEnvironmentTemplateOutput>
     -- Update a major or minor version of an environment template.
-    updateEnvironmentTemplateVersion: function(Client, types.UpdateEnvironmentTemplateVersionInput): types.UpdateEnvironmentTemplateVersionOutput, table
+    updateEnvironmentTemplateVersion: function(Client, types.UpdateEnvironmentTemplateVersionInput): Operation<types.UpdateEnvironmentTemplateVersionOutput>
     -- Edit a service description or use a spec to add and delete service instances.
     -- Existing service instances and the service pipeline can't be edited
     -- using this API. They can only be deleted.
@@ -351,7 +355,7 @@ local record Client
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    updateService: function(Client, types.UpdateServiceInput): Operation<types.UpdateServiceOutput>
     -- Update a service instance.
     -- There are a few modes for updating a service instance. The deploymentType
     -- field defines the mode.
@@ -360,7 +364,7 @@ local record Client
     -- For more information about components, see
     -- Proton components in the
     -- Proton User Guide.
-    updateServiceInstance: function(Client, types.UpdateServiceInstanceInput): types.UpdateServiceInstanceOutput, table
+    updateServiceInstance: function(Client, types.UpdateServiceInstanceInput): Operation<types.UpdateServiceInstanceOutput>
     -- Update the service pipeline.
     -- There are four modes for updating a service pipeline. The deploymentType
     -- field defines the mode.
@@ -380,19 +384,19 @@ local record Client
     -- recommended (latest) major and minor version of the current template by default. You can
     -- specify a different major version that's higher than the major version in use and a
     -- minor version.
-    updateServicePipeline: function(Client, types.UpdateServicePipelineInput): types.UpdateServicePipelineOutput, table
+    updateServicePipeline: function(Client, types.UpdateServicePipelineInput): Operation<types.UpdateServicePipelineOutput>
     -- Update the service sync blocker by resolving it.
-    updateServiceSyncBlocker: function(Client, types.UpdateServiceSyncBlockerInput): types.UpdateServiceSyncBlockerOutput, table
+    updateServiceSyncBlocker: function(Client, types.UpdateServiceSyncBlockerInput): Operation<types.UpdateServiceSyncBlockerOutput>
     -- Update the Proton Ops config file.
-    updateServiceSyncConfig: function(Client, types.UpdateServiceSyncConfigInput): types.UpdateServiceSyncConfigOutput, table
+    updateServiceSyncConfig: function(Client, types.UpdateServiceSyncConfigInput): Operation<types.UpdateServiceSyncConfigOutput>
     -- Update a service template.
-    updateServiceTemplate: function(Client, types.UpdateServiceTemplateInput): types.UpdateServiceTemplateOutput, table
+    updateServiceTemplate: function(Client, types.UpdateServiceTemplateInput): Operation<types.UpdateServiceTemplateOutput>
     -- Update a major or minor version of a service template.
-    updateServiceTemplateVersion: function(Client, types.UpdateServiceTemplateVersionInput): types.UpdateServiceTemplateVersionOutput, table
+    updateServiceTemplateVersion: function(Client, types.UpdateServiceTemplateVersionInput): Operation<types.UpdateServiceTemplateVersionOutput>
     -- Update template sync configuration parameters, except for the templateName and templateType. Repository details
     -- (branch, name, and provider) should be of a linked repository. A linked repository is a repository that has been registered with Proton. For
     -- more information, see CreateRepository.
-    updateTemplateSyncConfig: function(Client, types.UpdateTemplateSyncConfigInput): types.UpdateTemplateSyncConfigOutput, table
+    updateTemplateSyncConfig: function(Client, types.UpdateTemplateSyncConfigInput): Operation<types.UpdateTemplateSyncConfigOutput>
 end
 
 local record M

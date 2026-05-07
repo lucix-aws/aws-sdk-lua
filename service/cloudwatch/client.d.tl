@@ -2,13 +2,17 @@
 
 local types = require("cloudwatch.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes a specific alarm mute rule.
     -- When you delete a mute rule, any alarms that are currently being muted by that rule are immediately unmuted. If those alarms are in an ALARM state, their configured actions will trigger.
     -- This operation is idempotent. If you delete a mute rule that does not exist, the operation succeeds without returning an error.
     -- Permissions
     -- To delete a mute rule, you need the cloudwatch:DeleteAlarmMuteRule permission on the alarm mute rule resource.
-    deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput): types.DeleteAlarmMuteRuleOutput, table
+    deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput): Operation<types.DeleteAlarmMuteRuleOutput>
     -- Deletes the specified alarms. You can delete up to 100 alarms in one operation.
     -- However, this total can include no more than one composite alarm. For example, you could
     -- delete 99 metric alarms and one composite alarms with one operation, but you can't
@@ -27,23 +31,23 @@ local record Client
     -- AlarmRule of one of the alarms to false.
     -- Additionally, the evaluation of composite alarms stops if CloudWatch
     -- detects a cycle in the evaluation path.
-    deleteAlarms: function(Client, types.DeleteAlarmsInput): types.DeleteAlarmsOutput, table
+    deleteAlarms: function(Client, types.DeleteAlarmsInput): Operation<types.DeleteAlarmsOutput>
     -- Deletes the specified anomaly detection model from your account. For more information
     -- about how to delete an anomaly detection model, see Deleting an anomaly detection model in the CloudWatch User
     -- Guide.
-    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput): types.DeleteAnomalyDetectorOutput, table
+    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput): Operation<types.DeleteAnomalyDetectorOutput>
     -- Deletes all dashboards that you specify. You can specify up to 100 dashboards to
     -- delete. If there is an error during this call, the operation attempts to delete as many
     -- dashboards as possible.
-    deleteDashboards: function(Client, types.DeleteDashboardsInput): types.DeleteDashboardsOutput, table
+    deleteDashboards: function(Client, types.DeleteDashboardsInput): Operation<types.DeleteDashboardsOutput>
     -- Permanently deletes the specified Contributor Insights rules.
     -- If you create a rule, delete it, and then re-create it with the same name, historical
     -- data from the first time the rule was created might not be available.
-    deleteInsightRules: function(Client, types.DeleteInsightRulesInput): types.DeleteInsightRulesOutput, table
+    deleteInsightRules: function(Client, types.DeleteInsightRulesInput): Operation<types.DeleteInsightRulesOutput>
     -- Permanently deletes the metric stream that you specify.
-    deleteMetricStream: function(Client, types.DeleteMetricStreamInput): types.DeleteMetricStreamOutput, table
+    deleteMetricStream: function(Client, types.DeleteMetricStreamInput): Operation<types.DeleteMetricStreamOutput>
     -- Returns the information of the current alarm contributors that are in ALARM state. This operation returns details about the individual time series that contribute to the alarm's state.
-    describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput): types.DescribeAlarmContributorsOutput, table
+    describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput): Operation<types.DescribeAlarmContributorsOutput>
     -- Retrieves the history for the specified alarm. You can filter the results by date
     -- range or item type. If an alarm name is not specified, the histories for either all
     -- metric alarms or all composite alarms are returned.
@@ -52,42 +56,42 @@ local record Client
     -- signed on with the cloudwatch:DescribeAlarmHistory permission that is
     -- scoped to *. You can't return information about composite alarms if your
     -- cloudwatch:DescribeAlarmHistory permission has a narrower scope.
-    describeAlarmHistory: function(Client, types.DescribeAlarmHistoryInput): types.DescribeAlarmHistoryOutput, table
+    describeAlarmHistory: function(Client, types.DescribeAlarmHistoryInput): Operation<types.DescribeAlarmHistoryOutput>
     -- Retrieves the specified alarms. You can filter the results by specifying a prefix
     -- for the alarm name, the alarm state, or a prefix for any action.
     -- To use this operation and return information about composite alarms, you must be
     -- signed on with the cloudwatch:DescribeAlarms permission that is scoped to
     -- *. You can't return information about composite alarms if your
     -- cloudwatch:DescribeAlarms permission has a narrower scope.
-    describeAlarms: function(Client, types.DescribeAlarmsInput): types.DescribeAlarmsOutput, table
+    describeAlarms: function(Client, types.DescribeAlarmsInput): Operation<types.DescribeAlarmsOutput>
     -- Retrieves the alarms for the specified metric. To filter the results, specify a
     -- statistic, period, or unit.
     -- This operation retrieves only standard alarms that are based on the specified
     -- metric. It does not return alarms based on math expressions that use the specified
     -- metric, or composite alarms that use the specified metric.
-    describeAlarmsForMetric: function(Client, types.DescribeAlarmsForMetricInput): types.DescribeAlarmsForMetricOutput, table
+    describeAlarmsForMetric: function(Client, types.DescribeAlarmsForMetricInput): Operation<types.DescribeAlarmsForMetricOutput>
     -- Lists the anomaly detection models that you have created in your account. For single
     -- metric anomaly detectors, you can list all of the models in your account or filter the
     -- results to only the models that are related to a certain namespace, metric name, or
     -- metric dimension. For metric math anomaly detectors, you can list them by adding
     -- METRIC_MATH to the AnomalyDetectorTypes array. This will
     -- return all metric math anomaly detectors in your account.
-    describeAnomalyDetectors: function(Client, types.DescribeAnomalyDetectorsInput): types.DescribeAnomalyDetectorsOutput, table
+    describeAnomalyDetectors: function(Client, types.DescribeAnomalyDetectorsInput): Operation<types.DescribeAnomalyDetectorsOutput>
     -- Returns a list of all the Contributor Insights rules in your account.
     -- For more information about Contributor Insights, see Using Contributor
     -- Insights to Analyze High-Cardinality Data.
-    describeInsightRules: function(Client, types.DescribeInsightRulesInput): types.DescribeInsightRulesOutput, table
+    describeInsightRules: function(Client, types.DescribeInsightRulesInput): Operation<types.DescribeInsightRulesOutput>
     -- Disables the actions for the specified alarms. When an alarm's actions are
     -- disabled, the alarm actions do not execute when the alarm state changes.
-    disableAlarmActions: function(Client, types.DisableAlarmActionsInput): types.DisableAlarmActionsOutput, table
+    disableAlarmActions: function(Client, types.DisableAlarmActionsInput): Operation<types.DisableAlarmActionsOutput>
     -- Disables the specified Contributor Insights rules. When rules are disabled, they do
     -- not analyze log groups and do not incur costs.
-    disableInsightRules: function(Client, types.DisableInsightRulesInput): types.DisableInsightRulesOutput, table
+    disableInsightRules: function(Client, types.DisableInsightRulesInput): Operation<types.DisableInsightRulesOutput>
     -- Enables the actions for the specified alarms.
-    enableAlarmActions: function(Client, types.EnableAlarmActionsInput): types.EnableAlarmActionsOutput, table
+    enableAlarmActions: function(Client, types.EnableAlarmActionsInput): Operation<types.EnableAlarmActionsOutput>
     -- Enables the specified Contributor Insights rules. When rules are enabled, they
     -- immediately begin analyzing log data.
-    enableInsightRules: function(Client, types.EnableInsightRulesInput): types.EnableInsightRulesOutput, table
+    enableInsightRules: function(Client, types.EnableInsightRulesInput): Operation<types.EnableInsightRulesOutput>
     -- Retrieves details for a specific alarm mute rule.
     -- This operation returns complete information about the mute rule, including its configuration, status, targeted alarms, and metadata.
     -- The returned status indicates the current state of the mute rule:
@@ -96,12 +100,12 @@ local record Client
     -- EXPIRED: The mute rule has passed its expiration date and will no longer become active
     -- Permissions
     -- To retrieve details for a mute rule, you need the cloudwatch:GetAlarmMuteRule permission on the alarm mute rule resource.
-    getAlarmMuteRule: function(Client, types.GetAlarmMuteRuleInput): types.GetAlarmMuteRuleOutput, table
+    getAlarmMuteRule: function(Client, types.GetAlarmMuteRuleInput): Operation<types.GetAlarmMuteRuleOutput>
     -- Displays the details of the dashboard that you specify.
     -- To copy an existing dashboard, use GetDashboard, and then use the data
     -- returned within DashboardBody as the template for the new dashboard when
     -- you call PutDashboard to create the copy.
-    getDashboard: function(Client, types.GetDashboardInput): types.GetDashboardOutput, table
+    getDashboard: function(Client, types.GetDashboardInput): Operation<types.GetDashboardOutput>
     -- This operation returns the time series data collected by a Contributor Insights rule.
     -- The data includes the identity and number of contributors to the log group.
     -- You can also optionally return one or more statistics about each data point in the
@@ -125,7 +129,7 @@ local record Client
     -- time period represented by that data point.
     -- Average -- the average value from all contributors during the
     -- time period represented by that data point.
-    getInsightRuleReport: function(Client, types.GetInsightRuleReportInput): types.GetInsightRuleReportOutput, table
+    getInsightRuleReport: function(Client, types.GetInsightRuleReportInput): Operation<types.GetInsightRuleReportOutput>
     -- You can use the GetMetricData API to retrieve CloudWatch metric
     -- values. The operation can also include a CloudWatch Metrics Insights query, and
     -- one or more metric math functions.
@@ -178,7 +182,7 @@ local record Client
     -- with a GROUP BY clause returns an array of time-series
     -- (TS[]), and can be used as input for a metric math expression that expects an array of
     -- time series.
-    getMetricData: function(Client, types.GetMetricDataInput): types.GetMetricDataOutput, table
+    getMetricData: function(Client, types.GetMetricDataInput): Operation<types.GetMetricDataOutput>
     -- Gets statistics for the specified metric.
     -- The maximum number of data points returned from a single call is 1,440. If you
     -- request more than 1,440 data points, CloudWatch returns an error. To reduce the number
@@ -220,9 +224,9 @@ local record Client
     -- services, see the Amazon CloudWatch
     -- Metrics and Dimensions Reference in the Amazon CloudWatch User
     -- Guide.
-    getMetricStatistics: function(Client, types.GetMetricStatisticsInput): types.GetMetricStatisticsOutput, table
+    getMetricStatistics: function(Client, types.GetMetricStatisticsInput): Operation<types.GetMetricStatisticsOutput>
     -- Returns information about the metric stream that you specify.
-    getMetricStream: function(Client, types.GetMetricStreamInput): types.GetMetricStreamOutput, table
+    getMetricStream: function(Client, types.GetMetricStreamInput): Operation<types.GetMetricStreamOutput>
     -- You can use the GetMetricWidgetImage API to retrieve a snapshot graph
     -- of one or more Amazon CloudWatch metrics as a bitmap image. You can then embed this
     -- image into your services and products, such as wiki pages, reports, and documents. You
@@ -234,18 +238,18 @@ local record Client
     -- GetMetricWidgetImage action has the following limits:
     -- As many as 100 metrics in the graph.
     -- Up to 100 KB uncompressed payload.
-    getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput): types.GetMetricWidgetImageOutput, table
+    getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput): Operation<types.GetMetricWidgetImageOutput>
     -- Returns the current status of vended metric enrichment for the account, including
     -- whether CloudWatch vended metrics are enriched with resource ARN and resource tag
     -- labels and queryable using PromQL. For the list of supported resources, see
     -- Supported Amazon Web Services infrastructure metrics.
-    getOTelEnrichment: function(Client, types.GetOTelEnrichmentInput): types.GetOTelEnrichmentOutput, table
+    getOTelEnrichment: function(Client, types.GetOTelEnrichmentInput): Operation<types.GetOTelEnrichmentOutput>
     -- Lists alarm mute rules in your Amazon Web Services account and region.
     -- You can filter the results by alarm name to find all mute rules targeting a specific alarm, or by status to find rules that are scheduled, active, or expired.
     -- This operation supports pagination for accounts with many mute rules. Use the MaxRecords and NextToken parameters to retrieve results in multiple calls.
     -- Permissions
     -- To list mute rules, you need the cloudwatch:ListAlarmMuteRules permission.
-    listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput): types.ListAlarmMuteRulesOutput, table
+    listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput): Operation<types.ListAlarmMuteRulesOutput>
     -- Returns a list of the dashboards for your account. If you include
     -- DashboardNamePrefix, only those dashboards with names starting with the
     -- prefix are listed. Otherwise, all dashboards in your account are listed.
@@ -253,10 +257,10 @@ local record Client
     -- more than 1000 dashboards, you can call ListDashboards again and include
     -- the value you received for NextToken in the first call, to receive the next
     -- 1000 results.
-    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): Operation<types.ListDashboardsOutput>
     -- Returns a list that contains the number of managed Contributor Insights rules in your
     -- account.
-    listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput): types.ListManagedInsightRulesOutput, table
+    listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput): Operation<types.ListManagedInsightRulesOutput>
     -- List the specified metrics. You can use the returned metrics with GetMetricData or GetMetricStatistics to get statistical data.
     -- Up to 500 results are returned for any one call. To retrieve additional results,
     -- use the returned token with subsequent calls.
@@ -267,12 +271,12 @@ local record Client
     -- more information, see CloudWatch cross-account observability.
     -- ListMetrics doesn't return information about metrics if those metrics
     -- haven't reported data in the past two weeks. To retrieve those metrics, use GetMetricData or GetMetricStatistics.
-    listMetrics: function(Client, types.ListMetricsInput): types.ListMetricsOutput, table
+    listMetrics: function(Client, types.ListMetricsInput): Operation<types.ListMetricsOutput>
     -- Returns a list of metric streams in this account.
-    listMetricStreams: function(Client, types.ListMetricStreamsInput): types.ListMetricStreamsOutput, table
+    listMetricStreams: function(Client, types.ListMetricStreamsInput): Operation<types.ListMetricStreamsOutput>
     -- Displays the tags associated with a CloudWatch resource. Currently, alarms,
     -- dashboards, metric streams and Contributor Insights rules support tagging.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates an alarm mute rule.
     -- Alarm mute rules automatically mute alarm actions during predefined time windows. When a mute rule is active, targeted alarms continue to evaluate metrics and transition between states, but their configured actions (such as Amazon SNS notifications or Auto Scaling actions) are muted.
     -- You can create mute rules with recurring schedules using cron expressions or one-time mute windows using at expressions. Each mute rule can target up to 100 specific alarms by name.
@@ -281,7 +285,7 @@ local record Client
     -- To create or update a mute rule, you must have the cloudwatch:PutAlarmMuteRule permission on two types of resources: the alarm mute rule resource itself, and each alarm that the rule targets.
     -- For example, If you want to allow a user to create mute rules that target only specific alarms named "WebServerCPUAlarm" and "DatabaseConnectionAlarm", you would create an IAM policy with one statement granting cloudwatch:PutAlarmMuteRule on the alarm mute rule resource (arn:aws:cloudwatch:[REGION]:123456789012:alarm-mute-rule:*), and another statement granting cloudwatch:PutAlarmMuteRule on the targeted alarm resources (arn:aws:cloudwatch:[REGION]:123456789012:alarm:WebServerCPUAlarm and arn:aws:cloudwatch:[REGION]:123456789012:alarm:DatabaseConnectionAlarm).
     -- You can also use IAM policy conditions to allow targeting alarms based on resource tags. For example, you can restrict users to create/update mute rules to only target alarms that have a specific tag key-value pair, such as Team=TeamA.
-    putAlarmMuteRule: function(Client, types.PutAlarmMuteRuleInput): types.PutAlarmMuteRuleOutput, table
+    putAlarmMuteRule: function(Client, types.PutAlarmMuteRuleInput): Operation<types.PutAlarmMuteRuleOutput>
     -- Creates an anomaly detection model for a CloudWatch metric. You can use the model to
     -- display a band of expected normal values when the metric is graphed.
     -- If you have enabled unified cross-account observability, and this account is a
@@ -289,7 +293,7 @@ local record Client
     -- specify the account ID in the object you specify in the
     -- SingleMetricAnomalyDetector parameter.
     -- For more information, see CloudWatch Anomaly Detection.
-    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput): types.PutAnomalyDetectorOutput, table
+    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput): Operation<types.PutAnomalyDetectorOutput>
     -- Creates or updates a composite alarm. When you create a composite
     -- alarm, you specify a rule expression for the alarm that takes into account the alarm
     -- states of other alarms that you have created. The composite alarm goes into ALARM state
@@ -332,7 +336,7 @@ local record Client
     -- If you are an IAM user, you must have
     -- iam:CreateServiceLinkedRole to create a composite alarm that has
     -- Systems Manager OpsItem actions.
-    putCompositeAlarm: function(Client, types.PutCompositeAlarmInput): types.PutCompositeAlarmOutput, table
+    putCompositeAlarm: function(Client, types.PutCompositeAlarmInput): Operation<types.PutCompositeAlarmOutput>
     -- Creates a dashboard if it does not already exist, or updates an existing dashboard.
     -- If you update a dashboard, the entire contents are replaced with what you specify
     -- here.
@@ -349,14 +353,14 @@ local record Client
     -- created by script and should not be changed in the console. This message could also
     -- point console users to the location of the DashboardBody script or the
     -- CloudFormation template used to create the dashboard.
-    putDashboard: function(Client, types.PutDashboardInput): types.PutDashboardOutput, table
+    putDashboard: function(Client, types.PutDashboardInput): Operation<types.PutDashboardOutput>
     -- Creates a Contributor Insights rule. Rules evaluate log events in a CloudWatch Logs
     -- log group, enabling you to find contributor data for the log events in that log group.
     -- For more information, see Using Contributor
     -- Insights to Analyze High-Cardinality Data.
     -- If you create a rule, delete it, and then re-create it with the same name, historical
     -- data from the first time the rule was created might not be available.
-    putInsightRule: function(Client, types.PutInsightRuleInput): types.PutInsightRuleOutput, table
+    putInsightRule: function(Client, types.PutInsightRuleInput): Operation<types.PutInsightRuleOutput>
     -- Creates a managed Contributor Insights rule for a specified Amazon Web Services
     -- resource. When you enable a managed rule, you create a Contributor Insights rule that
     -- collects data from Amazon Web Services services. You cannot edit these rules with
@@ -365,7 +369,7 @@ local record Client
     -- DeleteInsightRules. If a previously created managed rule is currently
     -- disabled, a subsequent call to this API will re-enable it. Use
     -- ListManagedInsightRules to describe all available rules.
-    putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput): types.PutManagedInsightRulesOutput, table
+    putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput): Operation<types.PutManagedInsightRulesOutput>
     -- Creates or updates an alarm and associates it with the specified metric, metric
     -- math expression, anomaly detection model, Metrics Insights query, or PromQL query. For more
     -- information about using a Metrics Insights query for an alarm, see Create
@@ -403,7 +407,7 @@ local record Client
     -- account) must already have a service-linked role named AWSServiceRoleForCloudWatchCrossAccount to allow
     -- CloudWatch to assume the sharing role in the sharing account. If it
     -- does not, you must create it following the directions in Set up a monitoring account in Cross-account cross-Region CloudWatch console.
-    putMetricAlarm: function(Client, types.PutMetricAlarmInput): types.PutMetricAlarmOutput, table
+    putMetricAlarm: function(Client, types.PutMetricAlarmInput): Operation<types.PutMetricAlarmOutput>
     -- Publishes metric data to Amazon CloudWatch. CloudWatch associates the data with the
     -- specified metric. If the specified metric does not exist, CloudWatch creates the metric.
     -- When CloudWatch creates a metric, it can take up to fifteen minutes for the metric to
@@ -447,7 +451,7 @@ local record Client
     -- equal.
     -- The Min and Max are equal, and Sum
     -- is equal to Min multiplied by SampleCount.
-    putMetricData: function(Client, types.PutMetricDataInput): types.PutMetricDataOutput, table
+    putMetricData: function(Client, types.PutMetricDataInput): Operation<types.PutMetricDataOutput>
     -- Creates or updates a metric stream. Metric streams can automatically stream CloudWatch
     -- metrics to Amazon Web Services destinations, including Amazon S3, and to many third-party
     -- solutions.
@@ -474,7 +478,7 @@ local record Client
     -- If you are using CloudWatch cross-account observability and you create a metric
     -- stream in a monitoring account, you can choose whether to include metrics from source
     -- accounts in the stream. For more information, see CloudWatch cross-account observability.
-    putMetricStream: function(Client, types.PutMetricStreamInput): types.PutMetricStreamOutput, table
+    putMetricStream: function(Client, types.PutMetricStreamInput): Operation<types.PutMetricStreamOutput>
     -- Temporarily sets the state of an alarm for testing purposes. When the updated state
     -- differs from the previous value, the action configured for the appropriate state is
     -- invoked. For example, if your alarm is configured to send an Amazon SNS message when an
@@ -491,9 +495,9 @@ local record Client
     -- If an alarm triggers EC2 Auto Scaling policies or application Auto Scaling
     -- policies, you must include information in the StateReasonData parameter to
     -- enable the policy to take the correct action.
-    setAlarmState: function(Client, types.SetAlarmStateInput): types.SetAlarmStateOutput, table
+    setAlarmState: function(Client, types.SetAlarmStateInput): Operation<types.SetAlarmStateOutput>
     -- Starts the streaming of metrics for one or more of your metric streams.
-    startMetricStreams: function(Client, types.StartMetricStreamsInput): types.StartMetricStreamsOutput, table
+    startMetricStreams: function(Client, types.StartMetricStreamsInput): Operation<types.StartMetricStreamsOutput>
     -- Enables enrichment and PromQL access for CloudWatch vended metrics for
     -- supported Amazon Web Services resources in the account. Once enabled, metrics that
     -- contain a resource identifier dimension (for example, EC2
@@ -502,14 +506,14 @@ local record Client
     -- PromQL.
     -- Before calling this operation, you must enable resource tags on telemetry for
     -- your account. For more information, see Enable resource tags on telemetry.
-    startOTelEnrichment: function(Client, types.StartOTelEnrichmentInput): types.StartOTelEnrichmentOutput, table
+    startOTelEnrichment: function(Client, types.StartOTelEnrichmentInput): Operation<types.StartOTelEnrichmentOutput>
     -- Stops the streaming of metrics for one or more of your metric streams.
-    stopMetricStreams: function(Client, types.StopMetricStreamsInput): types.StopMetricStreamsOutput, table
+    stopMetricStreams: function(Client, types.StopMetricStreamsInput): Operation<types.StopMetricStreamsOutput>
     -- Disables enrichment and PromQL access for CloudWatch vended metrics for
     -- supported Amazon Web Services resources in the account. After disabling, these metrics
     -- are no longer enriched with resource ARN and resource tag labels, and cannot be
     -- queried using PromQL.
-    stopOTelEnrichment: function(Client, types.StopOTelEnrichmentInput): types.StopOTelEnrichmentOutput, table
+    stopOTelEnrichment: function(Client, types.StopOTelEnrichmentInput): Operation<types.StopOTelEnrichmentOutput>
     -- Assigns one or more tags (key-value pairs) to the specified CloudWatch resource.
     -- Currently, the only CloudWatch resources that can be tagged are alarms, dashboards,
     -- metric streams and Contributor Insights rules.
@@ -524,10 +528,10 @@ local record Client
     -- alarm, the new tag value that you specify replaces the previous value for that
     -- tag.
     -- You can associate as many as 50 tags with a CloudWatch resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified resource. Currently, alarms, dashboards,
     -- metric streams and Contributor Insights rules support tagging.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

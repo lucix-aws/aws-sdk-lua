@@ -2,253 +2,257 @@
 
 local types = require("deadline.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Assigns a farm membership level to a member.
-    associateMemberToFarm: function(Client, types.AssociateMemberToFarmInput): types.AssociateMemberToFarmOutput, table
+    associateMemberToFarm: function(Client, types.AssociateMemberToFarmInput): Operation<types.AssociateMemberToFarmOutput>
     -- Assigns a fleet membership level to a member.
-    associateMemberToFleet: function(Client, types.AssociateMemberToFleetInput): types.AssociateMemberToFleetOutput, table
+    associateMemberToFleet: function(Client, types.AssociateMemberToFleetInput): Operation<types.AssociateMemberToFleetOutput>
     -- Assigns a job membership level to a member
-    associateMemberToJob: function(Client, types.AssociateMemberToJobInput): types.AssociateMemberToJobOutput, table
+    associateMemberToJob: function(Client, types.AssociateMemberToJobInput): Operation<types.AssociateMemberToJobOutput>
     -- Assigns a queue membership level to a member
-    associateMemberToQueue: function(Client, types.AssociateMemberToQueueInput): types.AssociateMemberToQueueOutput, table
+    associateMemberToQueue: function(Client, types.AssociateMemberToQueueInput): Operation<types.AssociateMemberToQueueOutput>
     -- Get Amazon Web Services credentials from the fleet role. The IAM permissions of the credentials are scoped down to have read-only access.
-    assumeFleetRoleForRead: function(Client, types.AssumeFleetRoleForReadInput): types.AssumeFleetRoleForReadOutput, table
+    assumeFleetRoleForRead: function(Client, types.AssumeFleetRoleForReadInput): Operation<types.AssumeFleetRoleForReadOutput>
     -- Get credentials from the fleet role for a worker.
-    assumeFleetRoleForWorker: function(Client, types.AssumeFleetRoleForWorkerInput): types.AssumeFleetRoleForWorkerOutput, table
+    assumeFleetRoleForWorker: function(Client, types.AssumeFleetRoleForWorkerInput): Operation<types.AssumeFleetRoleForWorkerOutput>
     -- Gets Amazon Web Services credentials from the queue role. The IAM permissions of the credentials are scoped down to have read-only access.
-    assumeQueueRoleForRead: function(Client, types.AssumeQueueRoleForReadInput): types.AssumeQueueRoleForReadOutput, table
+    assumeQueueRoleForRead: function(Client, types.AssumeQueueRoleForReadInput): Operation<types.AssumeQueueRoleForReadOutput>
     -- Allows a user to assume a role for a queue.
-    assumeQueueRoleForUser: function(Client, types.AssumeQueueRoleForUserInput): types.AssumeQueueRoleForUserOutput, table
+    assumeQueueRoleForUser: function(Client, types.AssumeQueueRoleForUserInput): Operation<types.AssumeQueueRoleForUserOutput>
     -- Allows a worker to assume a queue role.
-    assumeQueueRoleForWorker: function(Client, types.AssumeQueueRoleForWorkerInput): types.AssumeQueueRoleForWorkerOutput, table
+    assumeQueueRoleForWorker: function(Client, types.AssumeQueueRoleForWorkerInput): Operation<types.AssumeQueueRoleForWorkerOutput>
     -- Retrieves multiple jobs in a single request. This is a batch version of the GetJob API. The result of getting each job is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetJob: function(Client, types.BatchGetJobInput): types.BatchGetJobOutput, table
+    batchGetJob: function(Client, types.BatchGetJobInput): Operation<types.BatchGetJobOutput>
     -- Get batched job details for a worker.
-    batchGetJobEntity: function(Client, types.BatchGetJobEntityInput): types.BatchGetJobEntityOutput, table
+    batchGetJobEntity: function(Client, types.BatchGetJobEntityInput): Operation<types.BatchGetJobEntityOutput>
     -- Retrieves multiple sessions in a single request. This is a batch version of the GetSession API. The result of getting each session is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetSession: function(Client, types.BatchGetSessionInput): types.BatchGetSessionOutput, table
+    batchGetSession: function(Client, types.BatchGetSessionInput): Operation<types.BatchGetSessionOutput>
     -- Retrieves multiple session actions in a single request. This is a batch version of the GetSessionAction API. The result of getting each session action is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetSessionAction: function(Client, types.BatchGetSessionActionInput): types.BatchGetSessionActionOutput, table
+    batchGetSessionAction: function(Client, types.BatchGetSessionActionInput): Operation<types.BatchGetSessionActionOutput>
     -- Retrieves multiple steps in a single request. This is a batch version of the GetStep API. The result of getting each step is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetStep: function(Client, types.BatchGetStepInput): types.BatchGetStepOutput, table
+    batchGetStep: function(Client, types.BatchGetStepInput): Operation<types.BatchGetStepOutput>
     -- Retrieves multiple tasks in a single request. This is a batch version of the GetTask API. The result of getting each task is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetTask: function(Client, types.BatchGetTaskInput): types.BatchGetTaskOutput, table
+    batchGetTask: function(Client, types.BatchGetTaskInput): Operation<types.BatchGetTaskOutput>
     -- Retrieves multiple workers in a single request. This is a batch version of the GetWorker API. The result of getting each worker is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchGetWorker: function(Client, types.BatchGetWorkerInput): types.BatchGetWorkerOutput, table
+    batchGetWorker: function(Client, types.BatchGetWorkerInput): Operation<types.BatchGetWorkerOutput>
     -- Updates multiple jobs in a single request. This is a batch version of the UpdateJob API. The result of updating each job is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200. When you change the status of a job to ARCHIVED, the job can't be scheduled or archived. An archived job and its steps and tasks are deleted after 120 days. The job can't be recovered.
-    batchUpdateJob: function(Client, types.BatchUpdateJobInput): types.BatchUpdateJobOutput, table
+    batchUpdateJob: function(Client, types.BatchUpdateJobInput): Operation<types.BatchUpdateJobOutput>
     -- Updates multiple tasks in a single request. This is a batch version of the UpdateTask API. The result of updating each task is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    batchUpdateTask: function(Client, types.BatchUpdateTaskInput): types.BatchUpdateTaskOutput, table
+    batchUpdateTask: function(Client, types.BatchUpdateTaskInput): Operation<types.BatchUpdateTaskOutput>
     -- Copies a job template to an Amazon S3 bucket.
-    copyJobTemplate: function(Client, types.CopyJobTemplateInput): types.CopyJobTemplateOutput, table
+    copyJobTemplate: function(Client, types.CopyJobTemplateInput): Operation<types.CopyJobTemplateOutput>
     -- Creates a budget to set spending thresholds for your rendering activity.
-    createBudget: function(Client, types.CreateBudgetInput): types.CreateBudgetOutput, table
+    createBudget: function(Client, types.CreateBudgetInput): Operation<types.CreateBudgetOutput>
     -- Creates a farm to allow space for queues and fleets. Farms are the space where the components of your renders gather and are pieced together in the cloud. Farms contain budgets and allow you to enforce permissions. Deadline Cloud farms are a useful container for large projects.
-    createFarm: function(Client, types.CreateFarmInput): types.CreateFarmOutput, table
+    createFarm: function(Client, types.CreateFarmInput): Operation<types.CreateFarmOutput>
     -- Creates a fleet. Fleets gather information relating to compute, or capacity, for renders within your farms. You can choose to manage your own capacity or opt to have fleets fully managed by Deadline Cloud.
-    createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    createFleet: function(Client, types.CreateFleetInput): Operation<types.CreateFleetOutput>
     -- Creates a job. A job is a set of instructions that Deadline Cloud uses to schedule and run work on available workers. For more information, see Deadline Cloud jobs.
-    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createJob: function(Client, types.CreateJobInput): Operation<types.CreateJobOutput>
     -- Creates a license endpoint to integrate your various licensed software used for rendering on Deadline Cloud.
-    createLicenseEndpoint: function(Client, types.CreateLicenseEndpointInput): types.CreateLicenseEndpointOutput, table
+    createLicenseEndpoint: function(Client, types.CreateLicenseEndpointInput): Operation<types.CreateLicenseEndpointOutput>
     -- Creates a limit that manages the distribution of shared resources, such as floating licenses. A limit can throttle work assignments, help manage workloads, and track current usage. Before you use a limit, you must associate the limit with one or more queues. You must add the amountRequirementName to a step in a job template to declare the limit requirement.
-    createLimit: function(Client, types.CreateLimitInput): types.CreateLimitOutput, table
+    createLimit: function(Client, types.CreateLimitInput): Operation<types.CreateLimitOutput>
     -- Creates an Amazon Web Services Deadline Cloud monitor that you can use to view your farms, queues, and fleets. After you submit a job, you can track the progress of the tasks and steps that make up the job, and then download the job's results.
-    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createMonitor: function(Client, types.CreateMonitorInput): Operation<types.CreateMonitorOutput>
     -- Creates a queue to coordinate the order in which jobs run on a farm. A queue can also specify where to pull resources and indicate where to output completed jobs.
-    createQueue: function(Client, types.CreateQueueInput): types.CreateQueueOutput, table
+    createQueue: function(Client, types.CreateQueueInput): Operation<types.CreateQueueOutput>
     -- Creates an environment for a queue that defines how jobs in the queue run.
-    createQueueEnvironment: function(Client, types.CreateQueueEnvironmentInput): types.CreateQueueEnvironmentOutput, table
+    createQueueEnvironment: function(Client, types.CreateQueueEnvironmentInput): Operation<types.CreateQueueEnvironmentOutput>
     -- Creates an association between a queue and a fleet.
-    createQueueFleetAssociation: function(Client, types.CreateQueueFleetAssociationInput): types.CreateQueueFleetAssociationOutput, table
+    createQueueFleetAssociation: function(Client, types.CreateQueueFleetAssociationInput): Operation<types.CreateQueueFleetAssociationOutput>
     -- Associates a limit with a particular queue. After the limit is associated, all workers for jobs that specify the limit associated with the queue are subject to the limit. You can't associate two limits with the same amountRequirementName to the same queue.
-    createQueueLimitAssociation: function(Client, types.CreateQueueLimitAssociationInput): types.CreateQueueLimitAssociationOutput, table
+    createQueueLimitAssociation: function(Client, types.CreateQueueLimitAssociationInput): Operation<types.CreateQueueLimitAssociationOutput>
     -- Creates a storage profile that specifies the operating system, file type, and file location of resources used on a farm.
-    createStorageProfile: function(Client, types.CreateStorageProfileInput): types.CreateStorageProfileOutput, table
+    createStorageProfile: function(Client, types.CreateStorageProfileInput): Operation<types.CreateStorageProfileOutput>
     -- Creates a worker. A worker tells your instance how much processing power (vCPU), and memory (GiB) you’ll need to assemble the digital assets held within a particular instance. You can specify certain instance types to use, or let the worker know which instances types to exclude. Deadline Cloud limits the number of workers to less than or equal to the fleet's maximum worker count. The service maintains eventual consistency for the worker count. If you make multiple rapid calls to CreateWorker before the field updates, you might exceed your fleet's maximum worker count. For example, if your maxWorkerCount is 10 and you currently have 9 workers, making two quick CreateWorker calls might successfully create 2 workers instead of 1, resulting in 11 total workers.
-    createWorker: function(Client, types.CreateWorkerInput): types.CreateWorkerOutput, table
+    createWorker: function(Client, types.CreateWorkerInput): Operation<types.CreateWorkerOutput>
     -- Deletes a budget.
-    deleteBudget: function(Client, types.DeleteBudgetInput): types.DeleteBudgetOutput, table
+    deleteBudget: function(Client, types.DeleteBudgetInput): Operation<types.DeleteBudgetOutput>
     -- Deletes a farm.
-    deleteFarm: function(Client, types.DeleteFarmInput): types.DeleteFarmOutput, table
+    deleteFarm: function(Client, types.DeleteFarmInput): Operation<types.DeleteFarmOutput>
     -- Deletes a fleet.
-    deleteFleet: function(Client, types.DeleteFleetInput): types.DeleteFleetOutput, table
+    deleteFleet: function(Client, types.DeleteFleetInput): Operation<types.DeleteFleetOutput>
     -- Deletes a license endpoint.
-    deleteLicenseEndpoint: function(Client, types.DeleteLicenseEndpointInput): types.DeleteLicenseEndpointOutput, table
+    deleteLicenseEndpoint: function(Client, types.DeleteLicenseEndpointInput): Operation<types.DeleteLicenseEndpointOutput>
     -- Removes a limit from the specified farm. Before you delete a limit you must use the DeleteQueueLimitAssociation operation to remove the association with any queues.
-    deleteLimit: function(Client, types.DeleteLimitInput): types.DeleteLimitOutput, table
+    deleteLimit: function(Client, types.DeleteLimitInput): Operation<types.DeleteLimitOutput>
     -- Deletes a metered product.
-    deleteMeteredProduct: function(Client, types.DeleteMeteredProductInput): types.DeleteMeteredProductOutput, table
+    deleteMeteredProduct: function(Client, types.DeleteMeteredProductInput): Operation<types.DeleteMeteredProductOutput>
     -- Removes a Deadline Cloud monitor. After you delete a monitor, you can create a new one and attach farms to the monitor.
-    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): Operation<types.DeleteMonitorOutput>
     -- Deletes a queue. You can't recover the jobs in a queue if you delete the queue. Deleting the queue also deletes the jobs in that queue.
-    deleteQueue: function(Client, types.DeleteQueueInput): types.DeleteQueueOutput, table
+    deleteQueue: function(Client, types.DeleteQueueInput): Operation<types.DeleteQueueOutput>
     -- Deletes a queue environment.
-    deleteQueueEnvironment: function(Client, types.DeleteQueueEnvironmentInput): types.DeleteQueueEnvironmentOutput, table
+    deleteQueueEnvironment: function(Client, types.DeleteQueueEnvironmentInput): Operation<types.DeleteQueueEnvironmentOutput>
     -- Deletes a queue-fleet association.
-    deleteQueueFleetAssociation: function(Client, types.DeleteQueueFleetAssociationInput): types.DeleteQueueFleetAssociationOutput, table
+    deleteQueueFleetAssociation: function(Client, types.DeleteQueueFleetAssociationInput): Operation<types.DeleteQueueFleetAssociationOutput>
     -- Removes the association between a queue and a limit. You must use the UpdateQueueLimitAssociation operation to set the status to STOP_LIMIT_USAGE_AND_COMPLETE_TASKS or STOP_LIMIT_USAGE_AND_CANCEL_TASKS. The status does not change immediately. Use the GetQueueLimitAssociation operation to see if the status changed to STOPPED before deleting the association.
-    deleteQueueLimitAssociation: function(Client, types.DeleteQueueLimitAssociationInput): types.DeleteQueueLimitAssociationOutput, table
+    deleteQueueLimitAssociation: function(Client, types.DeleteQueueLimitAssociationInput): Operation<types.DeleteQueueLimitAssociationOutput>
     -- Deletes a storage profile.
-    deleteStorageProfile: function(Client, types.DeleteStorageProfileInput): types.DeleteStorageProfileOutput, table
+    deleteStorageProfile: function(Client, types.DeleteStorageProfileInput): Operation<types.DeleteStorageProfileOutput>
     -- Deletes a worker.
-    deleteWorker: function(Client, types.DeleteWorkerInput): types.DeleteWorkerOutput, table
+    deleteWorker: function(Client, types.DeleteWorkerInput): Operation<types.DeleteWorkerOutput>
     -- Disassociates a member from a farm.
-    disassociateMemberFromFarm: function(Client, types.DisassociateMemberFromFarmInput): types.DisassociateMemberFromFarmOutput, table
+    disassociateMemberFromFarm: function(Client, types.DisassociateMemberFromFarmInput): Operation<types.DisassociateMemberFromFarmOutput>
     -- Disassociates a member from a fleet.
-    disassociateMemberFromFleet: function(Client, types.DisassociateMemberFromFleetInput): types.DisassociateMemberFromFleetOutput, table
+    disassociateMemberFromFleet: function(Client, types.DisassociateMemberFromFleetInput): Operation<types.DisassociateMemberFromFleetOutput>
     -- Disassociates a member from a job.
-    disassociateMemberFromJob: function(Client, types.DisassociateMemberFromJobInput): types.DisassociateMemberFromJobOutput, table
+    disassociateMemberFromJob: function(Client, types.DisassociateMemberFromJobInput): Operation<types.DisassociateMemberFromJobOutput>
     -- Disassociates a member from a queue.
-    disassociateMemberFromQueue: function(Client, types.DisassociateMemberFromQueueInput): types.DisassociateMemberFromQueueOutput, table
+    disassociateMemberFromQueue: function(Client, types.DisassociateMemberFromQueueInput): Operation<types.DisassociateMemberFromQueueOutput>
     -- Get a budget.
-    getBudget: function(Client, types.GetBudgetInput): types.GetBudgetOutput, table
+    getBudget: function(Client, types.GetBudgetInput): Operation<types.GetBudgetOutput>
     -- Get a farm.
-    getFarm: function(Client, types.GetFarmInput): types.GetFarmOutput, table
+    getFarm: function(Client, types.GetFarmInput): Operation<types.GetFarmOutput>
     -- Get a fleet.
-    getFleet: function(Client, types.GetFleetInput): types.GetFleetOutput, table
+    getFleet: function(Client, types.GetFleetInput): Operation<types.GetFleetOutput>
     -- Gets a Deadline Cloud job.
-    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getJob: function(Client, types.GetJobInput): Operation<types.GetJobOutput>
     -- Gets a licence endpoint.
-    getLicenseEndpoint: function(Client, types.GetLicenseEndpointInput): types.GetLicenseEndpointOutput, table
+    getLicenseEndpoint: function(Client, types.GetLicenseEndpointInput): Operation<types.GetLicenseEndpointOutput>
     -- Gets information about a specific limit.
-    getLimit: function(Client, types.GetLimitInput): types.GetLimitOutput, table
+    getLimit: function(Client, types.GetLimitInput): Operation<types.GetLimitOutput>
     -- Gets information about the specified monitor.
-    getMonitor: function(Client, types.GetMonitorInput): types.GetMonitorOutput, table
+    getMonitor: function(Client, types.GetMonitorInput): Operation<types.GetMonitorOutput>
     -- Gets the settings for a Deadline Cloud monitor.
-    getMonitorSettings: function(Client, types.GetMonitorSettingsInput): types.GetMonitorSettingsOutput, table
+    getMonitorSettings: function(Client, types.GetMonitorSettingsInput): Operation<types.GetMonitorSettingsOutput>
     -- Gets a queue.
-    getQueue: function(Client, types.GetQueueInput): types.GetQueueOutput, table
+    getQueue: function(Client, types.GetQueueInput): Operation<types.GetQueueOutput>
     -- Gets a queue environment.
-    getQueueEnvironment: function(Client, types.GetQueueEnvironmentInput): types.GetQueueEnvironmentOutput, table
+    getQueueEnvironment: function(Client, types.GetQueueEnvironmentInput): Operation<types.GetQueueEnvironmentOutput>
     -- Gets a queue-fleet association.
-    getQueueFleetAssociation: function(Client, types.GetQueueFleetAssociationInput): types.GetQueueFleetAssociationOutput, table
+    getQueueFleetAssociation: function(Client, types.GetQueueFleetAssociationInput): Operation<types.GetQueueFleetAssociationOutput>
     -- Gets information about a specific association between a queue and a limit.
-    getQueueLimitAssociation: function(Client, types.GetQueueLimitAssociationInput): types.GetQueueLimitAssociationOutput, table
+    getQueueLimitAssociation: function(Client, types.GetQueueLimitAssociationInput): Operation<types.GetQueueLimitAssociationOutput>
     -- Gets a session.
-    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): Operation<types.GetSessionOutput>
     -- Gets a session action for the job.
-    getSessionAction: function(Client, types.GetSessionActionInput): types.GetSessionActionOutput, table
+    getSessionAction: function(Client, types.GetSessionActionInput): Operation<types.GetSessionActionOutput>
     -- Gets a set of statistics for queues or farms. Before you can call the GetSessionStatisticsAggregation operation, you must first call the StartSessionsStatisticsAggregation operation. Statistics are available for 1 hour after you call the StartSessionsStatisticsAggregation operation.
-    getSessionsStatisticsAggregation: function(Client, types.GetSessionsStatisticsAggregationInput): types.GetSessionsStatisticsAggregationOutput, table
+    getSessionsStatisticsAggregation: function(Client, types.GetSessionsStatisticsAggregationInput): Operation<types.GetSessionsStatisticsAggregationOutput>
     -- Gets a step.
-    getStep: function(Client, types.GetStepInput): types.GetStepOutput, table
+    getStep: function(Client, types.GetStepInput): Operation<types.GetStepOutput>
     -- Gets a storage profile.
-    getStorageProfile: function(Client, types.GetStorageProfileInput): types.GetStorageProfileOutput, table
+    getStorageProfile: function(Client, types.GetStorageProfileInput): Operation<types.GetStorageProfileOutput>
     -- Gets a storage profile for a queue.
-    getStorageProfileForQueue: function(Client, types.GetStorageProfileForQueueInput): types.GetStorageProfileForQueueOutput, table
+    getStorageProfileForQueue: function(Client, types.GetStorageProfileForQueueInput): Operation<types.GetStorageProfileForQueueOutput>
     -- Gets a task.
-    getTask: function(Client, types.GetTaskInput): types.GetTaskOutput, table
+    getTask: function(Client, types.GetTaskInput): Operation<types.GetTaskOutput>
     -- Gets a worker.
-    getWorker: function(Client, types.GetWorkerInput): types.GetWorkerOutput, table
+    getWorker: function(Client, types.GetWorkerInput): Operation<types.GetWorkerOutput>
     -- A list of the available metered products.
-    listAvailableMeteredProducts: function(Client, types.ListAvailableMeteredProductsInput): types.ListAvailableMeteredProductsOutput, table
+    listAvailableMeteredProducts: function(Client, types.ListAvailableMeteredProductsInput): Operation<types.ListAvailableMeteredProductsOutput>
     -- A list of budgets in a farm.
-    listBudgets: function(Client, types.ListBudgetsInput): types.ListBudgetsOutput, table
+    listBudgets: function(Client, types.ListBudgetsInput): Operation<types.ListBudgetsOutput>
     -- Lists the members of a farm.
-    listFarmMembers: function(Client, types.ListFarmMembersInput): types.ListFarmMembersOutput, table
+    listFarmMembers: function(Client, types.ListFarmMembersInput): Operation<types.ListFarmMembersOutput>
     -- Lists farms.
-    listFarms: function(Client, types.ListFarmsInput): types.ListFarmsOutput, table
+    listFarms: function(Client, types.ListFarmsInput): Operation<types.ListFarmsOutput>
     -- Lists fleet members.
-    listFleetMembers: function(Client, types.ListFleetMembersInput): types.ListFleetMembersOutput, table
+    listFleetMembers: function(Client, types.ListFleetMembersInput): Operation<types.ListFleetMembersOutput>
     -- Lists fleets.
-    listFleets: function(Client, types.ListFleetsInput): types.ListFleetsOutput, table
+    listFleets: function(Client, types.ListFleetsInput): Operation<types.ListFleetsOutput>
     -- Lists members on a job.
-    listJobMembers: function(Client, types.ListJobMembersInput): types.ListJobMembersOutput, table
+    listJobMembers: function(Client, types.ListJobMembersInput): Operation<types.ListJobMembersOutput>
     -- Lists parameter definitions of a job.
-    listJobParameterDefinitions: function(Client, types.ListJobParameterDefinitionsInput): types.ListJobParameterDefinitionsOutput, table
+    listJobParameterDefinitions: function(Client, types.ListJobParameterDefinitionsInput): Operation<types.ListJobParameterDefinitionsOutput>
     -- Lists jobs.
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- Lists license endpoints.
-    listLicenseEndpoints: function(Client, types.ListLicenseEndpointsInput): types.ListLicenseEndpointsOutput, table
+    listLicenseEndpoints: function(Client, types.ListLicenseEndpointsInput): Operation<types.ListLicenseEndpointsOutput>
     -- Gets a list of limits defined in the specified farm.
-    listLimits: function(Client, types.ListLimitsInput): types.ListLimitsOutput, table
+    listLimits: function(Client, types.ListLimitsInput): Operation<types.ListLimitsOutput>
     -- Lists metered products.
-    listMeteredProducts: function(Client, types.ListMeteredProductsInput): types.ListMeteredProductsOutput, table
+    listMeteredProducts: function(Client, types.ListMeteredProductsInput): Operation<types.ListMeteredProductsOutput>
     -- Gets a list of your monitors in Deadline Cloud.
-    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): Operation<types.ListMonitorsOutput>
     -- Lists queue environments.
-    listQueueEnvironments: function(Client, types.ListQueueEnvironmentsInput): types.ListQueueEnvironmentsOutput, table
+    listQueueEnvironments: function(Client, types.ListQueueEnvironmentsInput): Operation<types.ListQueueEnvironmentsOutput>
     -- Lists queue-fleet associations.
-    listQueueFleetAssociations: function(Client, types.ListQueueFleetAssociationsInput): types.ListQueueFleetAssociationsOutput, table
+    listQueueFleetAssociations: function(Client, types.ListQueueFleetAssociationsInput): Operation<types.ListQueueFleetAssociationsOutput>
     -- Gets a list of the associations between queues and limits defined in a farm.
-    listQueueLimitAssociations: function(Client, types.ListQueueLimitAssociationsInput): types.ListQueueLimitAssociationsOutput, table
+    listQueueLimitAssociations: function(Client, types.ListQueueLimitAssociationsInput): Operation<types.ListQueueLimitAssociationsOutput>
     -- Lists the members in a queue.
-    listQueueMembers: function(Client, types.ListQueueMembersInput): types.ListQueueMembersOutput, table
+    listQueueMembers: function(Client, types.ListQueueMembersInput): Operation<types.ListQueueMembersOutput>
     -- Lists queues.
-    listQueues: function(Client, types.ListQueuesInput): types.ListQueuesOutput, table
+    listQueues: function(Client, types.ListQueuesInput): Operation<types.ListQueuesOutput>
     -- Lists session actions.
-    listSessionActions: function(Client, types.ListSessionActionsInput): types.ListSessionActionsOutput, table
+    listSessionActions: function(Client, types.ListSessionActionsInput): Operation<types.ListSessionActionsOutput>
     -- Lists sessions.
-    listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    listSessions: function(Client, types.ListSessionsInput): Operation<types.ListSessionsOutput>
     -- Lists sessions for a worker.
-    listSessionsForWorker: function(Client, types.ListSessionsForWorkerInput): types.ListSessionsForWorkerOutput, table
+    listSessionsForWorker: function(Client, types.ListSessionsForWorkerInput): Operation<types.ListSessionsForWorkerOutput>
     -- Lists step consumers.
-    listStepConsumers: function(Client, types.ListStepConsumersInput): types.ListStepConsumersOutput, table
+    listStepConsumers: function(Client, types.ListStepConsumersInput): Operation<types.ListStepConsumersOutput>
     -- Lists the dependencies for a step.
-    listStepDependencies: function(Client, types.ListStepDependenciesInput): types.ListStepDependenciesOutput, table
+    listStepDependencies: function(Client, types.ListStepDependenciesInput): Operation<types.ListStepDependenciesOutput>
     -- Lists steps for a job.
-    listSteps: function(Client, types.ListStepsInput): types.ListStepsOutput, table
+    listSteps: function(Client, types.ListStepsInput): Operation<types.ListStepsOutput>
     -- Lists storage profiles.
-    listStorageProfiles: function(Client, types.ListStorageProfilesInput): types.ListStorageProfilesOutput, table
+    listStorageProfiles: function(Client, types.ListStorageProfilesInput): Operation<types.ListStorageProfilesOutput>
     -- Lists storage profiles for a queue.
-    listStorageProfilesForQueue: function(Client, types.ListStorageProfilesForQueueInput): types.ListStorageProfilesForQueueOutput, table
+    listStorageProfilesForQueue: function(Client, types.ListStorageProfilesForQueueInput): Operation<types.ListStorageProfilesForQueueOutput>
     -- Lists tags for a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists tasks for a job.
-    listTasks: function(Client, types.ListTasksInput): types.ListTasksOutput, table
+    listTasks: function(Client, types.ListTasksInput): Operation<types.ListTasksOutput>
     -- Lists workers.
-    listWorkers: function(Client, types.ListWorkersInput): types.ListWorkersOutput, table
+    listWorkers: function(Client, types.ListWorkersInput): Operation<types.ListWorkersOutput>
     -- Adds a metered product.
-    putMeteredProduct: function(Client, types.PutMeteredProductInput): types.PutMeteredProductOutput, table
+    putMeteredProduct: function(Client, types.PutMeteredProductInput): Operation<types.PutMeteredProductOutput>
     -- Searches for jobs.
-    searchJobs: function(Client, types.SearchJobsInput): types.SearchJobsOutput, table
+    searchJobs: function(Client, types.SearchJobsInput): Operation<types.SearchJobsOutput>
     -- Searches for steps.
-    searchSteps: function(Client, types.SearchStepsInput): types.SearchStepsOutput, table
+    searchSteps: function(Client, types.SearchStepsInput): Operation<types.SearchStepsOutput>
     -- Searches for tasks.
-    searchTasks: function(Client, types.SearchTasksInput): types.SearchTasksOutput, table
+    searchTasks: function(Client, types.SearchTasksInput): Operation<types.SearchTasksOutput>
     -- Searches for workers.
-    searchWorkers: function(Client, types.SearchWorkersInput): types.SearchWorkersOutput, table
+    searchWorkers: function(Client, types.SearchWorkersInput): Operation<types.SearchWorkersOutput>
     -- Starts an asynchronous request for getting aggregated statistics about queues and farms. Get the statistics using the GetSessionsStatisticsAggregation operation. You can only have one running aggregation for your Deadline Cloud farm. Call the GetSessionsStatisticsAggregation operation and check the status field to see if an aggregation is running. Statistics are available for 1 hour after you call the StartSessionsStatisticsAggregation operation.
-    startSessionsStatisticsAggregation: function(Client, types.StartSessionsStatisticsAggregationInput): types.StartSessionsStatisticsAggregationOutput, table
+    startSessionsStatisticsAggregation: function(Client, types.StartSessionsStatisticsAggregationInput): Operation<types.StartSessionsStatisticsAggregationOutput>
     -- Tags a resource using the resource's ARN and desired tags.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a resource using the resource's ARN and tag to remove.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a budget that sets spending thresholds for rendering activity.
-    updateBudget: function(Client, types.UpdateBudgetInput): types.UpdateBudgetOutput, table
+    updateBudget: function(Client, types.UpdateBudgetInput): Operation<types.UpdateBudgetOutput>
     -- Updates a farm.
-    updateFarm: function(Client, types.UpdateFarmInput): types.UpdateFarmOutput, table
+    updateFarm: function(Client, types.UpdateFarmInput): Operation<types.UpdateFarmOutput>
     -- Updates a fleet.
-    updateFleet: function(Client, types.UpdateFleetInput): types.UpdateFleetOutput, table
+    updateFleet: function(Client, types.UpdateFleetInput): Operation<types.UpdateFleetOutput>
     -- Updates a job. When you change the status of the job to ARCHIVED, the job can't be scheduled or archived. An archived jobs and its steps and tasks are deleted after 120 days. The job can't be recovered.
-    updateJob: function(Client, types.UpdateJobInput): types.UpdateJobOutput, table
+    updateJob: function(Client, types.UpdateJobInput): Operation<types.UpdateJobOutput>
     -- Updates the properties of the specified limit.
-    updateLimit: function(Client, types.UpdateLimitInput): types.UpdateLimitOutput, table
+    updateLimit: function(Client, types.UpdateLimitInput): Operation<types.UpdateLimitOutput>
     -- Modifies the settings for a Deadline Cloud monitor. You can modify one or all of the settings when you call UpdateMonitor.
-    updateMonitor: function(Client, types.UpdateMonitorInput): types.UpdateMonitorOutput, table
+    updateMonitor: function(Client, types.UpdateMonitorInput): Operation<types.UpdateMonitorOutput>
     -- Updates the settings for a Deadline Cloud monitor. Keys present in the request are upserted; keys absent are left unchanged. Send an empty string value to delete a key.
-    updateMonitorSettings: function(Client, types.UpdateMonitorSettingsInput): types.UpdateMonitorSettingsOutput, table
+    updateMonitorSettings: function(Client, types.UpdateMonitorSettingsInput): Operation<types.UpdateMonitorSettingsOutput>
     -- Updates a queue.
-    updateQueue: function(Client, types.UpdateQueueInput): types.UpdateQueueOutput, table
+    updateQueue: function(Client, types.UpdateQueueInput): Operation<types.UpdateQueueOutput>
     -- Updates the queue environment.
-    updateQueueEnvironment: function(Client, types.UpdateQueueEnvironmentInput): types.UpdateQueueEnvironmentOutput, table
+    updateQueueEnvironment: function(Client, types.UpdateQueueEnvironmentInput): Operation<types.UpdateQueueEnvironmentOutput>
     -- Updates a queue-fleet association.
-    updateQueueFleetAssociation: function(Client, types.UpdateQueueFleetAssociationInput): types.UpdateQueueFleetAssociationOutput, table
+    updateQueueFleetAssociation: function(Client, types.UpdateQueueFleetAssociationInput): Operation<types.UpdateQueueFleetAssociationOutput>
     -- Updates the status of the queue. If you set the status to one of the STOP_LIMIT_USAGE* values, there will be a delay before the status transitions to the STOPPED state.
-    updateQueueLimitAssociation: function(Client, types.UpdateQueueLimitAssociationInput): types.UpdateQueueLimitAssociationOutput, table
+    updateQueueLimitAssociation: function(Client, types.UpdateQueueLimitAssociationInput): Operation<types.UpdateQueueLimitAssociationOutput>
     -- Updates a session.
-    updateSession: function(Client, types.UpdateSessionInput): types.UpdateSessionOutput, table
+    updateSession: function(Client, types.UpdateSessionInput): Operation<types.UpdateSessionOutput>
     -- Updates a step.
-    updateStep: function(Client, types.UpdateStepInput): types.UpdateStepOutput, table
+    updateStep: function(Client, types.UpdateStepInput): Operation<types.UpdateStepOutput>
     -- Updates a storage profile.
-    updateStorageProfile: function(Client, types.UpdateStorageProfileInput): types.UpdateStorageProfileOutput, table
+    updateStorageProfile: function(Client, types.UpdateStorageProfileInput): Operation<types.UpdateStorageProfileOutput>
     -- Updates a task.
-    updateTask: function(Client, types.UpdateTaskInput): types.UpdateTaskOutput, table
+    updateTask: function(Client, types.UpdateTaskInput): Operation<types.UpdateTaskOutput>
     -- Updates a worker.
-    updateWorker: function(Client, types.UpdateWorkerInput): types.UpdateWorkerOutput, table
+    updateWorker: function(Client, types.UpdateWorkerInput): Operation<types.UpdateWorkerOutput>
     -- Updates the schedule for a worker.
-    updateWorkerSchedule: function(Client, types.UpdateWorkerScheduleInput): types.UpdateWorkerScheduleOutput, table
+    updateWorkerSchedule: function(Client, types.UpdateWorkerScheduleInput): Operation<types.UpdateWorkerScheduleOutput>
 end
 
 local record M

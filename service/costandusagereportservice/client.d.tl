@@ -2,22 +2,26 @@
 
 local types = require("costandusagereportservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the specified report. Any tags associated with the report are also
     -- deleted.
-    deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): types.DeleteReportDefinitionOutput, table
+    deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): Operation<types.DeleteReportDefinitionOutput>
     -- Lists the Amazon Web Services Cost and Usage Report available to this account.
-    describeReportDefinitions: function(Client, types.DescribeReportDefinitionsInput): types.DescribeReportDefinitionsOutput, table
+    describeReportDefinitions: function(Client, types.DescribeReportDefinitionsInput): Operation<types.DescribeReportDefinitionsOutput>
     -- Lists the tags associated with the specified report definition.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Allows you to programmatically update your report preferences.
-    modifyReportDefinition: function(Client, types.ModifyReportDefinitionInput): types.ModifyReportDefinitionOutput, table
+    modifyReportDefinition: function(Client, types.ModifyReportDefinitionInput): Operation<types.ModifyReportDefinitionOutput>
     -- Creates a new report using the description that you provide.
-    putReportDefinition: function(Client, types.PutReportDefinitionInput): types.PutReportDefinitionOutput, table
+    putReportDefinition: function(Client, types.PutReportDefinitionInput): Operation<types.PutReportDefinitionOutput>
     -- Associates a set of tags with a report definition.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Disassociates a set of tags from a report definition.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

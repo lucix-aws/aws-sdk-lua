@@ -2,150 +2,154 @@
 
 local types = require("computeoptimizer.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes a recommendation preference, such as enhanced infrastructure metrics.
     -- For more information, see Activating
     -- enhanced infrastructure metrics in the Compute Optimizer User
     -- Guide.
-    deleteRecommendationPreferences: function(Client, types.DeleteRecommendationPreferencesInput): types.DeleteRecommendationPreferencesOutput, table
+    deleteRecommendationPreferences: function(Client, types.DeleteRecommendationPreferencesInput): Operation<types.DeleteRecommendationPreferencesOutput>
     -- Describes recommendation export jobs created in the last seven days.
     -- Use the ExportAutoScalingGroupRecommendations or ExportEC2InstanceRecommendations actions to request an export of your
     -- recommendations. Then use the DescribeRecommendationExportJobs action
     -- to view your export jobs.
-    describeRecommendationExportJobs: function(Client, types.DescribeRecommendationExportJobsInput): types.DescribeRecommendationExportJobsOutput, table
+    describeRecommendationExportJobs: function(Client, types.DescribeRecommendationExportJobsInput): Operation<types.DescribeRecommendationExportJobsOutput>
     -- Exports optimization recommendations for Auto Scaling groups.
     -- Recommendations are exported in a comma-separated values (.csv) file, and its metadata
     -- in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one Auto Scaling group export job in progress per Amazon Web Services Region.
-    exportAutoScalingGroupRecommendations: function(Client, types.ExportAutoScalingGroupRecommendationsInput): types.ExportAutoScalingGroupRecommendationsOutput, table
+    exportAutoScalingGroupRecommendations: function(Client, types.ExportAutoScalingGroupRecommendationsInput): Operation<types.ExportAutoScalingGroupRecommendationsOutput>
     -- Exports optimization recommendations for Amazon EBS volumes.
     -- Recommendations are exported in a comma-separated values (.csv) file, and its metadata
     -- in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one Amazon EBS volume export job in progress per Amazon Web Services Region.
-    exportEBSVolumeRecommendations: function(Client, types.ExportEBSVolumeRecommendationsInput): types.ExportEBSVolumeRecommendationsOutput, table
+    exportEBSVolumeRecommendations: function(Client, types.ExportEBSVolumeRecommendationsInput): Operation<types.ExportEBSVolumeRecommendationsOutput>
     -- Exports optimization recommendations for Amazon EC2 instances.
     -- Recommendations are exported in a comma-separated values (.csv) file, and its metadata
     -- in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one Amazon EC2 instance export job in progress per Amazon Web Services Region.
-    exportEC2InstanceRecommendations: function(Client, types.ExportEC2InstanceRecommendationsInput): types.ExportEC2InstanceRecommendationsOutput, table
+    exportEC2InstanceRecommendations: function(Client, types.ExportEC2InstanceRecommendationsInput): Operation<types.ExportEC2InstanceRecommendationsOutput>
     -- Exports optimization recommendations for Amazon ECS services on Fargate.
     -- Recommendations are exported in a CSV file, and its metadata
     -- in a JSON file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can only have one Amazon ECS service export job in progress per Amazon Web Services Region.
-    exportECSServiceRecommendations: function(Client, types.ExportECSServiceRecommendationsInput): types.ExportECSServiceRecommendationsOutput, table
+    exportECSServiceRecommendations: function(Client, types.ExportECSServiceRecommendationsInput): Operation<types.ExportECSServiceRecommendationsOutput>
     -- Export optimization recommendations for your idle resources.
     -- Recommendations are exported in a comma-separated values (CSV) file, and its metadata
     -- in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one idle resource export job in progress per Amazon Web Services Region.
-    exportIdleRecommendations: function(Client, types.ExportIdleRecommendationsInput): types.ExportIdleRecommendationsOutput, table
+    exportIdleRecommendations: function(Client, types.ExportIdleRecommendationsInput): Operation<types.ExportIdleRecommendationsOutput>
     -- Exports optimization recommendations for Lambda functions.
     -- Recommendations are exported in a comma-separated values (.csv) file, and its metadata
     -- in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one Lambda function export job in progress per Amazon Web Services Region.
-    exportLambdaFunctionRecommendations: function(Client, types.ExportLambdaFunctionRecommendationsInput): types.ExportLambdaFunctionRecommendationsOutput, table
+    exportLambdaFunctionRecommendations: function(Client, types.ExportLambdaFunctionRecommendationsInput): Operation<types.ExportLambdaFunctionRecommendationsOutput>
     -- Export optimization recommendations for your licenses.
     -- Recommendations are exported in a comma-separated values (CSV) file, and its metadata
     -- in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one license export job in progress per Amazon Web Services Region.
-    exportLicenseRecommendations: function(Client, types.ExportLicenseRecommendationsInput): types.ExportLicenseRecommendationsOutput, table
+    exportLicenseRecommendations: function(Client, types.ExportLicenseRecommendationsInput): Operation<types.ExportLicenseRecommendationsOutput>
     -- Export optimization recommendations for your Amazon Aurora and Amazon Relational Database Service (Amazon RDS) databases.
     -- Recommendations are exported in a comma-separated values (CSV) file, and its metadata
     -- in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting
     -- Recommendations in the Compute Optimizer User
     -- Guide.
     -- You can have only one Amazon Aurora or RDS export job in progress per Amazon Web Services Region.
-    exportRDSDatabaseRecommendations: function(Client, types.ExportRDSDatabaseRecommendationsInput): types.ExportRDSDatabaseRecommendationsOutput, table
+    exportRDSDatabaseRecommendations: function(Client, types.ExportRDSDatabaseRecommendationsInput): Operation<types.ExportRDSDatabaseRecommendationsOutput>
     -- Returns Auto Scaling group recommendations.
     -- Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that
     -- meet a specific set of requirements. For more information, see the Supported
     -- resources and requirements in the Compute Optimizer User
     -- Guide.
-    getAutoScalingGroupRecommendations: function(Client, types.GetAutoScalingGroupRecommendationsInput): types.GetAutoScalingGroupRecommendationsOutput, table
+    getAutoScalingGroupRecommendations: function(Client, types.GetAutoScalingGroupRecommendationsInput): Operation<types.GetAutoScalingGroupRecommendationsOutput>
     -- Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.
     -- Compute Optimizer generates recommendations for Amazon EBS volumes that
     -- meet a specific set of requirements. For more information, see the Supported
     -- resources and requirements in the Compute Optimizer User
     -- Guide.
-    getEBSVolumeRecommendations: function(Client, types.GetEBSVolumeRecommendationsInput): types.GetEBSVolumeRecommendationsOutput, table
+    getEBSVolumeRecommendations: function(Client, types.GetEBSVolumeRecommendationsInput): Operation<types.GetEBSVolumeRecommendationsOutput>
     -- Returns Amazon EC2 instance recommendations.
     -- Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more
     -- information, see the Supported resources and
     -- requirements in the Compute Optimizer User
     -- Guide.
-    getEC2InstanceRecommendations: function(Client, types.GetEC2InstanceRecommendationsInput): types.GetEC2InstanceRecommendationsOutput, table
+    getEC2InstanceRecommendations: function(Client, types.GetEC2InstanceRecommendationsInput): Operation<types.GetEC2InstanceRecommendationsOutput>
     -- Returns the projected utilization metrics of Amazon EC2 instance
     -- recommendations.
     -- The Cpu and Memory metrics are the only projected
     -- utilization metrics returned when you run this action. Additionally, the
     -- Memory metric is returned only for resources that have the unified
     -- CloudWatch agent installed on them. For more information, see Enabling Memory Utilization with the CloudWatch Agent.
-    getEC2RecommendationProjectedMetrics: function(Client, types.GetEC2RecommendationProjectedMetricsInput): types.GetEC2RecommendationProjectedMetricsOutput, table
+    getEC2RecommendationProjectedMetrics: function(Client, types.GetEC2RecommendationProjectedMetricsInput): Operation<types.GetEC2RecommendationProjectedMetricsOutput>
     -- Returns the projected metrics of Amazon ECS service recommendations.
-    getECSServiceRecommendationProjectedMetrics: function(Client, types.GetECSServiceRecommendationProjectedMetricsInput): types.GetECSServiceRecommendationProjectedMetricsOutput, table
+    getECSServiceRecommendationProjectedMetrics: function(Client, types.GetECSServiceRecommendationProjectedMetricsInput): Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
     -- Returns Amazon ECS service recommendations.
     -- Compute Optimizer generates recommendations for Amazon ECS services on
     -- Fargate that meet a specific set of requirements. For more
     -- information, see the Supported resources and
     -- requirements in the Compute Optimizer User
     -- Guide.
-    getECSServiceRecommendations: function(Client, types.GetECSServiceRecommendationsInput): types.GetECSServiceRecommendationsOutput, table
+    getECSServiceRecommendations: function(Client, types.GetECSServiceRecommendationsInput): Operation<types.GetECSServiceRecommendationsOutput>
     -- Returns the recommendation preferences that are in effect for a given resource, such
     -- as enhanced infrastructure metrics. Considers all applicable preferences that you might
     -- have set at the resource, account, and organization level.
     -- When you create a recommendation preference, you can set its status to
     -- Active or Inactive. Use this action to view the
     -- recommendation preferences that are in effect, or Active.
-    getEffectiveRecommendationPreferences: function(Client, types.GetEffectiveRecommendationPreferencesInput): types.GetEffectiveRecommendationPreferencesOutput, table
+    getEffectiveRecommendationPreferences: function(Client, types.GetEffectiveRecommendationPreferencesInput): Operation<types.GetEffectiveRecommendationPreferencesOutput>
     -- Returns the enrollment (opt in) status of an account to the Compute Optimizer
     -- service.
     -- If the account is the management account of an organization, this action also confirms
     -- the enrollment status of member accounts of the organization. Use the GetEnrollmentStatusesForOrganization action to get detailed information
     -- about the enrollment status of member accounts of an organization.
-    getEnrollmentStatus: function(Client, types.GetEnrollmentStatusInput): types.GetEnrollmentStatusOutput, table
+    getEnrollmentStatus: function(Client, types.GetEnrollmentStatusInput): Operation<types.GetEnrollmentStatusOutput>
     -- Returns the Compute Optimizer enrollment (opt-in) status of organization member
     -- accounts, if your account is an organization management account.
     -- To get the enrollment status of standalone accounts, use the GetEnrollmentStatus action.
-    getEnrollmentStatusesForOrganization: function(Client, types.GetEnrollmentStatusesForOrganizationInput): types.GetEnrollmentStatusesForOrganizationOutput, table
+    getEnrollmentStatusesForOrganization: function(Client, types.GetEnrollmentStatusesForOrganizationInput): Operation<types.GetEnrollmentStatusesForOrganizationOutput>
     -- Returns idle resource recommendations. Compute Optimizer generates recommendations for
     -- idle resources that meet a specific set of requirements. For more information, see
     -- Resource requirements in the
     -- Compute Optimizer User Guide
-    getIdleRecommendations: function(Client, types.GetIdleRecommendationsInput): types.GetIdleRecommendationsOutput, table
+    getIdleRecommendations: function(Client, types.GetIdleRecommendationsInput): Operation<types.GetIdleRecommendationsOutput>
     -- Returns Lambda function recommendations.
     -- Compute Optimizer generates recommendations for functions that meet a specific set
     -- of requirements. For more information, see the Supported resources and
     -- requirements in the Compute Optimizer User
     -- Guide.
-    getLambdaFunctionRecommendations: function(Client, types.GetLambdaFunctionRecommendationsInput): types.GetLambdaFunctionRecommendationsOutput, table
+    getLambdaFunctionRecommendations: function(Client, types.GetLambdaFunctionRecommendationsInput): Operation<types.GetLambdaFunctionRecommendationsOutput>
     -- Returns license recommendations for Amazon EC2 instances that run on a specific license.
     -- Compute Optimizer generates recommendations for licenses that meet a specific set of requirements. For more
     -- information, see the Supported resources and
     -- requirements in the Compute Optimizer User
     -- Guide.
-    getLicenseRecommendations: function(Client, types.GetLicenseRecommendationsInput): types.GetLicenseRecommendationsOutput, table
+    getLicenseRecommendations: function(Client, types.GetLicenseRecommendationsInput): Operation<types.GetLicenseRecommendationsOutput>
     -- Returns the projected metrics of Aurora and RDS database recommendations.
-    getRDSDatabaseRecommendationProjectedMetrics: function(Client, types.GetRDSDatabaseRecommendationProjectedMetricsInput): types.GetRDSDatabaseRecommendationProjectedMetricsOutput, table
+    getRDSDatabaseRecommendationProjectedMetrics: function(Client, types.GetRDSDatabaseRecommendationProjectedMetricsInput): Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
     -- Returns Amazon Aurora and RDS database recommendations.
     -- Compute Optimizer generates recommendations for Amazon Aurora and RDS databases that
     -- meet a specific set of requirements. For more
     -- information, see the Supported resources and
     -- requirements in the Compute Optimizer User
     -- Guide.
-    getRDSDatabaseRecommendations: function(Client, types.GetRDSDatabaseRecommendationsInput): types.GetRDSDatabaseRecommendationsOutput, table
+    getRDSDatabaseRecommendations: function(Client, types.GetRDSDatabaseRecommendationsInput): Operation<types.GetRDSDatabaseRecommendationsOutput>
     -- Returns existing recommendation preferences, such as enhanced infrastructure
     -- metrics.
     -- Use the scope parameter to specify which preferences to return. You can
@@ -154,7 +158,7 @@ local record Client
     -- For more information, see Activating
     -- enhanced infrastructure metrics in the Compute Optimizer User
     -- Guide.
-    getRecommendationPreferences: function(Client, types.GetRecommendationPreferencesInput): types.GetRecommendationPreferencesOutput, table
+    getRecommendationPreferences: function(Client, types.GetRecommendationPreferencesInput): Operation<types.GetRecommendationPreferencesOutput>
     -- Returns the optimization findings for an account.
     -- It returns the number of:
     -- Amazon EC2 instances in an account that are
@@ -172,13 +176,13 @@ local record Client
     -- NotOptimized or Optimized.
     -- Amazon Aurora and Amazon RDS databases in an account that are Underprovisioned,
     -- Overprovisioned, Optimized, or NotOptimized.
-    getRecommendationSummaries: function(Client, types.GetRecommendationSummariesInput): types.GetRecommendationSummariesOutput, table
+    getRecommendationSummaries: function(Client, types.GetRecommendationSummariesInput): Operation<types.GetRecommendationSummariesOutput>
     -- Creates a new recommendation preference or updates an existing recommendation
     -- preference, such as enhanced infrastructure metrics.
     -- For more information, see Activating
     -- enhanced infrastructure metrics in the Compute Optimizer User
     -- Guide.
-    putRecommendationPreferences: function(Client, types.PutRecommendationPreferencesInput): types.PutRecommendationPreferencesOutput, table
+    putRecommendationPreferences: function(Client, types.PutRecommendationPreferencesInput): Operation<types.PutRecommendationPreferencesOutput>
     -- Updates the enrollment (opt in and opt out) status of an account to the Compute Optimizer service.
     -- If the account is a management account of an organization, this action can also be
     -- used to enroll member accounts of the organization.
@@ -187,7 +191,7 @@ local record Client
     -- When you opt in, Compute Optimizer automatically creates a service-linked role in your
     -- account to access its data. For more information, see Using
     -- Service-Linked Roles for Compute Optimizer in the Compute Optimizer User Guide.
-    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput): types.UpdateEnrollmentStatusOutput, table
+    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput): Operation<types.UpdateEnrollmentStatusOutput>
 end
 
 local record M

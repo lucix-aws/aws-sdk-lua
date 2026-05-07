@@ -2,38 +2,42 @@
 
 local types = require("marketplacecatalog.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns metadata and content for multiple entities. This is the Batch version of the DescribeEntity API and uses the same IAM permission action as DescribeEntity API.
-    batchDescribeEntities: function(Client, types.BatchDescribeEntitiesInput): types.BatchDescribeEntitiesOutput, table
+    batchDescribeEntities: function(Client, types.BatchDescribeEntitiesInput): Operation<types.BatchDescribeEntitiesOutput>
     -- Used to cancel an open change request. Must be sent before the status of the request
     -- changes to APPLYING, the final stage of completing your change request. You
     -- can describe a change during the 60-day request history retention period for API
     -- calls.
-    cancelChangeSet: function(Client, types.CancelChangeSetInput): types.CancelChangeSetOutput, table
+    cancelChangeSet: function(Client, types.CancelChangeSetInput): Operation<types.CancelChangeSetOutput>
     -- Deletes a resource-based policy on an entity that is identified by its resource
     -- ARN.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Provides information about a given change set.
-    describeChangeSet: function(Client, types.DescribeChangeSetInput): types.DescribeChangeSetOutput, table
+    describeChangeSet: function(Client, types.DescribeChangeSetInput): Operation<types.DescribeChangeSetOutput>
     -- Returns the metadata and content of the entity.
-    describeEntity: function(Client, types.DescribeEntityInput): types.DescribeEntityOutput, table
+    describeEntity: function(Client, types.DescribeEntityInput): Operation<types.DescribeEntityOutput>
     -- Gets a resource-based policy of an entity that is identified by its resource
     -- ARN.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Returns the list of change sets owned by the account being used to make the call. You
     -- can filter this list by providing any combination of entityId,
     -- ChangeSetName, and status. If you provide more than one filter, the API
     -- operation applies a logical AND between the filters.
     -- You can describe a change during the 60-day request history retention period for API
     -- calls.
-    listChangeSets: function(Client, types.ListChangeSetsInput): types.ListChangeSetsOutput, table
+    listChangeSets: function(Client, types.ListChangeSetsInput): Operation<types.ListChangeSetsOutput>
     -- Provides the list of entities of a given type.
-    listEntities: function(Client, types.ListEntitiesInput): types.ListEntitiesOutput, table
+    listEntities: function(Client, types.ListEntitiesInput): Operation<types.ListEntitiesOutput>
     -- Lists all tags that have been added to a resource (either an entity or change set).
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Attaches a resource-based policy to an entity. Examples of an entity include:
     -- AmiProduct and ContainerProduct.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Allows you to request changes for your entities. Within a single
     -- ChangeSet, you can't start the same change type against the same entity
     -- multiple times. Additionally, when a ChangeSet is running, all the entities
@@ -49,11 +53,11 @@ local record Client
     -- types available for container-based products, see Working with container products.
     -- To download "DetailsDocument" shapes, see Python
     -- and Java shapes on GitHub.
-    startChangeSet: function(Client, types.StartChangeSetInput): types.StartChangeSetOutput, table
+    startChangeSet: function(Client, types.StartChangeSetInput): Operation<types.StartChangeSetOutput>
     -- Tags a resource (either an entity or change set).
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag or list of tags from a resource (either an entity or change set).
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

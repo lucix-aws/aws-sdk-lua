@@ -2,96 +2,100 @@
 
 local types = require("emrcontainers.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or
     -- SparkSQL query, that you submit to Amazon EMR on EKS.
-    cancelJobRun: function(Client, types.CancelJobRunInput): types.CancelJobRunOutput, table
+    cancelJobRun: function(Client, types.CancelJobRunInput): Operation<types.CancelJobRunOutput>
     -- Creates a job template. Job template stores values of StartJobRun API request in a
     -- template and can be used to start a job run. Job template allows two use cases: avoid
     -- repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun
     -- API request.
-    createJobTemplate: function(Client, types.CreateJobTemplateInput): types.CreateJobTemplateOutput, table
+    createJobTemplate: function(Client, types.CreateJobTemplateInput): Operation<types.CreateJobTemplateOutput>
     -- Creates a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can
     -- communicate with your virtual cluster.
-    createManagedEndpoint: function(Client, types.CreateManagedEndpointInput): types.CreateManagedEndpointOutput, table
+    createManagedEndpoint: function(Client, types.CreateManagedEndpointInput): Operation<types.CreateManagedEndpointOutput>
     -- Creates a security configuration. Security configurations in Amazon EMR on EKS are
     -- templates for different security setups. You can use security configurations to configure
     -- the Lake Formation integration setup. You can also create a security configuration
     -- to re-use a security setup each time you create a virtual cluster.
-    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): types.CreateSecurityConfigurationOutput, table
+    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): Operation<types.CreateSecurityConfigurationOutput>
     -- Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any
     -- additional resource in your system. A single virtual cluster maps to a single Kubernetes
     -- namespace. Given this relationship, you can model virtual clusters the same way you model
     -- Kubernetes namespaces to meet your requirements.
-    createVirtualCluster: function(Client, types.CreateVirtualClusterInput): types.CreateVirtualClusterOutput, table
+    createVirtualCluster: function(Client, types.CreateVirtualClusterInput): Operation<types.CreateVirtualClusterOutput>
     -- Deletes a job template. Job template stores values of StartJobRun API request in a
     -- template and can be used to start a job run. Job template allows two use cases: avoid
     -- repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun
     -- API request.
-    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): types.DeleteJobTemplateOutput, table
+    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): Operation<types.DeleteJobTemplateOutput>
     -- Deletes a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can
     -- communicate with your virtual cluster.
-    deleteManagedEndpoint: function(Client, types.DeleteManagedEndpointInput): types.DeleteManagedEndpointOutput, table
+    deleteManagedEndpoint: function(Client, types.DeleteManagedEndpointInput): Operation<types.DeleteManagedEndpointOutput>
     -- Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any
     -- additional resource in your system. A single virtual cluster maps to a single Kubernetes
     -- namespace. Given this relationship, you can model virtual clusters the same way you model
     -- Kubernetes namespaces to meet your requirements.
-    deleteVirtualCluster: function(Client, types.DeleteVirtualClusterInput): types.DeleteVirtualClusterOutput, table
+    deleteVirtualCluster: function(Client, types.DeleteVirtualClusterInput): Operation<types.DeleteVirtualClusterOutput>
     -- Displays detailed information about a job run. A job run is a unit of work, such as a
     -- Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
-    describeJobRun: function(Client, types.DescribeJobRunInput): types.DescribeJobRunOutput, table
+    describeJobRun: function(Client, types.DescribeJobRunInput): Operation<types.DescribeJobRunOutput>
     -- Displays detailed information about a specified job template. Job template stores values
     -- of StartJobRun API request in a template and can be used to start a job run. Job template
     -- allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing
     -- certain values in StartJobRun API request.
-    describeJobTemplate: function(Client, types.DescribeJobTemplateInput): types.DescribeJobTemplateOutput, table
+    describeJobTemplate: function(Client, types.DescribeJobTemplateInput): Operation<types.DescribeJobTemplateOutput>
     -- Displays detailed information about a managed endpoint. A managed endpoint is a gateway
     -- that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.
-    describeManagedEndpoint: function(Client, types.DescribeManagedEndpointInput): types.DescribeManagedEndpointOutput, table
+    describeManagedEndpoint: function(Client, types.DescribeManagedEndpointInput): Operation<types.DescribeManagedEndpointOutput>
     -- Displays detailed information about a specified security configuration. Security
     -- configurations in Amazon EMR on EKS are templates for different security setups. You
     -- can use security configurations to configure the Lake Formation integration setup.
     -- You can also create a security configuration to re-use a security setup each time you
     -- create a virtual cluster.
-    describeSecurityConfiguration: function(Client, types.DescribeSecurityConfigurationInput): types.DescribeSecurityConfigurationOutput, table
+    describeSecurityConfiguration: function(Client, types.DescribeSecurityConfigurationInput): Operation<types.DescribeSecurityConfigurationOutput>
     -- Displays detailed information about a specified virtual cluster. Virtual cluster is a
     -- managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual
     -- clusters. They do not consume any additional resource in your system. A single virtual
     -- cluster maps to a single Kubernetes namespace. Given this relationship, you can model
     -- virtual clusters the same way you model Kubernetes namespaces to meet your
     -- requirements.
-    describeVirtualCluster: function(Client, types.DescribeVirtualClusterInput): types.DescribeVirtualClusterOutput, table
+    describeVirtualCluster: function(Client, types.DescribeVirtualClusterInput): Operation<types.DescribeVirtualClusterOutput>
     -- Generate a session token to connect to a managed endpoint.
-    getManagedEndpointSessionCredentials: function(Client, types.GetManagedEndpointSessionCredentialsInput): types.GetManagedEndpointSessionCredentialsOutput, table
+    getManagedEndpointSessionCredentials: function(Client, types.GetManagedEndpointSessionCredentialsInput): Operation<types.GetManagedEndpointSessionCredentialsOutput>
     -- Lists job runs based on a set of parameters. A job run is a unit of work, such as a
     -- Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
-    listJobRuns: function(Client, types.ListJobRunsInput): types.ListJobRunsOutput, table
+    listJobRuns: function(Client, types.ListJobRunsInput): Operation<types.ListJobRunsOutput>
     -- Lists job templates based on a set of parameters. Job template stores values of
     -- StartJobRun API request in a template and can be used to start a job run. Job template
     -- allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing
     -- certain values in StartJobRun API request.
-    listJobTemplates: function(Client, types.ListJobTemplatesInput): types.ListJobTemplatesOutput, table
+    listJobTemplates: function(Client, types.ListJobTemplatesInput): Operation<types.ListJobTemplatesOutput>
     -- Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway
     -- that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.
-    listManagedEndpoints: function(Client, types.ListManagedEndpointsInput): types.ListManagedEndpointsOutput, table
+    listManagedEndpoints: function(Client, types.ListManagedEndpointsInput): Operation<types.ListManagedEndpointsOutput>
     -- Lists security configurations based on a set of parameters. Security configurations in
     -- Amazon EMR on EKS are templates for different security setups. You can use security
     -- configurations to configure the Lake Formation integration setup. You can also
     -- create a security configuration to re-use a security setup each time you create a virtual
     -- cluster.
-    listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput): types.ListSecurityConfigurationsOutput, table
+    listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput): Operation<types.ListSecurityConfigurationsOutput>
     -- Lists the tags assigned to the resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists information about the specified virtual cluster. Virtual cluster is a managed
     -- entity on Amazon EMR on EKS. You can create, describe, list and delete virtual
     -- clusters. They do not consume any additional resource in your system. A single virtual
     -- cluster maps to a single Kubernetes namespace. Given this relationship, you can model
     -- virtual clusters the same way you model Kubernetes namespaces to meet your
     -- requirements.
-    listVirtualClusters: function(Client, types.ListVirtualClustersInput): types.ListVirtualClustersOutput, table
+    listVirtualClusters: function(Client, types.ListVirtualClustersInput): Operation<types.ListVirtualClustersOutput>
     -- Starts a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or
     -- SparkSQL query, that you submit to Amazon EMR on EKS.
-    startJobRun: function(Client, types.StartJobRunInput): types.StartJobRunOutput, table
+    startJobRun: function(Client, types.StartJobRunInput): Operation<types.StartJobRunOutput>
     -- Assigns tags to resources. A tag is a label that you assign to an Amazon Web Services
     -- resource. Each tag consists of a key and an optional value, both of which you define. Tags
     -- enable you to categorize your Amazon Web Services resources by attributes such as purpose,
@@ -101,9 +105,9 @@ local record Client
     -- cluster's owner and stack level. We recommend that you devise a consistent set of tag keys
     -- for each resource type. You can then search and filter the resources based on the tags that
     -- you add.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from resources.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

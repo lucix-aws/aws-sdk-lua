@@ -2,57 +2,61 @@
 
 local types = require("ram.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts an invitation to a resource share from another Amazon Web Services account. After you accept the
     -- invitation, the resources included in the resource share are available to interact with in the
     -- relevant Amazon Web Services Management Consoles and tools.
-    acceptResourceShareInvitation: function(Client, types.AcceptResourceShareInvitationInput): types.AcceptResourceShareInvitationOutput, table
+    acceptResourceShareInvitation: function(Client, types.AcceptResourceShareInvitationInput): Operation<types.AcceptResourceShareInvitationOutput>
     -- Adds the specified list of principals, resources, and source constraints to a resource share. Principals that
     -- already have access to this resource share immediately receive access to the added resources.
     -- Newly added principals immediately receive access to the resources shared in this resource share.
-    associateResourceShare: function(Client, types.AssociateResourceShareInput): types.AssociateResourceShareOutput, table
+    associateResourceShare: function(Client, types.AssociateResourceShareInput): Operation<types.AssociateResourceShareOutput>
     -- Adds or replaces the RAM permission for a resource type included in a resource share. You can
     -- have exactly one permission associated with each resource type in the resource share. You can add
     -- a new RAM permission only if there are currently no resources of that resource type
     -- currently in the resource share.
-    associateResourceSharePermission: function(Client, types.AssociateResourceSharePermissionInput): types.AssociateResourceSharePermissionOutput, table
+    associateResourceSharePermission: function(Client, types.AssociateResourceSharePermissionInput): Operation<types.AssociateResourceSharePermissionOutput>
     -- Creates a customer managed permission for a specified resource type that you can attach to resource shares.
     -- It is created in the Amazon Web Services Region in which you call the operation.
-    createPermission: function(Client, types.CreatePermissionInput): types.CreatePermissionOutput, table
+    createPermission: function(Client, types.CreatePermissionInput): Operation<types.CreatePermissionOutput>
     -- Creates a new version of the specified customer managed permission. The new version is automatically set as
     -- the default version of the customer managed permission. New resource shares automatically use the default
     -- permission. Existing resource shares continue to use their original permission versions,
     -- but you can use ReplacePermissionAssociations to update them.
     -- If the specified customer managed permission already has the maximum of 5 versions, then
     -- you must delete one of the existing versions before you can create a new one.
-    createPermissionVersion: function(Client, types.CreatePermissionVersionInput): types.CreatePermissionVersionOutput, table
+    createPermissionVersion: function(Client, types.CreatePermissionVersionInput): Operation<types.CreatePermissionVersionOutput>
     -- Creates a resource share. You can provide a list of the Amazon Resource Names (ARNs) for the resources that you
     -- want to share, a list of principals you want to share the resources with, the
     -- permissions to grant those principals, and optionally source constraints to enhance security for service principal sharing.
     -- Sharing a resource makes it available for use by principals outside of the
     -- Amazon Web Services account that created the resource. Sharing doesn't change any permissions or
     -- quotas that apply to the resource in the account that created it.
-    createResourceShare: function(Client, types.CreateResourceShareInput): types.CreateResourceShareOutput, table
+    createResourceShare: function(Client, types.CreateResourceShareInput): Operation<types.CreateResourceShareOutput>
     -- Deletes the specified customer managed permission in the Amazon Web Services Region in which you call this operation. You
     -- can delete a customer managed permission only if it isn't attached to any resource share. The operation deletes all
     -- versions associated with the customer managed permission.
-    deletePermission: function(Client, types.DeletePermissionInput): types.DeletePermissionOutput, table
+    deletePermission: function(Client, types.DeletePermissionInput): Operation<types.DeletePermissionOutput>
     -- Deletes one version of a customer managed permission. The version you specify must not be attached to any
     -- resource share and must not be the default version for the permission.
     -- If a customer managed permission has the maximum of 5 versions, then you must delete at
     -- least one version before you can create another.
-    deletePermissionVersion: function(Client, types.DeletePermissionVersionInput): types.DeletePermissionVersionOutput, table
+    deletePermissionVersion: function(Client, types.DeletePermissionVersionInput): Operation<types.DeletePermissionVersionOutput>
     -- Deletes the specified resource share.
     -- This doesn't delete any of the resources that were associated with the resource share; it
     -- only stops the sharing of those resources through this resource share.
-    deleteResourceShare: function(Client, types.DeleteResourceShareInput): types.DeleteResourceShareOutput, table
+    deleteResourceShare: function(Client, types.DeleteResourceShareInput): Operation<types.DeleteResourceShareOutput>
     -- Removes the specified principals, resources, or source constraints from participating in the specified
     -- resource share.
-    disassociateResourceShare: function(Client, types.DisassociateResourceShareInput): types.DisassociateResourceShareOutput, table
+    disassociateResourceShare: function(Client, types.DisassociateResourceShareInput): Operation<types.DisassociateResourceShareOutput>
     -- Removes a managed permission from a resource share. Permission changes take effect immediately. You can
     -- remove a managed permission from a resource share only if there are currently no resources of the relevant
     -- resource type currently attached to the resource share.
-    disassociateResourceSharePermission: function(Client, types.DisassociateResourceSharePermissionInput): types.DisassociateResourceSharePermissionOutput, table
+    disassociateResourceSharePermission: function(Client, types.DisassociateResourceSharePermissionInput): Operation<types.DisassociateResourceSharePermissionOutput>
     -- Enables resource sharing within your organization in Organizations. This operation creates
     -- a service-linked role called AWSServiceRoleForResourceAccessManager that has the IAM managed policy
     -- named AWSResourceAccessManagerServiceRolePolicy attached. This role permits RAM to retrieve information about
@@ -63,9 +67,9 @@ local record Client
     -- supported resource types, IAM roles and users.
     -- You must call this operation from an IAM role or user in the organization's
     -- management account.
-    enableSharingWithAwsOrganization: function(Client, types.EnableSharingWithAwsOrganizationInput): types.EnableSharingWithAwsOrganizationOutput, table
+    enableSharingWithAwsOrganization: function(Client, types.EnableSharingWithAwsOrganizationInput): Operation<types.EnableSharingWithAwsOrganizationOutput>
     -- Retrieves the contents of a managed permission in JSON format.
-    getPermission: function(Client, types.GetPermissionInput): types.GetPermissionOutput, table
+    getPermission: function(Client, types.GetPermissionInput): Operation<types.GetPermissionOutput>
     -- Retrieves the resource policies for the specified resources that you own and have
     -- shared.
     -- Always check the NextToken response parameter for a null value
@@ -73,7 +77,7 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): types.GetResourcePoliciesOutput, table
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): Operation<types.GetResourcePoliciesOutput>
     -- Retrieves the lists of resources and principals that associated for resource shares that you
     -- own.
     -- Always check the NextToken response parameter for a null value
@@ -81,21 +85,21 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    getResourceShareAssociations: function(Client, types.GetResourceShareAssociationsInput): types.GetResourceShareAssociationsOutput, table
+    getResourceShareAssociations: function(Client, types.GetResourceShareAssociationsInput): Operation<types.GetResourceShareAssociationsOutput>
     -- Retrieves details about invitations that you have received for resource shares.
     -- Always check the NextToken response parameter for a null value
     -- when calling a paginated operation. These operations can occasionally return an empty set of results even when there are more
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    getResourceShareInvitations: function(Client, types.GetResourceShareInvitationsInput): types.GetResourceShareInvitationsOutput, table
+    getResourceShareInvitations: function(Client, types.GetResourceShareInvitationsInput): Operation<types.GetResourceShareInvitationsOutput>
     -- Retrieves details about the resource shares that you own or that are shared with you.
     -- Always check the NextToken response parameter for a null value
     -- when calling a paginated operation. These operations can occasionally return an empty set of results even when there are more
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    getResourceShares: function(Client, types.GetResourceSharesInput): types.GetResourceSharesOutput, table
+    getResourceShares: function(Client, types.GetResourceSharesInput): Operation<types.GetResourceSharesOutput>
     -- Lists the resources in a resource share that is shared with you but for which the invitation is
     -- still PENDING. That means that you haven't accepted or rejected the
     -- invitation and the invitation hasn't expired.
@@ -104,7 +108,7 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listPendingInvitationResources: function(Client, types.ListPendingInvitationResourcesInput): types.ListPendingInvitationResourcesOutput, table
+    listPendingInvitationResources: function(Client, types.ListPendingInvitationResourcesInput): Operation<types.ListPendingInvitationResourcesOutput>
     -- Lists information about the managed permission and its associations to any resource shares that use
     -- this managed permission. This lets you see which resource shares use which versions of the specified
     -- managed permission.
@@ -113,7 +117,7 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listPermissionAssociations: function(Client, types.ListPermissionAssociationsInput): types.ListPermissionAssociationsOutput, table
+    listPermissionAssociations: function(Client, types.ListPermissionAssociationsInput): Operation<types.ListPermissionAssociationsOutput>
     -- Retrieves a list of available RAM permissions that you can use for the supported
     -- resource types.
     -- Always check the NextToken response parameter for a null value
@@ -121,14 +125,14 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listPermissions: function(Client, types.ListPermissionsInput): types.ListPermissionsOutput, table
+    listPermissions: function(Client, types.ListPermissionsInput): Operation<types.ListPermissionsOutput>
     -- Lists the available versions of the specified RAM permission.
     -- Always check the NextToken response parameter for a null value
     -- when calling a paginated operation. These operations can occasionally return an empty set of results even when there are more
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listPermissionVersions: function(Client, types.ListPermissionVersionsInput): types.ListPermissionVersionsOutput, table
+    listPermissionVersions: function(Client, types.ListPermissionVersionsInput): Operation<types.ListPermissionVersionsOutput>
     -- Lists the principals that you are sharing resources with or that are sharing resources
     -- with you.
     -- Always check the NextToken response parameter for a null value
@@ -136,7 +140,7 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listPrincipals: function(Client, types.ListPrincipalsInput): types.ListPrincipalsOutput, table
+    listPrincipals: function(Client, types.ListPrincipalsInput): Operation<types.ListPrincipalsOutput>
     -- Retrieves the current status of the asynchronous tasks performed by RAM when you
     -- perform the ReplacePermissionAssociationsWork operation.
     -- Always check the NextToken response parameter for a null value
@@ -144,7 +148,7 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listReplacePermissionAssociationsWork: function(Client, types.ListReplacePermissionAssociationsWorkInput): types.ListReplacePermissionAssociationsWorkOutput, table
+    listReplacePermissionAssociationsWork: function(Client, types.ListReplacePermissionAssociationsWorkInput): Operation<types.ListReplacePermissionAssociationsWorkOutput>
     -- Lists the resources that you added to a resource share or the resources that are shared with
     -- you.
     -- Always check the NextToken response parameter for a null value
@@ -152,19 +156,19 @@ local record Client
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    listResources: function(Client, types.ListResourcesInput): Operation<types.ListResourcesOutput>
     -- Lists the RAM permissions that are associated with a resource share.
     -- Always check the NextToken response parameter for a null value
     -- when calling a paginated operation. These operations can occasionally return an empty set of results even when there are more
     -- results available. The NextToken response parameter value is null
     -- only
     -- when there are no more results to display.
-    listResourceSharePermissions: function(Client, types.ListResourceSharePermissionsInput): types.ListResourceSharePermissionsOutput, table
+    listResourceSharePermissions: function(Client, types.ListResourceSharePermissionsInput): Operation<types.ListResourceSharePermissionsOutput>
     -- Lists the resource types that can be shared by RAM.
-    listResourceTypes: function(Client, types.ListResourceTypesInput): types.ListResourceTypesOutput, table
+    listResourceTypes: function(Client, types.ListResourceTypesInput): Operation<types.ListResourceTypesOutput>
     -- Lists source associations for resource shares. Source associations control which sources can be used with service principals in resource shares. This operation provides visibility into source associations for resource share owners.
     -- You can filter the results by resource share Amazon Resource Name (ARN), source ID, source type, or association status. We recommend using pagination to ensure that the operation returns quickly and successfully.
-    listSourceAssociations: function(Client, types.ListSourceAssociationsInput): types.ListSourceAssociationsOutput, table
+    listSourceAssociations: function(Client, types.ListSourceAssociationsInput): Operation<types.ListSourceAssociationsOutput>
     -- When you attach a resource-based policy to a resource, RAM automatically creates
     -- a resource share of featureSet=CREATED_FROM_POLICY with a managed permission that
     -- has the same IAM permissions as the original resource-based policy. However, this type
@@ -187,7 +191,7 @@ local record Client
     -- After you promote a resource share, if the original CREATED_FROM_POLICY
     -- managed permission has no other associations to A resource share, then RAM automatically deletes
     -- it.
-    promotePermissionCreatedFromPolicy: function(Client, types.PromotePermissionCreatedFromPolicyInput): types.PromotePermissionCreatedFromPolicyOutput, table
+    promotePermissionCreatedFromPolicy: function(Client, types.PromotePermissionCreatedFromPolicyInput): Operation<types.PromotePermissionCreatedFromPolicyOutput>
     -- When you attach a resource-based policy to a resource, RAM automatically creates
     -- a resource share of featureSet=CREATED_FROM_POLICY with a managed permission that
     -- has the same IAM permissions as the original resource-based policy. However, this type
@@ -200,9 +204,9 @@ local record Client
     -- appropriate customer managed permission that can be associated with this resource share after its is promoted. If
     -- this operation can't find a managed permission that exactly matches the existing
     -- CREATED_FROM_POLICY permission, then this operation fails.
-    promoteResourceShareCreatedFromPolicy: function(Client, types.PromoteResourceShareCreatedFromPolicyInput): types.PromoteResourceShareCreatedFromPolicyOutput, table
+    promoteResourceShareCreatedFromPolicy: function(Client, types.PromoteResourceShareCreatedFromPolicyInput): Operation<types.PromoteResourceShareCreatedFromPolicyOutput>
     -- Rejects an invitation to a resource share from another Amazon Web Services account.
-    rejectResourceShareInvitation: function(Client, types.RejectResourceShareInvitationInput): types.RejectResourceShareInvitationOutput, table
+    rejectResourceShareInvitation: function(Client, types.RejectResourceShareInvitationInput): Operation<types.RejectResourceShareInvitationOutput>
     -- Updates all resource shares that use a managed permission to a different managed
     -- permission. This operation always applies the default version of the target managed
     -- permission. You can optionally specify that the update applies to only resource shares that
@@ -216,19 +220,19 @@ local record Client
     -- permission.
     -- To successfully perform this operation, you must have permission to update the
     -- resource-based policy on all affected resource types.
-    replacePermissionAssociations: function(Client, types.ReplacePermissionAssociationsInput): types.ReplacePermissionAssociationsOutput, table
+    replacePermissionAssociations: function(Client, types.ReplacePermissionAssociationsInput): Operation<types.ReplacePermissionAssociationsOutput>
     -- Designates the specified version number as the default version for the specified
     -- customer managed permission. New resource shares automatically use this new default permission. Existing
     -- resource shares continue to use their original permission version, but you can use ReplacePermissionAssociations to update them.
-    setDefaultPermissionVersion: function(Client, types.SetDefaultPermissionVersionInput): types.SetDefaultPermissionVersionOutput, table
+    setDefaultPermissionVersion: function(Client, types.SetDefaultPermissionVersionInput): Operation<types.SetDefaultPermissionVersionOutput>
     -- Adds the specified tag keys and values to a resource share or managed permission. If you choose a resource share, the
     -- tags are attached to only the resource share, not to the resources that are in the resource share.
     -- The tags on a managed permission are the same for all versions of the managed permission.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tag key and value pairs from the specified resource share or managed permission.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Modifies some of the properties of the specified resource share.
-    updateResourceShare: function(Client, types.UpdateResourceShareInput): types.UpdateResourceShareOutput, table
+    updateResourceShare: function(Client, types.UpdateResourceShareInput): Operation<types.UpdateResourceShareOutput>
 end
 
 local record M

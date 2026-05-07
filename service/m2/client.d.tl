@@ -2,98 +2,102 @@
 
 local types = require("m2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels the running of a specific batch job execution.
-    cancelBatchJobExecution: function(Client, types.CancelBatchJobExecutionInput): types.CancelBatchJobExecutionOutput, table
+    cancelBatchJobExecution: function(Client, types.CancelBatchJobExecutionInput): Operation<types.CancelBatchJobExecutionOutput>
     -- Creates a new application with given parameters. Requires an existing runtime
     -- environment and application definition file.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Starts a data set export task for a specific application.
-    createDataSetExportTask: function(Client, types.CreateDataSetExportTaskInput): types.CreateDataSetExportTaskOutput, table
+    createDataSetExportTask: function(Client, types.CreateDataSetExportTaskInput): Operation<types.CreateDataSetExportTaskOutput>
     -- Starts a data set import task for a specific application.
-    createDataSetImportTask: function(Client, types.CreateDataSetImportTaskInput): types.CreateDataSetImportTaskOutput, table
+    createDataSetImportTask: function(Client, types.CreateDataSetImportTaskInput): Operation<types.CreateDataSetImportTaskOutput>
     -- Creates and starts a deployment to deploy an application into a runtime
     -- environment.
-    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): Operation<types.CreateDeploymentOutput>
     -- Creates a runtime environment for a given runtime engine.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Deletes a specific application. You cannot delete a running application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Deletes a specific application from the specific runtime environment where it was
     -- previously deployed. You cannot delete a runtime environment using DeleteEnvironment if any
     -- application has ever been deployed to it. This API removes the association of the
     -- application with the runtime environment so you can delete the environment smoothly.
-    deleteApplicationFromEnvironment: function(Client, types.DeleteApplicationFromEnvironmentInput): types.DeleteApplicationFromEnvironmentOutput, table
+    deleteApplicationFromEnvironment: function(Client, types.DeleteApplicationFromEnvironmentInput): Operation<types.DeleteApplicationFromEnvironmentOutput>
     -- Deletes a specific runtime environment. The environment cannot contain deployed
     -- applications. If it does, you must delete those applications before you delete the
     -- environment.
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- Describes the details of a specific application.
-    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getApplication: function(Client, types.GetApplicationInput): Operation<types.GetApplicationOutput>
     -- Returns details about a specific version of a specific application.
-    getApplicationVersion: function(Client, types.GetApplicationVersionInput): types.GetApplicationVersionOutput, table
+    getApplicationVersion: function(Client, types.GetApplicationVersionInput): Operation<types.GetApplicationVersionOutput>
     -- Gets the details of a specific batch job execution for a specific application.
-    getBatchJobExecution: function(Client, types.GetBatchJobExecutionInput): types.GetBatchJobExecutionOutput, table
+    getBatchJobExecution: function(Client, types.GetBatchJobExecutionInput): Operation<types.GetBatchJobExecutionOutput>
     -- Gets the details of a specific data set.
-    getDataSetDetails: function(Client, types.GetDataSetDetailsInput): types.GetDataSetDetailsOutput, table
+    getDataSetDetails: function(Client, types.GetDataSetDetailsInput): Operation<types.GetDataSetDetailsOutput>
     -- Gets the status of a data set import task initiated with the CreateDataSetExportTask operation.
-    getDataSetExportTask: function(Client, types.GetDataSetExportTaskInput): types.GetDataSetExportTaskOutput, table
+    getDataSetExportTask: function(Client, types.GetDataSetExportTaskInput): Operation<types.GetDataSetExportTaskOutput>
     -- Gets the status of a data set import task initiated with the CreateDataSetImportTask operation.
-    getDataSetImportTask: function(Client, types.GetDataSetImportTaskInput): types.GetDataSetImportTaskOutput, table
+    getDataSetImportTask: function(Client, types.GetDataSetImportTaskInput): Operation<types.GetDataSetImportTaskOutput>
     -- Gets details of a specific deployment with a given deployment identifier.
-    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): Operation<types.GetDeploymentOutput>
     -- Describes a specific runtime environment.
-    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): Operation<types.GetEnvironmentOutput>
     -- Gets a single sign-on URL that can be used to connect to AWS Blu Insights.
-    getSignedBluinsightsUrl: function(Client, types.GetSignedBluinsightsUrlInput): types.GetSignedBluinsightsUrlOutput, table
+    getSignedBluinsightsUrl: function(Client, types.GetSignedBluinsightsUrlInput): Operation<types.GetSignedBluinsightsUrlOutput>
     -- Lists the applications associated with a specific Amazon Web Services account. You can provide the
     -- unique identifier of a specific runtime environment in a query parameter to see all
     -- applications associated with that environment.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Returns a list of the application versions for a specific application.
-    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): types.ListApplicationVersionsOutput, table
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): Operation<types.ListApplicationVersionsOutput>
     -- Lists all the available batch job definitions based on the batch job resources uploaded
     -- during the application creation. You can use the batch job definitions in the list to start
     -- a batch job.
-    listBatchJobDefinitions: function(Client, types.ListBatchJobDefinitionsInput): types.ListBatchJobDefinitionsOutput, table
+    listBatchJobDefinitions: function(Client, types.ListBatchJobDefinitionsInput): Operation<types.ListBatchJobDefinitionsOutput>
     -- Lists historical, current, and scheduled batch job executions for a specific
     -- application.
-    listBatchJobExecutions: function(Client, types.ListBatchJobExecutionsInput): types.ListBatchJobExecutionsOutput, table
+    listBatchJobExecutions: function(Client, types.ListBatchJobExecutionsInput): Operation<types.ListBatchJobExecutionsOutput>
     -- Lists all the job steps for a JCL file to restart a batch job. This is only applicable for Micro Focus engine with versions 8.0.6 and above.
-    listBatchJobRestartPoints: function(Client, types.ListBatchJobRestartPointsInput): types.ListBatchJobRestartPointsOutput, table
+    listBatchJobRestartPoints: function(Client, types.ListBatchJobRestartPointsInput): Operation<types.ListBatchJobRestartPointsOutput>
     -- Lists the data set exports for the specified application.
-    listDataSetExportHistory: function(Client, types.ListDataSetExportHistoryInput): types.ListDataSetExportHistoryOutput, table
+    listDataSetExportHistory: function(Client, types.ListDataSetExportHistoryInput): Operation<types.ListDataSetExportHistoryOutput>
     -- Lists the data set imports for the specified application.
-    listDataSetImportHistory: function(Client, types.ListDataSetImportHistoryInput): types.ListDataSetImportHistoryOutput, table
+    listDataSetImportHistory: function(Client, types.ListDataSetImportHistoryInput): Operation<types.ListDataSetImportHistoryOutput>
     -- Lists the data sets imported for a specific application. In Amazon Web Services Mainframe Modernization, data sets are
     -- associated with applications deployed on runtime environments. This is known as importing
     -- data sets. Currently, Amazon Web Services Mainframe Modernization can import data sets into catalogs using CreateDataSetImportTask.
-    listDataSets: function(Client, types.ListDataSetsInput): types.ListDataSetsOutput, table
+    listDataSets: function(Client, types.ListDataSetsInput): Operation<types.ListDataSetsOutput>
     -- Returns a list of all deployments of a specific application. A deployment is a
     -- combination of a specific application and a specific version of that application. Each
     -- deployment is mapped to a particular application version.
-    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): Operation<types.ListDeploymentsOutput>
     -- Lists the available engine versions.
-    listEngineVersions: function(Client, types.ListEngineVersionsInput): types.ListEngineVersionsOutput, table
+    listEngineVersions: function(Client, types.ListEngineVersionsInput): Operation<types.ListEngineVersionsOutput>
     -- Lists the runtime environments.
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts an application that is currently stopped.
-    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    startApplication: function(Client, types.StartApplicationInput): Operation<types.StartApplicationOutput>
     -- Starts a batch job and returns the unique identifier of this execution of the batch job.
     -- The associated application must be running in order to start the batch job.
-    startBatchJob: function(Client, types.StartBatchJobInput): types.StartBatchJobOutput, table
+    startBatchJob: function(Client, types.StartBatchJobInput): Operation<types.StartBatchJobOutput>
     -- Stops a running application.
-    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): Operation<types.StopApplicationOutput>
     -- Adds one or more tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an application and creates a new version.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Updates the configuration details for a specific runtime environment.
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("dynamodbstreams.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns information about a stream, including the current status of the stream, its Amazon Resource Name (ARN), the composition of its shards, and its corresponding DynamoDB table.
     -- You can call DescribeStream at a maximum rate of 10 times per second.
@@ -10,7 +14,7 @@ local record Client
     -- EndingSequenceNumber, then the shard is still open (able to receive more stream
     -- records). If both StartingSequenceNumber and EndingSequenceNumber
     -- are present, then that shard is closed and can no longer receive more data.
-    describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    describeStream: function(Client, types.DescribeStreamInput): Operation<types.DescribeStreamOutput>
     -- Retrieves the stream records from a given shard.
     -- Specify a shard iterator using the ShardIterator parameter. The shard iterator
     -- specifies the position in the shard from which you want to start reading stream records
@@ -19,19 +23,19 @@ local record Client
     -- multiple calls to get to a portion of the shard that contains stream records.
     -- GetRecords can retrieve a maximum of 1 MB of data or 1000 stream records,
     -- whichever comes first.
-    getRecords: function(Client, types.GetRecordsInput): types.GetRecordsOutput, table
+    getRecords: function(Client, types.GetRecordsInput): Operation<types.GetRecordsOutput>
     -- Returns a shard iterator. A shard iterator provides information
     -- about how to retrieve the stream records from within a shard. Use
     -- the shard iterator in a subsequent
     -- GetRecords request to read the stream records
     -- from the shard.
     -- A shard iterator expires 15 minutes after it is returned to the requester.
-    getShardIterator: function(Client, types.GetShardIteratorInput): types.GetShardIteratorOutput, table
+    getShardIterator: function(Client, types.GetShardIteratorInput): Operation<types.GetShardIteratorOutput>
     -- Returns an array of stream ARNs associated with the current account and endpoint. If the
     -- TableName parameter is present, then ListStreams will return only the
     -- streams ARNs for that table.
     -- You can call ListStreams at a maximum rate of 5 times per second.
-    listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+    listStreams: function(Client, types.ListStreamsInput): Operation<types.ListStreamsOutput>
 end
 
 local record M

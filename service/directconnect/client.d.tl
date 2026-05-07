@@ -2,34 +2,38 @@
 
 local types = require("directconnect.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a proposal request to attach a virtual private gateway or transit gateway to a Direct Connect gateway.
-    acceptDirectConnectGatewayAssociationProposal: function(Client, types.AcceptDirectConnectGatewayAssociationProposalInput): types.AcceptDirectConnectGatewayAssociationProposalOutput, table
+    acceptDirectConnectGatewayAssociationProposal: function(Client, types.AcceptDirectConnectGatewayAssociationProposalInput): Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
     -- Deprecated. Use AllocateHostedConnection instead.
     -- Creates a hosted connection on an interconnect.
     -- Allocates a VLAN number and a specified amount of bandwidth for use by a hosted connection on the specified interconnect.
     -- Intended for use by Direct Connect Partners only.
-    allocateConnectionOnInterconnect: function(Client, types.AllocateConnectionOnInterconnectInput): types.AllocateConnectionOnInterconnectOutput, table
+    allocateConnectionOnInterconnect: function(Client, types.AllocateConnectionOnInterconnectInput): Operation<types.AllocateConnectionOnInterconnectOutput>
     -- Creates a hosted connection on the specified interconnect or a link aggregation group (LAG) of interconnects.
     -- Allocates a VLAN number and a specified amount of capacity (bandwidth) for use by a hosted connection on the specified interconnect or LAG of interconnects.
     -- Amazon Web Services polices the hosted connection for the specified capacity and the Direct Connect Partner must also police the hosted connection for the specified capacity.
     -- Intended for use by Direct Connect Partners only.
-    allocateHostedConnection: function(Client, types.AllocateHostedConnectionInput): types.AllocateHostedConnectionOutput, table
+    allocateHostedConnection: function(Client, types.AllocateHostedConnectionInput): Operation<types.AllocateHostedConnectionOutput>
     -- Provisions a private virtual interface to be owned by the specified Amazon Web Services account.
     -- Virtual interfaces created using this action must be confirmed by the owner using ConfirmPrivateVirtualInterface.
     -- Until then, the virtual interface is in the Confirming state and is not available to handle traffic.
-    allocatePrivateVirtualInterface: function(Client, types.AllocatePrivateVirtualInterfaceInput): types.AllocatePrivateVirtualInterfaceOutput, table
+    allocatePrivateVirtualInterface: function(Client, types.AllocatePrivateVirtualInterfaceInput): Operation<types.AllocatePrivateVirtualInterfaceOutput>
     -- Provisions a public virtual interface to be owned by the specified Amazon Web Services account.
     -- The owner of a connection calls this function to provision a public virtual interface to be owned by the specified Amazon Web Services account.
     -- Virtual interfaces created using this function must be confirmed by the owner using ConfirmPublicVirtualInterface.
     -- Until this step has been completed, the virtual interface is in the confirming state and is not available to handle traffic.
     -- When creating an IPv6 public virtual interface, omit the Amazon address and customer address. IPv6 addresses are automatically assigned from
     -- the Amazon pool of IPv6 addresses; you cannot specify custom IPv6 addresses.
-    allocatePublicVirtualInterface: function(Client, types.AllocatePublicVirtualInterfaceInput): types.AllocatePublicVirtualInterfaceOutput, table
+    allocatePublicVirtualInterface: function(Client, types.AllocatePublicVirtualInterfaceInput): Operation<types.AllocatePublicVirtualInterfaceOutput>
     -- Provisions a transit virtual interface to be owned by the specified Amazon Web Services account. Use this type of interface to connect a transit gateway to your Direct Connect gateway.
     -- The owner of a connection provisions a transit virtual interface to be owned by the specified Amazon Web Services account.
     -- After you create a transit virtual interface, it must be confirmed by the owner using ConfirmTransitVirtualInterface. Until this step has been completed, the transit virtual interface is in the requested state and is not available to handle traffic.
-    allocateTransitVirtualInterface: function(Client, types.AllocateTransitVirtualInterfaceInput): types.AllocateTransitVirtualInterfaceOutput, table
+    allocateTransitVirtualInterface: function(Client, types.AllocateTransitVirtualInterfaceInput): Operation<types.AllocateTransitVirtualInterfaceOutput>
     -- Associates an existing connection with a link aggregation group (LAG). The connection
     -- is interrupted and re-established as a member of the LAG (connectivity to Amazon Web Services is
     -- interrupted). The connection must be hosted on the same Direct Connect endpoint as the LAG, and its
@@ -44,18 +48,18 @@ local record Client
     -- For interconnects, any hosted connections are automatically re-associated with the
     -- LAG. If the interconnect was originally associated with a different LAG, the hosted
     -- connections remain associated with the original LAG.
-    associateConnectionWithLag: function(Client, types.AssociateConnectionWithLagInput): types.AssociateConnectionWithLagOutput, table
+    associateConnectionWithLag: function(Client, types.AssociateConnectionWithLagInput): Operation<types.AssociateConnectionWithLagOutput>
     -- Associates a hosted connection and its virtual interfaces with a link aggregation
     -- group (LAG) or interconnect. If the target interconnect or LAG has an existing hosted
     -- connection with a conflicting VLAN number or IP address, the operation fails. This
     -- action temporarily interrupts the hosted connection's connectivity to Amazon Web Services
     -- as it is being migrated.
     -- Intended for use by Direct Connect Partners only.
-    associateHostedConnection: function(Client, types.AssociateHostedConnectionInput): types.AssociateHostedConnectionOutput, table
+    associateHostedConnection: function(Client, types.AssociateHostedConnectionInput): Operation<types.AssociateHostedConnectionOutput>
     -- Associates a MAC Security (MACsec) Connection Key Name (CKN)/ Connectivity Association Key (CAK) pair with a Direct Connect connection.
     -- You must supply either the secretARN, or the CKN/CAK (ckn and cak) pair in the request.
     -- For information about MAC Security (MACsec) key considerations, see MACsec pre-shared CKN/CAK key considerations in the Direct Connect User Guide.
-    associateMacSecKey: function(Client, types.AssociateMacSecKeyInput): types.AssociateMacSecKeyOutput, table
+    associateMacSecKey: function(Client, types.AssociateMacSecKeyInput): Operation<types.AssociateMacSecKeyOutput>
     -- Associates a virtual interface with a specified link aggregation group (LAG) or
     -- connection. Connectivity to Amazon Web Services is temporarily interrupted as the virtual interface is
     -- being migrated. If the target connection or LAG has an associated virtual interface with
@@ -66,25 +70,25 @@ local record Client
     -- must own either the virtual interface itself or the connection to which the virtual
     -- interface is currently associated. Additionally, the requester must own the connection
     -- or LAG for the association.
-    associateVirtualInterface: function(Client, types.AssociateVirtualInterfaceInput): types.AssociateVirtualInterfaceOutput, table
+    associateVirtualInterface: function(Client, types.AssociateVirtualInterfaceInput): Operation<types.AssociateVirtualInterfaceOutput>
     -- Confirms the creation of the specified hosted connection on an interconnect.
     -- Upon creation, the hosted connection is initially in the Ordering state, and
     -- remains in this state until the owner confirms creation of the hosted connection.
-    confirmConnection: function(Client, types.ConfirmConnectionInput): types.ConfirmConnectionOutput, table
+    confirmConnection: function(Client, types.ConfirmConnectionInput): Operation<types.ConfirmConnectionOutput>
     -- The confirmation of the terms of agreement when creating the connection/link aggregation group (LAG).
-    confirmCustomerAgreement: function(Client, types.ConfirmCustomerAgreementInput): types.ConfirmCustomerAgreementOutput, table
+    confirmCustomerAgreement: function(Client, types.ConfirmCustomerAgreementInput): Operation<types.ConfirmCustomerAgreementOutput>
     -- Accepts ownership of a private virtual interface created by another Amazon Web Services account.
     -- After the virtual interface owner makes this call, the virtual interface is
     -- created and attached to the specified virtual private gateway or Direct Connect gateway, and is
     -- made available to handle traffic.
-    confirmPrivateVirtualInterface: function(Client, types.ConfirmPrivateVirtualInterfaceInput): types.ConfirmPrivateVirtualInterfaceOutput, table
+    confirmPrivateVirtualInterface: function(Client, types.ConfirmPrivateVirtualInterfaceInput): Operation<types.ConfirmPrivateVirtualInterfaceOutput>
     -- Accepts ownership of a public virtual interface created by another Amazon Web Services account.
     -- After the virtual interface owner makes this call, the specified virtual interface is
     -- created and made available to handle traffic.
-    confirmPublicVirtualInterface: function(Client, types.ConfirmPublicVirtualInterfaceInput): types.ConfirmPublicVirtualInterfaceOutput, table
+    confirmPublicVirtualInterface: function(Client, types.ConfirmPublicVirtualInterfaceInput): Operation<types.ConfirmPublicVirtualInterfaceOutput>
     -- Accepts ownership of a transit virtual interface created by another Amazon Web Services account.
     -- After the owner of the transit virtual interface makes this call, the specified transit virtual interface is created and made available to handle traffic.
-    confirmTransitVirtualInterface: function(Client, types.ConfirmTransitVirtualInterfaceInput): types.ConfirmTransitVirtualInterfaceOutput, table
+    confirmTransitVirtualInterface: function(Client, types.ConfirmTransitVirtualInterfaceInput): Operation<types.ConfirmTransitVirtualInterfaceOutput>
     -- Creates a BGP peer on the specified virtual interface.
     -- You must create a BGP peer for the corresponding address family (IPv4/IPv6) in order to
     -- access Amazon Web Services resources that also use that address family.
@@ -99,7 +103,7 @@ local record Client
     -- information about RFC 1918 see
     -- Address Allocation for Private Internets.
     -- For a public virtual interface, the Autonomous System Number (ASN) must be private or already on the allow list for the virtual interface.
-    createBGPPeer: function(Client, types.CreateBGPPeerInput): types.CreateBGPPeerOutput, table
+    createBGPPeer: function(Client, types.CreateBGPPeerInput): Operation<types.CreateBGPPeerOutput>
     -- Creates a connection between a customer network and a specific Direct Connect location.
     -- A connection links your internal network to an Direct Connect location over a standard Ethernet fiber-optic
     -- cable. One end of the cable is connected to your router, the other to an Direct Connect router.
@@ -108,20 +112,20 @@ local record Client
     -- specifying a LAG ID in the request. This ensures that the new connection is allocated on the
     -- same Direct Connect endpoint that hosts the specified LAG. If there are no available ports on the endpoint,
     -- the request fails and no connection is created.
-    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): Operation<types.CreateConnectionOutput>
     -- Creates a Direct Connect gateway, which is an intermediate object that enables you to connect a set
     -- of virtual interfaces and virtual private gateways. A Direct Connect gateway is global and visible in any
     -- Amazon Web Services Region after it is created. The virtual interfaces and virtual private gateways that
     -- are connected through a Direct Connect gateway can be in different Amazon Web Services Regions. This enables you to
     -- connect to a VPC in any Region, regardless of the Region in which the virtual interfaces
     -- are located, and pass traffic between them.
-    createDirectConnectGateway: function(Client, types.CreateDirectConnectGatewayInput): types.CreateDirectConnectGatewayOutput, table
+    createDirectConnectGateway: function(Client, types.CreateDirectConnectGatewayInput): Operation<types.CreateDirectConnectGatewayOutput>
     -- Creates an association between a Direct Connect gateway and a virtual private gateway. The virtual
     -- private gateway must be attached to a VPC and must not be associated with another Direct Connect gateway.
-    createDirectConnectGatewayAssociation: function(Client, types.CreateDirectConnectGatewayAssociationInput): types.CreateDirectConnectGatewayAssociationOutput, table
+    createDirectConnectGatewayAssociation: function(Client, types.CreateDirectConnectGatewayAssociationInput): Operation<types.CreateDirectConnectGatewayAssociationOutput>
     -- Creates a proposal to associate the specified virtual private gateway or transit gateway with the specified Direct Connect gateway.
     -- You can associate a Direct Connect gateway and virtual private gateway or transit gateway that is owned by any Amazon Web Services account.
-    createDirectConnectGatewayAssociationProposal: function(Client, types.CreateDirectConnectGatewayAssociationProposalInput): types.CreateDirectConnectGatewayAssociationProposalOutput, table
+    createDirectConnectGatewayAssociationProposal: function(Client, types.CreateDirectConnectGatewayAssociationProposalInput): Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
     -- Creates an interconnect between an Direct Connect Partner's network and a specific Direct Connect location.
     -- An interconnect is a connection that is capable of hosting other connections. The
     -- Direct Connect Partner can use an interconnect to provide Direct Connect hosted
@@ -136,7 +140,7 @@ local record Client
     -- For each end customer, the Direct Connect Partner provisions a connection on their interconnect by calling AllocateHostedConnection.
     -- The end customer can then connect to Amazon Web Services resources by creating a virtual interface on their connection, using the VLAN assigned to them by the Direct Connect Partner.
     -- Intended for use by Direct Connect Partners only.
-    createInterconnect: function(Client, types.CreateInterconnectInput): types.CreateInterconnectOutput, table
+    createInterconnect: function(Client, types.CreateInterconnectInput): Operation<types.CreateInterconnectOutput>
     -- Creates a link aggregation group (LAG) with the specified number of bundled
     -- physical dedicated connections between the customer network and a specific Direct Connect location.
     -- A LAG is a logical interface that uses the Link Aggregation Control Protocol
@@ -156,7 +160,7 @@ local record Client
     -- If the Amazon Web Services account used to create a LAG is a registered Direct Connect Partner, the LAG is
     -- automatically enabled to host sub-connections. For a LAG owned by a partner, any associated virtual
     -- interfaces cannot be directly configured.
-    createLag: function(Client, types.CreateLagInput): types.CreateLagOutput, table
+    createLag: function(Client, types.CreateLagInput): Operation<types.CreateLagOutput>
     -- Creates a private virtual interface. A virtual interface is the VLAN that transports Direct Connect traffic.
     -- A private virtual interface can be connected to either a Direct Connect gateway or a Virtual Private Gateway (VGW).
     -- Connecting the private virtual interface to a Direct Connect gateway enables the possibility for connecting to multiple
@@ -168,12 +172,12 @@ local record Client
     -- the connection for up to 30 seconds. To check whether your connection supports jumbo
     -- frames, call DescribeConnections. To check whether your virtual
     -- interface supports jumbo frames, call DescribeVirtualInterfaces.
-    createPrivateVirtualInterface: function(Client, types.CreatePrivateVirtualInterfaceInput): types.CreatePrivateVirtualInterfaceOutput, table
+    createPrivateVirtualInterface: function(Client, types.CreatePrivateVirtualInterfaceInput): Operation<types.CreatePrivateVirtualInterfaceOutput>
     -- Creates a public virtual interface. A virtual interface is the VLAN that transports Direct Connect traffic.
     -- A public virtual interface supports sending traffic to public services of Amazon Web Services such as Amazon S3.
     -- When creating an IPv6 public virtual interface (addressFamily is ipv6), leave the customer
     -- and amazon address fields blank to use auto-assigned IPv6 space. Custom IPv6 addresses are not supported.
-    createPublicVirtualInterface: function(Client, types.CreatePublicVirtualInterfaceInput): types.CreatePublicVirtualInterfaceOutput, table
+    createPublicVirtualInterface: function(Client, types.CreatePublicVirtualInterfaceInput): Operation<types.CreatePublicVirtualInterfaceOutput>
     -- Creates a transit virtual interface. A transit virtual interface should be used to access one or more transit gateways associated with Direct Connect gateways. A transit virtual interface enables the connection of multiple VPCs attached to a transit gateway to a Direct Connect gateway.
     -- If you associate your transit gateway with one or more Direct Connect gateways, the Autonomous System Number (ASN) used by the transit gateway and the Direct Connect gateway must be different. For example, if you use the default ASN 64512 for both your the transit gateway and Direct Connect gateway, the association request fails.
     -- A jumbo MTU value must be either 1500 or 8500. No other values will be accepted. Setting
@@ -182,50 +186,50 @@ local record Client
     -- disrupts network connectivity for all virtual interfaces associated with the connection for up
     -- to 30 seconds. To check whether your connection supports jumbo frames, call DescribeConnections. To check whether your virtual interface supports jumbo
     -- frames, call DescribeVirtualInterfaces.
-    createTransitVirtualInterface: function(Client, types.CreateTransitVirtualInterfaceInput): types.CreateTransitVirtualInterfaceOutput, table
+    createTransitVirtualInterface: function(Client, types.CreateTransitVirtualInterfaceInput): Operation<types.CreateTransitVirtualInterfaceOutput>
     -- Deletes the specified BGP peer on the specified virtual interface with the specified customer address and ASN.
     -- You cannot delete the last BGP peer from a virtual interface.
-    deleteBGPPeer: function(Client, types.DeleteBGPPeerInput): types.DeleteBGPPeerOutput, table
+    deleteBGPPeer: function(Client, types.DeleteBGPPeerInput): Operation<types.DeleteBGPPeerOutput>
     -- Deletes the specified connection.
     -- Deleting a connection only stops the Direct Connect port hour and data transfer charges.
     -- If you are partnering with any third parties to connect with the Direct Connect location,
     -- you must cancel your service with them separately.
-    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): Operation<types.DeleteConnectionOutput>
     -- Deletes the specified Direct Connect gateway. You must first delete all virtual interfaces that are
     -- attached to the Direct Connect gateway and disassociate all virtual private gateways associated
     -- with the Direct Connect gateway.
-    deleteDirectConnectGateway: function(Client, types.DeleteDirectConnectGatewayInput): types.DeleteDirectConnectGatewayOutput, table
+    deleteDirectConnectGateway: function(Client, types.DeleteDirectConnectGatewayInput): Operation<types.DeleteDirectConnectGatewayOutput>
     -- Deletes the association between the specified Direct Connect gateway and virtual private gateway.
     -- We recommend that you specify the associationID to delete the association. Alternatively, if you own virtual gateway and a Direct Connect gateway association, you can specify the virtualGatewayId and directConnectGatewayId to delete an association.
-    deleteDirectConnectGatewayAssociation: function(Client, types.DeleteDirectConnectGatewayAssociationInput): types.DeleteDirectConnectGatewayAssociationOutput, table
+    deleteDirectConnectGatewayAssociation: function(Client, types.DeleteDirectConnectGatewayAssociationInput): Operation<types.DeleteDirectConnectGatewayAssociationOutput>
     -- Deletes the association proposal request between the specified Direct Connect gateway and virtual private gateway or transit gateway.
-    deleteDirectConnectGatewayAssociationProposal: function(Client, types.DeleteDirectConnectGatewayAssociationProposalInput): types.DeleteDirectConnectGatewayAssociationProposalOutput, table
+    deleteDirectConnectGatewayAssociationProposal: function(Client, types.DeleteDirectConnectGatewayAssociationProposalInput): Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
     -- Deletes the specified interconnect.
     -- Intended for use
     -- by Direct Connect Partners only.
-    deleteInterconnect: function(Client, types.DeleteInterconnectInput): types.DeleteInterconnectOutput, table
+    deleteInterconnect: function(Client, types.DeleteInterconnectInput): Operation<types.DeleteInterconnectOutput>
     -- Deletes the specified link aggregation group (LAG). You cannot delete a LAG if it has active
     -- virtual interfaces or hosted connections.
-    deleteLag: function(Client, types.DeleteLagInput): types.DeleteLagOutput, table
+    deleteLag: function(Client, types.DeleteLagInput): Operation<types.DeleteLagOutput>
     -- Deletes a virtual interface.
-    deleteVirtualInterface: function(Client, types.DeleteVirtualInterfaceInput): types.DeleteVirtualInterfaceOutput, table
+    deleteVirtualInterface: function(Client, types.DeleteVirtualInterfaceInput): Operation<types.DeleteVirtualInterfaceOutput>
     -- Deprecated. Use DescribeLoa instead.
     -- Gets the LOA-CFA for a connection.
     -- The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is a document that your APN partner or
     -- service provider uses when establishing your cross connect to Amazon Web Services at the colocation facility. For more information,
     -- see Requesting Cross Connects
     -- at Direct Connect Locations in the Direct Connect User Guide.
-    describeConnectionLoa: function(Client, types.DescribeConnectionLoaInput): types.DescribeConnectionLoaOutput, table
+    describeConnectionLoa: function(Client, types.DescribeConnectionLoaInput): Operation<types.DescribeConnectionLoaOutput>
     -- Displays the specified connection or all connections in this Region.
-    describeConnections: function(Client, types.DescribeConnectionsInput): types.DescribeConnectionsOutput, table
+    describeConnections: function(Client, types.DescribeConnectionsInput): Operation<types.DescribeConnectionsOutput>
     -- Deprecated. Use DescribeHostedConnections instead.
     -- Lists the connections that have been provisioned on the specified interconnect.
     -- Intended for use by Direct Connect Partners only.
-    describeConnectionsOnInterconnect: function(Client, types.DescribeConnectionsOnInterconnectInput): types.DescribeConnectionsOnInterconnectOutput, table
+    describeConnectionsOnInterconnect: function(Client, types.DescribeConnectionsOnInterconnectInput): Operation<types.DescribeConnectionsOnInterconnectOutput>
     -- Get and view a list of customer agreements, along with their signed status and whether the customer is an NNIPartner, NNIPartnerV2, or a nonPartner.
-    describeCustomerMetadata: function(Client, types.DescribeCustomerMetadataInput): types.DescribeCustomerMetadataOutput, table
+    describeCustomerMetadata: function(Client, types.DescribeCustomerMetadataInput): Operation<types.DescribeCustomerMetadataOutput>
     -- Describes one or more association proposals for connection between a virtual private gateway or transit gateway and a Direct Connect gateway.
-    describeDirectConnectGatewayAssociationProposals: function(Client, types.DescribeDirectConnectGatewayAssociationProposalsInput): types.DescribeDirectConnectGatewayAssociationProposalsOutput, table
+    describeDirectConnectGatewayAssociationProposals: function(Client, types.DescribeDirectConnectGatewayAssociationProposalsInput): Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
     -- Lists the associations between your Direct Connect gateways and virtual private gateways and transit gateways. You must specify one of the following:
     -- A Direct Connect gateway
     -- The response contains all virtual private gateways and transit gateways associated with the Direct Connect gateway.
@@ -241,45 +245,45 @@ local record Client
     -- The response contains the association between the Direct Connect gateway and virtual private gateway.
     -- A Direct Connect gateway association to a Cloud WAN core network
     -- The response contains the Cloud WAN core network ID that the Direct Connect gateway is associated to.
-    describeDirectConnectGatewayAssociations: function(Client, types.DescribeDirectConnectGatewayAssociationsInput): types.DescribeDirectConnectGatewayAssociationsOutput, table
+    describeDirectConnectGatewayAssociations: function(Client, types.DescribeDirectConnectGatewayAssociationsInput): Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
     -- Lists the attachments between your Direct Connect gateways and virtual interfaces. You must specify
     -- a Direct Connect gateway, a virtual interface, or both. If you specify a Direct Connect gateway, the response contains
     -- all virtual interfaces attached to the Direct Connect gateway. If you specify a virtual interface, the
     -- response contains all Direct Connect gateways attached to the virtual interface. If you specify both,
     -- the response contains the attachment between the Direct Connect gateway and the virtual interface.
-    describeDirectConnectGatewayAttachments: function(Client, types.DescribeDirectConnectGatewayAttachmentsInput): types.DescribeDirectConnectGatewayAttachmentsOutput, table
+    describeDirectConnectGatewayAttachments: function(Client, types.DescribeDirectConnectGatewayAttachmentsInput): Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
     -- Lists all your Direct Connect gateways or only the specified Direct Connect gateway. Deleted Direct Connect gateways are not returned.
-    describeDirectConnectGateways: function(Client, types.DescribeDirectConnectGatewaysInput): types.DescribeDirectConnectGatewaysOutput, table
+    describeDirectConnectGateways: function(Client, types.DescribeDirectConnectGatewaysInput): Operation<types.DescribeDirectConnectGatewaysOutput>
     -- Lists the hosted connections that have been provisioned on the specified
     -- interconnect or link aggregation group (LAG).
     -- Intended for use by Direct Connect Partners only.
-    describeHostedConnections: function(Client, types.DescribeHostedConnectionsInput): types.DescribeHostedConnectionsOutput, table
+    describeHostedConnections: function(Client, types.DescribeHostedConnectionsInput): Operation<types.DescribeHostedConnectionsOutput>
     -- Deprecated. Use DescribeLoa instead.
     -- Gets the LOA-CFA for the specified interconnect.
     -- The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is a document that is used when establishing your cross connect to Amazon Web Services at the colocation facility.
     -- For more information, see Requesting Cross Connects at Direct Connect Locations
     -- in the Direct Connect User Guide.
-    describeInterconnectLoa: function(Client, types.DescribeInterconnectLoaInput): types.DescribeInterconnectLoaOutput, table
+    describeInterconnectLoa: function(Client, types.DescribeInterconnectLoaInput): Operation<types.DescribeInterconnectLoaOutput>
     -- Lists the interconnects owned by the Amazon Web Services account or only the specified interconnect.
-    describeInterconnects: function(Client, types.DescribeInterconnectsInput): types.DescribeInterconnectsOutput, table
+    describeInterconnects: function(Client, types.DescribeInterconnectsInput): Operation<types.DescribeInterconnectsOutput>
     -- Describes all your link aggregation groups (LAG) or the specified LAG.
-    describeLags: function(Client, types.DescribeLagsInput): types.DescribeLagsOutput, table
+    describeLags: function(Client, types.DescribeLagsInput): Operation<types.DescribeLagsOutput>
     -- Gets the LOA-CFA for a connection, interconnect, or link aggregation group (LAG).
     -- The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is a document that is used when establishing
     -- your cross connect to Amazon Web Services at the colocation facility. For more information, see Requesting Cross Connects at Direct Connect Locations
     -- in the Direct Connect User Guide.
-    describeLoa: function(Client, types.DescribeLoaInput): types.DescribeLoaOutput, table
+    describeLoa: function(Client, types.DescribeLoaInput): Operation<types.DescribeLoaOutput>
     -- Lists the Direct Connect locations in the current Amazon Web Services Region. These are the locations that can be selected when calling
     -- CreateConnection or CreateInterconnect.
-    describeLocations: function(Client, types.DescribeLocationsInput): types.DescribeLocationsOutput, table
+    describeLocations: function(Client, types.DescribeLocationsInput): Operation<types.DescribeLocationsOutput>
     -- Details about the router.
-    describeRouterConfiguration: function(Client, types.DescribeRouterConfigurationInput): types.DescribeRouterConfigurationOutput, table
+    describeRouterConfiguration: function(Client, types.DescribeRouterConfigurationInput): Operation<types.DescribeRouterConfigurationOutput>
     -- Describes the tags associated with the specified Direct Connect resources.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Deprecated. Use DescribeVpnGateways instead. See DescribeVPNGateways in the Amazon Elastic Compute Cloud API Reference.
     -- Lists the virtual private gateways owned by the Amazon Web Services account.
     -- You can create one or more Direct Connect private virtual interfaces linked to a virtual private gateway.
-    describeVirtualGateways: function(Client, types.DescribeVirtualGatewaysInput): types.DescribeVirtualGatewaysOutput, table
+    describeVirtualGateways: function(Client, types.DescribeVirtualGatewaysInput): Operation<types.DescribeVirtualGatewaysOutput>
     -- Displays all virtual interfaces for an Amazon Web Services account. Virtual interfaces deleted fewer
     -- than 15 minutes before you make the request are also returned. If you specify a
     -- connection ID, only the virtual interfaces associated with the connection are returned.
@@ -287,7 +291,7 @@ local record Client
     -- A virtual interface (VLAN) transmits the traffic between the Direct Connect location and the customer network.
     -- If you're using an asn, the response includes ASN value in both the asn and asnLong fields.
     -- If you're using asnLong, the response returns a value of 0 (zero) for the asn attribute because it exceeds the highest ASN value of 2,147,483,647 that it can support
-    describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput): types.DescribeVirtualInterfacesOutput, table
+    describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput): Operation<types.DescribeVirtualInterfacesOutput>
     -- Disassociates a connection from a link aggregation group (LAG). The connection is
     -- interrupted and re-established as a standalone connection (the connection is not
     -- deleted; to delete the connection, use the DeleteConnection request).
@@ -298,33 +302,33 @@ local record Client
     -- minimum number of operational connections, the request fails, except when it's the last
     -- member of the LAG. If all connections are disassociated, the LAG continues to exist as
     -- an empty LAG with no physical connections.
-    disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput): types.DisassociateConnectionFromLagOutput, table
+    disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput): Operation<types.DisassociateConnectionFromLagOutput>
     -- Removes the association between a MAC Security (MACsec) security key and a Direct Connect connection.
-    disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput): types.DisassociateMacSecKeyOutput, table
+    disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput): Operation<types.DisassociateMacSecKeyOutput>
     -- Lists the virtual interface failover test history.
-    listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput): types.ListVirtualInterfaceTestHistoryOutput, table
+    listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput): Operation<types.ListVirtualInterfaceTestHistoryOutput>
     -- Starts the virtual interface failover test that verifies your configuration meets your resiliency requirements by placing the BGP peering session in the DOWN state. You can then send traffic to verify that there are no outages.
     -- You can run the test on public, private, transit, and hosted virtual interfaces.
     -- You can use ListVirtualInterfaceTestHistory to view the virtual interface test history.
     -- If you need to stop the test before the test interval completes, use StopBgpFailoverTest.
-    startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput): types.StartBgpFailoverTestOutput, table
+    startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput): Operation<types.StartBgpFailoverTestOutput>
     -- Stops the virtual interface failover test.
-    stopBgpFailoverTest: function(Client, types.StopBgpFailoverTestInput): types.StopBgpFailoverTestOutput, table
+    stopBgpFailoverTest: function(Client, types.StopBgpFailoverTestInput): Operation<types.StopBgpFailoverTestOutput>
     -- Adds the specified tags to the specified Direct Connect resource. Each resource can have a maximum of 50 tags.
     -- Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified Direct Connect resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the Direct Connect connection configuration.
     -- You can update the following parameters for a connection:
     -- The connection name
     -- The connection's MAC Security (MACsec) encryption mode.
-    updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    updateConnection: function(Client, types.UpdateConnectionInput): Operation<types.UpdateConnectionOutput>
     -- Updates the name of a current Direct Connect gateway.
-    updateDirectConnectGateway: function(Client, types.UpdateDirectConnectGatewayInput): types.UpdateDirectConnectGatewayOutput, table
+    updateDirectConnectGateway: function(Client, types.UpdateDirectConnectGatewayInput): Operation<types.UpdateDirectConnectGatewayOutput>
     -- Updates the specified attributes of the Direct Connect gateway association.
     -- Add or remove prefixes from the association.
-    updateDirectConnectGatewayAssociation: function(Client, types.UpdateDirectConnectGatewayAssociationInput): types.UpdateDirectConnectGatewayAssociationOutput, table
+    updateDirectConnectGatewayAssociation: function(Client, types.UpdateDirectConnectGatewayAssociationInput): Operation<types.UpdateDirectConnectGatewayAssociationOutput>
     -- Updates the attributes of the specified link aggregation group (LAG).
     -- You can update the following LAG attributes:
     -- The name of the LAG.
@@ -336,7 +340,7 @@ local record Client
     -- If you adjust the threshold value for the minimum number of operational connections, ensure
     -- that the new value does not cause the LAG to fall below the threshold and become
     -- non-operational.
-    updateLag: function(Client, types.UpdateLagInput): types.UpdateLagOutput, table
+    updateLag: function(Client, types.UpdateLagInput): Operation<types.UpdateLagOutput>
     -- Updates the specified attributes of the specified virtual private interface.
     -- Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update to
     -- the underlying physical connection if it wasn't updated to support jumbo frames. Updating
@@ -344,7 +348,7 @@ local record Client
     -- the connection for up to 30 seconds. To check whether your connection supports jumbo
     -- frames, call DescribeConnections. To check whether your virtual
     -- interface supports jumbo frames, call DescribeVirtualInterfaces.
-    updateVirtualInterfaceAttributes: function(Client, types.UpdateVirtualInterfaceAttributesInput): types.UpdateVirtualInterfaceAttributesOutput, table
+    updateVirtualInterfaceAttributes: function(Client, types.UpdateVirtualInterfaceAttributesInput): Operation<types.UpdateVirtualInterfaceAttributesOutput>
 end
 
 local record M

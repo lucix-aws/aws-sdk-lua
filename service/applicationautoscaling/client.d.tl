@@ -2,6 +2,10 @@
 
 local types = require("applicationautoscaling.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the specified scaling policy for an Application Auto Scaling scalable target.
     -- Deleting a step scaling policy deletes the underlying alarm action, but does not delete
@@ -9,35 +13,35 @@ local record Client
     -- action.
     -- For more information, see Delete a step scaling policy and Delete a target tracking scaling policy in the
     -- Application Auto Scaling User Guide.
-    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput): types.DeleteScalingPolicyOutput, table
+    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput): Operation<types.DeleteScalingPolicyOutput>
     -- Deletes the specified scheduled action for an Application Auto Scaling scalable target.
     -- For more information, see Delete a scheduled action in the Application Auto Scaling User Guide.
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): types.DeleteScheduledActionOutput, table
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): Operation<types.DeleteScheduledActionOutput>
     -- Deregisters an Application Auto Scaling scalable target when you have finished using it. To see which
     -- resources have been registered, use DescribeScalableTargets.
     -- Deregistering a scalable target deletes the scaling policies and the scheduled
     -- actions that are associated with it.
-    deregisterScalableTarget: function(Client, types.DeregisterScalableTargetInput): types.DeregisterScalableTargetOutput, table
+    deregisterScalableTarget: function(Client, types.DeregisterScalableTargetInput): Operation<types.DeregisterScalableTargetOutput>
     -- Gets information about the scalable targets in the specified namespace.
     -- You can filter the results using ResourceIds and
     -- ScalableDimension.
-    describeScalableTargets: function(Client, types.DescribeScalableTargetsInput): types.DescribeScalableTargetsOutput, table
+    describeScalableTargets: function(Client, types.DescribeScalableTargetsInput): Operation<types.DescribeScalableTargetsOutput>
     -- Provides descriptive information about the scaling activities in the specified namespace
     -- from the previous six weeks.
     -- You can filter the results using ResourceId and
     -- ScalableDimension.
     -- For information about viewing scaling activities using the Amazon Web Services CLI, see Scaling activities for Application Auto Scaling.
-    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput): types.DescribeScalingActivitiesOutput, table
+    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput): Operation<types.DescribeScalingActivitiesOutput>
     -- Describes the Application Auto Scaling scaling policies for the specified service namespace.
     -- You can filter the results using ResourceId,
     -- ScalableDimension, and PolicyNames.
     -- For more information, see Target tracking scaling policies and Step scaling policies in the Application Auto Scaling User Guide.
-    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput): types.DescribeScalingPoliciesOutput, table
+    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput): Operation<types.DescribeScalingPoliciesOutput>
     -- Describes the Application Auto Scaling scheduled actions for the specified service namespace.
     -- You can filter the results using the ResourceId,
     -- ScalableDimension, and ScheduledActionNames parameters.
     -- For more information, see Scheduled scaling in the Application Auto Scaling User Guide.
-    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): types.DescribeScheduledActionsOutput, table
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): Operation<types.DescribeScheduledActionsOutput>
     -- Retrieves the forecast data for a predictive scaling policy.
     -- Load forecasts are predictions of the hourly load values using historical load data
     -- from CloudWatch and an analysis of historical trends. Capacity forecasts are represented as
@@ -45,11 +49,11 @@ local record Client
     -- the hourly load forecast.
     -- A minimum of 24 hours of data is required to create the initial forecasts. However,
     -- having a full 14 days of historical data results in more accurate forecasts.
-    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput): types.GetPredictiveScalingForecastOutput, table
+    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput): Operation<types.GetPredictiveScalingForecastOutput>
     -- Returns all the tags on the specified Application Auto Scaling scalable target.
     -- For general information about tags, including the format and syntax, see Tagging your Amazon Web Services
     -- resources in the Amazon Web Services General Reference.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates a scaling policy for an Application Auto Scaling scalable target.
     -- Each scalable target is identified by a service namespace, resource ID, and scalable
     -- dimension. A scaling policy applies to the scalable target identified by those three
@@ -74,7 +78,7 @@ local record Client
     -- If a scalable target is deregistered, the scalable target is no longer available to
     -- use scaling policies. Any scaling policies that were specified for the scalable target
     -- are deleted.
-    putScalingPolicy: function(Client, types.PutScalingPolicyInput): types.PutScalingPolicyOutput, table
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput): Operation<types.PutScalingPolicyOutput>
     -- Creates or updates a scheduled action for an Application Auto Scaling scalable target.
     -- Each scalable target is identified by a service namespace, resource ID, and scalable
     -- dimension. A scheduled action applies to the scalable target identified by those three
@@ -88,7 +92,7 @@ local record Client
     -- If a scalable target is deregistered, the scalable target is no longer available to
     -- run scheduled actions. Any scheduled actions that were specified for the scalable target
     -- are deleted.
-    putScheduledAction: function(Client, types.PutScheduledActionInput): types.PutScheduledActionOutput, table
+    putScheduledAction: function(Client, types.PutScheduledActionInput): Operation<types.PutScheduledActionOutput>
     -- Registers or updates a scalable target, which is the resource that you want to
     -- scale.
     -- Scalable targets are uniquely identified by the combination of resource ID, scalable
@@ -119,7 +123,7 @@ local record Client
     -- capacity of the scalable target to place it within these bounds, even if you don't
     -- include the MinCapacity or MaxCapacity request
     -- parameters.
-    registerScalableTarget: function(Client, types.RegisterScalableTargetInput): types.RegisterScalableTargetOutput, table
+    registerScalableTarget: function(Client, types.RegisterScalableTargetInput): Operation<types.RegisterScalableTargetOutput>
     -- Adds or edits tags on an Application Auto Scaling scalable target.
     -- Each tag consists of a tag key and a tag value, which are both case-sensitive strings.
     -- To add a tag, specify a new tag key and a tag value. To edit a tag, specify an existing tag
@@ -132,10 +136,10 @@ local record Client
     -- resources in the Amazon Web Services General Reference.
     -- Use tags to control access to a scalable target. For more information, see Tagging support
     -- for Application Auto Scaling in the Application Auto Scaling User Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes tags from an Application Auto Scaling scalable target. To delete a tag, specify the tag key and
     -- the Application Auto Scaling scalable target.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

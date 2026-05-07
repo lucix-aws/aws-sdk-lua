@@ -2,6 +2,10 @@
 
 local types = require("fis.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an experiment template.
     -- An experiment template includes the following components:
@@ -15,60 +19,60 @@ local record Client
     -- stopped. You can define a stop condition as a CloudWatch alarm.
     -- For more information, see experiment templates
     -- in the Fault Injection Service User Guide.
-    createExperimentTemplate: function(Client, types.CreateExperimentTemplateInput): types.CreateExperimentTemplateOutput, table
+    createExperimentTemplate: function(Client, types.CreateExperimentTemplateInput): Operation<types.CreateExperimentTemplateOutput>
     -- Creates a target account configuration for the experiment template. A target account configuration
     -- is required when accountTargeting of experimentOptions is set to multi-account.
     -- For more information, see experiment options
     -- in the Fault Injection Service User Guide.
-    createTargetAccountConfiguration: function(Client, types.CreateTargetAccountConfigurationInput): types.CreateTargetAccountConfigurationOutput, table
+    createTargetAccountConfiguration: function(Client, types.CreateTargetAccountConfigurationInput): Operation<types.CreateTargetAccountConfigurationOutput>
     -- Deletes the specified experiment template.
-    deleteExperimentTemplate: function(Client, types.DeleteExperimentTemplateInput): types.DeleteExperimentTemplateOutput, table
+    deleteExperimentTemplate: function(Client, types.DeleteExperimentTemplateInput): Operation<types.DeleteExperimentTemplateOutput>
     -- Deletes the specified target account configuration of the experiment template.
-    deleteTargetAccountConfiguration: function(Client, types.DeleteTargetAccountConfigurationInput): types.DeleteTargetAccountConfigurationOutput, table
+    deleteTargetAccountConfiguration: function(Client, types.DeleteTargetAccountConfigurationInput): Operation<types.DeleteTargetAccountConfigurationOutput>
     -- Gets information about the specified FIS action.
-    getAction: function(Client, types.GetActionInput): types.GetActionOutput, table
+    getAction: function(Client, types.GetActionInput): Operation<types.GetActionOutput>
     -- Gets information about the specified experiment.
-    getExperiment: function(Client, types.GetExperimentInput): types.GetExperimentOutput, table
+    getExperiment: function(Client, types.GetExperimentInput): Operation<types.GetExperimentOutput>
     -- Gets information about the specified target account configuration of the experiment.
-    getExperimentTargetAccountConfiguration: function(Client, types.GetExperimentTargetAccountConfigurationInput): types.GetExperimentTargetAccountConfigurationOutput, table
+    getExperimentTargetAccountConfiguration: function(Client, types.GetExperimentTargetAccountConfigurationInput): Operation<types.GetExperimentTargetAccountConfigurationOutput>
     -- Gets information about the specified experiment template.
-    getExperimentTemplate: function(Client, types.GetExperimentTemplateInput): types.GetExperimentTemplateOutput, table
+    getExperimentTemplate: function(Client, types.GetExperimentTemplateInput): Operation<types.GetExperimentTemplateOutput>
     -- Gets information about the specified safety lever.
-    getSafetyLever: function(Client, types.GetSafetyLeverInput): types.GetSafetyLeverOutput, table
+    getSafetyLever: function(Client, types.GetSafetyLeverInput): Operation<types.GetSafetyLeverOutput>
     -- Gets information about the specified target account configuration of the experiment template.
-    getTargetAccountConfiguration: function(Client, types.GetTargetAccountConfigurationInput): types.GetTargetAccountConfigurationOutput, table
+    getTargetAccountConfiguration: function(Client, types.GetTargetAccountConfigurationInput): Operation<types.GetTargetAccountConfigurationOutput>
     -- Gets information about the specified resource type.
-    getTargetResourceType: function(Client, types.GetTargetResourceTypeInput): types.GetTargetResourceTypeOutput, table
+    getTargetResourceType: function(Client, types.GetTargetResourceTypeInput): Operation<types.GetTargetResourceTypeOutput>
     -- Lists the available FIS actions.
-    listActions: function(Client, types.ListActionsInput): types.ListActionsOutput, table
+    listActions: function(Client, types.ListActionsInput): Operation<types.ListActionsOutput>
     -- Lists the resolved targets information of the specified experiment.
-    listExperimentResolvedTargets: function(Client, types.ListExperimentResolvedTargetsInput): types.ListExperimentResolvedTargetsOutput, table
+    listExperimentResolvedTargets: function(Client, types.ListExperimentResolvedTargetsInput): Operation<types.ListExperimentResolvedTargetsOutput>
     -- Lists your experiments.
-    listExperiments: function(Client, types.ListExperimentsInput): types.ListExperimentsOutput, table
+    listExperiments: function(Client, types.ListExperimentsInput): Operation<types.ListExperimentsOutput>
     -- Lists the target account configurations of the specified experiment.
-    listExperimentTargetAccountConfigurations: function(Client, types.ListExperimentTargetAccountConfigurationsInput): types.ListExperimentTargetAccountConfigurationsOutput, table
+    listExperimentTargetAccountConfigurations: function(Client, types.ListExperimentTargetAccountConfigurationsInput): Operation<types.ListExperimentTargetAccountConfigurationsOutput>
     -- Lists your experiment templates.
-    listExperimentTemplates: function(Client, types.ListExperimentTemplatesInput): types.ListExperimentTemplatesOutput, table
+    listExperimentTemplates: function(Client, types.ListExperimentTemplatesInput): Operation<types.ListExperimentTemplatesOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists the target account configurations of the specified experiment template.
-    listTargetAccountConfigurations: function(Client, types.ListTargetAccountConfigurationsInput): types.ListTargetAccountConfigurationsOutput, table
+    listTargetAccountConfigurations: function(Client, types.ListTargetAccountConfigurationsInput): Operation<types.ListTargetAccountConfigurationsOutput>
     -- Lists the target resource types.
-    listTargetResourceTypes: function(Client, types.ListTargetResourceTypesInput): types.ListTargetResourceTypesOutput, table
+    listTargetResourceTypes: function(Client, types.ListTargetResourceTypesInput): Operation<types.ListTargetResourceTypesOutput>
     -- Starts running an experiment from the specified experiment template.
-    startExperiment: function(Client, types.StartExperimentInput): types.StartExperimentOutput, table
+    startExperiment: function(Client, types.StartExperimentInput): Operation<types.StartExperimentOutput>
     -- Stops the specified experiment.
-    stopExperiment: function(Client, types.StopExperimentInput): types.StopExperimentOutput, table
+    stopExperiment: function(Client, types.StopExperimentInput): Operation<types.StopExperimentOutput>
     -- Applies the specified tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the specified experiment template.
-    updateExperimentTemplate: function(Client, types.UpdateExperimentTemplateInput): types.UpdateExperimentTemplateOutput, table
+    updateExperimentTemplate: function(Client, types.UpdateExperimentTemplateInput): Operation<types.UpdateExperimentTemplateOutput>
     -- Updates the specified safety lever state.
-    updateSafetyLeverState: function(Client, types.UpdateSafetyLeverStateOperationInput): types.UpdateSafetyLeverStateOutput, table
+    updateSafetyLeverState: function(Client, types.UpdateSafetyLeverStateOperationInput): Operation<types.UpdateSafetyLeverStateOutput>
     -- Updates the target account configuration for the specified experiment template.
-    updateTargetAccountConfiguration: function(Client, types.UpdateTargetAccountConfigurationInput): types.UpdateTargetAccountConfigurationOutput, table
+    updateTargetAccountConfiguration: function(Client, types.UpdateTargetAccountConfigurationInput): Operation<types.UpdateTargetAccountConfigurationOutput>
 end
 
 local record M

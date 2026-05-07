@@ -2,13 +2,17 @@
 
 local types = require("ecrpublic.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Checks the availability of one or more image layers that are within a repository in a
     -- public registry. When an image is pushed to a repository, each image layer is checked to
     -- verify if it has been uploaded before. If it has been uploaded, then the image layer is
     -- skipped.
     -- This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
-    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput): types.BatchCheckLayerAvailabilityOutput, table
+    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput): Operation<types.BatchCheckLayerAvailabilityOutput>
     -- Deletes a list of specified images that are within a repository in a public registry.
     -- Images are specified with either an imageTag or
     -- imageDigest.
@@ -16,84 +20,84 @@ local record Client
     -- you remove the last tag from an image, the image is deleted from your repository.
     -- You can completely delete an image (and all of its tags) by specifying the digest of the
     -- image in your request.
-    batchDeleteImage: function(Client, types.BatchDeleteImageInput): types.BatchDeleteImageOutput, table
+    batchDeleteImage: function(Client, types.BatchDeleteImageInput): Operation<types.BatchDeleteImageOutput>
     -- Informs Amazon ECR that the image layer upload is complete for a specified public registry,
     -- repository name, and upload ID. You can optionally provide a sha256 digest of
     -- the image layer for data validation purposes.
     -- When an image is pushed, the CompleteLayerUpload API is called once for each new image
     -- layer to verify that the upload is complete.
     -- This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
-    completeLayerUpload: function(Client, types.CompleteLayerUploadInput): types.CompleteLayerUploadOutput, table
+    completeLayerUpload: function(Client, types.CompleteLayerUploadInput): Operation<types.CompleteLayerUploadOutput>
     -- Creates a repository in a public registry. For more information, see Amazon ECR
     -- repositories in the Amazon Elastic Container Registry User Guide.
-    createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    createRepository: function(Client, types.CreateRepositoryInput): Operation<types.CreateRepositoryOutput>
     -- Deletes a repository in a public registry. If the repository contains images, you must
     -- either manually delete all images in the repository or use the force option.
     -- This option deletes all images on your behalf before deleting the repository.
-    deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    deleteRepository: function(Client, types.DeleteRepositoryInput): Operation<types.DeleteRepositoryOutput>
     -- Deletes the repository policy that's associated with the specified repository.
-    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput): types.DeleteRepositoryPolicyOutput, table
+    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput): Operation<types.DeleteRepositoryPolicyOutput>
     -- Returns metadata that's related to the images in a repository in a public
     -- registry.
     -- Beginning with Docker version 1.9, the Docker client compresses image layers before
     -- pushing them to a V2 Docker registry. The output of the docker images
     -- command shows the uncompressed image size. Therefore, it might return a larger image
     -- size than the image sizes that are returned by DescribeImages.
-    describeImages: function(Client, types.DescribeImagesInput): types.DescribeImagesOutput, table
+    describeImages: function(Client, types.DescribeImagesInput): Operation<types.DescribeImagesOutput>
     -- Returns the image tag details for a repository in a public registry.
-    describeImageTags: function(Client, types.DescribeImageTagsInput): types.DescribeImageTagsOutput, table
+    describeImageTags: function(Client, types.DescribeImageTagsInput): Operation<types.DescribeImageTagsOutput>
     -- Returns details for a public registry.
-    describeRegistries: function(Client, types.DescribeRegistriesInput): types.DescribeRegistriesOutput, table
+    describeRegistries: function(Client, types.DescribeRegistriesInput): Operation<types.DescribeRegistriesOutput>
     -- Describes repositories that are in a public registry.
-    describeRepositories: function(Client, types.DescribeRepositoriesInput): types.DescribeRepositoriesOutput, table
+    describeRepositories: function(Client, types.DescribeRepositoriesInput): Operation<types.DescribeRepositoriesOutput>
     -- Retrieves an authorization token. An authorization token represents your IAM
     -- authentication credentials. You can use it to access any Amazon ECR registry that your IAM
     -- principal has access to. The authorization token is valid for 12 hours. This API requires
     -- the ecr-public:GetAuthorizationToken and
     -- sts:GetServiceBearerToken permissions.
-    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput): types.GetAuthorizationTokenOutput, table
+    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput): Operation<types.GetAuthorizationTokenOutput>
     -- Retrieves catalog metadata for a public registry.
-    getRegistryCatalogData: function(Client, types.GetRegistryCatalogDataInput): types.GetRegistryCatalogDataOutput, table
+    getRegistryCatalogData: function(Client, types.GetRegistryCatalogDataInput): Operation<types.GetRegistryCatalogDataOutput>
     -- Retrieve catalog metadata for a repository in a public registry. This metadata is
     -- displayed publicly in the Amazon ECR Public Gallery.
-    getRepositoryCatalogData: function(Client, types.GetRepositoryCatalogDataInput): types.GetRepositoryCatalogDataOutput, table
+    getRepositoryCatalogData: function(Client, types.GetRepositoryCatalogDataInput): Operation<types.GetRepositoryCatalogDataOutput>
     -- Retrieves the repository policy for the specified repository.
-    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput): types.GetRepositoryPolicyOutput, table
+    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput): Operation<types.GetRepositoryPolicyOutput>
     -- Notifies Amazon ECR that you intend to upload an image layer.
     -- When an image is pushed, the InitiateLayerUpload API is called once for each image layer
     -- that hasn't already been uploaded. Whether an image layer uploads is determined by the
     -- BatchCheckLayerAvailability API action.
     -- This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
-    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput): types.InitiateLayerUploadOutput, table
+    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput): Operation<types.InitiateLayerUploadOutput>
     -- List the tags for an Amazon ECR Public resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates the image manifest and tags that are associated with an image.
     -- When an image is pushed and all new image layers have been uploaded, the PutImage API is
     -- called once to create or update the image manifest and the tags that are associated with
     -- the image.
     -- This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
-    putImage: function(Client, types.PutImageInput): types.PutImageOutput, table
+    putImage: function(Client, types.PutImageInput): Operation<types.PutImageOutput>
     -- Create or update the catalog data for a public registry.
-    putRegistryCatalogData: function(Client, types.PutRegistryCatalogDataInput): types.PutRegistryCatalogDataOutput, table
+    putRegistryCatalogData: function(Client, types.PutRegistryCatalogDataInput): Operation<types.PutRegistryCatalogDataOutput>
     -- Creates or updates the catalog data for a repository in a public registry.
-    putRepositoryCatalogData: function(Client, types.PutRepositoryCatalogDataInput): types.PutRepositoryCatalogDataOutput, table
+    putRepositoryCatalogData: function(Client, types.PutRepositoryCatalogDataInput): Operation<types.PutRepositoryCatalogDataOutput>
     -- Applies a repository policy to the specified public repository to control access
     -- permissions. For more information, see Amazon ECR Repository
     -- Policies in the Amazon Elastic Container Registry User Guide.
-    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput): types.SetRepositoryPolicyOutput, table
+    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput): Operation<types.SetRepositoryPolicyOutput>
     -- Associates the specified tags to a resource with the specified resourceArn.
     -- If existing tags on a resource aren't specified in the request parameters, they aren't
     -- changed. When a resource is deleted, the tags associated with that resource are also
     -- deleted.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes specified tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Uploads an image layer part to Amazon ECR.
     -- When an image is pushed, each new image layer is uploaded in parts. The maximum size of
     -- each image layer part can be 20971520 bytes (about 20MB). The UploadLayerPart API is called
     -- once for each new image layer part.
     -- This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the docker CLI to pull, tag, and push images.
-    uploadLayerPart: function(Client, types.UploadLayerPartInput): types.UploadLayerPartOutput, table
+    uploadLayerPart: function(Client, types.UploadLayerPartInput): Operation<types.UploadLayerPartOutput>
 end
 
 local record M

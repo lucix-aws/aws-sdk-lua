@@ -2,41 +2,45 @@
 
 local types = require("lexmodelsv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Create a batch of custom vocabulary items for a given bot locale's
     -- custom vocabulary.
-    batchCreateCustomVocabularyItem: function(Client, types.BatchCreateCustomVocabularyItemInput): types.BatchCreateCustomVocabularyItemOutput, table
+    batchCreateCustomVocabularyItem: function(Client, types.BatchCreateCustomVocabularyItemInput): Operation<types.BatchCreateCustomVocabularyItemOutput>
     -- Delete a batch of custom vocabulary items for a given bot locale's
     -- custom vocabulary.
-    batchDeleteCustomVocabularyItem: function(Client, types.BatchDeleteCustomVocabularyItemInput): types.BatchDeleteCustomVocabularyItemOutput, table
+    batchDeleteCustomVocabularyItem: function(Client, types.BatchDeleteCustomVocabularyItemInput): Operation<types.BatchDeleteCustomVocabularyItemOutput>
     -- Update a batch of custom vocabulary items for a given bot locale's custom
     -- vocabulary.
-    batchUpdateCustomVocabularyItem: function(Client, types.BatchUpdateCustomVocabularyItemInput): types.BatchUpdateCustomVocabularyItemOutput, table
+    batchUpdateCustomVocabularyItem: function(Client, types.BatchUpdateCustomVocabularyItemInput): Operation<types.BatchUpdateCustomVocabularyItemOutput>
     -- Builds a bot, its intents, and its slot types into a specific
     -- locale. A bot can be built into multiple locales. At runtime the locale
     -- is used to choose a specific build of the bot.
-    buildBotLocale: function(Client, types.BuildBotLocaleInput): types.BuildBotLocaleOutput, table
+    buildBotLocale: function(Client, types.BuildBotLocaleInput): Operation<types.BuildBotLocaleOutput>
     -- Creates an Amazon Lex conversational bot.
-    createBot: function(Client, types.CreateBotInput): types.CreateBotOutput, table
+    createBot: function(Client, types.CreateBotInput): Operation<types.CreateBotOutput>
     -- Creates an alias for the specified version of a bot. Use an alias to
     -- enable you to change the version of a bot without updating applications
     -- that use the bot.
     -- For example, you can create an alias called "PROD" that your
     -- applications use to call the Amazon Lex bot.
-    createBotAlias: function(Client, types.CreateBotAliasInput): types.CreateBotAliasOutput, table
+    createBotAlias: function(Client, types.CreateBotAliasInput): Operation<types.CreateBotAliasOutput>
     -- Creates a locale in the bot. The locale contains the intents and
     -- slot types that the bot uses in conversations with users in the
     -- specified language and locale. You must add a locale to a bot before
     -- you can add intents and slot types to the bot.
-    createBotLocale: function(Client, types.CreateBotLocaleInput): types.CreateBotLocaleOutput, table
+    createBotLocale: function(Client, types.CreateBotLocaleInput): Operation<types.CreateBotLocaleOutput>
     -- Action to create a replication of the source bot in the secondary region.
-    createBotReplica: function(Client, types.CreateBotReplicaInput): types.CreateBotReplicaOutput, table
+    createBotReplica: function(Client, types.CreateBotReplicaInput): Operation<types.CreateBotReplicaOutput>
     -- Creates an immutable version of the bot. When you create the first
     -- version of a bot, Amazon Lex sets the version number to 1. Subsequent bot versions increase
     -- in an increment of 1. The version number will always represent the total number
     -- of versions created of the bot, not the current number of versions. If a bot version
     -- is deleted, that bot version number will not be reused.
-    createBotVersion: function(Client, types.CreateBotVersionInput): types.CreateBotVersionOutput, table
+    createBotVersion: function(Client, types.CreateBotVersionInput): Operation<types.CreateBotVersionOutput>
     -- Creates a zip archive containing the contents of a bot or a bot
     -- locale. The archive contains a directory structure that contains JSON
     -- files that define the bot.
@@ -46,7 +50,7 @@ local record Client
     -- For more information about exporting bots, and about the structure
     -- of the export archive, see Importing and
     -- exporting bots
-    createExport: function(Client, types.CreateExportInput): types.CreateExportOutput, table
+    createExport: function(Client, types.CreateExportInput): Operation<types.CreateExportOutput>
     -- Creates an intent.
     -- To define the interaction between the user and your bot, you define
     -- one or more intents. For example, for a pizza ordering bot you would
@@ -71,10 +75,10 @@ local record Client
     -- fulfilled. For example, "I ordered your pizza."
     -- A follow-up prompt that asks the user for additional activity.
     -- For example, "Do you want a drink with your pizza?"
-    createIntent: function(Client, types.CreateIntentInput): types.CreateIntentOutput, table
+    createIntent: function(Client, types.CreateIntentInput): Operation<types.CreateIntentOutput>
     -- Creates a new resource policy with the specified policy
     -- statements.
-    createResourcePolicy: function(Client, types.CreateResourcePolicyInput): types.CreateResourcePolicyOutput, table
+    createResourcePolicy: function(Client, types.CreateResourcePolicyInput): Operation<types.CreateResourcePolicyOutput>
     -- Adds a new resource policy statement to a bot or bot alias. If a
     -- resource policy exists, the statement is added to the current resource
     -- policy. If a policy doesn't exist, a new policy is created.
@@ -82,23 +86,23 @@ local record Client
     -- cross-account access.
     -- You need to add the CreateResourcePolicy or UpdateResourcePolicy
     -- action to the bot role in order to call the API.
-    createResourcePolicyStatement: function(Client, types.CreateResourcePolicyStatementInput): types.CreateResourcePolicyStatementOutput, table
+    createResourcePolicyStatement: function(Client, types.CreateResourcePolicyStatementInput): Operation<types.CreateResourcePolicyStatementOutput>
     -- Creates a slot in an intent. A slot is a variable needed to fulfill
     -- an intent. For example, an OrderPizza intent might need
     -- slots for size, crust, and number of pizzas. For each slot, you define
     -- one or more utterances that Amazon Lex uses to elicit a response from the
     -- user.
-    createSlot: function(Client, types.CreateSlotInput): types.CreateSlotOutput, table
+    createSlot: function(Client, types.CreateSlotInput): Operation<types.CreateSlotOutput>
     -- Creates a custom slot type
     -- To create a custom slot type, specify a name for the slot type and
     -- a set of enumeration values, the values that a slot of this type can
     -- assume.
-    createSlotType: function(Client, types.CreateSlotTypeInput): types.CreateSlotTypeOutput, table
+    createSlotType: function(Client, types.CreateSlotTypeInput): Operation<types.CreateSlotTypeOutput>
     -- Create a report that describes the differences between the bot and the test set.
-    createTestSetDiscrepancyReport: function(Client, types.CreateTestSetDiscrepancyReportInput): types.CreateTestSetDiscrepancyReportOutput, table
+    createTestSetDiscrepancyReport: function(Client, types.CreateTestSetDiscrepancyReportInput): Operation<types.CreateTestSetDiscrepancyReportOutput>
     -- Gets a pre-signed S3 write URL that you use to upload the zip
     -- archive when importing a bot or a bot locale.
-    createUploadUrl: function(Client, types.CreateUploadUrlInput): types.CreateUploadUrlOutput, table
+    createUploadUrl: function(Client, types.CreateUploadUrlInput): Operation<types.CreateUploadUrlOutput>
     -- Deletes all versions of a bot, including the Draft
     -- version. To delete a specific version, use the
     -- DeleteBotVersion operation.
@@ -109,37 +113,37 @@ local record Client
     -- a ResourceInUseException exception. If you want to delete
     -- the bot and the alias, set the skipResourceInUseCheck
     -- parameter to true.
-    deleteBot: function(Client, types.DeleteBotInput): types.DeleteBotOutput, table
+    deleteBot: function(Client, types.DeleteBotInput): Operation<types.DeleteBotOutput>
     -- Deletes the specified bot alias.
-    deleteBotAlias: function(Client, types.DeleteBotAliasInput): types.DeleteBotAliasOutput, table
+    deleteBotAlias: function(Client, types.DeleteBotAliasInput): Operation<types.DeleteBotAliasOutput>
     -- Permanently deletes the recommendations and analysis results for a specific bot analysis request. This operation is provided for GDPR compliance and cannot be undone.
     -- After deletion, the analysis results cannot be retrieved. The analysis request ID will still appear in the history list, but attempting to describe the recommendations will return a ResourceNotFoundException.
-    deleteBotAnalyzerRecommendation: function(Client, types.DeleteBotAnalyzerRecommendationInput): types.DeleteBotAnalyzerRecommendationOutput, table
+    deleteBotAnalyzerRecommendation: function(Client, types.DeleteBotAnalyzerRecommendationInput): Operation<types.DeleteBotAnalyzerRecommendationOutput>
     -- Removes a locale from a bot.
     -- When you delete a locale, all intents, slots, and slot types defined
     -- for the locale are also deleted.
-    deleteBotLocale: function(Client, types.DeleteBotLocaleInput): types.DeleteBotLocaleOutput, table
+    deleteBotLocale: function(Client, types.DeleteBotLocaleInput): Operation<types.DeleteBotLocaleOutput>
     -- The action to delete the replicated bot in the secondary region.
-    deleteBotReplica: function(Client, types.DeleteBotReplicaInput): types.DeleteBotReplicaOutput, table
+    deleteBotReplica: function(Client, types.DeleteBotReplicaInput): Operation<types.DeleteBotReplicaOutput>
     -- Deletes a specific version of a bot. To delete all versions of a bot,
     -- use the DeleteBot operation.
-    deleteBotVersion: function(Client, types.DeleteBotVersionInput): types.DeleteBotVersionOutput, table
+    deleteBotVersion: function(Client, types.DeleteBotVersionInput): Operation<types.DeleteBotVersionOutput>
     -- Removes a custom vocabulary from the specified locale
     -- in the specified bot.
-    deleteCustomVocabulary: function(Client, types.DeleteCustomVocabularyInput): types.DeleteCustomVocabularyOutput, table
+    deleteCustomVocabulary: function(Client, types.DeleteCustomVocabularyInput): Operation<types.DeleteCustomVocabularyOutput>
     -- Removes a previous export and the associated files stored in an S3
     -- bucket.
-    deleteExport: function(Client, types.DeleteExportInput): types.DeleteExportOutput, table
+    deleteExport: function(Client, types.DeleteExportInput): Operation<types.DeleteExportOutput>
     -- Removes a previous import and the associated file stored in an S3
     -- bucket.
-    deleteImport: function(Client, types.DeleteImportInput): types.DeleteImportOutput, table
+    deleteImport: function(Client, types.DeleteImportInput): Operation<types.DeleteImportOutput>
     -- Removes the specified intent.
     -- Deleting an intent also deletes the slots associated with the
     -- intent.
-    deleteIntent: function(Client, types.DeleteIntentInput): types.DeleteIntentOutput, table
+    deleteIntent: function(Client, types.DeleteIntentInput): Operation<types.DeleteIntentOutput>
     -- Removes an existing policy from a bot or bot alias. If the resource
     -- doesn't have a policy attached, Amazon Lex returns an exception.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a policy statement from a resource policy. If you delete the
     -- last statement from a policy, the policy is deleted. If you specify a
     -- statement ID that doesn't exist in the policy, or if the bot or bot
@@ -147,17 +151,17 @@ local record Client
     -- exception.
     -- You need to add the DeleteResourcePolicy or UpdateResourcePolicy
     -- action to the bot role in order to call the API.
-    deleteResourcePolicyStatement: function(Client, types.DeleteResourcePolicyStatementInput): types.DeleteResourcePolicyStatementOutput, table
+    deleteResourcePolicyStatement: function(Client, types.DeleteResourcePolicyStatementInput): Operation<types.DeleteResourcePolicyStatementOutput>
     -- Deletes the specified slot from an intent.
-    deleteSlot: function(Client, types.DeleteSlotInput): types.DeleteSlotOutput, table
+    deleteSlot: function(Client, types.DeleteSlotInput): Operation<types.DeleteSlotOutput>
     -- Deletes a slot type from a bot locale.
     -- If a slot is using the slot type, Amazon Lex throws a
     -- ResourceInUseException exception. To avoid the
     -- exception, set the skipResourceInUseCheck parameter to
     -- true.
-    deleteSlotType: function(Client, types.DeleteSlotTypeInput): types.DeleteSlotTypeOutput, table
+    deleteSlotType: function(Client, types.DeleteSlotTypeInput): Operation<types.DeleteSlotTypeOutput>
     -- The action to delete the selected test set.
-    deleteTestSet: function(Client, types.DeleteTestSetInput): types.DeleteTestSetOutput, table
+    deleteTestSet: function(Client, types.DeleteTestSetInput): Operation<types.DeleteTestSetOutput>
     -- Deletes stored utterances.
     -- Amazon Lex stores the utterances that users send to your bot. Utterances
     -- are stored for 15 days for use with the ListAggregatedUtterances operation, and
@@ -170,58 +174,58 @@ local record Client
     -- immediately. Utterances stored for use with the
     -- ListAggregatedUtterances operation are deleted after 15
     -- days.
-    deleteUtterances: function(Client, types.DeleteUtterancesInput): types.DeleteUtterancesOutput, table
+    deleteUtterances: function(Client, types.DeleteUtterancesInput): Operation<types.DeleteUtterancesOutput>
     -- Provides metadata information about a bot.
-    describeBot: function(Client, types.DescribeBotInput): types.DescribeBotOutput, table
+    describeBot: function(Client, types.DescribeBotInput): Operation<types.DescribeBotOutput>
     -- Get information about a specific bot alias.
-    describeBotAlias: function(Client, types.DescribeBotAliasInput): types.DescribeBotAliasOutput, table
+    describeBotAlias: function(Client, types.DescribeBotAliasInput): Operation<types.DescribeBotAliasOutput>
     -- Retrieves the analysis results and recommendations for bot optimization. The analysis must be in Available status before recommendations can be retrieved.
     -- Recommendations are returned with pagination support. Each recommendation includes the issue location, priority level, detailed description, and proposed fix.
-    describeBotAnalyzerRecommendation: function(Client, types.DescribeBotAnalyzerRecommendationInput): types.DescribeBotAnalyzerRecommendationOutput, table
+    describeBotAnalyzerRecommendation: function(Client, types.DescribeBotAnalyzerRecommendationInput): Operation<types.DescribeBotAnalyzerRecommendationOutput>
     -- Describes the settings that a bot has for a specific locale.
-    describeBotLocale: function(Client, types.DescribeBotLocaleInput): types.DescribeBotLocaleOutput, table
+    describeBotLocale: function(Client, types.DescribeBotLocaleInput): Operation<types.DescribeBotLocaleOutput>
     -- Provides metadata information about a bot recommendation. This
     -- information will enable you to get a description on the request inputs,
     -- to download associated transcripts after processing is complete, and to
     -- download intents and slot-types generated by the bot
     -- recommendation.
-    describeBotRecommendation: function(Client, types.DescribeBotRecommendationInput): types.DescribeBotRecommendationOutput, table
+    describeBotRecommendation: function(Client, types.DescribeBotRecommendationInput): Operation<types.DescribeBotRecommendationOutput>
     -- Monitors the bot replication status through the UI console.
-    describeBotReplica: function(Client, types.DescribeBotReplicaInput): types.DescribeBotReplicaOutput, table
+    describeBotReplica: function(Client, types.DescribeBotReplicaInput): Operation<types.DescribeBotReplicaOutput>
     -- Returns information about a request to generate a bot through natural language description, made through
     -- the StartBotResource API. Use the generatedBotLocaleUrl
     -- to retrieve the Amazon S3 object containing the bot locale configuration. You can
     -- then modify and import this configuration.
-    describeBotResourceGeneration: function(Client, types.DescribeBotResourceGenerationInput): types.DescribeBotResourceGenerationOutput, table
+    describeBotResourceGeneration: function(Client, types.DescribeBotResourceGenerationInput): Operation<types.DescribeBotResourceGenerationOutput>
     -- Provides metadata about a version of a bot.
-    describeBotVersion: function(Client, types.DescribeBotVersionInput): types.DescribeBotVersionOutput, table
+    describeBotVersion: function(Client, types.DescribeBotVersionInput): Operation<types.DescribeBotVersionOutput>
     -- Provides metadata information about a custom vocabulary.
-    describeCustomVocabularyMetadata: function(Client, types.DescribeCustomVocabularyMetadataInput): types.DescribeCustomVocabularyMetadataOutput, table
+    describeCustomVocabularyMetadata: function(Client, types.DescribeCustomVocabularyMetadataInput): Operation<types.DescribeCustomVocabularyMetadataOutput>
     -- Gets information about a specific export.
-    describeExport: function(Client, types.DescribeExportInput): types.DescribeExportOutput, table
+    describeExport: function(Client, types.DescribeExportInput): Operation<types.DescribeExportOutput>
     -- Gets information about a specific import.
-    describeImport: function(Client, types.DescribeImportInput): types.DescribeImportOutput, table
+    describeImport: function(Client, types.DescribeImportInput): Operation<types.DescribeImportOutput>
     -- Returns metadata about an intent.
-    describeIntent: function(Client, types.DescribeIntentInput): types.DescribeIntentOutput, table
+    describeIntent: function(Client, types.DescribeIntentInput): Operation<types.DescribeIntentOutput>
     -- Gets the resource policy and policy revision for a bot or bot
     -- alias.
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): Operation<types.DescribeResourcePolicyOutput>
     -- Gets metadata information about a slot.
-    describeSlot: function(Client, types.DescribeSlotInput): types.DescribeSlotOutput, table
+    describeSlot: function(Client, types.DescribeSlotInput): Operation<types.DescribeSlotOutput>
     -- Gets metadata information about a slot type.
-    describeSlotType: function(Client, types.DescribeSlotTypeInput): types.DescribeSlotTypeOutput, table
+    describeSlotType: function(Client, types.DescribeSlotTypeInput): Operation<types.DescribeSlotTypeOutput>
     -- Gets metadata information about the test execution.
-    describeTestExecution: function(Client, types.DescribeTestExecutionInput): types.DescribeTestExecutionOutput, table
+    describeTestExecution: function(Client, types.DescribeTestExecutionInput): Operation<types.DescribeTestExecutionOutput>
     -- Gets metadata information about the test set.
-    describeTestSet: function(Client, types.DescribeTestSetInput): types.DescribeTestSetOutput, table
+    describeTestSet: function(Client, types.DescribeTestSetInput): Operation<types.DescribeTestSetOutput>
     -- Gets metadata information about the test set discrepancy report.
-    describeTestSetDiscrepancyReport: function(Client, types.DescribeTestSetDiscrepancyReportInput): types.DescribeTestSetDiscrepancyReportOutput, table
+    describeTestSetDiscrepancyReport: function(Client, types.DescribeTestSetDiscrepancyReportInput): Operation<types.DescribeTestSetDiscrepancyReportOutput>
     -- Gets metadata information about the test set generation.
-    describeTestSetGeneration: function(Client, types.DescribeTestSetGenerationInput): types.DescribeTestSetGenerationOutput, table
+    describeTestSetGeneration: function(Client, types.DescribeTestSetGenerationInput): Operation<types.DescribeTestSetGenerationOutput>
     -- Generates sample utterances for an intent.
-    generateBotElement: function(Client, types.GenerateBotElementInput): types.GenerateBotElementOutput, table
+    generateBotElement: function(Client, types.GenerateBotElementInput): Operation<types.GenerateBotElementOutput>
     -- The pre-signed Amazon S3 URL to download the test execution result artifacts.
-    getTestExecutionArtifactsUrl: function(Client, types.GetTestExecutionArtifactsUrlInput): types.GetTestExecutionArtifactsUrlOutput, table
+    getTestExecutionArtifactsUrl: function(Client, types.GetTestExecutionArtifactsUrlInput): Operation<types.GetTestExecutionArtifactsUrlOutput>
     -- Provides a list of utterances that users have sent to the
     -- bot.
     -- Utterances are aggregated by the text of the utterance. For example,
@@ -239,27 +243,27 @@ local record Client
     -- bot was created.
     -- You are using slot obfuscation with one or more slots.
     -- You opted out of participating in improving Amazon Lex.
-    listAggregatedUtterances: function(Client, types.ListAggregatedUtterancesInput): types.ListAggregatedUtterancesOutput, table
+    listAggregatedUtterances: function(Client, types.ListAggregatedUtterancesInput): Operation<types.ListAggregatedUtterancesOutput>
     -- Gets a list of aliases for the specified bot.
-    listBotAliases: function(Client, types.ListBotAliasesInput): types.ListBotAliasesOutput, table
+    listBotAliases: function(Client, types.ListBotAliasesInput): Operation<types.ListBotAliasesOutput>
     -- The action to list the replicated bots created from the source bot alias.
-    listBotAliasReplicas: function(Client, types.ListBotAliasReplicasInput): types.ListBotAliasReplicasOutput, table
+    listBotAliasReplicas: function(Client, types.ListBotAliasReplicasInput): Operation<types.ListBotAliasReplicasOutput>
     -- Retrieves a list of historical bot analysis executions for a specific bot. You can filter the results by locale and bot version.
     -- The history includes all analysis executions regardless of their status, allowing you to track past analyses and their outcomes.
-    listBotAnalyzerHistory: function(Client, types.ListBotAnalyzerHistoryInput): types.ListBotAnalyzerHistoryOutput, table
+    listBotAnalyzerHistory: function(Client, types.ListBotAnalyzerHistoryInput): Operation<types.ListBotAnalyzerHistoryOutput>
     -- Gets a list of locales for the specified bot.
-    listBotLocales: function(Client, types.ListBotLocalesInput): types.ListBotLocalesOutput, table
+    listBotLocales: function(Client, types.ListBotLocalesInput): Operation<types.ListBotLocalesOutput>
     -- Get a list of bot recommendations that meet the specified
     -- criteria.
-    listBotRecommendations: function(Client, types.ListBotRecommendationsInput): types.ListBotRecommendationsOutput, table
+    listBotRecommendations: function(Client, types.ListBotRecommendationsInput): Operation<types.ListBotRecommendationsOutput>
     -- The action to list the replicated bots.
-    listBotReplicas: function(Client, types.ListBotReplicasInput): types.ListBotReplicasOutput, table
+    listBotReplicas: function(Client, types.ListBotReplicasInput): Operation<types.ListBotReplicasOutput>
     -- Lists the generation requests made for a bot locale.
-    listBotResourceGenerations: function(Client, types.ListBotResourceGenerationsInput): types.ListBotResourceGenerationsOutput, table
+    listBotResourceGenerations: function(Client, types.ListBotResourceGenerationsInput): Operation<types.ListBotResourceGenerationsOutput>
     -- Gets a list of available bots.
-    listBots: function(Client, types.ListBotsInput): types.ListBotsOutput, table
+    listBots: function(Client, types.ListBotsInput): Operation<types.ListBotsOutput>
     -- Contains information about all the versions replication statuses applicable for Global Resiliency.
-    listBotVersionReplicas: function(Client, types.ListBotVersionReplicasInput): types.ListBotVersionReplicasOutput, table
+    listBotVersionReplicas: function(Client, types.ListBotVersionReplicasInput): Operation<types.ListBotVersionReplicasOutput>
     -- Gets information about all of the versions of a bot.
     -- The ListBotVersions operation returns a summary of each
     -- version of a bot. For example, if a bot has three numbered versions,
@@ -268,26 +272,26 @@ local record Client
     -- version.
     -- The ListBotVersions operation always returns at least
     -- one version, the DRAFT version.
-    listBotVersions: function(Client, types.ListBotVersionsInput): types.ListBotVersionsOutput, table
+    listBotVersions: function(Client, types.ListBotVersionsInput): Operation<types.ListBotVersionsOutput>
     -- Gets a list of built-in intents provided by Amazon Lex that you can use
     -- in your bot.
     -- To use a built-in intent as a the base for your own intent, include
     -- the built-in intent signature in the parentIntentSignature
     -- parameter when you call the CreateIntent operation. For
     -- more information, see CreateIntent.
-    listBuiltInIntents: function(Client, types.ListBuiltInIntentsInput): types.ListBuiltInIntentsOutput, table
+    listBuiltInIntents: function(Client, types.ListBuiltInIntentsInput): Operation<types.ListBuiltInIntentsOutput>
     -- Gets a list of built-in slot types that meet the specified
     -- criteria.
-    listBuiltInSlotTypes: function(Client, types.ListBuiltInSlotTypesInput): types.ListBuiltInSlotTypesOutput, table
+    listBuiltInSlotTypes: function(Client, types.ListBuiltInSlotTypesInput): Operation<types.ListBuiltInSlotTypesOutput>
     -- Paginated list of custom vocabulary items for a given bot locale's
     -- custom vocabulary.
-    listCustomVocabularyItems: function(Client, types.ListCustomVocabularyItemsInput): types.ListCustomVocabularyItemsOutput, table
+    listCustomVocabularyItems: function(Client, types.ListCustomVocabularyItemsInput): Operation<types.ListCustomVocabularyItemsOutput>
     -- Lists the exports for a bot, bot locale, or custom vocabulary.
     -- Exports are kept in the list for 7 days.
-    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listExports: function(Client, types.ListExportsInput): Operation<types.ListExportsOutput>
     -- Lists the imports for a bot, bot locale, or custom vocabulary.
     -- Imports are kept in the list for 7 days.
-    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listImports: function(Client, types.ListImportsInput): Operation<types.ListImportsOutput>
     -- Retrieves summary metrics for the intents in your bot. The following fields are required:
     -- metrics – A list of AnalyticsIntentMetric objects. In each object, use the name field to specify the metric to calculate, the statistic field to specify whether to calculate the Sum, Average, or Max number, and the order field to specify whether to sort the results in Ascending or Descending order.
     -- startDateTime and endDateTime – Define a time range for which you want to retrieve results.
@@ -295,14 +299,14 @@ local record Client
     -- Use the filters field to filter the results, the groupBy field to specify categories by which to group the results, and the binBy field to specify time intervals by which to group the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
     -- Note that an order field exists in both binBy and metrics. You can specify only one order in a given request.
-    listIntentMetrics: function(Client, types.ListIntentMetricsInput): types.ListIntentMetricsOutput, table
+    listIntentMetrics: function(Client, types.ListIntentMetricsInput): Operation<types.ListIntentMetricsOutput>
     -- Retrieves summary statistics for a path of intents that users take over sessions with your bot. The following fields are required:
     -- startDateTime and endDateTime – Define a time range for which you want to retrieve results.
     -- intentPath – Define an order of intents for which you want to retrieve metrics. Separate intents in the path with a forward slash. For example, populate the intentPath field with /BookCar/BookHotel to see details about how many times users invoked the BookCar and BookHotel intents in that order.
     -- Use the optional filters field to filter the results.
-    listIntentPaths: function(Client, types.ListIntentPathsInput): types.ListIntentPathsOutput, table
+    listIntentPaths: function(Client, types.ListIntentPathsInput): Operation<types.ListIntentPathsOutput>
     -- Get a list of intents that meet the specified criteria.
-    listIntents: function(Client, types.ListIntentsInput): types.ListIntentsOutput, table
+    listIntents: function(Client, types.ListIntentsInput): Operation<types.ListIntentsOutput>
     -- Retrieves summary metrics for the stages within intents in your bot. The following fields are required:
     -- metrics – A list of AnalyticsIntentStageMetric objects. In each object, use the name field to specify the metric to calculate, the statistic field to specify whether to calculate the Sum, Average, or Max number, and the order field to specify whether to sort the results in Ascending or Descending order.
     -- startDateTime and endDateTime – Define a time range for which you want to retrieve results.
@@ -310,15 +314,15 @@ local record Client
     -- Use the filters field to filter the results, the groupBy field to specify categories by which to group the results, and the binBy field to specify time intervals by which to group the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
     -- Note that an order field exists in both binBy and metrics. You can only specify one order in a given request.
-    listIntentStageMetrics: function(Client, types.ListIntentStageMetricsInput): types.ListIntentStageMetricsOutput, table
+    listIntentStageMetrics: function(Client, types.ListIntentStageMetricsInput): Operation<types.ListIntentStageMetricsOutput>
     -- Gets a list of recommended intents provided by the bot
     -- recommendation that you can use in your bot. Intents in the
     -- response are ordered by relevance.
-    listRecommendedIntents: function(Client, types.ListRecommendedIntentsInput): types.ListRecommendedIntentsOutput, table
+    listRecommendedIntents: function(Client, types.ListRecommendedIntentsInput): Operation<types.ListRecommendedIntentsOutput>
     -- Retrieves a list of metadata for individual user sessions with your bot. The startDateTime and endDateTime fields are required. These fields define a time range for which you want to retrieve results. Of the optional fields, you can organize the results in the following ways:
     -- Use the filters field to filter the results and the sortBy field to specify the values by which to sort the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
-    listSessionAnalyticsData: function(Client, types.ListSessionAnalyticsDataInput): types.ListSessionAnalyticsDataOutput, table
+    listSessionAnalyticsData: function(Client, types.ListSessionAnalyticsDataInput): Operation<types.ListSessionAnalyticsDataOutput>
     -- Retrieves summary metrics for the user sessions with your bot. The following fields are required:
     -- metrics – A list of AnalyticsSessionMetric objects. In each object, use the name field to specify the metric to calculate, the statistic field to specify whether to calculate the Sum, Average, or Max number, and the order field to specify whether to sort the results in Ascending or Descending order.
     -- startDateTime and endDateTime – Define a time range for which you want to retrieve results.
@@ -326,22 +330,22 @@ local record Client
     -- Use the filters field to filter the results, the groupBy field to specify categories by which to group the results, and the binBy field to specify time intervals by which to group the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
     -- Note that an order field exists in both binBy and metrics. Currently, you can specify it in either field, but not in both.
-    listSessionMetrics: function(Client, types.ListSessionMetricsInput): types.ListSessionMetricsOutput, table
+    listSessionMetrics: function(Client, types.ListSessionMetricsInput): Operation<types.ListSessionMetricsOutput>
     -- Gets a list of slots that match the specified criteria.
-    listSlots: function(Client, types.ListSlotsInput): types.ListSlotsOutput, table
+    listSlots: function(Client, types.ListSlotsInput): Operation<types.ListSlotsOutput>
     -- Gets a list of slot types that match the specified criteria.
-    listSlotTypes: function(Client, types.ListSlotTypesInput): types.ListSlotTypesOutput, table
+    listSlotTypes: function(Client, types.ListSlotTypesInput): Operation<types.ListSlotTypesOutput>
     -- Gets a list of tags associated with a resource. Only bots, bot
     -- aliases, and bot channels can have tags associated with them.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Gets a list of test execution result items.
-    listTestExecutionResultItems: function(Client, types.ListTestExecutionResultItemsInput): types.ListTestExecutionResultItemsOutput, table
+    listTestExecutionResultItems: function(Client, types.ListTestExecutionResultItemsInput): Operation<types.ListTestExecutionResultItemsOutput>
     -- The list of test set executions.
-    listTestExecutions: function(Client, types.ListTestExecutionsInput): types.ListTestExecutionsOutput, table
+    listTestExecutions: function(Client, types.ListTestExecutionsInput): Operation<types.ListTestExecutionsOutput>
     -- The list of test set records.
-    listTestSetRecords: function(Client, types.ListTestSetRecordsInput): types.ListTestSetRecordsOutput, table
+    listTestSetRecords: function(Client, types.ListTestSetRecordsInput): Operation<types.ListTestSetRecordsOutput>
     -- The list of the test sets
-    listTestSets: function(Client, types.ListTestSetsInput): types.ListTestSetsOutput, table
+    listTestSets: function(Client, types.ListTestSetsInput): Operation<types.ListTestSetsOutput>
     -- To use this API operation, your IAM role must have permissions to
     -- perform the ListAggregatedUtterances operation, which provides access to
     -- utterance-related analytics. See Viewing utterance
@@ -351,7 +355,7 @@ local record Client
     -- Of the optional fields, you can organize the results in the following ways:
     -- Use the filters field to filter the results and the sortBy field to specify the values by which to sort the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
-    listUtteranceAnalyticsData: function(Client, types.ListUtteranceAnalyticsDataInput): types.ListUtteranceAnalyticsDataOutput, table
+    listUtteranceAnalyticsData: function(Client, types.ListUtteranceAnalyticsDataInput): Operation<types.ListUtteranceAnalyticsDataOutput>
     -- To use this API operation, your IAM role must have permissions to
     -- perform the ListAggregatedUtterances operation, which provides access to
     -- utterance-related analytics. See Viewing utterance
@@ -363,65 +367,65 @@ local record Client
     -- Use the filters field to filter the results, the groupBy field to specify categories by which to group the results, and the binBy field to specify time intervals by which to group the results.
     -- Use the maxResults field to limit the number of results to return in a single response and the nextToken field to return the next batch of results if the response does not return the full set of results.
     -- Note that an order field exists in both binBy and metrics. Currently, you can specify it in either field, but not in both.
-    listUtteranceMetrics: function(Client, types.ListUtteranceMetricsInput): types.ListUtteranceMetricsOutput, table
+    listUtteranceMetrics: function(Client, types.ListUtteranceMetricsInput): Operation<types.ListUtteranceMetricsOutput>
     -- Search for associated transcripts that meet the specified
     -- criteria.
-    searchAssociatedTranscripts: function(Client, types.SearchAssociatedTranscriptsInput): types.SearchAssociatedTranscriptsOutput, table
+    searchAssociatedTranscripts: function(Client, types.SearchAssociatedTranscriptsInput): Operation<types.SearchAssociatedTranscriptsOutput>
     -- Initiates an asynchronous analysis of your bot configuration using AI-powered analysis to identify potential issues and recommend improvements based on AWS best practices.
     -- The analysis examines your bot's configuration, including intents, utterances, slots, and conversation flows, to provide actionable recommendations for optimization.
-    startBotAnalyzer: function(Client, types.StartBotAnalyzerInput): types.StartBotAnalyzerOutput, table
+    startBotAnalyzer: function(Client, types.StartBotAnalyzerInput): Operation<types.StartBotAnalyzerOutput>
     -- Use this to provide your transcript data, and to start the bot
     -- recommendation process.
-    startBotRecommendation: function(Client, types.StartBotRecommendationInput): types.StartBotRecommendationOutput, table
+    startBotRecommendation: function(Client, types.StartBotRecommendationInput): Operation<types.StartBotRecommendationOutput>
     -- Starts a request for the descriptive bot builder to generate a bot locale configuration
     -- based on the prompt you provide it. After you make this call, use the DescribeBotResourceGeneration
     -- operation to check on the status of the generation and for the generatedBotLocaleUrl when the
     -- generation is complete. Use that value to retrieve the Amazon S3 object containing the bot locale configuration. You can
     -- then modify and import this configuration.
-    startBotResourceGeneration: function(Client, types.StartBotResourceGenerationInput): types.StartBotResourceGenerationOutput, table
+    startBotResourceGeneration: function(Client, types.StartBotResourceGenerationInput): Operation<types.StartBotResourceGenerationOutput>
     -- Starts importing a bot, bot locale, or custom vocabulary from a zip
     -- archive that you uploaded to an S3 bucket.
-    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startImport: function(Client, types.StartImportInput): Operation<types.StartImportOutput>
     -- The action to start test set execution.
-    startTestExecution: function(Client, types.StartTestExecutionInput): types.StartTestExecutionOutput, table
+    startTestExecution: function(Client, types.StartTestExecutionInput): Operation<types.StartTestExecutionOutput>
     -- The action to start the generation of test set.
-    startTestSetGeneration: function(Client, types.StartTestSetGenerationInput): types.StartTestSetGenerationOutput, table
+    startTestSetGeneration: function(Client, types.StartTestSetGenerationInput): Operation<types.StartTestSetGenerationOutput>
     -- Cancels an ongoing bot analysis execution. Once stopped, the analysis cannot be resumed and no recommendations will be generated.
-    stopBotAnalyzer: function(Client, types.StopBotAnalyzerInput): types.StopBotAnalyzerOutput, table
+    stopBotAnalyzer: function(Client, types.StopBotAnalyzerInput): Operation<types.StopBotAnalyzerOutput>
     -- Stop an already running Bot Recommendation request.
-    stopBotRecommendation: function(Client, types.StopBotRecommendationInput): types.StopBotRecommendationOutput, table
+    stopBotRecommendation: function(Client, types.StopBotRecommendationInput): Operation<types.StopBotRecommendationOutput>
     -- Adds the specified tags to the specified resource. If a tag key
     -- already exists, the existing value is replaced with the new
     -- value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a bot, bot alias, or bot channel.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the configuration of an existing bot.
-    updateBot: function(Client, types.UpdateBotInput): types.UpdateBotOutput, table
+    updateBot: function(Client, types.UpdateBotInput): Operation<types.UpdateBotOutput>
     -- Updates the configuration of an existing bot alias.
-    updateBotAlias: function(Client, types.UpdateBotAliasInput): types.UpdateBotAliasOutput, table
+    updateBotAlias: function(Client, types.UpdateBotAliasInput): Operation<types.UpdateBotAliasOutput>
     -- Updates the settings that a bot has for a specific locale.
-    updateBotLocale: function(Client, types.UpdateBotLocaleInput): types.UpdateBotLocaleOutput, table
+    updateBotLocale: function(Client, types.UpdateBotLocaleInput): Operation<types.UpdateBotLocaleOutput>
     -- Updates an existing bot recommendation request.
-    updateBotRecommendation: function(Client, types.UpdateBotRecommendationInput): types.UpdateBotRecommendationOutput, table
+    updateBotRecommendation: function(Client, types.UpdateBotRecommendationInput): Operation<types.UpdateBotRecommendationOutput>
     -- Updates the password used to protect an export zip archive.
     -- The password is not required. If you don't supply a password, Amazon Lex
     -- generates a zip file that is not protected by a password. This is the
     -- archive that is available at the pre-signed S3 URL provided by the
     -- DescribeExport operation.
-    updateExport: function(Client, types.UpdateExportInput): types.UpdateExportOutput, table
+    updateExport: function(Client, types.UpdateExportInput): Operation<types.UpdateExportOutput>
     -- Updates the settings for an intent.
-    updateIntent: function(Client, types.UpdateIntentInput): types.UpdateIntentOutput, table
+    updateIntent: function(Client, types.UpdateIntentInput): Operation<types.UpdateIntentOutput>
     -- Replaces the existing resource policy for a bot or bot alias with a
     -- new one. If the policy doesn't exist, Amazon Lex returns an
     -- exception.
-    updateResourcePolicy: function(Client, types.UpdateResourcePolicyInput): types.UpdateResourcePolicyOutput, table
+    updateResourcePolicy: function(Client, types.UpdateResourcePolicyInput): Operation<types.UpdateResourcePolicyOutput>
     -- Updates the settings for a slot.
-    updateSlot: function(Client, types.UpdateSlotInput): types.UpdateSlotOutput, table
+    updateSlot: function(Client, types.UpdateSlotInput): Operation<types.UpdateSlotOutput>
     -- Updates the configuration of an existing slot type.
-    updateSlotType: function(Client, types.UpdateSlotTypeInput): types.UpdateSlotTypeOutput, table
+    updateSlotType: function(Client, types.UpdateSlotTypeInput): Operation<types.UpdateSlotTypeOutput>
     -- The action to update the test set.
-    updateTestSet: function(Client, types.UpdateTestSetInput): types.UpdateTestSetOutput, table
+    updateTestSet: function(Client, types.UpdateTestSetInput): Operation<types.UpdateTestSetOutput>
 end
 
 local record M

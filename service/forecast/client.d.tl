@@ -2,6 +2,10 @@
 
 local types = require("forecast.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an Amazon Forecast predictor.
     -- Amazon Forecast creates predictors with AutoPredictor, which involves applying the
@@ -26,7 +30,7 @@ local record Client
     -- upgrade.
     -- When upgrading or retraining a predictor, only specify values for the
     -- ReferencePredictorArn and PredictorName.
-    createAutoPredictor: function(Client, types.CreateAutoPredictorInput): types.CreateAutoPredictorOutput, table
+    createAutoPredictor: function(Client, types.CreateAutoPredictorInput): Operation<types.CreateAutoPredictorOutput>
     -- Creates an Amazon Forecast dataset. The information about the dataset that you provide helps
     -- Forecast understand how to consume the data for model training. This includes the
     -- following:
@@ -52,7 +56,7 @@ local record Client
     -- The Status of a dataset must be ACTIVE before you can import
     -- training data. Use the DescribeDataset operation to get
     -- the status.
-    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): Operation<types.CreateDatasetOutput>
     -- Creates a dataset group, which holds a collection of related datasets. You can add
     -- datasets to the dataset group when you create the dataset group, or later by using the UpdateDatasetGroup operation.
     -- After creating a dataset group and adding datasets, you use the dataset group when you
@@ -61,7 +65,7 @@ local record Client
     -- operation.
     -- The Status of a dataset group must be ACTIVE before you can
     -- use the dataset group to create a predictor. To get the status, use the DescribeDatasetGroup operation.
-    createDatasetGroup: function(Client, types.CreateDatasetGroupInput): types.CreateDatasetGroupOutput, table
+    createDatasetGroup: function(Client, types.CreateDatasetGroupInput): Operation<types.CreateDatasetGroupOutput>
     -- Imports your training data to an Amazon Forecast dataset. You provide the location of your
     -- training data in an Amazon Simple Storage Service (Amazon S3) bucket and the Amazon Resource Name (ARN) of the dataset
     -- that you want to import the data to.
@@ -79,7 +83,7 @@ local record Client
     -- data collected since the previous import.
     -- To get a list of all your dataset import jobs, filtered by specified criteria, use the
     -- ListDatasetImportJobs operation.
-    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput): types.CreateDatasetImportJobOutput, table
+    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput): Operation<types.CreateDatasetImportJobOutput>
     -- Explainability is only available for Forecasts and Predictors generated from an
     -- AutoPredictor (CreateAutoPredictor)
     -- Creates an Amazon Forecast Explainability.
@@ -131,7 +135,7 @@ local record Client
     -- points.
     -- EndDateTime - The last timestamp in the range of time
     -- points.
-    createExplainability: function(Client, types.CreateExplainabilityInput): types.CreateExplainabilityOutput, table
+    createExplainability: function(Client, types.CreateExplainabilityInput): Operation<types.CreateExplainabilityOutput>
     -- Exports an Explainability resource created by the CreateExplainability operation. Exported files are exported to an Amazon Simple Storage Service (Amazon
     -- S3) bucket.
     -- You must specify a DataDestination object that includes an Amazon S3
@@ -139,7 +143,7 @@ local record Client
     -- bucket. For more information, see aws-forecast-iam-roles.
     -- The Status of the export job must be ACTIVE before you
     -- can access the export in your Amazon S3 bucket. To get the status, use the DescribeExplainabilityExport operation.
-    createExplainabilityExport: function(Client, types.CreateExplainabilityExportInput): types.CreateExplainabilityExportOutput, table
+    createExplainabilityExport: function(Client, types.CreateExplainabilityExportInput): Operation<types.CreateExplainabilityExportOutput>
     -- Creates a forecast for each item in the TARGET_TIME_SERIES dataset that was
     -- used to train the predictor. This is known as inference. To retrieve the forecast for a single
     -- item at low latency, use the operation. To
@@ -157,7 +161,7 @@ local record Client
     -- status.
     -- By default, a forecast includes predictions for every item (item_id) in the dataset group that was used to train the predictor.
     -- However, you can use the TimeSeriesSelector object to generate a forecast on a subset of time series. Forecast creation is skipped for any time series that you specify that are not in the input dataset. The forecast export file will not contain these time series or their forecasted values.
-    createForecast: function(Client, types.CreateForecastInput): types.CreateForecastOutput, table
+    createForecast: function(Client, types.CreateForecastInput): Operation<types.CreateForecastOutput>
     -- Exports a forecast created by the CreateForecast operation to your
     -- Amazon Simple Storage Service (Amazon S3) bucket. The forecast file name will match the following conventions:
     -- __
@@ -170,10 +174,10 @@ local record Client
     -- To get a list of all your forecast export jobs, use the ListForecastExportJobs operation.
     -- The Status of the forecast export job must be ACTIVE before
     -- you can access the forecast in your Amazon S3 bucket. To get the status, use the DescribeForecastExportJob operation.
-    createForecastExportJob: function(Client, types.CreateForecastExportJobInput): types.CreateForecastExportJobOutput, table
+    createForecastExportJob: function(Client, types.CreateForecastExportJobInput): Operation<types.CreateForecastExportJobOutput>
     -- Creates a predictor monitor resource for an existing auto predictor. Predictor monitoring allows you to see how your predictor's performance changes over time.
     -- For more information, see Predictor Monitoring.
-    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createMonitor: function(Client, types.CreateMonitorInput): Operation<types.CreateMonitorOutput>
     -- This operation creates a legacy predictor that does not include all the predictor
     -- functionalities provided by Amazon Forecast. To create a predictor that is compatible with all
     -- aspects of Forecast, use CreateAutoPredictor.
@@ -210,7 +214,7 @@ local record Client
     -- Before you can use the predictor to create a forecast, the Status of the
     -- predictor must be ACTIVE, signifying that training has completed. To get the
     -- status, use the DescribePredictor operation.
-    createPredictor: function(Client, types.CreatePredictorInput): types.CreatePredictorOutput, table
+    createPredictor: function(Client, types.CreatePredictorInput): Operation<types.CreatePredictorOutput>
     -- Exports backtest forecasts and accuracy metrics generated by the CreateAutoPredictor or CreatePredictor operations. Two
     -- folders containing CSV or Parquet files are exported to your specified S3 bucket.
     -- The export file names will match the following conventions:
@@ -222,7 +226,7 @@ local record Client
     -- bucket. For more information, see aws-forecast-iam-roles.
     -- The Status of the export job must be ACTIVE before you
     -- can access the export in your Amazon S3 bucket. To get the status, use the DescribePredictorBacktestExportJob operation.
-    createPredictorBacktestExportJob: function(Client, types.CreatePredictorBacktestExportJobInput): types.CreatePredictorBacktestExportJobOutput, table
+    createPredictorBacktestExportJob: function(Client, types.CreatePredictorBacktestExportJobInput): Operation<types.CreatePredictorBacktestExportJobOutput>
     -- What-if analysis is a scenario modeling technique where you make a hypothetical change to a time series and
     -- compare the forecasts generated by these changes against the baseline, unchanged time series. It is important to
     -- remember that the purpose of a what-if analysis is to understand how a forecast can change given different
@@ -236,10 +240,10 @@ local record Client
     -- With a what-if analysis, you can compare many different scenarios against each other.
     -- Note that a what-if analysis is meant to display what the forecasting model has learned and how it will behave in the scenarios that you are evaluating. Do not blindly use the results of the what-if analysis to make business decisions. For instance, forecasts might not be accurate for novel scenarios where there is no reference available to determine whether a forecast is good.
     -- The TimeSeriesSelector object defines the items that you want in the what-if analysis.
-    createWhatIfAnalysis: function(Client, types.CreateWhatIfAnalysisInput): types.CreateWhatIfAnalysisOutput, table
+    createWhatIfAnalysis: function(Client, types.CreateWhatIfAnalysisInput): Operation<types.CreateWhatIfAnalysisOutput>
     -- A what-if forecast is a forecast that is created from a modified version of the baseline forecast. Each
     -- what-if forecast incorporates either a replacement dataset or a set of transformations to the original dataset.
-    createWhatIfForecast: function(Client, types.CreateWhatIfForecastInput): types.CreateWhatIfForecastOutput, table
+    createWhatIfForecast: function(Client, types.CreateWhatIfForecastInput): Operation<types.CreateWhatIfForecastOutput>
     -- Exports a forecast created by the CreateWhatIfForecast operation to your
     -- Amazon Simple Storage Service (Amazon S3) bucket. The forecast file name will match the following conventions:
     -- ≈__
@@ -253,47 +257,47 @@ local record Client
     -- operation.
     -- The Status of the forecast export job must be ACTIVE before
     -- you can access the forecast in your Amazon S3 bucket. To get the status, use the DescribeWhatIfForecastExport operation.
-    createWhatIfForecastExport: function(Client, types.CreateWhatIfForecastExportInput): types.CreateWhatIfForecastExportOutput, table
+    createWhatIfForecastExport: function(Client, types.CreateWhatIfForecastExportInput): Operation<types.CreateWhatIfForecastExportOutput>
     -- Deletes an Amazon Forecast dataset that was created using the CreateDataset operation. You can
     -- only delete datasets that have a status of ACTIVE or CREATE_FAILED.
     -- To get the status use the DescribeDataset operation.
     -- Forecast does not automatically update any dataset groups that contain the deleted dataset.
     -- In order to update the dataset group, use the UpdateDatasetGroup operation,
     -- omitting the deleted dataset's ARN.
-    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): Operation<types.DeleteDatasetOutput>
     -- Deletes a dataset group created using the CreateDatasetGroup operation.
     -- You can only delete dataset groups that have a status of ACTIVE,
     -- CREATE_FAILED, or UPDATE_FAILED. To get the status, use the DescribeDatasetGroup operation.
     -- This operation deletes only the dataset group, not the datasets in the group.
-    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput): types.DeleteDatasetGroupOutput, table
+    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput): Operation<types.DeleteDatasetGroupOutput>
     -- Deletes a dataset import job created using the CreateDatasetImportJob
     -- operation. You can delete only dataset import jobs that have a status of ACTIVE
     -- or CREATE_FAILED. To get the status, use the DescribeDatasetImportJob
     -- operation.
-    deleteDatasetImportJob: function(Client, types.DeleteDatasetImportJobInput): types.DeleteDatasetImportJobOutput, table
+    deleteDatasetImportJob: function(Client, types.DeleteDatasetImportJobInput): Operation<types.DeleteDatasetImportJobOutput>
     -- Deletes an Explainability resource.
     -- You can delete only predictor that have a status of ACTIVE or
     -- CREATE_FAILED. To get the status, use the DescribeExplainability operation.
-    deleteExplainability: function(Client, types.DeleteExplainabilityInput): types.DeleteExplainabilityOutput, table
+    deleteExplainability: function(Client, types.DeleteExplainabilityInput): Operation<types.DeleteExplainabilityOutput>
     -- Deletes an Explainability export.
-    deleteExplainabilityExport: function(Client, types.DeleteExplainabilityExportInput): types.DeleteExplainabilityExportOutput, table
+    deleteExplainabilityExport: function(Client, types.DeleteExplainabilityExportInput): Operation<types.DeleteExplainabilityExportOutput>
     -- Deletes a forecast created using the CreateForecast operation. You can
     -- delete only forecasts that have a status of ACTIVE or CREATE_FAILED.
     -- To get the status, use the DescribeForecast operation.
     -- You can't delete a forecast while it is being exported. After a forecast is deleted, you
     -- can no longer query the forecast.
-    deleteForecast: function(Client, types.DeleteForecastInput): types.DeleteForecastOutput, table
+    deleteForecast: function(Client, types.DeleteForecastInput): Operation<types.DeleteForecastOutput>
     -- Deletes a forecast export job created using the CreateForecastExportJob
     -- operation. You can delete only export jobs that have a status of ACTIVE or
     -- CREATE_FAILED. To get the status, use the DescribeForecastExportJob operation.
-    deleteForecastExportJob: function(Client, types.DeleteForecastExportJobInput): types.DeleteForecastExportJobOutput, table
+    deleteForecastExportJob: function(Client, types.DeleteForecastExportJobInput): Operation<types.DeleteForecastExportJobOutput>
     -- Deletes a monitor resource. You can only delete a monitor resource with a status of ACTIVE, ACTIVE_STOPPED, CREATE_FAILED, or CREATE_STOPPED.
-    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): Operation<types.DeleteMonitorOutput>
     -- Deletes a predictor created using the DescribePredictor or CreatePredictor operations. You can delete only predictor that have a status of
     -- ACTIVE or CREATE_FAILED. To get the status, use the DescribePredictor operation.
-    deletePredictor: function(Client, types.DeletePredictorInput): types.DeletePredictorOutput, table
+    deletePredictor: function(Client, types.DeletePredictorInput): Operation<types.DeletePredictorOutput>
     -- Deletes a predictor backtest export job.
-    deletePredictorBacktestExportJob: function(Client, types.DeletePredictorBacktestExportJobInput): types.DeletePredictorBacktestExportJobOutput, table
+    deletePredictorBacktestExportJob: function(Client, types.DeletePredictorBacktestExportJobInput): Operation<types.DeletePredictorBacktestExportJobOutput>
     -- Deletes an entire resource tree. This operation will delete the parent resource and
     -- its child resources.
     -- Child resources are resources that were created from another resource. For example,
@@ -308,27 +312,27 @@ local record Client
     -- Forecast: forecast export jobs
     -- DeleteResourceTree will only delete Amazon Forecast resources, and will not
     -- delete datasets or exported files stored in Amazon S3.
-    deleteResourceTree: function(Client, types.DeleteResourceTreeInput): types.DeleteResourceTreeOutput, table
+    deleteResourceTree: function(Client, types.DeleteResourceTreeInput): Operation<types.DeleteResourceTreeOutput>
     -- Deletes a what-if analysis created using the CreateWhatIfAnalysis
     -- operation. You can delete only what-if analyses that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeWhatIfAnalysis operation.
     -- You can't delete a what-if analysis while any of its forecasts are being exported.
-    deleteWhatIfAnalysis: function(Client, types.DeleteWhatIfAnalysisInput): types.DeleteWhatIfAnalysisOutput, table
+    deleteWhatIfAnalysis: function(Client, types.DeleteWhatIfAnalysisInput): Operation<types.DeleteWhatIfAnalysisOutput>
     -- Deletes a what-if forecast created using the CreateWhatIfForecast
     -- operation. You can delete only what-if forecasts that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeWhatIfForecast operation.
     -- You can't delete a what-if forecast while it is being exported. After a what-if forecast is deleted, you can no longer query the what-if analysis.
-    deleteWhatIfForecast: function(Client, types.DeleteWhatIfForecastInput): types.DeleteWhatIfForecastOutput, table
+    deleteWhatIfForecast: function(Client, types.DeleteWhatIfForecastInput): Operation<types.DeleteWhatIfForecastOutput>
     -- Deletes a what-if forecast export created using the CreateWhatIfForecastExport
     -- operation. You can delete only what-if forecast exports that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeWhatIfForecastExport operation.
-    deleteWhatIfForecastExport: function(Client, types.DeleteWhatIfForecastExportInput): types.DeleteWhatIfForecastExportOutput, table
+    deleteWhatIfForecastExport: function(Client, types.DeleteWhatIfForecastExportInput): Operation<types.DeleteWhatIfForecastExportOutput>
     -- Describes a predictor created using the CreateAutoPredictor operation.
-    describeAutoPredictor: function(Client, types.DescribeAutoPredictorInput): types.DescribeAutoPredictorOutput, table
+    describeAutoPredictor: function(Client, types.DescribeAutoPredictorInput): Operation<types.DescribeAutoPredictorOutput>
     -- Describes an Amazon Forecast dataset created using the CreateDataset operation.
     -- In addition to listing the parameters specified in the CreateDataset request,
     -- this operation includes the following dataset properties:
     -- CreationTime
     -- LastModificationTime
     -- Status
-    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): Operation<types.DescribeDatasetOutput>
     -- Describes a dataset group created using the CreateDatasetGroup
     -- operation.
     -- In addition to listing the parameters provided in the CreateDatasetGroup
@@ -337,7 +341,7 @@ local record Client
     -- CreationTime
     -- LastModificationTime
     -- Status
-    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput): types.DescribeDatasetGroupOutput, table
+    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput): Operation<types.DescribeDatasetGroupOutput>
     -- Describes a dataset import job created using the CreateDatasetImportJob
     -- operation.
     -- In addition to listing the parameters provided in the CreateDatasetImportJob
@@ -348,11 +352,11 @@ local record Client
     -- FieldStatistics
     -- Status
     -- Message - If an error occurred, information about the error.
-    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput): types.DescribeDatasetImportJobOutput, table
+    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput): Operation<types.DescribeDatasetImportJobOutput>
     -- Describes an Explainability resource created using the CreateExplainability operation.
-    describeExplainability: function(Client, types.DescribeExplainabilityInput): types.DescribeExplainabilityOutput, table
+    describeExplainability: function(Client, types.DescribeExplainabilityInput): Operation<types.DescribeExplainabilityOutput>
     -- Describes an Explainability export created using the CreateExplainabilityExport operation.
-    describeExplainabilityExport: function(Client, types.DescribeExplainabilityExportInput): types.DescribeExplainabilityExportOutput, table
+    describeExplainabilityExport: function(Client, types.DescribeExplainabilityExportInput): Operation<types.DescribeExplainabilityExportOutput>
     -- Describes a forecast created using the CreateForecast operation.
     -- In addition to listing the properties provided in the CreateForecast request,
     -- this operation lists the following properties:
@@ -362,7 +366,7 @@ local record Client
     -- LastModificationTime
     -- Status
     -- Message - If an error occurred, information about the error.
-    describeForecast: function(Client, types.DescribeForecastInput): types.DescribeForecastOutput, table
+    describeForecast: function(Client, types.DescribeForecastInput): Operation<types.DescribeForecastOutput>
     -- Describes a forecast export job created using the CreateForecastExportJob operation.
     -- In addition to listing the properties provided by the user in the
     -- CreateForecastExportJob request, this operation lists the following
@@ -371,7 +375,7 @@ local record Client
     -- LastModificationTime
     -- Status
     -- Message - If an error occurred, information about the error.
-    describeForecastExportJob: function(Client, types.DescribeForecastExportJobInput): types.DescribeForecastExportJobOutput, table
+    describeForecastExportJob: function(Client, types.DescribeForecastExportJobInput): Operation<types.DescribeForecastExportJobOutput>
     -- Describes a monitor resource. In addition to listing the properties provided in the CreateMonitor request, this operation lists the following properties:
     -- Baseline
     -- CreationTime
@@ -380,7 +384,7 @@ local record Client
     -- LastModificationTime
     -- Message
     -- Status
-    describeMonitor: function(Client, types.DescribeMonitorInput): types.DescribeMonitorOutput, table
+    describeMonitor: function(Client, types.DescribeMonitorInput): Operation<types.DescribeMonitorOutput>
     -- This operation is only valid for legacy predictors created with CreatePredictor. If you
     -- are not using a legacy predictor, use DescribeAutoPredictor.
     -- Describes a predictor created using the CreatePredictor
@@ -395,7 +399,7 @@ local record Client
     -- LastModificationTime
     -- Status
     -- Message - If an error occurred, information about the error.
-    describePredictor: function(Client, types.DescribePredictorInput): types.DescribePredictorOutput, table
+    describePredictor: function(Client, types.DescribePredictorInput): Operation<types.DescribePredictorOutput>
     -- Describes a predictor backtest export job created using the CreatePredictorBacktestExportJob operation.
     -- In addition to listing the properties provided by the user in the
     -- CreatePredictorBacktestExportJob request, this operation lists the
@@ -404,28 +408,28 @@ local record Client
     -- LastModificationTime
     -- Status
     -- Message (if an error occurred)
-    describePredictorBacktestExportJob: function(Client, types.DescribePredictorBacktestExportJobInput): types.DescribePredictorBacktestExportJobOutput, table
+    describePredictorBacktestExportJob: function(Client, types.DescribePredictorBacktestExportJobInput): Operation<types.DescribePredictorBacktestExportJobOutput>
     -- Describes the what-if analysis created using the CreateWhatIfAnalysis operation.
     -- In addition to listing the properties provided in the CreateWhatIfAnalysis request, this operation lists the following properties:
     -- CreationTime
     -- LastModificationTime
     -- Message - If an error occurred, information about the error.
     -- Status
-    describeWhatIfAnalysis: function(Client, types.DescribeWhatIfAnalysisInput): types.DescribeWhatIfAnalysisOutput, table
+    describeWhatIfAnalysis: function(Client, types.DescribeWhatIfAnalysisInput): Operation<types.DescribeWhatIfAnalysisOutput>
     -- Describes the what-if forecast created using the CreateWhatIfForecast operation.
     -- In addition to listing the properties provided in the CreateWhatIfForecast request, this operation lists the following properties:
     -- CreationTime
     -- LastModificationTime
     -- Message - If an error occurred, information about the error.
     -- Status
-    describeWhatIfForecast: function(Client, types.DescribeWhatIfForecastInput): types.DescribeWhatIfForecastOutput, table
+    describeWhatIfForecast: function(Client, types.DescribeWhatIfForecastInput): Operation<types.DescribeWhatIfForecastOutput>
     -- Describes the what-if forecast export created using the CreateWhatIfForecastExport operation.
     -- In addition to listing the properties provided in the CreateWhatIfForecastExport request, this operation lists the following properties:
     -- CreationTime
     -- LastModificationTime
     -- Message - If an error occurred, information about the error.
     -- Status
-    describeWhatIfForecastExport: function(Client, types.DescribeWhatIfForecastExportInput): types.DescribeWhatIfForecastExportOutput, table
+    describeWhatIfForecastExport: function(Client, types.DescribeWhatIfForecastExportInput): Operation<types.DescribeWhatIfForecastExportOutput>
     -- Provides metrics on the accuracy of the models that were trained by the CreatePredictor operation. Use metrics to see how well the model performed and
     -- to decide whether to use the predictor to generate a forecast. For more information, see
     -- Predictor
@@ -441,74 +445,74 @@ local record Client
     -- Before you can get accuracy metrics, the Status of the predictor must be
     -- ACTIVE, signifying that training has completed. To get the status, use the
     -- DescribePredictor operation.
-    getAccuracyMetrics: function(Client, types.GetAccuracyMetricsInput): types.GetAccuracyMetricsOutput, table
+    getAccuracyMetrics: function(Client, types.GetAccuracyMetricsInput): Operation<types.GetAccuracyMetricsOutput>
     -- Returns a list of dataset groups created using the CreateDatasetGroup operation.
     -- For each dataset group, this operation returns a summary of its properties, including its
     -- Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the
     -- dataset group ARN with the DescribeDatasetGroup
     -- operation.
-    listDatasetGroups: function(Client, types.ListDatasetGroupsInput): types.ListDatasetGroupsOutput, table
+    listDatasetGroups: function(Client, types.ListDatasetGroupsInput): Operation<types.ListDatasetGroupsOutput>
     -- Returns a list of dataset import jobs created using the CreateDatasetImportJob
     -- operation. For each import job, this operation returns a summary of its properties, including
     -- its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the
     -- ARN with the DescribeDatasetImportJob
     -- operation. You can filter the list by providing an array of Filter objects.
-    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput): types.ListDatasetImportJobsOutput, table
+    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput): Operation<types.ListDatasetImportJobsOutput>
     -- Returns a list of datasets created using the CreateDataset operation. For each
     -- dataset, a summary of its properties, including its Amazon Resource Name (ARN), is returned.
     -- To retrieve the complete set of properties, use the ARN with the DescribeDataset operation.
-    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): Operation<types.ListDatasetsOutput>
     -- Returns a list of Explainability resources created using the CreateExplainability operation. This operation returns a summary for
     -- each Explainability. You can filter the list using an array of Filter
     -- objects.
     -- To retrieve the complete set of properties for a particular Explainability resource,
     -- use the ARN with the DescribeExplainability operation.
-    listExplainabilities: function(Client, types.ListExplainabilitiesInput): types.ListExplainabilitiesOutput, table
+    listExplainabilities: function(Client, types.ListExplainabilitiesInput): Operation<types.ListExplainabilitiesOutput>
     -- Returns a list of Explainability exports created using the CreateExplainabilityExport operation. This operation returns a summary
     -- for each Explainability export. You can filter the list using an array of Filter objects.
     -- To retrieve the complete set of properties for a particular Explainability export, use
     -- the ARN with the DescribeExplainability operation.
-    listExplainabilityExports: function(Client, types.ListExplainabilityExportsInput): types.ListExplainabilityExportsOutput, table
+    listExplainabilityExports: function(Client, types.ListExplainabilityExportsInput): Operation<types.ListExplainabilityExportsOutput>
     -- Returns a list of forecast export jobs created using the CreateForecastExportJob operation. For each forecast export job, this operation
     -- returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the
     -- complete set of properties, use the ARN with the DescribeForecastExportJob
     -- operation. You can filter the list using an array of Filter objects.
-    listForecastExportJobs: function(Client, types.ListForecastExportJobsInput): types.ListForecastExportJobsOutput, table
+    listForecastExportJobs: function(Client, types.ListForecastExportJobsInput): Operation<types.ListForecastExportJobsOutput>
     -- Returns a list of forecasts created using the CreateForecast operation.
     -- For each forecast, this operation returns a summary of its properties, including its Amazon
     -- Resource Name (ARN). To retrieve the complete set of properties, specify the ARN with the
     -- DescribeForecast operation. You can filter the list using an array of
     -- Filter objects.
-    listForecasts: function(Client, types.ListForecastsInput): types.ListForecastsOutput, table
+    listForecasts: function(Client, types.ListForecastsInput): Operation<types.ListForecastsOutput>
     -- Returns a list of the monitoring evaluation results and predictor events collected by
     -- the monitor resource during different windows of time.
     -- For information about monitoring see predictor-monitoring. For
     -- more information about retrieving monitoring results see Viewing Monitoring Results.
-    listMonitorEvaluations: function(Client, types.ListMonitorEvaluationsInput): types.ListMonitorEvaluationsOutput, table
+    listMonitorEvaluations: function(Client, types.ListMonitorEvaluationsInput): Operation<types.ListMonitorEvaluationsOutput>
     -- Returns a list of monitors created with the CreateMonitor operation and CreateAutoPredictor operation. For each monitor resource, this operation returns of a summary of its properties, including its Amazon Resource Name (ARN). You
     -- can retrieve a complete set of properties of a monitor resource by specify the monitor's ARN in the DescribeMonitor operation.
-    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): Operation<types.ListMonitorsOutput>
     -- Returns a list of predictor backtest export jobs created using the CreatePredictorBacktestExportJob operation. This operation returns a
     -- summary for each backtest export job. You can filter the list using an array of Filter objects.
     -- To retrieve the complete set of properties for a particular backtest export job, use
     -- the ARN with the DescribePredictorBacktestExportJob operation.
-    listPredictorBacktestExportJobs: function(Client, types.ListPredictorBacktestExportJobsInput): types.ListPredictorBacktestExportJobsOutput, table
+    listPredictorBacktestExportJobs: function(Client, types.ListPredictorBacktestExportJobsInput): Operation<types.ListPredictorBacktestExportJobsOutput>
     -- Returns a list of predictors created using the CreateAutoPredictor or
     -- CreatePredictor operations. For each predictor, this operation returns a
     -- summary of its properties, including its Amazon Resource Name (ARN).
     -- You can retrieve the complete set of properties by using the ARN with the DescribeAutoPredictor and DescribePredictor operations. You
     -- can filter the list using an array of Filter objects.
-    listPredictors: function(Client, types.ListPredictorsInput): types.ListPredictorsOutput, table
+    listPredictors: function(Client, types.ListPredictorsInput): Operation<types.ListPredictorsOutput>
     -- Lists the tags for an Amazon Forecast resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of what-if analyses created using the CreateWhatIfAnalysis operation. For each what-if analysis, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the what-if analysis ARN with the DescribeWhatIfAnalysis operation.
-    listWhatIfAnalyses: function(Client, types.ListWhatIfAnalysesInput): types.ListWhatIfAnalysesOutput, table
+    listWhatIfAnalyses: function(Client, types.ListWhatIfAnalysesInput): Operation<types.ListWhatIfAnalysesOutput>
     -- Returns a list of what-if forecast exports created using the CreateWhatIfForecastExport operation. For each what-if forecast export, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the what-if forecast export ARN with the DescribeWhatIfForecastExport operation.
-    listWhatIfForecastExports: function(Client, types.ListWhatIfForecastExportsInput): types.ListWhatIfForecastExportsOutput, table
+    listWhatIfForecastExports: function(Client, types.ListWhatIfForecastExportsInput): Operation<types.ListWhatIfForecastExportsOutput>
     -- Returns a list of what-if forecasts created using the CreateWhatIfForecast operation. For each what-if forecast, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the what-if forecast ARN with the DescribeWhatIfForecast operation.
-    listWhatIfForecasts: function(Client, types.ListWhatIfForecastsInput): types.ListWhatIfForecastsOutput, table
+    listWhatIfForecasts: function(Client, types.ListWhatIfForecastsInput): Operation<types.ListWhatIfForecastsOutput>
     -- Resumes a stopped monitor resource.
-    resumeResource: function(Client, types.ResumeResourceInput): types.ResumeResourceOutput, table
+    resumeResource: function(Client, types.ResumeResourceInput): Operation<types.ResumeResourceOutput>
     -- Stops a resource.
     -- The resource undergoes the following states: CREATE_STOPPING and
     -- CREATE_STOPPED. You cannot resume a resource once it has been
@@ -522,19 +526,19 @@ local record Client
     -- Predictor Backtest Export Job
     -- Explainability Job
     -- Explainability Export Job
-    stopResource: function(Client, types.StopResourceInput): types.StopResourceOutput, table
+    stopResource: function(Client, types.StopResourceInput): Operation<types.StopResourceOutput>
     -- Associates the specified tags to a resource with the specified resourceArn.
     -- If existing tags on a resource are not specified in the request parameters, they are not
     -- changed. When a resource is deleted, the tags associated with that resource are also
     -- deleted.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes the specified tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Replaces the datasets in a dataset group with the specified datasets.
     -- The Status of the dataset group must be ACTIVE before you can
     -- use the dataset group to create a predictor. Use the DescribeDatasetGroup
     -- operation to get the status.
-    updateDatasetGroup: function(Client, types.UpdateDatasetGroupInput): types.UpdateDatasetGroupOutput, table
+    updateDatasetGroup: function(Client, types.UpdateDatasetGroupInput): Operation<types.UpdateDatasetGroupOutput>
 end
 
 local record M

@@ -2,27 +2,31 @@
 
 local types = require("neptune.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates an Identity and Access Management (IAM) role with an
     -- Neptune DB cluster.
-    addRoleToDBCluster: function(Client, types.AddRoleToDBClusterInput): types.AddRoleToDBClusterOutput, table
+    addRoleToDBCluster: function(Client, types.AddRoleToDBClusterInput): Operation<types.AddRoleToDBClusterOutput>
     -- Adds a source identifier to an existing event notification subscription.
-    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput): types.AddSourceIdentifierToSubscriptionOutput, table
+    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput): Operation<types.AddSourceIdentifierToSubscriptionOutput>
     -- Adds metadata tags to an Amazon Neptune resource. These tags can also be used with cost
     -- allocation reporting to track cost associated with Amazon Neptune resources, or used in a
     -- Condition statement in an IAM policy for Amazon Neptune.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Applies a pending maintenance action to a resource (for example, to a DB instance).
-    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): types.ApplyPendingMaintenanceActionOutput, table
+    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): Operation<types.ApplyPendingMaintenanceActionOutput>
     -- Copies the specified DB cluster parameter group.
-    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput): types.CopyDBClusterParameterGroupOutput, table
+    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput): Operation<types.CopyDBClusterParameterGroupOutput>
     -- Copies a snapshot of a DB cluster.
     -- To copy a DB cluster snapshot from a shared manual DB cluster snapshot,
     -- SourceDBClusterSnapshotIdentifier must be the Amazon Resource Name (ARN) of the
     -- shared DB cluster snapshot.
-    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput): types.CopyDBClusterSnapshotOutput, table
+    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput): Operation<types.CopyDBClusterSnapshotOutput>
     -- Copies the specified DB parameter group.
-    copyDBParameterGroup: function(Client, types.CopyDBParameterGroupInput): types.CopyDBParameterGroupOutput, table
+    copyDBParameterGroup: function(Client, types.CopyDBParameterGroupInput): Operation<types.CopyDBParameterGroupOutput>
     -- Creates a new Amazon Neptune DB cluster.
     -- You can use the ReplicationSourceIdentifier parameter to create the DB
     -- cluster as a Read Replica of another DB cluster or Amazon Neptune DB instance.
@@ -30,9 +34,9 @@ local record Client
     -- deletion protection is disabled by default (when you create a new production cluster in
     -- the console, deletion protection is enabled by default). You can only delete a DB
     -- cluster if its DeletionProtection field is set to false.
-    createDBCluster: function(Client, types.CreateDBClusterInput): types.CreateDBClusterOutput, table
+    createDBCluster: function(Client, types.CreateDBClusterInput): Operation<types.CreateDBClusterOutput>
     -- Creates a new custom endpoint and associates it with an Amazon Neptune DB cluster.
-    createDBClusterEndpoint: function(Client, types.CreateDBClusterEndpointInput): types.CreateDBClusterEndpointOutput, table
+    createDBClusterEndpoint: function(Client, types.CreateDBClusterEndpointInput): Operation<types.CreateDBClusterEndpointOutput>
     -- Creates a new DB cluster parameter group.
     -- Parameters in a DB cluster parameter group apply to all of the instances in a DB
     -- cluster.
@@ -56,11 +60,11 @@ local record Client
     -- Groups option of the Amazon Neptune
     -- console or the DescribeDBClusterParameters
     -- command to verify that your DB cluster parameter group has been created or modified.
-    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput): types.CreateDBClusterParameterGroupOutput, table
+    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput): Operation<types.CreateDBClusterParameterGroupOutput>
     -- Creates a snapshot of a DB cluster.
-    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput): types.CreateDBClusterSnapshotOutput, table
+    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput): Operation<types.CreateDBClusterSnapshotOutput>
     -- Creates a new DB instance.
-    createDBInstance: function(Client, types.CreateDBInstanceInput): types.CreateDBInstanceOutput, table
+    createDBInstance: function(Client, types.CreateDBInstanceInput): Operation<types.CreateDBInstanceOutput>
     -- Creates a new DB parameter group.
     -- A DB parameter group is initially created with the default parameters for the database
     -- engine used by the DB instance. To provide custom values for any of the parameters, you must
@@ -79,10 +83,10 @@ local record Client
     -- Groups option of the Amazon Neptune console or the
     -- DescribeDBParameters command to verify that your DB parameter group has
     -- been created or modified.
-    createDBParameterGroup: function(Client, types.CreateDBParameterGroupInput): types.CreateDBParameterGroupOutput, table
+    createDBParameterGroup: function(Client, types.CreateDBParameterGroupInput): Operation<types.CreateDBParameterGroupOutput>
     -- Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at
     -- least two AZs in the Amazon Region.
-    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput): types.CreateDBSubnetGroupOutput, table
+    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput): Operation<types.CreateDBSubnetGroupOutput>
     -- Creates an event notification subscription. This action requires a topic ARN (Amazon
     -- Resource Name) created by either the Neptune console, the SNS console, or the SNS API. To
     -- obtain an ARN with SNS, you must create a topic in Amazon SNS and subscribe to the topic. The
@@ -98,7 +102,7 @@ local record Client
     -- receive notice of the events for that source type for all your Neptune sources. If you do not
     -- specify either the SourceType nor the SourceIdentifier, you are notified of events generated
     -- from all Neptune sources belonging to your customer account.
-    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): types.CreateEventSubscriptionOutput, table
+    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): Operation<types.CreateEventSubscriptionOutput>
     -- Creates a Neptune global database spread across multiple Amazon Regions.
     -- The global database contains a single primary cluster with read-write
     -- capability, and read-only secondary clusters that receive data from the
@@ -108,24 +112,24 @@ local record Client
     -- add a primary cluster and secondary clusters to it, or you can specify
     -- an existing Neptune cluster during the create operation to become the
     -- primary cluster of the global database.
-    createGlobalCluster: function(Client, types.CreateGlobalClusterInput): types.CreateGlobalClusterOutput, table
+    createGlobalCluster: function(Client, types.CreateGlobalClusterInput): Operation<types.CreateGlobalClusterOutput>
     -- The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a
     -- DB cluster, all automated backups for that DB cluster are deleted and can't be recovered.
     -- Manual DB cluster snapshots of the specified DB cluster are not deleted.
     -- Note that the DB Cluster cannot be deleted if deletion protection is enabled. To
     -- delete it, you must first set its DeletionProtection field to
     -- False.
-    deleteDBCluster: function(Client, types.DeleteDBClusterInput): types.DeleteDBClusterOutput, table
+    deleteDBCluster: function(Client, types.DeleteDBClusterInput): Operation<types.DeleteDBClusterOutput>
     -- Deletes a custom endpoint and removes it from an Amazon Neptune DB cluster.
-    deleteDBClusterEndpoint: function(Client, types.DeleteDBClusterEndpointInput): types.DeleteDBClusterEndpointOutput, table
+    deleteDBClusterEndpoint: function(Client, types.DeleteDBClusterEndpointInput): Operation<types.DeleteDBClusterEndpointOutput>
     -- Deletes a specified DB cluster parameter group. The DB cluster parameter group to be
     -- deleted can't be associated with any DB clusters.
-    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput): types.DeleteDBClusterParameterGroupOutput, table
+    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput): Operation<types.DeleteDBClusterParameterGroupOutput>
     -- Deletes a DB cluster snapshot. If the snapshot is being copied, the copy operation is
     -- terminated.
     -- The DB cluster snapshot must be in the available state to be
     -- deleted.
-    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput): types.DeleteDBClusterSnapshotOutput, table
+    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput): Operation<types.DeleteDBClusterSnapshotOutput>
     -- The DeleteDBInstance action deletes a previously provisioned DB instance. When you delete
     -- a DB instance, all automated backups for that instance are deleted and can't be recovered.
     -- Manual DB snapshots of the DB instance to be deleted by DeleteDBInstance are not
@@ -140,33 +144,33 @@ local record Client
     -- true.
     -- You can't delete a DB instance if it is the only instance in the DB cluster, or
     -- if it has deletion protection enabled.
-    deleteDBInstance: function(Client, types.DeleteDBInstanceInput): types.DeleteDBInstanceOutput, table
+    deleteDBInstance: function(Client, types.DeleteDBInstanceInput): Operation<types.DeleteDBInstanceOutput>
     -- Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted can't be
     -- associated with any DB instances.
-    deleteDBParameterGroup: function(Client, types.DeleteDBParameterGroupInput): types.DeleteDBParameterGroupOutput, table
+    deleteDBParameterGroup: function(Client, types.DeleteDBParameterGroupInput): Operation<types.DeleteDBParameterGroupOutput>
     -- Deletes a DB subnet group.
     -- The specified database subnet group must not be associated with any DB instances.
-    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput): types.DeleteDBSubnetGroupOutput, table
+    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput): Operation<types.DeleteDBSubnetGroupOutput>
     -- Deletes an event notification subscription.
-    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): types.DeleteEventSubscriptionOutput, table
+    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): Operation<types.DeleteEventSubscriptionOutput>
     -- Deletes a global database. The primary and all secondary clusters must
     -- already be detached or deleted first.
-    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput): types.DeleteGlobalClusterOutput, table
+    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput): Operation<types.DeleteGlobalClusterOutput>
     -- Returns information about endpoints for an Amazon Neptune DB cluster.
     -- This operation can also return information for Amazon RDS clusters
     -- and Amazon DocDB clusters.
-    describeDBClusterEndpoints: function(Client, types.DescribeDBClusterEndpointsInput): types.DescribeDBClusterEndpointsOutput, table
+    describeDBClusterEndpoints: function(Client, types.DescribeDBClusterEndpointsInput): Operation<types.DescribeDBClusterEndpointsOutput>
     -- Returns a list of DBClusterParameterGroup descriptions. If a
     -- DBClusterParameterGroupName parameter is specified, the list will contain only
     -- the description of the specified DB cluster parameter group.
-    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput): types.DescribeDBClusterParameterGroupsOutput, table
+    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput): Operation<types.DescribeDBClusterParameterGroupsOutput>
     -- Returns the detailed parameter list for a particular DB cluster parameter group.
-    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput): types.DescribeDBClusterParametersOutput, table
+    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput): Operation<types.DescribeDBClusterParametersOutput>
     -- Returns information about provisioned DB clusters, and supports
     -- pagination.
     -- This operation can also return information for Amazon RDS clusters
     -- and Amazon DocDB clusters.
-    describeDBClusters: function(Client, types.DescribeDBClustersInput): types.DescribeDBClustersOutput, table
+    describeDBClusters: function(Client, types.DescribeDBClustersInput): Operation<types.DescribeDBClustersOutput>
     -- Returns a list of DB cluster snapshot attribute names and values for a manual DB cluster
     -- snapshot.
     -- When sharing snapshots with other Amazon accounts,
@@ -177,57 +181,57 @@ local record Client
     -- copied or restored by all Amazon accounts.
     -- To add or remove access for an Amazon account to copy or restore a manual DB cluster
     -- snapshot, or to make the manual DB cluster snapshot public or private, use the ModifyDBClusterSnapshotAttribute API action.
-    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput): types.DescribeDBClusterSnapshotAttributesOutput, table
+    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput): Operation<types.DescribeDBClusterSnapshotAttributesOutput>
     -- Returns information about DB cluster snapshots. This API action supports
     -- pagination.
-    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput): types.DescribeDBClusterSnapshotsOutput, table
+    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput): Operation<types.DescribeDBClusterSnapshotsOutput>
     -- Returns a list of the available DB engines.
-    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput): types.DescribeDBEngineVersionsOutput, table
+    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput): Operation<types.DescribeDBEngineVersionsOutput>
     -- Returns information about provisioned instances, and supports pagination.
     -- This operation can also return information for Amazon RDS instances
     -- and Amazon DocDB instances.
-    describeDBInstances: function(Client, types.DescribeDBInstancesInput): types.DescribeDBInstancesOutput, table
+    describeDBInstances: function(Client, types.DescribeDBInstancesInput): Operation<types.DescribeDBInstancesOutput>
     -- Returns a list of DBParameterGroup descriptions. If a
     -- DBParameterGroupName is specified, the list will contain only the description of
     -- the specified DB parameter group.
-    describeDBParameterGroups: function(Client, types.DescribeDBParameterGroupsInput): types.DescribeDBParameterGroupsOutput, table
+    describeDBParameterGroups: function(Client, types.DescribeDBParameterGroupsInput): Operation<types.DescribeDBParameterGroupsOutput>
     -- Returns the detailed parameter list for a particular DB parameter group.
-    describeDBParameters: function(Client, types.DescribeDBParametersInput): types.DescribeDBParametersOutput, table
+    describeDBParameters: function(Client, types.DescribeDBParametersInput): Operation<types.DescribeDBParametersOutput>
     -- Returns a list of DBSubnetGroup descriptions. If a DBSubnetGroupName is specified, the
     -- list will contain only the descriptions of the specified DBSubnetGroup.
     -- For an overview of CIDR ranges, go to the Wikipedia Tutorial.
-    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput): types.DescribeDBSubnetGroupsOutput, table
+    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput): Operation<types.DescribeDBSubnetGroupsOutput>
     -- Returns the default engine and system parameter information for the cluster database
     -- engine.
-    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput): types.DescribeEngineDefaultClusterParametersOutput, table
+    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput): Operation<types.DescribeEngineDefaultClusterParametersOutput>
     -- Returns the default engine and system parameter information for the specified database
     -- engine.
-    describeEngineDefaultParameters: function(Client, types.DescribeEngineDefaultParametersInput): types.DescribeEngineDefaultParametersOutput, table
+    describeEngineDefaultParameters: function(Client, types.DescribeEngineDefaultParametersInput): Operation<types.DescribeEngineDefaultParametersOutput>
     -- Displays a list of categories for all event source types, or, if specified, for a
     -- specified source type.
-    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): types.DescribeEventCategoriesOutput, table
+    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): Operation<types.DescribeEventCategoriesOutput>
     -- Returns events related to DB instances, DB security groups, DB snapshots, and DB parameter
     -- groups for the past 14 days. Events specific to a particular DB instance, DB security group,
     -- database snapshot, or DB parameter group can be obtained by providing the name as a parameter.
     -- By default, the past hour of events are returned.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Lists all the subscription descriptions for a customer account. The description for a
     -- subscription includes SubscriptionName, SNSTopicARN, CustomerID, SourceType, SourceID,
     -- CreationTime, and Status.
     -- If you specify a SubscriptionName, lists the description for that subscription.
-    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): types.DescribeEventSubscriptionsOutput, table
+    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): Operation<types.DescribeEventSubscriptionsOutput>
     -- Returns information about Neptune global database clusters. This API
     -- supports pagination.
-    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput): types.DescribeGlobalClustersOutput, table
+    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput): Operation<types.DescribeGlobalClustersOutput>
     -- Returns a list of orderable DB instance options for the specified engine.
-    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput): types.DescribeOrderableDBInstanceOptionsOutput, table
+    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput): Operation<types.DescribeOrderableDBInstanceOptionsOutput>
     -- Returns a list of resources (for example, DB instances) that have at least one pending
     -- maintenance action.
-    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): types.DescribePendingMaintenanceActionsOutput, table
+    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput): Operation<types.DescribePendingMaintenanceActionsOutput>
     -- You can call DescribeValidDBInstanceModifications
     -- to learn what modifications you can make to your DB instance. You can use this
     -- information when you call ModifyDBInstance.
-    describeValidDBInstanceModifications: function(Client, types.DescribeValidDBInstanceModificationsInput): types.DescribeValidDBInstanceModificationsOutput, table
+    describeValidDBInstanceModifications: function(Client, types.DescribeValidDBInstanceModificationsInput): Operation<types.DescribeValidDBInstanceModificationsOutput>
     -- Forces a failover for a DB cluster.
     -- A failover for a DB cluster promotes one of the Read Replicas (read-only instances) in the
     -- DB cluster to be the primary instance (the cluster writer).
@@ -236,7 +240,7 @@ local record Client
     -- primary instance for testing. Because each instance in a DB cluster has its own endpoint
     -- address, you will need to clean up and re-establish any existing connections that use those
     -- endpoint addresses when the failover is complete.
-    failoverDBCluster: function(Client, types.FailoverDBClusterInput): types.FailoverDBClusterOutput, table
+    failoverDBCluster: function(Client, types.FailoverDBClusterInput): Operation<types.FailoverDBClusterOutput>
     -- Initiates the failover process for a Neptune global database.
     -- A failover for a Neptune global database promotes one of secondary
     -- read-only DB clusters to be the primary DB cluster and demotes the
@@ -249,14 +253,14 @@ local record Client
     -- Neptune global databases with healthy Neptune DB clusters and no region-wide
     -- outages, to test disaster recovery scenarios or to reconfigure the global
     -- database topology.
-    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput): types.FailoverGlobalClusterOutput, table
+    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput): Operation<types.FailoverGlobalClusterOutput>
     -- Lists all tags on an Amazon Neptune resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Modify a setting for a DB cluster. You can change one or more database configuration
     -- parameters by specifying these parameters and the new values in the request.
-    modifyDBCluster: function(Client, types.ModifyDBClusterInput): types.ModifyDBClusterOutput, table
+    modifyDBCluster: function(Client, types.ModifyDBClusterInput): Operation<types.ModifyDBClusterOutput>
     -- Modifies the properties of an endpoint in an Amazon Neptune DB cluster.
-    modifyDBClusterEndpoint: function(Client, types.ModifyDBClusterEndpointInput): types.ModifyDBClusterEndpointOutput, table
+    modifyDBClusterEndpoint: function(Client, types.ModifyDBClusterEndpointInput): Operation<types.ModifyDBClusterEndpointOutput>
     -- Modifies the parameters of a DB cluster parameter group. To modify more than one
     -- parameter, submit a list of the following: ParameterName,
     -- ParameterValue, and ApplyMethod. A maximum of 20 parameters can be
@@ -273,7 +277,7 @@ local record Client
     -- character_set_database parameter. You can use the Parameter
     -- Groups option of the Amazon Neptune console or the DescribeDBClusterParameters command to verify that your DB cluster parameter
     -- group has been created or modified.
-    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput): types.ModifyDBClusterParameterGroupOutput, table
+    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput): Operation<types.ModifyDBClusterParameterGroupOutput>
     -- Adds an attribute and values to, or removes an attribute and values from, a manual DB
     -- cluster snapshot.
     -- To share a manual DB cluster snapshot with other Amazon accounts, specify
@@ -288,11 +292,11 @@ local record Client
     -- parameter in this case.
     -- To view which Amazon accounts have access to copy or restore a manual DB cluster snapshot, or
     -- whether a manual DB cluster snapshot public or private, use the DescribeDBClusterSnapshotAttributes API action.
-    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput): types.ModifyDBClusterSnapshotAttributeOutput, table
+    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput): Operation<types.ModifyDBClusterSnapshotAttributeOutput>
     -- Modifies settings for a DB instance. You can change one or more database configuration
     -- parameters by specifying these parameters and the new values in the request. To learn what
     -- modifications you can make to your DB instance, call DescribeValidDBInstanceModifications before you call ModifyDBInstance.
-    modifyDBInstance: function(Client, types.ModifyDBInstanceInput): types.ModifyDBInstanceOutput, table
+    modifyDBInstance: function(Client, types.ModifyDBInstanceInput): Operation<types.ModifyDBInstanceOutput>
     -- Modifies the parameters of a DB parameter group. To modify more than one parameter,
     -- submit a list of the following: ParameterName, ParameterValue, and
     -- ApplyMethod. A maximum of 20 parameters can be modified in a single request.
@@ -309,39 +313,39 @@ local record Client
     -- Groups option of the Amazon Neptune console or the
     -- DescribeDBParameters command to verify that your DB parameter group has
     -- been created or modified.
-    modifyDBParameterGroup: function(Client, types.ModifyDBParameterGroupInput): types.ModifyDBParameterGroupOutput, table
+    modifyDBParameterGroup: function(Client, types.ModifyDBParameterGroupInput): Operation<types.ModifyDBParameterGroupOutput>
     -- Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in
     -- at least two AZs in the Amazon Region.
-    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput): types.ModifyDBSubnetGroupOutput, table
+    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput): Operation<types.ModifyDBSubnetGroupOutput>
     -- Modifies an existing event notification subscription. Note that you can't modify the
     -- source identifiers using this call; to change source identifiers for a subscription, use the
     -- AddSourceIdentifierToSubscription and RemoveSourceIdentifierFromSubscription calls.
     -- You can see a list of the event categories for a given SourceType
     -- by using the DescribeEventCategories action.
-    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): types.ModifyEventSubscriptionOutput, table
+    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): Operation<types.ModifyEventSubscriptionOutput>
     -- Modify a setting for an Amazon Neptune global cluster. You can change one
     -- or more database configuration parameters by specifying these parameters
     -- and their new values in the request.
-    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput): types.ModifyGlobalClusterOutput, table
+    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput): Operation<types.ModifyGlobalClusterOutput>
     -- Not supported.
-    promoteReadReplicaDBCluster: function(Client, types.PromoteReadReplicaDBClusterInput): types.PromoteReadReplicaDBClusterOutput, table
+    promoteReadReplicaDBCluster: function(Client, types.PromoteReadReplicaDBClusterInput): Operation<types.PromoteReadReplicaDBClusterOutput>
     -- You might need to reboot your DB instance, usually for maintenance reasons. For example,
     -- if you make certain modifications, or if you change the DB parameter group associated with the
     -- DB instance, you must reboot the instance for the changes to take effect.
     -- Rebooting a DB instance restarts the database engine service. Rebooting a DB instance
     -- results in a momentary outage, during which the DB instance status is set to rebooting.
-    rebootDBInstance: function(Client, types.RebootDBInstanceInput): types.RebootDBInstanceOutput, table
+    rebootDBInstance: function(Client, types.RebootDBInstanceInput): Operation<types.RebootDBInstanceOutput>
     -- Detaches a Neptune DB cluster from a Neptune global database. A secondary
     -- cluster becomes a normal standalone cluster with read-write capability
     -- instead of being read-only, and no longer receives data from the
     -- primary cluster.
-    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput): types.RemoveFromGlobalClusterOutput, table
+    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput): Operation<types.RemoveFromGlobalClusterOutput>
     -- Disassociates an Identity and Access Management (IAM) role from a DB cluster.
-    removeRoleFromDBCluster: function(Client, types.RemoveRoleFromDBClusterInput): types.RemoveRoleFromDBClusterOutput, table
+    removeRoleFromDBCluster: function(Client, types.RemoveRoleFromDBClusterInput): Operation<types.RemoveRoleFromDBClusterOutput>
     -- Removes a source identifier from an existing event notification subscription.
-    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput): types.RemoveSourceIdentifierFromSubscriptionOutput, table
+    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput): Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
     -- Removes metadata tags from an Amazon Neptune resource.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- Modifies the parameters of a DB cluster parameter group to the default value. To reset
     -- specific parameters submit a list of the following: ParameterName and
     -- ApplyMethod. To reset the entire DB cluster parameter group, specify the
@@ -350,7 +354,7 @@ local record Client
     -- parameters are set to pending-reboot to take effect on the next DB instance
     -- restart or RebootDBInstance request. You must call RebootDBInstance for every DB instance in your DB cluster
     -- that you want the updated static parameter to apply to.
-    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput): types.ResetDBClusterParameterGroupOutput, table
+    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput): Operation<types.ResetDBClusterParameterGroupOutput>
     -- Modifies the parameters of a DB parameter group to the engine/system default value. To
     -- reset specific parameters, provide a list of the following: ParameterName and
     -- ApplyMethod. To reset the entire DB parameter group, specify the
@@ -358,14 +362,14 @@ local record Client
     -- resetting the entire group, dynamic parameters are updated immediately and static parameters
     -- are set to pending-reboot to take effect on the next DB instance restart or
     -- RebootDBInstance request.
-    resetDBParameterGroup: function(Client, types.ResetDBParameterGroupInput): types.ResetDBParameterGroupOutput, table
+    resetDBParameterGroup: function(Client, types.ResetDBParameterGroupInput): Operation<types.ResetDBParameterGroupOutput>
     -- Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
     -- If a DB snapshot is specified, the target DB cluster is created from the source DB
     -- snapshot with a default configuration and default security group.
     -- If a DB cluster snapshot is specified, the target DB cluster is created from the source DB
     -- cluster restore point with the same configuration as the original source DB cluster, except
     -- that the new DB cluster is created with the default security group.
-    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput): types.RestoreDBClusterFromSnapshotOutput, table
+    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput): Operation<types.RestoreDBClusterFromSnapshotOutput>
     -- Restores a DB cluster to an arbitrary point in time. Users can restore to any point in
     -- time before LatestRestorableTime for up to BackupRetentionPeriod
     -- days. The target DB cluster is created from the source DB cluster with the same configuration
@@ -377,16 +381,16 @@ local record Client
     -- DBClusterIdentifier. You can create DB instances only after the
     -- RestoreDBClusterToPointInTime action has completed and the DB cluster is
     -- available.
-    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput): types.RestoreDBClusterToPointInTimeOutput, table
+    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput): Operation<types.RestoreDBClusterToPointInTimeOutput>
     -- Starts an Amazon Neptune DB cluster that was stopped using the Amazon
     -- console, the Amazon CLI stop-db-cluster command, or the StopDBCluster API.
-    startDBCluster: function(Client, types.StartDBClusterInput): types.StartDBClusterOutput, table
+    startDBCluster: function(Client, types.StartDBClusterInput): Operation<types.StartDBClusterOutput>
     -- Stops an Amazon Neptune DB cluster. When you stop a DB cluster, Neptune
     -- retains the DB cluster's metadata, including its endpoints and DB parameter
     -- groups.
     -- Neptune also retains the transaction logs so you can do a point-in-time
     -- restore if necessary.
-    stopDBCluster: function(Client, types.StopDBClusterInput): types.StopDBClusterOutput, table
+    stopDBCluster: function(Client, types.StopDBClusterInput): Operation<types.StopDBClusterOutput>
     -- Switches over the specified secondary DB cluster to be the new primary DB cluster in the global
     -- database cluster. Switchover operations were previously called "managed planned failovers."
     -- Promotes the specified secondary cluster to assume full read/write capabilities and demotes the current
@@ -396,7 +400,7 @@ local record Client
     -- and selected secondary clusters are assuming their new roles.
     -- This operation is intended for controlled environments, for operations such as "regional rotation" or
     -- to fall back to the original primary after a global database failover.
-    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput): types.SwitchoverGlobalClusterOutput, table
+    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput): Operation<types.SwitchoverGlobalClusterOutput>
 end
 
 local record M

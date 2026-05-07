@@ -2,53 +2,57 @@
 
 local types = require("migrationhubstrategy.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Retrieves details about an application component.
-    getApplicationComponentDetails: function(Client, types.GetApplicationComponentDetailsInput): types.GetApplicationComponentDetailsOutput, table
+    getApplicationComponentDetails: function(Client, types.GetApplicationComponentDetailsInput): Operation<types.GetApplicationComponentDetailsOutput>
     -- Retrieves a list of all the recommended strategies and tools for an application component
     -- running on a server.
-    getApplicationComponentStrategies: function(Client, types.GetApplicationComponentStrategiesInput): types.GetApplicationComponentStrategiesOutput, table
+    getApplicationComponentStrategies: function(Client, types.GetApplicationComponentStrategiesInput): Operation<types.GetApplicationComponentStrategiesOutput>
     -- Retrieves the status of an on-going assessment.
-    getAssessment: function(Client, types.GetAssessmentInput): types.GetAssessmentOutput, table
+    getAssessment: function(Client, types.GetAssessmentInput): Operation<types.GetAssessmentOutput>
     -- Retrieves the details about a specific import task.
-    getImportFileTask: function(Client, types.GetImportFileTaskInput): types.GetImportFileTaskOutput, table
+    getImportFileTask: function(Client, types.GetImportFileTaskInput): Operation<types.GetImportFileTaskOutput>
     -- Retrieve the latest ID of a specific assessment task.
-    getLatestAssessmentId: function(Client, types.GetLatestAssessmentIdInput): types.GetLatestAssessmentIdOutput, table
+    getLatestAssessmentId: function(Client, types.GetLatestAssessmentIdInput): Operation<types.GetLatestAssessmentIdOutput>
     -- Retrieves your migration and modernization preferences.
-    getPortfolioPreferences: function(Client, types.GetPortfolioPreferencesInput): types.GetPortfolioPreferencesOutput, table
+    getPortfolioPreferences: function(Client, types.GetPortfolioPreferencesInput): Operation<types.GetPortfolioPreferencesOutput>
     -- Retrieves overall summary including the number of servers to rehost and the overall
     -- number of anti-patterns.
-    getPortfolioSummary: function(Client, types.GetPortfolioSummaryInput): types.GetPortfolioSummaryOutput, table
+    getPortfolioSummary: function(Client, types.GetPortfolioSummaryInput): Operation<types.GetPortfolioSummaryOutput>
     -- Retrieves detailed information about the specified recommendation report.
-    getRecommendationReportDetails: function(Client, types.GetRecommendationReportDetailsInput): types.GetRecommendationReportDetailsOutput, table
+    getRecommendationReportDetails: function(Client, types.GetRecommendationReportDetailsInput): Operation<types.GetRecommendationReportDetailsOutput>
     -- Retrieves detailed information about a specified server.
-    getServerDetails: function(Client, types.GetServerDetailsInput): types.GetServerDetailsOutput, table
+    getServerDetails: function(Client, types.GetServerDetailsInput): Operation<types.GetServerDetailsOutput>
     -- Retrieves recommended strategies and tools for the specified server.
-    getServerStrategies: function(Client, types.GetServerStrategiesInput): types.GetServerStrategiesOutput, table
+    getServerStrategies: function(Client, types.GetServerStrategiesInput): Operation<types.GetServerStrategiesOutput>
     -- Retrieves a list of all the servers fetched from customer vCenter using Strategy Recommendation Collector.
-    listAnalyzableServers: function(Client, types.ListAnalyzableServersInput): types.ListAnalyzableServersOutput, table
+    listAnalyzableServers: function(Client, types.ListAnalyzableServersInput): Operation<types.ListAnalyzableServersOutput>
     -- Retrieves a list of all the application components (processes).
-    listApplicationComponents: function(Client, types.ListApplicationComponentsInput): types.ListApplicationComponentsOutput, table
+    listApplicationComponents: function(Client, types.ListApplicationComponentsInput): Operation<types.ListApplicationComponentsOutput>
     -- Retrieves a list of all the installed collectors.
-    listCollectors: function(Client, types.ListCollectorsInput): types.ListCollectorsOutput, table
+    listCollectors: function(Client, types.ListCollectorsInput): Operation<types.ListCollectorsOutput>
     -- Retrieves a list of all the imports performed.
-    listImportFileTask: function(Client, types.ListImportFileTaskInput): types.ListImportFileTaskOutput, table
+    listImportFileTask: function(Client, types.ListImportFileTaskInput): Operation<types.ListImportFileTaskOutput>
     -- Returns a list of all the servers.
-    listServers: function(Client, types.ListServersInput): types.ListServersOutput, table
+    listServers: function(Client, types.ListServersInput): Operation<types.ListServersOutput>
     -- Saves the specified migration and modernization preferences.
-    putPortfolioPreferences: function(Client, types.PutPortfolioPreferencesInput): types.PutPortfolioPreferencesOutput, table
+    putPortfolioPreferences: function(Client, types.PutPortfolioPreferencesInput): Operation<types.PutPortfolioPreferencesOutput>
     -- Starts the assessment of an on-premises environment.
-    startAssessment: function(Client, types.StartAssessmentInput): types.StartAssessmentOutput, table
+    startAssessment: function(Client, types.StartAssessmentInput): Operation<types.StartAssessmentOutput>
     -- Starts a file import.
-    startImportFileTask: function(Client, types.StartImportFileTaskInput): types.StartImportFileTaskOutput, table
+    startImportFileTask: function(Client, types.StartImportFileTaskInput): Operation<types.StartImportFileTaskOutput>
     -- Starts generating a recommendation report.
-    startRecommendationReportGeneration: function(Client, types.StartRecommendationReportGenerationInput): types.StartRecommendationReportGenerationOutput, table
+    startRecommendationReportGeneration: function(Client, types.StartRecommendationReportGenerationInput): Operation<types.StartRecommendationReportGenerationOutput>
     -- Stops the assessment of an on-premises environment.
-    stopAssessment: function(Client, types.StopAssessmentInput): types.StopAssessmentOutput, table
+    stopAssessment: function(Client, types.StopAssessmentInput): Operation<types.StopAssessmentOutput>
     -- Updates the configuration of an application component.
-    updateApplicationComponentConfig: function(Client, types.UpdateApplicationComponentConfigInput): types.UpdateApplicationComponentConfigOutput, table
+    updateApplicationComponentConfig: function(Client, types.UpdateApplicationComponentConfigInput): Operation<types.UpdateApplicationComponentConfigOutput>
     -- Updates the configuration of the specified server.
-    updateServerConfig: function(Client, types.UpdateServerConfigInput): types.UpdateServerConfigOutput, table
+    updateServerConfig: function(Client, types.UpdateServerConfigInput): Operation<types.UpdateServerConfigOutput>
 end
 
 local record M

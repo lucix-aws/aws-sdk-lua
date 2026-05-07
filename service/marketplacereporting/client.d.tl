@@ -2,6 +2,10 @@
 
 local types = require("marketplacereporting.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Generates an embedding URL for an Amazon QuickSight dashboard for an anonymous user.
     -- This API is available only to Amazon Web Services Organization management accounts or
@@ -10,7 +14,7 @@ local record Client
     -- The following rules apply to a generated URL:
     -- It contains a temporary bearer token, valid for 5 minutes after it is generated. Once redeemed within that period, it cannot be re-used again.
     -- It has a session lifetime of one hour. The 5-minute validity period runs separately from the session lifetime.
-    getBuyerDashboard: function(Client, types.GetBuyerDashboardInput): types.GetBuyerDashboardOutput, table
+    getBuyerDashboard: function(Client, types.GetBuyerDashboardInput): Operation<types.GetBuyerDashboardOutput>
 end
 
 local record M

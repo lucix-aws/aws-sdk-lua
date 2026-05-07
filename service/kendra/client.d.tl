@@ -2,19 +2,23 @@
 
 local types = require("kendra.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Grants users or groups in your IAM Identity Center identity source access
     -- to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a
     -- search application. For more information on creating a search application
     -- experience, see Building
     -- a search experience with no code.
-    associateEntitiesToExperience: function(Client, types.AssociateEntitiesToExperienceInput): types.AssociateEntitiesToExperienceOutput, table
+    associateEntitiesToExperience: function(Client, types.AssociateEntitiesToExperienceInput): Operation<types.AssociateEntitiesToExperienceOutput>
     -- Defines the specific permissions of users or groups in your IAM Identity Center
     -- identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra
     -- experience such as a search application. For more information on creating a
     -- search application experience, see Building
     -- a search experience with no code.
-    associatePersonasToEntities: function(Client, types.AssociatePersonasToEntitiesInput): types.AssociatePersonasToEntitiesOutput, table
+    associatePersonasToEntities: function(Client, types.AssociatePersonasToEntitiesInput): Operation<types.AssociatePersonasToEntitiesOutput>
     -- Removes one or more documents from an index. The documents must have been added with
     -- the BatchPutDocument API.
     -- The documents are deleted asynchronously. You can see the progress of the deletion by
@@ -25,11 +29,11 @@ local record Client
     -- monitor the progress of deleting your documents.
     -- Deleting documents from an index using BatchDeleteDocument could take up
     -- to an hour or more, depending on the number of documents you want to delete.
-    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput): types.BatchDeleteDocumentOutput, table
+    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput): Operation<types.BatchDeleteDocumentOutput>
     -- Removes one or more sets of featured results. Features results are placed
     -- above all other results for certain queries. If there's an exact match of a
     -- query, then one or more specific documents are featured in the search results.
-    batchDeleteFeaturedResultsSet: function(Client, types.BatchDeleteFeaturedResultsSetInput): types.BatchDeleteFeaturedResultsSetOutput, table
+    batchDeleteFeaturedResultsSet: function(Client, types.BatchDeleteFeaturedResultsSetInput): Operation<types.BatchDeleteFeaturedResultsSetOutput>
     -- Returns the indexing status for one or more documents submitted with the
     -- BatchPutDocument API.
     -- When you use the BatchPutDocument API, documents are indexed
@@ -39,7 +43,7 @@ local record Client
     -- You can also use the BatchGetDocumentStatus API to check the status of
     -- the
     -- BatchDeleteDocument API. When a document is deleted from the index, Amazon Kendra returns NOT_FOUND as the status.
-    batchGetDocumentStatus: function(Client, types.BatchGetDocumentStatusInput): types.BatchGetDocumentStatusOutput, table
+    batchGetDocumentStatus: function(Client, types.BatchGetDocumentStatusInput): Operation<types.BatchGetDocumentStatusOutput>
     -- Adds one or more documents to an index.
     -- The BatchPutDocument API enables you to ingest inline documents or a set
     -- of documents stored in an Amazon S3 bucket. Use this API to ingest your text and
@@ -53,7 +57,7 @@ local record Client
     -- monitor the progress of indexing your documents.
     -- For an example of ingesting inline documents using Python and Java SDKs, see Adding files
     -- directly to an index.
-    batchPutDocument: function(Client, types.BatchPutDocumentInput): types.BatchPutDocumentOutput, table
+    batchPutDocument: function(Client, types.BatchPutDocumentInput): Operation<types.BatchPutDocumentOutput>
     -- Clears existing query suggestions from an index.
     -- This deletes existing suggestions only, not the queries
     -- in the query log. After you clear suggestions, Amazon Kendra learns
@@ -63,7 +67,7 @@ local record Client
     -- enough queries to learn new suggestions.
     -- ClearQuerySuggestions is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    clearQuerySuggestions: function(Client, types.ClearQuerySuggestionsInput): types.ClearQuerySuggestionsOutput, table
+    clearQuerySuggestions: function(Client, types.ClearQuerySuggestionsInput): Operation<types.ClearQuerySuggestionsOutput>
     -- Creates an access configuration for your documents. This includes user and group
     -- access information for your documents. This is useful for user context filtering, where
     -- search results are filtered based on the user or their group access to documents.
@@ -87,7 +91,7 @@ local record Client
     -- CreateAccessControlConfiguration for an Amazon Kendra Gen AI Enterprise
     -- Edition index. Amazon Kendra will return a ValidationException error for a
     -- Gen_AI_ENTERPRISE_EDITION index.
-    createAccessControlConfiguration: function(Client, types.CreateAccessControlConfigurationInput): types.CreateAccessControlConfigurationOutput, table
+    createAccessControlConfiguration: function(Client, types.CreateAccessControlConfigurationInput): Operation<types.CreateAccessControlConfigurationOutput>
     -- Creates a data source connector that you want to use with an Amazon Kendra
     -- index.
     -- You specify a name, data source connector type and description for your data source. You
@@ -98,17 +102,17 @@ local record Client
     -- SDK. For an example of creating an index and data source using the Java SDK, see
     -- Getting started with Java
     -- SDK.
-    createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    createDataSource: function(Client, types.CreateDataSourceInput): Operation<types.CreateDataSourceOutput>
     -- Creates an Amazon Kendra experience such as a search application. For more information
     -- on creating a search application experience, including using the Python and Java SDKs,
     -- see Building a
     -- search experience with no code.
-    createExperience: function(Client, types.CreateExperienceInput): types.CreateExperienceOutput, table
+    createExperience: function(Client, types.CreateExperienceInput): Operation<types.CreateExperienceOutput>
     -- Creates a set of frequently ask questions (FAQs) using a specified FAQ file stored
     -- in an Amazon S3 bucket.
     -- Adding FAQs to an index is an asynchronous operation.
     -- For an example of adding an FAQ to an index using Python and Java SDKs, see Using your FAQ file.
-    createFaq: function(Client, types.CreateFaqInput): types.CreateFaqOutput, table
+    createFaq: function(Client, types.CreateFaqInput): Operation<types.CreateFaqOutput>
     -- Creates a set of featured results to display at the top of the search results page.
     -- Featured results are placed above all other results for certain queries. You map
     -- specific queries to specific documents for featuring in the results. If a query
@@ -116,7 +120,7 @@ local record Client
     -- search results.
     -- You can create up to 50 sets of featured results per index. You can request to
     -- increase this limit by contacting Support.
-    createFeaturedResultsSet: function(Client, types.CreateFeaturedResultsSetInput): types.CreateFeaturedResultsSetOutput, table
+    createFeaturedResultsSet: function(Client, types.CreateFeaturedResultsSetInput): Operation<types.CreateFeaturedResultsSetOutput>
     -- Creates an Amazon Kendra index. Index creation is an asynchronous API. To determine
     -- if index creation has completed, check the Status field returned from a call to
     -- DescribeIndex. The Status field is set to ACTIVE when
@@ -127,7 +131,7 @@ local record Client
     -- SDK. For an example of creating an index and data source using the Java SDK, see
     -- Getting started with Java
     -- SDK.
-    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createIndex: function(Client, types.CreateIndexInput): Operation<types.CreateIndexOutput>
     -- Creates a block list to exlcude certain queries from suggestions.
     -- Any query that contains words or phrases specified in the block
     -- list is blocked or filtered out from being shown as a suggestion.
@@ -142,18 +146,18 @@ local record Client
     -- For an example of creating a block list for query suggestions using the
     -- Python SDK, see Query
     -- suggestions block list.
-    createQuerySuggestionsBlockList: function(Client, types.CreateQuerySuggestionsBlockListInput): types.CreateQuerySuggestionsBlockListOutput, table
+    createQuerySuggestionsBlockList: function(Client, types.CreateQuerySuggestionsBlockListInput): Operation<types.CreateQuerySuggestionsBlockListOutput>
     -- Creates a thesaurus for an index. The thesaurus
     -- contains a list of synonyms in Solr format.
     -- For an example of adding a thesaurus file to an index, see
     -- Adding
     -- custom synonyms to an index.
-    createThesaurus: function(Client, types.CreateThesaurusInput): types.CreateThesaurusOutput, table
+    createThesaurus: function(Client, types.CreateThesaurusInput): Operation<types.CreateThesaurusOutput>
     -- Deletes an access control configuration that you created for your documents in an
     -- index. This includes user and group access information for your documents. This is
     -- useful for user context filtering, where search results are filtered based on the user
     -- or their group access to documents.
-    deleteAccessControlConfiguration: function(Client, types.DeleteAccessControlConfigurationInput): types.DeleteAccessControlConfigurationOutput, table
+    deleteAccessControlConfiguration: function(Client, types.DeleteAccessControlConfigurationInput): Operation<types.DeleteAccessControlConfigurationOutput>
     -- Deletes an Amazon Kendra data source connector. An exception is not thrown if the
     -- data source is already being deleted. While the data source is being deleted, the
     -- Status field returned by a call to the DescribeDataSource API is
@@ -161,17 +165,17 @@ local record Client
     -- Deleting an entire data source or re-syncing your index after deleting specific documents
     -- from a data source could take up to an hour or more, depending on the number of documents you
     -- want to delete.
-    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): Operation<types.DeleteDataSourceOutput>
     -- Deletes your Amazon Kendra experience such as a search application. For more information on
     -- creating a search application experience, see Building a search
     -- experience with no code.
-    deleteExperience: function(Client, types.DeleteExperienceInput): types.DeleteExperienceOutput, table
+    deleteExperience: function(Client, types.DeleteExperienceInput): Operation<types.DeleteExperienceOutput>
     -- Removes a FAQ from an index.
-    deleteFaq: function(Client, types.DeleteFaqInput): types.DeleteFaqOutput, table
+    deleteFaq: function(Client, types.DeleteFaqInput): Operation<types.DeleteFaqOutput>
     -- Deletes an Amazon Kendra index. An exception is not thrown if the index is already
     -- being deleted. While the index is being deleted, the Status field returned by a
     -- call to the DescribeIndex API is set to DELETING.
-    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): Operation<types.DeleteIndexOutput>
     -- Deletes a group so that all users that belong to the group can no
     -- longer access documents only available to that group.
     -- For example, after deleting the group "Summer Interns", all interns who belonged to
@@ -184,36 +188,36 @@ local record Client
     -- users or sub groups and input this list when calling
     -- PutPrincipalMapping.
     -- DeletePrincipalMapping is currently not supported in the Amazon Web Services GovCloud (US-West) region.
-    deletePrincipalMapping: function(Client, types.DeletePrincipalMappingInput): types.DeletePrincipalMappingOutput, table
+    deletePrincipalMapping: function(Client, types.DeletePrincipalMappingInput): Operation<types.DeletePrincipalMappingOutput>
     -- Deletes a block list used for query suggestions for an index.
     -- A deleted block list might not take effect right away. Amazon Kendra
     -- needs to refresh the entire suggestions list to add back the
     -- queries that were previously blocked.
     -- DeleteQuerySuggestionsBlockList is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    deleteQuerySuggestionsBlockList: function(Client, types.DeleteQuerySuggestionsBlockListInput): types.DeleteQuerySuggestionsBlockListOutput, table
+    deleteQuerySuggestionsBlockList: function(Client, types.DeleteQuerySuggestionsBlockListInput): Operation<types.DeleteQuerySuggestionsBlockListOutput>
     -- Deletes an Amazon Kendra thesaurus.
-    deleteThesaurus: function(Client, types.DeleteThesaurusInput): types.DeleteThesaurusOutput, table
+    deleteThesaurus: function(Client, types.DeleteThesaurusInput): Operation<types.DeleteThesaurusOutput>
     -- Gets information about an access control configuration that you created for your
     -- documents in an index. This includes user and group access information for your
     -- documents. This is useful for user context filtering, where search results are filtered
     -- based on the user or their group access to documents.
-    describeAccessControlConfiguration: function(Client, types.DescribeAccessControlConfigurationInput): types.DescribeAccessControlConfigurationOutput, table
+    describeAccessControlConfiguration: function(Client, types.DescribeAccessControlConfigurationInput): Operation<types.DescribeAccessControlConfigurationOutput>
     -- Gets information about an Amazon Kendra data source connector.
-    describeDataSource: function(Client, types.DescribeDataSourceInput): types.DescribeDataSourceOutput, table
+    describeDataSource: function(Client, types.DescribeDataSourceInput): Operation<types.DescribeDataSourceOutput>
     -- Gets information about your Amazon Kendra experience such as a search application.
     -- For more information on creating a search application experience,
     -- see Building
     -- a search experience with no code.
-    describeExperience: function(Client, types.DescribeExperienceInput): types.DescribeExperienceOutput, table
+    describeExperience: function(Client, types.DescribeExperienceInput): Operation<types.DescribeExperienceOutput>
     -- Gets information about a FAQ.
-    describeFaq: function(Client, types.DescribeFaqInput): types.DescribeFaqOutput, table
+    describeFaq: function(Client, types.DescribeFaqInput): Operation<types.DescribeFaqOutput>
     -- Gets information about a set of featured results. Features results are placed
     -- above all other results for certain queries. If there's an exact match of a query,
     -- then one or more specific documents are featured in the search results.
-    describeFeaturedResultsSet: function(Client, types.DescribeFeaturedResultsSetInput): types.DescribeFeaturedResultsSetOutput, table
+    describeFeaturedResultsSet: function(Client, types.DescribeFeaturedResultsSetInput): Operation<types.DescribeFeaturedResultsSetOutput>
     -- Gets information about an Amazon Kendra index.
-    describeIndex: function(Client, types.DescribeIndexInput): types.DescribeIndexOutput, table
+    describeIndex: function(Client, types.DescribeIndexInput): Operation<types.DescribeIndexOutput>
     -- Describes the processing of PUT and DELETE actions for
     -- mapping users to their groups. This includes information on the status of actions
     -- currently processing or yet to be processed, when actions were last updated, when
@@ -221,88 +225,88 @@ local record Client
     -- apply after other actions, and useful error messages if an action could not be
     -- processed.
     -- DescribePrincipalMapping is currently not supported in the Amazon Web Services GovCloud (US-West) region.
-    describePrincipalMapping: function(Client, types.DescribePrincipalMappingInput): types.DescribePrincipalMappingOutput, table
+    describePrincipalMapping: function(Client, types.DescribePrincipalMappingInput): Operation<types.DescribePrincipalMappingOutput>
     -- Gets information about a block list used for query suggestions for
     -- an index.
     -- This is used to check the current settings that are applied to a
     -- block list.
     -- DescribeQuerySuggestionsBlockList is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    describeQuerySuggestionsBlockList: function(Client, types.DescribeQuerySuggestionsBlockListInput): types.DescribeQuerySuggestionsBlockListOutput, table
+    describeQuerySuggestionsBlockList: function(Client, types.DescribeQuerySuggestionsBlockListInput): Operation<types.DescribeQuerySuggestionsBlockListOutput>
     -- Gets information on the settings of query suggestions for an index.
     -- This is used to check the current settings applied
     -- to query suggestions.
     -- DescribeQuerySuggestionsConfig is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    describeQuerySuggestionsConfig: function(Client, types.DescribeQuerySuggestionsConfigInput): types.DescribeQuerySuggestionsConfigOutput, table
+    describeQuerySuggestionsConfig: function(Client, types.DescribeQuerySuggestionsConfigInput): Operation<types.DescribeQuerySuggestionsConfigOutput>
     -- Gets information about an Amazon Kendra thesaurus.
-    describeThesaurus: function(Client, types.DescribeThesaurusInput): types.DescribeThesaurusOutput, table
+    describeThesaurus: function(Client, types.DescribeThesaurusInput): Operation<types.DescribeThesaurusOutput>
     -- Prevents users or groups in your IAM Identity Center identity source
     -- from accessing your Amazon Kendra experience. You can create an Amazon Kendra experience
     -- such as a search application. For more information on creating a search
     -- application experience, see Building
     -- a search experience with no code.
-    disassociateEntitiesFromExperience: function(Client, types.DisassociateEntitiesFromExperienceInput): types.DisassociateEntitiesFromExperienceOutput, table
+    disassociateEntitiesFromExperience: function(Client, types.DisassociateEntitiesFromExperienceInput): Operation<types.DisassociateEntitiesFromExperienceOutput>
     -- Removes the specific permissions of users or groups in your IAM Identity Center
     -- identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra
     -- experience such as a search application. For more information on creating a
     -- search application experience, see Building a
     -- search experience with no code.
-    disassociatePersonasFromEntities: function(Client, types.DisassociatePersonasFromEntitiesInput): types.DisassociatePersonasFromEntitiesOutput, table
+    disassociatePersonasFromEntities: function(Client, types.DisassociatePersonasFromEntitiesInput): Operation<types.DisassociatePersonasFromEntitiesOutput>
     -- Fetches the queries that are suggested to your users.
     -- GetQuerySuggestions is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    getQuerySuggestions: function(Client, types.GetQuerySuggestionsInput): types.GetQuerySuggestionsOutput, table
+    getQuerySuggestions: function(Client, types.GetQuerySuggestionsInput): Operation<types.GetQuerySuggestionsOutput>
     -- Retrieves search metrics data. The data provides a snapshot of how your users interact
     -- with your search application and how effective the application is.
-    getSnapshots: function(Client, types.GetSnapshotsInput): types.GetSnapshotsOutput, table
+    getSnapshots: function(Client, types.GetSnapshotsInput): Operation<types.GetSnapshotsOutput>
     -- Lists one or more access control configurations for an index. This includes user and
     -- group access information for your documents. This is useful for user context filtering,
     -- where search results are filtered based on the user or their group access to
     -- documents.
-    listAccessControlConfigurations: function(Client, types.ListAccessControlConfigurationsInput): types.ListAccessControlConfigurationsOutput, table
+    listAccessControlConfigurations: function(Client, types.ListAccessControlConfigurationsInput): Operation<types.ListAccessControlConfigurationsOutput>
     -- Lists the data source connectors that you have created.
-    listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    listDataSources: function(Client, types.ListDataSourcesInput): Operation<types.ListDataSourcesOutput>
     -- Gets statistics about synchronizing a data source connector.
-    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput): types.ListDataSourceSyncJobsOutput, table
+    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput): Operation<types.ListDataSourceSyncJobsOutput>
     -- Lists specific permissions of users and groups with access to your
     -- Amazon Kendra experience.
-    listEntityPersonas: function(Client, types.ListEntityPersonasInput): types.ListEntityPersonasOutput, table
+    listEntityPersonas: function(Client, types.ListEntityPersonasInput): Operation<types.ListEntityPersonasOutput>
     -- Lists users or groups in your IAM Identity Center identity source that are
     -- granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience
     -- such as a search application. For more information on creating a search
     -- application experience, see Building
     -- a search experience with no code.
-    listExperienceEntities: function(Client, types.ListExperienceEntitiesInput): types.ListExperienceEntitiesOutput, table
+    listExperienceEntities: function(Client, types.ListExperienceEntitiesInput): Operation<types.ListExperienceEntitiesOutput>
     -- Lists one or more Amazon Kendra experiences. You can create an Amazon Kendra experience such
     -- as a search application. For more information on creating a search application
     -- experience, see Building a
     -- search experience with no code.
-    listExperiences: function(Client, types.ListExperiencesInput): types.ListExperiencesOutput, table
+    listExperiences: function(Client, types.ListExperiencesInput): Operation<types.ListExperiencesOutput>
     -- Gets a list of FAQs associated with an index.
-    listFaqs: function(Client, types.ListFaqsInput): types.ListFaqsOutput, table
+    listFaqs: function(Client, types.ListFaqsInput): Operation<types.ListFaqsOutput>
     -- Lists all your sets of featured results for a given index. Features results
     -- are placed above all other results for certain queries. If there's an exact match
     -- of a query, then one or more specific documents are featured in the search results.
-    listFeaturedResultsSets: function(Client, types.ListFeaturedResultsSetsInput): types.ListFeaturedResultsSetsOutput, table
+    listFeaturedResultsSets: function(Client, types.ListFeaturedResultsSetsInput): Operation<types.ListFeaturedResultsSetsOutput>
     -- Provides a list of groups that are mapped to users before a given ordering or
     -- timestamp identifier.
     -- ListGroupsOlderThanOrderingId is currently not supported in the Amazon Web Services GovCloud (US-West) region.
-    listGroupsOlderThanOrderingId: function(Client, types.ListGroupsOlderThanOrderingIdInput): types.ListGroupsOlderThanOrderingIdOutput, table
+    listGroupsOlderThanOrderingId: function(Client, types.ListGroupsOlderThanOrderingIdInput): Operation<types.ListGroupsOlderThanOrderingIdOutput>
     -- Lists the Amazon Kendra indexes that you created.
-    listIndices: function(Client, types.ListIndicesInput): types.ListIndicesOutput, table
+    listIndices: function(Client, types.ListIndicesInput): Operation<types.ListIndicesOutput>
     -- Lists the block lists used for query suggestions for an index.
     -- For information on the current quota limits for block lists, see
     -- Quotas
     -- for Amazon Kendra.
     -- ListQuerySuggestionsBlockLists is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    listQuerySuggestionsBlockLists: function(Client, types.ListQuerySuggestionsBlockListsInput): types.ListQuerySuggestionsBlockListsOutput, table
+    listQuerySuggestionsBlockLists: function(Client, types.ListQuerySuggestionsBlockListsInput): Operation<types.ListQuerySuggestionsBlockListsOutput>
     -- Gets a list of tags associated with a resource. Indexes, FAQs, data sources, and
     -- other resources can have tags associated with them.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists the thesauri for an index.
-    listThesauri: function(Client, types.ListThesauriInput): types.ListThesauriOutput, table
+    listThesauri: function(Client, types.ListThesauriInput): Operation<types.ListThesauriOutput>
     -- Maps users to their groups so that you only need to provide the user ID when you issue
     -- the query.
     -- You can also map sub groups to groups. For example, the group "Company Intellectual
@@ -315,7 +319,7 @@ local record Client
     -- user context.
     -- If more than five PUT actions for a group are currently processing, a
     -- validation exception is thrown.
-    putPrincipalMapping: function(Client, types.PutPrincipalMappingInput): types.PutPrincipalMappingOutput, table
+    putPrincipalMapping: function(Client, types.PutPrincipalMappingInput): Operation<types.PutPrincipalMappingOutput>
     -- Searches an index given an input query.
     -- If you are working with large language models (LLMs) or implementing retrieval
     -- augmented generation (RAG) systems, you can use Amazon Kendra's Retrieve API, which can return longer semantically relevant passages. We
@@ -341,7 +345,7 @@ local record Client
     -- using an Amazon Kendra Gen AI Enterprise Edition index and you try to use
     -- USER_TOKEN to configure user context policy, Amazon Kendra returns a
     -- ValidationException error.
-    query: function(Client, types.QueryInput): types.QueryOutput, table
+    query: function(Client, types.QueryInput): Operation<types.QueryOutput>
     -- Retrieves relevant passages or text excerpts given an input query.
     -- This API is similar to the Query API. However, by
     -- default, the Query API only returns excerpt passages of up to 100 token
@@ -371,27 +375,27 @@ local record Client
     -- you're using an Amazon Kendra Gen AI Enterprise Edition index and you try to use
     -- USER_TOKEN to configure user context policy, Amazon Kendra returns a
     -- ValidationException error.
-    retrieve: function(Client, types.RetrieveInput): types.RetrieveOutput, table
+    retrieve: function(Client, types.RetrieveInput): Operation<types.RetrieveOutput>
     -- Starts a synchronization job for a data source connector. If a synchronization job is
     -- already in progress, Amazon Kendra returns a ResourceInUseException
     -- exception.
     -- Re-syncing your data source with your index after modifying, adding, or deleting
     -- documents from your data source respository could take up to an hour or more, depending on
     -- the number of documents to sync.
-    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput): types.StartDataSourceSyncJobOutput, table
+    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput): Operation<types.StartDataSourceSyncJobOutput>
     -- Stops a synchronization job that is currently running. You can't stop a scheduled
     -- synchronization job.
-    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput): types.StopDataSourceSyncJobOutput, table
+    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput): Operation<types.StopDataSourceSyncJobOutput>
     -- Enables you to provide feedback to Amazon Kendra to improve the
     -- performance of your index.
     -- SubmitFeedback is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    submitFeedback: function(Client, types.SubmitFeedbackInput): types.SubmitFeedbackOutput, table
+    submitFeedback: function(Client, types.SubmitFeedbackInput): Operation<types.SubmitFeedbackOutput>
     -- Adds the specified tag to the specified index, FAQ, data source, or other resource. If
     -- the tag already exists, the existing value is replaced with the new value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from an index, FAQ, data source, or other resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an access control configuration for your documents in an index. This includes
     -- user and group access information for your documents. This is useful for user context
     -- filtering, where search results are filtered based on the user or their group access to
@@ -415,21 +419,21 @@ local record Client
     -- CreateAccessControlConfiguration for an Amazon Kendra Gen AI Enterprise
     -- Edition index. Amazon Kendra will return a ValidationException error for a
     -- Gen_AI_ENTERPRISE_EDITION index.
-    updateAccessControlConfiguration: function(Client, types.UpdateAccessControlConfigurationInput): types.UpdateAccessControlConfigurationOutput, table
+    updateAccessControlConfiguration: function(Client, types.UpdateAccessControlConfigurationInput): Operation<types.UpdateAccessControlConfigurationOutput>
     -- Updates an Amazon Kendra data source connector.
-    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): Operation<types.UpdateDataSourceOutput>
     -- Updates your Amazon Kendra experience such as a search application. For more information on
     -- creating a search application experience, see Building a
     -- search experience with no code.
-    updateExperience: function(Client, types.UpdateExperienceInput): types.UpdateExperienceOutput, table
+    updateExperience: function(Client, types.UpdateExperienceInput): Operation<types.UpdateExperienceOutput>
     -- Updates a set of featured results. Features results are placed
     -- above
     -- all other results for certain queries. You map specific queries to specific documents
     -- for featuring in the results. If a query contains an exact match of a query, then one
     -- or more specific documents are featured in the search results.
-    updateFeaturedResultsSet: function(Client, types.UpdateFeaturedResultsSetInput): types.UpdateFeaturedResultsSetOutput, table
+    updateFeaturedResultsSet: function(Client, types.UpdateFeaturedResultsSetInput): Operation<types.UpdateFeaturedResultsSetOutput>
     -- Updates an Amazon Kendra index.
-    updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    updateIndex: function(Client, types.UpdateIndexInput): Operation<types.UpdateIndexOutput>
     -- Updates a block list used for query suggestions for an index.
     -- Updates to a block list might not take effect right away. Amazon Kendra
     -- needs to refresh the entire suggestions list to apply any updates to the
@@ -440,7 +444,7 @@ local record Client
     -- you want to update.
     -- UpdateQuerySuggestionsBlockList is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    updateQuerySuggestionsBlockList: function(Client, types.UpdateQuerySuggestionsBlockListInput): types.UpdateQuerySuggestionsBlockListOutput, table
+    updateQuerySuggestionsBlockList: function(Client, types.UpdateQuerySuggestionsBlockListInput): Operation<types.UpdateQuerySuggestionsBlockListOutput>
     -- Updates the settings of query suggestions for an index.
     -- Amazon Kendra supports partial updates, so you only need to provide
     -- the fields you want to update.
@@ -452,9 +456,9 @@ local record Client
     -- You can still enable/disable query suggestions at any time.
     -- UpdateQuerySuggestionsConfig is currently not supported in the
     -- Amazon Web Services GovCloud (US-West) region.
-    updateQuerySuggestionsConfig: function(Client, types.UpdateQuerySuggestionsConfigInput): types.UpdateQuerySuggestionsConfigOutput, table
+    updateQuerySuggestionsConfig: function(Client, types.UpdateQuerySuggestionsConfigInput): Operation<types.UpdateQuerySuggestionsConfigOutput>
     -- Updates a thesaurus for an index.
-    updateThesaurus: function(Client, types.UpdateThesaurusInput): types.UpdateThesaurusOutput, table
+    updateThesaurus: function(Client, types.UpdateThesaurusInput): Operation<types.UpdateThesaurusOutput>
 end
 
 local record M

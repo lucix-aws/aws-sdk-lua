@@ -2,6 +2,10 @@
 
 local types = require("signin.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- CreateOAuth2Token API
     -- Path: /v1/token
@@ -24,7 +28,7 @@ local record Client
     -- - CLI clients (public): authn/authz skipped based on client_id & grant_type
     -- Note: This operation cannot be marked as @idempotent because it handles both idempotent
     -- (token refresh) and non-idempotent (auth code redemption) flows in a single endpoint.
-    createOAuth2Token: function(Client, types.CreateOAuth2TokenInput): types.CreateOAuth2TokenOutput, table
+    createOAuth2Token: function(Client, types.CreateOAuth2TokenInput): Operation<types.CreateOAuth2TokenOutput>
 end
 
 local record M

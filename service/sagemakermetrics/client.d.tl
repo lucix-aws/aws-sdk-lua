@@ -2,11 +2,15 @@
 
 local types = require("sagemakermetrics.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Used to retrieve training metrics from SageMaker.
-    batchGetMetrics: function(Client, types.BatchGetMetricsInput): types.BatchGetMetricsOutput, table
+    batchGetMetrics: function(Client, types.BatchGetMetricsInput): Operation<types.BatchGetMetricsOutput>
     -- Used to ingest training metrics into SageMaker. These metrics can be visualized in SageMaker Studio.
-    batchPutMetrics: function(Client, types.BatchPutMetricsInput): types.BatchPutMetricsOutput, table
+    batchPutMetrics: function(Client, types.BatchPutMetricsInput): Operation<types.BatchPutMetricsOutput>
 end
 
 local record M

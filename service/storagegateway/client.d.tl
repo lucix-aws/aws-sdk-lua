@@ -2,6 +2,10 @@
 
 local types = require("storagegateway.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Activates the gateway you previously deployed on your host. In the activation process,
     -- you specify information such as the Amazon Web Services Region that you want to use for
@@ -9,12 +13,12 @@ local record Client
     -- schedule window, an activation key, and a name for your gateway. The activation process
     -- also associates your gateway with your account. For more information, see UpdateGatewayInformation.
     -- You must turn on the gateway VM before you can activate your gateway.
-    activateGateway: function(Client, types.ActivateGatewayInput): types.ActivateGatewayOutput, table
+    activateGateway: function(Client, types.ActivateGatewayInput): Operation<types.ActivateGatewayOutput>
     -- Configures one or more gateway local disks as cache for a gateway. This operation is
     -- only supported in the cached volume, tape, and file gateway type (see How Storage Gateway works (architecture).
     -- In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to
     -- add cache, and one or more disk IDs that you want to configure as cache.
-    addCache: function(Client, types.AddCacheInput): types.AddCacheOutput, table
+    addCache: function(Client, types.AddCacheInput): Operation<types.AddCacheOutput>
     -- Adds one or more tags to the specified resource. You use tags to add metadata to
     -- resources, which you can use to categorize these resources. For example, you can categorize
     -- resources by purpose, owner, environment, or team. Each tag consists of a key and a value,
@@ -26,14 +30,14 @@ local record Client
     -- File System associations
     -- You can create a maximum of 50 tags for each resource. Virtual tapes and storage volumes
     -- that are recovered to a new gateway maintain their tags.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Configures one or more gateway local disks as upload buffer for a specified gateway.
     -- This operation is supported for the stored volume, cached volume, and tape gateway
     -- types.
     -- In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to
     -- add upload buffer, and one or more disk IDs that you want to configure as upload
     -- buffer.
-    addUploadBuffer: function(Client, types.AddUploadBufferInput): types.AddUploadBufferOutput, table
+    addUploadBuffer: function(Client, types.AddUploadBufferInput): Operation<types.AddUploadBufferOutput>
     -- Configures one or more gateway local disks as working storage for a gateway. This
     -- operation is only supported in the stored volume gateway type. This operation is deprecated
     -- in cached volume API version 20120630. Use AddUploadBuffer
@@ -43,35 +47,35 @@ local record Client
     -- In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to
     -- add working storage, and one or more disk IDs that you want to configure as working
     -- storage.
-    addWorkingStorage: function(Client, types.AddWorkingStorageInput): types.AddWorkingStorageOutput, table
+    addWorkingStorage: function(Client, types.AddWorkingStorageInput): Operation<types.AddWorkingStorageOutput>
     -- Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in
     -- the S3 storage class that is associated with the pool. When you use your backup application
     -- to eject the tape, the tape is archived directly into the S3 storage class (S3 Glacier or
     -- S3 Glacier Deep Archive) that corresponds to the pool.
-    assignTapePool: function(Client, types.AssignTapePoolInput): types.AssignTapePoolOutput, table
+    assignTapePool: function(Client, types.AssignTapePoolInput): Operation<types.AssignTapePoolOutput>
     -- Associate an Amazon FSx file system with the FSx File Gateway. After the
     -- association process is complete, the file shares on the Amazon FSx file system are
     -- available for access through the gateway. This operation only supports the FSx File Gateway
     -- type.
-    associateFileSystem: function(Client, types.AssociateFileSystemInput): types.AssociateFileSystemOutput, table
+    associateFileSystem: function(Client, types.AssociateFileSystemInput): Operation<types.AssociateFileSystemOutput>
     -- Connects a volume to an iSCSI connection and then attaches the volume to the specified
     -- gateway. Detaching and attaching a volume enables you to recover your data from one gateway
     -- to a different gateway without creating a snapshot. It also makes it easier to move your
     -- volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance.
-    attachVolume: function(Client, types.AttachVolumeInput): types.AttachVolumeOutput, table
+    attachVolume: function(Client, types.AttachVolumeInput): Operation<types.AttachVolumeOutput>
     -- Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving
     -- process is initiated. This operation is only supported in the tape gateway type.
-    cancelArchival: function(Client, types.CancelArchivalInput): types.CancelArchivalOutput, table
+    cancelArchival: function(Client, types.CancelArchivalInput): Operation<types.CancelArchivalOutput>
     -- Cancels generation of a specified cache report. You can use this operation to manually
     -- cancel an IN-PROGRESS report for any reason. This action changes the report status from
     -- IN-PROGRESS to CANCELLED. You can only cancel in-progress reports. If the the report you
     -- attempt to cancel is in FAILED, ERROR, or COMPLETED state, the cancel operation returns an
     -- error.
-    cancelCacheReport: function(Client, types.CancelCacheReportInput): types.CancelCacheReportOutput, table
+    cancelCacheReport: function(Client, types.CancelCacheReportInput): Operation<types.CancelCacheReportOutput>
     -- Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to a gateway after
     -- the retrieval process is initiated. The virtual tape is returned to the VTS. This operation
     -- is only supported in the tape gateway type.
-    cancelRetrieval: function(Client, types.CancelRetrievalInput): types.CancelRetrievalOutput, table
+    cancelRetrieval: function(Client, types.CancelRetrievalInput): Operation<types.CancelRetrievalOutput>
     -- Creates a cached volume on a specified cached volume gateway. This operation is only
     -- supported in the cached volume gateway type.
     -- Cache storage must be allocated to the gateway before you can create a cached volume.
@@ -85,7 +89,7 @@ local record Client
     -- SourceVolumeARN for this cached volume, which creates an exact copy of the
     -- existing volume’s latest recovery point. The VolumeSizeInBytes value must be
     -- equal to or larger than the size of the copied volume, in bytes.
-    createCachediSCSIVolume: function(Client, types.CreateCachediSCSIVolumeInput): types.CreateCachediSCSIVolumeOutput, table
+    createCachediSCSIVolume: function(Client, types.CreateCachediSCSIVolumeInput): Operation<types.CreateCachediSCSIVolumeOutput>
     -- Creates a Network File System (NFS) file share on an existing S3 File Gateway. In
     -- Storage Gateway, a file share is a file system mount point backed by Amazon S3
     -- cloud storage. Storage Gateway exposes file shares using an NFS interface. This operation
@@ -99,7 +103,7 @@ local record Client
     -- Identity and Access Management User Guide.
     -- S3 File Gateways do not support creating hard or symbolic links on a file
     -- share.
-    createNFSFileShare: function(Client, types.CreateNFSFileShareInput): types.CreateNFSFileShareOutput, table
+    createNFSFileShare: function(Client, types.CreateNFSFileShareInput): Operation<types.CreateNFSFileShareOutput>
     -- Creates a Server Message Block (SMB) file share on an existing S3 File Gateway. In
     -- Storage Gateway, a file share is a file system mount point backed by Amazon S3
     -- cloud storage. Storage Gateway exposes file shares using an SMB interface. This operation
@@ -113,7 +117,7 @@ local record Client
     -- Identity and Access Management User Guide.
     -- File gateways don't support creating hard or symbolic links on a file
     -- share.
-    createSMBFileShare: function(Client, types.CreateSMBFileShareInput): types.CreateSMBFileShareOutput, table
+    createSMBFileShare: function(Client, types.CreateSMBFileShareInput): Operation<types.CreateSMBFileShareOutput>
     -- Initiates a snapshot of a volume.
     -- Storage Gateway provides the ability to back up point-in-time snapshots of your
     -- data to Amazon Simple Storage (Amazon S3) for durable off-site recovery, and also
@@ -134,7 +138,7 @@ local record Client
     -- Reference.
     -- Volume and snapshot IDs are changing to a longer length ID format. For more
     -- information, see the important note on the Welcome page.
-    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): Operation<types.CreateSnapshotOutput>
     -- Initiates a snapshot of a gateway from a volume recovery point. This operation is only
     -- supported in the cached volume gateway type.
     -- A volume recovery point is a point in time at which all data of the volume is consistent
@@ -151,7 +155,7 @@ local record Client
     -- see DescribeSnapshots
     -- or DeleteSnapshot in the Amazon Elastic Compute Cloud API
     -- Reference.
-    createSnapshotFromVolumeRecoveryPoint: function(Client, types.CreateSnapshotFromVolumeRecoveryPointInput): types.CreateSnapshotFromVolumeRecoveryPointOutput, table
+    createSnapshotFromVolumeRecoveryPoint: function(Client, types.CreateSnapshotFromVolumeRecoveryPointInput): Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
     -- Creates a volume on a specified gateway. This operation is only supported in the stored
     -- volume gateway type.
     -- The size of the volume to create is inferred from the disk size. You can choose to
@@ -162,44 +166,44 @@ local record Client
     -- creating the volume. In response, the gateway creates the volume and returns volume
     -- information such as the volume Amazon Resource Name (ARN), its size, and the iSCSI target
     -- ARN that initiators can use to connect to the volume target.
-    createStorediSCSIVolume: function(Client, types.CreateStorediSCSIVolumeInput): types.CreateStorediSCSIVolumeOutput, table
+    createStorediSCSIVolume: function(Client, types.CreateStorediSCSIVolumeInput): Operation<types.CreateStorediSCSIVolumeOutput>
     -- Creates a new custom tape pool. You can use custom tape pool to enable tape retention
     -- lock on tapes that are archived in the custom pool.
-    createTapePool: function(Client, types.CreateTapePoolInput): types.CreateTapePoolOutput, table
+    createTapePool: function(Client, types.CreateTapePoolInput): Operation<types.CreateTapePoolOutput>
     -- Creates one or more virtual tapes. You write data to the virtual tapes and then archive
     -- the tapes. This operation is only supported in the tape gateway type.
     -- Cache storage must be allocated to the gateway before you can create virtual tapes.
     -- Use the AddCache operation to add cache storage to a gateway.
-    createTapes: function(Client, types.CreateTapesInput): types.CreateTapesOutput, table
+    createTapes: function(Client, types.CreateTapesInput): Operation<types.CreateTapesOutput>
     -- Creates a virtual tape by using your own barcode. You write data to the virtual tape and
     -- then archive the tape. A barcode is unique and cannot be reused if it has already been used
     -- on a tape. This applies to barcodes used on deleted tapes. This operation is only supported
     -- in the tape gateway type.
     -- Cache storage must be allocated to the gateway before you can create a virtual tape.
     -- Use the AddCache operation to add cache storage to a gateway.
-    createTapeWithBarcode: function(Client, types.CreateTapeWithBarcodeInput): types.CreateTapeWithBarcodeOutput, table
+    createTapeWithBarcode: function(Client, types.CreateTapeWithBarcodeInput): Operation<types.CreateTapeWithBarcodeOutput>
     -- Deletes the automatic tape creation policy of a gateway. If you delete this policy, new
     -- virtual tapes must be created manually. Use the Amazon Resource Name (ARN) of the gateway
     -- in your request to remove the policy.
-    deleteAutomaticTapeCreationPolicy: function(Client, types.DeleteAutomaticTapeCreationPolicyInput): types.DeleteAutomaticTapeCreationPolicyOutput, table
+    deleteAutomaticTapeCreationPolicy: function(Client, types.DeleteAutomaticTapeCreationPolicyInput): Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
     -- Deletes the bandwidth rate limits of a gateway. You can delete either the upload and
     -- download bandwidth rate limit, or you can delete both. If you delete only one of the
     -- limits, the other limit remains unchanged. To specify which gateway to work with, use the
     -- Amazon Resource Name (ARN) of the gateway in your request. This operation is supported only
     -- for the stored volume, cached volume, and tape gateway types.
-    deleteBandwidthRateLimit: function(Client, types.DeleteBandwidthRateLimitInput): types.DeleteBandwidthRateLimitOutput, table
+    deleteBandwidthRateLimit: function(Client, types.DeleteBandwidthRateLimitInput): Operation<types.DeleteBandwidthRateLimitOutput>
     -- Deletes the specified cache report and any associated tags from the Storage Gateway database. You can only delete completed reports. If the status of the
     -- report you attempt to delete still IN-PROGRESS, the delete operation returns an error. You
     -- can use CancelCacheReport to cancel an IN-PROGRESS report.
     -- DeleteCacheReport does not delete the report object from your Amazon S3 bucket.
-    deleteCacheReport: function(Client, types.DeleteCacheReportInput): types.DeleteCacheReportOutput, table
+    deleteCacheReport: function(Client, types.DeleteCacheReportInput): Operation<types.DeleteCacheReportOutput>
     -- Deletes Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified
     -- iSCSI target and initiator pair. This operation is supported in volume and tape gateway
     -- types.
-    deleteChapCredentials: function(Client, types.DeleteChapCredentialsInput): types.DeleteChapCredentialsOutput, table
+    deleteChapCredentials: function(Client, types.DeleteChapCredentialsInput): Operation<types.DeleteChapCredentialsOutput>
     -- Deletes a file share from an S3 File Gateway. This operation is only supported for S3
     -- File Gateways.
-    deleteFileShare: function(Client, types.DeleteFileShareInput): types.DeleteFileShareOutput, table
+    deleteFileShare: function(Client, types.DeleteFileShareInput): Operation<types.DeleteFileShareOutput>
     -- Deletes a gateway. To specify which gateway to delete, use the Amazon Resource Name
     -- (ARN) of the gateway in your request. The operation deletes the gateway; however, it does
     -- not delete the gateway virtual machine (VM) from your host computer.
@@ -214,7 +218,7 @@ local record Client
     -- can delete your snapshots using the Amazon EC2 console. For more information, see the
     -- Storage Gateway detail
     -- page.
-    deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    deleteGateway: function(Client, types.DeleteGatewayInput): Operation<types.DeleteGatewayOutput>
     -- Deletes a snapshot of a volume.
     -- You can take snapshots of your gateway volumes on a scheduled or ad hoc basis. This API
     -- action enables you to delete a snapshot schedule for a volume. For more information, see
@@ -225,17 +229,17 @@ local record Client
     -- To list or delete a snapshot, you must use the Amazon EC2 API. For more information,
     -- go to DescribeSnapshots
     -- in the Amazon Elastic Compute Cloud API Reference.
-    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput): types.DeleteSnapshotScheduleOutput, table
+    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput): Operation<types.DeleteSnapshotScheduleOutput>
     -- Deletes the specified virtual tape. This operation is only supported in the tape gateway
     -- type.
-    deleteTape: function(Client, types.DeleteTapeInput): types.DeleteTapeOutput, table
+    deleteTape: function(Client, types.DeleteTapeInput): Operation<types.DeleteTapeOutput>
     -- Deletes the specified virtual tape from the virtual tape shelf (VTS). This operation is
     -- only supported in the tape gateway type.
-    deleteTapeArchive: function(Client, types.DeleteTapeArchiveInput): types.DeleteTapeArchiveOutput, table
+    deleteTapeArchive: function(Client, types.DeleteTapeArchiveInput): Operation<types.DeleteTapeArchiveOutput>
     -- Delete a custom tape pool. A custom tape pool can only be deleted if there are no tapes
     -- in the pool and if there are no automatic tape creation policies that reference the custom
     -- tape pool.
-    deleteTapePool: function(Client, types.DeleteTapePoolInput): types.DeleteTapePoolOutput, table
+    deleteTapePool: function(Client, types.DeleteTapePoolInput): Operation<types.DeleteTapePoolOutput>
     -- Deletes the specified storage volume that you previously created using the CreateCachediSCSIVolume or CreateStorediSCSIVolume API.
     -- This operation is only supported in the cached volume and stored volume types. For stored
     -- volume gateways, the local disk that was configured as the storage volume is not deleted.
@@ -247,11 +251,11 @@ local record Client
     -- Reference.
     -- In the request, you must provide the Amazon Resource Name (ARN) of the storage volume
     -- you want to delete.
-    deleteVolume: function(Client, types.DeleteVolumeInput): types.DeleteVolumeOutput, table
+    deleteVolume: function(Client, types.DeleteVolumeInput): Operation<types.DeleteVolumeOutput>
     -- Returns information about the most recent high availability monitoring test that was
     -- performed on the host in a cluster. If a test isn't performed, the status and start
     -- time in the response would be null.
-    describeAvailabilityMonitorTest: function(Client, types.DescribeAvailabilityMonitorTestInput): types.DescribeAvailabilityMonitorTestOutput, table
+    describeAvailabilityMonitorTest: function(Client, types.DescribeAvailabilityMonitorTestInput): Operation<types.DescribeAvailabilityMonitorTestOutput>
     -- Returns the bandwidth rate limits of a gateway. By default, these limits are not set,
     -- which means no bandwidth rate limiting is in effect. This operation is supported only for
     -- the stored volume, cached volume, and tape gateway types. To describe bandwidth rate limits
@@ -260,7 +264,7 @@ local record Client
     -- no limits are set for the gateway, then this operation returns only the gateway ARN in the
     -- response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of
     -- the gateway in your request.
-    describeBandwidthRateLimit: function(Client, types.DescribeBandwidthRateLimitInput): types.DescribeBandwidthRateLimitOutput, table
+    describeBandwidthRateLimit: function(Client, types.DescribeBandwidthRateLimitInput): Operation<types.DescribeBandwidthRateLimitOutput>
     -- Returns information about the bandwidth rate limit schedule of a gateway. By default,
     -- gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting
     -- is in effect. This operation is supported only for volume, tape and S3 file gateways. FSx
@@ -275,66 +279,66 @@ local record Client
     -- If no bandwidth rate limit schedule intervals are set for the gateway, this operation
     -- returns an empty response. To specify which gateway to describe, use the Amazon Resource
     -- Name (ARN) of the gateway in your request.
-    describeBandwidthRateLimitSchedule: function(Client, types.DescribeBandwidthRateLimitScheduleInput): types.DescribeBandwidthRateLimitScheduleOutput, table
+    describeBandwidthRateLimitSchedule: function(Client, types.DescribeBandwidthRateLimitScheduleInput): Operation<types.DescribeBandwidthRateLimitScheduleOutput>
     -- Returns information about the cache of a gateway. This operation is only supported in
     -- the cached volume, tape, and file gateway types.
     -- The response includes disk IDs that are configured as cache, and it includes the amount
     -- of cache allocated and used.
-    describeCache: function(Client, types.DescribeCacheInput): types.DescribeCacheOutput, table
+    describeCache: function(Client, types.DescribeCacheInput): Operation<types.DescribeCacheOutput>
     -- Returns a description of the gateway volumes specified in the request. This operation is
     -- only supported in the cached volume gateway types.
     -- The list of gateway volumes in the request must be from one gateway. In the response,
     -- Storage Gateway returns volume information sorted by volume Amazon Resource Name
     -- (ARN).
-    describeCachediSCSIVolumes: function(Client, types.DescribeCachediSCSIVolumesInput): types.DescribeCachediSCSIVolumesOutput, table
+    describeCachediSCSIVolumes: function(Client, types.DescribeCachediSCSIVolumesInput): Operation<types.DescribeCachediSCSIVolumesOutput>
     -- Returns information about the specified cache report, including completion status and
     -- generation progress.
-    describeCacheReport: function(Client, types.DescribeCacheReportInput): types.DescribeCacheReportOutput, table
+    describeCacheReport: function(Client, types.DescribeCacheReportInput): Operation<types.DescribeCacheReportOutput>
     -- Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials
     -- information for a specified iSCSI target, one for each target-initiator pair. This
     -- operation is supported in the volume and tape gateway types.
-    describeChapCredentials: function(Client, types.DescribeChapCredentialsInput): types.DescribeChapCredentialsOutput, table
+    describeChapCredentials: function(Client, types.DescribeChapCredentialsInput): Operation<types.DescribeChapCredentialsOutput>
     -- Gets the file system association information. This operation is only supported for FSx
     -- File Gateways.
-    describeFileSystemAssociations: function(Client, types.DescribeFileSystemAssociationsInput): types.DescribeFileSystemAssociationsOutput, table
+    describeFileSystemAssociations: function(Client, types.DescribeFileSystemAssociationsInput): Operation<types.DescribeFileSystemAssociationsOutput>
     -- Returns metadata about a gateway such as its name, network interfaces, time zone,
     -- status, and software version. To specify which gateway to describe, use the Amazon Resource
     -- Name (ARN) of the gateway in your request.
-    describeGatewayInformation: function(Client, types.DescribeGatewayInformationInput): types.DescribeGatewayInformationOutput, table
+    describeGatewayInformation: function(Client, types.DescribeGatewayInformationInput): Operation<types.DescribeGatewayInformationOutput>
     -- Returns your gateway's maintenance window schedule information, with values for
     -- monthly or weekly cadence, specific day and time to begin maintenance, and which types of
     -- updates to apply. Time values returned are for the gateway's time zone.
-    describeMaintenanceStartTime: function(Client, types.DescribeMaintenanceStartTimeInput): types.DescribeMaintenanceStartTimeOutput, table
+    describeMaintenanceStartTime: function(Client, types.DescribeMaintenanceStartTimeInput): Operation<types.DescribeMaintenanceStartTimeOutput>
     -- Gets a description for one or more Network File System (NFS) file shares from an S3 File
     -- Gateway. This operation is only supported for S3 File Gateways.
-    describeNFSFileShares: function(Client, types.DescribeNFSFileSharesInput): types.DescribeNFSFileSharesOutput, table
+    describeNFSFileShares: function(Client, types.DescribeNFSFileSharesInput): Operation<types.DescribeNFSFileSharesOutput>
     -- Gets a description for one or more Server Message Block (SMB) file shares from a S3 File
     -- Gateway. This operation is only supported for S3 File Gateways.
-    describeSMBFileShares: function(Client, types.DescribeSMBFileSharesInput): types.DescribeSMBFileSharesOutput, table
+    describeSMBFileShares: function(Client, types.DescribeSMBFileSharesInput): Operation<types.DescribeSMBFileSharesOutput>
     -- Gets a description of a Server Message Block (SMB) file share settings from a file
     -- gateway. This operation is only supported for file gateways.
-    describeSMBSettings: function(Client, types.DescribeSMBSettingsInput): types.DescribeSMBSettingsOutput, table
+    describeSMBSettings: function(Client, types.DescribeSMBSettingsInput): Operation<types.DescribeSMBSettingsOutput>
     -- Describes the snapshot schedule for the specified gateway volume. The snapshot schedule
     -- information includes intervals at which snapshots are automatically initiated on the
     -- volume. This operation is only supported in the cached volume and stored volume
     -- types.
-    describeSnapshotSchedule: function(Client, types.DescribeSnapshotScheduleInput): types.DescribeSnapshotScheduleOutput, table
+    describeSnapshotSchedule: function(Client, types.DescribeSnapshotScheduleInput): Operation<types.DescribeSnapshotScheduleOutput>
     -- Returns the description of the gateway volumes specified in the request. The list of
     -- gateway volumes in the request must be from one gateway. In the response, Storage Gateway returns volume information sorted by volume ARNs. This operation is only
     -- supported in stored volume gateway type.
-    describeStorediSCSIVolumes: function(Client, types.DescribeStorediSCSIVolumesInput): types.DescribeStorediSCSIVolumesOutput, table
+    describeStorediSCSIVolumes: function(Client, types.DescribeStorediSCSIVolumesInput): Operation<types.DescribeStorediSCSIVolumesOutput>
     -- Returns a description of specified virtual tapes in the virtual tape shelf (VTS). This
     -- operation is only supported in the tape gateway type.
     -- If a specific TapeARN is not specified, Storage Gateway returns a
     -- description of all virtual tapes found in the VTS associated with your account.
-    describeTapeArchives: function(Client, types.DescribeTapeArchivesInput): types.DescribeTapeArchivesOutput, table
+    describeTapeArchives: function(Client, types.DescribeTapeArchivesInput): Operation<types.DescribeTapeArchivesOutput>
     -- Returns a list of virtual tape recovery points that are available for the specified tape
     -- gateway.
     -- A recovery point is a point-in-time view of a virtual tape at which all the data on the
     -- virtual tape is consistent. If your gateway crashes, virtual tapes that have recovery
     -- points can be recovered to a new gateway. This operation is only supported in the tape
     -- gateway type.
-    describeTapeRecoveryPoints: function(Client, types.DescribeTapeRecoveryPointsInput): types.DescribeTapeRecoveryPointsOutput, table
+    describeTapeRecoveryPoints: function(Client, types.DescribeTapeRecoveryPointsInput): Operation<types.DescribeTapeRecoveryPointsOutput>
     -- Returns a description of virtual tapes that correspond to the specified Amazon Resource
     -- Names (ARNs). If TapeARN is not specified, returns a description of the
     -- virtual tapes associated with the specified gateway. This operation is only supported for
@@ -345,16 +349,16 @@ local record Client
     -- truncated, the response includes a Marker field. You can use this
     -- Marker value in your subsequent request to retrieve the next set of
     -- tapes.
-    describeTapes: function(Client, types.DescribeTapesInput): types.DescribeTapesOutput, table
+    describeTapes: function(Client, types.DescribeTapesInput): Operation<types.DescribeTapesOutput>
     -- Returns information about the upload buffer of a gateway. This operation is supported
     -- for the stored volume, cached volume, and tape gateway types.
     -- The response includes disk IDs that are configured as upload buffer space, and it
     -- includes the amount of upload buffer space allocated and used.
-    describeUploadBuffer: function(Client, types.DescribeUploadBufferInput): types.DescribeUploadBufferOutput, table
+    describeUploadBuffer: function(Client, types.DescribeUploadBufferInput): Operation<types.DescribeUploadBufferOutput>
     -- Returns a description of virtual tape library (VTL) devices for the specified tape
     -- gateway. In the response, Storage Gateway returns VTL device information.
     -- This operation is only supported in the tape gateway type.
-    describeVTLDevices: function(Client, types.DescribeVTLDevicesInput): types.DescribeVTLDevicesOutput, table
+    describeVTLDevices: function(Client, types.DescribeVTLDevicesInput): Operation<types.DescribeVTLDevicesOutput>
     -- Returns information about the working storage of a gateway. This operation is only
     -- supported in the stored volumes gateway type. This operation is deprecated in cached
     -- volumes API version (20120630). Use DescribeUploadBuffer instead.
@@ -362,23 +366,23 @@ local record Client
     -- DescribeUploadBuffer operation to add upload buffer to a stored volume gateway.
     -- The response includes disk IDs that are configured as working storage, and it includes
     -- the amount of working storage allocated and used.
-    describeWorkingStorage: function(Client, types.DescribeWorkingStorageInput): types.DescribeWorkingStorageOutput, table
+    describeWorkingStorage: function(Client, types.DescribeWorkingStorageInput): Operation<types.DescribeWorkingStorageOutput>
     -- Disconnects a volume from an iSCSI connection and then detaches the volume from the
     -- specified gateway. Detaching and attaching a volume enables you to recover your data from
     -- one gateway to a different gateway without creating a snapshot. It also makes it easier to
     -- move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2
     -- instance. This operation is only supported in the volume gateway type.
-    detachVolume: function(Client, types.DetachVolumeInput): types.DetachVolumeOutput, table
+    detachVolume: function(Client, types.DetachVolumeInput): Operation<types.DetachVolumeOutput>
     -- Disables a tape gateway when the gateway is no longer functioning. For example, if your
     -- gateway VM is damaged, you can disable the gateway so you can recover virtual tapes.
     -- Use this operation for a tape gateway that is not reachable or not functioning. This
     -- operation is only supported in the tape gateway type.
     -- After a gateway is disabled, it cannot be enabled.
-    disableGateway: function(Client, types.DisableGatewayInput): types.DisableGatewayOutput, table
+    disableGateway: function(Client, types.DisableGatewayInput): Operation<types.DisableGatewayOutput>
     -- Disassociates an Amazon FSx file system from the specified gateway. After the
     -- disassociation process finishes, the gateway can no longer access the Amazon FSx
     -- file system. This operation is only supported in the FSx File Gateway type.
-    disassociateFileSystem: function(Client, types.DisassociateFileSystemInput): types.DisassociateFileSystemOutput, table
+    disassociateFileSystem: function(Client, types.DisassociateFileSystemInput): Operation<types.DisassociateFileSystemOutput>
     -- Starts a process that cleans the specified file share's cache of file entries that are
     -- failing upload to Amazon S3. This API operation reports success if the request is
     -- received with valid arguments, and there are no other cache clean operations currently
@@ -390,7 +394,7 @@ local record Client
     -- recommend using this operation only after all other methods to clear files failing
     -- upload have been exhausted, and if your business need outweighs the potential data
     -- loss.
-    evictFilesFailingUpload: function(Client, types.EvictFilesFailingUploadInput): types.EvictFilesFailingUploadOutput, table
+    evictFilesFailingUpload: function(Client, types.EvictFilesFailingUploadInput): Operation<types.EvictFilesFailingUploadOutput>
     -- Adds a file gateway to an Active Directory domain. This operation is only supported for
     -- file gateways that support the SMB file protocol.
     -- Joining a domain creates an Active Directory computer account in the default
@@ -400,24 +404,24 @@ local record Client
     -- need to create this account ahead of time.
     -- To create the gateway's computer account in an organizational unit other than the
     -- default, you must specify the organizational unit when joining the domain.
-    joinDomain: function(Client, types.JoinDomainInput): types.JoinDomainOutput, table
+    joinDomain: function(Client, types.JoinDomainInput): Operation<types.JoinDomainOutput>
     -- Lists the automatic tape creation policies for a gateway. If there are no automatic tape
     -- creation policies for the gateway, it returns an empty list.
     -- This operation is only supported for tape gateways.
-    listAutomaticTapeCreationPolicies: function(Client, types.ListAutomaticTapeCreationPoliciesInput): types.ListAutomaticTapeCreationPoliciesOutput, table
+    listAutomaticTapeCreationPolicies: function(Client, types.ListAutomaticTapeCreationPoliciesInput): Operation<types.ListAutomaticTapeCreationPoliciesOutput>
     -- Returns a list of existing cache reports for all file shares associated with your
     -- Amazon Web Services account. This list includes all information provided by the
     -- DescribeCacheReport action, such as report name, status, completion
     -- progress, start time, end time, filters, and tags.
-    listCacheReports: function(Client, types.ListCacheReportsInput): types.ListCacheReportsOutput, table
+    listCacheReports: function(Client, types.ListCacheReportsInput): Operation<types.ListCacheReportsOutput>
     -- Gets a list of the file shares for a specific S3 File Gateway, or the list of file
     -- shares that belong to the calling Amazon Web Services account. This operation is only
     -- supported for S3 File Gateways.
-    listFileShares: function(Client, types.ListFileSharesInput): types.ListFileSharesOutput, table
+    listFileShares: function(Client, types.ListFileSharesInput): Operation<types.ListFileSharesOutput>
     -- Gets a list of FileSystemAssociationSummary objects. Each object contains a
     -- summary of a file system association. This operation is only supported for FSx File
     -- Gateways.
-    listFileSystemAssociations: function(Client, types.ListFileSystemAssociationsInput): types.ListFileSystemAssociationsOutput, table
+    listFileSystemAssociations: function(Client, types.ListFileSystemAssociationsInput): Operation<types.ListFileSystemAssociationsOutput>
     -- Lists gateways owned by an Amazon Web Services account in an Amazon Web Services Region
     -- specified in the request. The returned list is ordered by gateway Amazon Resource Name
     -- (ARN).
@@ -427,7 +431,7 @@ local record Client
     -- If you have more gateways than are returned in a response (that is, the response returns
     -- only a truncated list of your gateways), the response contains a marker that you can
     -- specify in your next request to fetch the next page of gateways.
-    listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    listGateways: function(Client, types.ListGatewaysInput): Operation<types.ListGatewaysOutput>
     -- Returns a list of the gateway's local disks. To specify which gateway to describe,
     -- you use the Amazon Resource Name (ARN) of the gateway in the body of the request.
     -- The request returns a list of all disks, specifying which are configured as working
@@ -436,10 +440,10 @@ local record Client
     -- available to use), missing (the disk is no longer connected to the gateway), or mismatch
     -- (the disk node is occupied by a disk that has incorrect metadata or the disk content is
     -- corrupted).
-    listLocalDisks: function(Client, types.ListLocalDisksInput): types.ListLocalDisksOutput, table
+    listLocalDisks: function(Client, types.ListLocalDisksInput): Operation<types.ListLocalDisksOutput>
     -- Lists the tags that have been added to the specified resource. This operation is
     -- supported in storage gateways of all types.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists custom tape pools. You specify custom tape pools to list by specifying one or more
     -- custom tape pool Amazon Resource Names (ARNs). If you don't specify a custom tape pool ARN,
     -- the operation lists all custom tape pools.
@@ -448,7 +452,7 @@ local record Client
     -- tape pools returned in the response is truncated, the response includes a
     -- Marker element that you can use in your subsequent request to retrieve the
     -- next set of tape pools.
-    listTapePools: function(Client, types.ListTapePoolsInput): types.ListTapePoolsOutput, table
+    listTapePools: function(Client, types.ListTapePoolsInput): Operation<types.ListTapePoolsOutput>
     -- Lists virtual tapes in your virtual tape library (VTL) and your virtual tape shelf
     -- (VTS). You specify the tapes to list by specifying one or more tape Amazon Resource Names
     -- (ARNs). If you don't specify a tape ARN, the operation lists all virtual tapes in both
@@ -459,18 +463,18 @@ local record Client
     -- truncated, the response includes a Marker element that you can use in your
     -- subsequent request to retrieve the next set of tapes. This operation is only supported in
     -- the tape gateway type.
-    listTapes: function(Client, types.ListTapesInput): types.ListTapesOutput, table
+    listTapes: function(Client, types.ListTapesInput): Operation<types.ListTapesOutput>
     -- Lists iSCSI initiators that are connected to a volume. You can use this operation to
     -- determine whether a volume is being used or not. This operation is only supported in the
     -- cached volume and stored volume gateway types.
-    listVolumeInitiators: function(Client, types.ListVolumeInitiatorsInput): types.ListVolumeInitiatorsOutput, table
+    listVolumeInitiators: function(Client, types.ListVolumeInitiatorsInput): Operation<types.ListVolumeInitiatorsOutput>
     -- Lists the recovery points for a specified gateway. This operation is only supported in
     -- the cached volume gateway type.
     -- Each cache volume has one recovery point. A volume recovery point is a point in time at
     -- which all data of the volume is consistent and from which you can create a snapshot or
     -- clone a new cached volume from a source volume. To create a snapshot from a volume recovery
     -- point use the CreateSnapshotFromVolumeRecoveryPoint operation.
-    listVolumeRecoveryPoints: function(Client, types.ListVolumeRecoveryPointsInput): types.ListVolumeRecoveryPointsOutput, table
+    listVolumeRecoveryPoints: function(Client, types.ListVolumeRecoveryPointsInput): Operation<types.ListVolumeRecoveryPointsOutput>
     -- Lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The
     -- response includes only the volume ARNs. If you want additional volume information, use the
     -- DescribeStorediSCSIVolumes or the DescribeCachediSCSIVolumes API.
@@ -480,7 +484,7 @@ local record Client
     -- truncated, the response includes a Marker field. You can use this Marker value in your
     -- subsequent request to retrieve the next set of volumes. This operation is only supported in
     -- the cached volume and stored volume gateway types.
-    listVolumes: function(Client, types.ListVolumesInput): types.ListVolumesOutput, table
+    listVolumes: function(Client, types.ListVolumesInput): Operation<types.ListVolumesOutput>
     -- Sends you notification through Amazon EventBridge when all files written to your file
     -- share have been uploaded to Amazon S3.
     -- Storage Gateway can send a notification through Amazon EventBridge when all
@@ -492,7 +496,7 @@ local record Client
     -- For more information, see Getting
     -- file upload notification in the Amazon S3 File Gateway User
     -- Guide.
-    notifyWhenUploaded: function(Client, types.NotifyWhenUploadedInput): types.NotifyWhenUploadedOutput, table
+    notifyWhenUploaded: function(Client, types.NotifyWhenUploadedInput): Operation<types.NotifyWhenUploadedOutput>
     -- Refreshes the cached inventory of objects for the specified file share. This operation
     -- finds objects in the Amazon S3 bucket that were added, removed, or replaced since
     -- the gateway last listed the bucket's contents and cached the results. This operation
@@ -524,10 +528,10 @@ local record Client
     -- For more information, see Getting
     -- notified about file operations in the Amazon S3 File Gateway User
     -- Guide.
-    refreshCache: function(Client, types.RefreshCacheInput): types.RefreshCacheOutput, table
+    refreshCache: function(Client, types.RefreshCacheInput): Operation<types.RefreshCacheOutput>
     -- Removes one or more tags from the specified resource. This operation is supported in
     -- storage gateways of all types.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- Resets all cache disks that have encountered an error and makes the disks available for
     -- reconfiguration as cache storage. If your cache disk encounters an error, the gateway
     -- prevents read and write operations on virtual tapes in the gateway. For example, an error
@@ -538,7 +542,7 @@ local record Client
     -- Amazon S3 yet, that data can be lost. After you reset cache disks, there will
     -- be no configured cache disks left in the gateway, so you must configure at least one new
     -- cache disk for your gateway to function properly.
-    resetCache: function(Client, types.ResetCacheInput): types.ResetCacheOutput, table
+    resetCache: function(Client, types.ResetCacheInput): Operation<types.ResetCacheOutput>
     -- Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a tape gateway.
     -- Virtual tapes archived in the VTS are not associated with any gateway. However after a tape
     -- is retrieved, it is associated with a gateway, even though it is also listed in the VTS,
@@ -546,7 +550,7 @@ local record Client
     -- Once a tape is successfully retrieved to a gateway, it cannot be retrieved again to
     -- another gateway. You must archive the tape again before you can retrieve it to another
     -- gateway. This operation is only supported in the tape gateway type.
-    retrieveTapeArchive: function(Client, types.RetrieveTapeArchiveInput): types.RetrieveTapeArchiveOutput, table
+    retrieveTapeArchive: function(Client, types.RetrieveTapeArchiveInput): Operation<types.RetrieveTapeArchiveOutput>
     -- Retrieves the recovery point for the specified virtual tape. This operation is only
     -- supported in the tape gateway type.
     -- A recovery point is a point in time view of a virtual tape at which all the data on the
@@ -555,16 +559,16 @@ local record Client
     -- The virtual tape can be retrieved to only one gateway. The retrieved tape is
     -- read-only. The virtual tape can be retrieved to only a tape gateway. There is no charge
     -- for retrieving recovery points.
-    retrieveTapeRecoveryPoint: function(Client, types.RetrieveTapeRecoveryPointInput): types.RetrieveTapeRecoveryPointOutput, table
+    retrieveTapeRecoveryPoint: function(Client, types.RetrieveTapeRecoveryPointInput): Operation<types.RetrieveTapeRecoveryPointOutput>
     -- Sets the password for your VM local console. When you log in to the local console for
     -- the first time, you log in to the VM with the default credentials. We recommend that you
     -- set a new password. You don't need to know the default password to set a new
     -- password.
-    setLocalConsolePassword: function(Client, types.SetLocalConsolePasswordInput): types.SetLocalConsolePasswordOutput, table
+    setLocalConsolePassword: function(Client, types.SetLocalConsolePasswordInput): Operation<types.SetLocalConsolePasswordOutput>
     -- Sets the password for the guest user smbguest. The smbguest
     -- user is the user when the authentication method for the file share is set to
     -- GuestAccess. This operation only supported for S3 File Gateways
-    setSMBGuestPassword: function(Client, types.SetSMBGuestPasswordInput): types.SetSMBGuestPasswordOutput, table
+    setSMBGuestPassword: function(Client, types.SetSMBGuestPasswordInput): Operation<types.SetSMBGuestPasswordOutput>
     -- Shuts down a Tape Gateway or Volume Gateway. To specify which gateway to shut down, use
     -- the Amazon Resource Name (ARN) of the gateway in the body of your request.
     -- This API action cannot be used to shut down S3 File Gateway or FSx File
@@ -582,14 +586,14 @@ local record Client
     -- information, see ActivateGateway.
     -- If do not intend to use the gateway again, you must delete the gateway (using DeleteGateway) to no longer pay software charges associated with the
     -- gateway.
-    shutdownGateway: function(Client, types.ShutdownGatewayInput): types.ShutdownGatewayOutput, table
+    shutdownGateway: function(Client, types.ShutdownGatewayInput): Operation<types.ShutdownGatewayOutput>
     -- Start a test that verifies that the specified gateway is configured for High
     -- Availability monitoring in your host environment. This request only initiates the test and
     -- that a successful response only indicates that the test was started. It doesn't
     -- indicate that the test passed. For the status of the test, invoke the
     -- DescribeAvailabilityMonitorTest API.
     -- Starting this test will cause your gateway to go offline for a brief period.
-    startAvailabilityMonitorTest: function(Client, types.StartAvailabilityMonitorTestInput): types.StartAvailabilityMonitorTestOutput, table
+    startAvailabilityMonitorTest: function(Client, types.StartAvailabilityMonitorTestInput): Operation<types.StartAvailabilityMonitorTestOutput>
     -- Starts generating a report of the file metadata currently cached by an S3 File Gateway for a specific file share. You can use this report to identify and resolve
     -- issues if you have files failing upload from your gateway to Amazon S3. The report
     -- is a CSV file containing a list of files which match the set of filter parameters you
@@ -610,7 +614,7 @@ local record Client
     -- starts.
     -- You must specify at least one value for InclusionFilters or
     -- ExclusionFilters in the request.
-    startCacheReport: function(Client, types.StartCacheReportInput): types.StartCacheReportOutput, table
+    startCacheReport: function(Client, types.StartCacheReportInput): Operation<types.StartCacheReportOutput>
     -- Starts a gateway that you previously shut down (see ShutdownGateway).
     -- After the gateway starts, you can then make other API calls, your applications can read
     -- from or write to the gateway's storage volumes and you will be able to take snapshot
@@ -620,13 +624,13 @@ local record Client
     -- additional API calls. For more information, see ActivateGateway.
     -- To specify which gateway to start, use the Amazon Resource Name (ARN) of the gateway in
     -- your request.
-    startGateway: function(Client, types.StartGatewayInput): types.StartGatewayOutput, table
+    startGateway: function(Client, types.StartGatewayInput): Operation<types.StartGatewayOutput>
     -- Updates the automatic tape creation policy of a gateway. Use this to update the policy
     -- with a new set of automatic tape creation rules. This is only supported for tape
     -- gateways.
     -- By default, there is no automatic tape creation policy.
     -- A gateway can have only one automatic tape creation policy.
-    updateAutomaticTapeCreationPolicy: function(Client, types.UpdateAutomaticTapeCreationPolicyInput): types.UpdateAutomaticTapeCreationPolicyOutput, table
+    updateAutomaticTapeCreationPolicy: function(Client, types.UpdateAutomaticTapeCreationPolicyInput): Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
     -- Updates the bandwidth rate limits of a gateway. You can update both the upload and
     -- download bandwidth rate limit or specify only one of the two. If you don't set a
     -- bandwidth rate limit, the existing rate limit remains. This operation is supported only for
@@ -637,31 +641,31 @@ local record Client
     -- potentially use the maximum available bandwidth.
     -- To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in
     -- your request.
-    updateBandwidthRateLimit: function(Client, types.UpdateBandwidthRateLimitInput): types.UpdateBandwidthRateLimitOutput, table
+    updateBandwidthRateLimit: function(Client, types.UpdateBandwidthRateLimitInput): Operation<types.UpdateBandwidthRateLimitOutput>
     -- Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways
     -- do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in
     -- effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This
     -- operation is supported for volume, tape, and S3 file gateways. S3 file gateways support
     -- bandwidth rate limits for upload only. FSx file gateways do not support bandwidth rate
     -- limits.
-    updateBandwidthRateLimitSchedule: function(Client, types.UpdateBandwidthRateLimitScheduleInput): types.UpdateBandwidthRateLimitScheduleOutput, table
+    updateBandwidthRateLimitSchedule: function(Client, types.UpdateBandwidthRateLimitScheduleInput): Operation<types.UpdateBandwidthRateLimitScheduleOutput>
     -- Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a
     -- specified iSCSI target. By default, a gateway does not have CHAP enabled; however, for
     -- added security, you might use it. This operation is supported in the volume and tape
     -- gateway types.
     -- When you update CHAP credentials, all existing connections on the target are closed
     -- and initiators must reconnect with the new credentials.
-    updateChapCredentials: function(Client, types.UpdateChapCredentialsInput): types.UpdateChapCredentialsOutput, table
+    updateChapCredentials: function(Client, types.UpdateChapCredentialsInput): Operation<types.UpdateChapCredentialsOutput>
     -- Updates a file system association. This operation is only supported in the FSx File
     -- Gateways.
-    updateFileSystemAssociation: function(Client, types.UpdateFileSystemAssociationInput): types.UpdateFileSystemAssociationOutput, table
+    updateFileSystemAssociation: function(Client, types.UpdateFileSystemAssociationInput): Operation<types.UpdateFileSystemAssociationOutput>
     -- Updates a gateway's metadata, which includes the gateway's name, time zone,
     -- and metadata cache size. To specify which gateway to update, use the Amazon Resource Name
     -- (ARN) of the gateway in your request.
     -- For gateways activated after September 2, 2015, the gateway's ARN contains the
     -- gateway ID rather than the gateway name. However, changing the name of the gateway has
     -- no effect on the gateway's ARN.
-    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput): types.UpdateGatewayInformationOutput, table
+    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput): Operation<types.UpdateGatewayInformationOutput>
     -- Updates the gateway virtual machine (VM) software. The request immediately triggers the
     -- software update.
     -- When you make this request, you get a 200 OK success response
@@ -672,7 +676,7 @@ local record Client
     -- chance of any disruption to your applications by increasing your iSCSI Initiators'
     -- timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and
     -- Linux, see Customizing your Windows iSCSI settings and Customizing your Linux iSCSI settings, respectively.
-    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput): types.UpdateGatewaySoftwareNowOutput, table
+    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput): Operation<types.UpdateGatewaySoftwareNowOutput>
     -- Updates a gateway's maintenance window schedule, with settings for monthly or
     -- weekly cadence, specific day and time to begin maintenance, and which types of updates to
     -- apply. Time configuration uses the gateway's time zone. You can pass values for a complete
@@ -687,7 +691,7 @@ local record Client
     -- We recommend keeping maintenance updates turned on, except in specific use cases
     -- where the brief disruptions caused by updating the gateway could critically impact your
     -- deployment.
-    updateMaintenanceStartTime: function(Client, types.UpdateMaintenanceStartTimeInput): types.UpdateMaintenanceStartTimeOutput, table
+    updateMaintenanceStartTime: function(Client, types.UpdateMaintenanceStartTimeInput): Operation<types.UpdateMaintenanceStartTimeOutput>
     -- Updates a Network File System (NFS) file share. This operation is only supported in S3
     -- File Gateways.
     -- To leave a file share field unchanged, set the corresponding input field to
@@ -698,7 +702,7 @@ local record Client
     -- Allowed NFS clients for your file share
     -- Squash settings
     -- Write status of your file share
-    updateNFSFileShare: function(Client, types.UpdateNFSFileShareInput): types.UpdateNFSFileShareOutput, table
+    updateNFSFileShare: function(Client, types.UpdateNFSFileShareInput): Operation<types.UpdateNFSFileShareOutput>
     -- Updates a Server Message Block (SMB) file share. This operation is only supported for S3
     -- File Gateways.
     -- To leave a file share field unchanged, set the corresponding input field to
@@ -712,20 +716,20 @@ local record Client
     -- Identity and Access Management User Guide.
     -- File gateways don't support creating hard or symbolic links on a file
     -- share.
-    updateSMBFileShare: function(Client, types.UpdateSMBFileShareInput): types.UpdateSMBFileShareOutput, table
+    updateSMBFileShare: function(Client, types.UpdateSMBFileShareInput): Operation<types.UpdateSMBFileShareOutput>
     -- Controls whether the shares on an S3 File Gateway are visible in a net view or browse
     -- list. The operation is only supported for S3 File Gateways.
-    updateSMBFileShareVisibility: function(Client, types.UpdateSMBFileShareVisibilityInput): types.UpdateSMBFileShareVisibilityOutput, table
+    updateSMBFileShareVisibility: function(Client, types.UpdateSMBFileShareVisibilityInput): Operation<types.UpdateSMBFileShareVisibilityOutput>
     -- Updates the list of Active Directory users and groups that have special permissions for
     -- SMB file shares on the gateway.
-    updateSMBLocalGroups: function(Client, types.UpdateSMBLocalGroupsInput): types.UpdateSMBLocalGroupsOutput, table
+    updateSMBLocalGroups: function(Client, types.UpdateSMBLocalGroupsInput): Operation<types.UpdateSMBLocalGroupsOutput>
     -- Updates the SMB security strategy level for an Amazon S3 file gateway. This
     -- action is only supported for Amazon S3 file gateways.
     -- For information about configuring this setting using the Amazon Web Services console,
     -- see Setting a security level for your gateway in the Amazon S3
     -- File Gateway User Guide.
     -- A higher security strategy level can affect performance of the gateway.
-    updateSMBSecurityStrategy: function(Client, types.UpdateSMBSecurityStrategyInput): types.UpdateSMBSecurityStrategyOutput, table
+    updateSMBSecurityStrategy: function(Client, types.UpdateSMBSecurityStrategyInput): Operation<types.UpdateSMBSecurityStrategyOutput>
     -- Updates a snapshot schedule configured for a gateway volume. This operation is only
     -- supported in the cached volume and stored volume gateway types.
     -- The default snapshot schedule for volume is once every 24 hours, starting at the
@@ -734,12 +738,12 @@ local record Client
     -- In the request you must identify the gateway volume whose snapshot schedule you want to
     -- update, and the schedule information, including when you want the snapshot to begin on a
     -- day and the frequency (in hours) of snapshots.
-    updateSnapshotSchedule: function(Client, types.UpdateSnapshotScheduleInput): types.UpdateSnapshotScheduleOutput, table
+    updateSnapshotSchedule: function(Client, types.UpdateSnapshotScheduleInput): Operation<types.UpdateSnapshotScheduleOutput>
     -- Updates the type of medium changer in a tape gateway. When you activate a tape gateway,
     -- you select a medium changer type for the tape gateway. This operation enables you to select
     -- a different type of medium changer after a tape gateway is activated. This operation is
     -- only supported in the tape gateway type.
-    updateVTLDeviceType: function(Client, types.UpdateVTLDeviceTypeInput): types.UpdateVTLDeviceTypeOutput, table
+    updateVTLDeviceType: function(Client, types.UpdateVTLDeviceTypeInput): Operation<types.UpdateVTLDeviceTypeOutput>
 end
 
 local record M

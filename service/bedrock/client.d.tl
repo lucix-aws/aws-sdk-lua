@@ -2,209 +2,213 @@
 
 local types = require("bedrock.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes a batch of evaluation jobs. An evaluation job can only be deleted if it has following status FAILED, COMPLETED, and STOPPED. You can request up to 25 model evaluation jobs be deleted in a single request.
-    batchDeleteEvaluationJob: function(Client, types.BatchDeleteEvaluationJobInput): types.BatchDeleteEvaluationJobOutput, table
+    batchDeleteEvaluationJob: function(Client, types.BatchDeleteEvaluationJobInput): Operation<types.BatchDeleteEvaluationJobOutput>
     -- Cancels a running Automated Reasoning policy build workflow. This stops the policy generation process and prevents further processing of the source documents.
-    cancelAutomatedReasoningPolicyBuildWorkflow: function(Client, types.CancelAutomatedReasoningPolicyBuildWorkflowInput): types.CancelAutomatedReasoningPolicyBuildWorkflowOutput, table
+    cancelAutomatedReasoningPolicyBuildWorkflow: function(Client, types.CancelAutomatedReasoningPolicyBuildWorkflowInput): Operation<types.CancelAutomatedReasoningPolicyBuildWorkflowOutput>
     -- Creates an Automated Reasoning policy for Amazon Bedrock Guardrails. Automated Reasoning policies use mathematical techniques to detect hallucinations, suggest corrections, and highlight unstated assumptions in the responses of your GenAI application. To create a policy, you upload a source document that describes the rules that you're encoding. Automated Reasoning extracts important concepts from the source document that will become variables in the policy and infers policy rules.
-    createAutomatedReasoningPolicy: function(Client, types.CreateAutomatedReasoningPolicyInput): types.CreateAutomatedReasoningPolicyOutput, table
+    createAutomatedReasoningPolicy: function(Client, types.CreateAutomatedReasoningPolicyInput): Operation<types.CreateAutomatedReasoningPolicyOutput>
     -- Creates a test for an Automated Reasoning policy. Tests validate that your policy works as expected by providing sample inputs and expected outcomes. Use tests to verify policy behavior before deploying to production.
-    createAutomatedReasoningPolicyTestCase: function(Client, types.CreateAutomatedReasoningPolicyTestCaseInput): types.CreateAutomatedReasoningPolicyTestCaseOutput, table
+    createAutomatedReasoningPolicyTestCase: function(Client, types.CreateAutomatedReasoningPolicyTestCaseInput): Operation<types.CreateAutomatedReasoningPolicyTestCaseOutput>
     -- Creates a new version of an existing Automated Reasoning policy. This allows you to iterate on your policy rules while maintaining previous versions for rollback or comparison purposes.
-    createAutomatedReasoningPolicyVersion: function(Client, types.CreateAutomatedReasoningPolicyVersionInput): types.CreateAutomatedReasoningPolicyVersionOutput, table
+    createAutomatedReasoningPolicyVersion: function(Client, types.CreateAutomatedReasoningPolicyVersionInput): Operation<types.CreateAutomatedReasoningPolicyVersionOutput>
     -- Creates a new custom model in Amazon Bedrock. After the model is active, you can use it for inference. To use the model for inference, you must purchase Provisioned Throughput for it. You can't use On-demand inference with these custom models. For more information about Provisioned Throughput, see Provisioned Throughput. The model appears in ListCustomModels with a customizationType of imported. To track the status of the new model, you use the GetCustomModel API operation. The model can be in the following states: Creating - Initial state during validation and registration Active - Model is ready for use in inference Failed - Creation process encountered an error Related APIs GetCustomModel ListCustomModels DeleteCustomModel
-    createCustomModel: function(Client, types.CreateCustomModelInput): types.CreateCustomModelOutput, table
+    createCustomModel: function(Client, types.CreateCustomModelInput): Operation<types.CreateCustomModelOutput>
     -- Deploys a custom model for on-demand inference in Amazon Bedrock. After you deploy your custom model, you use the deployment's Amazon Resource Name (ARN) as the modelId parameter when you submit prompts and generate responses with model inference. For more information about setting up on-demand inference for custom models, see Set up inference for a custom model. The following actions are related to the CreateCustomModelDeployment operation: GetCustomModelDeployment ListCustomModelDeployments DeleteCustomModelDeployment
-    createCustomModelDeployment: function(Client, types.CreateCustomModelDeploymentInput): types.CreateCustomModelDeploymentOutput, table
+    createCustomModelDeployment: function(Client, types.CreateCustomModelDeploymentInput): Operation<types.CreateCustomModelDeploymentOutput>
     -- Creates an evaluation job.
-    createEvaluationJob: function(Client, types.CreateEvaluationJobInput): types.CreateEvaluationJobOutput, table
+    createEvaluationJob: function(Client, types.CreateEvaluationJobInput): Operation<types.CreateEvaluationJobOutput>
     -- Request a model access agreement for the specified model.
-    createFoundationModelAgreement: function(Client, types.CreateFoundationModelAgreementInput): types.CreateFoundationModelAgreementOutput, table
+    createFoundationModelAgreement: function(Client, types.CreateFoundationModelAgreementInput): Operation<types.CreateFoundationModelAgreementOutput>
     -- Creates a guardrail to block topics and to implement safeguards for your generative AI applications. You can configure the following policies in a guardrail to avoid undesirable and harmful content, filter out denied topics and words, and remove sensitive information for privacy protection. Content filters - Adjust filter strengths to block input prompts or model responses containing harmful content. Denied topics - Define a set of topics that are undesirable in the context of your application. These topics will be blocked if detected in user queries or model responses. Word filters - Configure filters to block undesirable words, phrases, and profanity. Such words can include offensive terms, competitor names etc. Sensitive information filters - Block or mask sensitive information such as personally identifiable information (PII) or custom regex in user inputs and model responses. In addition to the above policies, you can also configure the messages to be returned to the user if a user input or model response is in violation of the policies defined in the guardrail. For more information, see Amazon Bedrock Guardrails in the Amazon Bedrock User Guide.
-    createGuardrail: function(Client, types.CreateGuardrailInput): types.CreateGuardrailOutput, table
+    createGuardrail: function(Client, types.CreateGuardrailInput): Operation<types.CreateGuardrailOutput>
     -- Creates a version of the guardrail. Use this API to create a snapshot of the guardrail when you are satisfied with a configuration, or to compare the configuration with another version.
-    createGuardrailVersion: function(Client, types.CreateGuardrailVersionInput): types.CreateGuardrailVersionOutput, table
+    createGuardrailVersion: function(Client, types.CreateGuardrailVersionInput): Operation<types.CreateGuardrailVersionOutput>
     -- Creates an application inference profile to track metrics and costs when invoking a model. To create an application inference profile for a foundation model in one region, specify the ARN of the model in that region. To create an application inference profile for a foundation model across multiple regions, specify the ARN of the system-defined inference profile that contains the regions that you want to route requests to. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide.
-    createInferenceProfile: function(Client, types.CreateInferenceProfileInput): types.CreateInferenceProfileOutput, table
+    createInferenceProfile: function(Client, types.CreateInferenceProfileInput): Operation<types.CreateInferenceProfileOutput>
     -- Creates an endpoint for a model from Amazon Bedrock Marketplace. The endpoint is hosted by Amazon SageMaker.
-    createMarketplaceModelEndpoint: function(Client, types.CreateMarketplaceModelEndpointInput): types.CreateMarketplaceModelEndpointOutput, table
+    createMarketplaceModelEndpoint: function(Client, types.CreateMarketplaceModelEndpointInput): Operation<types.CreateMarketplaceModelEndpointOutput>
     -- Copies a model to another region so that it can be used there. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide.
-    createModelCopyJob: function(Client, types.CreateModelCopyJobInput): types.CreateModelCopyJobOutput, table
+    createModelCopyJob: function(Client, types.CreateModelCopyJobInput): Operation<types.CreateModelCopyJobOutput>
     -- Creates a fine-tuning job to customize a base model. You specify the base foundation model and the location of the training data. After the model-customization job completes successfully, your custom model resource will be ready to use. Amazon Bedrock returns validation loss metrics and output generations after the job completes. For information on the format of training and validation data, see Prepare the datasets. Model-customization jobs are asynchronous and the completion time depends on the base model and the training/validation data size. To monitor a job, use the GetModelCustomizationJob operation to retrieve the job status. For more information, see Custom models in the Amazon Bedrock User Guide.
-    createModelCustomizationJob: function(Client, types.CreateModelCustomizationJobInput): types.CreateModelCustomizationJobOutput, table
+    createModelCustomizationJob: function(Client, types.CreateModelCustomizationJobInput): Operation<types.CreateModelCustomizationJobOutput>
     -- Creates a model import job to import model that you have customized in other environments, such as Amazon SageMaker. For more information, see Import a customized model
-    createModelImportJob: function(Client, types.CreateModelImportJobInput): types.CreateModelImportJobOutput, table
+    createModelImportJob: function(Client, types.CreateModelImportJobInput): Operation<types.CreateModelImportJobOutput>
     -- Creates a batch inference job to invoke a model on multiple prompts. Format your data according to Format your inference data and upload it to an Amazon S3 bucket. For more information, see Process multiple prompts with batch inference. The response returns a jobArn that you can use to stop or get details about the job.
-    createModelInvocationJob: function(Client, types.CreateModelInvocationJobInput): types.CreateModelInvocationJobOutput, table
+    createModelInvocationJob: function(Client, types.CreateModelInvocationJobInput): Operation<types.CreateModelInvocationJobOutput>
     -- Creates a prompt router that manages the routing of requests between multiple foundation models based on the routing criteria.
-    createPromptRouter: function(Client, types.CreatePromptRouterInput): types.CreatePromptRouterOutput, table
+    createPromptRouter: function(Client, types.CreatePromptRouterInput): Operation<types.CreatePromptRouterOutput>
     -- Creates dedicated throughput for a base or custom model with the model units and for the duration that you specify. For pricing details, see Amazon Bedrock Pricing. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide.
-    createProvisionedModelThroughput: function(Client, types.CreateProvisionedModelThroughputInput): types.CreateProvisionedModelThroughputOutput, table
+    createProvisionedModelThroughput: function(Client, types.CreateProvisionedModelThroughputInput): Operation<types.CreateProvisionedModelThroughputOutput>
     -- Deletes an Automated Reasoning policy or policy version. This operation is idempotent. If you delete a policy more than once, each call succeeds. Deleting a policy removes it permanently and cannot be undone.
-    deleteAutomatedReasoningPolicy: function(Client, types.DeleteAutomatedReasoningPolicyInput): types.DeleteAutomatedReasoningPolicyOutput, table
+    deleteAutomatedReasoningPolicy: function(Client, types.DeleteAutomatedReasoningPolicyInput): Operation<types.DeleteAutomatedReasoningPolicyOutput>
     -- Deletes an Automated Reasoning policy build workflow and its associated artifacts. This permanently removes the workflow history and any generated assets.
-    deleteAutomatedReasoningPolicyBuildWorkflow: function(Client, types.DeleteAutomatedReasoningPolicyBuildWorkflowInput): types.DeleteAutomatedReasoningPolicyBuildWorkflowOutput, table
+    deleteAutomatedReasoningPolicyBuildWorkflow: function(Client, types.DeleteAutomatedReasoningPolicyBuildWorkflowInput): Operation<types.DeleteAutomatedReasoningPolicyBuildWorkflowOutput>
     -- Deletes an Automated Reasoning policy test. This operation is idempotent; if you delete a test more than once, each call succeeds.
-    deleteAutomatedReasoningPolicyTestCase: function(Client, types.DeleteAutomatedReasoningPolicyTestCaseInput): types.DeleteAutomatedReasoningPolicyTestCaseOutput, table
+    deleteAutomatedReasoningPolicyTestCase: function(Client, types.DeleteAutomatedReasoningPolicyTestCaseInput): Operation<types.DeleteAutomatedReasoningPolicyTestCaseOutput>
     -- Deletes a custom model that you created earlier. For more information, see Custom models in the Amazon Bedrock User Guide.
-    deleteCustomModel: function(Client, types.DeleteCustomModelInput): types.DeleteCustomModelOutput, table
+    deleteCustomModel: function(Client, types.DeleteCustomModelInput): Operation<types.DeleteCustomModelOutput>
     -- Deletes a custom model deployment. This operation stops the deployment and removes it from your account. After deletion, the deployment ARN can no longer be used for inference requests. The following actions are related to the DeleteCustomModelDeployment operation: CreateCustomModelDeployment GetCustomModelDeployment ListCustomModelDeployments
-    deleteCustomModelDeployment: function(Client, types.DeleteCustomModelDeploymentInput): types.DeleteCustomModelDeploymentOutput, table
+    deleteCustomModelDeployment: function(Client, types.DeleteCustomModelDeploymentInput): Operation<types.DeleteCustomModelDeploymentOutput>
     -- Deletes the account-level enforced guardrail configuration.
-    deleteEnforcedGuardrailConfiguration: function(Client, types.DeleteEnforcedGuardrailConfigurationInput): types.DeleteEnforcedGuardrailConfigurationOutput, table
+    deleteEnforcedGuardrailConfiguration: function(Client, types.DeleteEnforcedGuardrailConfigurationInput): Operation<types.DeleteEnforcedGuardrailConfigurationOutput>
     -- Delete the model access agreement for the specified model.
-    deleteFoundationModelAgreement: function(Client, types.DeleteFoundationModelAgreementInput): types.DeleteFoundationModelAgreementOutput, table
+    deleteFoundationModelAgreement: function(Client, types.DeleteFoundationModelAgreementInput): Operation<types.DeleteFoundationModelAgreementOutput>
     -- Deletes a guardrail. To delete a guardrail, only specify the ARN of the guardrail in the guardrailIdentifier field. If you delete a guardrail, all of its versions will be deleted. To delete a version of a guardrail, specify the ARN of the guardrail in the guardrailIdentifier field and the version in the guardrailVersion field.
-    deleteGuardrail: function(Client, types.DeleteGuardrailInput): types.DeleteGuardrailOutput, table
+    deleteGuardrail: function(Client, types.DeleteGuardrailInput): Operation<types.DeleteGuardrailOutput>
     -- Deletes a custom model that you imported earlier. For more information, see Import a customized model in the Amazon Bedrock User Guide.
-    deleteImportedModel: function(Client, types.DeleteImportedModelInput): types.DeleteImportedModelOutput, table
+    deleteImportedModel: function(Client, types.DeleteImportedModelInput): Operation<types.DeleteImportedModelOutput>
     -- Deletes an application inference profile. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide.
-    deleteInferenceProfile: function(Client, types.DeleteInferenceProfileInput): types.DeleteInferenceProfileOutput, table
+    deleteInferenceProfile: function(Client, types.DeleteInferenceProfileInput): Operation<types.DeleteInferenceProfileOutput>
     -- Deletes an endpoint for a model from Amazon Bedrock Marketplace.
-    deleteMarketplaceModelEndpoint: function(Client, types.DeleteMarketplaceModelEndpointInput): types.DeleteMarketplaceModelEndpointOutput, table
+    deleteMarketplaceModelEndpoint: function(Client, types.DeleteMarketplaceModelEndpointInput): Operation<types.DeleteMarketplaceModelEndpointOutput>
     -- Delete the invocation logging.
-    deleteModelInvocationLoggingConfiguration: function(Client, types.DeleteModelInvocationLoggingConfigurationInput): types.DeleteModelInvocationLoggingConfigurationOutput, table
+    deleteModelInvocationLoggingConfiguration: function(Client, types.DeleteModelInvocationLoggingConfigurationInput): Operation<types.DeleteModelInvocationLoggingConfigurationOutput>
     -- Deletes a specified prompt router. This action cannot be undone.
-    deletePromptRouter: function(Client, types.DeletePromptRouterInput): types.DeletePromptRouterOutput, table
+    deletePromptRouter: function(Client, types.DeletePromptRouterInput): Operation<types.DeletePromptRouterOutput>
     -- Deletes a Provisioned Throughput. You can't delete a Provisioned Throughput before the commitment term is over. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide.
-    deleteProvisionedModelThroughput: function(Client, types.DeleteProvisionedModelThroughputInput): types.DeleteProvisionedModelThroughputOutput, table
+    deleteProvisionedModelThroughput: function(Client, types.DeleteProvisionedModelThroughputInput): Operation<types.DeleteProvisionedModelThroughputOutput>
     -- Deletes a previously created Bedrock resource policy.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deregisters an endpoint for a model from Amazon Bedrock Marketplace. This operation removes the endpoint's association with Amazon Bedrock but does not delete the underlying Amazon SageMaker endpoint.
-    deregisterMarketplaceModelEndpoint: function(Client, types.DeregisterMarketplaceModelEndpointInput): types.DeregisterMarketplaceModelEndpointOutput, table
+    deregisterMarketplaceModelEndpoint: function(Client, types.DeregisterMarketplaceModelEndpointInput): Operation<types.DeregisterMarketplaceModelEndpointOutput>
     -- Exports the policy definition for an Automated Reasoning policy version. Returns the complete policy definition including rules, variables, and custom variable types in a structured format.
-    exportAutomatedReasoningPolicyVersion: function(Client, types.ExportAutomatedReasoningPolicyVersionInput): types.ExportAutomatedReasoningPolicyVersionOutput, table
+    exportAutomatedReasoningPolicyVersion: function(Client, types.ExportAutomatedReasoningPolicyVersionInput): Operation<types.ExportAutomatedReasoningPolicyVersionOutput>
     -- Retrieves details about an Automated Reasoning policy or policy version. Returns information including the policy definition, metadata, and timestamps.
-    getAutomatedReasoningPolicy: function(Client, types.GetAutomatedReasoningPolicyInput): types.GetAutomatedReasoningPolicyOutput, table
+    getAutomatedReasoningPolicy: function(Client, types.GetAutomatedReasoningPolicyInput): Operation<types.GetAutomatedReasoningPolicyOutput>
     -- Retrieves the current annotations for an Automated Reasoning policy build workflow. Annotations contain corrections to the rules, variables and types to be applied to the policy.
-    getAutomatedReasoningPolicyAnnotations: function(Client, types.GetAutomatedReasoningPolicyAnnotationsInput): types.GetAutomatedReasoningPolicyAnnotationsOutput, table
+    getAutomatedReasoningPolicyAnnotations: function(Client, types.GetAutomatedReasoningPolicyAnnotationsInput): Operation<types.GetAutomatedReasoningPolicyAnnotationsOutput>
     -- Retrieves detailed information about an Automated Reasoning policy build workflow, including its status, configuration, and metadata.
-    getAutomatedReasoningPolicyBuildWorkflow: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowInput): types.GetAutomatedReasoningPolicyBuildWorkflowOutput, table
+    getAutomatedReasoningPolicyBuildWorkflow: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowInput): Operation<types.GetAutomatedReasoningPolicyBuildWorkflowOutput>
     -- Retrieves the resulting assets from a completed Automated Reasoning policy build workflow, including build logs, quality reports, and generated policy artifacts.
-    getAutomatedReasoningPolicyBuildWorkflowResultAssets: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput): types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput, table
+    getAutomatedReasoningPolicyBuildWorkflowResultAssets: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput): Operation<types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput>
     -- Retrieves the next test scenario for validating an Automated Reasoning policy. This is used during the interactive policy refinement process to test policy behavior.
-    getAutomatedReasoningPolicyNextScenario: function(Client, types.GetAutomatedReasoningPolicyNextScenarioInput): types.GetAutomatedReasoningPolicyNextScenarioOutput, table
+    getAutomatedReasoningPolicyNextScenario: function(Client, types.GetAutomatedReasoningPolicyNextScenarioInput): Operation<types.GetAutomatedReasoningPolicyNextScenarioOutput>
     -- Retrieves details about a specific Automated Reasoning policy test.
-    getAutomatedReasoningPolicyTestCase: function(Client, types.GetAutomatedReasoningPolicyTestCaseInput): types.GetAutomatedReasoningPolicyTestCaseOutput, table
+    getAutomatedReasoningPolicyTestCase: function(Client, types.GetAutomatedReasoningPolicyTestCaseInput): Operation<types.GetAutomatedReasoningPolicyTestCaseOutput>
     -- Retrieves the test result for a specific Automated Reasoning policy test. Returns detailed validation findings and execution status.
-    getAutomatedReasoningPolicyTestResult: function(Client, types.GetAutomatedReasoningPolicyTestResultInput): types.GetAutomatedReasoningPolicyTestResultOutput, table
+    getAutomatedReasoningPolicyTestResult: function(Client, types.GetAutomatedReasoningPolicyTestResultInput): Operation<types.GetAutomatedReasoningPolicyTestResultOutput>
     -- Get the properties associated with a Amazon Bedrock custom model that you have created. For more information, see Custom models in the Amazon Bedrock User Guide.
-    getCustomModel: function(Client, types.GetCustomModelInput): types.GetCustomModelOutput, table
+    getCustomModel: function(Client, types.GetCustomModelInput): Operation<types.GetCustomModelOutput>
     -- Retrieves information about a custom model deployment, including its status, configuration, and metadata. Use this operation to monitor the deployment status and retrieve details needed for inference requests. The following actions are related to the GetCustomModelDeployment operation: CreateCustomModelDeployment ListCustomModelDeployments DeleteCustomModelDeployment
-    getCustomModelDeployment: function(Client, types.GetCustomModelDeploymentInput): types.GetCustomModelDeploymentOutput, table
+    getCustomModelDeployment: function(Client, types.GetCustomModelDeploymentInput): Operation<types.GetCustomModelDeploymentOutput>
     -- Gets information about an evaluation job, such as the status of the job.
-    getEvaluationJob: function(Client, types.GetEvaluationJobInput): types.GetEvaluationJobOutput, table
+    getEvaluationJob: function(Client, types.GetEvaluationJobInput): Operation<types.GetEvaluationJobOutput>
     -- Get details about a Amazon Bedrock foundation model.
-    getFoundationModel: function(Client, types.GetFoundationModelInput): types.GetFoundationModelOutput, table
+    getFoundationModel: function(Client, types.GetFoundationModelInput): Operation<types.GetFoundationModelOutput>
     -- Get information about the Foundation model availability.
-    getFoundationModelAvailability: function(Client, types.GetFoundationModelAvailabilityInput): types.GetFoundationModelAvailabilityOutput, table
+    getFoundationModelAvailability: function(Client, types.GetFoundationModelAvailabilityInput): Operation<types.GetFoundationModelAvailabilityOutput>
     -- Gets details about a guardrail. If you don't specify a version, the response returns details for the DRAFT version.
-    getGuardrail: function(Client, types.GetGuardrailInput): types.GetGuardrailOutput, table
+    getGuardrail: function(Client, types.GetGuardrailInput): Operation<types.GetGuardrailOutput>
     -- Gets properties associated with a customized model you imported.
-    getImportedModel: function(Client, types.GetImportedModelInput): types.GetImportedModelOutput, table
+    getImportedModel: function(Client, types.GetImportedModelInput): Operation<types.GetImportedModelOutput>
     -- Gets information about an inference profile. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide.
-    getInferenceProfile: function(Client, types.GetInferenceProfileInput): types.GetInferenceProfileOutput, table
+    getInferenceProfile: function(Client, types.GetInferenceProfileInput): Operation<types.GetInferenceProfileOutput>
     -- Retrieves details about a specific endpoint for a model from Amazon Bedrock Marketplace.
-    getMarketplaceModelEndpoint: function(Client, types.GetMarketplaceModelEndpointInput): types.GetMarketplaceModelEndpointOutput, table
+    getMarketplaceModelEndpoint: function(Client, types.GetMarketplaceModelEndpointInput): Operation<types.GetMarketplaceModelEndpointOutput>
     -- Retrieves information about a model copy job. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide.
-    getModelCopyJob: function(Client, types.GetModelCopyJobInput): types.GetModelCopyJobOutput, table
+    getModelCopyJob: function(Client, types.GetModelCopyJobInput): Operation<types.GetModelCopyJobOutput>
     -- Retrieves the properties associated with a model-customization job, including the status of the job. For more information, see Custom models in the Amazon Bedrock User Guide.
-    getModelCustomizationJob: function(Client, types.GetModelCustomizationJobInput): types.GetModelCustomizationJobOutput, table
+    getModelCustomizationJob: function(Client, types.GetModelCustomizationJobInput): Operation<types.GetModelCustomizationJobOutput>
     -- Retrieves the properties associated with import model job, including the status of the job. For more information, see Import a customized model in the Amazon Bedrock User Guide.
-    getModelImportJob: function(Client, types.GetModelImportJobInput): types.GetModelImportJobOutput, table
+    getModelImportJob: function(Client, types.GetModelImportJobInput): Operation<types.GetModelImportJobOutput>
     -- Gets details about a batch inference job. For more information, see Monitor batch inference jobs
-    getModelInvocationJob: function(Client, types.GetModelInvocationJobInput): types.GetModelInvocationJobOutput, table
+    getModelInvocationJob: function(Client, types.GetModelInvocationJobInput): Operation<types.GetModelInvocationJobOutput>
     -- Get the current configuration values for model invocation logging.
-    getModelInvocationLoggingConfiguration: function(Client, types.GetModelInvocationLoggingConfigurationInput): types.GetModelInvocationLoggingConfigurationOutput, table
+    getModelInvocationLoggingConfiguration: function(Client, types.GetModelInvocationLoggingConfigurationInput): Operation<types.GetModelInvocationLoggingConfigurationOutput>
     -- Retrieves details about a prompt router.
-    getPromptRouter: function(Client, types.GetPromptRouterInput): types.GetPromptRouterOutput, table
+    getPromptRouter: function(Client, types.GetPromptRouterInput): Operation<types.GetPromptRouterOutput>
     -- Returns details for a Provisioned Throughput. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide.
-    getProvisionedModelThroughput: function(Client, types.GetProvisionedModelThroughputInput): types.GetProvisionedModelThroughputOutput, table
+    getProvisionedModelThroughput: function(Client, types.GetProvisionedModelThroughputInput): Operation<types.GetProvisionedModelThroughputOutput>
     -- Gets the resource policy document for a Bedrock resource
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Get usecase for model access.
-    getUseCaseForModelAccess: function(Client, types.GetUseCaseForModelAccessInput): types.GetUseCaseForModelAccessOutput, table
+    getUseCaseForModelAccess: function(Client, types.GetUseCaseForModelAccessInput): Operation<types.GetUseCaseForModelAccessOutput>
     -- Lists all Automated Reasoning policies in your account, with optional filtering by policy ARN. This helps you manage and discover existing policies.
-    listAutomatedReasoningPolicies: function(Client, types.ListAutomatedReasoningPoliciesInput): types.ListAutomatedReasoningPoliciesOutput, table
+    listAutomatedReasoningPolicies: function(Client, types.ListAutomatedReasoningPoliciesInput): Operation<types.ListAutomatedReasoningPoliciesOutput>
     -- Lists all build workflows for an Automated Reasoning policy, showing the history of policy creation and modification attempts.
-    listAutomatedReasoningPolicyBuildWorkflows: function(Client, types.ListAutomatedReasoningPolicyBuildWorkflowsInput): types.ListAutomatedReasoningPolicyBuildWorkflowsOutput, table
+    listAutomatedReasoningPolicyBuildWorkflows: function(Client, types.ListAutomatedReasoningPolicyBuildWorkflowsInput): Operation<types.ListAutomatedReasoningPolicyBuildWorkflowsOutput>
     -- Lists tests for an Automated Reasoning policy. We recommend using pagination to ensure that the operation returns quickly and successfully.
-    listAutomatedReasoningPolicyTestCases: function(Client, types.ListAutomatedReasoningPolicyTestCasesInput): types.ListAutomatedReasoningPolicyTestCasesOutput, table
+    listAutomatedReasoningPolicyTestCases: function(Client, types.ListAutomatedReasoningPolicyTestCasesInput): Operation<types.ListAutomatedReasoningPolicyTestCasesOutput>
     -- Lists test results for an Automated Reasoning policy, showing how the policy performed against various test scenarios and validation checks.
-    listAutomatedReasoningPolicyTestResults: function(Client, types.ListAutomatedReasoningPolicyTestResultsInput): types.ListAutomatedReasoningPolicyTestResultsOutput, table
+    listAutomatedReasoningPolicyTestResults: function(Client, types.ListAutomatedReasoningPolicyTestResultsInput): Operation<types.ListAutomatedReasoningPolicyTestResultsOutput>
     -- Lists custom model deployments in your account. You can filter the results by creation time, name, status, and associated model. Use this operation to manage and monitor your custom model deployments. We recommend using pagination to ensure that the operation returns quickly and successfully. The following actions are related to the ListCustomModelDeployments operation: CreateCustomModelDeployment GetCustomModelDeployment DeleteCustomModelDeployment
-    listCustomModelDeployments: function(Client, types.ListCustomModelDeploymentsInput): types.ListCustomModelDeploymentsOutput, table
+    listCustomModelDeployments: function(Client, types.ListCustomModelDeploymentsInput): Operation<types.ListCustomModelDeploymentsOutput>
     -- Returns a list of the custom models that you have created with the CreateModelCustomizationJob operation. For more information, see Custom models in the Amazon Bedrock User Guide.
-    listCustomModels: function(Client, types.ListCustomModelsInput): types.ListCustomModelsOutput, table
+    listCustomModels: function(Client, types.ListCustomModelsInput): Operation<types.ListCustomModelsOutput>
     -- Lists the account-level enforced guardrail configurations.
-    listEnforcedGuardrailsConfiguration: function(Client, types.ListEnforcedGuardrailsConfigurationInput): types.ListEnforcedGuardrailsConfigurationOutput, table
+    listEnforcedGuardrailsConfiguration: function(Client, types.ListEnforcedGuardrailsConfigurationInput): Operation<types.ListEnforcedGuardrailsConfigurationOutput>
     -- Lists all existing evaluation jobs.
-    listEvaluationJobs: function(Client, types.ListEvaluationJobsInput): types.ListEvaluationJobsOutput, table
+    listEvaluationJobs: function(Client, types.ListEvaluationJobsInput): Operation<types.ListEvaluationJobsOutput>
     -- Get the offers associated with the specified model.
-    listFoundationModelAgreementOffers: function(Client, types.ListFoundationModelAgreementOffersInput): types.ListFoundationModelAgreementOffersOutput, table
+    listFoundationModelAgreementOffers: function(Client, types.ListFoundationModelAgreementOffersInput): Operation<types.ListFoundationModelAgreementOffersOutput>
     -- Lists Amazon Bedrock foundation models that you can use. You can filter the results with the request parameters. For more information, see Foundation models in the Amazon Bedrock User Guide.
-    listFoundationModels: function(Client, types.ListFoundationModelsInput): types.ListFoundationModelsOutput, table
+    listFoundationModels: function(Client, types.ListFoundationModelsInput): Operation<types.ListFoundationModelsOutput>
     -- Lists details about all the guardrails in an account. To list the DRAFT version of all your guardrails, don't specify the guardrailIdentifier field. To list all versions of a guardrail, specify the ARN of the guardrail in the guardrailIdentifier field. You can set the maximum number of results to return in a response in the maxResults field. If there are more results than the number you set, the response returns a nextToken that you can send in another ListGuardrails request to see the next batch of results.
-    listGuardrails: function(Client, types.ListGuardrailsInput): types.ListGuardrailsOutput, table
+    listGuardrails: function(Client, types.ListGuardrailsInput): Operation<types.ListGuardrailsOutput>
     -- Returns a list of models you've imported. You can filter the results to return based on one or more criteria. For more information, see Import a customized model in the Amazon Bedrock User Guide.
-    listImportedModels: function(Client, types.ListImportedModelsInput): types.ListImportedModelsOutput, table
+    listImportedModels: function(Client, types.ListImportedModelsInput): Operation<types.ListImportedModelsOutput>
     -- Returns a list of inference profiles that you can use. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide.
-    listInferenceProfiles: function(Client, types.ListInferenceProfilesInput): types.ListInferenceProfilesOutput, table
+    listInferenceProfiles: function(Client, types.ListInferenceProfilesInput): Operation<types.ListInferenceProfilesOutput>
     -- Lists the endpoints for models from Amazon Bedrock Marketplace in your Amazon Web Services account.
-    listMarketplaceModelEndpoints: function(Client, types.ListMarketplaceModelEndpointsInput): types.ListMarketplaceModelEndpointsOutput, table
+    listMarketplaceModelEndpoints: function(Client, types.ListMarketplaceModelEndpointsInput): Operation<types.ListMarketplaceModelEndpointsOutput>
     -- Returns a list of model copy jobs that you have submitted. You can filter the jobs to return based on one or more criteria. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide.
-    listModelCopyJobs: function(Client, types.ListModelCopyJobsInput): types.ListModelCopyJobsOutput, table
+    listModelCopyJobs: function(Client, types.ListModelCopyJobsInput): Operation<types.ListModelCopyJobsOutput>
     -- Returns a list of model customization jobs that you have submitted. You can filter the jobs to return based on one or more criteria. For more information, see Custom models in the Amazon Bedrock User Guide.
-    listModelCustomizationJobs: function(Client, types.ListModelCustomizationJobsInput): types.ListModelCustomizationJobsOutput, table
+    listModelCustomizationJobs: function(Client, types.ListModelCustomizationJobsInput): Operation<types.ListModelCustomizationJobsOutput>
     -- Returns a list of import jobs you've submitted. You can filter the results to return based on one or more criteria. For more information, see Import a customized model in the Amazon Bedrock User Guide.
-    listModelImportJobs: function(Client, types.ListModelImportJobsInput): types.ListModelImportJobsOutput, table
+    listModelImportJobs: function(Client, types.ListModelImportJobsInput): Operation<types.ListModelImportJobsOutput>
     -- Lists all batch inference jobs in the account. For more information, see View details about a batch inference job.
-    listModelInvocationJobs: function(Client, types.ListModelInvocationJobsInput): types.ListModelInvocationJobsOutput, table
+    listModelInvocationJobs: function(Client, types.ListModelInvocationJobsInput): Operation<types.ListModelInvocationJobsOutput>
     -- Retrieves a list of prompt routers.
-    listPromptRouters: function(Client, types.ListPromptRoutersInput): types.ListPromptRoutersOutput, table
+    listPromptRouters: function(Client, types.ListPromptRoutersInput): Operation<types.ListPromptRoutersOutput>
     -- Lists the Provisioned Throughputs in the account. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide.
-    listProvisionedModelThroughputs: function(Client, types.ListProvisionedModelThroughputsInput): types.ListProvisionedModelThroughputsOutput, table
+    listProvisionedModelThroughputs: function(Client, types.ListProvisionedModelThroughputsInput): Operation<types.ListProvisionedModelThroughputsOutput>
     -- List the tags associated with the specified resource. For more information, see Tagging resources in the Amazon Bedrock User Guide.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Sets the account-level enforced guardrail configuration.
-    putEnforcedGuardrailConfiguration: function(Client, types.PutEnforcedGuardrailConfigurationInput): types.PutEnforcedGuardrailConfigurationOutput, table
+    putEnforcedGuardrailConfiguration: function(Client, types.PutEnforcedGuardrailConfigurationInput): Operation<types.PutEnforcedGuardrailConfigurationOutput>
     -- Set the configuration values for model invocation logging.
-    putModelInvocationLoggingConfiguration: function(Client, types.PutModelInvocationLoggingConfigurationInput): types.PutModelInvocationLoggingConfigurationOutput, table
+    putModelInvocationLoggingConfiguration: function(Client, types.PutModelInvocationLoggingConfigurationInput): Operation<types.PutModelInvocationLoggingConfigurationOutput>
     -- Adds a resource policy for a Bedrock resource.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Put usecase for model access.
-    putUseCaseForModelAccess: function(Client, types.PutUseCaseForModelAccessInput): types.PutUseCaseForModelAccessOutput, table
+    putUseCaseForModelAccess: function(Client, types.PutUseCaseForModelAccessInput): Operation<types.PutUseCaseForModelAccessOutput>
     -- Registers an existing Amazon SageMaker endpoint with Amazon Bedrock Marketplace, allowing it to be used with Amazon Bedrock APIs.
-    registerMarketplaceModelEndpoint: function(Client, types.RegisterMarketplaceModelEndpointInput): types.RegisterMarketplaceModelEndpointOutput, table
+    registerMarketplaceModelEndpoint: function(Client, types.RegisterMarketplaceModelEndpointInput): Operation<types.RegisterMarketplaceModelEndpointOutput>
     -- Starts a new build workflow for an Automated Reasoning policy. This initiates the process of analyzing source documents and generating policy rules, variables, and types.
-    startAutomatedReasoningPolicyBuildWorkflow: function(Client, types.StartAutomatedReasoningPolicyBuildWorkflowInput): types.StartAutomatedReasoningPolicyBuildWorkflowOutput, table
+    startAutomatedReasoningPolicyBuildWorkflow: function(Client, types.StartAutomatedReasoningPolicyBuildWorkflowInput): Operation<types.StartAutomatedReasoningPolicyBuildWorkflowOutput>
     -- Initiates a test workflow to validate Automated Reasoning policy tests. The workflow executes the specified tests against the policy and generates validation results.
-    startAutomatedReasoningPolicyTestWorkflow: function(Client, types.StartAutomatedReasoningPolicyTestWorkflowInput): types.StartAutomatedReasoningPolicyTestWorkflowOutput, table
+    startAutomatedReasoningPolicyTestWorkflow: function(Client, types.StartAutomatedReasoningPolicyTestWorkflowInput): Operation<types.StartAutomatedReasoningPolicyTestWorkflowOutput>
     -- Stops an evaluation job that is current being created or running.
-    stopEvaluationJob: function(Client, types.StopEvaluationJobInput): types.StopEvaluationJobOutput, table
+    stopEvaluationJob: function(Client, types.StopEvaluationJobInput): Operation<types.StopEvaluationJobOutput>
     -- Stops an active model customization job. For more information, see Custom models in the Amazon Bedrock User Guide.
-    stopModelCustomizationJob: function(Client, types.StopModelCustomizationJobInput): types.StopModelCustomizationJobOutput, table
+    stopModelCustomizationJob: function(Client, types.StopModelCustomizationJobInput): Operation<types.StopModelCustomizationJobOutput>
     -- Stops a batch inference job. You're only charged for tokens that were already processed. For more information, see Stop a batch inference job.
-    stopModelInvocationJob: function(Client, types.StopModelInvocationJobInput): types.StopModelInvocationJobOutput, table
+    stopModelInvocationJob: function(Client, types.StopModelInvocationJobInput): Operation<types.StopModelInvocationJobOutput>
     -- Associate tags with a resource. For more information, see Tagging resources in the Amazon Bedrock User Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Remove one or more tags from a resource. For more information, see Tagging resources in the Amazon Bedrock User Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing Automated Reasoning policy with new rules, variables, or configuration. This creates a new version of the policy while preserving the previous version.
-    updateAutomatedReasoningPolicy: function(Client, types.UpdateAutomatedReasoningPolicyInput): types.UpdateAutomatedReasoningPolicyOutput, table
+    updateAutomatedReasoningPolicy: function(Client, types.UpdateAutomatedReasoningPolicyInput): Operation<types.UpdateAutomatedReasoningPolicyOutput>
     -- Updates the annotations for an Automated Reasoning policy build workflow. This allows you to modify extracted rules, variables, and types before finalizing the policy.
-    updateAutomatedReasoningPolicyAnnotations: function(Client, types.UpdateAutomatedReasoningPolicyAnnotationsInput): types.UpdateAutomatedReasoningPolicyAnnotationsOutput, table
+    updateAutomatedReasoningPolicyAnnotations: function(Client, types.UpdateAutomatedReasoningPolicyAnnotationsInput): Operation<types.UpdateAutomatedReasoningPolicyAnnotationsOutput>
     -- Updates an existing Automated Reasoning policy test. You can modify the content, query, expected result, and confidence threshold.
-    updateAutomatedReasoningPolicyTestCase: function(Client, types.UpdateAutomatedReasoningPolicyTestCaseInput): types.UpdateAutomatedReasoningPolicyTestCaseOutput, table
+    updateAutomatedReasoningPolicyTestCase: function(Client, types.UpdateAutomatedReasoningPolicyTestCaseInput): Operation<types.UpdateAutomatedReasoningPolicyTestCaseOutput>
     -- Updates a custom model deployment with a new custom model. This allows you to deploy updated models without creating new deployment endpoints.
-    updateCustomModelDeployment: function(Client, types.UpdateCustomModelDeploymentInput): types.UpdateCustomModelDeploymentOutput, table
+    updateCustomModelDeployment: function(Client, types.UpdateCustomModelDeploymentInput): Operation<types.UpdateCustomModelDeploymentOutput>
     -- Updates a guardrail with the values you specify. Specify a name and optional description. Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields. Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic. Give a name and description so that the guardrail can properly identify the topic. Specify DENY in the type field. (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list. Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig. Specify the category in the type field. Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig. (Optional) For security, include the ARN of a KMS key in the kmsKeyId field.
-    updateGuardrail: function(Client, types.UpdateGuardrailInput): types.UpdateGuardrailOutput, table
+    updateGuardrail: function(Client, types.UpdateGuardrailInput): Operation<types.UpdateGuardrailOutput>
     -- Updates the configuration of an existing endpoint for a model from Amazon Bedrock Marketplace.
-    updateMarketplaceModelEndpoint: function(Client, types.UpdateMarketplaceModelEndpointInput): types.UpdateMarketplaceModelEndpointOutput, table
+    updateMarketplaceModelEndpoint: function(Client, types.UpdateMarketplaceModelEndpointInput): Operation<types.UpdateMarketplaceModelEndpointOutput>
     -- Updates the name or associated model for a Provisioned Throughput. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide.
-    updateProvisionedModelThroughput: function(Client, types.UpdateProvisionedModelThroughputInput): types.UpdateProvisionedModelThroughputOutput, table
+    updateProvisionedModelThroughput: function(Client, types.UpdateProvisionedModelThroughputInput): Operation<types.UpdateProvisionedModelThroughputOutput>
 end
 
 local record M

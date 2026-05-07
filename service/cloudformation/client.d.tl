@@ -2,11 +2,15 @@
 
 local types = require("cloudformation.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Activate trusted access with Organizations. With trusted access between StackSets
     -- and Organizations activated, the management account has permissions to create
     -- and manage StackSets for your organization.
-    activateOrganizationsAccess: function(Client, types.ActivateOrganizationsAccessInput): types.ActivateOrganizationsAccessOutput, table
+    activateOrganizationsAccess: function(Client, types.ActivateOrganizationsAccessInput): Operation<types.ActivateOrganizationsAccessOutput>
     -- Activates a public third-party extension, such as a resource or module, to make it
     -- available for use in stack templates in your current account and Region. It can also create
     -- CloudFormation Hooks, which allow you to evaluate resource configurations before CloudFormation
@@ -18,17 +22,17 @@ local record Client
     -- third-party public extension in your account in the
     -- CloudFormation User Guide. For information about creating Hooks, see the
     -- CloudFormation Hooks User Guide.
-    activateType: function(Client, types.ActivateTypeInput): types.ActivateTypeOutput, table
+    activateType: function(Client, types.ActivateTypeInput): Operation<types.ActivateTypeOutput>
     -- Returns configuration data for the specified CloudFormation extensions, from the CloudFormation
     -- registry in your current account and Region.
     -- For more information, see Edit configuration
     -- data for extensions in your account in the
     -- CloudFormation User Guide.
-    batchDescribeTypeConfigurations: function(Client, types.BatchDescribeTypeConfigurationsInput): types.BatchDescribeTypeConfigurationsOutput, table
+    batchDescribeTypeConfigurations: function(Client, types.BatchDescribeTypeConfigurationsInput): Operation<types.BatchDescribeTypeConfigurationsOutput>
     -- Cancels an update on the specified stack. If the call completes successfully, the stack
     -- rolls back the update and reverts to the previous stack configuration.
     -- You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
-    cancelUpdateStack: function(Client, types.CancelUpdateStackInput): types.CancelUpdateStackOutput, table
+    cancelUpdateStack: function(Client, types.CancelUpdateStackInput): Operation<types.CancelUpdateStackOutput>
     -- Continues rolling back a stack from UPDATE_ROLLBACK_FAILED to
     -- UPDATE_ROLLBACK_COMPLETE state. Depending on the cause of the failure, you can
     -- manually fix the error and continue the rollback. By continuing the rollback, you can return
@@ -41,7 +45,7 @@ local record Client
     -- attempts to roll back to it, causing the update rollback to fail.
     -- For more information, see Continue rolling back an update in the CloudFormation User Guide. For
     -- information for troubleshooting a failed update rollback, see Update rollback failed.
-    continueUpdateRollback: function(Client, types.ContinueUpdateRollbackInput): types.ContinueUpdateRollbackOutput, table
+    continueUpdateRollback: function(Client, types.ContinueUpdateRollbackInput): Operation<types.ContinueUpdateRollbackOutput>
     -- Creates a list of changes that will be applied to a stack so that you can review the
     -- changes before executing them. You can create a change set for a stack that doesn't exist or
     -- an existing stack. If you create a change set for a stack that doesn't exist, the change set
@@ -61,17 +65,17 @@ local record Client
     -- you execute the change set.
     -- To create a change set for the entire stack hierarchy, set
     -- IncludeNestedStacks to True.
-    createChangeSet: function(Client, types.CreateChangeSetInput): types.CreateChangeSetOutput, table
+    createChangeSet: function(Client, types.CreateChangeSetInput): Operation<types.CreateChangeSetOutput>
     -- Creates a template from existing resources that are not already managed with CloudFormation.
     -- You can check the status of the template generation using the
     -- DescribeGeneratedTemplate API action.
-    createGeneratedTemplate: function(Client, types.CreateGeneratedTemplateInput): types.CreateGeneratedTemplateOutput, table
+    createGeneratedTemplate: function(Client, types.CreateGeneratedTemplateInput): Operation<types.CreateGeneratedTemplateOutput>
     -- Creates a stack as specified in the template. After the call completes successfully, the
     -- stack creation starts. You can check the status of the stack through the DescribeStacks operation.
     -- For more information about creating a stack and monitoring stack progress, see Managing Amazon Web Services
     -- resources as a single unit with CloudFormation stacks in the
     -- CloudFormation User Guide.
-    createStack: function(Client, types.CreateStackInput): types.CreateStackOutput, table
+    createStack: function(Client, types.CreateStackInput): Operation<types.CreateStackOutput>
     -- Creates stack instances for the specified accounts, within the specified Amazon Web Services Regions. A
     -- stack instance refers to a stack in a specific account and Region. You must specify at least
     -- one value for either Accounts or DeploymentTargets, and you must
@@ -84,16 +88,16 @@ local record Client
     -- each.
     -- Parent OU strategy: If you don't mind exposing the OU
     -- hierarchy, target a parent OU that contains all desired child OUs.
-    createStackInstances: function(Client, types.CreateStackInstancesInput): types.CreateStackInstancesOutput, table
+    createStackInstances: function(Client, types.CreateStackInstancesInput): Operation<types.CreateStackInstancesOutput>
     -- Creates a refactor across multiple stacks, with the list of stacks and resources that are
     -- affected.
-    createStackRefactor: function(Client, types.CreateStackRefactorInput): types.CreateStackRefactorOutput, table
+    createStackRefactor: function(Client, types.CreateStackRefactorInput): Operation<types.CreateStackRefactorOutput>
     -- Creates a StackSet.
-    createStackSet: function(Client, types.CreateStackSetInput): types.CreateStackSetOutput, table
+    createStackSet: function(Client, types.CreateStackSetInput): Operation<types.CreateStackSetOutput>
     -- Deactivates trusted access with Organizations. If trusted access is deactivated,
     -- the management account does not have permissions to create and manage
     -- service-managed StackSets for your organization.
-    deactivateOrganizationsAccess: function(Client, types.DeactivateOrganizationsAccessInput): types.DeactivateOrganizationsAccessOutput, table
+    deactivateOrganizationsAccess: function(Client, types.DeactivateOrganizationsAccessInput): Operation<types.DeactivateOrganizationsAccessOutput>
     -- Deactivates a public third-party extension, such as a resource or module, or a CloudFormation
     -- Hook when you no longer use it.
     -- Deactivating an extension deletes the configuration details that are associated with it.
@@ -103,7 +107,7 @@ local record Client
     -- are being made to the extension. In addition, deactivated extensions aren't automatically
     -- updated if a new version of the extension is released.
     -- To see which extensions are currently activated, use ListTypes.
-    deactivateType: function(Client, types.DeactivateTypeInput): types.DeactivateTypeOutput, table
+    deactivateType: function(Client, types.DeactivateTypeInput): Operation<types.DeactivateTypeOutput>
     -- Deletes the specified change set. Deleting change sets ensures that no one executes the
     -- wrong change set.
     -- If the call successfully completes, CloudFormation successfully deleted the change set.
@@ -111,15 +115,15 @@ local record Client
     -- nested change set, then DeleteChangeSet will delete all change sets that belong
     -- to the stacks hierarchy and will also delete all change sets for nested stacks with the status
     -- of REVIEW_IN_PROGRESS.
-    deleteChangeSet: function(Client, types.DeleteChangeSetInput): types.DeleteChangeSetOutput, table
+    deleteChangeSet: function(Client, types.DeleteChangeSetInput): Operation<types.DeleteChangeSetOutput>
     -- Deleted a generated template.
-    deleteGeneratedTemplate: function(Client, types.DeleteGeneratedTemplateInput): types.DeleteGeneratedTemplateOutput, table
+    deleteGeneratedTemplate: function(Client, types.DeleteGeneratedTemplateInput): Operation<types.DeleteGeneratedTemplateOutput>
     -- Deletes a specified stack. Once the call completes successfully, stack deletion starts.
     -- Deleted stacks don't show up in the DescribeStacks operation if the deletion
     -- has been completed successfully.
     -- For more information about deleting a stack, see Delete a stack from
     -- the CloudFormation console in the CloudFormation User Guide.
-    deleteStack: function(Client, types.DeleteStackInput): types.DeleteStackOutput, table
+    deleteStack: function(Client, types.DeleteStackInput): Operation<types.DeleteStackOutput>
     -- Deletes stack instances for the specified accounts, in the specified Amazon Web Services Regions.
     -- The maximum number of organizational unit (OUs) supported by a
     -- DeleteStackInstances operation is 50.
@@ -129,10 +133,10 @@ local record Client
     -- each.
     -- Parent OU strategy: If you don't mind exposing the OU
     -- hierarchy, target a parent OU that contains all desired child OUs.
-    deleteStackInstances: function(Client, types.DeleteStackInstancesInput): types.DeleteStackInstancesOutput, table
+    deleteStackInstances: function(Client, types.DeleteStackInstancesInput): Operation<types.DeleteStackInstancesOutput>
     -- Deletes a StackSet. Before you can delete a StackSet, all its member stack instances must
     -- be deleted. For more information about how to complete this, see DeleteStackInstances.
-    deleteStackSet: function(Client, types.DeleteStackSetInput): types.DeleteStackSetOutput, table
+    deleteStackSet: function(Client, types.DeleteStackSetInput): Operation<types.DeleteStackSetOutput>
     -- Marks an extension or extension version as DEPRECATED in the CloudFormation
     -- registry, removing it from active use. Deprecated extensions or extension versions cannot be
     -- used in CloudFormation operations.
@@ -147,18 +151,18 @@ local record Client
     -- For more information, see Remove
     -- third-party private extensions from your account in the
     -- CloudFormation User Guide.
-    deregisterType: function(Client, types.DeregisterTypeInput): types.DeregisterTypeOutput, table
+    deregisterType: function(Client, types.DeregisterTypeInput): Operation<types.DeregisterTypeOutput>
     -- Retrieves your account's CloudFormation limits, such as the maximum number of stacks that you
     -- can create in your account. For more information about account limits, see Understand CloudFormation quotas in the CloudFormation User Guide.
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): Operation<types.DescribeAccountLimitsOutput>
     -- Returns the inputs for the change set and a list of changes that CloudFormation will make if
     -- you execute the change set. For more information, see Update
     -- CloudFormation stacks using change sets in the
     -- CloudFormation User Guide.
-    describeChangeSet: function(Client, types.DescribeChangeSetInput): types.DescribeChangeSetOutput, table
+    describeChangeSet: function(Client, types.DescribeChangeSetInput): Operation<types.DescribeChangeSetOutput>
     -- Returns Hook-related information for the change set and a list of changes that
     -- CloudFormation makes when you run the change set.
-    describeChangeSetHooks: function(Client, types.DescribeChangeSetHooksInput): types.DescribeChangeSetHooksOutput, table
+    describeChangeSetHooks: function(Client, types.DescribeChangeSetHooksInput): Operation<types.DescribeChangeSetHooksOutput>
     -- Returns CloudFormation events based on flexible query criteria. Groups events by operation ID,
     -- enabling you to focus on individual stack operations during deployment.
     -- An operation is any action performed on a stack, including stack lifecycle actions
@@ -176,17 +180,17 @@ local record Client
     -- Hook during stack operations.
     -- One of ChangeSetName, OperationId or StackName
     -- must be specified as input.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Describes a generated template. The output includes details about the progress of the
     -- creation of a generated template started by a CreateGeneratedTemplate API action
     -- or the update of a generated template started with an UpdateGeneratedTemplate API
     -- action.
-    describeGeneratedTemplate: function(Client, types.DescribeGeneratedTemplateInput): types.DescribeGeneratedTemplateOutput, table
+    describeGeneratedTemplate: function(Client, types.DescribeGeneratedTemplateInput): Operation<types.DescribeGeneratedTemplateOutput>
     -- Retrieves information about the account's OrganizationAccess status. This API
     -- can be called either by the management account or the delegated administrator by using the
     -- CallAs parameter. This API can also be called without the CallAs
     -- parameter by the management account.
-    describeOrganizationsAccess: function(Client, types.DescribeOrganizationsAccessInput): types.DescribeOrganizationsAccessOutput, table
+    describeOrganizationsAccess: function(Client, types.DescribeOrganizationsAccessInput): Operation<types.DescribeOrganizationsAccessOutput>
     -- Returns information about a CloudFormation extension publisher.
     -- If you don't supply a PublisherId, and you have registered as an extension
     -- publisher, DescribePublisher returns information about your own publisher
@@ -196,9 +200,9 @@ local record Client
     -- Publishing extensions
     -- to make them available for public use in the
     -- CloudFormation Command Line Interface (CLI) User Guide
-    describePublisher: function(Client, types.DescribePublisherInput): types.DescribePublisherOutput, table
+    describePublisher: function(Client, types.DescribePublisherInput): Operation<types.DescribePublisherOutput>
     -- Describes details of a resource scan.
-    describeResourceScan: function(Client, types.DescribeResourceScanInput): types.DescribeResourceScanOutput, table
+    describeResourceScan: function(Client, types.DescribeResourceScanInput): Operation<types.DescribeResourceScanOutput>
     -- Returns information about a stack drift detection operation. A stack drift detection
     -- operation detects whether a stack's actual configuration differs, or has
     -- drifted, from its expected configuration, as defined in the stack
@@ -211,23 +215,23 @@ local record Client
     -- monitor the progress of the operation using DescribeStackDriftDetectionStatus.
     -- Once the drift detection operation has completed, use DescribeStackResourceDrifts to return drift information about the stack and its
     -- resources.
-    describeStackDriftDetectionStatus: function(Client, types.DescribeStackDriftDetectionStatusInput): types.DescribeStackDriftDetectionStatusOutput, table
+    describeStackDriftDetectionStatus: function(Client, types.DescribeStackDriftDetectionStatusInput): Operation<types.DescribeStackDriftDetectionStatusOutput>
     -- Returns all stack related events for a specified stack in reverse chronological order. For
     -- more information about a stack's event history, see Understand CloudFormation stack creation events in the
     -- CloudFormation User Guide.
     -- You can list events for stacks that have failed to create or have been deleted by
     -- specifying the unique stack identifier (stack ID).
-    describeStackEvents: function(Client, types.DescribeStackEventsInput): types.DescribeStackEventsOutput, table
+    describeStackEvents: function(Client, types.DescribeStackEventsInput): Operation<types.DescribeStackEventsOutput>
     -- Returns the stack instance that's associated with the specified StackSet, Amazon Web Services account,
     -- and Amazon Web Services Region.
     -- For a list of stack instances that are associated with a specific StackSet, use ListStackInstances.
-    describeStackInstance: function(Client, types.DescribeStackInstanceInput): types.DescribeStackInstanceOutput, table
+    describeStackInstance: function(Client, types.DescribeStackInstanceInput): Operation<types.DescribeStackInstanceOutput>
     -- Describes the stack refactor status.
-    describeStackRefactor: function(Client, types.DescribeStackRefactorInput): types.DescribeStackRefactorOutput, table
+    describeStackRefactor: function(Client, types.DescribeStackRefactorInput): Operation<types.DescribeStackRefactorOutput>
     -- Returns a description of the specified resource in the specified stack.
     -- For deleted stacks, DescribeStackResource returns resource information for up to 90 days
     -- after the stack has been deleted.
-    describeStackResource: function(Client, types.DescribeStackResourceInput): types.DescribeStackResourceOutput, table
+    describeStackResource: function(Client, types.DescribeStackResourceInput): Operation<types.DescribeStackResourceOutput>
     -- Returns drift information for the resources that have been checked for drift in the
     -- specified stack. This includes actual and expected configuration values for resources where
     -- CloudFormation detects configuration drift.
@@ -239,7 +243,7 @@ local record Client
     -- Use DetectStackResourceDrift to detect drift on individual resources, or
     -- DetectStackDrift to detect drift on all supported resources for a given
     -- stack.
-    describeStackResourceDrifts: function(Client, types.DescribeStackResourceDriftsInput): types.DescribeStackResourceDriftsOutput, table
+    describeStackResourceDrifts: function(Client, types.DescribeStackResourceDriftsInput): Operation<types.DescribeStackResourceDriftsOutput>
     -- Returns Amazon Web Services resource descriptions for running and deleted stacks. If
     -- StackName is specified, all the associated resources that are part of the stack
     -- are returned. If PhysicalResourceId is specified, the associated resources of the
@@ -254,21 +258,21 @@ local record Client
     -- PhysicalResourceId, see the CloudFormation User Guide.
     -- A ValidationError is returned if you specify both StackName
     -- and PhysicalResourceId in the same request.
-    describeStackResources: function(Client, types.DescribeStackResourcesInput): types.DescribeStackResourcesOutput, table
+    describeStackResources: function(Client, types.DescribeStackResourcesInput): Operation<types.DescribeStackResourcesOutput>
     -- Returns the description for the specified stack; if no stack name was specified, then it
     -- returns the description for all the stacks created. For more information about a stack's event
     -- history, see Understand CloudFormation stack creation events in the
     -- CloudFormation User Guide.
     -- If the stack doesn't exist, a ValidationError is returned.
-    describeStacks: function(Client, types.DescribeStacksInput): types.DescribeStacksOutput, table
+    describeStacks: function(Client, types.DescribeStacksInput): Operation<types.DescribeStacksOutput>
     -- Returns the description of the specified StackSet.
     -- This API provides strongly consistent reads meaning it will always
     -- return the most up-to-date data.
-    describeStackSet: function(Client, types.DescribeStackSetInput): types.DescribeStackSetOutput, table
+    describeStackSet: function(Client, types.DescribeStackSetInput): Operation<types.DescribeStackSetOutput>
     -- Returns the description of the specified StackSet operation.
     -- This API provides strongly consistent reads meaning it will always
     -- return the most up-to-date data.
-    describeStackSetOperation: function(Client, types.DescribeStackSetOperationInput): types.DescribeStackSetOperationOutput, table
+    describeStackSetOperation: function(Client, types.DescribeStackSetOperationInput): Operation<types.DescribeStackSetOperationOutput>
     -- Returns detailed information about an extension from the CloudFormation registry in your
     -- current account and Region.
     -- If you specify a VersionId, DescribeType returns information
@@ -277,7 +281,7 @@ local record Client
     -- For more information, see Edit configuration
     -- data for extensions in your account in the
     -- CloudFormation User Guide.
-    describeType: function(Client, types.DescribeTypeInput): types.DescribeTypeOutput, table
+    describeType: function(Client, types.DescribeTypeInput): Operation<types.DescribeTypeOutput>
     -- Returns information about an extension's registration, including its current status and
     -- type and version identifiers.
     -- When you initiate a registration request using RegisterType, you can
@@ -285,7 +289,7 @@ local record Client
     -- registration request.
     -- Once the registration request has completed, use DescribeType to return
     -- detailed information about an extension.
-    describeTypeRegistration: function(Client, types.DescribeTypeRegistrationInput): types.DescribeTypeRegistrationOutput, table
+    describeTypeRegistration: function(Client, types.DescribeTypeRegistrationInput): Operation<types.DescribeTypeRegistrationOutput>
     -- Detects whether a stack's actual configuration differs, or has
     -- drifted, from its expected configuration, as defined in the stack
     -- template and any values specified as template parameters. For each resource in the stack that
@@ -307,7 +311,7 @@ local record Client
     -- When detecting drift on a stack, CloudFormation doesn't detect drift on any nested stacks
     -- belonging to that stack. Perform DetectStackDrift directly on the nested stack
     -- itself.
-    detectStackDrift: function(Client, types.DetectStackDriftInput): types.DetectStackDriftOutput, table
+    detectStackDrift: function(Client, types.DetectStackDriftInput): Operation<types.DetectStackDriftOutput>
     -- Returns information about whether a resource's actual configuration differs, or has
     -- drifted, from its expected configuration, as defined in the stack
     -- template and any values specified as template parameters. This information includes actual and
@@ -321,7 +325,7 @@ local record Client
     -- Resources that don't currently support drift detection can't be checked. For a list of
     -- resources that support drift detection, see Resource
     -- type support for imports and drift detection.
-    detectStackResourceDrift: function(Client, types.DetectStackResourceDriftInput): types.DetectStackResourceDriftOutput, table
+    detectStackResourceDrift: function(Client, types.DetectStackResourceDriftInput): Operation<types.DetectStackResourceDriftOutput>
     -- Detect drift on a StackSet. When CloudFormation performs drift detection on a StackSet, it
     -- performs drift detection on the stack associated with each stack instance in the StackSet. For
     -- more information, see Performing drift detection on
@@ -345,11 +349,11 @@ local record Client
     -- You can only run a single drift detection operation on a given StackSet at one
     -- time.
     -- To stop a drift detection StackSet operation, use StopStackSetOperation.
-    detectStackSetDrift: function(Client, types.DetectStackSetDriftInput): types.DetectStackSetDriftOutput, table
+    detectStackSetDrift: function(Client, types.DetectStackSetDriftInput): Operation<types.DetectStackSetDriftOutput>
     -- Returns the estimated monthly cost of a template. The return value is an Amazon Web Services Simple
     -- Monthly Calculator URL with a query string that describes the resources required to run the
     -- template.
-    estimateTemplateCost: function(Client, types.EstimateTemplateCostInput): types.EstimateTemplateCostOutput, table
+    estimateTemplateCost: function(Client, types.EstimateTemplateCostInput): Operation<types.EstimateTemplateCostOutput>
     -- Updates a stack using the input information that was provided when the specified change
     -- set was created. After the call successfully completes, CloudFormation starts updating the stack.
     -- Use the DescribeStacks action to view the status of the update.
@@ -359,14 +363,14 @@ local record Client
     -- update. You can't specify a temporary stack policy that overrides the current policy.
     -- To create a change set for the entire stack hierarchy, IncludeNestedStacks
     -- must have been set to True.
-    executeChangeSet: function(Client, types.ExecuteChangeSetInput): types.ExecuteChangeSetOutput, table
+    executeChangeSet: function(Client, types.ExecuteChangeSetInput): Operation<types.ExecuteChangeSetOutput>
     -- Executes the stack refactor operation.
-    executeStackRefactor: function(Client, types.ExecuteStackRefactorInput): types.ExecuteStackRefactorOutput, table
+    executeStackRefactor: function(Client, types.ExecuteStackRefactorInput): Operation<types.ExecuteStackRefactorOutput>
     -- Retrieves a generated template. If the template is in an InProgress or
     -- Pending status then the template returned will be the template when the
     -- template was last in a Complete status. If the template has not yet been in a
     -- Complete status then an empty template will be returned.
-    getGeneratedTemplate: function(Client, types.GetGeneratedTemplateInput): types.GetGeneratedTemplateOutput, table
+    getGeneratedTemplate: function(Client, types.GetGeneratedTemplateInput): Operation<types.GetGeneratedTemplateOutput>
     -- Retrieves detailed information and remediation guidance for a Hook invocation
     -- result.
     -- If the Hook uses a KMS key to encrypt annotations, callers of the
@@ -374,16 +378,16 @@ local record Client
     -- more information, see KMS key policy
     -- and permissions for encrypting CloudFormation Hooks results at rest in the
     -- CloudFormation Hooks User Guide.
-    getHookResult: function(Client, types.GetHookResultInput): types.GetHookResultOutput, table
+    getHookResult: function(Client, types.GetHookResultInput): Operation<types.GetHookResultOutput>
     -- Returns the stack policy for a specified stack. If a stack doesn't have a policy, a null
     -- value is returned.
-    getStackPolicy: function(Client, types.GetStackPolicyInput): types.GetStackPolicyOutput, table
+    getStackPolicy: function(Client, types.GetStackPolicyInput): Operation<types.GetStackPolicyOutput>
     -- Returns the template body for a specified stack. You can get the template for running or
     -- deleted stacks.
     -- For deleted stacks, GetTemplate returns the template for up to 90 days after
     -- the stack has been deleted.
     -- If the template doesn't exist, a ValidationError is returned.
-    getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    getTemplate: function(Client, types.GetTemplateInput): Operation<types.GetTemplateOutput>
     -- Returns information about a new or existing template. The GetTemplateSummary
     -- action is useful for viewing parameter information, such as default parameter values and
     -- parameter types, before you create or update a stack or StackSet.
@@ -392,24 +396,24 @@ local record Client
     -- For deleted stacks, GetTemplateSummary returns the template information for
     -- up to 90 days after the stack has been deleted. If the template doesn't exist, a
     -- ValidationError is returned.
-    getTemplateSummary: function(Client, types.GetTemplateSummaryInput): types.GetTemplateSummaryOutput, table
+    getTemplateSummary: function(Client, types.GetTemplateSummaryInput): Operation<types.GetTemplateSummaryOutput>
     -- Import existing stacks into a new StackSets. Use the stack import operation to import up
     -- to 10 stacks into a new StackSet in the same account as the source stack or in a different
     -- administrator account and Region, by specifying the stack ID of the stack you intend to
     -- import.
-    importStacksToStackSet: function(Client, types.ImportStacksToStackSetInput): types.ImportStacksToStackSetOutput, table
+    importStacksToStackSet: function(Client, types.ImportStacksToStackSetInput): Operation<types.ImportStacksToStackSetOutput>
     -- Returns the ID and status of each active change set for a stack. For example, CloudFormation
     -- lists change sets that are in the CREATE_IN_PROGRESS or
     -- CREATE_PENDING state.
-    listChangeSets: function(Client, types.ListChangeSetsInput): types.ListChangeSetsOutput, table
+    listChangeSets: function(Client, types.ListChangeSetsInput): Operation<types.ListChangeSetsOutput>
     -- Lists all exported output values in the account and Region in which you call this action.
     -- Use this action to see the exported output values that you can import into other stacks. To
     -- import values, use the Fn::ImportValue function.
     -- For more information, see Get exported outputs
     -- from a deployed CloudFormation stack.
-    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listExports: function(Client, types.ListExportsInput): Operation<types.ListExportsOutput>
     -- Lists your generated templates in this Region.
-    listGeneratedTemplates: function(Client, types.ListGeneratedTemplatesInput): types.ListGeneratedTemplatesOutput, table
+    listGeneratedTemplates: function(Client, types.ListGeneratedTemplatesInput): Operation<types.ListGeneratedTemplatesOutput>
     -- Returns summaries of invoked Hooks. For more information, see View invocation
     -- summaries for CloudFormation Hooks in the CloudFormation Hooks User Guide.
     -- This operation supports the following parameter combinations:
@@ -419,56 +423,56 @@ local record Client
     -- filtered by status.
     -- TargetId and TargetType: Returns summaries for a specific
     -- Hook invocation target.
-    listHookResults: function(Client, types.ListHookResultsInput): types.ListHookResultsOutput, table
+    listHookResults: function(Client, types.ListHookResultsInput): Operation<types.ListHookResultsOutput>
     -- Lists all stacks that are importing an exported output value. To modify or remove an
     -- exported output value, first use this action to see which stacks are using it. To see the
     -- exported output values in your account, see ListExports.
     -- For more information about importing an exported output value, see the Fn::ImportValue function.
-    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listImports: function(Client, types.ListImportsInput): Operation<types.ListImportsOutput>
     -- Lists the related resources for a list of resources from a resource scan. The response
     -- indicates whether each returned resource is already managed by CloudFormation.
-    listResourceScanRelatedResources: function(Client, types.ListResourceScanRelatedResourcesInput): types.ListResourceScanRelatedResourcesOutput, table
+    listResourceScanRelatedResources: function(Client, types.ListResourceScanRelatedResourcesInput): Operation<types.ListResourceScanRelatedResourcesOutput>
     -- Lists the resources from a resource scan. The results can be filtered by resource
     -- identifier, resource type prefix, tag key, and tag value. Only resources that match all
     -- specified filters are returned. The response indicates whether each returned resource is
     -- already managed by CloudFormation.
-    listResourceScanResources: function(Client, types.ListResourceScanResourcesInput): types.ListResourceScanResourcesOutput, table
+    listResourceScanResources: function(Client, types.ListResourceScanResourcesInput): Operation<types.ListResourceScanResourcesOutput>
     -- List the resource scans from newest to oldest. By default it will return up to 10 resource
     -- scans.
-    listResourceScans: function(Client, types.ListResourceScansInput): types.ListResourceScansOutput, table
+    listResourceScans: function(Client, types.ListResourceScansInput): Operation<types.ListResourceScansOutput>
     -- Returns drift information for resources in a stack instance.
     -- ListStackInstanceResourceDrifts returns drift information for the most
     -- recent drift detection operation. If an operation is in progress, it may only return partial
     -- results.
-    listStackInstanceResourceDrifts: function(Client, types.ListStackInstanceResourceDriftsInput): types.ListStackInstanceResourceDriftsOutput, table
+    listStackInstanceResourceDrifts: function(Client, types.ListStackInstanceResourceDriftsInput): Operation<types.ListStackInstanceResourceDriftsOutput>
     -- Returns summary information about stack instances that are associated with the specified
     -- StackSet. You can filter for stack instances that are associated with a specific Amazon Web Services account
     -- name or Region, or that have a specific status.
-    listStackInstances: function(Client, types.ListStackInstancesInput): types.ListStackInstancesOutput, table
+    listStackInstances: function(Client, types.ListStackInstancesInput): Operation<types.ListStackInstancesOutput>
     -- Lists the stack refactor actions that will be taken after calling the ExecuteStackRefactor action.
-    listStackRefactorActions: function(Client, types.ListStackRefactorActionsInput): types.ListStackRefactorActionsOutput, table
+    listStackRefactorActions: function(Client, types.ListStackRefactorActionsInput): Operation<types.ListStackRefactorActionsOutput>
     -- Lists all account stack refactor operations and their statuses.
-    listStackRefactors: function(Client, types.ListStackRefactorsInput): types.ListStackRefactorsOutput, table
+    listStackRefactors: function(Client, types.ListStackRefactorsInput): Operation<types.ListStackRefactorsOutput>
     -- Returns descriptions of all resources of the specified stack.
     -- For deleted stacks, ListStackResources returns resource information for up to 90 days
     -- after the stack has been deleted.
-    listStackResources: function(Client, types.ListStackResourcesInput): types.ListStackResourcesOutput, table
+    listStackResources: function(Client, types.ListStackResourcesInput): Operation<types.ListStackResourcesOutput>
     -- Returns the summary information for stacks whose status matches the specified
     -- StackStatusFilter. Summary information for stacks that have been deleted is
     -- kept for 90 days after the stack is deleted. If no StackStatusFilter is
     -- specified, summary information for all stacks is returned (including existing stacks and
     -- stacks that have been deleted).
-    listStacks: function(Client, types.ListStacksInput): types.ListStacksOutput, table
+    listStacks: function(Client, types.ListStacksInput): Operation<types.ListStacksOutput>
     -- Returns summary information about deployment targets for a StackSet.
-    listStackSetAutoDeploymentTargets: function(Client, types.ListStackSetAutoDeploymentTargetsInput): types.ListStackSetAutoDeploymentTargetsOutput, table
+    listStackSetAutoDeploymentTargets: function(Client, types.ListStackSetAutoDeploymentTargetsInput): Operation<types.ListStackSetAutoDeploymentTargetsOutput>
     -- Returns summary information about the results of a StackSet operation.
     -- This API provides eventually consistent reads meaning it may take
     -- some time but will eventually return the most up-to-date data.
-    listStackSetOperationResults: function(Client, types.ListStackSetOperationResultsInput): types.ListStackSetOperationResultsOutput, table
+    listStackSetOperationResults: function(Client, types.ListStackSetOperationResultsInput): Operation<types.ListStackSetOperationResultsOutput>
     -- Returns summary information about operations performed on a StackSet.
     -- This API provides eventually consistent reads meaning it may take
     -- some time but will eventually return the most up-to-date data.
-    listStackSetOperations: function(Client, types.ListStackSetOperationsInput): types.ListStackSetOperationsOutput, table
+    listStackSetOperations: function(Client, types.ListStackSetOperationsInput): Operation<types.ListStackSetOperationsOutput>
     -- Returns summary information about StackSets that are associated with the user.
     -- This API provides strongly consistent reads meaning it will always
     -- return the most up-to-date data.
@@ -482,15 +486,15 @@ local record Client
     -- DELEGATED_ADMIN while signed in to your member account,
     -- ListStackSets returns all StackSets with service-managed permissions in the
     -- management account.
-    listStackSets: function(Client, types.ListStackSetsInput): types.ListStackSetsOutput, table
+    listStackSets: function(Client, types.ListStackSetsInput): Operation<types.ListStackSetsOutput>
     -- Returns a list of registration tokens for the specified extension(s).
-    listTypeRegistrations: function(Client, types.ListTypeRegistrationsInput): types.ListTypeRegistrationsOutput, table
+    listTypeRegistrations: function(Client, types.ListTypeRegistrationsInput): Operation<types.ListTypeRegistrationsOutput>
     -- Returns summary information about all extensions, including your private resource types,
     -- modules, and Hooks as well as all public extensions from Amazon Web Services and third-party
     -- publishers.
-    listTypes: function(Client, types.ListTypesInput): types.ListTypesOutput, table
+    listTypes: function(Client, types.ListTypesInput): Operation<types.ListTypesOutput>
     -- Returns summary information about the versions of an extension.
-    listTypeVersions: function(Client, types.ListTypeVersionsInput): types.ListTypeVersionsOutput, table
+    listTypeVersions: function(Client, types.ListTypeVersionsInput): Operation<types.ListTypeVersionsOutput>
     -- Publishes the specified extension to the CloudFormation registry as a public extension in this
     -- Region. Public extensions are available for use by all CloudFormation users. For more information
     -- about publishing extensions, see Publishing extensions to
@@ -498,18 +502,18 @@ local record Client
     -- CloudFormation Command Line Interface (CLI) User Guide.
     -- To publish an extension, you must be registered as a publisher with CloudFormation. For more
     -- information, see RegisterPublisher.
-    publishType: function(Client, types.PublishTypeInput): types.PublishTypeOutput, table
+    publishType: function(Client, types.PublishTypeInput): Operation<types.PublishTypeOutput>
     -- Reports progress of a resource handler to CloudFormation.
     -- Reserved for use by the CloudFormation
     -- CLI. Don't use this API in your code.
-    recordHandlerProgress: function(Client, types.RecordHandlerProgressInput): types.RecordHandlerProgressOutput, table
+    recordHandlerProgress: function(Client, types.RecordHandlerProgressInput): Operation<types.RecordHandlerProgressOutput>
     -- Registers your account as a publisher of public extensions in the CloudFormation registry.
     -- Public extensions are available for use by all CloudFormation users. This publisher ID applies to
     -- your account in all Amazon Web Services Regions.
     -- For information about requirements for registering as a public extension publisher, see
     -- Prerequisite: Registering your account to publish CloudFormation extensions in the
     -- CloudFormation Command Line Interface (CLI) User Guide.
-    registerPublisher: function(Client, types.RegisterPublisherInput): types.RegisterPublisherOutput, table
+    registerPublisher: function(Client, types.RegisterPublisherInput): Operation<types.RegisterPublisherOutput>
     -- Registers an extension with the CloudFormation service. Registering an extension makes it
     -- available for use in CloudFormation templates in your Amazon Web Services account, and includes:
     -- Validating the extension schema.
@@ -528,7 +532,7 @@ local record Client
     -- more information, see Edit configuration
     -- data for extensions in your account in the
     -- CloudFormation User Guide.
-    registerType: function(Client, types.RegisterTypeInput): types.RegisterTypeOutput, table
+    registerType: function(Client, types.RegisterTypeInput): Operation<types.RegisterTypeOutput>
     -- When specifying RollbackStack, you preserve the state of previously
     -- provisioned resources when an operation fails. You can check the status of the stack through
     -- the DescribeStacks operation.
@@ -542,9 +546,9 @@ local record Client
     -- UPDATE_ROLLBACK_COMPLETE
     -- IMPORT_COMPLETE
     -- IMPORT_ROLLBACK_COMPLETE
-    rollbackStack: function(Client, types.RollbackStackInput): types.RollbackStackOutput, table
+    rollbackStack: function(Client, types.RollbackStackInput): Operation<types.RollbackStackOutput>
     -- Sets a stack policy for a specified stack.
-    setStackPolicy: function(Client, types.SetStackPolicyInput): types.SetStackPolicyOutput, table
+    setStackPolicy: function(Client, types.SetStackPolicyInput): Operation<types.SetStackPolicyOutput>
     -- Specifies the configuration data for a CloudFormation extension, such as a resource or Hook,
     -- in the given account and Region.
     -- For more information, see Edit configuration
@@ -558,24 +562,24 @@ local record Client
     -- For more information about setting the configuration data for resource types, see Defining the account-level configuration of an extension in the
     -- CloudFormation Command Line Interface (CLI) User Guide. For more information about setting the configuration
     -- data for Hooks, see the CloudFormation Hooks User Guide.
-    setTypeConfiguration: function(Client, types.SetTypeConfigurationInput): types.SetTypeConfigurationOutput, table
+    setTypeConfiguration: function(Client, types.SetTypeConfigurationInput): Operation<types.SetTypeConfigurationOutput>
     -- Specify the default version of an extension. The default version of an extension will be
     -- used in CloudFormation operations.
-    setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput): types.SetTypeDefaultVersionOutput, table
+    setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput): Operation<types.SetTypeDefaultVersionOutput>
     -- Sends a signal to the specified resource with a success or failure status. You can use the
     -- SignalResource operation in conjunction with a creation policy or update
     -- policy. CloudFormation doesn't proceed with a stack creation or update until resources receive the
     -- required number of signals or the timeout period is exceeded. The SignalResource
     -- operation is useful in cases where you want to send signals from anywhere other than an Amazon EC2
     -- instance.
-    signalResource: function(Client, types.SignalResourceInput): types.SignalResourceOutput, table
+    signalResource: function(Client, types.SignalResourceInput): Operation<types.SignalResourceOutput>
     -- Starts a scan of the resources in this account in this Region. You can the status of a
     -- scan using the ListResourceScans API action.
-    startResourceScan: function(Client, types.StartResourceScanInput): types.StartResourceScanOutput, table
+    startResourceScan: function(Client, types.StartResourceScanInput): Operation<types.StartResourceScanOutput>
     -- Stops an in-progress operation on a StackSet and its associated stack instances. StackSets
     -- will cancel all the unstarted stack instance deployments and wait for those are in-progress to
     -- complete.
-    stopStackSetOperation: function(Client, types.StopStackSetOperationInput): types.StopStackSetOperationOutput, table
+    stopStackSetOperation: function(Client, types.StopStackSetOperationInput): Operation<types.StopStackSetOperationOutput>
     -- Tests a registered extension to make sure it meets all necessary requirements for being
     -- published in the CloudFormation registry.
     -- For resource types, this includes passing all contracts tests defined for the
@@ -595,12 +599,12 @@ local record Client
     -- For more information, see Publishing extensions
     -- to make them available for public use in the
     -- CloudFormation Command Line Interface (CLI) User Guide.
-    testType: function(Client, types.TestTypeInput): types.TestTypeOutput, table
+    testType: function(Client, types.TestTypeInput): Operation<types.TestTypeOutput>
     -- Updates a generated template. This can be used to change the name, add and remove
     -- resources, refresh resources, and change the DeletionPolicy and
     -- UpdateReplacePolicy settings. You can check the status of the update to the
     -- generated template using the DescribeGeneratedTemplate API action.
-    updateGeneratedTemplate: function(Client, types.UpdateGeneratedTemplateInput): types.UpdateGeneratedTemplateOutput, table
+    updateGeneratedTemplate: function(Client, types.UpdateGeneratedTemplateInput): Operation<types.UpdateGeneratedTemplateOutput>
     -- Updates a stack as specified in the template. After the call completes successfully, the
     -- stack update starts. You can check the status of the stack through the DescribeStacks action.
     -- To get a copy of the template for an existing stack, you can use the GetTemplate action.
@@ -608,7 +612,7 @@ local record Client
     -- Managing
     -- Amazon Web Services resources as a single unit with CloudFormation stacks in the
     -- CloudFormation User Guide.
-    updateStack: function(Client, types.UpdateStackInput): types.UpdateStackOutput, table
+    updateStack: function(Client, types.UpdateStackInput): Operation<types.UpdateStackOutput>
     -- Updates the parameter values for stack instances for the specified accounts, within the
     -- specified Amazon Web Services Regions. A stack instance refers to a stack in a specific account and
     -- Region.
@@ -631,7 +635,7 @@ local record Client
     -- each.
     -- Parent OU strategy: If you don't mind exposing the OU
     -- hierarchy, target a parent OU that contains all desired child OUs.
-    updateStackInstances: function(Client, types.UpdateStackInstancesInput): types.UpdateStackInstancesOutput, table
+    updateStackInstances: function(Client, types.UpdateStackInstancesInput): Operation<types.UpdateStackInstancesOutput>
     -- Updates the StackSet and associated stack instances in the specified accounts and
     -- Amazon Web Services Regions.
     -- Even if the StackSet operation created by updating the StackSet fails (completely or
@@ -646,7 +650,7 @@ local record Client
     -- each.
     -- Parent OU strategy: If you don't mind exposing the OU
     -- hierarchy, target a parent OU that contains all desired child OUs.
-    updateStackSet: function(Client, types.UpdateStackSetInput): types.UpdateStackSetOutput, table
+    updateStackSet: function(Client, types.UpdateStackSetInput): Operation<types.UpdateStackSetOutput>
     -- Updates termination protection for the specified stack. If a user attempts to delete a
     -- stack with termination protection enabled, the operation fails and the stack remains
     -- unchanged. For more information, see Protect a CloudFormation
@@ -654,11 +658,11 @@ local record Client
     -- For nested stacks,
     -- termination protection is set on the root stack and can't be changed directly on the nested
     -- stack.
-    updateTerminationProtection: function(Client, types.UpdateTerminationProtectionInput): types.UpdateTerminationProtectionOutput, table
+    updateTerminationProtection: function(Client, types.UpdateTerminationProtectionInput): Operation<types.UpdateTerminationProtectionOutput>
     -- Validates a specified template. CloudFormation first checks if the template is valid JSON. If
     -- it isn't, CloudFormation checks if the template is valid YAML. If both these checks fail,
     -- CloudFormation returns a template validation error.
-    validateTemplate: function(Client, types.ValidateTemplateInput): types.ValidateTemplateOutput, table
+    validateTemplate: function(Client, types.ValidateTemplateInput): Operation<types.ValidateTemplateOutput>
 end
 
 local record M

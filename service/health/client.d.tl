@@ -2,6 +2,10 @@
 
 local types = require("health.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns a list of accounts in the organization from Organizations that are affected by the
     -- provided event. For more information about the different types of Health events, see
@@ -10,7 +14,7 @@ local record Client
     -- Organizations. To do this, call the EnableHealthServiceAccessForOrganization operation from your organization's
     -- management account.
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
-    describeAffectedAccountsForOrganization: function(Client, types.DescribeAffectedAccountsForOrganizationInput): types.DescribeAffectedAccountsForOrganizationOutput, table
+    describeAffectedAccountsForOrganization: function(Client, types.DescribeAffectedAccountsForOrganizationInput): Operation<types.DescribeAffectedAccountsForOrganizationOutput>
     -- Returns a list of entities that have been affected by the specified events, based on the
     -- specified filter criteria. Entities can refer to individual customer resources, groups of
     -- customer resources, or any other construct, depending on the Amazon Web Services service. Events that
@@ -20,7 +24,7 @@ local record Client
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
     -- This operation supports resource-level permissions. You can use this operation to allow or deny access to specific Health events. For more
     -- information, see Resource- and action-based conditions in the Health User Guide.
-    describeAffectedEntities: function(Client, types.DescribeAffectedEntitiesInput): types.DescribeAffectedEntitiesOutput, table
+    describeAffectedEntities: function(Client, types.DescribeAffectedEntitiesInput): Operation<types.DescribeAffectedEntitiesOutput>
     -- Returns a list of entities that have been affected by one or more events for one or more
     -- accounts in your organization in Organizations, based on the filter criteria. Entities can refer
     -- to individual customer resources, groups of customer resources, or any other construct,
@@ -32,16 +36,16 @@ local record Client
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
     -- This operation doesn't support resource-level permissions. You can't use this operation to allow or deny access to specific Health events. For more
     -- information, see Resource- and action-based conditions in the Health User Guide.
-    describeAffectedEntitiesForOrganization: function(Client, types.DescribeAffectedEntitiesForOrganizationInput): types.DescribeAffectedEntitiesForOrganizationOutput, table
+    describeAffectedEntitiesForOrganization: function(Client, types.DescribeAffectedEntitiesForOrganizationInput): Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
     -- Returns the number of entities that are affected by each of the specified events.
-    describeEntityAggregates: function(Client, types.DescribeEntityAggregatesInput): types.DescribeEntityAggregatesOutput, table
+    describeEntityAggregates: function(Client, types.DescribeEntityAggregatesInput): Operation<types.DescribeEntityAggregatesOutput>
     -- Returns a list of entity aggregates for your Organizations that are affected by each of the specified events.
-    describeEntityAggregatesForOrganization: function(Client, types.DescribeEntityAggregatesForOrganizationInput): types.DescribeEntityAggregatesForOrganizationOutput, table
+    describeEntityAggregatesForOrganization: function(Client, types.DescribeEntityAggregatesForOrganizationInput): Operation<types.DescribeEntityAggregatesForOrganizationOutput>
     -- Returns the number of events of each event type (issue, scheduled change, and account
     -- notification). If no filter is specified, the counts of all events in each category are
     -- returned.
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
-    describeEventAggregates: function(Client, types.DescribeEventAggregatesInput): types.DescribeEventAggregatesOutput, table
+    describeEventAggregates: function(Client, types.DescribeEventAggregatesInput): Operation<types.DescribeEventAggregatesOutput>
     -- Returns detailed information about one or more specified events. Information includes
     -- standard event data (Amazon Web Services Region, service, and so on, as returned by DescribeEvents), a detailed event description, and possible additional metadata
     -- that depends upon the nature of the event. Affected entities are not included. To retrieve
@@ -50,7 +54,7 @@ local record Client
     -- event.
     -- This operation supports resource-level permissions. You can use this operation to allow or deny access to specific Health events. For more
     -- information, see Resource- and action-based conditions in the Health User Guide.
-    describeEventDetails: function(Client, types.DescribeEventDetailsInput): types.DescribeEventDetailsOutput, table
+    describeEventDetails: function(Client, types.DescribeEventDetailsInput): Operation<types.DescribeEventDetailsOutput>
     -- Returns detailed information about one or more specified events for one or more
     -- Amazon Web Services accounts in your organization. This information includes standard event data (such as
     -- the Amazon Web Services Region and service), an event description, and (depending on the event) possible
@@ -73,7 +77,7 @@ local record Client
     -- For more information, see Event.
     -- This operation doesn't support resource-level permissions. You can't use this operation to allow or deny access to specific Health events. For more
     -- information, see Resource- and action-based conditions in the Health User Guide.
-    describeEventDetailsForOrganization: function(Client, types.DescribeEventDetailsForOrganizationInput): types.DescribeEventDetailsForOrganizationOutput, table
+    describeEventDetailsForOrganization: function(Client, types.DescribeEventDetailsForOrganizationInput): Operation<types.DescribeEventDetailsForOrganizationOutput>
     -- Returns information about events that meet the specified filter criteria. Events are
     -- returned in a summary form and do not include the detailed description, any additional
     -- metadata that depends on the event type, or any affected resources. To retrieve that
@@ -89,7 +93,7 @@ local record Client
     -- services parameter in the filter object. For more
     -- information, see Event.
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Returns information about events across your organization in Organizations. You can use
     -- thefilters parameter to specify the events that you want to return. Events
     -- are returned in a summary form and don't include the affected accounts, detailed
@@ -106,17 +110,17 @@ local record Client
     -- Organizations. To do this, call the EnableHealthServiceAccessForOrganization operation from your organization's
     -- management account.
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
-    describeEventsForOrganization: function(Client, types.DescribeEventsForOrganizationInput): types.DescribeEventsForOrganizationOutput, table
+    describeEventsForOrganization: function(Client, types.DescribeEventsForOrganizationInput): Operation<types.DescribeEventsForOrganizationOutput>
     -- Returns the event types that meet the specified filter criteria. You can use this API
     -- operation to find information about the Health event, such as the category, Amazon Web Services service, and event code. The metadata for each event appears in the EventType object.
     -- If you don't specify a filter criteria, the API operation returns all event types, in no
     -- particular order.
     -- This API operation uses pagination. Specify the nextToken parameter in the next request to return more results.
-    describeEventTypes: function(Client, types.DescribeEventTypesInput): types.DescribeEventTypesOutput, table
+    describeEventTypes: function(Client, types.DescribeEventTypesInput): Operation<types.DescribeEventTypesOutput>
     -- This operation provides status information on enabling or disabling Health to work
     -- with your organization. To call this operation, you must use the organization's
     -- management account.
-    describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput): types.DescribeHealthServiceStatusForOrganizationOutput, table
+    describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput): Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
     -- Disables Health from working with Organizations. To call this operation, you must sign
     -- in to the organization's management account. For more information, see Aggregating
     -- Health events in the Health User Guide.
@@ -129,7 +133,7 @@ local record Client
     -- If you call the Health API operations for organizational view, Health returns
     -- an error. Health continues to aggregate health events for your
     -- Amazon Web Services account.
-    disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput): types.DisableHealthServiceAccessForOrganizationOutput, table
+    disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput): Operation<types.DisableHealthServiceAccessForOrganizationOutput>
     -- Enables Health to work with Organizations. You can use the organizational view feature
     -- to aggregate events from all Amazon Web Services accounts in your organization in a centralized location.
     -- This operation also creates a service-linked role for the management account in the
@@ -145,7 +149,7 @@ local record Client
     -- If you don't have the required support plan, you can instead use the Health console
     -- to enable the organizational view feature. For more information, see Aggregating
     -- Health events in the Health User Guide.
-    enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput): types.EnableHealthServiceAccessForOrganizationOutput, table
+    enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput): Operation<types.EnableHealthServiceAccessForOrganizationOutput>
 end
 
 local record M

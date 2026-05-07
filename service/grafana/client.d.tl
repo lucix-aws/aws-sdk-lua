@@ -2,57 +2,61 @@
 
 local types = require("grafana.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Assigns a Grafana Enterprise license to a workspace. To upgrade, you must use ENTERPRISE for the licenseType, and pass in a valid Grafana Labs token for the grafanaToken. Upgrading to Grafana Enterprise incurs additional fees. For more information, see Upgrade a workspace to Grafana Enterprise.
-    associateLicense: function(Client, types.AssociateLicenseInput): types.AssociateLicenseOutput, table
+    associateLicense: function(Client, types.AssociateLicenseInput): Operation<types.AssociateLicenseOutput>
     -- Creates a workspace. In a workspace, you can create Grafana dashboards and visualizations to analyze your metrics, logs, and traces. You don't have to build, package, or deploy any hardware to run the Grafana server. Don't use CreateWorkspace to modify an existing workspace. Instead, use UpdateWorkspace.
-    createWorkspace: function(Client, types.CreateWorkspaceInput): types.CreateWorkspaceOutput, table
+    createWorkspace: function(Client, types.CreateWorkspaceInput): Operation<types.CreateWorkspaceOutput>
     -- Creates a Grafana API key for the workspace. This key can be used to authenticate requests sent to the workspace's HTTP API. See https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html for available APIs and example requests. In workspaces compatible with Grafana version 9 or above, use workspace service accounts instead of API keys. API keys will be removed in a future release.
-    createWorkspaceApiKey: function(Client, types.CreateWorkspaceApiKeyInput): types.CreateWorkspaceApiKeyOutput, table
+    createWorkspaceApiKey: function(Client, types.CreateWorkspaceApiKeyInput): Operation<types.CreateWorkspaceApiKeyOutput>
     -- Creates a service account for the workspace. A service account can be used to call Grafana HTTP APIs, and run automated workloads. After creating the service account with the correct GrafanaRole for your use case, use CreateWorkspaceServiceAccountToken to create a token that can be used to authenticate and authorize Grafana HTTP API calls. You can only create service accounts for workspaces that are compatible with Grafana version 9 and above. For more information about service accounts, see Service accounts in the Amazon Managed Grafana User Guide. For more information about the Grafana HTTP APIs, see Using Grafana HTTP APIs in the Amazon Managed Grafana User Guide.
-    createWorkspaceServiceAccount: function(Client, types.CreateWorkspaceServiceAccountInput): types.CreateWorkspaceServiceAccountOutput, table
+    createWorkspaceServiceAccount: function(Client, types.CreateWorkspaceServiceAccountInput): Operation<types.CreateWorkspaceServiceAccountOutput>
     -- Creates a token that can be used to authenticate and authorize Grafana HTTP API operations for the given workspace service account. The service account acts as a user for the API operations, and defines the permissions that are used by the API. When you create the service account token, you will receive a key that is used when calling Grafana APIs. Do not lose this key, as it will not be retrievable again. If you do lose the key, you can delete the token and recreate it to receive a new key. This will disable the initial key. Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.
-    createWorkspaceServiceAccountToken: function(Client, types.CreateWorkspaceServiceAccountTokenInput): types.CreateWorkspaceServiceAccountTokenOutput, table
+    createWorkspaceServiceAccountToken: function(Client, types.CreateWorkspaceServiceAccountTokenInput): Operation<types.CreateWorkspaceServiceAccountTokenOutput>
     -- Deletes an Amazon Managed Grafana workspace.
-    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): types.DeleteWorkspaceOutput, table
+    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): Operation<types.DeleteWorkspaceOutput>
     -- Deletes a Grafana API key for the workspace. In workspaces compatible with Grafana version 9 or above, use workspace service accounts instead of API keys. API keys will be removed in a future release.
-    deleteWorkspaceApiKey: function(Client, types.DeleteWorkspaceApiKeyInput): types.DeleteWorkspaceApiKeyOutput, table
+    deleteWorkspaceApiKey: function(Client, types.DeleteWorkspaceApiKeyInput): Operation<types.DeleteWorkspaceApiKeyOutput>
     -- Deletes a workspace service account from the workspace. This will delete any tokens created for the service account, as well. If the tokens are currently in use, the will fail to authenticate / authorize after they are deleted. Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.
-    deleteWorkspaceServiceAccount: function(Client, types.DeleteWorkspaceServiceAccountInput): types.DeleteWorkspaceServiceAccountOutput, table
+    deleteWorkspaceServiceAccount: function(Client, types.DeleteWorkspaceServiceAccountInput): Operation<types.DeleteWorkspaceServiceAccountOutput>
     -- Deletes a token for the workspace service account. This will disable the key associated with the token. If any automation is currently using the key, it will no longer be authenticated or authorized to perform actions with the Grafana HTTP APIs. Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.
-    deleteWorkspaceServiceAccountToken: function(Client, types.DeleteWorkspaceServiceAccountTokenInput): types.DeleteWorkspaceServiceAccountTokenOutput, table
+    deleteWorkspaceServiceAccountToken: function(Client, types.DeleteWorkspaceServiceAccountTokenInput): Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
     -- Displays information about one Amazon Managed Grafana workspace.
-    describeWorkspace: function(Client, types.DescribeWorkspaceInput): types.DescribeWorkspaceOutput, table
+    describeWorkspace: function(Client, types.DescribeWorkspaceInput): Operation<types.DescribeWorkspaceOutput>
     -- Displays information about the authentication methods used in one Amazon Managed Grafana workspace.
-    describeWorkspaceAuthentication: function(Client, types.DescribeWorkspaceAuthenticationInput): types.DescribeWorkspaceAuthenticationOutput, table
+    describeWorkspaceAuthentication: function(Client, types.DescribeWorkspaceAuthenticationInput): Operation<types.DescribeWorkspaceAuthenticationOutput>
     -- Gets the current configuration string for the given workspace.
-    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput): types.DescribeWorkspaceConfigurationOutput, table
+    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput): Operation<types.DescribeWorkspaceConfigurationOutput>
     -- Removes the Grafana Enterprise license from a workspace.
-    disassociateLicense: function(Client, types.DisassociateLicenseInput): types.DisassociateLicenseOutput, table
+    disassociateLicense: function(Client, types.DisassociateLicenseInput): Operation<types.DisassociateLicenseOutput>
     -- Lists the users and groups who have the Grafana Admin and Editor roles in this workspace. If you use this operation without specifying userId or groupId, the operation returns the roles of all users and groups. If you specify a userId or a groupId, only the roles for that user or group are returned. If you do this, you can specify only one userId or one groupId.
-    listPermissions: function(Client, types.ListPermissionsInput): types.ListPermissionsOutput, table
+    listPermissions: function(Client, types.ListPermissionsInput): Operation<types.ListPermissionsOutput>
     -- The ListTagsForResource operation returns the tags that are associated with the Amazon Managed Service for Grafana resource specified by the resourceArn. Currently, the only resource that can be tagged is a workspace.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists available versions of Grafana. These are available when calling CreateWorkspace. Optionally, include a workspace to list the versions to which it can be upgraded.
-    listVersions: function(Client, types.ListVersionsInput): types.ListVersionsOutput, table
+    listVersions: function(Client, types.ListVersionsInput): Operation<types.ListVersionsOutput>
     -- Returns a list of Amazon Managed Grafana workspaces in the account, with some information about each workspace. For more complete information about one workspace, use DescribeWorkspace.
-    listWorkspaces: function(Client, types.ListWorkspacesInput): types.ListWorkspacesOutput, table
+    listWorkspaces: function(Client, types.ListWorkspacesInput): Operation<types.ListWorkspacesOutput>
     -- Returns a list of service accounts for a workspace. Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.
-    listWorkspaceServiceAccounts: function(Client, types.ListWorkspaceServiceAccountsInput): types.ListWorkspaceServiceAccountsOutput, table
+    listWorkspaceServiceAccounts: function(Client, types.ListWorkspaceServiceAccountsInput): Operation<types.ListWorkspaceServiceAccountsOutput>
     -- Returns a list of tokens for a workspace service account. This does not return the key for each token. You cannot access keys after they are created. To create a new key, delete the token and recreate it. Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.
-    listWorkspaceServiceAccountTokens: function(Client, types.ListWorkspaceServiceAccountTokensInput): types.ListWorkspaceServiceAccountTokensOutput, table
+    listWorkspaceServiceAccountTokens: function(Client, types.ListWorkspaceServiceAccountTokensInput): Operation<types.ListWorkspaceServiceAccountTokensOutput>
     -- The TagResource operation associates tags with an Amazon Managed Grafana resource. Currently, the only resource that can be tagged is workspaces. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- The UntagResource operation removes the association of the tag with the Amazon Managed Grafana resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates which users in a workspace have the Grafana Admin or Editor roles.
-    updatePermissions: function(Client, types.UpdatePermissionsInput): types.UpdatePermissionsOutput, table
+    updatePermissions: function(Client, types.UpdatePermissionsInput): Operation<types.UpdatePermissionsOutput>
     -- Modifies an existing Amazon Managed Grafana workspace. If you use this operation and omit any optional parameters, the existing values of those parameters are not changed. To modify the user authentication methods that the workspace uses, such as SAML or IAM Identity Center, use UpdateWorkspaceAuthentication. To modify which users in the workspace have the Admin and Editor Grafana roles, use UpdatePermissions.
-    updateWorkspace: function(Client, types.UpdateWorkspaceInput): types.UpdateWorkspaceOutput, table
+    updateWorkspace: function(Client, types.UpdateWorkspaceInput): Operation<types.UpdateWorkspaceOutput>
     -- Use this operation to define the identity provider (IdP) that this workspace authenticates users from, using SAML. You can also map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the Admin and Editor roles in the workspace. Changes to the authentication method for a workspace may take a few minutes to take effect.
-    updateWorkspaceAuthentication: function(Client, types.UpdateWorkspaceAuthenticationInput): types.UpdateWorkspaceAuthenticationOutput, table
+    updateWorkspaceAuthentication: function(Client, types.UpdateWorkspaceAuthenticationInput): Operation<types.UpdateWorkspaceAuthenticationOutput>
     -- Updates the configuration string for the given workspace
-    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput): types.UpdateWorkspaceConfigurationOutput, table
+    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput): Operation<types.UpdateWorkspaceConfigurationOutput>
 end
 
 local record M

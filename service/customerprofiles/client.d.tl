@@ -2,23 +2,27 @@
 
 local types = require("customerprofiles.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a new key value with a specific profile, such as a Contact Record
     -- ContactId.
     -- A profile object can have a single unique key and any number of additional keys that can
     -- be used to identify the profile that it belongs to.
-    addProfileKey: function(Client, types.AddProfileKeyInput): types.AddProfileKeyOutput, table
+    addProfileKey: function(Client, types.AddProfileKeyInput): Operation<types.AddProfileKeyOutput>
     -- Fetch the possible attribute values given the attribute name.
-    batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput): types.BatchGetCalculatedAttributeForProfileOutput, table
+    batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput): Operation<types.BatchGetCalculatedAttributeForProfileOutput>
     -- Get a batch of profiles.
-    batchGetProfile: function(Client, types.BatchGetProfileInput): types.BatchGetProfileOutput, table
+    batchGetProfile: function(Client, types.BatchGetProfileInput): Operation<types.BatchGetProfileOutput>
     -- Creates a new calculated attribute definition. After creation, new object data ingested
     -- into Customer Profiles will be included in the calculated attribute, which can be retrieved
     -- for a profile using the GetCalculatedAttributeForProfile API. Defining a calculated attribute makes it
     -- available for all profiles within a domain. Each calculated attribute can only reference
     -- one ObjectType and at most, two fields from that
     -- ObjectType.
-    createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput): types.CreateCalculatedAttributeDefinitionOutput, table
+    createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput): Operation<types.CreateCalculatedAttributeDefinitionOutput>
     -- Creates a domain, which is a container for all customer data, such as customer profile
     -- attributes, object types, profile keys, and encryption keys. You can create multiple
     -- domains, and each domain can have multiple third-party integrations.
@@ -34,86 +38,86 @@ local record Client
     -- admin website. For more information, see Enable Customer Profiles.
     -- Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances
     -- can be associated with one domain.
-    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createDomain: function(Client, types.CreateDomainInput): Operation<types.CreateDomainOutput>
     -- Creates the layout to view data for a specific domain. This API can only be invoked from
     -- the Amazon Connect admin website.
-    createDomainLayout: function(Client, types.CreateDomainLayoutInput): types.CreateDomainLayoutOutput, table
+    createDomainLayout: function(Client, types.CreateDomainLayoutInput): Operation<types.CreateDomainLayoutOutput>
     -- Creates an event stream, which is a subscription to real-time events, such as when
     -- profiles are created and updated through Amazon Connect Customer Profiles.
     -- Each event stream can be associated with only one Kinesis Data Stream destination in the
     -- same region and Amazon Web Services account as the customer profiles domain
-    createEventStream: function(Client, types.CreateEventStreamInput): types.CreateEventStreamOutput, table
+    createEventStream: function(Client, types.CreateEventStreamInput): Operation<types.CreateEventStreamOutput>
     -- Creates an event trigger, which specifies the rules when to perform action based on
     -- customer's ingested data.
     -- Each event stream can be associated with only one integration in the same region and AWS
     -- account as the event stream.
-    createEventTrigger: function(Client, types.CreateEventTriggerInput): types.CreateEventTriggerOutput, table
+    createEventTrigger: function(Client, types.CreateEventTriggerInput): Operation<types.CreateEventTriggerOutput>
     -- Creates an integration workflow. An integration workflow is an async process which
     -- ingests historic data and sets up an integration for ongoing updates. The supported Amazon AppFlow sources are Salesforce, ServiceNow, and Marketo.
-    createIntegrationWorkflow: function(Client, types.CreateIntegrationWorkflowInput): types.CreateIntegrationWorkflowOutput, table
+    createIntegrationWorkflow: function(Client, types.CreateIntegrationWorkflowInput): Operation<types.CreateIntegrationWorkflowOutput>
     -- Creates a standard profile.
     -- A standard profile represents the following attributes for a customer profile in a
     -- domain.
-    createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    createProfile: function(Client, types.CreateProfileInput): Operation<types.CreateProfileOutput>
     -- Creates a recommender
-    createRecommender: function(Client, types.CreateRecommenderInput): types.CreateRecommenderOutput, table
+    createRecommender: function(Client, types.CreateRecommenderInput): Operation<types.CreateRecommenderOutput>
     -- Creates a recommender filter. A recommender filter specifies which items to include or exclude from recommendations.
-    createRecommenderFilter: function(Client, types.CreateRecommenderFilterInput): types.CreateRecommenderFilterOutput, table
+    createRecommenderFilter: function(Client, types.CreateRecommenderFilterInput): Operation<types.CreateRecommenderFilterOutput>
     -- Creates a recommender schema. A recommender schema defines the set of data columns available for training recommenders and filters under a domain.
-    createRecommenderSchema: function(Client, types.CreateRecommenderSchemaInput): types.CreateRecommenderSchemaOutput, table
+    createRecommenderSchema: function(Client, types.CreateRecommenderSchemaInput): Operation<types.CreateRecommenderSchemaOutput>
     -- Creates a segment definition associated to the given domain.
-    createSegmentDefinition: function(Client, types.CreateSegmentDefinitionInput): types.CreateSegmentDefinitionOutput, table
+    createSegmentDefinition: function(Client, types.CreateSegmentDefinitionInput): Operation<types.CreateSegmentDefinitionOutput>
     -- Creates a segment estimate query.
-    createSegmentEstimate: function(Client, types.CreateSegmentEstimateInput): types.CreateSegmentEstimateOutput, table
+    createSegmentEstimate: function(Client, types.CreateSegmentEstimateInput): Operation<types.CreateSegmentEstimateOutput>
     -- Triggers a job to export a segment to a specified destination.
-    createSegmentSnapshot: function(Client, types.CreateSegmentSnapshotInput): types.CreateSegmentSnapshotOutput, table
+    createSegmentSnapshot: function(Client, types.CreateSegmentSnapshotInput): Operation<types.CreateSegmentSnapshotOutput>
     -- Creates an Upload job to ingest data for segment imports. The metadata is created for
     -- the job with the provided field mapping and unique key.
-    createUploadJob: function(Client, types.CreateUploadJobInput): types.CreateUploadJobOutput, table
+    createUploadJob: function(Client, types.CreateUploadJobInput): Operation<types.CreateUploadJobOutput>
     -- Deletes an existing calculated attribute definition. Note that deleting a default
     -- calculated attribute is possible, however once deleted, you will be unable to undo that
     -- action and will need to recreate it on your own using the
     -- CreateCalculatedAttributeDefinition API if you want it back.
-    deleteCalculatedAttributeDefinition: function(Client, types.DeleteCalculatedAttributeDefinitionInput): types.DeleteCalculatedAttributeDefinitionOutput, table
+    deleteCalculatedAttributeDefinition: function(Client, types.DeleteCalculatedAttributeDefinitionInput): Operation<types.DeleteCalculatedAttributeDefinitionOutput>
     -- Deletes a specific domain and all of its customer data, such as customer profile
     -- attributes and their related objects.
-    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): Operation<types.DeleteDomainOutput>
     -- Deletes the layout used to view data for a specific domain. This API can only be invoked
     -- from the Amazon Connect admin website.
-    deleteDomainLayout: function(Client, types.DeleteDomainLayoutInput): types.DeleteDomainLayoutOutput, table
+    deleteDomainLayout: function(Client, types.DeleteDomainLayoutInput): Operation<types.DeleteDomainLayoutOutput>
     -- Delete a DomainObjectType for the given Domain and ObjectType name.
-    deleteDomainObjectType: function(Client, types.DeleteDomainObjectTypeInput): types.DeleteDomainObjectTypeOutput, table
+    deleteDomainObjectType: function(Client, types.DeleteDomainObjectTypeInput): Operation<types.DeleteDomainObjectTypeOutput>
     -- Disables and deletes the specified event stream.
-    deleteEventStream: function(Client, types.DeleteEventStreamInput): types.DeleteEventStreamOutput, table
+    deleteEventStream: function(Client, types.DeleteEventStreamInput): Operation<types.DeleteEventStreamOutput>
     -- Disable and deletes the Event Trigger.
     -- You cannot delete an Event Trigger with an active Integration associated.
-    deleteEventTrigger: function(Client, types.DeleteEventTriggerInput): types.DeleteEventTriggerOutput, table
+    deleteEventTrigger: function(Client, types.DeleteEventTriggerInput): Operation<types.DeleteEventTriggerOutput>
     -- Removes an integration from a specific domain.
-    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): Operation<types.DeleteIntegrationOutput>
     -- Deletes the standard customer profile and all data pertaining to the profile.
-    deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    deleteProfile: function(Client, types.DeleteProfileInput): Operation<types.DeleteProfileOutput>
     -- Removes a searchable key from a customer profile.
-    deleteProfileKey: function(Client, types.DeleteProfileKeyInput): types.DeleteProfileKeyOutput, table
+    deleteProfileKey: function(Client, types.DeleteProfileKeyInput): Operation<types.DeleteProfileKeyOutput>
     -- Removes an object associated with a profile of a given ProfileObjectType.
-    deleteProfileObject: function(Client, types.DeleteProfileObjectInput): types.DeleteProfileObjectOutput, table
+    deleteProfileObject: function(Client, types.DeleteProfileObjectInput): Operation<types.DeleteProfileObjectOutput>
     -- Removes a ProfileObjectType from a specific domain as well as removes all the
     -- ProfileObjects of that type. It also disables integrations from this specific
     -- ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that
     -- were populated from this ProfileObjectType.
-    deleteProfileObjectType: function(Client, types.DeleteProfileObjectTypeInput): types.DeleteProfileObjectTypeOutput, table
+    deleteProfileObjectType: function(Client, types.DeleteProfileObjectTypeInput): Operation<types.DeleteProfileObjectTypeOutput>
     -- Deletes a recommender.
-    deleteRecommender: function(Client, types.DeleteRecommenderInput): types.DeleteRecommenderOutput, table
+    deleteRecommender: function(Client, types.DeleteRecommenderInput): Operation<types.DeleteRecommenderOutput>
     -- Deletes a recommender filter from a domain.
-    deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput): types.DeleteRecommenderFilterOutput, table
+    deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput): Operation<types.DeleteRecommenderFilterOutput>
     -- Deletes a recommender schema from a domain.
-    deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput): types.DeleteRecommenderSchemaOutput, table
+    deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput): Operation<types.DeleteRecommenderSchemaOutput>
     -- Deletes a segment definition from the domain.
-    deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput): types.DeleteSegmentDefinitionOutput, table
+    deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput): Operation<types.DeleteSegmentDefinitionOutput>
     -- Deletes the specified workflow and all its corresponding resources. This is an async
     -- process.
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): Operation<types.DeleteWorkflowOutput>
     -- The process of detecting profile object type mapping by using given objects.
-    detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput): types.DetectProfileObjectTypeOutput, table
+    detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput): Operation<types.DetectProfileObjectTypeOutput>
     -- Tests the auto-merging settings of your Identity Resolution Job without merging your data. It randomly
     -- selects a sample of matching groups from the existing matching results, and applies the
     -- automerging settings that you provided. You can then view the number of profiles in the
@@ -125,29 +129,29 @@ local record Client
     -- attributes. If your matching list includes too few attributes (such as only
     -- FirstName or only LastName), there may be a large number of
     -- matches. This increases the chances of erroneous merges.
-    getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput): types.GetAutoMergingPreviewOutput, table
+    getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput): Operation<types.GetAutoMergingPreviewOutput>
     -- Provides more information on a calculated attribute definition for Customer
     -- Profiles.
-    getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput): types.GetCalculatedAttributeDefinitionOutput, table
+    getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput): Operation<types.GetCalculatedAttributeDefinitionOutput>
     -- Retrieve a calculated attribute for a customer profile.
-    getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput): types.GetCalculatedAttributeForProfileOutput, table
+    getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput): Operation<types.GetCalculatedAttributeForProfileOutput>
     -- Returns information about a specific domain.
-    getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    getDomain: function(Client, types.GetDomainInput): Operation<types.GetDomainOutput>
     -- Gets the layout to view data for a specific domain. This API can only be invoked from
     -- the Amazon Connect admin website.
-    getDomainLayout: function(Client, types.GetDomainLayoutInput): types.GetDomainLayoutOutput, table
+    getDomainLayout: function(Client, types.GetDomainLayoutInput): Operation<types.GetDomainLayoutOutput>
     -- Return a DomainObjectType for the input Domain and ObjectType names.
-    getDomainObjectType: function(Client, types.GetDomainObjectTypeInput): types.GetDomainObjectTypeOutput, table
+    getDomainObjectType: function(Client, types.GetDomainObjectTypeInput): Operation<types.GetDomainObjectTypeOutput>
     -- Returns information about the specified event stream in a specific domain.
-    getEventStream: function(Client, types.GetEventStreamInput): types.GetEventStreamOutput, table
+    getEventStream: function(Client, types.GetEventStreamInput): Operation<types.GetEventStreamOutput>
     -- Get a specific Event Trigger from the domain.
-    getEventTrigger: function(Client, types.GetEventTriggerInput): types.GetEventTriggerOutput, table
+    getEventTrigger: function(Client, types.GetEventTriggerInput): Operation<types.GetEventTriggerOutput>
     -- Returns information about an Identity Resolution Job in a specific domain.
     -- Identity Resolution Jobs are set up using the Amazon Connect admin console. For more information, see Use
     -- Identity Resolution to consolidate similar profiles.
-    getIdentityResolutionJob: function(Client, types.GetIdentityResolutionJobInput): types.GetIdentityResolutionJobOutput, table
+    getIdentityResolutionJob: function(Client, types.GetIdentityResolutionJobInput): Operation<types.GetIdentityResolutionJobOutput>
     -- Returns an integration for a domain.
-    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): Operation<types.GetIntegrationOutput>
     -- Before calling this API, use CreateDomain or
     -- UpdateDomain to
     -- enable identity resolution: set Matching to true.
@@ -173,107 +177,107 @@ local record Client
     -- email addresses such as JOHN_DOE@ANYCOMPANY.COM and
     -- johndoe@anycompany.com, or different phone number
     -- formats such as 555-010-0000 and +1-555-010-0000—can be detected as belonging to the same customer John Doe and merged into a unified profile.
-    getMatches: function(Client, types.GetMatchesInput): types.GetMatchesOutput, table
+    getMatches: function(Client, types.GetMatchesInput): Operation<types.GetMatchesOutput>
     -- The GetObjectTypeAttributeValues API delivers statistical insights about attributes within a specific object type, but is exclusively available for domains with data store enabled. This API performs daily calculations to provide statistical information about your attribute values, helping you understand patterns and trends in your data. The statistical calculations are performed once per day, providing a consistent snapshot of your attribute data characteristics.
     -- You'll receive null values in two scenarios:
     -- During the first period after enabling data vault (unless a calculation cycle occurs, which happens once daily).
     -- For attributes that don't contain numeric values.
-    getObjectTypeAttributeStatistics: function(Client, types.GetObjectTypeAttributeStatisticsInput): types.GetObjectTypeAttributeStatisticsOutput, table
+    getObjectTypeAttributeStatistics: function(Client, types.GetObjectTypeAttributeStatisticsInput): Operation<types.GetObjectTypeAttributeStatisticsOutput>
     -- Returns a history record for a specific profile, for a specific domain.
-    getProfileHistoryRecord: function(Client, types.GetProfileHistoryRecordInput): types.GetProfileHistoryRecordOutput, table
+    getProfileHistoryRecord: function(Client, types.GetProfileHistoryRecordInput): Operation<types.GetProfileHistoryRecordOutput>
     -- Returns the object types for a specific domain.
-    getProfileObjectType: function(Client, types.GetProfileObjectTypeInput): types.GetProfileObjectTypeOutput, table
+    getProfileObjectType: function(Client, types.GetProfileObjectTypeInput): Operation<types.GetProfileObjectTypeOutput>
     -- Returns the template information for a specific object type.
     -- A template is a predefined ProfileObjectType, such as “Salesforce-Account” or
     -- “Salesforce-Contact.” When a user sends a ProfileObject, using the PutProfileObject API,
     -- with an ObjectTypeName that matches one of the TemplateIds, it uses the mappings from the
     -- template.
-    getProfileObjectTypeTemplate: function(Client, types.GetProfileObjectTypeTemplateInput): types.GetProfileObjectTypeTemplateOutput, table
+    getProfileObjectTypeTemplate: function(Client, types.GetProfileObjectTypeTemplateInput): Operation<types.GetProfileObjectTypeTemplateOutput>
     -- Fetches the recommendations for a profile in the input Customer Profiles domain. Fetches all the profile recommendations
-    getProfileRecommendations: function(Client, types.GetProfileRecommendationsInput): types.GetProfileRecommendationsOutput, table
+    getProfileRecommendations: function(Client, types.GetProfileRecommendationsInput): Operation<types.GetProfileRecommendationsOutput>
     -- Retrieves a recommender.
-    getRecommender: function(Client, types.GetRecommenderInput): types.GetRecommenderOutput, table
+    getRecommender: function(Client, types.GetRecommenderInput): Operation<types.GetRecommenderOutput>
     -- Retrieves information about a specific recommender filter in a domain.
-    getRecommenderFilter: function(Client, types.GetRecommenderFilterInput): types.GetRecommenderFilterOutput, table
+    getRecommenderFilter: function(Client, types.GetRecommenderFilterInput): Operation<types.GetRecommenderFilterOutput>
     -- Retrieves information about a specific recommender schema in a domain.
-    getRecommenderSchema: function(Client, types.GetRecommenderSchemaInput): types.GetRecommenderSchemaOutput, table
+    getRecommenderSchema: function(Client, types.GetRecommenderSchemaInput): Operation<types.GetRecommenderSchemaOutput>
     -- Gets a segment definition from the domain.
-    getSegmentDefinition: function(Client, types.GetSegmentDefinitionInput): types.GetSegmentDefinitionOutput, table
+    getSegmentDefinition: function(Client, types.GetSegmentDefinitionInput): Operation<types.GetSegmentDefinitionOutput>
     -- Gets the result of a segment estimate query.
-    getSegmentEstimate: function(Client, types.GetSegmentEstimateInput): types.GetSegmentEstimateOutput, table
+    getSegmentEstimate: function(Client, types.GetSegmentEstimateInput): Operation<types.GetSegmentEstimateOutput>
     -- Determines if the given profiles are within a segment.
-    getSegmentMembership: function(Client, types.GetSegmentMembershipInput): types.GetSegmentMembershipOutput, table
+    getSegmentMembership: function(Client, types.GetSegmentMembershipInput): Operation<types.GetSegmentMembershipOutput>
     -- Retrieve the latest status of a segment snapshot.
-    getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput): types.GetSegmentSnapshotOutput, table
+    getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput): Operation<types.GetSegmentSnapshotOutput>
     -- Returns a set of profiles that belong to the same matching group using the
     -- matchId or profileId. You can also specify the type of
     -- matching that you want for finding similar profiles using either
     -- RULE_BASED_MATCHING or ML_BASED_MATCHING.
-    getSimilarProfiles: function(Client, types.GetSimilarProfilesInput): types.GetSimilarProfilesOutput, table
+    getSimilarProfiles: function(Client, types.GetSimilarProfilesInput): Operation<types.GetSimilarProfilesOutput>
     -- This API retrieves the details of a specific upload job.
-    getUploadJob: function(Client, types.GetUploadJobInput): types.GetUploadJobOutput, table
+    getUploadJob: function(Client, types.GetUploadJobInput): Operation<types.GetUploadJobOutput>
     -- This API retrieves the pre-signed URL and client token for uploading the file associated
     -- with the upload job.
-    getUploadJobPath: function(Client, types.GetUploadJobPathInput): types.GetUploadJobPathOutput, table
+    getUploadJobPath: function(Client, types.GetUploadJobPathInput): Operation<types.GetUploadJobPathOutput>
     -- Get details of specified workflow.
-    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): Operation<types.GetWorkflowOutput>
     -- Get granular list of steps in workflow.
-    getWorkflowSteps: function(Client, types.GetWorkflowStepsInput): types.GetWorkflowStepsOutput, table
+    getWorkflowSteps: function(Client, types.GetWorkflowStepsInput): Operation<types.GetWorkflowStepsOutput>
     -- Lists all of the integrations associated to a specific URI in the AWS account.
-    listAccountIntegrations: function(Client, types.ListAccountIntegrationsInput): types.ListAccountIntegrationsOutput, table
+    listAccountIntegrations: function(Client, types.ListAccountIntegrationsInput): Operation<types.ListAccountIntegrationsOutput>
     -- Lists calculated attribute definitions for Customer Profiles
-    listCalculatedAttributeDefinitions: function(Client, types.ListCalculatedAttributeDefinitionsInput): types.ListCalculatedAttributeDefinitionsOutput, table
+    listCalculatedAttributeDefinitions: function(Client, types.ListCalculatedAttributeDefinitionsInput): Operation<types.ListCalculatedAttributeDefinitionsOutput>
     -- Retrieve a list of calculated attributes for a customer profile.
-    listCalculatedAttributesForProfile: function(Client, types.ListCalculatedAttributesForProfileInput): types.ListCalculatedAttributesForProfileOutput, table
+    listCalculatedAttributesForProfile: function(Client, types.ListCalculatedAttributesForProfileInput): Operation<types.ListCalculatedAttributesForProfileOutput>
     -- Lists the existing layouts that can be used to view data for a specific domain. This API
     -- can only be invoked from the Amazon Connect admin website.
-    listDomainLayouts: function(Client, types.ListDomainLayoutsInput): types.ListDomainLayoutsOutput, table
+    listDomainLayouts: function(Client, types.ListDomainLayoutsInput): Operation<types.ListDomainLayoutsOutput>
     -- List all DomainObjectType(s) in a Customer Profiles domain.
-    listDomainObjectTypes: function(Client, types.ListDomainObjectTypesInput): types.ListDomainObjectTypesOutput, table
+    listDomainObjectTypes: function(Client, types.ListDomainObjectTypesInput): Operation<types.ListDomainObjectTypesOutput>
     -- Returns a list of all the domains for an AWS account that have been created.
-    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): Operation<types.ListDomainsOutput>
     -- Returns a list of all the event streams in a specific domain.
-    listEventStreams: function(Client, types.ListEventStreamsInput): types.ListEventStreamsOutput, table
+    listEventStreams: function(Client, types.ListEventStreamsInput): Operation<types.ListEventStreamsOutput>
     -- List all Event Triggers under a domain.
-    listEventTriggers: function(Client, types.ListEventTriggersInput): types.ListEventTriggersOutput, table
+    listEventTriggers: function(Client, types.ListEventTriggersInput): Operation<types.ListEventTriggersOutput>
     -- Lists all of the Identity Resolution Jobs in your domain. The response sorts the list by
     -- JobStartTime.
-    listIdentityResolutionJobs: function(Client, types.ListIdentityResolutionJobsInput): types.ListIdentityResolutionJobsOutput, table
+    listIdentityResolutionJobs: function(Client, types.ListIdentityResolutionJobsInput): Operation<types.ListIdentityResolutionJobsOutput>
     -- Lists all of the integrations in your domain.
-    listIntegrations: function(Client, types.ListIntegrationsInput): types.ListIntegrationsOutput, table
+    listIntegrations: function(Client, types.ListIntegrationsInput): Operation<types.ListIntegrationsOutput>
     -- Fetch the possible attribute values given the attribute name.
-    listObjectTypeAttributes: function(Client, types.ListObjectTypeAttributesInput): types.ListObjectTypeAttributesOutput, table
+    listObjectTypeAttributes: function(Client, types.ListObjectTypeAttributesInput): Operation<types.ListObjectTypeAttributesOutput>
     -- The ListObjectTypeAttributeValues API provides access to the most recent distinct values for any specified attribute, making it valuable for real-time data validation and consistency checks within your object types. This API works across domain, supporting both custom and standard object types. The API accepts the object type name, attribute name, and domain name as input parameters and returns values up to the storage limit of approximately 350KB.
-    listObjectTypeAttributeValues: function(Client, types.ListObjectTypeAttributeValuesInput): types.ListObjectTypeAttributeValuesOutput, table
+    listObjectTypeAttributeValues: function(Client, types.ListObjectTypeAttributeValuesInput): Operation<types.ListObjectTypeAttributeValuesOutput>
     -- Fetch the possible attribute values given the attribute name.
-    listProfileAttributeValues: function(Client, types.ListProfileAttributeValuesInput): types.ListProfileAttributeValuesOutput, table
+    listProfileAttributeValues: function(Client, types.ListProfileAttributeValuesInput): Operation<types.ListProfileAttributeValuesOutput>
     -- Returns a list of history records for a specific profile, for a specific domain.
-    listProfileHistoryRecords: function(Client, types.ListProfileHistoryRecordsInput): types.ListProfileHistoryRecordsOutput, table
+    listProfileHistoryRecords: function(Client, types.ListProfileHistoryRecordsInput): Operation<types.ListProfileHistoryRecordsOutput>
     -- Returns a list of objects associated with a profile of a given ProfileObjectType.
-    listProfileObjects: function(Client, types.ListProfileObjectsInput): types.ListProfileObjectsOutput, table
+    listProfileObjects: function(Client, types.ListProfileObjectsInput): Operation<types.ListProfileObjectsOutput>
     -- Lists all of the templates available within the service.
-    listProfileObjectTypes: function(Client, types.ListProfileObjectTypesInput): types.ListProfileObjectTypesOutput, table
+    listProfileObjectTypes: function(Client, types.ListProfileObjectTypesInput): Operation<types.ListProfileObjectTypesOutput>
     -- Lists all of the template information for object types.
-    listProfileObjectTypeTemplates: function(Client, types.ListProfileObjectTypeTemplatesInput): types.ListProfileObjectTypeTemplatesOutput, table
+    listProfileObjectTypeTemplates: function(Client, types.ListProfileObjectTypeTemplatesInput): Operation<types.ListProfileObjectTypeTemplatesOutput>
     -- Returns a list of recommender filters in the specified domain.
-    listRecommenderFilters: function(Client, types.ListRecommenderFiltersInput): types.ListRecommenderFiltersOutput, table
+    listRecommenderFilters: function(Client, types.ListRecommenderFiltersInput): Operation<types.ListRecommenderFiltersOutput>
     -- Returns a list of available recommender recipes that can be used to create recommenders.
-    listRecommenderRecipes: function(Client, types.ListRecommenderRecipesInput): types.ListRecommenderRecipesOutput, table
+    listRecommenderRecipes: function(Client, types.ListRecommenderRecipesInput): Operation<types.ListRecommenderRecipesOutput>
     -- Returns a list of recommenders in the specified domain.
-    listRecommenders: function(Client, types.ListRecommendersInput): types.ListRecommendersOutput, table
+    listRecommenders: function(Client, types.ListRecommendersInput): Operation<types.ListRecommendersOutput>
     -- Returns a list of recommender schemas in the specified domain.
-    listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput): types.ListRecommenderSchemasOutput, table
+    listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput): Operation<types.ListRecommenderSchemasOutput>
     -- Returns a set of MatchIds that belong to the given domain.
-    listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput): types.ListRuleBasedMatchesOutput, table
+    listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput): Operation<types.ListRuleBasedMatchesOutput>
     -- Lists all segment definitions under a domain.
-    listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput): types.ListSegmentDefinitionsOutput, table
+    listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput): Operation<types.ListSegmentDefinitionsOutput>
     -- Displays the tags associated with an Amazon Connect Customer Profiles resource. In Connect
     -- Customer Profiles, domains, profile object types, and integrations can be tagged.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- This API retrieves a list of upload jobs for the specified domain.
-    listUploadJobs: function(Client, types.ListUploadJobsInput): types.ListUploadJobsOutput, table
+    listUploadJobs: function(Client, types.ListUploadJobsInput): Operation<types.ListUploadJobsOutput>
     -- Query to list all workflows.
-    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): Operation<types.ListWorkflowsOutput>
     -- Runs an AWS Lambda job that does the following:
     -- All the profileKeys in the ProfileToBeMerged will be moved to the
     -- main profile.
@@ -293,16 +297,16 @@ local record Client
     -- You can use MergeProfiles together with GetMatches, which
     -- returns potentially matching profiles, or use it with the results of another matching
     -- system. After profiles have been merged, they cannot be separated (unmerged).
-    mergeProfiles: function(Client, types.MergeProfilesInput): types.MergeProfilesOutput, table
+    mergeProfiles: function(Client, types.MergeProfilesInput): Operation<types.MergeProfilesOutput>
     -- Create/Update a DomainObjectType in a Customer Profiles domain. To create a new DomainObjectType, Data Store needs to be enabled on the Domain.
-    putDomainObjectType: function(Client, types.PutDomainObjectTypeInput): types.PutDomainObjectTypeOutput, table
+    putDomainObjectType: function(Client, types.PutDomainObjectTypeInput): Operation<types.PutDomainObjectTypeOutput>
     -- Adds an integration between the service and a third-party service, which includes
     -- Amazon AppFlow and Amazon Connect.
     -- An integration can belong to only one domain.
     -- To add or remove tags on an existing Integration, see TagResource
     -- /
     -- UntagResource.
-    putIntegration: function(Client, types.PutIntegrationInput): types.PutIntegrationOutput, table
+    putIntegration: function(Client, types.PutIntegrationInput): Operation<types.PutIntegrationOutput>
     -- Adds additional objects to customer profiles of a given ObjectType.
     -- When adding a specific profile object, like a Contact Record, an inferred profile can
     -- get created if it is not mapped to an existing profile. The resulting profile will only
@@ -313,26 +317,26 @@ local record Client
     -- ProfileObjectType definition.
     -- PutProfileObject needs an ObjectType, which can be created using
     -- PutProfileObjectType.
-    putProfileObject: function(Client, types.PutProfileObjectInput): types.PutProfileObjectOutput, table
+    putProfileObject: function(Client, types.PutProfileObjectInput): Operation<types.PutProfileObjectOutput>
     -- Defines a ProfileObjectType.
     -- To add or remove tags on an existing ObjectType, see
     -- TagResource/UntagResource.
-    putProfileObjectType: function(Client, types.PutProfileObjectTypeInput): types.PutProfileObjectTypeOutput, table
+    putProfileObjectType: function(Client, types.PutProfileObjectTypeInput): Operation<types.PutProfileObjectTypeOutput>
     -- Searches for profiles within a specific domain using one or more predefined search keys
     -- (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined search keys. A
     -- search key is a data type pair that consists of a KeyName and
     -- Values list.
     -- This operation supports searching for profiles with a minimum of 1 key-value(s) pair and
     -- up to 5 key-value(s) pairs using either AND or OR logic.
-    searchProfiles: function(Client, types.SearchProfilesInput): types.SearchProfilesOutput, table
+    searchProfiles: function(Client, types.SearchProfilesInput): Operation<types.SearchProfilesOutput>
     -- Starts a recommender that was previously stopped. Starting a recommender resumes its ability to generate recommendations.
-    startRecommender: function(Client, types.StartRecommenderInput): types.StartRecommenderOutput, table
+    startRecommender: function(Client, types.StartRecommenderInput): Operation<types.StartRecommenderOutput>
     -- This API starts the processing of an upload job to ingest profile data.
-    startUploadJob: function(Client, types.StartUploadJobInput): types.StartUploadJobOutput, table
+    startUploadJob: function(Client, types.StartUploadJobInput): Operation<types.StartUploadJobOutput>
     -- Stops a recommender, suspending its ability to generate recommendations. The recommender can be restarted later using StartRecommender.
-    stopRecommender: function(Client, types.StopRecommenderInput): types.StopRecommenderOutput, table
+    stopRecommender: function(Client, types.StopRecommenderInput): Operation<types.StopRecommenderOutput>
     -- This API stops the processing of an upload job.
-    stopUploadJob: function(Client, types.StopUploadJobInput): types.StopUploadJobOutput, table
+    stopUploadJob: function(Client, types.StopUploadJobInput): Operation<types.StopUploadJobOutput>
     -- Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles
     -- resource. Tags can help you organize and categorize your resources. You can also use them
     -- to scope user permissions by granting a user permission to access or change only resources
@@ -345,14 +349,14 @@ local record Client
     -- you specify a tag key that is already associated with the resource, the new tag value that
     -- you specify replaces the previous value for that tag.
     -- You can associate as many as 50 tags with a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect
     -- Customer Profiles, domains, profile object types, and integrations can be tagged.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing calculated attribute definition. When updating the Conditions, note
     -- that increasing the date range of a calculated attribute will not trigger inclusion of
     -- historical data greater than the current date range.
-    updateCalculatedAttributeDefinition: function(Client, types.UpdateCalculatedAttributeDefinitionInput): types.UpdateCalculatedAttributeDefinitionOutput, table
+    updateCalculatedAttributeDefinition: function(Client, types.UpdateCalculatedAttributeDefinitionInput): Operation<types.UpdateCalculatedAttributeDefinitionOutput>
     -- Updates the properties of a domain, including creating or selecting a dead letter queue
     -- or an encryption key.
     -- After a domain is created, the name can’t be changed.
@@ -362,20 +366,20 @@ local record Client
     -- To prevent cross-service impersonation when you call this API, see Cross-service confused deputy prevention for sample policies that you should
     -- apply.
     -- To add or remove tags on an existing Domain, see TagResource/UntagResource.
-    updateDomain: function(Client, types.UpdateDomainInput): types.UpdateDomainOutput, table
+    updateDomain: function(Client, types.UpdateDomainInput): Operation<types.UpdateDomainOutput>
     -- Updates the layout used to view data for a specific domain. This API can only be invoked
     -- from the Amazon Connect admin website.
-    updateDomainLayout: function(Client, types.UpdateDomainLayoutInput): types.UpdateDomainLayoutOutput, table
+    updateDomainLayout: function(Client, types.UpdateDomainLayoutInput): Operation<types.UpdateDomainLayoutOutput>
     -- Update the properties of an Event Trigger.
-    updateEventTrigger: function(Client, types.UpdateEventTriggerInput): types.UpdateEventTriggerOutput, table
+    updateEventTrigger: function(Client, types.UpdateEventTriggerInput): Operation<types.UpdateEventTriggerOutput>
     -- Updates the properties of a profile. The ProfileId is required for updating a customer
     -- profile.
     -- When calling the UpdateProfile API, specifying an empty string value means that any
     -- existing value will be removed. Not specifying a string value means that any value already
     -- there will be kept.
-    updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    updateProfile: function(Client, types.UpdateProfileInput): Operation<types.UpdateProfileOutput>
     -- Updates the properties of an existing recommender, allowing you to modify its configuration and description.
-    updateRecommender: function(Client, types.UpdateRecommenderInput): types.UpdateRecommenderOutput, table
+    updateRecommender: function(Client, types.UpdateRecommenderInput): Operation<types.UpdateRecommenderOutput>
 end
 
 local record M

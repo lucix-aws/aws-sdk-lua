@@ -2,77 +2,81 @@
 
 local types = require("qapps.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a rating or review for a library item with the user submitting the request. This increments the rating count for the specified library item.
-    associateLibraryItemReview: function(Client, types.AssociateLibraryItemReviewInput): types.AssociateLibraryItemReviewOutput, table
+    associateLibraryItemReview: function(Client, types.AssociateLibraryItemReviewInput): Operation<types.AssociateLibraryItemReviewOutput>
     -- This operation creates a link between the user's identity calling the operation and a specific Q App. This is useful to mark the Q App as a favorite for the user if the user doesn't own the Amazon Q App so they can still run it and see it in their inventory of Q Apps.
-    associateQAppWithUser: function(Client, types.AssociateQAppWithUserInput): types.AssociateQAppWithUserOutput, table
+    associateQAppWithUser: function(Client, types.AssociateQAppWithUserInput): Operation<types.AssociateQAppWithUserOutput>
     -- Creates Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps.
-    batchCreateCategory: function(Client, types.BatchCreateCategoryInput): types.BatchCreateCategoryOutput, table
+    batchCreateCategory: function(Client, types.BatchCreateCategoryInput): Operation<types.BatchCreateCategoryOutput>
     -- Deletes Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps.
-    batchDeleteCategory: function(Client, types.BatchDeleteCategoryInput): types.BatchDeleteCategoryOutput, table
+    batchDeleteCategory: function(Client, types.BatchDeleteCategoryInput): Operation<types.BatchDeleteCategoryOutput>
     -- Updates Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps.
-    batchUpdateCategory: function(Client, types.BatchUpdateCategoryInput): types.BatchUpdateCategoryOutput, table
+    batchUpdateCategory: function(Client, types.BatchUpdateCategoryInput): Operation<types.BatchUpdateCategoryOutput>
     -- Creates a new library item for an Amazon Q App, allowing it to be discovered and used by other allowed users.
-    createLibraryItem: function(Client, types.CreateLibraryItemInput): types.CreateLibraryItemOutput, table
+    createLibraryItem: function(Client, types.CreateLibraryItemInput): Operation<types.CreateLibraryItemOutput>
     -- Creates a presigned URL for an S3 POST operation to upload a file. You can use this URL to set a default file for a FileUploadCard in a Q App definition or to provide a file for a single Q App run. The scope parameter determines how the file will be used, either at the app definition level or the app session level. The IAM permissions are derived from the qapps:ImportDocument action. For more information on the IAM policy for Amazon Q Apps, see IAM permissions for using Amazon Q Apps.
-    createPresignedUrl: function(Client, types.CreatePresignedUrlInput): types.CreatePresignedUrlOutput, table
+    createPresignedUrl: function(Client, types.CreatePresignedUrlInput): Operation<types.CreatePresignedUrlOutput>
     -- Creates a new Amazon Q App based on the provided definition. The Q App definition specifies the cards and flow of the Q App. This operation also calculates the dependencies between the cards by inspecting the references in the prompts.
-    createQApp: function(Client, types.CreateQAppInput): types.CreateQAppOutput, table
+    createQApp: function(Client, types.CreateQAppInput): Operation<types.CreateQAppOutput>
     -- Deletes a library item for an Amazon Q App, removing it from the library so it can no longer be discovered or used by other users.
-    deleteLibraryItem: function(Client, types.DeleteLibraryItemInput): types.DeleteLibraryItemOutput, table
+    deleteLibraryItem: function(Client, types.DeleteLibraryItemInput): Operation<types.DeleteLibraryItemOutput>
     -- Deletes an Amazon Q App owned by the user. If the Q App was previously published to the library, it is also removed from the library.
-    deleteQApp: function(Client, types.DeleteQAppInput): types.DeleteQAppOutput, table
+    deleteQApp: function(Client, types.DeleteQAppInput): Operation<types.DeleteQAppOutput>
     -- Describes read permissions for a Amazon Q App in Amazon Q Business application environment instance.
-    describeQAppPermissions: function(Client, types.DescribeQAppPermissionsInput): types.DescribeQAppPermissionsOutput, table
+    describeQAppPermissions: function(Client, types.DescribeQAppPermissionsInput): Operation<types.DescribeQAppPermissionsOutput>
     -- Removes a rating or review previously submitted by the user for a library item.
-    disassociateLibraryItemReview: function(Client, types.DisassociateLibraryItemReviewInput): types.DisassociateLibraryItemReviewOutput, table
+    disassociateLibraryItemReview: function(Client, types.DisassociateLibraryItemReviewInput): Operation<types.DisassociateLibraryItemReviewOutput>
     -- Disassociates a Q App from a user removing the user's access to run the Q App.
-    disassociateQAppFromUser: function(Client, types.DisassociateQAppFromUserInput): types.DisassociateQAppFromUserOutput, table
+    disassociateQAppFromUser: function(Client, types.DisassociateQAppFromUserInput): Operation<types.DisassociateQAppFromUserOutput>
     -- Exports the collected data of a Q App data collection session.
-    exportQAppSessionData: function(Client, types.ExportQAppSessionDataInput): types.ExportQAppSessionDataOutput, table
+    exportQAppSessionData: function(Client, types.ExportQAppSessionDataInput): Operation<types.ExportQAppSessionDataOutput>
     -- Retrieves details about a library item for an Amazon Q App, including its metadata, categories, ratings, and usage statistics.
-    getLibraryItem: function(Client, types.GetLibraryItemInput): types.GetLibraryItemOutput, table
+    getLibraryItem: function(Client, types.GetLibraryItemInput): Operation<types.GetLibraryItemOutput>
     -- Retrieves the full details of an Q App, including its definition specifying the cards and flow.
-    getQApp: function(Client, types.GetQAppInput): types.GetQAppOutput, table
+    getQApp: function(Client, types.GetQAppInput): Operation<types.GetQAppOutput>
     -- Retrieves the current state and results for an active session of an Amazon Q App.
-    getQAppSession: function(Client, types.GetQAppSessionInput): types.GetQAppSessionOutput, table
+    getQAppSession: function(Client, types.GetQAppSessionInput): Operation<types.GetQAppSessionOutput>
     -- Retrieves the current configuration of a Q App session.
-    getQAppSessionMetadata: function(Client, types.GetQAppSessionMetadataInput): types.GetQAppSessionMetadataOutput, table
+    getQAppSessionMetadata: function(Client, types.GetQAppSessionMetadataInput): Operation<types.GetQAppSessionMetadataOutput>
     -- Uploads a file that can then be used either as a default in a FileUploadCard from Q App definition or as a file that is used inside a single Q App run. The purpose of the document is determined by a scope parameter that indicates whether it is at the app definition level or at the app session level.
-    importDocument: function(Client, types.ImportDocumentInput): types.ImportDocumentOutput, table
+    importDocument: function(Client, types.ImportDocumentInput): Operation<types.ImportDocumentOutput>
     -- Lists the categories of a Amazon Q Business application environment instance. For more information, see Custom labels for Amazon Q Apps.
-    listCategories: function(Client, types.ListCategoriesInput): types.ListCategoriesOutput, table
+    listCategories: function(Client, types.ListCategoriesInput): Operation<types.ListCategoriesOutput>
     -- Lists the library items for Amazon Q Apps that are published and available for users in your Amazon Web Services account.
-    listLibraryItems: function(Client, types.ListLibraryItemsInput): types.ListLibraryItemsOutput, table
+    listLibraryItems: function(Client, types.ListLibraryItemsInput): Operation<types.ListLibraryItemsOutput>
     -- Lists the Amazon Q Apps owned by or associated with the user either because they created it or because they used it from the library in the past. The user identity is extracted from the credentials used to invoke this operation..
-    listQApps: function(Client, types.ListQAppsInput): types.ListQAppsOutput, table
+    listQApps: function(Client, types.ListQAppsInput): Operation<types.ListQAppsOutput>
     -- Lists the collected data of a Q App data collection session.
-    listQAppSessionData: function(Client, types.ListQAppSessionDataInput): types.ListQAppSessionDataOutput, table
+    listQAppSessionData: function(Client, types.ListQAppSessionDataInput): Operation<types.ListQAppSessionDataOutput>
     -- Lists the tags associated with an Amazon Q Apps resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Generates an Amazon Q App definition based on either a conversation or a problem statement provided as input.The resulting app definition can be used to call CreateQApp. This API doesn't create Amazon Q Apps directly.
-    predictQApp: function(Client, types.PredictQAppInput): types.PredictQAppOutput, table
+    predictQApp: function(Client, types.PredictQAppInput): Operation<types.PredictQAppOutput>
     -- Starts a new session for an Amazon Q App, allowing inputs to be provided and the app to be run. Each Q App session will be condensed into a single conversation in the web experience.
-    startQAppSession: function(Client, types.StartQAppSessionInput): types.StartQAppSessionOutput, table
+    startQAppSession: function(Client, types.StartQAppSessionInput): Operation<types.StartQAppSessionOutput>
     -- Stops an active session for an Amazon Q App.This deletes all data related to the session and makes it invalid for future uses. The results of the session will be persisted as part of the conversation.
-    stopQAppSession: function(Client, types.StopQAppSessionInput): types.StopQAppSessionOutput, table
+    stopQAppSession: function(Client, types.StopQAppSessionInput): Operation<types.StopQAppSessionOutput>
     -- Associates tags with an Amazon Q Apps resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Disassociates tags from an Amazon Q Apps resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the library item for an Amazon Q App.
-    updateLibraryItem: function(Client, types.UpdateLibraryItemInput): types.UpdateLibraryItemOutput, table
+    updateLibraryItem: function(Client, types.UpdateLibraryItemInput): Operation<types.UpdateLibraryItemOutput>
     -- Updates the verification status of a library item for an Amazon Q App.
-    updateLibraryItemMetadata: function(Client, types.UpdateLibraryItemMetadataInput): types.UpdateLibraryItemMetadataOutput, table
+    updateLibraryItemMetadata: function(Client, types.UpdateLibraryItemMetadataInput): Operation<types.UpdateLibraryItemMetadataOutput>
     -- Updates an existing Amazon Q App, allowing modifications to its title, description, and definition.
-    updateQApp: function(Client, types.UpdateQAppInput): types.UpdateQAppOutput, table
+    updateQApp: function(Client, types.UpdateQAppInput): Operation<types.UpdateQAppOutput>
     -- Updates read permissions for a Amazon Q App in Amazon Q Business application environment instance.
-    updateQAppPermissions: function(Client, types.UpdateQAppPermissionsInput): types.UpdateQAppPermissionsOutput, table
+    updateQAppPermissions: function(Client, types.UpdateQAppPermissionsInput): Operation<types.UpdateQAppPermissionsOutput>
     -- Updates the session for a given Q App sessionId. This is only valid when at least one card of the session is in the WAITING state. Data for each WAITING card can be provided as input. If inputs are not provided, the call will be accepted but session will not move forward. Inputs for cards that are not in the WAITING status will be ignored.
-    updateQAppSession: function(Client, types.UpdateQAppSessionInput): types.UpdateQAppSessionOutput, table
+    updateQAppSession: function(Client, types.UpdateQAppSessionInput): Operation<types.UpdateQAppSessionOutput>
     -- Updates the configuration metadata of a session for a given Q App sessionId.
-    updateQAppSessionMetadata: function(Client, types.UpdateQAppSessionMetadataInput): types.UpdateQAppSessionMetadataOutput, table
+    updateQAppSessionMetadata: function(Client, types.UpdateQAppSessionMetadataInput): Operation<types.UpdateQAppSessionMetadataOutput>
 end
 
 local record M

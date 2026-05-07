@@ -2,31 +2,35 @@
 
 local types = require("codebuild.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes one or more builds.
-    batchDeleteBuilds: function(Client, types.BatchDeleteBuildsInput): types.BatchDeleteBuildsOutput, table
+    batchDeleteBuilds: function(Client, types.BatchDeleteBuildsInput): Operation<types.BatchDeleteBuildsOutput>
     -- Retrieves information about one or more batch builds.
-    batchGetBuildBatches: function(Client, types.BatchGetBuildBatchesInput): types.BatchGetBuildBatchesOutput, table
+    batchGetBuildBatches: function(Client, types.BatchGetBuildBatchesInput): Operation<types.BatchGetBuildBatchesOutput>
     -- Gets information about one or more builds.
-    batchGetBuilds: function(Client, types.BatchGetBuildsInput): types.BatchGetBuildsOutput, table
+    batchGetBuilds: function(Client, types.BatchGetBuildsInput): Operation<types.BatchGetBuildsOutput>
     -- Gets information about the command executions.
-    batchGetCommandExecutions: function(Client, types.BatchGetCommandExecutionsInput): types.BatchGetCommandExecutionsOutput, table
+    batchGetCommandExecutions: function(Client, types.BatchGetCommandExecutionsInput): Operation<types.BatchGetCommandExecutionsOutput>
     -- Gets information about one or more compute fleets.
-    batchGetFleets: function(Client, types.BatchGetFleetsInput): types.BatchGetFleetsOutput, table
+    batchGetFleets: function(Client, types.BatchGetFleetsInput): Operation<types.BatchGetFleetsOutput>
     -- Gets information about one or more build projects.
-    batchGetProjects: function(Client, types.BatchGetProjectsInput): types.BatchGetProjectsOutput, table
+    batchGetProjects: function(Client, types.BatchGetProjectsInput): Operation<types.BatchGetProjectsOutput>
     -- Returns an array of report groups.
-    batchGetReportGroups: function(Client, types.BatchGetReportGroupsInput): types.BatchGetReportGroupsOutput, table
+    batchGetReportGroups: function(Client, types.BatchGetReportGroupsInput): Operation<types.BatchGetReportGroupsOutput>
     -- Returns an array of reports.
-    batchGetReports: function(Client, types.BatchGetReportsInput): types.BatchGetReportsOutput, table
+    batchGetReports: function(Client, types.BatchGetReportsInput): Operation<types.BatchGetReportsOutput>
     -- Gets information about the sandbox status.
-    batchGetSandboxes: function(Client, types.BatchGetSandboxesInput): types.BatchGetSandboxesOutput, table
+    batchGetSandboxes: function(Client, types.BatchGetSandboxesInput): Operation<types.BatchGetSandboxesOutput>
     -- Creates a compute fleet.
-    createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    createFleet: function(Client, types.CreateFleetInput): Operation<types.CreateFleetOutput>
     -- Creates a build project.
-    createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    createProject: function(Client, types.CreateProjectInput): Operation<types.CreateProjectOutput>
     -- Creates a report group. A report group contains a collection of reports.
-    createReportGroup: function(Client, types.CreateReportGroupInput): types.CreateReportGroupOutput, table
+    createReportGroup: function(Client, types.CreateReportGroupInput): Operation<types.CreateReportGroupOutput>
     -- For an existing CodeBuild build project that has its source code stored in a GitHub or
     -- Bitbucket repository, enables CodeBuild to start rebuilding the source code every time a
     -- code change is pushed to the repository.
@@ -36,102 +40,102 @@ local record Client
     -- basis, you are billed for both builds. Therefore, if you are using CodePipeline, we
     -- recommend that you disable webhooks in CodeBuild. In the CodeBuild console, clear the
     -- Webhook box. For more information, see step 5 in Change a Build Project's Settings.
-    createWebhook: function(Client, types.CreateWebhookInput): types.CreateWebhookOutput, table
+    createWebhook: function(Client, types.CreateWebhookInput): Operation<types.CreateWebhookOutput>
     -- Deletes a batch build.
-    deleteBuildBatch: function(Client, types.DeleteBuildBatchInput): types.DeleteBuildBatchOutput, table
+    deleteBuildBatch: function(Client, types.DeleteBuildBatchInput): Operation<types.DeleteBuildBatchOutput>
     -- Deletes a compute fleet. When you delete a compute fleet, its builds are not deleted.
-    deleteFleet: function(Client, types.DeleteFleetInput): types.DeleteFleetOutput, table
+    deleteFleet: function(Client, types.DeleteFleetInput): Operation<types.DeleteFleetOutput>
     -- Deletes a build project. When you delete a project, its builds are not deleted.
-    deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    deleteProject: function(Client, types.DeleteProjectInput): Operation<types.DeleteProjectOutput>
     -- Deletes a report.
-    deleteReport: function(Client, types.DeleteReportInput): types.DeleteReportOutput, table
+    deleteReport: function(Client, types.DeleteReportInput): Operation<types.DeleteReportOutput>
     -- Deletes a report group. Before you delete a report group, you must delete its reports.
-    deleteReportGroup: function(Client, types.DeleteReportGroupInput): types.DeleteReportGroupOutput, table
+    deleteReportGroup: function(Client, types.DeleteReportGroupInput): Operation<types.DeleteReportGroupOutput>
     -- Deletes a resource policy that is identified by its resource ARN.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a set of GitHub, GitHub Enterprise, or Bitbucket source credentials.
-    deleteSourceCredentials: function(Client, types.DeleteSourceCredentialsInput): types.DeleteSourceCredentialsOutput, table
+    deleteSourceCredentials: function(Client, types.DeleteSourceCredentialsInput): Operation<types.DeleteSourceCredentialsOutput>
     -- For an existing CodeBuild build project that has its source code stored in a GitHub or
     -- Bitbucket repository, stops CodeBuild from rebuilding the source code every time a code
     -- change is pushed to the repository.
-    deleteWebhook: function(Client, types.DeleteWebhookInput): types.DeleteWebhookOutput, table
+    deleteWebhook: function(Client, types.DeleteWebhookInput): Operation<types.DeleteWebhookOutput>
     -- Retrieves one or more code coverage reports.
-    describeCodeCoverages: function(Client, types.DescribeCodeCoveragesInput): types.DescribeCodeCoveragesOutput, table
+    describeCodeCoverages: function(Client, types.DescribeCodeCoveragesInput): Operation<types.DescribeCodeCoveragesOutput>
     -- Returns a list of details about test cases for a report.
-    describeTestCases: function(Client, types.DescribeTestCasesInput): types.DescribeTestCasesOutput, table
+    describeTestCases: function(Client, types.DescribeTestCasesInput): Operation<types.DescribeTestCasesOutput>
     -- Analyzes and accumulates test report values for the specified test reports.
-    getReportGroupTrend: function(Client, types.GetReportGroupTrendInput): types.GetReportGroupTrendOutput, table
+    getReportGroupTrend: function(Client, types.GetReportGroupTrendInput): Operation<types.GetReportGroupTrendOutput>
     -- Gets a resource policy that is identified by its resource ARN.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Imports the source repository credentials for an CodeBuild project that has its
     -- source code stored in a GitHub, GitHub Enterprise, GitLab, GitLab Self Managed, or Bitbucket repository.
-    importSourceCredentials: function(Client, types.ImportSourceCredentialsInput): types.ImportSourceCredentialsOutput, table
+    importSourceCredentials: function(Client, types.ImportSourceCredentialsInput): Operation<types.ImportSourceCredentialsOutput>
     -- Resets the cache for a project.
-    invalidateProjectCache: function(Client, types.InvalidateProjectCacheInput): types.InvalidateProjectCacheOutput, table
+    invalidateProjectCache: function(Client, types.InvalidateProjectCacheInput): Operation<types.InvalidateProjectCacheOutput>
     -- Retrieves the identifiers of your build batches in the current region.
-    listBuildBatches: function(Client, types.ListBuildBatchesInput): types.ListBuildBatchesOutput, table
+    listBuildBatches: function(Client, types.ListBuildBatchesInput): Operation<types.ListBuildBatchesOutput>
     -- Retrieves the identifiers of the build batches for a specific project.
-    listBuildBatchesForProject: function(Client, types.ListBuildBatchesForProjectInput): types.ListBuildBatchesForProjectOutput, table
+    listBuildBatchesForProject: function(Client, types.ListBuildBatchesForProjectInput): Operation<types.ListBuildBatchesForProjectOutput>
     -- Gets a list of build IDs, with each build ID representing a single build.
-    listBuilds: function(Client, types.ListBuildsInput): types.ListBuildsOutput, table
+    listBuilds: function(Client, types.ListBuildsInput): Operation<types.ListBuildsOutput>
     -- Gets a list of build identifiers for the specified build project, with each build
     -- identifier representing a single build.
-    listBuildsForProject: function(Client, types.ListBuildsForProjectInput): types.ListBuildsForProjectOutput, table
+    listBuildsForProject: function(Client, types.ListBuildsForProjectInput): Operation<types.ListBuildsForProjectOutput>
     -- Gets a list of command executions for a sandbox.
-    listCommandExecutionsForSandbox: function(Client, types.ListCommandExecutionsForSandboxInput): types.ListCommandExecutionsForSandboxOutput, table
+    listCommandExecutionsForSandbox: function(Client, types.ListCommandExecutionsForSandboxInput): Operation<types.ListCommandExecutionsForSandboxOutput>
     -- Gets information about Docker images that are managed by CodeBuild.
-    listCuratedEnvironmentImages: function(Client, types.ListCuratedEnvironmentImagesInput): types.ListCuratedEnvironmentImagesOutput, table
+    listCuratedEnvironmentImages: function(Client, types.ListCuratedEnvironmentImagesInput): Operation<types.ListCuratedEnvironmentImagesOutput>
     -- Gets a list of compute fleet names with each compute fleet name representing a single compute fleet.
-    listFleets: function(Client, types.ListFleetsInput): types.ListFleetsOutput, table
+    listFleets: function(Client, types.ListFleetsInput): Operation<types.ListFleetsOutput>
     -- Gets a list of build project names, with each build project name representing a single
     -- build project.
-    listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    listProjects: function(Client, types.ListProjectsInput): Operation<types.ListProjectsOutput>
     -- Gets a list ARNs for the report groups in the current Amazon Web Services account.
-    listReportGroups: function(Client, types.ListReportGroupsInput): types.ListReportGroupsOutput, table
+    listReportGroups: function(Client, types.ListReportGroupsInput): Operation<types.ListReportGroupsOutput>
     -- Returns a list of ARNs for the reports in the current Amazon Web Services account.
-    listReports: function(Client, types.ListReportsInput): types.ListReportsOutput, table
+    listReports: function(Client, types.ListReportsInput): Operation<types.ListReportsOutput>
     -- Returns a list of ARNs for the reports that belong to a ReportGroup.
-    listReportsForReportGroup: function(Client, types.ListReportsForReportGroupInput): types.ListReportsForReportGroupOutput, table
+    listReportsForReportGroup: function(Client, types.ListReportsForReportGroupInput): Operation<types.ListReportsForReportGroupOutput>
     -- Gets a list of sandboxes.
-    listSandboxes: function(Client, types.ListSandboxesInput): types.ListSandboxesOutput, table
+    listSandboxes: function(Client, types.ListSandboxesInput): Operation<types.ListSandboxesOutput>
     -- Gets a list of sandboxes for a given project.
-    listSandboxesForProject: function(Client, types.ListSandboxesForProjectInput): types.ListSandboxesForProjectOutput, table
+    listSandboxesForProject: function(Client, types.ListSandboxesForProjectInput): Operation<types.ListSandboxesForProjectOutput>
     -- Gets a list of projects that are shared with other Amazon Web Services accounts or users.
-    listSharedProjects: function(Client, types.ListSharedProjectsInput): types.ListSharedProjectsOutput, table
+    listSharedProjects: function(Client, types.ListSharedProjectsInput): Operation<types.ListSharedProjectsOutput>
     -- Gets a list of report groups that are shared with other Amazon Web Services accounts or users.
-    listSharedReportGroups: function(Client, types.ListSharedReportGroupsInput): types.ListSharedReportGroupsOutput, table
+    listSharedReportGroups: function(Client, types.ListSharedReportGroupsInput): Operation<types.ListSharedReportGroupsOutput>
     -- Returns a list of SourceCredentialsInfo objects.
-    listSourceCredentials: function(Client, types.ListSourceCredentialsInput): types.ListSourceCredentialsOutput, table
+    listSourceCredentials: function(Client, types.ListSourceCredentialsInput): Operation<types.ListSourceCredentialsOutput>
     -- Stores a resource policy for the ARN of a Project or
     -- ReportGroup object.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Restarts a build.
-    retryBuild: function(Client, types.RetryBuildInput): types.RetryBuildOutput, table
+    retryBuild: function(Client, types.RetryBuildInput): Operation<types.RetryBuildOutput>
     -- Restarts a failed batch build. Only batch builds that have failed can be retried.
-    retryBuildBatch: function(Client, types.RetryBuildBatchInput): types.RetryBuildBatchOutput, table
+    retryBuildBatch: function(Client, types.RetryBuildBatchInput): Operation<types.RetryBuildBatchOutput>
     -- Starts running a build with the settings defined in the project. These setting include: how to run a build,
     -- where to get the source code, which build environment to use, which build commands to run, and where to store the build output.
     -- You can also start a build run by overriding some of the build settings in the project. The overrides only apply for that
     -- specific start build request. The settings in the project are unaltered.
-    startBuild: function(Client, types.StartBuildInput): types.StartBuildOutput, table
+    startBuild: function(Client, types.StartBuildInput): Operation<types.StartBuildOutput>
     -- Starts a batch build for a project.
-    startBuildBatch: function(Client, types.StartBuildBatchInput): types.StartBuildBatchOutput, table
+    startBuildBatch: function(Client, types.StartBuildBatchInput): Operation<types.StartBuildBatchOutput>
     -- Starts a command execution.
-    startCommandExecution: function(Client, types.StartCommandExecutionInput): types.StartCommandExecutionOutput, table
+    startCommandExecution: function(Client, types.StartCommandExecutionInput): Operation<types.StartCommandExecutionOutput>
     -- Starts a sandbox.
-    startSandbox: function(Client, types.StartSandboxInput): types.StartSandboxOutput, table
+    startSandbox: function(Client, types.StartSandboxInput): Operation<types.StartSandboxOutput>
     -- Starts a sandbox connection.
-    startSandboxConnection: function(Client, types.StartSandboxConnectionInput): types.StartSandboxConnectionOutput, table
+    startSandboxConnection: function(Client, types.StartSandboxConnectionInput): Operation<types.StartSandboxConnectionOutput>
     -- Attempts to stop running a build.
-    stopBuild: function(Client, types.StopBuildInput): types.StopBuildOutput, table
+    stopBuild: function(Client, types.StopBuildInput): Operation<types.StopBuildOutput>
     -- Stops a running batch build.
-    stopBuildBatch: function(Client, types.StopBuildBatchInput): types.StopBuildBatchOutput, table
+    stopBuildBatch: function(Client, types.StopBuildBatchInput): Operation<types.StopBuildBatchOutput>
     -- Stops a sandbox.
-    stopSandbox: function(Client, types.StopSandboxInput): types.StopSandboxOutput, table
+    stopSandbox: function(Client, types.StopSandboxInput): Operation<types.StopSandboxOutput>
     -- Updates a compute fleet.
-    updateFleet: function(Client, types.UpdateFleetInput): types.UpdateFleetOutput, table
+    updateFleet: function(Client, types.UpdateFleetInput): Operation<types.UpdateFleetOutput>
     -- Changes the settings of a build project.
-    updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    updateProject: function(Client, types.UpdateProjectInput): Operation<types.UpdateProjectOutput>
     -- Changes the public visibility for a project. The project's build results, logs, and
     -- artifacts are available to the general public. For more information, see Public build
     -- projects in the CodeBuild User Guide.
@@ -153,12 +157,12 @@ local record Client
     -- that you review all pull requests to verify that the pull request is a legitimate change. We
     -- also recommend that you validate any artifacts with their checksums to make sure that the
     -- correct artifacts are being downloaded.
-    updateProjectVisibility: function(Client, types.UpdateProjectVisibilityInput): types.UpdateProjectVisibilityOutput, table
+    updateProjectVisibility: function(Client, types.UpdateProjectVisibilityInput): Operation<types.UpdateProjectVisibilityOutput>
     -- Updates a report group.
-    updateReportGroup: function(Client, types.UpdateReportGroupInput): types.UpdateReportGroupOutput, table
+    updateReportGroup: function(Client, types.UpdateReportGroupInput): Operation<types.UpdateReportGroupOutput>
     -- Updates the webhook associated with an CodeBuild build project.
     -- If you use Bitbucket for your repository, rotateSecret is ignored.
-    updateWebhook: function(Client, types.UpdateWebhookInput): types.UpdateWebhookOutput, table
+    updateWebhook: function(Client, types.UpdateWebhookInput): Operation<types.UpdateWebhookOutput>
 end
 
 local record M

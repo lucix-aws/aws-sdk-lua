@@ -2,6 +2,10 @@
 
 local types = require("dynamodb.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This operation allows you to perform batch reads or writes on data stored in DynamoDB,
     -- using PartiQL. Each read statement in a BatchExecuteStatement must specify
@@ -12,7 +16,7 @@ local record Client
     -- A HTTP 200 response does not mean that all statements in the BatchExecuteStatement
     -- succeeded. Error details for individual statements can be found under the Error field of the BatchStatementResponse for each
     -- statement.
-    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput): types.BatchExecuteStatementOutput, table
+    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput): Operation<types.BatchExecuteStatementOutput>
     -- The BatchGetItem operation returns the attributes of one or more items
     -- from one or more tables. You identify requested items by primary key.
     -- A single operation can retrieve up to 16 MB of data, which can contain as many as 100
@@ -58,7 +62,7 @@ local record Client
     -- Guide.
     -- BatchGetItem will result in a ValidationException if the
     -- same key is specified multiple times.
-    batchGetItem: function(Client, types.BatchGetItemInput): types.BatchGetItemOutput, table
+    batchGetItem: function(Client, types.BatchGetItemInput): Operation<types.BatchGetItemOutput>
     -- The BatchWriteItem operation puts or deletes multiple items in one or
     -- more tables. A single call to BatchWriteItem can transmit up to 16MB of
     -- data over the network, consisting of up to 25 item put or delete operations. While
@@ -126,7 +130,7 @@ local record Client
     -- Any individual items with keys exceeding the key length limits. For a
     -- partition key, the limit is 2048 bytes and for a sort key, the limit is 1024
     -- bytes.
-    batchWriteItem: function(Client, types.BatchWriteItemInput): types.BatchWriteItemOutput, table
+    batchWriteItem: function(Client, types.BatchWriteItemInput): Operation<types.BatchWriteItemOutput>
     -- Creates a backup for an existing table.
     -- Each time you create an on-demand backup, the entire table data is backed up. There
     -- is no limit to the number of on-demand backups that can be taken.
@@ -147,7 +151,7 @@ local record Client
     -- Local secondary indexes (LSIs)
     -- Streams
     -- Provisioned read and write capacity
-    createBackup: function(Client, types.CreateBackupInput): types.CreateBackupOutput, table
+    createBackup: function(Client, types.CreateBackupInput): Operation<types.CreateBackupOutput>
     -- Creates a global table from an existing table. A global table creates a replication
     -- relationship between two or more DynamoDB tables with the same table name in the
     -- provided Regions.
@@ -177,7 +181,7 @@ local record Client
     -- equal replicated write capacity units to your replica tables. You should also
     -- provision equal replicated write capacity units to matching secondary indexes across
     -- your global table.
-    createGlobalTable: function(Client, types.CreateGlobalTableInput): types.CreateGlobalTableOutput, table
+    createGlobalTable: function(Client, types.CreateGlobalTableInput): Operation<types.CreateGlobalTableOutput>
     -- The CreateTable operation adds a new table to your account. In an Amazon Web Services account, table names must be unique within each Region. That is, you can
     -- have two tables with same name if you create the tables in different Regions.
     -- CreateTable is an asynchronous operation. Upon receiving a
@@ -190,11 +194,11 @@ local record Client
     -- secondary indexes on them, you must create the tables sequentially. Only one table with
     -- secondary indexes can be in the CREATING state at any given time.
     -- You can use the DescribeTable action to check the table status.
-    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createTable: function(Client, types.CreateTableInput): Operation<types.CreateTableOutput>
     -- Deletes an existing backup of a table.
     -- You can call DeleteBackup at a maximum rate of 10 times per
     -- second.
-    deleteBackup: function(Client, types.DeleteBackupInput): types.DeleteBackupOutput, table
+    deleteBackup: function(Client, types.DeleteBackupInput): Operation<types.DeleteBackupOutput>
     -- Deletes a single item in a table by primary key. You can perform a conditional delete
     -- operation that deletes the item if it exists, or if it has an expected attribute
     -- value.
@@ -206,7 +210,7 @@ local record Client
     -- Conditional deletes are useful for deleting items only if specific conditions are met.
     -- If those conditions are met, DynamoDB performs the delete. Otherwise, the item is not
     -- deleted.
-    deleteItem: function(Client, types.DeleteItemInput): types.DeleteItemOutput, table
+    deleteItem: function(Client, types.DeleteItemInput): Operation<types.DeleteItemOutput>
     -- Deletes the resource-based policy attached to the resource, which can be a table or
     -- stream.
     -- DeleteResourcePolicy is an idempotent operation; running it multiple
@@ -223,7 +227,7 @@ local record Client
     -- the deleted policy. This is because the policy for your resource might not have been
     -- deleted yet. Wait for a few seconds, and then try the GetResourcePolicy
     -- request again.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- The DeleteTable operation deletes a table and all of its items. After a
     -- DeleteTable request, the specified table is in the
     -- DELETING state until DynamoDB completes the deletion. If the table is
@@ -241,11 +245,11 @@ local record Client
     -- that table goes into the DISABLED state, and the stream is automatically
     -- deleted after 24 hours.
     -- Use the DescribeTable action to check the status of the table.
-    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): Operation<types.DeleteTableOutput>
     -- Describes an existing backup of a table.
     -- You can call DescribeBackup at a maximum rate of 10 times per
     -- second.
-    describeBackup: function(Client, types.DescribeBackupInput): types.DescribeBackupOutput, table
+    describeBackup: function(Client, types.DescribeBackupInput): Operation<types.DescribeBackupOutput>
     -- Checks the status of continuous backups and point in time recovery on the specified
     -- table. Continuous backups are ENABLED on all tables at table creation. If
     -- point in time recovery is enabled, PointInTimeRecoveryStatus will be set to
@@ -258,27 +262,27 @@ local record Client
     -- recovery period to any value between 1 and 35 days.
     -- You can call DescribeContinuousBackups at a maximum rate of 10 times per
     -- second.
-    describeContinuousBackups: function(Client, types.DescribeContinuousBackupsInput): types.DescribeContinuousBackupsOutput, table
+    describeContinuousBackups: function(Client, types.DescribeContinuousBackupsInput): Operation<types.DescribeContinuousBackupsOutput>
     -- Returns information about contributor insights for a given table or global secondary
     -- index.
-    describeContributorInsights: function(Client, types.DescribeContributorInsightsInput): types.DescribeContributorInsightsOutput, table
+    describeContributorInsights: function(Client, types.DescribeContributorInsightsInput): Operation<types.DescribeContributorInsightsOutput>
     -- Returns the regional endpoint information. For more information on policy permissions,
     -- please see Internetwork traffic privacy.
-    describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    describeEndpoints: function(Client, types.DescribeEndpointsInput): Operation<types.DescribeEndpointsOutput>
     -- Describes an existing table export.
-    describeExport: function(Client, types.DescribeExportInput): types.DescribeExportOutput, table
+    describeExport: function(Client, types.DescribeExportInput): Operation<types.DescribeExportOutput>
     -- Returns information about the specified global table.
     -- This documentation is for version 2017.11.29 (Legacy) of global tables, which should be avoided for new global tables. Customers should use Global Tables version 2019.11.21 (Current) when possible, because it provides greater flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
     -- To determine which version you're using, see Determining the global table version you are using. To update existing global tables from version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see Upgrading global tables.
-    describeGlobalTable: function(Client, types.DescribeGlobalTableInput): types.DescribeGlobalTableOutput, table
+    describeGlobalTable: function(Client, types.DescribeGlobalTableInput): Operation<types.DescribeGlobalTableOutput>
     -- Describes Region-specific settings for a global table.
     -- This documentation is for version 2017.11.29 (Legacy) of global tables, which should be avoided for new global tables. Customers should use Global Tables version 2019.11.21 (Current) when possible, because it provides greater flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
     -- To determine which version you're using, see Determining the global table version you are using. To update existing global tables from version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see Upgrading global tables.
-    describeGlobalTableSettings: function(Client, types.DescribeGlobalTableSettingsInput): types.DescribeGlobalTableSettingsOutput, table
+    describeGlobalTableSettings: function(Client, types.DescribeGlobalTableSettingsInput): Operation<types.DescribeGlobalTableSettingsOutput>
     -- Represents the properties of the import.
-    describeImport: function(Client, types.DescribeImportInput): types.DescribeImportOutput, table
+    describeImport: function(Client, types.DescribeImportInput): Operation<types.DescribeImportOutput>
     -- Returns information about the status of Kinesis streaming.
-    describeKinesisStreamingDestination: function(Client, types.DescribeKinesisStreamingDestinationInput): types.DescribeKinesisStreamingDestinationOutput, table
+    describeKinesisStreamingDestination: function(Client, types.DescribeKinesisStreamingDestinationInput): Operation<types.DescribeKinesisStreamingDestinationOutput>
     -- Returns the current provisioned-capacity quotas for your Amazon Web Services account in
     -- a Region, both for the Region as a whole and for any one DynamoDB table that you create
     -- there.
@@ -326,7 +330,7 @@ local record Client
     -- DescribeLimits should only be called periodically. You can expect
     -- throttling errors if you call it more than once in a minute.
     -- The DescribeLimits Request element has no content.
-    describeLimits: function(Client, types.DescribeLimitsInput): types.DescribeLimitsOutput, table
+    describeLimits: function(Client, types.DescribeLimitsInput): Operation<types.DescribeLimitsOutput>
     -- Returns information about the table, including the current status of the table, when
     -- it was created, the primary key schema, and any indexes on the table.
     -- If you issue a DescribeTable request immediately after a
@@ -335,19 +339,19 @@ local record Client
     -- DescribeTable uses an eventually consistent query, and the metadata
     -- for your table might not be available at that moment. Wait for a few seconds, and
     -- then try the DescribeTable request again.
-    describeTable: function(Client, types.DescribeTableInput): types.DescribeTableOutput, table
+    describeTable: function(Client, types.DescribeTableInput): Operation<types.DescribeTableOutput>
     -- Describes auto scaling settings across replicas of the global table at once.
-    describeTableReplicaAutoScaling: function(Client, types.DescribeTableReplicaAutoScalingInput): types.DescribeTableReplicaAutoScalingOutput, table
+    describeTableReplicaAutoScaling: function(Client, types.DescribeTableReplicaAutoScalingInput): Operation<types.DescribeTableReplicaAutoScalingOutput>
     -- Gives a description of the Time to Live (TTL) status on the specified table.
-    describeTimeToLive: function(Client, types.DescribeTimeToLiveInput): types.DescribeTimeToLiveOutput, table
+    describeTimeToLive: function(Client, types.DescribeTimeToLiveInput): Operation<types.DescribeTimeToLiveOutput>
     -- Stops replication from the DynamoDB table to the Kinesis data stream. This
     -- is done without deleting either of the resources.
-    disableKinesisStreamingDestination: function(Client, types.DisableKinesisStreamingDestinationInput): types.DisableKinesisStreamingDestinationOutput, table
+    disableKinesisStreamingDestination: function(Client, types.DisableKinesisStreamingDestinationInput): Operation<types.DisableKinesisStreamingDestinationOutput>
     -- Starts table data replication to the specified Kinesis data stream at a timestamp
     -- chosen during the enable workflow. If this operation doesn't return results immediately,
     -- use DescribeKinesisStreamingDestination to check if streaming to the Kinesis data stream
     -- is ACTIVE.
-    enableKinesisStreamingDestination: function(Client, types.EnableKinesisStreamingDestinationInput): types.EnableKinesisStreamingDestinationOutput, table
+    enableKinesisStreamingDestination: function(Client, types.EnableKinesisStreamingDestinationInput): Operation<types.EnableKinesisStreamingDestinationOutput>
     -- This operation allows you to perform reads and singleton writes on data stored in
     -- DynamoDB, using PartiQL.
     -- For PartiQL reads (SELECT statement), if the total number of processed
@@ -361,18 +365,18 @@ local record Client
     -- LastEvaluatedKey is present in the response, you need to paginate the
     -- result set. If NextToken is present, you need to paginate the result set
     -- and include NextToken.
-    executeStatement: function(Client, types.ExecuteStatementInput): types.ExecuteStatementOutput, table
+    executeStatement: function(Client, types.ExecuteStatementInput): Operation<types.ExecuteStatementOutput>
     -- This operation allows you to perform transactional reads or writes on data stored in
     -- DynamoDB, using PartiQL.
     -- The entire transaction must consist of either read statements or write statements,
     -- you cannot mix both in one transaction. The EXISTS function is an exception and can
     -- be used to check the condition of specific attributes of the item in a similar
     -- manner to ConditionCheck in the TransactWriteItems API.
-    executeTransaction: function(Client, types.ExecuteTransactionInput): types.ExecuteTransactionOutput, table
+    executeTransaction: function(Client, types.ExecuteTransactionInput): Operation<types.ExecuteTransactionOutput>
     -- Exports table data to an S3 bucket. The table must have point in time recovery
     -- enabled, and you can export data from any time within the point in time recovery
     -- window.
-    exportTableToPointInTime: function(Client, types.ExportTableToPointInTimeInput): types.ExportTableToPointInTimeOutput, table
+    exportTableToPointInTime: function(Client, types.ExportTableToPointInTimeInput): Operation<types.ExportTableToPointInTimeOutput>
     -- The GetItem operation returns a set of attributes for the item with the
     -- given primary key. If there is no matching item, GetItem does not return
     -- any data and there will be no Item element in the response.
@@ -380,7 +384,7 @@ local record Client
     -- application requires a strongly consistent read, set ConsistentRead to
     -- true. Although a strongly consistent read might take more time than an
     -- eventually consistent read, it always returns the last updated value.
-    getItem: function(Client, types.GetItemInput): types.GetItemOutput, table
+    getItem: function(Client, types.GetItemInput): Operation<types.GetItemOutput>
     -- Returns the resource-based policy document attached to the resource, which can be a
     -- table or stream, in JSON format.
     -- GetResourcePolicy follows an
@@ -408,9 +412,9 @@ local record Client
     -- consistent, it will take some time to apply the policy to all requests to a resource.
     -- Policies that you attach while creating a table using the CreateTable
     -- request will always be applied to all requests for that table.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Imports table data from an S3 bucket.
-    importTable: function(Client, types.ImportTableInput): types.ImportTableOutput, table
+    importTable: function(Client, types.ImportTableInput): Operation<types.ImportTableOutput>
     -- List DynamoDB backups that are associated with an Amazon Web Services account and
     -- weren't made with Amazon Web Services Backup. To list these backups for a given table,
     -- specify TableName. ListBackups returns a paginated list of
@@ -422,27 +426,27 @@ local record Client
     -- If you want to retrieve the complete list of backups made with Amazon Web Services
     -- Backup, use the Amazon Web Services Backup
     -- list API.
-    listBackups: function(Client, types.ListBackupsInput): types.ListBackupsOutput, table
+    listBackups: function(Client, types.ListBackupsInput): Operation<types.ListBackupsOutput>
     -- Returns a list of ContributorInsightsSummary for a table and all its global secondary
     -- indexes.
-    listContributorInsights: function(Client, types.ListContributorInsightsInput): types.ListContributorInsightsOutput, table
+    listContributorInsights: function(Client, types.ListContributorInsightsInput): Operation<types.ListContributorInsightsOutput>
     -- Lists completed exports within the past 90 days, in reverse alphanumeric order of ExportArn.
-    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listExports: function(Client, types.ListExportsInput): Operation<types.ListExportsOutput>
     -- Lists all global tables that have a replica in the specified Region.
     -- This documentation is for version 2017.11.29 (Legacy) of global tables, which should be avoided for new global tables. Customers should use Global Tables version 2019.11.21 (Current) when possible, because it provides greater flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
     -- To determine which version you're using, see Determining the global table version you are using. To update existing global tables from version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see Upgrading global tables.
-    listGlobalTables: function(Client, types.ListGlobalTablesInput): types.ListGlobalTablesOutput, table
+    listGlobalTables: function(Client, types.ListGlobalTablesInput): Operation<types.ListGlobalTablesOutput>
     -- Lists completed imports within the past 90 days.
-    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listImports: function(Client, types.ListImportsInput): Operation<types.ListImportsOutput>
     -- Returns an array of table names associated with the current account and endpoint. The
     -- output from ListTables is paginated, with each page returning a maximum of
     -- 100 table names.
-    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTables: function(Client, types.ListTablesInput): Operation<types.ListTablesOutput>
     -- List all tags on an Amazon DynamoDB resource. You can call ListTagsOfResource up to 10
     -- times per second, per account.
     -- For an overview on tagging DynamoDB resources, see Tagging for DynamoDB
     -- in the Amazon DynamoDB Developer Guide.
-    listTagsOfResource: function(Client, types.ListTagsOfResourceInput): types.ListTagsOfResourceOutput, table
+    listTagsOfResource: function(Client, types.ListTagsOfResourceInput): Operation<types.ListTagsOfResourceOutput>
     -- Creates a new item, or replaces an old item with a new item. If an item that has the
     -- same primary key as the new item already exists in the specified table, the new item
     -- completely replaces the existing item. You can perform a conditional put operation (add
@@ -465,7 +469,7 @@ local record Client
     -- the Attributes element, an existing item was overwritten.
     -- For more information about PutItem, see Working with
     -- Items in the Amazon DynamoDB Developer Guide.
-    putItem: function(Client, types.PutItemInput): types.PutItemOutput, table
+    putItem: function(Client, types.PutItemInput): Operation<types.PutItemOutput>
     -- Attaches a resource-based policy document to the resource, which can be a table or
     -- stream. When you attach a resource-based policy using this API, the policy application
     -- is
@@ -484,7 +488,7 @@ local record Client
     -- GetResourcePolicy uses an eventually consistent query, and the
     -- metadata for your policy or table might not be available at that moment. Wait for a
     -- few seconds, and then try the GetResourcePolicy request again.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- You must provide the name of the partition key attribute and a single value for that
     -- attribute. Query returns all items with that partition key value.
     -- Optionally, you can provide a sort key attribute and use a comparison operator to refine
@@ -529,7 +533,7 @@ local record Client
     -- consistent result. Global secondary indexes support eventually consistent reads only, so
     -- do not specify ConsistentRead when querying a global secondary
     -- index.
-    query: function(Client, types.QueryInput): types.QueryOutput, table
+    query: function(Client, types.QueryInput): Operation<types.QueryOutput>
     -- Creates a new table from an existing backup. Any number of users can execute up to 50
     -- concurrent restores (any type of restore) in a given account.
     -- You can call RestoreTableFromBackup at a maximum rate of 10 times per
@@ -541,7 +545,7 @@ local record Client
     -- Tags
     -- Stream settings
     -- Time to Live (TTL) settings
-    restoreTableFromBackup: function(Client, types.RestoreTableFromBackupInput): types.RestoreTableFromBackupOutput, table
+    restoreTableFromBackup: function(Client, types.RestoreTableFromBackupInput): Operation<types.RestoreTableFromBackupOutput>
     -- Restores the specified table to the specified point in time within
     -- EarliestRestorableDateTime and LatestRestorableDateTime.
     -- You can restore your table to any point in time in the last 35 days. You can set the
@@ -565,7 +569,7 @@ local record Client
     -- Stream settings
     -- Time to Live (TTL) settings
     -- Point in time recovery settings
-    restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput): types.RestoreTableToPointInTimeOutput, table
+    restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput): Operation<types.RestoreTableToPointInTimeOutput>
     -- The Scan operation returns one or more items and item attributes by
     -- accessing every item in a table or a secondary index. To have DynamoDB return fewer
     -- items, you can provide a FilterExpression operation.
@@ -603,7 +607,7 @@ local record Client
     -- ConsistentRead parameter is set to true. Thus, a DynamoDB scan
     -- operation does not guarantee that all reads in a scan see a consistent snapshot of
     -- the table when the scan operation was requested.
-    scan: function(Client, types.ScanInput): types.ScanOutput, table
+    scan: function(Client, types.ScanInput): Operation<types.ScanOutput>
     -- Associate a set of tags with an Amazon DynamoDB resource. You can then activate these
     -- user-defined tags so that they appear on the Billing and Cost Management console for
     -- cost allocation tracking. You can call TagResource up to five times per second, per
@@ -621,7 +625,7 @@ local record Client
     -- few seconds.
     -- For an overview on tagging DynamoDB resources, see Tagging for DynamoDB
     -- in the Amazon DynamoDB Developer Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- TransactGetItems is a synchronous operation that atomically retrieves
     -- multiple items from one or more tables (but not from indexes) in a single account and
     -- Region. A TransactGetItems call can contain up to 100
@@ -638,7 +642,7 @@ local record Client
     -- completed.
     -- There is a user error, such as an invalid data format.
     -- The aggregate size of the items in the transaction exceeded 4 MB.
-    transactGetItems: function(Client, types.TransactGetItemsInput): types.TransactGetItemsOutput, table
+    transactGetItems: function(Client, types.TransactGetItemsInput): Operation<types.TransactGetItemsOutput>
     -- TransactWriteItems is a synchronous write operation that groups up to 100
     -- action requests. These actions can target items in different tables, but not in
     -- different Amazon Web Services accounts or Regions, and no two actions can target the same
@@ -683,7 +687,7 @@ local record Client
     -- made by the transaction.
     -- The aggregate size of the items in the transaction exceeds 4 MB.
     -- There is a user error, such as an invalid data format.
-    transactWriteItems: function(Client, types.TransactWriteItemsInput): types.TransactWriteItemsOutput, table
+    transactWriteItems: function(Client, types.TransactWriteItemsInput): Operation<types.TransactWriteItemsOutput>
     -- Removes the association of tags from an Amazon DynamoDB resource. You can call
     -- UntagResource up to five times per second, per account.
     -- UntagResource is an asynchronous operation. If you issue a ListTagsOfResource request immediately after an
@@ -699,7 +703,7 @@ local record Client
     -- few seconds.
     -- For an overview on tagging DynamoDB resources, see Tagging for DynamoDB
     -- in the Amazon DynamoDB Developer Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- UpdateContinuousBackups enables or disables point in time recovery for
     -- the specified table. A successful UpdateContinuousBackups call returns the
     -- current ContinuousBackupsDescription. Continuous backups are
@@ -711,7 +715,7 @@ local record Client
     -- LatestRestorableDateTime is typically 5 minutes before the current time.
     -- You can restore your table to any point in time in the last 35 days. You can set the
     -- RecoveryPeriodInDays to any value between 1 and 35 days.
-    updateContinuousBackups: function(Client, types.UpdateContinuousBackupsInput): types.UpdateContinuousBackupsOutput, table
+    updateContinuousBackups: function(Client, types.UpdateContinuousBackupsInput): Operation<types.UpdateContinuousBackupsOutput>
     -- Updates the status for contributor insights for a specific table or index. CloudWatch
     -- Contributor Insights for DynamoDB graphs display the partition key and (if applicable)
     -- sort key of frequently accessed items and frequently throttled items in plaintext. If
@@ -719,7 +723,7 @@ local record Client
     -- table’s partition key and sort key data with an Amazon Web Services managed key or
     -- customer managed key, you should not enable CloudWatch Contributor Insights for DynamoDB
     -- for this table.
-    updateContributorInsights: function(Client, types.UpdateContributorInsightsInput): types.UpdateContributorInsightsOutput, table
+    updateContributorInsights: function(Client, types.UpdateContributorInsightsInput): Operation<types.UpdateContributorInsightsOutput>
     -- Adds or removes replicas in the specified global table. The global table must already
     -- exist to be able to use this operation. Any replica to be added must be empty, have the
     -- same name as the global table, have the same key schema, have DynamoDB Streams enabled,
@@ -738,11 +742,11 @@ local record Client
     -- present).
     -- The global secondary indexes must have the same provisioned and maximum write
     -- capacity units.
-    updateGlobalTable: function(Client, types.UpdateGlobalTableInput): types.UpdateGlobalTableOutput, table
+    updateGlobalTable: function(Client, types.UpdateGlobalTableInput): Operation<types.UpdateGlobalTableOutput>
     -- Updates settings for a global table.
     -- This documentation is for version 2017.11.29 (Legacy) of global tables, which should be avoided for new global tables. Customers should use Global Tables version 2019.11.21 (Current) when possible, because it provides greater flexibility, higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
     -- To determine which version you're using, see Determining the global table version you are using. To update existing global tables from version 2017.11.29 (Legacy) to version 2019.11.21 (Current), see Upgrading global tables.
-    updateGlobalTableSettings: function(Client, types.UpdateGlobalTableSettingsInput): types.UpdateGlobalTableSettingsOutput, table
+    updateGlobalTableSettings: function(Client, types.UpdateGlobalTableSettingsInput): Operation<types.UpdateGlobalTableSettingsOutput>
     -- Edits an existing item's attributes, or adds a new item to the table if it does not
     -- already exist. You can put, delete, or add attribute values. You can also perform a
     -- conditional update on an existing item (insert a new attribute name-value pair if it
@@ -750,9 +754,9 @@ local record Client
     -- attribute values).
     -- You can also return the item's attribute values in the same UpdateItem
     -- operation using the ReturnValues parameter.
-    updateItem: function(Client, types.UpdateItemInput): types.UpdateItemOutput, table
+    updateItem: function(Client, types.UpdateItemInput): Operation<types.UpdateItemOutput>
     -- The command to update the Kinesis stream destination.
-    updateKinesisStreamingDestination: function(Client, types.UpdateKinesisStreamingDestinationInput): types.UpdateKinesisStreamingDestinationOutput, table
+    updateKinesisStreamingDestination: function(Client, types.UpdateKinesisStreamingDestinationInput): Operation<types.UpdateKinesisStreamingDestinationOutput>
     -- Modifies the provisioned throughput settings, global secondary indexes, or DynamoDB
     -- Streams settings for a given table.
     -- You can only perform one of the following operations at once:
@@ -766,9 +770,9 @@ local record Client
     -- UPDATING, you can't issue another UpdateTable request.
     -- When the table returns to the ACTIVE state, the UpdateTable
     -- operation is complete.
-    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+    updateTable: function(Client, types.UpdateTableInput): Operation<types.UpdateTableOutput>
     -- Updates auto scaling settings on your global tables at once.
-    updateTableReplicaAutoScaling: function(Client, types.UpdateTableReplicaAutoScalingInput): types.UpdateTableReplicaAutoScalingOutput, table
+    updateTableReplicaAutoScaling: function(Client, types.UpdateTableReplicaAutoScalingInput): Operation<types.UpdateTableReplicaAutoScalingOutput>
     -- The UpdateTimeToLive method enables or disables Time to Live (TTL) for
     -- the specified table. A successful UpdateTimeToLive call returns the current
     -- TimeToLiveSpecification. It can take up to one hour for the change to
@@ -790,7 +794,7 @@ local record Client
     -- operation.
     -- For more information, see Time To Live in the
     -- Amazon DynamoDB Developer Guide.
-    updateTimeToLive: function(Client, types.UpdateTimeToLiveInput): types.UpdateTimeToLiveOutput, table
+    updateTimeToLive: function(Client, types.UpdateTimeToLiveInput): Operation<types.UpdateTimeToLiveOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("textract.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Analyzes an input document for relationships between detected items.
     -- The types of information returned are as follows:
@@ -35,7 +39,7 @@ local record Client
     -- asynchronously, use StartDocumentAnalysis.
     -- For more information, see Document Text
     -- Analysis.
-    analyzeDocument: function(Client, types.AnalyzeDocumentInput): types.AnalyzeDocumentOutput, table
+    analyzeDocument: function(Client, types.AnalyzeDocumentInput): Operation<types.AnalyzeDocumentOutput>
     -- AnalyzeExpense synchronously analyzes an input document for financially
     -- related relationships between text.
     -- Information is returned as ExpenseDocuments and seperated as
@@ -45,28 +49,28 @@ local record Client
     -- a receipt.
     -- SummaryFields- Contains all other information a receipt, such as
     -- header information or the vendors name.
-    analyzeExpense: function(Client, types.AnalyzeExpenseInput): types.AnalyzeExpenseOutput, table
+    analyzeExpense: function(Client, types.AnalyzeExpenseInput): Operation<types.AnalyzeExpenseOutput>
     -- Analyzes identity documents for relevant information. This information is extracted and
     -- returned as IdentityDocumentFields, which records both the normalized field
     -- and value of the extracted text. Unlike other Amazon Textract operations,
     -- AnalyzeID doesn't return any Geometry data.
-    analyzeID: function(Client, types.AnalyzeIDInput): types.AnalyzeIDOutput, table
+    analyzeID: function(Client, types.AnalyzeIDInput): Operation<types.AnalyzeIDOutput>
     -- Creates an adapter, which can be fine-tuned for enhanced performance on user provided
     -- documents. Takes an AdapterName and FeatureType. Currently the only supported feature type
     -- is QUERIES. You can also provide a Description, Tags, and a
     -- ClientRequestToken. You can choose whether or not the adapter should be AutoUpdated with
     -- the AutoUpdate argument. By default, AutoUpdate is set to DISABLED.
-    createAdapter: function(Client, types.CreateAdapterInput): types.CreateAdapterOutput, table
+    createAdapter: function(Client, types.CreateAdapterInput): Operation<types.CreateAdapterOutput>
     -- Creates a new version of an adapter. Operates on a provided AdapterId and a specified
     -- dataset provided via the DatasetConfig argument. Requires that you
     -- specify an Amazon S3 bucket with the OutputConfig argument. You can provide an optional KMSKeyId,
     -- an optional ClientRequestToken, and optional tags.
-    createAdapterVersion: function(Client, types.CreateAdapterVersionInput): types.CreateAdapterVersionOutput, table
+    createAdapterVersion: function(Client, types.CreateAdapterVersionInput): Operation<types.CreateAdapterVersionOutput>
     -- Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the adapter specified by the ID.
-    deleteAdapter: function(Client, types.DeleteAdapterInput): types.DeleteAdapterOutput, table
+    deleteAdapter: function(Client, types.DeleteAdapterInput): Operation<types.DeleteAdapterOutput>
     -- Deletes an Amazon Textract adapter version. Requires that you specify both an AdapterId and a
     -- AdapterVersion. Deletes the adapter version specified by the AdapterId and the AdapterVersion.
-    deleteAdapterVersion: function(Client, types.DeleteAdapterVersionInput): types.DeleteAdapterVersionOutput, table
+    deleteAdapterVersion: function(Client, types.DeleteAdapterVersionInput): Operation<types.DeleteAdapterVersionOutput>
     -- Detects text in the input document. Amazon Textract can detect lines of text and the
     -- words that make up a line of text. The input document must be in one of the following image
     -- formats: JPEG, PNG, PDF, or TIFF. DetectDocumentText returns the detected
@@ -77,14 +81,14 @@ local record Client
     -- DetectDocumentText is a synchronous operation. To analyze documents
     -- asynchronously, use StartDocumentTextDetection.
     -- For more information, see Document Text Detection.
-    detectDocumentText: function(Client, types.DetectDocumentTextInput): types.DetectDocumentTextOutput, table
+    detectDocumentText: function(Client, types.DetectDocumentTextInput): Operation<types.DetectDocumentTextOutput>
     -- Gets configuration information for an adapter specified by an AdapterId, returning information on AdapterName, Description,
     -- CreationTime, AutoUpdate status, and FeatureTypes.
-    getAdapter: function(Client, types.GetAdapterInput): types.GetAdapterOutput, table
+    getAdapter: function(Client, types.GetAdapterInput): Operation<types.GetAdapterOutput>
     -- Gets configuration information for the specified adapter version, including:
     -- AdapterId, AdapterVersion, FeatureTypes, Status, StatusMessage, DatasetConfig,
     -- KMSKeyId, OutputConfig, Tags and EvaluationMetrics.
-    getAdapterVersion: function(Client, types.GetAdapterVersionInput): types.GetAdapterVersionOutput, table
+    getAdapterVersion: function(Client, types.GetAdapterVersionInput): Operation<types.GetAdapterVersionOutput>
     -- Gets the results for an Amazon Textract asynchronous operation that analyzes text in a
     -- document.
     -- You start asynchronous text analysis by calling StartDocumentAnalysis,
@@ -131,7 +135,7 @@ local record Client
     -- GetDocumentAnalysis.
     -- For more information, see Document Text
     -- Analysis.
-    getDocumentAnalysis: function(Client, types.GetDocumentAnalysisInput): types.GetDocumentAnalysisOutput, table
+    getDocumentAnalysis: function(Client, types.GetDocumentAnalysisInput): Operation<types.GetDocumentAnalysisOutput>
     -- Gets the results for an Amazon Textract asynchronous operation that detects text in a document.
     -- Amazon Textract can detect lines of text and the words that make up a line of text.
     -- You start asynchronous text detection by calling StartDocumentTextDetection, which returns a job identifier
@@ -155,7 +159,7 @@ local record Client
     -- parameter with the token value that's returned from the previous call to
     -- GetDocumentTextDetection.
     -- For more information, see Document Text Detection.
-    getDocumentTextDetection: function(Client, types.GetDocumentTextDetectionInput): types.GetDocumentTextDetectionOutput, table
+    getDocumentTextDetection: function(Client, types.GetDocumentTextDetectionInput): Operation<types.GetDocumentTextDetectionOutput>
     -- Gets the results for an Amazon Textract asynchronous operation that analyzes invoices and
     -- receipts. Amazon Textract finds contact information, items purchased, and vendor name, from input
     -- invoices and receipts.
@@ -173,7 +177,7 @@ local record Client
     -- NextToken request parameter with the token value that's returned from the previous
     -- call to GetExpenseAnalysis.
     -- For more information, see Analyzing Invoices and Receipts.
-    getExpenseAnalysis: function(Client, types.GetExpenseAnalysisInput): types.GetExpenseAnalysisOutput, table
+    getExpenseAnalysis: function(Client, types.GetExpenseAnalysisInput): Operation<types.GetExpenseAnalysisOutput>
     -- Gets the results for an Amazon Textract asynchronous operation that analyzes text in a
     -- lending document.
     -- You start asynchronous text analysis by calling StartLendingAnalysis,
@@ -185,7 +189,7 @@ local record Client
     -- published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysis, and pass
     -- the job identifier (JobId) from the initial call to
     -- StartLendingAnalysis.
-    getLendingAnalysis: function(Client, types.GetLendingAnalysisInput): types.GetLendingAnalysisOutput, table
+    getLendingAnalysis: function(Client, types.GetLendingAnalysisInput): Operation<types.GetLendingAnalysisOutput>
     -- Gets summarized results for the StartLendingAnalysis operation, which analyzes
     -- text in a lending document. The returned summary consists of information about documents grouped
     -- together by a common document type. Information like detected signatures, page numbers, and split
@@ -198,13 +202,13 @@ local record Client
     -- published to the Amazon SNS topic is SUCCEEDED. If so, call
     -- GetLendingAnalysisSummary, and pass the job identifier (JobId) from
     -- the initial call to StartLendingAnalysis.
-    getLendingAnalysisSummary: function(Client, types.GetLendingAnalysisSummaryInput): types.GetLendingAnalysisSummaryOutput, table
+    getLendingAnalysisSummary: function(Client, types.GetLendingAnalysisSummaryInput): Operation<types.GetLendingAnalysisSummaryOutput>
     -- Lists all adapters that match the specified filtration criteria.
-    listAdapters: function(Client, types.ListAdaptersInput): types.ListAdaptersOutput, table
+    listAdapters: function(Client, types.ListAdaptersInput): Operation<types.ListAdaptersOutput>
     -- List all version of an adapter that meet the specified filtration criteria.
-    listAdapterVersions: function(Client, types.ListAdapterVersionsInput): types.ListAdapterVersionsOutput, table
+    listAdapterVersions: function(Client, types.ListAdapterVersionsInput): Operation<types.ListAdapterVersionsOutput>
     -- Lists all tags for an Amazon Textract resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts the asynchronous analysis of an input document for relationships between detected
     -- items such as key-value pairs, tables, and selection elements.
     -- StartDocumentAnalysis can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The
@@ -219,7 +223,7 @@ local record Client
     -- the job identifier (JobId) from the initial call to
     -- StartDocumentAnalysis.
     -- For more information, see Document Text Analysis.
-    startDocumentAnalysis: function(Client, types.StartDocumentAnalysisInput): types.StartDocumentAnalysisOutput, table
+    startDocumentAnalysis: function(Client, types.StartDocumentAnalysisInput): Operation<types.StartDocumentAnalysisOutput>
     -- Starts the asynchronous detection of text in a document. Amazon Textract can detect lines of
     -- text and the words that make up a line of text.
     -- StartDocumentTextDetection can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The
@@ -234,7 +238,7 @@ local record Client
     -- pass the job identifier (JobId) from the initial call to
     -- StartDocumentTextDetection.
     -- For more information, see Document Text Detection.
-    startDocumentTextDetection: function(Client, types.StartDocumentTextDetectionInput): types.StartDocumentTextDetectionOutput, table
+    startDocumentTextDetection: function(Client, types.StartDocumentTextDetectionInput): Operation<types.StartDocumentTextDetectionOutput>
     -- Starts the asynchronous analysis of invoices or receipts for data like contact information,
     -- items purchased, and vendor names.
     -- StartExpenseAnalysis can analyze text in documents that are in JPEG, PNG, and
@@ -248,7 +252,7 @@ local record Client
     -- published to the Amazon SNS topic is SUCCEEDED. If so, call GetExpenseAnalysis, and pass the job identifier (JobId) that was
     -- returned by your call to StartExpenseAnalysis.
     -- For more information, see Analyzing Invoices and Receipts.
-    startExpenseAnalysis: function(Client, types.StartExpenseAnalysisInput): types.StartExpenseAnalysisOutput, table
+    startExpenseAnalysis: function(Client, types.StartExpenseAnalysisInput): Operation<types.StartExpenseAnalysisOutput>
     -- Starts the classification and analysis of an input document.
     -- StartLendingAnalysis initiates the classification and analysis of a packet of
     -- lending documents. StartLendingAnalysis operates on a document file located in an
@@ -270,14 +274,14 @@ local record Client
     -- detailedResponse (contains the GetLendingAnalysis response)
     -- summaryResponse (for the GetLendingAnalysisSummary response)
     -- splitDocuments (documents split across logical boundaries)
-    startLendingAnalysis: function(Client, types.StartLendingAnalysisInput): types.StartLendingAnalysisOutput, table
+    startLendingAnalysis: function(Client, types.StartLendingAnalysisInput): Operation<types.StartLendingAnalysisOutput>
     -- Adds one or more tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes any tags with the specified keys from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update the configuration for an adapter. FeatureTypes configurations cannot be updated.
     -- At least one new parameter must be specified as an argument.
-    updateAdapter: function(Client, types.UpdateAdapterInput): types.UpdateAdapterOutput, table
+    updateAdapter: function(Client, types.UpdateAdapterInput): Operation<types.UpdateAdapterOutput>
 end
 
 local record M

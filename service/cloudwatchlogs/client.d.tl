@@ -2,6 +2,10 @@
 
 local types = require("cloudwatchlogs.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates the specified KMS key with either one log group in the
     -- account, or with all stored CloudWatch Logs query insights results in the
@@ -38,16 +42,16 @@ local record Client
     -- It can take up to 5 minutes for this operation to take effect.
     -- If you attempt to associate a KMS key with a log group but the KMS key does not exist or the KMS key is disabled, you receive an
     -- InvalidParameterException error.
-    associateKmsKey: function(Client, types.AssociateKmsKeyInput): types.AssociateKmsKeyOutput, table
+    associateKmsKey: function(Client, types.AssociateKmsKeyInput): Operation<types.AssociateKmsKeyOutput>
     -- Associates a data source with an S3 Table Integration for query access in the 'logs'
     -- namespace. This enables querying log data using analytics engines that support Iceberg such as
     -- Amazon Athena, Amazon Redshift, and Apache Spark.
-    associateSourceToS3TableIntegration: function(Client, types.AssociateSourceToS3TableIntegrationInput): types.AssociateSourceToS3TableIntegrationOutput, table
+    associateSourceToS3TableIntegration: function(Client, types.AssociateSourceToS3TableIntegrationInput): Operation<types.AssociateSourceToS3TableIntegrationOutput>
     -- Cancels the specified export task.
     -- The task must be in the PENDING or RUNNING state.
-    cancelExportTask: function(Client, types.CancelExportTaskInput): types.CancelExportTaskOutput, table
+    cancelExportTask: function(Client, types.CancelExportTaskInput): Operation<types.CancelExportTaskOutput>
     -- Cancels an active import task and stops importing data from the CloudTrail Lake Event Data Store.
-    cancelImportTask: function(Client, types.CancelImportTaskInput): types.CancelImportTaskOutput, table
+    cancelImportTask: function(Client, types.CancelImportTaskInput): Operation<types.CancelImportTaskOutput>
     -- Creates a delivery. A delivery is a connection between a logical
     -- delivery source and a logical delivery destination
     -- that you have already created.
@@ -69,7 +73,7 @@ local record Client
     -- creating multiple deliveries. You can also create multiple deliveries to configure multiple
     -- delivery sources to send logs to the same delivery destination.
     -- To update an existing delivery configuration, use UpdateDeliveryConfiguration.
-    createDelivery: function(Client, types.CreateDeliveryInput): types.CreateDeliveryOutput, table
+    createDelivery: function(Client, types.CreateDeliveryInput): Operation<types.CreateDeliveryOutput>
     -- Creates an export task so that you can efficiently export data from a log group to an
     -- Amazon S3 bucket. When you perform a CreateExportTask operation, you must use
     -- credentials that have permission to write to the S3 bucket that you specify as the
@@ -92,7 +96,7 @@ local record Client
     -- with subscriptions.
     -- Time-based sorting on chunks of log data inside an exported file is not guaranteed. You
     -- can sort the exported log field data by using Linux utilities.
-    createExportTask: function(Client, types.CreateExportTaskInput): types.CreateExportTaskOutput, table
+    createExportTask: function(Client, types.CreateExportTaskInput): Operation<types.CreateExportTaskOutput>
     -- Starts an import from a data source to CloudWatch Log and creates a managed log group as the destination for the imported data.
     -- Currently, CloudTrail Event Data Store is the only supported data source.
     -- The import task must satisfy the following constraints:
@@ -112,7 +116,7 @@ local record Client
     -- There can be no more than 3 active imports per account at a given time.
     -- The startEventTime must be less than or equal to endEventTime.
     -- The data being imported must be within the specified source's retention period.
-    createImportTask: function(Client, types.CreateImportTaskInput): types.CreateImportTaskOutput, table
+    createImportTask: function(Client, types.CreateImportTaskInput): Operation<types.CreateImportTaskOutput>
     -- Creates an anomaly detector that regularly scans one or more log
     -- groups and look for patterns and anomalies in the logs.
     -- An anomaly detector can help surface issues by automatically discovering anomalies in your
@@ -134,7 +138,7 @@ local record Client
     -- Any parts of log events that are masked as sensitive data are not scanned for anomalies.
     -- For more information about masking sensitive data, see Help protect sensitive log
     -- data with masking.
-    createLogAnomalyDetector: function(Client, types.CreateLogAnomalyDetectorInput): types.CreateLogAnomalyDetectorOutput, table
+    createLogAnomalyDetector: function(Client, types.CreateLogAnomalyDetectorInput): Operation<types.CreateLogAnomalyDetectorOutput>
     -- Creates a log group with the specified name. You can create up to 1,000,000 log groups
     -- per Region per account.
     -- You must use the following guidelines when naming a log group:
@@ -157,7 +161,7 @@ local record Client
     -- CloudWatch Logs supports only symmetric KMS keys. Do not associate an
     -- asymmetric KMS key with your log group. For more information, see Using
     -- Symmetric and Asymmetric Keys.
-    createLogGroup: function(Client, types.CreateLogGroupInput): types.CreateLogGroupOutput, table
+    createLogGroup: function(Client, types.CreateLogGroupInput): Operation<types.CreateLogGroupOutput>
     -- Creates a log stream for the specified log group. A log stream is a sequence of log
     -- events that originate from a single source, such as an application instance or a resource that
     -- is being monitored.
@@ -168,18 +172,18 @@ local record Client
     -- Log stream names must be unique within the log group.
     -- Log stream names can be between 1 and 512 characters long.
     -- Don't use ':' (colon) or '*' (asterisk) characters.
-    createLogStream: function(Client, types.CreateLogStreamInput): types.CreateLogStreamOutput, table
+    createLogStream: function(Client, types.CreateLogStreamInput): Operation<types.CreateLogStreamOutput>
     -- Creates a lookup table by uploading CSV data. You can use lookup tables to enrich log
     -- data in CloudWatch Logs Insights queries with reference data such as user details, application
     -- names, or error descriptions.
     -- The table name must be unique within your account and Region. The CSV content must include
     -- a header row with column names, use UTF-8 encoding, and not exceed 10 MB.
-    createLookupTable: function(Client, types.CreateLookupTableInput): types.CreateLookupTableOutput, table
+    createLookupTable: function(Client, types.CreateLookupTableInput): Operation<types.CreateLookupTableOutput>
     -- Creates a scheduled query that runs CloudWatch Logs Insights queries at regular intervals.
     -- Scheduled queries enable proactive monitoring by automatically executing queries to detect
     -- patterns and anomalies in your log data. Query results can be delivered to Amazon S3 for analysis
     -- or further processing.
-    createScheduledQuery: function(Client, types.CreateScheduledQueryInput): types.CreateScheduledQueryOutput, table
+    createScheduledQuery: function(Client, types.CreateScheduledQueryInput): Operation<types.CreateScheduledQueryOutput>
     -- Deletes a CloudWatch Logs account policy. This stops the account-wide policy from
     -- applying to log groups or data sources in the account. If you delete a data protection policy
     -- or subscription filter policy, any log-group level policies of those types remain in effect.
@@ -203,37 +207,37 @@ local record Client
     -- If you delete a field index policy, the indexing of the log events that happened before
     -- you deleted the policy will still be used for up to 30 days to improve CloudWatch Logs
     -- Insights queries.
-    deleteAccountPolicy: function(Client, types.DeleteAccountPolicyInput): types.DeleteAccountPolicyOutput, table
+    deleteAccountPolicy: function(Client, types.DeleteAccountPolicyInput): Operation<types.DeleteAccountPolicyOutput>
     -- Deletes the data protection policy from the specified log group.
     -- For more information about data protection policies, see PutDataProtectionPolicy.
-    deleteDataProtectionPolicy: function(Client, types.DeleteDataProtectionPolicyInput): types.DeleteDataProtectionPolicyOutput, table
+    deleteDataProtectionPolicy: function(Client, types.DeleteDataProtectionPolicyInput): Operation<types.DeleteDataProtectionPolicyOutput>
     -- Deletes a delivery. A delivery is a connection between a logical
     -- delivery source and a logical delivery
     -- destination. Deleting a delivery only deletes the connection between the delivery
     -- source and delivery destination. It does not delete the delivery destination or the delivery
     -- source.
-    deleteDelivery: function(Client, types.DeleteDeliveryInput): types.DeleteDeliveryOutput, table
+    deleteDelivery: function(Client, types.DeleteDeliveryInput): Operation<types.DeleteDeliveryOutput>
     -- Deletes a delivery destination. A delivery is a connection between a
     -- logical delivery source and a logical delivery
     -- destination.
     -- You can't delete a delivery destination if any current deliveries are associated with it.
     -- To find whether any deliveries are associated with this delivery destination, use the DescribeDeliveries operation and check the deliveryDestinationArn
     -- field in the results.
-    deleteDeliveryDestination: function(Client, types.DeleteDeliveryDestinationInput): types.DeleteDeliveryDestinationOutput, table
+    deleteDeliveryDestination: function(Client, types.DeleteDeliveryDestinationInput): Operation<types.DeleteDeliveryDestinationOutput>
     -- Deletes a delivery destination policy. For more information about these policies, see
     -- PutDeliveryDestinationPolicy.
-    deleteDeliveryDestinationPolicy: function(Client, types.DeleteDeliveryDestinationPolicyInput): types.DeleteDeliveryDestinationPolicyOutput, table
+    deleteDeliveryDestinationPolicy: function(Client, types.DeleteDeliveryDestinationPolicyInput): Operation<types.DeleteDeliveryDestinationPolicyOutput>
     -- Deletes a delivery source. A delivery is a connection between a
     -- logical delivery source and a logical delivery
     -- destination.
     -- You can't delete a delivery source if any current deliveries are associated with it. To
     -- find whether any deliveries are associated with this delivery source, use the DescribeDeliveries operation and check the deliverySourceName field in
     -- the results.
-    deleteDeliverySource: function(Client, types.DeleteDeliverySourceInput): types.DeleteDeliverySourceOutput, table
+    deleteDeliverySource: function(Client, types.DeleteDeliverySourceInput): Operation<types.DeleteDeliverySourceOutput>
     -- Deletes the specified destination, and eventually disables all the subscription filters
     -- that publish to it. This operation does not delete the physical resource encapsulated by the
     -- destination.
-    deleteDestination: function(Client, types.DeleteDestinationInput): types.DeleteDestinationOutput, table
+    deleteDestination: function(Client, types.DeleteDestinationInput): Operation<types.DeleteDestinationOutput>
     -- Deletes a log-group level field index policy that was applied to a single log group. The
     -- indexing of the log events that happened before you delete the policy will still be used for
     -- as many as 30 days to improve CloudWatch Logs Insights queries.
@@ -246,53 +250,53 @@ local record Client
     -- new incoming log events. This operation only affects log group-level policies, including any
     -- facet configurations, and preserves any data source-based account policies that may apply to
     -- the log group.
-    deleteIndexPolicy: function(Client, types.DeleteIndexPolicyInput): types.DeleteIndexPolicyOutput, table
+    deleteIndexPolicy: function(Client, types.DeleteIndexPolicyInput): Operation<types.DeleteIndexPolicyOutput>
     -- Deletes the integration between CloudWatch Logs and OpenSearch Service. If your
     -- integration has active vended logs dashboards, you must specify true for the
     -- force parameter, otherwise the operation will fail. If you delete the
     -- integration by setting force to true, all your vended logs
     -- dashboards powered by OpenSearch Service will be deleted and the data that was on them will no
     -- longer be accessible.
-    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): Operation<types.DeleteIntegrationOutput>
     -- Deletes the specified CloudWatch Logs anomaly detector.
-    deleteLogAnomalyDetector: function(Client, types.DeleteLogAnomalyDetectorInput): types.DeleteLogAnomalyDetectorOutput, table
+    deleteLogAnomalyDetector: function(Client, types.DeleteLogAnomalyDetectorInput): Operation<types.DeleteLogAnomalyDetectorOutput>
     -- Deletes the specified log group and permanently deletes all the archived log events
     -- associated with the log group.
-    deleteLogGroup: function(Client, types.DeleteLogGroupInput): types.DeleteLogGroupOutput, table
+    deleteLogGroup: function(Client, types.DeleteLogGroupInput): Operation<types.DeleteLogGroupOutput>
     -- Deletes the specified log stream and permanently deletes all the archived log events
     -- associated with the log stream.
-    deleteLogStream: function(Client, types.DeleteLogStreamInput): types.DeleteLogStreamOutput, table
+    deleteLogStream: function(Client, types.DeleteLogStreamInput): Operation<types.DeleteLogStreamOutput>
     -- Deletes a lookup table permanently. This operation cannot be undone.
     -- Queries that reference a deleted table will return an error. Before deleting a lookup
     -- table, review any saved queries or dashboards that may reference it.
-    deleteLookupTable: function(Client, types.DeleteLookupTableInput): types.DeleteLookupTableOutput, table
+    deleteLookupTable: function(Client, types.DeleteLookupTableInput): Operation<types.DeleteLookupTableOutput>
     -- Deletes the specified metric filter.
-    deleteMetricFilter: function(Client, types.DeleteMetricFilterInput): types.DeleteMetricFilterOutput, table
+    deleteMetricFilter: function(Client, types.DeleteMetricFilterInput): Operation<types.DeleteMetricFilterOutput>
     -- Deletes a saved CloudWatch Logs Insights query definition. A query definition contains
     -- details about a saved CloudWatch Logs Insights query.
     -- Each DeleteQueryDefinition operation can delete one query definition.
     -- You must have the logs:DeleteQueryDefinition permission to be able to perform
     -- this operation.
-    deleteQueryDefinition: function(Client, types.DeleteQueryDefinitionInput): types.DeleteQueryDefinitionOutput, table
+    deleteQueryDefinition: function(Client, types.DeleteQueryDefinitionInput): Operation<types.DeleteQueryDefinitionOutput>
     -- Deletes a resource policy from this account. This revokes the access of the identities
     -- in that policy to put log events to this account.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes the specified retention policy.
     -- Log events do not expire if they belong to log groups without a retention
     -- policy.
-    deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput): types.DeleteRetentionPolicyOutput, table
+    deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput): Operation<types.DeleteRetentionPolicyOutput>
     -- Deletes a scheduled query and stops all future executions. This operation also removes any
     -- configured actions and associated resources.
-    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput): types.DeleteScheduledQueryOutput, table
+    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput): Operation<types.DeleteScheduledQueryOutput>
     -- Deletes the specified subscription filter.
-    deleteSubscriptionFilter: function(Client, types.DeleteSubscriptionFilterInput): types.DeleteSubscriptionFilterOutput, table
+    deleteSubscriptionFilter: function(Client, types.DeleteSubscriptionFilterInput): Operation<types.DeleteSubscriptionFilterOutput>
     -- Deletes the log transformer for the specified log group. As soon as you do this, the
     -- transformation of incoming log events according to that transformer stops. If this account has
     -- an account-level transformer that applies to this log group, the log group begins using that
     -- account-level transformer when this log-group level transformer is deleted.
     -- After you delete a transformer, be sure to edit any metric filters or subscription filters
     -- that relied on the transformed versions of the log events.
-    deleteTransformer: function(Client, types.DeleteTransformerInput): types.DeleteTransformerOutput, table
+    deleteTransformer: function(Client, types.DeleteTransformerInput): Operation<types.DeleteTransformerOutput>
     -- Returns a list of all CloudWatch Logs account policies in the account.
     -- To use this operation, you must be signed on with the correct permissions depending on the
     -- type of policy that you are retrieving information for.
@@ -306,11 +310,11 @@ local record Client
     -- logs:DescribeAccountPolicies permissions.
     -- To see field index policies, you must have the logs:DescribeIndexPolicies
     -- and logs:DescribeAccountPolicies permissions.
-    describeAccountPolicies: function(Client, types.DescribeAccountPoliciesInput): types.DescribeAccountPoliciesOutput, table
+    describeAccountPolicies: function(Client, types.DescribeAccountPoliciesInput): Operation<types.DescribeAccountPoliciesOutput>
     -- Use this operation to return the valid and default values that are used when creating
     -- delivery sources, delivery destinations, and deliveries. For more information about
     -- deliveries, see CreateDelivery.
-    describeConfigurationTemplates: function(Client, types.DescribeConfigurationTemplatesInput): types.DescribeConfigurationTemplatesOutput, table
+    describeConfigurationTemplates: function(Client, types.DescribeConfigurationTemplatesInput): Operation<types.DescribeConfigurationTemplatesOutput>
     -- Retrieves a list of the deliveries that have been created in the account.
     -- A delivery is a connection between a
     -- delivery
@@ -322,26 +326,26 @@ local record Client
     -- delivery destination. The destination can be CloudWatch Logs, Amazon S3, Firehose or X-Ray. Only some Amazon Web Services services support being
     -- configured as a delivery source. These services are listed in Enable logging from
     -- Amazon Web Services services.
-    describeDeliveries: function(Client, types.DescribeDeliveriesInput): types.DescribeDeliveriesOutput, table
+    describeDeliveries: function(Client, types.DescribeDeliveriesInput): Operation<types.DescribeDeliveriesOutput>
     -- Retrieves a list of the delivery destinations that have been created in the
     -- account.
-    describeDeliveryDestinations: function(Client, types.DescribeDeliveryDestinationsInput): types.DescribeDeliveryDestinationsOutput, table
+    describeDeliveryDestinations: function(Client, types.DescribeDeliveryDestinationsInput): Operation<types.DescribeDeliveryDestinationsOutput>
     -- Retrieves a list of the delivery sources that have been created in the account.
-    describeDeliverySources: function(Client, types.DescribeDeliverySourcesInput): types.DescribeDeliverySourcesOutput, table
+    describeDeliverySources: function(Client, types.DescribeDeliverySourcesInput): Operation<types.DescribeDeliverySourcesOutput>
     -- Lists all your destinations. The results are ASCII-sorted by destination
     -- name.
-    describeDestinations: function(Client, types.DescribeDestinationsInput): types.DescribeDestinationsOutput, table
+    describeDestinations: function(Client, types.DescribeDestinationsInput): Operation<types.DescribeDestinationsOutput>
     -- Lists the specified export tasks. You can list all your export tasks or filter the
     -- results based on task ID or task status.
-    describeExportTasks: function(Client, types.DescribeExportTasksInput): types.DescribeExportTasksOutput, table
+    describeExportTasks: function(Client, types.DescribeExportTasksInput): Operation<types.DescribeExportTasksOutput>
     -- Returns a list of custom and default field indexes which are discovered in log data. For
     -- more information about field index policies, see PutIndexPolicy.
-    describeFieldIndexes: function(Client, types.DescribeFieldIndexesInput): types.DescribeFieldIndexesOutput, table
+    describeFieldIndexes: function(Client, types.DescribeFieldIndexesInput): Operation<types.DescribeFieldIndexesOutput>
     -- Gets detailed information about the individual batches within an import task, including their status and any error messages.
     -- For CloudTrail Event Data Store sources, a batch refers to a subset of stored events grouped by their eventTime.
-    describeImportTaskBatches: function(Client, types.DescribeImportTaskBatchesInput): types.DescribeImportTaskBatchesOutput, table
+    describeImportTaskBatches: function(Client, types.DescribeImportTaskBatchesInput): Operation<types.DescribeImportTaskBatchesOutput>
     -- Lists and describes import tasks, with optional filtering by import status and source ARN.
-    describeImportTasks: function(Client, types.DescribeImportTasksInput): types.DescribeImportTasksOutput, table
+    describeImportTasks: function(Client, types.DescribeImportTasksInput): Operation<types.DescribeImportTasksOutput>
     -- Returns the field index policies of the specified log group. For more information about
     -- field index policies, see PutIndexPolicy.
     -- If a specified log group has a log-group level index policy, that policy is returned by
@@ -349,7 +353,7 @@ local record Client
     -- If a specified log group doesn't have a log-group level index policy, but an account-wide
     -- index policy applies to it, that account-wide policy is returned by this operation.
     -- To find information about only account-level policies, use DescribeAccountPolicies instead.
-    describeIndexPolicies: function(Client, types.DescribeIndexPoliciesInput): types.DescribeIndexPoliciesOutput, table
+    describeIndexPolicies: function(Client, types.DescribeIndexPoliciesInput): Operation<types.DescribeIndexPoliciesOutput>
     -- Returns information about log groups, including data sources that ingest into each log
     -- group. You can return all your log groups or filter the results by prefix. The results are
     -- ASCII-sorted by log group name.
@@ -365,7 +369,7 @@ local record Client
     -- If you are using CloudWatch cross-account observability, you can use this operation
     -- in a monitoring account and view data from the linked source accounts. For more information,
     -- see CloudWatch cross-account observability.
-    describeLogGroups: function(Client, types.DescribeLogGroupsInput): types.DescribeLogGroupsOutput, table
+    describeLogGroups: function(Client, types.DescribeLogGroupsInput): Operation<types.DescribeLogGroupsOutput>
     -- Lists the log streams for the specified log group. You can list all the log streams or
     -- filter the results by prefix. You can also control how the results are ordered.
     -- You can specify the log group to search by using either logGroupIdentifier or
@@ -376,14 +380,14 @@ local record Client
     -- If you are using CloudWatch cross-account observability, you can use this operation
     -- in a monitoring account and view data from the linked source accounts. For more information,
     -- see CloudWatch cross-account observability.
-    describeLogStreams: function(Client, types.DescribeLogStreamsInput): types.DescribeLogStreamsOutput, table
+    describeLogStreams: function(Client, types.DescribeLogStreamsInput): Operation<types.DescribeLogStreamsOutput>
     -- Retrieves metadata about lookup tables in your account. You can optionally filter the
     -- results by table name prefix. Results are sorted by table name in ascending order.
-    describeLookupTables: function(Client, types.DescribeLookupTablesInput): types.DescribeLookupTablesOutput, table
+    describeLookupTables: function(Client, types.DescribeLookupTablesInput): Operation<types.DescribeLookupTablesOutput>
     -- Lists the specified metric filters. You can list all of the metric filters or filter
     -- the results by log name, prefix, metric name, or metric namespace. The results are
     -- ASCII-sorted by filter name.
-    describeMetricFilters: function(Client, types.DescribeMetricFiltersInput): types.DescribeMetricFiltersOutput, table
+    describeMetricFilters: function(Client, types.DescribeMetricFiltersInput): Operation<types.DescribeMetricFiltersOutput>
     -- Returns a list of CloudWatch Logs Insights queries that are scheduled, running, or have
     -- been run recently in this account. You can request all queries or limit it to queries of a
     -- specific log group or queries with a certain status.
@@ -391,19 +395,19 @@ local record Client
     -- queries executed by scheduled query configurations. Scheduled query executions appear in the
     -- results alongside manually initiated queries, providing visibility into all query activity in
     -- your account.
-    describeQueries: function(Client, types.DescribeQueriesInput): types.DescribeQueriesOutput, table
+    describeQueries: function(Client, types.DescribeQueriesInput): Operation<types.DescribeQueriesOutput>
     -- This operation returns a paginated list of your saved CloudWatch Logs Insights query
     -- definitions. You can retrieve query definitions from the current account or from a source
     -- account that is linked to the current account.
     -- You can use the queryDefinitionNamePrefix parameter to limit the results to
     -- only the query definitions that have names that start with a certain string.
-    describeQueryDefinitions: function(Client, types.DescribeQueryDefinitionsInput): types.DescribeQueryDefinitionsOutput, table
+    describeQueryDefinitions: function(Client, types.DescribeQueryDefinitionsInput): Operation<types.DescribeQueryDefinitionsOutput>
     -- Lists the resource policies in this account.
-    describeResourcePolicies: function(Client, types.DescribeResourcePoliciesInput): types.DescribeResourcePoliciesOutput, table
+    describeResourcePolicies: function(Client, types.DescribeResourcePoliciesInput): Operation<types.DescribeResourcePoliciesOutput>
     -- Lists the subscription filters for the specified log group. You can list all the
     -- subscription filters or filter the results by prefix. The results are ASCII-sorted by filter
     -- name.
-    describeSubscriptionFilters: function(Client, types.DescribeSubscriptionFiltersInput): types.DescribeSubscriptionFiltersOutput, table
+    describeSubscriptionFilters: function(Client, types.DescribeSubscriptionFiltersInput): Operation<types.DescribeSubscriptionFiltersOutput>
     -- Disassociates the specified KMS key from the specified log group or
     -- from all CloudWatch Logs Insights query results in the account.
     -- When you use DisassociateKmsKey, you specify either the
@@ -421,10 +425,10 @@ local record Client
     -- the account are still encrypted with that key. Therefore, CloudWatch Logs will need
     -- permissions for the key whenever that data is accessed.
     -- It can take up to 5 minutes for this operation to take effect.
-    disassociateKmsKey: function(Client, types.DisassociateKmsKeyInput): types.DisassociateKmsKeyOutput, table
+    disassociateKmsKey: function(Client, types.DisassociateKmsKeyInput): Operation<types.DisassociateKmsKeyOutput>
     -- Disassociates a data source from an S3 Table Integration, removing query access and
     -- deleting all associated data from the integration.
-    disassociateSourceFromS3TableIntegration: function(Client, types.DisassociateSourceFromS3TableIntegrationInput): types.DisassociateSourceFromS3TableIntegrationOutput, table
+    disassociateSourceFromS3TableIntegration: function(Client, types.DisassociateSourceFromS3TableIntegrationInput): Operation<types.DisassociateSourceFromS3TableIntegrationOutput>
     -- Lists log events from the specified log group. You can list all the log events or
     -- filter the results using one or more of the following:
     -- A filter pattern
@@ -458,9 +462,9 @@ local record Client
     -- original versions of log events, before they were transformed. To view the transformed
     -- versions, you must use a CloudWatch Logs
     -- query.
-    filterLogEvents: function(Client, types.FilterLogEventsInput): types.FilterLogEventsOutput, table
+    filterLogEvents: function(Client, types.FilterLogEventsInput): Operation<types.FilterLogEventsOutput>
     -- Returns information about a log group data protection policy.
-    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput): types.GetDataProtectionPolicyOutput, table
+    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput): Operation<types.GetDataProtectionPolicyOutput>
     -- Returns complete information about one logical delivery. A delivery
     -- is a connection between a
     -- delivery
@@ -474,18 +478,18 @@ local record Client
     -- Amazon Web Services services.
     -- You need to specify the delivery id in this operation. You can find the IDs
     -- of the deliveries in your account with the DescribeDeliveries operation.
-    getDelivery: function(Client, types.GetDeliveryInput): types.GetDeliveryOutput, table
+    getDelivery: function(Client, types.GetDeliveryInput): Operation<types.GetDeliveryOutput>
     -- Retrieves complete information about one delivery destination.
-    getDeliveryDestination: function(Client, types.GetDeliveryDestinationInput): types.GetDeliveryDestinationOutput, table
+    getDeliveryDestination: function(Client, types.GetDeliveryDestinationInput): Operation<types.GetDeliveryDestinationOutput>
     -- Retrieves the delivery destination policy assigned to the delivery destination that you
     -- specify. For more information about delivery destinations and their policies, see PutDeliveryDestinationPolicy.
-    getDeliveryDestinationPolicy: function(Client, types.GetDeliveryDestinationPolicyInput): types.GetDeliveryDestinationPolicyOutput, table
+    getDeliveryDestinationPolicy: function(Client, types.GetDeliveryDestinationPolicyInput): Operation<types.GetDeliveryDestinationPolicyOutput>
     -- Retrieves complete information about one delivery source.
-    getDeliverySource: function(Client, types.GetDeliverySourceInput): types.GetDeliverySourceOutput, table
+    getDeliverySource: function(Client, types.GetDeliverySourceInput): Operation<types.GetDeliverySourceOutput>
     -- Returns information about one integration between CloudWatch Logs and OpenSearch Service.
-    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): Operation<types.GetIntegrationOutput>
     -- Retrieves information about the log anomaly detector that you specify. The KMS key ARN detected is valid.
-    getLogAnomalyDetector: function(Client, types.GetLogAnomalyDetectorInput): types.GetLogAnomalyDetectorOutput, table
+    getLogAnomalyDetector: function(Client, types.GetLogAnomalyDetectorInput): Operation<types.GetLogAnomalyDetectorOutput>
     -- Lists log events from the specified log stream. You can list all of the log events or
     -- filter using a time range.
     -- GetLogEvents is a paginated operation. Each page returned can contain up to 1
@@ -513,10 +517,10 @@ local record Client
     -- versions of log events, before they were transformed. To view the transformed versions, you
     -- must use a CloudWatch Logs
     -- query.
-    getLogEvents: function(Client, types.GetLogEventsInput): types.GetLogEventsOutput, table
+    getLogEvents: function(Client, types.GetLogEventsInput): Operation<types.GetLogEventsOutput>
     -- Discovers available fields for a specific data source and type. The response includes any
     -- field modifications introduced through pipelines, such as new fields or changed field types.
-    getLogFields: function(Client, types.GetLogFieldsInput): types.GetLogFieldsOutput, table
+    getLogFields: function(Client, types.GetLogFieldsInput): Operation<types.GetLogFieldsOutput>
     -- Returns a list of the fields that are included in log events in the specified log group.
     -- Includes the percentage of log events that contain each field. The search is limited to a time
     -- period that you specify.
@@ -534,7 +538,7 @@ local record Client
     -- If you are using CloudWatch cross-account observability, you can use this operation
     -- in a monitoring account and view data from the linked source accounts. For more information,
     -- see CloudWatch cross-account observability.
-    getLogGroupFields: function(Client, types.GetLogGroupFieldsInput): types.GetLogGroupFieldsOutput, table
+    getLogGroupFields: function(Client, types.GetLogGroupFieldsInput): Operation<types.GetLogGroupFieldsOutput>
     -- Retrieves a large logging object (LLO) and streams it back. This API is used to fetch the
     -- content of large portions of log events that have been ingested through the
     -- PutOpenTelemetryLogs API. When log events contain fields that would cause the total event size
@@ -550,14 +554,14 @@ local record Client
     -- streaming-logs.Region.amazonaws.com, which does not support VPC endpoints. SDK versions released on or after April 1, 2026 route to
     -- stream-logs.Region.amazonaws.com, which supports VPC endpoints. To set up a VPC endpoint for this API, see Creating a VPC endpoint for CloudWatch Logs
     -- .
-    getLogObject: function(Client, types.GetLogObjectInput): types.GetLogObjectOutput, table
+    getLogObject: function(Client, types.GetLogObjectInput): Operation<types.GetLogObjectOutput>
     -- Retrieves all of the fields and values of a single log event. All fields are retrieved,
     -- even if the original query that produced the logRecordPointer retrieved only a
     -- subset of fields. Fields are returned as field name/field value pairs.
     -- The full unparsed log event is returned within @message.
-    getLogRecord: function(Client, types.GetLogRecordInput): types.GetLogRecordOutput, table
+    getLogRecord: function(Client, types.GetLogRecordInput): Operation<types.GetLogRecordOutput>
     -- Retrieves the full content of a lookup table, including the CSV data.
-    getLookupTable: function(Client, types.GetLookupTableInput): types.GetLookupTableOutput, table
+    getLookupTable: function(Client, types.GetLookupTableInput): Operation<types.GetLookupTableOutput>
     -- Returns the results from the specified query.
     -- Only the fields requested in the query are returned, along with a @ptr field,
     -- which is the identifier for the log record. You can use the value of @ptr in a
@@ -577,17 +581,17 @@ local record Client
     -- If you are using CloudWatch cross-account observability, you can use this operation
     -- in a monitoring account to start queries in linked source accounts. For more information, see
     -- CloudWatch cross-account observability.
-    getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    getQueryResults: function(Client, types.GetQueryResultsInput): Operation<types.GetQueryResultsOutput>
     -- Retrieves details about a specific scheduled query, including its configuration, execution
     -- status, and metadata.
-    getScheduledQuery: function(Client, types.GetScheduledQueryInput): types.GetScheduledQueryOutput, table
+    getScheduledQuery: function(Client, types.GetScheduledQueryInput): Operation<types.GetScheduledQueryOutput>
     -- Retrieves the execution history of a scheduled query within a specified time range,
     -- including query results and destination processing status.
-    getScheduledQueryHistory: function(Client, types.GetScheduledQueryHistoryInput): types.GetScheduledQueryHistoryOutput, table
+    getScheduledQueryHistory: function(Client, types.GetScheduledQueryHistoryInput): Operation<types.GetScheduledQueryHistoryOutput>
     -- Returns the information about the log transformer associated with this log group.
     -- This operation returns data only for transformers created at the log group level. To get
     -- information for an account-level transformer, use DescribeAccountPolicies.
-    getTransformer: function(Client, types.GetTransformerInput): types.GetTransformerOutput, table
+    getTransformer: function(Client, types.GetTransformerInput): Operation<types.GetTransformerOutput>
     -- Returns an aggregate summary of all log groups in the Region grouped by specified data
     -- source characteristics. Supports optional filtering by log group class, name patterns, and
     -- data sources. If you perform this action in a monitoring account, you can also return
@@ -599,17 +603,17 @@ local record Client
     -- providing counts of log groups that share these characteristics. The operation paginates
     -- results. By default, it returns up to 50 results and includes a token to retrieve more
     -- results.
-    listAggregateLogGroupSummaries: function(Client, types.ListAggregateLogGroupSummariesInput): types.ListAggregateLogGroupSummariesOutput, table
+    listAggregateLogGroupSummaries: function(Client, types.ListAggregateLogGroupSummariesInput): Operation<types.ListAggregateLogGroupSummariesOutput>
     -- Returns a list of anomalies that log anomaly detectors have found. For details about the
     -- structure format of each anomaly object that is returned, see the example in this
     -- section.
-    listAnomalies: function(Client, types.ListAnomaliesInput): types.ListAnomaliesOutput, table
+    listAnomalies: function(Client, types.ListAnomaliesInput): Operation<types.ListAnomaliesOutput>
     -- Returns a list of integrations between CloudWatch Logs and other services in this
     -- account. Currently, only one integration can be created in an account, and this integration
     -- must be with OpenSearch Service.
-    listIntegrations: function(Client, types.ListIntegrationsInput): types.ListIntegrationsOutput, table
+    listIntegrations: function(Client, types.ListIntegrationsInput): Operation<types.ListIntegrationsOutput>
     -- Retrieves a list of the log anomaly detectors in the account.
-    listLogAnomalyDetectors: function(Client, types.ListLogAnomalyDetectorsInput): types.ListLogAnomalyDetectorsOutput, table
+    listLogAnomalyDetectors: function(Client, types.ListLogAnomalyDetectorsInput): Operation<types.ListLogAnomalyDetectorsOutput>
     -- Returns a list of log groups in the Region in your account. If you are performing this
     -- action in a monitoring account, you can choose to also return log groups from source accounts
     -- that are linked to the monitoring account. For more information about using cross-account
@@ -620,27 +624,27 @@ local record Client
     -- one filter type, the results include log groups that satisfy all filters.
     -- This operation is paginated. By default, your first use of this operation returns 50
     -- results, and includes a token to use in a subsequent operation to return more results.
-    listLogGroups: function(Client, types.ListLogGroupsInput): types.ListLogGroupsOutput, table
+    listLogGroups: function(Client, types.ListLogGroupsInput): Operation<types.ListLogGroupsOutput>
     -- Returns a list of the log groups that were analyzed during a single CloudWatch Logs
     -- Insights query. This can be useful for queries that use log group name prefixes or the
     -- filterIndex command, because the log groups are dynamically selected in these
     -- cases.
     -- For more information about field indexes, see Create field indexes
     -- to improve query performance and reduce costs.
-    listLogGroupsForQuery: function(Client, types.ListLogGroupsForQueryInput): types.ListLogGroupsForQueryOutput, table
+    listLogGroupsForQuery: function(Client, types.ListLogGroupsForQueryInput): Operation<types.ListLogGroupsForQueryOutput>
     -- Lists all scheduled queries in your account and region. You can filter results by state to
     -- show only enabled or disabled queries.
-    listScheduledQueries: function(Client, types.ListScheduledQueriesInput): types.ListScheduledQueriesOutput, table
+    listScheduledQueries: function(Client, types.ListScheduledQueriesInput): Operation<types.ListScheduledQueriesOutput>
     -- Returns a list of data source associations for a specified S3 Table Integration, showing
     -- which data sources are currently associated for query access.
-    listSourcesForS3TableIntegration: function(Client, types.ListSourcesForS3TableIntegrationInput): types.ListSourcesForS3TableIntegrationOutput, table
+    listSourcesForS3TableIntegration: function(Client, types.ListSourcesForS3TableIntegrationInput): Operation<types.ListSourcesForS3TableIntegrationOutput>
     -- Displays the tags associated with a CloudWatch Logs resource. Currently, log groups and
     -- destinations support tagging.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- The ListTagsLogGroup operation is on the path to deprecation. We recommend that you use
     -- ListTagsForResource instead.
     -- Lists the tags for the specified log group.
-    listTagsLogGroup: function(Client, types.ListTagsLogGroupInput): types.ListTagsLogGroupOutput, table
+    listTagsLogGroup: function(Client, types.ListTagsLogGroupInput): Operation<types.ListTagsLogGroupOutput>
     -- Creates an account-level data protection policy, subscription filter policy, field index
     -- policy, transformer policy, or metric extraction policy that applies to all log groups, a
     -- subset of log groups, or a data source name and type combination in the account.
@@ -870,12 +874,12 @@ local record Client
     -- cannot create an IN policy for prefix "/aws" because the set of
     -- log groups matching "/aws" is not a subset of the log groups matching
     -- "/aws/lambda".
-    putAccountPolicy: function(Client, types.PutAccountPolicyInput): types.PutAccountPolicyOutput, table
+    putAccountPolicy: function(Client, types.PutAccountPolicyInput): Operation<types.PutAccountPolicyOutput>
     -- Enables or disables bearer token authentication for the specified log group. When enabled on a
     -- log group, bearer token authentication is enabled on operations until it is explicitly
     -- disabled.
     -- For information about the parameters that are common to all actions, see Common Parameters.
-    putBearerTokenAuthentication: function(Client, types.PutBearerTokenAuthenticationInput): types.PutBearerTokenAuthenticationOutput, table
+    putBearerTokenAuthentication: function(Client, types.PutBearerTokenAuthenticationInput): Operation<types.PutBearerTokenAuthenticationOutput>
     -- Creates a data protection policy for the specified log group. A data protection policy can
     -- help safeguard sensitive data that's ingested by the log group by auditing and masking the
     -- sensitive log data.
@@ -896,7 +900,7 @@ local record Client
     -- created level. If a log group has its own data protection policy and the account also has an
     -- account-level data protection policy, then the two policies are cumulative. Any sensitive term
     -- specified in either policy is masked.
-    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput): types.PutDataProtectionPolicyOutput, table
+    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput): Operation<types.PutDataProtectionPolicyOutput>
     -- Creates or updates a logical delivery destination. A delivery
     -- destination is an Amazon Web Services resource that represents an Amazon Web Services service
     -- that logs can be sent to. CloudWatch Logs, Amazon S3, and Firehose are
@@ -923,7 +927,7 @@ local record Client
     -- If you use this operation to update an existing delivery destination, all the current
     -- delivery destination parameters are overwritten with the new parameter values that you
     -- specify.
-    putDeliveryDestination: function(Client, types.PutDeliveryDestinationInput): types.PutDeliveryDestinationOutput, table
+    putDeliveryDestination: function(Client, types.PutDeliveryDestinationInput): Operation<types.PutDeliveryDestinationOutput>
     -- Creates and assigns an IAM policy that grants permissions to CloudWatch Logs to deliver logs cross-account to a specified destination in this account. To
     -- configure the delivery of logs from an Amazon Web Services service in another account to a logs
     -- delivery destination in the current account, you must do the following:
@@ -942,7 +946,7 @@ local record Client
     -- The contents of the policy must include two statements. One statement enables general logs
     -- delivery, and the other allows delivery to the chosen destination. See the examples for the
     -- needed policies.
-    putDeliveryDestinationPolicy: function(Client, types.PutDeliveryDestinationPolicyInput): types.PutDeliveryDestinationPolicyOutput, table
+    putDeliveryDestinationPolicy: function(Client, types.PutDeliveryDestinationPolicyInput): Operation<types.PutDeliveryDestinationPolicyOutput>
     -- Creates or updates a logical delivery source. A delivery source
     -- represents an Amazon Web Services resource that sends logs to an logs delivery destination. The
     -- destination can be CloudWatch Logs, Amazon S3, Firehose or X-Ray for sending traces.
@@ -965,7 +969,7 @@ local record Client
     -- Amazon Web Services services.
     -- If you use this operation to update an existing delivery source, all the current delivery
     -- source parameters are overwritten with the new parameter values that you specify.
-    putDeliverySource: function(Client, types.PutDeliverySourceInput): types.PutDeliverySourceOutput, table
+    putDeliverySource: function(Client, types.PutDeliverySourceInput): Operation<types.PutDeliverySourceOutput>
     -- Creates or updates a destination. This operation is used only to create destinations
     -- for cross-account subscriptions.
     -- A destination encapsulates a physical resource (such as an Amazon Kinesis stream). With
@@ -977,12 +981,12 @@ local record Client
     -- owner must call PutDestinationPolicy after PutDestination.
     -- To perform a PutDestination operation, you must also have the
     -- iam:PassRole permission.
-    putDestination: function(Client, types.PutDestinationInput): types.PutDestinationOutput, table
+    putDestination: function(Client, types.PutDestinationInput): Operation<types.PutDestinationOutput>
     -- Creates or updates an access policy associated with an existing destination. An access
     -- policy is an IAM
     -- policy document that is used to authorize claims to register a subscription filter
     -- against a given destination.
-    putDestinationPolicy: function(Client, types.PutDestinationPolicyInput): types.PutDestinationPolicyOutput, table
+    putDestinationPolicy: function(Client, types.PutDestinationPolicyInput): Operation<types.PutDestinationPolicyOutput>
     -- Creates or updates a field index policy for the specified log group.
     -- Only log groups in the Standard log class support field index policies. For more information
     -- about log classes, see Log
@@ -1028,7 +1032,7 @@ local record Client
     -- group-level indexing, including any facet configurations. The log group ignores any
     -- account-wide field index policy that applies to log groups, but data source-based account
     -- policies may still apply.
-    putIndexPolicy: function(Client, types.PutIndexPolicyInput): types.PutIndexPolicyOutput, table
+    putIndexPolicy: function(Client, types.PutIndexPolicyInput): Operation<types.PutIndexPolicyOutput>
     -- Creates an integration between CloudWatch Logs and another service in this account.
     -- Currently, only integrations with OpenSearch Service are supported, and currently you can have
     -- only one integration in your account.
@@ -1037,7 +1041,7 @@ local record Client
     -- dashboards powered by Amazon OpenSearch Service.
     -- You can use this operation only to create a new integration. You can't modify an existing
     -- integration.
-    putIntegration: function(Client, types.PutIntegrationInput): types.PutIntegrationOutput, table
+    putIntegration: function(Client, types.PutIntegrationInput): Operation<types.PutIntegrationOutput>
     -- Uploads a batch of log events to the specified log stream.
     -- The sequence token is now ignored in PutLogEvents actions.
     -- PutLogEvents actions are always accepted and never return
@@ -1067,12 +1071,12 @@ local record Client
     -- You can request an increase to the per-second throttling quota by using the Service Quotas service.
     -- If a call to PutLogEvents returns "UnrecognizedClientException" the most
     -- likely cause is a non-valid Amazon Web Services access key ID or secret key.
-    putLogEvents: function(Client, types.PutLogEventsInput): types.PutLogEventsOutput, table
+    putLogEvents: function(Client, types.PutLogEventsInput): Operation<types.PutLogEventsOutput>
     -- Enables or disables deletion protection for the specified log group. When enabled on a
     -- log group, deletion protection blocks all deletion operations until it is explicitly
     -- disabled.
     -- For information about the parameters that are common to all actions, see Common Parameters.
-    putLogGroupDeletionProtection: function(Client, types.PutLogGroupDeletionProtectionInput): types.PutLogGroupDeletionProtectionOutput, table
+    putLogGroupDeletionProtection: function(Client, types.PutLogGroupDeletionProtectionInput): Operation<types.PutLogGroupDeletionProtectionOutput>
     -- Creates or updates a metric filter and associates it with the specified log group. With
     -- metric filters, you can configure rules to extract metric data from log events ingested
     -- through PutLogEvents.
@@ -1094,7 +1098,7 @@ local record Client
     -- You can also set up a billing alarm to alert you if your charges are higher than
     -- expected. For more information, see
     -- Creating a Billing Alarm to Monitor Your Estimated Amazon Web Services Charges.
-    putMetricFilter: function(Client, types.PutMetricFilterInput): types.PutMetricFilterOutput, table
+    putMetricFilter: function(Client, types.PutMetricFilterInput): Operation<types.PutMetricFilterOutput>
     -- Creates or updates a query definition for CloudWatch Logs Insights. For more information,
     -- see Analyzing Log Data with CloudWatch Logs Insights.
     -- To update a query definition, specify its queryDefinitionId in your request.
@@ -1106,7 +1110,7 @@ local record Client
     -- groups.
     -- You must have the logs:PutQueryDefinition permission to be able to perform
     -- this operation.
-    putQueryDefinition: function(Client, types.PutQueryDefinitionInput): types.PutQueryDefinitionOutput, table
+    putQueryDefinition: function(Client, types.PutQueryDefinitionInput): Operation<types.PutQueryDefinitionOutput>
     -- Creates or updates a resource policy allowing other Amazon Web Services services to put
     -- log events to this account, such as Amazon Route 53. This API has the following
     -- restrictions:
@@ -1121,7 +1125,7 @@ local record Client
     -- (such as IAM users, roles, or other Amazon Web Services accounts) will not be
     -- enforced. For access control involving these principals, use the IAM
     -- policies.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Sets the retention of the specified log group. With a retention policy, you can
     -- configure the number of days for which to retain log events in the specified log
     -- group.
@@ -1140,7 +1144,7 @@ local record Client
     -- they are not actually deleted until later. These log events marked for deletion are also not
     -- included when you use an API to retrieve the storedBytes value to see how many
     -- bytes a log group is storing.
-    putRetentionPolicy: function(Client, types.PutRetentionPolicyInput): types.PutRetentionPolicyOutput, table
+    putRetentionPolicy: function(Client, types.PutRetentionPolicyInput): Operation<types.PutRetentionPolicyOutput>
     -- Creates or updates a subscription filter and associates it with the specified log
     -- group. With subscription filters, you can subscribe to a real-time stream of log events
     -- ingested through PutLogEvents
@@ -1166,7 +1170,7 @@ local record Client
     -- To perform a PutSubscriptionFilter operation for any destination except a
     -- Lambda function, you must also have the iam:PassRole
     -- permission.
-    putSubscriptionFilter: function(Client, types.PutSubscriptionFilterInput): types.PutSubscriptionFilterOutput, table
+    putSubscriptionFilter: function(Client, types.PutSubscriptionFilterInput): Operation<types.PutSubscriptionFilterOutput>
     -- Creates or updates a log transformer for a single log group. You use
     -- log transformers to transform log events into a different format, making them easier for you
     -- to process and analyze. You can also transform logs from different sources into standardized
@@ -1192,7 +1196,7 @@ local record Client
     -- PutTransformer and an account-level transformer that could apply to the same
     -- log group, the log group uses only the log-group level transformer. It ignores the
     -- account-level transformer.
-    putTransformer: function(Client, types.PutTransformerInput): types.PutTransformerOutput, table
+    putTransformer: function(Client, types.PutTransformerInput): Operation<types.PutTransformerOutput>
     -- Starts a Live Tail streaming session for one or more log groups. A Live Tail session
     -- returns a stream of log events that have been recently ingested in the log groups. For more
     -- information, see Use Live Tail to view logs
@@ -1224,7 +1228,7 @@ local record Client
     -- between the client and the server breaks.
     -- For examples of using an SDK to start a Live Tail session, see Start
     -- a Live Tail session using an Amazon Web Services SDK.
-    startLiveTail: function(Client, types.StartLiveTailInput): types.StartLiveTailOutput, table
+    startLiveTail: function(Client, types.StartLiveTailInput): Operation<types.StartLiveTailOutput>
     -- Starts a query of one or more log groups or data sources using CloudWatch Logs
     -- Insights. You specify the log groups or data sources and time range to query and the query
     -- string to use. You can query up to 10 data sources in a single query.
@@ -1260,7 +1264,7 @@ local record Client
     -- operation, the query definition must be defined in the monitoring account.
     -- You can have up to 100 concurrent CloudWatch Logs insights queries, including queries
     -- that have been added to dashboards.
-    startQuery: function(Client, types.StartQueryInput): types.StartQueryOutput, table
+    startQuery: function(Client, types.StartQueryInput): Operation<types.StartQueryOutput>
     -- Stops a CloudWatch Logs Insights query that is in progress. If the query has already
     -- ended, the operation returns an error indicating that the specified query is not
     -- running.
@@ -1268,7 +1272,7 @@ local record Client
     -- query executions. When used with scheduled queries, StopQuery cancels only the
     -- specific execution identified by the query ID, not the scheduled query configuration
     -- itself.
-    stopQuery: function(Client, types.StopQueryInput): types.StopQueryOutput, table
+    stopQuery: function(Client, types.StopQueryInput): Operation<types.StopQueryOutput>
     -- The TagLogGroup operation is on the path to deprecation. We recommend that you use
     -- TagResource
     -- instead.
@@ -1281,7 +1285,7 @@ local record Client
     -- or
     -- aws:TagKeys condition keys. For more information about using tags to control
     -- access, see Controlling access to Amazon Web Services resources using tags.
-    tagLogGroup: function(Client, types.TagLogGroupInput): types.TagLogGroupOutput, table
+    tagLogGroup: function(Client, types.TagLogGroupInput): Operation<types.TagLogGroupOutput>
     -- Assigns one or more tags (key-value pairs) to the specified CloudWatch Logs resource.
     -- Currently, the only CloudWatch Logs resources that can be tagged are log groups and
     -- destinations.
@@ -1295,14 +1299,14 @@ local record Client
     -- with the alarm. If you specify a tag key that is already associated with the alarm, the new
     -- tag value that you specify replaces the previous value for that tag.
     -- You can associate as many as 50 tags with a CloudWatch Logs resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Tests the filter pattern of a metric filter against a sample of log event messages. You
     -- can use this operation to validate the correctness of a metric filter pattern.
-    testMetricFilter: function(Client, types.TestMetricFilterInput): types.TestMetricFilterOutput, table
+    testMetricFilter: function(Client, types.TestMetricFilterInput): Operation<types.TestMetricFilterOutput>
     -- Use this operation to test a log transformer. You enter the transformer configuration and
     -- a set of log events to test with. The operation responds with an array that includes the
     -- original log events and the transformed versions.
-    testTransformer: function(Client, types.TestTransformerInput): types.TestTransformerOutput, table
+    testTransformer: function(Client, types.TestTransformerInput): Operation<types.TestTransformerOutput>
     -- The UntagLogGroup operation is on the path to deprecation. We recommend that you use
     -- UntagResource instead.
     -- Removes the specified tags from the specified log group.
@@ -1310,9 +1314,9 @@ local record Client
     -- When using IAM policies to control tag management for CloudWatch Logs log groups, the
     -- condition keys aws:Resource/key-name and aws:TagKeys cannot be used
     -- to restrict which tags users can assign.
-    untagLogGroup: function(Client, types.UntagLogGroupInput): types.UntagLogGroupOutput, table
+    untagLogGroup: function(Client, types.UntagLogGroupInput): Operation<types.UntagLogGroupOutput>
     -- Removes one or more tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Use this operation to suppress anomaly detection for a specified
     -- anomaly or pattern. If you suppress an anomaly, CloudWatch Logs won't report new
     -- occurrences of that anomaly and won't update that anomaly with new data. If you suppress a
@@ -1323,21 +1327,21 @@ local record Client
     -- you can use it again to cause CloudWatch Logs to end the suppression. To do this, use this
     -- operation and specify the anomaly or pattern to stop suppressing, and omit the
     -- suppressionType and suppressionPeriod parameters.
-    updateAnomaly: function(Client, types.UpdateAnomalyInput): types.UpdateAnomalyOutput, table
+    updateAnomaly: function(Client, types.UpdateAnomalyInput): Operation<types.UpdateAnomalyOutput>
     -- Use this operation to update the configuration of a delivery to change
     -- either the S3 path pattern or the format of the delivered logs. You can't use this operation
     -- to change the source or destination of the delivery.
-    updateDeliveryConfiguration: function(Client, types.UpdateDeliveryConfigurationInput): types.UpdateDeliveryConfigurationOutput, table
+    updateDeliveryConfiguration: function(Client, types.UpdateDeliveryConfigurationInput): Operation<types.UpdateDeliveryConfigurationOutput>
     -- Updates an existing log anomaly detector.
-    updateLogAnomalyDetector: function(Client, types.UpdateLogAnomalyDetectorInput): types.UpdateLogAnomalyDetectorOutput, table
+    updateLogAnomalyDetector: function(Client, types.UpdateLogAnomalyDetectorInput): Operation<types.UpdateLogAnomalyDetectorOutput>
     -- Updates an existing lookup table by replacing all of its CSV content. After the update
     -- completes, queries that use this table will use the new data.
     -- This is a full replacement operation. All existing content is replaced with the new CSV
     -- data.
-    updateLookupTable: function(Client, types.UpdateLookupTableInput): types.UpdateLookupTableOutput, table
+    updateLookupTable: function(Client, types.UpdateLookupTableInput): Operation<types.UpdateLookupTableOutput>
     -- Updates an existing scheduled query with new configuration. This operation uses PUT
     -- semantics, allowing modification of query parameters, schedule, and destinations.
-    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput): types.UpdateScheduledQueryOutput, table
+    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput): Operation<types.UpdateScheduledQueryOutput>
 end
 
 local record M

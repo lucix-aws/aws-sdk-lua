@@ -2,6 +2,10 @@
 
 local types = require("kinesis.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds or updates tags for the specified Kinesis data stream. You can assign up to 50
     -- tags to a data stream.
@@ -12,7 +16,7 @@ local record Client
     -- overwrites any existing tags that correspond to the specified tag keys.
     -- AddTagsToStream has a limit of five transactions per second per
     -- account.
-    addTagsToStream: function(Client, types.AddTagsToStreamInput): types.AddTagsToStreamOutput, table
+    addTagsToStream: function(Client, types.AddTagsToStreamInput): Operation<types.AddTagsToStreamOutput>
     -- Creates a Kinesis data stream. A stream captures and transports data records that are
     -- continuously emitted from different data sources or producers.
     -- Scale-out within a stream is explicitly supported by means of shards, which are uniquely
@@ -40,7 +44,7 @@ local record Client
     -- CreateStream has a limit of five transactions per second per
     -- account.
     -- You can add tags to the stream when making a CreateStream request by setting the Tags parameter. If you pass the Tags parameter, in addition to having the kinesis:CreateStream permission, you must also have the kinesis:AddTagsToStream permission for the stream that will be created. The kinesis:TagResource permission won’t work to tag streams on creation. Tags will take effect from the CREATING status of the stream, but you can't make any updates to the tags until the stream is in ACTIVE state.
-    createStream: function(Client, types.CreateStreamInput): types.CreateStreamOutput, table
+    createStream: function(Client, types.CreateStreamInput): Operation<types.CreateStreamOutput>
     -- Decreases the Kinesis data stream's retention period, which is the length of time data
     -- records are accessible after they are added to the stream. The minimum value of a
     -- stream's retention period is 24 hours.
@@ -50,11 +54,11 @@ local record Client
     -- This operation may result in lost data. For example, if the stream's retention period
     -- is 48 hours and is decreased to 24 hours, any data already in the stream that is older
     -- than 24 hours is inaccessible.
-    decreaseStreamRetentionPeriod: function(Client, types.DecreaseStreamRetentionPeriodInput): types.DecreaseStreamRetentionPeriodOutput, table
+    decreaseStreamRetentionPeriod: function(Client, types.DecreaseStreamRetentionPeriodInput): Operation<types.DecreaseStreamRetentionPeriodOutput>
     -- Delete a policy for the specified data stream or consumer. Request patterns can be one of the following:
     -- Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
     -- Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a Kinesis data stream and all its shards and data. You must shut down any
     -- applications that are operating on the stream before you delete the stream. If an
     -- application attempts to operate on a deleted stream, it receives the exception
@@ -75,7 +79,7 @@ local record Client
     -- of the stream, which is returned in StreamStatus.
     -- DeleteStream has a limit of five transactions per second per
     -- account.
-    deleteStream: function(Client, types.DeleteStreamInput): types.DeleteStreamOutput, table
+    deleteStream: function(Client, types.DeleteStreamInput): Operation<types.DeleteStreamOutput>
     -- To deregister a consumer, provide its ARN. Alternatively, you can provide the ARN of
     -- the data stream and the name you gave the consumer when you registered it. You may also
     -- provide all three parameters, as long as they don't conflict with each other. If you
@@ -84,15 +88,15 @@ local record Client
     -- all the consumers that are currently registered with a given data stream. The
     -- description of a consumer contains its name and ARN.
     -- This operation has a limit of five transactions per second per stream.
-    deregisterStreamConsumer: function(Client, types.DeregisterStreamConsumerInput): types.DeregisterStreamConsumerOutput, table
+    deregisterStreamConsumer: function(Client, types.DeregisterStreamConsumerInput): Operation<types.DeregisterStreamConsumerOutput>
     -- Describes the account-level settings for Amazon Kinesis Data Streams. This operation returns information about the minimum throughput billing commitments and other account-level configurations.
     -- This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. TPS over 5 will initiate the LimitExceededException.
-    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): types.DescribeAccountSettingsOutput, table
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): Operation<types.DescribeAccountSettingsOutput>
     -- Describes the shard limits and usage for the account.
     -- If you update your account limits, the old limits might be returned for a few
     -- minutes.
     -- This operation has a limit of one transaction per second per account.
-    describeLimits: function(Client, types.DescribeLimitsInput): types.DescribeLimitsOutput, table
+    describeLimits: function(Client, types.DescribeLimitsInput): Operation<types.DescribeLimitsOutput>
     -- Describes the specified Kinesis data stream.
     -- This API has been revised. It's highly recommended that you use the DescribeStreamSummary API to get a summarized description of the
     -- specified Kinesis data stream and the ListShards API to list the
@@ -114,7 +118,7 @@ local record Client
     -- shards in chronological order, use the ID of the parent shard to track the lineage to
     -- the oldest shard.
     -- This operation has a limit of 10 transactions per second per account.
-    describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    describeStream: function(Client, types.DescribeStreamInput): Operation<types.DescribeStreamOutput>
     -- To get the description of a registered consumer, provide the ARN of the consumer.
     -- Alternatively, you can provide the ARN of the data stream and the name you gave the
     -- consumer when you registered it. You may also provide all three parameters, as long as
@@ -124,7 +128,7 @@ local record Client
     -- registered with a given data stream.
     -- This operation has a limit of 20 transactions per second per stream.
     -- When making a cross-account call with DescribeStreamConsumer, make sure to provide the ARN of the consumer.
-    describeStreamConsumer: function(Client, types.DescribeStreamConsumerInput): types.DescribeStreamConsumerOutput, table
+    describeStreamConsumer: function(Client, types.DescribeStreamConsumerInput): Operation<types.DescribeStreamConsumerOutput>
     -- Provides a summarized description of the specified Kinesis data stream without the
     -- shard list.
     -- When invoking this API, you must use either the StreamARN or the
@@ -135,17 +139,17 @@ local record Client
     -- open shard count.
     -- DescribeStreamSummary has a limit of 20 transactions per second per
     -- account.
-    describeStreamSummary: function(Client, types.DescribeStreamSummaryInput): types.DescribeStreamSummaryOutput, table
+    describeStreamSummary: function(Client, types.DescribeStreamSummaryInput): Operation<types.DescribeStreamSummaryOutput>
     -- Disables enhanced monitoring.
     -- When invoking this API, you must use either the StreamARN or the
     -- StreamName parameter, or both. It is recommended that you use the
     -- StreamARN input parameter when you invoke this API.
-    disableEnhancedMonitoring: function(Client, types.DisableEnhancedMonitoringInput): types.DisableEnhancedMonitoringOutput, table
+    disableEnhancedMonitoring: function(Client, types.DisableEnhancedMonitoringInput): Operation<types.DisableEnhancedMonitoringOutput>
     -- Enables enhanced Kinesis data stream monitoring for shard-level metrics.
     -- When invoking this API, you must use either the StreamARN or the
     -- StreamName parameter, or both. It is recommended that you use the
     -- StreamARN input parameter when you invoke this API.
-    enableEnhancedMonitoring: function(Client, types.EnableEnhancedMonitoringInput): types.EnableEnhancedMonitoringOutput, table
+    enableEnhancedMonitoring: function(Client, types.EnableEnhancedMonitoringInput): Operation<types.EnableEnhancedMonitoringOutput>
     -- Gets data records from a Kinesis data stream's shard.
     -- When invoking this API, you must use either the StreamARN or the
     -- StreamName parameter, or both. It is recommended that you use the
@@ -197,11 +201,11 @@ local record Client
     -- stamp accuracy, or that the time stamp is always increasing. For example, records in a
     -- shard or across a stream might have time stamps that are out of order.
     -- This operation has a limit of five transactions per second per shard.
-    getRecords: function(Client, types.GetRecordsInput): types.GetRecordsOutput, table
+    getRecords: function(Client, types.GetRecordsInput): Operation<types.GetRecordsOutput>
     -- Returns a policy attached to the specified data stream or consumer. Request patterns can be one of the following:
     -- Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
     -- Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Gets an Amazon Kinesis shard iterator. A shard iterator expires 5 minutes after it is
     -- returned to the requester.
     -- When invoking this API, you must use either the StreamARN or the
@@ -238,7 +242,7 @@ local record Client
     -- SplitShard or MergeShards.
     -- GetShardIterator has a limit of five transactions per second per
     -- account per open shard.
-    getShardIterator: function(Client, types.GetShardIteratorInput): types.GetShardIteratorOutput, table
+    getShardIterator: function(Client, types.GetShardIteratorInput): Operation<types.GetShardIteratorOutput>
     -- Increases the Kinesis data stream's retention period, which is the length of time data
     -- records are accessible after they are added to the stream. The maximum value of a
     -- stream's retention period is 8760 hours (365 days).
@@ -251,7 +255,7 @@ local record Client
     -- accessible after the operation has been called. For example, if a stream's retention
     -- period is set to 24 hours and is increased to 168 hours, any data that is older than 24
     -- hours remains inaccessible to consumer applications.
-    increaseStreamRetentionPeriod: function(Client, types.IncreaseStreamRetentionPeriodInput): types.IncreaseStreamRetentionPeriodOutput, table
+    increaseStreamRetentionPeriod: function(Client, types.IncreaseStreamRetentionPeriodInput): Operation<types.IncreaseStreamRetentionPeriodOutput>
     -- Lists the shards in a stream and provides information about each shard. This operation
     -- has a limit of 1000 transactions per second per data stream.
     -- When invoking this API, you must use either the StreamARN or the
@@ -264,11 +268,11 @@ local record Client
     -- you must update your policy to allow calls to this API. For more information, see
     -- Controlling Access to Amazon Kinesis Data Streams Resources Using
     -- IAM.
-    listShards: function(Client, types.ListShardsInput): types.ListShardsOutput, table
+    listShards: function(Client, types.ListShardsInput): Operation<types.ListShardsOutput>
     -- Lists the consumers registered to receive data from a stream using enhanced fan-out,
     -- and provides information about each consumer.
     -- This operation has a limit of 5 transactions per second per stream.
-    listStreamConsumers: function(Client, types.ListStreamConsumersInput): types.ListStreamConsumersOutput, table
+    listStreamConsumers: function(Client, types.ListStreamConsumersInput): Operation<types.ListStreamConsumersOutput>
     -- Lists your Kinesis data streams.
     -- The number of streams may be too large to return from a single call to
     -- ListStreams. You can limit the number of returned streams using the
@@ -284,16 +288,16 @@ local record Client
     -- process until all the stream names have been collected in the list.
     -- ListStreams has a limit of five transactions per second per
     -- account.
-    listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+    listStreams: function(Client, types.ListStreamsInput): Operation<types.ListStreamsOutput>
     -- List all tags added to the specified Kinesis resource. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.
     -- For more information about tagging Kinesis resources, see Tag your Amazon Kinesis Data Streams resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists the tags for the specified Kinesis data stream. This operation has a limit of
     -- five transactions per second per account.
     -- When invoking this API, you must use either the StreamARN or the
     -- StreamName parameter, or both. It is recommended that you use the
     -- StreamARN input parameter when you invoke this API.
-    listTagsForStream: function(Client, types.ListTagsForStreamInput): types.ListTagsForStreamOutput, table
+    listTagsForStream: function(Client, types.ListTagsForStreamInput): Operation<types.ListTagsForStreamOutput>
     -- Merges two adjacent shards in a Kinesis data stream and combines them into a single
     -- shard to reduce the stream's capacity to ingest and transport data. This API is only
     -- supported for the data streams with the provisioned capacity mode. Two shards are
@@ -331,7 +335,7 @@ local record Client
     -- If you try to operate on too many streams in parallel using CreateStream, DeleteStream, MergeShards,
     -- or SplitShard, you receive a LimitExceededException.
     -- MergeShards has a limit of five transactions per second per account.
-    mergeShards: function(Client, types.MergeShardsInput): types.MergeShardsOutput, table
+    mergeShards: function(Client, types.MergeShardsInput): Operation<types.MergeShardsOutput>
     -- Writes a single data record into an Amazon Kinesis data stream. Call
     -- PutRecord to send data into the stream for real-time ingestion and
     -- subsequent processing, one record at a time. Each shard can support writes up to 1,000
@@ -368,7 +372,7 @@ local record Client
     -- throws ProvisionedThroughputExceededException.
     -- By default, data records are accessible for 24 hours from the time that they are added
     -- to a stream. You can use IncreaseStreamRetentionPeriod or DecreaseStreamRetentionPeriod to modify this retention period.
-    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+    putRecord: function(Client, types.PutRecordInput): Operation<types.PutRecordOutput>
     -- Writes multiple data records into a Kinesis data stream in a single call (also
     -- referred to as a PutRecords request). Use this operation to send data into
     -- the stream for data ingestion and processing.
@@ -426,7 +430,7 @@ local record Client
     -- within the stream.
     -- By default, data records are accessible for 24 hours from the time that they are added
     -- to a stream. You can use IncreaseStreamRetentionPeriod or DecreaseStreamRetentionPeriod to modify this retention period.
-    putRecords: function(Client, types.PutRecordsInput): types.PutRecordsOutput, table
+    putRecords: function(Client, types.PutRecordsInput): Operation<types.PutRecordsOutput>
     -- Attaches a resource-based policy to a data stream or registered consumer. If you are using an identity other than the root user of
     -- the Amazon Web Services account that owns the resource, the calling identity must have the PutResourcePolicy permissions on the
     -- specified Kinesis Data Streams resource and belong to the owner's account in order to use this operation.
@@ -436,7 +440,7 @@ local record Client
     -- Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
     -- Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
     -- For more information, see Controlling Access to Amazon Kinesis Data Streams Resources Using IAM.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Registers a consumer with a Kinesis data stream. When you use this operation, the
     -- consumer you register can then call SubscribeToShard to receive data
     -- from the stream using enhanced fan-out, at a rate of up to 2 MiB per second for every
@@ -452,7 +456,7 @@ local record Client
     -- more than 5 consumers in a CREATING status at the same time. Registering a
     -- 6th consumer while there are 5 in a CREATING status results in a
     -- LimitExceededException.
-    registerStreamConsumer: function(Client, types.RegisterStreamConsumerInput): types.RegisterStreamConsumerOutput, table
+    registerStreamConsumer: function(Client, types.RegisterStreamConsumerInput): Operation<types.RegisterStreamConsumerOutput>
     -- Removes tags from the specified Kinesis data stream. Removed tags are deleted and
     -- cannot be recovered after this operation successfully completes.
     -- When invoking this API, you must use either the StreamARN or the
@@ -461,7 +465,7 @@ local record Client
     -- If you specify a tag that does not exist, it is ignored.
     -- RemoveTagsFromStream has a limit of five transactions per second per
     -- account.
-    removeTagsFromStream: function(Client, types.RemoveTagsFromStreamInput): types.RemoveTagsFromStreamOutput, table
+    removeTagsFromStream: function(Client, types.RemoveTagsFromStreamInput): Operation<types.RemoveTagsFromStreamOutput>
     -- Splits a shard into two new shards in the Kinesis data stream, to increase the
     -- stream's capacity to ingest and transport data. SplitShard is called when
     -- there is a need to increase the overall capacity of a stream because of an expected
@@ -503,7 +507,7 @@ local record Client
     -- If you try to operate on too many streams simultaneously using CreateStream, DeleteStream, MergeShards, and/or SplitShard, you receive a
     -- LimitExceededException.
     -- SplitShard has a limit of five transactions per second per account.
-    splitShard: function(Client, types.SplitShardInput): types.SplitShardOutput, table
+    splitShard: function(Client, types.SplitShardInput): Operation<types.SplitShardOutput>
     -- Enables or updates server-side encryption using an Amazon Web Services KMS key for a
     -- specified stream.
     -- When invoking this API, you must use either the StreamARN or the
@@ -523,7 +527,7 @@ local record Client
     -- before all records written to the stream are encrypted. After you enable encryption, you
     -- can verify that encryption is applied by inspecting the API response from
     -- PutRecord or PutRecords.
-    startStreamEncryption: function(Client, types.StartStreamEncryptionInput): types.StartStreamEncryptionOutput, table
+    startStreamEncryption: function(Client, types.StartStreamEncryptionInput): Operation<types.StartStreamEncryptionOutput>
     -- Disables server-side encryption for a specified stream.
     -- When invoking this API, you must use either the StreamARN or the
     -- StreamName parameter, or both. It is recommended that you use the
@@ -542,7 +546,7 @@ local record Client
     -- before all records written to the stream are no longer subject to encryption. After you
     -- disabled encryption, you can verify that encryption is not applied by inspecting the API
     -- response from PutRecord or PutRecords.
-    stopStreamEncryption: function(Client, types.StopStreamEncryptionInput): types.StopStreamEncryptionOutput, table
+    stopStreamEncryption: function(Client, types.StopStreamEncryptionInput): Operation<types.StopStreamEncryptionOutput>
     -- This operation establishes an HTTP/2 connection between the consumer you specify in
     -- the ConsumerARN parameter and the shard you specify in the
     -- ShardId parameter. After the connection is successfully established,
@@ -566,19 +570,19 @@ local record Client
     -- ResourceInUseException.
     -- For an example of how to use this operation, see Enhanced Fan-Out
     -- Using the Kinesis Data Streams API.
-    subscribeToShard: function(Client, types.SubscribeToShardInput): types.SubscribeToShardOutput, table
+    subscribeToShard: function(Client, types.SubscribeToShardInput): Operation<types.SubscribeToShardOutput>
     -- Adds or updates tags for the specified Kinesis resource. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. You can assign up to 50 tags to a Kinesis resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified Kinesis resource. Removed tags are deleted and can't be recovered after this operation completes successfully.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the account-level settings for Amazon Kinesis Data Streams.
     -- Updating account settings is a synchronous operation. Upon receiving the request, Kinesis Data Streams will return immediately with your account’s updated settings.
     -- API limits
     -- Certain account configurations have minimum commitment windows. Attempting to update your settings prior to the end of the minimum commitment window might have certain restrictions.
     -- This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. TPS over 5 will initiate the LimitExceededException.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- This allows you to update the MaxRecordSize of a single record that you can write to, and read from a stream. You can ingest and digest single records up to 10240 KiB.
-    updateMaxRecordSize: function(Client, types.UpdateMaxRecordSizeInput): types.UpdateMaxRecordSizeOutput, table
+    updateMaxRecordSize: function(Client, types.UpdateMaxRecordSizeInput): Operation<types.UpdateMaxRecordSizeOutput>
     -- Updates the shard count of the specified stream to the specified number of shards.
     -- This API is only supported for the data streams with the provisioned capacity
     -- mode.
@@ -613,12 +617,12 @@ local record Client
     -- Limits in the Amazon Kinesis Data Streams Developer
     -- Guide. To request an increase in the call rate limit, the shard limit for
     -- this API, or your overall shard limit, use the limits form.
-    updateShardCount: function(Client, types.UpdateShardCountInput): types.UpdateShardCountOutput, table
+    updateShardCount: function(Client, types.UpdateShardCountInput): Operation<types.UpdateShardCountOutput>
     -- Updates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you
     -- can choose between an on-demand capacity mode and a
     -- provisioned capacity mode for your data stream.
     -- If you'd still like to proactively scale your on-demand data stream’s capacity, you can unlock the warm throughput feature for on-demand data streams by enabling MinimumThroughputBillingCommitment for your account. Once your account has MinimumThroughputBillingCommitment enabled, you can specify the warm throughput in MiB per second that your stream can support in writes.
-    updateStreamMode: function(Client, types.UpdateStreamModeInput): types.UpdateStreamModeOutput, table
+    updateStreamMode: function(Client, types.UpdateStreamModeInput): Operation<types.UpdateStreamModeOutput>
     -- Updates the warm throughput configuration for the specified Amazon Kinesis Data Streams on-demand data stream. This operation allows you to proactively scale your on-demand data stream to a specified throughput level, enabling better performance for sudden traffic spikes.
     -- When invoking this API, you must use either the StreamARN or the StreamName parameter, or both. It is recommended that you use the StreamARN input parameter when you invoke this API.
     -- Updating the warm throughput is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to UPDATING. After the update is complete, Kinesis Data Streams sets the status of the stream back to ACTIVE. Depending on the size of the stream, the scaling action could take a few minutes to complete. You can continue to read and write data to your stream while its status is UPDATING.
@@ -628,7 +632,7 @@ local record Client
     -- This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account. TPS over 5 will initiate the LimitExceededException.
     -- For the default limits for an Amazon Web Services account, see Streams Limits in the Amazon Kinesis Data Streams Developer
     -- Guide. To request an increase in the call rate limit, the shard limit for this API, or your overall shard limit, use the limits form.
-    updateStreamWarmThroughput: function(Client, types.UpdateStreamWarmThroughputInput): types.UpdateStreamWarmThroughputOutput, table
+    updateStreamWarmThroughput: function(Client, types.UpdateStreamWarmThroughputInput): Operation<types.UpdateStreamWarmThroughputOutput>
 end
 
 local record M

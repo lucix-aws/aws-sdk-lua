@@ -2,25 +2,29 @@
 
 local types = require("iotsecuretunneling.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Closes a tunnel identified by the unique tunnel id. When a CloseTunnel
     -- request is received, we close the WebSocket connections between the client and proxy
     -- server so no data can be transmitted.
     -- Requires permission to access the CloseTunnel action.
-    closeTunnel: function(Client, types.CloseTunnelInput): types.CloseTunnelOutput, table
+    closeTunnel: function(Client, types.CloseTunnelInput): Operation<types.CloseTunnelOutput>
     -- Gets information about a tunnel identified by the unique tunnel id.
     -- Requires permission to access the DescribeTunnel action.
-    describeTunnel: function(Client, types.DescribeTunnelInput): types.DescribeTunnelOutput, table
+    describeTunnel: function(Client, types.DescribeTunnelInput): Operation<types.DescribeTunnelOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- List all tunnels for an Amazon Web Services account. Tunnels are listed by creation time in
     -- descending order, newer tunnels will be listed before older tunnels.
     -- Requires permission to access the ListTunnels action.
-    listTunnels: function(Client, types.ListTunnelsInput): types.ListTunnelsOutput, table
+    listTunnels: function(Client, types.ListTunnelsInput): Operation<types.ListTunnelsOutput>
     -- Creates a new tunnel, and returns two client access tokens for clients to use to
     -- connect to the IoT Secure Tunneling proxy server.
     -- Requires permission to access the OpenTunnel action.
-    openTunnel: function(Client, types.OpenTunnelInput): types.OpenTunnelOutput, table
+    openTunnel: function(Client, types.OpenTunnelInput): Operation<types.OpenTunnelOutput>
     -- Revokes the current client access token (CAT) and returns new CAT for clients to
     -- use when reconnecting to secure tunneling to access the same tunnel.
     -- Requires permission to access the RotateTunnelAccessToken action.
@@ -28,11 +32,11 @@ local record Client
     -- duration is 12 hours and the tunnel has already been open for 4 hours. When you
     -- rotate the access tokens, the new tokens that are generated can only be used for the
     -- remaining 8 hours.
-    rotateTunnelAccessToken: function(Client, types.RotateTunnelAccessTokenInput): types.RotateTunnelAccessTokenOutput, table
+    rotateTunnelAccessToken: function(Client, types.RotateTunnelAccessTokenInput): Operation<types.RotateTunnelAccessTokenOutput>
     -- A resource tag.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

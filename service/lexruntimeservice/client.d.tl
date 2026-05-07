@@ -2,12 +2,16 @@
 
 local types = require("lexruntimeservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Removes session information for a specified bot, alias, and user ID.
-    deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    deleteSession: function(Client, types.DeleteSessionInput): Operation<types.DeleteSessionOutput>
     -- Returns session information for a specified bot, alias, and user
     -- ID.
-    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): Operation<types.GetSessionOutput>
     -- Sends user input (text or speech) to Amazon Lex. Clients use this API to
     -- send text and audio requests to Amazon Lex at runtime. Amazon Lex interprets the
     -- user input using the machine learning model that it built for the bot.
@@ -53,7 +57,7 @@ local record Client
     -- In addition, Amazon Lex also returns your application-specific
     -- sessionAttributes. For more information, see Managing
     -- Conversation Context.
-    postContent: function(Client, types.PostContentInput): types.PostContentOutput, table
+    postContent: function(Client, types.PostContentInput): Operation<types.PostContentOutput>
     -- Sends user input to Amazon Lex. Client applications can use this API to
     -- send requests to Amazon Lex at runtime. Amazon Lex then interprets the user input
     -- using the machine learning model it built for the bot.
@@ -97,13 +101,13 @@ local record Client
     -- In addition, Amazon Lex also returns your application-specific
     -- sessionAttributes. For more information, see Managing
     -- Conversation Context.
-    postText: function(Client, types.PostTextInput): types.PostTextOutput, table
+    postText: function(Client, types.PostTextInput): Operation<types.PostTextOutput>
     -- Creates a new session or modifies an existing session with an Amazon Lex
     -- bot. Use this operation to enable your application to set the state of the
     -- bot.
     -- For more information, see Managing
     -- Sessions.
-    putSession: function(Client, types.PutSessionInput): types.PutSessionOutput, table
+    putSession: function(Client, types.PutSessionInput): Operation<types.PutSessionOutput>
 end
 
 local record M

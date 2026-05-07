@@ -2,9 +2,13 @@
 
 local types = require("kinesisanalyticsv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds an Amazon CloudWatch log stream to monitor application configuration errors.
-    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput): types.AddApplicationCloudWatchLoggingOptionOutput, table
+    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput): Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
     -- Adds a streaming source to your SQL-based Kinesis Data Analytics application.
     -- You can add a streaming source when you create an application, or you can use this
     -- operation to add a streaming source after you create an application. For more information, see
@@ -12,11 +16,11 @@ local record Client
     -- Any configuration update, including adding a streaming source using this operation,
     -- results in a new version of the application. You can use the DescribeApplication operation
     -- to find the current application version.
-    addApplicationInput: function(Client, types.AddApplicationInputInput): types.AddApplicationInputOutput, table
+    addApplicationInput: function(Client, types.AddApplicationInputInput): Operation<types.AddApplicationInputOutput>
     -- Adds an InputProcessingConfiguration to a SQL-based Kinesis Data Analytics application. An input processor pre-processes records
     -- on the input stream before the
     -- application's SQL code executes. Currently, the only input processor available is Amazon Lambda.
-    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput): types.AddApplicationInputProcessingConfigurationOutput, table
+    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput): Operation<types.AddApplicationInputProcessingConfigurationOutput>
     -- Adds an external destination to your SQL-based Kinesis Data Analytics application.
     -- If you want Kinesis Data Analytics to deliver data from an in-application stream within
     -- your application to an external destination (such as an Kinesis data stream, a Kinesis Data
@@ -30,25 +34,25 @@ local record Client
     -- Any configuration update, including adding a streaming source using this
     -- operation, results in a new version of the application. You can use the DescribeApplication operation to find the current application
     -- version.
-    addApplicationOutput: function(Client, types.AddApplicationOutputInput): types.AddApplicationOutputOutput, table
+    addApplicationOutput: function(Client, types.AddApplicationOutputInput): Operation<types.AddApplicationOutputOutput>
     -- Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.
     -- Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an
     -- in-application table within your application. In the request, you provide the source (S3
     -- bucket name and object key name), name of the in-application table to create, and the
     -- necessary mapping information that describes how data in an Amazon S3 object maps to columns
     -- in the resulting in-application table.
-    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput): types.AddApplicationReferenceDataSourceOutput, table
+    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput): Operation<types.AddApplicationReferenceDataSourceOutput>
     -- Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store
     -- and access resources securely.
     -- Note the following about VPC configurations for Managed Service for Apache Flink applications:
     -- VPC configurations are not supported for SQL applications.
     -- When a VPC is added to a Managed Service for Apache Flink application, the application can no longer be accessed from the
     -- Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.
-    addApplicationVpcConfiguration: function(Client, types.AddApplicationVpcConfigurationInput): types.AddApplicationVpcConfigurationOutput, table
+    addApplicationVpcConfiguration: function(Client, types.AddApplicationVpcConfigurationInput): Operation<types.AddApplicationVpcConfigurationOutput>
     -- Creates a Managed Service for Apache Flink application. For information about creating a
     -- Managed Service for Apache Flink application, see Creating an
     -- Application.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates and returns a URL that you can use to connect to
     -- an application's extension.
     -- The IAM role or user used to call this API defines the permissions to access the
@@ -60,39 +64,39 @@ local record Client
     -- The URL that you get from a call to CreateApplicationPresignedUrl must be used within 3 minutes
     -- to be valid.
     -- If you first try to use the URL after the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.
-    createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput): types.CreateApplicationPresignedUrlOutput, table
+    createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput): Operation<types.CreateApplicationPresignedUrlOutput>
     -- Creates a snapshot of the application's state data.
-    createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput): types.CreateApplicationSnapshotOutput, table
+    createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput): Operation<types.CreateApplicationSnapshotOutput>
     -- Deletes the specified application. Managed Service for Apache Flink halts application execution and deletes the application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOperationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOperationOutput>
     -- Deletes an Amazon CloudWatch log stream from an SQL-based Kinesis Data Analytics application.
-    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput): types.DeleteApplicationCloudWatchLoggingOptionOutput, table
+    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput): Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
     -- Deletes an InputProcessingConfiguration from an input.
-    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput): types.DeleteApplicationInputProcessingConfigurationOutput, table
+    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput): Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
     -- Deletes the output destination configuration from your SQL-based Kinesis Data Analytics application's configuration.
     -- Kinesis Data Analytics will no longer write data from
     -- the corresponding in-application stream to the external output destination.
-    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput): types.DeleteApplicationOutputOutput, table
+    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput): Operation<types.DeleteApplicationOutputOutput>
     -- Deletes a reference data source configuration from the specified SQL-based Kinesis Data Analytics application's configuration.
     -- If the application is running, Kinesis Data Analytics immediately removes the in-application table
     -- that you created using the AddApplicationReferenceDataSource operation.
-    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput): types.DeleteApplicationReferenceDataSourceOutput, table
+    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput): Operation<types.DeleteApplicationReferenceDataSourceOutput>
     -- Deletes a snapshot of application state.
-    deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput): types.DeleteApplicationSnapshotOutput, table
+    deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput): Operation<types.DeleteApplicationSnapshotOutput>
     -- Removes a VPC configuration from a Managed Service for Apache Flink application.
-    deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput): types.DeleteApplicationVpcConfigurationOutput, table
+    deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput): Operation<types.DeleteApplicationVpcConfigurationOutput>
     -- Returns information about a specific Managed Service for Apache Flink application.
     -- If you want to retrieve a list of all applications in your account,
     -- use the ListApplications operation.
-    describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    describeApplication: function(Client, types.DescribeApplicationInput): Operation<types.DescribeApplicationOutput>
     -- Provides a detailed description of a specified application operation. To see a list of all the operations of an application, invoke the ListApplicationOperations operation.
     -- This operation is supported only for Managed Service for Apache Flink.
-    describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput): types.DescribeApplicationOperationOutput, table
+    describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput): Operation<types.DescribeApplicationOperationOutput>
     -- Returns information about a snapshot of application state data.
-    describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput): types.DescribeApplicationSnapshotOutput, table
+    describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput): Operation<types.DescribeApplicationSnapshotOutput>
     -- Provides a detailed description of a specified version of the application. To see a list of all the versions of an application, invoke the ListApplicationVersions operation.
     -- This operation is supported only for Managed Service for Apache Flink.
-    describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput): types.DescribeApplicationVersionOutput, table
+    describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput): Operation<types.DescribeApplicationVersionOutput>
     -- Infers a schema for a SQL-based Kinesis Data Analytics application by evaluating
     -- sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose
     -- delivery stream) or Amazon S3 object. In the response, the operation returns the inferred
@@ -100,57 +104,57 @@ local record Client
     -- You can use the inferred schema when configuring a streaming source for your application.
     -- When you create an application using the Kinesis Data Analytics console, the console uses this
     -- operation to infer a schema and show it in the console user interface.
-    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput): types.DiscoverInputSchemaOutput, table
+    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput): Operation<types.DiscoverInputSchemaOutput>
     -- Lists all the operations performed for the specified application such as UpdateApplication, StartApplication etc.
     -- The response also includes a summary of the operation.
     -- To get the complete description of a specific operation, invoke the DescribeApplicationOperation operation.
     -- This operation is supported only for Managed Service for Apache Flink.
-    listApplicationOperations: function(Client, types.ListApplicationOperationsInput): types.ListApplicationOperationsOutput, table
+    listApplicationOperations: function(Client, types.ListApplicationOperationsInput): Operation<types.ListApplicationOperationsOutput>
     -- Returns a list of Managed Service for Apache Flink applications in your account. For each
     -- application, the response includes the application name, Amazon Resource Name (ARN), and
     -- status.
     -- If you want detailed information about a specific application, use
     -- DescribeApplication.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Lists information about the current application snapshots.
-    listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput): types.ListApplicationSnapshotsOutput, table
+    listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput): Operation<types.ListApplicationSnapshotsOutput>
     -- Lists all the versions for the specified application, including versions that were rolled back. The response also includes a summary of the configuration
     -- associated with each version.
     -- To get the complete description of a specific application version, invoke the DescribeApplicationVersion operation.
     -- This operation is supported only for Managed Service for Apache Flink.
-    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): types.ListApplicationVersionsOutput, table
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): Operation<types.ListApplicationVersionsOutput>
     -- Retrieves the list of key-value tags assigned to the application. For more information, see
     -- Using Tagging.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Reverts the application to the previous running version. You can roll back an
     -- application if you suspect it is stuck in a transient status or in the running status.
     -- You can roll back an application only if it is in the UPDATING,
     -- AUTOSCALING, or RUNNING statuses.
     -- When you rollback an application, it loads state data from the last successful snapshot.
     -- If the application has no snapshots, Managed Service for Apache Flink rejects the rollback request.
-    rollbackApplication: function(Client, types.RollbackApplicationInput): types.RollbackApplicationOutput, table
+    rollbackApplication: function(Client, types.RollbackApplicationInput): Operation<types.RollbackApplicationOutput>
     -- Starts the specified Managed Service for Apache Flink application. After creating an application, you must exclusively call this operation to
     -- start your application.
-    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    startApplication: function(Client, types.StartApplicationInput): Operation<types.StartApplicationOutput>
     -- Stops the application from processing data. You can stop
     -- an application only if it is in the running status, unless you set the Force
     -- parameter to true.
     -- You can use the DescribeApplication operation to find the application status.
     -- Managed Service for Apache Flink takes a snapshot when the application is stopped, unless Force is set
     -- to true.
-    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): Operation<types.StopApplicationOutput>
     -- Adds one or more key-value tags to a Managed Service for Apache Flink application. Note that the maximum number of application
     -- tags includes system tags. The maximum number of user-defined application tags is 50.
     -- For more information, see Using Tagging.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from a Managed Service for Apache Flink application. For more information, see
     -- Using Tagging.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing Managed Service for Apache Flink application. Using this operation, you
     -- can update application code, input configuration, and output configuration.
     -- Managed Service for Apache Flink updates the ApplicationVersionId each time you update
     -- your application.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Updates the maintenance configuration of the Managed Service for Apache Flink application.
     -- You can invoke this operation on an application that is in one of the two following
     -- states: READY or RUNNING. If you invoke it when the application is
@@ -165,7 +169,7 @@ local record Client
     -- DescribeApplication operation.
     -- For information about application maintenance, see Managed Service for Apache Flink for Apache Flink Maintenance.
     -- This operation is supported only for Managed Service for Apache Flink.
-    updateApplicationMaintenanceConfiguration: function(Client, types.UpdateApplicationMaintenanceConfigurationInput): types.UpdateApplicationMaintenanceConfigurationOutput, table
+    updateApplicationMaintenanceConfiguration: function(Client, types.UpdateApplicationMaintenanceConfigurationInput): Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
 end
 
 local record M

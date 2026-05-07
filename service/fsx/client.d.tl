@@ -2,6 +2,10 @@
 
 local types = require("fsx.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Use this action to associate one or more Domain Name Server (DNS) aliases with an existing Amazon FSx for Windows File Server file system.
     -- A file system can have a maximum of 50 DNS aliases associated with it at any one time. If you try to
@@ -14,7 +18,7 @@ local record Client
     -- Use the API
     -- operation to monitor the status of the aliases Amazon FSx is
     -- associating with the file system.
-    associateFileSystemAliases: function(Client, types.AssociateFileSystemAliasesInput): types.AssociateFileSystemAliasesOutput, table
+    associateFileSystemAliases: function(Client, types.AssociateFileSystemAliasesInput): Operation<types.AssociateFileSystemAliasesOutput>
     -- Cancels an existing Amazon FSx for Lustre data repository task if that task is in either the
     -- PENDING or EXECUTING state. When you cancel an export task, Amazon FSx
     -- does the following.
@@ -23,7 +27,7 @@ local record Client
     -- FSx does not export any files that have not yet been exported.
     -- For a release task, Amazon FSx will stop releasing files upon cancellation. Any files that
     -- have already been released will remain in the released state.
-    cancelDataRepositoryTask: function(Client, types.CancelDataRepositoryTaskInput): types.CancelDataRepositoryTaskOutput, table
+    cancelDataRepositoryTask: function(Client, types.CancelDataRepositoryTaskInput): Operation<types.CancelDataRepositoryTaskOutput>
     -- Copies an existing backup within the same Amazon Web Services account to another Amazon Web Services Region
     -- (cross-Region copy) or within the same Amazon Web Services Region (in-Region copy). You can have up to five
     -- backup copy requests in progress to a single destination Region per account.
@@ -45,10 +49,10 @@ local record Client
     -- in the Amazon FSx for Windows User Guide, Copying backups in the Amazon FSx for Lustre User
     -- Guide, and Copying backups in the Amazon FSx for OpenZFS User
     -- Guide.
-    copyBackup: function(Client, types.CopyBackupInput): types.CopyBackupOutput, table
+    copyBackup: function(Client, types.CopyBackupInput): Operation<types.CopyBackupOutput>
     -- Updates an existing volume by using a snapshot from another Amazon FSx for OpenZFS file system. For more information, see on-demand data replication in the Amazon FSx for OpenZFS User
     -- Guide.
-    copySnapshotAndUpdateVolume: function(Client, types.CopySnapshotAndUpdateVolumeInput): types.CopySnapshotAndUpdateVolumeOutput, table
+    copySnapshotAndUpdateVolume: function(Client, types.CopySnapshotAndUpdateVolumeInput): Operation<types.CopySnapshotAndUpdateVolumeOutput>
     -- Creates an S3 access point and attaches it to an Amazon FSx volume. For FSx for OpenZFS file systems, the
     -- volume must be hosted on a high-availability file system, either Single-AZ or Multi-AZ. For more information,
     -- see Accessing your data using Amazon S3 access points.
@@ -62,7 +66,7 @@ local record Client
     -- The following actions are related to CreateAndAttachS3AccessPoint:
     -- DescribeS3AccessPointAttachments
     -- DetachAndDeleteS3AccessPoint
-    createAndAttachS3AccessPoint: function(Client, types.CreateAndAttachS3AccessPointInput): types.CreateAndAttachS3AccessPointOutput, table
+    createAndAttachS3AccessPoint: function(Client, types.CreateAndAttachS3AccessPointInput): Operation<types.CreateAndAttachS3AccessPointOutput>
     -- Creates a backup of an existing Amazon FSx for Windows File Server file
     -- system, Amazon FSx for Lustre file system, Amazon FSx for NetApp ONTAP
     -- volume, or Amazon FSx for OpenZFS file system. We recommend creating regular
@@ -97,7 +101,7 @@ local record Client
     -- still CREATING. You can check the backup creation status by calling the
     -- DescribeBackups operation, which returns the backup state along with other
     -- information.
-    createBackup: function(Client, types.CreateBackupInput): types.CreateBackupOutput, table
+    createBackup: function(Client, types.CreateBackupInput): Operation<types.CreateBackupOutput>
     -- Creates an Amazon FSx for Lustre data repository association (DRA). A data
     -- repository association is a link between a directory on the file system and
     -- an Amazon S3 bucket or prefix. You can have a maximum of 8 data repository
@@ -113,7 +117,7 @@ local record Client
     -- CreateDataRepositoryAssociation isn't supported
     -- on Amazon File Cache resources. To create a DRA on Amazon File Cache,
     -- use the CreateFileCache operation.
-    createDataRepositoryAssociation: function(Client, types.CreateDataRepositoryAssociationInput): types.CreateDataRepositoryAssociationOutput, table
+    createDataRepositoryAssociation: function(Client, types.CreateDataRepositoryAssociationInput): Operation<types.CreateDataRepositoryAssociationOutput>
     -- Creates an Amazon FSx for Lustre data repository task.
     -- A CreateDataRepositoryTask operation will fail if a data
     -- repository is not linked to the FSx file system.
@@ -129,7 +133,7 @@ local record Client
     -- Data Repository Tasks.
     -- To learn more about linking a data repository to your file system, see
     -- Linking your file system to an S3 bucket.
-    createDataRepositoryTask: function(Client, types.CreateDataRepositoryTaskInput): types.CreateDataRepositoryTaskOutput, table
+    createDataRepositoryTask: function(Client, types.CreateDataRepositoryTaskInput): Operation<types.CreateDataRepositoryTaskOutput>
     -- Creates a new Amazon File Cache resource.
     -- You can use this operation with a client request token in the request that
     -- Amazon File Cache uses to ensure idempotent creation.
@@ -146,7 +150,7 @@ local record Client
     -- state is still CREATING. You can check the cache creation status
     -- by calling the DescribeFileCaches operation, which returns the cache state
     -- along with other information.
-    createFileCache: function(Client, types.CreateFileCacheInput): types.CreateFileCacheOutput, table
+    createFileCache: function(Client, types.CreateFileCacheInput): Operation<types.CreateFileCacheOutput>
     -- Creates a new, empty Amazon FSx file system. You can create the following supported
     -- Amazon FSx file systems using the CreateFileSystem API operation:
     -- Amazon FSx for Lustre
@@ -175,7 +179,7 @@ local record Client
     -- state is still CREATING. You can check the file-system creation status
     -- by calling the DescribeFileSystems operation, which returns the file system state
     -- along with other information.
-    createFileSystem: function(Client, types.CreateFileSystemInput): types.CreateFileSystemOutput, table
+    createFileSystem: function(Client, types.CreateFileSystemInput): Operation<types.CreateFileSystemOutput>
     -- Creates a new Amazon FSx for Lustre, Amazon FSx for Windows File
     -- Server, or Amazon FSx for OpenZFS file system from an existing Amazon FSx backup.
     -- If a file system with the specified client request token exists and the parameters
@@ -201,7 +205,7 @@ local record Client
     -- creation status by calling the
     -- DescribeFileSystems operation, which returns the file system state along
     -- with other information.
-    createFileSystemFromBackup: function(Client, types.CreateFileSystemFromBackupInput): types.CreateFileSystemFromBackupOutput, table
+    createFileSystemFromBackup: function(Client, types.CreateFileSystemFromBackupInput): Operation<types.CreateFileSystemFromBackupOutput>
     -- Creates a snapshot of an existing Amazon FSx for OpenZFS volume. With
     -- snapshots, you can easily undo file changes and compare file versions by restoring the
     -- volume to a previous version.
@@ -224,21 +228,21 @@ local record Client
     -- is still CREATING. You can check the snapshot creation status by calling
     -- the DescribeSnapshots operation, which returns the snapshot state along with
     -- other information.
-    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): Operation<types.CreateSnapshotOutput>
     -- Creates a storage virtual machine (SVM) for an Amazon FSx for ONTAP file system.
-    createStorageVirtualMachine: function(Client, types.CreateStorageVirtualMachineInput): types.CreateStorageVirtualMachineOutput, table
+    createStorageVirtualMachine: function(Client, types.CreateStorageVirtualMachineInput): Operation<types.CreateStorageVirtualMachineOutput>
     -- Creates an FSx for ONTAP or Amazon FSx for OpenZFS storage volume.
-    createVolume: function(Client, types.CreateVolumeInput): types.CreateVolumeOutput, table
+    createVolume: function(Client, types.CreateVolumeInput): Operation<types.CreateVolumeOutput>
     -- Creates a new Amazon FSx for NetApp ONTAP volume from an
     -- existing Amazon FSx volume backup.
-    createVolumeFromBackup: function(Client, types.CreateVolumeFromBackupInput): types.CreateVolumeFromBackupOutput, table
+    createVolumeFromBackup: function(Client, types.CreateVolumeFromBackupInput): Operation<types.CreateVolumeFromBackupOutput>
     -- Deletes an Amazon FSx backup. After deletion, the backup no longer exists, and
     -- its data is gone.
     -- The DeleteBackup call returns instantly. The backup won't show up in
     -- later DescribeBackups calls.
     -- The data in a deleted backup is also deleted and can't be recovered by any
     -- means.
-    deleteBackup: function(Client, types.DeleteBackupInput): types.DeleteBackupOutput, table
+    deleteBackup: function(Client, types.DeleteBackupInput): Operation<types.DeleteBackupOutput>
     -- Deletes a data repository association on an Amazon FSx for Lustre
     -- file system. Deleting the data repository association unlinks the
     -- file system from the Amazon S3 bucket. When deleting a data repository
@@ -246,7 +250,7 @@ local record Client
     -- that corresponds to the data repository association. Data repository
     -- associations are supported on all FSx for Lustre 2.12 and 2.15 file
     -- systems, excluding scratch_1 deployment type.
-    deleteDataRepositoryAssociation: function(Client, types.DeleteDataRepositoryAssociationInput): types.DeleteDataRepositoryAssociationOutput, table
+    deleteDataRepositoryAssociation: function(Client, types.DeleteDataRepositoryAssociationInput): Operation<types.DeleteDataRepositoryAssociationOutput>
     -- Deletes an Amazon File Cache resource. After deletion, the cache no longer exists, and its data
     -- is gone.
     -- The DeleteFileCache operation returns while the cache has the
@@ -257,7 +261,7 @@ local record Client
     -- error.
     -- The data in a deleted cache is also deleted and can't be recovered by
     -- any means.
-    deleteFileCache: function(Client, types.DeleteFileCacheInput): types.DeleteFileCacheOutput, table
+    deleteFileCache: function(Client, types.DeleteFileCacheInput): Operation<types.DeleteFileCacheOutput>
     -- Deletes a file system. After deletion, the file system no longer exists, and its data
     -- is gone. Any existing automatic backups and snapshots are also deleted.
     -- To delete an Amazon FSx for NetApp ONTAP file system, first delete all the
@@ -297,19 +301,19 @@ local record Client
     -- code 400 (Bad Request).
     -- The data in a deleted file system is also deleted and can't be recovered by
     -- any means.
-    deleteFileSystem: function(Client, types.DeleteFileSystemInput): types.DeleteFileSystemOutput, table
+    deleteFileSystem: function(Client, types.DeleteFileSystemInput): Operation<types.DeleteFileSystemOutput>
     -- Deletes an Amazon FSx for OpenZFS snapshot. After deletion, the snapshot no longer
     -- exists, and its data is gone. Deleting a snapshot doesn't affect snapshots stored in a
     -- file system backup.
     -- The DeleteSnapshot operation returns instantly. The snapshot appears with
     -- the lifecycle status of DELETING until the deletion is complete.
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): Operation<types.DeleteSnapshotOutput>
     -- Deletes an existing Amazon FSx for ONTAP storage virtual machine (SVM). Prior
     -- to deleting an SVM, you must delete all non-root volumes in the SVM, otherwise the operation will fail.
-    deleteStorageVirtualMachine: function(Client, types.DeleteStorageVirtualMachineInput): types.DeleteStorageVirtualMachineOutput, table
+    deleteStorageVirtualMachine: function(Client, types.DeleteStorageVirtualMachineInput): Operation<types.DeleteStorageVirtualMachineOutput>
     -- Deletes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS
     -- volume.
-    deleteVolume: function(Client, types.DeleteVolumeInput): types.DeleteVolumeOutput, table
+    deleteVolume: function(Client, types.DeleteVolumeInput): Operation<types.DeleteVolumeOutput>
     -- Returns the description of a specific Amazon FSx backup, if a
     -- BackupIds value is provided for that backup. Otherwise, it returns all
     -- backups owned by your Amazon Web Services account in the Amazon Web Services Region of the
@@ -330,7 +334,7 @@ local record Client
     -- The order of the backups returned in the response of one
     -- DescribeBackups call and the order of the backups returned
     -- across the responses of a multi-call iteration is unspecified.
-    describeBackups: function(Client, types.DescribeBackupsInput): types.DescribeBackupsOutput, table
+    describeBackups: function(Client, types.DescribeBackupsInput): Operation<types.DescribeBackupsOutput>
     -- Returns the description of specific Amazon FSx for Lustre or Amazon File Cache
     -- data repository associations, if one or more AssociationIds values
     -- are provided in the request, or if filters are used in the request. Data repository
@@ -350,7 +354,7 @@ local record Client
     -- NextToken value is returned in the response. In this case, send a later
     -- request with the NextToken request parameter set to the value of
     -- NextToken from the last response.
-    describeDataRepositoryAssociations: function(Client, types.DescribeDataRepositoryAssociationsInput): types.DescribeDataRepositoryAssociationsOutput, table
+    describeDataRepositoryAssociations: function(Client, types.DescribeDataRepositoryAssociationsInput): Operation<types.DescribeDataRepositoryAssociationsOutput>
     -- Returns the description of specific Amazon FSx for Lustre or Amazon File Cache data repository tasks, if
     -- one or more TaskIds values are provided in the request, or if filters are used in the request.
     -- You can use filters to narrow the response to include just tasks for specific file systems or caches,
@@ -361,7 +365,7 @@ local record Client
     -- a NextToken value is returned in the response. In this case, send a later
     -- request with the NextToken request parameter set to the value of
     -- NextToken from the last response.
-    describeDataRepositoryTasks: function(Client, types.DescribeDataRepositoryTasksInput): types.DescribeDataRepositoryTasksOutput, table
+    describeDataRepositoryTasks: function(Client, types.DescribeDataRepositoryTasksInput): Operation<types.DescribeDataRepositoryTasksOutput>
     -- Returns the description of a specific Amazon File Cache resource, if a
     -- FileCacheIds value is provided for that cache. Otherwise, it
     -- returns descriptions of all caches owned by your Amazon Web Services account in the
@@ -384,11 +388,11 @@ local record Client
     -- The order of caches returned in the response of one
     -- DescribeFileCaches call and the order of caches returned
     -- across the responses of a multicall iteration is unspecified.
-    describeFileCaches: function(Client, types.DescribeFileCachesInput): types.DescribeFileCachesOutput, table
+    describeFileCaches: function(Client, types.DescribeFileCachesInput): Operation<types.DescribeFileCachesOutput>
     -- Returns the DNS aliases that are associated with the specified Amazon FSx for Windows File Server file system. A history of
     -- all DNS aliases that have been associated with and disassociated from the file system is available in the list of AdministrativeAction
     -- provided in the DescribeFileSystems operation response.
-    describeFileSystemAliases: function(Client, types.DescribeFileSystemAliasesInput): types.DescribeFileSystemAliasesOutput, table
+    describeFileSystemAliases: function(Client, types.DescribeFileSystemAliasesInput): Operation<types.DescribeFileSystemAliasesOutput>
     -- Returns the description of specific Amazon FSx file systems, if a
     -- FileSystemIds value is provided for that file system. Otherwise, it
     -- returns descriptions of all file systems owned by your Amazon Web Services account in the
@@ -411,14 +415,14 @@ local record Client
     -- The order of file systems returned in the response of one
     -- DescribeFileSystems call and the order of file systems returned
     -- across the responses of a multicall iteration is unspecified.
-    describeFileSystems: function(Client, types.DescribeFileSystemsInput): types.DescribeFileSystemsOutput, table
+    describeFileSystems: function(Client, types.DescribeFileSystemsInput): Operation<types.DescribeFileSystemsOutput>
     -- Describes one or more S3 access points attached to Amazon FSx volumes.
     -- The requester requires the following permission to perform this action:
     -- fsx:DescribeS3AccessPointAttachments
-    describeS3AccessPointAttachments: function(Client, types.DescribeS3AccessPointAttachmentsInput): types.DescribeS3AccessPointAttachmentsOutput, table
+    describeS3AccessPointAttachments: function(Client, types.DescribeS3AccessPointAttachmentsInput): Operation<types.DescribeS3AccessPointAttachmentsOutput>
     -- Indicates whether participant accounts in your organization can create Amazon FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by a virtual
     -- private cloud (VPC) owner. For more information, see Creating FSx for ONTAP file systems in shared subnets.
-    describeSharedVpcConfiguration: function(Client, types.DescribeSharedVpcConfigurationInput): types.DescribeSharedVpcConfigurationOutput, table
+    describeSharedVpcConfiguration: function(Client, types.DescribeSharedVpcConfigurationInput): Operation<types.DescribeSharedVpcConfigurationOutput>
     -- Returns the description of specific Amazon FSx for OpenZFS snapshots, if a
     -- SnapshotIds value is provided. Otherwise, this operation returns all
     -- snapshots owned by your Amazon Web Services account in the Amazon Web Services Region of
@@ -440,17 +444,17 @@ local record Client
     -- The order of snapshots returned in the response of one
     -- DescribeSnapshots call and the order of backups returned across
     -- the responses of a multi-call iteration is unspecified.
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): Operation<types.DescribeSnapshotsOutput>
     -- Describes one or more Amazon FSx for NetApp ONTAP storage virtual machines (SVMs).
-    describeStorageVirtualMachines: function(Client, types.DescribeStorageVirtualMachinesInput): types.DescribeStorageVirtualMachinesOutput, table
+    describeStorageVirtualMachines: function(Client, types.DescribeStorageVirtualMachinesInput): Operation<types.DescribeStorageVirtualMachinesOutput>
     -- Describes one or more Amazon FSx for NetApp ONTAP or Amazon FSx for
     -- OpenZFS volumes.
-    describeVolumes: function(Client, types.DescribeVolumesInput): types.DescribeVolumesOutput, table
+    describeVolumes: function(Client, types.DescribeVolumesInput): Operation<types.DescribeVolumesOutput>
     -- Detaches an S3 access point from an Amazon FSx volume and deletes the S3 access point.
     -- The requester requires the following permission to perform this action:
     -- fsx:DetachAndDeleteS3AccessPoint
     -- s3:DeleteAccessPoint
-    detachAndDeleteS3AccessPoint: function(Client, types.DetachAndDeleteS3AccessPointInput): types.DetachAndDeleteS3AccessPointOutput, table
+    detachAndDeleteS3AccessPoint: function(Client, types.DetachAndDeleteS3AccessPointInput): Operation<types.DetachAndDeleteS3AccessPointOutput>
     -- Use this action to disassociate, or remove, one or more Domain Name Service (DNS) aliases
     -- from an Amazon FSx for Windows File Server file system. If you attempt to disassociate a DNS alias that is not
     -- associated with the file system, Amazon FSx responds with an HTTP status code 400 (Bad Request). For more information, see
@@ -460,7 +464,7 @@ local record Client
     -- Use the API
     -- operation to monitor the status of the aliases Amazon FSx is
     -- disassociating with the file system.
-    disassociateFileSystemAliases: function(Client, types.DisassociateFileSystemAliasesInput): types.DisassociateFileSystemAliasesOutput, table
+    disassociateFileSystemAliases: function(Client, types.DisassociateFileSystemAliasesInput): Operation<types.DisassociateFileSystemAliasesOutput>
     -- Lists tags for Amazon FSx resources.
     -- When retrieving all tags, you can optionally specify the MaxResults
     -- parameter to limit the number of tags in a response. If more tags remain, Amazon FSx
@@ -479,28 +483,28 @@ local record Client
     -- The order of tags returned in the response of one
     -- ListTagsForResource call and the order of tags returned across
     -- the responses of a multi-call iteration is unspecified.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Releases the file system lock from an Amazon FSx for OpenZFS file
     -- system.
-    releaseFileSystemNfsV3Locks: function(Client, types.ReleaseFileSystemNfsV3LocksInput): types.ReleaseFileSystemNfsV3LocksOutput, table
+    releaseFileSystemNfsV3Locks: function(Client, types.ReleaseFileSystemNfsV3LocksInput): Operation<types.ReleaseFileSystemNfsV3LocksOutput>
     -- Returns an Amazon FSx for OpenZFS volume to the state saved by the specified
     -- snapshot.
-    restoreVolumeFromSnapshot: function(Client, types.RestoreVolumeFromSnapshotInput): types.RestoreVolumeFromSnapshotOutput, table
+    restoreVolumeFromSnapshot: function(Client, types.RestoreVolumeFromSnapshotInput): Operation<types.RestoreVolumeFromSnapshotOutput>
     -- After performing steps to repair the Active Directory configuration of an FSx for Windows File Server file system, use this action to
     -- initiate the process of Amazon FSx attempting to reconnect to the file system.
-    startMisconfiguredStateRecovery: function(Client, types.StartMisconfiguredStateRecoveryInput): types.StartMisconfiguredStateRecoveryOutput, table
+    startMisconfiguredStateRecovery: function(Client, types.StartMisconfiguredStateRecoveryInput): Operation<types.StartMisconfiguredStateRecoveryOutput>
     -- Tags an Amazon FSx resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- This action removes a tag from an Amazon FSx resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the configuration of an existing data repository association
     -- on an Amazon FSx for Lustre file system. Data repository associations
     -- are supported on all FSx for Lustre 2.12 and 2.15 file systems,
     -- excluding scratch_1 deployment type.
-    updateDataRepositoryAssociation: function(Client, types.UpdateDataRepositoryAssociationInput): types.UpdateDataRepositoryAssociationOutput, table
+    updateDataRepositoryAssociation: function(Client, types.UpdateDataRepositoryAssociationInput): Operation<types.UpdateDataRepositoryAssociationOutput>
     -- Updates the configuration of an existing Amazon File Cache resource.
     -- You can update multiple properties in a single request.
-    updateFileCache: function(Client, types.UpdateFileCacheInput): types.UpdateFileCacheOutput, table
+    updateFileCache: function(Client, types.UpdateFileCacheInput): Operation<types.UpdateFileCacheOutput>
     -- Use this operation to update the configuration of an existing Amazon FSx file
     -- system. You can update multiple properties in a single request.
     -- For FSx for Windows File Server file systems, you can update the following
@@ -557,7 +561,7 @@ local record Client
     -- StorageCapacity
     -- ThroughputCapacity
     -- WeeklyMaintenanceStartTime
-    updateFileSystem: function(Client, types.UpdateFileSystemInput): types.UpdateFileSystemOutput, table
+    updateFileSystem: function(Client, types.UpdateFileSystemInput): Operation<types.UpdateFileSystemOutput>
     -- Configures whether participant accounts in your organization can create Amazon FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by a virtual
     -- private cloud (VPC) owner. For more information, see the Amazon FSx for NetApp ONTAP User
     -- Guide.
@@ -566,13 +570,13 @@ local record Client
     -- file systems will enter a MISCONFIGURED state and behave like Single-AZ
     -- file systems. For more information, see Important considerations before disabling shared VPC support for Multi-AZ file
     -- systems.
-    updateSharedVpcConfiguration: function(Client, types.UpdateSharedVpcConfigurationInput): types.UpdateSharedVpcConfigurationOutput, table
+    updateSharedVpcConfiguration: function(Client, types.UpdateSharedVpcConfigurationInput): Operation<types.UpdateSharedVpcConfigurationOutput>
     -- Updates the name of an Amazon FSx for OpenZFS snapshot.
-    updateSnapshot: function(Client, types.UpdateSnapshotInput): types.UpdateSnapshotOutput, table
+    updateSnapshot: function(Client, types.UpdateSnapshotInput): Operation<types.UpdateSnapshotOutput>
     -- Updates an FSx for ONTAP storage virtual machine (SVM).
-    updateStorageVirtualMachine: function(Client, types.UpdateStorageVirtualMachineInput): types.UpdateStorageVirtualMachineOutput, table
+    updateStorageVirtualMachine: function(Client, types.UpdateStorageVirtualMachineInput): Operation<types.UpdateStorageVirtualMachineOutput>
     -- Updates the configuration of an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
-    updateVolume: function(Client, types.UpdateVolumeInput): types.UpdateVolumeOutput, table
+    updateVolume: function(Client, types.UpdateVolumeInput): Operation<types.UpdateVolumeOutput>
 end
 
 local record M

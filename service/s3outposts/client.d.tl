@@ -2,33 +2,37 @@
 
 local types = require("s3outposts.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an endpoint and associates it with the specified Outpost.
     -- It can take up to 5 minutes for this action to finish.
     -- Related actions include:
     -- DeleteEndpoint
     -- ListEndpoints
-    createEndpoint: function(Client, types.CreateEndpointInput): types.CreateEndpointOutput, table
+    createEndpoint: function(Client, types.CreateEndpointInput): Operation<types.CreateEndpointOutput>
     -- Deletes an endpoint.
     -- It can take up to 5 minutes for this action to finish.
     -- Related actions include:
     -- CreateEndpoint
     -- ListEndpoints
-    deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    deleteEndpoint: function(Client, types.DeleteEndpointInput): Operation<types.DeleteEndpointOutput>
     -- Lists endpoints associated with the specified Outpost.
     -- Related actions include:
     -- CreateEndpoint
     -- DeleteEndpoint
-    listEndpoints: function(Client, types.ListEndpointsInput): types.ListEndpointsOutput, table
+    listEndpoints: function(Client, types.ListEndpointsInput): Operation<types.ListEndpointsOutput>
     -- Lists the Outposts with S3 on Outposts capacity for your Amazon Web Services account.
     -- Includes S3 on Outposts that you have access to as the Outposts owner, or as a shared user
     -- from Resource Access Manager (RAM).
-    listOutpostsWithS3: function(Client, types.ListOutpostsWithS3Input): types.ListOutpostsWithS3Output, table
+    listOutpostsWithS3: function(Client, types.ListOutpostsWithS3Input): Operation<types.ListOutpostsWithS3Output>
     -- Lists all endpoints associated with an Outpost that has been shared by Amazon Web Services Resource Access Manager (RAM).
     -- Related actions include:
     -- CreateEndpoint
     -- DeleteEndpoint
-    listSharedEndpoints: function(Client, types.ListSharedEndpointsInput): types.ListSharedEndpointsOutput, table
+    listSharedEndpoints: function(Client, types.ListSharedEndpointsInput): Operation<types.ListSharedEndpointsOutput>
 end
 
 local record M

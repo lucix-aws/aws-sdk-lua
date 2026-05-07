@@ -2,55 +2,59 @@
 
 local types = require("securityir.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Provides information on whether the supplied account IDs are associated with a membership. AWS account ID's may appear less than 12 characters and need to be zero-prepended. An example would be 123123123 which is nine digits, and with zero-prepend would be 000123123123. Not zero-prepending to 12 digits could result in errors.
-    batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput): types.BatchGetMemberAccountDetailsOutput, table
+    batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput): Operation<types.BatchGetMemberAccountDetailsOutput>
     -- Cancels an existing membership.
-    cancelMembership: function(Client, types.CancelMembershipInput): types.CancelMembershipOutput, table
+    cancelMembership: function(Client, types.CancelMembershipInput): Operation<types.CancelMembershipOutput>
     -- Closes an existing case.
-    closeCase: function(Client, types.CloseCaseInput): types.CloseCaseOutput, table
+    closeCase: function(Client, types.CloseCaseInput): Operation<types.CloseCaseOutput>
     -- Creates a new case.
-    createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    createCase: function(Client, types.CreateCaseInput): Operation<types.CreateCaseOutput>
     -- Adds a comment to an existing case.
-    createCaseComment: function(Client, types.CreateCaseCommentInput): types.CreateCaseCommentOutput, table
+    createCaseComment: function(Client, types.CreateCaseCommentInput): Operation<types.CreateCaseCommentOutput>
     -- Creates a new membership.
-    createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    createMembership: function(Client, types.CreateMembershipInput): Operation<types.CreateMembershipOutput>
     -- Returns the attributes of a case.
-    getCase: function(Client, types.GetCaseInput): types.GetCaseOutput, table
+    getCase: function(Client, types.GetCaseInput): Operation<types.GetCaseOutput>
     -- Returns a Pre-Signed URL for uploading attachments into a case.
-    getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput): types.GetCaseAttachmentDownloadUrlOutput, table
+    getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput): Operation<types.GetCaseAttachmentDownloadUrlOutput>
     -- Uploads an attachment to a case.
-    getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput): types.GetCaseAttachmentUploadUrlOutput, table
+    getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput): Operation<types.GetCaseAttachmentUploadUrlOutput>
     -- Returns the attributes of a membership.
-    getMembership: function(Client, types.GetMembershipInput): types.GetMembershipOutput, table
+    getMembership: function(Client, types.GetMembershipInput): Operation<types.GetMembershipOutput>
     -- Views the case history for edits made to a designated case.
-    listCaseEdits: function(Client, types.ListCaseEditsInput): types.ListCaseEditsOutput, table
+    listCaseEdits: function(Client, types.ListCaseEditsInput): Operation<types.ListCaseEditsOutput>
     -- Lists all cases the requester has access to.
-    listCases: function(Client, types.ListCasesInput): types.ListCasesOutput, table
+    listCases: function(Client, types.ListCasesInput): Operation<types.ListCasesOutput>
     -- Returns comments for a designated case.
-    listComments: function(Client, types.ListCommentsInput): types.ListCommentsOutput, table
+    listComments: function(Client, types.ListCommentsInput): Operation<types.ListCommentsOutput>
     -- Investigation performed by an agent for a security incident...
-    listInvestigations: function(Client, types.ListInvestigationsInput): types.ListInvestigationsOutput, table
+    listInvestigations: function(Client, types.ListInvestigationsInput): Operation<types.ListInvestigationsOutput>
     -- Returns the memberships that the calling principal can access.
-    listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    listMemberships: function(Client, types.ListMembershipsInput): Operation<types.ListMembershipsOutput>
     -- Returns currently configured tags on a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Send feedback based on response investigation action
-    sendFeedback: function(Client, types.SendFeedbackInput): types.SendFeedbackOutput, table
+    sendFeedback: function(Client, types.SendFeedbackInput): Operation<types.SendFeedbackOutput>
     -- Adds a tag(s) to a designated resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag(s) from a designate resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing case.
-    updateCase: function(Client, types.UpdateCaseInput): types.UpdateCaseOutput, table
+    updateCase: function(Client, types.UpdateCaseInput): Operation<types.UpdateCaseOutput>
     -- Updates an existing case comment.
-    updateCaseComment: function(Client, types.UpdateCaseCommentInput): types.UpdateCaseCommentOutput, table
+    updateCaseComment: function(Client, types.UpdateCaseCommentInput): Operation<types.UpdateCaseCommentOutput>
     -- Updates the state transitions for a designated cases. Self-managed: the following states are available for self-managed cases. Submitted → Detection and Analysis Detection and Analysis → Containment, Eradication, and Recovery Detection and Analysis → Post-incident Activities Containment, Eradication, and Recovery → Detection and Analysis Containment, Eradication, and Recovery → Post-incident Activities Post-incident Activities → Containment, Eradication, and Recovery Post-incident Activities → Detection and Analysis Any → Closed AWS supported: You must use the CloseCase API to close.
-    updateCaseStatus: function(Client, types.UpdateCaseStatusInput): types.UpdateCaseStatusOutput, table
+    updateCaseStatus: function(Client, types.UpdateCaseStatusInput): Operation<types.UpdateCaseStatusOutput>
     -- Updates membership configuration.
-    updateMembership: function(Client, types.UpdateMembershipInput): types.UpdateMembershipOutput, table
+    updateMembership: function(Client, types.UpdateMembershipInput): Operation<types.UpdateMembershipOutput>
     -- Updates the resolver type for a case. This is a one-way action and cannot be reversed.
-    updateResolverType: function(Client, types.UpdateResolverTypeInput): types.UpdateResolverTypeOutput, table
+    updateResolverType: function(Client, types.UpdateResolverTypeInput): Operation<types.UpdateResolverTypeOutput>
 end
 
 local record M

@@ -2,32 +2,36 @@
 
 local types = require("codeguruprofiler.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Add up to 2 anomaly notifications channels for a profiling group.
-    addNotificationChannels: function(Client, types.AddNotificationChannelsInput): types.AddNotificationChannelsOutput, table
+    addNotificationChannels: function(Client, types.AddNotificationChannelsInput): Operation<types.AddNotificationChannelsOutput>
     -- Returns the time series of values for a requested list
     -- of frame metrics from a time period.
-    batchGetFrameMetricData: function(Client, types.BatchGetFrameMetricDataInput): types.BatchGetFrameMetricDataOutput, table
+    batchGetFrameMetricData: function(Client, types.BatchGetFrameMetricDataInput): Operation<types.BatchGetFrameMetricDataOutput>
     -- Used by profiler agents to report their current state and to receive remote
     -- configuration updates. For example, ConfigureAgent can be used
     -- to tell an agent whether to profile or not and for how long to return profiling data.
-    configureAgent: function(Client, types.ConfigureAgentInput): types.ConfigureAgentOutput, table
+    configureAgent: function(Client, types.ConfigureAgentInput): Operation<types.ConfigureAgentOutput>
     -- Creates a profiling group.
-    createProfilingGroup: function(Client, types.CreateProfilingGroupInput): types.CreateProfilingGroupOutput, table
+    createProfilingGroup: function(Client, types.CreateProfilingGroupInput): Operation<types.CreateProfilingGroupOutput>
     -- Deletes a profiling group.
-    deleteProfilingGroup: function(Client, types.DeleteProfilingGroupInput): types.DeleteProfilingGroupOutput, table
+    deleteProfilingGroup: function(Client, types.DeleteProfilingGroupInput): Operation<types.DeleteProfilingGroupOutput>
     -- Returns a
     -- ProfilingGroupDescription
     -- object that contains information about the requested profiling group.
-    describeProfilingGroup: function(Client, types.DescribeProfilingGroupInput): types.DescribeProfilingGroupOutput, table
+    describeProfilingGroup: function(Client, types.DescribeProfilingGroupInput): Operation<types.DescribeProfilingGroupOutput>
     -- Returns a list of
     -- FindingsReportSummary
     -- objects that contain analysis results for all profiling groups in your AWS account.
-    getFindingsReportAccountSummary: function(Client, types.GetFindingsReportAccountSummaryInput): types.GetFindingsReportAccountSummaryOutput, table
+    getFindingsReportAccountSummary: function(Client, types.GetFindingsReportAccountSummaryInput): Operation<types.GetFindingsReportAccountSummaryOutput>
     -- Get the current configuration for anomaly notifications for a profiling group.
-    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput): types.GetNotificationConfigurationOutput, table
+    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput): Operation<types.GetNotificationConfigurationOutput>
     -- Returns the JSON-formatted resource-based policy on a profiling group.
-    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): Operation<types.GetPolicyOutput>
     -- Gets the aggregated profile of a profiling group for a specified time range.
     -- Amazon CodeGuru Profiler collects posted agent profiles for a profiling group
     -- into aggregated profiles.
@@ -57,30 +61,30 @@ local record Client
     -- aggregated profiles for a smaller time range are returned. For example, if the
     -- requested time range is from 00:00 to 00:20, and the existing aggregated profiles are
     -- from 00:15 and 00:25, then the aggregated profiles from 00:15 to 00:20 are returned.
-    getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    getProfile: function(Client, types.GetProfileInput): Operation<types.GetProfileOutput>
     -- Returns a list of
     -- Recommendation
     -- objects that contain recommendations for a profiling group for a given time period. A list of
     -- Anomaly
     -- objects that contains details about anomalies detected in the profiling group for the same time period is also
     -- returned.
-    getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    getRecommendations: function(Client, types.GetRecommendationsInput): Operation<types.GetRecommendationsOutput>
     -- List the available reports for a given profiling group and time range.
-    listFindingsReports: function(Client, types.ListFindingsReportsInput): types.ListFindingsReportsOutput, table
+    listFindingsReports: function(Client, types.ListFindingsReportsInput): Operation<types.ListFindingsReportsOutput>
     -- Lists the start times of the available aggregated profiles of a profiling group
     -- for an aggregation period within the specified time range.
-    listProfileTimes: function(Client, types.ListProfileTimesInput): types.ListProfileTimesOutput, table
+    listProfileTimes: function(Client, types.ListProfileTimesInput): Operation<types.ListProfileTimesOutput>
     -- Returns a list of profiling groups. The profiling groups are returned as
     -- ProfilingGroupDescription
     -- objects.
-    listProfilingGroups: function(Client, types.ListProfilingGroupsInput): types.ListProfilingGroupsOutput, table
+    listProfilingGroups: function(Client, types.ListProfilingGroupsInput): Operation<types.ListProfilingGroupsOutput>
     -- Returns a list of the tags that are assigned to a specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Submits profiling data to an aggregated profile of a profiling group. To get an
     -- aggregated profile that is created with this profiling data, use
     -- GetProfile
     -- .
-    postAgentProfile: function(Client, types.PostAgentProfileInput): types.PostAgentProfileOutput, table
+    postAgentProfile: function(Client, types.PostAgentProfileInput): Operation<types.PostAgentProfileOutput>
     -- Adds permissions to a profiling group's resource-based policy
     -- that are provided using an action group. If a profiling group doesn't have
     -- a resource-based policy, one is created for it using the permissions in the action group and
@@ -98,9 +102,9 @@ local record Client
     -- it doesn't have a resource-based policy. Subsequent calls must provide a revisionId to specify
     -- which revision of the resource-based policy to add the permissions to.
     -- The response contains the profiling group's JSON-formatted resource policy.
-    putPermission: function(Client, types.PutPermissionInput): types.PutPermissionOutput, table
+    putPermission: function(Client, types.PutPermissionInput): Operation<types.PutPermissionOutput>
     -- Remove one anomaly notifications channel for a profiling group.
-    removeNotificationChannel: function(Client, types.RemoveNotificationChannelInput): types.RemoveNotificationChannelOutput, table
+    removeNotificationChannel: function(Client, types.RemoveNotificationChannelInput): Operation<types.RemoveNotificationChannelOutput>
     -- Removes permissions from a profiling group's resource-based policy that are provided
     -- using an action group. The one supported action group that can be removed is
     -- agentPermission which grants ConfigureAgent and
@@ -110,16 +114,16 @@ local record Client
     -- , and
     -- PostAgentProfile
     -- .
-    removePermission: function(Client, types.RemovePermissionInput): types.RemovePermissionOutput, table
+    removePermission: function(Client, types.RemovePermissionInput): Operation<types.RemovePermissionOutput>
     -- Sends feedback to CodeGuru Profiler about whether the anomaly detected by the analysis is
     -- useful or not.
-    submitFeedback: function(Client, types.SubmitFeedbackInput): types.SubmitFeedbackOutput, table
+    submitFeedback: function(Client, types.SubmitFeedbackInput): Operation<types.SubmitFeedbackOutput>
     -- Use to assign one or more tags to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Use to remove one or more tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a profiling group.
-    updateProfilingGroup: function(Client, types.UpdateProfilingGroupInput): types.UpdateProfilingGroupOutput, table
+    updateProfilingGroup: function(Client, types.UpdateProfilingGroupInput): Operation<types.UpdateProfilingGroupOutput>
 end
 
 local record M

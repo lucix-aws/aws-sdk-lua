@@ -2,12 +2,16 @@
 
 local types = require("synthetics.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a canary with a group. Using groups can help you with
     -- managing and automating your canaries, and you can also view aggregated run results and statistics
     -- for all canaries in a group.
     -- You must run this operation in the Region where the canary exists.
-    associateResource: function(Client, types.AssociateResourceInput): types.AssociateResourceOutput, table
+    associateResource: function(Client, types.AssociateResourceInput): Operation<types.AssociateResourceOutput>
     -- Creates a canary. Canaries are scripts that monitor your endpoints and APIs from the
     -- outside-in. Canaries help you check the availability and latency of your web services and
     -- troubleshoot anomalies by investigating load time data, screenshots of the UI, logs, and
@@ -22,7 +26,7 @@ local record Client
     -- makes up part of the Amazon Resource Name (ARN) for the canary, and the ARN is included in
     -- outbound calls over the internet. For more information, see Security
     -- Considerations for Synthetics Canaries.
-    createCanary: function(Client, types.CreateCanaryInput): types.CreateCanaryOutput, table
+    createCanary: function(Client, types.CreateCanaryInput): Operation<types.CreateCanaryOutput>
     -- Creates a group which you can use to associate canaries with each other, including cross-Region
     -- canaries. Using groups can help you with
     -- managing and automating your canaries, and you can also view aggregated run results and statistics
@@ -36,7 +40,7 @@ local record Client
     -- about these Regions, see Enabling a Region.
     -- Each group can contain as many as 10 canaries. You can have as many as 20 groups in your account. Any single canary
     -- can be a member of up to 10 groups.
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Permanently deletes the specified canary.
     -- If the canary's ProvisionedResourceCleanup field is set to AUTOMATIC
     -- or you specify DeleteLambda in this operation as true, CloudWatch Synthetics also deletes
@@ -56,12 +60,12 @@ local record Client
     -- the information about this canary. Make
     -- note of the information returned by this operation so that you can delete these resources
     -- after you delete the canary.
-    deleteCanary: function(Client, types.DeleteCanaryInput): types.DeleteCanaryOutput, table
+    deleteCanary: function(Client, types.DeleteCanaryInput): Operation<types.DeleteCanaryOutput>
     -- Deletes a group. The group doesn't need to be empty to be deleted. If there are canaries in the group,
     -- they are not deleted when you delete the group.
     -- Groups are a global resource that appear in all Regions, but the request to delete a group
     -- must be made from its home Region. You can find the home Region of a group within its ARN.
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- This operation returns a list of the canaries in your account, along with full details
     -- about each canary.
     -- This operation supports resource-level authorization using an IAM policy and
@@ -72,7 +76,7 @@ local record Client
     -- IAM policy that restricts which canaries that you are allowed to view. For more information,
     -- see
     -- Limiting a user to viewing specific canaries.
-    describeCanaries: function(Client, types.DescribeCanariesInput): types.DescribeCanariesOutput, table
+    describeCanaries: function(Client, types.DescribeCanariesInput): Operation<types.DescribeCanariesOutput>
     -- Use this operation to see information from the most recent run of each canary that you have created.
     -- This operation supports resource-level authorization using an IAM policy and
     -- the Names parameter. If you specify the Names parameter, the operation is successful only if you have authorization to view
@@ -82,44 +86,44 @@ local record Client
     -- IAM policy that restricts which canaries that you are allowed to view. For more information,
     -- see
     -- Limiting a user to viewing specific canaries.
-    describeCanariesLastRun: function(Client, types.DescribeCanariesLastRunInput): types.DescribeCanariesLastRunOutput, table
+    describeCanariesLastRun: function(Client, types.DescribeCanariesLastRunInput): Operation<types.DescribeCanariesLastRunOutput>
     -- Returns a list of Synthetics canary runtime versions. For more information,
     -- see
     -- Canary Runtime Versions.
-    describeRuntimeVersions: function(Client, types.DescribeRuntimeVersionsInput): types.DescribeRuntimeVersionsOutput, table
+    describeRuntimeVersions: function(Client, types.DescribeRuntimeVersionsInput): Operation<types.DescribeRuntimeVersionsOutput>
     -- Removes a canary from a group. You must run this operation in the Region where the canary exists.
-    disassociateResource: function(Client, types.DisassociateResourceInput): types.DisassociateResourceOutput, table
+    disassociateResource: function(Client, types.DisassociateResourceInput): Operation<types.DisassociateResourceOutput>
     -- Retrieves complete information about one canary. You must specify
     -- the name of the canary that you want. To get a list of canaries
     -- and their names, use DescribeCanaries.
-    getCanary: function(Client, types.GetCanaryInput): types.GetCanaryOutput, table
+    getCanary: function(Client, types.GetCanaryInput): Operation<types.GetCanaryOutput>
     -- Retrieves a list of runs for a specified canary.
-    getCanaryRuns: function(Client, types.GetCanaryRunsInput): types.GetCanaryRunsOutput, table
+    getCanaryRuns: function(Client, types.GetCanaryRunsInput): Operation<types.GetCanaryRunsOutput>
     -- Returns information about one group. Groups are a global resource, so you can use this operation from
     -- any Region.
-    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getGroup: function(Client, types.GetGroupInput): Operation<types.GetGroupOutput>
     -- Returns a list of the groups that the specified canary is associated with. The canary
     -- that you specify must be in the current Region.
-    listAssociatedGroups: function(Client, types.ListAssociatedGroupsInput): types.ListAssociatedGroupsOutput, table
+    listAssociatedGroups: function(Client, types.ListAssociatedGroupsInput): Operation<types.ListAssociatedGroupsOutput>
     -- This operation returns a list of the ARNs of the canaries that are associated with the specified group.
-    listGroupResources: function(Client, types.ListGroupResourcesInput): types.ListGroupResourcesOutput, table
+    listGroupResources: function(Client, types.ListGroupResourcesInput): Operation<types.ListGroupResourcesOutput>
     -- Returns a list of all groups in the account, displaying their names, unique IDs, and ARNs. The groups
     -- from all Regions are returned.
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Displays the tags associated with a canary or group.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Use this operation to run a canary that has already been created.
     -- The frequency of the canary runs is determined by the value of the canary's Schedule. To see a canary's schedule,
     -- use GetCanary.
-    startCanary: function(Client, types.StartCanaryInput): types.StartCanaryOutput, table
+    startCanary: function(Client, types.StartCanaryInput): Operation<types.StartCanaryOutput>
     -- Use this operation to start a dry run for a canary that has already been created
-    startCanaryDryRun: function(Client, types.StartCanaryDryRunInput): types.StartCanaryDryRunOutput, table
+    startCanaryDryRun: function(Client, types.StartCanaryDryRunInput): Operation<types.StartCanaryDryRunOutput>
     -- Stops the canary to prevent all future runs. If the canary is currently running,the
     -- run that is in progress completes on its own, publishes metrics, and uploads artifacts, but
     -- it is not recorded in Synthetics as a completed run.
     -- You can use StartCanary to start it running again
     -- with the canary’s current schedule at any point in the future.
-    stopCanary: function(Client, types.StopCanaryInput): types.StopCanaryOutput, table
+    stopCanary: function(Client, types.StopCanaryInput): Operation<types.StopCanaryOutput>
     -- Assigns one or more tags (key-value pairs) to the specified canary or group.
     -- Tags can help you organize and categorize your
     -- resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with
@@ -132,9 +136,9 @@ local record Client
     -- value that you specify replaces
     -- the previous value for that tag.
     -- You can associate as many as 50 tags with a canary or group.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the configuration of a canary that has already been created.
     -- For multibrowser canaries, you can add or remove browsers by updating the browserConfig list in the update call. For example:
     -- To add Firefox to a canary that currently uses Chrome, specify browserConfigs as [CHROME, FIREFOX]
@@ -142,7 +146,7 @@ local record Client
     -- You can't use this operation to update the tags of an existing canary. To change the tags of an existing canary, use
     -- TagResource.
     -- When you use the dryRunId field when updating a canary, the only other field you can provide is the Schedule. Adding any other field will thrown an exception.
-    updateCanary: function(Client, types.UpdateCanaryInput): types.UpdateCanaryOutput, table
+    updateCanary: function(Client, types.UpdateCanaryInput): Operation<types.UpdateCanaryOutput>
 end
 
 local record M

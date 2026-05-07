@@ -2,11 +2,15 @@
 
 local types = require("resourcegroupstaggingapi.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Describes the status of the StartReportCreation operation.
     -- You can call this operation only from the organization's
     -- management account and from the us-east-1 Region.
-    describeReportCreation: function(Client, types.DescribeReportCreationInput): types.DescribeReportCreationOutput, table
+    describeReportCreation: function(Client, types.DescribeReportCreationInput): Operation<types.DescribeReportCreationOutput>
     -- Returns a table that shows counts of resources that are noncompliant with their tag
     -- policies.
     -- For more information on tag policies, see Tag Policies in
@@ -19,7 +23,7 @@ local record Client
     -- PaginationToken response parameter value as an input to the next request until you
     -- recieve a null value. A null value for PaginationToken indicates that
     -- there are no more results waiting to be returned.
-    getComplianceSummary: function(Client, types.GetComplianceSummaryInput): types.GetComplianceSummaryOutput, table
+    getComplianceSummary: function(Client, types.GetComplianceSummaryInput): Operation<types.GetComplianceSummaryOutput>
     -- Returns all the tagged or previously tagged resources that are located in the
     -- specified Amazon Web Services Region for the account.
     -- Depending on what information you want returned, you can also specify the
@@ -39,7 +43,7 @@ local record Client
     -- GetResources does not return untagged resources.
     -- To find untagged resources in your account, use Amazon Web Services Resource Explorer with a
     -- query that uses tag:none. For more information, see Search query syntax reference for Resource Explorer.
-    getResources: function(Client, types.GetResourcesInput): types.GetResourcesOutput, table
+    getResources: function(Client, types.GetResourcesInput): Operation<types.GetResourcesOutput>
     -- Returns all tag keys currently in use in the specified Amazon Web Services Region for the calling
     -- account.
     -- This operation supports pagination, where the response can be sent in
@@ -48,7 +52,7 @@ local record Client
     -- PaginationToken response parameter value as an input to the next request until you
     -- recieve a null value. A null value for PaginationToken indicates that
     -- there are no more results waiting to be returned.
-    getTagKeys: function(Client, types.GetTagKeysInput): types.GetTagKeysOutput, table
+    getTagKeys: function(Client, types.GetTagKeysInput): Operation<types.GetTagKeysOutput>
     -- Returns all tag values for the specified key that are used in the specified Amazon Web Services
     -- Region for the calling account.
     -- This operation supports pagination, where the response can be sent in
@@ -57,9 +61,9 @@ local record Client
     -- PaginationToken response parameter value as an input to the next request until you
     -- recieve a null value. A null value for PaginationToken indicates that
     -- there are no more results waiting to be returned.
-    getTagValues: function(Client, types.GetTagValuesInput): types.GetTagValuesOutput, table
+    getTagValues: function(Client, types.GetTagValuesInput): Operation<types.GetTagValuesOutput>
     -- Lists the required tags for supported resource types in an Amazon Web Services account.
-    listRequiredTags: function(Client, types.ListRequiredTagsInput): types.ListRequiredTagsOutput, table
+    listRequiredTags: function(Client, types.ListRequiredTagsInput): Operation<types.ListRequiredTagsOutput>
     -- Generates a report that lists all tagged resources in the accounts across your
     -- organization and tells whether each resource is compliant with the effective tag policy.
     -- Compliance data is refreshed daily. The report is generated asynchronously.
@@ -76,7 +80,7 @@ local record Client
     -- information, review Amazon S3 bucket
     -- policy for report storage in the Tagging Amazon Web Services Resources and Tag
     -- Editor user guide.
-    startReportCreation: function(Client, types.StartReportCreationInput): types.StartReportCreationOutput, table
+    startReportCreation: function(Client, types.StartReportCreationInput): Operation<types.StartReportCreationOutput>
     -- Applies one or more tags to the specified resources. Note the following:
     -- Not all resources can have tags. For a list of services with resources that
     -- support tagging using this operation, see Services that support the
@@ -116,7 +120,7 @@ local record Client
     -- s3:GetBucketTagging permission. If the expected minimum permissions
     -- don't work, check the documentation for that service's tagging APIs for more
     -- information.
-    tagResources: function(Client, types.TagResourcesInput): types.TagResourcesOutput, table
+    tagResources: function(Client, types.TagResourcesInput): Operation<types.TagResourcesOutput>
     -- Removes the specified tags from the specified resources. When you specify a tag key,
     -- the action removes both that key and its associated value. The operation succeeds even
     -- if you attempt to remove tags from a resource that were already removed. Note the
@@ -140,7 +144,7 @@ local record Client
     -- glue:GetConnection permission. If the expected minimum permissions
     -- don't work, check the documentation for that service's tagging APIs for more
     -- information.
-    untagResources: function(Client, types.UntagResourcesInput): types.UntagResourcesOutput, table
+    untagResources: function(Client, types.UntagResourcesInput): Operation<types.UntagResourcesOutput>
 end
 
 local record M

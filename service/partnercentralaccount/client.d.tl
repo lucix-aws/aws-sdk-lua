@@ -2,65 +2,69 @@
 
 local types = require("partnercentralaccount.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a connection invitation from another partner, establishing a formal partnership connection between the two parties.
-    acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput): types.AcceptConnectionInvitationOutput, table
+    acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput): Operation<types.AcceptConnectionInvitationOutput>
     -- Associates an email domain with AWS training and certification for the partner account, enabling automatic verification of employee certifications.
-    associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput): types.AssociateAwsTrainingCertificationEmailDomainOutput, table
+    associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput): Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
     -- Cancels an existing connection between partners, terminating the partnership relationship.
-    cancelConnection: function(Client, types.CancelConnectionInput): types.CancelConnectionOutput, table
+    cancelConnection: function(Client, types.CancelConnectionInput): Operation<types.CancelConnectionOutput>
     -- Cancels a pending connection invitation before it has been accepted or rejected.
-    cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput): types.CancelConnectionInvitationOutput, table
+    cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput): Operation<types.CancelConnectionInvitationOutput>
     -- Cancels an in-progress profile update task, stopping any pending changes to the partner profile.
-    cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput): types.CancelProfileUpdateTaskOutput, table
+    cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput): Operation<types.CancelProfileUpdateTaskOutput>
     -- Creates a new connection invitation to establish a partnership with another organization.
-    createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput): types.CreateConnectionInvitationOutput, table
+    createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput): Operation<types.CreateConnectionInvitationOutput>
     -- Creates a new partner account in the AWS Partner Network with the specified details and configuration.
-    createPartner: function(Client, types.CreatePartnerInput): types.CreatePartnerOutput, table
+    createPartner: function(Client, types.CreatePartnerInput): Operation<types.CreatePartnerOutput>
     -- Removes the association between an email domain and AWS training and certification for the partner account.
-    disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput): types.DisassociateAwsTrainingCertificationEmailDomainOutput, table
+    disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput): Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
     -- Retrieves the alliance lead contact information for a partner account.
-    getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput): types.GetAllianceLeadContactOutput, table
+    getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput): Operation<types.GetAllianceLeadContactOutput>
     -- Retrieves detailed information about a specific connection between partners.
-    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getConnection: function(Client, types.GetConnectionInput): Operation<types.GetConnectionOutput>
     -- Retrieves detailed information about a specific connection invitation.
-    getConnectionInvitation: function(Client, types.GetConnectionInvitationInput): types.GetConnectionInvitationOutput, table
+    getConnectionInvitation: function(Client, types.GetConnectionInvitationInput): Operation<types.GetConnectionInvitationOutput>
     -- Retrieves the connection preferences for a partner account, including access settings and exclusions.
-    getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput): types.GetConnectionPreferencesOutput, table
+    getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput): Operation<types.GetConnectionPreferencesOutput>
     -- Retrieves detailed information about a specific partner account.
-    getPartner: function(Client, types.GetPartnerInput): types.GetPartnerOutput, table
+    getPartner: function(Client, types.GetPartnerInput): Operation<types.GetPartnerOutput>
     -- Retrieves information about a specific profile update task.
-    getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput): types.GetProfileUpdateTaskOutput, table
+    getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput): Operation<types.GetProfileUpdateTaskOutput>
     -- Retrieves the visibility settings for a partner profile, determining who can see the profile information.
-    getProfileVisibility: function(Client, types.GetProfileVisibilityInput): types.GetProfileVisibilityOutput, table
+    getProfileVisibility: function(Client, types.GetProfileVisibilityInput): Operation<types.GetProfileVisibilityOutput>
     -- Retrieves the current status and details of a verification process for a partner account. This operation allows partners to check the progress and results of business or registrant verification processes.
-    getVerification: function(Client, types.GetVerificationInput): types.GetVerificationOutput, table
+    getVerification: function(Client, types.GetVerificationInput): Operation<types.GetVerificationOutput>
     -- Lists connection invitations for the partner account, with optional filtering by status, type, and other criteria.
-    listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput): types.ListConnectionInvitationsOutput, table
+    listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput): Operation<types.ListConnectionInvitationsOutput>
     -- Lists active connections for the partner account, with optional filtering by connection type and participant.
-    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): Operation<types.ListConnectionsOutput>
     -- Lists partner accounts in the catalog, providing a summary view of all partners.
-    listPartners: function(Client, types.ListPartnersInput): types.ListPartnersOutput, table
+    listPartners: function(Client, types.ListPartnersInput): Operation<types.ListPartnersOutput>
     -- Lists all tags associated with a specific AWS Partner Central Account resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates the alliance lead contact information for a partner account.
-    putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput): types.PutAllianceLeadContactOutput, table
+    putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput): Operation<types.PutAllianceLeadContactOutput>
     -- Sets the visibility level for a partner profile, controlling who can view the profile information.
-    putProfileVisibility: function(Client, types.PutProfileVisibilityInput): types.PutProfileVisibilityOutput, table
+    putProfileVisibility: function(Client, types.PutProfileVisibilityInput): Operation<types.PutProfileVisibilityOutput>
     -- Rejects a connection invitation from another partner, declining the partnership request.
-    rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput): types.RejectConnectionInvitationOutput, table
+    rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput): Operation<types.RejectConnectionInvitationOutput>
     -- Sends an email verification code to the specified email address for account verification purposes.
-    sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput): types.SendEmailVerificationCodeOutput, table
+    sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput): Operation<types.SendEmailVerificationCodeOutput>
     -- Initiates a profile update task to modify partner profile information asynchronously.
-    startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput): types.StartProfileUpdateTaskOutput, table
+    startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput): Operation<types.StartProfileUpdateTaskOutput>
     -- Initiates a new verification process for a partner account. This operation begins the verification workflow for either business registration or individual registrant identity verification as required by AWS Partner Central.
-    startVerification: function(Client, types.StartVerificationInput): types.StartVerificationOutput, table
+    startVerification: function(Client, types.StartVerificationInput): Operation<types.StartVerificationOutput>
     -- Adds or updates tags for a specified AWS Partner Central Account resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes specified tags from an AWS Partner Central Account resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the connection preferences for a partner account, modifying access settings and exclusions.
-    updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput): types.UpdateConnectionPreferencesOutput, table
+    updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput): Operation<types.UpdateConnectionPreferencesOutput>
 end
 
 local record M

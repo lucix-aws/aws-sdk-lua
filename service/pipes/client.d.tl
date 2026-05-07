@@ -2,22 +2,26 @@
 
 local types = require("pipes.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Create a pipe. Amazon EventBridge Pipes connect event sources to targets and reduces
     -- the need for specialized knowledge and integration code.
-    createPipe: function(Client, types.CreatePipeInput): types.CreatePipeOutput, table
+    createPipe: function(Client, types.CreatePipeInput): Operation<types.CreatePipeOutput>
     -- Delete an existing pipe. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
-    deletePipe: function(Client, types.DeletePipeInput): types.DeletePipeOutput, table
+    deletePipe: function(Client, types.DeletePipeInput): Operation<types.DeletePipeOutput>
     -- Get the information about an existing pipe. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
-    describePipe: function(Client, types.DescribePipeInput): types.DescribePipeOutput, table
+    describePipe: function(Client, types.DescribePipeInput): Operation<types.DescribePipeOutput>
     -- Get the pipes associated with this account. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
-    listPipes: function(Client, types.ListPipesInput): types.ListPipesOutput, table
+    listPipes: function(Client, types.ListPipesInput): Operation<types.ListPipesOutput>
     -- Displays the tags associated with a pipe.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Start an existing pipe.
-    startPipe: function(Client, types.StartPipeInput): types.StartPipeOutput, table
+    startPipe: function(Client, types.StartPipeInput): Operation<types.StartPipeOutput>
     -- Stop an existing pipe.
-    stopPipe: function(Client, types.StopPipeInput): types.StopPipeOutput, table
+    stopPipe: function(Client, types.StopPipeInput): Operation<types.StopPipeOutput>
     -- Assigns one or more tags (key-value pairs) to the specified pipe. Tags can help you
     -- organize and categorize your resources. You can also use them to scope user permissions by
     -- granting a user permission to access or change only resources with certain tag
@@ -29,9 +33,9 @@ local record Client
     -- pipe. If you specify a tag key that is already associated with the pipe, the new tag value
     -- that you specify replaces the previous value for that tag.
     -- You can associate as many as 50 tags with a pipe.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified pipes.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update an existing pipe. When you call UpdatePipe, EventBridge only the
     -- updates fields you have specified in the request; the rest remain unchanged. The exception
     -- to this is if you modify any Amazon Web Services-service specific fields in the
@@ -44,7 +48,7 @@ local record Client
     -- value during the update.
     -- For more information about pipes, see
     -- Amazon EventBridge Pipes in the Amazon EventBridge User Guide.
-    updatePipe: function(Client, types.UpdatePipeInput): types.UpdatePipeOutput, table
+    updatePipe: function(Client, types.UpdatePipeInput): Operation<types.UpdatePipeOutput>
 end
 
 local record M

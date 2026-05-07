@@ -2,6 +2,10 @@
 
 local types = require("marketplacecommerceanalytics.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Given a data set type and data set publication date, asynchronously publishes the requested data set to the specified
     -- S3 bucket and notifies the specified SNS topic once the data is available. Returns a unique request identifier that
@@ -11,7 +15,7 @@ local record Client
     -- be overwritten by the new file.
     -- Requires a Role with an attached permissions policy providing Allow permissions for the following actions:
     -- s3:PutObject, s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish, iam:GetRolePolicy.
-    generateDataSet: function(Client, types.GenerateDataSetInput): types.GenerateDataSetOutput, table
+    generateDataSet: function(Client, types.GenerateDataSetInput): Operation<types.GenerateDataSetOutput>
     -- This target has been deprecated. Given a data set type and a from date, asynchronously publishes the requested customer support data
     -- to the specified S3 bucket and notifies the specified SNS topic once the data is available. Returns a unique request
     -- identifier that can be used to correlate requests with notifications from the SNS topic.
@@ -20,7 +24,7 @@ local record Client
     -- be overwritten by the new file.
     -- Requires a Role with an attached permissions policy providing Allow permissions for the following actions:
     -- s3:PutObject, s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish, iam:GetRolePolicy.
-    startSupportDataExport: function(Client, types.StartSupportDataExportInput): types.StartSupportDataExportOutput, table
+    startSupportDataExport: function(Client, types.StartSupportDataExportInput): Operation<types.StartSupportDataExportOutput>
 end
 
 local record M

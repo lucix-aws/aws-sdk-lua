@@ -2,72 +2,76 @@
 
 local types = require("finspacedata.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a user to a permission group to grant permissions for actions a user can perform in FinSpace.
-    associateUserToPermissionGroup: function(Client, types.AssociateUserToPermissionGroupInput): types.AssociateUserToPermissionGroupOutput, table
+    associateUserToPermissionGroup: function(Client, types.AssociateUserToPermissionGroupInput): Operation<types.AssociateUserToPermissionGroupOutput>
     -- Creates a new Changeset in a FinSpace Dataset.
-    createChangeset: function(Client, types.CreateChangesetInput): types.CreateChangesetOutput, table
+    createChangeset: function(Client, types.CreateChangesetInput): Operation<types.CreateChangesetOutput>
     -- Creates a new FinSpace Dataset.
-    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): Operation<types.CreateDatasetOutput>
     -- Creates a Dataview for a Dataset.
-    createDataView: function(Client, types.CreateDataViewInput): types.CreateDataViewOutput, table
+    createDataView: function(Client, types.CreateDataViewInput): Operation<types.CreateDataViewOutput>
     -- Creates a group of permissions for various actions that a user can perform in FinSpace.
-    createPermissionGroup: function(Client, types.CreatePermissionGroupInput): types.CreatePermissionGroupOutput, table
+    createPermissionGroup: function(Client, types.CreatePermissionGroupInput): Operation<types.CreatePermissionGroupOutput>
     -- Creates a new user in FinSpace.
-    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUser: function(Client, types.CreateUserInput): Operation<types.CreateUserOutput>
     -- Deletes a FinSpace Dataset.
-    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): Operation<types.DeleteDatasetOutput>
     -- Deletes a permission group. This action is irreversible.
-    deletePermissionGroup: function(Client, types.DeletePermissionGroupInput): types.DeletePermissionGroupOutput, table
+    deletePermissionGroup: function(Client, types.DeletePermissionGroupInput): Operation<types.DeletePermissionGroupOutput>
     -- Denies access to the FinSpace web application and API for the specified user.
-    disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    disableUser: function(Client, types.DisableUserInput): Operation<types.DisableUserOutput>
     -- Removes a user from a permission group.
-    disassociateUserFromPermissionGroup: function(Client, types.DisassociateUserFromPermissionGroupInput): types.DisassociateUserFromPermissionGroupOutput, table
+    disassociateUserFromPermissionGroup: function(Client, types.DisassociateUserFromPermissionGroupInput): Operation<types.DisassociateUserFromPermissionGroupOutput>
     -- Allows the specified user to access the FinSpace web application and API.
-    enableUser: function(Client, types.EnableUserInput): types.EnableUserOutput, table
+    enableUser: function(Client, types.EnableUserInput): Operation<types.EnableUserOutput>
     -- Get information about a Changeset.
-    getChangeset: function(Client, types.GetChangesetInput): types.GetChangesetOutput, table
+    getChangeset: function(Client, types.GetChangesetInput): Operation<types.GetChangesetOutput>
     -- Returns information about a Dataset.
-    getDataset: function(Client, types.GetDatasetInput): types.GetDatasetOutput, table
+    getDataset: function(Client, types.GetDatasetInput): Operation<types.GetDatasetOutput>
     -- Gets information about a Dataview.
-    getDataView: function(Client, types.GetDataViewInput): types.GetDataViewOutput, table
+    getDataView: function(Client, types.GetDataViewInput): Operation<types.GetDataViewOutput>
     -- Returns the credentials to access the external Dataview from an S3 location. To call this API:
     -- You must retrieve the programmatic credentials.
     -- You must be a member of a FinSpace user group, where the dataset that you want to access has Read Dataset Data permissions.
-    getExternalDataViewAccessDetails: function(Client, types.GetExternalDataViewAccessDetailsInput): types.GetExternalDataViewAccessDetailsOutput, table
+    getExternalDataViewAccessDetails: function(Client, types.GetExternalDataViewAccessDetailsInput): Operation<types.GetExternalDataViewAccessDetailsOutput>
     -- Retrieves the details of a specific permission group.
-    getPermissionGroup: function(Client, types.GetPermissionGroupInput): types.GetPermissionGroupOutput, table
+    getPermissionGroup: function(Client, types.GetPermissionGroupInput): Operation<types.GetPermissionGroupOutput>
     -- Request programmatic credentials to use with FinSpace SDK. For more information, see Step 2. Access credentials programmatically using IAM access key id and secret access key.
-    getProgrammaticAccessCredentials: function(Client, types.GetProgrammaticAccessCredentialsInput): types.GetProgrammaticAccessCredentialsOutput, table
+    getProgrammaticAccessCredentials: function(Client, types.GetProgrammaticAccessCredentialsInput): Operation<types.GetProgrammaticAccessCredentialsOutput>
     -- Retrieves details for a specific user.
-    getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    getUser: function(Client, types.GetUserInput): Operation<types.GetUserOutput>
     -- A temporary Amazon S3 location, where you can copy your files from a source location to stage or use
     -- as a scratch space in FinSpace notebook.
-    getWorkingLocation: function(Client, types.GetWorkingLocationInput): types.GetWorkingLocationOutput, table
+    getWorkingLocation: function(Client, types.GetWorkingLocationInput): Operation<types.GetWorkingLocationOutput>
     -- Lists the FinSpace Changesets for a Dataset.
-    listChangesets: function(Client, types.ListChangesetsInput): types.ListChangesetsOutput, table
+    listChangesets: function(Client, types.ListChangesetsInput): Operation<types.ListChangesetsOutput>
     -- Lists all of the active Datasets that a user has access to.
-    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): Operation<types.ListDatasetsOutput>
     -- Lists all available Dataviews for a Dataset.
-    listDataViews: function(Client, types.ListDataViewsInput): types.ListDataViewsOutput, table
+    listDataViews: function(Client, types.ListDataViewsInput): Operation<types.ListDataViewsOutput>
     -- Lists all available permission groups in FinSpace.
-    listPermissionGroups: function(Client, types.ListPermissionGroupsInput): types.ListPermissionGroupsOutput, table
+    listPermissionGroups: function(Client, types.ListPermissionGroupsInput): Operation<types.ListPermissionGroupsOutput>
     -- Lists all the permission groups that are associated with a specific user.
-    listPermissionGroupsByUser: function(Client, types.ListPermissionGroupsByUserInput): types.ListPermissionGroupsByUserOutput, table
+    listPermissionGroupsByUser: function(Client, types.ListPermissionGroupsByUserInput): Operation<types.ListPermissionGroupsByUserOutput>
     -- Lists all available users in FinSpace.
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- Lists details of all the users in a specific permission group.
-    listUsersByPermissionGroup: function(Client, types.ListUsersByPermissionGroupInput): types.ListUsersByPermissionGroupOutput, table
+    listUsersByPermissionGroup: function(Client, types.ListUsersByPermissionGroupInput): Operation<types.ListUsersByPermissionGroupOutput>
     -- Resets the password for a specified user ID and generates a temporary one. Only a superuser can reset password for other users. Resetting the password immediately invalidates the previous password associated with the user.
-    resetUserPassword: function(Client, types.ResetUserPasswordInput): types.ResetUserPasswordOutput, table
+    resetUserPassword: function(Client, types.ResetUserPasswordInput): Operation<types.ResetUserPasswordOutput>
     -- Updates a FinSpace Changeset.
-    updateChangeset: function(Client, types.UpdateChangesetInput): types.UpdateChangesetOutput, table
+    updateChangeset: function(Client, types.UpdateChangesetInput): Operation<types.UpdateChangesetOutput>
     -- Updates a FinSpace Dataset.
-    updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    updateDataset: function(Client, types.UpdateDatasetInput): Operation<types.UpdateDatasetOutput>
     -- Modifies the details of a permission group. You cannot modify a permissionGroupID.
-    updatePermissionGroup: function(Client, types.UpdatePermissionGroupInput): types.UpdatePermissionGroupOutput, table
+    updatePermissionGroup: function(Client, types.UpdatePermissionGroupInput): Operation<types.UpdatePermissionGroupOutput>
     -- Modifies the details of the specified user. You cannot update the userId for a user.
-    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    updateUser: function(Client, types.UpdateUserInput): Operation<types.UpdateUserOutput>
 end
 
 local record M

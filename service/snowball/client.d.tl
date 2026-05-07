@@ -2,24 +2,28 @@
 
 local types = require("snowball.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels a cluster job. You can only cancel a cluster job while it's in the
     -- AwaitingQuorum status. You'll have at least an hour after creating a cluster
     -- job to cancel it.
-    cancelCluster: function(Client, types.CancelClusterInput): types.CancelClusterOutput, table
+    cancelCluster: function(Client, types.CancelClusterInput): Operation<types.CancelClusterOutput>
     -- Cancels the specified job. You can only cancel a job before its JobState
     -- value changes to PreparingAppliance. Requesting the ListJobs or
     -- DescribeJob action returns a job's JobState as part of the
     -- response element data returned.
-    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    cancelJob: function(Client, types.CancelJobInput): Operation<types.CancelJobOutput>
     -- Creates an address for a Snow device to be shipped to. In most regions,
     -- addresses are validated at the time of creation. The address you provide must be located
     -- within the serviceable area of your region. If the address is invalid or unsupported, then an
     -- exception is thrown. If providing an address as a JSON file through the cli-input-json option, include the full file path. For example, --cli-input-json file://create-address.json.
-    createAddress: function(Client, types.CreateAddressInput): types.CreateAddressOutput, table
+    createAddress: function(Client, types.CreateAddressInput): Operation<types.CreateAddressOutput>
     -- Creates an empty cluster. Each cluster supports five nodes. You use the CreateJob action separately to create the jobs for each of these nodes. The
     -- cluster does not ship until these five node jobs have been created.
-    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createCluster: function(Client, types.CreateClusterInput): Operation<types.CreateClusterOutput>
     -- Creates a job to import or export data between Amazon S3 and your on-premises data
     -- center. Your Amazon Web Services account must have the right trust policies and permissions in
     -- place to create a job for a Snow device. If you're creating a job for a node in a cluster, you
@@ -63,27 +67,27 @@ local record Client
     -- Device type: V3_5S
     -- Capacity: T240
     -- Description: Snowball Edge Storage Optimized 210TB
-    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createJob: function(Client, types.CreateJobInput): Operation<types.CreateJobOutput>
     -- Creates a job with the long-term usage option for a device. The long-term usage is a
     -- 1-year or 3-year long-term pricing type for the device. You are billed upfront, and Amazon Web Services provides discounts for long-term pricing.
-    createLongTermPricing: function(Client, types.CreateLongTermPricingInput): types.CreateLongTermPricingOutput, table
+    createLongTermPricing: function(Client, types.CreateLongTermPricingInput): Operation<types.CreateLongTermPricingOutput>
     -- Creates a shipping label that will be used to return the Snow device to Amazon Web Services.
-    createReturnShippingLabel: function(Client, types.CreateReturnShippingLabelInput): types.CreateReturnShippingLabelOutput, table
+    createReturnShippingLabel: function(Client, types.CreateReturnShippingLabelInput): Operation<types.CreateReturnShippingLabelOutput>
     -- Takes an AddressId and returns specific details about that address in the
     -- form of an Address object.
-    describeAddress: function(Client, types.DescribeAddressInput): types.DescribeAddressOutput, table
+    describeAddress: function(Client, types.DescribeAddressInput): Operation<types.DescribeAddressOutput>
     -- Returns a specified number of ADDRESS objects. Calling this API in one of
     -- the US regions will return addresses from the list of all addresses associated with this
     -- account in all US regions.
-    describeAddresses: function(Client, types.DescribeAddressesInput): types.DescribeAddressesOutput, table
+    describeAddresses: function(Client, types.DescribeAddressesInput): Operation<types.DescribeAddressesOutput>
     -- Returns information about a specific cluster including shipping information, cluster
     -- status, and other important metadata.
-    describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    describeCluster: function(Client, types.DescribeClusterInput): Operation<types.DescribeClusterOutput>
     -- Returns information about a specific job including shipping information, job status,
     -- and other important metadata.
-    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeJob: function(Client, types.DescribeJobInput): Operation<types.DescribeJobOutput>
     -- Information on the shipping label of a Snow device that is being returned to Amazon Web Services.
-    describeReturnShippingLabel: function(Client, types.DescribeReturnShippingLabelInput): types.DescribeReturnShippingLabelOutput, table
+    describeReturnShippingLabel: function(Client, types.DescribeReturnShippingLabelInput): Operation<types.DescribeReturnShippingLabelOutput>
     -- Returns a link to an Amazon S3 presigned URL for the manifest file associated with the
     -- specified JobId value. You can access the manifest file for up to 60 minutes
     -- after this request has been made. To access the manifest file after 60 minutes have passed,
@@ -100,7 +104,7 @@ local record Client
     -- associated with that job.
     -- The credentials of a given job, including its manifest file and unlock code, expire 360
     -- days after the job is created.
-    getJobManifest: function(Client, types.GetJobManifestInput): types.GetJobManifestOutput, table
+    getJobManifest: function(Client, types.GetJobManifestInput): Operation<types.GetJobManifestOutput>
     -- Returns the UnlockCode code value for the specified job. A particular
     -- UnlockCode value can be accessed for up to 360 days after the associated job
     -- has been created.
@@ -114,54 +118,54 @@ local record Client
     -- UnlockCode in the same location as the manifest file for that job. Saving these
     -- separately helps prevent unauthorized parties from gaining access to the Snow device
     -- associated with that job.
-    getJobUnlockCode: function(Client, types.GetJobUnlockCodeInput): types.GetJobUnlockCodeOutput, table
+    getJobUnlockCode: function(Client, types.GetJobUnlockCodeInput): Operation<types.GetJobUnlockCodeOutput>
     -- Returns information about the Snow Family service limit for your account, and also the
     -- number of Snow devices your account has in use.
     -- The default service limit for the number of Snow devices that you can have at one time
     -- is 1. If you want to increase your service limit, contact Amazon Web Services Support.
-    getSnowballUsage: function(Client, types.GetSnowballUsageInput): types.GetSnowballUsageOutput, table
+    getSnowballUsage: function(Client, types.GetSnowballUsageInput): Operation<types.GetSnowballUsageOutput>
     -- Returns an Amazon S3 presigned URL for an update file associated with a specified
     -- JobId.
-    getSoftwareUpdates: function(Client, types.GetSoftwareUpdatesInput): types.GetSoftwareUpdatesOutput, table
+    getSoftwareUpdates: function(Client, types.GetSoftwareUpdatesInput): Operation<types.GetSoftwareUpdatesOutput>
     -- Returns an array of JobListEntry objects of the specified length. Each
     -- JobListEntry object is for a job in the specified cluster and contains a job's
     -- state, a job's ID, and other information.
-    listClusterJobs: function(Client, types.ListClusterJobsInput): types.ListClusterJobsOutput, table
+    listClusterJobs: function(Client, types.ListClusterJobsInput): Operation<types.ListClusterJobsOutput>
     -- Returns an array of ClusterListEntry objects of the specified length. Each
     -- ClusterListEntry object contains a cluster's state, a cluster's ID, and other
     -- important status information.
-    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listClusters: function(Client, types.ListClustersInput): Operation<types.ListClustersOutput>
     -- This action returns a list of the different Amazon EC2-compatible Amazon Machine Images (AMIs)
     -- that are owned by your Amazon Web Services accountthat would be supported for use on a Snow
     -- device. Currently, supported AMIs are based on the Amazon Linux-2, Ubuntu 20.04 LTS - Focal, or Ubuntu 22.04 LTS - Jammy images, available on the
     -- Amazon Web Services Marketplace. Ubuntu 16.04 LTS - Xenial (HVM) images are no longer supported in the Market, but still supported for use on devices through Amazon EC2 VM Import/Export and running locally in AMIs.
-    listCompatibleImages: function(Client, types.ListCompatibleImagesInput): types.ListCompatibleImagesOutput, table
+    listCompatibleImages: function(Client, types.ListCompatibleImagesInput): Operation<types.ListCompatibleImagesOutput>
     -- Returns an array of JobListEntry objects of the specified length. Each
     -- JobListEntry object contains a job's state, a job's ID, and a value that
     -- indicates whether the job is a job part, in the case of export jobs. Calling this API action
     -- in one of the US regions will return jobs from the list of all jobs associated with this
     -- account in all US regions.
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- Lists all long-term pricing types.
-    listLongTermPricing: function(Client, types.ListLongTermPricingInput): types.ListLongTermPricingOutput, table
+    listLongTermPricing: function(Client, types.ListLongTermPricingInput): Operation<types.ListLongTermPricingOutput>
     -- A list of locations from which the customer can choose to pickup a device.
-    listPickupLocations: function(Client, types.ListPickupLocationsInput): types.ListPickupLocationsOutput, table
+    listPickupLocations: function(Client, types.ListPickupLocationsInput): Operation<types.ListPickupLocationsOutput>
     -- Lists all supported versions for Snow on-device services. Returns an
     -- array of ServiceVersion object containing the supported versions for a particular service.
-    listServiceVersions: function(Client, types.ListServiceVersionsInput): types.ListServiceVersionsOutput, table
+    listServiceVersions: function(Client, types.ListServiceVersionsInput): Operation<types.ListServiceVersionsOutput>
     -- While a cluster's ClusterState value is in the AwaitingQuorum
     -- state, you can update some of the information associated with a cluster. Once the cluster
     -- changes to a different job state, usually 60 minutes after the cluster being created, this
     -- action is no longer available.
-    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): Operation<types.UpdateClusterOutput>
     -- While a job's JobState value is New, you can update some of
     -- the information associated with a job. Once the job changes to a different job state, usually
     -- within 60 minutes of the job being created, this action is no longer available.
-    updateJob: function(Client, types.UpdateJobInput): types.UpdateJobOutput, table
+    updateJob: function(Client, types.UpdateJobInput): Operation<types.UpdateJobOutput>
     -- Updates the state when a shipment state changes to a different state.
-    updateJobShipmentState: function(Client, types.UpdateJobShipmentStateInput): types.UpdateJobShipmentStateOutput, table
+    updateJobShipmentState: function(Client, types.UpdateJobShipmentStateInput): Operation<types.UpdateJobShipmentStateOutput>
     -- Updates the long-term pricing type.
-    updateLongTermPricing: function(Client, types.UpdateLongTermPricingInput): types.UpdateLongTermPricingOutput, table
+    updateLongTermPricing: function(Client, types.UpdateLongTermPricingInput): Operation<types.UpdateLongTermPricingOutput>
 end
 
 local record M

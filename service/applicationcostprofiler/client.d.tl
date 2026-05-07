@@ -2,24 +2,28 @@
 
 local types = require("applicationcostprofiler.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the specified report definition in AWS Application Cost Profiler. This stops the report from being
     -- generated.
-    deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): types.DeleteReportDefinitionOutput, table
+    deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): Operation<types.DeleteReportDefinitionOutput>
     -- Retrieves the definition of a report already configured in AWS Application Cost Profiler.
-    getReportDefinition: function(Client, types.GetReportDefinitionInput): types.GetReportDefinitionOutput, table
+    getReportDefinition: function(Client, types.GetReportDefinitionInput): Operation<types.GetReportDefinitionOutput>
     -- Ingests application usage data from Amazon Simple Storage Service (Amazon S3).
     -- The data must already exist in the S3 location. As part of the action, AWS Application Cost Profiler
     -- copies the object from your S3 bucket to an S3 bucket owned by Amazon for processing
     -- asynchronously.
-    importApplicationUsage: function(Client, types.ImportApplicationUsageInput): types.ImportApplicationUsageOutput, table
+    importApplicationUsage: function(Client, types.ImportApplicationUsageInput): Operation<types.ImportApplicationUsageOutput>
     -- Retrieves a list of all reports and their configurations for your AWS account.
     -- The maximum number of reports is one.
-    listReportDefinitions: function(Client, types.ListReportDefinitionsInput): types.ListReportDefinitionsOutput, table
+    listReportDefinitions: function(Client, types.ListReportDefinitionsInput): Operation<types.ListReportDefinitionsOutput>
     -- Creates the report definition for a report in Application Cost Profiler.
-    putReportDefinition: function(Client, types.PutReportDefinitionInput): types.PutReportDefinitionOutput, table
+    putReportDefinition: function(Client, types.PutReportDefinitionInput): Operation<types.PutReportDefinitionOutput>
     -- Updates existing report in AWS Application Cost Profiler.
-    updateReportDefinition: function(Client, types.UpdateReportDefinitionInput): types.UpdateReportDefinitionOutput, table
+    updateReportDefinition: function(Client, types.UpdateReportDefinitionInput): Operation<types.UpdateReportDefinitionOutput>
 end
 
 local record M

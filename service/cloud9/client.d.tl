@@ -2,44 +2,48 @@
 
 local types = require("cloud9.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud (Amazon EC2) instance, and
     -- then connects from the instance to the environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    createEnvironmentEC2: function(Client, types.CreateEnvironmentEC2Input): types.CreateEnvironmentEC2Output, table
+    createEnvironmentEC2: function(Client, types.CreateEnvironmentEC2Input): Operation<types.CreateEnvironmentEC2Output>
     -- Adds an environment member to an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    createEnvironmentMembership: function(Client, types.CreateEnvironmentMembershipInput): types.CreateEnvironmentMembershipOutput, table
+    createEnvironmentMembership: function(Client, types.CreateEnvironmentMembershipInput): Operation<types.CreateEnvironmentMembershipOutput>
     -- Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected to the
     -- environment, also terminates the instance.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- Deletes an environment member from a development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    deleteEnvironmentMembership: function(Client, types.DeleteEnvironmentMembershipInput): types.DeleteEnvironmentMembershipOutput, table
+    deleteEnvironmentMembership: function(Client, types.DeleteEnvironmentMembershipInput): Operation<types.DeleteEnvironmentMembershipOutput>
     -- Gets information about environment members for an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    describeEnvironmentMemberships: function(Client, types.DescribeEnvironmentMembershipsInput): types.DescribeEnvironmentMembershipsOutput, table
+    describeEnvironmentMemberships: function(Client, types.DescribeEnvironmentMembershipsInput): Operation<types.DescribeEnvironmentMembershipsOutput>
     -- Gets information about Cloud9 development environments.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    describeEnvironments: function(Client, types.DescribeEnvironmentsInput): types.DescribeEnvironmentsOutput, table
+    describeEnvironments: function(Client, types.DescribeEnvironmentsInput): Operation<types.DescribeEnvironmentsOutput>
     -- Gets status information for an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    describeEnvironmentStatus: function(Client, types.DescribeEnvironmentStatusInput): types.DescribeEnvironmentStatusOutput, table
+    describeEnvironmentStatus: function(Client, types.DescribeEnvironmentStatusInput): Operation<types.DescribeEnvironmentStatusOutput>
     -- Gets a list of Cloud9 development environment identifiers.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
@@ -47,35 +51,35 @@ local record Client
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- Gets a list of the tags associated with an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds tags to an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
     -- Tags that you add to an Cloud9 environment by using this method will NOT be
     -- automatically propagated to underlying resources.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from an Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Changes the settings of an existing Cloud9 development environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
     -- Changes the settings of an existing environment member for an Cloud9 development
     -- environment.
     -- Cloud9 is no longer available to new customers. Existing customers of
     -- Cloud9 can continue to use the service as normal.
     -- Learn more"
-    updateEnvironmentMembership: function(Client, types.UpdateEnvironmentMembershipInput): types.UpdateEnvironmentMembershipOutput, table
+    updateEnvironmentMembership: function(Client, types.UpdateEnvironmentMembershipInput): Operation<types.UpdateEnvironmentMembershipOutput>
 end
 
 local record M

@@ -2,39 +2,43 @@
 
 local types = require("workspacesthinclient.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an environment for your thin client devices.
-    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): Operation<types.CreateEnvironmentOutput>
     -- Deletes a thin client device.
-    deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    deleteDevice: function(Client, types.DeleteDeviceInput): Operation<types.DeleteDeviceOutput>
     -- Deletes an environment.
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): Operation<types.DeleteEnvironmentOutput>
     -- Deregisters a thin client device.
-    deregisterDevice: function(Client, types.DeregisterDeviceInput): types.DeregisterDeviceOutput, table
+    deregisterDevice: function(Client, types.DeregisterDeviceInput): Operation<types.DeregisterDeviceOutput>
     -- Returns information for a thin client device.
-    getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    getDevice: function(Client, types.GetDeviceInput): Operation<types.GetDeviceOutput>
     -- Returns information for an environment.
-    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): Operation<types.GetEnvironmentOutput>
     -- Returns information for a software set.
-    getSoftwareSet: function(Client, types.GetSoftwareSetInput): types.GetSoftwareSetOutput, table
+    getSoftwareSet: function(Client, types.GetSoftwareSetInput): Operation<types.GetSoftwareSetOutput>
     -- Returns a list of thin client devices.
-    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listDevices: function(Client, types.ListDevicesInput): Operation<types.ListDevicesOutput>
     -- Returns a list of environments.
-    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): Operation<types.ListEnvironmentsOutput>
     -- Returns a list of software sets.
-    listSoftwareSets: function(Client, types.ListSoftwareSetsInput): types.ListSoftwareSetsOutput, table
+    listSoftwareSets: function(Client, types.ListSoftwareSetsInput): Operation<types.ListSoftwareSetsOutput>
     -- Returns a list of tags for a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Assigns one or more tags (key-value pairs) to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag or tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a thin client device.
-    updateDevice: function(Client, types.UpdateDeviceInput): types.UpdateDeviceOutput, table
+    updateDevice: function(Client, types.UpdateDeviceInput): Operation<types.UpdateDeviceOutput>
     -- Updates an environment.
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): Operation<types.UpdateEnvironmentOutput>
     -- Updates a software set.
-    updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput): types.UpdateSoftwareSetOutput, table
+    updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput): Operation<types.UpdateSoftwareSetOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("elasticloadbalancingv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds the specified SSL server certificate to the certificate list for the specified HTTPS
     -- or TLS listener.
@@ -10,15 +14,15 @@ local record Client
     -- For more information, see SSL
     -- certificates in the Application Load Balancers Guide or Server
     -- certificates in the Network Load Balancers Guide.
-    addListenerCertificates: function(Client, types.AddListenerCertificatesInput): types.AddListenerCertificatesOutput, table
+    addListenerCertificates: function(Client, types.AddListenerCertificatesInput): Operation<types.AddListenerCertificatesOutput>
     -- Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your
     -- Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups,
     -- trust stores, listeners, and rules.
     -- Each tag consists of a key and an optional value. If a resource already has a tag with the
     -- same key, AddTags updates its value.
-    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    addTags: function(Client, types.AddTagsInput): Operation<types.AddTagsOutput>
     -- Adds the specified revocation file to the specified trust store.
-    addTrustStoreRevocations: function(Client, types.AddTrustStoreRevocationsInput): types.AddTrustStoreRevocationsOutput, table
+    addTrustStoreRevocations: function(Client, types.AddTrustStoreRevocationsInput): Operation<types.AddTrustStoreRevocationsOutput>
     -- Creates a listener for the specified Application Load Balancer, Network Load Balancer, or
     -- Gateway Load Balancer.
     -- For more information, see the following:
@@ -30,7 +34,7 @@ local record Client
     -- Gateway Load Balancers
     -- This operation is idempotent, which means that it completes at most one time. If you
     -- attempt to create multiple listeners with the same settings, each call succeeds.
-    createListener: function(Client, types.CreateListenerInput): types.CreateListenerOutput, table
+    createListener: function(Client, types.CreateListenerInput): Operation<types.CreateListenerOutput>
     -- Creates an Application Load Balancer, Network Load Balancer, or Gateway Load
     -- Balancer.
     -- For more information, see the following:
@@ -41,7 +45,7 @@ local record Client
     -- Balancers
     -- This operation is idempotent, which means that it completes at most one time. If you
     -- attempt to create multiple load balancers with the same settings, each call succeeds.
-    createLoadBalancer: function(Client, types.CreateLoadBalancerInput): types.CreateLoadBalancerOutput, table
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput): Operation<types.CreateLoadBalancerOutput>
     -- Creates a rule for the specified listener. The listener must be associated with an
     -- Application Load Balancer.
     -- Each rule consists of a priority, one or more actions, one or more conditions, and
@@ -49,7 +53,7 @@ local record Client
     -- to the highest value. When the conditions for a rule are met, its actions are performed.
     -- If the conditions for no rules are met, the actions for the default rule are performed.
     -- For more information, see Listener rules in the Application Load Balancers Guide.
-    createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    createRule: function(Client, types.CreateRuleInput): Operation<types.CreateRuleOutput>
     -- Creates a target group.
     -- For more information, see the following:
     -- Target
@@ -60,14 +64,14 @@ local record Client
     -- Gateway Load Balancers
     -- This operation is idempotent, which means that it completes at most one time. If you
     -- attempt to create multiple target groups with the same settings, each call succeeds.
-    createTargetGroup: function(Client, types.CreateTargetGroupInput): types.CreateTargetGroupOutput, table
+    createTargetGroup: function(Client, types.CreateTargetGroupInput): Operation<types.CreateTargetGroupOutput>
     -- Creates a trust store.
     -- For more information, see Mutual TLS for Application Load Balancers.
-    createTrustStore: function(Client, types.CreateTrustStoreInput): types.CreateTrustStoreOutput, table
+    createTrustStore: function(Client, types.CreateTrustStoreInput): Operation<types.CreateTrustStoreOutput>
     -- Deletes the specified listener.
     -- Alternatively, your listener is deleted when you delete the load balancer to which it is
     -- attached.
-    deleteListener: function(Client, types.DeleteListenerInput): types.DeleteListenerOutput, table
+    deleteListener: function(Client, types.DeleteListenerInput): Operation<types.DeleteListenerOutput>
     -- Deletes the specified Application Load Balancer, Network Load Balancer, or Gateway Load
     -- Balancer. Deleting a load balancer also deletes its listeners.
     -- You can't delete a load balancer if deletion protection is enabled. If the load balancer
@@ -75,20 +79,20 @@ local record Client
     -- Deleting a load balancer does not affect its registered targets. For example, your EC2
     -- instances continue to run and are still registered to their target groups. If you no longer
     -- need these EC2 instances, you can stop or terminate them.
-    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput): types.DeleteLoadBalancerOutput, table
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput): Operation<types.DeleteLoadBalancerOutput>
     -- Deletes the specified rule.
     -- You can't delete the default rule.
-    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): Operation<types.DeleteRuleOutput>
     -- Deletes a shared trust store association.
-    deleteSharedTrustStoreAssociation: function(Client, types.DeleteSharedTrustStoreAssociationInput): types.DeleteSharedTrustStoreAssociationOutput, table
+    deleteSharedTrustStoreAssociation: function(Client, types.DeleteSharedTrustStoreAssociationInput): Operation<types.DeleteSharedTrustStoreAssociationOutput>
     -- Deletes the specified target group.
     -- You can delete a target group if it is not referenced by any actions. Deleting a target
     -- group also deletes any associated health checks. Deleting a target group does not affect its
     -- registered targets. For example, any EC2 instances continue to run until you stop or terminate
     -- them.
-    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput): types.DeleteTargetGroupOutput, table
+    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput): Operation<types.DeleteTargetGroupOutput>
     -- Deletes a trust store.
-    deleteTrustStore: function(Client, types.DeleteTrustStoreInput): types.DeleteTrustStoreOutput, table
+    deleteTrustStore: function(Client, types.DeleteTrustStoreInput): Operation<types.DeleteTrustStoreOutput>
     -- Deregisters the specified targets from the specified target group. After the targets are
     -- deregistered, they no longer receive traffic from the load balancer.
     -- The load balancer stops sending requests to targets that are deregistering, but uses
@@ -99,7 +103,7 @@ local record Client
     -- Deregistration delay in the Network Load Balancers User Guide
     -- Deregistration delay in the Gateway Load Balancers User Guide
     -- Note: If the specified target does not exist, the action returns successfully.
-    deregisterTargets: function(Client, types.DeregisterTargetsInput): types.DeregisterTargetsOutput, table
+    deregisterTargets: function(Client, types.DeregisterTargetsInput): Operation<types.DeregisterTargetsOutput>
     -- Describes the current Elastic Load Balancing resource limits for your Amazon Web Services
     -- account.
     -- For more information, see the following:
@@ -109,11 +113,11 @@ local record Client
     -- Network Load Balancers
     -- Quotas for your Gateway
     -- Load Balancers
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): Operation<types.DescribeAccountLimitsOutput>
     -- Describes the capacity reservation status for the specified load balancer.
-    describeCapacityReservation: function(Client, types.DescribeCapacityReservationInput): types.DescribeCapacityReservationOutput, table
+    describeCapacityReservation: function(Client, types.DescribeCapacityReservationInput): Operation<types.DescribeCapacityReservationOutput>
     -- Describes the attributes for the specified listener.
-    describeListenerAttributes: function(Client, types.DescribeListenerAttributesInput): types.DescribeListenerAttributesOutput, table
+    describeListenerAttributes: function(Client, types.DescribeListenerAttributesInput): Operation<types.DescribeListenerAttributesOutput>
     -- Describes the default certificate and the certificate list for the specified HTTPS or TLS
     -- listener.
     -- If the default certificate is also in the certificate list, it appears twice in the
@@ -122,11 +126,11 @@ local record Client
     -- For more information, see SSL certificates in the Application Load Balancers Guide or
     -- Server certificates in the Network Load Balancers
     -- Guide.
-    describeListenerCertificates: function(Client, types.DescribeListenerCertificatesInput): types.DescribeListenerCertificatesOutput, table
+    describeListenerCertificates: function(Client, types.DescribeListenerCertificatesInput): Operation<types.DescribeListenerCertificatesOutput>
     -- Describes the specified listeners or the listeners for the specified Application Load
     -- Balancer, Network Load Balancer, or Gateway Load Balancer. You must specify either a load
     -- balancer or one or more listeners.
-    describeListeners: function(Client, types.DescribeListenersInput): types.DescribeListenersOutput, table
+    describeListeners: function(Client, types.DescribeListenersInput): Operation<types.DescribeListenersOutput>
     -- Describes the attributes for the specified Application Load Balancer, Network Load
     -- Balancer, or Gateway Load Balancer.
     -- For more information, see the following:
@@ -136,20 +140,20 @@ local record Client
     -- Guide
     -- Load balancer attributes in the Gateway Load Balancers
     -- Guide
-    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput): types.DescribeLoadBalancerAttributesOutput, table
+    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput): Operation<types.DescribeLoadBalancerAttributesOutput>
     -- Describes the specified load balancers or all of your load balancers.
-    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput): types.DescribeLoadBalancersOutput, table
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput): Operation<types.DescribeLoadBalancersOutput>
     -- Describes the specified rules or the rules for the specified listener. You must specify
     -- either a listener or rules.
-    describeRules: function(Client, types.DescribeRulesInput): types.DescribeRulesOutput, table
+    describeRules: function(Client, types.DescribeRulesInput): Operation<types.DescribeRulesOutput>
     -- Describes the specified policies or all policies used for SSL negotiation.
     -- For more information, see Security policies in the Application Load Balancers Guide and
     -- Security policies in the Network Load Balancers Guide.
-    describeSSLPolicies: function(Client, types.DescribeSSLPoliciesInput): types.DescribeSSLPoliciesOutput, table
+    describeSSLPolicies: function(Client, types.DescribeSSLPoliciesInput): Operation<types.DescribeSSLPoliciesOutput>
     -- Describes the tags for the specified Elastic Load Balancing resources. You can describe
     -- the tags for one or more Application Load Balancers, Network Load Balancers, Gateway Load
     -- Balancers, target groups, listeners, or rules.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Describes the attributes for the specified target group.
     -- For more information, see the following:
     -- Target group attributes in the Application Load Balancers
@@ -158,37 +162,37 @@ local record Client
     -- Guide
     -- Target group attributes in the Gateway Load Balancers
     -- Guide
-    describeTargetGroupAttributes: function(Client, types.DescribeTargetGroupAttributesInput): types.DescribeTargetGroupAttributesOutput, table
+    describeTargetGroupAttributes: function(Client, types.DescribeTargetGroupAttributesInput): Operation<types.DescribeTargetGroupAttributesOutput>
     -- Describes the specified target groups or all of your target groups. By default, all target
     -- groups are described. Alternatively, you can specify one of the following to filter the
     -- results: the ARN of the load balancer, the names of one or more target groups, or the ARNs of
     -- one or more target groups.
-    describeTargetGroups: function(Client, types.DescribeTargetGroupsInput): types.DescribeTargetGroupsOutput, table
+    describeTargetGroups: function(Client, types.DescribeTargetGroupsInput): Operation<types.DescribeTargetGroupsOutput>
     -- Describes the health of the specified targets or all of your targets.
-    describeTargetHealth: function(Client, types.DescribeTargetHealthInput): types.DescribeTargetHealthOutput, table
+    describeTargetHealth: function(Client, types.DescribeTargetHealthInput): Operation<types.DescribeTargetHealthOutput>
     -- Describes all resources associated with the specified trust store.
-    describeTrustStoreAssociations: function(Client, types.DescribeTrustStoreAssociationsInput): types.DescribeTrustStoreAssociationsOutput, table
+    describeTrustStoreAssociations: function(Client, types.DescribeTrustStoreAssociationsInput): Operation<types.DescribeTrustStoreAssociationsOutput>
     -- Describes the revocation files in use by the specified trust store or revocation
     -- files.
-    describeTrustStoreRevocations: function(Client, types.DescribeTrustStoreRevocationsInput): types.DescribeTrustStoreRevocationsOutput, table
+    describeTrustStoreRevocations: function(Client, types.DescribeTrustStoreRevocationsInput): Operation<types.DescribeTrustStoreRevocationsOutput>
     -- Describes all trust stores for the specified account.
-    describeTrustStores: function(Client, types.DescribeTrustStoresInput): types.DescribeTrustStoresOutput, table
+    describeTrustStores: function(Client, types.DescribeTrustStoresInput): Operation<types.DescribeTrustStoresOutput>
     -- Retrieves the resource policy for a specified resource.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Retrieves the ca certificate bundle.
     -- This action returns a pre-signed S3 URI which is
     -- active for ten minutes.
-    getTrustStoreCaCertificatesBundle: function(Client, types.GetTrustStoreCaCertificatesBundleInput): types.GetTrustStoreCaCertificatesBundleOutput, table
+    getTrustStoreCaCertificatesBundle: function(Client, types.GetTrustStoreCaCertificatesBundleInput): Operation<types.GetTrustStoreCaCertificatesBundleOutput>
     -- Retrieves the specified revocation file.
     -- This action returns a pre-signed S3 URI which is
     -- active for ten minutes.
-    getTrustStoreRevocationContent: function(Client, types.GetTrustStoreRevocationContentInput): types.GetTrustStoreRevocationContentOutput, table
+    getTrustStoreRevocationContent: function(Client, types.GetTrustStoreRevocationContentInput): Operation<types.GetTrustStoreRevocationContentOutput>
     -- Modifies the capacity reservation of the specified load balancer.
     -- When modifying capacity reservation, you must include at least one MinimumLoadBalancerCapacity
     -- or ResetCapacityReservation.
-    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput): types.ModifyCapacityReservationOutput, table
+    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput): Operation<types.ModifyCapacityReservationOutput>
     -- [Application Load Balancers] Modify the IP pool associated to a load balancer.
-    modifyIpPools: function(Client, types.ModifyIpPoolsInput): types.ModifyIpPoolsOutput, table
+    modifyIpPools: function(Client, types.ModifyIpPoolsInput): Operation<types.ModifyIpPoolsOutput>
     -- Replaces the specified properties of the specified listener. Any properties that you do
     -- not specify remain unchanged.
     -- Changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy
@@ -197,27 +201,27 @@ local record Client
     -- To add an item to a list, remove an item from a list, or update an item in a list, you
     -- must provide the entire list. For example, to add an action, specify a list with the current
     -- actions plus the new action.
-    modifyListener: function(Client, types.ModifyListenerInput): types.ModifyListenerOutput, table
+    modifyListener: function(Client, types.ModifyListenerInput): Operation<types.ModifyListenerOutput>
     -- Modifies the specified attributes of the specified listener.
-    modifyListenerAttributes: function(Client, types.ModifyListenerAttributesInput): types.ModifyListenerAttributesOutput, table
+    modifyListenerAttributes: function(Client, types.ModifyListenerAttributesInput): Operation<types.ModifyListenerAttributesOutput>
     -- Modifies the specified attributes of the specified Application Load Balancer, Network Load
     -- Balancer, or Gateway Load Balancer.
     -- If any of the specified attributes can't be modified as requested, the call fails. Any
     -- existing attributes that you do not modify retain their current values.
-    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput): types.ModifyLoadBalancerAttributesOutput, table
+    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput): Operation<types.ModifyLoadBalancerAttributesOutput>
     -- Replaces the specified properties of the specified rule. Any properties that you do not
     -- specify are unchanged.
     -- To add an item to a list, remove an item from a list, or update an item in a list, you
     -- must provide the entire list. For example, to add an action, specify a list with the current
     -- actions plus the new action.
-    modifyRule: function(Client, types.ModifyRuleInput): types.ModifyRuleOutput, table
+    modifyRule: function(Client, types.ModifyRuleInput): Operation<types.ModifyRuleOutput>
     -- Modifies the health checks used when evaluating the health state of the targets in the
     -- specified target group.
-    modifyTargetGroup: function(Client, types.ModifyTargetGroupInput): types.ModifyTargetGroupOutput, table
+    modifyTargetGroup: function(Client, types.ModifyTargetGroupInput): Operation<types.ModifyTargetGroupOutput>
     -- Modifies the specified attributes of the specified target group.
-    modifyTargetGroupAttributes: function(Client, types.ModifyTargetGroupAttributesInput): types.ModifyTargetGroupAttributesOutput, table
+    modifyTargetGroupAttributes: function(Client, types.ModifyTargetGroupAttributesInput): Operation<types.ModifyTargetGroupAttributesOutput>
     -- Update the ca certificate bundle for the specified trust store.
-    modifyTrustStore: function(Client, types.ModifyTrustStoreInput): types.ModifyTrustStoreOutput, table
+    modifyTrustStore: function(Client, types.ModifyTrustStoreInput): Operation<types.ModifyTrustStoreOutput>
     -- Registers the specified targets with the specified target group.
     -- If the target is an EC2 instance, it must be in the running state when you
     -- register it.
@@ -232,33 +236,33 @@ local record Client
     -- for your Network Load Balancer
     -- Register targets for your
     -- Gateway Load Balancer
-    registerTargets: function(Client, types.RegisterTargetsInput): types.RegisterTargetsOutput, table
+    registerTargets: function(Client, types.RegisterTargetsInput): Operation<types.RegisterTargetsOutput>
     -- Removes the specified certificate from the certificate list for the specified HTTPS or TLS
     -- listener.
-    removeListenerCertificates: function(Client, types.RemoveListenerCertificatesInput): types.RemoveListenerCertificatesOutput, table
+    removeListenerCertificates: function(Client, types.RemoveListenerCertificatesInput): Operation<types.RemoveListenerCertificatesOutput>
     -- Removes the specified tags from the specified Elastic Load Balancing resources. You can
     -- remove the tags for one or more Application Load Balancers, Network Load Balancers, Gateway
     -- Load Balancers, target groups, listeners, or rules.
-    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): Operation<types.RemoveTagsOutput>
     -- Removes the specified revocation file from the specified trust store.
-    removeTrustStoreRevocations: function(Client, types.RemoveTrustStoreRevocationsInput): types.RemoveTrustStoreRevocationsOutput, table
+    removeTrustStoreRevocations: function(Client, types.RemoveTrustStoreRevocationsInput): Operation<types.RemoveTrustStoreRevocationsOutput>
     -- Sets the type of IP addresses used by the subnets of the specified load balancer.
-    setIpAddressType: function(Client, types.SetIpAddressTypeInput): types.SetIpAddressTypeOutput, table
+    setIpAddressType: function(Client, types.SetIpAddressTypeInput): Operation<types.SetIpAddressTypeOutput>
     -- Sets the priorities of the specified rules.
     -- You can reorder the rules as long as there are no priority conflicts in the new order. Any
     -- existing rules that you do not specify retain their current priority.
-    setRulePriorities: function(Client, types.SetRulePrioritiesInput): types.SetRulePrioritiesOutput, table
+    setRulePriorities: function(Client, types.SetRulePrioritiesInput): Operation<types.SetRulePrioritiesOutput>
     -- Associates the specified security groups with the specified Application Load Balancer or
     -- Network Load Balancer. The specified security groups override the previously associated
     -- security groups.
     -- You can't perform this operation on a Network Load Balancer unless you specified a
     -- security group for the load balancer when you created it.
     -- You can't associate a security group with a Gateway Load Balancer.
-    setSecurityGroups: function(Client, types.SetSecurityGroupsInput): types.SetSecurityGroupsOutput, table
+    setSecurityGroups: function(Client, types.SetSecurityGroupsInput): Operation<types.SetSecurityGroupsOutput>
     -- Enables the Availability Zones for the specified public subnets for the specified
     -- Application Load Balancer, Network Load Balancer or Gateway Load Balancer. The specified subnets
     -- replace the previously enabled subnets.
-    setSubnets: function(Client, types.SetSubnetsInput): types.SetSubnetsOutput, table
+    setSubnets: function(Client, types.SetSubnetsInput): Operation<types.SetSubnetsOutput>
 end
 
 local record M

@@ -2,16 +2,20 @@
 
 local types = require("xray.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- You cannot find traces through this API if Transaction Search is enabled since trace is not indexed in X-Ray.
     -- Retrieves a list of traces specified by ID. Each trace is a collection of segment
     -- documents that originates from a single request. Use GetTraceSummaries to get a
     -- list of trace IDs.
-    batchGetTraces: function(Client, types.BatchGetTracesInput): types.BatchGetTracesOutput, table
+    batchGetTraces: function(Client, types.BatchGetTracesInput): Operation<types.BatchGetTracesOutput>
     -- Cancels an ongoing trace retrieval job initiated by StartTraceRetrieval using the provided RetrievalToken. A successful cancellation will return an HTTP 200 response.
-    cancelTraceRetrieval: function(Client, types.CancelTraceRetrievalInput): types.CancelTraceRetrievalOutput, table
+    cancelTraceRetrieval: function(Client, types.CancelTraceRetrievalInput): Operation<types.CancelTraceRetrievalOutput>
     -- Creates a group resource with a name and a filter expression.
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Creates a rule to control sampling behavior for instrumented applications. Services
     -- retrieve rules with GetSamplingRules, and evaluate each rule in ascending
     -- order of priority for each request. If a rule matches, the service
@@ -19,60 +23,60 @@ local record Client
     -- reports back to X-Ray with GetSamplingTargets to get updated versions of
     -- each in-use rule. The updated rule contains a trace quota that the service can use instead
     -- of borrowing from the reservoir.
-    createSamplingRule: function(Client, types.CreateSamplingRuleInput): types.CreateSamplingRuleOutput, table
+    createSamplingRule: function(Client, types.CreateSamplingRuleInput): Operation<types.CreateSamplingRuleOutput>
     -- Deletes a group resource.
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Deletes a resource policy from the target Amazon Web Services account.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a sampling rule.
-    deleteSamplingRule: function(Client, types.DeleteSamplingRuleInput): types.DeleteSamplingRuleOutput, table
+    deleteSamplingRule: function(Client, types.DeleteSamplingRuleInput): Operation<types.DeleteSamplingRuleOutput>
     -- Retrieves the current encryption configuration for X-Ray data.
-    getEncryptionConfig: function(Client, types.GetEncryptionConfigInput): types.GetEncryptionConfigOutput, table
+    getEncryptionConfig: function(Client, types.GetEncryptionConfigInput): Operation<types.GetEncryptionConfigOutput>
     -- Retrieves group resource details.
-    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getGroup: function(Client, types.GetGroupInput): Operation<types.GetGroupOutput>
     -- Retrieves all active group details.
-    getGroups: function(Client, types.GetGroupsInput): types.GetGroupsOutput, table
+    getGroups: function(Client, types.GetGroupsInput): Operation<types.GetGroupsOutput>
     -- Retrieves all indexing rules.
     -- Indexing rules are used to determine the server-side sampling rate for spans ingested through the CloudWatchLogs destination and indexed by X-Ray. For more information, see Transaction Search.
-    getIndexingRules: function(Client, types.GetIndexingRulesInput): types.GetIndexingRulesOutput, table
+    getIndexingRules: function(Client, types.GetIndexingRulesInput): Operation<types.GetIndexingRulesOutput>
     -- Retrieves the summary information of an insight. This includes impact to clients and
     -- root cause services, the top anomalous services, the category, the state of the insight,
     -- and the start and end time of the insight.
-    getInsight: function(Client, types.GetInsightInput): types.GetInsightOutput, table
+    getInsight: function(Client, types.GetInsightInput): Operation<types.GetInsightOutput>
     -- X-Ray reevaluates insights periodically until they're resolved, and records each intermediate state as an
     -- event. You can review an insight's events in the Impact Timeline on the Inspect page in the X-Ray
     -- console.
-    getInsightEvents: function(Client, types.GetInsightEventsInput): types.GetInsightEventsOutput, table
+    getInsightEvents: function(Client, types.GetInsightEventsInput): Operation<types.GetInsightEventsOutput>
     -- Retrieves a service graph structure filtered by the specified insight. The service graph is limited to only
     -- structural information. For a complete service graph, use this API with the GetServiceGraph API.
-    getInsightImpactGraph: function(Client, types.GetInsightImpactGraphInput): types.GetInsightImpactGraphOutput, table
+    getInsightImpactGraph: function(Client, types.GetInsightImpactGraphInput): Operation<types.GetInsightImpactGraphOutput>
     -- Retrieves the summaries of all insights in the specified group matching the provided filter values.
-    getInsightSummaries: function(Client, types.GetInsightSummariesInput): types.GetInsightSummariesOutput, table
+    getInsightSummaries: function(Client, types.GetInsightSummariesInput): Operation<types.GetInsightSummariesOutput>
     -- Retrieves a service graph for traces based on the specified RetrievalToken from the CloudWatch log group generated by Transaction Search. This API does not initiate a retrieval job. You must first execute StartTraceRetrieval to obtain the required RetrievalToken.
     -- The trace graph describes services that process incoming requests and any downstream services they call, which may include Amazon Web Services resources, external APIs, or databases.
     -- The response is empty until the RetrievalStatus is COMPLETE. Retry the request after the status changes from RUNNING or SCHEDULED to COMPLETE to access the full service graph.
     -- When CloudWatch log is the destination, this API can support cross-account observability and service graph retrieval across linked accounts.
     -- For retrieving graphs from X-Ray directly as opposed to the Transaction-Search Log group, see GetTraceGraph.
-    getRetrievedTracesGraph: function(Client, types.GetRetrievedTracesGraphInput): types.GetRetrievedTracesGraphOutput, table
+    getRetrievedTracesGraph: function(Client, types.GetRetrievedTracesGraphInput): Operation<types.GetRetrievedTracesGraphOutput>
     -- Retrieves all sampling rules.
-    getSamplingRules: function(Client, types.GetSamplingRulesInput): types.GetSamplingRulesOutput, table
+    getSamplingRules: function(Client, types.GetSamplingRulesInput): Operation<types.GetSamplingRulesOutput>
     -- Retrieves information about recent sampling results for all sampling rules.
-    getSamplingStatisticSummaries: function(Client, types.GetSamplingStatisticSummariesInput): types.GetSamplingStatisticSummariesOutput, table
+    getSamplingStatisticSummaries: function(Client, types.GetSamplingStatisticSummariesInput): Operation<types.GetSamplingStatisticSummariesOutput>
     -- Requests a sampling quota for rules that the service is using to sample requests.
-    getSamplingTargets: function(Client, types.GetSamplingTargetsInput): types.GetSamplingTargetsOutput, table
+    getSamplingTargets: function(Client, types.GetSamplingTargetsInput): Operation<types.GetSamplingTargetsOutput>
     -- Retrieves a document that describes services that process incoming requests, and
     -- downstream services that they call as a result. Root services process incoming requests and
     -- make calls to downstream services. Root services are applications that use the Amazon Web Services X-Ray SDK.
     -- Downstream services can be other applications, Amazon Web Services resources, HTTP web APIs, or SQL
     -- databases.
-    getServiceGraph: function(Client, types.GetServiceGraphInput): types.GetServiceGraphOutput, table
+    getServiceGraph: function(Client, types.GetServiceGraphInput): Operation<types.GetServiceGraphOutput>
     -- Get an aggregation of service statistics defined by a specific time
     -- range.
-    getTimeSeriesServiceStatistics: function(Client, types.GetTimeSeriesServiceStatisticsInput): types.GetTimeSeriesServiceStatisticsOutput, table
+    getTimeSeriesServiceStatistics: function(Client, types.GetTimeSeriesServiceStatisticsInput): Operation<types.GetTimeSeriesServiceStatisticsOutput>
     -- Retrieves a service graph for one or more specific trace IDs.
-    getTraceGraph: function(Client, types.GetTraceGraphInput): types.GetTraceGraphOutput, table
+    getTraceGraph: function(Client, types.GetTraceGraphInput): Operation<types.GetTraceGraphOutput>
     -- Retrieves the current destination of data sent to PutTraceSegments and OpenTelemetry protocol (OTLP) endpoint. The Transaction Search feature requires a CloudWatchLogs destination. For more information, see Transaction Search and OpenTelemetry.
-    getTraceSegmentDestination: function(Client, types.GetTraceSegmentDestinationInput): types.GetTraceSegmentDestinationOutput, table
+    getTraceSegmentDestination: function(Client, types.GetTraceSegmentDestinationInput): Operation<types.GetTraceSegmentDestinationOutput>
     -- Retrieves IDs and annotations for traces available for a specified time frame using an
     -- optional filter. To get the full traces, pass the trace IDs to
     -- BatchGetTraces.
@@ -86,26 +90,26 @@ local record Client
     -- For a full list of indexed fields and keywords that you can use in filter expressions,
     -- see Use filter
     -- expressions in the Amazon Web Services X-Ray Developer Guide.
-    getTraceSummaries: function(Client, types.GetTraceSummariesInput): types.GetTraceSummariesOutput, table
+    getTraceSummaries: function(Client, types.GetTraceSummariesInput): Operation<types.GetTraceSummariesOutput>
     -- Returns the list of resource policies in the target Amazon Web Services account.
-    listResourcePolicies: function(Client, types.ListResourcePoliciesInput): types.ListResourcePoliciesOutput, table
+    listResourcePolicies: function(Client, types.ListResourcePoliciesInput): Operation<types.ListResourcePoliciesOutput>
     -- Retrieves a list of traces for a given RetrievalToken from the CloudWatch log group generated by Transaction Search. For information on what each trace returns, see BatchGetTraces.
     -- This API does not initiate a retrieval process. To start a trace retrieval, use StartTraceRetrieval, which generates the required RetrievalToken.
     -- When the RetrievalStatus is not COMPLETE, the API will return an empty response. Retry the request once the retrieval has completed to access the full list of traces.
     -- For cross-account observability, this API can retrieve traces from linked accounts when CloudWatch log is set as the destination across relevant accounts. For more details, see CloudWatch cross-account observability.
     -- For retrieving data from X-Ray directly as opposed to the Transaction Search generated log group, see BatchGetTraces.
-    listRetrievedTraces: function(Client, types.ListRetrievedTracesInput): types.ListRetrievedTracesOutput, table
+    listRetrievedTraces: function(Client, types.ListRetrievedTracesInput): Operation<types.ListRetrievedTracesOutput>
     -- Returns a list of tags that are applied to the specified Amazon Web Services X-Ray group or sampling rule.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Updates the encryption configuration for X-Ray data.
-    putEncryptionConfig: function(Client, types.PutEncryptionConfigInput): types.PutEncryptionConfigOutput, table
+    putEncryptionConfig: function(Client, types.PutEncryptionConfigInput): Operation<types.PutEncryptionConfigOutput>
     -- Sets the resource policy to grant one or more Amazon Web Services services and accounts permissions to
     -- access X-Ray. Each resource policy will be associated with a specific Amazon Web Services account.
     -- Each Amazon Web Services account can have a maximum of 5 resource policies, and each policy name must be
     -- unique within that account. The maximum size of each resource policy is 5KB.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Used by the Amazon Web Services X-Ray daemon to upload telemetry.
-    putTelemetryRecords: function(Client, types.PutTelemetryRecordsInput): types.PutTelemetryRecordsOutput, table
+    putTelemetryRecords: function(Client, types.PutTelemetryRecordsInput): Operation<types.PutTelemetryRecordsOutput>
     -- Uploads segment documents to Amazon Web Services X-Ray.
     -- A segment document can be a completed segment, an in-progress segment, or an array of
     -- subsegments.
@@ -144,26 +148,26 @@ local record Client
     -- trace ID 4efaaf4d1e8720b39541901950019ee5 should be formatted as
     -- 1-4efaaf4d-1e8720b39541901950019ee5 when sending to X-Ray. While X-Ray trace IDs include
     -- the original request timestamp in Unix epoch time, this is not required or validated.
-    putTraceSegments: function(Client, types.PutTraceSegmentsInput): types.PutTraceSegmentsOutput, table
+    putTraceSegments: function(Client, types.PutTraceSegmentsInput): Operation<types.PutTraceSegmentsOutput>
     -- Initiates a trace retrieval process using the specified time range and for the given trace IDs in the Transaction Search generated CloudWatch log group. For more information, see Transaction Search.
     -- API returns a RetrievalToken, which can be used with ListRetrievedTraces or GetRetrievedTracesGraph to fetch results. Retrievals will time out after 60 minutes. To execute long time ranges, consider segmenting into multiple retrievals.
     -- If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account to retrieve data from a linked source account, as long as both accounts have transaction search enabled.
     -- For retrieving data from X-Ray directly as opposed to the Transaction-Search Log group, see BatchGetTraces.
-    startTraceRetrieval: function(Client, types.StartTraceRetrievalInput): types.StartTraceRetrievalOutput, table
+    startTraceRetrieval: function(Client, types.StartTraceRetrievalInput): Operation<types.StartTraceRetrievalOutput>
     -- Applies tags to an existing Amazon Web Services X-Ray group or sampling rule.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from an Amazon Web Services X-Ray group or sampling rule. You cannot edit or delete system
     -- tags (those with an aws: prefix).
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a group resource.
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Modifies an indexing rule’s configuration.
     -- Indexing rules are used for determining the sampling rate for spans indexed from CloudWatch Logs. For more information, see Transaction Search.
-    updateIndexingRule: function(Client, types.UpdateIndexingRuleInput): types.UpdateIndexingRuleOutput, table
+    updateIndexingRule: function(Client, types.UpdateIndexingRuleInput): Operation<types.UpdateIndexingRuleOutput>
     -- Modifies a sampling rule's configuration.
-    updateSamplingRule: function(Client, types.UpdateSamplingRuleInput): types.UpdateSamplingRuleOutput, table
+    updateSamplingRule: function(Client, types.UpdateSamplingRuleInput): Operation<types.UpdateSamplingRuleOutput>
     -- Modifies the destination of data sent to PutTraceSegments. The Transaction Search feature requires the CloudWatchLogs destination. For more information, see Transaction Search.
-    updateTraceSegmentDestination: function(Client, types.UpdateTraceSegmentDestinationInput): types.UpdateTraceSegmentDestinationOutput, table
+    updateTraceSegmentDestination: function(Client, types.UpdateTraceSegmentDestinationInput): Operation<types.UpdateTraceSegmentDestinationOutput>
 end
 
 local record M

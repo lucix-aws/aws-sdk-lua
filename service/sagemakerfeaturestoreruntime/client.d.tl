@@ -2,9 +2,13 @@
 
 local types = require("sagemakerfeaturestoreruntime.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Retrieves a batch of Records from a FeatureGroup.
-    batchGetRecord: function(Client, types.BatchGetRecordInput): types.BatchGetRecordOutput, table
+    batchGetRecord: function(Client, types.BatchGetRecordInput): Operation<types.BatchGetRecordOutput>
     -- Deletes a Record from a FeatureGroup in the
     -- OnlineStore. Feature Store supports both SoftDelete and
     -- HardDelete. For SoftDelete (default), feature columns are set
@@ -32,11 +36,11 @@ local record Client
     -- OfflineStore using Amazon Athena or Apache Spark. For information on how to
     -- hard delete a record from the OfflineStore with the Iceberg table format
     -- enabled, see Delete records from the offline store.
-    deleteRecord: function(Client, types.DeleteRecordInput): types.DeleteRecordOutput, table
+    deleteRecord: function(Client, types.DeleteRecordInput): Operation<types.DeleteRecordOutput>
     -- Use for OnlineStore serving from a FeatureStore. Only the
     -- latest records stored in the OnlineStore can be retrieved. If no Record with
     -- RecordIdentifierValue is found, then an empty result is returned.
-    getRecord: function(Client, types.GetRecordInput): types.GetRecordOutput, table
+    getRecord: function(Client, types.GetRecordInput): Operation<types.GetRecordOutput>
     -- The PutRecord API is used to ingest a list of Records into
     -- your feature group.
     -- If a new record’s EventTime is greater, the new record is written to both
@@ -53,7 +57,7 @@ local record Client
     -- is null or unspecified, TtlDuration is set to the default feature
     -- group level TtlDuration. A record level TtlDuration supersedes
     -- the group level TtlDuration.
-    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+    putRecord: function(Client, types.PutRecordInput): Operation<types.PutRecordOutput>
 end
 
 local record M

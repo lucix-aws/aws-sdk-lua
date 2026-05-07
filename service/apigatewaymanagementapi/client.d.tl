@@ -2,13 +2,17 @@
 
 local types = require("apigatewaymanagementapi.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Delete the connection with the provided id.
-    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): Operation<types.DeleteConnectionOutput>
     -- Get information about the connection with the provided id.
-    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getConnection: function(Client, types.GetConnectionInput): Operation<types.GetConnectionOutput>
     -- Sends the provided data to the specified connection.
-    postToConnection: function(Client, types.PostToConnectionInput): types.PostToConnectionOutput, table
+    postToConnection: function(Client, types.PostToConnectionInput): Operation<types.PostToConnectionOutput>
 end
 
 local record M

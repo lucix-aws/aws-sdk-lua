@@ -2,6 +2,10 @@
 
 local types = require("rbin.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a Recycle Bin retention rule. You can create two types of retention rules:
     -- Tag-level retention rules - These retention rules use
@@ -16,33 +20,33 @@ local record Client
     -- Region.
     -- For more information, see
     -- Create Recycle Bin retention rules in the Amazon EBS User Guide.
-    createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    createRule: function(Client, types.CreateRuleInput): Operation<types.CreateRuleOutput>
     -- Deletes a Recycle Bin retention rule. For more information, see
     -- Delete Recycle Bin retention rules in the Amazon Elastic Compute Cloud User Guide.
-    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): Operation<types.DeleteRuleOutput>
     -- Gets information about a Recycle Bin retention rule.
-    getRule: function(Client, types.GetRuleInput): types.GetRuleOutput, table
+    getRule: function(Client, types.GetRuleInput): Operation<types.GetRuleOutput>
     -- Lists the Recycle Bin retention rules in the Region.
-    listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    listRules: function(Client, types.ListRulesInput): Operation<types.ListRulesOutput>
     -- Lists the tags assigned to a retention rule.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Locks a Region-level retention rule. A locked retention rule can't be modified or
     -- deleted.
     -- You can't lock tag-level retention rules, or Region-level retention rules that
     -- have exclusion tags.
-    lockRule: function(Client, types.LockRuleInput): types.LockRuleOutput, table
+    lockRule: function(Client, types.LockRuleInput): Operation<types.LockRuleOutput>
     -- Assigns tags to the specified retention rule.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Unlocks a retention rule. After a retention rule is unlocked, it can be modified or deleted
     -- only after the unlock delay period expires.
-    unlockRule: function(Client, types.UnlockRuleInput): types.UnlockRuleOutput, table
+    unlockRule: function(Client, types.UnlockRuleInput): Operation<types.UnlockRuleOutput>
     -- Unassigns a tag from a retention rule.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing Recycle Bin retention rule. You can update a retention rule's description,
     -- resource tags, and retention period at any time after creation. You can't update a retention rule's
     -- resource type after creation. For more information, see
     -- Update Recycle Bin retention rules in the Amazon Elastic Compute Cloud User Guide.
-    updateRule: function(Client, types.UpdateRuleInput): types.UpdateRuleOutput, table
+    updateRule: function(Client, types.UpdateRuleInput): Operation<types.UpdateRuleOutput>
 end
 
 local record M

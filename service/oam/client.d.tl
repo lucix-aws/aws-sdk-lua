@@ -2,37 +2,41 @@
 
 local types = require("oam.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a link between a source account and a sink that you have created in a monitoring account. After the link is created, data is sent from the source account to the monitoring account. When you create a link, you can optionally specify filters that specify which metric namespaces and which log groups are shared from the source account to the monitoring account. Before you create a link, you must create a sink in the monitoring account and create a sink policy in that account. The sink policy must permit the source account to link to it. You can grant permission to source accounts by granting permission to an entire organization or to individual accounts. For more information, see CreateSink and PutSinkPolicy. Each monitoring account can be linked to as many as 100,000 source accounts. Each source account can be linked to as many as five monitoring accounts.
-    createLink: function(Client, types.CreateLinkInput): types.CreateLinkOutput, table
+    createLink: function(Client, types.CreateLinkInput): Operation<types.CreateLinkOutput>
     -- Use this to create a sink in the current account, so that it can be used as a monitoring account in CloudWatch cross-account observability. A sink is a resource that represents an attachment point in a monitoring account. Source accounts can link to the sink to send observability data. After you create a sink, you must create a sink policy that allows source accounts to attach to it. For more information, see PutSinkPolicy. Each account can contain one sink per Region. If you delete a sink, you can then create a new one in that Region.
-    createSink: function(Client, types.CreateSinkInput): types.CreateSinkOutput, table
+    createSink: function(Client, types.CreateSinkInput): Operation<types.CreateSinkOutput>
     -- Deletes a link between a monitoring account sink and a source account. You must run this operation in the source account.
-    deleteLink: function(Client, types.DeleteLinkInput): types.DeleteLinkOutput, table
+    deleteLink: function(Client, types.DeleteLinkInput): Operation<types.DeleteLinkOutput>
     -- Deletes a sink. You must delete all links to a sink before you can delete that sink.
-    deleteSink: function(Client, types.DeleteSinkInput): types.DeleteSinkOutput, table
+    deleteSink: function(Client, types.DeleteSinkInput): Operation<types.DeleteSinkOutput>
     -- Returns complete information about one link. To use this operation, provide the link ARN. To retrieve a list of link ARNs, use ListLinks.
-    getLink: function(Client, types.GetLinkInput): types.GetLinkOutput, table
+    getLink: function(Client, types.GetLinkInput): Operation<types.GetLinkOutput>
     -- Returns complete information about one monitoring account sink. To use this operation, provide the sink ARN. To retrieve a list of sink ARNs, use ListSinks.
-    getSink: function(Client, types.GetSinkInput): types.GetSinkOutput, table
+    getSink: function(Client, types.GetSinkInput): Operation<types.GetSinkOutput>
     -- Returns the current sink policy attached to this sink. The sink policy specifies what accounts can attach to this sink as source accounts, and what types of data they can share.
-    getSinkPolicy: function(Client, types.GetSinkPolicyInput): types.GetSinkPolicyOutput, table
+    getSinkPolicy: function(Client, types.GetSinkPolicyInput): Operation<types.GetSinkPolicyOutput>
     -- Returns a list of source account links that are linked to this monitoring account sink. To use this operation, provide the sink ARN. To retrieve a list of sink ARNs, use ListSinks. To find a list of links for one source account, use ListLinks.
-    listAttachedLinks: function(Client, types.ListAttachedLinksInput): types.ListAttachedLinksOutput, table
+    listAttachedLinks: function(Client, types.ListAttachedLinksInput): Operation<types.ListAttachedLinksOutput>
     -- Use this operation in a source account to return a list of links to monitoring account sinks that this source account has. To find a list of links for one monitoring account sink, use ListAttachedLinks from within the monitoring account.
-    listLinks: function(Client, types.ListLinksInput): types.ListLinksOutput, table
+    listLinks: function(Client, types.ListLinksInput): Operation<types.ListLinksOutput>
     -- Use this operation in a monitoring account to return the list of sinks created in that account.
-    listSinks: function(Client, types.ListSinksInput): types.ListSinksOutput, table
+    listSinks: function(Client, types.ListSinksInput): Operation<types.ListSinksOutput>
     -- Displays the tags associated with a resource. Both sinks and links support tagging.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates the resource policy that grants permissions to source accounts to link to the monitoring account sink. When you create a sink policy, you can grant permissions to all accounts in an organization or to individual accounts. You can also use a sink policy to limit the types of data that is shared. The six types of services with their respective resource types that you can allow or deny are: Metrics - Specify with AWS::CloudWatch::Metric Log groups - Specify with AWS::Logs::LogGroup Traces - Specify with AWS::XRay::Trace Application Insights - Applications - Specify with AWS::ApplicationInsights::Application Internet Monitor - Specify with AWS::InternetMonitor::Monitor Application Signals - Specify with AWS::ApplicationSignals::Service and AWS::ApplicationSignals::ServiceLevelObjective See the examples in this section to see how to specify permitted source accounts and data types.
-    putSinkPolicy: function(Client, types.PutSinkPolicyInput): types.PutSinkPolicyOutput, table
+    putSinkPolicy: function(Client, types.PutSinkPolicyInput): Operation<types.PutSinkPolicyOutput>
     -- Assigns one or more tags (key-value pairs) to the specified resource. Both sinks and links can be tagged. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings of characters. You can use the TagResource action with a resource that already has tags. If you specify a new tag key for the alarm, this tag is appended to the list of tags associated with the alarm. If you specify a tag key that is already associated with the alarm, the new tag value that you specify replaces the previous value for that tag. You can associate as many as 50 tags with a resource. Unlike tagging permissions in other Amazon Web Services services, to tag or untag links and sinks you must have the oam:ResourceTag permission. The iam:ResourceTag permission does not allow you to tag and untag links and sinks.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified resource. Unlike tagging permissions in other Amazon Web Services services, to tag or untag links and sinks you must have the oam:ResourceTag permission. The iam:TagResource permission does not allow you to tag and untag links and sinks.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Use this operation to change what types of data are shared from a source account to its linked monitoring account sink. You can't change the sink or change the monitoring account with this operation. When you update a link, you can optionally specify filters that specify which metric namespaces and which log groups are shared from the source account to the monitoring account. To update the list of tags associated with the sink, use TagResource.
-    updateLink: function(Client, types.UpdateLinkInput): types.UpdateLinkOutput, table
+    updateLink: function(Client, types.UpdateLinkInput): Operation<types.UpdateLinkOutput>
 end
 
 local record M

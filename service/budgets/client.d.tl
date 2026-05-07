@@ -2,6 +2,10 @@
 
 local types = require("budgets.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a budget and, if included, notifications and subscribers.
     -- Only one of BudgetLimit or PlannedBudgetLimits can be present in
@@ -14,56 +18,56 @@ local record Client
     -- combination. We recommend using FilterExpression and Metrics
     -- as they provide more flexible and powerful filtering capabilities. The Request Syntax
     -- section shows the FilterExpression/Metrics syntax.
-    createBudget: function(Client, types.CreateBudgetInput): types.CreateBudgetOutput, table
+    createBudget: function(Client, types.CreateBudgetInput): Operation<types.CreateBudgetOutput>
     -- Creates a budget action.
-    createBudgetAction: function(Client, types.CreateBudgetActionInput): types.CreateBudgetActionOutput, table
+    createBudgetAction: function(Client, types.CreateBudgetActionInput): Operation<types.CreateBudgetActionOutput>
     -- Creates a notification. You must create the budget before you create the associated notification.
-    createNotification: function(Client, types.CreateNotificationInput): types.CreateNotificationOutput, table
+    createNotification: function(Client, types.CreateNotificationInput): Operation<types.CreateNotificationOutput>
     -- Creates a subscriber. You must create the associated budget and notification before you create the subscriber.
-    createSubscriber: function(Client, types.CreateSubscriberInput): types.CreateSubscriberOutput, table
+    createSubscriber: function(Client, types.CreateSubscriberInput): Operation<types.CreateSubscriberOutput>
     -- Deletes a budget. You can delete your budget at any time.
     -- Deleting a budget also deletes the notifications and subscribers that are associated with that budget.
-    deleteBudget: function(Client, types.DeleteBudgetInput): types.DeleteBudgetOutput, table
+    deleteBudget: function(Client, types.DeleteBudgetInput): Operation<types.DeleteBudgetOutput>
     -- Deletes a budget action.
-    deleteBudgetAction: function(Client, types.DeleteBudgetActionInput): types.DeleteBudgetActionOutput, table
+    deleteBudgetAction: function(Client, types.DeleteBudgetActionInput): Operation<types.DeleteBudgetActionOutput>
     -- Deletes a notification.
     -- Deleting a notification also deletes the subscribers that are associated with the notification.
-    deleteNotification: function(Client, types.DeleteNotificationInput): types.DeleteNotificationOutput, table
+    deleteNotification: function(Client, types.DeleteNotificationInput): Operation<types.DeleteNotificationOutput>
     -- Deletes a subscriber.
     -- Deleting the last subscriber to a notification also deletes the notification.
-    deleteSubscriber: function(Client, types.DeleteSubscriberInput): types.DeleteSubscriberOutput, table
+    deleteSubscriber: function(Client, types.DeleteSubscriberInput): Operation<types.DeleteSubscriberOutput>
     -- Describes a budget.
     -- The Request Syntax section shows the BudgetLimit syntax. For
     -- PlannedBudgetLimits, see the Examples section.
-    describeBudget: function(Client, types.DescribeBudgetInput): types.DescribeBudgetOutput, table
+    describeBudget: function(Client, types.DescribeBudgetInput): Operation<types.DescribeBudgetOutput>
     -- Describes a budget action detail.
-    describeBudgetAction: function(Client, types.DescribeBudgetActionInput): types.DescribeBudgetActionOutput, table
+    describeBudgetAction: function(Client, types.DescribeBudgetActionInput): Operation<types.DescribeBudgetActionOutput>
     -- Describes a budget action history detail.
-    describeBudgetActionHistories: function(Client, types.DescribeBudgetActionHistoriesInput): types.DescribeBudgetActionHistoriesOutput, table
+    describeBudgetActionHistories: function(Client, types.DescribeBudgetActionHistoriesInput): Operation<types.DescribeBudgetActionHistoriesOutput>
     -- Describes all of the budget actions for an account.
-    describeBudgetActionsForAccount: function(Client, types.DescribeBudgetActionsForAccountInput): types.DescribeBudgetActionsForAccountOutput, table
+    describeBudgetActionsForAccount: function(Client, types.DescribeBudgetActionsForAccountInput): Operation<types.DescribeBudgetActionsForAccountOutput>
     -- Describes all of the budget actions for a budget.
-    describeBudgetActionsForBudget: function(Client, types.DescribeBudgetActionsForBudgetInput): types.DescribeBudgetActionsForBudgetOutput, table
+    describeBudgetActionsForBudget: function(Client, types.DescribeBudgetActionsForBudgetInput): Operation<types.DescribeBudgetActionsForBudgetOutput>
     -- Lists the budget names and notifications that are associated with an account.
-    describeBudgetNotificationsForAccount: function(Client, types.DescribeBudgetNotificationsForAccountInput): types.DescribeBudgetNotificationsForAccountOutput, table
+    describeBudgetNotificationsForAccount: function(Client, types.DescribeBudgetNotificationsForAccountInput): Operation<types.DescribeBudgetNotificationsForAccountOutput>
     -- Describes the history for DAILY, MONTHLY, and QUARTERLY budgets. Budget history isn't available for ANNUAL budgets.
-    describeBudgetPerformanceHistory: function(Client, types.DescribeBudgetPerformanceHistoryInput): types.DescribeBudgetPerformanceHistoryOutput, table
+    describeBudgetPerformanceHistory: function(Client, types.DescribeBudgetPerformanceHistoryInput): Operation<types.DescribeBudgetPerformanceHistoryOutput>
     -- Lists the budgets that are associated with an account.
     -- The Request Syntax section shows the BudgetLimit syntax. For
     -- PlannedBudgetLimits, see the Examples section.
-    describeBudgets: function(Client, types.DescribeBudgetsInput): types.DescribeBudgetsOutput, table
+    describeBudgets: function(Client, types.DescribeBudgetsInput): Operation<types.DescribeBudgetsOutput>
     -- Lists the notifications that are associated with a budget.
-    describeNotificationsForBudget: function(Client, types.DescribeNotificationsForBudgetInput): types.DescribeNotificationsForBudgetOutput, table
+    describeNotificationsForBudget: function(Client, types.DescribeNotificationsForBudgetInput): Operation<types.DescribeNotificationsForBudgetOutput>
     -- Lists the subscribers that are associated with a notification.
-    describeSubscribersForNotification: function(Client, types.DescribeSubscribersForNotificationInput): types.DescribeSubscribersForNotificationOutput, table
+    describeSubscribersForNotification: function(Client, types.DescribeSubscribersForNotificationInput): Operation<types.DescribeSubscribersForNotificationOutput>
     -- Executes a budget action.
-    executeBudgetAction: function(Client, types.ExecuteBudgetActionInput): types.ExecuteBudgetActionOutput, table
+    executeBudgetAction: function(Client, types.ExecuteBudgetActionInput): Operation<types.ExecuteBudgetActionOutput>
     -- Lists tags associated with a budget or budget action resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates tags for a budget or budget action resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes tags associated with a budget or budget action resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a budget. You can change every part of a budget except for the budgetName and the calculatedSpend. When you modify a budget, the calculatedSpend drops to zero until Amazon Web Services has new usage data to use for forecasting.
     -- Only one of BudgetLimit or PlannedBudgetLimits can be present in
     -- the syntax at one time. Use the syntax that matches your case. The Request Syntax
@@ -75,13 +79,13 @@ local record Client
     -- combination. We recommend using FilterExpression and Metrics
     -- as they provide more flexible and powerful filtering capabilities. The Request Syntax
     -- section shows the FilterExpression/Metrics syntax.
-    updateBudget: function(Client, types.UpdateBudgetInput): types.UpdateBudgetOutput, table
+    updateBudget: function(Client, types.UpdateBudgetInput): Operation<types.UpdateBudgetOutput>
     -- Updates a budget action.
-    updateBudgetAction: function(Client, types.UpdateBudgetActionInput): types.UpdateBudgetActionOutput, table
+    updateBudgetAction: function(Client, types.UpdateBudgetActionInput): Operation<types.UpdateBudgetActionOutput>
     -- Updates a notification.
-    updateNotification: function(Client, types.UpdateNotificationInput): types.UpdateNotificationOutput, table
+    updateNotification: function(Client, types.UpdateNotificationInput): Operation<types.UpdateNotificationOutput>
     -- Updates a subscriber.
-    updateSubscriber: function(Client, types.UpdateSubscriberInput): types.UpdateSubscriberOutput, table
+    updateSubscriber: function(Client, types.UpdateSubscriberInput): Operation<types.UpdateSubscriberOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("ebs.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Seals and completes the snapshot after all of the required blocks of data have been
     -- written to it. Completing the snapshot changes the status to completed. You
@@ -10,26 +14,26 @@ local record Client
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    completeSnapshot: function(Client, types.CompleteSnapshotInput): types.CompleteSnapshotOutput, table
+    completeSnapshot: function(Client, types.CompleteSnapshotInput): Operation<types.CompleteSnapshotOutput>
     -- Returns the data in a block in an Amazon Elastic Block Store snapshot.
     -- You should always retry requests that receive server (5xx)
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    getSnapshotBlock: function(Client, types.GetSnapshotBlockInput): types.GetSnapshotBlockOutput, table
+    getSnapshotBlock: function(Client, types.GetSnapshotBlockInput): Operation<types.GetSnapshotBlockOutput>
     -- Returns information about the blocks that are different between two
     -- Amazon Elastic Block Store snapshots of the same volume/snapshot lineage.
     -- You should always retry requests that receive server (5xx)
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    listChangedBlocks: function(Client, types.ListChangedBlocksInput): types.ListChangedBlocksOutput, table
+    listChangedBlocks: function(Client, types.ListChangedBlocksInput): Operation<types.ListChangedBlocksOutput>
     -- Returns information about the blocks in an Amazon Elastic Block Store snapshot.
     -- You should always retry requests that receive server (5xx)
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    listSnapshotBlocks: function(Client, types.ListSnapshotBlocksInput): types.ListSnapshotBlocksOutput, table
+    listSnapshotBlocks: function(Client, types.ListSnapshotBlocksInput): Operation<types.ListSnapshotBlocksOutput>
     -- Writes a block of data to a snapshot. If the specified block contains
     -- data, the existing data is overwritten. The target snapshot must be in the
     -- pending state.
@@ -38,7 +42,7 @@ local record Client
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    putSnapshotBlock: function(Client, types.PutSnapshotBlockInput): types.PutSnapshotBlockOutput, table
+    putSnapshotBlock: function(Client, types.PutSnapshotBlockInput): Operation<types.PutSnapshotBlockOutput>
     -- Creates a new Amazon EBS snapshot. The new snapshot enters the pending state
     -- after the request completes.
     -- After creating the snapshot, use PutSnapshotBlock to
@@ -47,7 +51,7 @@ local record Client
     -- error responses, and ThrottlingException and RequestThrottledException
     -- client error responses. For more information see Error retries in the
     -- Amazon Elastic Compute Cloud User Guide.
-    startSnapshot: function(Client, types.StartSnapshotInput): types.StartSnapshotOutput, table
+    startSnapshot: function(Client, types.StartSnapshotInput): Operation<types.StartSnapshotOutput>
 end
 
 local record M

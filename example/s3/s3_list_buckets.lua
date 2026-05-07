@@ -14,7 +14,7 @@ local s3 = require("s3.client")
 local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 local client = s3.new({ region = region })
 
-local result, err = client:listBuckets({})
+local result, err = client:listBuckets({}):await()
 if err then
     io.stderr:write("ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)

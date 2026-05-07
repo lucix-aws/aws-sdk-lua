@@ -2,9 +2,13 @@
 
 local types = require("bcmrecommendedactions.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns a list of recommended actions that match the filter criteria.
-    listRecommendedActions: function(Client, types.ListRecommendedActionsInput): types.ListRecommendedActionsOutput, table
+    listRecommendedActions: function(Client, types.ListRecommendedActionsInput): Operation<types.ListRecommendedActionsOutput>
 end
 
 local record M

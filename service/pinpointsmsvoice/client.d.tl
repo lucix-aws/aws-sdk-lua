@@ -2,23 +2,27 @@
 
 local types = require("pinpointsmsvoice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Create a new configuration set. After you create the configuration set, you can add one or more event destinations to it.
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): Operation<types.CreateConfigurationSetOutput>
     -- Create a new event destination in a configuration set.
-    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): types.CreateConfigurationSetEventDestinationOutput, table
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): Operation<types.CreateConfigurationSetEventDestinationOutput>
     -- Deletes an existing configuration set.
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): Operation<types.DeleteConfigurationSetOutput>
     -- Deletes an event destination in a configuration set.
-    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): types.DeleteConfigurationSetEventDestinationOutput, table
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): Operation<types.DeleteConfigurationSetEventDestinationOutput>
     -- Obtain information about an event destination, including the types of events it reports, the Amazon Resource Name (ARN) of the destination, and the name of the event destination.
-    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput): types.GetConfigurationSetEventDestinationsOutput, table
+    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput): Operation<types.GetConfigurationSetEventDestinationsOutput>
     -- List all of the configuration sets associated with your Amazon Pinpoint account in the current region.
-    listConfigurationSets: function(Client, types.ListConfigurationSetsInput): types.ListConfigurationSetsOutput, table
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput): Operation<types.ListConfigurationSetsOutput>
     -- Create a new voice message and send it to a recipient's phone number.
-    sendVoiceMessage: function(Client, types.SendVoiceMessageInput): types.SendVoiceMessageOutput, table
+    sendVoiceMessage: function(Client, types.SendVoiceMessageInput): Operation<types.SendVoiceMessageOutput>
     -- Update an event destination in a configuration set. An event destination is a location that you publish information about your voice calls to. For example, you can log an event to an Amazon CloudWatch destination when a call fails.
-    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): types.UpdateConfigurationSetEventDestinationOutput, table
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): Operation<types.UpdateConfigurationSetEventDestinationOutput>
 end
 
 local record M

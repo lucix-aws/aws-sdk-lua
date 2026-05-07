@@ -2,6 +2,10 @@
 
 local types = require("cloudtrail.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds one or more tags to a trail, event data store, dashboard, or channel, up to a limit of 50. Overwrites an
     -- existing tag's value when a new value is specified for an existing tag key. Tag key names
@@ -10,18 +14,18 @@ local record Client
     -- key and a value of null. You can tag a trail or event data store that applies to all
     -- Amazon Web Services Regions only from the Region in which the trail or event data store
     -- was created (also known as its home Region).
-    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    addTags: function(Client, types.AddTagsInput): Operation<types.AddTagsOutput>
     -- Cancels a query if the query is not in a terminated state, such as
     -- CANCELLED, FAILED, TIMED_OUT, or
     -- FINISHED. You must specify an ARN value for EventDataStore.
     -- The ID of the query that you want to cancel is also required. When you run
     -- CancelQuery, the query status might show as CANCELLED even if
     -- the operation is not yet finished.
-    cancelQuery: function(Client, types.CancelQueryInput): types.CancelQueryOutput, table
+    cancelQuery: function(Client, types.CancelQueryInput): Operation<types.CancelQueryOutput>
     -- Creates a channel for CloudTrail to ingest events from a partner or external source.
     -- After you create a channel, a CloudTrail Lake event data store can log events
     -- from the partner or source that you specify.
-    createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    createChannel: function(Client, types.CreateChannelInput): Operation<types.CreateChannelOutput>
     -- Creates a custom dashboard or the Highlights dashboard.
     -- Custom dashboards - Custom dashboards allow you to query
     -- events in any event data store type. You can add up to 10 widgets to a custom dashboard. You can manually refresh a custom dashboard, or you can set a refresh schedule.
@@ -34,15 +38,15 @@ local record Client
     -- see
     -- Resource-based policy example for a dashboard in the CloudTrail User Guide.
     -- For more information about dashboards, see CloudTrail Lake dashboards in the CloudTrail User Guide.
-    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createDashboard: function(Client, types.CreateDashboardInput): Operation<types.CreateDashboardOutput>
     -- Creates a new event data store.
-    createEventDataStore: function(Client, types.CreateEventDataStoreInput): types.CreateEventDataStoreOutput, table
+    createEventDataStore: function(Client, types.CreateEventDataStoreInput): Operation<types.CreateEventDataStoreOutput>
     -- Creates a trail that specifies the settings for delivery of log data to an Amazon S3 bucket.
-    createTrail: function(Client, types.CreateTrailInput): types.CreateTrailOutput, table
+    createTrail: function(Client, types.CreateTrailInput): Operation<types.CreateTrailOutput>
     -- Deletes a channel.
-    deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    deleteChannel: function(Client, types.DeleteChannelInput): Operation<types.DeleteChannelOutput>
     -- Deletes the specified dashboard. You cannot delete a dashboard that has termination protection enabled.
-    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): Operation<types.DeleteDashboardOutput>
     -- Disables the event data store specified by EventDataStore, which accepts an
     -- event data store ARN. After you run DeleteEventDataStore, the event data store
     -- enters a PENDING_DELETION state, and is automatically deleted after a wait
@@ -54,9 +58,9 @@ local record Client
     -- ListQueries, DescribeQuery, or GetQueryResults on
     -- queries that are using an event data store in a PENDING_DELETION state. An
     -- event data store in the PENDING_DELETION state does not incur costs.
-    deleteEventDataStore: function(Client, types.DeleteEventDataStoreInput): types.DeleteEventDataStoreOutput, table
+    deleteEventDataStore: function(Client, types.DeleteEventDataStoreInput): Operation<types.DeleteEventDataStoreOutput>
     -- Deletes the resource-based policy attached to the CloudTrail event data store, dashboard, or channel.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a trail. This operation must be called from the Region in which the trail was
     -- created. DeleteTrail cannot be called on the shadow trails (replicated trails
     -- in other Regions) of a trail that is enabled in all Regions.
@@ -68,10 +72,10 @@ local record Client
     -- logging of events in other Regions even if the trails in those other Regions have
     -- identical names to the deleted trail.
     -- For information about account closure and deletion of CloudTrail trails, see https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-account-closure.html.
-    deleteTrail: function(Client, types.DeleteTrailInput): types.DeleteTrailOutput, table
+    deleteTrail: function(Client, types.DeleteTrailInput): Operation<types.DeleteTrailOutput>
     -- Removes CloudTrail delegated administrator permissions from a member account in
     -- an organization.
-    deregisterOrganizationDelegatedAdmin: function(Client, types.DeregisterOrganizationDelegatedAdminInput): types.DeregisterOrganizationDelegatedAdminOutput, table
+    deregisterOrganizationDelegatedAdmin: function(Client, types.DeregisterOrganizationDelegatedAdminInput): Operation<types.DeregisterOrganizationDelegatedAdminOutput>
     -- Returns metadata about a query, including query run time in milliseconds, number of
     -- events scanned and matched, and query status. If the query results were delivered to an S3 bucket,
     -- the response also provides the S3 URI and the delivery status.
@@ -79,15 +83,15 @@ local record Client
     -- returns information about the last query run for the alias. You can provide
     -- RefreshId along with QueryAlias to view the query results
     -- of a dashboard query for the specified RefreshId.
-    describeQuery: function(Client, types.DescribeQueryInput): types.DescribeQueryOutput, table
+    describeQuery: function(Client, types.DescribeQueryInput): Operation<types.DescribeQueryOutput>
     -- Retrieves settings for one or more trails associated with the current Region for your
     -- account.
-    describeTrails: function(Client, types.DescribeTrailsInput): types.DescribeTrailsOutput, table
+    describeTrails: function(Client, types.DescribeTrailsInput): Operation<types.DescribeTrailsOutput>
     -- Disables Lake query federation on the specified event data store. When you disable federation, CloudTrail disables
     -- the integration with Glue, Lake Formation, and Amazon Athena.
     -- After disabling Lake query federation, you can no longer query your event data in Amazon Athena.
     -- No CloudTrail Lake data is deleted when you disable federation and you can continue to run queries in CloudTrail Lake.
-    disableFederation: function(Client, types.DisableFederationInput): types.DisableFederationOutput, table
+    disableFederation: function(Client, types.DisableFederationInput): Operation<types.DisableFederationOutput>
     -- Enables Lake query federation on the specified event data store. Federating an event data store lets you view the metadata associated with the event data store in the Glue
     -- Data Catalog and run
     -- SQL queries against your event data using Amazon Athena. The table metadata stored in the Glue Data Catalog
@@ -98,7 +102,7 @@ local record Client
     -- Lake Formation, the service responsible for allowing fine-grained access control
     -- of the federated resources in the Glue Data Catalog.
     -- For more information about Lake query federation, see Federate an event data store.
-    enableFederation: function(Client, types.EnableFederationInput): types.EnableFederationOutput, table
+    enableFederation: function(Client, types.EnableFederationInput): Operation<types.EnableFederationOutput>
     -- Generates a query from a natural language prompt. This operation uses generative artificial intelligence
     -- (generative AI) to produce a ready-to-use SQL query from the prompt.
     -- The prompt can be a question or a statement about the event data
@@ -111,16 +115,16 @@ local record Client
     -- in your prompts.
     -- This feature uses generative AI large language models (LLMs); we recommend double-checking the
     -- LLM response.
-    generateQuery: function(Client, types.GenerateQueryInput): types.GenerateQueryOutput, table
+    generateQuery: function(Client, types.GenerateQueryInput): Operation<types.GenerateQueryOutput>
     -- Returns information about a specific channel.
-    getChannel: function(Client, types.GetChannelInput): types.GetChannelOutput, table
+    getChannel: function(Client, types.GetChannelInput): Operation<types.GetChannelOutput>
     -- Returns the specified dashboard.
-    getDashboard: function(Client, types.GetDashboardInput): types.GetDashboardOutput, table
+    getDashboard: function(Client, types.GetDashboardInput): Operation<types.GetDashboardOutput>
     -- Retrieves the current event configuration settings for the specified event data store or trail. The response includes maximum event size configuration, the context key selectors configured for the event data store, and any aggregation settings configured for the trail.
-    getEventConfiguration: function(Client, types.GetEventConfigurationInput): types.GetEventConfigurationOutput, table
+    getEventConfiguration: function(Client, types.GetEventConfigurationInput): Operation<types.GetEventConfigurationOutput>
     -- Returns information about an event data store specified as either an ARN or the ID
     -- portion of the ARN.
-    getEventDataStore: function(Client, types.GetEventDataStoreInput): types.GetEventDataStoreOutput, table
+    getEventDataStore: function(Client, types.GetEventDataStoreInput): Operation<types.GetEventDataStoreOutput>
     -- Describes the settings for the event selectors that you configured for your trail. The
     -- information returned for your event selectors includes the following:
     -- If your event selector includes read-only events, write-only events, or all
@@ -135,9 +139,9 @@ local record Client
     -- Logging management events
     -- Logging data events
     -- Logging network activity events
-    getEventSelectors: function(Client, types.GetEventSelectorsInput): types.GetEventSelectorsOutput, table
+    getEventSelectors: function(Client, types.GetEventSelectorsInput): Operation<types.GetEventSelectorsOutput>
     -- Returns information about a specific import.
-    getImport: function(Client, types.GetImportInput): types.GetImportOutput, table
+    getImport: function(Client, types.GetImportInput): Operation<types.GetImportOutput>
     -- Describes the settings for the Insights event selectors that you configured for your
     -- trail or event data store. GetInsightSelectors shows if CloudTrail Insights logging is enabled
     -- and which Insights types are configured with corresponding event categories. If you run
@@ -146,32 +150,32 @@ local record Client
     -- Specify either the EventDataStore parameter to get Insights event selectors for an event data store,
     -- or the TrailName parameter to the get Insights event selectors for a trail. You cannot specify these parameters together.
     -- For more information, see Working with CloudTrail Insights in the CloudTrail User Guide.
-    getInsightSelectors: function(Client, types.GetInsightSelectorsInput): types.GetInsightSelectorsOutput, table
+    getInsightSelectors: function(Client, types.GetInsightSelectorsInput): Operation<types.GetInsightSelectorsOutput>
     -- Gets event data results of a query. You must specify the QueryID value
     -- returned by the StartQuery operation.
-    getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    getQueryResults: function(Client, types.GetQueryResultsInput): Operation<types.GetQueryResultsOutput>
     -- Retrieves the JSON text of the resource-based policy document attached to the CloudTrail event data store, dashboard, or channel.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Returns settings information for a specified trail.
-    getTrail: function(Client, types.GetTrailInput): types.GetTrailOutput, table
+    getTrail: function(Client, types.GetTrailInput): Operation<types.GetTrailOutput>
     -- Returns a JSON-formatted list of information about the specified trail. Fields include
     -- information on delivery errors, Amazon SNS and Amazon S3 errors, and start
     -- and stop logging times for each trail. This operation returns trail status from a single
     -- Region. To return trail status from all Regions, you must call the operation on each
     -- Region.
-    getTrailStatus: function(Client, types.GetTrailStatusInput): types.GetTrailStatusOutput, table
+    getTrailStatus: function(Client, types.GetTrailStatusInput): Operation<types.GetTrailStatusOutput>
     -- Lists the channels in the current account, and their source names.
-    listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    listChannels: function(Client, types.ListChannelsInput): Operation<types.ListChannelsOutput>
     -- Returns information about all dashboards in the account, in the current Region.
-    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): Operation<types.ListDashboardsOutput>
     -- Returns information about all event data stores in the account, in the current
     -- Region.
-    listEventDataStores: function(Client, types.ListEventDataStoresInput): types.ListEventDataStoresOutput, table
+    listEventDataStores: function(Client, types.ListEventDataStoresInput): Operation<types.ListEventDataStoresOutput>
     -- Returns a list of failures for the specified import.
-    listImportFailures: function(Client, types.ListImportFailuresInput): types.ListImportFailuresOutput, table
+    listImportFailures: function(Client, types.ListImportFailuresInput): Operation<types.ListImportFailuresOutput>
     -- Returns information on all imports, or a select set of imports by
     -- ImportStatus or Destination.
-    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listImports: function(Client, types.ListImportsInput): Operation<types.ListImportsOutput>
     -- Returns Insights events generated on a trail that logs data events. You can list Insights events that occurred in a Region within the last 90 days.
     -- ListInsightsData supports the following Dimensions for Insights events:
     -- Event ID
@@ -182,7 +186,7 @@ local record Client
     -- of results.
     -- The rate of ListInsightsData requests is limited to two per second, per account, per Region. If
     -- this limit is exceeded, a throttling error occurs.
-    listInsightsData: function(Client, types.ListInsightsDataInput): types.ListInsightsDataOutput, table
+    listInsightsData: function(Client, types.ListInsightsDataInput): Operation<types.ListInsightsDataOutput>
     -- Returns Insights metrics data for trails that have enabled Insights. The request must include the EventSource,
     -- EventName, and InsightType parameters.
     -- If the InsightType is set to ApiErrorRateInsight, the request must also include the ErrorCode parameter.
@@ -195,7 +199,7 @@ local record Client
     -- you must have permissions to perform the cloudtrail:LookupEvents and cloudtrail:ListInsightsData action on the specific trail.
     -- If ListInsightsMetricData is invoked without TrailName parameter, access to the ListInsightsMetricData API operation is linked to the cloudtrail:LookupEvents action only. To use this operation,
     -- you must have permissions to perform the cloudtrail:LookupEvents action.
-    listInsightsMetricData: function(Client, types.ListInsightsMetricDataInput): types.ListInsightsMetricDataOutput, table
+    listInsightsMetricData: function(Client, types.ListInsightsMetricDataInput): Operation<types.ListInsightsMetricDataOutput>
     -- Returns all public keys whose private keys were used to sign the digest files within the
     -- specified time range. The public key is needed to validate digest files that were signed
     -- with its corresponding private key.
@@ -203,7 +207,7 @@ local record Client
     -- file is signed with a private key unique to its Region. When you validate a digest file
     -- from a specific Region, you must look in the same Region for its corresponding public
     -- key.
-    listPublicKeys: function(Client, types.ListPublicKeysInput): types.ListPublicKeysOutput, table
+    listPublicKeys: function(Client, types.ListPublicKeysInput): Operation<types.ListPublicKeysOutput>
     -- Returns a list of queries and query statuses for the past seven days. You must specify
     -- an ARN value for EventDataStore. Optionally, to shorten the list of results,
     -- you can specify a time range, formatted as timestamps, by adding StartTime and
@@ -211,11 +215,11 @@ local record Client
     -- QueryStatus include QUEUED, RUNNING,
     -- FINISHED, FAILED, TIMED_OUT, or
     -- CANCELLED.
-    listQueries: function(Client, types.ListQueriesInput): types.ListQueriesOutput, table
+    listQueries: function(Client, types.ListQueriesInput): Operation<types.ListQueriesOutput>
     -- Lists the tags for the specified trails, event data stores, dashboards, or channels in the current Region.
-    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    listTags: function(Client, types.ListTagsInput): Operation<types.ListTagsOutput>
     -- Lists trails that are in the current account.
-    listTrails: function(Client, types.ListTrailsInput): types.ListTrailsOutput, table
+    listTrails: function(Client, types.ListTrailsInput): Operation<types.ListTrailsOutput>
     -- Looks up management events or CloudTrail Insights events that are captured by CloudTrail.
     -- You can look up events that occurred in a Region within the last 90 days.
     -- LookupEvents returns recent Insights events for trails that enable Insights. To view Insights events for an event data store, you can run queries on your
@@ -238,9 +242,9 @@ local record Client
     -- of results.
     -- The rate of lookup requests is limited to two per second, per account, per Region. If
     -- this limit is exceeded, a throttling error occurs.
-    lookupEvents: function(Client, types.LookupEventsInput): types.LookupEventsOutput, table
+    lookupEvents: function(Client, types.LookupEventsInput): Operation<types.LookupEventsOutput>
     -- Updates the event configuration settings for the specified event data store or trail. This operation supports updating the maximum event size, adding or modifying context key selectors for event data store, and configuring aggregation settings for the trail.
-    putEventConfiguration: function(Client, types.PutEventConfigurationInput): types.PutEventConfigurationOutput, table
+    putEventConfiguration: function(Client, types.PutEventConfigurationInput): Operation<types.PutEventConfigurationOutput>
     -- Configures event selectors (also referred to as basic event selectors) or advanced event selectors for your trail. You can use
     -- either AdvancedEventSelectors or EventSelectors, but not both. If
     -- you apply AdvancedEventSelectors to a trail, any existing
@@ -280,7 +284,7 @@ local record Client
     -- data events, Logging
     -- network activity events, and Quotas in CloudTrail in the CloudTrail User
     -- Guide.
-    putEventSelectors: function(Client, types.PutEventSelectorsInput): types.PutEventSelectorsOutput, table
+    putEventSelectors: function(Client, types.PutEventSelectorsInput): Operation<types.PutEventSelectorsOutput>
     -- Lets you enable Insights event logging on specific event categories by specifying the Insights selectors that you
     -- want to enable on an existing trail or event data store. You also use PutInsightSelectors to turn
     -- off Insights event logging, by passing an empty list of Insights types. The valid Insights
@@ -301,30 +305,30 @@ local record Client
     -- to check whether the trail logs management events. You can call GetEventDataStore on an
     -- event data store to check whether the event data store logs management events.
     -- For more information, see Working with CloudTrail Insights in the CloudTrail User Guide.
-    putInsightSelectors: function(Client, types.PutInsightSelectorsInput): types.PutInsightSelectorsOutput, table
+    putInsightSelectors: function(Client, types.PutInsightSelectorsInput): Operation<types.PutInsightSelectorsOutput>
     -- Attaches a resource-based permission policy to a CloudTrail event data store, dashboard, or channel. For more information about resource-based policies, see
     -- CloudTrail resource-based policy examples
     -- in the CloudTrail User Guide.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Registers an organization’s member account as the CloudTrail delegated administrator.
-    registerOrganizationDelegatedAdmin: function(Client, types.RegisterOrganizationDelegatedAdminInput): types.RegisterOrganizationDelegatedAdminOutput, table
+    registerOrganizationDelegatedAdmin: function(Client, types.RegisterOrganizationDelegatedAdminInput): Operation<types.RegisterOrganizationDelegatedAdminOutput>
     -- Removes the specified tags from a trail, event data store, dashboard, or channel.
-    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): Operation<types.RemoveTagsOutput>
     -- Restores a deleted event data store specified by EventDataStore, which
     -- accepts an event data store ARN. You can only restore a deleted event data store within the
     -- seven-day wait period after deletion. Restoring an event data store can take several
     -- minutes, depending on the size of the event data store.
-    restoreEventDataStore: function(Client, types.RestoreEventDataStoreInput): types.RestoreEventDataStoreOutput, table
+    restoreEventDataStore: function(Client, types.RestoreEventDataStoreInput): Operation<types.RestoreEventDataStoreOutput>
     -- Searches sample queries and returns a list of sample queries that are sorted by relevance.
     -- To search for sample queries, provide a natural language SearchPhrase in English.
-    searchSampleQueries: function(Client, types.SearchSampleQueriesInput): types.SearchSampleQueriesOutput, table
+    searchSampleQueries: function(Client, types.SearchSampleQueriesInput): Operation<types.SearchSampleQueriesOutput>
     -- Starts a refresh of the specified dashboard.
     -- Each time a dashboard is refreshed, CloudTrail runs queries to populate the dashboard's widgets. CloudTrail must be granted permissions to run the StartQuery operation on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to each event data store. For more information,
     -- see Example: Allow CloudTrail to run queries to populate a dashboard in the CloudTrail User Guide.
-    startDashboardRefresh: function(Client, types.StartDashboardRefreshInput): types.StartDashboardRefreshOutput, table
+    startDashboardRefresh: function(Client, types.StartDashboardRefreshInput): Operation<types.StartDashboardRefreshOutput>
     -- Starts the ingestion of live events on an event data store specified as either an ARN or the ID portion of the ARN. To start ingestion, the event data store Status must be STOPPED_INGESTION
     -- and the eventCategory must be Management, Data, NetworkActivity, or ConfigurationItem.
-    startEventDataStoreIngestion: function(Client, types.StartEventDataStoreIngestionInput): types.StartEventDataStoreIngestionOutput, table
+    startEventDataStoreIngestion: function(Client, types.StartEventDataStoreIngestionInput): Operation<types.StartEventDataStoreIngestionOutput>
     -- Starts an import of logged trail events from a source S3 bucket to a destination event
     -- data store. By default, CloudTrail only imports events contained in the S3 bucket's
     -- CloudTrail prefix and the prefixes inside the CloudTrail prefix, and does not check prefixes for other Amazon Web Services
@@ -340,24 +344,24 @@ local record Client
     -- If the destination event data store is for an organization, you must use the
     -- management account to import trail events. You cannot use the delegated administrator
     -- account for the organization.
-    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startImport: function(Client, types.StartImportInput): Operation<types.StartImportOutput>
     -- Starts the recording of Amazon Web Services API calls and log file delivery for a trail.
     -- For a trail that is enabled in all Regions, this operation must be called from the Region
     -- in which the trail was created. This operation cannot be called on the shadow trails
     -- (replicated trails in other Regions) of a trail that is enabled in all Regions.
-    startLogging: function(Client, types.StartLoggingInput): types.StartLoggingOutput, table
+    startLogging: function(Client, types.StartLoggingInput): Operation<types.StartLoggingOutput>
     -- Starts a CloudTrail Lake query. Use the QueryStatement
     -- parameter to provide your SQL query, enclosed in single quotation marks. Use the optional
     -- DeliveryS3Uri parameter to deliver the query results to an S3
     -- bucket.
     -- StartQuery requires you specify either the QueryStatement parameter, or a QueryAlias and any QueryParameters. In the current release,
     -- the QueryAlias and QueryParameters parameters are used only for the queries that populate the CloudTrail Lake dashboards.
-    startQuery: function(Client, types.StartQueryInput): types.StartQueryOutput, table
+    startQuery: function(Client, types.StartQueryInput): Operation<types.StartQueryOutput>
     -- Stops the ingestion of live events on an event data store specified as either an ARN or the ID portion of the ARN. To stop ingestion, the event data store Status must be ENABLED
     -- and the eventCategory must be Management, Data, NetworkActivity, or ConfigurationItem.
-    stopEventDataStoreIngestion: function(Client, types.StopEventDataStoreIngestionInput): types.StopEventDataStoreIngestionOutput, table
+    stopEventDataStoreIngestion: function(Client, types.StopEventDataStoreIngestionInput): Operation<types.StopEventDataStoreIngestionOutput>
     -- Stops a specified import.
-    stopImport: function(Client, types.StopImportInput): types.StopImportOutput, table
+    stopImport: function(Client, types.StopImportInput): Operation<types.StopImportOutput>
     -- Suspends the recording of Amazon Web Services API calls and log file delivery for the
     -- specified trail. Under most circumstances, there is no need to use this action. You can
     -- update a trail without stopping it first. This action is the only way to stop recording.
@@ -365,16 +369,16 @@ local record Client
     -- the trail was created, or an InvalidHomeRegionException will occur. This
     -- operation cannot be called on the shadow trails (replicated trails in other Regions) of a
     -- trail enabled in all Regions.
-    stopLogging: function(Client, types.StopLoggingInput): types.StopLoggingOutput, table
+    stopLogging: function(Client, types.StopLoggingInput): Operation<types.StopLoggingOutput>
     -- Updates a channel specified by a required channel ARN or UUID.
-    updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    updateChannel: function(Client, types.UpdateChannelInput): Operation<types.UpdateChannelOutput>
     -- Updates the specified dashboard.
     -- To set a refresh schedule, CloudTrail must be granted permissions to run the StartDashboardRefresh operation to refresh the dashboard on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to the dashboard. For more information,
     -- see
     -- Resource-based policy example for a dashboard in the CloudTrail User Guide.
     -- CloudTrail runs queries to populate the dashboard's widgets during a manual or scheduled refresh. CloudTrail must be granted permissions to run the StartQuery operation on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to each event data store. For more information,
     -- see Example: Allow CloudTrail to run queries to populate a dashboard in the CloudTrail User Guide.
-    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): Operation<types.UpdateDashboardOutput>
     -- Updates an event data store. The required EventDataStore value is an ARN or
     -- the ID portion of the ARN. Other parameters are optional, but at least one optional
     -- parameter must be specified, or CloudTrail throws an error.
@@ -385,14 +389,14 @@ local record Client
     -- information about AdvancedEventSelectors, see AdvancedEventSelectors.
     -- For event data stores for CloudTrail Insights events, Config configuration items, Audit Manager evidence, or non-Amazon Web Services events,
     -- AdvancedEventSelectors includes events of that type in your event data store.
-    updateEventDataStore: function(Client, types.UpdateEventDataStoreInput): types.UpdateEventDataStoreOutput, table
+    updateEventDataStore: function(Client, types.UpdateEventDataStoreInput): Operation<types.UpdateEventDataStoreOutput>
     -- Updates trail settings that control what events you are logging, and how to handle log
     -- files. Changes to a trail do not require stopping the CloudTrail service. Use this
     -- action to designate an existing bucket for log delivery. If the existing bucket has
     -- previously been a target for CloudTrail log files, an IAM policy
     -- exists for the bucket. UpdateTrail must be called from the Region in which the
     -- trail was created; otherwise, an InvalidHomeRegionException is thrown.
-    updateTrail: function(Client, types.UpdateTrailInput): types.UpdateTrailOutput, table
+    updateTrail: function(Client, types.UpdateTrailInput): Operation<types.UpdateTrailOutput>
 end
 
 local record M

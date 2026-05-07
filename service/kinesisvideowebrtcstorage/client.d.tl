@@ -2,6 +2,10 @@
 
 local types = require("kinesisvideowebrtcstorage.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Before using this API, you must call the GetSignalingChannelEndpoint API to request the WEBRTC endpoint. You then specify the endpoint and region in your JoinStorageSession API request.
     -- Join the ongoing one way-video and/or multi-way audio WebRTC session as a video producing
@@ -31,7 +35,7 @@ local record Client
     -- Idempotent - This API is not idempotent.
     -- Retry behavior - This is counted as a new API call.
     -- Concurrent calls - Concurrent calls are allowed. An offer is sent once per each call.
-    joinStorageSession: function(Client, types.JoinStorageSessionInput): types.JoinStorageSessionOutput, table
+    joinStorageSession: function(Client, types.JoinStorageSessionInput): Operation<types.JoinStorageSessionOutput>
     -- Join the ongoing one way-video and/or multi-way audio WebRTC session as
     -- a viewer for an input channel. If there’s
     -- no existing session for the channel, create a new streaming session and provide
@@ -47,7 +51,7 @@ local record Client
     -- HLS or DASH playback, Image generation, and more
     -- with ingested WebRTC media. If there’s an existing session with the same
     -- clientId that's found in the join session request, the new request takes precedence.
-    joinStorageSessionAsViewer: function(Client, types.JoinStorageSessionAsViewerInput): types.JoinStorageSessionAsViewerOutput, table
+    joinStorageSessionAsViewer: function(Client, types.JoinStorageSessionAsViewerInput): Operation<types.JoinStorageSessionAsViewerOutput>
 end
 
 local record M

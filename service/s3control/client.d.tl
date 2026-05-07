@@ -2,13 +2,17 @@
 
 local types = require("s3control.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associate your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance. Use this action if you want to create access grants for users or groups from your corporate identity directory. First, you must add your corporate identity directory to Amazon Web Services IAM Identity Center. Then, you can associate this IAM Identity Center instance with your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:AssociateAccessGrantsIdentityCenter permission to use this operation.
     -- Additional Permissions
     -- You must also have the following permissions: sso:CreateApplication, sso:PutApplicationGrant, and sso:PutApplicationAuthenticationMethod.
-    associateAccessGrantsIdentityCenter: function(Client, types.AssociateAccessGrantsIdentityCenterInput): types.AssociateAccessGrantsIdentityCenterOutput, table
+    associateAccessGrantsIdentityCenter: function(Client, types.AssociateAccessGrantsIdentityCenterInput): Operation<types.AssociateAccessGrantsIdentityCenterOutput>
     -- Creates an access grant that gives a grantee access to your S3 data. The grantee can be an IAM user or role or a directory user, or group. Before you can create a grant, you must have an S3 Access Grants instance in the same Region as the S3 data. You can create an S3 Access Grants instance using the CreateAccessGrantsInstance. You must also have registered at least one S3 data location in your S3 Access Grants instance using CreateAccessGrantsLocation.
     -- Permissions
     -- You must have the s3:CreateAccessGrant permission to use this operation.
@@ -16,13 +20,13 @@ local record Client
     -- For any directory identity - sso:DescribeInstance and sso:DescribeApplication
     -- For directory users - identitystore:DescribeUser
     -- For directory groups - identitystore:DescribeGroup
-    createAccessGrant: function(Client, types.CreateAccessGrantInput): types.CreateAccessGrantOutput, table
+    createAccessGrant: function(Client, types.CreateAccessGrantInput): Operation<types.CreateAccessGrantOutput>
     -- Creates an S3 Access Grants instance, which serves as a logical grouping for access grants. You can create one S3 Access Grants instance per Region per account.
     -- Permissions
     -- You must have the s3:CreateAccessGrantsInstance permission to use this operation.
     -- Additional Permissions
     -- To associate an IAM Identity Center instance with your S3 Access Grants instance, you must also have the sso:DescribeInstance, sso:CreateApplication, sso:PutApplicationGrant, and sso:PutApplicationAuthenticationMethod permissions.
-    createAccessGrantsInstance: function(Client, types.CreateAccessGrantsInstanceInput): types.CreateAccessGrantsInstanceOutput, table
+    createAccessGrantsInstance: function(Client, types.CreateAccessGrantsInstanceInput): Operation<types.CreateAccessGrantsInstanceOutput>
     -- The S3 data location that you would like to register in your S3 Access Grants instance. Your S3 data must be in the same Region as your S3 Access Grants instance. The location can be one of the following:
     -- The default S3 location s3://
     -- A bucket - S3://
@@ -32,7 +36,7 @@ local record Client
     -- You must have the s3:CreateAccessGrantsLocation permission to use this operation.
     -- Additional Permissions
     -- You must also have the following permission for the specified IAM role: iam:PassRole
-    createAccessGrantsLocation: function(Client, types.CreateAccessGrantsLocationInput): types.CreateAccessGrantsLocationOutput, table
+    createAccessGrantsLocation: function(Client, types.CreateAccessGrantsLocationInput): Operation<types.CreateAccessGrantsLocationOutput>
     -- Creates an access point and associates it to a specified bucket. For more information, see
     -- Managing
     -- access to shared datasets with access points or Managing access to
@@ -50,7 +54,7 @@ local record Client
     -- DeleteAccessPoint
     -- ListAccessPoints
     -- ListAccessPointsForDirectoryBuckets
-    createAccessPoint: function(Client, types.CreateAccessPointInput): types.CreateAccessPointOutput, table
+    createAccessPoint: function(Client, types.CreateAccessPointInput): Operation<types.CreateAccessPointOutput>
     -- This operation is not supported by directory buckets.
     -- Creates an Object Lambda Access Point. For more information, see Transforming objects with
     -- Object Lambda Access Points in the Amazon S3 User Guide.
@@ -59,7 +63,7 @@ local record Client
     -- DeleteAccessPointForObjectLambda
     -- GetAccessPointForObjectLambda
     -- ListAccessPointsForObjectLambda
-    createAccessPointForObjectLambda: function(Client, types.CreateAccessPointForObjectLambdaInput): types.CreateAccessPointForObjectLambdaOutput, table
+    createAccessPointForObjectLambda: function(Client, types.CreateAccessPointForObjectLambdaInput): Operation<types.CreateAccessPointForObjectLambdaOutput>
     -- This action creates an Amazon S3 on Outposts bucket. To create an S3 bucket, see Create
     -- Bucket in the Amazon S3 API Reference.
     -- Creates a new Outposts bucket. By creating the bucket, you become the bucket owner. To
@@ -83,7 +87,7 @@ local record Client
     -- DeleteBucket
     -- CreateAccessPoint
     -- PutAccessPointPolicy
-    createBucket: function(Client, types.CreateBucketInput): types.CreateBucketOutput, table
+    createBucket: function(Client, types.CreateBucketInput): Operation<types.CreateBucketOutput>
     -- This operation creates an S3 Batch Operations job.
     -- You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects.
     -- Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more
@@ -97,7 +101,7 @@ local record Client
     -- UpdateJobPriority
     -- UpdateJobStatus
     -- JobOperation
-    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createJob: function(Client, types.CreateJobInput): Operation<types.CreateJobOutput>
     -- This operation is not supported by directory buckets.
     -- Creates a Multi-Region Access Point and associates it with the specified buckets. For more information
     -- about creating Multi-Region Access Points, see Creating Multi-Region Access Points in the Amazon S3 User Guide.
@@ -113,7 +117,7 @@ local record Client
     -- DescribeMultiRegionAccessPointOperation
     -- GetMultiRegionAccessPoint
     -- ListMultiRegionAccessPoints
-    createMultiRegionAccessPoint: function(Client, types.CreateMultiRegionAccessPointOperationInput): types.CreateMultiRegionAccessPointOutput, table
+    createMultiRegionAccessPoint: function(Client, types.CreateMultiRegionAccessPointOperationInput): Operation<types.CreateMultiRegionAccessPointOutput>
     -- Creates a new S3 Storage Lens group and associates it with the specified Amazon Web Services account ID. An
     -- S3 Storage Lens group is a custom grouping of objects based on prefix, suffix, object tags,
     -- object size, object age, or a combination of these filters. For each Storage Lens group
@@ -127,30 +131,30 @@ local record Client
     -- Groups permissions, see Setting account permissions to use S3 Storage Lens groups.
     -- For information about Storage Lens groups errors, see List of Amazon S3 Storage
     -- Lens error codes.
-    createStorageLensGroup: function(Client, types.CreateStorageLensGroupInput): types.CreateStorageLensGroupOutput, table
+    createStorageLensGroup: function(Client, types.CreateStorageLensGroupInput): Operation<types.CreateStorageLensGroupOutput>
     -- Deletes the access grant from the S3 Access Grants instance. You cannot undo an access grant deletion and the grantee will no longer have access to the S3 data.
     -- Permissions
     -- You must have the s3:DeleteAccessGrant permission to use this operation.
-    deleteAccessGrant: function(Client, types.DeleteAccessGrantInput): types.DeleteAccessGrantOutput, table
+    deleteAccessGrant: function(Client, types.DeleteAccessGrantInput): Operation<types.DeleteAccessGrantOutput>
     -- Deletes your S3 Access Grants instance. You must first delete the access grants and locations before S3 Access Grants can delete the instance. See DeleteAccessGrant and DeleteAccessGrantsLocation. If you have associated an IAM Identity Center instance with your S3 Access Grants instance, you must first dissassociate the Identity Center instance from the S3 Access Grants instance before you can delete the S3 Access Grants instance. See AssociateAccessGrantsIdentityCenter and DissociateAccessGrantsIdentityCenter.
     -- Permissions
     -- You must have the s3:DeleteAccessGrantsInstance permission to use this operation.
-    deleteAccessGrantsInstance: function(Client, types.DeleteAccessGrantsInstanceInput): types.DeleteAccessGrantsInstanceOutput, table
+    deleteAccessGrantsInstance: function(Client, types.DeleteAccessGrantsInstanceInput): Operation<types.DeleteAccessGrantsInstanceOutput>
     -- Deletes the resource policy of the S3 Access Grants instance. The resource policy is used to manage cross-account access to your S3 Access Grants instance. By deleting the resource policy, you delete any cross-account permissions to your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:DeleteAccessGrantsInstanceResourcePolicy permission to use this operation.
-    deleteAccessGrantsInstanceResourcePolicy: function(Client, types.DeleteAccessGrantsInstanceResourcePolicyInput): types.DeleteAccessGrantsInstanceResourcePolicyOutput, table
+    deleteAccessGrantsInstanceResourcePolicy: function(Client, types.DeleteAccessGrantsInstanceResourcePolicyInput): Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
     -- Deregisters a location from your S3 Access Grants instance. You can only delete a location registration from an S3 Access Grants instance if there are no grants associated with this location. See Delete a grant for information on how to delete grants. You need to have at least one registered location in your S3 Access Grants instance in order to create access grants.
     -- Permissions
     -- You must have the s3:DeleteAccessGrantsLocation permission to use this operation.
-    deleteAccessGrantsLocation: function(Client, types.DeleteAccessGrantsLocationInput): types.DeleteAccessGrantsLocationOutput, table
+    deleteAccessGrantsLocation: function(Client, types.DeleteAccessGrantsLocationInput): Operation<types.DeleteAccessGrantsLocationOutput>
     -- Deletes the specified access point.
     -- All Amazon S3 on Outposts REST API requests for this action require an additional parameter of x-amz-outpost-id to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of s3-control. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived by using the access point ARN, see the Examples section.
     -- The following actions are related to DeleteAccessPoint:
     -- CreateAccessPoint
     -- GetAccessPoint
     -- ListAccessPoints
-    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): types.DeleteAccessPointOutput, table
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): Operation<types.DeleteAccessPointOutput>
     -- This operation is not supported by directory buckets.
     -- Deletes the specified Object Lambda Access Point.
     -- The following actions are related to
@@ -158,26 +162,26 @@ local record Client
     -- CreateAccessPointForObjectLambda
     -- GetAccessPointForObjectLambda
     -- ListAccessPointsForObjectLambda
-    deleteAccessPointForObjectLambda: function(Client, types.DeleteAccessPointForObjectLambdaInput): types.DeleteAccessPointForObjectLambdaOutput, table
+    deleteAccessPointForObjectLambda: function(Client, types.DeleteAccessPointForObjectLambdaInput): Operation<types.DeleteAccessPointForObjectLambdaOutput>
     -- Deletes the access point policy for the specified access point.
     -- All Amazon S3 on Outposts REST API requests for this action require an additional parameter of x-amz-outpost-id to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of s3-control. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived by using the access point ARN, see the Examples section.
     -- The following actions are related to DeleteAccessPointPolicy:
     -- PutAccessPointPolicy
     -- GetAccessPointPolicy
-    deleteAccessPointPolicy: function(Client, types.DeleteAccessPointPolicyInput): types.DeleteAccessPointPolicyOutput, table
+    deleteAccessPointPolicy: function(Client, types.DeleteAccessPointPolicyInput): Operation<types.DeleteAccessPointPolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Removes the resource policy for an Object Lambda Access Point.
     -- The following actions are related to
     -- DeleteAccessPointPolicyForObjectLambda:
     -- GetAccessPointPolicyForObjectLambda
     -- PutAccessPointPolicyForObjectLambda
-    deleteAccessPointPolicyForObjectLambda: function(Client, types.DeleteAccessPointPolicyForObjectLambdaInput): types.DeleteAccessPointPolicyForObjectLambdaOutput, table
+    deleteAccessPointPolicyForObjectLambda: function(Client, types.DeleteAccessPointPolicyForObjectLambdaInput): Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
     -- Deletes an existing access point scope for a directory bucket.
     -- When you delete the scope of an access point, all prefixes and permissions are deleted.
     -- To use this operation, you must have the permission to perform the
     -- s3express:DeleteAccessPointScope action.
     -- For information about REST API errors, see REST error responses.
-    deleteAccessPointScope: function(Client, types.DeleteAccessPointScopeInput): types.DeleteAccessPointScopeOutput, table
+    deleteAccessPointScope: function(Client, types.DeleteAccessPointScopeInput): Operation<types.DeleteAccessPointScopeOutput>
     -- This action deletes an Amazon S3 on Outposts bucket. To delete an S3 bucket, see DeleteBucket in the Amazon S3 API Reference.
     -- Deletes the Amazon S3 on Outposts bucket. All objects (including all object versions and
     -- delete markers) in the bucket must be deleted before the bucket itself can be deleted. For
@@ -188,7 +192,7 @@ local record Client
     -- CreateBucket
     -- GetBucket
     -- DeleteObject
-    deleteBucket: function(Client, types.DeleteBucketInput): types.DeleteBucketOutput, table
+    deleteBucket: function(Client, types.DeleteBucketInput): Operation<types.DeleteBucketOutput>
     -- This action deletes an Amazon S3 on Outposts bucket's lifecycle configuration. To delete
     -- an S3 bucket's lifecycle configuration, see DeleteBucketLifecycle in the Amazon S3 API Reference.
     -- Deletes the lifecycle configuration from the specified Outposts bucket.
@@ -206,7 +210,7 @@ local record Client
     -- Related actions include:
     -- PutBucketLifecycleConfiguration
     -- GetBucketLifecycleConfiguration
-    deleteBucketLifecycleConfiguration: function(Client, types.DeleteBucketLifecycleConfigurationInput): types.DeleteBucketLifecycleConfigurationOutput, table
+    deleteBucketLifecycleConfiguration: function(Client, types.DeleteBucketLifecycleConfigurationInput): Operation<types.DeleteBucketLifecycleConfigurationOutput>
     -- This action deletes an Amazon S3 on Outposts bucket policy. To delete an S3 bucket policy,
     -- see DeleteBucketPolicy in the Amazon S3 API Reference.
     -- This implementation of the DELETE action uses the policy subresource to delete the
@@ -229,7 +233,7 @@ local record Client
     -- The following actions are related to DeleteBucketPolicy:
     -- GetBucketPolicy
     -- PutBucketPolicy
-    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): types.DeleteBucketPolicyOutput, table
+    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): Operation<types.DeleteBucketPolicyOutput>
     -- This operation deletes an Amazon S3 on Outposts bucket's replication configuration. To
     -- delete an S3 bucket's replication configuration, see DeleteBucketReplication in the Amazon S3 API Reference.
     -- Deletes the replication configuration from the specified S3 on Outposts bucket.
@@ -251,7 +255,7 @@ local record Client
     -- The following operations are related to DeleteBucketReplication:
     -- PutBucketReplication
     -- GetBucketReplication
-    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): types.DeleteBucketReplicationOutput, table
+    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): Operation<types.DeleteBucketReplicationOutput>
     -- This action deletes an Amazon S3 on Outposts bucket's tags. To delete an S3 bucket tags,
     -- see DeleteBucketTagging in the Amazon S3 API Reference.
     -- Deletes the tags from the Outposts bucket. For more information, see Using
@@ -263,7 +267,7 @@ local record Client
     -- The following actions are related to DeleteBucketTagging:
     -- GetBucketTagging
     -- PutBucketTagging
-    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): types.DeleteBucketTaggingOutput, table
+    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): Operation<types.DeleteBucketTaggingOutput>
     -- Removes the entire tag set from the specified S3 Batch Operations job.
     -- Permissions
     -- To use the
@@ -275,7 +279,7 @@ local record Client
     -- CreateJob
     -- GetJobTagging
     -- PutJobTagging
-    deleteJobTagging: function(Client, types.DeleteJobTaggingInput): types.DeleteJobTaggingOutput, table
+    deleteJobTagging: function(Client, types.DeleteJobTaggingInput): Operation<types.DeleteJobTaggingOutput>
     -- This operation is not supported by directory buckets.
     -- Deletes a Multi-Region Access Point. This action does not delete the buckets associated with the Multi-Region Access Point,
     -- only the Multi-Region Access Point itself.
@@ -291,7 +295,7 @@ local record Client
     -- DescribeMultiRegionAccessPointOperation
     -- GetMultiRegionAccessPoint
     -- ListMultiRegionAccessPoints
-    deleteMultiRegionAccessPoint: function(Client, types.DeleteMultiRegionAccessPointOperationInput): types.DeleteMultiRegionAccessPointOutput, table
+    deleteMultiRegionAccessPoint: function(Client, types.DeleteMultiRegionAccessPointOperationInput): Operation<types.DeleteMultiRegionAccessPointOutput>
     -- This operation is not supported by directory buckets.
     -- Removes the PublicAccessBlock configuration for an Amazon Web Services account. This
     -- operation might be restricted when the account is managed by organization-level Block
@@ -303,7 +307,7 @@ local record Client
     -- Related actions include:
     -- GetPublicAccessBlock
     -- PutPublicAccessBlock
-    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): types.DeletePublicAccessBlockOutput, table
+    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): Operation<types.DeletePublicAccessBlockOutput>
     -- This operation is not supported by directory buckets.
     -- Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Assessing your storage
     -- activity and usage with Amazon S3 Storage Lens in the
@@ -312,7 +316,7 @@ local record Client
     -- s3:DeleteStorageLensConfiguration action. For more information, see
     -- Setting permissions to
     -- use Amazon S3 Storage Lens in the Amazon S3 User Guide.
-    deleteStorageLensConfiguration: function(Client, types.DeleteStorageLensConfigurationInput): types.DeleteStorageLensConfigurationOutput, table
+    deleteStorageLensConfiguration: function(Client, types.DeleteStorageLensConfigurationInput): Operation<types.DeleteStorageLensConfigurationOutput>
     -- This operation is not supported by directory buckets.
     -- Deletes the Amazon S3 Storage Lens configuration tags. For more information about S3 Storage Lens, see
     -- Assessing your
@@ -322,14 +326,14 @@ local record Client
     -- s3:DeleteStorageLensConfigurationTagging action. For more information,
     -- see Setting permissions to
     -- use Amazon S3 Storage Lens in the Amazon S3 User Guide.
-    deleteStorageLensConfigurationTagging: function(Client, types.DeleteStorageLensConfigurationTaggingInput): types.DeleteStorageLensConfigurationTaggingOutput, table
+    deleteStorageLensConfigurationTagging: function(Client, types.DeleteStorageLensConfigurationTaggingInput): Operation<types.DeleteStorageLensConfigurationTaggingOutput>
     -- Deletes an existing S3 Storage Lens group.
     -- To use this operation, you must have the permission to perform the
     -- s3:DeleteStorageLensGroup action. For more information about the required Storage Lens
     -- Groups permissions, see Setting account permissions to use S3 Storage Lens groups.
     -- For information about Storage Lens groups errors, see List of Amazon S3 Storage
     -- Lens error codes.
-    deleteStorageLensGroup: function(Client, types.DeleteStorageLensGroupInput): types.DeleteStorageLensGroupOutput, table
+    deleteStorageLensGroup: function(Client, types.DeleteStorageLensGroupInput): Operation<types.DeleteStorageLensGroupOutput>
     -- Retrieves the configuration parameters and status for a Batch Operations job. For more
     -- information, see S3 Batch Operations in the Amazon S3 User Guide.
     -- Permissions
@@ -339,7 +343,7 @@ local record Client
     -- ListJobs
     -- UpdateJobPriority
     -- UpdateJobStatus
-    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeJob: function(Client, types.DescribeJobInput): Operation<types.DescribeJobOutput>
     -- This operation is not supported by directory buckets.
     -- Retrieves the status of an asynchronous request to manage a Multi-Region Access Point. For more information
     -- about managing Multi-Region Access Points and how asynchronous requests work, see Using Multi-Region Access Points in the Amazon S3 User Guide.
@@ -348,81 +352,81 @@ local record Client
     -- DeleteMultiRegionAccessPoint
     -- GetMultiRegionAccessPoint
     -- ListMultiRegionAccessPoints
-    describeMultiRegionAccessPointOperation: function(Client, types.DescribeMultiRegionAccessPointOperationInput): types.DescribeMultiRegionAccessPointOperationOutput, table
+    describeMultiRegionAccessPointOperation: function(Client, types.DescribeMultiRegionAccessPointOperationInput): Operation<types.DescribeMultiRegionAccessPointOperationOutput>
     -- Dissociates the Amazon Web Services IAM Identity Center instance from the S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:DissociateAccessGrantsIdentityCenter permission to use this operation.
     -- Additional Permissions
     -- You must have the sso:DeleteApplication permission to use this operation.
-    dissociateAccessGrantsIdentityCenter: function(Client, types.DissociateAccessGrantsIdentityCenterInput): types.DissociateAccessGrantsIdentityCenterOutput, table
+    dissociateAccessGrantsIdentityCenter: function(Client, types.DissociateAccessGrantsIdentityCenterInput): Operation<types.DissociateAccessGrantsIdentityCenterOutput>
     -- Get the details of an access grant from your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:GetAccessGrant permission to use this operation.
-    getAccessGrant: function(Client, types.GetAccessGrantInput): types.GetAccessGrantOutput, table
+    getAccessGrant: function(Client, types.GetAccessGrantInput): Operation<types.GetAccessGrantOutput>
     -- Retrieves the S3 Access Grants instance for a Region in your account.
     -- Permissions
     -- You must have the s3:GetAccessGrantsInstance permission to use this operation.
     -- GetAccessGrantsInstance is not supported for cross-account access. You can only call the API from the account that owns the S3 Access Grants instance.
-    getAccessGrantsInstance: function(Client, types.GetAccessGrantsInstanceInput): types.GetAccessGrantsInstanceOutput, table
+    getAccessGrantsInstance: function(Client, types.GetAccessGrantsInstanceInput): Operation<types.GetAccessGrantsInstanceOutput>
     -- Retrieve the S3 Access Grants instance that contains a particular prefix.
     -- Permissions
     -- You must have the s3:GetAccessGrantsInstanceForPrefix permission for the caller account to use this operation.
     -- Additional Permissions
     -- The prefix owner account must grant you the following permissions to their S3 Access Grants instance: s3:GetAccessGrantsInstanceForPrefix.
-    getAccessGrantsInstanceForPrefix: function(Client, types.GetAccessGrantsInstanceForPrefixInput): types.GetAccessGrantsInstanceForPrefixOutput, table
+    getAccessGrantsInstanceForPrefix: function(Client, types.GetAccessGrantsInstanceForPrefixInput): Operation<types.GetAccessGrantsInstanceForPrefixOutput>
     -- Returns the resource policy of the S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:GetAccessGrantsInstanceResourcePolicy permission to use this operation.
-    getAccessGrantsInstanceResourcePolicy: function(Client, types.GetAccessGrantsInstanceResourcePolicyInput): types.GetAccessGrantsInstanceResourcePolicyOutput, table
+    getAccessGrantsInstanceResourcePolicy: function(Client, types.GetAccessGrantsInstanceResourcePolicyInput): Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
     -- Retrieves the details of a particular location registered in your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:GetAccessGrantsLocation permission to use this operation.
-    getAccessGrantsLocation: function(Client, types.GetAccessGrantsLocationInput): types.GetAccessGrantsLocationOutput, table
+    getAccessGrantsLocation: function(Client, types.GetAccessGrantsLocationInput): Operation<types.GetAccessGrantsLocationOutput>
     -- Returns configuration information about the specified access point.
     -- All Amazon S3 on Outposts REST API requests for this action require an additional parameter of x-amz-outpost-id to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of s3-control. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived by using the access point ARN, see the Examples section.
     -- The following actions are related to GetAccessPoint:
     -- CreateAccessPoint
     -- DeleteAccessPoint
     -- ListAccessPoints
-    getAccessPoint: function(Client, types.GetAccessPointInput): types.GetAccessPointOutput, table
+    getAccessPoint: function(Client, types.GetAccessPointInput): Operation<types.GetAccessPointOutput>
     -- This operation is not supported by directory buckets.
     -- Returns configuration for an Object Lambda Access Point.
     -- The following actions are related to
     -- GetAccessPointConfigurationForObjectLambda:
     -- PutAccessPointConfigurationForObjectLambda
-    getAccessPointConfigurationForObjectLambda: function(Client, types.GetAccessPointConfigurationForObjectLambdaInput): types.GetAccessPointConfigurationForObjectLambdaOutput, table
+    getAccessPointConfigurationForObjectLambda: function(Client, types.GetAccessPointConfigurationForObjectLambdaInput): Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
     -- This operation is not supported by directory buckets.
     -- Returns configuration information about the specified Object Lambda Access Point
     -- The following actions are related to GetAccessPointForObjectLambda:
     -- CreateAccessPointForObjectLambda
     -- DeleteAccessPointForObjectLambda
     -- ListAccessPointsForObjectLambda
-    getAccessPointForObjectLambda: function(Client, types.GetAccessPointForObjectLambdaInput): types.GetAccessPointForObjectLambdaOutput, table
+    getAccessPointForObjectLambda: function(Client, types.GetAccessPointForObjectLambdaInput): Operation<types.GetAccessPointForObjectLambdaOutput>
     -- Returns the access point policy associated with the specified access point.
     -- The following actions are related to GetAccessPointPolicy:
     -- PutAccessPointPolicy
     -- DeleteAccessPointPolicy
-    getAccessPointPolicy: function(Client, types.GetAccessPointPolicyInput): types.GetAccessPointPolicyOutput, table
+    getAccessPointPolicy: function(Client, types.GetAccessPointPolicyInput): Operation<types.GetAccessPointPolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Returns the resource policy for an Object Lambda Access Point.
     -- The following actions are related to
     -- GetAccessPointPolicyForObjectLambda:
     -- DeleteAccessPointPolicyForObjectLambda
     -- PutAccessPointPolicyForObjectLambda
-    getAccessPointPolicyForObjectLambda: function(Client, types.GetAccessPointPolicyForObjectLambdaInput): types.GetAccessPointPolicyForObjectLambdaOutput, table
+    getAccessPointPolicyForObjectLambda: function(Client, types.GetAccessPointPolicyForObjectLambdaInput): Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
     -- This operation is not supported by directory buckets.
     -- Indicates whether the specified access point currently has a policy that allows public access.
     -- For more information about public access through access points, see Managing Data Access with Amazon S3
     -- access points in the Amazon S3 User Guide.
-    getAccessPointPolicyStatus: function(Client, types.GetAccessPointPolicyStatusInput): types.GetAccessPointPolicyStatusOutput, table
+    getAccessPointPolicyStatus: function(Client, types.GetAccessPointPolicyStatusInput): Operation<types.GetAccessPointPolicyStatusOutput>
     -- This operation is not supported by directory buckets.
     -- Returns the status of the resource policy associated with an Object Lambda Access Point.
-    getAccessPointPolicyStatusForObjectLambda: function(Client, types.GetAccessPointPolicyStatusForObjectLambdaInput): types.GetAccessPointPolicyStatusForObjectLambdaOutput, table
+    getAccessPointPolicyStatusForObjectLambda: function(Client, types.GetAccessPointPolicyStatusForObjectLambdaInput): Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
     -- Returns the access point scope for a directory bucket.
     -- To use this operation, you must have the permission to perform the
     -- s3express:GetAccessPointScope action.
     -- For information about REST API errors, see REST error responses.
-    getAccessPointScope: function(Client, types.GetAccessPointScopeInput): types.GetAccessPointScopeOutput, table
+    getAccessPointScope: function(Client, types.GetAccessPointScopeInput): Operation<types.GetAccessPointScopeOutput>
     -- Gets an Amazon S3 on Outposts bucket. For more information, see Using Amazon S3 on Outposts in the
     -- Amazon S3 User Guide.
     -- If you are using an identity other than the root user of the Amazon Web Services account that owns the
@@ -438,7 +442,7 @@ local record Client
     -- PutObject
     -- CreateBucket
     -- DeleteBucket
-    getBucket: function(Client, types.GetBucketInput): types.GetBucketOutput, table
+    getBucket: function(Client, types.GetBucketInput): Operation<types.GetBucketOutput>
     -- This action gets an Amazon S3 on Outposts bucket's lifecycle configuration. To get an S3
     -- bucket's lifecycle configuration, see GetBucketLifecycleConfiguration in the Amazon S3 API Reference.
     -- Returns the lifecycle configuration information set on the Outposts bucket. For more
@@ -460,7 +464,7 @@ local record Client
     -- GetBucketLifecycleConfiguration:
     -- PutBucketLifecycleConfiguration
     -- DeleteBucketLifecycleConfiguration
-    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): types.GetBucketLifecycleConfigurationOutput, table
+    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): Operation<types.GetBucketLifecycleConfigurationOutput>
     -- This action gets a bucket policy for an Amazon S3 on Outposts bucket. To get a policy for
     -- an S3 bucket, see GetBucketPolicy in the
     -- Amazon S3 API Reference.
@@ -484,7 +488,7 @@ local record Client
     -- GetObject
     -- PutBucketPolicy
     -- DeleteBucketPolicy
-    getBucketPolicy: function(Client, types.GetBucketPolicyInput): types.GetBucketPolicyOutput, table
+    getBucketPolicy: function(Client, types.GetBucketPolicyInput): Operation<types.GetBucketPolicyOutput>
     -- This operation gets an Amazon S3 on Outposts bucket's replication configuration. To get an
     -- S3 bucket's replication configuration, see GetBucketReplication
     -- in the Amazon S3 API Reference.
@@ -513,7 +517,7 @@ local record Client
     -- The following operations are related to GetBucketReplication:
     -- PutBucketReplication
     -- DeleteBucketReplication
-    getBucketReplication: function(Client, types.GetBucketReplicationInput): types.GetBucketReplicationOutput, table
+    getBucketReplication: function(Client, types.GetBucketReplicationInput): Operation<types.GetBucketReplicationOutput>
     -- This action gets an Amazon S3 on Outposts bucket's tags. To get an S3 bucket tags, see
     -- GetBucketTagging in the Amazon S3 API Reference.
     -- Returns the tag set associated with the Outposts bucket. For more information, see
@@ -529,7 +533,7 @@ local record Client
     -- The following actions are related to GetBucketTagging:
     -- PutBucketTagging
     -- DeleteBucketTagging
-    getBucketTagging: function(Client, types.GetBucketTaggingInput): types.GetBucketTaggingOutput, table
+    getBucketTagging: function(Client, types.GetBucketTaggingInput): Operation<types.GetBucketTaggingOutput>
     -- This operation returns the versioning state
     -- for
     -- S3 on Outposts
@@ -552,13 +556,13 @@ local record Client
     -- PutBucketVersioning
     -- PutBucketLifecycleConfiguration
     -- GetBucketLifecycleConfiguration
-    getBucketVersioning: function(Client, types.GetBucketVersioningInput): types.GetBucketVersioningOutput, table
+    getBucketVersioning: function(Client, types.GetBucketVersioningInput): Operation<types.GetBucketVersioningOutput>
     -- Returns a temporary access credential from S3 Access Grants to the grantee or client application. The temporary credential is an Amazon Web Services STS token that grants them access to the S3 data.
     -- Permissions
     -- You must have the s3:GetDataAccess permission to use this operation.
     -- Additional Permissions
     -- The IAM role that S3 Access Grants assumes must have the following permissions specified in the trust policy when registering the location: sts:AssumeRole, for directory users or groups sts:SetContext, and for IAM users or roles sts:SetSourceIdentity.
-    getDataAccess: function(Client, types.GetDataAccessInput): types.GetDataAccessOutput, table
+    getDataAccess: function(Client, types.GetDataAccessInput): Operation<types.GetDataAccessOutput>
     -- Returns the tags on an S3 Batch Operations job.
     -- Permissions
     -- To use the
@@ -570,7 +574,7 @@ local record Client
     -- CreateJob
     -- PutJobTagging
     -- DeleteJobTagging
-    getJobTagging: function(Client, types.GetJobTaggingInput): types.GetJobTaggingOutput, table
+    getJobTagging: function(Client, types.GetJobTaggingInput): Operation<types.GetJobTaggingOutput>
     -- This operation is not supported by directory buckets.
     -- Returns configuration information about the specified Multi-Region Access Point.
     -- This action will always be routed to the US West (Oregon) Region. For more information
@@ -581,7 +585,7 @@ local record Client
     -- DeleteMultiRegionAccessPoint
     -- DescribeMultiRegionAccessPointOperation
     -- ListMultiRegionAccessPoints
-    getMultiRegionAccessPoint: function(Client, types.GetMultiRegionAccessPointInput): types.GetMultiRegionAccessPointOutput, table
+    getMultiRegionAccessPoint: function(Client, types.GetMultiRegionAccessPointInput): Operation<types.GetMultiRegionAccessPointOutput>
     -- This operation is not supported by directory buckets.
     -- Returns the access control policy of the specified Multi-Region Access Point.
     -- This action will always be routed to the US West (Oregon) Region. For more information
@@ -591,7 +595,7 @@ local record Client
     -- GetMultiRegionAccessPointPolicy:
     -- GetMultiRegionAccessPointPolicyStatus
     -- PutMultiRegionAccessPointPolicy
-    getMultiRegionAccessPointPolicy: function(Client, types.GetMultiRegionAccessPointPolicyInput): types.GetMultiRegionAccessPointPolicyOutput, table
+    getMultiRegionAccessPointPolicy: function(Client, types.GetMultiRegionAccessPointPolicyInput): Operation<types.GetMultiRegionAccessPointPolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Indicates whether the specified Multi-Region Access Point has an access control policy that allows public
     -- access.
@@ -602,7 +606,7 @@ local record Client
     -- GetMultiRegionAccessPointPolicyStatus:
     -- GetMultiRegionAccessPointPolicy
     -- PutMultiRegionAccessPointPolicy
-    getMultiRegionAccessPointPolicyStatus: function(Client, types.GetMultiRegionAccessPointPolicyStatusInput): types.GetMultiRegionAccessPointPolicyStatusOutput, table
+    getMultiRegionAccessPointPolicyStatus: function(Client, types.GetMultiRegionAccessPointPolicyStatusInput): Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
     -- This operation is not supported by directory buckets.
     -- Returns the routing configuration for a Multi-Region Access Point, indicating which Regions are active or
     -- passive.
@@ -613,7 +617,7 @@ local record Client
     -- ap-southeast-2
     -- ap-northeast-1
     -- eu-west-1
-    getMultiRegionAccessPointRoutes: function(Client, types.GetMultiRegionAccessPointRoutesInput): types.GetMultiRegionAccessPointRoutesOutput, table
+    getMultiRegionAccessPointRoutes: function(Client, types.GetMultiRegionAccessPointRoutesInput): Operation<types.GetMultiRegionAccessPointRoutesOutput>
     -- This operation is not supported by directory buckets.
     -- Retrieves the PublicAccessBlock configuration for an Amazon Web Services account. This
     -- operation returns the effective account-level configuration, which may inherit from
@@ -622,7 +626,7 @@ local record Client
     -- Related actions include:
     -- DeletePublicAccessBlock
     -- PutPublicAccessBlock
-    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): types.GetPublicAccessBlockOutput, table
+    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): Operation<types.GetPublicAccessBlockOutput>
     -- This operation is not supported by directory buckets.
     -- Gets the Amazon S3 Storage Lens configuration. For more information, see Assessing your storage
     -- activity and usage with Amazon S3 Storage Lens in the
@@ -630,7 +634,7 @@ local record Client
     -- To use this action, you must have permission to perform the
     -- s3:GetStorageLensConfiguration action. For more information, see Setting permissions to use Amazon S3 Storage Lens in the
     -- Amazon S3 User Guide.
-    getStorageLensConfiguration: function(Client, types.GetStorageLensConfigurationInput): types.GetStorageLensConfigurationOutput, table
+    getStorageLensConfiguration: function(Client, types.GetStorageLensConfigurationInput): Operation<types.GetStorageLensConfigurationOutput>
     -- This operation is not supported by directory buckets.
     -- Gets the tags of Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see
     -- Assessing your
@@ -640,26 +644,26 @@ local record Client
     -- s3:GetStorageLensConfigurationTagging action. For more information, see
     -- Setting permissions to
     -- use Amazon S3 Storage Lens in the Amazon S3 User Guide.
-    getStorageLensConfigurationTagging: function(Client, types.GetStorageLensConfigurationTaggingInput): types.GetStorageLensConfigurationTaggingOutput, table
+    getStorageLensConfigurationTagging: function(Client, types.GetStorageLensConfigurationTaggingInput): Operation<types.GetStorageLensConfigurationTaggingOutput>
     -- Retrieves the Storage Lens group configuration details.
     -- To use this operation, you must have the permission to perform the
     -- s3:GetStorageLensGroup action. For more information about the required Storage Lens
     -- Groups permissions, see Setting account permissions to use S3 Storage Lens groups.
     -- For information about Storage Lens groups errors, see List of Amazon S3 Storage
     -- Lens error codes.
-    getStorageLensGroup: function(Client, types.GetStorageLensGroupInput): types.GetStorageLensGroupOutput, table
+    getStorageLensGroup: function(Client, types.GetStorageLensGroupInput): Operation<types.GetStorageLensGroupOutput>
     -- Returns the list of access grants in your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:ListAccessGrants permission to use this operation.
-    listAccessGrants: function(Client, types.ListAccessGrantsInput): types.ListAccessGrantsOutput, table
+    listAccessGrants: function(Client, types.ListAccessGrantsInput): Operation<types.ListAccessGrantsOutput>
     -- Returns a list of S3 Access Grants instances. An S3 Access Grants instance serves as a logical grouping for your individual access grants. You can only have one S3 Access Grants instance per Region per account.
     -- Permissions
     -- You must have the s3:ListAccessGrantsInstances permission to use this operation.
-    listAccessGrantsInstances: function(Client, types.ListAccessGrantsInstancesInput): types.ListAccessGrantsInstancesOutput, table
+    listAccessGrantsInstances: function(Client, types.ListAccessGrantsInstancesInput): Operation<types.ListAccessGrantsInstancesOutput>
     -- Returns a list of the locations registered in your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:ListAccessGrantsLocations permission to use this operation.
-    listAccessGrantsLocations: function(Client, types.ListAccessGrantsLocationsInput): types.ListAccessGrantsLocationsOutput, table
+    listAccessGrantsLocations: function(Client, types.ListAccessGrantsLocationsInput): Operation<types.ListAccessGrantsLocationsOutput>
     -- This operation is not supported by directory buckets.
     -- Returns a list of the access points. You can retrieve up to 1,000 access points per call. If the call
     -- returns more than 1,000 access points (or the number specified in maxResults,
@@ -672,13 +676,13 @@ local record Client
     -- CreateAccessPoint
     -- DeleteAccessPoint
     -- GetAccessPoint
-    listAccessPoints: function(Client, types.ListAccessPointsInput): types.ListAccessPointsOutput, table
+    listAccessPoints: function(Client, types.ListAccessPointsInput): Operation<types.ListAccessPointsOutput>
     -- Returns a list of the access points that are owned by the Amazon Web Services account and that are associated with the specified directory bucket.
     -- To list access points for general purpose buckets, see ListAccesspoints.
     -- To use this operation, you must have the permission to perform the
     -- s3express:ListAccessPointsForDirectoryBuckets action.
     -- For information about REST API errors, see REST error responses.
-    listAccessPointsForDirectoryBuckets: function(Client, types.ListAccessPointsForDirectoryBucketsInput): types.ListAccessPointsForDirectoryBucketsOutput, table
+    listAccessPointsForDirectoryBuckets: function(Client, types.ListAccessPointsForDirectoryBucketsInput): Operation<types.ListAccessPointsForDirectoryBucketsOutput>
     -- This operation is not supported by directory buckets.
     -- Returns some or all (up to 1,000) access points associated with the Object Lambda Access Point per call. If there
     -- are more access points than what can be returned in one call, the response will include a
@@ -688,11 +692,11 @@ local record Client
     -- CreateAccessPointForObjectLambda
     -- DeleteAccessPointForObjectLambda
     -- GetAccessPointForObjectLambda
-    listAccessPointsForObjectLambda: function(Client, types.ListAccessPointsForObjectLambdaInput): types.ListAccessPointsForObjectLambdaOutput, table
+    listAccessPointsForObjectLambda: function(Client, types.ListAccessPointsForObjectLambdaInput): Operation<types.ListAccessPointsForObjectLambdaOutput>
     -- Use this API to list the access grants that grant the caller access to Amazon S3 data through S3 Access Grants. The caller (grantee) can be an Identity and Access Management (IAM) identity or Amazon Web Services Identity Center corporate directory identity. You must pass the Amazon Web Services account of the S3 data owner (grantor) in the request. You can, optionally, narrow the results by GrantScope, using a fragment of the data's S3 path, and S3 Access Grants will return only the grants with a path that contains the path fragment. You can also pass the AllowedByApplication filter in the request, which returns only the grants authorized for applications, whether the application is the caller's Identity Center application or any other application (ALL). For more information, see List the caller's access grants in the Amazon S3 User Guide.
     -- Permissions
     -- You must have the s3:ListCallerAccessGrants permission to use this operation.
-    listCallerAccessGrants: function(Client, types.ListCallerAccessGrantsInput): types.ListCallerAccessGrantsOutput, table
+    listCallerAccessGrants: function(Client, types.ListCallerAccessGrantsInput): Operation<types.ListCallerAccessGrantsOutput>
     -- Lists current S3 Batch Operations jobs as well as the jobs that have ended within the last 90
     -- days for the Amazon Web Services account making the request. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
     -- Permissions
@@ -704,7 +708,7 @@ local record Client
     -- DescribeJob
     -- UpdateJobPriority
     -- UpdateJobStatus
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- This operation is not supported by directory buckets.
     -- Returns a list of the Multi-Region Access Points currently associated with the specified Amazon Web Services account.
     -- Each call can return up to 100 Multi-Region Access Points, the maximum number of Multi-Region Access Points that can be
@@ -717,14 +721,14 @@ local record Client
     -- DeleteMultiRegionAccessPoint
     -- DescribeMultiRegionAccessPointOperation
     -- GetMultiRegionAccessPoint
-    listMultiRegionAccessPoints: function(Client, types.ListMultiRegionAccessPointsInput): types.ListMultiRegionAccessPointsOutput, table
+    listMultiRegionAccessPoints: function(Client, types.ListMultiRegionAccessPointsInput): Operation<types.ListMultiRegionAccessPointsOutput>
     -- This operation is not supported by directory buckets.
     -- Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated
     -- sender of the request. For more information, see Using Amazon S3 on Outposts in the
     -- Amazon S3 User Guide.
     -- For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
     -- endpoint hostname prefix and x-amz-outpost-id in your request, see the Examples section.
-    listRegionalBuckets: function(Client, types.ListRegionalBucketsInput): types.ListRegionalBucketsOutput, table
+    listRegionalBuckets: function(Client, types.ListRegionalBucketsInput): Operation<types.ListRegionalBucketsOutput>
     -- This operation is not supported by directory buckets.
     -- Gets a list of Amazon S3 Storage Lens configurations. For more information about S3 Storage Lens, see
     -- Assessing your
@@ -734,14 +738,14 @@ local record Client
     -- s3:ListStorageLensConfigurations action. For more information, see
     -- Setting permissions to
     -- use Amazon S3 Storage Lens in the Amazon S3 User Guide.
-    listStorageLensConfigurations: function(Client, types.ListStorageLensConfigurationsInput): types.ListStorageLensConfigurationsOutput, table
+    listStorageLensConfigurations: function(Client, types.ListStorageLensConfigurationsInput): Operation<types.ListStorageLensConfigurationsOutput>
     -- Lists all the Storage Lens groups in the specified home Region.
     -- To use this operation, you must have the permission to perform the
     -- s3:ListStorageLensGroups action. For more information about the required Storage Lens
     -- Groups permissions, see Setting account permissions to use S3 Storage Lens groups.
     -- For information about Storage Lens groups errors, see List of Amazon S3 Storage
     -- Lens error codes.
-    listStorageLensGroups: function(Client, types.ListStorageLensGroupsInput): types.ListStorageLensGroupsOutput, table
+    listStorageLensGroups: function(Client, types.ListStorageLensGroupsInput): Operation<types.ListStorageLensGroupsOutput>
     -- This operation allows you to list all of the tags for a specified resource. Each tag is a label consisting of a key and value. Tags can help you organize, track costs for, and control access to resources.
     -- This operation is only supported for the following Amazon S3 resources:
     -- General purpose buckets
@@ -757,17 +761,17 @@ local record Client
     -- HTTP Host header syntax
     -- Directory buckets - The HTTP Host header syntax is s3express-control.region.amazonaws.com.
     -- For information about S3 Tagging errors, see List of Amazon S3 Tagging error codes.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Updates the resource policy of the S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:PutAccessGrantsInstanceResourcePolicy permission to use this operation.
-    putAccessGrantsInstanceResourcePolicy: function(Client, types.PutAccessGrantsInstanceResourcePolicyInput): types.PutAccessGrantsInstanceResourcePolicyOutput, table
+    putAccessGrantsInstanceResourcePolicy: function(Client, types.PutAccessGrantsInstanceResourcePolicyInput): Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Replaces configuration for an Object Lambda Access Point.
     -- The following actions are related to
     -- PutAccessPointConfigurationForObjectLambda:
     -- GetAccessPointConfigurationForObjectLambda
-    putAccessPointConfigurationForObjectLambda: function(Client, types.PutAccessPointConfigurationForObjectLambdaInput): types.PutAccessPointConfigurationForObjectLambdaOutput, table
+    putAccessPointConfigurationForObjectLambda: function(Client, types.PutAccessPointConfigurationForObjectLambdaInput): Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
     -- Associates an access policy with the specified access point. Each access point can have only one policy,
     -- so a request made to this API replaces any existing policy associated with the specified
     -- access point.
@@ -775,20 +779,20 @@ local record Client
     -- The following actions are related to PutAccessPointPolicy:
     -- GetAccessPointPolicy
     -- DeleteAccessPointPolicy
-    putAccessPointPolicy: function(Client, types.PutAccessPointPolicyInput): types.PutAccessPointPolicyOutput, table
+    putAccessPointPolicy: function(Client, types.PutAccessPointPolicyInput): Operation<types.PutAccessPointPolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Creates or replaces resource policy for an Object Lambda Access Point. For an example policy, see Creating Object Lambda Access Points in the Amazon S3 User Guide.
     -- The following actions are related to
     -- PutAccessPointPolicyForObjectLambda:
     -- DeleteAccessPointPolicyForObjectLambda
     -- GetAccessPointPolicyForObjectLambda
-    putAccessPointPolicyForObjectLambda: function(Client, types.PutAccessPointPolicyForObjectLambdaInput): types.PutAccessPointPolicyForObjectLambdaOutput, table
+    putAccessPointPolicyForObjectLambda: function(Client, types.PutAccessPointPolicyForObjectLambdaInput): Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
     -- Creates or replaces the access point scope for a directory bucket. You can use the access point scope to restrict access to specific prefixes, API operations, or a combination of both.
     -- You can specify any amount of prefixes, but the total length of characters of all prefixes must be less than 256 bytes in size.
     -- To use this operation, you must have the permission to perform the
     -- s3express:PutAccessPointScope action.
     -- For information about REST API errors, see REST error responses.
-    putAccessPointScope: function(Client, types.PutAccessPointScopeInput): types.PutAccessPointScopeOutput, table
+    putAccessPointScope: function(Client, types.PutAccessPointScopeInput): Operation<types.PutAccessPointScopeOutput>
     -- This action puts a lifecycle configuration to an Amazon S3 on Outposts bucket. To put a
     -- lifecycle configuration to an S3 bucket, see PutBucketLifecycleConfiguration in the Amazon S3 API Reference.
     -- Creates a new lifecycle configuration for the S3 on Outposts bucket or replaces an
@@ -800,7 +804,7 @@ local record Client
     -- PutBucketLifecycleConfiguration:
     -- GetBucketLifecycleConfiguration
     -- DeleteBucketLifecycleConfiguration
-    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): types.PutBucketLifecycleConfigurationOutput, table
+    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): Operation<types.PutBucketLifecycleConfigurationOutput>
     -- This action puts a bucket policy to an Amazon S3 on Outposts bucket. To put a policy on an
     -- S3 bucket, see PutBucketPolicy in the
     -- Amazon S3 API Reference.
@@ -823,7 +827,7 @@ local record Client
     -- The following actions are related to PutBucketPolicy:
     -- GetBucketPolicy
     -- DeleteBucketPolicy
-    putBucketPolicy: function(Client, types.PutBucketPolicyInput): types.PutBucketPolicyOutput, table
+    putBucketPolicy: function(Client, types.PutBucketPolicyInput): Operation<types.PutBucketPolicyOutput>
     -- This action creates an Amazon S3 on Outposts bucket's replication configuration. To create
     -- an S3 bucket's replication configuration, see PutBucketReplication
     -- in the Amazon S3 API Reference.
@@ -878,7 +882,7 @@ local record Client
     -- The following operations are related to PutBucketReplication:
     -- GetBucketReplication
     -- DeleteBucketReplication
-    putBucketReplication: function(Client, types.PutBucketReplicationInput): types.PutBucketReplicationOutput, table
+    putBucketReplication: function(Client, types.PutBucketReplicationInput): Operation<types.PutBucketReplicationOutput>
     -- This action puts tags on an Amazon S3 on Outposts bucket. To put tags on an S3 bucket, see
     -- PutBucketTagging in the Amazon S3 API Reference.
     -- Sets the tags for an S3 on Outposts bucket. For more information, see Using
@@ -917,7 +921,7 @@ local record Client
     -- The following actions are related to PutBucketTagging:
     -- GetBucketTagging
     -- DeleteBucketTagging
-    putBucketTagging: function(Client, types.PutBucketTaggingInput): types.PutBucketTaggingOutput, table
+    putBucketTagging: function(Client, types.PutBucketTaggingInput): Operation<types.PutBucketTaggingOutput>
     -- This operation sets the versioning state
     -- for
     -- S3 on Outposts
@@ -956,7 +960,7 @@ local record Client
     -- GetBucketVersioning
     -- PutBucketLifecycleConfiguration
     -- GetBucketLifecycleConfiguration
-    putBucketVersioning: function(Client, types.PutBucketVersioningInput): types.PutBucketVersioningOutput, table
+    putBucketVersioning: function(Client, types.PutBucketVersioningInput): Operation<types.PutBucketVersioningOutput>
     -- Sets the supplied tag-set on an S3 Batch Operations job.
     -- A tag is a key-value pair. You can associate S3 Batch Operations tags with any job by sending
     -- a PUT request against the tagging subresource that is associated with the job. To modify
@@ -986,7 +990,7 @@ local record Client
     -- CreateJob
     -- GetJobTagging
     -- DeleteJobTagging
-    putJobTagging: function(Client, types.PutJobTaggingInput): types.PutJobTaggingOutput, table
+    putJobTagging: function(Client, types.PutJobTaggingInput): Operation<types.PutJobTaggingOutput>
     -- This operation is not supported by directory buckets.
     -- Associates an access control policy with the specified Multi-Region Access Point. Each Multi-Region Access Point can have only
     -- one policy, so a request made to this action replaces any existing policy that is
@@ -998,7 +1002,7 @@ local record Client
     -- PutMultiRegionAccessPointPolicy:
     -- GetMultiRegionAccessPointPolicy
     -- GetMultiRegionAccessPointPolicyStatus
-    putMultiRegionAccessPointPolicy: function(Client, types.PutMultiRegionAccessPointPolicyOperationInput): types.PutMultiRegionAccessPointPolicyOutput, table
+    putMultiRegionAccessPointPolicy: function(Client, types.PutMultiRegionAccessPointPolicyOperationInput): Operation<types.PutMultiRegionAccessPointPolicyOutput>
     -- This operation is not supported by directory buckets.
     -- Creates or modifies the PublicAccessBlock configuration for an
     -- Amazon Web Services account. This operation may be restricted when the account is managed by
@@ -1011,14 +1015,14 @@ local record Client
     -- Related actions include:
     -- GetPublicAccessBlock
     -- DeletePublicAccessBlock
-    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): types.PutPublicAccessBlockOutput, table
+    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): Operation<types.PutPublicAccessBlockOutput>
     -- This operation is not supported by directory buckets.
     -- Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Working with
     -- Amazon S3 Storage Lens in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics, see S3 Storage Lens metrics glossary in the Amazon S3 User Guide.
     -- To use this action, you must have permission to perform the
     -- s3:PutStorageLensConfiguration action. For more information, see Setting permissions to use Amazon S3 Storage Lens in the
     -- Amazon S3 User Guide.
-    putStorageLensConfiguration: function(Client, types.PutStorageLensConfigurationInput): types.PutStorageLensConfigurationOutput, table
+    putStorageLensConfiguration: function(Client, types.PutStorageLensConfigurationInput): Operation<types.PutStorageLensConfigurationOutput>
     -- This operation is not supported by directory buckets.
     -- Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more information
     -- about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the
@@ -1027,7 +1031,7 @@ local record Client
     -- s3:PutStorageLensConfigurationTagging action. For more information, see
     -- Setting permissions to
     -- use Amazon S3 Storage Lens in the Amazon S3 User Guide.
-    putStorageLensConfigurationTagging: function(Client, types.PutStorageLensConfigurationTaggingInput): types.PutStorageLensConfigurationTaggingOutput, table
+    putStorageLensConfigurationTagging: function(Client, types.PutStorageLensConfigurationTaggingInput): Operation<types.PutStorageLensConfigurationTaggingOutput>
     -- This operation is not supported by directory buckets.
     -- Submits an updated route configuration for a Multi-Region Access Point. This API operation updates the
     -- routing status for the specified Regions from active to passive, or from passive to active.
@@ -1048,7 +1052,7 @@ local record Client
     -- ap-southeast-2
     -- ap-northeast-1
     -- eu-west-1
-    submitMultiRegionAccessPointRoutes: function(Client, types.SubmitMultiRegionAccessPointRoutesInput): types.SubmitMultiRegionAccessPointRoutesOutput, table
+    submitMultiRegionAccessPointRoutes: function(Client, types.SubmitMultiRegionAccessPointRoutesInput): Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
     -- Creates a new user-defined tag or updates an existing tag. Each tag is a label consisting of a key and value that is applied to your resource. Tags can help you organize, track costs for, and control access to your resources. You can add up to 50 Amazon Web Services resource tags for each S3 resource.
     -- This operation is only supported for the following Amazon S3 resource:
     -- General purpose buckets
@@ -1064,7 +1068,7 @@ local record Client
     -- HTTP Host header syntax
     -- Directory buckets - The HTTP Host header syntax is s3express-control.region.amazonaws.com.
     -- For information about S3 Tagging errors, see List of Amazon S3 Tagging error codes.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- This operation removes the specified user-defined tags from an S3 resource. You can pass one or more tag keys.
     -- This operation is only supported for the following Amazon S3 resources:
     -- General purpose buckets
@@ -1081,13 +1085,13 @@ local record Client
     -- Directory buckets - The HTTP Host header syntax is s3express-control.region.amazonaws.com.
     -- For information about S3 Tagging errors, see List of Amazon S3
     -- Tagging error codes.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the IAM role of a registered location in your S3 Access Grants instance.
     -- Permissions
     -- You must have the s3:UpdateAccessGrantsLocation permission to use this operation.
     -- Additional Permissions
     -- You must also have the following permission: iam:PassRole
-    updateAccessGrantsLocation: function(Client, types.UpdateAccessGrantsLocationInput): types.UpdateAccessGrantsLocationOutput, table
+    updateAccessGrantsLocation: function(Client, types.UpdateAccessGrantsLocationInput): Operation<types.UpdateAccessGrantsLocationOutput>
     -- Updates an existing S3 Batch Operations job's priority. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
     -- Permissions
     -- To use the
@@ -1098,7 +1102,7 @@ local record Client
     -- ListJobs
     -- DescribeJob
     -- UpdateJobStatus
-    updateJobPriority: function(Client, types.UpdateJobPriorityInput): types.UpdateJobPriorityOutput, table
+    updateJobPriority: function(Client, types.UpdateJobPriorityInput): Operation<types.UpdateJobPriorityOutput>
     -- Updates the status for the specified job. Use this operation to confirm that you want to
     -- run a job or to cancel an existing job. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
     -- Permissions
@@ -1110,14 +1114,14 @@ local record Client
     -- ListJobs
     -- DescribeJob
     -- UpdateJobStatus
-    updateJobStatus: function(Client, types.UpdateJobStatusInput): types.UpdateJobStatusOutput, table
+    updateJobStatus: function(Client, types.UpdateJobStatusInput): Operation<types.UpdateJobStatusOutput>
     -- Updates the existing Storage Lens group.
     -- To use this operation, you must have the permission to perform the
     -- s3:UpdateStorageLensGroup action. For more information about the required Storage Lens
     -- Groups permissions, see Setting account permissions to use S3 Storage Lens groups.
     -- For information about Storage Lens groups errors, see List of Amazon S3 Storage
     -- Lens error codes.
-    updateStorageLensGroup: function(Client, types.UpdateStorageLensGroupInput): types.UpdateStorageLensGroupOutput, table
+    updateStorageLensGroup: function(Client, types.UpdateStorageLensGroupInput): Operation<types.UpdateStorageLensGroupOutput>
 end
 
 local record M

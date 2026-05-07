@@ -2,6 +2,10 @@
 
 local types = require("elasticache.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- A tag is a key-value pair where the key and value are case-sensitive. You can use tags
     -- to categorize and track all your ElastiCache resources, with the exception of global
@@ -15,25 +19,25 @@ local record Client
     -- For more information, see Using Cost Allocation Tags in
     -- Amazon ElastiCache in the ElastiCache User
     -- Guide.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Allows network ingress to a cache security group. Applications using ElastiCache must
     -- be running on Amazon EC2, and Amazon EC2 security groups are used as the authorization
     -- mechanism.
     -- You cannot authorize ingress from an Amazon EC2 security group in one region to an
     -- ElastiCache cluster in another region.
-    authorizeCacheSecurityGroupIngress: function(Client, types.AuthorizeCacheSecurityGroupIngressInput): types.AuthorizeCacheSecurityGroupIngressOutput, table
+    authorizeCacheSecurityGroupIngress: function(Client, types.AuthorizeCacheSecurityGroupIngressInput): Operation<types.AuthorizeCacheSecurityGroupIngressOutput>
     -- Apply the service update. For more information on service updates and applying them,
     -- see Applying Service
     -- Updates.
-    batchApplyUpdateAction: function(Client, types.BatchApplyUpdateActionInput): types.BatchApplyUpdateActionOutput, table
+    batchApplyUpdateAction: function(Client, types.BatchApplyUpdateActionInput): Operation<types.BatchApplyUpdateActionOutput>
     -- Stop the service update. For more information on service updates and stopping them,
     -- see Stopping
     -- Service Updates.
-    batchStopUpdateAction: function(Client, types.BatchStopUpdateActionInput): types.BatchStopUpdateActionOutput, table
+    batchStopUpdateAction: function(Client, types.BatchStopUpdateActionInput): Operation<types.BatchStopUpdateActionOutput>
     -- Complete the migration of data.
-    completeMigration: function(Client, types.CompleteMigrationInput): types.CompleteMigrationOutput, table
+    completeMigration: function(Client, types.CompleteMigrationInput): Operation<types.CompleteMigrationOutput>
     -- Creates a copy of an existing serverless cache’s snapshot. Available for Valkey, Redis OSS and Serverless Memcached only.
-    copyServerlessCacheSnapshot: function(Client, types.CopyServerlessCacheSnapshotInput): types.CopyServerlessCacheSnapshotOutput, table
+    copyServerlessCacheSnapshot: function(Client, types.CopyServerlessCacheSnapshotInput): Operation<types.CopyServerlessCacheSnapshotOutput>
     -- Makes a copy of an existing snapshot.
     -- This operation is valid for Valkey or Redis OSS only.
     -- Users or groups that have permissions to use the CopySnapshot
@@ -85,11 +89,11 @@ local record Client
     -- Solution: Add View Permissions on the bucket.
     -- For more information, see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket in the
     -- ElastiCache User Guide.
-    copySnapshot: function(Client, types.CopySnapshotInput): types.CopySnapshotOutput, table
+    copySnapshot: function(Client, types.CopySnapshotInput): Operation<types.CopySnapshotOutput>
     -- Creates a cluster. All nodes in the cluster run the same protocol-compliant cache
     -- engine software, either Memcached, Valkey or Redis OSS.
     -- This operation is not supported for Valkey or Redis OSS (cluster mode enabled) clusters.
-    createCacheCluster: function(Client, types.CreateCacheClusterInput): types.CreateCacheClusterOutput, table
+    createCacheCluster: function(Client, types.CreateCacheClusterInput): Operation<types.CreateCacheClusterOutput>
     -- Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache parameter
     -- group is a collection of parameters and their values that are applied to all of the
     -- nodes in any cluster or replication group using the CacheParameterGroup.
@@ -100,17 +104,17 @@ local record Client
     -- ModifyCacheParameterGroup in the ElastiCache API Reference.
     -- Parameters and
     -- Parameter Groups in the ElastiCache User Guide.
-    createCacheParameterGroup: function(Client, types.CreateCacheParameterGroupInput): types.CreateCacheParameterGroupOutput, table
+    createCacheParameterGroup: function(Client, types.CreateCacheParameterGroupInput): Operation<types.CreateCacheParameterGroupOutput>
     -- Creates a new cache security group. Use a cache security group to control access to
     -- one or more clusters.
     -- Cache security groups are only used when you are creating a cluster outside of an
     -- Amazon Virtual Private Cloud (Amazon VPC). If you are creating a cluster inside of a
     -- VPC, use a cache subnet group instead. For more information, see CreateCacheSubnetGroup.
-    createCacheSecurityGroup: function(Client, types.CreateCacheSecurityGroupInput): types.CreateCacheSecurityGroupOutput, table
+    createCacheSecurityGroup: function(Client, types.CreateCacheSecurityGroupInput): Operation<types.CreateCacheSecurityGroupOutput>
     -- Creates a new cache subnet group.
     -- Use this parameter only when you are creating a cluster in an Amazon Virtual Private
     -- Cloud (Amazon VPC).
-    createCacheSubnetGroup: function(Client, types.CreateCacheSubnetGroupInput): types.CreateCacheSubnetGroupOutput, table
+    createCacheSubnetGroup: function(Client, types.CreateCacheSubnetGroupInput): Operation<types.CreateCacheSubnetGroupOutput>
     -- Global Datastore offers fully managed, fast, reliable and secure
     -- cross-region replication. Using Global Datastore with Valkey or Redis OSS, you can create cross-region
     -- read replica clusters for ElastiCache to enable low-latency reads and disaster
@@ -121,7 +125,7 @@ local record Client
     -- The PrimaryReplicationGroupId represents the
     -- name of the primary cluster that accepts writes and will replicate updates to
     -- the secondary cluster.
-    createGlobalReplicationGroup: function(Client, types.CreateGlobalReplicationGroupInput): types.CreateGlobalReplicationGroupOutput, table
+    createGlobalReplicationGroup: function(Client, types.CreateGlobalReplicationGroupInput): Operation<types.CreateGlobalReplicationGroupOutput>
     -- Creates a Valkey or Redis OSS (cluster mode disabled) or a Valkey or Redis OSS (cluster mode enabled) replication
     -- group.
     -- This API can be used to create a standalone regional replication group or a secondary
@@ -150,28 +154,28 @@ local record Client
     -- For more information, see Scaling self-designed clusters in the ElastiCache User
     -- Guide.
     -- This operation is valid for Valkey and Redis OSS only.
-    createReplicationGroup: function(Client, types.CreateReplicationGroupInput): types.CreateReplicationGroupOutput, table
+    createReplicationGroup: function(Client, types.CreateReplicationGroupInput): Operation<types.CreateReplicationGroupOutput>
     -- Creates a serverless cache.
-    createServerlessCache: function(Client, types.CreateServerlessCacheInput): types.CreateServerlessCacheOutput, table
+    createServerlessCache: function(Client, types.CreateServerlessCacheInput): Operation<types.CreateServerlessCacheOutput>
     -- This API creates a copy of an entire ServerlessCache at a specific moment in time. Available for Valkey, Redis OSS and Serverless Memcached only.
-    createServerlessCacheSnapshot: function(Client, types.CreateServerlessCacheSnapshotInput): types.CreateServerlessCacheSnapshotOutput, table
+    createServerlessCacheSnapshot: function(Client, types.CreateServerlessCacheSnapshotInput): Operation<types.CreateServerlessCacheSnapshotOutput>
     -- Creates a copy of an entire cluster or replication group at a specific moment in
     -- time.
     -- This operation is valid for Valkey or Redis OSS only.
-    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): Operation<types.CreateSnapshotOutput>
     -- For Valkey engine version 7.2 onwards and Redis OSS 6.0 to 7.1: Creates a user. For more information, see
     -- Using Role Based Access Control (RBAC).
-    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUser: function(Client, types.CreateUserInput): Operation<types.CreateUserOutput>
     -- For Valkey engine version 7.2 onwards and Redis OSS 6.0 to 7.1: Creates a user group. For more
     -- information, see Using Role Based Access Control (RBAC)
-    createUserGroup: function(Client, types.CreateUserGroupInput): types.CreateUserGroupOutput, table
+    createUserGroup: function(Client, types.CreateUserGroupInput): Operation<types.CreateUserGroupOutput>
     -- Decreases the number of node groups in a Global datastore
-    decreaseNodeGroupsInGlobalReplicationGroup: function(Client, types.DecreaseNodeGroupsInGlobalReplicationGroupInput): types.DecreaseNodeGroupsInGlobalReplicationGroupOutput, table
+    decreaseNodeGroupsInGlobalReplicationGroup: function(Client, types.DecreaseNodeGroupsInGlobalReplicationGroupInput): Operation<types.DecreaseNodeGroupsInGlobalReplicationGroupOutput>
     -- Dynamically decreases the number of replicas in a Valkey or Redis OSS (cluster mode disabled)
     -- replication group or the number of replica nodes in one or more node groups (shards) of
     -- a Valkey or Redis OSS (cluster mode enabled) replication group. This operation is performed with no
     -- cluster down time.
-    decreaseReplicaCount: function(Client, types.DecreaseReplicaCountInput): types.DecreaseReplicaCountOutput, table
+    decreaseReplicaCount: function(Client, types.DecreaseReplicaCountInput): Operation<types.DecreaseReplicaCountOutput>
     -- Deletes a previously provisioned cluster. DeleteCacheCluster deletes all
     -- associated cache nodes, node endpoints and the cluster itself. When you receive a
     -- successful response from this operation, Amazon ElastiCache immediately begins deleting
@@ -184,19 +188,19 @@ local record Client
     -- A node group (shard) that has Multi-AZ mode enabled
     -- A cluster from a Valkey or Redis OSS (cluster mode enabled) replication group
     -- A cluster that is not in the available state
-    deleteCacheCluster: function(Client, types.DeleteCacheClusterInput): types.DeleteCacheClusterOutput, table
+    deleteCacheCluster: function(Client, types.DeleteCacheClusterInput): Operation<types.DeleteCacheClusterOutput>
     -- Deletes the specified cache parameter group. You cannot delete a cache parameter group
     -- if it is associated with any cache clusters. You cannot delete the default cache
     -- parameter groups in your account.
-    deleteCacheParameterGroup: function(Client, types.DeleteCacheParameterGroupInput): types.DeleteCacheParameterGroupOutput, table
+    deleteCacheParameterGroup: function(Client, types.DeleteCacheParameterGroupInput): Operation<types.DeleteCacheParameterGroupOutput>
     -- Deletes a cache security group.
     -- You cannot delete a cache security group if it is associated with any
     -- clusters.
-    deleteCacheSecurityGroup: function(Client, types.DeleteCacheSecurityGroupInput): types.DeleteCacheSecurityGroupOutput, table
+    deleteCacheSecurityGroup: function(Client, types.DeleteCacheSecurityGroupInput): Operation<types.DeleteCacheSecurityGroupOutput>
     -- Deletes a cache subnet group.
     -- You cannot delete a default cache subnet group or one that is associated with any
     -- clusters.
-    deleteCacheSubnetGroup: function(Client, types.DeleteCacheSubnetGroupInput): types.DeleteCacheSubnetGroupOutput, table
+    deleteCacheSubnetGroup: function(Client, types.DeleteCacheSubnetGroupInput): Operation<types.DeleteCacheSubnetGroupOutput>
     -- Deleting a Global datastore is a two-step process:
     -- First, you must DisassociateGlobalReplicationGroup to remove
     -- the secondary clusters in the Global datastore.
@@ -212,7 +216,7 @@ local record Client
     -- When you receive a successful response from this operation, Amazon ElastiCache
     -- immediately begins deleting the selected resources; you cannot cancel or revert this
     -- operation.
-    deleteGlobalReplicationGroup: function(Client, types.DeleteGlobalReplicationGroupInput): types.DeleteGlobalReplicationGroupOutput, table
+    deleteGlobalReplicationGroup: function(Client, types.DeleteGlobalReplicationGroupInput): Operation<types.DeleteGlobalReplicationGroupOutput>
     -- Deletes an existing replication group. By default, this operation deletes the entire
     -- replication group, including the primary/primaries and all of the read replicas. If the
     -- replication group has only one primary, you can optionally delete only the read
@@ -224,26 +228,26 @@ local record Client
     -- CreateSnapshot permission is required to create a final snapshot.
     -- Without this permission, the API call will fail with an Access Denied exception.
     -- This operation is valid for Redis OSS only.
-    deleteReplicationGroup: function(Client, types.DeleteReplicationGroupInput): types.DeleteReplicationGroupOutput, table
+    deleteReplicationGroup: function(Client, types.DeleteReplicationGroupInput): Operation<types.DeleteReplicationGroupOutput>
     -- Deletes a specified existing serverless cache.
     -- CreateServerlessCacheSnapshot permission is required to create a final snapshot.
     -- Without this permission, the API call will fail with an Access Denied exception.
-    deleteServerlessCache: function(Client, types.DeleteServerlessCacheInput): types.DeleteServerlessCacheOutput, table
+    deleteServerlessCache: function(Client, types.DeleteServerlessCacheInput): Operation<types.DeleteServerlessCacheOutput>
     -- Deletes an existing serverless cache snapshot. Available for Valkey, Redis OSS and Serverless Memcached only.
-    deleteServerlessCacheSnapshot: function(Client, types.DeleteServerlessCacheSnapshotInput): types.DeleteServerlessCacheSnapshotOutput, table
+    deleteServerlessCacheSnapshot: function(Client, types.DeleteServerlessCacheSnapshotInput): Operation<types.DeleteServerlessCacheSnapshotOutput>
     -- Deletes an existing snapshot. When you receive a successful response from this
     -- operation, ElastiCache immediately begins deleting the snapshot; you cannot cancel or
     -- revert this operation.
     -- This operation is valid for Valkey or Redis OSS only.
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): Operation<types.DeleteSnapshotOutput>
     -- For Valkey engine version 7.2 onwards and Redis OSS 6.0 onwards: Deletes a user. The user will be removed from
     -- all user groups and in turn removed from all replication groups. For more information,
     -- see Using Role Based Access Control (RBAC).
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- For Valkey engine version 7.2 onwards and Redis OSS 6.0 onwards: Deletes a user group. The user group must first
     -- be disassociated from the replication group before it can be deleted. For more
     -- information, see Using Role Based Access Control (RBAC).
-    deleteUserGroup: function(Client, types.DeleteUserGroupInput): types.DeleteUserGroupOutput, table
+    deleteUserGroup: function(Client, types.DeleteUserGroupInput): Operation<types.DeleteUserGroupOutput>
     -- Returns information about all provisioned clusters if no cluster identifier is
     -- specified, or about a specific cache cluster if a cluster identifier is supplied.
     -- By default, abbreviated information about the clusters is returned. You can use the
@@ -260,91 +264,91 @@ local record Client
     -- ready for use.
     -- If cache nodes are currently being removed from the cluster, no endpoint information
     -- for the removed nodes is displayed.
-    describeCacheClusters: function(Client, types.DescribeCacheClustersInput): types.DescribeCacheClustersOutput, table
+    describeCacheClusters: function(Client, types.DescribeCacheClustersInput): Operation<types.DescribeCacheClustersOutput>
     -- Returns a list of the available cache engines and their versions.
-    describeCacheEngineVersions: function(Client, types.DescribeCacheEngineVersionsInput): types.DescribeCacheEngineVersionsOutput, table
+    describeCacheEngineVersions: function(Client, types.DescribeCacheEngineVersionsInput): Operation<types.DescribeCacheEngineVersionsOutput>
     -- Returns a list of cache parameter group descriptions. If a cache parameter group name
     -- is specified, the list contains only the descriptions for that group.
-    describeCacheParameterGroups: function(Client, types.DescribeCacheParameterGroupsInput): types.DescribeCacheParameterGroupsOutput, table
+    describeCacheParameterGroups: function(Client, types.DescribeCacheParameterGroupsInput): Operation<types.DescribeCacheParameterGroupsOutput>
     -- Returns the detailed parameter list for a particular cache parameter group.
-    describeCacheParameters: function(Client, types.DescribeCacheParametersInput): types.DescribeCacheParametersOutput, table
+    describeCacheParameters: function(Client, types.DescribeCacheParametersInput): Operation<types.DescribeCacheParametersOutput>
     -- Returns a list of cache security group descriptions. If a cache security group name is
     -- specified, the list contains only the description of that group. This applicable only
     -- when you have ElastiCache in Classic setup
-    describeCacheSecurityGroups: function(Client, types.DescribeCacheSecurityGroupsInput): types.DescribeCacheSecurityGroupsOutput, table
+    describeCacheSecurityGroups: function(Client, types.DescribeCacheSecurityGroupsInput): Operation<types.DescribeCacheSecurityGroupsOutput>
     -- Returns a list of cache subnet group descriptions. If a subnet group name is
     -- specified, the list contains only the description of that group. This is applicable only
     -- when you have ElastiCache in VPC setup. All ElastiCache clusters now launch in VPC by
     -- default.
-    describeCacheSubnetGroups: function(Client, types.DescribeCacheSubnetGroupsInput): types.DescribeCacheSubnetGroupsOutput, table
+    describeCacheSubnetGroups: function(Client, types.DescribeCacheSubnetGroupsInput): Operation<types.DescribeCacheSubnetGroupsOutput>
     -- Returns the default engine and system parameter information for the specified cache
     -- engine.
-    describeEngineDefaultParameters: function(Client, types.DescribeEngineDefaultParametersInput): types.DescribeEngineDefaultParametersOutput, table
+    describeEngineDefaultParameters: function(Client, types.DescribeEngineDefaultParametersInput): Operation<types.DescribeEngineDefaultParametersOutput>
     -- Returns events related to clusters, cache security groups, and cache parameter groups.
     -- You can obtain events specific to a particular cluster, cache security group, or cache
     -- parameter group by providing the name as a parameter.
     -- By default, only the events occurring within the last hour are returned; however, you
     -- can retrieve up to 14 days' worth of events if necessary.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Returns information about a particular global replication group. If no identifier is
     -- specified, returns information about all Global datastores.
-    describeGlobalReplicationGroups: function(Client, types.DescribeGlobalReplicationGroupsInput): types.DescribeGlobalReplicationGroupsOutput, table
+    describeGlobalReplicationGroups: function(Client, types.DescribeGlobalReplicationGroupsInput): Operation<types.DescribeGlobalReplicationGroupsOutput>
     -- Returns information about a particular replication group. If no identifier is
     -- specified, DescribeReplicationGroups returns information about all
     -- replication groups.
     -- This operation is valid for Valkey or Redis OSS only.
-    describeReplicationGroups: function(Client, types.DescribeReplicationGroupsInput): types.DescribeReplicationGroupsOutput, table
+    describeReplicationGroups: function(Client, types.DescribeReplicationGroupsInput): Operation<types.DescribeReplicationGroupsOutput>
     -- Returns information about reserved cache nodes for this account, or about a specified
     -- reserved cache node.
-    describeReservedCacheNodes: function(Client, types.DescribeReservedCacheNodesInput): types.DescribeReservedCacheNodesOutput, table
+    describeReservedCacheNodes: function(Client, types.DescribeReservedCacheNodesInput): Operation<types.DescribeReservedCacheNodesOutput>
     -- Lists available reserved cache node offerings.
-    describeReservedCacheNodesOfferings: function(Client, types.DescribeReservedCacheNodesOfferingsInput): types.DescribeReservedCacheNodesOfferingsOutput, table
+    describeReservedCacheNodesOfferings: function(Client, types.DescribeReservedCacheNodesOfferingsInput): Operation<types.DescribeReservedCacheNodesOfferingsOutput>
     -- Returns information about a specific serverless cache.
     -- If no identifier is specified, then the API returns information on all the serverless caches belonging to
     -- this Amazon Web Services account.
-    describeServerlessCaches: function(Client, types.DescribeServerlessCachesInput): types.DescribeServerlessCachesOutput, table
+    describeServerlessCaches: function(Client, types.DescribeServerlessCachesInput): Operation<types.DescribeServerlessCachesOutput>
     -- Returns information about serverless cache snapshots.
     -- By default, this API lists all of the customer’s serverless cache snapshots.
     -- It can also describe a single serverless cache snapshot, or the snapshots associated with
     -- a particular serverless cache. Available for Valkey, Redis OSS and Serverless Memcached only.
-    describeServerlessCacheSnapshots: function(Client, types.DescribeServerlessCacheSnapshotsInput): types.DescribeServerlessCacheSnapshotsOutput, table
+    describeServerlessCacheSnapshots: function(Client, types.DescribeServerlessCacheSnapshotsInput): Operation<types.DescribeServerlessCacheSnapshotsOutput>
     -- Returns details of the service updates
-    describeServiceUpdates: function(Client, types.DescribeServiceUpdatesInput): types.DescribeServiceUpdatesOutput, table
+    describeServiceUpdates: function(Client, types.DescribeServiceUpdatesInput): Operation<types.DescribeServiceUpdatesOutput>
     -- Returns information about cluster or replication group snapshots. By default,
     -- DescribeSnapshots lists all of your snapshots; it can optionally
     -- describe a single snapshot, or just the snapshots associated with a particular cache
     -- cluster.
     -- This operation is valid for Valkey or Redis OSS only.
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): Operation<types.DescribeSnapshotsOutput>
     -- Returns details of the update actions
-    describeUpdateActions: function(Client, types.DescribeUpdateActionsInput): types.DescribeUpdateActionsOutput, table
+    describeUpdateActions: function(Client, types.DescribeUpdateActionsInput): Operation<types.DescribeUpdateActionsOutput>
     -- Returns a list of user groups.
-    describeUserGroups: function(Client, types.DescribeUserGroupsInput): types.DescribeUserGroupsOutput, table
+    describeUserGroups: function(Client, types.DescribeUserGroupsInput): Operation<types.DescribeUserGroupsOutput>
     -- Returns a list of users.
-    describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    describeUsers: function(Client, types.DescribeUsersInput): Operation<types.DescribeUsersOutput>
     -- Remove a secondary cluster from the Global datastore using the Global datastore name.
     -- The secondary cluster will no longer receive updates from the primary cluster, but will
     -- remain as a standalone cluster in that Amazon region.
-    disassociateGlobalReplicationGroup: function(Client, types.DisassociateGlobalReplicationGroupInput): types.DisassociateGlobalReplicationGroupOutput, table
+    disassociateGlobalReplicationGroup: function(Client, types.DisassociateGlobalReplicationGroupInput): Operation<types.DisassociateGlobalReplicationGroupOutput>
     -- Provides the functionality to export the serverless cache snapshot data to Amazon S3. Available for Valkey and Redis OSS only.
-    exportServerlessCacheSnapshot: function(Client, types.ExportServerlessCacheSnapshotInput): types.ExportServerlessCacheSnapshotOutput, table
+    exportServerlessCacheSnapshot: function(Client, types.ExportServerlessCacheSnapshotInput): Operation<types.ExportServerlessCacheSnapshotOutput>
     -- Used to failover the primary region to a secondary region. The secondary region will
     -- become primary, and all other clusters will become secondary.
-    failoverGlobalReplicationGroup: function(Client, types.FailoverGlobalReplicationGroupInput): types.FailoverGlobalReplicationGroupOutput, table
+    failoverGlobalReplicationGroup: function(Client, types.FailoverGlobalReplicationGroupInput): Operation<types.FailoverGlobalReplicationGroupOutput>
     -- Increase the number of node groups in the Global datastore
-    increaseNodeGroupsInGlobalReplicationGroup: function(Client, types.IncreaseNodeGroupsInGlobalReplicationGroupInput): types.IncreaseNodeGroupsInGlobalReplicationGroupOutput, table
+    increaseNodeGroupsInGlobalReplicationGroup: function(Client, types.IncreaseNodeGroupsInGlobalReplicationGroupInput): Operation<types.IncreaseNodeGroupsInGlobalReplicationGroupOutput>
     -- Dynamically increases the number of replicas in a Valkey or Redis OSS (cluster mode disabled)
     -- replication group or the number of replica nodes in one or more node groups (shards) of
     -- a Valkey or Redis OSS (cluster mode enabled) replication group. This operation is performed with no
     -- cluster down time.
-    increaseReplicaCount: function(Client, types.IncreaseReplicaCountInput): types.IncreaseReplicaCountOutput, table
+    increaseReplicaCount: function(Client, types.IncreaseReplicaCountInput): Operation<types.IncreaseReplicaCountOutput>
     -- Lists all available node types that you can scale with your cluster's replication
     -- group's current node type.
     -- When you use the ModifyCacheCluster or
     -- ModifyReplicationGroup operations to scale your cluster or replication
     -- group, the value of the CacheNodeType parameter must be one of the node
     -- types returned by this operation.
-    listAllowedNodeTypeModifications: function(Client, types.ListAllowedNodeTypeModificationsInput): types.ListAllowedNodeTypeModificationsOutput, table
+    listAllowedNodeTypeModifications: function(Client, types.ListAllowedNodeTypeModificationsInput): Operation<types.ListAllowedNodeTypeModificationsOutput>
     -- Lists all tags currently on a named resource.
     -- A tag is a key-value pair where the key and value are case-sensitive. You can use
     -- tags to categorize and track all your ElastiCache resources, with the exception of
@@ -353,39 +357,39 @@ local record Client
     -- see Resource-level permissions.
     -- If the cluster is not in the available state,
     -- ListTagsForResource returns an error.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Modifies the settings for a cluster. You can use this operation to change one or more
     -- cluster configuration parameters by specifying the parameters and the new values.
-    modifyCacheCluster: function(Client, types.ModifyCacheClusterInput): types.ModifyCacheClusterOutput, table
+    modifyCacheCluster: function(Client, types.ModifyCacheClusterInput): Operation<types.ModifyCacheClusterOutput>
     -- Modifies the parameters of a cache parameter group. You can modify up to 20 parameters
     -- in a single request by submitting a list parameter name and value pairs.
-    modifyCacheParameterGroup: function(Client, types.ModifyCacheParameterGroupInput): types.ModifyCacheParameterGroupOutput, table
+    modifyCacheParameterGroup: function(Client, types.ModifyCacheParameterGroupInput): Operation<types.ModifyCacheParameterGroupOutput>
     -- Modifies an existing cache subnet group.
-    modifyCacheSubnetGroup: function(Client, types.ModifyCacheSubnetGroupInput): types.ModifyCacheSubnetGroupOutput, table
+    modifyCacheSubnetGroup: function(Client, types.ModifyCacheSubnetGroupInput): Operation<types.ModifyCacheSubnetGroupOutput>
     -- Modifies the settings for a Global datastore.
-    modifyGlobalReplicationGroup: function(Client, types.ModifyGlobalReplicationGroupInput): types.ModifyGlobalReplicationGroupOutput, table
+    modifyGlobalReplicationGroup: function(Client, types.ModifyGlobalReplicationGroupInput): Operation<types.ModifyGlobalReplicationGroupOutput>
     -- Modifies the settings for a replication group. This is limited to Valkey and Redis OSS 7 and above.
     -- Scaling for Valkey or Redis OSS (cluster mode enabled) in
     -- the ElastiCache User Guide
     -- ModifyReplicationGroupShardConfiguration in the ElastiCache API
     -- Reference
     -- This operation is valid for Valkey or Redis OSS only.
-    modifyReplicationGroup: function(Client, types.ModifyReplicationGroupInput): types.ModifyReplicationGroupOutput, table
+    modifyReplicationGroup: function(Client, types.ModifyReplicationGroupInput): Operation<types.ModifyReplicationGroupOutput>
     -- Modifies a replication group's shards (node groups) by allowing you to add shards,
     -- remove shards, or rebalance the keyspaces among existing shards.
-    modifyReplicationGroupShardConfiguration: function(Client, types.ModifyReplicationGroupShardConfigurationInput): types.ModifyReplicationGroupShardConfigurationOutput, table
+    modifyReplicationGroupShardConfiguration: function(Client, types.ModifyReplicationGroupShardConfigurationInput): Operation<types.ModifyReplicationGroupShardConfigurationOutput>
     -- This API modifies the attributes of a serverless cache.
-    modifyServerlessCache: function(Client, types.ModifyServerlessCacheInput): types.ModifyServerlessCacheOutput, table
+    modifyServerlessCache: function(Client, types.ModifyServerlessCacheInput): Operation<types.ModifyServerlessCacheOutput>
     -- Changes user password(s) and/or access string.
-    modifyUser: function(Client, types.ModifyUserInput): types.ModifyUserOutput, table
+    modifyUser: function(Client, types.ModifyUserInput): Operation<types.ModifyUserOutput>
     -- Changes the list of users that belong to the user group.
-    modifyUserGroup: function(Client, types.ModifyUserGroupInput): types.ModifyUserGroupOutput, table
+    modifyUserGroup: function(Client, types.ModifyUserGroupInput): Operation<types.ModifyUserGroupOutput>
     -- Allows you to purchase a reserved cache node offering. Reserved nodes are not eligible
     -- for cancellation and are non-refundable. For more information, see Managing Costs with Reserved Nodes.
-    purchaseReservedCacheNodesOffering: function(Client, types.PurchaseReservedCacheNodesOfferingInput): types.PurchaseReservedCacheNodesOfferingOutput, table
+    purchaseReservedCacheNodesOffering: function(Client, types.PurchaseReservedCacheNodesOfferingInput): Operation<types.PurchaseReservedCacheNodesOfferingOutput>
     -- Redistribute slots to ensure uniform distribution across existing shards in the
     -- cluster.
-    rebalanceSlotsInGlobalReplicationGroup: function(Client, types.RebalanceSlotsInGlobalReplicationGroupInput): types.RebalanceSlotsInGlobalReplicationGroupOutput, table
+    rebalanceSlotsInGlobalReplicationGroup: function(Client, types.RebalanceSlotsInGlobalReplicationGroupInput): Operation<types.RebalanceSlotsInGlobalReplicationGroupOutput>
     -- Reboots some, or all, of the cache nodes within a provisioned cluster. This operation
     -- applies any modified cache parameter groups to the cluster. The reboot operation takes
     -- place as soon as possible, and results in a momentary outage to the cluster. During the
@@ -398,23 +402,23 @@ local record Client
     -- clusters.
     -- If you make changes to parameters that require a Valkey or Redis OSS (cluster mode enabled) cluster
     -- reboot for the changes to be applied, see Rebooting a Cluster for an alternate process.
-    rebootCacheCluster: function(Client, types.RebootCacheClusterInput): types.RebootCacheClusterOutput, table
+    rebootCacheCluster: function(Client, types.RebootCacheClusterInput): Operation<types.RebootCacheClusterOutput>
     -- Removes the tags identified by the TagKeys list from the named resource.
     -- A tag is a key-value pair where the key and value are case-sensitive. You can use tags
     -- to categorize and track all your ElastiCache resources, with the exception of global
     -- replication group. When you add or remove tags on replication groups, those actions will
     -- be replicated to all nodes in the replication group. For more information, see Resource-level permissions.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- Modifies the parameters of a cache parameter group to the engine or system default
     -- value. You can reset specific parameters by submitting a list of parameter names. To
     -- reset the entire cache parameter group, specify the ResetAllParameters and
     -- CacheParameterGroupName parameters.
-    resetCacheParameterGroup: function(Client, types.ResetCacheParameterGroupInput): types.ResetCacheParameterGroupOutput, table
+    resetCacheParameterGroup: function(Client, types.ResetCacheParameterGroupInput): Operation<types.ResetCacheParameterGroupOutput>
     -- Revokes ingress from a cache security group. Use this operation to disallow access
     -- from an Amazon EC2 security group that had been previously authorized.
-    revokeCacheSecurityGroupIngress: function(Client, types.RevokeCacheSecurityGroupIngressInput): types.RevokeCacheSecurityGroupIngressOutput, table
+    revokeCacheSecurityGroupIngress: function(Client, types.RevokeCacheSecurityGroupIngressInput): Operation<types.RevokeCacheSecurityGroupIngressOutput>
     -- Start the migration of data.
-    startMigration: function(Client, types.StartMigrationInput): types.StartMigrationOutput, table
+    startMigration: function(Client, types.StartMigrationInput): Operation<types.StartMigrationOutput>
     -- Represents the input of a TestFailover operation which tests automatic
     -- failover on a specified node group (called shard in the console) in a replication group
     -- (called cluster in the console).
@@ -451,9 +455,9 @@ local record Client
     -- DescribeEvents in the ElastiCache API Reference
     -- Also see, Testing
     -- Multi-AZ in the ElastiCache User Guide.
-    testFailover: function(Client, types.TestFailoverInput): types.TestFailoverOutput, table
+    testFailover: function(Client, types.TestFailoverInput): Operation<types.TestFailoverOutput>
     -- Async API to test connection between source and target replication group.
-    testMigration: function(Client, types.TestMigrationInput): types.TestMigrationOutput, table
+    testMigration: function(Client, types.TestMigrationInput): Operation<types.TestMigrationOutput>
 end
 
 local record M

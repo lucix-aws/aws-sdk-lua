@@ -2,17 +2,21 @@
 
 local types = require("pricing.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns the metadata for one service or a list of the metadata for all services. Use this without a service code to get the service codes for all services. Use it with a service code, such as AmazonEC2, to get information specific to that service, such as the attribute names available for that service. For example, some of the attribute names available for EC2 are volumeType, maxIopsVolume, operation, locationType, and instanceCapacity10xlarge.
-    describeServices: function(Client, types.DescribeServicesInput): types.DescribeServicesOutput, table
+    describeServices: function(Client, types.DescribeServicesInput): Operation<types.DescribeServicesOutput>
     -- Returns a list of attribute values. Attributes are similar to the details in a Price List API offer file. For a list of available attributes, see Offer File Definitions in the Billing and Cost Management User Guide.
-    getAttributeValues: function(Client, types.GetAttributeValuesInput): types.GetAttributeValuesOutput, table
+    getAttributeValues: function(Client, types.GetAttributeValuesInput): Operation<types.GetAttributeValuesOutput>
     -- This feature is in preview release and is subject to change. Your use of Amazon Web Services Price List API is subject to the Beta Service Participation terms of the Amazon Web Services Service Terms (Section 1.10). This returns the URL that you can retrieve your Price List file from. This URL is based on the PriceListArn and FileFormat that you retrieve from the ListPriceLists response.
-    getPriceListFileUrl: function(Client, types.GetPriceListFileUrlInput): types.GetPriceListFileUrlOutput, table
+    getPriceListFileUrl: function(Client, types.GetPriceListFileUrlInput): Operation<types.GetPriceListFileUrlOutput>
     -- Returns a list of all products that match the filter criteria.
-    getProducts: function(Client, types.GetProductsInput): types.GetProductsOutput, table
+    getProducts: function(Client, types.GetProductsInput): Operation<types.GetProductsOutput>
     -- This feature is in preview release and is subject to change. Your use of Amazon Web Services Price List API is subject to the Beta Service Participation terms of the Amazon Web Services Service Terms (Section 1.10). This returns a list of Price List references that the requester if authorized to view, given a ServiceCode, CurrencyCode, and an EffectiveDate. Use without a RegionCode filter to list Price List references from all available Amazon Web Services Regions. Use with a RegionCode filter to get the Price List reference that's specific to a specific Amazon Web Services Region. You can use the PriceListArn from the response to get your preferred Price List files through the GetPriceListFileUrl API.
-    listPriceLists: function(Client, types.ListPriceListsInput): types.ListPriceListsOutput, table
+    listPriceLists: function(Client, types.ListPriceListsInput): Operation<types.ListPriceListsOutput>
 end
 
 local record M

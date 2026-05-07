@@ -2,27 +2,31 @@
 
 local types = require("savingsplans.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a Savings Plan.
-    createSavingsPlan: function(Client, types.CreateSavingsPlanInput): types.CreateSavingsPlanOutput, table
+    createSavingsPlan: function(Client, types.CreateSavingsPlanInput): Operation<types.CreateSavingsPlanOutput>
     -- Deletes the queued purchase for the specified Savings Plan.
-    deleteQueuedSavingsPlan: function(Client, types.DeleteQueuedSavingsPlanInput): types.DeleteQueuedSavingsPlanOutput, table
+    deleteQueuedSavingsPlan: function(Client, types.DeleteQueuedSavingsPlanInput): Operation<types.DeleteQueuedSavingsPlanOutput>
     -- Describes the rates for a specific, existing Savings Plan.
-    describeSavingsPlanRates: function(Client, types.DescribeSavingsPlanRatesInput): types.DescribeSavingsPlanRatesOutput, table
+    describeSavingsPlanRates: function(Client, types.DescribeSavingsPlanRatesInput): Operation<types.DescribeSavingsPlanRatesOutput>
     -- Describes the specified Savings Plans.
-    describeSavingsPlans: function(Client, types.DescribeSavingsPlansInput): types.DescribeSavingsPlansOutput, table
+    describeSavingsPlans: function(Client, types.DescribeSavingsPlansInput): Operation<types.DescribeSavingsPlansOutput>
     -- Describes the offering rates for Savings Plans you might want to purchase.
-    describeSavingsPlansOfferingRates: function(Client, types.DescribeSavingsPlansOfferingRatesInput): types.DescribeSavingsPlansOfferingRatesOutput, table
+    describeSavingsPlansOfferingRates: function(Client, types.DescribeSavingsPlansOfferingRatesInput): Operation<types.DescribeSavingsPlansOfferingRatesOutput>
     -- Describes the offerings for the specified Savings Plans.
-    describeSavingsPlansOfferings: function(Client, types.DescribeSavingsPlansOfferingsInput): types.DescribeSavingsPlansOfferingsOutput, table
+    describeSavingsPlansOfferings: function(Client, types.DescribeSavingsPlansOfferingsInput): Operation<types.DescribeSavingsPlansOfferingsOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns the specified Savings Plan.
-    returnSavingsPlan: function(Client, types.ReturnSavingsPlanInput): types.ReturnSavingsPlanOutput, table
+    returnSavingsPlan: function(Client, types.ReturnSavingsPlanInput): Operation<types.ReturnSavingsPlanOutput>
     -- Adds the specified tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

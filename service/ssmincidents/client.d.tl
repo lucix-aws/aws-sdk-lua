@@ -2,91 +2,95 @@
 
 local types = require("ssmincidents.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Retrieves details about all specified findings for an incident, including descriptive details about each finding. A finding
     -- represents a recent application environment change made by an CodeDeploy
     -- deployment or an CloudFormation stack creation or update that can be investigated as a
     -- potential cause of the incident.
-    batchGetIncidentFindings: function(Client, types.BatchGetIncidentFindingsInput): types.BatchGetIncidentFindingsOutput, table
+    batchGetIncidentFindings: function(Client, types.BatchGetIncidentFindingsInput): Operation<types.BatchGetIncidentFindingsOutput>
     -- A replication set replicates and encrypts your data to the provided Regions with the
     -- provided KMS key.
-    createReplicationSet: function(Client, types.CreateReplicationSetInput): types.CreateReplicationSetOutput, table
+    createReplicationSet: function(Client, types.CreateReplicationSetInput): Operation<types.CreateReplicationSetOutput>
     -- Creates a response plan that automates the initial response to incidents. A response plan
     -- engages contacts, starts chat channel collaboration, and initiates runbooks at the beginning
     -- of an incident.
-    createResponsePlan: function(Client, types.CreateResponsePlanInput): types.CreateResponsePlanOutput, table
+    createResponsePlan: function(Client, types.CreateResponsePlanInput): Operation<types.CreateResponsePlanOutput>
     -- Creates a custom timeline event on the incident details page of an incident record.
     -- Incident Manager automatically creates timeline events that mark key moments during an incident.
     -- You can create custom timeline events to mark important events that Incident Manager can detect
     -- automatically.
-    createTimelineEvent: function(Client, types.CreateTimelineEventInput): types.CreateTimelineEventOutput, table
+    createTimelineEvent: function(Client, types.CreateTimelineEventInput): Operation<types.CreateTimelineEventOutput>
     -- Delete an incident record from Incident Manager.
-    deleteIncidentRecord: function(Client, types.DeleteIncidentRecordInput): types.DeleteIncidentRecordOutput, table
+    deleteIncidentRecord: function(Client, types.DeleteIncidentRecordInput): Operation<types.DeleteIncidentRecordOutput>
     -- Deletes all Regions in your replication set. Deleting the replication set deletes all
     -- Incident Manager data.
-    deleteReplicationSet: function(Client, types.DeleteReplicationSetInput): types.DeleteReplicationSetOutput, table
+    deleteReplicationSet: function(Client, types.DeleteReplicationSetInput): Operation<types.DeleteReplicationSetOutput>
     -- Deletes the resource policy that Resource Access Manager uses to share your Incident Manager
     -- resource.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes the specified response plan. Deleting a response plan stops all linked CloudWatch alarms and EventBridge events from creating an incident with this response
     -- plan.
-    deleteResponsePlan: function(Client, types.DeleteResponsePlanInput): types.DeleteResponsePlanOutput, table
+    deleteResponsePlan: function(Client, types.DeleteResponsePlanInput): Operation<types.DeleteResponsePlanOutput>
     -- Deletes a timeline event from an incident.
-    deleteTimelineEvent: function(Client, types.DeleteTimelineEventInput): types.DeleteTimelineEventOutput, table
+    deleteTimelineEvent: function(Client, types.DeleteTimelineEventInput): Operation<types.DeleteTimelineEventOutput>
     -- Returns the details for the specified incident record.
-    getIncidentRecord: function(Client, types.GetIncidentRecordInput): types.GetIncidentRecordOutput, table
+    getIncidentRecord: function(Client, types.GetIncidentRecordInput): Operation<types.GetIncidentRecordOutput>
     -- Retrieve your Incident Manager replication set.
-    getReplicationSet: function(Client, types.GetReplicationSetInput): types.GetReplicationSetOutput, table
+    getReplicationSet: function(Client, types.GetReplicationSetInput): Operation<types.GetReplicationSetOutput>
     -- Retrieves the resource policies attached to the specified response plan.
-    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): types.GetResourcePoliciesOutput, table
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): Operation<types.GetResourcePoliciesOutput>
     -- Retrieves the details of the specified response plan.
-    getResponsePlan: function(Client, types.GetResponsePlanInput): types.GetResponsePlanOutput, table
+    getResponsePlan: function(Client, types.GetResponsePlanInput): Operation<types.GetResponsePlanOutput>
     -- Retrieves a timeline event based on its ID and incident record.
-    getTimelineEvent: function(Client, types.GetTimelineEventInput): types.GetTimelineEventOutput, table
+    getTimelineEvent: function(Client, types.GetTimelineEventInput): Operation<types.GetTimelineEventOutput>
     -- Retrieves a list of the IDs of findings, plus their last modified times, that have been
     -- identified for a specified incident. A finding represents a recent application environment
     -- change made by an CloudFormation stack creation or update or an CodeDeploy
     -- deployment that can be investigated as a potential cause of the incident.
-    listIncidentFindings: function(Client, types.ListIncidentFindingsInput): types.ListIncidentFindingsOutput, table
+    listIncidentFindings: function(Client, types.ListIncidentFindingsInput): Operation<types.ListIncidentFindingsOutput>
     -- Lists all incident records in your account. Use this command to retrieve the Amazon
     -- Resource Name (ARN) of the incident record you want to update.
-    listIncidentRecords: function(Client, types.ListIncidentRecordsInput): types.ListIncidentRecordsOutput, table
+    listIncidentRecords: function(Client, types.ListIncidentRecordsInput): Operation<types.ListIncidentRecordsOutput>
     -- List all related items for an incident record.
-    listRelatedItems: function(Client, types.ListRelatedItemsInput): types.ListRelatedItemsOutput, table
+    listRelatedItems: function(Client, types.ListRelatedItemsInput): Operation<types.ListRelatedItemsOutput>
     -- Lists details about the replication set configured in your account.
-    listReplicationSets: function(Client, types.ListReplicationSetsInput): types.ListReplicationSetsOutput, table
+    listReplicationSets: function(Client, types.ListReplicationSetsInput): Operation<types.ListReplicationSetsOutput>
     -- Lists all response plans in your account.
-    listResponsePlans: function(Client, types.ListResponsePlansInput): types.ListResponsePlansOutput, table
+    listResponsePlans: function(Client, types.ListResponsePlansInput): Operation<types.ListResponsePlansOutput>
     -- Lists the tags that are attached to the specified response plan or incident.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists timeline events for the specified incident record.
-    listTimelineEvents: function(Client, types.ListTimelineEventsInput): types.ListTimelineEventsOutput, table
+    listTimelineEvents: function(Client, types.ListTimelineEventsInput): Operation<types.ListTimelineEventsOutput>
     -- Adds a resource policy to the specified response plan. The resource policy is used to
     -- share the response plan using Resource Access Manager (RAM). For more
     -- information about cross-account sharing, see Cross-Region and cross-account incident management.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Used to start an incident from CloudWatch alarms, EventBridge events, or
     -- manually.
-    startIncident: function(Client, types.StartIncidentInput): types.StartIncidentOutput, table
+    startIncident: function(Client, types.StartIncidentInput): Operation<types.StartIncidentOutput>
     -- Adds a tag to a response plan.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update deletion protection to either allow or deny deletion of the final Region in a
     -- replication set.
-    updateDeletionProtection: function(Client, types.UpdateDeletionProtectionInput): types.UpdateDeletionProtectionOutput, table
+    updateDeletionProtection: function(Client, types.UpdateDeletionProtectionInput): Operation<types.UpdateDeletionProtectionOutput>
     -- Update the details of an incident record. You can use this operation to update an incident
     -- record from the defined chat channel. For more information about using actions in chat
     -- channels, see Interacting through chat.
-    updateIncidentRecord: function(Client, types.UpdateIncidentRecordInput): types.UpdateIncidentRecordOutput, table
+    updateIncidentRecord: function(Client, types.UpdateIncidentRecordInput): Operation<types.UpdateIncidentRecordOutput>
     -- Add or remove related items from the related items tab of an incident record.
-    updateRelatedItems: function(Client, types.UpdateRelatedItemsInput): types.UpdateRelatedItemsOutput, table
+    updateRelatedItems: function(Client, types.UpdateRelatedItemsInput): Operation<types.UpdateRelatedItemsOutput>
     -- Add or delete Regions from your replication set.
-    updateReplicationSet: function(Client, types.UpdateReplicationSetInput): types.UpdateReplicationSetOutput, table
+    updateReplicationSet: function(Client, types.UpdateReplicationSetInput): Operation<types.UpdateReplicationSetOutput>
     -- Updates the specified response plan.
-    updateResponsePlan: function(Client, types.UpdateResponsePlanInput): types.UpdateResponsePlanOutput, table
+    updateResponsePlan: function(Client, types.UpdateResponsePlanInput): Operation<types.UpdateResponsePlanOutput>
     -- Updates a timeline event. You can update events of type Custom Event.
-    updateTimelineEvent: function(Client, types.UpdateTimelineEventInput): types.UpdateTimelineEventOutput, table
+    updateTimelineEvent: function(Client, types.UpdateTimelineEventInput): Operation<types.UpdateTimelineEventOutput>
 end
 
 local record M

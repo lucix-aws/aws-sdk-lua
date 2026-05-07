@@ -2,70 +2,74 @@
 
 local types = require("supplychain.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- CreateBillOfMaterialsImportJob creates an import job for the Product Bill Of Materials (BOM) entity. For information on the product_bom entity, see the AWS Supply Chain User Guide.
     -- The CSV file must be located in an Amazon S3 location accessible to AWS Supply Chain. It is recommended to use the same Amazon S3 bucket created during your AWS Supply Chain instance creation.
-    createBillOfMaterialsImportJob: function(Client, types.CreateBillOfMaterialsImportJobInput): types.CreateBillOfMaterialsImportJobOutput, table
+    createBillOfMaterialsImportJob: function(Client, types.CreateBillOfMaterialsImportJobInput): Operation<types.CreateBillOfMaterialsImportJobOutput>
     -- Enables you to programmatically create a data pipeline to ingest data from source systems such as Amazon S3 buckets, to a predefined Amazon Web Services Supply Chain dataset (product, inbound_order) or a temporary dataset along with the data transformation query provided with the API.
-    createDataIntegrationFlow: function(Client, types.CreateDataIntegrationFlowInput): types.CreateDataIntegrationFlowOutput, table
+    createDataIntegrationFlow: function(Client, types.CreateDataIntegrationFlowInput): Operation<types.CreateDataIntegrationFlowOutput>
     -- Enables you to programmatically create an Amazon Web Services Supply Chain data lake dataset. Developers can create the datasets using their pre-defined or custom schema for a given instance ID, namespace, and dataset name.
-    createDataLakeDataset: function(Client, types.CreateDataLakeDatasetInput): types.CreateDataLakeDatasetOutput, table
+    createDataLakeDataset: function(Client, types.CreateDataLakeDatasetInput): Operation<types.CreateDataLakeDatasetOutput>
     -- Enables you to programmatically create an Amazon Web Services Supply Chain data lake namespace. Developers can create the namespaces for a given instance ID.
-    createDataLakeNamespace: function(Client, types.CreateDataLakeNamespaceInput): types.CreateDataLakeNamespaceOutput, table
+    createDataLakeNamespace: function(Client, types.CreateDataLakeNamespaceInput): Operation<types.CreateDataLakeNamespaceOutput>
     -- Enables you to programmatically create an Amazon Web Services Supply Chain instance by applying KMS keys and relevant information associated with the API without using the Amazon Web Services console.
     -- This is an asynchronous operation. Upon receiving a CreateInstance request, Amazon Web Services Supply Chain immediately returns the instance resource, instance ID, and the initializing state while simultaneously creating all required Amazon Web Services resources for an instance creation. You can use GetInstance to check the status of the instance. If the instance results in an unhealthy state, you need to check the error message, delete the current instance, and recreate a new one based on the mitigation from the error message.
-    createInstance: function(Client, types.CreateInstanceInput): types.CreateInstanceOutput, table
+    createInstance: function(Client, types.CreateInstanceInput): Operation<types.CreateInstanceOutput>
     -- Enable you to programmatically delete an existing data pipeline for the provided Amazon Web Services Supply Chain instance and DataIntegrationFlow name.
-    deleteDataIntegrationFlow: function(Client, types.DeleteDataIntegrationFlowInput): types.DeleteDataIntegrationFlowOutput, table
+    deleteDataIntegrationFlow: function(Client, types.DeleteDataIntegrationFlowInput): Operation<types.DeleteDataIntegrationFlowOutput>
     -- Enables you to programmatically delete an Amazon Web Services Supply Chain data lake dataset. Developers can delete the existing datasets for a given instance ID, namespace, and instance name.
-    deleteDataLakeDataset: function(Client, types.DeleteDataLakeDatasetInput): types.DeleteDataLakeDatasetOutput, table
+    deleteDataLakeDataset: function(Client, types.DeleteDataLakeDatasetInput): Operation<types.DeleteDataLakeDatasetOutput>
     -- Enables you to programmatically delete an Amazon Web Services Supply Chain data lake namespace and its underling datasets. Developers can delete the existing namespaces for a given instance ID and namespace name.
-    deleteDataLakeNamespace: function(Client, types.DeleteDataLakeNamespaceInput): types.DeleteDataLakeNamespaceOutput, table
+    deleteDataLakeNamespace: function(Client, types.DeleteDataLakeNamespaceInput): Operation<types.DeleteDataLakeNamespaceOutput>
     -- Enables you to programmatically delete an Amazon Web Services Supply Chain instance by deleting the KMS keys and relevant information associated with the API without using the Amazon Web Services console.
     -- This is an asynchronous operation. Upon receiving a DeleteInstance request, Amazon Web Services Supply Chain immediately returns a response with the instance resource, delete state while cleaning up all Amazon Web Services resources created during the instance creation process. You can use the GetInstance action to check the instance status.
-    deleteInstance: function(Client, types.DeleteInstanceInput): types.DeleteInstanceOutput, table
+    deleteInstance: function(Client, types.DeleteInstanceInput): Operation<types.DeleteInstanceOutput>
     -- Get status and details of a BillOfMaterialsImportJob.
-    getBillOfMaterialsImportJob: function(Client, types.GetBillOfMaterialsImportJobInput): types.GetBillOfMaterialsImportJobOutput, table
+    getBillOfMaterialsImportJob: function(Client, types.GetBillOfMaterialsImportJobInput): Operation<types.GetBillOfMaterialsImportJobOutput>
     -- Enables you to programmatically view an Amazon Web Services Supply Chain Data Integration Event. Developers can view the eventType, eventGroupId, eventTimestamp, datasetTarget, datasetLoadExecution.
-    getDataIntegrationEvent: function(Client, types.GetDataIntegrationEventInput): types.GetDataIntegrationEventOutput, table
+    getDataIntegrationEvent: function(Client, types.GetDataIntegrationEventInput): Operation<types.GetDataIntegrationEventOutput>
     -- Enables you to programmatically view a specific data pipeline for the provided Amazon Web Services Supply Chain instance and DataIntegrationFlow name.
-    getDataIntegrationFlow: function(Client, types.GetDataIntegrationFlowInput): types.GetDataIntegrationFlowOutput, table
+    getDataIntegrationFlow: function(Client, types.GetDataIntegrationFlowInput): Operation<types.GetDataIntegrationFlowOutput>
     -- Get the flow execution.
-    getDataIntegrationFlowExecution: function(Client, types.GetDataIntegrationFlowExecutionInput): types.GetDataIntegrationFlowExecutionOutput, table
+    getDataIntegrationFlowExecution: function(Client, types.GetDataIntegrationFlowExecutionInput): Operation<types.GetDataIntegrationFlowExecutionOutput>
     -- Enables you to programmatically view an Amazon Web Services Supply Chain data lake dataset. Developers can view the data lake dataset information such as namespace, schema, and so on for a given instance ID, namespace, and dataset name.
-    getDataLakeDataset: function(Client, types.GetDataLakeDatasetInput): types.GetDataLakeDatasetOutput, table
+    getDataLakeDataset: function(Client, types.GetDataLakeDatasetInput): Operation<types.GetDataLakeDatasetOutput>
     -- Enables you to programmatically view an Amazon Web Services Supply Chain data lake namespace. Developers can view the data lake namespace information such as description for a given instance ID and namespace name.
-    getDataLakeNamespace: function(Client, types.GetDataLakeNamespaceInput): types.GetDataLakeNamespaceOutput, table
+    getDataLakeNamespace: function(Client, types.GetDataLakeNamespaceInput): Operation<types.GetDataLakeNamespaceOutput>
     -- Enables you to programmatically retrieve the information related to an Amazon Web Services Supply Chain instance ID.
-    getInstance: function(Client, types.GetInstanceInput): types.GetInstanceOutput, table
+    getInstance: function(Client, types.GetInstanceInput): Operation<types.GetInstanceOutput>
     -- Enables you to programmatically list all data integration events for the provided Amazon Web Services Supply Chain instance.
-    listDataIntegrationEvents: function(Client, types.ListDataIntegrationEventsInput): types.ListDataIntegrationEventsOutput, table
+    listDataIntegrationEvents: function(Client, types.ListDataIntegrationEventsInput): Operation<types.ListDataIntegrationEventsOutput>
     -- List flow executions.
-    listDataIntegrationFlowExecutions: function(Client, types.ListDataIntegrationFlowExecutionsInput): types.ListDataIntegrationFlowExecutionsOutput, table
+    listDataIntegrationFlowExecutions: function(Client, types.ListDataIntegrationFlowExecutionsInput): Operation<types.ListDataIntegrationFlowExecutionsOutput>
     -- Enables you to programmatically list all data pipelines for the provided Amazon Web Services Supply Chain instance.
-    listDataIntegrationFlows: function(Client, types.ListDataIntegrationFlowsInput): types.ListDataIntegrationFlowsOutput, table
+    listDataIntegrationFlows: function(Client, types.ListDataIntegrationFlowsInput): Operation<types.ListDataIntegrationFlowsOutput>
     -- Enables you to programmatically view the list of Amazon Web Services Supply Chain data lake datasets. Developers can view the datasets and the corresponding information such as namespace, schema, and so on for a given instance ID and namespace.
-    listDataLakeDatasets: function(Client, types.ListDataLakeDatasetsInput): types.ListDataLakeDatasetsOutput, table
+    listDataLakeDatasets: function(Client, types.ListDataLakeDatasetsInput): Operation<types.ListDataLakeDatasetsOutput>
     -- Enables you to programmatically view the list of Amazon Web Services Supply Chain data lake namespaces. Developers can view the namespaces and the corresponding information such as description for a given instance ID. Note that this API only return custom namespaces, instance pre-defined namespaces are not included.
-    listDataLakeNamespaces: function(Client, types.ListDataLakeNamespacesInput): types.ListDataLakeNamespacesOutput, table
+    listDataLakeNamespaces: function(Client, types.ListDataLakeNamespacesInput): Operation<types.ListDataLakeNamespacesOutput>
     -- List all Amazon Web Services Supply Chain instances for a specific account. Enables you to programmatically list all Amazon Web Services Supply Chain instances based on their account ID, instance name, and state of the instance (active or delete).
-    listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    listInstances: function(Client, types.ListInstancesInput): Operation<types.ListInstancesOutput>
     -- List all the tags for an Amazon Web ServicesSupply Chain resource. You can list all the tags added to a resource. By listing the tags, developers can view the tag level information on a resource and perform actions such as, deleting a resource associated with a particular tag.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Send the data payload for the event with real-time data for analysis or monitoring. The real-time data events are stored in an Amazon Web Services service before being processed and stored in data lake.
-    sendDataIntegrationEvent: function(Client, types.SendDataIntegrationEventInput): types.SendDataIntegrationEventOutput, table
+    sendDataIntegrationEvent: function(Client, types.SendDataIntegrationEventInput): Operation<types.SendDataIntegrationEventOutput>
     -- You can create tags during or after creating a resource such as instance, data flow, or dataset in AWS Supply chain. During the data ingestion process, you can add tags such as dev, test, or prod to data flows created during the data ingestion process in the AWS Supply Chain datasets. You can use these tags to identify a group of resources or a single resource used by the developer.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- You can delete tags for an Amazon Web Services Supply chain resource such as instance, data flow, or dataset in AWS Supply Chain. During the data ingestion process, you can delete tags such as dev, test, or prod to data flows created during the data ingestion process in the AWS Supply Chain datasets.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Enables you to programmatically update an existing data pipeline to ingest data from the source systems such as, Amazon S3 buckets, to a predefined Amazon Web Services Supply Chain dataset (product, inbound_order) or a temporary dataset along with the data transformation query provided with the API.
-    updateDataIntegrationFlow: function(Client, types.UpdateDataIntegrationFlowInput): types.UpdateDataIntegrationFlowOutput, table
+    updateDataIntegrationFlow: function(Client, types.UpdateDataIntegrationFlowInput): Operation<types.UpdateDataIntegrationFlowOutput>
     -- Enables you to programmatically update an Amazon Web Services Supply Chain data lake dataset. Developers can update the description of a data lake dataset for a given instance ID, namespace, and dataset name.
-    updateDataLakeDataset: function(Client, types.UpdateDataLakeDatasetInput): types.UpdateDataLakeDatasetOutput, table
+    updateDataLakeDataset: function(Client, types.UpdateDataLakeDatasetInput): Operation<types.UpdateDataLakeDatasetOutput>
     -- Enables you to programmatically update an Amazon Web Services Supply Chain data lake namespace. Developers can update the description of a data lake namespace for a given instance ID and namespace name.
-    updateDataLakeNamespace: function(Client, types.UpdateDataLakeNamespaceInput): types.UpdateDataLakeNamespaceOutput, table
+    updateDataLakeNamespace: function(Client, types.UpdateDataLakeNamespaceInput): Operation<types.UpdateDataLakeNamespaceOutput>
     -- Enables you to programmatically update an Amazon Web Services Supply Chain instance description by providing all the relevant information such as account ID, instance ID and so on without using the AWS console.
-    updateInstance: function(Client, types.UpdateInstanceInput): types.UpdateInstanceOutput, table
+    updateInstance: function(Client, types.UpdateInstanceInput): Operation<types.UpdateInstanceOutput>
 end
 
 local record M

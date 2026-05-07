@@ -2,19 +2,23 @@
 
 local types = require("auditmanager.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates an evidence folder to an assessment report in an Audit Manager
     -- assessment.
-    associateAssessmentReportEvidenceFolder: function(Client, types.AssociateAssessmentReportEvidenceFolderInput): types.AssociateAssessmentReportEvidenceFolderOutput, table
+    associateAssessmentReportEvidenceFolder: function(Client, types.AssociateAssessmentReportEvidenceFolderInput): Operation<types.AssociateAssessmentReportEvidenceFolderOutput>
     -- Associates a list of evidence to an assessment report in an Audit Manager
     -- assessment.
-    batchAssociateAssessmentReportEvidence: function(Client, types.BatchAssociateAssessmentReportEvidenceInput): types.BatchAssociateAssessmentReportEvidenceOutput, table
+    batchAssociateAssessmentReportEvidence: function(Client, types.BatchAssociateAssessmentReportEvidenceInput): Operation<types.BatchAssociateAssessmentReportEvidenceOutput>
     -- Creates a batch of delegations for an assessment in Audit Manager.
-    batchCreateDelegationByAssessment: function(Client, types.BatchCreateDelegationByAssessmentInput): types.BatchCreateDelegationByAssessmentOutput, table
+    batchCreateDelegationByAssessment: function(Client, types.BatchCreateDelegationByAssessmentInput): Operation<types.BatchCreateDelegationByAssessmentOutput>
     -- Deletes a batch of delegations for an assessment in Audit Manager.
-    batchDeleteDelegationByAssessment: function(Client, types.BatchDeleteDelegationByAssessmentInput): types.BatchDeleteDelegationByAssessmentOutput, table
+    batchDeleteDelegationByAssessment: function(Client, types.BatchDeleteDelegationByAssessmentInput): Operation<types.BatchDeleteDelegationByAssessmentOutput>
     -- Disassociates a list of evidence from an assessment report in Audit Manager.
-    batchDisassociateAssessmentReportEvidence: function(Client, types.BatchDisassociateAssessmentReportEvidenceInput): types.BatchDisassociateAssessmentReportEvidenceOutput, table
+    batchDisassociateAssessmentReportEvidence: function(Client, types.BatchDisassociateAssessmentReportEvidenceInput): Operation<types.BatchDisassociateAssessmentReportEvidenceOutput>
     -- Adds one or more pieces of evidence to a control in an Audit Manager assessment.
     -- You can import manual evidence from any S3 bucket by specifying the S3 URI of the
     -- object. You can also upload a file from your browser, or enter plain text in response to a
@@ -28,21 +32,21 @@ local record Client
     -- Supported file formats: See Supported file types for manual evidence in the Audit Manager User Guide
     -- For more information about Audit Manager service restrictions, see Quotas and
     -- restrictions for Audit Manager.
-    batchImportEvidenceToAssessmentControl: function(Client, types.BatchImportEvidenceToAssessmentControlInput): types.BatchImportEvidenceToAssessmentControlOutput, table
+    batchImportEvidenceToAssessmentControl: function(Client, types.BatchImportEvidenceToAssessmentControlInput): Operation<types.BatchImportEvidenceToAssessmentControlOutput>
     -- Creates an assessment in Audit Manager.
-    createAssessment: function(Client, types.CreateAssessmentInput): types.CreateAssessmentOutput, table
+    createAssessment: function(Client, types.CreateAssessmentInput): Operation<types.CreateAssessmentOutput>
     -- Creates a custom framework in Audit Manager.
-    createAssessmentFramework: function(Client, types.CreateAssessmentFrameworkInput): types.CreateAssessmentFrameworkOutput, table
+    createAssessmentFramework: function(Client, types.CreateAssessmentFrameworkInput): Operation<types.CreateAssessmentFrameworkOutput>
     -- Creates an assessment report for the specified assessment.
-    createAssessmentReport: function(Client, types.CreateAssessmentReportInput): types.CreateAssessmentReportOutput, table
+    createAssessmentReport: function(Client, types.CreateAssessmentReportInput): Operation<types.CreateAssessmentReportOutput>
     -- Creates a new custom control in Audit Manager.
-    createControl: function(Client, types.CreateControlInput): types.CreateControlOutput, table
+    createControl: function(Client, types.CreateControlInput): Operation<types.CreateControlOutput>
     -- Deletes an assessment in Audit Manager.
-    deleteAssessment: function(Client, types.DeleteAssessmentInput): types.DeleteAssessmentOutput, table
+    deleteAssessment: function(Client, types.DeleteAssessmentInput): Operation<types.DeleteAssessmentOutput>
     -- Deletes a custom framework in Audit Manager.
-    deleteAssessmentFramework: function(Client, types.DeleteAssessmentFrameworkInput): types.DeleteAssessmentFrameworkOutput, table
+    deleteAssessmentFramework: function(Client, types.DeleteAssessmentFrameworkInput): Operation<types.DeleteAssessmentFrameworkOutput>
     -- Deletes a share request for a custom framework in Audit Manager.
-    deleteAssessmentFrameworkShare: function(Client, types.DeleteAssessmentFrameworkShareInput): types.DeleteAssessmentFrameworkShareOutput, table
+    deleteAssessmentFrameworkShare: function(Client, types.DeleteAssessmentFrameworkShareInput): Operation<types.DeleteAssessmentFrameworkShareOutput>
     -- Deletes an assessment report in Audit Manager.
     -- When you run the DeleteAssessmentReport operation, Audit Manager
     -- attempts to delete the following data:
@@ -59,13 +63,13 @@ local record Client
     -- (Forbidden) or 404 (Not Found) error from Amazon S3, see
     -- List of Error Codes in the Amazon Simple Storage Service API
     -- Reference.
-    deleteAssessmentReport: function(Client, types.DeleteAssessmentReportInput): types.DeleteAssessmentReportOutput, table
+    deleteAssessmentReport: function(Client, types.DeleteAssessmentReportInput): Operation<types.DeleteAssessmentReportOutput>
     -- Deletes a custom control in Audit Manager.
     -- When you invoke this operation, the custom control is deleted from any frameworks or
     -- assessments that it’s currently part of. As a result, Audit Manager will stop
     -- collecting evidence for that custom control in all of your assessments. This includes
     -- assessments that you previously created before you deleted the custom control.
-    deleteControl: function(Client, types.DeleteControlInput): types.DeleteControlOutput, table
+    deleteControl: function(Client, types.DeleteControlInput): Operation<types.DeleteControlOutput>
     -- Deregisters an account in Audit Manager.
     -- Before you deregister, you can use the UpdateSettings API operation to set your preferred data retention policy. By
     -- default, Audit Manager retains your data. If you want to delete your data, you can
@@ -73,7 +77,7 @@ local record Client
     -- data.
     -- For more information about data retention, see Data
     -- Protection in the Audit Manager User Guide.
-    deregisterAccount: function(Client, types.DeregisterAccountInput): types.DeregisterAccountOutput, table
+    deregisterAccount: function(Client, types.DeregisterAccountInput): Operation<types.DeregisterAccountOutput>
     -- Removes the specified Amazon Web Services account as a delegated administrator for
     -- Audit Manager.
     -- When you remove a delegated administrator from your Audit Manager settings, you
@@ -115,27 +119,27 @@ local record Client
     -- At this time, Audit Manager doesn't provide an option to delete evidence for a
     -- specific delegated administrator. Instead, when your management account deregisters Audit Manager, we perform a cleanup for the current delegated administrator account at the
     -- time of deregistration.
-    deregisterOrganizationAdminAccount: function(Client, types.DeregisterOrganizationAdminAccountInput): types.DeregisterOrganizationAdminAccountOutput, table
+    deregisterOrganizationAdminAccount: function(Client, types.DeregisterOrganizationAdminAccountInput): Operation<types.DeregisterOrganizationAdminAccountOutput>
     -- Disassociates an evidence folder from the specified assessment report in Audit Manager.
-    disassociateAssessmentReportEvidenceFolder: function(Client, types.DisassociateAssessmentReportEvidenceFolderInput): types.DisassociateAssessmentReportEvidenceFolderOutput, table
+    disassociateAssessmentReportEvidenceFolder: function(Client, types.DisassociateAssessmentReportEvidenceFolderInput): Operation<types.DisassociateAssessmentReportEvidenceFolderOutput>
     -- Gets the registration status of an account in Audit Manager.
-    getAccountStatus: function(Client, types.GetAccountStatusInput): types.GetAccountStatusOutput, table
+    getAccountStatus: function(Client, types.GetAccountStatusInput): Operation<types.GetAccountStatusOutput>
     -- Gets information about a specified assessment.
-    getAssessment: function(Client, types.GetAssessmentInput): types.GetAssessmentOutput, table
+    getAssessment: function(Client, types.GetAssessmentInput): Operation<types.GetAssessmentOutput>
     -- Gets information about a specified framework.
-    getAssessmentFramework: function(Client, types.GetAssessmentFrameworkInput): types.GetAssessmentFrameworkOutput, table
+    getAssessmentFramework: function(Client, types.GetAssessmentFrameworkInput): Operation<types.GetAssessmentFrameworkOutput>
     -- Gets the URL of an assessment report in Audit Manager.
-    getAssessmentReportUrl: function(Client, types.GetAssessmentReportUrlInput): types.GetAssessmentReportUrlOutput, table
+    getAssessmentReportUrl: function(Client, types.GetAssessmentReportUrlInput): Operation<types.GetAssessmentReportUrlOutput>
     -- Gets a list of changelogs from Audit Manager.
-    getChangeLogs: function(Client, types.GetChangeLogsInput): types.GetChangeLogsOutput, table
+    getChangeLogs: function(Client, types.GetChangeLogsInput): Operation<types.GetChangeLogsOutput>
     -- Gets information about a specified control.
-    getControl: function(Client, types.GetControlInput): types.GetControlOutput, table
+    getControl: function(Client, types.GetControlInput): Operation<types.GetControlOutput>
     -- Gets a list of delegations from an audit owner to a delegate.
-    getDelegations: function(Client, types.GetDelegationsInput): types.GetDelegationsOutput, table
+    getDelegations: function(Client, types.GetDelegationsInput): Operation<types.GetDelegationsOutput>
     -- Gets information about a specified evidence item.
-    getEvidence: function(Client, types.GetEvidenceInput): types.GetEvidenceOutput, table
+    getEvidence: function(Client, types.GetEvidenceInput): Operation<types.GetEvidenceOutput>
     -- Gets all evidence from a specified evidence folder in Audit Manager.
-    getEvidenceByEvidenceFolder: function(Client, types.GetEvidenceByEvidenceFolderInput): types.GetEvidenceByEvidenceFolderOutput, table
+    getEvidenceByEvidenceFolder: function(Client, types.GetEvidenceByEvidenceFolderInput): Operation<types.GetEvidenceByEvidenceFolderOutput>
     -- Creates a presigned Amazon S3 URL that can be used to upload a file as manual
     -- evidence. For instructions on how to use this operation, see Upload a file from your browser in the Audit Manager User
     -- Guide.
@@ -145,21 +149,21 @@ local record Client
     -- Supported file formats: See Supported file types for manual evidence in the Audit Manager User Guide
     -- For more information about Audit Manager service restrictions, see Quotas and
     -- restrictions for Audit Manager.
-    getEvidenceFileUploadUrl: function(Client, types.GetEvidenceFileUploadUrlInput): types.GetEvidenceFileUploadUrlOutput, table
+    getEvidenceFileUploadUrl: function(Client, types.GetEvidenceFileUploadUrlInput): Operation<types.GetEvidenceFileUploadUrlOutput>
     -- Gets an evidence folder from a specified assessment in Audit Manager.
-    getEvidenceFolder: function(Client, types.GetEvidenceFolderInput): types.GetEvidenceFolderOutput, table
+    getEvidenceFolder: function(Client, types.GetEvidenceFolderInput): Operation<types.GetEvidenceFolderOutput>
     -- Gets the evidence folders from a specified assessment in Audit Manager.
-    getEvidenceFoldersByAssessment: function(Client, types.GetEvidenceFoldersByAssessmentInput): types.GetEvidenceFoldersByAssessmentOutput, table
+    getEvidenceFoldersByAssessment: function(Client, types.GetEvidenceFoldersByAssessmentInput): Operation<types.GetEvidenceFoldersByAssessmentOutput>
     -- Gets a list of evidence folders that are associated with a specified control in an
     -- Audit Manager assessment.
-    getEvidenceFoldersByAssessmentControl: function(Client, types.GetEvidenceFoldersByAssessmentControlInput): types.GetEvidenceFoldersByAssessmentControlOutput, table
+    getEvidenceFoldersByAssessmentControl: function(Client, types.GetEvidenceFoldersByAssessmentControlInput): Operation<types.GetEvidenceFoldersByAssessmentControlOutput>
     -- Gets the latest analytics data for all your current active assessments.
-    getInsights: function(Client, types.GetInsightsInput): types.GetInsightsOutput, table
+    getInsights: function(Client, types.GetInsightsInput): Operation<types.GetInsightsOutput>
     -- Gets the latest analytics data for a specific active assessment.
-    getInsightsByAssessment: function(Client, types.GetInsightsByAssessmentInput): types.GetInsightsByAssessmentOutput, table
+    getInsightsByAssessment: function(Client, types.GetInsightsByAssessmentInput): Operation<types.GetInsightsByAssessmentOutput>
     -- Gets the name of the delegated Amazon Web Services administrator account for a specified
     -- organization.
-    getOrganizationAdminAccount: function(Client, types.GetOrganizationAdminAccountInput): types.GetOrganizationAdminAccountOutput, table
+    getOrganizationAdminAccount: function(Client, types.GetOrganizationAdminAccountInput): Operation<types.GetOrganizationAdminAccountOutput>
     -- Gets a list of the Amazon Web Services services from which Audit Manager can collect
     -- evidence.
     -- Audit Manager defines which Amazon Web Services services are in scope for an
@@ -170,25 +174,25 @@ local record Client
     -- I can't edit the services in scope for my assessment in
     -- the Troubleshooting section of the Audit Manager user
     -- guide.
-    getServicesInScope: function(Client, types.GetServicesInScopeInput): types.GetServicesInScopeOutput, table
+    getServicesInScope: function(Client, types.GetServicesInScopeInput): Operation<types.GetServicesInScopeOutput>
     -- Gets the settings for a specified Amazon Web Services account.
-    getSettings: function(Client, types.GetSettingsInput): types.GetSettingsOutput, table
+    getSettings: function(Client, types.GetSettingsInput): Operation<types.GetSettingsOutput>
     -- Lists the latest analytics data for controls within a specific control domain and a
     -- specific active assessment.
     -- Control insights are listed only if the control belongs to the control domain and
     -- assessment that was specified. Moreover, the control must have collected evidence on the
     -- lastUpdated date of controlInsightsByAssessment. If neither
     -- of these conditions are met, no data is listed for that control.
-    listAssessmentControlInsightsByControlDomain: function(Client, types.ListAssessmentControlInsightsByControlDomainInput): types.ListAssessmentControlInsightsByControlDomainOutput, table
+    listAssessmentControlInsightsByControlDomain: function(Client, types.ListAssessmentControlInsightsByControlDomainInput): Operation<types.ListAssessmentControlInsightsByControlDomainOutput>
     -- Returns a list of the frameworks that are available in the Audit Manager framework
     -- library.
-    listAssessmentFrameworks: function(Client, types.ListAssessmentFrameworksInput): types.ListAssessmentFrameworksOutput, table
+    listAssessmentFrameworks: function(Client, types.ListAssessmentFrameworksInput): Operation<types.ListAssessmentFrameworksOutput>
     -- Returns a list of sent or received share requests for custom frameworks in Audit Manager.
-    listAssessmentFrameworkShareRequests: function(Client, types.ListAssessmentFrameworkShareRequestsInput): types.ListAssessmentFrameworkShareRequestsOutput, table
+    listAssessmentFrameworkShareRequests: function(Client, types.ListAssessmentFrameworkShareRequestsInput): Operation<types.ListAssessmentFrameworkShareRequestsOutput>
     -- Returns a list of assessment reports created in Audit Manager.
-    listAssessmentReports: function(Client, types.ListAssessmentReportsInput): types.ListAssessmentReportsOutput, table
+    listAssessmentReports: function(Client, types.ListAssessmentReportsInput): Operation<types.ListAssessmentReportsOutput>
     -- Returns a list of current and past assessments from Audit Manager.
-    listAssessments: function(Client, types.ListAssessmentsInput): types.ListAssessmentsOutput, table
+    listAssessments: function(Client, types.ListAssessmentsInput): Operation<types.ListAssessmentsOutput>
     -- Lists the latest analytics data for control domains across all of your active
     -- assessments.
     -- Audit Manager supports the control domains that are provided by Amazon Web Services
@@ -200,7 +204,7 @@ local record Client
     -- collected evidence on the lastUpdated date of
     -- controlDomainInsights. If this condition isn’t met, no data is listed
     -- for that control domain.
-    listControlDomainInsights: function(Client, types.ListControlDomainInsightsInput): types.ListControlDomainInsightsOutput, table
+    listControlDomainInsights: function(Client, types.ListControlDomainInsightsInput): Operation<types.ListControlDomainInsightsOutput>
     -- Lists analytics data for control domains within a specified active assessment.
     -- Audit Manager supports the control domains that are provided by Amazon Web Services
     -- Control Catalog. For information about how to find a list of available control domains, see
@@ -211,28 +215,28 @@ local record Client
     -- collected evidence on the lastUpdated date of
     -- controlDomainInsights. If this condition isn’t met, no data is listed
     -- for that domain.
-    listControlDomainInsightsByAssessment: function(Client, types.ListControlDomainInsightsByAssessmentInput): types.ListControlDomainInsightsByAssessmentOutput, table
+    listControlDomainInsightsByAssessment: function(Client, types.ListControlDomainInsightsByAssessmentInput): Operation<types.ListControlDomainInsightsByAssessmentOutput>
     -- Lists the latest analytics data for controls within a specific control domain across all
     -- active assessments.
     -- Control insights are listed only if the control belongs to the control domain that
     -- was specified and the control collected evidence on the lastUpdated date of
     -- controlInsightsMetadata. If neither of these conditions are met, no data
     -- is listed for that control.
-    listControlInsightsByControlDomain: function(Client, types.ListControlInsightsByControlDomainInput): types.ListControlInsightsByControlDomainOutput, table
+    listControlInsightsByControlDomain: function(Client, types.ListControlInsightsByControlDomainInput): Operation<types.ListControlInsightsByControlDomainOutput>
     -- Returns a list of controls from Audit Manager.
-    listControls: function(Client, types.ListControlsInput): types.ListControlsOutput, table
+    listControls: function(Client, types.ListControlsInput): Operation<types.ListControlsOutput>
     -- Returns a list of keywords that are pre-mapped to the specified control data
     -- source.
-    listKeywordsForDataSource: function(Client, types.ListKeywordsForDataSourceInput): types.ListKeywordsForDataSourceOutput, table
+    listKeywordsForDataSource: function(Client, types.ListKeywordsForDataSourceInput): Operation<types.ListKeywordsForDataSourceOutput>
     -- Returns a list of all Audit Manager notifications.
-    listNotifications: function(Client, types.ListNotificationsInput): types.ListNotificationsOutput, table
+    listNotifications: function(Client, types.ListNotificationsInput): Operation<types.ListNotificationsOutput>
     -- Returns a list of tags for the specified resource in Audit Manager.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Enables Audit Manager for the specified Amazon Web Services account.
-    registerAccount: function(Client, types.RegisterAccountInput): types.RegisterAccountOutput, table
+    registerAccount: function(Client, types.RegisterAccountInput): Operation<types.RegisterAccountOutput>
     -- Enables an Amazon Web Services account within the organization as the delegated
     -- administrator for Audit Manager.
-    registerOrganizationAdminAccount: function(Client, types.RegisterOrganizationAdminAccountInput): types.RegisterOrganizationAdminAccountOutput, table
+    registerOrganizationAdminAccount: function(Client, types.RegisterOrganizationAdminAccountInput): Operation<types.RegisterOrganizationAdminAccountOutput>
     -- Creates a share request for a custom framework in Audit Manager.
     -- The share request specifies a recipient and notifies them that a custom framework is
     -- available. Recipients have 120 days to accept or decline the request. If no action is
@@ -258,29 +262,29 @@ local record Client
     -- permission to do so from the owner of the standard framework. To learn more about which
     -- standard frameworks are eligible for sharing, see Framework sharing eligibility in the Audit Manager User
     -- Guide.
-    startAssessmentFrameworkShare: function(Client, types.StartAssessmentFrameworkShareInput): types.StartAssessmentFrameworkShareOutput, table
+    startAssessmentFrameworkShare: function(Client, types.StartAssessmentFrameworkShareInput): Operation<types.StartAssessmentFrameworkShareOutput>
     -- Tags the specified resource in Audit Manager.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a resource in Audit Manager.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Edits an Audit Manager assessment.
-    updateAssessment: function(Client, types.UpdateAssessmentInput): types.UpdateAssessmentOutput, table
+    updateAssessment: function(Client, types.UpdateAssessmentInput): Operation<types.UpdateAssessmentOutput>
     -- Updates a control within an assessment in Audit Manager.
-    updateAssessmentControl: function(Client, types.UpdateAssessmentControlInput): types.UpdateAssessmentControlOutput, table
+    updateAssessmentControl: function(Client, types.UpdateAssessmentControlInput): Operation<types.UpdateAssessmentControlOutput>
     -- Updates the status of a control set in an Audit Manager assessment.
-    updateAssessmentControlSetStatus: function(Client, types.UpdateAssessmentControlSetStatusInput): types.UpdateAssessmentControlSetStatusOutput, table
+    updateAssessmentControlSetStatus: function(Client, types.UpdateAssessmentControlSetStatusInput): Operation<types.UpdateAssessmentControlSetStatusOutput>
     -- Updates a custom framework in Audit Manager.
-    updateAssessmentFramework: function(Client, types.UpdateAssessmentFrameworkInput): types.UpdateAssessmentFrameworkOutput, table
+    updateAssessmentFramework: function(Client, types.UpdateAssessmentFrameworkInput): Operation<types.UpdateAssessmentFrameworkOutput>
     -- Updates a share request for a custom framework in Audit Manager.
-    updateAssessmentFrameworkShare: function(Client, types.UpdateAssessmentFrameworkShareInput): types.UpdateAssessmentFrameworkShareOutput, table
+    updateAssessmentFrameworkShare: function(Client, types.UpdateAssessmentFrameworkShareInput): Operation<types.UpdateAssessmentFrameworkShareOutput>
     -- Updates the status of an assessment in Audit Manager.
-    updateAssessmentStatus: function(Client, types.UpdateAssessmentStatusInput): types.UpdateAssessmentStatusOutput, table
+    updateAssessmentStatus: function(Client, types.UpdateAssessmentStatusInput): Operation<types.UpdateAssessmentStatusOutput>
     -- Updates a custom control in Audit Manager.
-    updateControl: function(Client, types.UpdateControlInput): types.UpdateControlOutput, table
+    updateControl: function(Client, types.UpdateControlInput): Operation<types.UpdateControlOutput>
     -- Updates Audit Manager settings for the current account.
-    updateSettings: function(Client, types.UpdateSettingsInput): types.UpdateSettingsOutput, table
+    updateSettings: function(Client, types.UpdateSettingsInput): Operation<types.UpdateSettingsOutput>
     -- Validates the integrity of an assessment report in Audit Manager.
-    validateAssessmentReportIntegrity: function(Client, types.ValidateAssessmentReportIntegrityInput): types.ValidateAssessmentReportIntegrityOutput, table
+    validateAssessmentReportIntegrity: function(Client, types.ValidateAssessmentReportIntegrityInput): Operation<types.ValidateAssessmentReportIntegrityOutput>
 end
 
 local record M

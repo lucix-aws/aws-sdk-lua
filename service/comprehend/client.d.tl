@@ -2,28 +2,32 @@
 
 local types = require("comprehend.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Determines the dominant language of the input text for a batch of documents. For a list
     -- of languages that Amazon Comprehend can detect, see Amazon Comprehend Supported Languages.
-    batchDetectDominantLanguage: function(Client, types.BatchDetectDominantLanguageInput): types.BatchDetectDominantLanguageOutput, table
+    batchDetectDominantLanguage: function(Client, types.BatchDetectDominantLanguageInput): Operation<types.BatchDetectDominantLanguageOutput>
     -- Inspects the text of a batch of documents for named entities and returns information
     -- about them. For more information about named entities, see
     -- Entities in the Comprehend Developer Guide.
-    batchDetectEntities: function(Client, types.BatchDetectEntitiesInput): types.BatchDetectEntitiesOutput, table
+    batchDetectEntities: function(Client, types.BatchDetectEntitiesInput): Operation<types.BatchDetectEntitiesOutput>
     -- Detects the key noun phrases found in a batch of documents.
-    batchDetectKeyPhrases: function(Client, types.BatchDetectKeyPhrasesInput): types.BatchDetectKeyPhrasesOutput, table
+    batchDetectKeyPhrases: function(Client, types.BatchDetectKeyPhrasesInput): Operation<types.BatchDetectKeyPhrasesOutput>
     -- Inspects a batch of documents and returns an inference of the prevailing sentiment,
     -- POSITIVE, NEUTRAL, MIXED, or NEGATIVE,
     -- in each one.
-    batchDetectSentiment: function(Client, types.BatchDetectSentimentInput): types.BatchDetectSentimentOutput, table
+    batchDetectSentiment: function(Client, types.BatchDetectSentimentInput): Operation<types.BatchDetectSentimentOutput>
     -- Inspects the text of a batch of documents for the syntax and part of speech of the words
     -- in the document and returns information about them. For more information, see
     -- Syntax in the Comprehend Developer Guide.
-    batchDetectSyntax: function(Client, types.BatchDetectSyntaxInput): types.BatchDetectSyntaxOutput, table
+    batchDetectSyntax: function(Client, types.BatchDetectSyntaxInput): Operation<types.BatchDetectSyntaxOutput>
     -- Inspects a batch of documents and returns a sentiment analysis
     -- for each entity identified in the documents.
     -- For more information about targeted sentiment, see Targeted sentiment in the Amazon Comprehend Developer Guide.
-    batchDetectTargetedSentiment: function(Client, types.BatchDetectTargetedSentimentInput): types.BatchDetectTargetedSentimentOutput, table
+    batchDetectTargetedSentiment: function(Client, types.BatchDetectTargetedSentimentInput): Operation<types.BatchDetectTargetedSentimentOutput>
     -- Creates a classification request to analyze a single document in real-time. ClassifyDocument
     -- supports the following model types:
     -- Custom classifier - a custom model that you have created and trained.
@@ -40,29 +44,29 @@ local record Client
     -- InvalidRequestException error response.
     -- For details about this exception, see
     -- Errors in semi-structured documents in the Comprehend Developer Guide.
-    classifyDocument: function(Client, types.ClassifyDocumentInput): types.ClassifyDocumentOutput, table
+    classifyDocument: function(Client, types.ClassifyDocumentInput): Operation<types.ClassifyDocumentOutput>
     -- Analyzes input text for the presence of personally identifiable information (PII) and
     -- returns the labels of identified PII entity types such as name, address, bank account number,
     -- or phone number.
-    containsPiiEntities: function(Client, types.ContainsPiiEntitiesInput): types.ContainsPiiEntitiesOutput, table
+    containsPiiEntities: function(Client, types.ContainsPiiEntitiesInput): Operation<types.ContainsPiiEntitiesOutput>
     -- Creates a dataset to upload training or test data for a model associated with a flywheel.
     -- For more information about datasets, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): Operation<types.CreateDatasetOutput>
     -- Creates a new document classifier that you can use to categorize documents. To create a
     -- classifier, you provide a set of training documents that are labeled with the categories that you
     -- want to use. For more information, see
     -- Training classifier models
     -- in the Comprehend Developer Guide.
-    createDocumentClassifier: function(Client, types.CreateDocumentClassifierInput): types.CreateDocumentClassifierOutput, table
+    createDocumentClassifier: function(Client, types.CreateDocumentClassifierInput): Operation<types.CreateDocumentClassifierOutput>
     -- Creates a model-specific endpoint for synchronous inference for a previously trained
     -- custom model
     -- For information about endpoints, see Managing endpoints.
-    createEndpoint: function(Client, types.CreateEndpointInput): types.CreateEndpointOutput, table
+    createEndpoint: function(Client, types.CreateEndpointInput): Operation<types.CreateEndpointOutput>
     -- Creates an entity recognizer using submitted files. After your
     -- CreateEntityRecognizer request is submitted, you can check job status using the
     -- DescribeEntityRecognizer API.
-    createEntityRecognizer: function(Client, types.CreateEntityRecognizerInput): types.CreateEntityRecognizerOutput, table
+    createEntityRecognizer: function(Client, types.CreateEntityRecognizerInput): Operation<types.CreateEntityRecognizerOutput>
     -- A flywheel is an Amazon Web Services resource that orchestrates the ongoing training of a model for custom classification
     -- or custom entity recognition. You can create a flywheel to start with an existing trained model, or
     -- Comprehend can create and train a new model.
@@ -74,7 +78,7 @@ local record Client
     -- when you create the flywheel.
     -- For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    createFlywheel: function(Client, types.CreateFlywheelInput): types.CreateFlywheelOutput, table
+    createFlywheel: function(Client, types.CreateFlywheelInput): Operation<types.CreateFlywheelOutput>
     -- Deletes a previously created document classifier
     -- Only those classifiers that are in terminated states (IN_ERROR, TRAINED) will be deleted.
     -- If an active inference job is using the model, a ResourceInUseException will be
@@ -82,11 +86,11 @@ local record Client
     -- This is an asynchronous action that puts the classifier into a DELETING state, and it is
     -- then removed by a background job. Once removed, the classifier disappears from your account
     -- and is no longer available for use.
-    deleteDocumentClassifier: function(Client, types.DeleteDocumentClassifierInput): types.DeleteDocumentClassifierOutput, table
+    deleteDocumentClassifier: function(Client, types.DeleteDocumentClassifierInput): Operation<types.DeleteDocumentClassifierOutput>
     -- Deletes a model-specific endpoint for a previously-trained custom model. All endpoints
     -- must be deleted in order for the model to be deleted.
     -- For information about endpoints, see Managing endpoints.
-    deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    deleteEndpoint: function(Client, types.DeleteEndpointInput): Operation<types.DeleteEndpointOutput>
     -- Deletes an entity recognizer.
     -- Only those recognizers that are in terminated states (IN_ERROR, TRAINED) will be deleted.
     -- If an active inference job is using the model, a ResourceInUseException will be
@@ -94,66 +98,66 @@ local record Client
     -- This is an asynchronous action that puts the recognizer into a DELETING state, and it is
     -- then removed by a background job. Once removed, the recognizer disappears from your account
     -- and is no longer available for use.
-    deleteEntityRecognizer: function(Client, types.DeleteEntityRecognizerInput): types.DeleteEntityRecognizerOutput, table
+    deleteEntityRecognizer: function(Client, types.DeleteEntityRecognizerInput): Operation<types.DeleteEntityRecognizerOutput>
     -- Deletes a flywheel. When you delete the flywheel, Amazon Comprehend
     -- does not delete the data lake or the model associated with the flywheel.
     -- For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    deleteFlywheel: function(Client, types.DeleteFlywheelInput): types.DeleteFlywheelOutput, table
+    deleteFlywheel: function(Client, types.DeleteFlywheelInput): Operation<types.DeleteFlywheelOutput>
     -- Deletes a resource-based policy that is attached to a custom model.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Returns information about the dataset that you specify.
     -- For more information about datasets, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): Operation<types.DescribeDatasetOutput>
     -- Gets the properties associated with a document classification job. Use this operation to
     -- get the status of a classification job.
-    describeDocumentClassificationJob: function(Client, types.DescribeDocumentClassificationJobInput): types.DescribeDocumentClassificationJobOutput, table
+    describeDocumentClassificationJob: function(Client, types.DescribeDocumentClassificationJobInput): Operation<types.DescribeDocumentClassificationJobOutput>
     -- Gets the properties associated with a document classifier.
-    describeDocumentClassifier: function(Client, types.DescribeDocumentClassifierInput): types.DescribeDocumentClassifierOutput, table
+    describeDocumentClassifier: function(Client, types.DescribeDocumentClassifierInput): Operation<types.DescribeDocumentClassifierOutput>
     -- Gets the properties associated with a dominant language detection job. Use this operation
     -- to get the status of a detection job.
-    describeDominantLanguageDetectionJob: function(Client, types.DescribeDominantLanguageDetectionJobInput): types.DescribeDominantLanguageDetectionJobOutput, table
+    describeDominantLanguageDetectionJob: function(Client, types.DescribeDominantLanguageDetectionJobInput): Operation<types.DescribeDominantLanguageDetectionJobOutput>
     -- Gets the properties associated with a specific endpoint. Use this operation to get the
     -- status of an endpoint.
     -- For information about endpoints, see Managing endpoints.
-    describeEndpoint: function(Client, types.DescribeEndpointInput): types.DescribeEndpointOutput, table
+    describeEndpoint: function(Client, types.DescribeEndpointInput): Operation<types.DescribeEndpointOutput>
     -- Gets the properties associated with an entities detection job. Use this operation to get
     -- the status of a detection job.
-    describeEntitiesDetectionJob: function(Client, types.DescribeEntitiesDetectionJobInput): types.DescribeEntitiesDetectionJobOutput, table
+    describeEntitiesDetectionJob: function(Client, types.DescribeEntitiesDetectionJobInput): Operation<types.DescribeEntitiesDetectionJobOutput>
     -- Provides details about an entity recognizer including status, S3 buckets containing
     -- training data, recognizer metadata, metrics, and so on.
-    describeEntityRecognizer: function(Client, types.DescribeEntityRecognizerInput): types.DescribeEntityRecognizerOutput, table
+    describeEntityRecognizer: function(Client, types.DescribeEntityRecognizerInput): Operation<types.DescribeEntityRecognizerOutput>
     -- Gets the status and details of an events detection job.
-    describeEventsDetectionJob: function(Client, types.DescribeEventsDetectionJobInput): types.DescribeEventsDetectionJobOutput, table
+    describeEventsDetectionJob: function(Client, types.DescribeEventsDetectionJobInput): Operation<types.DescribeEventsDetectionJobOutput>
     -- Provides configuration information about the flywheel. For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    describeFlywheel: function(Client, types.DescribeFlywheelInput): types.DescribeFlywheelOutput, table
+    describeFlywheel: function(Client, types.DescribeFlywheelInput): Operation<types.DescribeFlywheelOutput>
     -- Retrieve the configuration properties of a flywheel iteration.
     -- For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    describeFlywheelIteration: function(Client, types.DescribeFlywheelIterationInput): types.DescribeFlywheelIterationOutput, table
+    describeFlywheelIteration: function(Client, types.DescribeFlywheelIterationInput): Operation<types.DescribeFlywheelIterationOutput>
     -- Gets the properties associated with a key phrases detection job. Use this operation to get
     -- the status of a detection job.
-    describeKeyPhrasesDetectionJob: function(Client, types.DescribeKeyPhrasesDetectionJobInput): types.DescribeKeyPhrasesDetectionJobOutput, table
+    describeKeyPhrasesDetectionJob: function(Client, types.DescribeKeyPhrasesDetectionJobInput): Operation<types.DescribeKeyPhrasesDetectionJobOutput>
     -- Gets the properties associated with a PII entities detection job. For example, you can use
     -- this operation to get the job status.
-    describePiiEntitiesDetectionJob: function(Client, types.DescribePiiEntitiesDetectionJobInput): types.DescribePiiEntitiesDetectionJobOutput, table
+    describePiiEntitiesDetectionJob: function(Client, types.DescribePiiEntitiesDetectionJobInput): Operation<types.DescribePiiEntitiesDetectionJobOutput>
     -- Gets the details of a resource-based policy that is attached to a custom model, including
     -- the JSON body of the policy.
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): Operation<types.DescribeResourcePolicyOutput>
     -- Gets the properties associated with a sentiment detection job. Use this operation to get
     -- the status of a detection job.
-    describeSentimentDetectionJob: function(Client, types.DescribeSentimentDetectionJobInput): types.DescribeSentimentDetectionJobOutput, table
+    describeSentimentDetectionJob: function(Client, types.DescribeSentimentDetectionJobInput): Operation<types.DescribeSentimentDetectionJobOutput>
     -- Gets the properties associated with a targeted sentiment detection job. Use this operation
     -- to get the status of the job.
-    describeTargetedSentimentDetectionJob: function(Client, types.DescribeTargetedSentimentDetectionJobInput): types.DescribeTargetedSentimentDetectionJobOutput, table
+    describeTargetedSentimentDetectionJob: function(Client, types.DescribeTargetedSentimentDetectionJobInput): Operation<types.DescribeTargetedSentimentDetectionJobOutput>
     -- Gets the properties associated with a topic detection job. Use this operation to get
     -- the status of a detection job.
-    describeTopicsDetectionJob: function(Client, types.DescribeTopicsDetectionJobInput): types.DescribeTopicsDetectionJobOutput, table
+    describeTopicsDetectionJob: function(Client, types.DescribeTopicsDetectionJobInput): Operation<types.DescribeTopicsDetectionJobOutput>
     -- Determines the dominant language of the input text. For a list of languages that Amazon
     -- Comprehend can detect, see Amazon Comprehend Supported Languages.
-    detectDominantLanguage: function(Client, types.DetectDominantLanguageInput): types.DetectDominantLanguageOutput, table
+    detectDominantLanguage: function(Client, types.DetectDominantLanguageInput): Operation<types.DetectDominantLanguageOutput>
     -- Detects named entities in input text when you use the pre-trained model.
     -- Detects custom entities if you have a custom entity recognition model.
     -- When detecting named entities using the pre-trained model, use plain text as the input.
@@ -167,119 +171,119 @@ local record Client
     -- InvalidRequestException error response.
     -- For details about this exception, see
     -- Errors in semi-structured documents in the Comprehend Developer Guide.
-    detectEntities: function(Client, types.DetectEntitiesInput): types.DetectEntitiesOutput, table
+    detectEntities: function(Client, types.DetectEntitiesInput): Operation<types.DetectEntitiesOutput>
     -- Detects the key noun phrases found in the text.
-    detectKeyPhrases: function(Client, types.DetectKeyPhrasesInput): types.DetectKeyPhrasesOutput, table
+    detectKeyPhrases: function(Client, types.DetectKeyPhrasesInput): Operation<types.DetectKeyPhrasesOutput>
     -- Inspects the input text for entities that contain personally identifiable information
     -- (PII) and returns information about them.
-    detectPiiEntities: function(Client, types.DetectPiiEntitiesInput): types.DetectPiiEntitiesOutput, table
+    detectPiiEntities: function(Client, types.DetectPiiEntitiesInput): Operation<types.DetectPiiEntitiesOutput>
     -- Inspects text and returns an inference of the prevailing sentiment
     -- (POSITIVE, NEUTRAL, MIXED, or NEGATIVE).
-    detectSentiment: function(Client, types.DetectSentimentInput): types.DetectSentimentOutput, table
+    detectSentiment: function(Client, types.DetectSentimentInput): Operation<types.DetectSentimentOutput>
     -- Inspects text for syntax and the part of speech of words in the document. For more
     -- information, see
     -- Syntax in the Comprehend Developer Guide.
-    detectSyntax: function(Client, types.DetectSyntaxInput): types.DetectSyntaxOutput, table
+    detectSyntax: function(Client, types.DetectSyntaxInput): Operation<types.DetectSyntaxOutput>
     -- Inspects the input text and returns a sentiment analysis for each entity identified in the text.
     -- For more information about targeted sentiment, see Targeted sentiment in the Amazon Comprehend Developer Guide.
-    detectTargetedSentiment: function(Client, types.DetectTargetedSentimentInput): types.DetectTargetedSentimentOutput, table
+    detectTargetedSentiment: function(Client, types.DetectTargetedSentimentInput): Operation<types.DetectTargetedSentimentOutput>
     -- Performs toxicity analysis on the list of text strings that you provide as input.
     -- The API response contains a results list that matches the size of the input list.
     -- For more information about toxicity detection, see Toxicity detection in the Amazon Comprehend Developer Guide.
-    detectToxicContent: function(Client, types.DetectToxicContentInput): types.DetectToxicContentOutput, table
+    detectToxicContent: function(Client, types.DetectToxicContentInput): Operation<types.DetectToxicContentOutput>
     -- Creates a new custom model that replicates a source custom model that you import. The
     -- source model can be in your Amazon Web Services account or another one.
     -- If the source model is in another Amazon Web Services account, then it must have a resource-based policy
     -- that authorizes you to import it.
     -- The source model must be in the same Amazon Web Services Region that you're using when you import. You
     -- can't import a model that's in a different Region.
-    importModel: function(Client, types.ImportModelInput): types.ImportModelOutput, table
+    importModel: function(Client, types.ImportModelInput): Operation<types.ImportModelOutput>
     -- List the datasets that you have configured in this Region. For more information about datasets, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): Operation<types.ListDatasetsOutput>
     -- Gets a list of the documentation classification jobs that you have submitted.
-    listDocumentClassificationJobs: function(Client, types.ListDocumentClassificationJobsInput): types.ListDocumentClassificationJobsOutput, table
+    listDocumentClassificationJobs: function(Client, types.ListDocumentClassificationJobsInput): Operation<types.ListDocumentClassificationJobsOutput>
     -- Gets a list of the document classifiers that you have created.
-    listDocumentClassifiers: function(Client, types.ListDocumentClassifiersInput): types.ListDocumentClassifiersOutput, table
+    listDocumentClassifiers: function(Client, types.ListDocumentClassifiersInput): Operation<types.ListDocumentClassifiersOutput>
     -- Gets a list of summaries of the document classifiers that you have created
-    listDocumentClassifierSummaries: function(Client, types.ListDocumentClassifierSummariesInput): types.ListDocumentClassifierSummariesOutput, table
+    listDocumentClassifierSummaries: function(Client, types.ListDocumentClassifierSummariesInput): Operation<types.ListDocumentClassifierSummariesOutput>
     -- Gets a list of the dominant language detection jobs that you have submitted.
-    listDominantLanguageDetectionJobs: function(Client, types.ListDominantLanguageDetectionJobsInput): types.ListDominantLanguageDetectionJobsOutput, table
+    listDominantLanguageDetectionJobs: function(Client, types.ListDominantLanguageDetectionJobsInput): Operation<types.ListDominantLanguageDetectionJobsOutput>
     -- Gets a list of all existing endpoints that you've created.
     -- For information about endpoints, see Managing endpoints.
-    listEndpoints: function(Client, types.ListEndpointsInput): types.ListEndpointsOutput, table
+    listEndpoints: function(Client, types.ListEndpointsInput): Operation<types.ListEndpointsOutput>
     -- Gets a list of the entity detection jobs that you have submitted.
-    listEntitiesDetectionJobs: function(Client, types.ListEntitiesDetectionJobsInput): types.ListEntitiesDetectionJobsOutput, table
+    listEntitiesDetectionJobs: function(Client, types.ListEntitiesDetectionJobsInput): Operation<types.ListEntitiesDetectionJobsOutput>
     -- Gets a list of the properties of all entity recognizers that you created, including
     -- recognizers currently in training. Allows you to filter the list of recognizers based on
     -- criteria such as status and submission time. This call returns up to 500 entity recognizers in
     -- the list, with a default number of 100 recognizers in the list.
     -- The results of this list are not in any particular order. Please get the list and sort
     -- locally if needed.
-    listEntityRecognizers: function(Client, types.ListEntityRecognizersInput): types.ListEntityRecognizersOutput, table
+    listEntityRecognizers: function(Client, types.ListEntityRecognizersInput): Operation<types.ListEntityRecognizersOutput>
     -- Gets a list of summaries for the entity recognizers that you have created.
-    listEntityRecognizerSummaries: function(Client, types.ListEntityRecognizerSummariesInput): types.ListEntityRecognizerSummariesOutput, table
+    listEntityRecognizerSummaries: function(Client, types.ListEntityRecognizerSummariesInput): Operation<types.ListEntityRecognizerSummariesOutput>
     -- Gets a list of the events detection jobs that you have submitted.
-    listEventsDetectionJobs: function(Client, types.ListEventsDetectionJobsInput): types.ListEventsDetectionJobsOutput, table
+    listEventsDetectionJobs: function(Client, types.ListEventsDetectionJobsInput): Operation<types.ListEventsDetectionJobsOutput>
     -- Information about the history of a flywheel iteration.
     -- For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    listFlywheelIterationHistory: function(Client, types.ListFlywheelIterationHistoryInput): types.ListFlywheelIterationHistoryOutput, table
+    listFlywheelIterationHistory: function(Client, types.ListFlywheelIterationHistoryInput): Operation<types.ListFlywheelIterationHistoryOutput>
     -- Gets a list of the flywheels that you have created.
-    listFlywheels: function(Client, types.ListFlywheelsInput): types.ListFlywheelsOutput, table
+    listFlywheels: function(Client, types.ListFlywheelsInput): Operation<types.ListFlywheelsOutput>
     -- Get a list of key phrase detection jobs that you have submitted.
-    listKeyPhrasesDetectionJobs: function(Client, types.ListKeyPhrasesDetectionJobsInput): types.ListKeyPhrasesDetectionJobsOutput, table
+    listKeyPhrasesDetectionJobs: function(Client, types.ListKeyPhrasesDetectionJobsInput): Operation<types.ListKeyPhrasesDetectionJobsOutput>
     -- Gets a list of the PII entity detection jobs that you have submitted.
-    listPiiEntitiesDetectionJobs: function(Client, types.ListPiiEntitiesDetectionJobsInput): types.ListPiiEntitiesDetectionJobsOutput, table
+    listPiiEntitiesDetectionJobs: function(Client, types.ListPiiEntitiesDetectionJobsInput): Operation<types.ListPiiEntitiesDetectionJobsOutput>
     -- Gets a list of sentiment detection jobs that you have submitted.
-    listSentimentDetectionJobs: function(Client, types.ListSentimentDetectionJobsInput): types.ListSentimentDetectionJobsOutput, table
+    listSentimentDetectionJobs: function(Client, types.ListSentimentDetectionJobsInput): Operation<types.ListSentimentDetectionJobsOutput>
     -- Lists all tags associated with a given Amazon Comprehend resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Gets a list of targeted sentiment detection jobs that you have submitted.
-    listTargetedSentimentDetectionJobs: function(Client, types.ListTargetedSentimentDetectionJobsInput): types.ListTargetedSentimentDetectionJobsOutput, table
+    listTargetedSentimentDetectionJobs: function(Client, types.ListTargetedSentimentDetectionJobsInput): Operation<types.ListTargetedSentimentDetectionJobsOutput>
     -- Gets a list of the topic detection jobs that you have submitted.
-    listTopicsDetectionJobs: function(Client, types.ListTopicsDetectionJobsInput): types.ListTopicsDetectionJobsOutput, table
+    listTopicsDetectionJobs: function(Client, types.ListTopicsDetectionJobsInput): Operation<types.ListTopicsDetectionJobsOutput>
     -- Attaches a resource-based policy to a custom model. You can use this policy to authorize
     -- an entity in another Amazon Web Services account to import the custom model, which replicates it in Amazon
     -- Comprehend in their account.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Starts an asynchronous document classification job using a custom classification model. Use the
     -- DescribeDocumentClassificationJob
     -- operation to track the progress of the job.
-    startDocumentClassificationJob: function(Client, types.StartDocumentClassificationJobInput): types.StartDocumentClassificationJobOutput, table
+    startDocumentClassificationJob: function(Client, types.StartDocumentClassificationJobInput): Operation<types.StartDocumentClassificationJobOutput>
     -- Starts an asynchronous dominant language detection job for a collection of documents. Use
     -- the operation to track the status
     -- of a job.
-    startDominantLanguageDetectionJob: function(Client, types.StartDominantLanguageDetectionJobInput): types.StartDominantLanguageDetectionJobOutput, table
+    startDominantLanguageDetectionJob: function(Client, types.StartDominantLanguageDetectionJobInput): Operation<types.StartDominantLanguageDetectionJobOutput>
     -- Starts an asynchronous entity detection job for a collection of documents. Use the operation to track the status of a job.
     -- This API can be used for either standard entity detection or custom entity recognition. In
     -- order to be used for custom entity recognition, the optional EntityRecognizerArn
     -- must be used in order to provide access to the recognizer being used to detect the custom
     -- entity.
-    startEntitiesDetectionJob: function(Client, types.StartEntitiesDetectionJobInput): types.StartEntitiesDetectionJobOutput, table
+    startEntitiesDetectionJob: function(Client, types.StartEntitiesDetectionJobInput): Operation<types.StartEntitiesDetectionJobOutput>
     -- Starts an asynchronous event detection job for a collection of documents.
-    startEventsDetectionJob: function(Client, types.StartEventsDetectionJobInput): types.StartEventsDetectionJobOutput, table
+    startEventsDetectionJob: function(Client, types.StartEventsDetectionJobInput): Operation<types.StartEventsDetectionJobOutput>
     -- Start the flywheel iteration.This operation uses any new datasets to train a new model version.
     -- For more information about flywheels, see
     -- Flywheel overview in the Amazon Comprehend Developer Guide.
-    startFlywheelIteration: function(Client, types.StartFlywheelIterationInput): types.StartFlywheelIterationOutput, table
+    startFlywheelIteration: function(Client, types.StartFlywheelIterationInput): Operation<types.StartFlywheelIterationOutput>
     -- Starts an asynchronous key phrase detection job for a collection of documents. Use the
     -- operation to track the status of a
     -- job.
-    startKeyPhrasesDetectionJob: function(Client, types.StartKeyPhrasesDetectionJobInput): types.StartKeyPhrasesDetectionJobOutput, table
+    startKeyPhrasesDetectionJob: function(Client, types.StartKeyPhrasesDetectionJobInput): Operation<types.StartKeyPhrasesDetectionJobOutput>
     -- Starts an asynchronous PII entity detection job for a collection of documents.
-    startPiiEntitiesDetectionJob: function(Client, types.StartPiiEntitiesDetectionJobInput): types.StartPiiEntitiesDetectionJobOutput, table
+    startPiiEntitiesDetectionJob: function(Client, types.StartPiiEntitiesDetectionJobInput): Operation<types.StartPiiEntitiesDetectionJobOutput>
     -- Starts an asynchronous sentiment detection job for a collection of documents. Use the
     -- operation to track the status of a
     -- job.
-    startSentimentDetectionJob: function(Client, types.StartSentimentDetectionJobInput): types.StartSentimentDetectionJobOutput, table
+    startSentimentDetectionJob: function(Client, types.StartSentimentDetectionJobInput): Operation<types.StartSentimentDetectionJobOutput>
     -- Starts an asynchronous targeted sentiment detection job for a collection of documents. Use the
     -- DescribeTargetedSentimentDetectionJob operation to track the status of a
     -- job.
-    startTargetedSentimentDetectionJob: function(Client, types.StartTargetedSentimentDetectionJobInput): types.StartTargetedSentimentDetectionJobOutput, table
+    startTargetedSentimentDetectionJob: function(Client, types.StartTargetedSentimentDetectionJobInput): Operation<types.StartTargetedSentimentDetectionJobOutput>
     -- Starts an asynchronous topic detection job. Use the
     -- DescribeTopicDetectionJob operation to track the status of a job.
-    startTopicsDetectionJob: function(Client, types.StartTopicsDetectionJobInput): types.StartTopicsDetectionJobOutput, table
+    startTopicsDetectionJob: function(Client, types.StartTopicsDetectionJobInput): Operation<types.StartTopicsDetectionJobOutput>
     -- Stops a dominant language detection job in progress.
     -- If the job state is IN_PROGRESS the job is marked for termination and put
     -- into the STOP_REQUESTED state. If the job completes before it can be stopped, it
@@ -290,7 +294,7 @@ local record Client
     -- Internal Request Exception.
     -- When a job is stopped, any documents already processed are written to the output
     -- location.
-    stopDominantLanguageDetectionJob: function(Client, types.StopDominantLanguageDetectionJobInput): types.StopDominantLanguageDetectionJobOutput, table
+    stopDominantLanguageDetectionJob: function(Client, types.StopDominantLanguageDetectionJobInput): Operation<types.StopDominantLanguageDetectionJobOutput>
     -- Stops an entities detection job in progress.
     -- If the job state is IN_PROGRESS the job is marked for termination and put
     -- into the STOP_REQUESTED state. If the job completes before it can be stopped, it
@@ -301,9 +305,9 @@ local record Client
     -- Internal Request Exception.
     -- When a job is stopped, any documents already processed are written to the output
     -- location.
-    stopEntitiesDetectionJob: function(Client, types.StopEntitiesDetectionJobInput): types.StopEntitiesDetectionJobOutput, table
+    stopEntitiesDetectionJob: function(Client, types.StopEntitiesDetectionJobInput): Operation<types.StopEntitiesDetectionJobOutput>
     -- Stops an events detection job in progress.
-    stopEventsDetectionJob: function(Client, types.StopEventsDetectionJobInput): types.StopEventsDetectionJobOutput, table
+    stopEventsDetectionJob: function(Client, types.StopEventsDetectionJobInput): Operation<types.StopEventsDetectionJobOutput>
     -- Stops a key phrases detection job in progress.
     -- If the job state is IN_PROGRESS the job is marked for termination and put
     -- into the STOP_REQUESTED state. If the job completes before it can be stopped, it
@@ -314,9 +318,9 @@ local record Client
     -- Internal Request Exception.
     -- When a job is stopped, any documents already processed are written to the output
     -- location.
-    stopKeyPhrasesDetectionJob: function(Client, types.StopKeyPhrasesDetectionJobInput): types.StopKeyPhrasesDetectionJobOutput, table
+    stopKeyPhrasesDetectionJob: function(Client, types.StopKeyPhrasesDetectionJobInput): Operation<types.StopKeyPhrasesDetectionJobOutput>
     -- Stops a PII entities detection job in progress.
-    stopPiiEntitiesDetectionJob: function(Client, types.StopPiiEntitiesDetectionJobInput): types.StopPiiEntitiesDetectionJobOutput, table
+    stopPiiEntitiesDetectionJob: function(Client, types.StopPiiEntitiesDetectionJobInput): Operation<types.StopPiiEntitiesDetectionJobOutput>
     -- Stops a sentiment detection job in progress.
     -- If the job state is IN_PROGRESS, the job is marked for termination and put
     -- into the STOP_REQUESTED state. If the job completes before it can be stopped, it
@@ -327,7 +331,7 @@ local record Client
     -- Internal Request Exception.
     -- When a job is stopped, any documents already processed are written to the output
     -- location.
-    stopSentimentDetectionJob: function(Client, types.StopSentimentDetectionJobInput): types.StopSentimentDetectionJobOutput, table
+    stopSentimentDetectionJob: function(Client, types.StopSentimentDetectionJobInput): Operation<types.StopSentimentDetectionJobOutput>
     -- Stops a targeted sentiment detection job in progress.
     -- If the job state is IN_PROGRESS, the job is marked for termination and put
     -- into the STOP_REQUESTED state. If the job completes before it can be stopped, it
@@ -338,32 +342,32 @@ local record Client
     -- Internal Request Exception.
     -- When a job is stopped, any documents already processed are written to the output
     -- location.
-    stopTargetedSentimentDetectionJob: function(Client, types.StopTargetedSentimentDetectionJobInput): types.StopTargetedSentimentDetectionJobOutput, table
+    stopTargetedSentimentDetectionJob: function(Client, types.StopTargetedSentimentDetectionJobInput): Operation<types.StopTargetedSentimentDetectionJobOutput>
     -- Stops a document classifier training job while in progress.
     -- If the training job state is TRAINING, the job is marked for termination and
     -- put into the STOP_REQUESTED state. If the training job completes before it can be
     -- stopped, it is put into the TRAINED; otherwise the training job is stopped and
     -- put into the STOPPED state and the service sends back an HTTP 200 response with
     -- an empty HTTP body.
-    stopTrainingDocumentClassifier: function(Client, types.StopTrainingDocumentClassifierInput): types.StopTrainingDocumentClassifierOutput, table
+    stopTrainingDocumentClassifier: function(Client, types.StopTrainingDocumentClassifierInput): Operation<types.StopTrainingDocumentClassifierOutput>
     -- Stops an entity recognizer training job while in progress.
     -- If the training job state is TRAINING, the job is marked for termination and
     -- put into the STOP_REQUESTED state. If the training job completes before it can be
     -- stopped, it is put into the TRAINED; otherwise the training job is stopped and
     -- putted into the STOPPED state and the service sends back an HTTP 200 response
     -- with an empty HTTP body.
-    stopTrainingEntityRecognizer: function(Client, types.StopTrainingEntityRecognizerInput): types.StopTrainingEntityRecognizerOutput, table
+    stopTrainingEntityRecognizer: function(Client, types.StopTrainingEntityRecognizerInput): Operation<types.StopTrainingEntityRecognizerOutput>
     -- Associates a specific tag with an Amazon Comprehend resource. A tag is a key-value pair
     -- that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with
     -- "Sales" as the key might be added to a resource to indicate its use by the sales department.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a specific tag associated with an Amazon Comprehend resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates information about the specified endpoint.
     -- For information about endpoints, see Managing endpoints.
-    updateEndpoint: function(Client, types.UpdateEndpointInput): types.UpdateEndpointOutput, table
+    updateEndpoint: function(Client, types.UpdateEndpointInput): Operation<types.UpdateEndpointOutput>
     -- Update the configuration information for an existing flywheel.
-    updateFlywheel: function(Client, types.UpdateFlywheelInput): types.UpdateFlywheelOutput, table
+    updateFlywheel: function(Client, types.UpdateFlywheelInput): Operation<types.UpdateFlywheelOutput>
 end
 
 local record M

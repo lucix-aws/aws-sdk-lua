@@ -2,10 +2,14 @@
 
 local types = require("route53.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Activates a key-signing key (KSK) so that it can be used for signing by DNSSEC. This
     -- operation changes the KSK status to ACTIVE.
-    activateKeySigningKey: function(Client, types.ActivateKeySigningKeyInput): types.ActivateKeySigningKeyOutput, table
+    activateKeySigningKey: function(Client, types.ActivateKeySigningKeyInput): Operation<types.ActivateKeySigningKeyOutput>
     -- Associates an Amazon VPC with a private hosted zone.
     -- To perform the association, the VPC and the private hosted zone must already
     -- exist. You can't convert a public hosted zone into a private hosted zone.
@@ -23,7 +27,7 @@ local record Client
     -- aws-us-gov - Amazon Web Services GovCloud (US) Region
     -- For more information, see Access Management
     -- in the Amazon Web Services General Reference.
-    associateVPCWithHostedZone: function(Client, types.AssociateVPCWithHostedZoneInput): types.AssociateVPCWithHostedZoneOutput, table
+    associateVPCWithHostedZone: function(Client, types.AssociateVPCWithHostedZoneInput): Operation<types.AssociateVPCWithHostedZoneOutput>
     -- Creates, changes, or deletes CIDR blocks within a collection. Contains authoritative
     -- IP information mapping blocks to one or multiple locations.
     -- A change request can update multiple locations in a collection at a time, which is
@@ -37,7 +41,7 @@ local record Client
     -- PUT: Create a CIDR block within the specified collection.
     -- DELETE_IF_EXISTS: Delete an existing CIDR block from the
     -- collection.
-    changeCidrCollection: function(Client, types.ChangeCidrCollectionInput): types.ChangeCidrCollectionOutput, table
+    changeCidrCollection: function(Client, types.ChangeCidrCollectionInput): Operation<types.ChangeCidrCollectionOutput>
     -- Creates, changes, or deletes a resource record set, which contains authoritative DNS
     -- information for a specified domain name or subdomain name. For example, you can use
     -- ChangeResourceRecordSets to create a resource record set that routes
@@ -101,13 +105,13 @@ local record Client
     -- Limits on ChangeResourceRecordSets Requests
     -- For information about the limits on a ChangeResourceRecordSets request,
     -- see Limits in the Amazon Route 53 Developer Guide.
-    changeResourceRecordSets: function(Client, types.ChangeResourceRecordSetsInput): types.ChangeResourceRecordSetsOutput, table
+    changeResourceRecordSets: function(Client, types.ChangeResourceRecordSetsInput): Operation<types.ChangeResourceRecordSetsOutput>
     -- Adds, edits, or deletes tags for a health check or a hosted zone.
     -- For information about using tags for cost allocation, see Using Cost Allocation
     -- Tags in the Billing and Cost Management User Guide.
-    changeTagsForResource: function(Client, types.ChangeTagsForResourceInput): types.ChangeTagsForResourceOutput, table
+    changeTagsForResource: function(Client, types.ChangeTagsForResourceInput): Operation<types.ChangeTagsForResourceOutput>
     -- Creates a CIDR collection in the current Amazon Web Services account.
-    createCidrCollection: function(Client, types.CreateCidrCollectionInput): types.CreateCidrCollectionOutput, table
+    createCidrCollection: function(Client, types.CreateCidrCollectionInput): Operation<types.CreateCidrCollectionOutput>
     -- Creates a new health check.
     -- For information about adding health checks to resource record sets, see HealthCheckId in ChangeResourceRecordSets.
     -- ELB Load Balancers
@@ -131,7 +135,7 @@ local record Client
     -- about creating CloudWatch metrics and alarms by using the CloudWatch console,
     -- see the Amazon
     -- CloudWatch User Guide.
-    createHealthCheck: function(Client, types.CreateHealthCheckInput): types.CreateHealthCheckOutput, table
+    createHealthCheck: function(Client, types.CreateHealthCheckInput): Operation<types.CreateHealthCheckOutput>
     -- Creates a new public or private hosted zone. You create records in a public hosted
     -- zone to define how you want to route traffic on the internet for a domain, such as
     -- example.com, and its subdomains (apex.example.com, acme.example.com). You create records
@@ -172,10 +176,10 @@ local record Client
     -- aws-us-gov - Amazon Web Services GovCloud (US) Region
     -- For more information, see Access Management
     -- in the Amazon Web Services General Reference.
-    createHostedZone: function(Client, types.CreateHostedZoneInput): types.CreateHostedZoneOutput, table
+    createHostedZone: function(Client, types.CreateHostedZoneInput): Operation<types.CreateHostedZoneOutput>
     -- Creates a new key-signing key (KSK) associated with a hosted zone. You can only have
     -- two KSKs per hosted zone.
-    createKeySigningKey: function(Client, types.CreateKeySigningKeyInput): types.CreateKeySigningKeyOutput, table
+    createKeySigningKey: function(Client, types.CreateKeySigningKeyInput): Operation<types.CreateKeySigningKeyOutput>
     -- Creates a configuration for DNS query logging. After you create a query logging
     -- configuration, Amazon Route 53 begins to publish log data to an Amazon CloudWatch Logs
     -- log group.
@@ -281,7 +285,7 @@ local record Client
     -- How to Stop Logging
     -- If you want Route 53 to stop sending query logs to CloudWatch Logs, delete
     -- the query logging configuration. For more information, see DeleteQueryLoggingConfig.
-    createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput): types.CreateQueryLoggingConfigOutput, table
+    createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput): Operation<types.CreateQueryLoggingConfigOutput>
     -- Creates a delegation set (a group of four name servers) that can be reused by multiple
     -- hosted zones that were created by the same Amazon Web Services account.
     -- You can also create a reusable delegation set that uses the four name servers that are
@@ -316,11 +320,11 @@ local record Client
     -- have overlapping name servers to hosted zones that don't have overlapping name
     -- servers, then migrate the hosted zones again to use the reusable delegation
     -- set.
-    createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput): types.CreateReusableDelegationSetOutput, table
+    createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput): Operation<types.CreateReusableDelegationSetOutput>
     -- Creates a traffic policy, which you use to create multiple DNS resource record sets
     -- for one domain name (such as example.com) or one subdomain name (such as
     -- www.example.com).
-    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput): types.CreateTrafficPolicyOutput, table
+    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput): Operation<types.CreateTrafficPolicyOutput>
     -- Creates resource record sets in a specified hosted zone based on the settings in a
     -- specified traffic policy version. In addition, CreateTrafficPolicyInstance
     -- associates the resource record sets with a specified domain name (such as example.com)
@@ -333,7 +337,7 @@ local record Client
     -- Use GetTrafficPolicyInstance with the id of new traffic policy instance to confirm that the CreateTrafficPolicyInstance
     -- request completed successfully. For more information, see the
     -- State response element.
-    createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput): types.CreateTrafficPolicyInstanceOutput, table
+    createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput): Operation<types.CreateTrafficPolicyInstanceOutput>
     -- Creates a new version of an existing traffic policy. When you create a new version of
     -- a traffic policy, you specify the ID of the traffic policy that you want to update and a
     -- JSON-formatted document that describes the new version. You use traffic policies to
@@ -341,7 +345,7 @@ local record Client
     -- one subdomain name (such as www.example.com). You can create a maximum of 1000 versions
     -- of a traffic policy. If you reach the limit and need to create another version, you'll
     -- need to start a new traffic policy.
-    createTrafficPolicyVersion: function(Client, types.CreateTrafficPolicyVersionInput): types.CreateTrafficPolicyVersionOutput, table
+    createTrafficPolicyVersion: function(Client, types.CreateTrafficPolicyVersionInput): Operation<types.CreateTrafficPolicyVersionOutput>
     -- Authorizes the Amazon Web Services account that created a specified VPC to submit an
     -- AssociateVPCWithHostedZone request to associate the VPC with a
     -- specified hosted zone that was created by a different account. To submit a
@@ -351,13 +355,13 @@ local record Client
     -- If you want to associate multiple VPCs that you created by using one account with
     -- a hosted zone that you created by using a different account, you must submit one
     -- authorization request for each VPC.
-    createVPCAssociationAuthorization: function(Client, types.CreateVPCAssociationAuthorizationInput): types.CreateVPCAssociationAuthorizationOutput, table
+    createVPCAssociationAuthorization: function(Client, types.CreateVPCAssociationAuthorizationInput): Operation<types.CreateVPCAssociationAuthorizationOutput>
     -- Deactivates a key-signing key (KSK) so that it will not be used for signing by DNSSEC.
     -- This operation changes the KSK status to INACTIVE.
-    deactivateKeySigningKey: function(Client, types.DeactivateKeySigningKeyInput): types.DeactivateKeySigningKeyOutput, table
+    deactivateKeySigningKey: function(Client, types.DeactivateKeySigningKeyInput): Operation<types.DeactivateKeySigningKeyOutput>
     -- Deletes a CIDR collection in the current Amazon Web Services account. The collection
     -- must be empty before it can be deleted.
-    deleteCidrCollection: function(Client, types.DeleteCidrCollectionInput): types.DeleteCidrCollectionOutput, table
+    deleteCidrCollection: function(Client, types.DeleteCidrCollectionInput): Operation<types.DeleteCidrCollectionOutput>
     -- Deletes a health check.
     -- Amazon Route 53 does not prevent you from deleting a health check even if the
     -- health check is associated with one or more resource record sets. If you delete a
@@ -371,7 +375,7 @@ local record Client
     -- DeleteHealthCheck command to delete the health check. The health check
     -- is deleted automatically when you deregister the instance; there can be a delay of
     -- several hours before the health check is deleted from Route 53.
-    deleteHealthCheck: function(Client, types.DeleteHealthCheckInput): types.DeleteHealthCheckOutput, table
+    deleteHealthCheck: function(Client, types.DeleteHealthCheckInput): Operation<types.DeleteHealthCheckOutput>
     -- Deletes a hosted zone.
     -- If the hosted zone was created by another service, such as Cloud Map, see
     -- Deleting Public Hosted Zones That Were Created by Another Service in the
@@ -406,26 +410,26 @@ local record Client
     -- hosted zone.
     -- Use the ListHostedZones action to get a list of the hosted zones
     -- associated with the current Amazon Web Services account.
-    deleteHostedZone: function(Client, types.DeleteHostedZoneInput): types.DeleteHostedZoneOutput, table
+    deleteHostedZone: function(Client, types.DeleteHostedZoneInput): Operation<types.DeleteHostedZoneOutput>
     -- Deletes a key-signing key (KSK). Before you can delete a KSK, you must deactivate it.
     -- The KSK must be deactivated before you can delete it regardless of whether the hosted
     -- zone is enabled for DNSSEC signing.
     -- You can use DeactivateKeySigningKey to deactivate the key before you delete it.
     -- Use GetDNSSEC to verify that the KSK is in an INACTIVE
     -- status.
-    deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput): types.DeleteKeySigningKeyOutput, table
+    deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput): Operation<types.DeleteKeySigningKeyOutput>
     -- Deletes a configuration for DNS query logging. If you delete a configuration, Amazon
     -- Route 53 stops sending query logs to CloudWatch Logs. Route 53 doesn't delete any logs
     -- that are already in CloudWatch Logs.
     -- For more information about DNS query logs, see CreateQueryLoggingConfig.
-    deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput): types.DeleteQueryLoggingConfigOutput, table
+    deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput): Operation<types.DeleteQueryLoggingConfigOutput>
     -- Deletes a reusable delegation set.
     -- You can delete a reusable delegation set only if it isn't associated with any
     -- hosted zones.
     -- To verify that the reusable delegation set is not associated with any hosted zones,
     -- submit a GetReusableDelegationSet request and specify the ID of the reusable
     -- delegation set that you want to delete.
-    deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput): types.DeleteReusableDelegationSetOutput, table
+    deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput): Operation<types.DeleteReusableDelegationSetOutput>
     -- Deletes a traffic policy.
     -- When you delete a traffic policy, Route 53 sets a flag on the policy to indicate that
     -- it has been deleted. However, Route 53 never fully deletes the traffic policy. Note the
@@ -434,12 +438,12 @@ local record Client
     -- There's no way to get a list of deleted policies.
     -- If you retain the ID of the policy, you can get information about the policy,
     -- including the traffic policy document, by running GetTrafficPolicy.
-    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput): types.DeleteTrafficPolicyOutput, table
+    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput): Operation<types.DeleteTrafficPolicyOutput>
     -- Deletes a traffic policy instance and all of the resource record sets that Amazon
     -- Route 53 created when you created the instance.
     -- In the Route 53 console, traffic policy instances are known as policy
     -- records.
-    deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput): types.DeleteTrafficPolicyInstanceOutput, table
+    deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput): Operation<types.DeleteTrafficPolicyInstanceOutput>
     -- Removes authorization to submit an AssociateVPCWithHostedZone request to
     -- associate a specified VPC with a hosted zone that was created by a different account.
     -- You must use the account that created the hosted zone to submit a
@@ -450,10 +454,10 @@ local record Client
     -- DeleteVPCAssociationAuthorization won't disassociate the VPC from
     -- the hosted zone. If you want to delete an existing association, use
     -- DisassociateVPCFromHostedZone.
-    deleteVPCAssociationAuthorization: function(Client, types.DeleteVPCAssociationAuthorizationInput): types.DeleteVPCAssociationAuthorizationOutput, table
+    deleteVPCAssociationAuthorization: function(Client, types.DeleteVPCAssociationAuthorizationInput): Operation<types.DeleteVPCAssociationAuthorizationOutput>
     -- Disables DNSSEC signing in a specific hosted zone. This action does not deactivate any
     -- key-signing keys (KSKs) that are active in the hosted zone.
-    disableHostedZoneDNSSEC: function(Client, types.DisableHostedZoneDNSSECInput): types.DisableHostedZoneDNSSECOutput, table
+    disableHostedZoneDNSSEC: function(Client, types.DisableHostedZoneDNSSECInput): Operation<types.DisableHostedZoneDNSSECOutput>
     -- Disassociates an Amazon Virtual Private Cloud (Amazon VPC) from an Amazon Route 53
     -- private hosted zone. Note the following:
     -- You can't disassociate the last Amazon VPC from a private hosted zone.
@@ -480,9 +484,9 @@ local record Client
     -- aws-us-gov - Amazon Web Services GovCloud (US) Region
     -- For more information, see Access Management
     -- in the Amazon Web Services General Reference.
-    disassociateVPCFromHostedZone: function(Client, types.DisassociateVPCFromHostedZoneInput): types.DisassociateVPCFromHostedZoneOutput, table
+    disassociateVPCFromHostedZone: function(Client, types.DisassociateVPCFromHostedZoneInput): Operation<types.DisassociateVPCFromHostedZoneOutput>
     -- Enables DNSSEC signing in a specific hosted zone.
-    enableHostedZoneDNSSEC: function(Client, types.EnableHostedZoneDNSSECInput): types.EnableHostedZoneDNSSECOutput, table
+    enableHostedZoneDNSSEC: function(Client, types.EnableHostedZoneDNSSECInput): Operation<types.EnableHostedZoneDNSSECOutput>
     -- Gets the specified limit for the current account, for example, the maximum number of
     -- health checks that you can create using the account.
     -- For the default limit, see Limits in the
@@ -490,7 +494,7 @@ local record Client
     -- open a case.
     -- You can also view account limits in Amazon Web Services Trusted Advisor. Sign in to
     -- the Amazon Web Services Management Console and open the Trusted Advisor console at https://console.aws.amazon.com/trustedadvisor/. Then choose Service limits in the navigation pane.
-    getAccountLimit: function(Client, types.GetAccountLimitInput): types.GetAccountLimitOutput, table
+    getAccountLimit: function(Client, types.GetAccountLimitInput): Operation<types.GetAccountLimitOutput>
     -- Returns the current status of a change batch request. The status is one of the
     -- following values:
     -- PENDING indicates that the changes in this request have not
@@ -498,7 +502,7 @@ local record Client
     -- change batch requests.
     -- INSYNC indicates that the changes have propagated to all Route 53
     -- DNS servers managing the hosted zone.
-    getChange: function(Client, types.GetChangeInput): types.GetChangeOutput, table
+    getChange: function(Client, types.GetChangeInput): Operation<types.GetChangeOutput>
     -- Route 53 does not perform authorization for this API because it retrieves information
     -- that is already available to the public.
     -- GetCheckerIpRanges still works, but we recommend that you download
@@ -506,10 +510,10 @@ local record Client
     -- services. For more information, see IP Address Ranges
     -- of Amazon Route 53 Servers in the Amazon Route 53 Developer
     -- Guide.
-    getCheckerIpRanges: function(Client, types.GetCheckerIpRangesInput): types.GetCheckerIpRangesOutput, table
+    getCheckerIpRanges: function(Client, types.GetCheckerIpRangesInput): Operation<types.GetCheckerIpRangesOutput>
     -- Returns information about DNSSEC for a specific hosted zone, including the key-signing
     -- keys (KSKs) in the hosted zone.
-    getDNSSEC: function(Client, types.GetDNSSECInput): types.GetDNSSECOutput, table
+    getDNSSEC: function(Client, types.GetDNSSECInput): Operation<types.GetDNSSECOutput>
     -- Gets information about whether a specified geographic location is supported for Amazon
     -- Route 53 geolocation resource record sets.
     -- Route 53 does not perform authorization for this API because it retrieves information
@@ -527,48 +531,48 @@ local record Client
     -- GET /2013-04-01/geolocation?countrycode=two-character country
     -- code&subdivisioncode=subdivision
     -- code
-    getGeoLocation: function(Client, types.GetGeoLocationInput): types.GetGeoLocationOutput, table
+    getGeoLocation: function(Client, types.GetGeoLocationInput): Operation<types.GetGeoLocationOutput>
     -- Gets information about a specified health check.
-    getHealthCheck: function(Client, types.GetHealthCheckInput): types.GetHealthCheckOutput, table
+    getHealthCheck: function(Client, types.GetHealthCheckInput): Operation<types.GetHealthCheckOutput>
     -- Retrieves the number of health checks that are associated with the current Amazon Web Services account.
-    getHealthCheckCount: function(Client, types.GetHealthCheckCountInput): types.GetHealthCheckCountOutput, table
+    getHealthCheckCount: function(Client, types.GetHealthCheckCountInput): Operation<types.GetHealthCheckCountOutput>
     -- Gets the reason that a specified health check failed most recently.
-    getHealthCheckLastFailureReason: function(Client, types.GetHealthCheckLastFailureReasonInput): types.GetHealthCheckLastFailureReasonOutput, table
+    getHealthCheckLastFailureReason: function(Client, types.GetHealthCheckLastFailureReasonInput): Operation<types.GetHealthCheckLastFailureReasonOutput>
     -- Gets status of a specified health check.
     -- This API is intended for use during development to diagnose behavior. It doesn’t
     -- support production use-cases with high query rates that require immediate and
     -- actionable responses.
-    getHealthCheckStatus: function(Client, types.GetHealthCheckStatusInput): types.GetHealthCheckStatusOutput, table
+    getHealthCheckStatus: function(Client, types.GetHealthCheckStatusInput): Operation<types.GetHealthCheckStatusOutput>
     -- Gets information about a specified hosted zone including the four name servers
     -- assigned to the hosted zone.
     -- returns the VPCs associated with the specified hosted zone and does not reflect the VPC
     -- associations by Route 53 Profiles. To get the associations to a Profile, call the ListProfileAssociations API.
-    getHostedZone: function(Client, types.GetHostedZoneInput): types.GetHostedZoneOutput, table
+    getHostedZone: function(Client, types.GetHostedZoneInput): Operation<types.GetHostedZoneOutput>
     -- Retrieves the number of hosted zones that are associated with the current Amazon Web Services account.
-    getHostedZoneCount: function(Client, types.GetHostedZoneCountInput): types.GetHostedZoneCountOutput, table
+    getHostedZoneCount: function(Client, types.GetHostedZoneCountInput): Operation<types.GetHostedZoneCountOutput>
     -- Gets the specified limit for a specified hosted zone, for example, the maximum number
     -- of records that you can create in the hosted zone.
     -- For the default limit, see Limits in the
     -- Amazon Route 53 Developer Guide. To request a higher limit,
     -- open a case.
-    getHostedZoneLimit: function(Client, types.GetHostedZoneLimitInput): types.GetHostedZoneLimitOutput, table
+    getHostedZoneLimit: function(Client, types.GetHostedZoneLimitInput): Operation<types.GetHostedZoneLimitOutput>
     -- Gets information about a specified configuration for DNS query logging.
     -- For more information about DNS query logs, see CreateQueryLoggingConfig and Logging DNS
     -- Queries.
-    getQueryLoggingConfig: function(Client, types.GetQueryLoggingConfigInput): types.GetQueryLoggingConfigOutput, table
+    getQueryLoggingConfig: function(Client, types.GetQueryLoggingConfigInput): Operation<types.GetQueryLoggingConfigOutput>
     -- Retrieves information about a specified reusable delegation set, including the four
     -- name servers that are assigned to the delegation set.
-    getReusableDelegationSet: function(Client, types.GetReusableDelegationSetInput): types.GetReusableDelegationSetOutput, table
+    getReusableDelegationSet: function(Client, types.GetReusableDelegationSetInput): Operation<types.GetReusableDelegationSetOutput>
     -- Gets the maximum number of hosted zones that you can associate with the specified
     -- reusable delegation set.
     -- For the default limit, see Limits in the
     -- Amazon Route 53 Developer Guide. To request a higher limit,
     -- open a case.
-    getReusableDelegationSetLimit: function(Client, types.GetReusableDelegationSetLimitInput): types.GetReusableDelegationSetLimitOutput, table
+    getReusableDelegationSetLimit: function(Client, types.GetReusableDelegationSetLimitInput): Operation<types.GetReusableDelegationSetLimitOutput>
     -- Gets information about a specific traffic policy version.
     -- For information about how of deleting a traffic policy affects the response from
     -- GetTrafficPolicy, see DeleteTrafficPolicy.
-    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput): types.GetTrafficPolicyOutput, table
+    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput): Operation<types.GetTrafficPolicyOutput>
     -- Gets information about a specified traffic policy instance.
     -- Use GetTrafficPolicyInstance with the id of new traffic policy instance to confirm that the
     -- CreateTrafficPolicyInstance or an UpdateTrafficPolicyInstance request completed successfully.
@@ -576,18 +580,18 @@ local record Client
     -- element.
     -- In the Route 53 console, traffic policy instances are known as policy
     -- records.
-    getTrafficPolicyInstance: function(Client, types.GetTrafficPolicyInstanceInput): types.GetTrafficPolicyInstanceOutput, table
+    getTrafficPolicyInstance: function(Client, types.GetTrafficPolicyInstanceInput): Operation<types.GetTrafficPolicyInstanceOutput>
     -- Gets the number of traffic policy instances that are associated with the current
     -- Amazon Web Services account.
-    getTrafficPolicyInstanceCount: function(Client, types.GetTrafficPolicyInstanceCountInput): types.GetTrafficPolicyInstanceCountOutput, table
+    getTrafficPolicyInstanceCount: function(Client, types.GetTrafficPolicyInstanceCountInput): Operation<types.GetTrafficPolicyInstanceCountOutput>
     -- Returns a paginated list of location objects and their CIDR blocks.
-    listCidrBlocks: function(Client, types.ListCidrBlocksInput): types.ListCidrBlocksOutput, table
+    listCidrBlocks: function(Client, types.ListCidrBlocksInput): Operation<types.ListCidrBlocksOutput>
     -- Returns a paginated list of CIDR collections in the Amazon Web Services account
     -- (metadata only).
-    listCidrCollections: function(Client, types.ListCidrCollectionsInput): types.ListCidrCollectionsOutput, table
+    listCidrCollections: function(Client, types.ListCidrCollectionsInput): Operation<types.ListCidrCollectionsOutput>
     -- Returns a paginated list of CIDR locations for the given collection (metadata only,
     -- does not include CIDR blocks).
-    listCidrLocations: function(Client, types.ListCidrLocationsInput): types.ListCidrLocationsOutput, table
+    listCidrLocations: function(Client, types.ListCidrLocationsInput): Operation<types.ListCidrLocationsOutput>
     -- Retrieves a list of supported geographic locations.
     -- Countries are listed first, and continents are listed last. If Amazon Route 53
     -- supports subdivisions for a country (for example, states or provinces), the subdivisions
@@ -597,16 +601,16 @@ local record Client
     -- that is already available to the public.
     -- For a list of supported geolocation codes, see the GeoLocation data
     -- type.
-    listGeoLocations: function(Client, types.ListGeoLocationsInput): types.ListGeoLocationsOutput, table
+    listGeoLocations: function(Client, types.ListGeoLocationsInput): Operation<types.ListGeoLocationsOutput>
     -- Retrieve a list of the health checks that are associated with the current Amazon Web Services account.
-    listHealthChecks: function(Client, types.ListHealthChecksInput): types.ListHealthChecksOutput, table
+    listHealthChecks: function(Client, types.ListHealthChecksInput): Operation<types.ListHealthChecksOutput>
     -- Retrieves a list of the public and private hosted zones that are associated with the
     -- current Amazon Web Services account. The response includes a HostedZones
     -- child element for each hosted zone.
     -- Amazon Route 53 returns a maximum of 100 items in each response. If you have a lot of
     -- hosted zones, you can use the maxitems parameter to list them in groups of
     -- up to 100.
-    listHostedZones: function(Client, types.ListHostedZonesInput): types.ListHostedZonesOutput, table
+    listHostedZones: function(Client, types.ListHostedZonesInput): Operation<types.ListHostedZonesOutput>
     -- Retrieves a list of your hosted zones in lexicographic order. The response includes a
     -- HostedZones child element for each hosted zone created by the current
     -- Amazon Web Services account.
@@ -648,7 +652,7 @@ local record Client
     -- and specify the value of NextDNSName and
     -- NextHostedZoneId in the dnsname and
     -- hostedzoneid parameters, respectively.
-    listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput): types.ListHostedZonesByNameOutput, table
+    listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput): Operation<types.ListHostedZonesByNameOutput>
     -- Lists all the private hosted zones that a specified VPC is associated with, regardless
     -- of which Amazon Web Services account or Amazon Web Services service owns the hosted zones.
     -- The HostedZoneOwner structure in the response contains one of the following
@@ -672,14 +676,14 @@ local record Client
     -- aws-us-gov - Amazon Web Services GovCloud (US) Region
     -- For more information, see Access Management
     -- in the Amazon Web Services General Reference.
-    listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput): types.ListHostedZonesByVPCOutput, table
+    listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput): Operation<types.ListHostedZonesByVPCOutput>
     -- Lists the configurations for DNS query logging that are associated with the current
     -- Amazon Web Services account or the configuration that is associated with a specified
     -- hosted zone.
     -- For more information about DNS query logs, see CreateQueryLoggingConfig. Additional information, including the format of
     -- DNS query logs, appears in Logging DNS Queries in
     -- the Amazon Route 53 Developer Guide.
-    listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput): types.ListQueryLoggingConfigsOutput, table
+    listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput): Operation<types.ListQueryLoggingConfigsOutput>
     -- Lists the resource record sets in a specified hosted zone.
     -- ListResourceRecordSets returns up to 300 resource record sets at a time
     -- in ASCII order, beginning at a position specified by the name and
@@ -727,24 +731,24 @@ local record Client
     -- response. Then submit another ListResourceRecordSets request, and specify
     -- those values for StartRecordName, StartRecordType, and
     -- StartRecordIdentifier.
-    listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput): types.ListResourceRecordSetsOutput, table
+    listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput): Operation<types.ListResourceRecordSetsOutput>
     -- Retrieves a list of the reusable delegation sets that are associated with the current
     -- Amazon Web Services account.
-    listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput): types.ListReusableDelegationSetsOutput, table
+    listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput): Operation<types.ListReusableDelegationSetsOutput>
     -- Lists tags for one health check or hosted zone.
     -- For information about using tags for cost allocation, see Using Cost Allocation
     -- Tags in the Billing and Cost Management User Guide.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists tags for up to 10 health checks or hosted zones.
     -- For information about using tags for cost allocation, see Using Cost Allocation
     -- Tags in the Billing and Cost Management User Guide.
-    listTagsForResources: function(Client, types.ListTagsForResourcesInput): types.ListTagsForResourcesOutput, table
+    listTagsForResources: function(Client, types.ListTagsForResourcesInput): Operation<types.ListTagsForResourcesOutput>
     -- Gets information about the latest version for every traffic policy that is associated
     -- with the current Amazon Web Services account. Policies are listed in the order that they
     -- were created in.
     -- For information about how of deleting a traffic policy affects the response from
     -- ListTrafficPolicies, see DeleteTrafficPolicy.
-    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput): types.ListTrafficPoliciesOutput, table
+    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput): Operation<types.ListTrafficPoliciesOutput>
     -- Gets information about the traffic policy instances that you created by using the
     -- current Amazon Web Services account.
     -- After you submit an UpdateTrafficPolicyInstance request, there's a
@@ -754,7 +758,7 @@ local record Client
     -- Route 53 returns a maximum of 100 items in each response. If you have a lot of traffic
     -- policy instances, you can use the MaxItems parameter to list them in groups
     -- of up to 100.
-    listTrafficPolicyInstances: function(Client, types.ListTrafficPolicyInstancesInput): types.ListTrafficPolicyInstancesOutput, table
+    listTrafficPolicyInstances: function(Client, types.ListTrafficPolicyInstancesInput): Operation<types.ListTrafficPolicyInstancesOutput>
     -- Gets information about the traffic policy instances that you created in a specified
     -- hosted zone.
     -- After you submit a CreateTrafficPolicyInstance or an
@@ -765,7 +769,7 @@ local record Client
     -- Route 53 returns a maximum of 100 items in each response. If you have a lot of traffic
     -- policy instances, you can use the MaxItems parameter to list them in groups
     -- of up to 100.
-    listTrafficPolicyInstancesByHostedZone: function(Client, types.ListTrafficPolicyInstancesByHostedZoneInput): types.ListTrafficPolicyInstancesByHostedZoneOutput, table
+    listTrafficPolicyInstancesByHostedZone: function(Client, types.ListTrafficPolicyInstancesByHostedZoneInput): Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
     -- Gets information about the traffic policy instances that you created by using a
     -- specify traffic policy version.
     -- After you submit a CreateTrafficPolicyInstance or an
@@ -776,17 +780,17 @@ local record Client
     -- Route 53 returns a maximum of 100 items in each response. If you have a lot of traffic
     -- policy instances, you can use the MaxItems parameter to list them in groups
     -- of up to 100.
-    listTrafficPolicyInstancesByPolicy: function(Client, types.ListTrafficPolicyInstancesByPolicyInput): types.ListTrafficPolicyInstancesByPolicyOutput, table
+    listTrafficPolicyInstancesByPolicy: function(Client, types.ListTrafficPolicyInstancesByPolicyInput): Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
     -- Gets information about all of the versions for a specified traffic policy.
     -- Traffic policy versions are listed in numerical order by
     -- VersionNumber.
-    listTrafficPolicyVersions: function(Client, types.ListTrafficPolicyVersionsInput): types.ListTrafficPolicyVersionsOutput, table
+    listTrafficPolicyVersions: function(Client, types.ListTrafficPolicyVersionsInput): Operation<types.ListTrafficPolicyVersionsOutput>
     -- Gets a list of the VPCs that were created by other accounts and that can be associated
     -- with a specified hosted zone because you've submitted one or more
     -- CreateVPCAssociationAuthorization requests.
     -- The response includes a VPCs element with a VPC child
     -- element for each VPC that can be associated with the hosted zone.
-    listVPCAssociationAuthorizations: function(Client, types.ListVPCAssociationAuthorizationsInput): types.ListVPCAssociationAuthorizationsOutput, table
+    listVPCAssociationAuthorizations: function(Client, types.ListVPCAssociationAuthorizationsInput): Operation<types.ListVPCAssociationAuthorizationsOutput>
     -- Gets the value that Amazon Route 53 returns in response to a DNS request for a
     -- specified record name and type. You can optionally specify the IP address of a DNS
     -- resolver, an EDNS0 client subnet IP address, and a subnet mask.
@@ -795,19 +799,19 @@ local record Client
     -- section of the dig command. Therefore, if you query for the name
     -- servers of a subdomain that point to the parent name servers, those will not be
     -- returned.
-    testDNSAnswer: function(Client, types.TestDNSAnswerInput): types.TestDNSAnswerOutput, table
+    testDNSAnswer: function(Client, types.TestDNSAnswerInput): Operation<types.TestDNSAnswerOutput>
     -- Updates an existing health check. Note that some values can't be updated.
     -- For more information about updating health checks, see Creating,
     -- Updating, and Deleting Health Checks in the Amazon Route 53
     -- Developer Guide.
-    updateHealthCheck: function(Client, types.UpdateHealthCheckInput): types.UpdateHealthCheckOutput, table
+    updateHealthCheck: function(Client, types.UpdateHealthCheckInput): Operation<types.UpdateHealthCheckOutput>
     -- Updates the comment for a specified hosted zone.
-    updateHostedZoneComment: function(Client, types.UpdateHostedZoneCommentInput): types.UpdateHostedZoneCommentOutput, table
+    updateHostedZoneComment: function(Client, types.UpdateHostedZoneCommentInput): Operation<types.UpdateHostedZoneCommentOutput>
     -- Updates the features configuration for a hosted zone. This operation allows you to enable or disable specific features for your hosted zone, such as accelerated recovery.
     -- Accelerated recovery enables you to update DNS records in your public hosted zone even when the us-east-1 region is unavailable.
-    updateHostedZoneFeatures: function(Client, types.UpdateHostedZoneFeaturesInput): types.UpdateHostedZoneFeaturesOutput, table
+    updateHostedZoneFeatures: function(Client, types.UpdateHostedZoneFeaturesInput): Operation<types.UpdateHostedZoneFeaturesOutput>
     -- Updates the comment for a specified traffic policy version.
-    updateTrafficPolicyComment: function(Client, types.UpdateTrafficPolicyCommentInput): types.UpdateTrafficPolicyCommentOutput, table
+    updateTrafficPolicyComment: function(Client, types.UpdateTrafficPolicyCommentInput): Operation<types.UpdateTrafficPolicyCommentOutput>
     -- After you submit a UpdateTrafficPolicyInstance request, there's a brief delay while Route 53 creates the resource record sets
     -- that are specified in the traffic policy definition. Use GetTrafficPolicyInstance with the id of updated traffic policy instance confirm
     -- that the
@@ -826,7 +830,7 @@ local record Client
     -- example.com) by using the new resource record sets.
     -- Route 53 deletes the old group of resource record sets that are associated
     -- with the root resource record set name.
-    updateTrafficPolicyInstance: function(Client, types.UpdateTrafficPolicyInstanceInput): types.UpdateTrafficPolicyInstanceOutput, table
+    updateTrafficPolicyInstance: function(Client, types.UpdateTrafficPolicyInstanceInput): Operation<types.UpdateTrafficPolicyInstanceOutput>
 end
 
 local record M

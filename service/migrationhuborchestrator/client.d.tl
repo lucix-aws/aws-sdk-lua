@@ -2,71 +2,75 @@
 
 local types = require("migrationhuborchestrator.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a migration workflow template.
-    createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    createTemplate: function(Client, types.CreateTemplateInput): Operation<types.CreateTemplateOutput>
     -- Create a workflow to orchestrate your migrations.
-    createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    createWorkflow: function(Client, types.CreateWorkflowInput): Operation<types.CreateWorkflowOutput>
     -- Create a step in the migration workflow.
-    createWorkflowStep: function(Client, types.CreateWorkflowStepInput): types.CreateWorkflowStepOutput, table
+    createWorkflowStep: function(Client, types.CreateWorkflowStepInput): Operation<types.CreateWorkflowStepOutput>
     -- Create a step group in a migration workflow.
-    createWorkflowStepGroup: function(Client, types.CreateWorkflowStepGroupInput): types.CreateWorkflowStepGroupOutput, table
+    createWorkflowStepGroup: function(Client, types.CreateWorkflowStepGroupInput): Operation<types.CreateWorkflowStepGroupOutput>
     -- Deletes a migration workflow template.
-    deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    deleteTemplate: function(Client, types.DeleteTemplateInput): Operation<types.DeleteTemplateOutput>
     -- Delete a migration workflow. You must pause a running workflow in Migration Hub Orchestrator console to
     -- delete it.
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): Operation<types.DeleteWorkflowOutput>
     -- Delete a step in a migration workflow. Pause the workflow to delete a running
     -- step.
-    deleteWorkflowStep: function(Client, types.DeleteWorkflowStepInput): types.DeleteWorkflowStepOutput, table
+    deleteWorkflowStep: function(Client, types.DeleteWorkflowStepInput): Operation<types.DeleteWorkflowStepOutput>
     -- Delete a step group in a migration workflow.
-    deleteWorkflowStepGroup: function(Client, types.DeleteWorkflowStepGroupInput): types.DeleteWorkflowStepGroupOutput, table
+    deleteWorkflowStepGroup: function(Client, types.DeleteWorkflowStepGroupInput): Operation<types.DeleteWorkflowStepGroupOutput>
     -- Get the template you want to use for creating a migration workflow.
-    getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    getTemplate: function(Client, types.GetTemplateInput): Operation<types.GetTemplateOutput>
     -- Get a specific step in a template.
-    getTemplateStep: function(Client, types.GetTemplateStepInput): types.GetTemplateStepOutput, table
+    getTemplateStep: function(Client, types.GetTemplateStepInput): Operation<types.GetTemplateStepOutput>
     -- Get a step group in a template.
-    getTemplateStepGroup: function(Client, types.GetTemplateStepGroupInput): types.GetTemplateStepGroupOutput, table
+    getTemplateStepGroup: function(Client, types.GetTemplateStepGroupInput): Operation<types.GetTemplateStepGroupOutput>
     -- Get migration workflow.
-    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): Operation<types.GetWorkflowOutput>
     -- Get a step in the migration workflow.
-    getWorkflowStep: function(Client, types.GetWorkflowStepInput): types.GetWorkflowStepOutput, table
+    getWorkflowStep: function(Client, types.GetWorkflowStepInput): Operation<types.GetWorkflowStepOutput>
     -- Get the step group of a migration workflow.
-    getWorkflowStepGroup: function(Client, types.GetWorkflowStepGroupInput): types.GetWorkflowStepGroupOutput, table
+    getWorkflowStepGroup: function(Client, types.GetWorkflowStepGroupInput): Operation<types.GetWorkflowStepGroupOutput>
     -- List AWS Migration Hub Orchestrator plugins.
-    listPlugins: function(Client, types.ListPluginsInput): types.ListPluginsOutput, table
+    listPlugins: function(Client, types.ListPluginsInput): Operation<types.ListPluginsOutput>
     -- List the tags added to a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- List the templates available in Migration Hub Orchestrator to create a migration workflow.
-    listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    listTemplates: function(Client, types.ListTemplatesInput): Operation<types.ListTemplatesOutput>
     -- List the step groups in a template.
-    listTemplateStepGroups: function(Client, types.ListTemplateStepGroupsInput): types.ListTemplateStepGroupsOutput, table
+    listTemplateStepGroups: function(Client, types.ListTemplateStepGroupsInput): Operation<types.ListTemplateStepGroupsOutput>
     -- List the steps in a template.
-    listTemplateSteps: function(Client, types.ListTemplateStepsInput): types.ListTemplateStepsOutput, table
+    listTemplateSteps: function(Client, types.ListTemplateStepsInput): Operation<types.ListTemplateStepsOutput>
     -- List the migration workflows.
-    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): Operation<types.ListWorkflowsOutput>
     -- List the step groups in a migration workflow.
-    listWorkflowStepGroups: function(Client, types.ListWorkflowStepGroupsInput): types.ListWorkflowStepGroupsOutput, table
+    listWorkflowStepGroups: function(Client, types.ListWorkflowStepGroupsInput): Operation<types.ListWorkflowStepGroupsOutput>
     -- List the steps in a workflow.
-    listWorkflowSteps: function(Client, types.ListWorkflowStepsInput): types.ListWorkflowStepsOutput, table
+    listWorkflowSteps: function(Client, types.ListWorkflowStepsInput): Operation<types.ListWorkflowStepsOutput>
     -- Retry a failed step in a migration workflow.
-    retryWorkflowStep: function(Client, types.RetryWorkflowStepInput): types.RetryWorkflowStepOutput, table
+    retryWorkflowStep: function(Client, types.RetryWorkflowStepInput): Operation<types.RetryWorkflowStepOutput>
     -- Start a migration workflow.
-    startWorkflow: function(Client, types.StartWorkflowInput): types.StartWorkflowOutput, table
+    startWorkflow: function(Client, types.StartWorkflowInput): Operation<types.StartWorkflowOutput>
     -- Stop an ongoing migration workflow.
-    stopWorkflow: function(Client, types.StopWorkflowInput): types.StopWorkflowOutput, table
+    stopWorkflow: function(Client, types.StopWorkflowInput): Operation<types.StopWorkflowOutput>
     -- Tag a resource by specifying its Amazon Resource Name (ARN).
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes the tags for a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a migration workflow template.
-    updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+    updateTemplate: function(Client, types.UpdateTemplateInput): Operation<types.UpdateTemplateOutput>
     -- Update a migration workflow.
-    updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+    updateWorkflow: function(Client, types.UpdateWorkflowInput): Operation<types.UpdateWorkflowOutput>
     -- Update a step in a migration workflow.
-    updateWorkflowStep: function(Client, types.UpdateWorkflowStepInput): types.UpdateWorkflowStepOutput, table
+    updateWorkflowStep: function(Client, types.UpdateWorkflowStepInput): Operation<types.UpdateWorkflowStepOutput>
     -- Update the step group in a migration workflow.
-    updateWorkflowStepGroup: function(Client, types.UpdateWorkflowStepGroupInput): types.UpdateWorkflowStepGroupOutput, table
+    updateWorkflowStepGroup: function(Client, types.UpdateWorkflowStepGroupInput): Operation<types.UpdateWorkflowStepGroupOutput>
 end
 
 local record M

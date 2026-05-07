@@ -2,6 +2,10 @@
 
 local types = require("timestreamquery.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels a query that has been issued. Cancellation is provided only if the query has
     -- not completed running before the cancellation request was issued. Because cancellation
@@ -9,18 +13,18 @@ local record Client
     -- CancellationMessage, indicating that the query has already been
     -- canceled. See code
     -- sample for details.
-    cancelQuery: function(Client, types.CancelQueryInput): types.CancelQueryOutput, table
+    cancelQuery: function(Client, types.CancelQueryInput): Operation<types.CancelQueryOutput>
     -- Create a scheduled query that will be run on your behalf at the configured schedule.
     -- Timestream assumes the execution role provided as part of the
     -- ScheduledQueryExecutionRoleArn parameter to run the query. You can use
     -- the NotificationConfiguration parameter to configure notification for your
     -- scheduled query operations.
-    createScheduledQuery: function(Client, types.CreateScheduledQueryInput): types.CreateScheduledQueryOutput, table
+    createScheduledQuery: function(Client, types.CreateScheduledQueryInput): Operation<types.CreateScheduledQueryOutput>
     -- Deletes a given scheduled query. This is an irreversible operation.
-    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput): types.DeleteScheduledQueryOutput, table
+    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput): Operation<types.DeleteScheduledQueryOutput>
     -- Describes the settings for your account that include the query pricing model and the configured maximum TCUs the service can use for your query workload.
     -- You're charged only for the duration of compute units used for your workloads.
-    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): types.DescribeAccountSettingsOutput, table
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): Operation<types.DescribeAccountSettingsOutput>
     -- DescribeEndpoints returns a list of available endpoints to make Timestream
     -- API calls against. This API is available through both Write and Query.
     -- Because the Timestream SDKs are designed to transparently work with the
@@ -32,21 +36,21 @@ local record Client
     -- You require better control over the client-side implementation
     -- For detailed information on how and when to use and implement DescribeEndpoints, see
     -- The Endpoint Discovery Pattern.
-    describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    describeEndpoints: function(Client, types.DescribeEndpointsInput): Operation<types.DescribeEndpointsOutput>
     -- Provides detailed information about a scheduled query.
-    describeScheduledQuery: function(Client, types.DescribeScheduledQueryInput): types.DescribeScheduledQueryOutput, table
+    describeScheduledQuery: function(Client, types.DescribeScheduledQueryInput): Operation<types.DescribeScheduledQueryOutput>
     -- You can use this API to run a scheduled query manually.
     -- If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed as part of an Amazon SNS notification. QueryInsights helps with performance tuning of your query. For more information about QueryInsights, see Using query insights to optimize queries in Amazon Timestream.
-    executeScheduledQuery: function(Client, types.ExecuteScheduledQueryInput): types.ExecuteScheduledQueryOutput, table
+    executeScheduledQuery: function(Client, types.ExecuteScheduledQueryInput): Operation<types.ExecuteScheduledQueryOutput>
     -- Gets a list of all scheduled queries in the caller's Amazon account and Region.
     -- ListScheduledQueries is eventually consistent.
-    listScheduledQueries: function(Client, types.ListScheduledQueriesInput): types.ListScheduledQueriesOutput, table
+    listScheduledQueries: function(Client, types.ListScheduledQueriesInput): Operation<types.ListScheduledQueriesOutput>
     -- List all tags on a Timestream query resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- A synchronous operation that allows you to submit a query with parameters to be stored
     -- by Timestream for later running. Timestream only supports using this operation with
     -- ValidateOnly set to true.
-    prepareQuery: function(Client, types.PrepareQueryInput): types.PrepareQueryOutput, table
+    prepareQuery: function(Client, types.PrepareQueryInput): Operation<types.PrepareQueryOutput>
     -- Query is a synchronous operation that enables you to run a query against
     -- your Amazon Timestream data.
     -- If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed. QueryInsights helps with performance tuning of your query. For more information about QueryInsights, see Using query insights to optimize queries in Amazon Timestream.
@@ -68,18 +72,18 @@ local record Client
     -- same and/or the query initiator and the result reader do not have the same query
     -- string in the query requests, the query will fail with an Invalid
     -- pagination token error.
-    query: function(Client, types.QueryInput): types.QueryOutput, table
+    query: function(Client, types.QueryInput): Operation<types.QueryOutput>
     -- Associate a set of tags with a Timestream resource. You can then activate these
     -- user-defined tags so that they appear on the Billing and Cost Management console for
     -- cost allocation tracking.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the association of tags from a Timestream query resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Transitions your account to use TCUs for query pricing and modifies the maximum query compute units that you've configured. If you reduce the value of MaxQueryTCU to a desired configuration, the new value can take up to 24 hours to be effective.
     -- After you've transitioned your account to use TCUs for query pricing, you can't transition to using bytes scanned for query pricing.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Update a scheduled query.
-    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput): types.UpdateScheduledQueryOutput, table
+    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput): Operation<types.UpdateScheduledQueryOutput>
 end
 
 local record M

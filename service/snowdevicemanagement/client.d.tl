@@ -2,40 +2,44 @@
 
 local types = require("snowdevicemanagement.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Sends a cancel request for a specified task. You can cancel a task only if it's still in a
     -- QUEUED state. Tasks that are already running can't be cancelled.
     -- A task might still run if it's processed from the queue before the
     -- CancelTask operation changes the task's state.
-    cancelTask: function(Client, types.CancelTaskInput): types.CancelTaskOutput, table
+    cancelTask: function(Client, types.CancelTaskInput): Operation<types.CancelTaskOutput>
     -- Instructs one or more devices to start a task, such as unlocking or rebooting.
-    createTask: function(Client, types.CreateTaskInput): types.CreateTaskOutput, table
+    createTask: function(Client, types.CreateTaskInput): Operation<types.CreateTaskOutput>
     -- Checks device-specific information, such as the device type, software version, IP
     -- addresses, and lock status.
-    describeDevice: function(Client, types.DescribeDeviceInput): types.DescribeDeviceOutput, table
+    describeDevice: function(Client, types.DescribeDeviceInput): Operation<types.DescribeDeviceOutput>
     -- Checks the current state of the Amazon EC2 instances. The output is similar to
     -- describeDevice, but the results are sourced from the device cache in the
     -- Amazon Web Services Cloud and include a subset of the available fields.
-    describeDeviceEc2Instances: function(Client, types.DescribeDeviceEc2InstancesInput): types.DescribeDeviceEc2InstancesOutput, table
+    describeDeviceEc2Instances: function(Client, types.DescribeDeviceEc2InstancesInput): Operation<types.DescribeDeviceEc2InstancesOutput>
     -- Checks the status of a remote task running on one or more target devices.
-    describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    describeExecution: function(Client, types.DescribeExecutionInput): Operation<types.DescribeExecutionOutput>
     -- Checks the metadata for a given task on a device.
-    describeTask: function(Client, types.DescribeTaskInput): types.DescribeTaskOutput, table
+    describeTask: function(Client, types.DescribeTaskInput): Operation<types.DescribeTaskOutput>
     -- Returns a list of the Amazon Web Services resources available for a device. Currently, Amazon EC2 instances are the only supported resource type.
-    listDeviceResources: function(Client, types.ListDeviceResourcesInput): types.ListDeviceResourcesOutput, table
+    listDeviceResources: function(Client, types.ListDeviceResourcesInput): Operation<types.ListDeviceResourcesOutput>
     -- Returns a list of all devices on your Amazon Web Services account that have Amazon Web Services Snow Device Management
     -- enabled in the Amazon Web Services Region where the command is run.
-    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listDevices: function(Client, types.ListDevicesInput): Operation<types.ListDevicesOutput>
     -- Returns the status of tasks for one or more target devices.
-    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): Operation<types.ListExecutionsOutput>
     -- Returns a list of tags for a managed device or task.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of tasks that can be filtered by state.
-    listTasks: function(Client, types.ListTasksInput): types.ListTasksOutput, table
+    listTasks: function(Client, types.ListTasksInput): Operation<types.ListTasksOutput>
     -- Adds or replaces tags on a device or task.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from a device or task.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

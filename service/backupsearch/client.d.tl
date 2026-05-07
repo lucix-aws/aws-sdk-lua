@@ -2,31 +2,35 @@
 
 local types = require("backupsearch.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This operation retrieves metadata of a search job, including its progress.
-    getSearchJob: function(Client, types.GetSearchJobInput): types.GetSearchJobOutput, table
+    getSearchJob: function(Client, types.GetSearchJobInput): Operation<types.GetSearchJobOutput>
     -- This operation retrieves the metadata of an export job. An export job is an operation that transmits the results of a search job to a specified S3 bucket in a .csv file. An export job allows you to retain results of a search beyond the search job's scheduled retention of 7 days.
-    getSearchResultExportJob: function(Client, types.GetSearchResultExportJobInput): types.GetSearchResultExportJobOutput, table
+    getSearchResultExportJob: function(Client, types.GetSearchResultExportJobInput): Operation<types.GetSearchResultExportJobOutput>
     -- This operation returns a list of all backups (recovery points) in a paginated format that were included in the search job. If a search does not display an expected backup in the results, you can call this operation to display each backup included in the search. Any backups that were not included because they have a FAILED status from a permissions issue will be displayed, along with a status message. Only recovery points with a backup index that has a status of ACTIVE will be included in search results. If the index has any other status, its status will be displayed along with a status message.
-    listSearchJobBackups: function(Client, types.ListSearchJobBackupsInput): types.ListSearchJobBackupsOutput, table
+    listSearchJobBackups: function(Client, types.ListSearchJobBackupsInput): Operation<types.ListSearchJobBackupsOutput>
     -- This operation returns a list of a specified search job.
-    listSearchJobResults: function(Client, types.ListSearchJobResultsInput): types.ListSearchJobResultsOutput, table
+    listSearchJobResults: function(Client, types.ListSearchJobResultsInput): Operation<types.ListSearchJobResultsOutput>
     -- This operation returns a list of search jobs belonging to an account.
-    listSearchJobs: function(Client, types.ListSearchJobsInput): types.ListSearchJobsOutput, table
+    listSearchJobs: function(Client, types.ListSearchJobsInput): Operation<types.ListSearchJobsOutput>
     -- This operation exports search results of a search job to a specified destination S3 bucket.
-    listSearchResultExportJobs: function(Client, types.ListSearchResultExportJobsInput): types.ListSearchResultExportJobsOutput, table
+    listSearchResultExportJobs: function(Client, types.ListSearchResultExportJobsInput): Operation<types.ListSearchResultExportJobsOutput>
     -- This operation returns the tags for a resource type.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- This operation creates a search job which returns recovery points filtered by SearchScope and items filtered by ItemFilters. You can optionally include ClientToken, EncryptionKeyArn, Name, and/or Tags.
-    startSearchJob: function(Client, types.StartSearchJobInput): types.StartSearchJobOutput, table
+    startSearchJob: function(Client, types.StartSearchJobInput): Operation<types.StartSearchJobOutput>
     -- This operations starts a job to export the results of search job to a designated S3 bucket.
-    startSearchResultExportJob: function(Client, types.StartSearchResultExportJobInput): types.StartSearchResultExportJobOutput, table
+    startSearchResultExportJob: function(Client, types.StartSearchResultExportJobInput): Operation<types.StartSearchResultExportJobOutput>
     -- This operations ends a search job. Only a search job with a status of RUNNING can be stopped.
-    stopSearchJob: function(Client, types.StopSearchJobInput): types.StopSearchJobOutput, table
+    stopSearchJob: function(Client, types.StopSearchJobInput): Operation<types.StopSearchJobOutput>
     -- This operation puts tags on the resource you indicate.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- This operation removes tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

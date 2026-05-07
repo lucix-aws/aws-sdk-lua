@@ -2,197 +2,201 @@
 
 local types = require("mgn.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Archive application.
-    archiveApplication: function(Client, types.ArchiveApplicationInput): types.ArchiveApplicationOutput, table
+    archiveApplication: function(Client, types.ArchiveApplicationInput): Operation<types.ArchiveApplicationOutput>
     -- Archive wave.
-    archiveWave: function(Client, types.ArchiveWaveInput): types.ArchiveWaveOutput, table
+    archiveWave: function(Client, types.ArchiveWaveInput): Operation<types.ArchiveWaveOutput>
     -- Associate applications to wave.
-    associateApplications: function(Client, types.AssociateApplicationsInput): types.AssociateApplicationsOutput, table
+    associateApplications: function(Client, types.AssociateApplicationsInput): Operation<types.AssociateApplicationsOutput>
     -- Associate source servers to application.
-    associateSourceServers: function(Client, types.AssociateSourceServersInput): types.AssociateSourceServersOutput, table
+    associateSourceServers: function(Client, types.AssociateSourceServersInput): Operation<types.AssociateSourceServersOutput>
     -- Allows the user to set the SourceServer.LifeCycle.state property for specific Source Server IDs to one of the following: READY_FOR_TEST or READY_FOR_CUTOVER. This command only works if the Source Server is already launchable (dataReplicationInfo.lagDuration is not null.)
-    changeServerLifeCycleState: function(Client, types.ChangeServerLifeCycleStateInput): types.ChangeServerLifeCycleStateOutput, table
+    changeServerLifeCycleState: function(Client, types.ChangeServerLifeCycleStateInput): Operation<types.ChangeServerLifeCycleStateOutput>
     -- Create application.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Create Connector.
-    createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    createConnector: function(Client, types.CreateConnectorInput): Operation<types.CreateConnectorOutput>
     -- Creates a new Launch Configuration Template.
-    createLaunchConfigurationTemplate: function(Client, types.CreateLaunchConfigurationTemplateInput): types.CreateLaunchConfigurationTemplateOutput, table
+    createLaunchConfigurationTemplate: function(Client, types.CreateLaunchConfigurationTemplateInput): Operation<types.CreateLaunchConfigurationTemplateOutput>
     -- Creates a new network migration definition that specifies the source and target network configuration for a migration.
-    createNetworkMigrationDefinition: function(Client, types.CreateNetworkMigrationDefinitionInput): types.CreateNetworkMigrationDefinitionOutput, table
+    createNetworkMigrationDefinition: function(Client, types.CreateNetworkMigrationDefinitionInput): Operation<types.CreateNetworkMigrationDefinitionOutput>
     -- Creates a new ReplicationConfigurationTemplate.
-    createReplicationConfigurationTemplate: function(Client, types.CreateReplicationConfigurationTemplateInput): types.CreateReplicationConfigurationTemplateOutput, table
+    createReplicationConfigurationTemplate: function(Client, types.CreateReplicationConfigurationTemplateInput): Operation<types.CreateReplicationConfigurationTemplateOutput>
     -- Create wave.
-    createWave: function(Client, types.CreateWaveInput): types.CreateWaveOutput, table
+    createWave: function(Client, types.CreateWaveInput): Operation<types.CreateWaveOutput>
     -- Delete application.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOutput>
     -- Delete Connector.
-    deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    deleteConnector: function(Client, types.DeleteConnectorInput): Operation<types.DeleteConnectorOutput>
     -- Deletes a single Job by ID.
-    deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    deleteJob: function(Client, types.DeleteJobInput): Operation<types.DeleteJobOutput>
     -- Deletes a single Launch Configuration Template by ID.
-    deleteLaunchConfigurationTemplate: function(Client, types.DeleteLaunchConfigurationTemplateInput): types.DeleteLaunchConfigurationTemplateOutput, table
+    deleteLaunchConfigurationTemplate: function(Client, types.DeleteLaunchConfigurationTemplateInput): Operation<types.DeleteLaunchConfigurationTemplateOutput>
     -- Deletes a network migration definition. This operation removes the migration definition and all associated metadata.
-    deleteNetworkMigrationDefinition: function(Client, types.DeleteNetworkMigrationDefinitionInput): types.DeleteNetworkMigrationDefinitionOutput, table
+    deleteNetworkMigrationDefinition: function(Client, types.DeleteNetworkMigrationDefinitionInput): Operation<types.DeleteNetworkMigrationDefinitionOutput>
     -- Deletes a single Replication Configuration Template by ID
-    deleteReplicationConfigurationTemplate: function(Client, types.DeleteReplicationConfigurationTemplateInput): types.DeleteReplicationConfigurationTemplateOutput, table
+    deleteReplicationConfigurationTemplate: function(Client, types.DeleteReplicationConfigurationTemplateInput): Operation<types.DeleteReplicationConfigurationTemplateOutput>
     -- Deletes a single source server by ID.
-    deleteSourceServer: function(Client, types.DeleteSourceServerInput): types.DeleteSourceServerOutput, table
+    deleteSourceServer: function(Client, types.DeleteSourceServerInput): Operation<types.DeleteSourceServerOutput>
     -- Deletes a given vCenter client by ID.
-    deleteVcenterClient: function(Client, types.DeleteVcenterClientInput): types.DeleteVcenterClientOutput, table
+    deleteVcenterClient: function(Client, types.DeleteVcenterClientInput): Operation<types.DeleteVcenterClientOutput>
     -- Delete wave.
-    deleteWave: function(Client, types.DeleteWaveInput): types.DeleteWaveOutput, table
+    deleteWave: function(Client, types.DeleteWaveInput): Operation<types.DeleteWaveOutput>
     -- Retrieves detailed job log items with paging.
-    describeJobLogItems: function(Client, types.DescribeJobLogItemsInput): types.DescribeJobLogItemsOutput, table
+    describeJobLogItems: function(Client, types.DescribeJobLogItemsInput): Operation<types.DescribeJobLogItemsOutput>
     -- Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.
-    describeJobs: function(Client, types.DescribeJobsInput): types.DescribeJobsOutput, table
+    describeJobs: function(Client, types.DescribeJobsInput): Operation<types.DescribeJobsOutput>
     -- Lists all Launch Configuration Templates, filtered by Launch Configuration Template IDs
-    describeLaunchConfigurationTemplates: function(Client, types.DescribeLaunchConfigurationTemplatesInput): types.DescribeLaunchConfigurationTemplatesOutput, table
+    describeLaunchConfigurationTemplates: function(Client, types.DescribeLaunchConfigurationTemplatesInput): Operation<types.DescribeLaunchConfigurationTemplatesOutput>
     -- Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.
-    describeReplicationConfigurationTemplates: function(Client, types.DescribeReplicationConfigurationTemplatesInput): types.DescribeReplicationConfigurationTemplatesOutput, table
+    describeReplicationConfigurationTemplates: function(Client, types.DescribeReplicationConfigurationTemplatesInput): Operation<types.DescribeReplicationConfigurationTemplatesOutput>
     -- Retrieves all SourceServers or multiple SourceServers by ID.
-    describeSourceServers: function(Client, types.DescribeSourceServersInput): types.DescribeSourceServersOutput, table
+    describeSourceServers: function(Client, types.DescribeSourceServersInput): Operation<types.DescribeSourceServersOutput>
     -- Returns a list of the installed vCenter clients.
-    describeVcenterClients: function(Client, types.DescribeVcenterClientsInput): types.DescribeVcenterClientsOutput, table
+    describeVcenterClients: function(Client, types.DescribeVcenterClientsInput): Operation<types.DescribeVcenterClientsOutput>
     -- Disassociate applications from wave.
-    disassociateApplications: function(Client, types.DisassociateApplicationsInput): types.DisassociateApplicationsOutput, table
+    disassociateApplications: function(Client, types.DisassociateApplicationsInput): Operation<types.DisassociateApplicationsOutput>
     -- Disassociate source servers from application.
-    disassociateSourceServers: function(Client, types.DisassociateSourceServersInput): types.DisassociateSourceServersOutput, table
+    disassociateSourceServers: function(Client, types.DisassociateSourceServersInput): Operation<types.DisassociateSourceServersOutput>
     -- Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.
-    disconnectFromService: function(Client, types.DisconnectFromServiceInput): types.DisconnectFromServiceOutput, table
+    disconnectFromService: function(Client, types.DisconnectFromServiceInput): Operation<types.DisconnectFromServiceOutput>
     -- Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.
-    finalizeCutover: function(Client, types.FinalizeCutoverInput): types.FinalizeCutoverOutput, table
+    finalizeCutover: function(Client, types.FinalizeCutoverInput): Operation<types.FinalizeCutoverOutput>
     -- Lists all LaunchConfigurations available, filtered by Source Server IDs.
-    getLaunchConfiguration: function(Client, types.GetLaunchConfigurationInput): types.GetLaunchConfigurationOutput, table
+    getLaunchConfiguration: function(Client, types.GetLaunchConfigurationInput): Operation<types.GetLaunchConfigurationOutput>
     -- Retrieves the details of a network migration definition including source and target configurations.
-    getNetworkMigrationDefinition: function(Client, types.GetNetworkMigrationDefinitionInput): types.GetNetworkMigrationDefinitionOutput, table
+    getNetworkMigrationDefinition: function(Client, types.GetNetworkMigrationDefinitionInput): Operation<types.GetNetworkMigrationDefinitionOutput>
     -- Retrieves detailed information about a specific construct within a mapper segment, including its properties and configuration data.
-    getNetworkMigrationMapperSegmentConstruct: function(Client, types.GetNetworkMigrationMapperSegmentConstructInput): types.GetNetworkMigrationMapperSegmentConstructOutput, table
+    getNetworkMigrationMapperSegmentConstruct: function(Client, types.GetNetworkMigrationMapperSegmentConstructInput): Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
     -- Lists all ReplicationConfigurations, filtered by Source Server ID.
-    getReplicationConfiguration: function(Client, types.GetReplicationConfigurationInput): types.GetReplicationConfigurationOutput, table
+    getReplicationConfiguration: function(Client, types.GetReplicationConfigurationInput): Operation<types.GetReplicationConfigurationOutput>
     -- Initialize Application Migration Service.
-    initializeService: function(Client, types.InitializeServiceInput): types.InitializeServiceOutput, table
+    initializeService: function(Client, types.InitializeServiceInput): Operation<types.InitializeServiceOutput>
     -- Retrieves all applications or multiple applications by ID.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- List Connectors.
-    listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    listConnectors: function(Client, types.ListConnectorsInput): Operation<types.ListConnectorsOutput>
     -- List export errors.
-    listExportErrors: function(Client, types.ListExportErrorsInput): types.ListExportErrorsOutput, table
+    listExportErrors: function(Client, types.ListExportErrorsInput): Operation<types.ListExportErrorsOutput>
     -- List exports.
-    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listExports: function(Client, types.ListExportsInput): Operation<types.ListExportsOutput>
     -- List import errors.
-    listImportErrors: function(Client, types.ListImportErrorsInput): types.ListImportErrorsOutput, table
+    listImportErrors: function(Client, types.ListImportErrorsInput): Operation<types.ListImportErrorsOutput>
     -- Lists import file enrichment jobs with optional filtering by job IDs.
-    listImportFileEnrichments: function(Client, types.ListImportFileEnrichmentsInput): types.ListImportFileEnrichmentsOutput, table
+    listImportFileEnrichments: function(Client, types.ListImportFileEnrichmentsInput): Operation<types.ListImportFileEnrichmentsOutput>
     -- List imports.
-    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listImports: function(Client, types.ListImportsInput): Operation<types.ListImportsOutput>
     -- List Managed Accounts.
-    listManagedAccounts: function(Client, types.ListManagedAccountsInput): types.ListManagedAccountsOutput, table
+    listManagedAccounts: function(Client, types.ListManagedAccountsInput): Operation<types.ListManagedAccountsOutput>
     -- Lists network migration analysis jobs for a specified execution. Returns information about analysis job status and results.
-    listNetworkMigrationAnalyses: function(Client, types.ListNetworkMigrationAnalysesInput): types.ListNetworkMigrationAnalysesOutput, table
+    listNetworkMigrationAnalyses: function(Client, types.ListNetworkMigrationAnalysesInput): Operation<types.ListNetworkMigrationAnalysesOutput>
     -- Lists the results of network migration analyses, showing connectivity and compatibility findings for migrated resources.
-    listNetworkMigrationAnalysisResults: function(Client, types.ListNetworkMigrationAnalysisResultsInput): types.ListNetworkMigrationAnalysisResultsOutput, table
+    listNetworkMigrationAnalysisResults: function(Client, types.ListNetworkMigrationAnalysisResultsInput): Operation<types.ListNetworkMigrationAnalysisResultsOutput>
     -- Lists network migration code generation jobs, which convert network mappings into infrastructure-as-code templates.
-    listNetworkMigrationCodeGenerations: function(Client, types.ListNetworkMigrationCodeGenerationsInput): types.ListNetworkMigrationCodeGenerationsOutput, table
+    listNetworkMigrationCodeGenerations: function(Client, types.ListNetworkMigrationCodeGenerationsInput): Operation<types.ListNetworkMigrationCodeGenerationsOutput>
     -- Lists code generation segments, which represent individual infrastructure components generated as code templates.
-    listNetworkMigrationCodeGenerationSegments: function(Client, types.ListNetworkMigrationCodeGenerationSegmentsInput): types.ListNetworkMigrationCodeGenerationSegmentsOutput, table
+    listNetworkMigrationCodeGenerationSegments: function(Client, types.ListNetworkMigrationCodeGenerationSegmentsInput): Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
     -- Lists all network migration definitions in the account, with optional filtering.
-    listNetworkMigrationDefinitions: function(Client, types.ListNetworkMigrationDefinitionsInput): types.ListNetworkMigrationDefinitionsOutput, table
+    listNetworkMigrationDefinitions: function(Client, types.ListNetworkMigrationDefinitionsInput): Operation<types.ListNetworkMigrationDefinitionsOutput>
     -- Lists CloudFormation stacks that have been deployed as part of the network migration.
-    listNetworkMigrationDeployedStacks: function(Client, types.ListNetworkMigrationDeployedStacksInput): types.ListNetworkMigrationDeployedStacksOutput, table
+    listNetworkMigrationDeployedStacks: function(Client, types.ListNetworkMigrationDeployedStacksInput): Operation<types.ListNetworkMigrationDeployedStacksOutput>
     -- Lists network migration deployment jobs and their current status.
-    listNetworkMigrationDeployments: function(Client, types.ListNetworkMigrationDeploymentsInput): types.ListNetworkMigrationDeploymentsOutput, table
+    listNetworkMigrationDeployments: function(Client, types.ListNetworkMigrationDeploymentsInput): Operation<types.ListNetworkMigrationDeploymentsOutput>
     -- Lists network migration execution instances for a given definition, showing the status and progress of each execution.
-    listNetworkMigrationExecutions: function(Client, types.ListNetworkMigrationExecutionsInput): types.ListNetworkMigrationExecutionsOutput, table
+    listNetworkMigrationExecutions: function(Client, types.ListNetworkMigrationExecutionsInput): Operation<types.ListNetworkMigrationExecutionsOutput>
     -- Lists constructs within a mapper segment, representing individual infrastructure components like VPCs, subnets, or security groups.
-    listNetworkMigrationMapperSegmentConstructs: function(Client, types.ListNetworkMigrationMapperSegmentConstructsInput): types.ListNetworkMigrationMapperSegmentConstructsOutput, table
+    listNetworkMigrationMapperSegmentConstructs: function(Client, types.ListNetworkMigrationMapperSegmentConstructsInput): Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
     -- Lists mapper segments, which represent logical groupings of network resources to be migrated together.
-    listNetworkMigrationMapperSegments: function(Client, types.ListNetworkMigrationMapperSegmentsInput): types.ListNetworkMigrationMapperSegmentsOutput, table
+    listNetworkMigrationMapperSegments: function(Client, types.ListNetworkMigrationMapperSegmentsInput): Operation<types.ListNetworkMigrationMapperSegmentsOutput>
     -- Lists network migration mapping jobs, which analyze and create relationships between source and target network resources.
-    listNetworkMigrationMappings: function(Client, types.ListNetworkMigrationMappingsInput): types.ListNetworkMigrationMappingsOutput, table
+    listNetworkMigrationMappings: function(Client, types.ListNetworkMigrationMappingsInput): Operation<types.ListNetworkMigrationMappingsOutput>
     -- Lists mapping update jobs, which apply customer modifications to the generated network mappings.
-    listNetworkMigrationMappingUpdates: function(Client, types.ListNetworkMigrationMappingUpdatesInput): types.ListNetworkMigrationMappingUpdatesOutput, table
+    listNetworkMigrationMappingUpdates: function(Client, types.ListNetworkMigrationMappingUpdatesInput): Operation<types.ListNetworkMigrationMappingUpdatesOutput>
     -- List source server post migration custom actions.
-    listSourceServerActions: function(Client, types.ListSourceServerActionsInput): types.ListSourceServerActionsOutput, table
+    listSourceServerActions: function(Client, types.ListSourceServerActionsInput): Operation<types.ListSourceServerActionsOutput>
     -- List all tags for your Application Migration Service resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- List template post migration custom actions.
-    listTemplateActions: function(Client, types.ListTemplateActionsInput): types.ListTemplateActionsOutput, table
+    listTemplateActions: function(Client, types.ListTemplateActionsInput): Operation<types.ListTemplateActionsOutput>
     -- Retrieves all waves or multiple waves by ID.
-    listWaves: function(Client, types.ListWavesInput): types.ListWavesOutput, table
+    listWaves: function(Client, types.ListWavesInput): Operation<types.ListWavesOutput>
     -- Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.
-    markAsArchived: function(Client, types.MarkAsArchivedInput): types.MarkAsArchivedOutput, table
+    markAsArchived: function(Client, types.MarkAsArchivedInput): Operation<types.MarkAsArchivedOutput>
     -- Pause Replication.
-    pauseReplication: function(Client, types.PauseReplicationInput): types.PauseReplicationOutput, table
+    pauseReplication: function(Client, types.PauseReplicationInput): Operation<types.PauseReplicationOutput>
     -- Put source server post migration custom action.
-    putSourceServerAction: function(Client, types.PutSourceServerActionInput): types.PutSourceServerActionOutput, table
+    putSourceServerAction: function(Client, types.PutSourceServerActionInput): Operation<types.PutSourceServerActionOutput>
     -- Put template post migration custom action.
-    putTemplateAction: function(Client, types.PutTemplateActionInput): types.PutTemplateActionOutput, table
+    putTemplateAction: function(Client, types.PutTemplateActionInput): Operation<types.PutTemplateActionOutput>
     -- Remove source server post migration custom action.
-    removeSourceServerAction: function(Client, types.RemoveSourceServerActionInput): types.RemoveSourceServerActionOutput, table
+    removeSourceServerAction: function(Client, types.RemoveSourceServerActionInput): Operation<types.RemoveSourceServerActionOutput>
     -- Remove template post migration custom action.
-    removeTemplateAction: function(Client, types.RemoveTemplateActionInput): types.RemoveTemplateActionOutput, table
+    removeTemplateAction: function(Client, types.RemoveTemplateActionInput): Operation<types.RemoveTemplateActionOutput>
     -- Resume Replication.
-    resumeReplication: function(Client, types.ResumeReplicationInput): types.ResumeReplicationOutput, table
+    resumeReplication: function(Client, types.ResumeReplicationInput): Operation<types.ResumeReplicationOutput>
     -- Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.
-    retryDataReplication: function(Client, types.RetryDataReplicationInput): types.RetryDataReplicationOutput, table
+    retryDataReplication: function(Client, types.RetryDataReplicationInput): Operation<types.RetryDataReplicationOutput>
     -- Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.
-    startCutover: function(Client, types.StartCutoverInput): types.StartCutoverOutput, table
+    startCutover: function(Client, types.StartCutoverInput): Operation<types.StartCutoverOutput>
     -- Start export.
-    startExport: function(Client, types.StartExportInput): types.StartExportOutput, table
+    startExport: function(Client, types.StartExportInput): Operation<types.StartExportOutput>
     -- Start import.
-    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startImport: function(Client, types.StartImportInput): Operation<types.StartImportOutput>
     -- Starts an import file enrichment job to process and enrich network migration import files with additional metadata and IP assignment strategies.
-    startImportFileEnrichment: function(Client, types.StartImportFileEnrichmentInput): types.StartImportFileEnrichmentOutput, table
+    startImportFileEnrichment: function(Client, types.StartImportFileEnrichmentInput): Operation<types.StartImportFileEnrichmentOutput>
     -- Starts a network migration analysis job to evaluate connectivity and compatibility of the migration mappings.
-    startNetworkMigrationAnalysis: function(Client, types.StartNetworkMigrationAnalysisInput): types.StartNetworkMigrationAnalysisOutput, table
+    startNetworkMigrationAnalysis: function(Client, types.StartNetworkMigrationAnalysisInput): Operation<types.StartNetworkMigrationAnalysisOutput>
     -- Starts a code generation job to convert network migration mappings into infrastructure-as-code templates.
-    startNetworkMigrationCodeGeneration: function(Client, types.StartNetworkMigrationCodeGenerationInput): types.StartNetworkMigrationCodeGenerationOutput, table
+    startNetworkMigrationCodeGeneration: function(Client, types.StartNetworkMigrationCodeGenerationInput): Operation<types.StartNetworkMigrationCodeGenerationOutput>
     -- Starts a deployment job to create the target network infrastructure based on the generated code templates.
-    startNetworkMigrationDeployment: function(Client, types.StartNetworkMigrationDeploymentInput): types.StartNetworkMigrationDeploymentOutput, table
+    startNetworkMigrationDeployment: function(Client, types.StartNetworkMigrationDeploymentInput): Operation<types.StartNetworkMigrationDeploymentOutput>
     -- Starts the network migration mapping process for a given network migration execution.
-    startNetworkMigrationMapping: function(Client, types.StartNetworkMigrationMappingInput): types.StartNetworkMigrationMappingOutput, table
+    startNetworkMigrationMapping: function(Client, types.StartNetworkMigrationMappingInput): Operation<types.StartNetworkMigrationMappingOutput>
     -- Starts a job to apply customer modifications to network migration mappings, such as changing properties.
-    startNetworkMigrationMappingUpdate: function(Client, types.StartNetworkMigrationMappingUpdateInput): types.StartNetworkMigrationMappingUpdateOutput, table
+    startNetworkMigrationMappingUpdate: function(Client, types.StartNetworkMigrationMappingUpdateInput): Operation<types.StartNetworkMigrationMappingUpdateOutput>
     -- Start replication for source server irrespective of its replication type.
-    startReplication: function(Client, types.StartReplicationInput): types.StartReplicationOutput, table
+    startReplication: function(Client, types.StartReplicationInput): Operation<types.StartReplicationOutput>
     -- Launches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.
-    startTest: function(Client, types.StartTestInput): types.StartTestOutput, table
+    startTest: function(Client, types.StartTestInput): Operation<types.StartTestOutput>
     -- Stop Replication.
-    stopReplication: function(Client, types.StopReplicationInput): types.StopReplicationOutput, table
+    stopReplication: function(Client, types.StopReplicationInput): Operation<types.StopReplicationOutput>
     -- Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.
-    terminateTargetInstances: function(Client, types.TerminateTargetInstancesInput): types.TerminateTargetInstancesOutput, table
+    terminateTargetInstances: function(Client, types.TerminateTargetInstancesInput): Operation<types.TerminateTargetInstancesOutput>
     -- Unarchive application.
-    unarchiveApplication: function(Client, types.UnarchiveApplicationInput): types.UnarchiveApplicationOutput, table
+    unarchiveApplication: function(Client, types.UnarchiveApplicationInput): Operation<types.UnarchiveApplicationOutput>
     -- Unarchive wave.
-    unarchiveWave: function(Client, types.UnarchiveWaveInput): types.UnarchiveWaveOutput, table
+    unarchiveWave: function(Client, types.UnarchiveWaveInput): Operation<types.UnarchiveWaveOutput>
     -- Deletes the specified set of tags from the specified set of Application Migration Service resources.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update application.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
     -- Update Connector.
-    updateConnector: function(Client, types.UpdateConnectorInput): types.UpdateConnectorOutput, table
+    updateConnector: function(Client, types.UpdateConnectorInput): Operation<types.UpdateConnectorOutput>
     -- Updates multiple LaunchConfigurations by Source Server ID. bootMode valid values are LEGACY_BIOS | UEFI
-    updateLaunchConfiguration: function(Client, types.UpdateLaunchConfigurationInput): types.UpdateLaunchConfigurationOutput, table
+    updateLaunchConfiguration: function(Client, types.UpdateLaunchConfigurationInput): Operation<types.UpdateLaunchConfigurationOutput>
     -- Updates an existing Launch Configuration Template by ID.
-    updateLaunchConfigurationTemplate: function(Client, types.UpdateLaunchConfigurationTemplateInput): types.UpdateLaunchConfigurationTemplateOutput, table
+    updateLaunchConfigurationTemplate: function(Client, types.UpdateLaunchConfigurationTemplateInput): Operation<types.UpdateLaunchConfigurationTemplateOutput>
     -- Updates an existing network migration definition with new source or target configurations.
-    updateNetworkMigrationDefinition: function(Client, types.UpdateNetworkMigrationDefinitionInput): types.UpdateNetworkMigrationDefinitionOutput, table
+    updateNetworkMigrationDefinition: function(Client, types.UpdateNetworkMigrationDefinitionInput): Operation<types.UpdateNetworkMigrationDefinitionOutput>
     -- Updates a mapper segment's configuration, such as changing its scope tags.
-    updateNetworkMigrationMapperSegment: function(Client, types.UpdateNetworkMigrationMapperSegmentInput): types.UpdateNetworkMigrationMapperSegmentOutput, table
+    updateNetworkMigrationMapperSegment: function(Client, types.UpdateNetworkMigrationMapperSegmentInput): Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
     -- Allows you to update multiple ReplicationConfigurations by Source Server ID.
-    updateReplicationConfiguration: function(Client, types.UpdateReplicationConfigurationInput): types.UpdateReplicationConfigurationOutput, table
+    updateReplicationConfiguration: function(Client, types.UpdateReplicationConfigurationInput): Operation<types.UpdateReplicationConfigurationOutput>
     -- Updates multiple ReplicationConfigurationTemplates by ID.
-    updateReplicationConfigurationTemplate: function(Client, types.UpdateReplicationConfigurationTemplateInput): types.UpdateReplicationConfigurationTemplateOutput, table
+    updateReplicationConfigurationTemplate: function(Client, types.UpdateReplicationConfigurationTemplateInput): Operation<types.UpdateReplicationConfigurationTemplateOutput>
     -- Update Source Server.
-    updateSourceServer: function(Client, types.UpdateSourceServerInput): types.UpdateSourceServerOutput, table
+    updateSourceServer: function(Client, types.UpdateSourceServerInput): Operation<types.UpdateSourceServerOutput>
     -- Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type. SNAPSHOT_SHIPPING should be used for agentless replication.
-    updateSourceServerReplicationType: function(Client, types.UpdateSourceServerReplicationTypeInput): types.UpdateSourceServerReplicationTypeOutput, table
+    updateSourceServerReplicationType: function(Client, types.UpdateSourceServerReplicationTypeInput): Operation<types.UpdateSourceServerReplicationTypeOutput>
     -- Update wave.
-    updateWave: function(Client, types.UpdateWaveInput): types.UpdateWaveOutput, table
+    updateWave: function(Client, types.UpdateWaveInput): Operation<types.UpdateWaveOutput>
 end
 
 local record M

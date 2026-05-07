@@ -27,7 +27,7 @@ end
 
 local client = s3.new({ region = region, interceptors = { logging.new() } })
 
-local result, err = client:getObject({ Bucket = bucket, Key = key })
+local result, err = client:getObject({ Bucket = bucket, Key = key }):await()
 if err then
     io.stderr:write("ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)

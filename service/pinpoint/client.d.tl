@@ -2,251 +2,255 @@
 
 local types = require("pinpoint.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an application.
-    createApp: function(Client, types.CreateAppInput): types.CreateAppOutput, table
+    createApp: function(Client, types.CreateAppInput): Operation<types.CreateAppOutput>
     -- Creates a new campaign for an application or updates the settings of an existing campaign for an application.
-    createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    createCampaign: function(Client, types.CreateCampaignInput): Operation<types.CreateCampaignOutput>
     -- Creates a message template for messages that are sent through the email channel.
-    createEmailTemplate: function(Client, types.CreateEmailTemplateInput): types.CreateEmailTemplateOutput, table
+    createEmailTemplate: function(Client, types.CreateEmailTemplateInput): Operation<types.CreateEmailTemplateOutput>
     -- Creates an export job for an application.
-    createExportJob: function(Client, types.CreateExportJobInput): types.CreateExportJobOutput, table
+    createExportJob: function(Client, types.CreateExportJobInput): Operation<types.CreateExportJobOutput>
     -- Creates an import job for an application.
-    createImportJob: function(Client, types.CreateImportJobInput): types.CreateImportJobOutput, table
+    createImportJob: function(Client, types.CreateImportJobInput): Operation<types.CreateImportJobOutput>
     -- Creates a new message template for messages using the in-app message channel.
-    createInAppTemplate: function(Client, types.CreateInAppTemplateInput): types.CreateInAppTemplateOutput, table
+    createInAppTemplate: function(Client, types.CreateInAppTemplateInput): Operation<types.CreateInAppTemplateOutput>
     -- Creates a journey for an application.
-    createJourney: function(Client, types.CreateJourneyInput): types.CreateJourneyOutput, table
+    createJourney: function(Client, types.CreateJourneyInput): Operation<types.CreateJourneyOutput>
     -- Creates a message template for messages that are sent through a push notification channel.
-    createPushTemplate: function(Client, types.CreatePushTemplateInput): types.CreatePushTemplateOutput, table
+    createPushTemplate: function(Client, types.CreatePushTemplateInput): Operation<types.CreatePushTemplateOutput>
     -- Creates an Amazon Pinpoint configuration for a recommender model.
-    createRecommenderConfiguration: function(Client, types.CreateRecommenderConfigurationInput): types.CreateRecommenderConfigurationOutput, table
+    createRecommenderConfiguration: function(Client, types.CreateRecommenderConfigurationInput): Operation<types.CreateRecommenderConfigurationOutput>
     -- Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.
-    createSegment: function(Client, types.CreateSegmentInput): types.CreateSegmentOutput, table
+    createSegment: function(Client, types.CreateSegmentInput): Operation<types.CreateSegmentOutput>
     -- Creates a message template for messages that are sent through the SMS channel.
-    createSmsTemplate: function(Client, types.CreateSmsTemplateInput): types.CreateSmsTemplateOutput, table
+    createSmsTemplate: function(Client, types.CreateSmsTemplateInput): Operation<types.CreateSmsTemplateOutput>
     -- Creates a message template for messages that are sent through the voice channel.
-    createVoiceTemplate: function(Client, types.CreateVoiceTemplateInput): types.CreateVoiceTemplateOutput, table
+    createVoiceTemplate: function(Client, types.CreateVoiceTemplateInput): Operation<types.CreateVoiceTemplateOutput>
     -- Disables the ADM channel for an application and deletes any existing settings for the channel.
-    deleteAdmChannel: function(Client, types.DeleteAdmChannelInput): types.DeleteAdmChannelOutput, table
+    deleteAdmChannel: function(Client, types.DeleteAdmChannelInput): Operation<types.DeleteAdmChannelOutput>
     -- Disables the APNs channel for an application and deletes any existing settings for the channel.
-    deleteApnsChannel: function(Client, types.DeleteApnsChannelInput): types.DeleteApnsChannelOutput, table
+    deleteApnsChannel: function(Client, types.DeleteApnsChannelInput): Operation<types.DeleteApnsChannelOutput>
     -- Disables the APNs sandbox channel for an application and deletes any existing settings for the channel.
-    deleteApnsSandboxChannel: function(Client, types.DeleteApnsSandboxChannelInput): types.DeleteApnsSandboxChannelOutput, table
+    deleteApnsSandboxChannel: function(Client, types.DeleteApnsSandboxChannelInput): Operation<types.DeleteApnsSandboxChannelOutput>
     -- Disables the APNs VoIP channel for an application and deletes any existing settings for the channel.
-    deleteApnsVoipChannel: function(Client, types.DeleteApnsVoipChannelInput): types.DeleteApnsVoipChannelOutput, table
+    deleteApnsVoipChannel: function(Client, types.DeleteApnsVoipChannelInput): Operation<types.DeleteApnsVoipChannelOutput>
     -- Disables the APNs VoIP sandbox channel for an application and deletes any existing settings for the channel.
-    deleteApnsVoipSandboxChannel: function(Client, types.DeleteApnsVoipSandboxChannelInput): types.DeleteApnsVoipSandboxChannelOutput, table
+    deleteApnsVoipSandboxChannel: function(Client, types.DeleteApnsVoipSandboxChannelInput): Operation<types.DeleteApnsVoipSandboxChannelOutput>
     -- Deletes an application.
-    deleteApp: function(Client, types.DeleteAppInput): types.DeleteAppOutput, table
+    deleteApp: function(Client, types.DeleteAppInput): Operation<types.DeleteAppOutput>
     -- Disables the Baidu channel for an application and deletes any existing settings for the channel.
-    deleteBaiduChannel: function(Client, types.DeleteBaiduChannelInput): types.DeleteBaiduChannelOutput, table
+    deleteBaiduChannel: function(Client, types.DeleteBaiduChannelInput): Operation<types.DeleteBaiduChannelOutput>
     -- Deletes a campaign from an application.
-    deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    deleteCampaign: function(Client, types.DeleteCampaignInput): Operation<types.DeleteCampaignOutput>
     -- Disables the email channel for an application and deletes any existing settings for the channel.
-    deleteEmailChannel: function(Client, types.DeleteEmailChannelInput): types.DeleteEmailChannelOutput, table
+    deleteEmailChannel: function(Client, types.DeleteEmailChannelInput): Operation<types.DeleteEmailChannelOutput>
     -- Deletes a message template for messages that were sent through the email channel.
-    deleteEmailTemplate: function(Client, types.DeleteEmailTemplateInput): types.DeleteEmailTemplateOutput, table
+    deleteEmailTemplate: function(Client, types.DeleteEmailTemplateInput): Operation<types.DeleteEmailTemplateOutput>
     -- Deletes an endpoint from an application.
-    deleteEndpoint: function(Client, types.DeleteEndpointInput): types.DeleteEndpointOutput, table
+    deleteEndpoint: function(Client, types.DeleteEndpointInput): Operation<types.DeleteEndpointOutput>
     -- Deletes the event stream for an application.
-    deleteEventStream: function(Client, types.DeleteEventStreamInput): types.DeleteEventStreamOutput, table
+    deleteEventStream: function(Client, types.DeleteEventStreamInput): Operation<types.DeleteEventStreamOutput>
     -- Disables the GCM channel for an application and deletes any existing settings for the channel.
-    deleteGcmChannel: function(Client, types.DeleteGcmChannelInput): types.DeleteGcmChannelOutput, table
+    deleteGcmChannel: function(Client, types.DeleteGcmChannelInput): Operation<types.DeleteGcmChannelOutput>
     -- Deletes a message template for messages sent using the in-app message channel.
-    deleteInAppTemplate: function(Client, types.DeleteInAppTemplateInput): types.DeleteInAppTemplateOutput, table
+    deleteInAppTemplate: function(Client, types.DeleteInAppTemplateInput): Operation<types.DeleteInAppTemplateOutput>
     -- Deletes a journey from an application.
-    deleteJourney: function(Client, types.DeleteJourneyInput): types.DeleteJourneyOutput, table
+    deleteJourney: function(Client, types.DeleteJourneyInput): Operation<types.DeleteJourneyOutput>
     -- Deletes a message template for messages that were sent through a push notification channel.
-    deletePushTemplate: function(Client, types.DeletePushTemplateInput): types.DeletePushTemplateOutput, table
+    deletePushTemplate: function(Client, types.DeletePushTemplateInput): Operation<types.DeletePushTemplateOutput>
     -- Deletes an Amazon Pinpoint configuration for a recommender model.
-    deleteRecommenderConfiguration: function(Client, types.DeleteRecommenderConfigurationInput): types.DeleteRecommenderConfigurationOutput, table
+    deleteRecommenderConfiguration: function(Client, types.DeleteRecommenderConfigurationInput): Operation<types.DeleteRecommenderConfigurationOutput>
     -- Deletes a segment from an application.
-    deleteSegment: function(Client, types.DeleteSegmentInput): types.DeleteSegmentOutput, table
+    deleteSegment: function(Client, types.DeleteSegmentInput): Operation<types.DeleteSegmentOutput>
     -- Disables the SMS channel for an application and deletes any existing settings for the channel.
-    deleteSmsChannel: function(Client, types.DeleteSmsChannelInput): types.DeleteSmsChannelOutput, table
+    deleteSmsChannel: function(Client, types.DeleteSmsChannelInput): Operation<types.DeleteSmsChannelOutput>
     -- Deletes a message template for messages that were sent through the SMS channel.
-    deleteSmsTemplate: function(Client, types.DeleteSmsTemplateInput): types.DeleteSmsTemplateOutput, table
+    deleteSmsTemplate: function(Client, types.DeleteSmsTemplateInput): Operation<types.DeleteSmsTemplateOutput>
     -- Deletes all the endpoints that are associated with a specific user ID.
-    deleteUserEndpoints: function(Client, types.DeleteUserEndpointsInput): types.DeleteUserEndpointsOutput, table
+    deleteUserEndpoints: function(Client, types.DeleteUserEndpointsInput): Operation<types.DeleteUserEndpointsOutput>
     -- Disables the voice channel for an application and deletes any existing settings for the channel.
-    deleteVoiceChannel: function(Client, types.DeleteVoiceChannelInput): types.DeleteVoiceChannelOutput, table
+    deleteVoiceChannel: function(Client, types.DeleteVoiceChannelInput): Operation<types.DeleteVoiceChannelOutput>
     -- Deletes a message template for messages that were sent through the voice channel.
-    deleteVoiceTemplate: function(Client, types.DeleteVoiceTemplateInput): types.DeleteVoiceTemplateOutput, table
+    deleteVoiceTemplate: function(Client, types.DeleteVoiceTemplateInput): Operation<types.DeleteVoiceTemplateOutput>
     -- Retrieves information about the status and settings of the ADM channel for an application.
-    getAdmChannel: function(Client, types.GetAdmChannelInput): types.GetAdmChannelOutput, table
+    getAdmChannel: function(Client, types.GetAdmChannelInput): Operation<types.GetAdmChannelOutput>
     -- Retrieves information about the status and settings of the APNs channel for an application.
-    getApnsChannel: function(Client, types.GetApnsChannelInput): types.GetApnsChannelOutput, table
+    getApnsChannel: function(Client, types.GetApnsChannelInput): Operation<types.GetApnsChannelOutput>
     -- Retrieves information about the status and settings of the APNs sandbox channel for an application.
-    getApnsSandboxChannel: function(Client, types.GetApnsSandboxChannelInput): types.GetApnsSandboxChannelOutput, table
+    getApnsSandboxChannel: function(Client, types.GetApnsSandboxChannelInput): Operation<types.GetApnsSandboxChannelOutput>
     -- Retrieves information about the status and settings of the APNs VoIP channel for an application.
-    getApnsVoipChannel: function(Client, types.GetApnsVoipChannelInput): types.GetApnsVoipChannelOutput, table
+    getApnsVoipChannel: function(Client, types.GetApnsVoipChannelInput): Operation<types.GetApnsVoipChannelOutput>
     -- Retrieves information about the status and settings of the APNs VoIP sandbox channel for an application.
-    getApnsVoipSandboxChannel: function(Client, types.GetApnsVoipSandboxChannelInput): types.GetApnsVoipSandboxChannelOutput, table
+    getApnsVoipSandboxChannel: function(Client, types.GetApnsVoipSandboxChannelInput): Operation<types.GetApnsVoipSandboxChannelOutput>
     -- Retrieves information about an application.
-    getApp: function(Client, types.GetAppInput): types.GetAppOutput, table
+    getApp: function(Client, types.GetAppInput): Operation<types.GetAppOutput>
     -- Retrieves (queries) pre-aggregated data for a standard metric that applies to an application.
-    getApplicationDateRangeKpi: function(Client, types.GetApplicationDateRangeKpiInput): types.GetApplicationDateRangeKpiOutput, table
+    getApplicationDateRangeKpi: function(Client, types.GetApplicationDateRangeKpiInput): Operation<types.GetApplicationDateRangeKpiOutput>
     -- Retrieves information about the settings for an application.
-    getApplicationSettings: function(Client, types.GetApplicationSettingsInput): types.GetApplicationSettingsOutput, table
+    getApplicationSettings: function(Client, types.GetApplicationSettingsInput): Operation<types.GetApplicationSettingsOutput>
     -- Retrieves information about all the applications that are associated with your Amazon Pinpoint account.
-    getApps: function(Client, types.GetAppsInput): types.GetAppsOutput, table
+    getApps: function(Client, types.GetAppsInput): Operation<types.GetAppsOutput>
     -- Retrieves information about the status and settings of the Baidu channel for an application.
-    getBaiduChannel: function(Client, types.GetBaiduChannelInput): types.GetBaiduChannelOutput, table
+    getBaiduChannel: function(Client, types.GetBaiduChannelInput): Operation<types.GetBaiduChannelOutput>
     -- Retrieves information about the status, configuration, and other settings for a campaign.
-    getCampaign: function(Client, types.GetCampaignInput): types.GetCampaignOutput, table
+    getCampaign: function(Client, types.GetCampaignInput): Operation<types.GetCampaignOutput>
     -- Retrieves information about all the activities for a campaign.
-    getCampaignActivities: function(Client, types.GetCampaignActivitiesInput): types.GetCampaignActivitiesOutput, table
+    getCampaignActivities: function(Client, types.GetCampaignActivitiesInput): Operation<types.GetCampaignActivitiesOutput>
     -- Retrieves (queries) pre-aggregated data for a standard metric that applies to a campaign.
-    getCampaignDateRangeKpi: function(Client, types.GetCampaignDateRangeKpiInput): types.GetCampaignDateRangeKpiOutput, table
+    getCampaignDateRangeKpi: function(Client, types.GetCampaignDateRangeKpiInput): Operation<types.GetCampaignDateRangeKpiOutput>
     -- Retrieves information about the status, configuration, and other settings for all the campaigns that are associated with an application.
-    getCampaigns: function(Client, types.GetCampaignsInput): types.GetCampaignsOutput, table
+    getCampaigns: function(Client, types.GetCampaignsInput): Operation<types.GetCampaignsOutput>
     -- Retrieves information about the status, configuration, and other settings for a specific version of a campaign.
-    getCampaignVersion: function(Client, types.GetCampaignVersionInput): types.GetCampaignVersionOutput, table
+    getCampaignVersion: function(Client, types.GetCampaignVersionInput): Operation<types.GetCampaignVersionOutput>
     -- Retrieves information about the status, configuration, and other settings for all versions of a campaign.
-    getCampaignVersions: function(Client, types.GetCampaignVersionsInput): types.GetCampaignVersionsOutput, table
+    getCampaignVersions: function(Client, types.GetCampaignVersionsInput): Operation<types.GetCampaignVersionsOutput>
     -- Retrieves information about the history and status of each channel for an application.
-    getChannels: function(Client, types.GetChannelsInput): types.GetChannelsOutput, table
+    getChannels: function(Client, types.GetChannelsInput): Operation<types.GetChannelsOutput>
     -- Retrieves information about the status and settings of the email channel for an application.
-    getEmailChannel: function(Client, types.GetEmailChannelInput): types.GetEmailChannelOutput, table
+    getEmailChannel: function(Client, types.GetEmailChannelInput): Operation<types.GetEmailChannelOutput>
     -- Retrieves the content and settings of a message template for messages that are sent through the email channel.
-    getEmailTemplate: function(Client, types.GetEmailTemplateInput): types.GetEmailTemplateOutput, table
+    getEmailTemplate: function(Client, types.GetEmailTemplateInput): Operation<types.GetEmailTemplateOutput>
     -- Retrieves information about the settings and attributes of a specific endpoint for an application.
-    getEndpoint: function(Client, types.GetEndpointInput): types.GetEndpointOutput, table
+    getEndpoint: function(Client, types.GetEndpointInput): Operation<types.GetEndpointOutput>
     -- Retrieves information about the event stream settings for an application.
-    getEventStream: function(Client, types.GetEventStreamInput): types.GetEventStreamOutput, table
+    getEventStream: function(Client, types.GetEventStreamInput): Operation<types.GetEventStreamOutput>
     -- Retrieves information about the status and settings of a specific export job for an application.
-    getExportJob: function(Client, types.GetExportJobInput): types.GetExportJobOutput, table
+    getExportJob: function(Client, types.GetExportJobInput): Operation<types.GetExportJobOutput>
     -- Retrieves information about the status and settings of all the export jobs for an application.
-    getExportJobs: function(Client, types.GetExportJobsInput): types.GetExportJobsOutput, table
+    getExportJobs: function(Client, types.GetExportJobsInput): Operation<types.GetExportJobsOutput>
     -- Retrieves information about the status and settings of the GCM channel for an application.
-    getGcmChannel: function(Client, types.GetGcmChannelInput): types.GetGcmChannelOutput, table
+    getGcmChannel: function(Client, types.GetGcmChannelInput): Operation<types.GetGcmChannelOutput>
     -- Retrieves information about the status and settings of a specific import job for an application.
-    getImportJob: function(Client, types.GetImportJobInput): types.GetImportJobOutput, table
+    getImportJob: function(Client, types.GetImportJobInput): Operation<types.GetImportJobOutput>
     -- Retrieves information about the status and settings of all the import jobs for an application.
-    getImportJobs: function(Client, types.GetImportJobsInput): types.GetImportJobsOutput, table
+    getImportJobs: function(Client, types.GetImportJobsInput): Operation<types.GetImportJobsOutput>
     -- Retrieves the in-app messages targeted for the provided endpoint ID.
-    getInAppMessages: function(Client, types.GetInAppMessagesInput): types.GetInAppMessagesOutput, table
+    getInAppMessages: function(Client, types.GetInAppMessagesInput): Operation<types.GetInAppMessagesOutput>
     -- Retrieves the content and settings of a message template for messages sent through the in-app channel.
-    getInAppTemplate: function(Client, types.GetInAppTemplateInput): types.GetInAppTemplateOutput, table
+    getInAppTemplate: function(Client, types.GetInAppTemplateInput): Operation<types.GetInAppTemplateOutput>
     -- Retrieves information about the status, configuration, and other settings for a journey.
-    getJourney: function(Client, types.GetJourneyInput): types.GetJourneyOutput, table
+    getJourney: function(Client, types.GetJourneyInput): Operation<types.GetJourneyOutput>
     -- Retrieves (queries) pre-aggregated data for a standard engagement metric that applies to a journey.
-    getJourneyDateRangeKpi: function(Client, types.GetJourneyDateRangeKpiInput): types.GetJourneyDateRangeKpiOutput, table
+    getJourneyDateRangeKpi: function(Client, types.GetJourneyDateRangeKpiInput): Operation<types.GetJourneyDateRangeKpiOutput>
     -- Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey activity.
-    getJourneyExecutionActivityMetrics: function(Client, types.GetJourneyExecutionActivityMetricsInput): types.GetJourneyExecutionActivityMetricsOutput, table
+    getJourneyExecutionActivityMetrics: function(Client, types.GetJourneyExecutionActivityMetricsInput): Operation<types.GetJourneyExecutionActivityMetricsOutput>
     -- Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey.
-    getJourneyExecutionMetrics: function(Client, types.GetJourneyExecutionMetricsInput): types.GetJourneyExecutionMetricsOutput, table
+    getJourneyExecutionMetrics: function(Client, types.GetJourneyExecutionMetricsInput): Operation<types.GetJourneyExecutionMetricsOutput>
     -- Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey activity.
-    getJourneyRunExecutionActivityMetrics: function(Client, types.GetJourneyRunExecutionActivityMetricsInput): types.GetJourneyRunExecutionActivityMetricsOutput, table
+    getJourneyRunExecutionActivityMetrics: function(Client, types.GetJourneyRunExecutionActivityMetricsInput): Operation<types.GetJourneyRunExecutionActivityMetricsOutput>
     -- Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey.
-    getJourneyRunExecutionMetrics: function(Client, types.GetJourneyRunExecutionMetricsInput): types.GetJourneyRunExecutionMetricsOutput, table
+    getJourneyRunExecutionMetrics: function(Client, types.GetJourneyRunExecutionMetricsInput): Operation<types.GetJourneyRunExecutionMetricsOutput>
     -- Provides information about the runs of a journey.
-    getJourneyRuns: function(Client, types.GetJourneyRunsInput): types.GetJourneyRunsOutput, table
+    getJourneyRuns: function(Client, types.GetJourneyRunsInput): Operation<types.GetJourneyRunsOutput>
     -- Retrieves the content and settings of a message template for messages that are sent through a push notification channel.
-    getPushTemplate: function(Client, types.GetPushTemplateInput): types.GetPushTemplateOutput, table
+    getPushTemplate: function(Client, types.GetPushTemplateInput): Operation<types.GetPushTemplateOutput>
     -- Retrieves information about an Amazon Pinpoint configuration for a recommender model.
-    getRecommenderConfiguration: function(Client, types.GetRecommenderConfigurationInput): types.GetRecommenderConfigurationOutput, table
+    getRecommenderConfiguration: function(Client, types.GetRecommenderConfigurationInput): Operation<types.GetRecommenderConfigurationOutput>
     -- Retrieves information about all the recommender model configurations that are associated with your Amazon Pinpoint account.
-    getRecommenderConfigurations: function(Client, types.GetRecommenderConfigurationsInput): types.GetRecommenderConfigurationsOutput, table
+    getRecommenderConfigurations: function(Client, types.GetRecommenderConfigurationsInput): Operation<types.GetRecommenderConfigurationsOutput>
     -- Retrieves information about the configuration, dimension, and other settings for a specific segment that's associated with an application.
-    getSegment: function(Client, types.GetSegmentInput): types.GetSegmentOutput, table
+    getSegment: function(Client, types.GetSegmentInput): Operation<types.GetSegmentOutput>
     -- Retrieves information about the status and settings of the export jobs for a segment.
-    getSegmentExportJobs: function(Client, types.GetSegmentExportJobsInput): types.GetSegmentExportJobsOutput, table
+    getSegmentExportJobs: function(Client, types.GetSegmentExportJobsInput): Operation<types.GetSegmentExportJobsOutput>
     -- Retrieves information about the status and settings of the import jobs for a segment.
-    getSegmentImportJobs: function(Client, types.GetSegmentImportJobsInput): types.GetSegmentImportJobsOutput, table
+    getSegmentImportJobs: function(Client, types.GetSegmentImportJobsInput): Operation<types.GetSegmentImportJobsOutput>
     -- Retrieves information about the configuration, dimension, and other settings for all the segments that are associated with an application.
-    getSegments: function(Client, types.GetSegmentsInput): types.GetSegmentsOutput, table
+    getSegments: function(Client, types.GetSegmentsInput): Operation<types.GetSegmentsOutput>
     -- Retrieves information about the configuration, dimension, and other settings for a specific version of a segment that's associated with an application.
-    getSegmentVersion: function(Client, types.GetSegmentVersionInput): types.GetSegmentVersionOutput, table
+    getSegmentVersion: function(Client, types.GetSegmentVersionInput): Operation<types.GetSegmentVersionOutput>
     -- Retrieves information about the configuration, dimension, and other settings for all the versions of a specific segment that's associated with an application.
-    getSegmentVersions: function(Client, types.GetSegmentVersionsInput): types.GetSegmentVersionsOutput, table
+    getSegmentVersions: function(Client, types.GetSegmentVersionsInput): Operation<types.GetSegmentVersionsOutput>
     -- Retrieves information about the status and settings of the SMS channel for an application.
-    getSmsChannel: function(Client, types.GetSmsChannelInput): types.GetSmsChannelOutput, table
+    getSmsChannel: function(Client, types.GetSmsChannelInput): Operation<types.GetSmsChannelOutput>
     -- Retrieves the content and settings of a message template for messages that are sent through the SMS channel.
-    getSmsTemplate: function(Client, types.GetSmsTemplateInput): types.GetSmsTemplateOutput, table
+    getSmsTemplate: function(Client, types.GetSmsTemplateInput): Operation<types.GetSmsTemplateOutput>
     -- Retrieves information about all the endpoints that are associated with a specific user ID.
-    getUserEndpoints: function(Client, types.GetUserEndpointsInput): types.GetUserEndpointsOutput, table
+    getUserEndpoints: function(Client, types.GetUserEndpointsInput): Operation<types.GetUserEndpointsOutput>
     -- Retrieves information about the status and settings of the voice channel for an application.
-    getVoiceChannel: function(Client, types.GetVoiceChannelInput): types.GetVoiceChannelOutput, table
+    getVoiceChannel: function(Client, types.GetVoiceChannelInput): Operation<types.GetVoiceChannelOutput>
     -- Retrieves the content and settings of a message template for messages that are sent through the voice channel.
-    getVoiceTemplate: function(Client, types.GetVoiceTemplateInput): types.GetVoiceTemplateOutput, table
+    getVoiceTemplate: function(Client, types.GetVoiceTemplateInput): Operation<types.GetVoiceTemplateOutput>
     -- Retrieves information about the status, configuration, and other settings for all the journeys that are associated with an application.
-    listJourneys: function(Client, types.ListJourneysInput): types.ListJourneysOutput, table
+    listJourneys: function(Client, types.ListJourneysInput): Operation<types.ListJourneysOutput>
     -- Retrieves all the tags (keys and values) that are associated with an application, campaign, message template, or segment.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves information about all the message templates that are associated with your Amazon Pinpoint account.
-    listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    listTemplates: function(Client, types.ListTemplatesInput): Operation<types.ListTemplatesOutput>
     -- Retrieves information about all the versions of a specific message template.
-    listTemplateVersions: function(Client, types.ListTemplateVersionsInput): types.ListTemplateVersionsOutput, table
+    listTemplateVersions: function(Client, types.ListTemplateVersionsInput): Operation<types.ListTemplateVersionsOutput>
     -- Retrieves information about a phone number.
-    phoneNumberValidate: function(Client, types.PhoneNumberValidateInput): types.PhoneNumberValidateOutput, table
+    phoneNumberValidate: function(Client, types.PhoneNumberValidateInput): Operation<types.PhoneNumberValidateOutput>
     -- Creates a new event to record for endpoints, or creates or updates endpoint data that existing events are associated with.
-    putEvents: function(Client, types.PutEventsInput): types.PutEventsOutput, table
+    putEvents: function(Client, types.PutEventsInput): Operation<types.PutEventsOutput>
     -- Creates a new event stream for an application or updates the settings of an existing event stream for an application.
-    putEventStream: function(Client, types.PutEventStreamInput): types.PutEventStreamOutput, table
+    putEventStream: function(Client, types.PutEventStreamInput): Operation<types.PutEventStreamOutput>
     -- Removes one or more custom attributes, of the same attribute type, from the application. Existing endpoints still have the attributes but Amazon Pinpoint will stop capturing new or changed values for these attributes.
-    removeAttributes: function(Client, types.RemoveAttributesInput): types.RemoveAttributesOutput, table
+    removeAttributes: function(Client, types.RemoveAttributesInput): Operation<types.RemoveAttributesOutput>
     -- Creates and sends a direct message.
-    sendMessages: function(Client, types.SendMessagesInput): types.SendMessagesOutput, table
+    sendMessages: function(Client, types.SendMessagesInput): Operation<types.SendMessagesOutput>
     -- Send an OTP message
-    sendOTPMessage: function(Client, types.SendOTPMessageInput): types.SendOTPMessageOutput, table
+    sendOTPMessage: function(Client, types.SendOTPMessageInput): Operation<types.SendOTPMessageOutput>
     -- Creates and sends a message to a list of users.
-    sendUsersMessages: function(Client, types.SendUsersMessagesInput): types.SendUsersMessagesOutput, table
+    sendUsersMessages: function(Client, types.SendUsersMessagesInput): Operation<types.SendUsersMessagesOutput>
     -- Adds one or more tags (keys and values) to an application, campaign, message template, or segment.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags (keys and values) from an application, campaign, message template, or segment.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Enables the ADM channel for an application or updates the status and settings of the ADM channel for an application.
-    updateAdmChannel: function(Client, types.UpdateAdmChannelInput): types.UpdateAdmChannelOutput, table
+    updateAdmChannel: function(Client, types.UpdateAdmChannelInput): Operation<types.UpdateAdmChannelOutput>
     -- Enables the APNs channel for an application or updates the status and settings of the APNs channel for an application.
-    updateApnsChannel: function(Client, types.UpdateApnsChannelInput): types.UpdateApnsChannelOutput, table
+    updateApnsChannel: function(Client, types.UpdateApnsChannelInput): Operation<types.UpdateApnsChannelOutput>
     -- Enables the APNs sandbox channel for an application or updates the status and settings of the APNs sandbox channel for an application.
-    updateApnsSandboxChannel: function(Client, types.UpdateApnsSandboxChannelInput): types.UpdateApnsSandboxChannelOutput, table
+    updateApnsSandboxChannel: function(Client, types.UpdateApnsSandboxChannelInput): Operation<types.UpdateApnsSandboxChannelOutput>
     -- Enables the APNs VoIP channel for an application or updates the status and settings of the APNs VoIP channel for an application.
-    updateApnsVoipChannel: function(Client, types.UpdateApnsVoipChannelInput): types.UpdateApnsVoipChannelOutput, table
+    updateApnsVoipChannel: function(Client, types.UpdateApnsVoipChannelInput): Operation<types.UpdateApnsVoipChannelOutput>
     -- Enables the APNs VoIP sandbox channel for an application or updates the status and settings of the APNs VoIP sandbox channel for an application.
-    updateApnsVoipSandboxChannel: function(Client, types.UpdateApnsVoipSandboxChannelInput): types.UpdateApnsVoipSandboxChannelOutput, table
+    updateApnsVoipSandboxChannel: function(Client, types.UpdateApnsVoipSandboxChannelInput): Operation<types.UpdateApnsVoipSandboxChannelOutput>
     -- Updates the settings for an application.
-    updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput): types.UpdateApplicationSettingsOutput, table
+    updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput): Operation<types.UpdateApplicationSettingsOutput>
     -- Enables the Baidu channel for an application or updates the status and settings of the Baidu channel for an application.
-    updateBaiduChannel: function(Client, types.UpdateBaiduChannelInput): types.UpdateBaiduChannelOutput, table
+    updateBaiduChannel: function(Client, types.UpdateBaiduChannelInput): Operation<types.UpdateBaiduChannelOutput>
     -- Updates the configuration and other settings for a campaign.
-    updateCampaign: function(Client, types.UpdateCampaignInput): types.UpdateCampaignOutput, table
+    updateCampaign: function(Client, types.UpdateCampaignInput): Operation<types.UpdateCampaignOutput>
     -- Enables the email channel for an application or updates the status and settings of the email channel for an application.
-    updateEmailChannel: function(Client, types.UpdateEmailChannelInput): types.UpdateEmailChannelOutput, table
+    updateEmailChannel: function(Client, types.UpdateEmailChannelInput): Operation<types.UpdateEmailChannelOutput>
     -- Updates an existing message template for messages that are sent through the email channel.
-    updateEmailTemplate: function(Client, types.UpdateEmailTemplateInput): types.UpdateEmailTemplateOutput, table
+    updateEmailTemplate: function(Client, types.UpdateEmailTemplateInput): Operation<types.UpdateEmailTemplateOutput>
     -- Creates a new endpoint for an application or updates the settings and attributes of an existing endpoint for an application. You can also use this operation to define custom attributes for an endpoint. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.
-    updateEndpoint: function(Client, types.UpdateEndpointInput): types.UpdateEndpointOutput, table
+    updateEndpoint: function(Client, types.UpdateEndpointInput): Operation<types.UpdateEndpointOutput>
     -- Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes for a batch of endpoints. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.
-    updateEndpointsBatch: function(Client, types.UpdateEndpointsBatchInput): types.UpdateEndpointsBatchOutput, table
+    updateEndpointsBatch: function(Client, types.UpdateEndpointsBatchInput): Operation<types.UpdateEndpointsBatchOutput>
     -- Enables the GCM channel for an application or updates the status and settings of the GCM channel for an application.
-    updateGcmChannel: function(Client, types.UpdateGcmChannelInput): types.UpdateGcmChannelOutput, table
+    updateGcmChannel: function(Client, types.UpdateGcmChannelInput): Operation<types.UpdateGcmChannelOutput>
     -- Updates an existing message template for messages sent through the in-app message channel.
-    updateInAppTemplate: function(Client, types.UpdateInAppTemplateInput): types.UpdateInAppTemplateOutput, table
+    updateInAppTemplate: function(Client, types.UpdateInAppTemplateInput): Operation<types.UpdateInAppTemplateOutput>
     -- Updates the configuration and other settings for a journey.
-    updateJourney: function(Client, types.UpdateJourneyInput): types.UpdateJourneyOutput, table
+    updateJourney: function(Client, types.UpdateJourneyInput): Operation<types.UpdateJourneyOutput>
     -- Cancels (stops) an active journey.
-    updateJourneyState: function(Client, types.UpdateJourneyStateInput): types.UpdateJourneyStateOutput, table
+    updateJourneyState: function(Client, types.UpdateJourneyStateInput): Operation<types.UpdateJourneyStateOutput>
     -- Updates an existing message template for messages that are sent through a push notification channel.
-    updatePushTemplate: function(Client, types.UpdatePushTemplateInput): types.UpdatePushTemplateOutput, table
+    updatePushTemplate: function(Client, types.UpdatePushTemplateInput): Operation<types.UpdatePushTemplateOutput>
     -- Updates an Amazon Pinpoint configuration for a recommender model.
-    updateRecommenderConfiguration: function(Client, types.UpdateRecommenderConfigurationInput): types.UpdateRecommenderConfigurationOutput, table
+    updateRecommenderConfiguration: function(Client, types.UpdateRecommenderConfigurationInput): Operation<types.UpdateRecommenderConfigurationOutput>
     -- Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.
-    updateSegment: function(Client, types.UpdateSegmentInput): types.UpdateSegmentOutput, table
+    updateSegment: function(Client, types.UpdateSegmentInput): Operation<types.UpdateSegmentOutput>
     -- Enables the SMS channel for an application or updates the status and settings of the SMS channel for an application.
-    updateSmsChannel: function(Client, types.UpdateSmsChannelInput): types.UpdateSmsChannelOutput, table
+    updateSmsChannel: function(Client, types.UpdateSmsChannelInput): Operation<types.UpdateSmsChannelOutput>
     -- Updates an existing message template for messages that are sent through the SMS channel.
-    updateSmsTemplate: function(Client, types.UpdateSmsTemplateInput): types.UpdateSmsTemplateOutput, table
+    updateSmsTemplate: function(Client, types.UpdateSmsTemplateInput): Operation<types.UpdateSmsTemplateOutput>
     -- Changes the status of a specific version of a message template to active.
-    updateTemplateActiveVersion: function(Client, types.UpdateTemplateActiveVersionInput): types.UpdateTemplateActiveVersionOutput, table
+    updateTemplateActiveVersion: function(Client, types.UpdateTemplateActiveVersionInput): Operation<types.UpdateTemplateActiveVersionOutput>
     -- Enables the voice channel for an application or updates the status and settings of the voice channel for an application.
-    updateVoiceChannel: function(Client, types.UpdateVoiceChannelInput): types.UpdateVoiceChannelOutput, table
+    updateVoiceChannel: function(Client, types.UpdateVoiceChannelInput): Operation<types.UpdateVoiceChannelOutput>
     -- Updates an existing message template for messages that are sent through the voice channel.
-    updateVoiceTemplate: function(Client, types.UpdateVoiceTemplateInput): types.UpdateVoiceTemplateOutput, table
+    updateVoiceTemplate: function(Client, types.UpdateVoiceTemplateInput): Operation<types.UpdateVoiceTemplateOutput>
     -- Verify an OTP
-    verifyOTPMessage: function(Client, types.VerifyOTPMessageInput): types.VerifyOTPMessageOutput, table
+    verifyOTPMessage: function(Client, types.VerifyOTPMessageInput): Operation<types.VerifyOTPMessageOutput>
 end
 
 local record M

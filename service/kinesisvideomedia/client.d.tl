@@ -2,6 +2,10 @@
 
 local types = require("kinesisvideomedia.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Use this API to retrieve media content from a Kinesis video stream. In the request,
     -- you identify the stream name or stream Amazon Resource Name (ARN), and the starting chunk.
@@ -28,7 +32,7 @@ local record Client
     -- successfully try again.
     -- For more information, see the Errors section at the
     -- bottom of this topic, as well as Common Errors.
-    getMedia: function(Client, types.GetMediaInput): types.GetMediaOutput, table
+    getMedia: function(Client, types.GetMediaInput): Operation<types.GetMediaOutput>
 end
 
 local record M

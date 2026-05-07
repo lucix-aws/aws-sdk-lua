@@ -2,6 +2,10 @@
 
 local types = require("rekognition.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates one or more faces with an existing UserID. Takes an array of
     -- FaceIds. Each FaceId that are present in the FaceIds
@@ -29,7 +33,7 @@ local record Client
     -- CREATED - A UserID has been created, but has no FaceID(s) associated with it.
     -- UPDATING - A UserID is being updated and there are current associations or
     -- disassociations of FaceID(s) taking place.
-    associateFaces: function(Client, types.AssociateFacesInput): types.AssociateFacesOutput, table
+    associateFaces: function(Client, types.AssociateFacesInput): Operation<types.AssociateFacesOutput>
     -- Compares a face in the source input image with each of the 100
     -- largest faces detected in the target input image.
     -- If the source image contains multiple faces, the service detects the largest face and
@@ -74,7 +78,7 @@ local record Client
     -- Guide.
     -- This operation requires permissions to perform the
     -- rekognition:CompareFaces action.
-    compareFaces: function(Client, types.CompareFacesInput): types.CompareFacesOutput, table
+    compareFaces: function(Client, types.CompareFacesInput): Operation<types.CompareFacesOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Copies a version of an Amazon Rekognition Custom Labels model from a source project to a destination project. The source and
     -- destination projects can be in different AWS accounts but must be in the same AWS Region.
@@ -93,7 +97,7 @@ local record Client
     -- ProjectVersionDescription object. The copy operation has finished when
     -- the value of Status is COPYING_COMPLETED.
     -- This operation requires permissions to perform the rekognition:CopyProjectVersion action.
-    copyProjectVersion: function(Client, types.CopyProjectVersionInput): types.CopyProjectVersionOutput, table
+    copyProjectVersion: function(Client, types.CopyProjectVersionInput): Operation<types.CopyProjectVersionOutput>
     -- Creates a collection in an AWS Region. You can add faces to the collection using the
     -- IndexFaces operation.
     -- For example, you might create collections, one for each of your application users. A
@@ -107,7 +111,7 @@ local record Client
     -- rekognition:CreateCollection action. If you want to tag your collection, you
     -- also require permission to perform the rekognition:TagResource
     -- operation.
-    createCollection: function(Client, types.CreateCollectionInput): types.CreateCollectionOutput, table
+    createCollection: function(Client, types.CreateCollectionInput): Operation<types.CreateCollectionOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Creates a new Amazon Rekognition Custom Labels dataset. You can create a dataset by using
     -- an Amazon Sagemaker format manifest file or by copying an existing Amazon Rekognition Custom Labels dataset.
@@ -125,7 +129,7 @@ local record Client
     -- For more information, see Creating dataset in the Amazon Rekognition Custom Labels Developer Guide.
     -- This operation requires permissions to perform the rekognition:CreateDataset action.
     -- If you want to copy an existing dataset, you also require permission to perform the rekognition:ListDatasetEntries action.
-    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): Operation<types.CreateDatasetOutput>
     -- This API operation initiates a Face Liveness session. It returns a SessionId,
     -- which you can use to start streaming Face Liveness video and get the results for a Face
     -- Liveness session.
@@ -136,14 +140,14 @@ local record Client
     -- when GetFaceLivenessSessionResults is called. This number is between 0 and 4. By
     -- default, it is set to 0. The limit is best effort and based on the duration of the
     -- selfie-video.
-    createFaceLivenessSession: function(Client, types.CreateFaceLivenessSessionInput): types.CreateFaceLivenessSessionOutput, table
+    createFaceLivenessSession: function(Client, types.CreateFaceLivenessSessionInput): Operation<types.CreateFaceLivenessSessionOutput>
     -- Creates a new Amazon Rekognition project. A project is a group of resources (datasets, model
     -- versions) that you use to create and manage a Amazon Rekognition Custom Labels Model or custom adapter. You can
     -- specify a feature to create the project with, if no feature is specified then Custom Labels
     -- is used by default. For adapters, you can also choose whether or not to have the project
     -- auto update by using the AutoUpdate argument. This operation requires permissions to
     -- perform the rekognition:CreateProject action.
-    createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    createProject: function(Client, types.CreateProjectInput): Operation<types.CreateProjectOutput>
     -- Creates a new version of Amazon Rekognition project (like a Custom Labels model or a custom adapter)
     -- and begins training. Models and adapters are managed as part of a Rekognition project. The
     -- response from CreateProjectVersion is an Amazon Resource Name (ARN) for the
@@ -167,7 +171,7 @@ local record Client
     -- Instead of training with a project without associated datasets,
     -- we recommend that you use the manifest
     -- files to create training and test datasets for the project.
-    createProjectVersion: function(Client, types.CreateProjectVersionInput): types.CreateProjectVersionOutput, table
+    createProjectVersion: function(Client, types.CreateProjectVersionInput): Operation<types.CreateProjectVersionOutput>
     -- Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces or to detect labels in a streaming video.
     -- Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams. There are two different settings for stream processors in Amazon Rekognition: detecting faces and detecting labels.
     -- If you are creating a stream processor for detecting faces, you provide as input a Kinesis video stream
@@ -192,7 +196,7 @@ local record Client
     -- the Name field.
     -- This operation requires permissions to perform the
     -- rekognition:CreateStreamProcessor action. If you want to tag your stream processor, you also require permission to perform the rekognition:TagResource operation.
-    createStreamProcessor: function(Client, types.CreateStreamProcessorInput): types.CreateStreamProcessorOutput, table
+    createStreamProcessor: function(Client, types.CreateStreamProcessorInput): Operation<types.CreateStreamProcessorOutput>
     -- Creates a new User within a collection specified by CollectionId. Takes
     -- UserId as a parameter, which is a user provided ID which should be unique
     -- within the collection. The provided UserId will alias the system generated UUID
@@ -201,13 +205,13 @@ local record Client
     -- CreateUser completes only once. If the value is not supplied, the AWS SDK
     -- generates an idempotency token for the requests. This prevents retries after a network error
     -- results from making multiple CreateUser calls.
-    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUser: function(Client, types.CreateUserInput): Operation<types.CreateUserOutput>
     -- Deletes the specified collection. Note that this operation removes all faces in the
     -- collection. For an example, see Deleting a
     -- collection.
     -- This operation requires permissions to perform the
     -- rekognition:DeleteCollection action.
-    deleteCollection: function(Client, types.DeleteCollectionInput): types.DeleteCollectionOutput, table
+    deleteCollection: function(Client, types.DeleteCollectionInput): Operation<types.DeleteCollectionOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Deletes an existing Amazon Rekognition Custom Labels dataset.
     -- Deleting a dataset might take while. Use DescribeDataset to check the
@@ -217,12 +221,12 @@ local record Client
     -- You can't delete a dataset while it is creating (Status = CREATE_IN_PROGRESS)
     -- or if the dataset is updating (Status = UPDATE_IN_PROGRESS).
     -- This operation requires permissions to perform the rekognition:DeleteDataset action.
-    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): Operation<types.DeleteDatasetOutput>
     -- Deletes faces from a collection. You specify a collection ID and an array of face IDs
     -- to remove from the collection.
     -- This operation requires permissions to perform the rekognition:DeleteFaces
     -- action.
-    deleteFaces: function(Client, types.DeleteFacesInput): types.DeleteFacesOutput, table
+    deleteFaces: function(Client, types.DeleteFacesInput): Operation<types.DeleteFacesOutput>
     -- Deletes a Amazon Rekognition project. To delete a project you must first delete all models or
     -- adapters associated with the project. To delete a model or adapter, see DeleteProjectVersion.
     -- DeleteProject is an asynchronous operation. To check if the project is
@@ -231,12 +235,12 @@ local record Client
     -- any ProjectPolicies associated with that project.
     -- This operation requires permissions to perform the
     -- rekognition:DeleteProject action.
-    deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    deleteProject: function(Client, types.DeleteProjectInput): Operation<types.DeleteProjectOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Deletes an existing project policy.
     -- To get a list of project policies attached to a project, call ListProjectPolicies. To attach a project policy to a project, call PutProjectPolicy.
     -- This operation requires permissions to perform the rekognition:DeleteProjectPolicy action.
-    deleteProjectPolicy: function(Client, types.DeleteProjectPolicyInput): types.DeleteProjectPolicyOutput, table
+    deleteProjectPolicy: function(Client, types.DeleteProjectPolicyInput): Operation<types.DeleteProjectPolicyOutput>
     -- Deletes a Rekognition project model or project version, like a Amazon Rekognition Custom Labels model or a custom
     -- adapter.
     -- You can't delete a project version if it is running or if it is training. To check
@@ -244,39 +248,39 @@ local record Client
     -- finishes.
     -- This operation requires permissions to perform the
     -- rekognition:DeleteProjectVersion action.
-    deleteProjectVersion: function(Client, types.DeleteProjectVersionInput): types.DeleteProjectVersionOutput, table
+    deleteProjectVersion: function(Client, types.DeleteProjectVersionInput): Operation<types.DeleteProjectVersionOutput>
     -- Deletes the stream processor identified by Name. You assign the value for Name when you create the stream processor with
     -- CreateStreamProcessor. You might not be able to use the same name for a stream processor for a few seconds after calling DeleteStreamProcessor.
-    deleteStreamProcessor: function(Client, types.DeleteStreamProcessorInput): types.DeleteStreamProcessorOutput, table
+    deleteStreamProcessor: function(Client, types.DeleteStreamProcessorInput): Operation<types.DeleteStreamProcessorOutput>
     -- Deletes the specified UserID within the collection. Faces that are associated with the
     -- UserID are disassociated from the UserID before deleting the specified UserID. If the
     -- specified Collection or UserID is already deleted or not found, a
     -- ResourceNotFoundException will be thrown. If the action is successful with a
     -- 200 response, an empty HTTP body is returned.
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- Describes the specified collection. You can use DescribeCollection to get
     -- information, such as the number of faces indexed into a collection and the version of the
     -- model used by the collection for face detection.
     -- For more information, see Describing a Collection in the
     -- Amazon Rekognition Developer Guide.
-    describeCollection: function(Client, types.DescribeCollectionInput): types.DescribeCollectionOutput, table
+    describeCollection: function(Client, types.DescribeCollectionInput): Operation<types.DescribeCollectionOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Describes an Amazon Rekognition Custom Labels dataset. You can get information such as the current status of a dataset and
     -- statistics about the images and labels in a dataset.
     -- This operation requires permissions to perform the rekognition:DescribeDataset action.
-    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): Operation<types.DescribeDatasetOutput>
     -- Gets information about your Rekognition projects.
     -- This operation requires permissions to perform the rekognition:DescribeProjects action.
-    describeProjects: function(Client, types.DescribeProjectsInput): types.DescribeProjectsOutput, table
+    describeProjects: function(Client, types.DescribeProjectsInput): Operation<types.DescribeProjectsOutput>
     -- Lists and describes the versions of an Amazon Rekognition project. You can specify up to 10 model or
     -- adapter versions in ProjectVersionArns. If you don't specify a value,
     -- descriptions for all model/adapter versions in the project are returned.
     -- This operation requires permissions to perform the rekognition:DescribeProjectVersions
     -- action.
-    describeProjectVersions: function(Client, types.DescribeProjectVersionsInput): types.DescribeProjectVersionsOutput, table
+    describeProjectVersions: function(Client, types.DescribeProjectVersionsInput): Operation<types.DescribeProjectVersionsOutput>
     -- Provides information about a stream processor created by CreateStreamProcessor. You can get information about the input and output streams, the input parameters for the face recognition being performed,
     -- and the current status of the stream processor.
-    describeStreamProcessor: function(Client, types.DescribeStreamProcessorInput): types.DescribeStreamProcessorOutput, table
+    describeStreamProcessor: function(Client, types.DescribeStreamProcessorInput): Operation<types.DescribeStreamProcessorOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Detects custom labels in a supplied image by using an Amazon Rekognition Custom Labels model.
     -- You specify which version of a model version to use by using the ProjectVersionArn input
@@ -309,7 +313,7 @@ local record Client
     -- rekognition:DetectCustomLabels action.
     -- For more information, see
     -- Analyzing an image in the Amazon Rekognition Custom Labels Developer Guide.
-    detectCustomLabels: function(Client, types.DetectCustomLabelsInput): types.DetectCustomLabelsOutput, table
+    detectCustomLabels: function(Client, types.DetectCustomLabelsInput): Operation<types.DetectCustomLabelsOutput>
     -- Detects faces within an image that is provided as input.
     -- DetectFaces detects the 100 largest faces in the image. For each face
     -- detected, the operation returns face details. These details include a bounding box of the
@@ -326,7 +330,7 @@ local record Client
     -- data.
     -- This operation requires permissions to perform the rekognition:DetectFaces
     -- action.
-    detectFaces: function(Client, types.DetectFacesInput): types.DetectFacesOutput, table
+    detectFaces: function(Client, types.DetectFacesInput): Operation<types.DetectFacesOutput>
     -- Detects instances of real-world entities within an image (JPEG or PNG) provided as
     -- input. This includes objects like flower, tree, and table; events like wedding, graduation,
     -- and birthday party; and concepts like landscape, evening, and nature.
@@ -400,7 +404,7 @@ local record Client
     -- This is a stateless API operation that doesn't return any data.
     -- This operation requires permissions to perform the
     -- rekognition:DetectLabels action.
-    detectLabels: function(Client, types.DetectLabelsInput): types.DetectLabelsOutput, table
+    detectLabels: function(Client, types.DetectLabelsInput): Operation<types.DetectLabelsOutput>
     -- Detects unsafe content in a specified JPEG or PNG format image. Use
     -- DetectModerationLabels to moderate images depending on your requirements. For
     -- example, you might want to filter images that contain nudity, but not images containing
@@ -416,7 +420,7 @@ local record Client
     -- supported. The image must be either a PNG or JPEG formatted file.
     -- You can specify an adapter to use when retrieving label predictions by providing a
     -- ProjectVersionArn to the ProjectVersion argument.
-    detectModerationLabels: function(Client, types.DetectModerationLabelsInput): types.DetectModerationLabelsOutput, table
+    detectModerationLabels: function(Client, types.DetectModerationLabelsInput): Operation<types.DetectModerationLabelsOutput>
     -- Detects Personal Protective Equipment (PPE) worn by people detected in an image. Amazon Rekognition can detect the
     -- following types of PPE.
     -- Face cover
@@ -437,7 +441,7 @@ local record Client
     -- The persons detected where PPE adornment could not be determined.
     -- This is a stateless API operation. That is, the operation does not persist any data.
     -- This operation requires permissions to perform the rekognition:DetectProtectiveEquipment action.
-    detectProtectiveEquipment: function(Client, types.DetectProtectiveEquipmentInput): types.DetectProtectiveEquipmentOutput, table
+    detectProtectiveEquipment: function(Client, types.DetectProtectiveEquipmentInput): Operation<types.DetectProtectiveEquipmentOutput>
     -- Detects text in the input image and converts it into machine-readable text.
     -- Pass the input image as base64-encoded image bytes or as a reference to an image in an
     -- Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition operations, you must pass it as a
@@ -461,7 +465,7 @@ local record Client
     -- axis.
     -- For more information, see Detecting text in the Amazon Rekognition Developer
     -- Guide.
-    detectText: function(Client, types.DetectTextInput): types.DetectTextOutput, table
+    detectText: function(Client, types.DetectTextInput): Operation<types.DetectTextOutput>
     -- Removes the association between a Face supplied in an array of
     -- FaceIds and the User. If the User is not present already, then a
     -- ResourceNotFound exception is thrown. If successful, an array of faces that are
@@ -470,7 +474,7 @@ local record Client
     -- already associated with a different User or not found in the collection it will be returned as
     -- part of UnsuccessfulDisassociations. You can remove 1 - 100 face IDs from a user
     -- at one time.
-    disassociateFaces: function(Client, types.DisassociateFacesInput): types.DisassociateFacesOutput, table
+    disassociateFaces: function(Client, types.DisassociateFacesInput): Operation<types.DisassociateFacesOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Distributes the entries (images) in a training dataset across the training dataset and the test dataset for a project.
     -- DistributeDatasetEntries moves 20% of the training dataset images to the test dataset.
@@ -482,7 +486,7 @@ local record Client
     -- is complete when the Status field for the training dataset and the test dataset is UPDATE_COMPLETE.
     -- If the dataset split fails, the value of Status is UPDATE_FAILED.
     -- This operation requires permissions to perform the rekognition:DistributeDatasetEntries action.
-    distributeDatasetEntries: function(Client, types.DistributeDatasetEntriesInput): types.DistributeDatasetEntriesOutput, table
+    distributeDatasetEntries: function(Client, types.DistributeDatasetEntriesInput): Operation<types.DistributeDatasetEntriesOutput>
     -- Gets the name and additional information about a celebrity based on their Amazon Rekognition ID.
     -- The additional information is returned as an array of URLs. If there is no additional
     -- information about the celebrity, this list is empty.
@@ -490,7 +494,7 @@ local record Client
     -- Amazon Rekognition Developer Guide.
     -- This operation requires permissions to perform the
     -- rekognition:GetCelebrityInfo action.
-    getCelebrityInfo: function(Client, types.GetCelebrityInfoInput): types.GetCelebrityInfoOutput, table
+    getCelebrityInfo: function(Client, types.GetCelebrityInfoInput): Operation<types.GetCelebrityInfoOutput>
     -- Gets the celebrity recognition results for a Amazon Rekognition Video analysis started by
     -- StartCelebrityRecognition.
     -- Celebrity recognition in a video is an asynchronous operation. Analysis is started by a
@@ -526,7 +530,7 @@ local record Client
     -- pagination token for getting the next set of results. To get the next page of results, call GetCelebrityDetection
     -- and populate the NextToken request parameter with the token
     -- value returned from the previous call to GetCelebrityRecognition.
-    getCelebrityRecognition: function(Client, types.GetCelebrityRecognitionInput): types.GetCelebrityRecognitionOutput, table
+    getCelebrityRecognition: function(Client, types.GetCelebrityRecognitionInput): Operation<types.GetCelebrityRecognitionOutput>
     -- Gets the inappropriate, unwanted, or offensive content analysis results for a Amazon Rekognition Video analysis started by
     -- StartContentModeration. For a list of moderation labels in Amazon Rekognition, see
     -- Using the image and video moderation APIs.
@@ -552,7 +556,7 @@ local record Client
     -- and populate the NextToken request parameter with the value of NextToken
     -- returned from the previous call to GetContentModeration.
     -- For more information, see moderating content in the Amazon Rekognition Developer Guide.
-    getContentModeration: function(Client, types.GetContentModerationInput): types.GetContentModerationOutput, table
+    getContentModeration: function(Client, types.GetContentModerationInput): Operation<types.GetContentModerationOutput>
     -- Gets face detection results for a Amazon Rekognition Video analysis started by StartFaceDetection.
     -- Face detection with Amazon Rekognition Video is an asynchronous operation. You start face detection by calling StartFaceDetection
     -- which returns a job identifier (JobId). When the face detection operation finishes, Amazon Rekognition Video publishes a completion status to
@@ -567,7 +571,7 @@ local record Client
     -- value returned from the previous call to GetFaceDetection.
     -- Note that for the GetFaceDetection operation, the returned values for
     -- FaceOccluded and EyeDirection will always be "null".
-    getFaceDetection: function(Client, types.GetFaceDetectionInput): types.GetFaceDetectionOutput, table
+    getFaceDetection: function(Client, types.GetFaceDetectionInput): Operation<types.GetFaceDetectionOutput>
     -- Retrieves the results of a specific Face Liveness session. It requires the
     -- sessionId as input, which was created using
     -- CreateFaceLivenessSession. Returns the corresponding Face Liveness confidence
@@ -577,7 +581,7 @@ local record Client
     -- defined by the AuditImagesLimit paramater when calling
     -- CreateFaceLivenessSession. Reference images are always returned when
     -- possible.
-    getFaceLivenessSessionResults: function(Client, types.GetFaceLivenessSessionResultsInput): types.GetFaceLivenessSessionResultsOutput, table
+    getFaceLivenessSessionResults: function(Client, types.GetFaceLivenessSessionResultsInput): Operation<types.GetFaceLivenessSessionResultsOutput>
     -- Gets the face search results for Amazon Rekognition Video face search started by
     -- StartFaceSearch. The search returns faces in a collection that match the faces
     -- of persons detected in a video. It also includes the time(s) that faces are matched in the video.
@@ -604,7 +608,7 @@ local record Client
     -- start of the video, persons are matched.
     -- You can also sort by persons by specifying INDEX for the SORTBY input
     -- parameter.
-    getFaceSearch: function(Client, types.GetFaceSearchInput): types.GetFaceSearchOutput, table
+    getFaceSearch: function(Client, types.GetFaceSearchInput): Operation<types.GetFaceSearchOutput>
     -- Gets the label detection results of a Amazon Rekognition Video analysis started by StartLabelDetection.
     -- The label detection operation is started by a call to StartLabelDetection which returns a job identifier (JobId). When
     -- the label detection operation finishes, Amazon Rekognition publishes a completion status to the
@@ -654,10 +658,10 @@ local record Client
     -- previous call to GetLabelDetection.
     -- If you are retrieving results while using the Amazon Simple Notification Service, note that you will receive an
     -- "ERROR" notification if the job encounters an issue.
-    getLabelDetection: function(Client, types.GetLabelDetectionInput): types.GetLabelDetectionOutput, table
+    getLabelDetection: function(Client, types.GetLabelDetectionInput): Operation<types.GetLabelDetectionOutput>
     -- Retrieves the results for a given media analysis job.
     -- Takes a JobId returned by StartMediaAnalysisJob.
-    getMediaAnalysisJob: function(Client, types.GetMediaAnalysisJobInput): types.GetMediaAnalysisJobOutput, table
+    getMediaAnalysisJob: function(Client, types.GetMediaAnalysisJobInput): Operation<types.GetMediaAnalysisJobOutput>
     -- End of support notice: On October 31, 2025, AWS will discontinue
     -- support for Amazon Rekognition People Pathing. After October 31, 2025, you will no
     -- longer be able to use the Rekognition People Pathing capability. For more information,
@@ -683,7 +687,7 @@ local record Client
     -- specified in MaxResults, the value of NextToken in the operation response contains a pagination token for getting the next set
     -- of results. To get the next page of results, call GetPersonTracking and populate the NextToken request parameter with the token
     -- value returned from the previous call to GetPersonTracking.
-    getPersonTracking: function(Client, types.GetPersonTrackingInput): types.GetPersonTrackingOutput, table
+    getPersonTracking: function(Client, types.GetPersonTrackingInput): Operation<types.GetPersonTrackingOutput>
     -- Gets the segment detection results of a Amazon Rekognition Video analysis started by StartSegmentDetection.
     -- Segment detection with Amazon Rekognition Video is an asynchronous operation. You start segment detection by
     -- calling StartSegmentDetection which returns a job identifier (JobId).
@@ -705,7 +709,7 @@ local record Client
     -- and populate the NextToken request parameter with the token value returned from the previous
     -- call to GetSegmentDetection.
     -- For more information, see Detecting video segments in stored video in the Amazon Rekognition Developer Guide.
-    getSegmentDetection: function(Client, types.GetSegmentDetectionInput): types.GetSegmentDetectionOutput, table
+    getSegmentDetection: function(Client, types.GetSegmentDetectionInput): Operation<types.GetSegmentDetectionOutput>
     -- Gets the text detection results of a Amazon Rekognition Video analysis started by StartTextDetection.
     -- Text detection with Amazon Rekognition Video is an asynchronous operation. You start text detection by
     -- calling StartTextDetection which returns a job identifier (JobId)
@@ -724,7 +728,7 @@ local record Client
     -- a pagination token for getting the next set of results. To get the next page of results, call GetTextDetection
     -- and populate the NextToken request parameter with the token value returned from the previous
     -- call to GetTextDetection.
-    getTextDetection: function(Client, types.GetTextDetectionInput): types.GetTextDetectionOutput, table
+    getTextDetection: function(Client, types.GetTextDetectionInput): Operation<types.GetTextDetectionOutput>
     -- Detects faces in the input image and adds them to the specified collection.
     -- Amazon Rekognition doesn't save the actual faces that are detected. Instead, the underlying
     -- detection algorithm first detects the faces in the input image. For each face, the algorithm
@@ -790,7 +794,7 @@ local record Client
     -- passing image bytes isn't supported. The image must be formatted as a PNG or JPEG file.
     -- This operation requires permissions to perform the rekognition:IndexFaces
     -- action.
-    indexFaces: function(Client, types.IndexFacesInput): types.IndexFacesOutput, table
+    indexFaces: function(Client, types.IndexFacesInput): Operation<types.IndexFacesOutput>
     -- Returns list of collection IDs in your account. If the result is truncated, the
     -- response also provides a NextToken that you can use in the subsequent request to
     -- fetch the next set of collection IDs.
@@ -798,7 +802,7 @@ local record Client
     -- Guide.
     -- This operation requires permissions to perform the
     -- rekognition:ListCollections action.
-    listCollections: function(Client, types.ListCollectionsInput): types.ListCollectionsOutput, table
+    listCollections: function(Client, types.ListCollectionsInput): Operation<types.ListCollectionsOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Lists the entries (images) within a dataset. An entry is a
     -- JSON Line that contains the information for a single image, including
@@ -811,40 +815,40 @@ local record Client
     -- Amazon Rekognition Custom Labels creates during model training.
     -- You can filter the response in variety of ways, such as choosing which labels to return and returning JSON Lines created after a specific date.
     -- This operation requires permissions to perform the rekognition:ListDatasetEntries action.
-    listDatasetEntries: function(Client, types.ListDatasetEntriesInput): types.ListDatasetEntriesOutput, table
+    listDatasetEntries: function(Client, types.ListDatasetEntriesInput): Operation<types.ListDatasetEntriesOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe images. For more information, see
     -- Labeling images.
     -- Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels to describe images. For more information, see Labeling images
     -- in the Amazon Rekognition Custom Labels Developer Guide.
-    listDatasetLabels: function(Client, types.ListDatasetLabelsInput): types.ListDatasetLabelsOutput, table
+    listDatasetLabels: function(Client, types.ListDatasetLabelsInput): Operation<types.ListDatasetLabelsOutput>
     -- Returns metadata for faces in the specified collection. This metadata
     -- includes information such as the bounding box coordinates, the confidence (that the bounding
     -- box contains a face), and face ID. For an example, see Listing Faces in a Collection in the
     -- Amazon Rekognition Developer Guide.
     -- This operation requires permissions to perform the rekognition:ListFaces
     -- action.
-    listFaces: function(Client, types.ListFacesInput): types.ListFacesOutput, table
+    listFaces: function(Client, types.ListFacesInput): Operation<types.ListFacesOutput>
     -- Returns a list of media analysis jobs. Results are sorted by CreationTimestamp in descending order.
-    listMediaAnalysisJobs: function(Client, types.ListMediaAnalysisJobsInput): types.ListMediaAnalysisJobsOutput, table
+    listMediaAnalysisJobs: function(Client, types.ListMediaAnalysisJobsInput): Operation<types.ListMediaAnalysisJobsOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Gets a list of the project policies attached to a project.
     -- To attach a project policy to a project, call PutProjectPolicy. To remove a project policy from a project, call DeleteProjectPolicy.
     -- This operation requires permissions to perform the rekognition:ListProjectPolicies action.
-    listProjectPolicies: function(Client, types.ListProjectPoliciesInput): types.ListProjectPoliciesOutput, table
+    listProjectPolicies: function(Client, types.ListProjectPoliciesInput): Operation<types.ListProjectPoliciesOutput>
     -- Gets a list of stream processors that you have created with CreateStreamProcessor.
-    listStreamProcessors: function(Client, types.ListStreamProcessorsInput): types.ListStreamProcessorsOutput, table
+    listStreamProcessors: function(Client, types.ListStreamProcessorsInput): Operation<types.ListStreamProcessorsOutput>
     -- Returns a list of tags in an Amazon Rekognition collection, stream processor, or Custom Labels
     -- model.
     -- This operation requires permissions to perform the
     -- rekognition:ListTagsForResource action.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns metadata of the User such as UserID in the specified collection.
     -- Anonymous User (to reserve faces without any identity) is not returned as part of this
     -- request. The results are sorted by system generated primary key ID. If the response is
     -- truncated, NextToken is returned in the response that can be used in the
     -- subsequent request to retrieve the next set of identities.
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Attaches a project policy to a Amazon Rekognition Custom Labels project in a trusting AWS account. A
     -- project policy specifies that a trusted AWS account can copy a model version from a
@@ -860,7 +864,7 @@ local record Client
     -- To get a list of project policies attached to a project, call ListProjectPolicies.
     -- You copy a model version by calling CopyProjectVersion.
     -- This operation requires permissions to perform the rekognition:PutProjectPolicy action.
-    putProjectPolicy: function(Client, types.PutProjectPolicyInput): types.PutProjectPolicyOutput, table
+    putProjectPolicy: function(Client, types.PutProjectPolicyInput): Operation<types.PutProjectPolicyOutput>
     -- Returns an array of celebrities recognized in the input image. For more
     -- information, see Recognizing celebrities in the Amazon Rekognition Developer Guide.
     -- RecognizeCelebrities returns the 64 largest faces in the image. It lists
@@ -887,7 +891,7 @@ local record Client
     -- Developer Guide.
     -- This operation requires permissions to perform the
     -- rekognition:RecognizeCelebrities operation.
-    recognizeCelebrities: function(Client, types.RecognizeCelebritiesInput): types.RecognizeCelebritiesOutput, table
+    recognizeCelebrities: function(Client, types.RecognizeCelebritiesInput): Operation<types.RecognizeCelebritiesOutput>
     -- For a given input face ID, searches for matching faces in the collection the face
     -- belongs to. You get a face ID when you add a face to the collection using the IndexFaces operation. The operation compares the features of the input face with
     -- faces in the specified collection.
@@ -902,7 +906,7 @@ local record Client
     -- Developer Guide.
     -- This operation requires permissions to perform the rekognition:SearchFaces
     -- action.
-    searchFaces: function(Client, types.SearchFacesInput): types.SearchFacesOutput, table
+    searchFaces: function(Client, types.SearchFacesInput): Operation<types.SearchFacesOutput>
     -- For a given input image, first detects the largest face in the image, and then searches
     -- the specified collection for matching faces. The operation compares the features of the input
     -- face with faces in the specified collection.
@@ -936,14 +940,14 @@ local record Client
     -- DescribeCollection.
     -- This operation requires permissions to perform the
     -- rekognition:SearchFacesByImage action.
-    searchFacesByImage: function(Client, types.SearchFacesByImageInput): types.SearchFacesByImageOutput, table
+    searchFacesByImage: function(Client, types.SearchFacesByImageInput): Operation<types.SearchFacesByImageOutput>
     -- Searches for UserIDs within a collection based on a FaceId or
     -- UserId. This API can be used to find the closest UserID (with a highest
     -- similarity) to associate a face. The request must be provided with either FaceId
     -- or UserId. The operation returns an array of UserID that match the
     -- FaceId or UserId, ordered by similarity score with the highest
     -- similarity first.
-    searchUsers: function(Client, types.SearchUsersInput): types.SearchUsersOutput, table
+    searchUsers: function(Client, types.SearchUsersInput): Operation<types.SearchUsersOutput>
     -- Searches for UserIDs using a supplied image. It first detects the largest face in the
     -- image, and then searches a specified collection for matching UserIDs.
     -- The operation returns an array of UserIDs that match the face in the supplied image,
@@ -953,7 +957,7 @@ local record Client
     -- returned in an array of UnsearchedFace objects. If no valid face is detected in
     -- the image, the response will contain an empty UserMatches list and no
     -- SearchedFace object.
-    searchUsersByImage: function(Client, types.SearchUsersByImageInput): types.SearchUsersByImageOutput, table
+    searchUsersByImage: function(Client, types.SearchUsersByImageInput): Operation<types.SearchUsersByImageOutput>
     -- Starts asynchronous recognition of celebrities in a stored video.
     -- Amazon Rekognition Video can detect celebrities in a video must be stored in an Amazon S3 bucket. Use Video to specify the bucket name
     -- and the filename of the video.
@@ -965,7 +969,7 @@ local record Client
     -- topic is SUCCEEDED. If so, call GetCelebrityRecognition and pass the job identifier
     -- (JobId) from the initial call to StartCelebrityRecognition.
     -- For more information, see Recognizing celebrities in the Amazon Rekognition Developer Guide.
-    startCelebrityRecognition: function(Client, types.StartCelebrityRecognitionInput): types.StartCelebrityRecognitionOutput, table
+    startCelebrityRecognition: function(Client, types.StartCelebrityRecognitionInput): Operation<types.StartCelebrityRecognitionOutput>
     -- Starts asynchronous detection of inappropriate, unwanted, or offensive content in a stored video. For a list of moderation labels in Amazon Rekognition, see
     -- Using the image and video moderation APIs.
     -- Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket. Use Video to specify the bucket name
@@ -977,7 +981,7 @@ local record Client
     -- topic is SUCCEEDED. If so, call GetContentModeration and pass the job identifier
     -- (JobId) from the initial call to StartContentModeration.
     -- For more information, see Moderating content in the Amazon Rekognition Developer Guide.
-    startContentModeration: function(Client, types.StartContentModerationInput): types.StartContentModerationOutput, table
+    startContentModeration: function(Client, types.StartContentModerationInput): Operation<types.StartContentModerationOutput>
     -- Starts asynchronous detection of faces in a stored video.
     -- Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket.
     -- Use Video to specify the bucket name and the filename of the video.
@@ -990,7 +994,7 @@ local record Client
     -- (JobId) from the initial call to StartFaceDetection.
     -- For more information, see Detecting faces in a stored video in the
     -- Amazon Rekognition Developer Guide.
-    startFaceDetection: function(Client, types.StartFaceDetectionInput): types.StartFaceDetectionOutput, table
+    startFaceDetection: function(Client, types.StartFaceDetectionInput): Operation<types.StartFaceDetectionOutput>
     -- Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video.
     -- The video must be stored in an Amazon S3 bucket. Use Video to specify the bucket name
     -- and the filename of the video. StartFaceSearch
@@ -1001,7 +1005,7 @@ local record Client
     -- topic is SUCCEEDED. If so, call GetFaceSearch and pass the job identifier
     -- (JobId) from the initial call to StartFaceSearch. For more information, see
     -- Searching stored videos for faces.
-    startFaceSearch: function(Client, types.StartFaceSearchInput): types.StartFaceSearchOutput, table
+    startFaceSearch: function(Client, types.StartFaceSearchInput): Operation<types.StartFaceSearchOutput>
     -- Starts asynchronous detection of labels in a stored video.
     -- Amazon Rekognition Video can detect labels in a video. Labels are instances of real-world entities.
     -- This includes objects like flower, tree, and table; events like
@@ -1024,10 +1028,10 @@ local record Client
     -- video.
     -- You can specify MinConfidence to control the confidence threshold for the
     -- labels returned. The default is 50.
-    startLabelDetection: function(Client, types.StartLabelDetectionInput): types.StartLabelDetectionOutput, table
+    startLabelDetection: function(Client, types.StartLabelDetectionInput): Operation<types.StartLabelDetectionOutput>
     -- Initiates a new media analysis job. Accepts a manifest file in an Amazon S3 bucket. The
     -- output is a manifest file and a summary of the manifest stored in the Amazon S3 bucket.
-    startMediaAnalysisJob: function(Client, types.StartMediaAnalysisJobInput): types.StartMediaAnalysisJobOutput, table
+    startMediaAnalysisJob: function(Client, types.StartMediaAnalysisJobInput): Operation<types.StartMediaAnalysisJobOutput>
     -- End of support notice: On October 31, 2025, AWS will discontinue
     -- support for Amazon Rekognition People Pathing. After October 31, 2025, you will no
     -- longer be able to use the Rekognition People Pathing capability. For more information,
@@ -1041,7 +1045,7 @@ local record Client
     -- To get the results of the person detection operation, first check that the status value published to the Amazon SNS
     -- topic is SUCCEEDED. If so, call GetPersonTracking and pass the job identifier
     -- (JobId) from the initial call to StartPersonTracking.
-    startPersonTracking: function(Client, types.StartPersonTrackingInput): types.StartPersonTrackingOutput, table
+    startPersonTracking: function(Client, types.StartPersonTrackingInput): Operation<types.StartPersonTrackingOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Starts the running of the version of a model. Starting a model takes a while to
     -- complete. To check the current state of the model, use DescribeProjectVersions.
@@ -1051,7 +1055,7 @@ local record Client
     -- model, call StopProjectVersion.
     -- This operation requires permissions to perform the
     -- rekognition:StartProjectVersion action.
-    startProjectVersion: function(Client, types.StartProjectVersionInput): types.StartProjectVersionOutput, table
+    startProjectVersion: function(Client, types.StartProjectVersionInput): Operation<types.StartProjectVersionOutput>
     -- Starts asynchronous detection of segment detection in a stored video.
     -- Amazon Rekognition Video can detect segments in a video stored in an Amazon S3 bucket. Use Video to specify the bucket name and
     -- the filename of the video. StartSegmentDetection returns a job identifier (JobId) which you use to get
@@ -1066,12 +1070,12 @@ local record Client
     -- topic is SUCCEEDED. if so, call GetSegmentDetection and pass the job identifier (JobId)
     -- from the initial call to StartSegmentDetection.
     -- For more information, see Detecting video segments in stored video in the Amazon Rekognition Developer Guide.
-    startSegmentDetection: function(Client, types.StartSegmentDetectionInput): types.StartSegmentDetectionOutput, table
+    startSegmentDetection: function(Client, types.StartSegmentDetectionInput): Operation<types.StartSegmentDetectionOutput>
     -- Starts processing a stream processor. You create a stream processor by calling CreateStreamProcessor.
     -- To tell StartStreamProcessor which stream processor to start, use the value of the Name field specified in the call to
     -- CreateStreamProcessor.
     -- If you are using a label detection stream processor to detect labels, you need to provide a Start selector and a Stop selector to determine the length of the stream processing time.
-    startStreamProcessor: function(Client, types.StartStreamProcessorInput): types.StartStreamProcessorOutput, table
+    startStreamProcessor: function(Client, types.StartStreamProcessorInput): Operation<types.StartStreamProcessorOutput>
     -- Starts asynchronous detection of text in a stored video.
     -- Amazon Rekognition Video can detect text in a video stored in an Amazon S3 bucket. Use Video to specify the bucket name and
     -- the filename of the video. StartTextDetection returns a job identifier (JobId) which you use to get
@@ -1080,26 +1084,26 @@ local record Client
     -- To get the results of the text detection operation, first check that the status value published to the Amazon SNS
     -- topic is SUCCEEDED. if so, call GetTextDetection and pass the job identifier (JobId)
     -- from the initial call to StartTextDetection.
-    startTextDetection: function(Client, types.StartTextDetectionInput): types.StartTextDetectionOutput, table
+    startTextDetection: function(Client, types.StartTextDetectionInput): Operation<types.StartTextDetectionOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Stops a running model. The operation might take a while to complete. To check the
     -- current status, call DescribeProjectVersions. Only applies to Custom
     -- Labels projects.
     -- This operation requires permissions to perform the rekognition:StopProjectVersion action.
-    stopProjectVersion: function(Client, types.StopProjectVersionInput): types.StopProjectVersionOutput, table
+    stopProjectVersion: function(Client, types.StopProjectVersionInput): Operation<types.StopProjectVersionOutput>
     -- Stops a running stream processor that was created by CreateStreamProcessor.
-    stopStreamProcessor: function(Client, types.StopStreamProcessorInput): types.StopStreamProcessorOutput, table
+    stopStreamProcessor: function(Client, types.StopStreamProcessorInput): Operation<types.StopStreamProcessorOutput>
     -- Adds one or more key-value tags to an Amazon Rekognition collection, stream processor, or Custom
     -- Labels model. For more information, see Tagging AWS
     -- Resources.
     -- This operation requires permissions to perform the rekognition:TagResource
     -- action.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from an Amazon Rekognition collection, stream processor, or Custom Labels
     -- model.
     -- This operation requires permissions to perform the
     -- rekognition:UntagResource action.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- This operation applies only to Amazon Rekognition Custom Labels.
     -- Adds or updates one or more entries (images) in a dataset. An entry is a JSON Line which contains the
     -- information for a single image, including
@@ -1120,9 +1124,9 @@ local record Client
     -- Dataset update fails if a terminal error occurs (Status = UPDATE_FAILED).
     -- Currently, you can't access the terminal error information from the Amazon Rekognition Custom Labels SDK.
     -- This operation requires permissions to perform the rekognition:UpdateDatasetEntries action.
-    updateDatasetEntries: function(Client, types.UpdateDatasetEntriesInput): types.UpdateDatasetEntriesOutput, table
+    updateDatasetEntries: function(Client, types.UpdateDatasetEntriesInput): Operation<types.UpdateDatasetEntriesOutput>
     -- Allows you to update a stream processor. You can change some settings and regions of interest and delete certain parameters.
-    updateStreamProcessor: function(Client, types.UpdateStreamProcessorInput): types.UpdateStreamProcessorOutput, table
+    updateStreamProcessor: function(Client, types.UpdateStreamProcessorInput): Operation<types.UpdateStreamProcessorOutput>
 end
 
 local record M

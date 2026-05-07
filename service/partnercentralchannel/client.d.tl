@@ -2,41 +2,45 @@
 
 local types = require("partnercentralchannel.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a pending channel handshake request from another AWS account.
-    acceptChannelHandshake: function(Client, types.AcceptChannelHandshakeInput): types.AcceptChannelHandshakeOutput, table
+    acceptChannelHandshake: function(Client, types.AcceptChannelHandshakeInput): Operation<types.AcceptChannelHandshakeOutput>
     -- Cancels a pending channel handshake request.
-    cancelChannelHandshake: function(Client, types.CancelChannelHandshakeInput): types.CancelChannelHandshakeOutput, table
+    cancelChannelHandshake: function(Client, types.CancelChannelHandshakeInput): Operation<types.CancelChannelHandshakeOutput>
     -- Creates a new channel handshake request to establish a partnership with another AWS account.
-    createChannelHandshake: function(Client, types.CreateChannelHandshakeInput): types.CreateChannelHandshakeOutput, table
+    createChannelHandshake: function(Client, types.CreateChannelHandshakeInput): Operation<types.CreateChannelHandshakeOutput>
     -- Creates a new program management account for managing partner relationships.
-    createProgramManagementAccount: function(Client, types.CreateProgramManagementAccountInput): types.CreateProgramManagementAccountOutput, table
+    createProgramManagementAccount: function(Client, types.CreateProgramManagementAccountInput): Operation<types.CreateProgramManagementAccountOutput>
     -- Creates a new partner relationship between accounts.
-    createRelationship: function(Client, types.CreateRelationshipInput): types.CreateRelationshipOutput, table
+    createRelationship: function(Client, types.CreateRelationshipInput): Operation<types.CreateRelationshipOutput>
     -- Deletes a program management account.
-    deleteProgramManagementAccount: function(Client, types.DeleteProgramManagementAccountInput): types.DeleteProgramManagementAccountOutput, table
+    deleteProgramManagementAccount: function(Client, types.DeleteProgramManagementAccountInput): Operation<types.DeleteProgramManagementAccountOutput>
     -- Deletes a partner relationship.
-    deleteRelationship: function(Client, types.DeleteRelationshipInput): types.DeleteRelationshipOutput, table
+    deleteRelationship: function(Client, types.DeleteRelationshipInput): Operation<types.DeleteRelationshipOutput>
     -- Retrieves details of a specific partner relationship.
-    getRelationship: function(Client, types.GetRelationshipInput): types.GetRelationshipOutput, table
+    getRelationship: function(Client, types.GetRelationshipInput): Operation<types.GetRelationshipOutput>
     -- Lists channel handshakes based on specified criteria.
-    listChannelHandshakes: function(Client, types.ListChannelHandshakesInput): types.ListChannelHandshakesOutput, table
+    listChannelHandshakes: function(Client, types.ListChannelHandshakesInput): Operation<types.ListChannelHandshakesOutput>
     -- Lists program management accounts based on specified criteria.
-    listProgramManagementAccounts: function(Client, types.ListProgramManagementAccountsInput): types.ListProgramManagementAccountsOutput, table
+    listProgramManagementAccounts: function(Client, types.ListProgramManagementAccountsInput): Operation<types.ListProgramManagementAccountsOutput>
     -- Lists partner relationships based on specified criteria.
-    listRelationships: function(Client, types.ListRelationshipsInput): types.ListRelationshipsOutput, table
+    listRelationships: function(Client, types.ListRelationshipsInput): Operation<types.ListRelationshipsOutput>
     -- Lists tags associated with a specific resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Rejects a pending channel handshake request.
-    rejectChannelHandshake: function(Client, types.RejectChannelHandshakeInput): types.RejectChannelHandshakeOutput, table
+    rejectChannelHandshake: function(Client, types.RejectChannelHandshakeInput): Operation<types.RejectChannelHandshakeOutput>
     -- Adds or updates tags for a specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the properties of a program management account.
-    updateProgramManagementAccount: function(Client, types.UpdateProgramManagementAccountInput): types.UpdateProgramManagementAccountOutput, table
+    updateProgramManagementAccount: function(Client, types.UpdateProgramManagementAccountInput): Operation<types.UpdateProgramManagementAccountOutput>
     -- Updates the properties of a partner relationship.
-    updateRelationship: function(Client, types.UpdateRelationshipInput): types.UpdateRelationshipOutput, table
+    updateRelationship: function(Client, types.UpdateRelationshipInput): Operation<types.UpdateRelationshipOutput>
 end
 
 local record M

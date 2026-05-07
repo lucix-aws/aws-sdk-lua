@@ -2,6 +2,10 @@
 
 local types = require("securityhub.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
@@ -12,7 +16,7 @@ local record Client
     -- Organizations.
     -- When the member account accepts the invitation, permission is granted to the administrator
     -- account to view findings generated in the member account.
-    acceptAdministratorInvitation: function(Client, types.AcceptAdministratorInvitationInput): types.AcceptAdministratorInvitationOutput, table
+    acceptAdministratorInvitation: function(Client, types.AcceptAdministratorInvitationInput): Operation<types.AcceptAdministratorInvitationOutput>
     -- This method is deprecated. Instead, use AcceptAdministratorInvitation.
     -- The Security Hub CSPM console continues to use AcceptInvitation. It will eventually change to use AcceptAdministratorInvitation. Any IAM policies that specifically control access to this function must continue to use AcceptInvitation. You should also add AcceptAdministratorInvitation to your policies to ensure that the correct permissions are in place after the console begins to use AcceptAdministratorInvitation.
     -- Accepts the invitation to be a member account and be monitored by the Security Hub CSPM administrator
@@ -21,32 +25,32 @@ local record Client
     -- Organizations.
     -- When the member account accepts the invitation, permission is granted to the administrator
     -- account to view findings generated in the member account.
-    acceptInvitation: function(Client, types.AcceptInvitationInput): types.AcceptInvitationOutput, table
+    acceptInvitation: function(Client, types.AcceptInvitationInput): Operation<types.AcceptInvitationOutput>
     -- Deletes one or more automation rules.
-    batchDeleteAutomationRules: function(Client, types.BatchDeleteAutomationRulesInput): types.BatchDeleteAutomationRulesOutput, table
+    batchDeleteAutomationRules: function(Client, types.BatchDeleteAutomationRulesInput): Operation<types.BatchDeleteAutomationRulesOutput>
     -- Disables the standards specified by the provided
     -- StandardsSubscriptionArns.
     -- For more information, see Security Standards section of the Security Hub CSPM User
     -- Guide.
-    batchDisableStandards: function(Client, types.BatchDisableStandardsInput): types.BatchDisableStandardsOutput, table
+    batchDisableStandards: function(Client, types.BatchDisableStandardsInput): Operation<types.BatchDisableStandardsOutput>
     -- Enables the standards specified by the provided StandardsArn. To obtain the
     -- ARN for a standard, use the DescribeStandards
     -- operation.
     -- For more information, see the Security Standards
     -- section of the Security Hub CSPM User Guide.
-    batchEnableStandards: function(Client, types.BatchEnableStandardsInput): types.BatchEnableStandardsOutput, table
+    batchEnableStandards: function(Client, types.BatchEnableStandardsInput): Operation<types.BatchEnableStandardsOutput>
     -- Retrieves a list of details for automation rules based on rule Amazon Resource Names
     -- (ARNs).
-    batchGetAutomationRules: function(Client, types.BatchGetAutomationRulesInput): types.BatchGetAutomationRulesOutput, table
+    batchGetAutomationRules: function(Client, types.BatchGetAutomationRulesInput): Operation<types.BatchGetAutomationRulesOutput>
     -- Returns associations between an Security Hub CSPM configuration and a batch of target accounts, organizational units, or the root.
     -- Only the Security Hub CSPM delegated administrator can invoke this operation from the home Region. A configuration
     -- can refer to a configuration policy or to a self-managed configuration.
-    batchGetConfigurationPolicyAssociations: function(Client, types.BatchGetConfigurationPolicyAssociationsInput): types.BatchGetConfigurationPolicyAssociationsOutput, table
+    batchGetConfigurationPolicyAssociations: function(Client, types.BatchGetConfigurationPolicyAssociationsInput): Operation<types.BatchGetConfigurationPolicyAssociationsOutput>
     -- Provides details about a batch of security controls for the current Amazon Web Services account and Amazon Web Services Region.
-    batchGetSecurityControls: function(Client, types.BatchGetSecurityControlsInput): types.BatchGetSecurityControlsOutput, table
+    batchGetSecurityControls: function(Client, types.BatchGetSecurityControlsInput): Operation<types.BatchGetSecurityControlsOutput>
     -- For a batch of security controls and standards, identifies whether each control is currently enabled or disabled in a standard.
     -- Calls to this operation return a RESOURCE_NOT_FOUND_EXCEPTION error when the standard subscription for the association has a NOT_READY_FOR_UPDATES value for StandardsControlsUpdatable.
-    batchGetStandardsControlAssociations: function(Client, types.BatchGetStandardsControlAssociationsInput): types.BatchGetStandardsControlAssociationsOutput, table
+    batchGetStandardsControlAssociations: function(Client, types.BatchGetStandardsControlAssociationsInput): Operation<types.BatchGetStandardsControlAssociationsOutput>
     -- Imports security findings generated by a finding provider into Security Hub CSPM.
     -- This action is requested by the finding provider to import its findings into
     -- Security Hub CSPM.
@@ -75,10 +79,10 @@ local record Client
     -- Severity
     -- Types
     -- Instead, finding providers use FindingProviderFields to provide values for these attributes.
-    batchImportFindings: function(Client, types.BatchImportFindingsInput): types.BatchImportFindingsOutput, table
+    batchImportFindings: function(Client, types.BatchImportFindingsInput): Operation<types.BatchImportFindingsOutput>
     -- Updates one or more automation rules based on rule Amazon Resource Names (ARNs)
     -- and input parameters.
-    batchUpdateAutomationRules: function(Client, types.BatchUpdateAutomationRulesInput): types.BatchUpdateAutomationRulesOutput, table
+    batchUpdateAutomationRules: function(Client, types.BatchUpdateAutomationRulesInput): Operation<types.BatchUpdateAutomationRulesOutput>
     -- Used by Security Hub CSPM customers to update information about their investigation into one or more findings.
     -- Requested by administrator accounts or member accounts.
     -- Administrator accounts can update findings for their account and their member accounts.
@@ -98,7 +102,7 @@ local record Client
     -- You can configure IAM policies to restrict access to fields and field values.
     -- For example, you might not want member accounts to be able to suppress findings or change the finding severity.
     -- For more information see Configuring access to BatchUpdateFindings in the Security Hub CSPM User Guide.
-    batchUpdateFindings: function(Client, types.BatchUpdateFindingsInput): types.BatchUpdateFindingsOutput, table
+    batchUpdateFindings: function(Client, types.BatchUpdateFindingsInput): Operation<types.BatchUpdateFindingsOutput>
     -- Updates information about a customer's investigation into a finding. Delegated administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their own account.
     -- BatchUpdateFindings and BatchUpdateFindingsV2 both use securityhub:BatchUpdateFindings in the Action element of an IAM policy statement.
     -- You must have permission to perform the securityhub:BatchUpdateFindings action.
@@ -106,33 +110,33 @@ local record Client
     -- To prevent a user from updating a specific field, use a Null condition with securityhub:OCSFSyntaxPath/ set to "false".
     -- To prevent a user from setting a field to a specific value, use a StringEquals condition with securityhub:OCSFSyntaxPath/ set to the disallowed value or list of values.
     -- Updates from BatchUpdateFindingsV2 don't affect the value of finding_info.modified_time, finding_info.modified_time_dt, time, or time_dt for a finding.
-    batchUpdateFindingsV2: function(Client, types.BatchUpdateFindingsV2Input): types.BatchUpdateFindingsV2Output, table
+    batchUpdateFindingsV2: function(Client, types.BatchUpdateFindingsV2Input): Operation<types.BatchUpdateFindingsV2Output>
     -- For a batch of security controls and standards, this operation updates the enablement status of a control in a standard.
-    batchUpdateStandardsControlAssociations: function(Client, types.BatchUpdateStandardsControlAssociationsInput): types.BatchUpdateStandardsControlAssociationsOutput, table
+    batchUpdateStandardsControlAssociations: function(Client, types.BatchUpdateStandardsControlAssociationsInput): Operation<types.BatchUpdateStandardsControlAssociationsOutput>
     -- Creates a custom action target in Security Hub CSPM.
     -- You can use custom actions on findings and insights in Security Hub CSPM to trigger target actions
     -- in Amazon CloudWatch Events.
-    createActionTarget: function(Client, types.CreateActionTargetInput): types.CreateActionTargetOutput, table
+    createActionTarget: function(Client, types.CreateActionTargetInput): Operation<types.CreateActionTargetOutput>
     -- Enables aggregation across Amazon Web Services Regions.
-    createAggregatorV2: function(Client, types.CreateAggregatorV2Input): types.CreateAggregatorV2Output, table
+    createAggregatorV2: function(Client, types.CreateAggregatorV2Input): Operation<types.CreateAggregatorV2Output>
     -- Creates an automation rule based on input parameters.
-    createAutomationRule: function(Client, types.CreateAutomationRuleInput): types.CreateAutomationRuleOutput, table
+    createAutomationRule: function(Client, types.CreateAutomationRuleInput): Operation<types.CreateAutomationRuleOutput>
     -- Creates a V2 automation rule.
-    createAutomationRuleV2: function(Client, types.CreateAutomationRuleV2Input): types.CreateAutomationRuleV2Output, table
+    createAutomationRuleV2: function(Client, types.CreateAutomationRuleV2Input): Operation<types.CreateAutomationRuleV2Output>
     -- Creates a configuration policy with the defined configuration. Only the Security Hub CSPM delegated administrator
     -- can invoke this operation from the home Region.
-    createConfigurationPolicy: function(Client, types.CreateConfigurationPolicyInput): types.CreateConfigurationPolicyOutput, table
+    createConfigurationPolicy: function(Client, types.CreateConfigurationPolicyInput): Operation<types.CreateConfigurationPolicyOutput>
     -- Grants permission to create a connectorV2 based on input parameters.
-    createConnectorV2: function(Client, types.CreateConnectorV2Input): types.CreateConnectorV2Output, table
+    createConnectorV2: function(Client, types.CreateConnectorV2Input): Operation<types.CreateConnectorV2Output>
     -- The aggregation Region is now called the home Region.
     -- Used to enable cross-Region aggregation. This operation can be invoked from the home Region only.
     -- For information about how cross-Region aggregation works, see Understanding cross-Region aggregation in Security Hub CSPM in the Security Hub CSPM User Guide.
-    createFindingAggregator: function(Client, types.CreateFindingAggregatorInput): types.CreateFindingAggregatorOutput, table
+    createFindingAggregator: function(Client, types.CreateFindingAggregatorInput): Operation<types.CreateFindingAggregatorOutput>
     -- Creates a custom insight in Security Hub CSPM. An insight is a consolidation of findings that relate
     -- to a security issue that requires attention or remediation.
     -- To group the related findings in the insight, use the
     -- GroupByAttribute.
-    createInsight: function(Client, types.CreateInsightInput): types.CreateInsightOutput, table
+    createInsight: function(Client, types.CreateInsightInput): Operation<types.CreateInsightOutput>
     -- Creates a member association in Security Hub CSPM between the specified accounts and the account
     -- used to make the request, which is the administrator account. If you are integrated with
     -- Organizations, then the administrator account is designated by the organization management account.
@@ -155,9 +159,9 @@ local record Client
     -- A permissions policy is added that permits the administrator account to view the findings
     -- generated in the member account.
     -- To remove the association between the administrator and member accounts, use the DisassociateFromMasterAccount or DisassociateMembers operation.
-    createMembers: function(Client, types.CreateMembersInput): types.CreateMembersOutput, table
+    createMembers: function(Client, types.CreateMembersInput): Operation<types.CreateMembersOutput>
     -- Grants permission to create a ticket in the chosen ITSM based on finding information for the provided finding metadata UID.
-    createTicketV2: function(Client, types.CreateTicketV2Input): types.CreateTicketV2Output, table
+    createTicketV2: function(Client, types.CreateTicketV2Input): Operation<types.CreateTicketV2Output>
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
     -- in the Security Hub CSPM User Guide.
@@ -165,29 +169,29 @@ local record Client
     -- A prospective member account uses this operation to decline an invitation to become a member.
     -- Only member accounts that aren't part of an Amazon Web Services organization should use this operation.
     -- Organization accounts don't receive invitations.
-    declineInvitations: function(Client, types.DeclineInvitationsInput): types.DeclineInvitationsOutput, table
+    declineInvitations: function(Client, types.DeclineInvitationsInput): Operation<types.DeclineInvitationsOutput>
     -- Deletes a custom action target from Security Hub CSPM.
     -- Deleting a custom action target does not affect any findings or insights that were
     -- already sent to Amazon CloudWatch Events using the custom action.
-    deleteActionTarget: function(Client, types.DeleteActionTargetInput): types.DeleteActionTargetOutput, table
+    deleteActionTarget: function(Client, types.DeleteActionTargetInput): Operation<types.DeleteActionTargetOutput>
     -- Deletes the Aggregator V2.
-    deleteAggregatorV2: function(Client, types.DeleteAggregatorV2Input): types.DeleteAggregatorV2Output, table
+    deleteAggregatorV2: function(Client, types.DeleteAggregatorV2Input): Operation<types.DeleteAggregatorV2Output>
     -- Deletes a V2 automation rule.
-    deleteAutomationRuleV2: function(Client, types.DeleteAutomationRuleV2Input): types.DeleteAutomationRuleV2Output, table
+    deleteAutomationRuleV2: function(Client, types.DeleteAutomationRuleV2Input): Operation<types.DeleteAutomationRuleV2Output>
     -- Deletes a configuration policy. Only the Security Hub CSPM delegated administrator can invoke this operation
     -- from the home Region. For the deletion to succeed, you must first disassociate a configuration policy from target accounts,
     -- organizational units, or the root by invoking the StartConfigurationPolicyDisassociation operation.
-    deleteConfigurationPolicy: function(Client, types.DeleteConfigurationPolicyInput): types.DeleteConfigurationPolicyOutput, table
+    deleteConfigurationPolicy: function(Client, types.DeleteConfigurationPolicyInput): Operation<types.DeleteConfigurationPolicyOutput>
     -- Grants permission to delete a connectorV2.
-    deleteConnectorV2: function(Client, types.DeleteConnectorV2Input): types.DeleteConnectorV2Output, table
+    deleteConnectorV2: function(Client, types.DeleteConnectorV2Input): Operation<types.DeleteConnectorV2Output>
     -- The aggregation Region is now called the home Region.
     -- Deletes a finding aggregator. When you delete the finding aggregator, you stop cross-Region aggregation. Finding replication stops
     -- occurring from the linked Regions to the home Region.
     -- When you stop cross-Region aggregation, findings that were already replicated and sent to the home Region are still visible from
     -- the home Region. However, new findings and finding updates are no longer replicated and sent to the home Region.
-    deleteFindingAggregator: function(Client, types.DeleteFindingAggregatorInput): types.DeleteFindingAggregatorOutput, table
+    deleteFindingAggregator: function(Client, types.DeleteFindingAggregatorInput): Operation<types.DeleteFindingAggregatorOutput>
     -- Deletes the insight specified by the InsightArn.
-    deleteInsight: function(Client, types.DeleteInsightInput): types.DeleteInsightOutput, table
+    deleteInsight: function(Client, types.DeleteInsightInput): Operation<types.DeleteInsightOutput>
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
     -- in the Security Hub CSPM User Guide.
@@ -195,43 +199,43 @@ local record Client
     -- A Security Hub CSPM administrator account can use this operation to delete invitations sent to one or more prospective member accounts.
     -- This operation is only used to delete invitations that are sent to prospective member accounts that aren't part of an Amazon Web Services organization.
     -- Organization accounts don't receive invitations.
-    deleteInvitations: function(Client, types.DeleteInvitationsInput): types.DeleteInvitationsOutput, table
+    deleteInvitations: function(Client, types.DeleteInvitationsInput): Operation<types.DeleteInvitationsOutput>
     -- Deletes the specified member accounts from Security Hub CSPM.
     -- You can invoke this API only to delete accounts that became members through invitation. You can't invoke this
     -- API to delete accounts that belong to an Organizations organization.
-    deleteMembers: function(Client, types.DeleteMembersInput): types.DeleteMembersOutput, table
+    deleteMembers: function(Client, types.DeleteMembersInput): Operation<types.DeleteMembersOutput>
     -- Returns a list of the custom action targets in Security Hub CSPM in your account.
-    describeActionTargets: function(Client, types.DescribeActionTargetsInput): types.DescribeActionTargetsOutput, table
+    describeActionTargets: function(Client, types.DescribeActionTargetsInput): Operation<types.DescribeActionTargetsOutput>
     -- Returns details about the Hub resource in your account, including the
     -- HubArn and the time when you enabled Security Hub CSPM.
-    describeHub: function(Client, types.DescribeHubInput): types.DescribeHubOutput, table
+    describeHub: function(Client, types.DescribeHubInput): Operation<types.DescribeHubOutput>
     -- Returns information about the way your organization is configured in Security Hub CSPM. Only the
     -- Security Hub CSPM administrator account can invoke this operation.
-    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): Operation<types.DescribeOrganizationConfigurationOutput>
     -- Returns information about product integrations in Security Hub CSPM.
     -- You can optionally provide an integration ARN. If you provide an integration ARN, then
     -- the results only include that integration.
     -- If you don't provide an integration ARN, then the results include all of the available
     -- product integrations.
-    describeProducts: function(Client, types.DescribeProductsInput): types.DescribeProductsOutput, table
+    describeProducts: function(Client, types.DescribeProductsInput): Operation<types.DescribeProductsOutput>
     -- Gets information about the product integration.
-    describeProductsV2: function(Client, types.DescribeProductsV2Input): types.DescribeProductsV2Output, table
+    describeProductsV2: function(Client, types.DescribeProductsV2Input): Operation<types.DescribeProductsV2Output>
     -- Returns details about the service resource in your account.
-    describeSecurityHubV2: function(Client, types.DescribeSecurityHubV2Input): types.DescribeSecurityHubV2Output, table
+    describeSecurityHubV2: function(Client, types.DescribeSecurityHubV2Input): Operation<types.DescribeSecurityHubV2Output>
     -- Returns a list of the available standards in Security Hub CSPM.
     -- For each standard, the results include the standard ARN, the name, and a description.
-    describeStandards: function(Client, types.DescribeStandardsInput): types.DescribeStandardsOutput, table
+    describeStandards: function(Client, types.DescribeStandardsInput): Operation<types.DescribeStandardsOutput>
     -- Returns a list of security standards controls.
     -- For each control, the results include information about whether it is currently enabled,
     -- the severity, and a link to remediation information.
     -- This operation returns an empty list for standard subscriptions where StandardsControlsUpdatable has value NOT_READY_FOR_UPDATES.
-    describeStandardsControls: function(Client, types.DescribeStandardsControlsInput): types.DescribeStandardsControlsOutput, table
+    describeStandardsControls: function(Client, types.DescribeStandardsControlsInput): Operation<types.DescribeStandardsControlsOutput>
     -- Disables the integration of the specified product with Security Hub CSPM. After the integration is
     -- disabled, findings from that product are no longer sent to Security Hub CSPM.
-    disableImportFindingsForProduct: function(Client, types.DisableImportFindingsForProductInput): types.DisableImportFindingsForProductOutput, table
+    disableImportFindingsForProduct: function(Client, types.DisableImportFindingsForProductInput): Operation<types.DisableImportFindingsForProductOutput>
     -- Disables a Security Hub CSPM administrator account. Can only be called by the organization
     -- management account.
-    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): types.DisableOrganizationAdminAccountOutput, table
+    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): Operation<types.DisableOrganizationAdminAccountOutput>
     -- Disables Security Hub CSPM in your account only in the current Amazon Web Services Region. To disable Security Hub CSPM in all
     -- Regions, you must submit one request per Region where you have enabled Security Hub CSPM.
     -- You can't disable Security Hub CSPM in an account that is currently the Security Hub CSPM administrator.
@@ -240,15 +244,15 @@ local record Client
     -- are disabled, and your administrator and member account associations are removed.
     -- If you want to save your existing findings, you must export them before you disable
     -- Security Hub CSPM.
-    disableSecurityHub: function(Client, types.DisableSecurityHubInput): types.DisableSecurityHubOutput, table
+    disableSecurityHub: function(Client, types.DisableSecurityHubInput): Operation<types.DisableSecurityHubOutput>
     -- Disable the service for the current Amazon Web Services Region or specified Amazon Web Services Region.
-    disableSecurityHubV2: function(Client, types.DisableSecurityHubV2Input): types.DisableSecurityHubV2Output, table
+    disableSecurityHubV2: function(Client, types.DisableSecurityHubV2Input): Operation<types.DisableSecurityHubV2Output>
     -- Disassociates the current Security Hub CSPM member account from the associated administrator
     -- account.
     -- This operation is only used by accounts that are not part of an organization. For
     -- organization accounts, only the administrator account can
     -- disassociate a member account.
-    disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput): types.DisassociateFromAdministratorAccountOutput, table
+    disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput): Operation<types.DisassociateFromAdministratorAccountOutput>
     -- This method is deprecated. Instead, use DisassociateFromAdministratorAccount.
     -- The Security Hub CSPM console continues to use DisassociateFromMasterAccount. It will eventually change to use DisassociateFromAdministratorAccount. Any IAM policies that specifically control access to this function must continue to use DisassociateFromMasterAccount. You should also add DisassociateFromAdministratorAccount to your policies to ensure that the correct permissions are in place after the console begins to use DisassociateFromAdministratorAccount.
     -- Disassociates the current Security Hub CSPM member account from the associated administrator
@@ -256,19 +260,19 @@ local record Client
     -- This operation is only used by accounts that are not part of an organization. For
     -- organization accounts, only the administrator account can
     -- disassociate a member account.
-    disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput): types.DisassociateFromMasterAccountOutput, table
+    disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput): Operation<types.DisassociateFromMasterAccountOutput>
     -- Disassociates the specified member accounts from the associated administrator account.
     -- Can be used to disassociate both accounts that are managed using Organizations and accounts that
     -- were invited manually.
-    disassociateMembers: function(Client, types.DisassociateMembersInput): types.DisassociateMembersOutput, table
+    disassociateMembers: function(Client, types.DisassociateMembersInput): Operation<types.DisassociateMembersOutput>
     -- Enables the integration of a partner product with Security Hub CSPM. Integrated products send
     -- findings to Security Hub CSPM.
     -- When you enable a product integration, a permissions policy that grants permission for
     -- the product to send findings to Security Hub CSPM is applied.
-    enableImportFindingsForProduct: function(Client, types.EnableImportFindingsForProductInput): types.EnableImportFindingsForProductOutput, table
+    enableImportFindingsForProduct: function(Client, types.EnableImportFindingsForProductInput): Operation<types.EnableImportFindingsForProductOutput>
     -- Designates the Security Hub CSPM administrator account for an organization. Can only be called by
     -- the organization management account.
-    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): types.EnableOrganizationAdminAccountOutput, table
+    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): Operation<types.EnableOrganizationAdminAccountOutput>
     -- Enables Security Hub CSPM for your account in the current Region or the Region you specify in the
     -- request.
     -- When you enable Security Hub CSPM, you grant to Security Hub CSPM the permissions necessary to gather findings
@@ -283,35 +287,35 @@ local record Client
     -- After you enable Security Hub CSPM, to enable a standard, use the BatchEnableStandards operation. To disable a standard, use the
     -- BatchDisableStandards operation.
     -- To learn more, see the setup information in the Security Hub CSPM User Guide.
-    enableSecurityHub: function(Client, types.EnableSecurityHubInput): types.EnableSecurityHubOutput, table
+    enableSecurityHub: function(Client, types.EnableSecurityHubInput): Operation<types.EnableSecurityHubOutput>
     -- Enables the service in account for the current Amazon Web Services Region or specified Amazon Web Services Region.
-    enableSecurityHubV2: function(Client, types.EnableSecurityHubV2Input): types.EnableSecurityHubV2Output, table
+    enableSecurityHubV2: function(Client, types.EnableSecurityHubV2Input): Operation<types.EnableSecurityHubV2Output>
     -- Begins the recommended policy generation to remediate a Security Hub finding.
     -- GenerateRecommendedPolicyV2 only supports findings for unused permissions.
-    generateRecommendedPolicyV2: function(Client, types.GenerateRecommendedPolicyV2Input): types.GenerateRecommendedPolicyV2Output, table
+    generateRecommendedPolicyV2: function(Client, types.GenerateRecommendedPolicyV2Input): Operation<types.GenerateRecommendedPolicyV2Output>
     -- Provides the details for the Security Hub CSPM administrator account for the current member account.
     -- Can be used by both member accounts that are managed using Organizations and accounts that were
     -- invited manually.
-    getAdministratorAccount: function(Client, types.GetAdministratorAccountInput): types.GetAdministratorAccountOutput, table
+    getAdministratorAccount: function(Client, types.GetAdministratorAccountInput): Operation<types.GetAdministratorAccountOutput>
     -- Returns the configuration of the specified Aggregator V2.
-    getAggregatorV2: function(Client, types.GetAggregatorV2Input): types.GetAggregatorV2Output, table
+    getAggregatorV2: function(Client, types.GetAggregatorV2Input): Operation<types.GetAggregatorV2Output>
     -- Returns an automation rule for the V2 service.
-    getAutomationRuleV2: function(Client, types.GetAutomationRuleV2Input): types.GetAutomationRuleV2Output, table
+    getAutomationRuleV2: function(Client, types.GetAutomationRuleV2Input): Operation<types.GetAutomationRuleV2Output>
     -- Provides information about a configuration policy. Only the Security Hub CSPM delegated administrator can invoke
     -- this operation from the home Region.
-    getConfigurationPolicy: function(Client, types.GetConfigurationPolicyInput): types.GetConfigurationPolicyOutput, table
+    getConfigurationPolicy: function(Client, types.GetConfigurationPolicyInput): Operation<types.GetConfigurationPolicyOutput>
     -- Returns the association between a configuration and a target account, organizational unit, or the root. The
     -- configuration can be a configuration policy or self-managed behavior. Only the Security Hub CSPM delegated administrator can
     -- invoke this operation from the home Region.
-    getConfigurationPolicyAssociation: function(Client, types.GetConfigurationPolicyAssociationInput): types.GetConfigurationPolicyAssociationOutput, table
+    getConfigurationPolicyAssociation: function(Client, types.GetConfigurationPolicyAssociationInput): Operation<types.GetConfigurationPolicyAssociationOutput>
     -- Grants permission to retrieve details for a connectorV2 based on connector id.
-    getConnectorV2: function(Client, types.GetConnectorV2Input): types.GetConnectorV2Output, table
+    getConnectorV2: function(Client, types.GetConnectorV2Input): Operation<types.GetConnectorV2Output>
     -- Returns a list of the standards that are currently enabled.
-    getEnabledStandards: function(Client, types.GetEnabledStandardsInput): types.GetEnabledStandardsOutput, table
+    getEnabledStandards: function(Client, types.GetEnabledStandardsInput): Operation<types.GetEnabledStandardsOutput>
     -- The aggregation Region is now called the home Region.
     -- Returns the current configuration in the calling account for cross-Region aggregation. A finding aggregator is a resource that establishes
     -- the home Region and any linked Regions.
-    getFindingAggregator: function(Client, types.GetFindingAggregatorInput): types.GetFindingAggregatorOutput, table
+    getFindingAggregator: function(Client, types.GetFindingAggregatorInput): Operation<types.GetFindingAggregatorOutput>
     -- Returns the history of a Security Hub CSPM finding. The history includes changes made to any fields in
     -- the Amazon Web Services Security Finding Format (ASFF) except top-level timestamp fields, such as the CreatedAt and
     -- UpdatedAt fields.
@@ -320,59 +324,59 @@ local record Client
     -- the next set of results in the response. The presence of a NextToken value in a response doesn't necessarily indicate
     -- that the results are incomplete. However, you should continue to specify a NextToken value until you receive a
     -- response that doesn't include this value.
-    getFindingHistory: function(Client, types.GetFindingHistoryInput): types.GetFindingHistoryOutput, table
+    getFindingHistory: function(Client, types.GetFindingHistoryInput): Operation<types.GetFindingHistoryOutput>
     -- Returns a list of findings that match the specified criteria.
     -- If cross-Region aggregation is enabled, then when you call GetFindings from the home Region, the results include all of the matching findings from both the home Region and linked Regions.
-    getFindings: function(Client, types.GetFindingsInput): types.GetFindingsOutput, table
+    getFindings: function(Client, types.GetFindingsInput): Operation<types.GetFindingsOutput>
     -- Returns aggregated statistical data about findings.
     -- You can use the Scopes parameter to define the data boundary for the query. Currently, Scopes supports AwsOrganizations, which lets you aggregate findings from your entire organization or from specific organizational units. Only the delegated administrator account can use Scopes.
     -- GetFindingStatisticsV2 uses securityhub:GetAdhocInsightResults in the Action element of an IAM policy statement.
     -- You must have permission to perform the securityhub:GetAdhocInsightResults action.
-    getFindingStatisticsV2: function(Client, types.GetFindingStatisticsV2Input): types.GetFindingStatisticsV2Output, table
+    getFindingStatisticsV2: function(Client, types.GetFindingStatisticsV2Input): Operation<types.GetFindingStatisticsV2Output>
     -- Returns findings trend data based on the specified criteria. This operation helps you analyze patterns and changes in findings over time.
-    getFindingsTrendsV2: function(Client, types.GetFindingsTrendsV2Input): types.GetFindingsTrendsV2Output, table
+    getFindingsTrendsV2: function(Client, types.GetFindingsTrendsV2Input): Operation<types.GetFindingsTrendsV2Output>
     -- Returns a list of findings that match the specified criteria.
     -- You can use the Scopes parameter to define the data boundary for the query. Currently, Scopes supports AwsOrganizations, which lets you retrieve findings from your entire organization or from specific organizational units. Only the delegated administrator account can use Scopes.
     -- You can use the Filters parameter to refine results based on finding attributes. You can use Scopes and Filters independently or together. When both are provided, Scopes narrows the data set first, and then Filters refines results within that scoped data set.
     -- GetFindings and GetFindingsV2 both use securityhub:GetFindings in the Action element of an IAM policy statement.
     -- You must have permission to perform the securityhub:GetFindings action.
-    getFindingsV2: function(Client, types.GetFindingsV2Input): types.GetFindingsV2Output, table
+    getFindingsV2: function(Client, types.GetFindingsV2Input): Operation<types.GetFindingsV2Output>
     -- Lists the results of the Security Hub CSPM insight specified by the insight ARN.
-    getInsightResults: function(Client, types.GetInsightResultsInput): types.GetInsightResultsOutput, table
+    getInsightResults: function(Client, types.GetInsightResultsInput): Operation<types.GetInsightResultsOutput>
     -- Lists and describes insights for the specified insight ARNs.
-    getInsights: function(Client, types.GetInsightsInput): types.GetInsightsOutput, table
+    getInsights: function(Client, types.GetInsightsInput): Operation<types.GetInsightsOutput>
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
     -- in the Security Hub CSPM User Guide.
     -- Returns the count of all Security Hub CSPM membership invitations that were sent to the
     -- calling member account, not including the currently accepted invitation.
-    getInvitationsCount: function(Client, types.GetInvitationsCountInput): types.GetInvitationsCountOutput, table
+    getInvitationsCount: function(Client, types.GetInvitationsCountInput): Operation<types.GetInvitationsCountOutput>
     -- This method is deprecated. Instead, use GetAdministratorAccount.
     -- The Security Hub CSPM console continues to use GetMasterAccount. It will eventually change to use GetAdministratorAccount. Any IAM policies that specifically control access to this function must continue to use GetMasterAccount. You should also add GetAdministratorAccount to your policies to ensure that the correct permissions are in place after the console begins to use GetAdministratorAccount.
     -- Provides the details for the Security Hub CSPM administrator account for the current member account.
     -- Can be used by both member accounts that are managed using Organizations and accounts that were
     -- invited manually.
-    getMasterAccount: function(Client, types.GetMasterAccountInput): types.GetMasterAccountOutput, table
+    getMasterAccount: function(Client, types.GetMasterAccountInput): Operation<types.GetMasterAccountOutput>
     -- Returns the details for the Security Hub CSPM member accounts for the specified account IDs.
     -- An administrator account can be either the delegated Security Hub CSPM administrator account for an
     -- organization or an administrator account that enabled Security Hub CSPM manually.
     -- The results include both member accounts that are managed using Organizations and accounts that
     -- were invited manually.
-    getMembers: function(Client, types.GetMembersInput): types.GetMembersOutput, table
+    getMembers: function(Client, types.GetMembersInput): Operation<types.GetMembersOutput>
     -- Retrieves the recommended policy to remediate a Security Hub finding.
     -- GetRecommendedPolicyV2 only supports findings for unused permissions.
-    getRecommendedPolicyV2: function(Client, types.GetRecommendedPolicyV2Input): types.GetRecommendedPolicyV2Output, table
+    getRecommendedPolicyV2: function(Client, types.GetRecommendedPolicyV2Input): Operation<types.GetRecommendedPolicyV2Output>
     -- Retrieves statistical information about Amazon Web Services resources and their associated security findings.
     -- You can use the Scopes parameter to define the data boundary for the query. Currently, Scopes supports AwsOrganizations, which lets you aggregate resources from your entire organization or from specific organizational units. Only the delegated administrator account can use Scopes.
-    getResourcesStatisticsV2: function(Client, types.GetResourcesStatisticsV2Input): types.GetResourcesStatisticsV2Output, table
+    getResourcesStatisticsV2: function(Client, types.GetResourcesStatisticsV2Input): Operation<types.GetResourcesStatisticsV2Output>
     -- Returns resource trend data based on the specified criteria. This operation helps you analyze patterns and changes in resource compliance over time.
-    getResourcesTrendsV2: function(Client, types.GetResourcesTrendsV2Input): types.GetResourcesTrendsV2Output, table
+    getResourcesTrendsV2: function(Client, types.GetResourcesTrendsV2Input): Operation<types.GetResourcesTrendsV2Output>
     -- Returns a list of resources.
     -- You can use the Scopes parameter to define the data boundary for the query. Currently, Scopes supports AwsOrganizations, which lets you retrieve resources from your entire organization or from specific organizational units. Only the delegated administrator account can use Scopes.
     -- You can use the Filters parameter to refine results based on resource attributes. You can use Scopes and Filters independently or together. When both are provided, Scopes narrows the data set first, and then Filters refines results within that scoped data set.
-    getResourcesV2: function(Client, types.GetResourcesV2Input): types.GetResourcesV2Output, table
+    getResourcesV2: function(Client, types.GetResourcesV2Input): Operation<types.GetResourcesV2Output>
     -- Retrieves the definition of a security control. The definition includes the control title, description, Region availability, parameter definitions, and other details.
-    getSecurityControlDefinition: function(Client, types.GetSecurityControlDefinitionInput): types.GetSecurityControlDefinitionOutput, table
+    getSecurityControlDefinition: function(Client, types.GetSecurityControlDefinitionInput): Operation<types.GetSecurityControlDefinitionOutput>
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
     -- in the Security Hub CSPM User Guide.
@@ -383,81 +387,81 @@ local record Client
     -- Before you can use this action to invite a member, you must first use the CreateMembers action to create the member account in Security Hub CSPM.
     -- When the account owner enables Security Hub CSPM and accepts the invitation to become a member
     -- account, the administrator account can view the findings generated in the member account.
-    inviteMembers: function(Client, types.InviteMembersInput): types.InviteMembersOutput, table
+    inviteMembers: function(Client, types.InviteMembersInput): Operation<types.InviteMembersOutput>
     -- Retrieves a list of V2 aggregators.
-    listAggregatorsV2: function(Client, types.ListAggregatorsV2Input): types.ListAggregatorsV2Output, table
+    listAggregatorsV2: function(Client, types.ListAggregatorsV2Input): Operation<types.ListAggregatorsV2Output>
     -- A list of automation rules and their metadata for the calling account.
-    listAutomationRules: function(Client, types.ListAutomationRulesInput): types.ListAutomationRulesOutput, table
+    listAutomationRules: function(Client, types.ListAutomationRulesInput): Operation<types.ListAutomationRulesOutput>
     -- Returns a list of automation rules and metadata for the calling account.
-    listAutomationRulesV2: function(Client, types.ListAutomationRulesV2Input): types.ListAutomationRulesV2Output, table
+    listAutomationRulesV2: function(Client, types.ListAutomationRulesV2Input): Operation<types.ListAutomationRulesV2Output>
     -- Lists the configuration policies that the Security Hub CSPM delegated administrator has created for your
     -- organization. Only the delegated administrator can invoke this operation from the home Region.
-    listConfigurationPolicies: function(Client, types.ListConfigurationPoliciesInput): types.ListConfigurationPoliciesOutput, table
+    listConfigurationPolicies: function(Client, types.ListConfigurationPoliciesInput): Operation<types.ListConfigurationPoliciesOutput>
     -- Provides information about the associations for your configuration policies and self-managed behavior. Only the
     -- Security Hub CSPM delegated administrator can invoke this operation from the home Region.
-    listConfigurationPolicyAssociations: function(Client, types.ListConfigurationPolicyAssociationsInput): types.ListConfigurationPolicyAssociationsOutput, table
+    listConfigurationPolicyAssociations: function(Client, types.ListConfigurationPolicyAssociationsInput): Operation<types.ListConfigurationPolicyAssociationsOutput>
     -- Grants permission to retrieve a list of connectorsV2 and their metadata for the calling account.
-    listConnectorsV2: function(Client, types.ListConnectorsV2Input): types.ListConnectorsV2Output, table
+    listConnectorsV2: function(Client, types.ListConnectorsV2Input): Operation<types.ListConnectorsV2Output>
     -- Lists all findings-generating solutions (products) that you are subscribed to receive
     -- findings from in Security Hub CSPM.
-    listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput): types.ListEnabledProductsForImportOutput, table
+    listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput): Operation<types.ListEnabledProductsForImportOutput>
     -- If cross-Region aggregation is enabled, then ListFindingAggregators returns the Amazon Resource Name (ARN)
     -- of the finding aggregator. You can run this operation from any Amazon Web Services Region.
-    listFindingAggregators: function(Client, types.ListFindingAggregatorsInput): types.ListFindingAggregatorsOutput, table
+    listFindingAggregators: function(Client, types.ListFindingAggregatorsInput): Operation<types.ListFindingAggregatorsOutput>
     -- We recommend using Organizations instead of Security Hub CSPM invitations to manage your member accounts.
     -- For information, see Managing Security Hub CSPM administrator and member accounts with Organizations
     -- in the Security Hub CSPM User Guide.
     -- Lists all Security Hub CSPM membership invitations that were sent to the calling account.
     -- Only accounts that are managed by invitation can use this operation.
     -- Accounts that are managed using the integration with Organizations don't receive invitations.
-    listInvitations: function(Client, types.ListInvitationsInput): types.ListInvitationsOutput, table
+    listInvitations: function(Client, types.ListInvitationsInput): Operation<types.ListInvitationsOutput>
     -- Lists details about all member accounts for the current Security Hub CSPM administrator
     -- account.
     -- The results include both member accounts that belong to an organization and member
     -- accounts that were invited manually.
-    listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    listMembers: function(Client, types.ListMembersInput): Operation<types.ListMembersOutput>
     -- Lists the Security Hub CSPM administrator accounts. Can only be called by the organization
     -- management account.
-    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): types.ListOrganizationAdminAccountsOutput, table
+    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): Operation<types.ListOrganizationAdminAccountsOutput>
     -- Lists all of the security controls that apply to a specified standard.
-    listSecurityControlDefinitions: function(Client, types.ListSecurityControlDefinitionsInput): types.ListSecurityControlDefinitionsOutput, table
+    listSecurityControlDefinitions: function(Client, types.ListSecurityControlDefinitionsInput): Operation<types.ListSecurityControlDefinitionsOutput>
     -- Specifies whether a control is currently enabled or disabled in each enabled standard in the calling account.
     -- This operation omits standards control associations for standard subscriptions where StandardsControlsUpdatable has value NOT_READY_FOR_UPDATES.
-    listStandardsControlAssociations: function(Client, types.ListStandardsControlAssociationsInput): types.ListStandardsControlAssociationsOutput, table
+    listStandardsControlAssociations: function(Client, types.ListStandardsControlAssociationsInput): Operation<types.ListStandardsControlAssociationsOutput>
     -- Returns a list of tags associated with a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Grants permission to complete the authorization based on input parameters.
-    registerConnectorV2: function(Client, types.RegisterConnectorV2Input): types.RegisterConnectorV2Output, table
+    registerConnectorV2: function(Client, types.RegisterConnectorV2Input): Operation<types.RegisterConnectorV2Output>
     -- Associates a target account, organizational unit, or the root with a specified configuration. The target can be
     -- associated with a configuration policy or self-managed behavior. Only the Security Hub CSPM delegated administrator can
     -- invoke this operation from the home Region.
-    startConfigurationPolicyAssociation: function(Client, types.StartConfigurationPolicyAssociationInput): types.StartConfigurationPolicyAssociationOutput, table
+    startConfigurationPolicyAssociation: function(Client, types.StartConfigurationPolicyAssociationInput): Operation<types.StartConfigurationPolicyAssociationOutput>
     -- Disassociates a target account, organizational unit, or the root from a specified configuration. When you
     -- disassociate a configuration from its target, the target inherits the configuration of the closest parent. If there’s no
     -- configuration to inherit, the target retains its settings but becomes a self-managed account. A target can be disassociated from
     -- a configuration policy or self-managed behavior. Only the Security Hub CSPM delegated administrator can invoke this
     -- operation from the home Region.
-    startConfigurationPolicyDisassociation: function(Client, types.StartConfigurationPolicyDisassociationInput): types.StartConfigurationPolicyDisassociationOutput, table
+    startConfigurationPolicyDisassociation: function(Client, types.StartConfigurationPolicyDisassociationInput): Operation<types.StartConfigurationPolicyDisassociationOutput>
     -- Adds one or more tags to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the name and description of a custom action target in Security Hub CSPM.
-    updateActionTarget: function(Client, types.UpdateActionTargetInput): types.UpdateActionTargetOutput, table
+    updateActionTarget: function(Client, types.UpdateActionTargetInput): Operation<types.UpdateActionTargetOutput>
     -- Udpates the configuration for the Aggregator V2.
-    updateAggregatorV2: function(Client, types.UpdateAggregatorV2Input): types.UpdateAggregatorV2Output, table
+    updateAggregatorV2: function(Client, types.UpdateAggregatorV2Input): Operation<types.UpdateAggregatorV2Output>
     -- Updates a V2 automation rule.
-    updateAutomationRuleV2: function(Client, types.UpdateAutomationRuleV2Input): types.UpdateAutomationRuleV2Output, table
+    updateAutomationRuleV2: function(Client, types.UpdateAutomationRuleV2Input): Operation<types.UpdateAutomationRuleV2Output>
     -- Updates a configuration policy. Only the Security Hub CSPM delegated
     -- administrator can invoke this operation from the home Region.
-    updateConfigurationPolicy: function(Client, types.UpdateConfigurationPolicyInput): types.UpdateConfigurationPolicyOutput, table
+    updateConfigurationPolicy: function(Client, types.UpdateConfigurationPolicyInput): Operation<types.UpdateConfigurationPolicyOutput>
     -- Grants permission to update a connectorV2 based on its id and input parameters.
-    updateConnectorV2: function(Client, types.UpdateConnectorV2Input): types.UpdateConnectorV2Output, table
+    updateConnectorV2: function(Client, types.UpdateConnectorV2Input): Operation<types.UpdateConnectorV2Output>
     -- The aggregation Region is now called the home Region.
     -- Updates cross-Region aggregation settings. You can use this operation to update the Region linking mode and the list
     -- of included or excluded Amazon Web Services Regions. However, you can't use this operation to change the home Region.
     -- You can invoke this operation from the current home Region only.
-    updateFindingAggregator: function(Client, types.UpdateFindingAggregatorInput): types.UpdateFindingAggregatorOutput, table
+    updateFindingAggregator: function(Client, types.UpdateFindingAggregatorInput): Operation<types.UpdateFindingAggregatorOutput>
     -- UpdateFindings is a deprecated operation. Instead of UpdateFindings, use
     -- the BatchUpdateFindings operation.
     -- The UpdateFindings operation updates the Note and RecordState of the Security Hub CSPM aggregated
@@ -466,20 +470,20 @@ local record Client
     -- Finding updates made with UpdateFindings aren't persisted if the same finding is later updated by the
     -- finding provider through the BatchImportFindings operation. In addition, Security Hub CSPM doesn't
     -- record updates made with UpdateFindings in the finding history.
-    updateFindings: function(Client, types.UpdateFindingsInput): types.UpdateFindingsOutput, table
+    updateFindings: function(Client, types.UpdateFindingsInput): Operation<types.UpdateFindingsOutput>
     -- Updates the Security Hub CSPM insight identified by the specified insight ARN.
-    updateInsight: function(Client, types.UpdateInsightInput): types.UpdateInsightOutput, table
+    updateInsight: function(Client, types.UpdateInsightInput): Operation<types.UpdateInsightOutput>
     -- Updates the configuration of your organization in Security Hub CSPM. Only the
     -- Security Hub CSPM administrator account can invoke this operation.
-    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): Operation<types.UpdateOrganizationConfigurationOutput>
     -- Updates the properties of a security control.
-    updateSecurityControl: function(Client, types.UpdateSecurityControlInput): types.UpdateSecurityControlOutput, table
+    updateSecurityControl: function(Client, types.UpdateSecurityControlInput): Operation<types.UpdateSecurityControlOutput>
     -- Updates configuration options for Security Hub CSPM.
-    updateSecurityHubConfiguration: function(Client, types.UpdateSecurityHubConfigurationInput): types.UpdateSecurityHubConfigurationOutput, table
+    updateSecurityHubConfiguration: function(Client, types.UpdateSecurityHubConfigurationInput): Operation<types.UpdateSecurityHubConfigurationOutput>
     -- Used to control whether an individual security standard control is enabled or
     -- disabled.
     -- Calls to this operation return a RESOURCE_NOT_FOUND_EXCEPTION error when the standard subscription for the control has StandardsControlsUpdatable value NOT_READY_FOR_UPDATES.
-    updateStandardsControl: function(Client, types.UpdateStandardsControlInput): types.UpdateStandardsControlOutput, table
+    updateStandardsControl: function(Client, types.UpdateStandardsControlInput): Operation<types.UpdateStandardsControlOutput>
 end
 
 local record M

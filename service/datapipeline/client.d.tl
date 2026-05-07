@@ -2,6 +2,10 @@
 
 local types = require("datapipeline.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Validates the specified pipeline and starts processing pipeline tasks. If the pipeline does not pass validation,
     -- activation fails.
@@ -22,9 +26,9 @@ local record Client
     -- Content-Length: 2
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {}
-    activatePipeline: function(Client, types.ActivatePipelineInput): types.ActivatePipelineOutput, table
+    activatePipeline: function(Client, types.ActivatePipelineInput): Operation<types.ActivatePipelineOutput>
     -- Adds or modifies tags for the specified pipeline.
-    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    addTags: function(Client, types.AddTagsInput): Operation<types.AddTagsOutput>
     -- Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline.
     -- POST / HTTP/1.1
     -- Content-Type: application/x-amz-json-1.1
@@ -42,12 +46,12 @@ local record Client
     -- Content-Length: 40
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {"pipelineId": "df-06372391ZG65EXAMPLE"}
-    createPipeline: function(Client, types.CreatePipelineInput): types.CreatePipelineOutput, table
+    createPipeline: function(Client, types.CreatePipelineInput): Operation<types.CreatePipelineOutput>
     -- Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING
     -- state until the deactivation process completes.
     -- To resume a deactivated pipeline, use ActivatePipeline. By default, the pipeline resumes from the last completed execution.
     -- Optionally, you can specify the date and time to resume the pipeline.
-    deactivatePipeline: function(Client, types.DeactivatePipelineInput): types.DeactivatePipelineOutput, table
+    deactivatePipeline: function(Client, types.DeactivatePipelineInput): Operation<types.DeactivatePipelineOutput>
     -- Deletes a pipeline, its pipeline definition, and its run history.
     -- AWS Data Pipeline attempts to cancel instances associated with the pipeline that are currently being processed by task runners.
     -- Deleting a pipeline cannot be undone. You cannot query or restore a deleted pipeline.
@@ -66,7 +70,7 @@ local record Client
     -- Content-Length: 0
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- Unexpected response: 200, OK, undefined
-    deletePipeline: function(Client, types.DeletePipelineInput): types.DeletePipelineOutput, table
+    deletePipeline: function(Client, types.DeletePipelineInput): Operation<types.DeletePipelineOutput>
     -- Gets the object definitions for a set of objects associated with the pipeline. Object definitions are composed of
     -- a set of fields that define the properties of the object.
     -- POST / HTTP/1.1
@@ -112,7 +116,7 @@ local record Client
     -- "name": "Schedule"}
     -- ]
     -- }
-    describeObjects: function(Client, types.DescribeObjectsInput): types.DescribeObjectsOutput, table
+    describeObjects: function(Client, types.DescribeObjectsInput): Operation<types.DescribeObjectsOutput>
     -- Retrieves metadata about one or more pipelines. The information retrieved includes the name of the pipeline, the pipeline identifier,
     -- its current state, and the user account that owns the pipeline. Using account credentials, you can retrieve metadata about pipelines
     -- that you or your IAM users have created. If you are using an IAM user account, you can retrieve metadata about only those pipelines
@@ -162,7 +166,7 @@ local record Client
     -- "pipelineId": "df-0937003356ZJEXAMPLE"}
     -- ]
     -- }
-    describePipelines: function(Client, types.DescribePipelinesInput): types.DescribePipelinesOutput, table
+    describePipelines: function(Client, types.DescribePipelinesInput): Operation<types.DescribePipelinesOutput>
     -- Task runners call EvaluateExpression to evaluate a string in the context of the specified object.
     -- For example, a task runner can evaluate SQL queries stored in Amazon S3.
     -- POST / HTTP/1.1
@@ -180,7 +184,7 @@ local record Client
     -- Content-Length: 103
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {"evaluatedExpression": "Transform started at 2012-12-12T00:00:00 and finished at 2012-12-21T18:00:00"}
-    evaluateExpression: function(Client, types.EvaluateExpressionInput): types.EvaluateExpressionOutput, table
+    evaluateExpression: function(Client, types.EvaluateExpressionInput): Operation<types.EvaluateExpressionOutput>
     -- Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve
     -- the pipeline definition that you provided using PutPipelineDefinition.
     -- POST / HTTP/1.1
@@ -232,7 +236,7 @@ local record Client
     -- "name": "SayHello"}
     -- ]
     -- }
-    getPipelineDefinition: function(Client, types.GetPipelineDefinitionInput): types.GetPipelineDefinitionOutput, table
+    getPipelineDefinition: function(Client, types.GetPipelineDefinitionInput): Operation<types.GetPipelineDefinitionOutput>
     -- Lists the pipeline identifiers for all active pipelines that you have permission to access.
     -- POST / HTTP/1.1
     -- Content-Type: application/x-amz-json-1.1
@@ -255,7 +259,7 @@ local record Client
     -- "name": "MySecondPipeline"}
     -- ]
     -- }
-    listPipelines: function(Client, types.ListPipelinesInput): types.ListPipelinesOutput, table
+    listPipelines: function(Client, types.ListPipelinesInput): Operation<types.ListPipelinesOutput>
     -- Task runners call PollForTask to receive a task to perform from AWS Data Pipeline. The task runner specifies which tasks it can perform
     -- by setting a value for the workerGroup parameter. The task returned can come from any of the pipelines that
     -- match the workerGroup value passed in by the task runner and that was launched using the IAM user credentials
@@ -320,7 +324,7 @@ local record Client
     -- "pipelineId": "df-0937003356ZJEXAMPLE",
     -- "taskId": "2xaM4wRs5zOsIH+g9U3oVHfAgAlbSqU6XduncB0HhZ3xMnmvfePZPn4dIbYXHyWyRK+cU15MqDHwdrvftx/4wv+sNS4w34vJfv7QA9aOoOazW28l1GYSb2ZRR0N0paiQp+d1MhSKo10hOTWOsVK5S5Lnx9Qm6omFgXHyIvZRIvTlrQMpr1xuUrflyGOfbFOGpOLpvPE172MYdqpZKnbSS4TcuqgQKSWV2833fEubI57DPOP7ghWa2TcYeSIv4pdLYG53fTuwfbnbdc98g2LNUQzSVhSnt7BoqyNwht2aQ6b/UHg9A80+KVpuXuqmz3m1MXwHFgxjdmuesXNOrrlGpeLCcRWD+aGo0RN1NqhQRzNAig8V4GlaPTQzMsRCljKqvrIyAoP3Tt2XEGsHkkQo12rEX8Z90957XX2qKRwhruwYzqGkSLWjINoLdAxUJdpRXRc5DJTrBd3D5mdzn7kY1l7NEh4kFHJDt3Cx4Z3Mk8MYCACyCk/CEyy9DwuPi66cLz0NBcgbCM5LKjTBOwo1m+am+pvM1kSposE9FPP1+RFGb8k6jQBTJx3TRz1yKilnGXQTZ5xvdOFpJrklIT0OXP1MG3+auM9FlJA+1dX90QoNJE5z7axmK//MOGXUdkqFe2kiDkorqjxwDvc0Js9pVKfKvAmW8YqUbmI9l0ERpWCXXnLVHNmPWz3jaPY+OBAmuJWDmxB/Z8p94aEDg4BVXQ7LvsKQ3DLYhaB7yJ390CJT+i0mm+EBqY60V6YikPSWDFrYQ/NPi2b1DgE19mX8zHqw8qprIl4yh1Ckx2Iige4En/N5ktOoIxnASxAw/TzcE2skxdw5KlHDF+UTj71m16CR/dIaKlXijlfNlNzUBo/bNSadCQn3G5NoO501wPKI:XO50TgDNyo8EXAMPLE/g==:1"}
     -- }
-    pollForTask: function(Client, types.PollForTaskInput): types.PollForTaskOutput, table
+    pollForTask: function(Client, types.PollForTaskInput): Operation<types.PollForTaskOutput>
     -- Adds tasks, schedules, and preconditions to the specified pipeline. You can use PutPipelineDefinition to populate a new pipeline.
     -- PutPipelineDefinition also validates the configuration as it adds it to the pipeline. Changes to the pipeline are saved unless one
     -- of the following three validation errors exists in the pipeline.
@@ -442,7 +446,7 @@ local record Client
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {"__type": "com.amazon.setl.webservice#InvalidRequestException",
     -- "message": "Pipeline definition has errors: Could not save the pipeline definition due to FATAL errors: [com.amazon.setl.webservice.ValidationError@108d7ea9] Please call Validate to validate your pipeline"}
-    putPipelineDefinition: function(Client, types.PutPipelineDefinitionInput): types.PutPipelineDefinitionOutput, table
+    putPipelineDefinition: function(Client, types.PutPipelineDefinitionInput): Operation<types.PutPipelineDefinitionOutput>
     -- Queries the specified pipeline for the names of objects that match the specified set of conditions.
     -- POST / HTTP/1.1
     -- Content-Type: application/x-amz-json-1.1
@@ -468,9 +472,9 @@ local record Client
     -- "ids":
     -- ["@SayHello_1_2012-09-25T17:00:00"]
     -- }
-    queryObjects: function(Client, types.QueryObjectsInput): types.QueryObjectsOutput, table
+    queryObjects: function(Client, types.QueryObjectsInput): Operation<types.QueryObjectsOutput>
     -- Removes existing tags from the specified pipeline.
-    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): Operation<types.RemoveTagsOutput>
     -- Task runners call ReportTaskProgress when assigned a task to acknowledge that it has the task. If the web service does not
     -- receive this acknowledgement within 2 minutes, it assigns the task in a subsequent PollForTask call. After this initial acknowledgement,
     -- the task runner only needs to report progress every 15 minutes to maintain its ownership of the task. You can change this reporting time
@@ -496,7 +500,7 @@ local record Client
     -- Content-Length: 18
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {"canceled": false}
-    reportTaskProgress: function(Client, types.ReportTaskProgressInput): types.ReportTaskProgressOutput, table
+    reportTaskProgress: function(Client, types.ReportTaskProgressInput): Operation<types.ReportTaskProgressOutput>
     -- Task runners call ReportTaskRunnerHeartbeat every 15 minutes to indicate that they are operational.
     -- If the AWS Data Pipeline Task Runner is launched on a resource managed by AWS Data Pipeline, the web service can use
     -- this call to detect when the task runner application has failed and restart a new instance.
@@ -516,7 +520,7 @@ local record Client
     -- Content-Length: 20
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {"terminate": false}
-    reportTaskRunnerHeartbeat: function(Client, types.ReportTaskRunnerHeartbeatInput): types.ReportTaskRunnerHeartbeatOutput, table
+    reportTaskRunnerHeartbeat: function(Client, types.ReportTaskRunnerHeartbeatInput): Operation<types.ReportTaskRunnerHeartbeatOutput>
     -- Requests that the status of the specified physical or logical pipeline objects be updated in the specified pipeline.
     -- This update might not occur immediately, but is eventually consistent. The status that can be set depends on the type of object (for example, DataNode or Activity).
     -- You cannot perform this operation on FINISHED pipelines and attempting to do so returns InvalidRequestException.
@@ -536,7 +540,7 @@ local record Client
     -- Content-Length: 0
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- Unexpected response: 200, OK, undefined
-    setStatus: function(Client, types.SetStatusInput): types.SetStatusOutput, table
+    setStatus: function(Client, types.SetStatusInput): Operation<types.SetStatusOutput>
     -- Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is completed and provide information about the final status.
     -- A task runner makes this call regardless of whether the task was sucessful. A task runner does not need to call SetTaskStatus for
     -- tasks that are canceled by the web service during a call to ReportTaskProgress.
@@ -554,7 +558,7 @@ local record Client
     -- Content-Length: 0
     -- Date: Mon, 12 Nov 2012 17:50:53 GMT
     -- {}
-    setTaskStatus: function(Client, types.SetTaskStatusInput): types.SetTaskStatusOutput, table
+    setTaskStatus: function(Client, types.SetTaskStatusInput): Operation<types.SetTaskStatusOutput>
     -- Validates the specified pipeline definition to ensure that it is well formed and can be run without error.
     -- Example 1
     -- This example sets an valid pipeline configuration and returns success.
@@ -673,7 +677,7 @@ local record Client
     -- "id": "Schedule"}
     -- ]
     -- }
-    validatePipelineDefinition: function(Client, types.ValidatePipelineDefinitionInput): types.ValidatePipelineDefinitionOutput, table
+    validatePipelineDefinition: function(Client, types.ValidatePipelineDefinitionInput): Operation<types.ValidatePipelineDefinitionOutput>
 end
 
 local record M

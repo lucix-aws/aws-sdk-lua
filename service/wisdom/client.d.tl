@@ -2,16 +2,20 @@
 
 local types = require("wisdom.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an Amazon Connect Wisdom assistant.
-    createAssistant: function(Client, types.CreateAssistantInput): types.CreateAssistantOutput, table
+    createAssistant: function(Client, types.CreateAssistantInput): Operation<types.CreateAssistantOutput>
     -- Creates an association between an Amazon Connect Wisdom assistant and another resource. Currently, the
     -- only supported association is with a knowledge base. An assistant can have only a single
     -- association.
-    createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput): types.CreateAssistantAssociationOutput, table
+    createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput): Operation<types.CreateAssistantAssociationOutput>
     -- Creates Wisdom content. Before to calling this API, use StartContentUpload to
     -- upload an asset.
-    createContent: function(Client, types.CreateContentInput): types.CreateContentOutput, table
+    createContent: function(Client, types.CreateContentInput): Operation<types.CreateContentOutput>
     -- Creates a knowledge base.
     -- When using this API, you cannot reuse Amazon AppIntegrations
     -- DataIntegrations with external knowledge bases such as Salesforce and ServiceNow. If you do,
@@ -24,21 +28,21 @@ local record Client
     -- Call CreateDataIntegration to recreate the DataIntegration or a create different
     -- one.
     -- Call CreateKnowledgeBase.
-    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput): types.CreateKnowledgeBaseOutput, table
+    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput): Operation<types.CreateKnowledgeBaseOutput>
     -- Creates a Wisdom quick response.
-    createQuickResponse: function(Client, types.CreateQuickResponseInput): types.CreateQuickResponseOutput, table
+    createQuickResponse: function(Client, types.CreateQuickResponseInput): Operation<types.CreateQuickResponseOutput>
     -- Creates a session. A session is a contextual container used for generating
     -- recommendations. Amazon Connect creates a new Wisdom session for each contact on which
     -- Wisdom is enabled.
-    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    createSession: function(Client, types.CreateSessionInput): Operation<types.CreateSessionOutput>
     -- Deletes an assistant.
-    deleteAssistant: function(Client, types.DeleteAssistantInput): types.DeleteAssistantOutput, table
+    deleteAssistant: function(Client, types.DeleteAssistantInput): Operation<types.DeleteAssistantOutput>
     -- Deletes an assistant association.
-    deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput): types.DeleteAssistantAssociationOutput, table
+    deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput): Operation<types.DeleteAssistantAssociationOutput>
     -- Deletes the content.
-    deleteContent: function(Client, types.DeleteContentInput): types.DeleteContentOutput, table
+    deleteContent: function(Client, types.DeleteContentInput): Operation<types.DeleteContentOutput>
     -- Deletes the quick response import job.
-    deleteImportJob: function(Client, types.DeleteImportJobInput): types.DeleteImportJobOutput, table
+    deleteImportJob: function(Client, types.DeleteImportJobInput): Operation<types.DeleteImportJobOutput>
     -- Deletes the knowledge base.
     -- When you use this API to delete an external knowledge base such as Salesforce or
     -- ServiceNow, you must also delete the Amazon AppIntegrations
@@ -46,83 +50,83 @@ local record Client
     -- associated with an external knowledge base. However, you can delete and recreate it. See
     -- DeleteDataIntegration and CreateDataIntegration in the Amazon AppIntegrations API
     -- Reference.
-    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput): types.DeleteKnowledgeBaseOutput, table
+    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput): Operation<types.DeleteKnowledgeBaseOutput>
     -- Deletes a quick response.
-    deleteQuickResponse: function(Client, types.DeleteQuickResponseInput): types.DeleteQuickResponseOutput, table
+    deleteQuickResponse: function(Client, types.DeleteQuickResponseInput): Operation<types.DeleteQuickResponseOutput>
     -- Retrieves information about an assistant.
-    getAssistant: function(Client, types.GetAssistantInput): types.GetAssistantOutput, table
+    getAssistant: function(Client, types.GetAssistantInput): Operation<types.GetAssistantOutput>
     -- Retrieves information about an assistant association.
-    getAssistantAssociation: function(Client, types.GetAssistantAssociationInput): types.GetAssistantAssociationOutput, table
+    getAssistantAssociation: function(Client, types.GetAssistantAssociationInput): Operation<types.GetAssistantAssociationOutput>
     -- Retrieves content, including a pre-signed URL to download the content.
-    getContent: function(Client, types.GetContentInput): types.GetContentOutput, table
+    getContent: function(Client, types.GetContentInput): Operation<types.GetContentOutput>
     -- Retrieves summary information about the content.
-    getContentSummary: function(Client, types.GetContentSummaryInput): types.GetContentSummaryOutput, table
+    getContentSummary: function(Client, types.GetContentSummaryInput): Operation<types.GetContentSummaryOutput>
     -- Retrieves the started import job.
-    getImportJob: function(Client, types.GetImportJobInput): types.GetImportJobOutput, table
+    getImportJob: function(Client, types.GetImportJobInput): Operation<types.GetImportJobOutput>
     -- Retrieves information about the knowledge base.
-    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput): types.GetKnowledgeBaseOutput, table
+    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput): Operation<types.GetKnowledgeBaseOutput>
     -- Retrieves the quick response.
-    getQuickResponse: function(Client, types.GetQuickResponseInput): types.GetQuickResponseOutput, table
+    getQuickResponse: function(Client, types.GetQuickResponseInput): Operation<types.GetQuickResponseOutput>
     -- Retrieves recommendations for the specified session. To avoid retrieving the same
     -- recommendations in subsequent calls, use NotifyRecommendationsReceived. This API supports long-polling behavior with the
     -- waitTimeSeconds parameter. Short poll is the default behavior and only returns
     -- recommendations already available. To perform a manual query against an assistant, use QueryAssistant.
-    getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    getRecommendations: function(Client, types.GetRecommendationsInput): Operation<types.GetRecommendationsOutput>
     -- Retrieves information for a specified session.
-    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): Operation<types.GetSessionOutput>
     -- Lists information about assistant associations.
-    listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput): types.ListAssistantAssociationsOutput, table
+    listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput): Operation<types.ListAssistantAssociationsOutput>
     -- Lists information about assistants.
-    listAssistants: function(Client, types.ListAssistantsInput): types.ListAssistantsOutput, table
+    listAssistants: function(Client, types.ListAssistantsInput): Operation<types.ListAssistantsOutput>
     -- Lists the content.
-    listContents: function(Client, types.ListContentsInput): types.ListContentsOutput, table
+    listContents: function(Client, types.ListContentsInput): Operation<types.ListContentsOutput>
     -- Lists information about import jobs.
-    listImportJobs: function(Client, types.ListImportJobsInput): types.ListImportJobsOutput, table
+    listImportJobs: function(Client, types.ListImportJobsInput): Operation<types.ListImportJobsOutput>
     -- Lists the knowledge bases.
-    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput): types.ListKnowledgeBasesOutput, table
+    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput): Operation<types.ListKnowledgeBasesOutput>
     -- Lists information about quick response.
-    listQuickResponses: function(Client, types.ListQuickResponsesInput): types.ListQuickResponsesOutput, table
+    listQuickResponses: function(Client, types.ListQuickResponsesInput): Operation<types.ListQuickResponsesOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Removes the specified recommendations from the specified assistant's queue of newly
     -- available recommendations. You can use this API in conjunction with GetRecommendations and a waitTimeSeconds input for long-polling
     -- behavior and avoiding duplicate recommendations.
-    notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput): types.NotifyRecommendationsReceivedOutput, table
+    notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput): Operation<types.NotifyRecommendationsReceivedOutput>
     -- Performs a manual search against the specified assistant. To retrieve recommendations for
     -- an assistant, use GetRecommendations.
-    queryAssistant: function(Client, types.QueryAssistantInput): types.QueryAssistantOutput, table
+    queryAssistant: function(Client, types.QueryAssistantInput): Operation<types.QueryAssistantOutput>
     -- Removes a URI template from a knowledge base.
-    removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput): types.RemoveKnowledgeBaseTemplateUriOutput, table
+    removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput): Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
     -- Searches for content in a specified knowledge base. Can be used to get a specific content
     -- resource by its name.
-    searchContent: function(Client, types.SearchContentInput): types.SearchContentOutput, table
+    searchContent: function(Client, types.SearchContentInput): Operation<types.SearchContentOutput>
     -- Searches existing Wisdom quick responses in a Wisdom knowledge base.
-    searchQuickResponses: function(Client, types.SearchQuickResponsesInput): types.SearchQuickResponsesOutput, table
+    searchQuickResponses: function(Client, types.SearchQuickResponsesInput): Operation<types.SearchQuickResponsesOutput>
     -- Searches for sessions.
-    searchSessions: function(Client, types.SearchSessionsInput): types.SearchSessionsOutput, table
+    searchSessions: function(Client, types.SearchSessionsInput): Operation<types.SearchSessionsOutput>
     -- Get a URL to upload content to a knowledge base. To upload content, first make a PUT
     -- request to the returned URL with your file, making sure to include the required headers. Then
     -- use CreateContent to finalize the content creation process or UpdateContent to modify an existing resource. You can only upload content to a
     -- knowledge base of type CUSTOM.
-    startContentUpload: function(Client, types.StartContentUploadInput): types.StartContentUploadOutput, table
+    startContentUpload: function(Client, types.StartContentUploadInput): Operation<types.StartContentUploadOutput>
     -- Start an asynchronous job to import Wisdom resources from an uploaded source file. Before calling this API, use StartContentUpload to
     -- upload an asset that contains the resource data.
     -- For importing Wisdom quick responses, you need to upload a csv file including the quick responses. For information about how to format the csv file for importing quick responses, see Import quick responses.
-    startImportJob: function(Client, types.StartImportJobInput): types.StartImportJobOutput, table
+    startImportJob: function(Client, types.StartImportJobInput): Operation<types.StartImportJobOutput>
     -- Adds the specified tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates information about the content.
-    updateContent: function(Client, types.UpdateContentInput): types.UpdateContentOutput, table
+    updateContent: function(Client, types.UpdateContentInput): Operation<types.UpdateContentOutput>
     -- Updates the template URI of a knowledge base. This is only supported for knowledge bases
     -- of type EXTERNAL. Include a single variable in ${variable} format; this
     -- interpolated by Wisdom using ingested content. For example, if you ingest a Salesforce
     -- article, it has an Id value, and you can set the template URI to
     -- https://myInstanceName.lightning.force.com/lightning/r/Knowledge__kav/*${Id}*/view.
-    updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput): types.UpdateKnowledgeBaseTemplateUriOutput, table
+    updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput): Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
     -- Updates an existing Wisdom quick response.
-    updateQuickResponse: function(Client, types.UpdateQuickResponseInput): types.UpdateQuickResponseOutput, table
+    updateQuickResponse: function(Client, types.UpdateQuickResponseInput): Operation<types.UpdateQuickResponseOutput>
 end
 
 local record M

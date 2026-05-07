@@ -2,80 +2,84 @@
 
 local types = require("iotevents.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an alarm model to monitor an AWS IoT Events input attribute. You can use the alarm to get
     -- notified when the value is outside a specified range. For more information, see Create an
     -- alarm model in the AWS IoT Events Developer Guide.
-    createAlarmModel: function(Client, types.CreateAlarmModelInput): types.CreateAlarmModelOutput, table
+    createAlarmModel: function(Client, types.CreateAlarmModelInput): Operation<types.CreateAlarmModelOutput>
     -- Creates a detector model.
-    createDetectorModel: function(Client, types.CreateDetectorModelInput): types.CreateDetectorModelOutput, table
+    createDetectorModel: function(Client, types.CreateDetectorModelInput): Operation<types.CreateDetectorModelOutput>
     -- Creates an input.
-    createInput: function(Client, types.CreateInputInput): types.CreateInputOutput, table
+    createInput: function(Client, types.CreateInputInput): Operation<types.CreateInputOutput>
     -- Deletes an alarm model. Any alarm instances that were created based on this alarm model
     -- are also deleted. This action can't be undone.
-    deleteAlarmModel: function(Client, types.DeleteAlarmModelInput): types.DeleteAlarmModelOutput, table
+    deleteAlarmModel: function(Client, types.DeleteAlarmModelInput): Operation<types.DeleteAlarmModelOutput>
     -- Deletes a detector model. Any active instances of the detector model are also
     -- deleted.
-    deleteDetectorModel: function(Client, types.DeleteDetectorModelInput): types.DeleteDetectorModelOutput, table
+    deleteDetectorModel: function(Client, types.DeleteDetectorModelInput): Operation<types.DeleteDetectorModelOutput>
     -- Deletes an input.
-    deleteInput: function(Client, types.DeleteInputInput): types.DeleteInputOutput, table
+    deleteInput: function(Client, types.DeleteInputInput): Operation<types.DeleteInputOutput>
     -- Retrieves information about an alarm model. If you don't specify a value for the
     -- alarmModelVersion parameter, the latest version is returned.
-    describeAlarmModel: function(Client, types.DescribeAlarmModelInput): types.DescribeAlarmModelOutput, table
+    describeAlarmModel: function(Client, types.DescribeAlarmModelInput): Operation<types.DescribeAlarmModelOutput>
     -- Describes a detector model. If the version parameter is not specified,
     -- information about the latest version is returned.
-    describeDetectorModel: function(Client, types.DescribeDetectorModelInput): types.DescribeDetectorModelOutput, table
+    describeDetectorModel: function(Client, types.DescribeDetectorModelInput): Operation<types.DescribeDetectorModelOutput>
     -- Retrieves runtime information about a detector model analysis.
     -- After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.
-    describeDetectorModelAnalysis: function(Client, types.DescribeDetectorModelAnalysisInput): types.DescribeDetectorModelAnalysisOutput, table
+    describeDetectorModelAnalysis: function(Client, types.DescribeDetectorModelAnalysisInput): Operation<types.DescribeDetectorModelAnalysisOutput>
     -- Describes an input.
-    describeInput: function(Client, types.DescribeInputInput): types.DescribeInputOutput, table
+    describeInput: function(Client, types.DescribeInputInput): Operation<types.DescribeInputOutput>
     -- Retrieves the current settings of the AWS IoT Events logging options.
-    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput): types.DescribeLoggingOptionsOutput, table
+    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput): Operation<types.DescribeLoggingOptionsOutput>
     -- Retrieves one or more analysis results of the detector model.
     -- After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.
-    getDetectorModelAnalysisResults: function(Client, types.GetDetectorModelAnalysisResultsInput): types.GetDetectorModelAnalysisResultsOutput, table
+    getDetectorModelAnalysisResults: function(Client, types.GetDetectorModelAnalysisResultsInput): Operation<types.GetDetectorModelAnalysisResultsOutput>
     -- Lists the alarm models that you created. The operation returns only the metadata
     -- associated with each alarm model.
-    listAlarmModels: function(Client, types.ListAlarmModelsInput): types.ListAlarmModelsOutput, table
+    listAlarmModels: function(Client, types.ListAlarmModelsInput): Operation<types.ListAlarmModelsOutput>
     -- Lists all the versions of an alarm model. The operation returns only the metadata
     -- associated with each alarm model version.
-    listAlarmModelVersions: function(Client, types.ListAlarmModelVersionsInput): types.ListAlarmModelVersionsOutput, table
+    listAlarmModelVersions: function(Client, types.ListAlarmModelVersionsInput): Operation<types.ListAlarmModelVersionsOutput>
     -- Lists the detector models you have created. Only the metadata associated with each
     -- detector model is returned.
-    listDetectorModels: function(Client, types.ListDetectorModelsInput): types.ListDetectorModelsOutput, table
+    listDetectorModels: function(Client, types.ListDetectorModelsInput): Operation<types.ListDetectorModelsOutput>
     -- Lists all the versions of a detector model. Only the metadata associated with each
     -- detector model version is returned.
-    listDetectorModelVersions: function(Client, types.ListDetectorModelVersionsInput): types.ListDetectorModelVersionsOutput, table
+    listDetectorModelVersions: function(Client, types.ListDetectorModelVersionsInput): Operation<types.ListDetectorModelVersionsOutput>
     -- Lists one or more input routings.
-    listInputRoutings: function(Client, types.ListInputRoutingsInput): types.ListInputRoutingsOutput, table
+    listInputRoutings: function(Client, types.ListInputRoutingsInput): Operation<types.ListInputRoutingsOutput>
     -- Lists the inputs you have created.
-    listInputs: function(Client, types.ListInputsInput): types.ListInputsOutput, table
+    listInputs: function(Client, types.ListInputsInput): Operation<types.ListInputsOutput>
     -- Lists the tags (metadata) you have assigned to the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Sets or updates the AWS IoT Events logging options.
     -- If you update the value of any loggingOptions field, it takes up to one
     -- minute for the change to take effect. If you change the policy attached to the role you
     -- specified in the roleArn field (for example, to correct an invalid policy), it
     -- takes up to five minutes for that change to take effect.
-    putLoggingOptions: function(Client, types.PutLoggingOptionsInput): types.PutLoggingOptionsOutput, table
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput): Operation<types.PutLoggingOptionsOutput>
     -- Performs an analysis of your detector model. For more information,
     -- see Troubleshooting a detector model
     -- in the AWS IoT Events Developer Guide.
-    startDetectorModelAnalysis: function(Client, types.StartDetectorModelAnalysisInput): types.StartDetectorModelAnalysisOutput, table
+    startDetectorModelAnalysis: function(Client, types.StartDetectorModelAnalysisInput): Operation<types.StartDetectorModelAnalysisOutput>
     -- Adds to or modifies the tags of the given resource. Tags are metadata that can be used to
     -- manage a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the given tags (metadata) from the resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an alarm model. Any alarms that were created based on the previous version are
     -- deleted and then created again as new data arrives.
-    updateAlarmModel: function(Client, types.UpdateAlarmModelInput): types.UpdateAlarmModelOutput, table
+    updateAlarmModel: function(Client, types.UpdateAlarmModelInput): Operation<types.UpdateAlarmModelOutput>
     -- Updates a detector model. Detectors (instances) spawned by the previous version are
     -- deleted and then re-created as new inputs arrive.
-    updateDetectorModel: function(Client, types.UpdateDetectorModelInput): types.UpdateDetectorModelOutput, table
+    updateDetectorModel: function(Client, types.UpdateDetectorModelInput): Operation<types.UpdateDetectorModelOutput>
     -- Updates an input.
-    updateInput: function(Client, types.UpdateInputInput): types.UpdateInputOutput, table
+    updateInput: function(Client, types.UpdateInputInput): Operation<types.UpdateInputOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("cognitoidentity.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new identity pool. The identity pool is a store of user identity
     -- information that is specific to your Amazon Web Services account. The keys for
@@ -15,46 +19,46 @@ local record Client
     -- If you don't provide a value for a parameter, Amazon Cognito sets it to its default value.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    createIdentityPool: function(Client, types.CreateIdentityPoolInput): types.CreateIdentityPoolOutput, table
+    createIdentityPool: function(Client, types.CreateIdentityPoolInput): Operation<types.CreateIdentityPoolOutput>
     -- Deletes identities from an identity pool. You can specify a list of 1-60 identities
     -- that you want to delete.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    deleteIdentities: function(Client, types.DeleteIdentitiesInput): types.DeleteIdentitiesOutput, table
+    deleteIdentities: function(Client, types.DeleteIdentitiesInput): Operation<types.DeleteIdentitiesOutput>
     -- Deletes an identity pool. Once a pool is deleted, users will not be able to
     -- authenticate with the pool.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    deleteIdentityPool: function(Client, types.DeleteIdentityPoolInput): types.DeleteIdentityPoolOutput, table
+    deleteIdentityPool: function(Client, types.DeleteIdentityPoolInput): Operation<types.DeleteIdentityPoolOutput>
     -- Returns metadata related to the given identity, including when the identity was
     -- created and any associated linked logins.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    describeIdentity: function(Client, types.DescribeIdentityInput): types.DescribeIdentityOutput, table
+    describeIdentity: function(Client, types.DescribeIdentityInput): Operation<types.DescribeIdentityOutput>
     -- Gets details about a particular identity pool, including the pool name, ID
     -- description, creation date, and current number of users.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    describeIdentityPool: function(Client, types.DescribeIdentityPoolInput): types.DescribeIdentityPoolOutput, table
+    describeIdentityPool: function(Client, types.DescribeIdentityPoolInput): Operation<types.DescribeIdentityPoolOutput>
     -- Returns credentials for the provided identity ID. Any provided logins will be
     -- validated against supported login providers. If the token is for
     -- cognito-identity.amazonaws.com, it will be passed through to Security Token Service with the appropriate role for the token.
     -- This is a public API. You do not need any credentials to call this API.
-    getCredentialsForIdentity: function(Client, types.GetCredentialsForIdentityInput): types.GetCredentialsForIdentityOutput, table
+    getCredentialsForIdentity: function(Client, types.GetCredentialsForIdentityInput): Operation<types.GetCredentialsForIdentityOutput>
     -- Generates (or retrieves) IdentityID. Supplying multiple logins will create an
     -- implicit linked account.
     -- This is a public API. You do not need any credentials to call this API.
-    getId: function(Client, types.GetIdInput): types.GetIdOutput, table
+    getId: function(Client, types.GetIdInput): Operation<types.GetIdOutput>
     -- Gets the roles for an identity pool.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    getIdentityPoolRoles: function(Client, types.GetIdentityPoolRolesInput): types.GetIdentityPoolRolesOutput, table
+    getIdentityPoolRoles: function(Client, types.GetIdentityPoolRolesInput): Operation<types.GetIdentityPoolRolesOutput>
     -- Gets an OpenID token, using a known Cognito ID. This known Cognito ID is returned by
     -- GetId. You can optionally add additional logins for the identity.
     -- Supplying multiple logins creates an implicit link.
     -- The OpenID token is valid for 10 minutes.
     -- This is a public API. You do not need any credentials to call this API.
-    getOpenIdToken: function(Client, types.GetOpenIdTokenInput): types.GetOpenIdTokenOutput, table
+    getOpenIdToken: function(Client, types.GetOpenIdTokenInput): Operation<types.GetOpenIdTokenOutput>
     -- Registers (or retrieves) a Cognito IdentityId and an OpenID Connect
     -- token for a user authenticated by your backend authentication process. Supplying multiple
     -- logins will create an implicit linked account. You can only specify one developer provider
@@ -69,23 +73,23 @@ local record Client
     -- IdentityPoolId.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    getOpenIdTokenForDeveloperIdentity: function(Client, types.GetOpenIdTokenForDeveloperIdentityInput): types.GetOpenIdTokenForDeveloperIdentityOutput, table
+    getOpenIdTokenForDeveloperIdentity: function(Client, types.GetOpenIdTokenForDeveloperIdentityInput): Operation<types.GetOpenIdTokenForDeveloperIdentityOutput>
     -- Use GetPrincipalTagAttributeMap to list all mappings between
     -- PrincipalTags and user attributes.
-    getPrincipalTagAttributeMap: function(Client, types.GetPrincipalTagAttributeMapInput): types.GetPrincipalTagAttributeMapOutput, table
+    getPrincipalTagAttributeMap: function(Client, types.GetPrincipalTagAttributeMapInput): Operation<types.GetPrincipalTagAttributeMapOutput>
     -- Lists the identities in an identity pool.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    listIdentities: function(Client, types.ListIdentitiesInput): types.ListIdentitiesOutput, table
+    listIdentities: function(Client, types.ListIdentitiesInput): Operation<types.ListIdentitiesOutput>
     -- Lists all of the Cognito identity pools registered for your account.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    listIdentityPools: function(Client, types.ListIdentityPoolsInput): types.ListIdentityPoolsOutput, table
+    listIdentityPools: function(Client, types.ListIdentityPoolsInput): Operation<types.ListIdentityPoolsOutput>
     -- Lists the tags that are assigned to an Amazon Cognito identity pool.
     -- A tag is a label that you can apply to identity pools to categorize and manage them in
     -- different ways, such as by purpose, owner, environment, or other criteria.
     -- You can use this action up to 10 times per second, per account.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves the IdentityID associated with a
     -- DeveloperUserIdentifier or the list of DeveloperUserIdentifier
     -- values associated with an IdentityId for an existing identity. Either
@@ -103,7 +107,7 @@ local record Client
     -- better option for higher-volume operations for user authentication.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    lookupDeveloperIdentity: function(Client, types.LookupDeveloperIdentityInput): types.LookupDeveloperIdentityOutput, table
+    lookupDeveloperIdentity: function(Client, types.LookupDeveloperIdentityInput): Operation<types.LookupDeveloperIdentityOutput>
     -- Merges two users having different IdentityIds, existing in the same
     -- identity pool, and identified by the same developer provider. You can use this action to
     -- request that discrete users be merged and identified as a single user in the Cognito
@@ -118,14 +122,14 @@ local record Client
     -- Otherwise, an exception will be thrown.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    mergeDeveloperIdentities: function(Client, types.MergeDeveloperIdentitiesInput): types.MergeDeveloperIdentitiesOutput, table
+    mergeDeveloperIdentities: function(Client, types.MergeDeveloperIdentitiesInput): Operation<types.MergeDeveloperIdentitiesOutput>
     -- Sets the roles for an identity pool. These roles are used when making calls to GetCredentialsForIdentity action.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    setIdentityPoolRoles: function(Client, types.SetIdentityPoolRolesInput): types.SetIdentityPoolRolesOutput, table
+    setIdentityPoolRoles: function(Client, types.SetIdentityPoolRolesInput): Operation<types.SetIdentityPoolRolesOutput>
     -- You can use this operation to use default (username and clientID) attribute or custom
     -- attribute mappings.
-    setPrincipalTagAttributeMap: function(Client, types.SetPrincipalTagAttributeMapInput): types.SetPrincipalTagAttributeMapOutput, table
+    setPrincipalTagAttributeMap: function(Client, types.SetPrincipalTagAttributeMapInput): Operation<types.SetPrincipalTagAttributeMapOutput>
     -- Assigns a set of tags to the specified Amazon Cognito identity pool. A tag is a label
     -- that you can use to categorize and manage identity pools in different ways, such as by
     -- purpose, owner, environment, or other criteria.
@@ -141,27 +145,27 @@ local record Client
     -- permissions for identity pools based on specific tags or tag values.
     -- You can use this action up to 5 times per second, per account. An identity pool can have
     -- as many as 50 tags.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Unlinks a DeveloperUserIdentifier from an existing identity. Unlinked
     -- developer users will be considered new identities next time they are seen. If, for a given
     -- Cognito identity, you remove all federated identities as well as the developer user
     -- identifier, the Cognito identity becomes inaccessible.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    unlinkDeveloperIdentity: function(Client, types.UnlinkDeveloperIdentityInput): types.UnlinkDeveloperIdentityOutput, table
+    unlinkDeveloperIdentity: function(Client, types.UnlinkDeveloperIdentityInput): Operation<types.UnlinkDeveloperIdentityOutput>
     -- Unlinks a federated identity from an existing account. Unlinked logins will be
     -- considered new identities next time they are seen. Removing the last linked login will make
     -- this identity inaccessible.
     -- This is a public API. You do not need any credentials to call this API.
-    unlinkIdentity: function(Client, types.UnlinkIdentityInput): types.UnlinkIdentityOutput, table
+    unlinkIdentity: function(Client, types.UnlinkIdentityInput): Operation<types.UnlinkIdentityOutput>
     -- Removes the specified tags from the specified Amazon Cognito identity pool. You can use
     -- this action up to 5 times per second, per account
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the configuration of an identity pool.
     -- If you don't provide a value for a parameter, Amazon Cognito sets it to its default value.
     -- You must use Amazon Web Services developer credentials to call this
     -- operation.
-    updateIdentityPool: function(Client, types.UpdateIdentityPoolInput): types.UpdateIdentityPoolOutput, table
+    updateIdentityPool: function(Client, types.UpdateIdentityPoolInput): Operation<types.UpdateIdentityPoolOutput>
 end
 
 local record M

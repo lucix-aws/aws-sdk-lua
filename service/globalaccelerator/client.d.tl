@@ -2,6 +2,10 @@
 
 local types = require("globalaccelerator.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associate a virtual private cloud (VPC) subnet endpoint with your custom routing accelerator.
     -- The listener port range must be large enough to support the number of IP addresses that can be
@@ -14,7 +18,7 @@ local record Client
     -- destinations to receive traffic, or to specify individual port mappings that can receive
     -- traffic, see the
     -- AllowCustomRoutingTraffic operation.
-    addCustomRoutingEndpoints: function(Client, types.AddCustomRoutingEndpointsInput): types.AddCustomRoutingEndpointsOutput, table
+    addCustomRoutingEndpoints: function(Client, types.AddCustomRoutingEndpointsInput): Operation<types.AddCustomRoutingEndpointsOutput>
     -- Add endpoints to an endpoint group. The AddEndpoints API operation is the recommended option for adding endpoints. The
     -- alternative options are to add endpoints when you create an endpoint group (with the
     -- CreateEndpointGroup API)
@@ -29,7 +33,7 @@ local record Client
     -- For information about endpoint types and requirements for endpoints that you can add
     -- to Global Accelerator, see
     -- Endpoints for standard accelerators in the Global Accelerator Developer Guide.
-    addEndpoints: function(Client, types.AddEndpointsInput): types.AddEndpointsOutput, table
+    addEndpoints: function(Client, types.AddEndpointsInput): Operation<types.AddEndpointsOutput>
     -- Advertises an IPv4 address range that is provisioned for use with your Amazon Web Services resources
     -- through bring your own IP addresses (BYOIP). It can take a few minutes before traffic to
     -- the specified addresses starts routing to Amazon Web Services because of propagation delays.
@@ -37,20 +41,20 @@ local record Client
     -- WithdrawByoipCidr.
     -- For more information, see Bring your own
     -- IP addresses (BYOIP) in the Global Accelerator Developer Guide.
-    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput): types.AdvertiseByoipCidrOutput, table
+    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput): Operation<types.AdvertiseByoipCidrOutput>
     -- Specify the Amazon EC2 instance (destination) IP addresses and ports for a VPC subnet endpoint that can receive traffic
     -- for a custom routing accelerator. You can allow traffic to all destinations in the subnet endpoint, or allow traffic to a
     -- specified list of destination IP addresses and ports in the subnet. Note that you cannot specify IP addresses or ports
     -- outside of the range that you configured for the endpoint group.
     -- After you make changes, you can verify that the updates are complete by checking the status of your
     -- accelerator: the status changes from IN_PROGRESS to DEPLOYED.
-    allowCustomRoutingTraffic: function(Client, types.AllowCustomRoutingTrafficInput): types.AllowCustomRoutingTrafficOutput, table
+    allowCustomRoutingTraffic: function(Client, types.AllowCustomRoutingTrafficInput): Operation<types.AllowCustomRoutingTrafficOutput>
     -- Create an accelerator. An accelerator includes one or more listeners that process inbound connections and direct traffic
     -- to one or more endpoint groups, each of which includes endpoints, such as Network Load Balancers.
     -- Global Accelerator is a global service that supports endpoints in multiple Amazon Web Services Regions but you must specify the
     -- US West (Oregon) Region to create, update, or otherwise work with accelerators. That is, for example, specify --region us-west-2
     -- on Amazon Web Services CLI commands.
-    createAccelerator: function(Client, types.CreateAcceleratorInput): types.CreateAcceleratorOutput, table
+    createAccelerator: function(Client, types.CreateAcceleratorInput): Operation<types.CreateAcceleratorOutput>
     -- Create a cross-account attachment in Global Accelerator. You create a cross-account attachment to
     -- specify the principals who have permission to work with resources
     -- in accelerators in their own account. You specify, in the same attachment, the resources that are shared.
@@ -67,7 +71,7 @@ local record Client
     -- For more information, see
     -- Working with cross-account attachments and resources in Global Accelerator in the
     -- Global Accelerator Developer Guide.
-    createCrossAccountAttachment: function(Client, types.CreateCrossAccountAttachmentInput): types.CreateCrossAccountAttachmentOutput, table
+    createCrossAccountAttachment: function(Client, types.CreateCrossAccountAttachmentInput): Operation<types.CreateCrossAccountAttachmentOutput>
     -- Create a custom routing accelerator. A custom routing accelerator directs traffic to one of possibly thousands
     -- of Amazon EC2 instance destinations running in a single or multiple virtual private clouds (VPC) subnet endpoints.
     -- Be aware that, by default, all destination EC2 instances in a VPC subnet endpoint cannot receive
@@ -77,23 +81,23 @@ local record Client
     -- Global Accelerator is a global service that supports endpoints in multiple Amazon Web Services Regions but you must specify the
     -- US West (Oregon) Region to create, update, or otherwise work with accelerators. That is, for example, specify --region us-west-2
     -- on Amazon Web Services CLI commands.
-    createCustomRoutingAccelerator: function(Client, types.CreateCustomRoutingAcceleratorInput): types.CreateCustomRoutingAcceleratorOutput, table
+    createCustomRoutingAccelerator: function(Client, types.CreateCustomRoutingAcceleratorInput): Operation<types.CreateCustomRoutingAcceleratorOutput>
     -- Create an endpoint group for the specified listener for a custom routing accelerator.
     -- An endpoint group is a collection of endpoints in one Amazon Web Services
     -- Region.
-    createCustomRoutingEndpointGroup: function(Client, types.CreateCustomRoutingEndpointGroupInput): types.CreateCustomRoutingEndpointGroupOutput, table
+    createCustomRoutingEndpointGroup: function(Client, types.CreateCustomRoutingEndpointGroupInput): Operation<types.CreateCustomRoutingEndpointGroupOutput>
     -- Create a listener to process inbound connections from clients to a custom routing accelerator.
     -- Connections arrive to assigned static IP addresses on the port range that you specify.
-    createCustomRoutingListener: function(Client, types.CreateCustomRoutingListenerInput): types.CreateCustomRoutingListenerOutput, table
+    createCustomRoutingListener: function(Client, types.CreateCustomRoutingListenerInput): Operation<types.CreateCustomRoutingListenerOutput>
     -- Create an endpoint group for the specified listener. An endpoint group is a collection of endpoints in one Amazon Web Services
     -- Region. A resource must be valid and active when you add it as an endpoint.
     -- For more information about endpoint types and requirements for endpoints that you can add
     -- to Global Accelerator, see
     -- Endpoints for standard accelerators in the Global Accelerator Developer Guide.
-    createEndpointGroup: function(Client, types.CreateEndpointGroupInput): types.CreateEndpointGroupOutput, table
+    createEndpointGroup: function(Client, types.CreateEndpointGroupInput): Operation<types.CreateEndpointGroupOutput>
     -- Create a listener to process inbound connections from clients to an accelerator. Connections arrive to assigned static
     -- IP addresses on a port, port range, or list of port ranges that you specify.
-    createListener: function(Client, types.CreateListenerInput): types.CreateListenerOutput, table
+    createListener: function(Client, types.CreateListenerInput): Operation<types.CreateListenerOutput>
     -- Delete an accelerator. Before you can delete an accelerator, you must disable it and remove all dependent resources
     -- (listeners and endpoint groups). To disable the accelerator, update the accelerator to set Enabled to false.
     -- When you create an accelerator, by default, Global Accelerator provides you with a set of two static IP addresses.
@@ -105,14 +109,14 @@ local record Client
     -- can use IAM policies with Global Accelerator to limit the users who have permissions to delete an accelerator. For more information,
     -- see Identity and access management in
     -- the Global Accelerator Developer Guide.
-    deleteAccelerator: function(Client, types.DeleteAcceleratorInput): types.DeleteAcceleratorOutput, table
+    deleteAccelerator: function(Client, types.DeleteAcceleratorInput): Operation<types.DeleteAcceleratorOutput>
     -- Delete a cross-account attachment. When you delete an attachment, Global Accelerator revokes the permission
     -- to use the resources in the attachment from all principals in the list of principals. Global Accelerator
     -- revokes the permission for specific resources.
     -- For more information, see
     -- Working with cross-account attachments and resources in Global Accelerator in the
     -- Global Accelerator Developer Guide.
-    deleteCrossAccountAttachment: function(Client, types.DeleteCrossAccountAttachmentInput): types.DeleteCrossAccountAttachmentOutput, table
+    deleteCrossAccountAttachment: function(Client, types.DeleteCrossAccountAttachmentInput): Operation<types.DeleteCrossAccountAttachmentOutput>
     -- Delete a custom routing accelerator. Before you can delete an accelerator, you must disable it and remove all dependent resources
     -- (listeners and endpoint groups). To disable the accelerator, update the accelerator to set Enabled to false.
     -- When you create a custom routing accelerator, by default, Global Accelerator provides you with a set of two static IP addresses.
@@ -124,67 +128,67 @@ local record Client
     -- can use IAM policies with Global Accelerator to limit the users who have permissions to delete an accelerator. For more information,
     -- see Identity and access management in
     -- the Global Accelerator Developer Guide.
-    deleteCustomRoutingAccelerator: function(Client, types.DeleteCustomRoutingAcceleratorInput): types.DeleteCustomRoutingAcceleratorOutput, table
+    deleteCustomRoutingAccelerator: function(Client, types.DeleteCustomRoutingAcceleratorInput): Operation<types.DeleteCustomRoutingAcceleratorOutput>
     -- Delete an endpoint group from a listener for a custom routing accelerator.
-    deleteCustomRoutingEndpointGroup: function(Client, types.DeleteCustomRoutingEndpointGroupInput): types.DeleteCustomRoutingEndpointGroupOutput, table
+    deleteCustomRoutingEndpointGroup: function(Client, types.DeleteCustomRoutingEndpointGroupInput): Operation<types.DeleteCustomRoutingEndpointGroupOutput>
     -- Delete a listener for a custom routing accelerator.
-    deleteCustomRoutingListener: function(Client, types.DeleteCustomRoutingListenerInput): types.DeleteCustomRoutingListenerOutput, table
+    deleteCustomRoutingListener: function(Client, types.DeleteCustomRoutingListenerInput): Operation<types.DeleteCustomRoutingListenerOutput>
     -- Delete an endpoint group from a listener.
-    deleteEndpointGroup: function(Client, types.DeleteEndpointGroupInput): types.DeleteEndpointGroupOutput, table
+    deleteEndpointGroup: function(Client, types.DeleteEndpointGroupInput): Operation<types.DeleteEndpointGroupOutput>
     -- Delete a listener from an accelerator.
-    deleteListener: function(Client, types.DeleteListenerInput): types.DeleteListenerOutput, table
+    deleteListener: function(Client, types.DeleteListenerInput): Operation<types.DeleteListenerOutput>
     -- Specify the Amazon EC2 instance (destination) IP addresses and ports for a VPC subnet endpoint that cannot receive traffic
     -- for a custom routing accelerator. You can deny traffic to all destinations in the VPC endpoint, or deny traffic to a
     -- specified list of destination IP addresses and ports. Note that you cannot specify IP addresses
     -- or ports outside of the range that you configured for the endpoint group.
     -- After you make changes, you can verify that the updates are complete by checking the status of your
     -- accelerator: the status changes from IN_PROGRESS to DEPLOYED.
-    denyCustomRoutingTraffic: function(Client, types.DenyCustomRoutingTrafficInput): types.DenyCustomRoutingTrafficOutput, table
+    denyCustomRoutingTraffic: function(Client, types.DenyCustomRoutingTrafficInput): Operation<types.DenyCustomRoutingTrafficOutput>
     -- Releases the specified address range that you provisioned to use with your Amazon Web Services resources
     -- through bring your own IP addresses (BYOIP) and deletes the corresponding address pool.
     -- Before you can release an address range, you must stop advertising it by using WithdrawByoipCidr and you must not have
     -- any accelerators that are using static IP addresses allocated from its address range.
     -- For more information, see Bring
     -- your own IP addresses (BYOIP) in the Global Accelerator Developer Guide.
-    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput): types.DeprovisionByoipCidrOutput, table
+    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput): Operation<types.DeprovisionByoipCidrOutput>
     -- Describe an accelerator.
-    describeAccelerator: function(Client, types.DescribeAcceleratorInput): types.DescribeAcceleratorOutput, table
+    describeAccelerator: function(Client, types.DescribeAcceleratorInput): Operation<types.DescribeAcceleratorOutput>
     -- Describe the attributes of an accelerator.
-    describeAcceleratorAttributes: function(Client, types.DescribeAcceleratorAttributesInput): types.DescribeAcceleratorAttributesOutput, table
+    describeAcceleratorAttributes: function(Client, types.DescribeAcceleratorAttributesInput): Operation<types.DescribeAcceleratorAttributesOutput>
     -- Gets configuration information about a cross-account attachment.
-    describeCrossAccountAttachment: function(Client, types.DescribeCrossAccountAttachmentInput): types.DescribeCrossAccountAttachmentOutput, table
+    describeCrossAccountAttachment: function(Client, types.DescribeCrossAccountAttachmentInput): Operation<types.DescribeCrossAccountAttachmentOutput>
     -- Describe a custom routing accelerator.
-    describeCustomRoutingAccelerator: function(Client, types.DescribeCustomRoutingAcceleratorInput): types.DescribeCustomRoutingAcceleratorOutput, table
+    describeCustomRoutingAccelerator: function(Client, types.DescribeCustomRoutingAcceleratorInput): Operation<types.DescribeCustomRoutingAcceleratorOutput>
     -- Describe the attributes of a custom routing accelerator.
-    describeCustomRoutingAcceleratorAttributes: function(Client, types.DescribeCustomRoutingAcceleratorAttributesInput): types.DescribeCustomRoutingAcceleratorAttributesOutput, table
+    describeCustomRoutingAcceleratorAttributes: function(Client, types.DescribeCustomRoutingAcceleratorAttributesInput): Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
     -- Describe an endpoint group for a custom routing accelerator.
-    describeCustomRoutingEndpointGroup: function(Client, types.DescribeCustomRoutingEndpointGroupInput): types.DescribeCustomRoutingEndpointGroupOutput, table
+    describeCustomRoutingEndpointGroup: function(Client, types.DescribeCustomRoutingEndpointGroupInput): Operation<types.DescribeCustomRoutingEndpointGroupOutput>
     -- The description of a listener for a custom routing accelerator.
-    describeCustomRoutingListener: function(Client, types.DescribeCustomRoutingListenerInput): types.DescribeCustomRoutingListenerOutput, table
+    describeCustomRoutingListener: function(Client, types.DescribeCustomRoutingListenerInput): Operation<types.DescribeCustomRoutingListenerOutput>
     -- Describe an endpoint group.
-    describeEndpointGroup: function(Client, types.DescribeEndpointGroupInput): types.DescribeEndpointGroupOutput, table
+    describeEndpointGroup: function(Client, types.DescribeEndpointGroupInput): Operation<types.DescribeEndpointGroupOutput>
     -- Describe a listener.
-    describeListener: function(Client, types.DescribeListenerInput): types.DescribeListenerOutput, table
+    describeListener: function(Client, types.DescribeListenerInput): Operation<types.DescribeListenerOutput>
     -- List the accelerators for an Amazon Web Services account.
-    listAccelerators: function(Client, types.ListAcceleratorsInput): types.ListAcceleratorsOutput, table
+    listAccelerators: function(Client, types.ListAcceleratorsInput): Operation<types.ListAcceleratorsOutput>
     -- Lists the IP address ranges that were specified in calls to ProvisionByoipCidr, including
     -- the current state and a history of state changes.
-    listByoipCidrs: function(Client, types.ListByoipCidrsInput): types.ListByoipCidrsOutput, table
+    listByoipCidrs: function(Client, types.ListByoipCidrsInput): Operation<types.ListByoipCidrsOutput>
     -- List the cross-account attachments that have been created in Global Accelerator.
-    listCrossAccountAttachments: function(Client, types.ListCrossAccountAttachmentsInput): types.ListCrossAccountAttachmentsOutput, table
+    listCrossAccountAttachments: function(Client, types.ListCrossAccountAttachmentsInput): Operation<types.ListCrossAccountAttachmentsOutput>
     -- List the accounts that have cross-account resources.
     -- For more information, see
     -- Working with cross-account attachments and resources in Global Accelerator in the
     -- Global Accelerator Developer Guide.
-    listCrossAccountResourceAccounts: function(Client, types.ListCrossAccountResourceAccountsInput): types.ListCrossAccountResourceAccountsOutput, table
+    listCrossAccountResourceAccounts: function(Client, types.ListCrossAccountResourceAccountsInput): Operation<types.ListCrossAccountResourceAccountsOutput>
     -- List the cross-account resources available to work with.
-    listCrossAccountResources: function(Client, types.ListCrossAccountResourcesInput): types.ListCrossAccountResourcesOutput, table
+    listCrossAccountResources: function(Client, types.ListCrossAccountResourcesInput): Operation<types.ListCrossAccountResourcesOutput>
     -- List the custom routing accelerators for an Amazon Web Services account.
-    listCustomRoutingAccelerators: function(Client, types.ListCustomRoutingAcceleratorsInput): types.ListCustomRoutingAcceleratorsOutput, table
+    listCustomRoutingAccelerators: function(Client, types.ListCustomRoutingAcceleratorsInput): Operation<types.ListCustomRoutingAcceleratorsOutput>
     -- List the endpoint groups that are associated with a listener for a custom routing accelerator.
-    listCustomRoutingEndpointGroups: function(Client, types.ListCustomRoutingEndpointGroupsInput): types.ListCustomRoutingEndpointGroupsOutput, table
+    listCustomRoutingEndpointGroups: function(Client, types.ListCustomRoutingEndpointGroupsInput): Operation<types.ListCustomRoutingEndpointGroupsOutput>
     -- List the listeners for a custom routing accelerator.
-    listCustomRoutingListeners: function(Client, types.ListCustomRoutingListenersInput): types.ListCustomRoutingListenersOutput, table
+    listCustomRoutingListeners: function(Client, types.ListCustomRoutingListenersInput): Operation<types.ListCustomRoutingListenersOutput>
     -- Provides a complete mapping from the public accelerator IP address and port to destination EC2 instance
     -- IP addresses and ports in the virtual public cloud (VPC) subnet endpoint for a custom routing accelerator.
     -- For each subnet endpoint that you add, Global Accelerator creates a new static port mapping for the accelerator. The port
@@ -194,29 +198,29 @@ local record Client
     -- in your subnet, the port mappings don't change, because the mappings are created when you add the subnet to Global Accelerator.
     -- The mappings also include a flag for each destination denoting which destination IP addresses and
     -- ports are allowed or denied traffic.
-    listCustomRoutingPortMappings: function(Client, types.ListCustomRoutingPortMappingsInput): types.ListCustomRoutingPortMappingsOutput, table
+    listCustomRoutingPortMappings: function(Client, types.ListCustomRoutingPortMappingsInput): Operation<types.ListCustomRoutingPortMappingsOutput>
     -- List the port mappings for a specific EC2 instance (destination) in a VPC subnet endpoint. The
     -- response is the mappings for one destination IP address. This is useful when your subnet endpoint has mappings that
     -- span multiple custom routing accelerators in your account, or for scenarios where you only want to
     -- list the port mappings for a specific destination instance.
-    listCustomRoutingPortMappingsByDestination: function(Client, types.ListCustomRoutingPortMappingsByDestinationInput): types.ListCustomRoutingPortMappingsByDestinationOutput, table
+    listCustomRoutingPortMappingsByDestination: function(Client, types.ListCustomRoutingPortMappingsByDestinationInput): Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
     -- List the endpoint groups that are associated with a listener.
-    listEndpointGroups: function(Client, types.ListEndpointGroupsInput): types.ListEndpointGroupsOutput, table
+    listEndpointGroups: function(Client, types.ListEndpointGroupsInput): Operation<types.ListEndpointGroupsOutput>
     -- List the listeners for an accelerator.
-    listListeners: function(Client, types.ListListenersInput): types.ListListenersOutput, table
+    listListeners: function(Client, types.ListListenersInput): Operation<types.ListListenersOutput>
     -- List all tags for an accelerator.
     -- For more information, see Tagging
     -- in Global Accelerator in the Global Accelerator Developer Guide.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Provisions an IP address range to use with your Amazon Web Services resources through bring your own IP
     -- addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned,
     -- it is ready to be advertised using
     -- AdvertiseByoipCidr.
     -- For more information, see Bring your own
     -- IP addresses (BYOIP) in the Global Accelerator Developer Guide.
-    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput): types.ProvisionByoipCidrOutput, table
+    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput): Operation<types.ProvisionByoipCidrOutput>
     -- Remove endpoints from a custom routing accelerator.
-    removeCustomRoutingEndpoints: function(Client, types.RemoveCustomRoutingEndpointsInput): types.RemoveCustomRoutingEndpointsOutput, table
+    removeCustomRoutingEndpoints: function(Client, types.RemoveCustomRoutingEndpointsInput): Operation<types.RemoveCustomRoutingEndpointsOutput>
     -- Remove endpoints from an endpoint group.
     -- The RemoveEndpoints API operation is the recommended option for removing endpoints. The alternative is to remove
     -- endpoints by updating an endpoint group by using the
@@ -228,16 +232,16 @@ local record Client
     -- It's faster, because Global Accelerator doesn't need to resolve any endpoints. With the
     -- UpdateEndpointGroup API operation, Global Accelerator must resolve all of the endpoints that
     -- remain in the group.
-    removeEndpoints: function(Client, types.RemoveEndpointsInput): types.RemoveEndpointsOutput, table
+    removeEndpoints: function(Client, types.RemoveEndpointsInput): Operation<types.RemoveEndpointsOutput>
     -- Add tags to an accelerator resource.
     -- For more information, see Tagging
     -- in Global Accelerator in the Global Accelerator Developer Guide.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Remove tags from a Global Accelerator resource. When you specify a tag key, the action removes both that key and its associated value.
     -- The operation succeeds even if you attempt to remove tags from an accelerator that was already removed.
     -- For more information, see Tagging
     -- in Global Accelerator in the Global Accelerator Developer Guide.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Update an accelerator to make changes, such as the following:
     -- Change the name of the accelerator.
     -- Disable the accelerator so that it no longer accepts or routes traffic, or so that you can delete it.
@@ -249,26 +253,26 @@ local record Client
     -- Global Accelerator is a global service that supports endpoints in multiple Amazon Web Services Regions but you must specify the
     -- US West (Oregon) Region to create, update, or otherwise work with accelerators. That is, for example, specify --region us-west-2
     -- on Amazon Web Services CLI commands.
-    updateAccelerator: function(Client, types.UpdateAcceleratorInput): types.UpdateAcceleratorOutput, table
+    updateAccelerator: function(Client, types.UpdateAcceleratorInput): Operation<types.UpdateAcceleratorOutput>
     -- Update the attributes for an accelerator.
-    updateAcceleratorAttributes: function(Client, types.UpdateAcceleratorAttributesInput): types.UpdateAcceleratorAttributesOutput, table
+    updateAcceleratorAttributes: function(Client, types.UpdateAcceleratorAttributesInput): Operation<types.UpdateAcceleratorAttributesOutput>
     -- Update a cross-account attachment to add or remove principals or resources. When you update
     -- an attachment to remove a principal (account ID or accelerator) or a resource, Global Accelerator
     -- revokes the permission for specific resources.
     -- For more information, see
     -- Working with cross-account attachments and resources in Global Accelerator in the
     -- Global Accelerator Developer Guide.
-    updateCrossAccountAttachment: function(Client, types.UpdateCrossAccountAttachmentInput): types.UpdateCrossAccountAttachmentOutput, table
+    updateCrossAccountAttachment: function(Client, types.UpdateCrossAccountAttachmentInput): Operation<types.UpdateCrossAccountAttachmentOutput>
     -- Update a custom routing accelerator.
-    updateCustomRoutingAccelerator: function(Client, types.UpdateCustomRoutingAcceleratorInput): types.UpdateCustomRoutingAcceleratorOutput, table
+    updateCustomRoutingAccelerator: function(Client, types.UpdateCustomRoutingAcceleratorInput): Operation<types.UpdateCustomRoutingAcceleratorOutput>
     -- Update the attributes for a custom routing accelerator.
-    updateCustomRoutingAcceleratorAttributes: function(Client, types.UpdateCustomRoutingAcceleratorAttributesInput): types.UpdateCustomRoutingAcceleratorAttributesOutput, table
+    updateCustomRoutingAcceleratorAttributes: function(Client, types.UpdateCustomRoutingAcceleratorAttributesInput): Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
     -- Update a listener for a custom routing accelerator.
-    updateCustomRoutingListener: function(Client, types.UpdateCustomRoutingListenerInput): types.UpdateCustomRoutingListenerOutput, table
+    updateCustomRoutingListener: function(Client, types.UpdateCustomRoutingListenerInput): Operation<types.UpdateCustomRoutingListenerOutput>
     -- Update an endpoint group. A resource must be valid and active when you add it as an endpoint.
-    updateEndpointGroup: function(Client, types.UpdateEndpointGroupInput): types.UpdateEndpointGroupOutput, table
+    updateEndpointGroup: function(Client, types.UpdateEndpointGroupInput): Operation<types.UpdateEndpointGroupOutput>
     -- Update a listener.
-    updateListener: function(Client, types.UpdateListenerInput): types.UpdateListenerOutput, table
+    updateListener: function(Client, types.UpdateListenerInput): Operation<types.UpdateListenerOutput>
     -- Stops advertising an address range that is provisioned as an address pool.
     -- You can perform this operation at most once every 10 seconds, even if you specify different address
     -- ranges each time.
@@ -276,7 +280,7 @@ local record Client
     -- propagation delays.
     -- For more information, see Bring your own
     -- IP addresses (BYOIP) in the Global Accelerator Developer Guide.
-    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput): types.WithdrawByoipCidrOutput, table
+    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput): Operation<types.WithdrawByoipCidrOutput>
 end
 
 local record M

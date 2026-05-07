@@ -2,13 +2,17 @@
 
 local types = require("greengrassv2.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a Greengrass service role with IoT Greengrass for your Amazon Web Services account in this Amazon Web Services Region. IoT Greengrass
     -- uses this role to verify the identity of client devices and manage core device connectivity
     -- information. The role must include the AWSGreengrassResourceAccessRolePolicy managed policy or a custom policy that
     -- defines equivalent permissions for the IoT Greengrass features that you use. For more information, see
     -- Greengrass service role in the IoT Greengrass Version 2 Developer Guide.
-    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput): types.AssociateServiceRoleToAccountOutput, table
+    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput): Operation<types.AssociateServiceRoleToAccountOutput>
     -- Associates a list of client devices with a core device. Use this API operation to specify
     -- which client devices can discover a core device through cloud discovery. With cloud discovery,
     -- client devices connect to IoT Greengrass to retrieve associated core devices' connectivity information
@@ -19,15 +23,15 @@ local record Client
     -- data to Amazon Web Services IoT Core and interact with client devices in Greengrass components. For more information,
     -- see Interact with
     -- local IoT devices in the IoT Greengrass V2 Developer Guide.
-    batchAssociateClientDeviceWithCoreDevice: function(Client, types.BatchAssociateClientDeviceWithCoreDeviceInput): types.BatchAssociateClientDeviceWithCoreDeviceOutput, table
+    batchAssociateClientDeviceWithCoreDevice: function(Client, types.BatchAssociateClientDeviceWithCoreDeviceInput): Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
     -- Disassociates a list of client devices from a core device. After you disassociate a client
     -- device from a core device, the client device won't be able to use cloud discovery to retrieve
     -- the core device's connectivity information and certificates.
-    batchDisassociateClientDeviceFromCoreDevice: function(Client, types.BatchDisassociateClientDeviceFromCoreDeviceInput): types.BatchDisassociateClientDeviceFromCoreDeviceOutput, table
+    batchDisassociateClientDeviceFromCoreDevice: function(Client, types.BatchDisassociateClientDeviceFromCoreDeviceInput): Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
     -- Cancels a deployment. This operation cancels the deployment for devices that haven't yet
     -- received it. If a device already received the deployment, this operation doesn't change
     -- anything for that device.
-    cancelDeployment: function(Client, types.CancelDeploymentInput): types.CancelDeploymentOutput, table
+    cancelDeployment: function(Client, types.CancelDeploymentInput): Operation<types.CancelDeploymentOutput>
     -- Creates a component. Components are software that run on Greengrass core devices. After you
     -- develop and test a component on your core device, you can use this operation to upload your
     -- component to IoT Greengrass. Then, you can deploy the component to other core devices.
@@ -49,7 +53,7 @@ local record Client
     -- To create a component from a Lambda function, specify lambdaFunction when
     -- you call this operation.
     -- IoT Greengrass currently supports Lambda functions on only Linux core devices.
-    createComponentVersion: function(Client, types.CreateComponentVersionInput): types.CreateComponentVersionOutput, table
+    createComponentVersion: function(Client, types.CreateComponentVersionInput): Operation<types.CreateComponentVersionOutput>
     -- Creates a continuous deployment for a target, which is a Greengrass core device or group of core
     -- devices. When you add a new core device to a group of core devices that has a deployment, IoT Greengrass
     -- deploys that group's deployment to the new device.
@@ -61,37 +65,37 @@ local record Client
     -- deployment.
     -- For more information, see the Create deployments in the
     -- IoT Greengrass V2 Developer Guide.
-    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): Operation<types.CreateDeploymentOutput>
     -- Deletes a version of a component from IoT Greengrass.
     -- This operation deletes the component's recipe and artifacts. As a result, deployments
     -- that refer to this component version will fail. If you have deployments that use this
     -- component version, you can remove the component from the deployment or update the deployment
     -- to use a valid version.
-    deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    deleteComponent: function(Client, types.DeleteComponentInput): Operation<types.DeleteComponentOutput>
     -- Deletes a Greengrass core device, which is an IoT thing. This operation removes the core
     -- device from the list of core devices. This operation doesn't delete the IoT thing. For more
     -- information about how to delete the IoT thing, see DeleteThing in the
     -- IoT API Reference.
-    deleteCoreDevice: function(Client, types.DeleteCoreDeviceInput): types.DeleteCoreDeviceOutput, table
+    deleteCoreDevice: function(Client, types.DeleteCoreDeviceInput): Operation<types.DeleteCoreDeviceOutput>
     -- Deletes a deployment. To delete an active deployment, you must first cancel it. For more
     -- information, see CancelDeployment.
     -- Deleting a deployment doesn't affect core devices that run that deployment, because core
     -- devices store the deployment's configuration on the device. Additionally, core devices can
     -- roll back to a previous deployment that has been deleted.
-    deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    deleteDeployment: function(Client, types.DeleteDeploymentInput): Operation<types.DeleteDeploymentOutput>
     -- Retrieves metadata for a version of a component.
-    describeComponent: function(Client, types.DescribeComponentInput): types.DescribeComponentOutput, table
+    describeComponent: function(Client, types.DescribeComponentInput): Operation<types.DescribeComponentOutput>
     -- Disassociates the Greengrass service role from IoT Greengrass for your Amazon Web Services account in this Amazon Web Services Region.
     -- Without a service role, IoT Greengrass can't verify the identity of client devices or manage core device
     -- connectivity information. For more information, see Greengrass service role in
     -- the IoT Greengrass Version 2 Developer Guide.
-    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput): types.DisassociateServiceRoleFromAccountOutput, table
+    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput): Operation<types.DisassociateServiceRoleFromAccountOutput>
     -- Gets the recipe for a version of a component.
-    getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    getComponent: function(Client, types.GetComponentInput): Operation<types.GetComponentOutput>
     -- Gets the pre-signed URL to download a public or a Lambda component artifact. Core devices
     -- call this operation to identify the URL that they can use to download an artifact to
     -- install.
-    getComponentVersionArtifact: function(Client, types.GetComponentVersionArtifactInput): types.GetComponentVersionArtifactOutput, table
+    getComponentVersionArtifact: function(Client, types.GetComponentVersionArtifactInput): Operation<types.GetComponentVersionArtifactOutput>
     -- Retrieves connectivity information for a Greengrass core device.
     -- Connectivity information includes endpoints and ports where client devices
     -- can connect to an MQTT broker on the core device. When a client device
@@ -99,7 +103,7 @@ local record Client
     -- IoT Greengrass returns connectivity information for all of the core devices where the client device can
     -- connect. For more information, see Connect client devices to
     -- core devices in the IoT Greengrass Version 2 Developer Guide.
-    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput): types.GetConnectivityInfoOutput, table
+    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput): Operation<types.GetConnectivityInfoOutput>
     -- Retrieves metadata for a Greengrass core device.
     -- IoT Greengrass relies on individual devices to send status updates to the Amazon Web Services Cloud. If the
     -- IoT Greengrass Core software isn't running on the device, or if device isn't connected to the Amazon Web Services Cloud,
@@ -113,23 +117,23 @@ local record Client
     -- At a regular interval that you can configure, which defaults to 24 hours
     -- For IoT Greengrass Core v2.7.0, the core device sends status updates upon local deployment and
     -- cloud deployment
-    getCoreDevice: function(Client, types.GetCoreDeviceInput): types.GetCoreDeviceOutput, table
+    getCoreDevice: function(Client, types.GetCoreDeviceInput): Operation<types.GetCoreDeviceOutput>
     -- Gets a deployment. Deployments define the components that run on Greengrass core devices.
-    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): Operation<types.GetDeploymentOutput>
     -- Gets the service role associated with IoT Greengrass for your Amazon Web Services account in this Amazon Web Services Region.
     -- IoT Greengrass uses this role to verify the identity of client devices and manage core device
     -- connectivity information. For more information, see Greengrass service role in
     -- the IoT Greengrass Version 2 Developer Guide.
-    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput): types.GetServiceRoleForAccountOutput, table
+    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput): Operation<types.GetServiceRoleForAccountOutput>
     -- Retrieves a paginated list of client devices that are associated with a core
     -- device.
-    listClientDevicesAssociatedWithCoreDevice: function(Client, types.ListClientDevicesAssociatedWithCoreDeviceInput): types.ListClientDevicesAssociatedWithCoreDeviceOutput, table
+    listClientDevicesAssociatedWithCoreDevice: function(Client, types.ListClientDevicesAssociatedWithCoreDeviceInput): Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
     -- Retrieves a paginated list of component summaries. This list includes components that you
     -- have permission to view.
-    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): Operation<types.ListComponentsOutput>
     -- Retrieves a paginated list of all versions for a component. Greater versions are listed
     -- first.
-    listComponentVersions: function(Client, types.ListComponentVersionsInput): types.ListComponentVersionsOutput, table
+    listComponentVersions: function(Client, types.ListComponentVersionsInput): Operation<types.ListComponentVersionsOutput>
     -- Retrieves a paginated list of Greengrass core devices.
     -- IoT Greengrass relies on individual devices to send status updates to the Amazon Web Services Cloud. If the
     -- IoT Greengrass Core software isn't running on the device, or if device isn't connected to the Amazon Web Services Cloud,
@@ -147,11 +151,11 @@ local record Client
     -- At a regular interval that you can configure, which defaults to 24 hours
     -- For IoT Greengrass Core v2.7.0, the core device sends status updates upon local deployment and
     -- cloud deployment
-    listCoreDevices: function(Client, types.ListCoreDevicesInput): types.ListCoreDevicesOutput, table
+    listCoreDevices: function(Client, types.ListCoreDevicesInput): Operation<types.ListCoreDevicesOutput>
     -- Retrieves a paginated list of deployments.
-    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): Operation<types.ListDeploymentsOutput>
     -- Retrieves a paginated list of deployment jobs that IoT Greengrass sends to Greengrass core devices.
-    listEffectiveDeployments: function(Client, types.ListEffectiveDeploymentsInput): types.ListEffectiveDeploymentsOutput, table
+    listEffectiveDeployments: function(Client, types.ListEffectiveDeploymentsInput): Operation<types.ListEffectiveDeploymentsOutput>
     -- Retrieves a paginated list of the components that a Greengrass core device runs. By default,
     -- this list doesn't include components that are deployed as dependencies of other components. To
     -- include dependencies in the response, set the topologyFilter parameter to
@@ -168,9 +172,9 @@ local record Client
     -- At a regular interval that you can configure, which defaults to 24 hours
     -- For IoT Greengrass Core v2.7.0, the core device sends status updates upon local deployment and
     -- cloud deployment
-    listInstalledComponents: function(Client, types.ListInstalledComponentsInput): types.ListInstalledComponentsOutput, table
+    listInstalledComponents: function(Client, types.ListInstalledComponentsInput): Operation<types.ListInstalledComponentsOutput>
     -- Retrieves the list of tags for an IoT Greengrass resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves a list of components that meet the component, version, and platform requirements
     -- of a deployment. Greengrass core devices call this operation when they receive a deployment to
     -- identify the components to install.
@@ -184,12 +188,12 @@ local record Client
     -- don't match, then IoT Greengrass specifies to use the version from the Amazon Web Services Cloud.
     -- To use this operation, you must use the data plane API endpoint and authenticate with an
     -- IoT device certificate. For more information, see IoT Greengrass endpoints and quotas.
-    resolveComponentCandidates: function(Client, types.ResolveComponentCandidatesInput): types.ResolveComponentCandidatesOutput, table
+    resolveComponentCandidates: function(Client, types.ResolveComponentCandidatesInput): Operation<types.ResolveComponentCandidatesOutput>
     -- Adds tags to an IoT Greengrass resource. If a tag already exists for the resource, this operation
     -- updates the tag's value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag from an IoT Greengrass resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates connectivity information for a Greengrass core device.
     -- Connectivity information includes endpoints and ports where client devices
     -- can connect to an MQTT broker on the core device. When a client device
@@ -197,7 +201,7 @@ local record Client
     -- IoT Greengrass returns connectivity information for all of the core devices where the client device can
     -- connect. For more information, see Connect client devices to
     -- core devices in the IoT Greengrass Version 2 Developer Guide.
-    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput): types.UpdateConnectivityInfoOutput, table
+    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput): Operation<types.UpdateConnectivityInfoOutput>
 end
 
 local record M

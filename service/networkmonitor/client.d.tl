@@ -2,6 +2,10 @@
 
 local types = require("networkmonitor.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a monitor between a source subnet and destination IP address. Within a monitor you'll create one or more probes that monitor network traffic between your source Amazon Web Services VPC subnets and your destination IP addresses. Each probe then aggregates and sends metrics to Amazon CloudWatch.
     -- You can also create a monitor with probes using this command. For each probe, you
@@ -17,46 +21,46 @@ local record Client
     -- 56 and 8500.
     -- (Optional) tags —Key-value pairs created and assigned to the
     -- probe.
-    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createMonitor: function(Client, types.CreateMonitorInput): Operation<types.CreateMonitorOutput>
     -- Create a probe within a monitor. Once you create a probe, and it begins monitoring your
     -- network traffic, you'll incur billing charges for that probe. This action requires the
     -- monitorName parameter. Run ListMonitors to get a list of
     -- monitor names. Note the name of the monitorName you want to create the
     -- probe for.
-    createProbe: function(Client, types.CreateProbeInput): types.CreateProbeOutput, table
+    createProbe: function(Client, types.CreateProbeInput): Operation<types.CreateProbeOutput>
     -- Deletes a specified monitor.
     -- This action requires the monitorName parameter. Run
     -- ListMonitors to get a list of monitor names.
-    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): Operation<types.DeleteMonitorOutput>
     -- Deletes the specified probe. Once a probe is deleted you'll no longer incur any billing
     -- fees for that probe.
     -- This action requires both the monitorName and probeId
     -- parameters. Run ListMonitors to get a list of monitor names. Run
     -- GetMonitor to get a list of probes and probe IDs. You can only delete a
     -- single probe at a time using this action.
-    deleteProbe: function(Client, types.DeleteProbeInput): types.DeleteProbeOutput, table
+    deleteProbe: function(Client, types.DeleteProbeInput): Operation<types.DeleteProbeOutput>
     -- Returns details about a specific monitor.
     -- This action requires the monitorName parameter. Run
     -- ListMonitors to get a list of monitor names.
-    getMonitor: function(Client, types.GetMonitorInput): types.GetMonitorOutput, table
+    getMonitor: function(Client, types.GetMonitorInput): Operation<types.GetMonitorOutput>
     -- Returns the details about a probe. This action requires both the
     -- monitorName and probeId parameters. Run
     -- ListMonitors to get a list of monitor names. Run
     -- GetMonitor to get a list of probes and probe IDs.
-    getProbe: function(Client, types.GetProbeInput): types.GetProbeOutput, table
+    getProbe: function(Client, types.GetProbeInput): Operation<types.GetProbeOutput>
     -- Returns a list of all of your monitors.
-    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): Operation<types.ListMonitorsOutput>
     -- Lists the tags assigned to this resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds key-value pairs to a monitor or probe.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a key-value pair from a monitor or probe.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the aggregationPeriod for a monitor. Monitors support an
     -- aggregationPeriod of either 30 or 60 seconds.
     -- This action requires the monitorName and probeId parameter.
     -- Run ListMonitors to get a list of monitor names.
-    updateMonitor: function(Client, types.UpdateMonitorInput): types.UpdateMonitorOutput, table
+    updateMonitor: function(Client, types.UpdateMonitorInput): Operation<types.UpdateMonitorOutput>
     -- Updates a monitor probe. This action requires both the monitorName and probeId parameters. Run ListMonitors to get a list of monitor names. Run GetMonitor to get a list of probes and probe IDs.
     -- You can update the following para create a monitor with probes using this command. For
     -- each probe, you define the following:
@@ -71,7 +75,7 @@ local record Client
     -- 56 and 8500.
     -- (Optional) tags —Key-value pairs created and assigned to the
     -- probe.
-    updateProbe: function(Client, types.UpdateProbeInput): types.UpdateProbeOutput, table
+    updateProbe: function(Client, types.UpdateProbeInput): Operation<types.UpdateProbeOutput>
 end
 
 local record M

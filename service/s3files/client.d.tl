@@ -2,49 +2,53 @@
 
 local types = require("s3files.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an S3 File System Access Point for application-specific access with POSIX user identity and root directory enforcement. Access points provide a way to manage access to shared datasets in multi-tenant scenarios.
-    createAccessPoint: function(Client, types.CreateAccessPointInput): types.CreateAccessPointOutput, table
+    createAccessPoint: function(Client, types.CreateAccessPointInput): Operation<types.CreateAccessPointOutput>
     -- Creates an S3 File System resource scoped to a bucket or prefix within a bucket, enabling file system access to S3 data. To create a file system, you need an S3 bucket and an IAM role that grants the service permission to access the bucket.
-    createFileSystem: function(Client, types.CreateFileSystemInput): types.CreateFileSystemOutput, table
+    createFileSystem: function(Client, types.CreateFileSystemInput): Operation<types.CreateFileSystemOutput>
     -- Creates a mount target resource as an endpoint for mounting the S3 File System from compute resources in a specific Availability Zone and VPC. Mount targets provide network access to the file system.
-    createMountTarget: function(Client, types.CreateMountTargetInput): types.CreateMountTargetOutput, table
+    createMountTarget: function(Client, types.CreateMountTargetInput): Operation<types.CreateMountTargetOutput>
     -- Deletes an S3 File System Access Point. This operation is irreversible.
-    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): types.DeleteAccessPointOutput, table
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): Operation<types.DeleteAccessPointOutput>
     -- Deletes an S3 File System. You can optionally force deletion of a file system that has pending export data.
-    deleteFileSystem: function(Client, types.DeleteFileSystemInput): types.DeleteFileSystemOutput, table
+    deleteFileSystem: function(Client, types.DeleteFileSystemInput): Operation<types.DeleteFileSystemOutput>
     -- Deletes the IAM resource policy of an S3 File System.
-    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput): types.DeleteFileSystemPolicyOutput, table
+    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput): Operation<types.DeleteFileSystemPolicyOutput>
     -- Deletes the specified mount target. This operation is irreversible.
-    deleteMountTarget: function(Client, types.DeleteMountTargetInput): types.DeleteMountTargetOutput, table
+    deleteMountTarget: function(Client, types.DeleteMountTargetInput): Operation<types.DeleteMountTargetOutput>
     -- Returns resource information for an S3 File System Access Point.
-    getAccessPoint: function(Client, types.GetAccessPointInput): types.GetAccessPointOutput, table
+    getAccessPoint: function(Client, types.GetAccessPointInput): Operation<types.GetAccessPointOutput>
     -- Returns resource information for the specified S3 File System including status, configuration, and metadata.
-    getFileSystem: function(Client, types.GetFileSystemInput): types.GetFileSystemOutput, table
+    getFileSystem: function(Client, types.GetFileSystemInput): Operation<types.GetFileSystemOutput>
     -- Returns the IAM resource policy of an S3 File System.
-    getFileSystemPolicy: function(Client, types.GetFileSystemPolicyInput): types.GetFileSystemPolicyOutput, table
+    getFileSystemPolicy: function(Client, types.GetFileSystemPolicyInput): Operation<types.GetFileSystemPolicyOutput>
     -- Returns detailed resource information for the specified mount target including network configuration.
-    getMountTarget: function(Client, types.GetMountTargetInput): types.GetMountTargetOutput, table
+    getMountTarget: function(Client, types.GetMountTargetInput): Operation<types.GetMountTargetOutput>
     -- Returns the synchronization configuration for the specified S3 File System, including import data rules and expiration data rules.
-    getSynchronizationConfiguration: function(Client, types.GetSynchronizationConfigurationInput): types.GetSynchronizationConfigurationOutput, table
+    getSynchronizationConfiguration: function(Client, types.GetSynchronizationConfigurationInput): Operation<types.GetSynchronizationConfigurationOutput>
     -- Returns resource information for all S3 File System Access Points associated with the specified S3 File System.
-    listAccessPoints: function(Client, types.ListAccessPointsInput): types.ListAccessPointsOutput, table
+    listAccessPoints: function(Client, types.ListAccessPointsInput): Operation<types.ListAccessPointsOutput>
     -- Returns a list of all S3 File Systems owned by the account with optional filtering by bucket.
-    listFileSystems: function(Client, types.ListFileSystemsInput): types.ListFileSystemsOutput, table
+    listFileSystems: function(Client, types.ListFileSystemsInput): Operation<types.ListFileSystemsOutput>
     -- Returns resource information for all mount targets with optional filtering by file system, access point, and VPC.
-    listMountTargets: function(Client, types.ListMountTargetsInput): types.ListMountTargetsOutput, table
+    listMountTargets: function(Client, types.ListMountTargetsInput): Operation<types.ListMountTargetsOutput>
     -- Lists all tags for S3 Files resources.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or replaces the IAM resource policy for an S3 File System to control access permissions.
-    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput): types.PutFileSystemPolicyOutput, table
+    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput): Operation<types.PutFileSystemPolicyOutput>
     -- Creates or updates the synchronization configuration for the specified S3 File System, including import data rules and expiration data rules.
-    putSynchronizationConfiguration: function(Client, types.PutSynchronizationConfigurationInput): types.PutSynchronizationConfigurationOutput, table
+    putSynchronizationConfiguration: function(Client, types.PutSynchronizationConfigurationInput): Operation<types.PutSynchronizationConfigurationOutput>
     -- Creates tags for S3 Files resources using standard Amazon Web Services tagging APIs.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from S3 Files resources.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the mount target resource, specifically security group configurations.
-    updateMountTarget: function(Client, types.UpdateMountTargetInput): types.UpdateMountTargetOutput, table
+    updateMountTarget: function(Client, types.UpdateMountTargetInput): Operation<types.UpdateMountTargetOutput>
 end
 
 local record M

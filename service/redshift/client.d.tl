@@ -2,18 +2,22 @@
 
 local types = require("redshift.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Exchanges a DC1 Reserved Node for a DC2 Reserved Node with no changes to the
     -- configuration (term, payment type, or number of nodes) and no additional costs.
-    acceptReservedNodeExchange: function(Client, types.AcceptReservedNodeExchangeInput): types.AcceptReservedNodeExchangeOutput, table
+    acceptReservedNodeExchange: function(Client, types.AcceptReservedNodeExchangeInput): Operation<types.AcceptReservedNodeExchangeOutput>
     -- Adds a partner integration to a cluster.
     -- This operation authorizes a partner to push status updates for the specified database.
     -- To complete the integration, you also set up the integration on the partner website.
-    addPartner: function(Client, types.AddPartnerInput): types.AddPartnerOutput, table
+    addPartner: function(Client, types.AddPartnerInput): Operation<types.AddPartnerOutput>
     -- From a datashare consumer account, associates a datashare with the
     -- account (AssociateEntireAccount) or the specified namespace (ConsumerArn). If you make this association, the consumer
     -- can consume the datashare.
-    associateDataShareConsumer: function(Client, types.AssociateDataShareConsumerInput): types.AssociateDataShareConsumerOutput, table
+    associateDataShareConsumer: function(Client, types.AssociateDataShareConsumerInput): Operation<types.AssociateDataShareConsumerOutput>
     -- Adds an inbound (ingress) rule to an Amazon Redshift security group. Depending on whether
     -- the application accessing your cluster is running on the Internet or an Amazon EC2
     -- instance, you can authorize inbound access to either a Classless Interdomain Routing
@@ -30,25 +34,25 @@ local record Client
     -- on these IP addresses or the EC2 instance are authorized to connect to the cluster. For
     -- information about managing security groups, go to Working with Security
     -- Groups in the Amazon Redshift Cluster Management Guide.
-    authorizeClusterSecurityGroupIngress: function(Client, types.AuthorizeClusterSecurityGroupIngressInput): types.AuthorizeClusterSecurityGroupIngressOutput, table
+    authorizeClusterSecurityGroupIngress: function(Client, types.AuthorizeClusterSecurityGroupIngressInput): Operation<types.AuthorizeClusterSecurityGroupIngressOutput>
     -- From a data producer account, authorizes the sharing of a datashare with one or more
     -- consumer accounts or managing entities. To authorize a datashare for a data consumer,
     -- the producer account must have the correct access permissions.
-    authorizeDataShare: function(Client, types.AuthorizeDataShareInput): types.AuthorizeDataShareOutput, table
+    authorizeDataShare: function(Client, types.AuthorizeDataShareInput): Operation<types.AuthorizeDataShareOutput>
     -- Grants access to a cluster.
-    authorizeEndpointAccess: function(Client, types.AuthorizeEndpointAccessInput): types.AuthorizeEndpointAccessOutput, table
+    authorizeEndpointAccess: function(Client, types.AuthorizeEndpointAccessInput): Operation<types.AuthorizeEndpointAccessOutput>
     -- Authorizes the specified Amazon Web Services account to restore the specified
     -- snapshot.
     -- For more information about working with snapshots, go to
     -- Amazon Redshift Snapshots
     -- in the Amazon Redshift Cluster Management Guide.
-    authorizeSnapshotAccess: function(Client, types.AuthorizeSnapshotAccessInput): types.AuthorizeSnapshotAccessOutput, table
+    authorizeSnapshotAccess: function(Client, types.AuthorizeSnapshotAccessInput): Operation<types.AuthorizeSnapshotAccessOutput>
     -- Deletes a set of cluster snapshots.
-    batchDeleteClusterSnapshots: function(Client, types.BatchDeleteClusterSnapshotsInput): types.BatchDeleteClusterSnapshotsOutput, table
+    batchDeleteClusterSnapshots: function(Client, types.BatchDeleteClusterSnapshotsInput): Operation<types.BatchDeleteClusterSnapshotsOutput>
     -- Modifies the settings for a set of cluster snapshots.
-    batchModifyClusterSnapshots: function(Client, types.BatchModifyClusterSnapshotsInput): types.BatchModifyClusterSnapshotsOutput, table
+    batchModifyClusterSnapshots: function(Client, types.BatchModifyClusterSnapshotsInput): Operation<types.BatchModifyClusterSnapshotsOutput>
     -- Cancels a resize operation for a cluster.
-    cancelResize: function(Client, types.CancelResizeInput): types.CancelResizeOutput, table
+    cancelResize: function(Client, types.CancelResizeInput): Operation<types.CancelResizeOutput>
     -- Copies the specified automated cluster snapshot to a new manual cluster snapshot.
     -- The source must be an automated snapshot and it must be in the available
     -- state.
@@ -60,9 +64,9 @@ local record Client
     -- For more information about working with snapshots, go to
     -- Amazon Redshift Snapshots
     -- in the Amazon Redshift Cluster Management Guide.
-    copyClusterSnapshot: function(Client, types.CopyClusterSnapshotInput): types.CopyClusterSnapshotOutput, table
+    copyClusterSnapshot: function(Client, types.CopyClusterSnapshotInput): Operation<types.CopyClusterSnapshotOutput>
     -- Creates an authentication profile with the specified parameters.
-    createAuthenticationProfile: function(Client, types.CreateAuthenticationProfileInput): types.CreateAuthenticationProfileOutput, table
+    createAuthenticationProfile: function(Client, types.CreateAuthenticationProfileInput): Operation<types.CreateAuthenticationProfileOutput>
     -- Creates a new cluster with the specified parameters.
     -- To create a cluster in Virtual Private Cloud (VPC), you must provide a cluster
     -- subnet group name. The cluster subnet group identifies the subnets of your VPC that
@@ -82,7 +86,7 @@ local record Client
     -- least one public cluster within the group
     -- For more information about VPC BPA, see Block public access to VPCs and
     -- subnets in the Amazon VPC User Guide.
-    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createCluster: function(Client, types.CreateClusterInput): Operation<types.CreateClusterOutput>
     -- Creates an Amazon Redshift parameter group.
     -- Creating parameter groups is independent of creating clusters. You can associate a
     -- cluster with a parameter group when you create the cluster. You can also associate an
@@ -92,31 +96,31 @@ local record Client
     -- For more information about parameters and parameter groups, go to
     -- Amazon Redshift Parameter Groups
     -- in the Amazon Redshift Cluster Management Guide.
-    createClusterParameterGroup: function(Client, types.CreateClusterParameterGroupInput): types.CreateClusterParameterGroupOutput, table
+    createClusterParameterGroup: function(Client, types.CreateClusterParameterGroupInput): Operation<types.CreateClusterParameterGroupOutput>
     -- Creates a new Amazon Redshift security group. You use security groups to control access
     -- to non-VPC clusters.
     -- For information about managing security groups, go to
     -- Amazon Redshift Cluster Security Groups in the
     -- Amazon Redshift Cluster Management Guide.
-    createClusterSecurityGroup: function(Client, types.CreateClusterSecurityGroupInput): types.CreateClusterSecurityGroupOutput, table
+    createClusterSecurityGroup: function(Client, types.CreateClusterSecurityGroupInput): Operation<types.CreateClusterSecurityGroupOutput>
     -- Creates a manual snapshot of the specified cluster. The cluster must be in the
     -- available state.
     -- For more information about working with snapshots, go to
     -- Amazon Redshift Snapshots
     -- in the Amazon Redshift Cluster Management Guide.
-    createClusterSnapshot: function(Client, types.CreateClusterSnapshotInput): types.CreateClusterSnapshotOutput, table
+    createClusterSnapshot: function(Client, types.CreateClusterSnapshotInput): Operation<types.CreateClusterSnapshotOutput>
     -- Creates a new Amazon Redshift subnet group. You must provide a list of one or more
     -- subnets in your existing Amazon Virtual Private Cloud (Amazon VPC) when creating
     -- Amazon Redshift subnet group.
     -- For information about subnet groups, go to
     -- Amazon Redshift Cluster Subnet Groups in the
     -- Amazon Redshift Cluster Management Guide.
-    createClusterSubnetGroup: function(Client, types.CreateClusterSubnetGroupInput): types.CreateClusterSubnetGroupOutput, table
+    createClusterSubnetGroup: function(Client, types.CreateClusterSubnetGroupInput): Operation<types.CreateClusterSubnetGroupOutput>
     -- Used to create a custom domain name for a cluster. Properties include the custom domain name, the
     -- cluster the custom domain is associated with, and the certificate Amazon Resource Name (ARN).
-    createCustomDomainAssociation: function(Client, types.CreateCustomDomainAssociationInput): types.CreateCustomDomainAssociationOutput, table
+    createCustomDomainAssociation: function(Client, types.CreateCustomDomainAssociationInput): Operation<types.CreateCustomDomainAssociationOutput>
     -- Creates a Redshift-managed VPC endpoint.
-    createEndpointAccess: function(Client, types.CreateEndpointAccessInput): types.CreateEndpointAccessOutput, table
+    createEndpointAccess: function(Client, types.CreateEndpointAccessInput): Operation<types.CreateEndpointAccessOutput>
     -- Creates an Amazon Redshift event notification subscription. This action requires an ARN
     -- (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console,
     -- the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you
@@ -134,7 +138,7 @@ local record Client
     -- identifier, you will receive notice of the events for the objects of that type in your
     -- Amazon Web Services account. If you do not specify either the SourceType nor the SourceIdentifier, you
     -- will be notified of events generated from all Amazon Redshift sources belonging to your Amazon Web Services account. You must specify a source type if you specify a source ID.
-    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): types.CreateEventSubscriptionOutput, table
+    createEventSubscription: function(Client, types.CreateEventSubscriptionInput): Operation<types.CreateEventSubscriptionOutput>
     -- Creates an HSM client certificate that an Amazon Redshift cluster will use to connect to
     -- the client's HSM in order to store and retrieve the keys used to encrypt the cluster
     -- databases.
@@ -143,7 +147,7 @@ local record Client
     -- provides a cluster the information needed to store and use encryption keys in the HSM.
     -- For more information, go to Hardware Security Modules
     -- in the Amazon Redshift Cluster Management Guide.
-    createHsmClientCertificate: function(Client, types.CreateHsmClientCertificateInput): types.CreateHsmClientCertificateOutput, table
+    createHsmClientCertificate: function(Client, types.CreateHsmClientCertificateInput): Operation<types.CreateHsmClientCertificateOutput>
     -- Creates an HSM configuration that contains the information required by an Amazon Redshift
     -- cluster to store and use database encryption keys in a Hardware Security Module (HSM).
     -- After creating the HSM configuration, you can specify it as a parameter when creating a
@@ -151,36 +155,36 @@ local record Client
     -- In addition to creating an HSM configuration, you must also create an HSM client
     -- certificate. For more information, go to Hardware Security Modules
     -- in the Amazon Redshift Cluster Management Guide.
-    createHsmConfiguration: function(Client, types.CreateHsmConfigurationInput): types.CreateHsmConfigurationOutput, table
+    createHsmConfiguration: function(Client, types.CreateHsmConfigurationInput): Operation<types.CreateHsmConfigurationOutput>
     -- Creates a zero-ETL integration or S3 event integration with Amazon Redshift.
-    createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    createIntegration: function(Client, types.CreateIntegrationInput): Operation<types.CreateIntegrationOutput>
     -- Creates an Amazon Redshift application for use with IAM Identity Center.
-    createRedshiftIdcApplication: function(Client, types.CreateRedshiftIdcApplicationInput): types.CreateRedshiftIdcApplicationOutput, table
+    createRedshiftIdcApplication: function(Client, types.CreateRedshiftIdcApplicationInput): Operation<types.CreateRedshiftIdcApplicationOutput>
     -- Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action.
     -- For example, you can create a schedule of when to run the ResizeCluster API operation.
-    createScheduledAction: function(Client, types.CreateScheduledActionInput): types.CreateScheduledActionOutput, table
+    createScheduledAction: function(Client, types.CreateScheduledActionInput): Operation<types.CreateScheduledActionOutput>
     -- Creates a snapshot copy grant that permits Amazon Redshift to use an encrypted symmetric key
     -- from Key Management Service (KMS) to encrypt copied snapshots in a
     -- destination region.
     -- For more information about managing snapshot copy grants, go to
     -- Amazon Redshift Database Encryption
     -- in the Amazon Redshift Cluster Management Guide.
-    createSnapshotCopyGrant: function(Client, types.CreateSnapshotCopyGrantInput): types.CreateSnapshotCopyGrantOutput, table
+    createSnapshotCopyGrant: function(Client, types.CreateSnapshotCopyGrantInput): Operation<types.CreateSnapshotCopyGrantOutput>
     -- Create a snapshot schedule that can be associated to a cluster and which overrides the default system backup schedule.
-    createSnapshotSchedule: function(Client, types.CreateSnapshotScheduleInput): types.CreateSnapshotScheduleOutput, table
+    createSnapshotSchedule: function(Client, types.CreateSnapshotScheduleInput): Operation<types.CreateSnapshotScheduleOutput>
     -- Adds tags to a cluster.
     -- A resource can have up to 50 tags. If you try to create more than 50 tags for a
     -- resource, you will receive an error and the attempt will fail.
     -- If you specify a key that already exists for the resource, the value for that key
     -- will be updated with the new value.
-    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createTags: function(Client, types.CreateTagsInput): Operation<types.CreateTagsOutput>
     -- Creates a usage limit for a specified Amazon Redshift feature on a cluster.
     -- The usage limit is identified by the returned usage limit identifier.
-    createUsageLimit: function(Client, types.CreateUsageLimitInput): types.CreateUsageLimitOutput, table
+    createUsageLimit: function(Client, types.CreateUsageLimitInput): Operation<types.CreateUsageLimitOutput>
     -- From a datashare producer account, removes authorization from the specified datashare.
-    deauthorizeDataShare: function(Client, types.DeauthorizeDataShareInput): types.DeauthorizeDataShareOutput, table
+    deauthorizeDataShare: function(Client, types.DeauthorizeDataShareInput): Operation<types.DeauthorizeDataShareOutput>
     -- Deletes an authentication profile.
-    deleteAuthenticationProfile: function(Client, types.DeleteAuthenticationProfileInput): types.DeleteAuthenticationProfileOutput, table
+    deleteAuthenticationProfile: function(Client, types.DeleteAuthenticationProfileInput): Operation<types.DeleteAuthenticationProfileOutput>
     -- Deletes a previously provisioned cluster without its final snapshot being created. A successful response from the web
     -- service indicates that the request was received correctly. Use DescribeClusters to monitor the status of the deletion. The delete
     -- operation cannot be canceled or reverted once submitted.
@@ -196,18 +200,18 @@ local record Client
     -- For more information about managing clusters, go to
     -- Amazon Redshift Clusters
     -- in the Amazon Redshift Cluster Management Guide.
-    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): Operation<types.DeleteClusterOutput>
     -- Deletes a specified Amazon Redshift parameter group.
     -- You cannot delete a parameter group if it is associated with a
     -- cluster.
-    deleteClusterParameterGroup: function(Client, types.DeleteClusterParameterGroupInput): types.DeleteClusterParameterGroupOutput, table
+    deleteClusterParameterGroup: function(Client, types.DeleteClusterParameterGroupInput): Operation<types.DeleteClusterParameterGroupOutput>
     -- Deletes an Amazon Redshift security group.
     -- You cannot delete a security group that is associated with any clusters. You
     -- cannot delete the default security group.
     -- For information about managing security groups, go to
     -- Amazon Redshift Cluster Security Groups in the
     -- Amazon Redshift Cluster Management Guide.
-    deleteClusterSecurityGroup: function(Client, types.DeleteClusterSecurityGroupInput): types.DeleteClusterSecurityGroupOutput, table
+    deleteClusterSecurityGroup: function(Client, types.DeleteClusterSecurityGroupInput): Operation<types.DeleteClusterSecurityGroupOutput>
     -- Deletes the specified manual snapshot. The snapshot must be in the
     -- available state, with no other users authorized to access the snapshot.
     -- Unlike automated snapshots, manual snapshots are retained even after you delete
@@ -215,46 +219,46 @@ local record Client
     -- snapshot explicitly to avoid getting charged. If other accounts are authorized to access
     -- the snapshot, you must revoke all of the authorizations before you can delete the
     -- snapshot.
-    deleteClusterSnapshot: function(Client, types.DeleteClusterSnapshotInput): types.DeleteClusterSnapshotOutput, table
+    deleteClusterSnapshot: function(Client, types.DeleteClusterSnapshotInput): Operation<types.DeleteClusterSnapshotOutput>
     -- Deletes the specified cluster subnet group.
-    deleteClusterSubnetGroup: function(Client, types.DeleteClusterSubnetGroupInput): types.DeleteClusterSubnetGroupOutput, table
+    deleteClusterSubnetGroup: function(Client, types.DeleteClusterSubnetGroupInput): Operation<types.DeleteClusterSubnetGroupOutput>
     -- Contains information about deleting a custom domain association for a cluster.
-    deleteCustomDomainAssociation: function(Client, types.DeleteCustomDomainAssociationInput): types.DeleteCustomDomainAssociationOutput, table
+    deleteCustomDomainAssociation: function(Client, types.DeleteCustomDomainAssociationInput): Operation<types.DeleteCustomDomainAssociationOutput>
     -- Deletes a Redshift-managed VPC endpoint.
-    deleteEndpointAccess: function(Client, types.DeleteEndpointAccessInput): types.DeleteEndpointAccessOutput, table
+    deleteEndpointAccess: function(Client, types.DeleteEndpointAccessInput): Operation<types.DeleteEndpointAccessOutput>
     -- Deletes an Amazon Redshift event notification subscription.
-    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): types.DeleteEventSubscriptionOutput, table
+    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput): Operation<types.DeleteEventSubscriptionOutput>
     -- Deletes the specified HSM client certificate.
-    deleteHsmClientCertificate: function(Client, types.DeleteHsmClientCertificateInput): types.DeleteHsmClientCertificateOutput, table
+    deleteHsmClientCertificate: function(Client, types.DeleteHsmClientCertificateInput): Operation<types.DeleteHsmClientCertificateOutput>
     -- Deletes the specified Amazon Redshift HSM configuration.
-    deleteHsmConfiguration: function(Client, types.DeleteHsmConfigurationInput): types.DeleteHsmConfigurationOutput, table
+    deleteHsmConfiguration: function(Client, types.DeleteHsmConfigurationInput): Operation<types.DeleteHsmConfigurationOutput>
     -- Deletes a zero-ETL integration or S3 event integration with Amazon Redshift.
-    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): Operation<types.DeleteIntegrationOutput>
     -- Deletes a partner integration from a cluster. Data can still flow to the cluster until the integration is deleted at the partner's website.
-    deletePartner: function(Client, types.DeletePartnerInput): types.DeletePartnerOutput, table
+    deletePartner: function(Client, types.DeletePartnerInput): Operation<types.DeletePartnerOutput>
     -- Deletes an Amazon Redshift IAM Identity Center application.
-    deleteRedshiftIdcApplication: function(Client, types.DeleteRedshiftIdcApplicationInput): types.DeleteRedshiftIdcApplicationOutput, table
+    deleteRedshiftIdcApplication: function(Client, types.DeleteRedshiftIdcApplicationInput): Operation<types.DeleteRedshiftIdcApplicationOutput>
     -- Deletes the resource policy for a specified resource.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes a scheduled action.
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): types.DeleteScheduledActionOutput, table
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): Operation<types.DeleteScheduledActionOutput>
     -- Deletes the specified snapshot copy grant.
-    deleteSnapshotCopyGrant: function(Client, types.DeleteSnapshotCopyGrantInput): types.DeleteSnapshotCopyGrantOutput, table
+    deleteSnapshotCopyGrant: function(Client, types.DeleteSnapshotCopyGrantInput): Operation<types.DeleteSnapshotCopyGrantOutput>
     -- Deletes a snapshot schedule.
-    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput): types.DeleteSnapshotScheduleOutput, table
+    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput): Operation<types.DeleteSnapshotScheduleOutput>
     -- Deletes tags from a resource. You must provide the ARN of the resource
     -- from which you want to delete the tag or tags.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Deletes a usage limit from a cluster.
-    deleteUsageLimit: function(Client, types.DeleteUsageLimitInput): types.DeleteUsageLimitOutput, table
+    deleteUsageLimit: function(Client, types.DeleteUsageLimitInput): Operation<types.DeleteUsageLimitOutput>
     -- Deregisters a cluster or serverless namespace from the Amazon Web Services Glue Data Catalog.
-    deregisterNamespace: function(Client, types.DeregisterNamespaceInput): types.DeregisterNamespaceOutput, table
+    deregisterNamespace: function(Client, types.DeregisterNamespaceInput): Operation<types.DeregisterNamespaceOutput>
     -- Returns a list of attributes attached to an account
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): Operation<types.DescribeAccountAttributesOutput>
     -- Describes an authentication profile.
-    describeAuthenticationProfiles: function(Client, types.DescribeAuthenticationProfilesInput): types.DescribeAuthenticationProfilesOutput, table
+    describeAuthenticationProfiles: function(Client, types.DescribeAuthenticationProfilesInput): Operation<types.DescribeAuthenticationProfilesOutput>
     -- Returns an array of ClusterDbRevision objects.
-    describeClusterDbRevisions: function(Client, types.DescribeClusterDbRevisionsInput): types.DescribeClusterDbRevisionsOutput, table
+    describeClusterDbRevisions: function(Client, types.DescribeClusterDbRevisionsInput): Operation<types.DescribeClusterDbRevisionsOutput>
     -- Returns a list of Amazon Redshift parameter groups, including parameter groups you
     -- created and the default parameter group. For each parameter group, the response includes
     -- the parameter group name, description, and parameter group family name. You can
@@ -271,7 +275,7 @@ local record Client
     -- If both tag keys and values are omitted from the request, parameter groups are
     -- returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeClusterParameterGroups: function(Client, types.DescribeClusterParameterGroupsInput): types.DescribeClusterParameterGroupsOutput, table
+    describeClusterParameterGroups: function(Client, types.DescribeClusterParameterGroupsInput): Operation<types.DescribeClusterParameterGroupsOutput>
     -- Returns a detailed list of parameters contained within the specified Amazon Redshift
     -- parameter group. For each parameter the response includes information such as parameter
     -- name, description, data type, value, whether the parameter value is modifiable, and so
@@ -283,7 +287,7 @@ local record Client
     -- For more information about parameters and parameter groups, go to
     -- Amazon Redshift Parameter Groups
     -- in the Amazon Redshift Cluster Management Guide.
-    describeClusterParameters: function(Client, types.DescribeClusterParametersInput): types.DescribeClusterParametersOutput, table
+    describeClusterParameters: function(Client, types.DescribeClusterParametersInput): Operation<types.DescribeClusterParametersOutput>
     -- Returns properties of provisioned clusters including general cluster properties,
     -- cluster database properties, maintenance and backup properties, and security and access
     -- properties. This operation supports pagination.
@@ -297,7 +301,7 @@ local record Client
     -- combination of those values are returned.
     -- If both tag keys and values are omitted from the request, clusters are returned
     -- regardless of whether they have tag keys or values associated with them.
-    describeClusters: function(Client, types.DescribeClustersInput): types.DescribeClustersOutput, table
+    describeClusters: function(Client, types.DescribeClustersInput): Operation<types.DescribeClustersOutput>
     -- Returns information about Amazon Redshift security groups. If the name of a security
     -- group is specified, the response will contain only information about only that security
     -- group.
@@ -312,7 +316,7 @@ local record Client
     -- If both tag keys and values are omitted from the request, security groups are
     -- returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeClusterSecurityGroups: function(Client, types.DescribeClusterSecurityGroupsInput): types.DescribeClusterSecurityGroupsOutput, table
+    describeClusterSecurityGroups: function(Client, types.DescribeClusterSecurityGroupsInput): Operation<types.DescribeClusterSecurityGroupsOutput>
     -- Returns one or more snapshot objects, which contain metadata about your cluster
     -- snapshots. By default, this operation returns information about all snapshots of all
     -- clusters that are owned by your Amazon Web Services account. No information is returned for
@@ -326,7 +330,7 @@ local record Client
     -- parameters.
     -- If both tag keys and values are omitted from the request, snapshots are returned
     -- regardless of whether they have tag keys or values associated with them.
-    describeClusterSnapshots: function(Client, types.DescribeClusterSnapshotsInput): types.DescribeClusterSnapshotsOutput, table
+    describeClusterSnapshots: function(Client, types.DescribeClusterSnapshotsInput): Operation<types.DescribeClusterSnapshotsOutput>
     -- Returns one or more cluster subnet group objects, which contain metadata about your
     -- cluster subnet groups. By default, this operation returns information about all cluster
     -- subnet groups that are defined in your Amazon Web Services account.
@@ -338,43 +342,43 @@ local record Client
     -- If both tag keys and values are omitted from the request, subnet groups are
     -- returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeClusterSubnetGroups: function(Client, types.DescribeClusterSubnetGroupsInput): types.DescribeClusterSubnetGroupsOutput, table
+    describeClusterSubnetGroups: function(Client, types.DescribeClusterSubnetGroupsInput): Operation<types.DescribeClusterSubnetGroupsOutput>
     -- Returns a list of all the available maintenance tracks.
-    describeClusterTracks: function(Client, types.DescribeClusterTracksInput): types.DescribeClusterTracksOutput, table
+    describeClusterTracks: function(Client, types.DescribeClusterTracksInput): Operation<types.DescribeClusterTracksOutput>
     -- Returns descriptions of the available Amazon Redshift cluster versions. You can call this
     -- operation even before creating any clusters to learn more about the Amazon Redshift versions.
     -- For more information about managing clusters, go to
     -- Amazon Redshift Clusters
     -- in the Amazon Redshift Cluster Management Guide.
-    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput): types.DescribeClusterVersionsOutput, table
+    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput): Operation<types.DescribeClusterVersionsOutput>
     -- Contains information about custom domain associations for a cluster.
-    describeCustomDomainAssociations: function(Client, types.DescribeCustomDomainAssociationsInput): types.DescribeCustomDomainAssociationsOutput, table
+    describeCustomDomainAssociations: function(Client, types.DescribeCustomDomainAssociationsInput): Operation<types.DescribeCustomDomainAssociationsOutput>
     -- Shows the status of any inbound or outbound datashares available in the specified
     -- account.
-    describeDataShares: function(Client, types.DescribeDataSharesInput): types.DescribeDataSharesOutput, table
+    describeDataShares: function(Client, types.DescribeDataSharesInput): Operation<types.DescribeDataSharesOutput>
     -- Returns a list of datashares where the account identifier being called is a consumer account identifier.
-    describeDataSharesForConsumer: function(Client, types.DescribeDataSharesForConsumerInput): types.DescribeDataSharesForConsumerOutput, table
+    describeDataSharesForConsumer: function(Client, types.DescribeDataSharesForConsumerInput): Operation<types.DescribeDataSharesForConsumerOutput>
     -- Returns a list of datashares when the account identifier being called is a producer account identifier.
-    describeDataSharesForProducer: function(Client, types.DescribeDataSharesForProducerInput): types.DescribeDataSharesForProducerOutput, table
+    describeDataSharesForProducer: function(Client, types.DescribeDataSharesForProducerInput): Operation<types.DescribeDataSharesForProducerOutput>
     -- Returns a list of parameter settings for the specified parameter group
     -- family.
     -- For more information about parameters and parameter groups, go to
     -- Amazon Redshift Parameter Groups
     -- in the Amazon Redshift Cluster Management Guide.
-    describeDefaultClusterParameters: function(Client, types.DescribeDefaultClusterParametersInput): types.DescribeDefaultClusterParametersOutput, table
+    describeDefaultClusterParameters: function(Client, types.DescribeDefaultClusterParametersInput): Operation<types.DescribeDefaultClusterParametersOutput>
     -- Describes a Redshift-managed VPC endpoint.
-    describeEndpointAccess: function(Client, types.DescribeEndpointAccessInput): types.DescribeEndpointAccessOutput, table
+    describeEndpointAccess: function(Client, types.DescribeEndpointAccessInput): Operation<types.DescribeEndpointAccessOutput>
     -- Describes an endpoint authorization.
-    describeEndpointAuthorization: function(Client, types.DescribeEndpointAuthorizationInput): types.DescribeEndpointAuthorizationOutput, table
+    describeEndpointAuthorization: function(Client, types.DescribeEndpointAuthorizationInput): Operation<types.DescribeEndpointAuthorizationOutput>
     -- Displays a list of event categories for all event source types, or for a specified
     -- source type. For a list of the event categories and source types, go to Amazon Redshift Event
     -- Notifications.
-    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): types.DescribeEventCategoriesOutput, table
+    describeEventCategories: function(Client, types.DescribeEventCategoriesInput): Operation<types.DescribeEventCategoriesOutput>
     -- Returns events related to clusters, security groups, snapshots, and parameter
     -- groups for the past 14 days. Events specific to a particular cluster, security group,
     -- snapshot or parameter group can be obtained by providing the name as a parameter. By
     -- default, the past hour of events are returned.
-    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): Operation<types.DescribeEventsOutput>
     -- Lists descriptions of all the Amazon Redshift event notification subscriptions for a
     -- customer account. If you specify a subscription name, lists the description for that
     -- subscription.
@@ -386,7 +390,7 @@ local record Client
     -- If both tag keys and values are omitted from the request, subscriptions are
     -- returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): types.DescribeEventSubscriptionsOutput, table
+    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput): Operation<types.DescribeEventSubscriptionsOutput>
     -- Returns information about the specified HSM client certificate. If no certificate
     -- ID is specified, returns information about all the HSM certificates owned by your Amazon Web Services account.
     -- If you specify both tag keys and tag values in the same request, Amazon Redshift returns
@@ -397,7 +401,7 @@ local record Client
     -- If both tag keys and values are omitted from the request, HSM client certificates
     -- are returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeHsmClientCertificates: function(Client, types.DescribeHsmClientCertificatesInput): types.DescribeHsmClientCertificatesOutput, table
+    describeHsmClientCertificates: function(Client, types.DescribeHsmClientCertificatesInput): Operation<types.DescribeHsmClientCertificatesOutput>
     -- Returns information about the specified Amazon Redshift HSM configuration. If no
     -- configuration ID is specified, returns information about all the HSM configurations
     -- owned by your Amazon Web Services account.
@@ -409,17 +413,17 @@ local record Client
     -- If both tag keys and values are omitted from the request, HSM connections are
     -- returned regardless of whether they have tag keys or values associated with
     -- them.
-    describeHsmConfigurations: function(Client, types.DescribeHsmConfigurationsInput): types.DescribeHsmConfigurationsOutput, table
+    describeHsmConfigurations: function(Client, types.DescribeHsmConfigurationsInput): Operation<types.DescribeHsmConfigurationsOutput>
     -- Returns a list of inbound integrations.
-    describeInboundIntegrations: function(Client, types.DescribeInboundIntegrationsInput): types.DescribeInboundIntegrationsOutput, table
+    describeInboundIntegrations: function(Client, types.DescribeInboundIntegrationsInput): Operation<types.DescribeInboundIntegrationsOutput>
     -- Describes one or more zero-ETL or S3 event integrations with Amazon Redshift.
-    describeIntegrations: function(Client, types.DescribeIntegrationsInput): types.DescribeIntegrationsOutput, table
+    describeIntegrations: function(Client, types.DescribeIntegrationsInput): Operation<types.DescribeIntegrationsOutput>
     -- Describes whether information, such as queries and connection attempts, is being
     -- logged for the specified Amazon Redshift cluster.
-    describeLoggingStatus: function(Client, types.DescribeLoggingStatusInput): types.DescribeLoggingStatusOutput, table
+    describeLoggingStatus: function(Client, types.DescribeLoggingStatusInput): Operation<types.DescribeLoggingStatusOutput>
     -- Returns properties of possible node configurations such as node type, number of nodes, and
     -- disk usage for the specified action type.
-    describeNodeConfigurationOptions: function(Client, types.DescribeNodeConfigurationOptionsInput): types.DescribeNodeConfigurationOptionsOutput, table
+    describeNodeConfigurationOptions: function(Client, types.DescribeNodeConfigurationOptionsInput): Operation<types.DescribeNodeConfigurationOptionsOutput>
     -- Returns a list of orderable cluster options. Before you create a new cluster you
     -- can use this operation to find what options are available, such as the EC2 Availability
     -- Zones (AZ) in the specific Amazon Web Services Region that you can specify, and the node types you can
@@ -429,14 +433,14 @@ local record Client
     -- For more information about managing clusters, go to
     -- Amazon Redshift Clusters
     -- in the Amazon Redshift Cluster Management Guide.
-    describeOrderableClusterOptions: function(Client, types.DescribeOrderableClusterOptionsInput): types.DescribeOrderableClusterOptionsOutput, table
+    describeOrderableClusterOptions: function(Client, types.DescribeOrderableClusterOptionsInput): Operation<types.DescribeOrderableClusterOptionsOutput>
     -- Returns information about the partner integrations defined for a cluster.
-    describePartners: function(Client, types.DescribePartnersInput): types.DescribePartnersOutput, table
+    describePartners: function(Client, types.DescribePartnersInput): Operation<types.DescribePartnersOutput>
     -- Lists the Amazon Redshift IAM Identity Center applications.
-    describeRedshiftIdcApplications: function(Client, types.DescribeRedshiftIdcApplicationsInput): types.DescribeRedshiftIdcApplicationsOutput, table
+    describeRedshiftIdcApplications: function(Client, types.DescribeRedshiftIdcApplicationsInput): Operation<types.DescribeRedshiftIdcApplicationsOutput>
     -- Returns exchange status details and associated metadata for a reserved-node
     -- exchange. Statuses include such values as in progress and requested.
-    describeReservedNodeExchangeStatus: function(Client, types.DescribeReservedNodeExchangeStatusInput): types.DescribeReservedNodeExchangeStatusOutput, table
+    describeReservedNodeExchangeStatus: function(Client, types.DescribeReservedNodeExchangeStatusInput): Operation<types.DescribeReservedNodeExchangeStatusOutput>
     -- Returns a list of the available reserved node offerings by Amazon Redshift with their
     -- descriptions including the node type, the fixed and recurring costs of reserving the
     -- node and duration the node will be reserved for you. These descriptions help you
@@ -446,35 +450,35 @@ local record Client
     -- For more information about reserved node offerings, go to
     -- Purchasing Reserved Nodes
     -- in the Amazon Redshift Cluster Management Guide.
-    describeReservedNodeOfferings: function(Client, types.DescribeReservedNodeOfferingsInput): types.DescribeReservedNodeOfferingsOutput, table
+    describeReservedNodeOfferings: function(Client, types.DescribeReservedNodeOfferingsInput): Operation<types.DescribeReservedNodeOfferingsOutput>
     -- Returns the descriptions of the reserved nodes.
-    describeReservedNodes: function(Client, types.DescribeReservedNodesInput): types.DescribeReservedNodesOutput, table
+    describeReservedNodes: function(Client, types.DescribeReservedNodesInput): Operation<types.DescribeReservedNodesOutput>
     -- Returns information about the last resize operation for the specified cluster. If
     -- no resize operation has ever been initiated for the specified cluster, a HTTP
     -- 404 error is returned. If a resize operation was initiated and completed, the
     -- status of the resize remains as SUCCEEDED until the next resize.
     -- A resize operation can be requested using ModifyCluster and
     -- specifying a different number or type of nodes for the cluster.
-    describeResize: function(Client, types.DescribeResizeInput): types.DescribeResizeOutput, table
+    describeResize: function(Client, types.DescribeResizeInput): Operation<types.DescribeResizeOutput>
     -- Describes properties of scheduled actions.
-    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): types.DescribeScheduledActionsOutput, table
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): Operation<types.DescribeScheduledActionsOutput>
     -- Returns a list of snapshot copy grants owned by the Amazon Web Services account in the destination
     -- region.
     -- For more information about managing snapshot copy grants, go to
     -- Amazon Redshift Database Encryption
     -- in the Amazon Redshift Cluster Management Guide.
-    describeSnapshotCopyGrants: function(Client, types.DescribeSnapshotCopyGrantsInput): types.DescribeSnapshotCopyGrantsOutput, table
+    describeSnapshotCopyGrants: function(Client, types.DescribeSnapshotCopyGrantsInput): Operation<types.DescribeSnapshotCopyGrantsOutput>
     -- Returns a list of snapshot schedules.
-    describeSnapshotSchedules: function(Client, types.DescribeSnapshotSchedulesInput): types.DescribeSnapshotSchedulesOutput, table
+    describeSnapshotSchedules: function(Client, types.DescribeSnapshotSchedulesInput): Operation<types.DescribeSnapshotSchedulesOutput>
     -- Returns account level backups storage size and provisional storage.
-    describeStorage: function(Client, types.DescribeStorageInput): types.DescribeStorageOutput, table
+    describeStorage: function(Client, types.DescribeStorageInput): Operation<types.DescribeStorageOutput>
     -- Lists the status of one or more table restore requests made using the RestoreTableFromClusterSnapshot API action. If you don't specify a value
     -- for the TableRestoreRequestId parameter, then
     -- DescribeTableRestoreStatus returns the status of all table restore
     -- requests ordered by the date and time of the request in ascending order. Otherwise
     -- DescribeTableRestoreStatus returns the status of the table specified by
     -- TableRestoreRequestId.
-    describeTableRestoreStatus: function(Client, types.DescribeTableRestoreStatusInput): types.DescribeTableRestoreStatusOutput, table
+    describeTableRestoreStatus: function(Client, types.DescribeTableRestoreStatusInput): Operation<types.DescribeTableRestoreStatusOutput>
     -- Returns a list of tags. You can return tags from a specific resource by specifying
     -- an ARN, or you can return all tags for a given type of resource, such as clusters,
     -- snapshots, and so on.
@@ -492,7 +496,7 @@ local record Client
     -- combination of those values are returned.
     -- If both tag keys and values are omitted from the request, resources are returned
     -- regardless of whether they have tag keys or values associated with them.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Shows usage limits on a cluster.
     -- Results are filtered based on the combination of input usage limit identifier, cluster identifier, and feature type parameters:
     -- If usage limit identifier, cluster identifier, and feature type are not provided,
@@ -503,26 +507,26 @@ local record Client
     -- then all usage limit objects for the specified cluster are returned.
     -- If cluster identifier and feature type are provided,
     -- then all usage limit objects for the combination of cluster and feature are returned.
-    describeUsageLimits: function(Client, types.DescribeUsageLimitsInput): types.DescribeUsageLimitsOutput, table
+    describeUsageLimits: function(Client, types.DescribeUsageLimitsInput): Operation<types.DescribeUsageLimitsOutput>
     -- Stops logging information, such as queries and connection attempts, for the
     -- specified Amazon Redshift cluster.
-    disableLogging: function(Client, types.DisableLoggingInput): types.DisableLoggingOutput, table
+    disableLogging: function(Client, types.DisableLoggingInput): Operation<types.DisableLoggingOutput>
     -- Disables the automatic copying of snapshots from one region to another region for a
     -- specified cluster.
     -- If your cluster and its snapshots are encrypted using an encrypted symmetric key
     -- from Key Management Service, use DeleteSnapshotCopyGrant to delete the grant that
     -- grants Amazon Redshift permission to the key in the destination region.
-    disableSnapshotCopy: function(Client, types.DisableSnapshotCopyInput): types.DisableSnapshotCopyOutput, table
+    disableSnapshotCopy: function(Client, types.DisableSnapshotCopyInput): Operation<types.DisableSnapshotCopyOutput>
     -- From a datashare consumer account, remove association for the specified datashare.
-    disassociateDataShareConsumer: function(Client, types.DisassociateDataShareConsumerInput): types.DisassociateDataShareConsumerOutput, table
+    disassociateDataShareConsumer: function(Client, types.DisassociateDataShareConsumerInput): Operation<types.DisassociateDataShareConsumerOutput>
     -- Starts logging information, such as queries and connection attempts, for the
     -- specified Amazon Redshift cluster.
-    enableLogging: function(Client, types.EnableLoggingInput): types.EnableLoggingOutput, table
+    enableLogging: function(Client, types.EnableLoggingInput): Operation<types.EnableLoggingOutput>
     -- Enables the automatic copy of snapshots from one region to another region for a
     -- specified cluster.
-    enableSnapshotCopy: function(Client, types.EnableSnapshotCopyInput): types.EnableSnapshotCopyOutput, table
+    enableSnapshotCopy: function(Client, types.EnableSnapshotCopyInput): Operation<types.EnableSnapshotCopyOutput>
     -- Fails over the primary compute unit of the specified Multi-AZ cluster to another Availability Zone.
-    failoverPrimaryCompute: function(Client, types.FailoverPrimaryComputeInput): types.FailoverPrimaryComputeOutput, table
+    failoverPrimaryCompute: function(Client, types.FailoverPrimaryComputeInput): Operation<types.FailoverPrimaryComputeOutput>
     -- Returns a database user name and temporary password with temporary authorization to
     -- log on to an Amazon Redshift database. The action returns the database user name
     -- prefixed with IAM: if AutoCreate is False or
@@ -544,7 +548,7 @@ local record Client
     -- permission.
     -- If the DbName parameter is specified, the IAM policy must allow access
     -- to the resource dbname for the specified database name.
-    getClusterCredentials: function(Client, types.GetClusterCredentialsInput): types.GetClusterCredentialsOutput, table
+    getClusterCredentials: function(Client, types.GetClusterCredentialsInput): Operation<types.GetClusterCredentialsOutput>
     -- Returns a database user name and temporary password with temporary authorization to
     -- log in to an Amazon Redshift database.
     -- The database user is mapped 1:1 to the source Identity and Access Management (IAM) identity.
@@ -555,7 +559,7 @@ local record Client
     -- necessary actions and resources.
     -- For more information about permissions, see Using identity-based policies (IAM policies) in the
     -- Amazon Redshift Cluster Management Guide.
-    getClusterCredentialsWithIAM: function(Client, types.GetClusterCredentialsWithIAMInput): types.GetClusterCredentialsWithIAMOutput, table
+    getClusterCredentialsWithIAM: function(Client, types.GetClusterCredentialsWithIAMInput): Operation<types.GetClusterCredentialsWithIAMOutput>
     -- Generates an encrypted authentication token that propagates the caller's
     -- Amazon Web Services IAM Identity Center identity to Amazon Redshift clusters. This API extracts the
     -- Amazon Web Services IAM Identity Center identity from enhanced credentials and creates a secure token
@@ -566,22 +570,22 @@ local record Client
     -- This API is exclusively for use with Amazon Web Services IAM Identity Center enhanced credentials. If the
     -- caller is not using enhanced credentials with embedded Amazon Web Services IAM Identity Center identity, the API will
     -- return an error.
-    getIdentityCenterAuthToken: function(Client, types.GetIdentityCenterAuthTokenInput): types.GetIdentityCenterAuthTokenOutput, table
+    getIdentityCenterAuthToken: function(Client, types.GetIdentityCenterAuthTokenInput): Operation<types.GetIdentityCenterAuthTokenOutput>
     -- Gets the configuration options for the reserved-node exchange. These options
     -- include information about the source reserved node and target reserved node offering.
     -- Details include the node type, the price, the node count, and the offering type.
-    getReservedNodeExchangeConfigurationOptions: function(Client, types.GetReservedNodeExchangeConfigurationOptionsInput): types.GetReservedNodeExchangeConfigurationOptionsOutput, table
+    getReservedNodeExchangeConfigurationOptions: function(Client, types.GetReservedNodeExchangeConfigurationOptionsInput): Operation<types.GetReservedNodeExchangeConfigurationOptionsOutput>
     -- Returns an array of DC2 ReservedNodeOfferings that matches the payment type, term,
     -- and usage price of the given DC1 reserved node.
-    getReservedNodeExchangeOfferings: function(Client, types.GetReservedNodeExchangeOfferingsInput): types.GetReservedNodeExchangeOfferingsOutput, table
+    getReservedNodeExchangeOfferings: function(Client, types.GetReservedNodeExchangeOfferingsInput): Operation<types.GetReservedNodeExchangeOfferingsOutput>
     -- Get the resource policy for a specified resource.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- List the Amazon Redshift Advisor recommendations for one or multiple Amazon Redshift clusters in an Amazon Web Services account.
-    listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    listRecommendations: function(Client, types.ListRecommendationsInput): Operation<types.ListRecommendationsOutput>
     -- This operation is retired. Calling this operation does not change AQUA configuration. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator).
-    modifyAquaConfiguration: function(Client, types.ModifyAquaConfigurationInput): types.ModifyAquaConfigurationOutput, table
+    modifyAquaConfiguration: function(Client, types.ModifyAquaConfigurationInput): Operation<types.ModifyAquaConfigurationOutput>
     -- Modifies an authentication profile.
-    modifyAuthenticationProfile: function(Client, types.ModifyAuthenticationProfileInput): types.ModifyAuthenticationProfileOutput, table
+    modifyAuthenticationProfile: function(Client, types.ModifyAuthenticationProfileInput): Operation<types.ModifyAuthenticationProfileOutput>
     -- Modifies the settings for a cluster.
     -- You can also change node type and the number of nodes to scale up or down the
     -- cluster. When resizing a cluster, you must specify both the number of nodes and the node
@@ -603,28 +607,28 @@ local record Client
     -- least one public cluster within the group
     -- For more information about VPC BPA, see Block public access to VPCs and
     -- subnets in the Amazon VPC User Guide.
-    modifyCluster: function(Client, types.ModifyClusterInput): types.ModifyClusterOutput, table
+    modifyCluster: function(Client, types.ModifyClusterInput): Operation<types.ModifyClusterOutput>
     -- Modifies the database revision of a cluster. The database revision is a unique
     -- revision of the database running in a cluster.
-    modifyClusterDbRevision: function(Client, types.ModifyClusterDbRevisionInput): types.ModifyClusterDbRevisionOutput, table
+    modifyClusterDbRevision: function(Client, types.ModifyClusterDbRevisionInput): Operation<types.ModifyClusterDbRevisionOutput>
     -- Modifies the list of Identity and Access Management (IAM) roles that can be
     -- used by the cluster to access other Amazon Web Services services.
     -- The maximum number of IAM roles that you can associate is subject to a quota.
     -- For more information, go to Quotas and limits
     -- in the Amazon Redshift Cluster Management Guide.
-    modifyClusterIamRoles: function(Client, types.ModifyClusterIamRolesInput): types.ModifyClusterIamRolesOutput, table
+    modifyClusterIamRoles: function(Client, types.ModifyClusterIamRolesInput): Operation<types.ModifyClusterIamRolesOutput>
     -- Modifies the maintenance settings of a cluster.
-    modifyClusterMaintenance: function(Client, types.ModifyClusterMaintenanceInput): types.ModifyClusterMaintenanceOutput, table
+    modifyClusterMaintenance: function(Client, types.ModifyClusterMaintenanceInput): Operation<types.ModifyClusterMaintenanceOutput>
     -- Modifies the parameters of a parameter group. For the parameters parameter, it can't contain ASCII characters.
     -- For more information about parameters and parameter groups, go to
     -- Amazon Redshift Parameter Groups
     -- in the Amazon Redshift Cluster Management Guide.
-    modifyClusterParameterGroup: function(Client, types.ModifyClusterParameterGroupInput): types.ModifyClusterParameterGroupOutput, table
+    modifyClusterParameterGroup: function(Client, types.ModifyClusterParameterGroupInput): Operation<types.ModifyClusterParameterGroupOutput>
     -- Modifies the settings for a snapshot.
     -- This exanmple modifies the manual retention period setting for a cluster snapshot.
-    modifyClusterSnapshot: function(Client, types.ModifyClusterSnapshotInput): types.ModifyClusterSnapshotOutput, table
+    modifyClusterSnapshot: function(Client, types.ModifyClusterSnapshotInput): Operation<types.ModifyClusterSnapshotOutput>
     -- Modifies a snapshot schedule for a cluster.
-    modifyClusterSnapshotSchedule: function(Client, types.ModifyClusterSnapshotScheduleInput): types.ModifyClusterSnapshotScheduleOutput, table
+    modifyClusterSnapshotSchedule: function(Client, types.ModifyClusterSnapshotScheduleInput): Operation<types.ModifyClusterSnapshotScheduleOutput>
     -- Modifies a cluster subnet group to include the specified list of VPC subnets. The
     -- operation replaces the existing list of subnets with the new list of subnets.
     -- VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
@@ -639,21 +643,21 @@ local record Client
     -- least one public cluster within the group
     -- For more information about VPC BPA, see Block public access to VPCs and
     -- subnets in the Amazon VPC User Guide.
-    modifyClusterSubnetGroup: function(Client, types.ModifyClusterSubnetGroupInput): types.ModifyClusterSubnetGroupOutput, table
+    modifyClusterSubnetGroup: function(Client, types.ModifyClusterSubnetGroupInput): Operation<types.ModifyClusterSubnetGroupOutput>
     -- Contains information for changing a custom domain association.
-    modifyCustomDomainAssociation: function(Client, types.ModifyCustomDomainAssociationInput): types.ModifyCustomDomainAssociationOutput, table
+    modifyCustomDomainAssociation: function(Client, types.ModifyCustomDomainAssociationInput): Operation<types.ModifyCustomDomainAssociationOutput>
     -- Modifies a Redshift-managed VPC endpoint.
-    modifyEndpointAccess: function(Client, types.ModifyEndpointAccessInput): types.ModifyEndpointAccessOutput, table
+    modifyEndpointAccess: function(Client, types.ModifyEndpointAccessInput): Operation<types.ModifyEndpointAccessOutput>
     -- Modifies an existing Amazon Redshift event notification subscription.
-    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): types.ModifyEventSubscriptionOutput, table
+    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput): Operation<types.ModifyEventSubscriptionOutput>
     -- Modifies a zero-ETL integration or S3 event integration with Amazon Redshift.
-    modifyIntegration: function(Client, types.ModifyIntegrationInput): types.ModifyIntegrationOutput, table
+    modifyIntegration: function(Client, types.ModifyIntegrationInput): Operation<types.ModifyIntegrationOutput>
     -- Modifies the lakehouse configuration for a cluster. This operation allows you to manage Amazon Redshift federated permissions and Amazon Web Services IAM Identity Center trusted identity propagation.
-    modifyLakehouseConfiguration: function(Client, types.ModifyLakehouseConfigurationInput): types.ModifyLakehouseConfigurationOutput, table
+    modifyLakehouseConfiguration: function(Client, types.ModifyLakehouseConfigurationInput): Operation<types.ModifyLakehouseConfigurationOutput>
     -- Changes an existing Amazon Redshift IAM Identity Center application.
-    modifyRedshiftIdcApplication: function(Client, types.ModifyRedshiftIdcApplicationInput): types.ModifyRedshiftIdcApplicationOutput, table
+    modifyRedshiftIdcApplication: function(Client, types.ModifyRedshiftIdcApplicationInput): Operation<types.ModifyRedshiftIdcApplicationOutput>
     -- Modifies a scheduled action.
-    modifyScheduledAction: function(Client, types.ModifyScheduledActionInput): types.ModifyScheduledActionOutput, table
+    modifyScheduledAction: function(Client, types.ModifyScheduledActionInput): Operation<types.ModifyScheduledActionOutput>
     -- Modifies the number of days to retain snapshots in the destination Amazon Web Services Region after
     -- they are copied from the source Amazon Web Services Region. By default, this operation only changes the
     -- retention period of copied automated snapshots. The retention periods for both new and
@@ -661,15 +665,15 @@ local record Client
     -- set the manual option to change only the retention periods of copied manual snapshots.
     -- If you set this option, only newly copied manual snapshots have the new retention
     -- period.
-    modifySnapshotCopyRetentionPeriod: function(Client, types.ModifySnapshotCopyRetentionPeriodInput): types.ModifySnapshotCopyRetentionPeriodOutput, table
+    modifySnapshotCopyRetentionPeriod: function(Client, types.ModifySnapshotCopyRetentionPeriodInput): Operation<types.ModifySnapshotCopyRetentionPeriodOutput>
     -- Modifies a snapshot schedule. Any schedule associated with a cluster is modified
     -- asynchronously.
-    modifySnapshotSchedule: function(Client, types.ModifySnapshotScheduleInput): types.ModifySnapshotScheduleOutput, table
+    modifySnapshotSchedule: function(Client, types.ModifySnapshotScheduleInput): Operation<types.ModifySnapshotScheduleOutput>
     -- Modifies a usage limit in a cluster.
     -- You can't modify the feature type or period of a usage limit.
-    modifyUsageLimit: function(Client, types.ModifyUsageLimitInput): types.ModifyUsageLimitOutput, table
+    modifyUsageLimit: function(Client, types.ModifyUsageLimitInput): Operation<types.ModifyUsageLimitOutput>
     -- Pauses a cluster.
-    pauseCluster: function(Client, types.PauseClusterInput): types.PauseClusterOutput, table
+    pauseCluster: function(Client, types.PauseClusterInput): Operation<types.PauseClusterOutput>
     -- Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of
     -- reserved node offerings. You can purchase one or more of the offerings. You can call the
     -- DescribeReservedNodeOfferings API to obtain the available reserved
@@ -678,9 +682,9 @@ local record Client
     -- For more information about reserved node offerings, go to
     -- Purchasing Reserved Nodes
     -- in the Amazon Redshift Cluster Management Guide.
-    purchaseReservedNodeOffering: function(Client, types.PurchaseReservedNodeOfferingInput): types.PurchaseReservedNodeOfferingOutput, table
+    purchaseReservedNodeOffering: function(Client, types.PurchaseReservedNodeOfferingInput): Operation<types.PurchaseReservedNodeOfferingOutput>
     -- Updates the resource policy for a specified resource.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Reboots a cluster. This action is taken as soon as possible. It results in a
     -- momentary outage to the cluster, during which the cluster status is set to
     -- rebooting. A cluster event is created when the reboot is completed. Any
@@ -689,16 +693,16 @@ local record Client
     -- For more information about managing clusters, go to
     -- Amazon Redshift Clusters
     -- in the Amazon Redshift Cluster Management Guide.
-    rebootCluster: function(Client, types.RebootClusterInput): types.RebootClusterOutput, table
+    rebootCluster: function(Client, types.RebootClusterInput): Operation<types.RebootClusterOutput>
     -- Registers a cluster or serverless namespace to the Amazon Web Services Glue Data Catalog.
-    registerNamespace: function(Client, types.RegisterNamespaceInput): types.RegisterNamespaceOutput, table
+    registerNamespace: function(Client, types.RegisterNamespaceInput): Operation<types.RegisterNamespaceOutput>
     -- From a datashare consumer account, rejects the specified datashare.
-    rejectDataShare: function(Client, types.RejectDataShareInput): types.RejectDataShareOutput, table
+    rejectDataShare: function(Client, types.RejectDataShareInput): Operation<types.RejectDataShareOutput>
     -- Sets one or more parameters of the specified parameter group to their default
     -- values and sets the source values of the parameters to "engine-default". To reset the
     -- entire parameter group specify the ResetAllParameters parameter.
     -- For parameter changes to take effect you must reboot any associated clusters.
-    resetClusterParameterGroup: function(Client, types.ResetClusterParameterGroupInput): types.ResetClusterParameterGroupOutput, table
+    resetClusterParameterGroup: function(Client, types.ResetClusterParameterGroupInput): Operation<types.ResetClusterParameterGroupOutput>
     -- Changes the size of the cluster. You can change the cluster's type, or change the
     -- number or type of nodes. The default behavior is to use the elastic resize method. With
     -- an elastic resize, your cluster is available for read and write operations more quickly
@@ -713,7 +717,7 @@ local record Client
     -- ra3.16xlarge
     -- The type of nodes that you add must match the node type for the
     -- cluster.
-    resizeCluster: function(Client, types.ResizeClusterInput): types.ResizeClusterOutput, table
+    resizeCluster: function(Client, types.ResizeClusterInput): Operation<types.ResizeClusterOutput>
     -- Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting
     -- cluster with the same configuration as the original cluster from which the snapshot was
     -- created, except that the new cluster is created with the default cluster security and
@@ -737,7 +741,7 @@ local record Client
     -- For more information about working with snapshots, go to
     -- Amazon Redshift Snapshots
     -- in the Amazon Redshift Cluster Management Guide.
-    restoreFromClusterSnapshot: function(Client, types.RestoreFromClusterSnapshotInput): types.RestoreFromClusterSnapshotOutput, table
+    restoreFromClusterSnapshot: function(Client, types.RestoreFromClusterSnapshotInput): Operation<types.RestoreFromClusterSnapshotOutput>
     -- Creates a new table from a table in an Amazon Redshift cluster snapshot. You must
     -- create the new table within the Amazon Redshift cluster that the snapshot was taken
     -- from.
@@ -752,28 +756,28 @@ local record Client
     -- table with the table created from the snapshot.
     -- You can't use this operation to restore tables with
     -- interleaved sort keys.
-    restoreTableFromClusterSnapshot: function(Client, types.RestoreTableFromClusterSnapshotInput): types.RestoreTableFromClusterSnapshotOutput, table
+    restoreTableFromClusterSnapshot: function(Client, types.RestoreTableFromClusterSnapshotInput): Operation<types.RestoreTableFromClusterSnapshotOutput>
     -- Resumes a paused cluster.
-    resumeCluster: function(Client, types.ResumeClusterInput): types.ResumeClusterOutput, table
+    resumeCluster: function(Client, types.ResumeClusterInput): Operation<types.ResumeClusterOutput>
     -- Revokes an ingress rule in an Amazon Redshift security group for a previously authorized
     -- IP range or Amazon EC2 security group. To add an ingress rule, see AuthorizeClusterSecurityGroupIngress.
     -- For information about managing security groups, go to
     -- Amazon Redshift Cluster Security Groups in the
     -- Amazon Redshift Cluster Management Guide.
-    revokeClusterSecurityGroupIngress: function(Client, types.RevokeClusterSecurityGroupIngressInput): types.RevokeClusterSecurityGroupIngressOutput, table
+    revokeClusterSecurityGroupIngress: function(Client, types.RevokeClusterSecurityGroupIngressInput): Operation<types.RevokeClusterSecurityGroupIngressOutput>
     -- Revokes access to a cluster.
-    revokeEndpointAccess: function(Client, types.RevokeEndpointAccessInput): types.RevokeEndpointAccessOutput, table
+    revokeEndpointAccess: function(Client, types.RevokeEndpointAccessInput): Operation<types.RevokeEndpointAccessOutput>
     -- Removes the ability of the specified Amazon Web Services account to restore the specified
     -- snapshot. If the account is currently restoring the snapshot, the restore will run to
     -- completion.
     -- For more information about working with snapshots, go to
     -- Amazon Redshift Snapshots
     -- in the Amazon Redshift Cluster Management Guide.
-    revokeSnapshotAccess: function(Client, types.RevokeSnapshotAccessInput): types.RevokeSnapshotAccessOutput, table
+    revokeSnapshotAccess: function(Client, types.RevokeSnapshotAccessInput): Operation<types.RevokeSnapshotAccessOutput>
     -- Rotates the encryption keys for a cluster.
-    rotateEncryptionKey: function(Client, types.RotateEncryptionKeyInput): types.RotateEncryptionKeyOutput, table
+    rotateEncryptionKey: function(Client, types.RotateEncryptionKeyInput): Operation<types.RotateEncryptionKeyOutput>
     -- Updates the status of a partner integration.
-    updatePartnerStatus: function(Client, types.UpdatePartnerStatusInput): types.UpdatePartnerStatusOutput, table
+    updatePartnerStatus: function(Client, types.UpdatePartnerStatusInput): Operation<types.UpdatePartnerStatusOutput>
 end
 
 local record M

@@ -2,6 +2,10 @@
 
 local types = require("sqs.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a permission to a queue for a specific principal. This allows sharing
     -- access to the queue.
@@ -21,7 +25,7 @@ local record Client
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    addPermission: function(Client, types.AddPermissionInput): types.AddPermissionOutput, table
+    addPermission: function(Client, types.AddPermissionInput): Operation<types.AddPermissionOutput>
     -- Cancels a specified message movement task. A message movement can only be cancelled
     -- when the current status is RUNNING. Cancelling a message movement task does not revert
     -- the messages that have already been moved. It can only stop the messages that have not
@@ -32,7 +36,7 @@ local record Client
     -- dead-letter-queue), or a custom destination queue.
     -- Only one active message movement task is supported per queue at any given
     -- time.
-    cancelMessageMoveTask: function(Client, types.CancelMessageMoveTaskInput): types.CancelMessageMoveTaskOutput, table
+    cancelMessageMoveTask: function(Client, types.CancelMessageMoveTaskInput): Operation<types.CancelMessageMoveTaskOutput>
     -- Changes the visibility timeout of a specified message in a queue to a new value. The
     -- default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The
     -- maximum is 12 hours. For more information, see Visibility Timeout in the Amazon SQS Developer
@@ -65,7 +69,7 @@ local record Client
     -- message reverts to the original timeout value (not to the value you set using the
     -- ChangeMessageVisibility action) the next time the message is
     -- received.
-    changeMessageVisibility: function(Client, types.ChangeMessageVisibilityInput): types.ChangeMessageVisibilityOutput, table
+    changeMessageVisibility: function(Client, types.ChangeMessageVisibilityInput): Operation<types.ChangeMessageVisibilityOutput>
     -- Changes the visibility timeout of multiple messages. This is a batch version of
     -- ChangeMessageVisibility. The result of the action
     -- on each message is reported individually in the response. You can send up to 10
@@ -73,7 +77,7 @@ local record Client
     -- requests with each
     -- ChangeMessageVisibilityBatch action.
     -- Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    changeMessageVisibilityBatch: function(Client, types.ChangeMessageVisibilityBatchInput): types.ChangeMessageVisibilityBatchOutput, table
+    changeMessageVisibilityBatch: function(Client, types.ChangeMessageVisibilityBatchInput): Operation<types.ChangeMessageVisibilityBatchOutput>
     -- Creates a new standard or FIFO queue. You can pass one or more attributes in
     -- the request. Keep the following in mind:
     -- If you don't specify the FifoQueue attribute, Amazon SQS creates a standard queue.
@@ -109,7 +113,7 @@ local record Client
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    createQueue: function(Client, types.CreateQueueInput): types.CreateQueueOutput, table
+    createQueue: function(Client, types.CreateQueueInput): Operation<types.CreateQueueOutput>
     -- Deletes the specified message from the specified queue. To select the message to
     -- delete, use the ReceiptHandle of the message (not the
     -- MessageId which you receive when you send the message). Amazon SQS can
@@ -129,12 +133,12 @@ local record Client
     -- The copy remains on the server and might be returned to you during a subsequent
     -- receive request. You should ensure that your application is idempotent, so that
     -- receiving a message more than once does not cause issues.
-    deleteMessage: function(Client, types.DeleteMessageInput): types.DeleteMessageOutput, table
+    deleteMessage: function(Client, types.DeleteMessageInput): Operation<types.DeleteMessageOutput>
     -- Deletes up to ten messages from the specified queue. This is a batch version of
     -- DeleteMessage. The result of the action on each
     -- message is reported individually in the response.
     -- Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200.
-    deleteMessageBatch: function(Client, types.DeleteMessageBatchInput): types.DeleteMessageBatchOutput, table
+    deleteMessageBatch: function(Client, types.DeleteMessageBatchInput): Operation<types.DeleteMessageBatchOutput>
     -- Deletes the queue specified by the QueueUrl, regardless of the queue's
     -- contents.
     -- Be careful with the DeleteQueue action: When you delete a queue, any
@@ -150,10 +154,10 @@ local record Client
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
     -- The delete operation uses the HTTP GET verb.
-    deleteQueue: function(Client, types.DeleteQueueInput): types.DeleteQueueOutput, table
+    deleteQueue: function(Client, types.DeleteQueueInput): Operation<types.DeleteQueueOutput>
     -- Gets attributes for the specified queue.
     -- To determine whether a queue is FIFO, you can check whether QueueName ends with the .fifo suffix.
-    getQueueAttributes: function(Client, types.GetQueueAttributesInput): types.GetQueueAttributesOutput, table
+    getQueueAttributes: function(Client, types.GetQueueAttributesInput): Operation<types.GetQueueAttributesOutput>
     -- The GetQueueUrl API returns the URL of an existing Amazon SQS queue. This is
     -- useful when you know the queue's name but need to retrieve its URL for further
     -- operations.
@@ -164,7 +168,7 @@ local record Client
     -- AddPermission
     -- API or Allow developers to write messages to a shared queue in the Amazon SQS
     -- Developer Guide.
-    getQueueUrl: function(Client, types.GetQueueUrlInput): types.GetQueueUrlOutput, table
+    getQueueUrl: function(Client, types.GetQueueUrlInput): Operation<types.GetQueueUrlOutput>
     -- Returns a list of your queues that have the RedrivePolicy queue attribute
     -- configured with a dead-letter queue.
     -- The ListDeadLetterSourceQueues methods supports pagination. Set
@@ -176,7 +180,7 @@ local record Client
     -- request to ListDeadLetterSourceQueues to receive the next page of results.
     -- For more information about using dead-letter queues, see Using Amazon SQS Dead-Letter Queues in the Amazon SQS Developer
     -- Guide.
-    listDeadLetterSourceQueues: function(Client, types.ListDeadLetterSourceQueuesInput): types.ListDeadLetterSourceQueuesOutput, table
+    listDeadLetterSourceQueues: function(Client, types.ListDeadLetterSourceQueuesInput): Operation<types.ListDeadLetterSourceQueuesOutput>
     -- Gets the most recent message movement tasks (up to 10) under a specific source
     -- queue.
     -- This action is currently limited to supporting message redrive from dead-letter queues (DLQs) only. In this context, the source
@@ -185,7 +189,7 @@ local record Client
     -- dead-letter-queue), or a custom destination queue.
     -- Only one active message movement task is supported per queue at any given
     -- time.
-    listMessageMoveTasks: function(Client, types.ListMessageMoveTasksInput): types.ListMessageMoveTasksOutput, table
+    listMessageMoveTasks: function(Client, types.ListMessageMoveTasksInput): Operation<types.ListMessageMoveTasksOutput>
     -- Returns a list of your queues in the current region. The response includes a maximum
     -- of 1,000 results. If you specify a value for the optional QueueNamePrefix
     -- parameter, only queues with a name that begins with the specified value are
@@ -200,14 +204,14 @@ local record Client
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    listQueues: function(Client, types.ListQueuesInput): types.ListQueuesOutput, table
+    listQueues: function(Client, types.ListQueuesInput): Operation<types.ListQueuesOutput>
     -- List all cost allocation tags added to the specified Amazon SQS queue.
     -- For an overview, see Tagging
     -- Your Amazon SQS Queues in the Amazon SQS Developer Guide.
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    listQueueTags: function(Client, types.ListQueueTagsInput): types.ListQueueTagsOutput, table
+    listQueueTags: function(Client, types.ListQueueTagsInput): Operation<types.ListQueueTagsOutput>
     -- Deletes available messages in a queue (including in-flight messages) specified by the
     -- QueueURL parameter.
     -- When you use the PurgeQueue action, you can't retrieve any messages
@@ -219,7 +223,7 @@ local record Client
     -- minute.
     -- Messages sent to the queue after you call PurgeQueue
     -- might be deleted while the queue is being purged.
-    purgeQueue: function(Client, types.PurgeQueueInput): types.PurgeQueueOutput, table
+    purgeQueue: function(Client, types.PurgeQueueInput): Operation<types.PurgeQueueOutput>
     -- Retrieves one or more messages (up to 10), from the specified queue. Using the
     -- WaitTimeSeconds parameter enables long-poll support. For more
     -- information, see Amazon SQS
@@ -247,7 +251,7 @@ local record Client
     -- include the parameter, the overall visibility timeout for the queue is used for the
     -- returned messages. The default visibility timeout for a queue is 30 seconds.
     -- In the future, new attributes might be added. If you write code that calls this action, we recommend that you structure your code so that it can handle new attributes gracefully.
-    receiveMessage: function(Client, types.ReceiveMessageInput): types.ReceiveMessageOutput, table
+    receiveMessage: function(Client, types.ReceiveMessageInput): Operation<types.ReceiveMessageOutput>
     -- Revokes any permissions in the queue policy that matches the specified
     -- Label parameter.
     -- Only the owner of a queue can remove permissions from it.
@@ -255,12 +259,12 @@ local record Client
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
     -- To remove the ability to change queue permissions, you must deny permission to the AddPermission, RemovePermission, and SetQueueAttributes actions in your IAM policy.
-    removePermission: function(Client, types.RemovePermissionInput): types.RemovePermissionOutput, table
+    removePermission: function(Client, types.RemovePermissionInput): Operation<types.RemovePermissionOutput>
     -- Delivers a message to the specified queue.
     -- A message can include only XML, JSON, and unformatted text. The following Unicode characters are allowed. For more information, see the W3C specification for characters.
     -- #x9 | #xA | #xD | #x20 to #xD7FF | #xE000 to #xFFFD | #x10000 to #x10FFFF
     -- If a message contains characters outside the allowed set, Amazon SQS rejects the message and returns an InvalidMessageContents error. Ensure that your message body includes only valid characters to avoid this exception.
-    sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    sendMessage: function(Client, types.SendMessageInput): Operation<types.SendMessageOutput>
     -- You can use SendMessageBatch to send up to 10 messages to the specified
     -- queue by assigning either identical or different values to each message (or by not
     -- assigning values at all). This is a batch version of
@@ -276,7 +280,7 @@ local record Client
     -- If a message contains characters outside the allowed set, Amazon SQS rejects the message and returns an InvalidMessageContents error. Ensure that your message body includes only valid characters to avoid this exception.
     -- If you don't specify the DelaySeconds parameter for an entry, Amazon SQS uses
     -- the default value for the queue.
-    sendMessageBatch: function(Client, types.SendMessageBatchInput): types.SendMessageBatchOutput, table
+    sendMessageBatch: function(Client, types.SendMessageBatchInput): Operation<types.SendMessageBatchOutput>
     -- Sets the value of one or more queue attributes, like a policy. When you change a
     -- queue's attributes, the change can take up to 60 seconds for most of the attributes to
     -- propagate throughout the Amazon SQS system. Changes made to the
@@ -289,7 +293,7 @@ local record Client
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
     -- To remove the ability to change queue permissions, you must deny permission to the AddPermission, RemovePermission, and SetQueueAttributes actions in your IAM policy.
-    setQueueAttributes: function(Client, types.SetQueueAttributesInput): types.SetQueueAttributesOutput, table
+    setQueueAttributes: function(Client, types.SetQueueAttributesInput): Operation<types.SetQueueAttributesOutput>
     -- Starts an asynchronous task to move messages from a specified source queue to a
     -- specified destination queue.
     -- This action is currently limited to supporting message redrive from queues
@@ -302,7 +306,7 @@ local record Client
     -- were driven to the dead-letter-queue), or a custom destination queue.
     -- Only one active message movement task is supported per queue at any given
     -- time.
-    startMessageMoveTask: function(Client, types.StartMessageMoveTaskInput): types.StartMessageMoveTaskOutput, table
+    startMessageMoveTask: function(Client, types.StartMessageMoveTaskInput): Operation<types.StartMessageMoveTaskOutput>
     -- Add cost allocation tags to the specified Amazon SQS queue. For an overview, see Tagging
     -- Your Amazon SQS Queues in the Amazon SQS Developer Guide.
     -- When you use queue tags, keep the following guidelines in mind:
@@ -316,13 +320,13 @@ local record Client
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    tagQueue: function(Client, types.TagQueueInput): types.TagQueueOutput, table
+    tagQueue: function(Client, types.TagQueueInput): Operation<types.TagQueueOutput>
     -- Remove cost allocation tags from the specified Amazon SQS queue. For an overview, see Tagging
     -- Your Amazon SQS Queues in the Amazon SQS Developer Guide.
     -- Cross-account permissions don't apply to this action. For more information,
     -- see Grant
     -- cross-account permissions to a role and a username in the Amazon SQS Developer Guide.
-    untagQueue: function(Client, types.UntagQueueInput): types.UntagQueueOutput, table
+    untagQueue: function(Client, types.UntagQueueInput): Operation<types.UntagQueueOutput>
 end
 
 local record M

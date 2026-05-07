@@ -2,10 +2,14 @@
 
 local types = require("chimesdkmeetings.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates up to 100 attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK in the Amazon Chime Developer Guide.
-    batchCreateAttendee: function(Client, types.BatchCreateAttendeeInput): types.BatchCreateAttendeeOutput, table
+    batchCreateAttendee: function(Client, types.BatchCreateAttendeeInput): Operation<types.BatchCreateAttendeeOutput>
     -- Updates AttendeeCapabilities except the capabilities listed in an ExcludedAttendeeIds table.
     -- You use the capabilities with a set of values that control what the capabilities can do, such as SendReceive data. For more information about those values, see
     -- .
@@ -28,12 +32,12 @@ local record Client
     -- and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.
     -- When you change a video or content capability from None or Receive to Send or SendReceive ,
     -- and if the attendee turned on their video or content streams, remote attendees can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.
-    batchUpdateAttendeeCapabilitiesExcept: function(Client, types.BatchUpdateAttendeeCapabilitiesExceptInput): types.BatchUpdateAttendeeCapabilitiesExceptOutput, table
+    batchUpdateAttendeeCapabilitiesExcept: function(Client, types.BatchUpdateAttendeeCapabilitiesExceptInput): Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
     -- Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK
     -- in the
     -- Amazon Chime Developer Guide.
-    createAttendee: function(Client, types.CreateAttendeeInput): types.CreateAttendeeOutput, table
+    createAttendee: function(Client, types.CreateAttendeeInput): Operation<types.CreateAttendeeOutput>
     -- Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see
     -- Available Regions and
     -- Using meeting Regions, both
@@ -45,7 +49,7 @@ local record Client
     -- MeetingFeatures.Content.MaxResolution or MeetingFeatures.Video.MaxResolution parameters, the following defaults are used:
     -- Content.MaxResolution: FHD
     -- Video.MaxResolution: HD
-    createMeeting: function(Client, types.CreateMeetingInput): types.CreateMeetingOutput, table
+    createMeeting: function(Client, types.CreateMeetingInput): Operation<types.CreateMeetingOutput>
     -- Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see
     -- Available Regions and
     -- Using meeting Regions, both
@@ -57,31 +61,31 @@ local record Client
     -- MeetingFeatures.Content.MaxResolution or MeetingFeatures.Video.MaxResolution parameters, the following defaults are used:
     -- Content.MaxResolution: FHD
     -- Video.MaxResolution: HD
-    createMeetingWithAttendees: function(Client, types.CreateMeetingWithAttendeesInput): types.CreateMeetingWithAttendeesOutput, table
+    createMeetingWithAttendees: function(Client, types.CreateMeetingWithAttendeesInput): Operation<types.CreateMeetingWithAttendeesOutput>
     -- Deletes an attendee from the specified Amazon Chime SDK meeting and deletes their
     -- JoinToken. Attendees are automatically deleted when a Amazon Chime SDK meeting is deleted. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK
     -- in the Amazon Chime Developer Guide.
-    deleteAttendee: function(Client, types.DeleteAttendeeInput): types.DeleteAttendeeOutput, table
+    deleteAttendee: function(Client, types.DeleteAttendeeInput): Operation<types.DeleteAttendeeOutput>
     -- Deletes the specified Amazon Chime SDK meeting. The operation deletes all attendees, disconnects all clients, and prevents new clients from
     -- joining the meeting. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK in the
     -- Amazon Chime Developer Guide.
-    deleteMeeting: function(Client, types.DeleteMeetingInput): types.DeleteMeetingOutput, table
+    deleteMeeting: function(Client, types.DeleteMeetingInput): Operation<types.DeleteMeetingOutput>
     -- Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK
     -- in the Amazon Chime Developer Guide.
-    getAttendee: function(Client, types.GetAttendeeInput): types.GetAttendeeOutput, table
+    getAttendee: function(Client, types.GetAttendeeInput): Operation<types.GetAttendeeOutput>
     -- Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK
     -- in the Amazon Chime Developer Guide.
-    getMeeting: function(Client, types.GetMeetingInput): types.GetMeetingOutput, table
+    getMeeting: function(Client, types.GetMeetingInput): Operation<types.GetMeetingOutput>
     -- Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see
     -- Using the Amazon Chime SDK
     -- in the Amazon Chime Developer Guide.
-    listAttendees: function(Client, types.ListAttendeesInput): types.ListAttendeesOutput, table
+    listAttendees: function(Client, types.ListAttendeesInput): Operation<types.ListAttendeesOutput>
     -- Returns a list of the tags available for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts transcription for the specified meetingId. For more information, refer to
     -- Using Amazon Chime SDK live transcription
     -- in the Amazon Chime SDK Developer Guide.
@@ -95,7 +99,7 @@ local record Client
     -- responsibility to comply with all applicable laws regarding the recording, including properly notifying all participants in a recorded session or communication
     -- that the session or communication is being recorded, and obtaining all necessary consents. You can opt out from Amazon Web Services using audio content to develop and
     -- improve AWS AI/ML services by configuring an AI services opt out policy using Amazon Web Services Organizations.
-    startMeetingTranscription: function(Client, types.StartMeetingTranscriptionInput): types.StartMeetingTranscriptionOutput, table
+    startMeetingTranscription: function(Client, types.StartMeetingTranscriptionInput): Operation<types.StartMeetingTranscriptionOutput>
     -- Stops transcription for the specified meetingId. For more information, refer to
     -- Using Amazon Chime SDK live transcription
     -- in the Amazon Chime SDK Developer Guide.
@@ -105,9 +109,9 @@ local record Client
     -- responsibility to comply with all applicable laws regarding the recording, including properly notifying all participants in a recorded session or communication
     -- that the session or communication is being recorded, and obtaining all necessary consents. You can opt out from Amazon Web Services using audio content to develop and
     -- improve Amazon Web Services AI/ML services by configuring an AI services opt out policy using Amazon Web Services Organizations.
-    stopMeetingTranscription: function(Client, types.StopMeetingTranscriptionInput): types.StopMeetingTranscriptionOutput, table
+    stopMeetingTranscription: function(Client, types.StopMeetingTranscriptionInput): Operation<types.StopMeetingTranscriptionOutput>
     -- The resource that supports tags.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resources. When you specify a tag key, the action removes both that key and its associated value. The operation succeeds even if you
     -- attempt to remove tags from a resource that were already removed. Note the following:
     -- To remove tags from a resource, you need the necessary permissions for the service that the resource belongs to as well as permissions for removing tags. For more information,
@@ -118,7 +122,7 @@ local record Client
     -- For example, to remove the tags from an Amazon EC2 instance using the UntagResources operation, you must have both of the following permissions:
     -- tag:UntagResource
     -- ChimeSDKMeetings:DeleteTags
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- The capabilities that you want to update.
     -- You use the capabilities with a set of values that control what the capabilities can do, such as SendReceive data. For more information about those values, see
     -- .
@@ -141,7 +145,7 @@ local record Client
     -- and if the attendee left their microphone unmuted, audio will flow from the attendee to the other meeting participants.
     -- When you change a video or content capability from None or Receive to Send or SendReceive ,
     -- and if the attendee turned on their video or content streams, remote attendees can receive those streams, but only after media renegotiation between the client and the Amazon Chime back-end server.
-    updateAttendeeCapabilities: function(Client, types.UpdateAttendeeCapabilitiesInput): types.UpdateAttendeeCapabilitiesOutput, table
+    updateAttendeeCapabilities: function(Client, types.UpdateAttendeeCapabilitiesInput): Operation<types.UpdateAttendeeCapabilitiesOutput>
 end
 
 local record M

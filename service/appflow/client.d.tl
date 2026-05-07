@@ -2,6 +2,10 @@
 
 local types = require("appflow.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Cancels active runs for a flow.
     -- You can cancel all of the active runs for a flow, or you can cancel specific runs by
@@ -19,63 +23,63 @@ local record Client
     -- batch API (such as the Salesforce Bulk API 2.0), then the run will finish reading or writing
     -- its entire batch of data after the cancellation. For these operations, the data processing
     -- charges for Amazon AppFlow apply. For the pricing information, see Amazon AppFlow pricing.
-    cancelFlowExecutions: function(Client, types.CancelFlowExecutionsInput): types.CancelFlowExecutionsOutput, table
+    cancelFlowExecutions: function(Client, types.CancelFlowExecutionsInput): Operation<types.CancelFlowExecutionsOutput>
     -- Creates a new connector profile associated with your Amazon Web Services account. There is
     -- a soft quota of 100 connector profiles per Amazon Web Services account. If you need more
     -- connector profiles than this quota allows, you can submit a request to the Amazon AppFlow
     -- team through the Amazon AppFlow support channel. In each connector profile that you
     -- create, you can provide the credentials and properties for only one connector.
-    createConnectorProfile: function(Client, types.CreateConnectorProfileInput): types.CreateConnectorProfileOutput, table
+    createConnectorProfile: function(Client, types.CreateConnectorProfileInput): Operation<types.CreateConnectorProfileOutput>
     -- Enables your application to create a new flow using Amazon AppFlow. You must create
     -- a connector profile before calling this API. Please note that the Request Syntax below shows
     -- syntax for multiple destinations, however, you can only transfer data to one item in this list
     -- at a time. Amazon AppFlow does not currently support flows to multiple destinations at
     -- once.
-    createFlow: function(Client, types.CreateFlowInput): types.CreateFlowOutput, table
+    createFlow: function(Client, types.CreateFlowInput): Operation<types.CreateFlowOutput>
     -- Enables you to delete an existing connector profile.
-    deleteConnectorProfile: function(Client, types.DeleteConnectorProfileInput): types.DeleteConnectorProfileOutput, table
+    deleteConnectorProfile: function(Client, types.DeleteConnectorProfileInput): Operation<types.DeleteConnectorProfileOutput>
     -- Enables your application to delete an existing flow. Before deleting the flow, Amazon AppFlow validates the request by checking the flow configuration and status. You can
     -- delete flows one at a time.
-    deleteFlow: function(Client, types.DeleteFlowInput): types.DeleteFlowOutput, table
+    deleteFlow: function(Client, types.DeleteFlowInput): Operation<types.DeleteFlowOutput>
     -- Describes the given custom connector registered in your Amazon Web Services account. This
     -- API can be used for custom connectors that are registered in your account and also for Amazon
     -- authored connectors.
-    describeConnector: function(Client, types.DescribeConnectorInput): types.DescribeConnectorOutput, table
+    describeConnector: function(Client, types.DescribeConnectorInput): Operation<types.DescribeConnectorOutput>
     -- Provides details regarding the entity used with the connector, with a description of the
     -- data model for each field in that entity.
-    describeConnectorEntity: function(Client, types.DescribeConnectorEntityInput): types.DescribeConnectorEntityOutput, table
+    describeConnectorEntity: function(Client, types.DescribeConnectorEntityInput): Operation<types.DescribeConnectorEntityOutput>
     -- Returns a list of connector-profile details matching the provided
     -- connector-profile names and connector-types. Both input lists are
     -- optional, and you can use them to filter the result.
     -- If no names or connector-types are provided, returns all connector profiles
     -- in a paginated form. If there is no match, this operation returns an empty list.
-    describeConnectorProfiles: function(Client, types.DescribeConnectorProfilesInput): types.DescribeConnectorProfilesOutput, table
+    describeConnectorProfiles: function(Client, types.DescribeConnectorProfilesInput): Operation<types.DescribeConnectorProfilesOutput>
     -- Describes the connectors vended by Amazon AppFlow for specified connector types. If
     -- you don't specify a connector type, this operation describes all connectors vended by Amazon AppFlow. If there are more connectors than can be returned in one page, the response
     -- contains a nextToken object, which can be be passed in to the next call to the
     -- DescribeConnectors API operation to retrieve the next page.
-    describeConnectors: function(Client, types.DescribeConnectorsInput): types.DescribeConnectorsOutput, table
+    describeConnectors: function(Client, types.DescribeConnectorsInput): Operation<types.DescribeConnectorsOutput>
     -- Provides a description of the specified flow.
-    describeFlow: function(Client, types.DescribeFlowInput): types.DescribeFlowOutput, table
+    describeFlow: function(Client, types.DescribeFlowInput): Operation<types.DescribeFlowOutput>
     -- Fetches the execution history of the flow.
-    describeFlowExecutionRecords: function(Client, types.DescribeFlowExecutionRecordsInput): types.DescribeFlowExecutionRecordsOutput, table
+    describeFlowExecutionRecords: function(Client, types.DescribeFlowExecutionRecordsInput): Operation<types.DescribeFlowExecutionRecordsOutput>
     -- Returns the list of available connector entities supported by Amazon AppFlow. For
     -- example, you can query Salesforce for Account and
     -- Opportunity entities, or query ServiceNow for the
     -- Incident entity.
-    listConnectorEntities: function(Client, types.ListConnectorEntitiesInput): types.ListConnectorEntitiesOutput, table
+    listConnectorEntities: function(Client, types.ListConnectorEntitiesInput): Operation<types.ListConnectorEntitiesOutput>
     -- Returns the list of all registered custom connectors in your Amazon Web Services account.
     -- This API lists only custom connectors registered in this account, not the Amazon Web Services
     -- authored connectors.
-    listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    listConnectors: function(Client, types.ListConnectorsInput): Operation<types.ListConnectorsOutput>
     -- Lists all of the flows associated with your account.
-    listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    listFlows: function(Client, types.ListFlowsInput): Operation<types.ListFlowsOutput>
     -- Retrieves the tags that are associated with a specified flow.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Registers a new custom connector with your Amazon Web Services account. Before you can
     -- register the connector, you must deploy the associated AWS lambda function in your
     -- account.
-    registerConnector: function(Client, types.RegisterConnectorInput): types.RegisterConnectorOutput, table
+    registerConnector: function(Client, types.RegisterConnectorInput): Operation<types.RegisterConnectorOutput>
     -- Resets metadata about your connector entities that Amazon AppFlow stored in its
     -- cache. Use this action when you want Amazon AppFlow to return the latest information
     -- about the data that you have in a source application.
@@ -83,30 +87,30 @@ local record Client
     -- ListConnectorEntities or DescribeConnectorEntities actions. Following these actions, Amazon AppFlow caches the metadata to reduce the number of API requests that it must send to
     -- the source application. Amazon AppFlow automatically resets the cache once every hour,
     -- but you can use this action when you want to get the latest metadata right away.
-    resetConnectorMetadataCache: function(Client, types.ResetConnectorMetadataCacheInput): types.ResetConnectorMetadataCacheOutput, table
+    resetConnectorMetadataCache: function(Client, types.ResetConnectorMetadataCacheInput): Operation<types.ResetConnectorMetadataCacheOutput>
     -- Activates an existing flow. For on-demand flows, this operation runs the flow
     -- immediately. For schedule and event-triggered flows, this operation activates the flow.
-    startFlow: function(Client, types.StartFlowInput): types.StartFlowOutput, table
+    startFlow: function(Client, types.StartFlowInput): Operation<types.StartFlowOutput>
     -- Deactivates the existing flow. For on-demand flows, this operation returns an
     -- unsupportedOperationException error message. For schedule and event-triggered
     -- flows, this operation deactivates the flow.
-    stopFlow: function(Client, types.StopFlowInput): types.StopFlowOutput, table
+    stopFlow: function(Client, types.StopFlowInput): Operation<types.StopFlowOutput>
     -- Applies a tag to the specified flow.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Unregisters the custom connector registered in your account that matches the connector
     -- label provided in the request.
-    unregisterConnector: function(Client, types.UnregisterConnectorInput): types.UnregisterConnectorOutput, table
+    unregisterConnector: function(Client, types.UnregisterConnectorInput): Operation<types.UnregisterConnectorOutput>
     -- Removes a tag from the specified flow.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a given connector profile associated with your account.
-    updateConnectorProfile: function(Client, types.UpdateConnectorProfileInput): types.UpdateConnectorProfileOutput, table
+    updateConnectorProfile: function(Client, types.UpdateConnectorProfileInput): Operation<types.UpdateConnectorProfileOutput>
     -- Updates a custom connector that you've previously registered. This operation updates the
     -- connector with one of the following:
     -- The latest version of the AWS Lambda function that's assigned to the connector
     -- A new AWS Lambda function that you specify
-    updateConnectorRegistration: function(Client, types.UpdateConnectorRegistrationInput): types.UpdateConnectorRegistrationOutput, table
+    updateConnectorRegistration: function(Client, types.UpdateConnectorRegistrationInput): Operation<types.UpdateConnectorRegistrationOutput>
     -- Updates an existing flow.
-    updateFlow: function(Client, types.UpdateFlowInput): types.UpdateFlowOutput, table
+    updateFlow: function(Client, types.UpdateFlowInput): Operation<types.UpdateFlowOutput>
 end
 
 local record M

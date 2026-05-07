@@ -2,99 +2,103 @@
 
 local types = require("opensearchserverless.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns attributes for one or more collections, including the collection endpoint, the OpenSearch Dashboards endpoint, and FIPS-compliant endpoints. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    batchGetCollection: function(Client, types.BatchGetCollectionInput): types.BatchGetCollectionOutput, table
+    batchGetCollection: function(Client, types.BatchGetCollectionInput): Operation<types.BatchGetCollectionOutput>
     -- Returns attributes for one or more collection groups, including capacity limits and the number of collections in each group. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    batchGetCollectionGroup: function(Client, types.BatchGetCollectionGroupInput): types.BatchGetCollectionGroupOutput, table
+    batchGetCollectionGroup: function(Client, types.BatchGetCollectionGroupInput): Operation<types.BatchGetCollectionGroupOutput>
     -- Returns a list of successful and failed retrievals for the OpenSearch Serverless indexes. For more information, see Viewing data lifecycle policies.
-    batchGetEffectiveLifecyclePolicy: function(Client, types.BatchGetEffectiveLifecyclePolicyInput): types.BatchGetEffectiveLifecyclePolicyOutput, table
+    batchGetEffectiveLifecyclePolicy: function(Client, types.BatchGetEffectiveLifecyclePolicyInput): Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
     -- Returns one or more configured OpenSearch Serverless lifecycle policies. For more information, see Viewing data lifecycle policies.
-    batchGetLifecyclePolicy: function(Client, types.BatchGetLifecyclePolicyInput): types.BatchGetLifecyclePolicyOutput, table
+    batchGetLifecyclePolicy: function(Client, types.BatchGetLifecyclePolicyInput): Operation<types.BatchGetLifecyclePolicyOutput>
     -- Returns attributes for one or more VPC endpoints associated with the current account. For more information, see Access Amazon OpenSearch Serverless using an interface endpoint.
-    batchGetVpcEndpoint: function(Client, types.BatchGetVpcEndpointInput): types.BatchGetVpcEndpointOutput, table
+    batchGetVpcEndpoint: function(Client, types.BatchGetVpcEndpointInput): Operation<types.BatchGetVpcEndpointOutput>
     -- Creates a data access policy for OpenSearch Serverless. Access policies limit access to collections and the resources within them, and allow a user to access that data irrespective of the access mechanism or network source. For more information, see Data access control for Amazon OpenSearch Serverless.
-    createAccessPolicy: function(Client, types.CreateAccessPolicyInput): types.CreateAccessPolicyOutput, table
+    createAccessPolicy: function(Client, types.CreateAccessPolicyInput): Operation<types.CreateAccessPolicyOutput>
     -- Creates a new OpenSearch Serverless collection. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    createCollection: function(Client, types.CreateCollectionInput): types.CreateCollectionOutput, table
+    createCollection: function(Client, types.CreateCollectionInput): Operation<types.CreateCollectionOutput>
     -- Creates a collection group within OpenSearch Serverless. Collection groups let you manage OpenSearch Compute Units (OCUs) at a group level, with multiple collections sharing the group's capacity limits. For more information, see Managing collection groups.
-    createCollectionGroup: function(Client, types.CreateCollectionGroupInput): types.CreateCollectionGroupOutput, table
+    createCollectionGroup: function(Client, types.CreateCollectionGroupInput): Operation<types.CreateCollectionGroupOutput>
     -- Creates an index within an OpenSearch Serverless collection. Unlike other OpenSearch indexes, indexes created by this API are automatically configured to conduct automatic semantic enrichment ingestion and search. For more information, see About automatic semantic enrichment in the OpenSearch User Guide.
-    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createIndex: function(Client, types.CreateIndexInput): Operation<types.CreateIndexOutput>
     -- Creates a lifecyle policy to be applied to OpenSearch Serverless indexes. Lifecycle policies define the number of days or hours to retain the data on an OpenSearch Serverless index. For more information, see Creating data lifecycle policies.
-    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): types.CreateLifecyclePolicyOutput, table
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): Operation<types.CreateLifecyclePolicyOutput>
     -- Specifies a security configuration for OpenSearch Serverless. For more information, see SAML authentication for Amazon OpenSearch Serverless.
-    createSecurityConfig: function(Client, types.CreateSecurityConfigInput): types.CreateSecurityConfigOutput, table
+    createSecurityConfig: function(Client, types.CreateSecurityConfigInput): Operation<types.CreateSecurityConfigOutput>
     -- Creates a security policy to be used by one or more OpenSearch Serverless collections. Security policies provide access to a collection and its OpenSearch Dashboards endpoint from public networks or specific VPC endpoints. They also allow you to secure a collection with a KMS encryption key. For more information, see Network access for Amazon OpenSearch Serverless and Encryption at rest for Amazon OpenSearch Serverless.
-    createSecurityPolicy: function(Client, types.CreateSecurityPolicyInput): types.CreateSecurityPolicyOutput, table
+    createSecurityPolicy: function(Client, types.CreateSecurityPolicyInput): Operation<types.CreateSecurityPolicyOutput>
     -- Creates an OpenSearch Serverless-managed interface VPC endpoint. For more information, see Access Amazon OpenSearch Serverless using an interface endpoint.
-    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): types.CreateVpcEndpointOutput, table
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): Operation<types.CreateVpcEndpointOutput>
     -- Deletes an OpenSearch Serverless access policy. For more information, see Data access control for Amazon OpenSearch Serverless.
-    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput): types.DeleteAccessPolicyOutput, table
+    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput): Operation<types.DeleteAccessPolicyOutput>
     -- Deletes an OpenSearch Serverless collection. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    deleteCollection: function(Client, types.DeleteCollectionInput): types.DeleteCollectionOutput, table
+    deleteCollection: function(Client, types.DeleteCollectionInput): Operation<types.DeleteCollectionOutput>
     -- Deletes a collection group. You can only delete empty collection groups that contain no collections. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    deleteCollectionGroup: function(Client, types.DeleteCollectionGroupInput): types.DeleteCollectionGroupOutput, table
+    deleteCollectionGroup: function(Client, types.DeleteCollectionGroupInput): Operation<types.DeleteCollectionGroupOutput>
     -- Deletes an index from an OpenSearch Serverless collection. Be aware that the index might be configured to conduct automatic semantic enrichment ingestion and search. For more information, see About automatic semantic enrichment.
-    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): Operation<types.DeleteIndexOutput>
     -- Deletes an OpenSearch Serverless lifecycle policy. For more information, see Deleting data lifecycle policies.
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): types.DeleteLifecyclePolicyOutput, table
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): Operation<types.DeleteLifecyclePolicyOutput>
     -- Deletes a security configuration for OpenSearch Serverless. For more information, see SAML authentication for Amazon OpenSearch Serverless.
-    deleteSecurityConfig: function(Client, types.DeleteSecurityConfigInput): types.DeleteSecurityConfigOutput, table
+    deleteSecurityConfig: function(Client, types.DeleteSecurityConfigInput): Operation<types.DeleteSecurityConfigOutput>
     -- Deletes an OpenSearch Serverless security policy.
-    deleteSecurityPolicy: function(Client, types.DeleteSecurityPolicyInput): types.DeleteSecurityPolicyOutput, table
+    deleteSecurityPolicy: function(Client, types.DeleteSecurityPolicyInput): Operation<types.DeleteSecurityPolicyOutput>
     -- Deletes an OpenSearch Serverless-managed interface endpoint. For more information, see Access Amazon OpenSearch Serverless using an interface endpoint.
-    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput): types.DeleteVpcEndpointOutput, table
+    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput): Operation<types.DeleteVpcEndpointOutput>
     -- Returns an OpenSearch Serverless access policy. For more information, see Data access control for Amazon OpenSearch Serverless.
-    getAccessPolicy: function(Client, types.GetAccessPolicyInput): types.GetAccessPolicyOutput, table
+    getAccessPolicy: function(Client, types.GetAccessPolicyInput): Operation<types.GetAccessPolicyOutput>
     -- Returns account-level settings related to OpenSearch Serverless.
-    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): Operation<types.GetAccountSettingsOutput>
     -- Retrieves information about an index in an OpenSearch Serverless collection, including its schema definition. The index might be configured to conduct automatic semantic enrichment ingestion and search. For more information, see About automatic semantic enrichment.
-    getIndex: function(Client, types.GetIndexInput): types.GetIndexOutput, table
+    getIndex: function(Client, types.GetIndexInput): Operation<types.GetIndexOutput>
     -- Returns statistical information about your OpenSearch Serverless access policies, security configurations, and security policies.
-    getPoliciesStats: function(Client, types.GetPoliciesStatsInput): types.GetPoliciesStatsOutput, table
+    getPoliciesStats: function(Client, types.GetPoliciesStatsInput): Operation<types.GetPoliciesStatsOutput>
     -- Returns information about an OpenSearch Serverless security configuration. For more information, see SAML authentication for Amazon OpenSearch Serverless.
-    getSecurityConfig: function(Client, types.GetSecurityConfigInput): types.GetSecurityConfigOutput, table
+    getSecurityConfig: function(Client, types.GetSecurityConfigInput): Operation<types.GetSecurityConfigOutput>
     -- Returns information about a configured OpenSearch Serverless security policy. For more information, see Network access for Amazon OpenSearch Serverless and Encryption at rest for Amazon OpenSearch Serverless.
-    getSecurityPolicy: function(Client, types.GetSecurityPolicyInput): types.GetSecurityPolicyOutput, table
+    getSecurityPolicy: function(Client, types.GetSecurityPolicyInput): Operation<types.GetSecurityPolicyOutput>
     -- Returns information about a list of OpenSearch Serverless access policies.
-    listAccessPolicies: function(Client, types.ListAccessPoliciesInput): types.ListAccessPoliciesOutput, table
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput): Operation<types.ListAccessPoliciesOutput>
     -- Returns a list of collection groups. For more information, see Creating and managing Amazon OpenSearch Serverless collections.
-    listCollectionGroups: function(Client, types.ListCollectionGroupsInput): types.ListCollectionGroupsOutput, table
+    listCollectionGroups: function(Client, types.ListCollectionGroupsInput): Operation<types.ListCollectionGroupsOutput>
     -- Lists all OpenSearch Serverless collections. For more information, see Creating and managing Amazon OpenSearch Serverless collections. Make sure to include an empty request body {} if you don't include any collection filters in the request.
-    listCollections: function(Client, types.ListCollectionsInput): types.ListCollectionsOutput, table
+    listCollections: function(Client, types.ListCollectionsInput): Operation<types.ListCollectionsOutput>
     -- Returns a list of OpenSearch Serverless lifecycle policies. For more information, see Viewing data lifecycle policies.
-    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput): types.ListLifecyclePoliciesOutput, table
+    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput): Operation<types.ListLifecyclePoliciesOutput>
     -- Returns information about configured OpenSearch Serverless security configurations. For more information, see SAML authentication for Amazon OpenSearch Serverless.
-    listSecurityConfigs: function(Client, types.ListSecurityConfigsInput): types.ListSecurityConfigsOutput, table
+    listSecurityConfigs: function(Client, types.ListSecurityConfigsInput): Operation<types.ListSecurityConfigsOutput>
     -- Returns information about configured OpenSearch Serverless security policies.
-    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput): types.ListSecurityPoliciesOutput, table
+    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput): Operation<types.ListSecurityPoliciesOutput>
     -- Returns the tags for an OpenSearch Serverless resource. For more information, see Tagging Amazon OpenSearch Serverless collections.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns the OpenSearch Serverless-managed interface VPC endpoints associated with the current account. For more information, see Access Amazon OpenSearch Serverless using an interface endpoint.
-    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput): types.ListVpcEndpointsOutput, table
+    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput): Operation<types.ListVpcEndpointsOutput>
     -- Associates tags with an OpenSearch Serverless resource. For more information, see Tagging Amazon OpenSearch Serverless collections.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a tag or set of tags from an OpenSearch Serverless resource. For more information, see Tagging Amazon OpenSearch Serverless collections.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an OpenSearch Serverless access policy. For more information, see Data access control for Amazon OpenSearch Serverless.
-    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput): types.UpdateAccessPolicyOutput, table
+    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput): Operation<types.UpdateAccessPolicyOutput>
     -- Update the OpenSearch Serverless settings for the current Amazon Web Services account. For more information, see Managing capacity limits for Amazon OpenSearch Serverless.
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): Operation<types.UpdateAccountSettingsOutput>
     -- Updates an OpenSearch Serverless collection.
-    updateCollection: function(Client, types.UpdateCollectionInput): types.UpdateCollectionOutput, table
+    updateCollection: function(Client, types.UpdateCollectionInput): Operation<types.UpdateCollectionOutput>
     -- Updates the description and capacity limits of a collection group.
-    updateCollectionGroup: function(Client, types.UpdateCollectionGroupInput): types.UpdateCollectionGroupOutput, table
+    updateCollectionGroup: function(Client, types.UpdateCollectionGroupInput): Operation<types.UpdateCollectionGroupOutput>
     -- Updates an existing index in an OpenSearch Serverless collection. This operation allows you to modify the index schema, including adding new fields or changing field mappings. You can also enable automatic semantic enrichment ingestion and search. For more information, see About automatic semantic enrichment.
-    updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    updateIndex: function(Client, types.UpdateIndexInput): Operation<types.UpdateIndexOutput>
     -- Updates an OpenSearch Serverless access policy. For more information, see Updating data lifecycle policies.
-    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): types.UpdateLifecyclePolicyOutput, table
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): Operation<types.UpdateLifecyclePolicyOutput>
     -- Updates a security configuration for OpenSearch Serverless. For more information, see SAML authentication for Amazon OpenSearch Serverless.
-    updateSecurityConfig: function(Client, types.UpdateSecurityConfigInput): types.UpdateSecurityConfigOutput, table
+    updateSecurityConfig: function(Client, types.UpdateSecurityConfigInput): Operation<types.UpdateSecurityConfigOutput>
     -- Updates an OpenSearch Serverless security policy. For more information, see Network access for Amazon OpenSearch Serverless and Encryption at rest for Amazon OpenSearch Serverless.
-    updateSecurityPolicy: function(Client, types.UpdateSecurityPolicyInput): types.UpdateSecurityPolicyOutput, table
+    updateSecurityPolicy: function(Client, types.UpdateSecurityPolicyInput): Operation<types.UpdateSecurityPolicyOutput>
     -- Updates an OpenSearch Serverless-managed interface endpoint. For more information, see Access Amazon OpenSearch Serverless using an interface endpoint.
-    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput): types.UpdateVpcEndpointOutput, table
+    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput): Operation<types.UpdateVpcEndpointOutput>
 end
 
 local record M

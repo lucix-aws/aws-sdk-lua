@@ -2,6 +2,10 @@
 
 local types = require("firehose.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a Firehose stream.
     -- By default, you can create up to 5,000 Firehose streams per Amazon Web Services
@@ -62,7 +66,7 @@ local record Client
     -- destination. The role should allow the Firehose principal to assume the role,
     -- and the role should have permissions that allow the service to deliver the data. For more
     -- information, see Grant Firehose Access to an Amazon S3 Destination in the Amazon Firehose Developer Guide.
-    createDeliveryStream: function(Client, types.CreateDeliveryStreamInput): types.CreateDeliveryStreamOutput, table
+    createDeliveryStream: function(Client, types.CreateDeliveryStreamInput): Operation<types.CreateDeliveryStreamOutput>
     -- Deletes a Firehose stream and its data.
     -- You can delete a Firehose stream only if it is in one of the following states:
     -- ACTIVE, DELETING, CREATING_FAILED, or
@@ -76,7 +80,7 @@ local record Client
     -- Removal of a Firehose stream that is in the DELETING state is a low priority operation for the service. A stream may remain in the
     -- DELETING state for several minutes. Therefore, as a best practice, applications should not wait for streams in the DELETING state
     -- to be removed.
-    deleteDeliveryStream: function(Client, types.DeleteDeliveryStreamInput): types.DeleteDeliveryStreamOutput, table
+    deleteDeliveryStream: function(Client, types.DeleteDeliveryStreamInput): Operation<types.DeleteDeliveryStreamOutput>
     -- Describes the specified Firehose stream and its status. For example, after your
     -- Firehose stream is created, call DescribeDeliveryStream to see whether the
     -- Firehose stream is ACTIVE and therefore ready for data to be sent to it.
@@ -84,7 +88,7 @@ local record Client
     -- doesn't change, and you can't invoke CreateDeliveryStream again on it.
     -- However, you can invoke the DeleteDeliveryStream operation to delete it.
     -- If the status is DELETING_FAILED, you can force deletion by invoking DeleteDeliveryStream again but with DeleteDeliveryStreamInput$AllowForceDelete set to true.
-    describeDeliveryStream: function(Client, types.DescribeDeliveryStreamInput): types.DescribeDeliveryStreamOutput, table
+    describeDeliveryStream: function(Client, types.DescribeDeliveryStreamInput): Operation<types.DescribeDeliveryStreamOutput>
     -- Lists your Firehose streams in alphabetical order of their names.
     -- The number of Firehose streams might be too large to return using a single call to
     -- ListDeliveryStreams. You can limit the number of Firehose streams returned,
@@ -93,10 +97,10 @@ local record Client
     -- there are more Firehose streams to list, you can request them by calling this operation
     -- again and setting the ExclusiveStartDeliveryStreamName parameter to the name
     -- of the last Firehose stream returned in the last call.
-    listDeliveryStreams: function(Client, types.ListDeliveryStreamsInput): types.ListDeliveryStreamsOutput, table
+    listDeliveryStreams: function(Client, types.ListDeliveryStreamsInput): Operation<types.ListDeliveryStreamsOutput>
     -- Lists the tags for the specified Firehose stream. This operation has a limit of five
     -- transactions per second per account.
-    listTagsForDeliveryStream: function(Client, types.ListTagsForDeliveryStreamInput): types.ListTagsForDeliveryStreamOutput, table
+    listTagsForDeliveryStream: function(Client, types.ListTagsForDeliveryStreamInput): Operation<types.ListTagsForDeliveryStreamOutput>
     -- Writes a single data record into an Firehose stream. To
     -- write multiple data records into a Firehose stream, use PutRecordBatch.
     -- Applications using these operations are referred to as producers.
@@ -136,7 +140,7 @@ local record Client
     -- available.
     -- Don't concatenate two or more base64 strings to form the data fields of your records.
     -- Instead, concatenate the raw data, then perform base64 encoding.
-    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+    putRecord: function(Client, types.PutRecordInput): Operation<types.PutRecordOutput>
     -- Writes multiple data records into a Firehose stream in a single call, which can
     -- achieve higher throughput per producer than when writing single records. To write single
     -- data records into a Firehose stream, use PutRecord. Applications using
@@ -194,7 +198,7 @@ local record Client
     -- available.
     -- Don't concatenate two or more base64 strings to form the data fields of your records.
     -- Instead, concatenate the raw data, then perform base64 encoding.
-    putRecordBatch: function(Client, types.PutRecordBatchInput): types.PutRecordBatchOutput, table
+    putRecordBatch: function(Client, types.PutRecordBatchInput): Operation<types.PutRecordBatchOutput>
     -- Enables server-side encryption (SSE) for the Firehose stream.
     -- This operation is asynchronous. It returns immediately. When you invoke it, Firehose first sets the encryption status of the stream to ENABLING, and then
     -- to ENABLED. The encryption status of a Firehose stream is the
@@ -233,7 +237,7 @@ local record Client
     -- StartDeliveryStreamEncryption 13 times and
     -- StopDeliveryStreamEncryption 12 times for the same Firehose stream in a
     -- 24-hour period.
-    startDeliveryStreamEncryption: function(Client, types.StartDeliveryStreamEncryptionInput): types.StartDeliveryStreamEncryptionOutput, table
+    startDeliveryStreamEncryption: function(Client, types.StartDeliveryStreamEncryptionInput): Operation<types.StartDeliveryStreamEncryptionOutput>
     -- Disables server-side encryption (SSE) for the Firehose stream.
     -- This operation is asynchronous. It returns immediately. When you invoke it, Firehose first sets the encryption status of the stream to DISABLING, and then
     -- to DISABLED. You can continue to read and write data to your stream while its
@@ -253,7 +257,7 @@ local record Client
     -- StartDeliveryStreamEncryption 13 times and
     -- StopDeliveryStreamEncryption 12 times for the same Firehose stream in a
     -- 24-hour period.
-    stopDeliveryStreamEncryption: function(Client, types.StopDeliveryStreamEncryptionInput): types.StopDeliveryStreamEncryptionOutput, table
+    stopDeliveryStreamEncryption: function(Client, types.StopDeliveryStreamEncryptionInput): Operation<types.StopDeliveryStreamEncryptionOutput>
     -- Adds or updates tags for the specified Firehose stream. A tag is a key-value pair
     -- that you can define and assign to Amazon Web Services resources. If you specify a tag that
     -- already exists, the tag value is replaced with the value that you specify in the request.
@@ -264,12 +268,12 @@ local record Client
     -- Guide.
     -- Each Firehose stream can have up to 50 tags.
     -- This operation has a limit of five transactions per second per account.
-    tagDeliveryStream: function(Client, types.TagDeliveryStreamInput): types.TagDeliveryStreamOutput, table
+    tagDeliveryStream: function(Client, types.TagDeliveryStreamInput): Operation<types.TagDeliveryStreamOutput>
     -- Removes tags from the specified Firehose stream. Removed tags are deleted, and you
     -- can't recover them after this operation successfully completes.
     -- If you specify a tag that doesn't exist, the operation ignores it.
     -- This operation has a limit of five transactions per second per account.
-    untagDeliveryStream: function(Client, types.UntagDeliveryStreamInput): types.UntagDeliveryStreamOutput, table
+    untagDeliveryStream: function(Client, types.UntagDeliveryStreamInput): Operation<types.UntagDeliveryStreamOutput>
     -- Updates the specified destination of the specified Firehose stream.
     -- Use this operation to change the destination type (for example, to replace the Amazon
     -- S3 destination with Amazon Redshift) or change the parameters associated with a destination
@@ -293,7 +297,7 @@ local record Client
     -- configuration only if the existing configuration has a version ID that matches. After the
     -- update is applied successfully, the version ID is updated, and can be retrieved using DescribeDeliveryStream. Use the new version ID to set
     -- CurrentDeliveryStreamVersionId in the next call.
-    updateDestination: function(Client, types.UpdateDestinationInput): types.UpdateDestinationOutput, table
+    updateDestination: function(Client, types.UpdateDestinationInput): Operation<types.UpdateDestinationOutput>
 end
 
 local record M

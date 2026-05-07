@@ -2,6 +2,10 @@
 
 local types = require("lexmodelbuildingservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new version of the bot based on the $LATEST
     -- version. If the $LATEST version of this resource hasn't
@@ -14,7 +18,7 @@ local record Client
     -- to 1. Subsequent versions increment by 1. For more information, see versioning-intro.
     -- This operation requires permission for the
     -- lex:CreateBotVersion action.
-    createBotVersion: function(Client, types.CreateBotVersionInput): types.CreateBotVersionOutput, table
+    createBotVersion: function(Client, types.CreateBotVersionInput): Operation<types.CreateBotVersionOutput>
     -- Creates a new version of an intent based on the
     -- $LATEST version of the intent. If the $LATEST
     -- version of this intent hasn't changed since you last updated it, Amazon Lex
@@ -27,7 +31,7 @@ local record Client
     -- 1. Subsequent versions increment by 1. For more information, see versioning-intro.
     -- This operation requires permissions to perform the
     -- lex:CreateIntentVersion action.
-    createIntentVersion: function(Client, types.CreateIntentVersionInput): types.CreateIntentVersionOutput, table
+    createIntentVersion: function(Client, types.CreateIntentVersionInput): Operation<types.CreateIntentVersionOutput>
     -- Creates a new version of a slot type based on the
     -- $LATEST version of the specified slot type. If the
     -- $LATEST version of this resource has not changed since the
@@ -40,7 +44,7 @@ local record Client
     -- 1. Subsequent versions increment by 1. For more information, see versioning-intro.
     -- This operation requires permissions for the
     -- lex:CreateSlotTypeVersion action.
-    createSlotTypeVersion: function(Client, types.CreateSlotTypeVersionInput): types.CreateSlotTypeVersionOutput, table
+    createSlotTypeVersion: function(Client, types.CreateSlotTypeVersionInput): Operation<types.CreateSlotTypeVersionOutput>
     -- Deletes all versions of the bot, including the $LATEST
     -- version. To delete a specific version of the bot, use the DeleteBotVersion operation. The DeleteBot
     -- operation doesn't immediately remove the bot schema. Instead, it is marked
@@ -57,7 +61,7 @@ local record Client
     -- successful.
     -- This operation requires permissions for the
     -- lex:DeleteBot action.
-    deleteBot: function(Client, types.DeleteBotInput): types.DeleteBotOutput, table
+    deleteBot: function(Client, types.DeleteBotInput): Operation<types.DeleteBotOutput>
     -- Deletes an alias for the specified bot.
     -- You can't delete an alias that is used in the association between a
     -- bot and a messaging channel. If an alias is used in a channel association,
@@ -67,17 +71,17 @@ local record Client
     -- reference to the alias by deleting the channel association. If you get the
     -- same exception again, delete the referring association until the
     -- DeleteBotAlias operation is successful.
-    deleteBotAlias: function(Client, types.DeleteBotAliasInput): types.DeleteBotAliasOutput, table
+    deleteBotAlias: function(Client, types.DeleteBotAliasInput): Operation<types.DeleteBotAliasOutput>
     -- Deletes the association between an Amazon Lex bot and a messaging
     -- platform.
     -- This operation requires permission for the
     -- lex:DeleteBotChannelAssociation action.
-    deleteBotChannelAssociation: function(Client, types.DeleteBotChannelAssociationInput): types.DeleteBotChannelAssociationOutput, table
+    deleteBotChannelAssociation: function(Client, types.DeleteBotChannelAssociationInput): Operation<types.DeleteBotChannelAssociationOutput>
     -- Deletes a specific version of a bot. To delete all versions of a
     -- bot, use the DeleteBot operation.
     -- This operation requires permissions for the
     -- lex:DeleteBotVersion action.
-    deleteBotVersion: function(Client, types.DeleteBotVersionInput): types.DeleteBotVersionOutput, table
+    deleteBotVersion: function(Client, types.DeleteBotVersionInput): Operation<types.DeleteBotVersionOutput>
     -- Deletes all versions of the intent, including the
     -- $LATEST version. To delete a specific version of the
     -- intent, use the DeleteIntentVersion operation.
@@ -93,12 +97,12 @@ local record Client
     -- DeleteIntent is successful.
     -- This operation requires permission for the
     -- lex:DeleteIntent action.
-    deleteIntent: function(Client, types.DeleteIntentInput): types.DeleteIntentOutput, table
+    deleteIntent: function(Client, types.DeleteIntentInput): Operation<types.DeleteIntentOutput>
     -- Deletes a specific version of an intent. To delete all versions of
     -- a intent, use the DeleteIntent operation.
     -- This operation requires permissions for the
     -- lex:DeleteIntentVersion action.
-    deleteIntentVersion: function(Client, types.DeleteIntentVersionInput): types.DeleteIntentVersionOutput, table
+    deleteIntentVersion: function(Client, types.DeleteIntentVersionInput): Operation<types.DeleteIntentVersionOutput>
     -- Deletes all versions of the slot type, including the
     -- $LATEST version. To delete a specific version of the slot
     -- type, use the DeleteSlotTypeVersion operation.
@@ -114,12 +118,12 @@ local record Client
     -- successful.
     -- This operation requires permission for the
     -- lex:DeleteSlotType action.
-    deleteSlotType: function(Client, types.DeleteSlotTypeInput): types.DeleteSlotTypeOutput, table
+    deleteSlotType: function(Client, types.DeleteSlotTypeInput): Operation<types.DeleteSlotTypeOutput>
     -- Deletes a specific version of a slot type. To delete all versions
     -- of a slot type, use the DeleteSlotType operation.
     -- This operation requires permissions for the
     -- lex:DeleteSlotTypeVersion action.
-    deleteSlotTypeVersion: function(Client, types.DeleteSlotTypeVersionInput): types.DeleteSlotTypeVersionOutput, table
+    deleteSlotTypeVersion: function(Client, types.DeleteSlotTypeVersionInput): Operation<types.DeleteSlotTypeVersionOutput>
     -- Deletes stored utterances.
     -- Amazon Lex stores the utterances that users send to your bot. Utterances
     -- are stored for 15 days for use with the GetUtterancesView operation, and then stored indefinitely for use in improving the
@@ -132,32 +136,32 @@ local record Client
     -- operation are deleted after 15 days.
     -- This operation requires permissions for the
     -- lex:DeleteUtterances action.
-    deleteUtterances: function(Client, types.DeleteUtterancesInput): types.DeleteUtterancesOutput, table
+    deleteUtterances: function(Client, types.DeleteUtterancesInput): Operation<types.DeleteUtterancesOutput>
     -- Returns metadata information for a specific bot. You must provide
     -- the bot name and the bot version or alias.
     -- This operation requires permissions for the
     -- lex:GetBot action.
-    getBot: function(Client, types.GetBotInput): types.GetBotOutput, table
+    getBot: function(Client, types.GetBotInput): Operation<types.GetBotOutput>
     -- Returns information about an Amazon Lex bot alias. For more information
     -- about aliases, see versioning-aliases.
     -- This operation requires permissions for the
     -- lex:GetBotAlias action.
-    getBotAlias: function(Client, types.GetBotAliasInput): types.GetBotAliasOutput, table
+    getBotAlias: function(Client, types.GetBotAliasInput): Operation<types.GetBotAliasOutput>
     -- Returns a list of aliases for a specified Amazon Lex bot.
     -- This operation requires permissions for the
     -- lex:GetBotAliases action.
-    getBotAliases: function(Client, types.GetBotAliasesInput): types.GetBotAliasesOutput, table
+    getBotAliases: function(Client, types.GetBotAliasesInput): Operation<types.GetBotAliasesOutput>
     -- Returns information about the association between an Amazon Lex bot and
     -- a messaging platform.
     -- This operation requires permissions for the
     -- lex:GetBotChannelAssociation action.
-    getBotChannelAssociation: function(Client, types.GetBotChannelAssociationInput): types.GetBotChannelAssociationOutput, table
+    getBotChannelAssociation: function(Client, types.GetBotChannelAssociationInput): Operation<types.GetBotChannelAssociationOutput>
     -- Returns a list of all of the channels associated with the
     -- specified bot.
     -- The GetBotChannelAssociations operation requires
     -- permissions for the lex:GetBotChannelAssociations
     -- action.
-    getBotChannelAssociations: function(Client, types.GetBotChannelAssociationsInput): types.GetBotChannelAssociationsOutput, table
+    getBotChannelAssociations: function(Client, types.GetBotChannelAssociationsInput): Operation<types.GetBotChannelAssociationsOutput>
     -- Returns bot information as follows:
     -- If you provide the nameContains field, the
     -- response includes information for the $LATEST version of
@@ -167,7 +171,7 @@ local record Client
     -- of all of your bots.
     -- This operation requires permission for the lex:GetBots
     -- action.
-    getBots: function(Client, types.GetBotsInput): types.GetBotsOutput, table
+    getBots: function(Client, types.GetBotsInput): Operation<types.GetBotsOutput>
     -- Gets information about all of the versions of a bot.
     -- The GetBotVersions operation returns a
     -- BotMetadata object for each version of a bot. For example,
@@ -179,33 +183,33 @@ local record Client
     -- one version, the $LATEST version.
     -- This operation requires permissions for the
     -- lex:GetBotVersions action.
-    getBotVersions: function(Client, types.GetBotVersionsInput): types.GetBotVersionsOutput, table
+    getBotVersions: function(Client, types.GetBotVersionsInput): Operation<types.GetBotVersionsOutput>
     -- Returns information about a built-in intent.
     -- This operation requires permission for the
     -- lex:GetBuiltinIntent action.
-    getBuiltinIntent: function(Client, types.GetBuiltinIntentInput): types.GetBuiltinIntentOutput, table
+    getBuiltinIntent: function(Client, types.GetBuiltinIntentInput): Operation<types.GetBuiltinIntentOutput>
     -- Gets a list of built-in intents that meet the specified
     -- criteria.
     -- This operation requires permission for the
     -- lex:GetBuiltinIntents action.
-    getBuiltinIntents: function(Client, types.GetBuiltinIntentsInput): types.GetBuiltinIntentsOutput, table
+    getBuiltinIntents: function(Client, types.GetBuiltinIntentsInput): Operation<types.GetBuiltinIntentsOutput>
     -- Gets a list of built-in slot types that meet the specified
     -- criteria.
     -- For a list of built-in slot types, see Slot Type Reference in the Alexa Skills
     -- Kit.
     -- This operation requires permission for the
     -- lex:GetBuiltInSlotTypes action.
-    getBuiltinSlotTypes: function(Client, types.GetBuiltinSlotTypesInput): types.GetBuiltinSlotTypesOutput, table
+    getBuiltinSlotTypes: function(Client, types.GetBuiltinSlotTypesInput): Operation<types.GetBuiltinSlotTypesOutput>
     -- Exports the contents of a Amazon Lex resource in a specified format.
-    getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    getExport: function(Client, types.GetExportInput): Operation<types.GetExportOutput>
     -- Gets information about an import job started with the
     -- StartImport operation.
-    getImport: function(Client, types.GetImportInput): types.GetImportOutput, table
+    getImport: function(Client, types.GetImportInput): Operation<types.GetImportOutput>
     -- Returns information about an intent. In addition to the intent
     -- name, you must specify the intent version.
     -- This operation requires permissions to perform the
     -- lex:GetIntent action.
-    getIntent: function(Client, types.GetIntentInput): types.GetIntentOutput, table
+    getIntent: function(Client, types.GetIntentInput): Operation<types.GetIntentOutput>
     -- Returns intent information as follows:
     -- If you specify the nameContains field, returns the
     -- $LATEST version of all intents that contain the
@@ -215,7 +219,7 @@ local record Client
     -- intents.
     -- The operation requires permission for the
     -- lex:GetIntents action.
-    getIntents: function(Client, types.GetIntentsInput): types.GetIntentsOutput, table
+    getIntents: function(Client, types.GetIntentsInput): Operation<types.GetIntentsOutput>
     -- Gets information about all of the versions of an intent.
     -- The GetIntentVersions operation returns an
     -- IntentMetadata object for each version of an intent. For
@@ -227,19 +231,19 @@ local record Client
     -- least one version, the $LATEST version.
     -- This operation requires permissions for the
     -- lex:GetIntentVersions action.
-    getIntentVersions: function(Client, types.GetIntentVersionsInput): types.GetIntentVersionsOutput, table
+    getIntentVersions: function(Client, types.GetIntentVersionsInput): Operation<types.GetIntentVersionsOutput>
     -- Provides details about an ongoing or complete migration from an
     -- Amazon Lex V1 bot to an Amazon Lex V2 bot. Use this operation to view the migration
     -- alerts and warnings related to the migration.
-    getMigration: function(Client, types.GetMigrationInput): types.GetMigrationOutput, table
+    getMigration: function(Client, types.GetMigrationInput): Operation<types.GetMigrationOutput>
     -- Gets a list of migrations between Amazon Lex V1 and Amazon Lex V2.
-    getMigrations: function(Client, types.GetMigrationsInput): types.GetMigrationsOutput, table
+    getMigrations: function(Client, types.GetMigrationsInput): Operation<types.GetMigrationsOutput>
     -- Returns information about a specific version of a slot type. In
     -- addition to specifying the slot type name, you must specify the slot type
     -- version.
     -- This operation requires permissions for the
     -- lex:GetSlotType action.
-    getSlotType: function(Client, types.GetSlotTypeInput): types.GetSlotTypeOutput, table
+    getSlotType: function(Client, types.GetSlotTypeInput): Operation<types.GetSlotTypeOutput>
     -- Returns slot type information as follows:
     -- If you specify the nameContains field, returns the
     -- $LATEST version of all slot types that contain the
@@ -249,7 +253,7 @@ local record Client
     -- types.
     -- The operation requires permission for the
     -- lex:GetSlotTypes action.
-    getSlotTypes: function(Client, types.GetSlotTypesInput): types.GetSlotTypesOutput, table
+    getSlotTypes: function(Client, types.GetSlotTypesInput): Operation<types.GetSlotTypesOutput>
     -- Gets information about all versions of a slot type.
     -- The GetSlotTypeVersions operation returns a
     -- SlotTypeMetadata object for each version of a slot type.
@@ -261,7 +265,7 @@ local record Client
     -- least one version, the $LATEST version.
     -- This operation requires permissions for the
     -- lex:GetSlotTypeVersions action.
-    getSlotTypeVersions: function(Client, types.GetSlotTypeVersionsInput): types.GetSlotTypeVersionsOutput, table
+    getSlotTypeVersions: function(Client, types.GetSlotTypeVersionsInput): Operation<types.GetSlotTypeVersionsOutput>
     -- Use the GetUtterancesView operation to get information
     -- about the utterances that your users have made to your bot. You can use
     -- this list to tune the utterances that your bot responds to.
@@ -286,10 +290,10 @@ local record Client
     -- are not available.
     -- This operation requires permissions for the
     -- lex:GetUtterancesView action.
-    getUtterancesView: function(Client, types.GetUtterancesViewInput): types.GetUtterancesViewOutput, table
+    getUtterancesView: function(Client, types.GetUtterancesViewInput): Operation<types.GetUtterancesViewOutput>
     -- Gets a list of tags associated with the specified resource. Only bots,
     -- bot aliases, and bot channels can have tags associated with them.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates an Amazon Lex conversational bot or replaces an existing bot.
     -- When you create or update a bot you are only required to specify a name, a
     -- locale, and whether the bot is directed toward children under age 13. You
@@ -307,14 +311,14 @@ local record Client
     -- exception.
     -- This operation requires permissions for the lex:PutBot
     -- action. For more information, see security-iam.
-    putBot: function(Client, types.PutBotInput): types.PutBotOutput, table
+    putBot: function(Client, types.PutBotInput): Operation<types.PutBotOutput>
     -- Creates an alias for the specified version of the bot or replaces
     -- an alias for the specified bot. To change the version of the bot that the
     -- alias points to, replace the alias. For more information about aliases,
     -- see versioning-aliases.
     -- This operation requires permissions for the
     -- lex:PutBotAlias action.
-    putBotAlias: function(Client, types.PutBotAliasInput): types.PutBotAliasOutput, table
+    putBotAlias: function(Client, types.PutBotAliasInput): Operation<types.PutBotAliasOutput>
     -- Creates an intent or replaces an existing intent.
     -- To define the interaction between the user and your bot, you use
     -- one or more intents. For a pizza ordering bot, for example, you would
@@ -354,7 +358,7 @@ local record Client
     -- For more information, see how-it-works.
     -- This operation requires permissions for the
     -- lex:PutIntent action.
-    putIntent: function(Client, types.PutIntentInput): types.PutIntentOutput, table
+    putIntent: function(Client, types.PutIntentInput): Operation<types.PutIntentOutput>
     -- Creates a custom slot type or replaces an existing custom slot
     -- type.
     -- To create a custom slot type, specify a name for the slot type and
@@ -370,19 +374,19 @@ local record Client
     -- NOT_BUILT.
     -- This operation requires permissions for the
     -- lex:PutSlotType action.
-    putSlotType: function(Client, types.PutSlotTypeInput): types.PutSlotTypeOutput, table
+    putSlotType: function(Client, types.PutSlotTypeInput): Operation<types.PutSlotTypeOutput>
     -- Starts a job to import a resource to Amazon Lex.
-    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startImport: function(Client, types.StartImportInput): Operation<types.StartImportOutput>
     -- Starts migrating a bot from Amazon Lex V1 to Amazon Lex V2. Migrate your bot when
     -- you want to take advantage of the new features of Amazon Lex V2.
     -- For more information, see Migrating a bot in the Amazon Lex
     -- developer guide.
-    startMigration: function(Client, types.StartMigrationInput): types.StartMigrationOutput, table
+    startMigration: function(Client, types.StartMigrationInput): Operation<types.StartMigrationOutput>
     -- Adds the specified tags to the specified resource. If a tag key
     -- already exists, the existing value is replaced with the new value.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a bot, bot alias or bot channel.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

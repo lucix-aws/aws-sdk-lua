@@ -2,32 +2,36 @@
 
 local types = require("appmesh.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a gateway route.
     -- A gateway route is attached to a virtual gateway and routes traffic to an existing
     -- virtual service. If a route matches a request, it can distribute traffic to a target
     -- virtual service.
     -- For more information about gateway routes, see Gateway routes.
-    createGatewayRoute: function(Client, types.CreateGatewayRouteInput): types.CreateGatewayRouteOutput, table
+    createGatewayRoute: function(Client, types.CreateGatewayRouteInput): Operation<types.CreateGatewayRouteOutput>
     -- Creates a service mesh.
     -- A service mesh is a logical boundary for network traffic between services that are
     -- represented by resources within the mesh. After you create your service mesh, you can
     -- create virtual services, virtual nodes, virtual routers, and routes to distribute traffic
     -- between the applications in your mesh.
     -- For more information about service meshes, see Service meshes.
-    createMesh: function(Client, types.CreateMeshInput): types.CreateMeshOutput, table
+    createMesh: function(Client, types.CreateMeshInput): Operation<types.CreateMeshOutput>
     -- Creates a route that is associated with a virtual router.
     -- You can route several different protocols and define a retry policy for a route.
     -- Traffic can be routed to one or more virtual nodes.
     -- For more information about routes, see Routes.
-    createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    createRoute: function(Client, types.CreateRouteInput): Operation<types.CreateRouteOutput>
     -- Creates a virtual gateway.
     -- A virtual gateway allows resources outside your mesh to communicate to resources that
     -- are inside your mesh. The virtual gateway represents an Envoy proxy running in an Amazon ECS task, in a Kubernetes service, or on an Amazon EC2 instance. Unlike a
     -- virtual node, which represents an Envoy running with an application, a virtual gateway
     -- represents Envoy deployed by itself.
     -- For more information about virtual gateways, see Virtual gateways.
-    createVirtualGateway: function(Client, types.CreateVirtualGatewayInput): types.CreateVirtualGatewayOutput, table
+    createVirtualGateway: function(Client, types.CreateVirtualGatewayInput): Operation<types.CreateVirtualGatewayOutput>
     -- Creates a virtual node within a service mesh.
     -- A virtual node acts as a logical pointer to a particular task group, such as an Amazon ECS service or a Kubernetes deployment. When you create a virtual node, you can
     -- specify the service discovery information for your task group, and whether the proxy
@@ -50,7 +54,7 @@ local record Client
     -- setting these variables. For more information aboutApp Mesh Envoy variables, see
     -- Envoy
     -- image in the App Mesh User Guide.
-    createVirtualNode: function(Client, types.CreateVirtualNodeInput): types.CreateVirtualNodeOutput, table
+    createVirtualNode: function(Client, types.CreateVirtualNodeInput): Operation<types.CreateVirtualNodeOutput>
     -- Creates a virtual router within a service mesh.
     -- Specify a listener for any inbound traffic that your virtual router
     -- receives. Create a virtual router for each protocol and port that you need to route.
@@ -58,7 +62,7 @@ local record Client
     -- create your virtual router, create and associate routes for your virtual router that direct
     -- incoming requests to different virtual nodes.
     -- For more information about virtual routers, see Virtual routers.
-    createVirtualRouter: function(Client, types.CreateVirtualRouterInput): types.CreateVirtualRouterOutput, table
+    createVirtualRouter: function(Client, types.CreateVirtualRouterInput): Operation<types.CreateVirtualRouterOutput>
     -- Creates a virtual service within a service mesh.
     -- A virtual service is an abstraction of a real service that is provided by a virtual node
     -- directly or indirectly by means of a virtual router. Dependent services call your virtual
@@ -66,81 +70,81 @@ local record Client
     -- virtual node or virtual router that is specified as the provider for the virtual
     -- service.
     -- For more information about virtual services, see Virtual services.
-    createVirtualService: function(Client, types.CreateVirtualServiceInput): types.CreateVirtualServiceOutput, table
+    createVirtualService: function(Client, types.CreateVirtualServiceInput): Operation<types.CreateVirtualServiceOutput>
     -- Deletes an existing gateway route.
-    deleteGatewayRoute: function(Client, types.DeleteGatewayRouteInput): types.DeleteGatewayRouteOutput, table
+    deleteGatewayRoute: function(Client, types.DeleteGatewayRouteInput): Operation<types.DeleteGatewayRouteOutput>
     -- Deletes an existing service mesh.
     -- You must delete all resources (virtual services, routes, virtual routers, and virtual
     -- nodes) in the service mesh before you can delete the mesh itself.
-    deleteMesh: function(Client, types.DeleteMeshInput): types.DeleteMeshOutput, table
+    deleteMesh: function(Client, types.DeleteMeshInput): Operation<types.DeleteMeshOutput>
     -- Deletes an existing route.
-    deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    deleteRoute: function(Client, types.DeleteRouteInput): Operation<types.DeleteRouteOutput>
     -- Deletes an existing virtual gateway. You cannot delete a virtual gateway if any gateway
     -- routes are associated to it.
-    deleteVirtualGateway: function(Client, types.DeleteVirtualGatewayInput): types.DeleteVirtualGatewayOutput, table
+    deleteVirtualGateway: function(Client, types.DeleteVirtualGatewayInput): Operation<types.DeleteVirtualGatewayOutput>
     -- Deletes an existing virtual node.
     -- You must delete any virtual services that list a virtual node as a service provider
     -- before you can delete the virtual node itself.
-    deleteVirtualNode: function(Client, types.DeleteVirtualNodeInput): types.DeleteVirtualNodeOutput, table
+    deleteVirtualNode: function(Client, types.DeleteVirtualNodeInput): Operation<types.DeleteVirtualNodeOutput>
     -- Deletes an existing virtual router.
     -- You must delete any routes associated with the virtual router before you can delete the
     -- router itself.
-    deleteVirtualRouter: function(Client, types.DeleteVirtualRouterInput): types.DeleteVirtualRouterOutput, table
+    deleteVirtualRouter: function(Client, types.DeleteVirtualRouterInput): Operation<types.DeleteVirtualRouterOutput>
     -- Deletes an existing virtual service.
-    deleteVirtualService: function(Client, types.DeleteVirtualServiceInput): types.DeleteVirtualServiceOutput, table
+    deleteVirtualService: function(Client, types.DeleteVirtualServiceInput): Operation<types.DeleteVirtualServiceOutput>
     -- Describes an existing gateway route.
-    describeGatewayRoute: function(Client, types.DescribeGatewayRouteInput): types.DescribeGatewayRouteOutput, table
+    describeGatewayRoute: function(Client, types.DescribeGatewayRouteInput): Operation<types.DescribeGatewayRouteOutput>
     -- Describes an existing service mesh.
-    describeMesh: function(Client, types.DescribeMeshInput): types.DescribeMeshOutput, table
+    describeMesh: function(Client, types.DescribeMeshInput): Operation<types.DescribeMeshOutput>
     -- Describes an existing route.
-    describeRoute: function(Client, types.DescribeRouteInput): types.DescribeRouteOutput, table
+    describeRoute: function(Client, types.DescribeRouteInput): Operation<types.DescribeRouteOutput>
     -- Describes an existing virtual gateway.
-    describeVirtualGateway: function(Client, types.DescribeVirtualGatewayInput): types.DescribeVirtualGatewayOutput, table
+    describeVirtualGateway: function(Client, types.DescribeVirtualGatewayInput): Operation<types.DescribeVirtualGatewayOutput>
     -- Describes an existing virtual node.
-    describeVirtualNode: function(Client, types.DescribeVirtualNodeInput): types.DescribeVirtualNodeOutput, table
+    describeVirtualNode: function(Client, types.DescribeVirtualNodeInput): Operation<types.DescribeVirtualNodeOutput>
     -- Describes an existing virtual router.
-    describeVirtualRouter: function(Client, types.DescribeVirtualRouterInput): types.DescribeVirtualRouterOutput, table
+    describeVirtualRouter: function(Client, types.DescribeVirtualRouterInput): Operation<types.DescribeVirtualRouterOutput>
     -- Describes an existing virtual service.
-    describeVirtualService: function(Client, types.DescribeVirtualServiceInput): types.DescribeVirtualServiceOutput, table
+    describeVirtualService: function(Client, types.DescribeVirtualServiceInput): Operation<types.DescribeVirtualServiceOutput>
     -- Returns a list of existing gateway routes that are associated to a virtual
     -- gateway.
-    listGatewayRoutes: function(Client, types.ListGatewayRoutesInput): types.ListGatewayRoutesOutput, table
+    listGatewayRoutes: function(Client, types.ListGatewayRoutesInput): Operation<types.ListGatewayRoutesOutput>
     -- Returns a list of existing service meshes.
-    listMeshes: function(Client, types.ListMeshesInput): types.ListMeshesOutput, table
+    listMeshes: function(Client, types.ListMeshesInput): Operation<types.ListMeshesOutput>
     -- Returns a list of existing routes in a service mesh.
-    listRoutes: function(Client, types.ListRoutesInput): types.ListRoutesOutput, table
+    listRoutes: function(Client, types.ListRoutesInput): Operation<types.ListRoutesOutput>
     -- List the tags for an App Mesh resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Returns a list of existing virtual gateways in a service mesh.
-    listVirtualGateways: function(Client, types.ListVirtualGatewaysInput): types.ListVirtualGatewaysOutput, table
+    listVirtualGateways: function(Client, types.ListVirtualGatewaysInput): Operation<types.ListVirtualGatewaysOutput>
     -- Returns a list of existing virtual nodes.
-    listVirtualNodes: function(Client, types.ListVirtualNodesInput): types.ListVirtualNodesOutput, table
+    listVirtualNodes: function(Client, types.ListVirtualNodesInput): Operation<types.ListVirtualNodesOutput>
     -- Returns a list of existing virtual routers in a service mesh.
-    listVirtualRouters: function(Client, types.ListVirtualRoutersInput): types.ListVirtualRoutersOutput, table
+    listVirtualRouters: function(Client, types.ListVirtualRoutersInput): Operation<types.ListVirtualRoutersOutput>
     -- Returns a list of existing virtual services in a service mesh.
-    listVirtualServices: function(Client, types.ListVirtualServicesInput): types.ListVirtualServicesOutput, table
+    listVirtualServices: function(Client, types.ListVirtualServicesInput): Operation<types.ListVirtualServicesOutput>
     -- Associates the specified tags to a resource with the specified resourceArn.
     -- If existing tags on a resource aren't specified in the request parameters, they aren't
     -- changed. When a resource is deleted, the tags associated with that resource are also
     -- deleted.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes specified tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing gateway route that is associated to a specified virtual gateway in a
     -- service mesh.
-    updateGatewayRoute: function(Client, types.UpdateGatewayRouteInput): types.UpdateGatewayRouteOutput, table
+    updateGatewayRoute: function(Client, types.UpdateGatewayRouteInput): Operation<types.UpdateGatewayRouteOutput>
     -- Updates an existing service mesh.
-    updateMesh: function(Client, types.UpdateMeshInput): types.UpdateMeshOutput, table
+    updateMesh: function(Client, types.UpdateMeshInput): Operation<types.UpdateMeshOutput>
     -- Updates an existing route for a specified service mesh and virtual router.
-    updateRoute: function(Client, types.UpdateRouteInput): types.UpdateRouteOutput, table
+    updateRoute: function(Client, types.UpdateRouteInput): Operation<types.UpdateRouteOutput>
     -- Updates an existing virtual gateway in a specified service mesh.
-    updateVirtualGateway: function(Client, types.UpdateVirtualGatewayInput): types.UpdateVirtualGatewayOutput, table
+    updateVirtualGateway: function(Client, types.UpdateVirtualGatewayInput): Operation<types.UpdateVirtualGatewayOutput>
     -- Updates an existing virtual node in a specified service mesh.
-    updateVirtualNode: function(Client, types.UpdateVirtualNodeInput): types.UpdateVirtualNodeOutput, table
+    updateVirtualNode: function(Client, types.UpdateVirtualNodeInput): Operation<types.UpdateVirtualNodeOutput>
     -- Updates an existing virtual router in a specified service mesh.
-    updateVirtualRouter: function(Client, types.UpdateVirtualRouterInput): types.UpdateVirtualRouterOutput, table
+    updateVirtualRouter: function(Client, types.UpdateVirtualRouterInput): Operation<types.UpdateVirtualRouterOutput>
     -- Updates an existing virtual service in a specified service mesh.
-    updateVirtualService: function(Client, types.UpdateVirtualServiceInput): types.UpdateVirtualServiceOutput, table
+    updateVirtualService: function(Client, types.UpdateVirtualServiceInput): Operation<types.UpdateVirtualServiceOutput>
 end
 
 local record M

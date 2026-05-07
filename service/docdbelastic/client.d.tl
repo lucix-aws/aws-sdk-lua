@@ -2,47 +2,51 @@
 
 local types = require("docdbelastic.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- The type of pending maintenance action to be applied to the resource.
-    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): types.ApplyPendingMaintenanceActionOutput, table
+    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput): Operation<types.ApplyPendingMaintenanceActionOutput>
     -- Copies a snapshot of an elastic cluster.
-    copyClusterSnapshot: function(Client, types.CopyClusterSnapshotInput): types.CopyClusterSnapshotOutput, table
+    copyClusterSnapshot: function(Client, types.CopyClusterSnapshotInput): Operation<types.CopyClusterSnapshotOutput>
     -- Creates a new Amazon DocumentDB elastic cluster and returns its cluster structure.
-    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createCluster: function(Client, types.CreateClusterInput): Operation<types.CreateClusterOutput>
     -- Creates a snapshot of an elastic cluster.
-    createClusterSnapshot: function(Client, types.CreateClusterSnapshotInput): types.CreateClusterSnapshotOutput, table
+    createClusterSnapshot: function(Client, types.CreateClusterSnapshotInput): Operation<types.CreateClusterSnapshotOutput>
     -- Delete an elastic cluster.
-    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): Operation<types.DeleteClusterOutput>
     -- Delete an elastic cluster snapshot.
-    deleteClusterSnapshot: function(Client, types.DeleteClusterSnapshotInput): types.DeleteClusterSnapshotOutput, table
+    deleteClusterSnapshot: function(Client, types.DeleteClusterSnapshotInput): Operation<types.DeleteClusterSnapshotOutput>
     -- Returns information about a specific elastic cluster.
-    getCluster: function(Client, types.GetClusterInput): types.GetClusterOutput, table
+    getCluster: function(Client, types.GetClusterInput): Operation<types.GetClusterOutput>
     -- Returns information about a specific elastic cluster snapshot
-    getClusterSnapshot: function(Client, types.GetClusterSnapshotInput): types.GetClusterSnapshotOutput, table
+    getClusterSnapshot: function(Client, types.GetClusterSnapshotInput): Operation<types.GetClusterSnapshotOutput>
     -- Retrieves all maintenance actions that are pending.
-    getPendingMaintenanceAction: function(Client, types.GetPendingMaintenanceActionInput): types.GetPendingMaintenanceActionOutput, table
+    getPendingMaintenanceAction: function(Client, types.GetPendingMaintenanceActionInput): Operation<types.GetPendingMaintenanceActionOutput>
     -- Returns information about provisioned Amazon DocumentDB elastic clusters.
-    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listClusters: function(Client, types.ListClustersInput): Operation<types.ListClustersOutput>
     -- Returns information about snapshots for a specified elastic cluster.
-    listClusterSnapshots: function(Client, types.ListClusterSnapshotsInput): types.ListClusterSnapshotsOutput, table
+    listClusterSnapshots: function(Client, types.ListClusterSnapshotsInput): Operation<types.ListClusterSnapshotsOutput>
     -- Retrieves a list of all maintenance actions that are pending.
-    listPendingMaintenanceActions: function(Client, types.ListPendingMaintenanceActionsInput): types.ListPendingMaintenanceActionsOutput, table
+    listPendingMaintenanceActions: function(Client, types.ListPendingMaintenanceActionsInput): Operation<types.ListPendingMaintenanceActionsOutput>
     -- Lists all tags on a elastic cluster resource
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Restores an elastic cluster from a snapshot.
-    restoreClusterFromSnapshot: function(Client, types.RestoreClusterFromSnapshotInput): types.RestoreClusterFromSnapshotOutput, table
+    restoreClusterFromSnapshot: function(Client, types.RestoreClusterFromSnapshotInput): Operation<types.RestoreClusterFromSnapshotOutput>
     -- Restarts the stopped elastic cluster that is specified by clusterARN.
-    startCluster: function(Client, types.StartClusterInput): types.StartClusterOutput, table
+    startCluster: function(Client, types.StartClusterInput): Operation<types.StartClusterOutput>
     -- Stops the running elastic cluster that is specified by clusterArn.
     -- The elastic cluster must be in the available state.
-    stopCluster: function(Client, types.StopClusterInput): types.StopClusterOutput, table
+    stopCluster: function(Client, types.StopClusterInput): Operation<types.StopClusterOutput>
     -- Adds metadata tags to an elastic cluster resource
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes metadata tags from an elastic cluster resource
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Modifies an elastic cluster. This includes updating admin-username/password,
     -- upgrading the API version, and setting up a backup window and maintenance window
-    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): Operation<types.UpdateClusterOutput>
 end
 
 local record M

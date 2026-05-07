@@ -2,45 +2,49 @@
 
 local types = require("sagemakergeospatial.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Use this operation to delete an Earth Observation job.
-    deleteEarthObservationJob: function(Client, types.DeleteEarthObservationJobInput): types.DeleteEarthObservationJobOutput, table
+    deleteEarthObservationJob: function(Client, types.DeleteEarthObservationJobInput): Operation<types.DeleteEarthObservationJobOutput>
     -- Use this operation to delete a Vector Enrichment job.
-    deleteVectorEnrichmentJob: function(Client, types.DeleteVectorEnrichmentJobInput): types.DeleteVectorEnrichmentJobOutput, table
+    deleteVectorEnrichmentJob: function(Client, types.DeleteVectorEnrichmentJobInput): Operation<types.DeleteVectorEnrichmentJobOutput>
     -- Use this operation to export results of an Earth Observation job and optionally source images used as input to the EOJ to an Amazon S3 location.
-    exportEarthObservationJob: function(Client, types.ExportEarthObservationJobInput): types.ExportEarthObservationJobOutput, table
+    exportEarthObservationJob: function(Client, types.ExportEarthObservationJobInput): Operation<types.ExportEarthObservationJobOutput>
     -- Use this operation to copy results of a Vector Enrichment job to an Amazon S3 location.
-    exportVectorEnrichmentJob: function(Client, types.ExportVectorEnrichmentJobInput): types.ExportVectorEnrichmentJobOutput, table
+    exportVectorEnrichmentJob: function(Client, types.ExportVectorEnrichmentJobInput): Operation<types.ExportVectorEnrichmentJobOutput>
     -- Get the details for a previously initiated Earth Observation job.
-    getEarthObservationJob: function(Client, types.GetEarthObservationJobInput): types.GetEarthObservationJobOutput, table
+    getEarthObservationJob: function(Client, types.GetEarthObservationJobInput): Operation<types.GetEarthObservationJobOutput>
     -- Use this operation to get details of a specific raster data collection.
-    getRasterDataCollection: function(Client, types.GetRasterDataCollectionInput): types.GetRasterDataCollectionOutput, table
+    getRasterDataCollection: function(Client, types.GetRasterDataCollectionInput): Operation<types.GetRasterDataCollectionOutput>
     -- Gets a web mercator tile for the given Earth Observation job.
-    getTile: function(Client, types.GetTileInput): types.GetTileOutput, table
+    getTile: function(Client, types.GetTileInput): Operation<types.GetTileOutput>
     -- Retrieves details of a Vector Enrichment Job for a given job Amazon Resource Name (ARN).
-    getVectorEnrichmentJob: function(Client, types.GetVectorEnrichmentJobInput): types.GetVectorEnrichmentJobOutput, table
+    getVectorEnrichmentJob: function(Client, types.GetVectorEnrichmentJobInput): Operation<types.GetVectorEnrichmentJobOutput>
     -- Use this operation to get a list of the Earth Observation jobs associated with the calling Amazon Web Services account.
-    listEarthObservationJobs: function(Client, types.ListEarthObservationJobsInput): types.ListEarthObservationJobsOutput, table
+    listEarthObservationJobs: function(Client, types.ListEarthObservationJobsInput): Operation<types.ListEarthObservationJobsOutput>
     -- Use this operation to get raster data collections.
-    listRasterDataCollections: function(Client, types.ListRasterDataCollectionsInput): types.ListRasterDataCollectionsOutput, table
+    listRasterDataCollections: function(Client, types.ListRasterDataCollectionsInput): Operation<types.ListRasterDataCollectionsOutput>
     -- Lists the tags attached to the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves a list of vector enrichment jobs.
-    listVectorEnrichmentJobs: function(Client, types.ListVectorEnrichmentJobsInput): types.ListVectorEnrichmentJobsOutput, table
+    listVectorEnrichmentJobs: function(Client, types.ListVectorEnrichmentJobsInput): Operation<types.ListVectorEnrichmentJobsOutput>
     -- Allows you run image query on a specific raster data collection to get a list of the satellite imagery matching the selected filters.
-    searchRasterDataCollection: function(Client, types.SearchRasterDataCollectionInput): types.SearchRasterDataCollectionOutput, table
+    searchRasterDataCollection: function(Client, types.SearchRasterDataCollectionInput): Operation<types.SearchRasterDataCollectionOutput>
     -- Use this operation to create an Earth observation job.
-    startEarthObservationJob: function(Client, types.StartEarthObservationJobInput): types.StartEarthObservationJobOutput, table
+    startEarthObservationJob: function(Client, types.StartEarthObservationJobInput): Operation<types.StartEarthObservationJobOutput>
     -- Creates a Vector Enrichment job for the supplied job type. Currently, there are two supported job types: reverse geocoding and map matching.
-    startVectorEnrichmentJob: function(Client, types.StartVectorEnrichmentJobInput): types.StartVectorEnrichmentJobOutput, table
+    startVectorEnrichmentJob: function(Client, types.StartVectorEnrichmentJobInput): Operation<types.StartVectorEnrichmentJobOutput>
     -- Use this operation to stop an existing earth observation job.
-    stopEarthObservationJob: function(Client, types.StopEarthObservationJobInput): types.StopEarthObservationJobOutput, table
+    stopEarthObservationJob: function(Client, types.StopEarthObservationJobInput): Operation<types.StopEarthObservationJobOutput>
     -- Stops the Vector Enrichment job for a given job ARN.
-    stopVectorEnrichmentJob: function(Client, types.StopVectorEnrichmentJobInput): types.StopVectorEnrichmentJobOutput, table
+    stopVectorEnrichmentJob: function(Client, types.StopVectorEnrichmentJobInput): Operation<types.StopVectorEnrichmentJobOutput>
     -- The resource you want to tag.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- The resource you want to untag.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

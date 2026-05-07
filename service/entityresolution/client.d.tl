@@ -2,83 +2,87 @@
 
 local types = require("entityresolution.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Adds a policy statement object. To retrieve a list of existing policy statements, use the GetPolicy API.
-    addPolicyStatement: function(Client, types.AddPolicyStatementInput): types.AddPolicyStatementOutput, table
+    addPolicyStatement: function(Client, types.AddPolicyStatementInput): Operation<types.AddPolicyStatementOutput>
     -- Deletes multiple unique IDs in a matching workflow.
-    batchDeleteUniqueId: function(Client, types.BatchDeleteUniqueIdInput): types.BatchDeleteUniqueIdOutput, table
+    batchDeleteUniqueId: function(Client, types.BatchDeleteUniqueIdInput): Operation<types.BatchDeleteUniqueIdOutput>
     -- Creates an IdMappingWorkflow object which stores the configuration of the data processing job to be run. Each IdMappingWorkflow must have a unique workflow name. To modify an existing workflow, use the UpdateIdMappingWorkflow API. Incremental processing is not supported for ID mapping workflows.
-    createIdMappingWorkflow: function(Client, types.CreateIdMappingWorkflowInput): types.CreateIdMappingWorkflowOutput, table
+    createIdMappingWorkflow: function(Client, types.CreateIdMappingWorkflowInput): Operation<types.CreateIdMappingWorkflowOutput>
     -- Creates an ID namespace object which will help customers provide metadata explaining their dataset and how to use it. Each ID namespace must have a unique name. To modify an existing ID namespace, use the UpdateIdNamespace API.
-    createIdNamespace: function(Client, types.CreateIdNamespaceInput): types.CreateIdNamespaceOutput, table
+    createIdNamespace: function(Client, types.CreateIdNamespaceInput): Operation<types.CreateIdNamespaceOutput>
     -- Creates a matching workflow that defines the configuration for a data processing job. The workflow name must be unique. To modify an existing workflow, use UpdateMatchingWorkflow. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
-    createMatchingWorkflow: function(Client, types.CreateMatchingWorkflowInput): types.CreateMatchingWorkflowOutput, table
+    createMatchingWorkflow: function(Client, types.CreateMatchingWorkflowInput): Operation<types.CreateMatchingWorkflowOutput>
     -- Creates a schema mapping, which defines the schema of the input customer records table. The SchemaMapping also provides Entity Resolution with some metadata about the table, such as the attribute types of the columns and which columns to match on.
-    createSchemaMapping: function(Client, types.CreateSchemaMappingInput): types.CreateSchemaMappingOutput, table
+    createSchemaMapping: function(Client, types.CreateSchemaMappingInput): Operation<types.CreateSchemaMappingOutput>
     -- Deletes the IdMappingWorkflow with a given name. This operation will succeed even if a workflow with the given name does not exist.
-    deleteIdMappingWorkflow: function(Client, types.DeleteIdMappingWorkflowInput): types.DeleteIdMappingWorkflowOutput, table
+    deleteIdMappingWorkflow: function(Client, types.DeleteIdMappingWorkflowInput): Operation<types.DeleteIdMappingWorkflowOutput>
     -- Deletes the IdNamespace with a given name.
-    deleteIdNamespace: function(Client, types.DeleteIdNamespaceInput): types.DeleteIdNamespaceOutput, table
+    deleteIdNamespace: function(Client, types.DeleteIdNamespaceInput): Operation<types.DeleteIdNamespaceOutput>
     -- Deletes the MatchingWorkflow with a given name. This operation will succeed even if a workflow with the given name does not exist.
-    deleteMatchingWorkflow: function(Client, types.DeleteMatchingWorkflowInput): types.DeleteMatchingWorkflowOutput, table
+    deleteMatchingWorkflow: function(Client, types.DeleteMatchingWorkflowInput): Operation<types.DeleteMatchingWorkflowOutput>
     -- Deletes the policy statement.
-    deletePolicyStatement: function(Client, types.DeletePolicyStatementInput): types.DeletePolicyStatementOutput, table
+    deletePolicyStatement: function(Client, types.DeletePolicyStatementInput): Operation<types.DeletePolicyStatementOutput>
     -- Deletes the SchemaMapping with a given name. This operation will succeed even if a schema with the given name does not exist. This operation will fail if there is a MatchingWorkflow object that references the SchemaMapping in the workflow's InputSourceConfig.
-    deleteSchemaMapping: function(Client, types.DeleteSchemaMappingInput): types.DeleteSchemaMappingOutput, table
+    deleteSchemaMapping: function(Client, types.DeleteSchemaMappingInput): Operation<types.DeleteSchemaMappingOutput>
     -- Generates or retrieves Match IDs for records using a rule-based matching workflow. When you call this operation, it processes your records against the workflow's matching rules to identify potential matches. For existing records, it retrieves their Match IDs and associated rules. For records without matches, it generates new Match IDs. The operation saves results to Amazon S3. The processing type (processingType) you choose affects both the accuracy and response time of the operation. Additional charges apply for each API call, whether made through the Entity Resolution console or directly via the API. The rule-based matching workflow must exist and be active before calling this operation.
-    generateMatchId: function(Client, types.GenerateMatchIdInput): types.GenerateMatchIdOutput, table
+    generateMatchId: function(Client, types.GenerateMatchIdInput): Operation<types.GenerateMatchIdOutput>
     -- Returns the status, metrics, and errors (if there are any) that are associated with a job.
-    getIdMappingJob: function(Client, types.GetIdMappingJobInput): types.GetIdMappingJobOutput, table
+    getIdMappingJob: function(Client, types.GetIdMappingJobInput): Operation<types.GetIdMappingJobOutput>
     -- Returns the IdMappingWorkflow with a given name, if it exists.
-    getIdMappingWorkflow: function(Client, types.GetIdMappingWorkflowInput): types.GetIdMappingWorkflowOutput, table
+    getIdMappingWorkflow: function(Client, types.GetIdMappingWorkflowInput): Operation<types.GetIdMappingWorkflowOutput>
     -- Returns the IdNamespace with a given name, if it exists.
-    getIdNamespace: function(Client, types.GetIdNamespaceInput): types.GetIdNamespaceOutput, table
+    getIdNamespace: function(Client, types.GetIdNamespaceInput): Operation<types.GetIdNamespaceOutput>
     -- Returns the corresponding Match ID of a customer record if the record has been processed in a rule-based matching workflow. You can call this API as a dry run of an incremental load on the rule-based matching workflow.
-    getMatchId: function(Client, types.GetMatchIdInput): types.GetMatchIdOutput, table
+    getMatchId: function(Client, types.GetMatchIdInput): Operation<types.GetMatchIdOutput>
     -- Returns the status, metrics, and errors (if there are any) that are associated with a job.
-    getMatchingJob: function(Client, types.GetMatchingJobInput): types.GetMatchingJobOutput, table
+    getMatchingJob: function(Client, types.GetMatchingJobInput): Operation<types.GetMatchingJobOutput>
     -- Returns the MatchingWorkflow with a given name, if it exists.
-    getMatchingWorkflow: function(Client, types.GetMatchingWorkflowInput): types.GetMatchingWorkflowOutput, table
+    getMatchingWorkflow: function(Client, types.GetMatchingWorkflowInput): Operation<types.GetMatchingWorkflowOutput>
     -- Returns the resource-based policy.
-    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): Operation<types.GetPolicyOutput>
     -- Returns the ProviderService of a given name.
-    getProviderService: function(Client, types.GetProviderServiceInput): types.GetProviderServiceOutput, table
+    getProviderService: function(Client, types.GetProviderServiceInput): Operation<types.GetProviderServiceOutput>
     -- Returns the SchemaMapping of a given name.
-    getSchemaMapping: function(Client, types.GetSchemaMappingInput): types.GetSchemaMappingOutput, table
+    getSchemaMapping: function(Client, types.GetSchemaMappingInput): Operation<types.GetSchemaMappingOutput>
     -- Lists all ID mapping jobs for a given workflow.
-    listIdMappingJobs: function(Client, types.ListIdMappingJobsInput): types.ListIdMappingJobsOutput, table
+    listIdMappingJobs: function(Client, types.ListIdMappingJobsInput): Operation<types.ListIdMappingJobsOutput>
     -- Returns a list of all the IdMappingWorkflows that have been created for an Amazon Web Services account.
-    listIdMappingWorkflows: function(Client, types.ListIdMappingWorkflowsInput): types.ListIdMappingWorkflowsOutput, table
+    listIdMappingWorkflows: function(Client, types.ListIdMappingWorkflowsInput): Operation<types.ListIdMappingWorkflowsOutput>
     -- Returns a list of all ID namespaces.
-    listIdNamespaces: function(Client, types.ListIdNamespacesInput): types.ListIdNamespacesOutput, table
+    listIdNamespaces: function(Client, types.ListIdNamespacesInput): Operation<types.ListIdNamespacesOutput>
     -- Lists all jobs for a given workflow.
-    listMatchingJobs: function(Client, types.ListMatchingJobsInput): types.ListMatchingJobsOutput, table
+    listMatchingJobs: function(Client, types.ListMatchingJobsInput): Operation<types.ListMatchingJobsOutput>
     -- Returns a list of all the MatchingWorkflows that have been created for an Amazon Web Services account.
-    listMatchingWorkflows: function(Client, types.ListMatchingWorkflowsInput): types.ListMatchingWorkflowsOutput, table
+    listMatchingWorkflows: function(Client, types.ListMatchingWorkflowsInput): Operation<types.ListMatchingWorkflowsOutput>
     -- Returns a list of all the ProviderServices that are available in this Amazon Web Services Region.
-    listProviderServices: function(Client, types.ListProviderServicesInput): types.ListProviderServicesOutput, table
+    listProviderServices: function(Client, types.ListProviderServicesInput): Operation<types.ListProviderServicesOutput>
     -- Returns a list of all the SchemaMappings that have been created for an Amazon Web Services account.
-    listSchemaMappings: function(Client, types.ListSchemaMappingsInput): types.ListSchemaMappingsOutput, table
+    listSchemaMappings: function(Client, types.ListSchemaMappingsInput): Operation<types.ListSchemaMappingsOutput>
     -- Displays the tags associated with an Entity Resolution resource. In Entity Resolution, SchemaMapping, and MatchingWorkflow can be tagged.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Updates the resource-based policy.
-    putPolicy: function(Client, types.PutPolicyInput): types.PutPolicyOutput, table
+    putPolicy: function(Client, types.PutPolicyInput): Operation<types.PutPolicyOutput>
     -- Starts the IdMappingJob of a workflow. The workflow must have previously been created using the CreateIdMappingWorkflow endpoint.
-    startIdMappingJob: function(Client, types.StartIdMappingJobInput): types.StartIdMappingJobOutput, table
+    startIdMappingJob: function(Client, types.StartIdMappingJobInput): Operation<types.StartIdMappingJobOutput>
     -- Starts the MatchingJob of a workflow. The workflow must have previously been created using the CreateMatchingWorkflow endpoint.
-    startMatchingJob: function(Client, types.StartMatchingJobInput): types.StartMatchingJobOutput, table
+    startMatchingJob: function(Client, types.StartMatchingJobInput): Operation<types.StartMatchingJobOutput>
     -- Assigns one or more tags (key-value pairs) to the specified Entity Resolution resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Entity Resolution, SchemaMapping and MatchingWorkflow can be tagged. Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings of characters. You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified Entity Resolution resource. In Entity Resolution, SchemaMapping, and MatchingWorkflow can be tagged.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an existing IdMappingWorkflow. This method is identical to CreateIdMappingWorkflow, except it uses an HTTP PUT request instead of a POST request, and the IdMappingWorkflow must already exist for the method to succeed. Incremental processing is not supported for ID mapping workflows.
-    updateIdMappingWorkflow: function(Client, types.UpdateIdMappingWorkflowInput): types.UpdateIdMappingWorkflowOutput, table
+    updateIdMappingWorkflow: function(Client, types.UpdateIdMappingWorkflowInput): Operation<types.UpdateIdMappingWorkflowOutput>
     -- Updates an existing ID namespace.
-    updateIdNamespace: function(Client, types.UpdateIdNamespaceInput): types.UpdateIdNamespaceOutput, table
+    updateIdNamespace: function(Client, types.UpdateIdNamespaceInput): Operation<types.UpdateIdNamespaceOutput>
     -- Updates an existing matching workflow. The workflow must already exist for this operation to succeed. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
-    updateMatchingWorkflow: function(Client, types.UpdateMatchingWorkflowInput): types.UpdateMatchingWorkflowOutput, table
+    updateMatchingWorkflow: function(Client, types.UpdateMatchingWorkflowInput): Operation<types.UpdateMatchingWorkflowOutput>
     -- Updates a schema mapping. A schema is immutable if it is being used by a workflow. Therefore, you can't update a schema mapping if it's associated with a workflow.
-    updateSchemaMapping: function(Client, types.UpdateSchemaMappingInput): types.UpdateSchemaMappingOutput, table
+    updateSchemaMapping: function(Client, types.UpdateSchemaMappingInput): Operation<types.UpdateSchemaMappingOutput>
 end
 
 local record M

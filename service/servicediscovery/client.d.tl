@@ -2,13 +2,17 @@
 
 local types = require("servicediscovery.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an HTTP namespace. Service instances registered using an HTTP namespace can be
     -- discovered using a DiscoverInstances request but can't be discovered using
     -- DNS.
     -- For the current quota on the number of namespaces that you can create using the same Amazon Web Services account, see Cloud Map quotas in the
     -- Cloud Map Developer Guide.
-    createHttpNamespace: function(Client, types.CreateHttpNamespaceInput): types.CreateHttpNamespaceOutput, table
+    createHttpNamespace: function(Client, types.CreateHttpNamespaceInput): Operation<types.CreateHttpNamespaceOutput>
     -- Creates a private namespace based on DNS, which is visible only inside a specified Amazon
     -- VPC. The namespace defines your service naming scheme. For example, if you name your namespace
     -- example.com and name your service backend, the resulting DNS name for
@@ -17,7 +21,7 @@ local record Client
     -- using DNS. For the current quota on the number of namespaces that you can create using the same
     -- Amazon Web Services account, see Cloud Map quotas in the
     -- Cloud Map Developer Guide.
-    createPrivateDnsNamespace: function(Client, types.CreatePrivateDnsNamespaceInput): types.CreatePrivateDnsNamespaceOutput, table
+    createPrivateDnsNamespace: function(Client, types.CreatePrivateDnsNamespaceInput): Operation<types.CreatePrivateDnsNamespaceOutput>
     -- Creates a public namespace based on DNS, which is visible on the internet. The namespace
     -- defines your service naming scheme. For example, if you name your namespace
     -- example.com and name your service backend, the resulting DNS name for
@@ -26,7 +30,7 @@ local record Client
     -- DNS. For the current quota on the number of namespaces that you can create using the same Amazon Web Services account, see Cloud Map quotas in the
     -- Cloud Map Developer Guide.
     -- The CreatePublicDnsNamespace API operation is not supported in the Amazon Web Services GovCloud (US) Regions.
-    createPublicDnsNamespace: function(Client, types.CreatePublicDnsNamespaceInput): types.CreatePublicDnsNamespaceOutput, table
+    createPublicDnsNamespace: function(Client, types.CreatePublicDnsNamespaceInput): Operation<types.CreatePublicDnsNamespaceOutput>
     -- Creates a service. This action defines the configuration for the following entities:
     -- For public and private DNS namespaces, one of the following combinations of DNS records in
     -- Amazon Route 53:
@@ -41,56 +45,56 @@ local record Client
     -- For the current quota on the number of instances that you can register using the same
     -- namespace and using the same service, see Cloud Map quotas in the
     -- Cloud Map Developer Guide.
-    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    createService: function(Client, types.CreateServiceInput): Operation<types.CreateServiceOutput>
     -- Deletes a namespace from the current account. If the namespace still contains one or more
     -- services, the request fails.
-    deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    deleteNamespace: function(Client, types.DeleteNamespaceInput): Operation<types.DeleteNamespaceOutput>
     -- Deletes a specified service and all associated service attributes. If the service still
     -- contains one or more registered instances, the request fails.
-    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): Operation<types.DeleteServiceOutput>
     -- Deletes specific attributes associated with a service.
-    deleteServiceAttributes: function(Client, types.DeleteServiceAttributesInput): types.DeleteServiceAttributesOutput, table
+    deleteServiceAttributes: function(Client, types.DeleteServiceAttributesInput): Operation<types.DeleteServiceAttributesOutput>
     -- Deletes the Amazon Route 53 DNS records and health check, if any, that Cloud Map created for the
     -- specified instance.
-    deregisterInstance: function(Client, types.DeregisterInstanceInput): types.DeregisterInstanceOutput, table
+    deregisterInstance: function(Client, types.DeregisterInstanceInput): Operation<types.DeregisterInstanceOutput>
     -- Discovers registered instances for a specified namespace and service. You can use
     -- DiscoverInstances to discover instances for any type of namespace.
     -- DiscoverInstances returns a randomized list of instances allowing customers to
     -- distribute traffic evenly across instances. For public and private DNS namespaces, you can also
     -- use DNS queries to discover instances.
-    discoverInstances: function(Client, types.DiscoverInstancesInput): types.DiscoverInstancesOutput, table
+    discoverInstances: function(Client, types.DiscoverInstancesInput): Operation<types.DiscoverInstancesOutput>
     -- Discovers the increasing revision associated with an instance.
-    discoverInstancesRevision: function(Client, types.DiscoverInstancesRevisionInput): types.DiscoverInstancesRevisionOutput, table
+    discoverInstancesRevision: function(Client, types.DiscoverInstancesRevisionInput): Operation<types.DiscoverInstancesRevisionOutput>
     -- Gets information about a specified instance.
-    getInstance: function(Client, types.GetInstanceInput): types.GetInstanceOutput, table
+    getInstance: function(Client, types.GetInstanceInput): Operation<types.GetInstanceOutput>
     -- Gets the current health status (Healthy, Unhealthy, or
     -- Unknown) of one or more instances that are associated with a specified
     -- service.
     -- There's a brief delay between when you register an instance and when the health status for
     -- the instance is available.
-    getInstancesHealthStatus: function(Client, types.GetInstancesHealthStatusInput): types.GetInstancesHealthStatusOutput, table
+    getInstancesHealthStatus: function(Client, types.GetInstancesHealthStatusInput): Operation<types.GetInstancesHealthStatusOutput>
     -- Gets information about a namespace.
-    getNamespace: function(Client, types.GetNamespaceInput): types.GetNamespaceOutput, table
+    getNamespace: function(Client, types.GetNamespaceInput): Operation<types.GetNamespaceOutput>
     -- Gets information about any operation that returns an operation ID in the response, such as a
     -- CreateHttpNamespace request.
     -- To get a list of operations that match specified criteria, see ListOperations.
-    getOperation: function(Client, types.GetOperationInput): types.GetOperationOutput, table
+    getOperation: function(Client, types.GetOperationInput): Operation<types.GetOperationOutput>
     -- Gets the settings for a specified service.
-    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    getService: function(Client, types.GetServiceInput): Operation<types.GetServiceOutput>
     -- Returns the attributes associated with a specified service.
-    getServiceAttributes: function(Client, types.GetServiceAttributesInput): types.GetServiceAttributesOutput, table
+    getServiceAttributes: function(Client, types.GetServiceAttributesInput): Operation<types.GetServiceAttributesOutput>
     -- Lists summary information about the instances that you registered by using a specified
     -- service.
-    listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    listInstances: function(Client, types.ListInstancesInput): Operation<types.ListInstancesOutput>
     -- Lists summary information about the namespaces that were created by the current Amazon Web Services account and shared with the current Amazon Web Services account.
-    listNamespaces: function(Client, types.ListNamespacesInput): types.ListNamespacesOutput, table
+    listNamespaces: function(Client, types.ListNamespacesInput): Operation<types.ListNamespacesOutput>
     -- Lists operations that match the criteria that you specify.
-    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listOperations: function(Client, types.ListOperationsInput): Operation<types.ListOperationsOutput>
     -- Lists summary information for all the services that are associated with one or more
     -- namespaces.
-    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServices: function(Client, types.ListServicesInput): Operation<types.ListServicesOutput>
     -- Lists tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates or updates one or more records and, optionally, creates a health check based on the
     -- settings in a specified service. When you submit a RegisterInstance request, the
     -- following occurs:
@@ -114,14 +118,14 @@ local record Client
     -- For the current quota on the number of instances that you can register using the same
     -- namespace and using the same service, see Cloud Map quotas in the
     -- Cloud Map Developer Guide.
-    registerInstance: function(Client, types.RegisterInstanceInput): types.RegisterInstanceOutput, table
+    registerInstance: function(Client, types.RegisterInstanceInput): Operation<types.RegisterInstanceOutput>
     -- Adds one or more tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an HTTP
     -- namespace.
-    updateHttpNamespace: function(Client, types.UpdateHttpNamespaceInput): types.UpdateHttpNamespaceOutput, table
+    updateHttpNamespace: function(Client, types.UpdateHttpNamespaceInput): Operation<types.UpdateHttpNamespaceOutput>
     -- Submits a request to change the health status of a custom health check to healthy or
     -- unhealthy.
     -- You can use UpdateInstanceCustomHealthStatus to change the status only for
@@ -129,12 +133,12 @@ local record Client
     -- a service. You can't use it to change the status for Route 53 health checks, which you define using
     -- HealthCheckConfig.
     -- For more information, see HealthCheckCustomConfig.
-    updateInstanceCustomHealthStatus: function(Client, types.UpdateInstanceCustomHealthStatusInput): types.UpdateInstanceCustomHealthStatusOutput, table
+    updateInstanceCustomHealthStatus: function(Client, types.UpdateInstanceCustomHealthStatusInput): Operation<types.UpdateInstanceCustomHealthStatusOutput>
     -- Updates a private DNS
     -- namespace.
-    updatePrivateDnsNamespace: function(Client, types.UpdatePrivateDnsNamespaceInput): types.UpdatePrivateDnsNamespaceOutput, table
+    updatePrivateDnsNamespace: function(Client, types.UpdatePrivateDnsNamespaceInput): Operation<types.UpdatePrivateDnsNamespaceOutput>
     -- Updates a public DNS namespace.
-    updatePublicDnsNamespace: function(Client, types.UpdatePublicDnsNamespaceInput): types.UpdatePublicDnsNamespaceOutput, table
+    updatePublicDnsNamespace: function(Client, types.UpdatePublicDnsNamespaceInput): Operation<types.UpdatePublicDnsNamespaceOutput>
     -- Submits a request to perform the following operations:
     -- Update the TTL setting for existing DnsRecords configurations
     -- Add, update, or delete HealthCheckConfig for a specified service
@@ -154,9 +158,9 @@ local record Client
     -- call
     -- When you update settings for a service, Cloud Map also updates the corresponding settings
     -- in all the records and health checks that were created by using the specified service.
-    updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    updateService: function(Client, types.UpdateServiceInput): Operation<types.UpdateServiceOutput>
     -- Submits a request to update a specified service to add service-level attributes.
-    updateServiceAttributes: function(Client, types.UpdateServiceAttributesInput): types.UpdateServiceAttributesOutput, table
+    updateServiceAttributes: function(Client, types.UpdateServiceAttributesInput): Operation<types.UpdateServiceAttributesOutput>
 end
 
 local record M

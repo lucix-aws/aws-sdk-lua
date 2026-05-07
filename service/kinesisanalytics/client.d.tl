@@ -2,13 +2,17 @@
 
 local types = require("kinesisanalytics.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Adds a CloudWatch log stream to monitor application configuration errors. For more
     -- information about using CloudWatch log streams with Amazon Kinesis Analytics
     -- applications, see Working with Amazon
     -- CloudWatch Logs.
-    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput): types.AddApplicationCloudWatchLoggingOptionOutput, table
+    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput): Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Adds a streaming source to your Amazon Kinesis application.
     -- For conceptual information,
@@ -21,12 +25,12 @@ local record Client
     -- to find the current application version.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:AddApplicationInput action.
-    addApplicationInput: function(Client, types.AddApplicationInputInput): types.AddApplicationInputOutput, table
+    addApplicationInput: function(Client, types.AddApplicationInputInput): Operation<types.AddApplicationInputOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Adds an InputProcessingConfiguration to an application. An input processor preprocesses records on the input stream
     -- before the application's SQL code executes. Currently, the only input processor available is
     -- AWS Lambda.
-    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput): types.AddApplicationInputProcessingConfigurationOutput, table
+    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput): Operation<types.AddApplicationInputProcessingConfigurationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Adds an external destination to your Amazon Kinesis Analytics application.
     -- If you want Amazon Kinesis Analytics to deliver data from an in-application stream
@@ -45,7 +49,7 @@ local record Client
     -- For the limits on the number of application inputs and outputs
     -- you can configure, see Limits.
     -- This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput action.
-    addApplicationOutput: function(Client, types.AddApplicationOutputInput): types.AddApplicationOutputOutput, table
+    addApplicationOutput: function(Client, types.AddApplicationOutputInput): Operation<types.AddApplicationOutputOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Adds a reference data source to an existing application.
     -- Amazon Kinesis Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in Amazon S3 object maps to columns in the resulting in-application table.
@@ -54,7 +58,7 @@ local record Client
     -- For the limits on data sources you can add to your application, see
     -- Limits.
     -- This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput action.
-    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput): types.AddApplicationReferenceDataSourceOutput, table
+    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput): Operation<types.AddApplicationReferenceDataSourceOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Creates an Amazon Kinesis Analytics application.
     -- You can configure each application with one streaming source as input,
@@ -72,31 +76,31 @@ local record Client
     -- kinesisanalytics:CreateApplication action.
     -- For introductory exercises to create an Amazon Kinesis Analytics application, see
     -- Getting Started.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Deletes the specified application. Amazon Kinesis Analytics halts application execution and deletes the application, including any application artifacts (such as in-application streams, reference table, and application code).
     -- This operation requires permissions to perform the kinesisanalytics:DeleteApplication action.
-    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOperationOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): Operation<types.DeleteApplicationOperationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Deletes a CloudWatch log stream from an application. For more information about
     -- using CloudWatch log streams with Amazon Kinesis Analytics applications, see
     -- Working with Amazon CloudWatch Logs.
-    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput): types.DeleteApplicationCloudWatchLoggingOptionOutput, table
+    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput): Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Deletes an InputProcessingConfiguration from an input.
-    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput): types.DeleteApplicationInputProcessingConfigurationOutput, table
+    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput): Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Deletes output destination configuration from your application configuration. Amazon Kinesis Analytics will no longer write data from the corresponding in-application stream to the external output destination.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:DeleteApplicationOutput action.
-    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput): types.DeleteApplicationOutputOutput, table
+    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput): Operation<types.DeleteApplicationOutputOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Deletes a reference data source configuration from the specified application configuration.
     -- If the application is running, Amazon Kinesis Analytics immediately removes the in-application table
     -- that you created using the AddApplicationReferenceDataSource operation.
     -- This operation requires permissions to perform the kinesisanalytics.DeleteApplicationReferenceDataSource
     -- action.
-    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput): types.DeleteApplicationReferenceDataSourceOutput, table
+    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput): Operation<types.DeleteApplicationReferenceDataSourceOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Returns information about a specific Amazon Kinesis Analytics application.
     -- If you want to retrieve a list of all applications in your account,
@@ -104,7 +108,7 @@ local record Client
     -- This operation requires permissions to perform the kinesisanalytics:DescribeApplication
     -- action. You can use DescribeApplication to get the current application versionId, which you need to call other
     -- operations such as Update.
-    describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    describeApplication: function(Client, types.DescribeApplicationInput): Operation<types.DescribeApplicationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Infers a schema by evaluating sample records on the specified streaming source (Amazon Kinesis stream or Amazon Kinesis Firehose delivery stream) or S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.
     -- You can use the inferred schema when configuring a streaming source
@@ -114,7 +118,7 @@ local record Client
     -- the console uses this operation to infer a schema and show it in the console user interface.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:DiscoverInputSchema action.
-    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput): types.DiscoverInputSchemaOutput, table
+    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput): Operation<types.DiscoverInputSchemaOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Returns a list of Amazon Kinesis Analytics applications in your account.
     -- For each application, the response includes the application name,
@@ -128,9 +132,9 @@ local record Client
     -- DescribeApplication.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:ListApplications action.
-    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): Operation<types.ListApplicationsOutput>
     -- Retrieves the list of key-value tags assigned to the application. For more information, see Using Tagging.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Starts the specified Amazon Kinesis Analytics application. After creating an application, you must exclusively call this operation to start your application.
     -- After the application starts, it begins consuming the input data, processes it, and writes the output to the configured destination.
@@ -140,7 +144,7 @@ local record Client
     -- the input by calling the StopApplication operation.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:StartApplication action.
-    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    startApplication: function(Client, types.StartApplicationInput): Operation<types.StartApplicationOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Stops the application from processing input data. You can stop
     -- an application only if it is in the running state.
@@ -150,12 +154,12 @@ local record Client
     -- application stops processing data, and there is no output written to the destination.
     -- This operation requires permissions to perform the
     -- kinesisanalytics:StopApplication action.
-    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): Operation<types.StopApplicationOutput>
     -- Adds one or more key-value tags to a Kinesis Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50.
     -- For more information, see Using Tagging.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from a Kinesis Analytics application. For more information, see Using Tagging.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- This documentation is for version 1 of the Amazon Kinesis Data Analytics API, which only supports SQL applications. Version 2 of the API supports SQL and Java applications. For more information about version 2, see Amazon Kinesis Data Analytics API V2 Documentation.
     -- Updates an existing Amazon Kinesis Analytics application. Using this API,
     -- you can update application code, input configuration, and
@@ -164,7 +168,7 @@ local record Client
     -- each time you update your application.
     -- This operation requires permission for the
     -- kinesisanalytics:UpdateApplication action.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
 end
 
 local record M

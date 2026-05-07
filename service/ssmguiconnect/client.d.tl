@@ -2,13 +2,17 @@
 
 local types = require("ssmguiconnect.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes the preferences for recording RDP connections.
-    deleteConnectionRecordingPreferences: function(Client, types.DeleteConnectionRecordingPreferencesInput): types.DeleteConnectionRecordingPreferencesOutput, table
+    deleteConnectionRecordingPreferences: function(Client, types.DeleteConnectionRecordingPreferencesInput): Operation<types.DeleteConnectionRecordingPreferencesOutput>
     -- Returns the preferences specified for recording RDP connections in the requesting Amazon Web Services account and Amazon Web Services Region.
-    getConnectionRecordingPreferences: function(Client, types.GetConnectionRecordingPreferencesInput): types.GetConnectionRecordingPreferencesOutput, table
+    getConnectionRecordingPreferences: function(Client, types.GetConnectionRecordingPreferencesInput): Operation<types.GetConnectionRecordingPreferencesOutput>
     -- Updates the preferences for recording RDP connections.
-    updateConnectionRecordingPreferences: function(Client, types.UpdateConnectionRecordingPreferencesInput): types.UpdateConnectionRecordingPreferencesOutput, table
+    updateConnectionRecordingPreferences: function(Client, types.UpdateConnectionRecordingPreferencesInput): Operation<types.UpdateConnectionRecordingPreferencesOutput>
 end
 
 local record M

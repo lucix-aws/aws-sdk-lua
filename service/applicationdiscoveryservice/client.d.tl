@@ -2,13 +2,17 @@
 
 local types = require("applicationdiscoveryservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates one or more configuration items with an application.
-    associateConfigurationItemsToApplication: function(Client, types.AssociateConfigurationItemsToApplicationInput): types.AssociateConfigurationItemsToApplicationOutput, table
+    associateConfigurationItemsToApplication: function(Client, types.AssociateConfigurationItemsToApplicationInput): Operation<types.AssociateConfigurationItemsToApplicationOutput>
     -- Deletes one or more agents or collectors as specified by ID. Deleting an agent or collector does not
     -- delete the previously discovered data.
     -- To delete the data collected, use StartBatchDeleteConfigurationTask.
-    batchDeleteAgents: function(Client, types.BatchDeleteAgentsInput): types.BatchDeleteAgentsOutput, table
+    batchDeleteAgents: function(Client, types.BatchDeleteAgentsInput): Operation<types.BatchDeleteAgentsOutput>
     -- Deletes one or more import tasks, each identified by their import ID. Each import task has
     -- a number of records that can identify servers or applications.
     -- Amazon Web Services Application Discovery Service has built-in matching logic that will identify when
@@ -16,25 +20,25 @@ local record Client
     -- for the already-existing discovered server is updated. When you delete an import task that
     -- contains records that were used to match, the information in those matched records that comes
     -- from the deleted records will also be deleted.
-    batchDeleteImportData: function(Client, types.BatchDeleteImportDataInput): types.BatchDeleteImportDataOutput, table
+    batchDeleteImportData: function(Client, types.BatchDeleteImportDataInput): Operation<types.BatchDeleteImportDataOutput>
     -- Creates an application with the given name and description.
-    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): Operation<types.CreateApplicationOutput>
     -- Creates one or more tags for configuration items. Tags are metadata that help you
     -- categorize IT assets. This API accepts a list of multiple configuration items.
     -- Do not store sensitive information (like personal data) in tags.
-    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createTags: function(Client, types.CreateTagsInput): Operation<types.CreateTagsOutput>
     -- Deletes a list of applications and their associations with configuration
     -- items.
-    deleteApplications: function(Client, types.DeleteApplicationsInput): types.DeleteApplicationsOutput, table
+    deleteApplications: function(Client, types.DeleteApplicationsInput): Operation<types.DeleteApplicationsOutput>
     -- Deletes the association between configuration items and one or more tags. This API
     -- accepts a list of multiple configuration items.
-    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): Operation<types.DeleteTagsOutput>
     -- Lists agents or collectors as specified by ID or other filters. All agents/collectors
     -- associated with your user can be listed if you call DescribeAgents as is
     -- without passing any parameters.
-    describeAgents: function(Client, types.DescribeAgentsInput): types.DescribeAgentsOutput, table
+    describeAgents: function(Client, types.DescribeAgentsInput): Operation<types.DescribeAgentsOutput>
     -- Takes a unique deletion task identifier as input and returns metadata about a configuration deletion task.
-    describeBatchDeleteConfigurationTask: function(Client, types.DescribeBatchDeleteConfigurationTaskInput): types.DescribeBatchDeleteConfigurationTaskOutput, table
+    describeBatchDeleteConfigurationTask: function(Client, types.DescribeBatchDeleteConfigurationTaskInput): Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
     -- Retrieves attributes for a list of configuration item IDs.
     -- All of the supplied IDs must be for the same asset type from one of the
     -- following:
@@ -47,19 +51,19 @@ local record Client
     -- server, such as host name, operating system, number of network cards, etc.
     -- For a complete list of outputs for each asset type, see Using the DescribeConfigurations Action in the Amazon Web Services Application
     -- Discovery Service User Guide.
-    describeConfigurations: function(Client, types.DescribeConfigurationsInput): types.DescribeConfigurationsOutput, table
+    describeConfigurations: function(Client, types.DescribeConfigurationsInput): Operation<types.DescribeConfigurationsOutput>
     -- Lists exports as specified by ID. All continuous exports associated with your user
     -- can be listed if you call DescribeContinuousExports as is without passing
     -- any parameters.
-    describeContinuousExports: function(Client, types.DescribeContinuousExportsInput): types.DescribeContinuousExportsOutput, table
+    describeContinuousExports: function(Client, types.DescribeContinuousExportsInput): Operation<types.DescribeContinuousExportsOutput>
     -- DescribeExportConfigurations is deprecated. Use DescribeExportTasks, instead.
-    describeExportConfigurations: function(Client, types.DescribeExportConfigurationsInput): types.DescribeExportConfigurationsOutput, table
+    describeExportConfigurations: function(Client, types.DescribeExportConfigurationsInput): Operation<types.DescribeExportConfigurationsOutput>
     -- Retrieve status of one or more export tasks. You can retrieve the status of up to 100
     -- export tasks.
-    describeExportTasks: function(Client, types.DescribeExportTasksInput): types.DescribeExportTasksOutput, table
+    describeExportTasks: function(Client, types.DescribeExportTasksInput): Operation<types.DescribeExportTasksOutput>
     -- Returns an array of import tasks for your account, including status information, times,
     -- IDs, the Amazon S3 Object URL for the import file, and more.
-    describeImportTasks: function(Client, types.DescribeImportTasksInput): types.DescribeImportTasksOutput, table
+    describeImportTasks: function(Client, types.DescribeImportTasksInput): Operation<types.DescribeImportTasksOutput>
     -- Retrieves a list of configuration items that have tags as specified by the key-value
     -- pairs, name and value, passed to the optional parameter filters.
     -- There are three valid tag filter names:
@@ -68,34 +72,34 @@ local record Client
     -- configurationId
     -- Also, all configuration items associated with your user that have tags can be
     -- listed if you call DescribeTags as is without passing any parameters.
-    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): Operation<types.DescribeTagsOutput>
     -- Disassociates one or more configuration items from an application.
-    disassociateConfigurationItemsFromApplication: function(Client, types.DisassociateConfigurationItemsFromApplicationInput): types.DisassociateConfigurationItemsFromApplicationOutput, table
+    disassociateConfigurationItemsFromApplication: function(Client, types.DisassociateConfigurationItemsFromApplicationInput): Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
     -- Deprecated. Use StartExportTask instead.
     -- Exports all discovered configuration data to an Amazon S3 bucket or an application that
     -- enables you to view and evaluate the data. Data includes tags and tag associations, processes,
     -- connections, servers, and system performance. This API returns an export ID that you can query
     -- using the DescribeExportConfigurations API. The system imposes a limit of
     -- two configuration exports in six hours.
-    exportConfigurations: function(Client, types.ExportConfigurationsInput): types.ExportConfigurationsOutput, table
+    exportConfigurations: function(Client, types.ExportConfigurationsInput): Operation<types.ExportConfigurationsOutput>
     -- Retrieves a short summary of discovered assets.
     -- This API operation takes no request parameters and is called as is at the command
     -- prompt as shown in the example.
-    getDiscoverySummary: function(Client, types.GetDiscoverySummaryInput): types.GetDiscoverySummaryOutput, table
+    getDiscoverySummary: function(Client, types.GetDiscoverySummaryInput): Operation<types.GetDiscoverySummaryOutput>
     -- Retrieves a list of configuration items as specified by the value passed to the
     -- required parameter configurationType. Optional filtering may be applied to refine
     -- search results.
-    listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    listConfigurations: function(Client, types.ListConfigurationsInput): Operation<types.ListConfigurationsOutput>
     -- Retrieves a list of servers that are one network hop away from a specified
     -- server.
-    listServerNeighbors: function(Client, types.ListServerNeighborsInput): types.ListServerNeighborsOutput, table
+    listServerNeighbors: function(Client, types.ListServerNeighborsInput): Operation<types.ListServerNeighborsOutput>
     -- Takes a list of configurationId as input and starts an asynchronous deletion
     -- task to remove the configurationItems. Returns a unique deletion task identifier.
-    startBatchDeleteConfigurationTask: function(Client, types.StartBatchDeleteConfigurationTaskInput): types.StartBatchDeleteConfigurationTaskOutput, table
+    startBatchDeleteConfigurationTask: function(Client, types.StartBatchDeleteConfigurationTaskInput): Operation<types.StartBatchDeleteConfigurationTaskOutput>
     -- Start the continuous flow of agent's discovered data into Amazon Athena.
-    startContinuousExport: function(Client, types.StartContinuousExportInput): types.StartContinuousExportOutput, table
+    startContinuousExport: function(Client, types.StartContinuousExportInput): Operation<types.StartContinuousExportOutput>
     -- Instructs the specified agents to start collecting data.
-    startDataCollectionByAgentIds: function(Client, types.StartDataCollectionByAgentIdsInput): types.StartDataCollectionByAgentIdsOutput, table
+    startDataCollectionByAgentIds: function(Client, types.StartDataCollectionByAgentIdsInput): Operation<types.StartDataCollectionByAgentIdsOutput>
     -- Begins the export of a discovered data report to an Amazon S3 bucket managed by Amazon Web Services.
     -- Exports might provide an estimate of fees and savings based on certain information
     -- that you provide. Fee estimates do not include any taxes that might apply.
@@ -116,7 +120,7 @@ local record Client
     -- Amazon EC2 instance matching the characteristics of each server in Application Discovery Service is generated.
     -- Changing the attributes of the ec2RecommendationsPreferences changes the
     -- criteria of the recommendation.
-    startExportTask: function(Client, types.StartExportTaskInput): types.StartExportTaskOutput, table
+    startExportTask: function(Client, types.StartExportTaskInput): Operation<types.StartExportTaskOutput>
     -- Starts an import task, which allows you to import details of your on-premises environment
     -- directly into Amazon Web Services Migration Hub without having to use the Amazon Web Services Application Discovery
     -- Service (Application Discovery Service) tools such as the Amazon Web Services Application Discovery Service Agentless Collector
@@ -138,13 +142,13 @@ local record Client
     -- account. For more information, see Amazon Web Services Application
     -- Discovery Service Limits in the Amazon Web Services Application Discovery Service User
     -- Guide.
-    startImportTask: function(Client, types.StartImportTaskInput): types.StartImportTaskOutput, table
+    startImportTask: function(Client, types.StartImportTaskInput): Operation<types.StartImportTaskOutput>
     -- Stop the continuous flow of agent's discovered data into Amazon Athena.
-    stopContinuousExport: function(Client, types.StopContinuousExportInput): types.StopContinuousExportOutput, table
+    stopContinuousExport: function(Client, types.StopContinuousExportInput): Operation<types.StopContinuousExportOutput>
     -- Instructs the specified agents to stop collecting data.
-    stopDataCollectionByAgentIds: function(Client, types.StopDataCollectionByAgentIdsInput): types.StopDataCollectionByAgentIdsOutput, table
+    stopDataCollectionByAgentIds: function(Client, types.StopDataCollectionByAgentIdsInput): Operation<types.StopDataCollectionByAgentIdsOutput>
     -- Updates metadata about an application.
-    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): Operation<types.UpdateApplicationOutput>
 end
 
 local record M

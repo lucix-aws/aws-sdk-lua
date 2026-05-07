@@ -2,75 +2,79 @@
 
 local types = require("chatbot.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Links a resource (for example, a custom action) to a channel configuration.
-    associateToConfiguration: function(Client, types.AssociateToConfigurationInput): types.AssociateToConfigurationOutput, table
+    associateToConfiguration: function(Client, types.AssociateToConfigurationInput): Operation<types.AssociateToConfigurationOutput>
     -- Creates an AWS Chatbot configuration for Amazon Chime.
-    createChimeWebhookConfiguration: function(Client, types.CreateChimeWebhookConfigurationInput): types.CreateChimeWebhookConfigurationOutput, table
+    createChimeWebhookConfiguration: function(Client, types.CreateChimeWebhookConfigurationInput): Operation<types.CreateChimeWebhookConfigurationOutput>
     -- Creates a custom action that can be invoked as an alias or as a button on a notification.
-    createCustomAction: function(Client, types.CreateCustomActionInput): types.CreateCustomActionOutput, table
+    createCustomAction: function(Client, types.CreateCustomActionInput): Operation<types.CreateCustomActionOutput>
     -- Creates an AWS Chatbot configuration for Microsoft Teams.
-    createMicrosoftTeamsChannelConfiguration: function(Client, types.CreateMicrosoftTeamsChannelConfigurationInput): types.CreateMicrosoftTeamsChannelConfigurationOutput, table
+    createMicrosoftTeamsChannelConfiguration: function(Client, types.CreateMicrosoftTeamsChannelConfigurationInput): Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
     -- Creates an AWS Chatbot confugration for Slack.
-    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput): types.CreateSlackChannelConfigurationOutput, table
+    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput): Operation<types.CreateSlackChannelConfigurationOutput>
     -- Deletes a Amazon Chime webhook configuration for AWS Chatbot.
-    deleteChimeWebhookConfiguration: function(Client, types.DeleteChimeWebhookConfigurationInput): types.DeleteChimeWebhookConfigurationOutput, table
+    deleteChimeWebhookConfiguration: function(Client, types.DeleteChimeWebhookConfigurationInput): Operation<types.DeleteChimeWebhookConfigurationOutput>
     -- Deletes a custom action.
-    deleteCustomAction: function(Client, types.DeleteCustomActionInput): types.DeleteCustomActionOutput, table
+    deleteCustomAction: function(Client, types.DeleteCustomActionInput): Operation<types.DeleteCustomActionOutput>
     -- Deletes a Microsoft Teams channel configuration for AWS Chatbot
-    deleteMicrosoftTeamsChannelConfiguration: function(Client, types.DeleteMicrosoftTeamsChannelConfigurationInput): types.DeleteMicrosoftTeamsChannelConfigurationOutput, table
+    deleteMicrosoftTeamsChannelConfiguration: function(Client, types.DeleteMicrosoftTeamsChannelConfigurationInput): Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
     -- Deletes the Microsoft Teams team authorization allowing for channels to be configured in that Microsoft Teams team. Note that the Microsoft Teams team must have no channels configured to remove it.
-    deleteMicrosoftTeamsConfiguredTeam: function(Client, types.DeleteMicrosoftTeamsConfiguredTeamInput): types.DeleteMicrosoftTeamsConfiguredTeamOutput, table
+    deleteMicrosoftTeamsConfiguredTeam: function(Client, types.DeleteMicrosoftTeamsConfiguredTeamInput): Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
     -- Identifes a user level permission for a channel configuration.
-    deleteMicrosoftTeamsUserIdentity: function(Client, types.DeleteMicrosoftTeamsUserIdentityInput): types.DeleteMicrosoftTeamsUserIdentityOutput, table
+    deleteMicrosoftTeamsUserIdentity: function(Client, types.DeleteMicrosoftTeamsUserIdentityInput): Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
     -- Deletes a Slack channel configuration for AWS Chatbot
-    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput): types.DeleteSlackChannelConfigurationOutput, table
+    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput): Operation<types.DeleteSlackChannelConfigurationOutput>
     -- Deletes a user level permission for a Slack channel configuration.
-    deleteSlackUserIdentity: function(Client, types.DeleteSlackUserIdentityInput): types.DeleteSlackUserIdentityOutput, table
+    deleteSlackUserIdentity: function(Client, types.DeleteSlackUserIdentityInput): Operation<types.DeleteSlackUserIdentityOutput>
     -- Deletes the Slack workspace authorization that allows channels to be configured in that workspace. This requires all configured channels in the workspace to be deleted.
-    deleteSlackWorkspaceAuthorization: function(Client, types.DeleteSlackWorkspaceAuthorizationInput): types.DeleteSlackWorkspaceAuthorizationOutput, table
+    deleteSlackWorkspaceAuthorization: function(Client, types.DeleteSlackWorkspaceAuthorizationInput): Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
     -- Lists Amazon Chime webhook configurations optionally filtered by ChatConfigurationArn
-    describeChimeWebhookConfigurations: function(Client, types.DescribeChimeWebhookConfigurationsInput): types.DescribeChimeWebhookConfigurationsOutput, table
+    describeChimeWebhookConfigurations: function(Client, types.DescribeChimeWebhookConfigurationsInput): Operation<types.DescribeChimeWebhookConfigurationsOutput>
     -- Lists Slack channel configurations optionally filtered by ChatConfigurationArn
-    describeSlackChannelConfigurations: function(Client, types.DescribeSlackChannelConfigurationsInput): types.DescribeSlackChannelConfigurationsOutput, table
+    describeSlackChannelConfigurations: function(Client, types.DescribeSlackChannelConfigurationsInput): Operation<types.DescribeSlackChannelConfigurationsOutput>
     -- Lists all Slack user identities with a mapped role.
-    describeSlackUserIdentities: function(Client, types.DescribeSlackUserIdentitiesInput): types.DescribeSlackUserIdentitiesOutput, table
+    describeSlackUserIdentities: function(Client, types.DescribeSlackUserIdentitiesInput): Operation<types.DescribeSlackUserIdentitiesOutput>
     -- List all authorized Slack workspaces connected to the AWS Account onboarded with AWS Chatbot.
-    describeSlackWorkspaces: function(Client, types.DescribeSlackWorkspacesInput): types.DescribeSlackWorkspacesOutput, table
+    describeSlackWorkspaces: function(Client, types.DescribeSlackWorkspacesInput): Operation<types.DescribeSlackWorkspacesOutput>
     -- Unlink a resource, for example a custom action, from a channel configuration.
-    disassociateFromConfiguration: function(Client, types.DisassociateFromConfigurationInput): types.DisassociateFromConfigurationOutput, table
+    disassociateFromConfiguration: function(Client, types.DisassociateFromConfigurationInput): Operation<types.DisassociateFromConfigurationOutput>
     -- Returns AWS Chatbot account preferences.
-    getAccountPreferences: function(Client, types.GetAccountPreferencesInput): types.GetAccountPreferencesOutput, table
+    getAccountPreferences: function(Client, types.GetAccountPreferencesInput): Operation<types.GetAccountPreferencesOutput>
     -- Returns a custom action.
-    getCustomAction: function(Client, types.GetCustomActionInput): types.GetCustomActionOutput, table
+    getCustomAction: function(Client, types.GetCustomActionInput): Operation<types.GetCustomActionOutput>
     -- Returns a Microsoft Teams channel configuration in an AWS account.
-    getMicrosoftTeamsChannelConfiguration: function(Client, types.GetMicrosoftTeamsChannelConfigurationInput): types.GetMicrosoftTeamsChannelConfigurationOutput, table
+    getMicrosoftTeamsChannelConfiguration: function(Client, types.GetMicrosoftTeamsChannelConfigurationInput): Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
     -- Lists resources associated with a channel configuration.
-    listAssociations: function(Client, types.ListAssociationsInput): types.ListAssociationsOutput, table
+    listAssociations: function(Client, types.ListAssociationsInput): Operation<types.ListAssociationsOutput>
     -- Lists custom actions defined in this account.
-    listCustomActions: function(Client, types.ListCustomActionsInput): types.ListCustomActionsOutput, table
+    listCustomActions: function(Client, types.ListCustomActionsInput): Operation<types.ListCustomActionsOutput>
     -- Lists all AWS Chatbot Microsoft Teams channel configurations in an AWS account.
-    listMicrosoftTeamsChannelConfigurations: function(Client, types.ListMicrosoftTeamsChannelConfigurationsInput): types.ListMicrosoftTeamsChannelConfigurationsOutput, table
+    listMicrosoftTeamsChannelConfigurations: function(Client, types.ListMicrosoftTeamsChannelConfigurationsInput): Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
     -- Lists all authorized Microsoft Teams for an AWS Account
-    listMicrosoftTeamsConfiguredTeams: function(Client, types.ListMicrosoftTeamsConfiguredTeamsInput): types.ListMicrosoftTeamsConfiguredTeamsOutput, table
+    listMicrosoftTeamsConfiguredTeams: function(Client, types.ListMicrosoftTeamsConfiguredTeamsInput): Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
     -- A list all Microsoft Teams user identities with a mapped role.
-    listMicrosoftTeamsUserIdentities: function(Client, types.ListMicrosoftTeamsUserIdentitiesInput): types.ListMicrosoftTeamsUserIdentitiesOutput, table
+    listMicrosoftTeamsUserIdentities: function(Client, types.ListMicrosoftTeamsUserIdentitiesInput): Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
     -- Lists all of the tags associated with the Amazon Resource Name (ARN) that you specify. The resource can be a user, server, or role.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Attaches a key-value pair to a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Detaches a key-value pair from a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates AWS Chatbot account preferences.
-    updateAccountPreferences: function(Client, types.UpdateAccountPreferencesInput): types.UpdateAccountPreferencesOutput, table
+    updateAccountPreferences: function(Client, types.UpdateAccountPreferencesInput): Operation<types.UpdateAccountPreferencesOutput>
     -- Updates a Amazon Chime webhook configuration.
-    updateChimeWebhookConfiguration: function(Client, types.UpdateChimeWebhookConfigurationInput): types.UpdateChimeWebhookConfigurationOutput, table
+    updateChimeWebhookConfiguration: function(Client, types.UpdateChimeWebhookConfigurationInput): Operation<types.UpdateChimeWebhookConfigurationOutput>
     -- Updates a custom action.
-    updateCustomAction: function(Client, types.UpdateCustomActionInput): types.UpdateCustomActionOutput, table
+    updateCustomAction: function(Client, types.UpdateCustomActionInput): Operation<types.UpdateCustomActionOutput>
     -- Updates an Microsoft Teams channel configuration.
-    updateMicrosoftTeamsChannelConfiguration: function(Client, types.UpdateMicrosoftTeamsChannelConfigurationInput): types.UpdateMicrosoftTeamsChannelConfigurationOutput, table
+    updateMicrosoftTeamsChannelConfiguration: function(Client, types.UpdateMicrosoftTeamsChannelConfigurationInput): Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
     -- Updates a Slack channel configuration.
-    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput): types.UpdateSlackChannelConfigurationOutput, table
+    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput): Operation<types.UpdateSlackChannelConfigurationOutput>
 end
 
 local record M

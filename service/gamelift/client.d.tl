@@ -2,6 +2,10 @@
 
 local types = require("gamelift.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Registers a player's acceptance or rejection of a proposed FlexMatch match. A
@@ -26,7 +30,7 @@ local record Client
     -- Learn more
     -- Add FlexMatch to a game client
     -- FlexMatch events (reference)
-    acceptMatch: function(Client, types.AcceptMatchInput): types.AcceptMatchOutput, table
+    acceptMatch: function(Client, types.AcceptMatchInput): Operation<types.AcceptMatchOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Locates an available game server and
     -- temporarily reserves it to host gameplay and players. This operation is called from a
@@ -56,7 +60,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    claimGameServer: function(Client, types.ClaimGameServerInput): types.ClaimGameServerOutput, table
+    claimGameServer: function(Client, types.ClaimGameServerInput): Operation<types.ClaimGameServerOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Creates an alias for a fleet. In most situations, you can use an alias ID in place of
     -- a fleet ID. An alias provides a level of abstraction for a fleet that is useful when
@@ -74,7 +78,7 @@ local record Client
     -- UpdateAlias.
     -- Related actions
     -- All APIs by task
-    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createAlias: function(Client, types.CreateAliasInput): Operation<types.CreateAliasOutput>
     -- This API works with the following fleet types: EC2, Anywhere
     -- Creates a new Amazon GameLift Servers build resource for your game server binary files. Combine game
     -- server binaries into a zip file for use with Amazon GameLift Servers.
@@ -103,7 +107,7 @@ local record Client
     -- Game
     -- Create a Build with Files in Amazon S3
     -- All APIs by task
-    createBuild: function(Client, types.CreateBuildInput): types.CreateBuildOutput, table
+    createBuild: function(Client, types.CreateBuildInput): Operation<types.CreateBuildOutput>
     -- This API works with the following fleet types: Container
     -- Creates a managed fleet of Amazon Elastic Compute Cloud (Amazon EC2) instances to host your containerized game
     -- servers. Use this operation to define how to deploy a container architecture onto each
@@ -159,7 +163,7 @@ local record Client
     -- days to maintain a secure and up-to-date runtime environment for your hosted game
     -- servers. For guidance, see
     -- Security best practices for Amazon GameLift Servers.
-    createContainerFleet: function(Client, types.CreateContainerFleetInput): types.CreateContainerFleetOutput, table
+    createContainerFleet: function(Client, types.CreateContainerFleetInput): Operation<types.CreateContainerFleetOutput>
     -- This API works with the following fleet types: Container
     -- Creates a ContainerGroupDefinition that describes a set of containers for
     -- hosting your game server with Amazon GameLift Servers managed containers hosting. An Amazon GameLift Servers container group
@@ -219,7 +223,7 @@ local record Client
     -- If successful, this request creates a ContainerGroupDefinition resource and
     -- assigns a unique ARN value. You can update most properties of a container group definition by
     -- calling UpdateContainerGroupDefinition, and optionally save the update as a new version.
-    createContainerGroupDefinition: function(Client, types.CreateContainerGroupDefinitionInput): types.CreateContainerGroupDefinitionOutput, table
+    createContainerGroupDefinition: function(Client, types.CreateContainerGroupDefinitionInput): Operation<types.CreateContainerGroupDefinitionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Creates a fleet of compute resources to host your game servers. Use this operation to
     -- set up a fleet for the following compute types:
@@ -269,7 +273,7 @@ local record Client
     -- fleets
     -- Debug fleet creation issues
     -- Multi-location fleets
-    createFleet: function(Client, types.CreateFleetInput): types.CreateFleetOutput, table
+    createFleet: function(Client, types.CreateFleetInput): Operation<types.CreateFleetOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Adds remote locations to an EC2 and begins populating the new locations with
     -- instances. The new instances conform to the fleet's instance type, auto-scaling, and
@@ -288,7 +292,7 @@ local record Client
     -- fleets
     -- Update fleet locations
     -- Amazon GameLift Servers service locations for managed hosting.
-    createFleetLocations: function(Client, types.CreateFleetLocationsInput): types.CreateFleetLocationsOutput, table
+    createFleetLocations: function(Client, types.CreateFleetLocationsInput): Operation<types.CreateFleetLocationsOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Creates a Amazon GameLift Servers FleetIQ game server
     -- group for managing game hosting on a collection of Amazon Elastic Compute Cloud instances for game hosting.
@@ -319,7 +323,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    createGameServerGroup: function(Client, types.CreateGameServerGroupInput): types.CreateGameServerGroupOutput, table
+    createGameServerGroup: function(Client, types.CreateGameServerGroupInput): Operation<types.CreateGameServerGroupOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Creates a multiplayer game session for players in a specific fleet location. This
     -- operation prompts an available server process to start a game session and retrieves
@@ -349,7 +353,7 @@ local record Client
     -- Learn more
     -- Start a game session
     -- All APIs by task
-    createGameSession: function(Client, types.CreateGameSessionInput): types.CreateGameSessionOutput, table
+    createGameSession: function(Client, types.CreateGameSessionInput): Operation<types.CreateGameSessionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Creates a placement queue that processes requests for new game sessions. A queue uses
     -- FleetIQ algorithms to locate the best available placement locations for a new game
@@ -401,10 +405,10 @@ local record Client
     -- DeleteGameSessionQueue
     -- |
     -- All APIs by task
-    createGameSessionQueue: function(Client, types.CreateGameSessionQueueInput): types.CreateGameSessionQueueOutput, table
+    createGameSessionQueue: function(Client, types.CreateGameSessionQueueInput): Operation<types.CreateGameSessionQueueOutput>
     -- This API works with the following fleet types: Anywhere
     -- Creates a custom location for use in an Anywhere fleet.
-    createLocation: function(Client, types.CreateLocationInput): types.CreateLocationOutput, table
+    createLocation: function(Client, types.CreateLocationInput): Operation<types.CreateLocationOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Defines a new matchmaking configuration for use with FlexMatch. Whether your are using
     -- FlexMatch with Amazon GameLift Servers hosting or as a standalone matchmaking service, the matchmaking
@@ -426,7 +430,7 @@ local record Client
     -- matchmaker
     -- Set up FlexMatch event
     -- notification
-    createMatchmakingConfiguration: function(Client, types.CreateMatchmakingConfigurationInput): types.CreateMatchmakingConfigurationOutput, table
+    createMatchmakingConfiguration: function(Client, types.CreateMatchmakingConfigurationInput): Operation<types.CreateMatchmakingConfigurationOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Creates a new rule set for FlexMatch matchmaking. A rule set describes the type of match
     -- to create, such as the number and size of teams. It also sets the parameters for
@@ -443,7 +447,7 @@ local record Client
     -- matchmaker
     -- Matchmaking with
     -- FlexMatch
-    createMatchmakingRuleSet: function(Client, types.CreateMatchmakingRuleSetInput): types.CreateMatchmakingRuleSetOutput, table
+    createMatchmakingRuleSet: function(Client, types.CreateMatchmakingRuleSetInput): Operation<types.CreateMatchmakingRuleSetOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Reserves an open player slot in a game session for a player. New player sessions can
     -- be created in any game session with an open slot that is in ACTIVE status
@@ -459,7 +463,7 @@ local record Client
     -- The maximum number of players per game session is 200. It is not adjustable.
     -- Related actions
     -- All APIs by task
-    createPlayerSession: function(Client, types.CreatePlayerSessionInput): types.CreatePlayerSessionOutput, table
+    createPlayerSession: function(Client, types.CreatePlayerSessionInput): Operation<types.CreatePlayerSessionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Reserves open slots in a game session for a group of players. New player sessions can
     -- be created in any game session with an open slot that is in ACTIVE status
@@ -475,7 +479,7 @@ local record Client
     -- The maximum number of players per game session is 200. It is not adjustable.
     -- Related actions
     -- All APIs by task
-    createPlayerSessions: function(Client, types.CreatePlayerSessionsInput): types.CreatePlayerSessionsOutput, table
+    createPlayerSessions: function(Client, types.CreatePlayerSessionsInput): Operation<types.CreatePlayerSessionsOutput>
     -- This API works with the following fleet types: EC2, Anywhere
     -- Creates a new script record for your Amazon GameLift Servers Realtime script. Realtime scripts are JavaScript that
     -- provide configuration settings and optional custom game logic for your game. The script
@@ -500,7 +504,7 @@ local record Client
     -- Set Up a Role for Amazon GameLift Servers Access
     -- Related actions
     -- All APIs by task
-    createScript: function(Client, types.CreateScriptInput): types.CreateScriptOutput, table
+    createScript: function(Client, types.CreateScriptInput): Operation<types.CreateScriptOutput>
     -- This API works with the following fleet types: EC2
     -- Requests authorization to create or delete a peer connection between the VPC for your
     -- Amazon GameLift Servers fleet and a virtual private cloud (VPC) in your Amazon Web Services account. VPC peering enables the game servers on
@@ -525,7 +529,7 @@ local record Client
     -- delete the peering connection while the authorization is valid.
     -- Related actions
     -- All APIs by task
-    createVpcPeeringAuthorization: function(Client, types.CreateVpcPeeringAuthorizationInput): types.CreateVpcPeeringAuthorizationOutput, table
+    createVpcPeeringAuthorization: function(Client, types.CreateVpcPeeringAuthorizationInput): Operation<types.CreateVpcPeeringAuthorizationOutput>
     -- This API works with the following fleet types: EC2
     -- Establishes a VPC peering connection between a virtual private cloud (VPC) in an Amazon Web Services account with the VPC
     -- for your Amazon GameLift Servers fleet. VPC peering enables the game servers on your fleet to communicate
@@ -547,14 +551,14 @@ local record Client
     -- or failure using DescribeFleetEvents .
     -- Related actions
     -- All APIs by task
-    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput): types.CreateVpcPeeringConnectionOutput, table
+    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput): Operation<types.CreateVpcPeeringConnectionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Deletes an alias. This operation removes all record of the alias. Game clients
     -- attempting to access a server process using the deleted alias receive an error. To
     -- delete an alias, specify the alias ID to be deleted.
     -- Related actions
     -- All APIs by task
-    deleteAlias: function(Client, types.DeleteAliasInput): types.DeleteAliasOutput, table
+    deleteAlias: function(Client, types.DeleteAliasInput): Operation<types.DeleteAliasOutput>
     -- This API works with the following fleet types: EC2
     -- Deletes a build. This operation permanently deletes the build resource and any
     -- uploaded build files. Deleting a build does not affect the status of any active fleets
@@ -564,7 +568,7 @@ local record Client
     -- Upload a Custom
     -- Server Build
     -- All APIs by task
-    deleteBuild: function(Client, types.DeleteBuildInput): types.DeleteBuildOutput, table
+    deleteBuild: function(Client, types.DeleteBuildInput): Operation<types.DeleteBuildOutput>
     -- This API works with the following fleet types: Container
     -- Deletes all resources and information related to a container fleet and shuts down
     -- currently running fleet instances, including those in remote locations. The container
@@ -574,7 +578,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- Fleets
-    deleteContainerFleet: function(Client, types.DeleteContainerFleetInput): types.DeleteContainerFleetOutput, table
+    deleteContainerFleet: function(Client, types.DeleteContainerFleetInput): Operation<types.DeleteContainerFleetOutput>
     -- This API works with the following fleet types: Container
     -- Request options:
     -- Deletes a container group definition.
@@ -594,7 +598,7 @@ local record Client
     -- If the version is designated as a rollback definition in a fleet deployment that's currently in progress.
     -- Learn more
     -- Manage a container group definition
-    deleteContainerGroupDefinition: function(Client, types.DeleteContainerGroupDefinitionInput): types.DeleteContainerGroupDefinitionOutput, table
+    deleteContainerGroupDefinition: function(Client, types.DeleteContainerGroupDefinitionInput): Operation<types.DeleteContainerGroupDefinitionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Deletes all resources and information related to a fleet and shuts down any currently
     -- running fleet instances, including those in remote locations.
@@ -608,7 +612,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- Fleets
-    deleteFleet: function(Client, types.DeleteFleetInput): types.DeleteFleetOutput, table
+    deleteFleet: function(Client, types.DeleteFleetInput): Operation<types.DeleteFleetOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Removes locations from a multi-location fleet. When deleting a location, all game
     -- server process and all instances that are still active in the location are shut down.
@@ -620,7 +624,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    deleteFleetLocations: function(Client, types.DeleteFleetLocationsInput): types.DeleteFleetLocationsOutput, table
+    deleteFleetLocations: function(Client, types.DeleteFleetLocationsInput): Operation<types.DeleteFleetLocationsOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Terminates a game server group
     -- and permanently deletes the game server group record. You have several options for how
@@ -642,21 +646,21 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    deleteGameServerGroup: function(Client, types.DeleteGameServerGroupInput): types.DeleteGameServerGroupOutput, table
+    deleteGameServerGroup: function(Client, types.DeleteGameServerGroupInput): Operation<types.DeleteGameServerGroupOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Deletes a game session queue. Once a queue is successfully deleted, unfulfilled StartGameSessionPlacement requests that reference the queue will fail. To
     -- delete a queue, specify the queue name.
-    deleteGameSessionQueue: function(Client, types.DeleteGameSessionQueueInput): types.DeleteGameSessionQueueOutput, table
+    deleteGameSessionQueue: function(Client, types.DeleteGameSessionQueueInput): Operation<types.DeleteGameSessionQueueOutput>
     -- This API works with the following fleet types: Anywhere
     -- Deletes a custom location.
     -- Before deleting a custom location, review any fleets currently using the custom
     -- location and deregister the location if it is in use. For more information, see DeregisterCompute.
-    deleteLocation: function(Client, types.DeleteLocationInput): types.DeleteLocationOutput, table
+    deleteLocation: function(Client, types.DeleteLocationInput): Operation<types.DeleteLocationOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Permanently removes a FlexMatch matchmaking configuration. To delete, specify the
     -- configuration name. A matchmaking configuration cannot be deleted if it is being used in
     -- any active matchmaking tickets.
-    deleteMatchmakingConfiguration: function(Client, types.DeleteMatchmakingConfigurationInput): types.DeleteMatchmakingConfigurationOutput, table
+    deleteMatchmakingConfiguration: function(Client, types.DeleteMatchmakingConfigurationInput): Operation<types.DeleteMatchmakingConfigurationOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Deletes an existing matchmaking rule set. To delete the rule set, provide the rule set
     -- name. Rule sets cannot be deleted if they are currently being used by a matchmaking
@@ -664,14 +668,14 @@ local record Client
     -- Learn more
     -- Build a rule
     -- set
-    deleteMatchmakingRuleSet: function(Client, types.DeleteMatchmakingRuleSetInput): types.DeleteMatchmakingRuleSetOutput, table
+    deleteMatchmakingRuleSet: function(Client, types.DeleteMatchmakingRuleSetInput): Operation<types.DeleteMatchmakingRuleSetOutput>
     -- This API works with the following fleet types: EC2
     -- Deletes a fleet scaling policy. Once deleted, the policy is no longer in force and
     -- Amazon GameLift Servers removes all record of it. To delete a scaling policy, specify both the scaling
     -- policy name and the fleet ID it is associated with.
     -- To temporarily suspend scaling policies, use StopFleetActions. This operation suspends all policies for the
     -- fleet.
-    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput): types.DeleteScalingPolicyOutput, table
+    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput): Operation<types.DeleteScalingPolicyOutput>
     -- This API works with the following fleet types: EC2
     -- Deletes a Realtime script. This operation permanently deletes the script record. If
     -- script files were uploaded, they are also deleted (files stored in an S3 bucket are not
@@ -684,13 +688,13 @@ local record Client
     -- Amazon GameLift Servers Amazon GameLift Servers Realtime
     -- Related actions
     -- All APIs by task
-    deleteScript: function(Client, types.DeleteScriptInput): types.DeleteScriptOutput, table
+    deleteScript: function(Client, types.DeleteScriptInput): Operation<types.DeleteScriptOutput>
     -- This API works with the following fleet types: EC2
     -- Cancels a pending VPC peering authorization for the specified VPC. If you need to
     -- delete an existing VPC peering connection, use DeleteVpcPeeringConnection.
     -- Related actions
     -- All APIs by task
-    deleteVpcPeeringAuthorization: function(Client, types.DeleteVpcPeeringAuthorizationInput): types.DeleteVpcPeeringAuthorizationOutput, table
+    deleteVpcPeeringAuthorization: function(Client, types.DeleteVpcPeeringAuthorizationInput): Operation<types.DeleteVpcPeeringAuthorizationOutput>
     -- This API works with the following fleet types: EC2
     -- Removes a VPC peering connection. To delete the connection, you must have a valid
     -- authorization for the VPC peering connection that you want to delete..
@@ -699,7 +703,7 @@ local record Client
     -- and fleet ID. If successful, the connection is removed.
     -- Related actions
     -- All APIs by task
-    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput): types.DeleteVpcPeeringConnectionOutput, table
+    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput): Operation<types.DeleteVpcPeeringConnectionOutput>
     -- This API works with the following fleet types: Anywhere
     -- Removes a compute resource from an Anywhere fleet. Deregistered computes can no longer
     -- host game sessions through Amazon GameLift Servers. Use this operation with an Anywhere fleet that
@@ -707,7 +711,7 @@ local record Client
     -- compute registry tasks for you.
     -- To deregister a compute, call this operation from the compute that's being
     -- deregistered and specify the compute name and the fleet ID.
-    deregisterCompute: function(Client, types.DeregisterComputeInput): types.DeregisterComputeOutput, table
+    deregisterCompute: function(Client, types.DeregisterComputeInput): Operation<types.DeregisterComputeOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Removes the game server from a
     -- game server group. As a result of this operation, the deregistered game server can no
@@ -718,7 +722,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    deregisterGameServer: function(Client, types.DeregisterGameServerInput): types.DeregisterGameServerOutput, table
+    deregisterGameServer: function(Client, types.DeregisterGameServerInput): Operation<types.DeregisterGameServerOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves properties for an alias. This operation returns all alias metadata and
     -- settings. To get an alias's target fleet ID only, use ResolveAlias.
@@ -726,7 +730,7 @@ local record Client
     -- record is returned.
     -- Related actions
     -- All APIs by task
-    describeAlias: function(Client, types.DescribeAliasInput): types.DescribeAliasOutput, table
+    describeAlias: function(Client, types.DescribeAliasInput): Operation<types.DescribeAliasOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves properties for a custom game build. To request a build resource, specify a
     -- build ID. If successful, an object containing the build properties is returned.
@@ -734,7 +738,7 @@ local record Client
     -- Upload a Custom
     -- Server Build
     -- All APIs by task
-    describeBuild: function(Client, types.DescribeBuildInput): types.DescribeBuildOutput, table
+    describeBuild: function(Client, types.DescribeBuildInput): Operation<types.DescribeBuildOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves properties for a specific compute resource in an Amazon GameLift Servers fleet. You can list
     -- all computes in a fleet by calling ListCompute.
@@ -756,7 +760,7 @@ local record Client
     -- instance.
     -- For an Anywhere fleet, this operation returns information about the registered
     -- compute.
-    describeCompute: function(Client, types.DescribeComputeInput): types.DescribeComputeOutput, table
+    describeCompute: function(Client, types.DescribeComputeInput): Operation<types.DescribeComputeOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves the properties for a container fleet. When requesting attributes for
     -- multiple fleets, use the pagination parameters to retrieve results as a set of
@@ -769,7 +773,7 @@ local record Client
     -- Some API operations limit the number of fleet IDs that allowed in one request. If
     -- a request exceeds this limit, the request fails and the error message contains the
     -- maximum allowed number.
-    describeContainerFleet: function(Client, types.DescribeContainerFleetInput): types.DescribeContainerFleetOutput, table
+    describeContainerFleet: function(Client, types.DescribeContainerFleetInput): Operation<types.DescribeContainerFleetOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves the properties of a container group definition, including all container
     -- definitions in the group.
@@ -783,7 +787,7 @@ local record Client
     -- definition version.
     -- Learn more
     -- Manage a container group definition
-    describeContainerGroupDefinition: function(Client, types.DescribeContainerGroupDefinitionInput): types.DescribeContainerGroupDefinitionOutput, table
+    describeContainerGroupDefinition: function(Client, types.DescribeContainerGroupDefinitionInput): Operation<types.DescribeContainerGroupDefinitionOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves the port mappings for a container group running on a container fleet. Port
     -- mappings show how container ports are mapped to connection ports on the fleet instance.
@@ -809,7 +813,7 @@ local record Client
     -- containers
     -- Create a
     -- container group definition
-    describeContainerGroupPortMappings: function(Client, types.DescribeContainerGroupPortMappingsInput): types.DescribeContainerGroupPortMappingsOutput, table
+    describeContainerGroupPortMappings: function(Client, types.DescribeContainerGroupPortMappingsInput): Operation<types.DescribeContainerGroupPortMappingsOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves the instance limits and current utilization for an Amazon Web Services Region or location.
     -- Instance limits control the number of instances, per instance type, per location, that
@@ -851,7 +855,7 @@ local record Client
     -- usage data for each requested instance type.
     -- Learn more
     -- Setting up Amazon GameLift Servers fleets
-    describeEC2InstanceLimits: function(Client, types.DescribeEC2InstanceLimitsInput): types.DescribeEC2InstanceLimitsOutput, table
+    describeEC2InstanceLimits: function(Client, types.DescribeEC2InstanceLimitsInput): Operation<types.DescribeEC2InstanceLimitsOutput>
     -- This API works with the following fleet types: EC2, Anywhere
     -- Retrieves core fleet-wide properties for fleets in an Amazon Web Services Region. Properties include the computing
     -- hardware and deployment configuration for instances in the fleet.
@@ -868,7 +872,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    describeFleetAttributes: function(Client, types.DescribeFleetAttributesInput): types.DescribeFleetAttributesOutput, table
+    describeFleetAttributes: function(Client, types.DescribeFleetAttributesInput): Operation<types.DescribeFleetAttributesOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Retrieves the resource capacity settings for one or more fleets. For a container
     -- fleet, this operation also returns counts for game server container groups.
@@ -892,7 +896,7 @@ local record Client
     -- Setting up Amazon GameLift Servers
     -- fleets
     -- GameLift metrics for fleets
-    describeFleetCapacity: function(Client, types.DescribeFleetCapacityInput): types.DescribeFleetCapacityOutput, table
+    describeFleetCapacity: function(Client, types.DescribeFleetCapacityInput): Operation<types.DescribeFleetCapacityOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves information about a managed container fleet deployment.
     -- Request options
@@ -902,7 +906,7 @@ local record Client
     -- the deployment ID.
     -- Results
     -- If successful, a FleetDeployment object is returned.
-    describeFleetDeployment: function(Client, types.DescribeFleetDeploymentInput): types.DescribeFleetDeploymentOutput, table
+    describeFleetDeployment: function(Client, types.DescribeFleetDeploymentInput): Operation<types.DescribeFleetDeploymentOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves entries from a fleet's event log. Fleet events are initiated by changes in
     -- status, such as during fleet creation and termination, changes in capacity, etc. If a
@@ -914,7 +918,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    describeFleetEvents: function(Client, types.DescribeFleetEventsInput): types.DescribeFleetEventsOutput, table
+    describeFleetEvents: function(Client, types.DescribeFleetEventsInput): Operation<types.DescribeFleetEventsOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Retrieves information on a fleet's remote locations, including life-cycle status and
     -- any suspended fleet activity.
@@ -933,7 +937,7 @@ local record Client
     -- Setting
     -- up Amazon GameLift Servers fleets
     -- Amazon GameLift Servers service locations for managed hosting
-    describeFleetLocationAttributes: function(Client, types.DescribeFleetLocationAttributesInput): types.DescribeFleetLocationAttributesOutput, table
+    describeFleetLocationAttributes: function(Client, types.DescribeFleetLocationAttributesInput): Operation<types.DescribeFleetLocationAttributesOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Retrieves the resource capacity settings for a fleet location. The data returned
     -- includes the current capacity (number of EC2 instances) and some scaling settings for
@@ -950,7 +954,7 @@ local record Client
     -- fleets
     -- Amazon GameLift Servers service locations for managed hosting
     -- GameLift metrics for fleets
-    describeFleetLocationCapacity: function(Client, types.DescribeFleetLocationCapacityInput): types.DescribeFleetLocationCapacityOutput, table
+    describeFleetLocationCapacity: function(Client, types.DescribeFleetLocationCapacityInput): Operation<types.DescribeFleetLocationCapacityOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves current usage data for a fleet location. Utilization data provides a
     -- snapshot of current game hosting activity at the requested location. Use this operation
@@ -965,7 +969,7 @@ local record Client
     -- fleets
     -- Amazon GameLift Servers service locations for managed hosting
     -- GameLift metrics for fleets
-    describeFleetLocationUtilization: function(Client, types.DescribeFleetLocationUtilizationInput): types.DescribeFleetLocationUtilizationOutput, table
+    describeFleetLocationUtilization: function(Client, types.DescribeFleetLocationUtilizationInput): Operation<types.DescribeFleetLocationUtilizationOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Retrieves a fleet's inbound connection permissions. Connection permissions specify IP
     -- addresses and port settings that incoming traffic can use to access server processes in
@@ -983,7 +987,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    describeFleetPortSettings: function(Client, types.DescribeFleetPortSettingsInput): types.DescribeFleetPortSettingsOutput, table
+    describeFleetPortSettings: function(Client, types.DescribeFleetPortSettingsInput): Operation<types.DescribeFleetPortSettingsOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Retrieves utilization statistics for one or more fleets. Utilization data provides a
     -- snapshot of how the fleet's hosting resources are currently being used. For fleets with
@@ -1006,7 +1010,7 @@ local record Client
     -- Setting up Amazon GameLift Servers
     -- Fleets
     -- GameLift Metrics for Fleets
-    describeFleetUtilization: function(Client, types.DescribeFleetUtilizationInput): types.DescribeFleetUtilizationOutput, table
+    describeFleetUtilization: function(Client, types.DescribeFleetUtilizationInput): Operation<types.DescribeFleetUtilizationOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Retrieves information for a
     -- registered game server. Information includes game server status, health check info, and
@@ -1016,7 +1020,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    describeGameServer: function(Client, types.DescribeGameServerInput): types.DescribeGameServerOutput, table
+    describeGameServer: function(Client, types.DescribeGameServerInput): Operation<types.DescribeGameServerOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Retrieves information on a
     -- game server group. This operation returns only properties related to Amazon GameLift Servers FleetIQ. To view or
@@ -1028,7 +1032,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    describeGameServerGroup: function(Client, types.DescribeGameServerGroupInput): types.DescribeGameServerGroupOutput, table
+    describeGameServerGroup: function(Client, types.DescribeGameServerGroupInput): Operation<types.DescribeGameServerGroupOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Retrieves status
     -- information about the Amazon EC2 instances associated with a Amazon GameLift Servers FleetIQ game server group.
@@ -1046,7 +1050,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    describeGameServerInstances: function(Client, types.DescribeGameServerInstancesInput): types.DescribeGameServerInstancesOutput, table
+    describeGameServerInstances: function(Client, types.DescribeGameServerInstancesInput): Operation<types.DescribeGameServerInstancesOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves additional game session properties, including the game session protection
     -- policy in force, a set of one or more game sessions in a specific fleet location. You
@@ -1069,7 +1073,7 @@ local record Client
     -- Learn more
     -- Find a game session
     -- All APIs by task
-    describeGameSessionDetails: function(Client, types.DescribeGameSessionDetailsInput): types.DescribeGameSessionDetailsOutput, table
+    describeGameSessionDetails: function(Client, types.DescribeGameSessionDetailsInput): Operation<types.DescribeGameSessionDetailsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves information, including current status, about a game session placement
     -- request.
@@ -1081,7 +1085,7 @@ local record Client
     -- be used for games in development with low game session usage. For a reference
     -- implementation of event-based game session placement tracking, see
     -- Event-based game session placement guidance in the Amazon GameLift Toolkit.
-    describeGameSessionPlacement: function(Client, types.DescribeGameSessionPlacementInput): types.DescribeGameSessionPlacementOutput, table
+    describeGameSessionPlacement: function(Client, types.DescribeGameSessionPlacementInput): Operation<types.DescribeGameSessionPlacementOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves the properties for one or more game session queues. When requesting multiple
     -- queues, use the pagination parameters to retrieve results as a set of sequential pages.
@@ -1089,7 +1093,7 @@ local record Client
     -- exist in the Region.
     -- Learn more
     -- View Your Queues
-    describeGameSessionQueues: function(Client, types.DescribeGameSessionQueuesInput): types.DescribeGameSessionQueuesOutput, table
+    describeGameSessionQueues: function(Client, types.DescribeGameSessionQueuesInput): Operation<types.DescribeGameSessionQueuesOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves a set of one or more game sessions in a specific fleet location. You can
     -- optionally filter the results by current game session status.
@@ -1117,7 +1121,7 @@ local record Client
     -- Learn more
     -- Find a game session
     -- All APIs by task
-    describeGameSessions: function(Client, types.DescribeGameSessionsInput): types.DescribeGameSessionsOutput, table
+    describeGameSessions: function(Client, types.DescribeGameSessionsInput): Operation<types.DescribeGameSessionsOutput>
     -- This API works with the following fleet types:EC2, Container
     -- Retrieves information about the EC2 instances in an Amazon GameLift Servers managed fleet, including
     -- instance ID, connection data, and status. You can use this operation with a
@@ -1142,7 +1146,7 @@ local record Client
     -- issues
     -- Related actions
     -- All APIs by task
-    describeInstances: function(Client, types.DescribeInstancesInput): types.DescribeInstancesOutput, table
+    describeInstances: function(Client, types.DescribeInstancesInput): Operation<types.DescribeInstancesOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves one or more matchmaking tickets. Use this operation to retrieve ticket
     -- information, including--after a successful match is made--connection information for the
@@ -1158,7 +1162,7 @@ local record Client
     -- Add FlexMatch to a game client
     -- Set Up FlexMatch event
     -- notification
-    describeMatchmaking: function(Client, types.DescribeMatchmakingInput): types.DescribeMatchmakingOutput, table
+    describeMatchmaking: function(Client, types.DescribeMatchmakingInput): Operation<types.DescribeMatchmakingOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves the details of FlexMatch matchmaking configurations.
     -- This operation offers the following options: (1) retrieve all matchmaking
@@ -1169,7 +1173,7 @@ local record Client
     -- list of names, only configurations that currently exist are returned.
     -- Learn more
     -- Setting up FlexMatch matchmakers
-    describeMatchmakingConfigurations: function(Client, types.DescribeMatchmakingConfigurationsInput): types.DescribeMatchmakingConfigurationsOutput, table
+    describeMatchmakingConfigurations: function(Client, types.DescribeMatchmakingConfigurationsInput): Operation<types.DescribeMatchmakingConfigurationsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves the details for FlexMatch matchmaking rule sets. You can request all existing
     -- rule sets for the Region, or provide a list of one or more rule set names. When
@@ -1178,7 +1182,7 @@ local record Client
     -- Learn more
     -- Build a rule
     -- set
-    describeMatchmakingRuleSets: function(Client, types.DescribeMatchmakingRuleSetsInput): types.DescribeMatchmakingRuleSetsOutput, table
+    describeMatchmakingRuleSets: function(Client, types.DescribeMatchmakingRuleSetsInput): Operation<types.DescribeMatchmakingRuleSetsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves properties for one or more player sessions.
     -- This action can be used in the following ways:
@@ -1196,7 +1200,7 @@ local record Client
     -- matches the request.
     -- Related actions
     -- All APIs by task
-    describePlayerSessions: function(Client, types.DescribePlayerSessionsInput): types.DescribePlayerSessionsOutput, table
+    describePlayerSessions: function(Client, types.DescribePlayerSessionsInput): Operation<types.DescribePlayerSessionsOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves a fleet's runtime configuration settings. The runtime configuration
     -- determines which server processes run, and how, on computes in the fleet. For managed
@@ -1212,7 +1216,7 @@ local record Client
     -- fleets
     -- Running multiple
     -- processes on a fleet
-    describeRuntimeConfiguration: function(Client, types.DescribeRuntimeConfigurationInput): types.DescribeRuntimeConfigurationOutput, table
+    describeRuntimeConfiguration: function(Client, types.DescribeRuntimeConfigurationInput): Operation<types.DescribeRuntimeConfigurationOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves all scaling policies applied to a fleet.
     -- To get a fleet's scaling policies, specify the fleet ID. You can filter this request
@@ -1221,7 +1225,7 @@ local record Client
     -- ScalingPolicy objects is returned for the fleet.
     -- A fleet may have all of its scaling policies suspended. This operation does not affect
     -- the status of the scaling policies, which remains ACTIVE.
-    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput): types.DescribeScalingPoliciesOutput, table
+    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput): Operation<types.DescribeScalingPoliciesOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves properties for a Realtime script.
     -- To request a script record, specify the script ID. If successful, an object containing
@@ -1230,14 +1234,14 @@ local record Client
     -- Amazon GameLift Servers Amazon GameLift Servers Realtime
     -- Related actions
     -- All APIs by task
-    describeScript: function(Client, types.DescribeScriptInput): types.DescribeScriptOutput, table
+    describeScript: function(Client, types.DescribeScriptInput): Operation<types.DescribeScriptOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves valid VPC peering authorizations that are pending for the Amazon Web Services account.
     -- This operation returns all VPC peering authorizations and requests for peering. This
     -- includes those initiated and received by this account.
     -- Related actions
     -- All APIs by task
-    describeVpcPeeringAuthorizations: function(Client, types.DescribeVpcPeeringAuthorizationsInput): types.DescribeVpcPeeringAuthorizationsOutput, table
+    describeVpcPeeringAuthorizations: function(Client, types.DescribeVpcPeeringAuthorizationsInput): Operation<types.DescribeVpcPeeringAuthorizationsOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves information on VPC peering connections. Use this operation to get peering
     -- information for all fleets or for one specific fleet ID.
@@ -1248,7 +1252,7 @@ local record Client
     -- VPC uses to connect.
     -- Related actions
     -- All APIs by task
-    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput): types.DescribeVpcPeeringConnectionsOutput, table
+    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput): Operation<types.DescribeVpcPeeringConnectionsOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Requests authorization to remotely connect to a hosting resource in a Amazon GameLift Servers managed
     -- fleet. This operation is not used with Amazon GameLift Servers Anywhere fleets.
@@ -1267,7 +1271,7 @@ local record Client
     -- credentials with Amazon EC2 Systems Manager (SSM) to start a session with the compute. For more
     -- details, see Starting a session (CLI) in the Amazon EC2 Systems Manager User
     -- Guide.
-    getComputeAccess: function(Client, types.GetComputeAccessInput): types.GetComputeAccessOutput, table
+    getComputeAccess: function(Client, types.GetComputeAccessInput): Operation<types.GetComputeAccessOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Requests an authentication token from Amazon GameLift Servers for a compute resource in an Amazon GameLift Servers
     -- fleet. Game servers that are running on the compute use this token to communicate
@@ -1290,7 +1294,7 @@ local record Client
     -- integration
     -- Server SDK
     -- reference guides (for version 5.x)
-    getComputeAuthToken: function(Client, types.GetComputeAuthTokenInput): types.GetComputeAuthTokenOutput, table
+    getComputeAuthToken: function(Client, types.GetComputeAuthTokenInput): Operation<types.GetComputeAuthTokenOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves the location of stored game session logs for a specified game session on
     -- Amazon GameLift Servers managed fleets. When a game session is terminated, Amazon GameLift Servers automatically stores
@@ -1299,7 +1303,7 @@ local record Client
     -- Limits page for maximum log file sizes. Log files that exceed this limit
     -- are not saved.
     -- All APIs by task
-    getGameSessionLogUrl: function(Client, types.GetGameSessionLogUrlInput): types.GetGameSessionLogUrlOutput, table
+    getGameSessionLogUrl: function(Client, types.GetGameSessionLogUrlInput): Operation<types.GetGameSessionLogUrlOutput>
     -- This API works with the following fleet types: EC2
     -- Requests authorization to remotely connect to an instance in an Amazon GameLift Servers managed fleet.
     -- Use this operation to connect to instances with game servers that use Amazon GameLift Servers server SDK
@@ -1322,7 +1326,7 @@ local record Client
     -- issues
     -- Related actions
     -- All APIs by task
-    getInstanceAccess: function(Client, types.GetInstanceAccessInput): types.GetInstanceAccessOutput, table
+    getInstanceAccess: function(Client, types.GetInstanceAccessInput): Operation<types.GetInstanceAccessOutput>
     -- This API works with the following fleet types: EC2 (server SDK 5.x or later), Container
     -- Retrieves connection details for game clients to connect to game sessions.
     -- Player gateway benefits: DDoS protection with negligible impact to latency.
@@ -1331,7 +1335,7 @@ local record Client
     -- CreateContainerFleet.
     -- How to use: After creating a game session and adding players, call this operation with the game session ID and player IDs. When player gateway is enabled, the response includes connection endpoints and player gateway tokens that your game clients can use to connect to the game session through player gateway. To learn more about player gateway integration, see DDoS protection with Amazon GameLift Servers player gateway.
     -- When player gateway is disabled or in locations where player gateway is not supported, this operation returns game server connection information without player gateway tokens, so that your game clients directly connect to the game server endpoint.
-    getPlayerConnectionDetails: function(Client, types.GetPlayerConnectionDetailsInput): types.GetPlayerConnectionDetailsOutput, table
+    getPlayerConnectionDetails: function(Client, types.GetPlayerConnectionDetailsInput): Operation<types.GetPlayerConnectionDetailsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves all aliases for this Amazon Web Services account. You can filter the result set by alias
     -- name and/or routing strategy type. Use the pagination parameters to retrieve results in
@@ -1339,7 +1343,7 @@ local record Client
     -- Returned aliases are not listed in any particular order.
     -- Related actions
     -- All APIs by task
-    listAliases: function(Client, types.ListAliasesInput): types.ListAliasesOutput, table
+    listAliases: function(Client, types.ListAliasesInput): Operation<types.ListAliasesOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves build resources for all builds associated with the Amazon Web Services account in use. You
     -- can limit results to builds that are in a specific status by using the
@@ -1349,7 +1353,7 @@ local record Client
     -- Upload a Custom
     -- Server Build
     -- All APIs by task
-    listBuilds: function(Client, types.ListBuildsInput): types.ListBuildsOutput, table
+    listBuilds: function(Client, types.ListBuildsInput): Operation<types.ListBuildsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves information on the compute resources in an Amazon GameLift Servers fleet. Use the pagination
     -- parameters to retrieve results in a set of sequential pages.
@@ -1368,7 +1372,7 @@ local record Client
     -- RegisterCompute. This includes
     -- GameLiftServiceSdkEndpoint or
     -- GameLiftAgentEndpoint.
-    listCompute: function(Client, types.ListComputeInput): types.ListComputeOutput, table
+    listCompute: function(Client, types.ListComputeInput): Operation<types.ListComputeOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves a collection of container fleet resources in an Amazon Web Services Region. For fleets
     -- that have multiple locations, this operation retrieves fleets based on their home Region
@@ -1385,7 +1389,7 @@ local record Client
     -- parameters. A NextToken value is also returned if there are more result pages to
     -- retrieve.
     -- Fleet IDs are returned in no particular order.
-    listContainerFleets: function(Client, types.ListContainerFleetsInput): types.ListContainerFleetsOutput, table
+    listContainerFleets: function(Client, types.ListContainerFleetsInput): Operation<types.ListContainerFleetsOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves container group definitions for the Amazon Web Services account and Amazon Web Services Region. Use the pagination parameters to retrieve results in a set of sequential
     -- pages.
@@ -1399,7 +1403,7 @@ local record Client
     -- If successful, this operation returns the complete properties of a set of container group
     -- definition versions that match the request.
     -- This operation returns the list of container group definitions in no particular order.
-    listContainerGroupDefinitions: function(Client, types.ListContainerGroupDefinitionsInput): types.ListContainerGroupDefinitionsOutput, table
+    listContainerGroupDefinitions: function(Client, types.ListContainerGroupDefinitionsInput): Operation<types.ListContainerGroupDefinitionsOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves all versions of a container group definition. Use the pagination parameters to
     -- retrieve results in a set of sequential pages.
@@ -1414,7 +1418,7 @@ local record Client
     -- order (latest first).
     -- Learn more
     -- Manage a container group definition
-    listContainerGroupDefinitionVersions: function(Client, types.ListContainerGroupDefinitionVersionsInput): types.ListContainerGroupDefinitionVersionsOutput, table
+    listContainerGroupDefinitionVersions: function(Client, types.ListContainerGroupDefinitionVersionsInput): Operation<types.ListContainerGroupDefinitionVersionsOutput>
     -- This API works with the following fleet types: Container
     -- Retrieves a collection of container fleet deployments in an Amazon Web Services Region. Use the
     -- pagination parameters to retrieve results as a set of sequential pages.
@@ -1426,7 +1430,7 @@ local record Client
     -- parameters. A NextToken value is also returned if there are more result pages to
     -- retrieve.
     -- Deployments are returned starting with the latest.
-    listFleetDeployments: function(Client, types.ListFleetDeploymentsInput): types.ListFleetDeploymentsOutput, table
+    listFleetDeployments: function(Client, types.ListFleetDeploymentsInput): Operation<types.ListFleetDeploymentsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves a collection of fleet resources in an Amazon Web Services Region. You can filter the
     -- result set to find only those fleets that are deployed with a specific build or script.
@@ -1444,10 +1448,10 @@ local record Client
     -- parameters. A NextToken value is also returned if there are more result pages to
     -- retrieve.
     -- Fleet IDs are returned in no particular order.
-    listFleets: function(Client, types.ListFleetsInput): types.ListFleetsOutput, table
+    listFleets: function(Client, types.ListFleetsInput): Operation<types.ListFleetsOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Lists a game server groups.
-    listGameServerGroups: function(Client, types.ListGameServerGroupsInput): types.ListGameServerGroupsOutput, table
+    listGameServerGroups: function(Client, types.ListGameServerGroupsInput): Operation<types.ListGameServerGroupsOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Retrieves information on all game
     -- servers that are currently active in a specified game server group. You can opt to sort
@@ -1456,7 +1460,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    listGameServers: function(Client, types.ListGameServersInput): types.ListGameServersOutput, table
+    listGameServers: function(Client, types.ListGameServersInput): Operation<types.ListGameServersOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Lists all custom and Amazon Web Services locations where Amazon GameLift Servers can host game servers.
     -- This operation also returns UDP ping beacon information for
@@ -1464,7 +1468,7 @@ local record Client
     -- and potential hosting locations.
     -- Learn more
     -- Service locations
-    listLocations: function(Client, types.ListLocationsInput): types.ListLocationsOutput, table
+    listLocations: function(Client, types.ListLocationsInput): Operation<types.ListLocationsOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves script records for all Realtime scripts that are associated with the Amazon Web Services
     -- account in use.
@@ -1472,7 +1476,7 @@ local record Client
     -- Amazon GameLift Servers Amazon GameLift Servers Realtime
     -- Related actions
     -- All APIs by task
-    listScripts: function(Client, types.ListScriptsInput): types.ListScriptsOutput, table
+    listScripts: function(Client, types.ListScriptsInput): Operation<types.ListScriptsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves all tags assigned to a Amazon GameLift Servers resource. Use resource tags to organize Amazon Web Services
     -- resources for a range of purposes. This operation handles the permissions necessary to
@@ -1484,7 +1488,7 @@ local record Client
     -- Amazon Web Services Tagging Strategies
     -- Related actions
     -- All APIs by task
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- This API works with the following fleet types: EC2
     -- Creates or updates a scaling policy for a fleet. Scaling policies are used to
     -- automatically scale a fleet's hosting capacity to meet player demand. An active scaling
@@ -1540,7 +1544,7 @@ local record Client
     -- are automatically in force as soon as they're successfully created. If the fleet's
     -- auto-scaling actions are temporarily suspended, the new policy will be in force once the
     -- fleet actions are restarted.
-    putScalingPolicy: function(Client, types.PutScalingPolicyInput): types.PutScalingPolicyOutput, table
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput): Operation<types.PutScalingPolicyOutput>
     -- This API works with the following fleet types: Anywhere, Container
     -- Registers a compute resource in an Amazon GameLift Servers Anywhere fleet.
     -- For an Anywhere fleet that's running the Amazon GameLift Servers Agent, the Agent
@@ -1562,7 +1566,7 @@ local record Client
     -- integration
     -- Server SDK
     -- reference guides (for version 5.x)
-    registerCompute: function(Client, types.RegisterComputeInput): types.RegisterComputeOutput, table
+    registerCompute: function(Client, types.RegisterComputeInput): Operation<types.RegisterComputeOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Creates a new game server
     -- resource and notifies Amazon GameLift Servers FleetIQ that the game server is ready to host gameplay and players.
@@ -1580,7 +1584,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    registerGameServer: function(Client, types.RegisterGameServerInput): types.RegisterGameServerOutput, table
+    registerGameServer: function(Client, types.RegisterGameServerInput): Operation<types.RegisterGameServerOutput>
     -- This API works with the following fleet types: EC2
     -- Retrieves a fresh set of credentials for use when uploading a new set of game build
     -- files to Amazon GameLift Servers's Amazon S3. This is done as part of the build creation process; see
@@ -1591,7 +1595,7 @@ local record Client
     -- Learn more
     -- Create a Build with Files in S3
     -- All APIs by task
-    requestUploadCredentials: function(Client, types.RequestUploadCredentialsInput): types.RequestUploadCredentialsOutput, table
+    requestUploadCredentials: function(Client, types.RequestUploadCredentialsInput): Operation<types.RequestUploadCredentialsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Attempts to retrieve a fleet ID that is associated with an alias. Specify a unique
     -- alias identifier.
@@ -1600,7 +1604,7 @@ local record Client
     -- TerminalRoutingStrategyException.
     -- Related actions
     -- All APIs by task
-    resolveAlias: function(Client, types.ResolveAliasInput): types.ResolveAliasOutput, table
+    resolveAlias: function(Client, types.ResolveAliasInput): Operation<types.ResolveAliasOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Reinstates activity on a game
     -- server group after it has been suspended. A game server group might be suspended by the
@@ -1615,7 +1619,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    resumeGameServerGroup: function(Client, types.ResumeGameServerGroupInput): types.ResumeGameServerGroupOutput, table
+    resumeGameServerGroup: function(Client, types.ResumeGameServerGroupInput): Operation<types.ResumeGameServerGroupOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Retrieves all active game sessions that match a set of search criteria and sorts them
     -- into a specified order.
@@ -1665,7 +1669,7 @@ local record Client
     -- refresh search results often, and handle sessions that fill up before a player can
     -- join.
     -- All APIs by task
-    searchGameSessions: function(Client, types.SearchGameSessionsInput): types.SearchGameSessionsOutput, table
+    searchGameSessions: function(Client, types.SearchGameSessionsInput): Operation<types.SearchGameSessionsOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Resumes certain types of activity on fleet instances that were suspended with StopFleetActions. For multi-location fleets, fleet actions are managed
     -- separately for each location. Currently, this operation is used to restart a fleet's
@@ -1681,7 +1685,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    startFleetActions: function(Client, types.StartFleetActionsInput): types.StartFleetActionsOutput, table
+    startFleetActions: function(Client, types.StartFleetActionsInput): Operation<types.StartFleetActionsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Makes a request to start a new game session using a game session queue. When
     -- processing a placement request, Amazon GameLift Servers looks for the best possible available resource to
@@ -1740,7 +1744,7 @@ local record Client
     -- Amazon GameLift Servers continues to retry each placement request until it reaches the queue's timeout
     -- setting. If a request times out, you can resubmit the request to the same queue or try a
     -- different queue.
-    startGameSessionPlacement: function(Client, types.StartGameSessionPlacementInput): types.StartGameSessionPlacementOutput, table
+    startGameSessionPlacement: function(Client, types.StartGameSessionPlacementInput): Operation<types.StartGameSessionPlacementOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Finds new players to fill open slots in currently running game sessions. The backfill
     -- match process is essentially identical to the process of forming new matches. Backfill
@@ -1770,7 +1774,7 @@ local record Client
     -- Backfill existing games with FlexMatch
     -- Matchmaking events (reference)
     -- How Amazon GameLift Servers FlexMatch works
-    startMatchBackfill: function(Client, types.StartMatchBackfillInput): types.StartMatchBackfillOutput, table
+    startMatchBackfill: function(Client, types.StartMatchBackfillInput): Operation<types.StartMatchBackfillOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Uses FlexMatch to create a game match for a group of players based on custom matchmaking
     -- rules. With games that use Amazon GameLift Servers managed hosting, this operation also triggers Amazon GameLift Servers
@@ -1792,7 +1796,7 @@ local record Client
     -- Set Up FlexMatch event
     -- notification
     -- How Amazon GameLift Servers FlexMatch works
-    startMatchmaking: function(Client, types.StartMatchmakingInput): types.StartMatchmakingOutput, table
+    startMatchmaking: function(Client, types.StartMatchmakingInput): Operation<types.StartMatchmakingOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Suspends certain types of activity in a fleet location. Currently, this operation is
     -- used to stop auto-scaling activity. For multi-location fleets, fleet actions are managed
@@ -1812,7 +1816,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- Fleets
-    stopFleetActions: function(Client, types.StopFleetActionsInput): types.StopFleetActionsOutput, table
+    stopFleetActions: function(Client, types.StopFleetActionsInput): Operation<types.StopFleetActionsOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Cancels a game session placement that's in PENDING status. To stop a
     -- placement, provide the placement ID value.
@@ -1822,7 +1826,7 @@ local record Client
     -- This operation results in an InvalidRequestExecption (400) error if a
     -- game session has already been created for this placement. You can clean up an unneeded
     -- game session by calling TerminateGameSession.
-    stopGameSessionPlacement: function(Client, types.StopGameSessionPlacementInput): types.StopGameSessionPlacementOutput, table
+    stopGameSessionPlacement: function(Client, types.StopGameSessionPlacementInput): Operation<types.StopGameSessionPlacementOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Cancels a matchmaking ticket or match backfill ticket that is currently being
     -- processed. To stop the matchmaking operation, specify the ticket ID. If successful, work
@@ -1836,7 +1840,7 @@ local record Client
     -- the HTTP 200 response (not an empty HTTP body).
     -- Learn more
     -- Add FlexMatch to a game client
-    stopMatchmaking: function(Client, types.StopMatchmakingInput): types.StopMatchmakingOutput, table
+    stopMatchmaking: function(Client, types.StopMatchmakingInput): Operation<types.StopMatchmakingOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Temporarily stops activity on
     -- a game server group without terminating instances or the game server group. You can
@@ -1856,7 +1860,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    suspendGameServerGroup: function(Client, types.SuspendGameServerGroupInput): types.SuspendGameServerGroupOutput, table
+    suspendGameServerGroup: function(Client, types.SuspendGameServerGroupInput): Operation<types.SuspendGameServerGroupOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Assigns a tag to an Amazon GameLift Servers resource. You can use tags to organize resources, create
     -- IAM permissions policies to manage access to groups of resources, customize Amazon Web Services cost
@@ -1871,7 +1875,7 @@ local record Client
     -- Amazon Web Services Tagging Strategies
     -- Related actions
     -- All APIs by task
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Ends a game session that's currently in progress. Use this action to terminate any
     -- game session that isn't in ERROR status. Terminating a game session is the
@@ -1907,7 +1911,7 @@ local record Client
     -- (C#)
     -- (Unreal)
     -- (Go)
-    terminateGameSession: function(Client, types.TerminateGameSessionInput): types.TerminateGameSessionOutput, table
+    terminateGameSession: function(Client, types.TerminateGameSessionInput): Operation<types.TerminateGameSessionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Removes a tag assigned to a Amazon GameLift Servers resource. You can use resource tags to organize
     -- Amazon Web Services resources for a range of purposes. This operation handles the permissions
@@ -1921,7 +1925,7 @@ local record Client
     -- Amazon Web Services Tagging Strategies
     -- Related actions
     -- All APIs by task
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Updates properties for an alias. Specify the unique identifier of the alias to be
     -- updated and the new property values.
@@ -1929,7 +1933,7 @@ local record Client
     -- an updated routing strategy. If successful, the updated alias record is returned.
     -- Related actions
     -- All APIs by task
-    updateAlias: function(Client, types.UpdateAliasInput): types.UpdateAliasOutput, table
+    updateAlias: function(Client, types.UpdateAliasInput): Operation<types.UpdateAliasOutput>
     -- This API works with the following fleet types: EC2
     -- Updates metadata in a build resource, including the build name and version. To update
     -- the metadata, specify the build ID to update and provide the new values. If successful,
@@ -1938,7 +1942,7 @@ local record Client
     -- Upload a Custom
     -- Server Build
     -- All APIs by task
-    updateBuild: function(Client, types.UpdateBuildInput): types.UpdateBuildOutput, table
+    updateBuild: function(Client, types.UpdateBuildInput): Operation<types.UpdateBuildOutput>
     -- This API works with the following fleet types: Container
     -- Updates the properties of a managed container fleet. Depending on the properties being
     -- updated, this operation might initiate a fleet deployment. You can track deployments for
@@ -1973,7 +1977,7 @@ local record Client
     -- You can have only one update deployment active at a time for a fleet. If a second
     -- update request initiates a deployment while another deployment is in progress, the first
     -- deployment is cancelled.
-    updateContainerFleet: function(Client, types.UpdateContainerFleetInput): types.UpdateContainerFleetOutput, table
+    updateContainerFleet: function(Client, types.UpdateContainerFleetInput): Operation<types.UpdateContainerFleetOutput>
     -- This API works with the following fleet types: Container
     -- Updates properties in an existing container group definition. This operation doesn't
     -- replace the definition. Instead, it creates a new version of the definition and saves it
@@ -2001,7 +2005,7 @@ local record Client
     -- If the container group definition version is used in an active fleets, the update
     -- automatically initiates a new fleet deployment of the new version. You can track a fleet's
     -- deployments using ListFleetDeployments.
-    updateContainerGroupDefinition: function(Client, types.UpdateContainerGroupDefinitionInput): types.UpdateContainerGroupDefinitionOutput, table
+    updateContainerGroupDefinition: function(Client, types.UpdateContainerGroupDefinitionInput): Operation<types.UpdateContainerGroupDefinitionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Updates a fleet's mutable attributes, such as game session protection and resource
     -- creation limits.
@@ -2016,7 +2020,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    updateFleetAttributes: function(Client, types.UpdateFleetAttributesInput): types.UpdateFleetAttributesOutput, table
+    updateFleetAttributes: function(Client, types.UpdateFleetAttributesInput): Operation<types.UpdateFleetAttributesOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Updates capacity settings for a managed EC2 fleet or managed container fleet. For these
     -- fleets, you adjust capacity by changing the number of instances in the fleet. Fleet
@@ -2058,7 +2062,7 @@ local record Client
     -- Learn more
     -- Scaling fleet
     -- capacity
-    updateFleetCapacity: function(Client, types.UpdateFleetCapacityInput): types.UpdateFleetCapacityOutput, table
+    updateFleetCapacity: function(Client, types.UpdateFleetCapacityInput): Operation<types.UpdateFleetCapacityOutput>
     -- This API works with the following fleet types: EC2, Container
     -- Updates permissions that allow inbound traffic to connect to game sessions in the
     -- fleet.
@@ -2074,7 +2078,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    updateFleetPortSettings: function(Client, types.UpdateFleetPortSettingsInput): types.UpdateFleetPortSettingsOutput, table
+    updateFleetPortSettings: function(Client, types.UpdateFleetPortSettingsInput): Operation<types.UpdateFleetPortSettingsOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Updates information about a registered game server to help Amazon GameLift Servers FleetIQ track game server
     -- availability. This operation is called by a game server process that is running on an
@@ -2098,7 +2102,7 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    updateGameServer: function(Client, types.UpdateGameServerInput): types.UpdateGameServerOutput, table
+    updateGameServer: function(Client, types.UpdateGameServerInput): Operation<types.UpdateGameServerOutput>
     -- This API works with the following fleet types: EC2 (FleetIQ)
     -- Updates Amazon GameLift Servers FleetIQ-specific
     -- properties for a game server group. Many Auto Scaling group properties are updated on
@@ -2111,14 +2115,14 @@ local record Client
     -- Learn more
     -- Amazon GameLift Servers FleetIQ
     -- Guide
-    updateGameServerGroup: function(Client, types.UpdateGameServerGroupInput): types.UpdateGameServerGroupOutput, table
+    updateGameServerGroup: function(Client, types.UpdateGameServerGroupInput): Operation<types.UpdateGameServerGroupOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Updates the mutable properties of a game session.
     -- To update a game session, specify the game session ID and the values you want to
     -- change.
     -- If successful, the updated GameSession object is returned.
     -- All APIs by task
-    updateGameSession: function(Client, types.UpdateGameSessionInput): types.UpdateGameSessionOutput, table
+    updateGameSession: function(Client, types.UpdateGameSessionInput): Operation<types.UpdateGameSessionOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Updates the configuration of a game session queue, which determines how the queue
     -- processes new game session requests. To update settings, specify the queue name to be
@@ -2126,7 +2130,7 @@ local record Client
     -- list of destinations.
     -- Learn more
     -- Using Multi-Region Queues
-    updateGameSessionQueue: function(Client, types.UpdateGameSessionQueueInput): types.UpdateGameSessionQueueOutput, table
+    updateGameSessionQueue: function(Client, types.UpdateGameSessionQueueInput): Operation<types.UpdateGameSessionQueueOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Updates settings for a FlexMatch matchmaking configuration. These changes affect all
     -- matches and game sessions that are created after the update. To update settings, specify
@@ -2134,7 +2138,7 @@ local record Client
     -- Learn more
     -- Design a FlexMatch
     -- matchmaker
-    updateMatchmakingConfiguration: function(Client, types.UpdateMatchmakingConfigurationInput): types.UpdateMatchmakingConfigurationOutput, table
+    updateMatchmakingConfiguration: function(Client, types.UpdateMatchmakingConfigurationInput): Operation<types.UpdateMatchmakingConfigurationOutput>
     -- This API works with the following fleet types: EC2
     -- Updates the runtime configuration for the specified fleet. The runtime configuration
     -- tells Amazon GameLift Servers how to launch server processes on computes in managed EC2 and Anywhere fleets. You
@@ -2152,7 +2156,7 @@ local record Client
     -- Learn more
     -- Setting up Amazon GameLift Servers
     -- fleets
-    updateRuntimeConfiguration: function(Client, types.UpdateRuntimeConfigurationInput): types.UpdateRuntimeConfigurationOutput, table
+    updateRuntimeConfiguration: function(Client, types.UpdateRuntimeConfigurationInput): Operation<types.UpdateRuntimeConfigurationOutput>
     -- This API works with the following fleet types: EC2
     -- Updates Realtime script metadata and content.
     -- To update script metadata, specify the script ID and provide updated name and/or
@@ -2168,7 +2172,7 @@ local record Client
     -- Amazon GameLift Servers Amazon GameLift Servers Realtime
     -- Related actions
     -- All APIs by task
-    updateScript: function(Client, types.UpdateScriptInput): types.UpdateScriptOutput, table
+    updateScript: function(Client, types.UpdateScriptInput): Operation<types.UpdateScriptOutput>
     -- This API works with the following fleet types: EC2, Anywhere, Container
     -- Validates the syntax of a matchmaking rule or rule set. This operation checks that the
     -- rule set is using syntactically correct JSON and that it conforms to allowed property
@@ -2176,7 +2180,7 @@ local record Client
     -- Learn more
     -- Build a rule
     -- set
-    validateMatchmakingRuleSet: function(Client, types.ValidateMatchmakingRuleSetInput): types.ValidateMatchmakingRuleSetOutput, table
+    validateMatchmakingRuleSet: function(Client, types.ValidateMatchmakingRuleSetInput): Operation<types.ValidateMatchmakingRuleSetOutput>
 end
 
 local record M

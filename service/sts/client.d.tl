@@ -2,6 +2,10 @@
 
 local types = require("sts.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Returns a set of temporary security credentials that you can use to access Amazon Web Services
     -- resources. These temporary credentials consist of an access key ID, a secret access key,
@@ -77,7 +81,7 @@ local record Client
     -- SerialNumber value identifies the user's hardware or virtual MFA device.
     -- The TokenCode is the time-based one-time password (TOTP) that the MFA device
     -- produces.
-    assumeRole: function(Client, types.AssumeRoleInput): types.AssumeRoleOutput, table
+    assumeRole: function(Client, types.AssumeRoleInput): Operation<types.AssumeRoleOutput>
     -- Returns a set of temporary security credentials for users who have been authenticated
     -- via a SAML authentication response. This operation provides a mechanism for tying an
     -- enterprise identity store or directory to role-based Amazon Web Services access without user-specific
@@ -178,7 +182,7 @@ local record Client
     -- a Relying Party and Claims in the IAM User Guide.
     -- Creating a Role for SAML 2.0 Federation in the
     -- IAM User Guide.
-    assumeRoleWithSAML: function(Client, types.AssumeRoleWithSAMLInput): types.AssumeRoleWithSAMLOutput, table
+    assumeRoleWithSAML: function(Client, types.AssumeRoleWithSAMLInput): Operation<types.AssumeRoleWithSAMLOutput>
     -- Returns a set of temporary security credentials for users who have been authenticated in
     -- a mobile or web application with a web identity provider. Example providers include the
     -- OAuth 2.0 providers Login with Amazon and Facebook, or any OpenID Connect-compatible
@@ -275,7 +279,7 @@ local record Client
     -- contain sample apps that show how to invoke the identity providers. The toolkits then
     -- show how to use the information from these providers to get and use temporary
     -- security credentials.
-    assumeRoleWithWebIdentity: function(Client, types.AssumeRoleWithWebIdentityInput): types.AssumeRoleWithWebIdentityOutput, table
+    assumeRoleWithWebIdentity: function(Client, types.AssumeRoleWithWebIdentityInput): Operation<types.AssumeRoleWithWebIdentityOutput>
     -- Returns a set of short term credentials you can use to perform privileged tasks on a
     -- member account in your organization. You must use credentials from an Organizations management
     -- account or a delegated administrator account for IAM to call AssumeRoot. You
@@ -293,7 +297,7 @@ local record Client
     -- IAM. In addition, you can use service control
     -- policies (SCPs) to manage and limit permissions in your organization. See General examples in the Organizations User
     -- Guide for more information on SCPs.
-    assumeRoot: function(Client, types.AssumeRootInput): types.AssumeRootOutput, table
+    assumeRoot: function(Client, types.AssumeRootInput): Operation<types.AssumeRootOutput>
     -- Decodes additional information about the authorization status of a request from an
     -- encoded message returned in response to an Amazon Web Services request.
     -- For example, if a user is not authorized to perform an operation that he or she has
@@ -316,7 +320,7 @@ local record Client
     -- The requested action.
     -- The requested resource.
     -- The values of condition keys in the context of the user's request.
-    decodeAuthorizationMessage: function(Client, types.DecodeAuthorizationMessageInput): types.DecodeAuthorizationMessageOutput, table
+    decodeAuthorizationMessage: function(Client, types.DecodeAuthorizationMessageInput): Operation<types.DecodeAuthorizationMessageOutput>
     -- Returns the account identifier for the specified access key ID.
     -- Access keys consist of two parts: an access key ID (for example,
     -- AKIAIOSFODNN7EXAMPLE) and a secret access key (for example,
@@ -334,7 +338,7 @@ local record Client
     -- This operation does not indicate the state of the access key. The key might be active,
     -- inactive, or deleted. Active keys might not have permissions to perform an operation.
     -- Providing a deleted access key might return an error that the key doesn't exist.
-    getAccessKeyInfo: function(Client, types.GetAccessKeyInfoInput): types.GetAccessKeyInfoOutput, table
+    getAccessKeyInfo: function(Client, types.GetAccessKeyInfoInput): Operation<types.GetAccessKeyInfoOutput>
     -- Returns details about the IAM user or role whose credentials are used to
     -- call the operation.
     -- No permissions are required to perform this operation. If an administrator attaches a
@@ -343,12 +347,12 @@ local record Client
     -- Permissions are not required because the same information is returned when access is
     -- denied. To view an example response, see I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice in the
     -- IAM User Guide.
-    getCallerIdentity: function(Client, types.GetCallerIdentityInput): types.GetCallerIdentityOutput, table
+    getCallerIdentity: function(Client, types.GetCallerIdentityInput): Operation<types.GetCallerIdentityOutput>
     -- Exchanges a trade-in token for temporary Amazon Web Services credentials with the permissions
     -- associated with the assumed principal. This operation allows you to obtain credentials for
     -- a specific principal based on a trade-in token, enabling delegation of access to Amazon Web Services
     -- resources.
-    getDelegatedAccessToken: function(Client, types.GetDelegatedAccessTokenInput): types.GetDelegatedAccessTokenOutput, table
+    getDelegatedAccessToken: function(Client, types.GetDelegatedAccessTokenInput): Operation<types.GetDelegatedAccessTokenOutput>
     -- Returns a set of temporary security credentials (consisting of an access key ID, a
     -- secret access key, and a security token) for a user. A typical use is in a proxy
     -- application that gets temporary security credentials on behalf of distributed applications
@@ -422,7 +426,7 @@ local record Client
     -- department=engineering session tag. Department
     -- and department are not saved as separate tags, and the session tag passed in
     -- the request takes precedence over the user tag.
-    getFederationToken: function(Client, types.GetFederationTokenInput): types.GetFederationTokenOutput, table
+    getFederationToken: function(Client, types.GetFederationTokenInput): Operation<types.GetFederationTokenOutput>
     -- Returns a set of temporary credentials for an Amazon Web Services account or IAM user.
     -- The credentials consist of an access key ID, a secret access key, and a security token.
     -- Typically, you use GetSessionToken if you want to use MFA to protect
@@ -467,11 +471,11 @@ local record Client
     -- credentials, see Temporary
     -- Credentials for Users in Untrusted Environments in the
     -- IAM User Guide.
-    getSessionToken: function(Client, types.GetSessionTokenInput): types.GetSessionTokenOutput, table
+    getSessionToken: function(Client, types.GetSessionTokenInput): Operation<types.GetSessionTokenOutput>
     -- Returns a signed JSON Web Token (JWT) that represents the calling Amazon Web Services identity.
     -- The returned JWT can be used to authenticate with external services that support OIDC discovery.
     -- The token is signed by Amazon Web Services STS and can be publicly verified using the verification keys published at the issuer's JWKS endpoint.
-    getWebIdentityToken: function(Client, types.GetWebIdentityTokenInput): types.GetWebIdentityTokenOutput, table
+    getWebIdentityToken: function(Client, types.GetWebIdentityTokenInput): Operation<types.GetWebIdentityTokenOutput>
 end
 
 local record M

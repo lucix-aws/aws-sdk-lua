@@ -2,28 +2,32 @@
 
 local types = require("cloudwatchevents.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Activates a partner event source that has been deactivated. Once activated, your matching
     -- event bus will start receiving events from the event source.
-    activateEventSource: function(Client, types.ActivateEventSourceInput): types.ActivateEventSourceOutput, table
+    activateEventSource: function(Client, types.ActivateEventSourceInput): Operation<types.ActivateEventSourceOutput>
     -- Cancels the specified replay.
-    cancelReplay: function(Client, types.CancelReplayInput): types.CancelReplayOutput, table
+    cancelReplay: function(Client, types.CancelReplayInput): Operation<types.CancelReplayOutput>
     -- Creates an API destination, which is an HTTP invocation endpoint configured as a target
     -- for events.
-    createApiDestination: function(Client, types.CreateApiDestinationInput): types.CreateApiDestinationOutput, table
+    createApiDestination: function(Client, types.CreateApiDestinationInput): Operation<types.CreateApiDestinationOutput>
     -- Creates an archive of events with the specified settings. When you create an archive,
     -- incoming events might not immediately start being sent to the archive. Allow a short period of
     -- time for changes to take effect. If you do not specify a pattern to filter events sent to the
     -- archive, all events are sent to the archive except replayed events. Replayed events are not
     -- sent to an archive.
-    createArchive: function(Client, types.CreateArchiveInput): types.CreateArchiveOutput, table
+    createArchive: function(Client, types.CreateArchiveInput): Operation<types.CreateArchiveOutput>
     -- Creates a connection. A connection defines the authorization type and credentials to use
     -- for authorization with an API destination HTTP endpoint.
-    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): Operation<types.CreateConnectionOutput>
     -- Creates a new event bus within your account. This can be a custom event bus which you can
     -- use to receive events from your custom applications and services, or it can be a partner event
     -- bus which can be matched to a partner event source.
-    createEventBus: function(Client, types.CreateEventBusInput): types.CreateEventBusOutput, table
+    createEventBus: function(Client, types.CreateEventBusInput): Operation<types.CreateEventBusOutput>
     -- Called by an SaaS partner to create a partner event source. This operation is not used by
     -- Amazon Web Services customers.
     -- Each partner event source can be used by one Amazon Web Services account to create a matching partner
@@ -43,30 +47,30 @@ local record Client
     -- an event-generating resource within the partner system. The combination of
     -- event_namespace and event_name should help Amazon Web Services
     -- customers decide whether to create an event bus to receive these events.
-    createPartnerEventSource: function(Client, types.CreatePartnerEventSourceInput): types.CreatePartnerEventSourceOutput, table
+    createPartnerEventSource: function(Client, types.CreatePartnerEventSourceInput): Operation<types.CreatePartnerEventSourceOutput>
     -- You can use this operation to temporarily stop receiving events from the specified partner
     -- event source. The matching event bus is not deleted.
     -- When you deactivate a partner event source, the source goes into PENDING state. If it
     -- remains in PENDING state for more than two weeks, it is deleted.
     -- To activate a deactivated partner event source, use ActivateEventSource.
-    deactivateEventSource: function(Client, types.DeactivateEventSourceInput): types.DeactivateEventSourceOutput, table
+    deactivateEventSource: function(Client, types.DeactivateEventSourceInput): Operation<types.DeactivateEventSourceOutput>
     -- Removes all authorization parameters from the connection. This lets you remove the secret
     -- from the connection so you can reuse it without having to create a new connection.
-    deauthorizeConnection: function(Client, types.DeauthorizeConnectionInput): types.DeauthorizeConnectionOutput, table
+    deauthorizeConnection: function(Client, types.DeauthorizeConnectionInput): Operation<types.DeauthorizeConnectionOutput>
     -- Deletes the specified API destination.
-    deleteApiDestination: function(Client, types.DeleteApiDestinationInput): types.DeleteApiDestinationOutput, table
+    deleteApiDestination: function(Client, types.DeleteApiDestinationInput): Operation<types.DeleteApiDestinationOutput>
     -- Deletes the specified archive.
-    deleteArchive: function(Client, types.DeleteArchiveInput): types.DeleteArchiveOutput, table
+    deleteArchive: function(Client, types.DeleteArchiveInput): Operation<types.DeleteArchiveOutput>
     -- Deletes a connection.
-    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): Operation<types.DeleteConnectionOutput>
     -- Deletes the specified custom event bus or partner event bus. All rules associated with
     -- this event bus need to be deleted. You can't delete your account's default event bus.
-    deleteEventBus: function(Client, types.DeleteEventBusInput): types.DeleteEventBusOutput, table
+    deleteEventBus: function(Client, types.DeleteEventBusInput): Operation<types.DeleteEventBusOutput>
     -- This operation is used by SaaS partners to delete a partner event source. This operation
     -- is not used by Amazon Web Services customers.
     -- When you delete an event source, the status of the corresponding partner event bus in the
     -- Amazon Web Services customer account becomes DELETED.
-    deletePartnerEventSource: function(Client, types.DeletePartnerEventSourceInput): types.DeletePartnerEventSourceOutput, table
+    deletePartnerEventSource: function(Client, types.DeletePartnerEventSourceInput): Operation<types.DeletePartnerEventSourceOutput>
     -- Deletes the specified rule.
     -- Before you can delete the rule, you must remove all targets, using RemoveTargets.
     -- When you delete a rule, incoming events might continue to match to the deleted rule. Allow
@@ -78,13 +82,13 @@ local record Client
     -- rules are created by those other Amazon Web Services services to support functionality in those services. You
     -- can delete these rules using the Force option, but you should do so only if you
     -- are sure the other service is not still using that rule.
-    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): Operation<types.DeleteRuleOutput>
     -- Retrieves details about an API destination.
-    describeApiDestination: function(Client, types.DescribeApiDestinationInput): types.DescribeApiDestinationOutput, table
+    describeApiDestination: function(Client, types.DescribeApiDestinationInput): Operation<types.DescribeApiDestinationOutput>
     -- Retrieves details about an archive.
-    describeArchive: function(Client, types.DescribeArchiveInput): types.DescribeArchiveOutput, table
+    describeArchive: function(Client, types.DescribeArchiveInput): Operation<types.DescribeArchiveOutput>
     -- Retrieves details about a connection.
-    describeConnection: function(Client, types.DescribeConnectionInput): types.DescribeConnectionOutput, table
+    describeConnection: function(Client, types.DescribeConnectionInput): Operation<types.DescribeConnectionOutput>
     -- Displays details about an event bus in your account. This can include the external Amazon Web Services
     -- accounts that are permitted to write events to your default event bus, and the associated
     -- policy. For custom event buses and partner event buses, it displays the name, ARN, policy,
@@ -92,15 +96,15 @@ local record Client
     -- To enable your account to receive events from other accounts on its default event bus,
     -- use PutPermission.
     -- For more information about partner event buses, see CreateEventBus.
-    describeEventBus: function(Client, types.DescribeEventBusInput): types.DescribeEventBusOutput, table
+    describeEventBus: function(Client, types.DescribeEventBusInput): Operation<types.DescribeEventBusOutput>
     -- This operation lists details about a partner event source that is shared with your
     -- account.
-    describeEventSource: function(Client, types.DescribeEventSourceInput): types.DescribeEventSourceOutput, table
+    describeEventSource: function(Client, types.DescribeEventSourceInput): Operation<types.DescribeEventSourceOutput>
     -- An SaaS partner can use this operation to list details about a partner event source that
     -- they have created. Amazon Web Services customers do not use this operation. Instead, Amazon Web Services customers can use DescribeEventSource
     -- to see details about a partner event source that is
     -- shared with them.
-    describePartnerEventSource: function(Client, types.DescribePartnerEventSourceInput): types.DescribePartnerEventSourceOutput, table
+    describePartnerEventSource: function(Client, types.DescribePartnerEventSourceInput): Operation<types.DescribePartnerEventSourceOutput>
     -- Retrieves details about a replay. Use DescribeReplay to determine the
     -- progress of a running replay. A replay processes events to replay based on the time in the
     -- event, and replays them using 1 minute intervals. If you use StartReplay and
@@ -110,61 +114,61 @@ local record Client
     -- DescribeReplay to determine the progress of a replay. The value returned for
     -- EventLastReplayedTime indicates the time within the specified time range
     -- associated with the last event replayed.
-    describeReplay: function(Client, types.DescribeReplayInput): types.DescribeReplayOutput, table
+    describeReplay: function(Client, types.DescribeReplayInput): Operation<types.DescribeReplayOutput>
     -- Describes the specified rule.
     -- DescribeRule does not list the targets of a rule. To see the targets associated with a
     -- rule, use ListTargetsByRule.
-    describeRule: function(Client, types.DescribeRuleInput): types.DescribeRuleOutput, table
+    describeRule: function(Client, types.DescribeRuleInput): Operation<types.DescribeRuleOutput>
     -- Disables the specified rule. A disabled rule won't match any events, and won't
     -- self-trigger if it has a schedule expression.
     -- When you disable a rule, incoming events might continue to match to the disabled rule.
     -- Allow a short period of time for changes to take effect.
-    disableRule: function(Client, types.DisableRuleInput): types.DisableRuleOutput, table
+    disableRule: function(Client, types.DisableRuleInput): Operation<types.DisableRuleOutput>
     -- Enables the specified rule. If the rule does not exist, the operation fails.
     -- When you enable a rule, incoming events might not immediately start matching to a newly
     -- enabled rule. Allow a short period of time for changes to take effect.
-    enableRule: function(Client, types.EnableRuleInput): types.EnableRuleOutput, table
+    enableRule: function(Client, types.EnableRuleInput): Operation<types.EnableRuleOutput>
     -- Retrieves a list of API destination in the account in the current Region.
-    listApiDestinations: function(Client, types.ListApiDestinationsInput): types.ListApiDestinationsOutput, table
+    listApiDestinations: function(Client, types.ListApiDestinationsInput): Operation<types.ListApiDestinationsOutput>
     -- Lists your archives. You can either list all the archives or you can provide a prefix to
     -- match to the archive names. Filter parameters are exclusive.
-    listArchives: function(Client, types.ListArchivesInput): types.ListArchivesOutput, table
+    listArchives: function(Client, types.ListArchivesInput): Operation<types.ListArchivesOutput>
     -- Retrieves a list of connections from the account.
-    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): Operation<types.ListConnectionsOutput>
     -- Lists all the event buses in your account, including the default event bus, custom event
     -- buses, and partner event buses.
-    listEventBuses: function(Client, types.ListEventBusesInput): types.ListEventBusesOutput, table
+    listEventBuses: function(Client, types.ListEventBusesInput): Operation<types.ListEventBusesOutput>
     -- You can use this to see all the partner event sources that have been shared with your Amazon Web Services
     -- account. For more information about partner event sources, see CreateEventBus.
-    listEventSources: function(Client, types.ListEventSourcesInput): types.ListEventSourcesOutput, table
+    listEventSources: function(Client, types.ListEventSourcesInput): Operation<types.ListEventSourcesOutput>
     -- An SaaS partner can use this operation to display the Amazon Web Services account ID that a particular
     -- partner event source name is associated with. This operation is not used by Amazon Web Services
     -- customers.
-    listPartnerEventSourceAccounts: function(Client, types.ListPartnerEventSourceAccountsInput): types.ListPartnerEventSourceAccountsOutput, table
+    listPartnerEventSourceAccounts: function(Client, types.ListPartnerEventSourceAccountsInput): Operation<types.ListPartnerEventSourceAccountsOutput>
     -- An SaaS partner can use this operation to list all the partner event source names that
     -- they have created. This operation is not used by Amazon Web Services customers.
-    listPartnerEventSources: function(Client, types.ListPartnerEventSourcesInput): types.ListPartnerEventSourcesOutput, table
+    listPartnerEventSources: function(Client, types.ListPartnerEventSourcesInput): Operation<types.ListPartnerEventSourcesOutput>
     -- Lists your replays. You can either list all the replays or you can provide a prefix to
     -- match to the replay names. Filter parameters are exclusive.
-    listReplays: function(Client, types.ListReplaysInput): types.ListReplaysOutput, table
+    listReplays: function(Client, types.ListReplaysInput): Operation<types.ListReplaysOutput>
     -- Lists the rules for the specified target. You can see which of the rules in Amazon
     -- EventBridge can invoke a specific target in your account.
-    listRuleNamesByTarget: function(Client, types.ListRuleNamesByTargetInput): types.ListRuleNamesByTargetOutput, table
+    listRuleNamesByTarget: function(Client, types.ListRuleNamesByTargetInput): Operation<types.ListRuleNamesByTargetOutput>
     -- Lists your Amazon EventBridge rules. You can either list all the rules or you can provide
     -- a prefix to match to the rule names.
     -- ListRules does not list the targets of a rule. To see the targets associated with a rule,
     -- use ListTargetsByRule.
-    listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    listRules: function(Client, types.ListRulesInput): Operation<types.ListRulesOutput>
     -- Displays the tags associated with an EventBridge resource. In EventBridge, rules and event
     -- buses can be tagged.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists the targets assigned to the specified rule.
-    listTargetsByRule: function(Client, types.ListTargetsByRuleInput): types.ListTargetsByRuleOutput, table
+    listTargetsByRule: function(Client, types.ListTargetsByRuleInput): Operation<types.ListTargetsByRuleOutput>
     -- Sends custom events to Amazon EventBridge so that they can be matched to rules.
-    putEvents: function(Client, types.PutEventsInput): types.PutEventsOutput, table
+    putEvents: function(Client, types.PutEventsInput): Operation<types.PutEventsOutput>
     -- This is used by SaaS partners to write events to a customer's partner event bus. Amazon Web Services
     -- customers do not use this operation.
-    putPartnerEvents: function(Client, types.PutPartnerEventsInput): types.PutPartnerEventsOutput, table
+    putPartnerEvents: function(Client, types.PutPartnerEventsInput): Operation<types.PutPartnerEventsOutput>
     -- Running PutPermission permits the specified Amazon Web Services account or Amazon Web Services organization
     -- to put events to the specified event bus. Amazon EventBridge (CloudWatch
     -- Events) rules in your account are triggered by these events arriving to an event bus in your
@@ -182,7 +186,7 @@ local record Client
     -- Receiving Events Between Amazon Web Services Accounts in the Amazon EventBridge User
     -- Guide.
     -- The permission policy on the event bus cannot exceed 10 KB in size.
-    putPermission: function(Client, types.PutPermissionInput): types.PutPermissionOutput, table
+    putPermission: function(Client, types.PutPermissionInput): Operation<types.PutPermissionOutput>
     -- Creates or updates the specified rule. Rules are enabled by default, or based on value of
     -- the state. You can disable a rule using DisableRule.
     -- A single rule watches for events from a single event bus. Events generated by Amazon Web Services services
@@ -223,7 +227,7 @@ local record Client
     -- budgeting, which alerts you when charges exceed your specified limit. For more information,
     -- see Managing Your Costs with
     -- Budgets.
-    putRule: function(Client, types.PutRuleInput): types.PutRuleOutput, table
+    putRule: function(Client, types.PutRuleInput): Operation<types.PutRuleOutput>
     -- Adds the specified targets to the specified rule, or updates the targets if they are
     -- already associated with the rule.
     -- Targets are the resources that are invoked when a rule is triggered.
@@ -311,12 +315,12 @@ local record Client
     -- This action can partially fail if too many requests are made at the same time. If that
     -- happens, FailedEntryCount is non-zero in the response and each entry in
     -- FailedEntries provides the ID of the failed target and the error code.
-    putTargets: function(Client, types.PutTargetsInput): types.PutTargetsOutput, table
+    putTargets: function(Client, types.PutTargetsInput): Operation<types.PutTargetsOutput>
     -- Revokes the permission of another Amazon Web Services account to be able to put events to the specified
     -- event bus. Specify the account to revoke by the StatementId value that you
     -- associated with the account when you granted it permission with PutPermission.
     -- You can find the StatementId by using DescribeEventBus.
-    removePermission: function(Client, types.RemovePermissionInput): types.RemovePermissionOutput, table
+    removePermission: function(Client, types.RemovePermissionInput): Operation<types.RemovePermissionOutput>
     -- Removes the specified targets from the specified rule. When the rule is triggered, those
     -- targets are no longer be invoked.
     -- When you remove a target, when the associated rule triggers, removed targets might
@@ -324,7 +328,7 @@ local record Client
     -- This action can partially fail if too many requests are made at the same time. If that
     -- happens, FailedEntryCount is non-zero in the response and each entry in
     -- FailedEntries provides the ID of the failed target and the error code.
-    removeTargets: function(Client, types.RemoveTargetsInput): types.RemoveTargetsOutput, table
+    removeTargets: function(Client, types.RemoveTargetsInput): Operation<types.RemoveTargetsOutput>
     -- Starts the specified replay. Events are not necessarily replayed in the exact same order
     -- that they were added to the archive. A replay processes events to replay based on the time in
     -- the event, and replays them using 1 minute intervals. If you specify an
@@ -334,7 +338,7 @@ local record Client
     -- determine the progress of a replay. The value returned for EventLastReplayedTime
     -- indicates the time within the specified time range associated with the last event
     -- replayed.
-    startReplay: function(Client, types.StartReplayInput): types.StartReplayOutput, table
+    startReplay: function(Client, types.StartReplayInput): Operation<types.StartReplayOutput>
     -- Assigns one or more tags (key-value pairs) to the specified EventBridge resource. Tags can
     -- help you organize and categorize your resources. You can also use them to scope user
     -- permissions by granting a user permission to access or change only resources with certain tag
@@ -346,22 +350,22 @@ local record Client
     -- resource. If you specify a tag key that is already associated with the resource, the new tag
     -- value that you specify replaces the previous value for that tag.
     -- You can associate as many as 50 tags with a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Tests whether the specified event pattern matches the provided event.
     -- Most services in Amazon Web Services treat : or / as the same character in Amazon Resource Names (ARNs).
     -- However, EventBridge uses an exact match in event patterns and rules. Be sure to use the
     -- correct ARN characters when creating event patterns so that they match the ARN syntax in the
     -- event you want to match.
-    testEventPattern: function(Client, types.TestEventPatternInput): types.TestEventPatternOutput, table
+    testEventPattern: function(Client, types.TestEventPatternInput): Operation<types.TestEventPatternOutput>
     -- Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge
     -- (CloudWatch Events), rules and event buses can be tagged.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an API destination.
-    updateApiDestination: function(Client, types.UpdateApiDestinationInput): types.UpdateApiDestinationOutput, table
+    updateApiDestination: function(Client, types.UpdateApiDestinationInput): Operation<types.UpdateApiDestinationOutput>
     -- Updates the specified archive.
-    updateArchive: function(Client, types.UpdateArchiveInput): types.UpdateArchiveOutput, table
+    updateArchive: function(Client, types.UpdateArchiveInput): Operation<types.UpdateArchiveOutput>
     -- Updates settings for a connection.
-    updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    updateConnection: function(Client, types.UpdateConnectionInput): Operation<types.UpdateConnectionOutput>
 end
 
 local record M

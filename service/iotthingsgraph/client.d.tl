@@ -2,14 +2,18 @@
 
 local types = require("iotthingsgraph.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates a device with a concrete thing that is in the user's registry.
     -- A thing can be associated with only one device at a time. If you associate a thing with a new device id, its previous association will be removed.
-    associateEntityToThing: function(Client, types.AssociateEntityToThingInput): types.AssociateEntityToThingOutput, table
+    associateEntityToThing: function(Client, types.AssociateEntityToThingInput): Operation<types.AssociateEntityToThingOutput>
     -- Creates a workflow template. Workflows can be created only in the user's namespace. (The public namespace contains only
     -- entities.) The workflow can contain only entities in the specified namespace. The workflow is validated against the entities in the
     -- latest version of the user's namespace unless another namespace version is specified in the request.
-    createFlowTemplate: function(Client, types.CreateFlowTemplateInput): types.CreateFlowTemplateOutput, table
+    createFlowTemplate: function(Client, types.CreateFlowTemplateInput): Operation<types.CreateFlowTemplateOutput>
     -- Creates a system instance.
     -- This action validates the system instance, prepares the deployment-related resources. For Greengrass deployments, it updates the Greengrass group that is
     -- specified by the greengrassGroupName parameter. It also adds a file to the S3 bucket specified by the s3BucketName parameter. You need to
@@ -19,23 +23,23 @@ local record Client
     -- For cloud deployments, this action requires a flowActionsRoleArn value. This is an IAM role
     -- that has permissions to access AWS services, such as AWS Lambda and AWS IoT, that the flow uses when it executes.
     -- If the definition document doesn't specify a version of the user's namespace, the latest version will be used by default.
-    createSystemInstance: function(Client, types.CreateSystemInstanceInput): types.CreateSystemInstanceOutput, table
+    createSystemInstance: function(Client, types.CreateSystemInstanceInput): Operation<types.CreateSystemInstanceOutput>
     -- Creates a system. The system is validated against the entities in the
     -- latest version of the user's namespace unless another namespace version is specified in the request.
-    createSystemTemplate: function(Client, types.CreateSystemTemplateInput): types.CreateSystemTemplateOutput, table
+    createSystemTemplate: function(Client, types.CreateSystemTemplateInput): Operation<types.CreateSystemTemplateOutput>
     -- Deletes a workflow. Any new system or deployment that contains this workflow will fail to update or deploy.
     -- Existing deployments that contain the workflow will continue to run (since they use a snapshot of the workflow taken at the time of deployment).
-    deleteFlowTemplate: function(Client, types.DeleteFlowTemplateInput): types.DeleteFlowTemplateOutput, table
+    deleteFlowTemplate: function(Client, types.DeleteFlowTemplateInput): Operation<types.DeleteFlowTemplateOutput>
     -- Deletes the specified namespace. This action deletes all of the entities in the namespace. Delete the systems and flows that use entities in the namespace before performing this action. This action takes no
     -- request parameters.
-    deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    deleteNamespace: function(Client, types.DeleteNamespaceInput): Operation<types.DeleteNamespaceOutput>
     -- Deletes a system instance.
     -- Only system instances that have never been deployed, or that have been undeployed can be deleted.
     -- Users can create a new system instance that has the same ID as a deleted system instance.
-    deleteSystemInstance: function(Client, types.DeleteSystemInstanceInput): types.DeleteSystemInstanceOutput, table
+    deleteSystemInstance: function(Client, types.DeleteSystemInstanceInput): Operation<types.DeleteSystemInstanceOutput>
     -- Deletes a system. New deployments can't contain the system after its deletion.
     -- Existing deployments that contain the system will continue to work because they use a snapshot of the system that is taken when it is deployed.
-    deleteSystemTemplate: function(Client, types.DeleteSystemTemplateInput): types.DeleteSystemTemplateOutput, table
+    deleteSystemTemplate: function(Client, types.DeleteSystemTemplateInput): Operation<types.DeleteSystemTemplateOutput>
     -- Greengrass and Cloud Deployments
     -- Deploys the system instance to the target specified in CreateSystemInstance.
     -- Greengrass Deployments
@@ -44,16 +48,16 @@ local record Client
     -- Since this action creates a Greengrass deployment on the caller's behalf, the calling identity must have write permissions
     -- to the specified Greengrass group. Otherwise, the call will fail with an authorization error.
     -- For information about the artifacts that get added to your Greengrass core device when you use this API, see AWS IoT Things Graph and AWS IoT Greengrass.
-    deploySystemInstance: function(Client, types.DeploySystemInstanceInput): types.DeploySystemInstanceOutput, table
+    deploySystemInstance: function(Client, types.DeploySystemInstanceInput): Operation<types.DeploySystemInstanceOutput>
     -- Deprecates the specified workflow. This action marks the workflow for deletion. Deprecated flows can't be deployed, but existing deployments will continue to run.
-    deprecateFlowTemplate: function(Client, types.DeprecateFlowTemplateInput): types.DeprecateFlowTemplateOutput, table
+    deprecateFlowTemplate: function(Client, types.DeprecateFlowTemplateInput): Operation<types.DeprecateFlowTemplateOutput>
     -- Deprecates the specified system.
-    deprecateSystemTemplate: function(Client, types.DeprecateSystemTemplateInput): types.DeprecateSystemTemplateOutput, table
+    deprecateSystemTemplate: function(Client, types.DeprecateSystemTemplateInput): Operation<types.DeprecateSystemTemplateOutput>
     -- Gets the latest version of the user's namespace and the public version that it is tracking.
-    describeNamespace: function(Client, types.DescribeNamespaceInput): types.DescribeNamespaceOutput, table
+    describeNamespace: function(Client, types.DescribeNamespaceInput): Operation<types.DescribeNamespaceOutput>
     -- Dissociates a device entity from a concrete thing. The action takes only the type of the entity that you need to dissociate because only
     -- one entity of a particular type can be associated with a thing.
-    dissociateEntityFromThing: function(Client, types.DissociateEntityFromThingInput): types.DissociateEntityFromThingOutput, table
+    dissociateEntityFromThing: function(Client, types.DissociateEntityFromThingInput): Operation<types.DissociateEntityFromThingOutput>
     -- Gets definitions of the specified entities. Uses the latest version of the user's namespace by default. This API returns the
     -- following TDM entities.
     -- Properties
@@ -66,53 +70,53 @@ local record Client
     -- Device Models
     -- Services
     -- This action doesn't return definitions for systems, flows, and deployments.
-    getEntities: function(Client, types.GetEntitiesInput): types.GetEntitiesOutput, table
+    getEntities: function(Client, types.GetEntitiesInput): Operation<types.GetEntitiesOutput>
     -- Gets the latest version of the DefinitionDocument and FlowTemplateSummary for the specified workflow.
-    getFlowTemplate: function(Client, types.GetFlowTemplateInput): types.GetFlowTemplateOutput, table
+    getFlowTemplate: function(Client, types.GetFlowTemplateInput): Operation<types.GetFlowTemplateOutput>
     -- Gets revisions of the specified workflow. Only the last 100 revisions are stored. If the workflow has been deprecated,
     -- this action will return revisions that occurred before the deprecation. This action won't work for workflows that have been deleted.
-    getFlowTemplateRevisions: function(Client, types.GetFlowTemplateRevisionsInput): types.GetFlowTemplateRevisionsOutput, table
+    getFlowTemplateRevisions: function(Client, types.GetFlowTemplateRevisionsInput): Operation<types.GetFlowTemplateRevisionsOutput>
     -- Gets the status of a namespace deletion task.
-    getNamespaceDeletionStatus: function(Client, types.GetNamespaceDeletionStatusInput): types.GetNamespaceDeletionStatusOutput, table
+    getNamespaceDeletionStatus: function(Client, types.GetNamespaceDeletionStatusInput): Operation<types.GetNamespaceDeletionStatusOutput>
     -- Gets a system instance.
-    getSystemInstance: function(Client, types.GetSystemInstanceInput): types.GetSystemInstanceOutput, table
+    getSystemInstance: function(Client, types.GetSystemInstanceInput): Operation<types.GetSystemInstanceOutput>
     -- Gets a system.
-    getSystemTemplate: function(Client, types.GetSystemTemplateInput): types.GetSystemTemplateOutput, table
+    getSystemTemplate: function(Client, types.GetSystemTemplateInput): Operation<types.GetSystemTemplateOutput>
     -- Gets revisions made to the specified system template. Only the previous 100 revisions are stored. If the system has been deprecated, this action will return
     -- the revisions that occurred before its deprecation. This action won't work with systems that have been deleted.
-    getSystemTemplateRevisions: function(Client, types.GetSystemTemplateRevisionsInput): types.GetSystemTemplateRevisionsOutput, table
+    getSystemTemplateRevisions: function(Client, types.GetSystemTemplateRevisionsInput): Operation<types.GetSystemTemplateRevisionsOutput>
     -- Gets the status of the specified upload.
-    getUploadStatus: function(Client, types.GetUploadStatusInput): types.GetUploadStatusOutput, table
+    getUploadStatus: function(Client, types.GetUploadStatusInput): Operation<types.GetUploadStatusOutput>
     -- Returns a list of objects that contain information about events in a flow execution.
-    listFlowExecutionMessages: function(Client, types.ListFlowExecutionMessagesInput): types.ListFlowExecutionMessagesOutput, table
+    listFlowExecutionMessages: function(Client, types.ListFlowExecutionMessagesInput): Operation<types.ListFlowExecutionMessagesOutput>
     -- Lists all tags on an AWS IoT Things Graph resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Searches for entities of the specified type. You can search for entities in your namespace and the public namespace that you're tracking.
-    searchEntities: function(Client, types.SearchEntitiesInput): types.SearchEntitiesOutput, table
+    searchEntities: function(Client, types.SearchEntitiesInput): Operation<types.SearchEntitiesOutput>
     -- Searches for AWS IoT Things Graph workflow execution instances.
-    searchFlowExecutions: function(Client, types.SearchFlowExecutionsInput): types.SearchFlowExecutionsOutput, table
+    searchFlowExecutions: function(Client, types.SearchFlowExecutionsInput): Operation<types.SearchFlowExecutionsOutput>
     -- Searches for summary information about workflows.
-    searchFlowTemplates: function(Client, types.SearchFlowTemplatesInput): types.SearchFlowTemplatesOutput, table
+    searchFlowTemplates: function(Client, types.SearchFlowTemplatesInput): Operation<types.SearchFlowTemplatesOutput>
     -- Searches for system instances in the user's account.
-    searchSystemInstances: function(Client, types.SearchSystemInstancesInput): types.SearchSystemInstancesOutput, table
+    searchSystemInstances: function(Client, types.SearchSystemInstancesInput): Operation<types.SearchSystemInstancesOutput>
     -- Searches for summary information about systems in the user's account. You can filter by the ID of a workflow to return only systems that use the specified workflow.
-    searchSystemTemplates: function(Client, types.SearchSystemTemplatesInput): types.SearchSystemTemplatesOutput, table
+    searchSystemTemplates: function(Client, types.SearchSystemTemplatesInput): Operation<types.SearchSystemTemplatesOutput>
     -- Searches for things associated with the specified entity. You can search by both device and device model.
     -- For example, if two different devices, camera1 and camera2, implement the camera device model, the user can associate thing1 to camera1 and thing2 to camera2.
     -- SearchThings(camera2) will return only thing2, but SearchThings(camera) will return both thing1 and thing2.
     -- This action searches for exact matches and doesn't perform partial text matching.
-    searchThings: function(Client, types.SearchThingsInput): types.SearchThingsOutput, table
+    searchThings: function(Client, types.SearchThingsInput): Operation<types.SearchThingsOutput>
     -- Creates a tag for the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes a system instance from its target (Cloud or Greengrass).
-    undeploySystemInstance: function(Client, types.UndeploySystemInstanceInput): types.UndeploySystemInstanceOutput, table
+    undeploySystemInstance: function(Client, types.UndeploySystemInstanceInput): Operation<types.UndeploySystemInstanceOutput>
     -- Removes a tag from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the specified workflow. All deployed systems and system instances that use the workflow will see the changes in the flow when it is redeployed. If you don't want this
     -- behavior, copy the workflow (creating a new workflow with a different ID), and update the copy. The workflow can contain only entities in the specified namespace.
-    updateFlowTemplate: function(Client, types.UpdateFlowTemplateInput): types.UpdateFlowTemplateOutput, table
+    updateFlowTemplate: function(Client, types.UpdateFlowTemplateInput): Operation<types.UpdateFlowTemplateOutput>
     -- Updates the specified system. You don't need to run this action after updating a workflow. Any deployment that uses the system will see the changes in the system when it is redeployed.
-    updateSystemTemplate: function(Client, types.UpdateSystemTemplateInput): types.UpdateSystemTemplateOutput, table
+    updateSystemTemplate: function(Client, types.UpdateSystemTemplateInput): Operation<types.UpdateSystemTemplateOutput>
     -- Asynchronously uploads one or more entity definitions to the user's namespace. The document parameter is required if
     -- syncWithPublicNamespace and deleteExistingEntites are false. If the syncWithPublicNamespace parameter is set to
     -- true, the user's namespace will synchronize with the latest version of the public namespace. If deprecateExistingEntities is set to true,
@@ -123,7 +127,7 @@ local record Client
     -- The IDs for all of the entities should be in URN format. Each entity must be in the user's namespace. Users can't create entities in the public namespace, but entity definitions can refer to entities in the public namespace.
     -- Valid entities are Device, DeviceModel, Service, Capability, State, Action, Event, Property,
     -- Mapping, Enum.
-    uploadEntityDefinitions: function(Client, types.UploadEntityDefinitionsInput): types.UploadEntityDefinitionsOutput, table
+    uploadEntityDefinitions: function(Client, types.UploadEntityDefinitionsInput): Operation<types.UploadEntityDefinitionsOutput>
 end
 
 local record M

@@ -2,41 +2,45 @@
 
 local types = require("mediapackagevod.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Changes the packaging group's properities to configure log subscription
-    configureLogs: function(Client, types.ConfigureLogsInput): types.ConfigureLogsOutput, table
+    configureLogs: function(Client, types.ConfigureLogsInput): Operation<types.ConfigureLogsOutput>
     -- Creates a new MediaPackage VOD Asset resource.
-    createAsset: function(Client, types.CreateAssetInput): types.CreateAssetOutput, table
+    createAsset: function(Client, types.CreateAssetInput): Operation<types.CreateAssetOutput>
     -- Creates a new MediaPackage VOD PackagingConfiguration resource.
-    createPackagingConfiguration: function(Client, types.CreatePackagingConfigurationInput): types.CreatePackagingConfigurationOutput, table
+    createPackagingConfiguration: function(Client, types.CreatePackagingConfigurationInput): Operation<types.CreatePackagingConfigurationOutput>
     -- Creates a new MediaPackage VOD PackagingGroup resource.
-    createPackagingGroup: function(Client, types.CreatePackagingGroupInput): types.CreatePackagingGroupOutput, table
+    createPackagingGroup: function(Client, types.CreatePackagingGroupInput): Operation<types.CreatePackagingGroupOutput>
     -- Deletes an existing MediaPackage VOD Asset resource.
-    deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    deleteAsset: function(Client, types.DeleteAssetInput): Operation<types.DeleteAssetOutput>
     -- Deletes a MediaPackage VOD PackagingConfiguration resource.
-    deletePackagingConfiguration: function(Client, types.DeletePackagingConfigurationInput): types.DeletePackagingConfigurationOutput, table
+    deletePackagingConfiguration: function(Client, types.DeletePackagingConfigurationInput): Operation<types.DeletePackagingConfigurationOutput>
     -- Deletes a MediaPackage VOD PackagingGroup resource.
-    deletePackagingGroup: function(Client, types.DeletePackagingGroupInput): types.DeletePackagingGroupOutput, table
+    deletePackagingGroup: function(Client, types.DeletePackagingGroupInput): Operation<types.DeletePackagingGroupOutput>
     -- Returns a description of a MediaPackage VOD Asset resource.
-    describeAsset: function(Client, types.DescribeAssetInput): types.DescribeAssetOutput, table
+    describeAsset: function(Client, types.DescribeAssetInput): Operation<types.DescribeAssetOutput>
     -- Returns a description of a MediaPackage VOD PackagingConfiguration resource.
-    describePackagingConfiguration: function(Client, types.DescribePackagingConfigurationInput): types.DescribePackagingConfigurationOutput, table
+    describePackagingConfiguration: function(Client, types.DescribePackagingConfigurationInput): Operation<types.DescribePackagingConfigurationOutput>
     -- Returns a description of a MediaPackage VOD PackagingGroup resource.
-    describePackagingGroup: function(Client, types.DescribePackagingGroupInput): types.DescribePackagingGroupOutput, table
+    describePackagingGroup: function(Client, types.DescribePackagingGroupInput): Operation<types.DescribePackagingGroupOutput>
     -- Returns a collection of MediaPackage VOD Asset resources.
-    listAssets: function(Client, types.ListAssetsInput): types.ListAssetsOutput, table
+    listAssets: function(Client, types.ListAssetsInput): Operation<types.ListAssetsOutput>
     -- Returns a collection of MediaPackage VOD PackagingConfiguration resources.
-    listPackagingConfigurations: function(Client, types.ListPackagingConfigurationsInput): types.ListPackagingConfigurationsOutput, table
+    listPackagingConfigurations: function(Client, types.ListPackagingConfigurationsInput): Operation<types.ListPackagingConfigurationsOutput>
     -- Returns a collection of MediaPackage VOD PackagingGroup resources.
-    listPackagingGroups: function(Client, types.ListPackagingGroupsInput): types.ListPackagingGroupsOutput, table
+    listPackagingGroups: function(Client, types.ListPackagingGroupsInput): Operation<types.ListPackagingGroupsOutput>
     -- Returns a list of the tags assigned to the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds tags to the specified resource. You can specify one or more tags to add.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from the specified resource. You can specify one or more tags to remove.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a specific packaging group. You can't change the id attribute or any other system-generated attributes.
-    updatePackagingGroup: function(Client, types.UpdatePackagingGroupInput): types.UpdatePackagingGroupOutput, table
+    updatePackagingGroup: function(Client, types.UpdatePackagingGroupInput): Operation<types.UpdatePackagingGroupOutput>
 end
 
 local record M

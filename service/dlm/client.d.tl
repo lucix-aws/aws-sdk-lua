@@ -2,6 +2,10 @@
 
 local types = require("dlm.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an Amazon Data Lifecycle Manager lifecycle policy. Amazon Data Lifecycle Manager supports the following policy types:
     -- Custom EBS snapshot policy
@@ -13,27 +17,27 @@ local record Client
     -- Default policies vs custom policies.
     -- If you create a default policy, you can specify the request parameters either in
     -- the request body, or in the PolicyDetails request structure, but not both.
-    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): types.CreateLifecyclePolicyOutput, table
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): Operation<types.CreateLifecyclePolicyOutput>
     -- Deletes the specified lifecycle policy and halts the automated operations that the
     -- policy specified.
     -- For more information about deleting a policy, see Delete lifecycle
     -- policies.
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): types.DeleteLifecyclePolicyOutput, table
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): Operation<types.DeleteLifecyclePolicyOutput>
     -- Gets summary information about all or the specified data lifecycle policies.
     -- To get complete information about a policy, use GetLifecyclePolicy.
-    getLifecyclePolicies: function(Client, types.GetLifecyclePoliciesInput): types.GetLifecyclePoliciesOutput, table
+    getLifecyclePolicies: function(Client, types.GetLifecyclePoliciesInput): Operation<types.GetLifecyclePoliciesOutput>
     -- Gets detailed information about the specified lifecycle policy.
-    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput): types.GetLifecyclePolicyOutput, table
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput): Operation<types.GetLifecyclePolicyOutput>
     -- Lists the tags for the specified resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Adds the specified tags to the specified resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates the specified lifecycle policy.
     -- For more information about updating a policy, see Modify lifecycle
     -- policies.
-    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): types.UpdateLifecyclePolicyOutput, table
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): Operation<types.UpdateLifecyclePolicyOutput>
 end
 
 local record M

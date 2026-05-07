@@ -2,6 +2,10 @@
 
 local types = require("sfn.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates an activity. An activity is a task that you write in any programming language and
     -- host on any machine that has access to Step Functions. Activities must poll Step Functions using the
@@ -15,7 +19,7 @@ local record Client
     -- tags values, Step Functions will ignore these differences and treat it as an
     -- idempotent request of the previous. In this case, tags will not be updated,
     -- even if they are different.
-    createActivity: function(Client, types.CreateActivityInput): types.CreateActivityOutput, table
+    createActivity: function(Client, types.CreateActivityInput): Operation<types.CreateActivityOutput>
     -- Creates a state machine. A state machine consists of a collection of states that can do
     -- work (Task states), determine to which states to transition next
     -- (Choice states), stop an execution with an error (Fail states),
@@ -34,7 +38,7 @@ local record Client
     -- roleArn or tags, Step Functions will ignore these differences and treat
     -- it as an idempotent request of the previous. In this case, roleArn and
     -- tags will not be updated, even if they are different.
-    createStateMachine: function(Client, types.CreateStateMachineInput): types.CreateStateMachineOutput, table
+    createStateMachine: function(Client, types.CreateStateMachineInput): Operation<types.CreateStateMachineOutput>
     -- Creates an alias for a state machine that points to one or two versions of the same state machine. You can set your application to call StartExecution with an alias and update the version the alias uses without changing the client's code.
     -- You can also map an alias to split StartExecution requests between two
     -- versions of a state machine. To do this, add a second RoutingConfig object in the
@@ -55,9 +59,9 @@ local record Client
     -- ListStateMachineAliases
     -- UpdateStateMachineAlias
     -- DeleteStateMachineAlias
-    createStateMachineAlias: function(Client, types.CreateStateMachineAliasInput): types.CreateStateMachineAliasOutput, table
+    createStateMachineAlias: function(Client, types.CreateStateMachineAliasInput): Operation<types.CreateStateMachineAliasOutput>
     -- Deletes an activity.
-    deleteActivity: function(Client, types.DeleteActivityInput): types.DeleteActivityOutput, table
+    deleteActivity: function(Client, types.DeleteActivityInput): Operation<types.DeleteActivityOutput>
     -- Deletes a state machine. This is an asynchronous operation. It sets the state machine's
     -- status to DELETING and begins the deletion process. A state machine is deleted only when all its executions are completed. On the next state transition, the state machine's executions are terminated.
     -- A qualified state machine ARN can either refer to a Distributed Map state defined within a state machine, a version ARN, or an alias ARN.
@@ -71,7 +75,7 @@ local record Client
     -- For EXPRESS state machines, the deletion happens eventually (usually in
     -- less than a minute). Running executions may emit logs after DeleteStateMachine
     -- API is called.
-    deleteStateMachine: function(Client, types.DeleteStateMachineInput): types.DeleteStateMachineOutput, table
+    deleteStateMachine: function(Client, types.DeleteStateMachineInput): Operation<types.DeleteStateMachineOutput>
     -- Deletes a state machine alias.
     -- After you delete a state machine alias, you can't use it to start executions. When you
     -- delete a state machine alias, Step Functions doesn't delete the state machine versions
@@ -81,7 +85,7 @@ local record Client
     -- DescribeStateMachineAlias
     -- ListStateMachineAliases
     -- UpdateStateMachineAlias
-    deleteStateMachineAlias: function(Client, types.DeleteStateMachineAliasInput): types.DeleteStateMachineAliasOutput, table
+    deleteStateMachineAlias: function(Client, types.DeleteStateMachineAliasInput): Operation<types.DeleteStateMachineAliasOutput>
     -- Deletes a state machine version. After
     -- you delete a version, you can't call StartExecution using that version's ARN
     -- or use the version with a state machine alias.
@@ -90,18 +94,18 @@ local record Client
     -- Related operations:
     -- PublishStateMachineVersion
     -- ListStateMachineVersions
-    deleteStateMachineVersion: function(Client, types.DeleteStateMachineVersionInput): types.DeleteStateMachineVersionOutput, table
+    deleteStateMachineVersion: function(Client, types.DeleteStateMachineVersionInput): Operation<types.DeleteStateMachineVersionOutput>
     -- Describes an activity.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
-    describeActivity: function(Client, types.DescribeActivityInput): types.DescribeActivityOutput, table
+    describeActivity: function(Client, types.DescribeActivityInput): Operation<types.DescribeActivityOutput>
     -- Provides information about a state machine execution, such as the state machine associated with the execution, the execution input and output, and relevant execution metadata. If you've redriven an execution, you can use this API action to return information about the redrives of that execution. In addition, you can use this API action to return the Map Run Amazon Resource Name (ARN) if the execution was dispatched by a Map Run.
     -- If you specify a version or alias ARN when you call the StartExecution
     -- API action, DescribeExecution returns that ARN.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
     -- Executions of an EXPRESS state machine aren't supported by DescribeExecution unless a Map Run dispatched them.
-    describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    describeExecution: function(Client, types.DescribeExecutionInput): Operation<types.DescribeExecutionOutput>
     -- Provides information about a Map Run's configuration, progress, and results. If you've redriven a Map Run, this API action also returns information about the redrives of that Map Run. For more information, see Examining Map Run in the Step Functions Developer Guide.
-    describeMapRun: function(Client, types.DescribeMapRunInput): types.DescribeMapRunOutput, table
+    describeMapRun: function(Client, types.DescribeMapRunInput): Operation<types.DescribeMapRunOutput>
     -- Provides information about a state machine's definition, its IAM role Amazon Resource Name (ARN), and configuration.
     -- A qualified state machine ARN can either refer to a Distributed Map state defined within a state machine, a version ARN, or an alias ARN.
     -- The following are some examples of qualified and unqualified state machine ARNs:
@@ -116,21 +120,21 @@ local record Client
     -- This API action returns the details for a state machine version if the
     -- stateMachineArn you specify is a state machine version ARN.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
-    describeStateMachine: function(Client, types.DescribeStateMachineInput): types.DescribeStateMachineOutput, table
+    describeStateMachine: function(Client, types.DescribeStateMachineInput): Operation<types.DescribeStateMachineOutput>
     -- Returns details about a state machine alias.
     -- Related operations:
     -- CreateStateMachineAlias
     -- ListStateMachineAliases
     -- UpdateStateMachineAlias
     -- DeleteStateMachineAlias
-    describeStateMachineAlias: function(Client, types.DescribeStateMachineAliasInput): types.DescribeStateMachineAliasOutput, table
+    describeStateMachineAlias: function(Client, types.DescribeStateMachineAliasInput): Operation<types.DescribeStateMachineAliasOutput>
     -- Provides information about a state machine's definition, its execution role ARN, and
     -- configuration. If a Map Run dispatched the execution, this action returns the Map Run
     -- Amazon Resource Name (ARN) in the response. The state machine returned is the state machine associated with the
     -- Map Run.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
     -- This API action is not supported by EXPRESS state machines.
-    describeStateMachineForExecution: function(Client, types.DescribeStateMachineForExecutionInput): types.DescribeStateMachineForExecutionOutput, table
+    describeStateMachineForExecution: function(Client, types.DescribeStateMachineForExecutionInput): Operation<types.DescribeStateMachineForExecutionOutput>
     -- Used by workers to retrieve a task (with the specified activity ARN) which has been
     -- scheduled for execution by a running state machine. This initiates a long poll, where the
     -- service holds the HTTP connection open and responds as soon as a task becomes available (i.e.
@@ -143,19 +147,19 @@ local record Client
     -- Polling with GetActivityTask can cause latency in some implementations. See
     -- Avoid
     -- Latency When Polling for Activity Tasks in the Step Functions Developer Guide.
-    getActivityTask: function(Client, types.GetActivityTaskInput): types.GetActivityTaskOutput, table
+    getActivityTask: function(Client, types.GetActivityTaskInput): Operation<types.GetActivityTaskOutput>
     -- Returns the history of the specified execution as a list of events. By default, the
     -- results are returned in ascending order of the timeStamp of the events. Use the
     -- reverseOrder parameter to get the latest events first.
     -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
     -- Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
     -- This API action is not supported by EXPRESS state machines.
-    getExecutionHistory: function(Client, types.GetExecutionHistoryInput): types.GetExecutionHistoryOutput, table
+    getExecutionHistory: function(Client, types.GetExecutionHistoryInput): Operation<types.GetExecutionHistoryOutput>
     -- Lists the existing activities.
     -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
     -- Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
-    listActivities: function(Client, types.ListActivitiesInput): types.ListActivitiesOutput, table
+    listActivities: function(Client, types.ListActivitiesInput): Operation<types.ListActivitiesOutput>
     -- Lists all executions of a state machine or a Map Run. You can list all executions related to a state machine by specifying a state machine Amazon Resource Name (ARN), or those related to a Map Run by specifying a Map Run ARN. Using this API action, you can also list all redriven executions.
     -- You can also provide a state machine alias ARN or version ARN to list the executions associated with a specific alias or version.
     -- Results are
@@ -164,9 +168,9 @@ local record Client
     -- Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
     -- This API action is not supported by EXPRESS state machines.
-    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): Operation<types.ListExecutionsOutput>
     -- Lists all Map Runs that were started by a given state machine execution. Use this API action to obtain Map Run ARNs, and then call DescribeMapRun to obtain more information, if needed.
-    listMapRuns: function(Client, types.ListMapRunsInput): types.ListMapRunsOutput, table
+    listMapRuns: function(Client, types.ListMapRunsInput): Operation<types.ListMapRunsOutput>
     -- Lists aliases for a specified state machine ARN. Results are sorted by time, with the most recently created aliases listed first.
     -- To list aliases that reference a state machine version, you can specify the version ARN in the stateMachineArn parameter.
     -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
@@ -176,12 +180,12 @@ local record Client
     -- DescribeStateMachineAlias
     -- UpdateStateMachineAlias
     -- DeleteStateMachineAlias
-    listStateMachineAliases: function(Client, types.ListStateMachineAliasesInput): types.ListStateMachineAliasesOutput, table
+    listStateMachineAliases: function(Client, types.ListStateMachineAliasesInput): Operation<types.ListStateMachineAliasesOutput>
     -- Lists the existing state machines.
     -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
     -- Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
     -- This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.
-    listStateMachines: function(Client, types.ListStateMachinesInput): types.ListStateMachinesOutput, table
+    listStateMachines: function(Client, types.ListStateMachinesInput): Operation<types.ListStateMachinesOutput>
     -- Lists versions for the specified state machine Amazon Resource Name (ARN).
     -- The results are sorted in descending order of the version creation time.
     -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
@@ -189,10 +193,10 @@ local record Client
     -- Related operations:
     -- PublishStateMachineVersion
     -- DeleteStateMachineVersion
-    listStateMachineVersions: function(Client, types.ListStateMachineVersionsInput): types.ListStateMachineVersionsOutput, table
+    listStateMachineVersions: function(Client, types.ListStateMachineVersionsInput): Operation<types.ListStateMachineVersionsOutput>
     -- List tags for a given resource.
     -- Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Creates a version from the
     -- current revision of a state machine. Use versions to create immutable snapshots of your state
     -- machine. You can start executions from versions either directly or with an alias. To create an
@@ -207,7 +211,7 @@ local record Client
     -- Related operations:
     -- DeleteStateMachineVersion
     -- ListStateMachineVersions
-    publishStateMachineVersion: function(Client, types.PublishStateMachineVersionInput): types.PublishStateMachineVersionOutput, table
+    publishStateMachineVersion: function(Client, types.PublishStateMachineVersionInput): Operation<types.PublishStateMachineVersionOutput>
     -- Restarts unsuccessful executions of Standard workflows that didn't complete successfully in the last 14 days. These include failed, aborted, or timed out executions. When you redrive an execution, it continues the failed execution from the unsuccessful step and uses the same input. Step Functions preserves the results and execution history of the successful steps, and doesn't rerun these steps when you redrive an execution. Redriven executions use the same state machine definition and execution ARN as the original execution attempt.
     -- For workflows that include an Inline Map or Parallel state, RedriveExecution API action reschedules and redrives only the iterations and branches that failed or aborted.
     -- To redrive a workflow that includes a Distributed Map state whose Map Run failed, you must redrive the parent workflow. The parent workflow redrives all the unsuccessful states, including a failed Map Run. If a Map Run was not started in the original execution attempt, the redriven parent workflow starts the Map Run.
@@ -218,12 +222,12 @@ local record Client
     -- Your workflow execution has not exceeded the redrivable period of 14 days. Redrivable period refers to the time during which you can redrive a given execution. This period starts from the day a state machine completes its execution.
     -- The workflow execution has not exceeded the maximum open time of one year. For more information about state machine quotas, see Quotas related to state machine executions.
     -- The execution event history count is less than 24,999. Redriven executions append their event history to the existing event history. Make sure your workflow execution contains less than 24,999 events to accommodate the ExecutionRedriven history event and at least one other history event.
-    redriveExecution: function(Client, types.RedriveExecutionInput): types.RedriveExecutionOutput, table
+    redriveExecution: function(Client, types.RedriveExecutionInput): Operation<types.RedriveExecutionOutput>
     -- Used by activity workers, Task states using the callback
     -- pattern, and optionally Task states using the job run pattern to report that the task identified by the taskToken failed.
     -- For an execution with encryption enabled, Step Functions will encrypt the error and cause fields using the KMS key for the execution role.
     -- A caller can mark a task as fail without using any KMS permissions in the execution role if the caller provides a null value for both error and cause fields because no data needs to be encrypted.
-    sendTaskFailure: function(Client, types.SendTaskFailureInput): types.SendTaskFailureOutput, table
+    sendTaskFailure: function(Client, types.SendTaskFailureInput): Operation<types.SendTaskFailureOutput>
     -- Used by activity workers and Task states using the callback
     -- pattern, and optionally Task states using the job run pattern to report to Step Functions that the task represented by the specified
     -- taskToken is still making progress. This action resets the
@@ -237,11 +241,11 @@ local record Client
     -- The Timeout of a task, defined in the state machine's Amazon States Language definition, is
     -- its maximum allowed duration, regardless of the number of SendTaskHeartbeat requests received. Use HeartbeatSeconds to configure the timeout interval
     -- for heartbeats.
-    sendTaskHeartbeat: function(Client, types.SendTaskHeartbeatInput): types.SendTaskHeartbeatOutput, table
+    sendTaskHeartbeat: function(Client, types.SendTaskHeartbeatInput): Operation<types.SendTaskHeartbeatOutput>
     -- Used by activity workers, Task states using the callback
     -- pattern, and optionally Task states using the job run pattern to report that the task identified by the taskToken completed
     -- successfully.
-    sendTaskSuccess: function(Client, types.SendTaskSuccessInput): types.SendTaskSuccessOutput, table
+    sendTaskSuccess: function(Client, types.SendTaskSuccessInput): Operation<types.SendTaskSuccessOutput>
     -- Starts a state machine execution.
     -- A qualified state machine ARN can either refer to a Distributed Map state defined within a state machine, a version ARN, or an alias ARN.
     -- The following are some examples of qualified and unqualified state machine ARNs:
@@ -262,7 +266,7 @@ local record Client
     -- original request. If the execution is closed or if the input is different, it returns a
     -- 400 ExecutionAlreadyExists error. You can reuse names after 90 days.
     -- StartExecution isn't idempotent for EXPRESS workflows.
-    startExecution: function(Client, types.StartExecutionInput): types.StartExecutionOutput, table
+    startExecution: function(Client, types.StartExecutionInput): Operation<types.StartExecutionOutput>
     -- Starts a Synchronous Express state machine execution. StartSyncExecution
     -- is not available for STANDARD workflows.
     -- StartSyncExecution will return a 200 OK response, even if your
@@ -271,19 +275,19 @@ local record Client
     -- as permissions errors, limit errors, or issues with your state machine code and
     -- configuration.
     -- This API action isn't logged in CloudTrail.
-    startSyncExecution: function(Client, types.StartSyncExecutionInput): types.StartSyncExecutionOutput, table
+    startSyncExecution: function(Client, types.StartSyncExecutionInput): Operation<types.StartSyncExecutionOutput>
     -- Stops an execution.
     -- This API action is not supported by EXPRESS state machines.
     -- For an execution with encryption enabled, Step Functions will encrypt the error and cause fields using the KMS key for the execution role.
     -- A caller can stop an execution without using any KMS permissions in the execution role if the caller provides a null value for both error and cause fields because no data needs to be encrypted.
-    stopExecution: function(Client, types.StopExecutionInput): types.StopExecutionOutput, table
+    stopExecution: function(Client, types.StopExecutionInput): Operation<types.StopExecutionOutput>
     -- Add a tag to a Step Functions resource.
     -- An array of key-value pairs. For more information, see Using
     -- Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User
     -- Guide, and Controlling Access Using IAM
     -- Tags.
     -- Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Accepts the definition of a single state and executes it. You can test a state without creating a state machine or updating an existing state machine. Using this API, you can test the following:
     -- A state's input and output processing data flow
     -- An Amazon Web Services service integration request and response
@@ -299,11 +303,11 @@ local record Client
     -- The TestState API can run for up to five minutes. If the execution of a state exceeds this duration, it fails with the States.Timeout error.
     -- TestState only supports the following when a mock is specified: Activity tasks, .sync or .waitForTaskToken
     -- service integration patterns, Parallel, or Map states.
-    testState: function(Client, types.TestStateInput): types.TestStateOutput, table
+    testState: function(Client, types.TestStateInput): Operation<types.TestStateOutput>
     -- Remove a tag from a Step Functions resource
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an in-progress Map Run's configuration to include changes to the settings that control maximum concurrency and Map Run failure.
-    updateMapRun: function(Client, types.UpdateMapRunInput): types.UpdateMapRunOutput, table
+    updateMapRun: function(Client, types.UpdateMapRunInput): Operation<types.UpdateMapRunOutput>
     -- Updates an existing state machine by modifying its definition,
     -- roleArn, loggingConfiguration, or EncryptionConfiguration. Running executions will continue
     -- to use the previous definition and roleArn. You must include at
@@ -328,7 +332,7 @@ local record Client
     -- definition and roleArn. Executions started immediately after you
     -- call UpdateStateMachine may use the previous state machine
     -- definition and roleArn.
-    updateStateMachine: function(Client, types.UpdateStateMachineInput): types.UpdateStateMachineOutput, table
+    updateStateMachine: function(Client, types.UpdateStateMachineInput): Operation<types.UpdateStateMachineOutput>
     -- Updates the configuration of an existing state machine alias by modifying its description or routingConfiguration.
     -- You must specify at least one of the description or routingConfiguration parameters to update a state machine alias.
     -- UpdateStateMachineAlias is an idempotent API. Step Functions bases the
@@ -344,7 +348,7 @@ local record Client
     -- DescribeStateMachineAlias
     -- ListStateMachineAliases
     -- DeleteStateMachineAlias
-    updateStateMachineAlias: function(Client, types.UpdateStateMachineAliasInput): types.UpdateStateMachineAliasOutput, table
+    updateStateMachineAlias: function(Client, types.UpdateStateMachineAliasInput): Operation<types.UpdateStateMachineAliasOutput>
     -- Validates the syntax of a state machine definition specified in Amazon States Language (ASL), a
     -- JSON-based, structured language.
     -- You can validate that a state machine definition is correct without creating a state
@@ -369,7 +373,7 @@ local record Client
     -- new diagnostics in the future, adjust diagnostic codes, or change the message
     -- wording. Your automated processes should only rely on the value of the result field value (OK, FAIL). Do not rely on the exact order, count, or
     -- wording of diagnostic messages.
-    validateStateMachineDefinition: function(Client, types.ValidateStateMachineDefinitionInput): types.ValidateStateMachineDefinitionOutput, table
+    validateStateMachineDefinition: function(Client, types.ValidateStateMachineDefinitionInput): Operation<types.ValidateStateMachineDefinitionOutput>
 end
 
 local record M

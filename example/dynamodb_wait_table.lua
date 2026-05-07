@@ -36,7 +36,7 @@ local _, err = client:createTable({
         { AttributeName = "pk", AttributeType = "S" },
     },
     BillingMode = "PAY_PER_REQUEST",
-})
+}):await()
 if err then
     io.stderr:write("ERROR: " .. (err.code or "unknown") .. ": " .. (err.message or "") .. "\n")
     os.exit(1)
@@ -57,7 +57,7 @@ print("Table is ACTIVE! Status: " .. result.Table.TableStatus)
 
 -- Clean up
 print("Deleting table: " .. table_name)
-local _, del_err = client:deleteTable({ TableName = table_name })
+local _, del_err = client:deleteTable({ TableName = table_name }):await()
 if del_err then
     io.stderr:write("WARNING: delete failed: " .. (del_err.message or "") .. "\n")
 end

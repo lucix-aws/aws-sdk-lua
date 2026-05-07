@@ -2,6 +2,10 @@
 
 local types = require("s3.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- This operation aborts a multipart upload. After a multipart upload is aborted, no additional parts
     -- can be uploaded using that upload ID. The storage consumed by any previously uploaded parts will be
@@ -40,7 +44,7 @@ local record Client
     -- ListParts
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): types.AbortMultipartUploadOutput, table
+    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): Operation<types.AbortMultipartUploadOutput>
     -- Completes a multipart upload by assembling previously uploaded parts.
     -- You first initiate the multipart upload and then upload all parts using the UploadPart operation or the
     -- UploadPartCopy
@@ -119,7 +123,7 @@ local record Client
     -- ListParts
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): types.CompleteMultipartUploadOutput, table
+    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): Operation<types.CompleteMultipartUploadOutput>
     -- Creates a copy of an object that is already stored in Amazon S3.
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
@@ -239,7 +243,7 @@ local record Client
     -- PutObject
     -- GetObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    copyObject: function(Client, types.CopyObjectInput): types.CopyObjectOutput, table
+    copyObject: function(Client, types.CopyObjectInput): Operation<types.CopyObjectOutput>
     -- This action creates an Amazon S3 bucket. To create an Amazon S3 on Outposts bucket, see
     -- CreateBucket
     -- .
@@ -330,7 +334,7 @@ local record Client
     -- PutObject
     -- DeleteBucket
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    createBucket: function(Client, types.CreateBucketInput): types.CreateBucketOutput, table
+    createBucket: function(Client, types.CreateBucketInput): Operation<types.CreateBucketOutput>
     -- Creates an S3 Metadata V2 metadata configuration for a general purpose bucket. For more information, see
     -- Accelerating
     -- data discovery with S3 Metadata in the Amazon S3 User Guide.
@@ -364,7 +368,7 @@ local record Client
     -- UpdateBucketMetadataInventoryTableConfiguration
     -- UpdateBucketMetadataJournalTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    createBucketMetadataConfiguration: function(Client, types.CreateBucketMetadataConfigurationInput): types.CreateBucketMetadataConfigurationOutput, table
+    createBucketMetadataConfiguration: function(Client, types.CreateBucketMetadataConfigurationInput): Operation<types.CreateBucketMetadataConfigurationOutput>
     -- We recommend that you create your S3 Metadata configurations by using the V2
     -- CreateBucketMetadataConfiguration API operation. We no longer recommend using the V1
     -- CreateBucketMetadataTableConfiguration API operation.
@@ -396,7 +400,7 @@ local record Client
     -- DeleteBucketMetadataTableConfiguration
     -- GetBucketMetadataTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    createBucketMetadataTableConfiguration: function(Client, types.CreateBucketMetadataTableConfigurationInput): types.CreateBucketMetadataTableConfigurationOutput, table
+    createBucketMetadataTableConfiguration: function(Client, types.CreateBucketMetadataTableConfigurationInput): Operation<types.CreateBucketMetadataTableConfigurationOutput>
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
     -- This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).
@@ -529,7 +533,7 @@ local record Client
     -- ListParts
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    createMultipartUpload: function(Client, types.CreateMultipartUploadInput): types.CreateMultipartUploadOutput, table
+    createMultipartUpload: function(Client, types.CreateMultipartUploadInput): Operation<types.CreateMultipartUploadOutput>
     -- Creates a session that establishes temporary security credentials to support fast authentication and
     -- authorization for the Zonal endpoint API operations on directory buckets. For more information about Zonal endpoint API operations that
     -- include the Availability Zone in the request endpoint, see S3 Express One Zone APIs in the
@@ -603,7 +607,7 @@ local record Client
     -- Directory buckets - The HTTP Host header syntax is
     -- Bucket-name.s3express-zone-id.region-code.amazonaws.com.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    createSession: function(Client, types.CreateSessionInput): Operation<types.CreateSessionOutput>
     -- Deletes the S3 bucket. All objects (including all object versions and delete markers) in the bucket
     -- must be deleted before the bucket itself can be deleted.
     -- Directory buckets - If multipart uploads in a
@@ -626,7 +630,7 @@ local record Client
     -- CreateBucket
     -- DeleteObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucket: function(Client, types.DeleteBucketInput): types.DeleteBucketOutput, table
+    deleteBucket: function(Client, types.DeleteBucketInput): Operation<types.DeleteBucketOutput>
     -- This operation is not supported for directory buckets.
     -- Deletes an analytics configuration for the bucket (specified by the analytics configuration
     -- ID).
@@ -641,7 +645,7 @@ local record Client
     -- ListBucketAnalyticsConfigurations
     -- PutBucketAnalyticsConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketAnalyticsConfiguration: function(Client, types.DeleteBucketAnalyticsConfigurationInput): types.DeleteBucketAnalyticsConfigurationOutput, table
+    deleteBucketAnalyticsConfiguration: function(Client, types.DeleteBucketAnalyticsConfigurationInput): Operation<types.DeleteBucketAnalyticsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Deletes the cors configuration information set for the bucket.
     -- To use this operation, you must have permission to perform the s3:PutBucketCORS action.
@@ -652,7 +656,7 @@ local record Client
     -- PutBucketCors
     -- RESTOPTIONSobject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketCors: function(Client, types.DeleteBucketCorsInput): types.DeleteBucketCorsOutput, table
+    deleteBucketCors: function(Client, types.DeleteBucketCorsInput): Operation<types.DeleteBucketCorsOutput>
     -- This implementation of the DELETE action resets the default encryption for the bucket as server-side
     -- encryption with Amazon S3 managed keys (SSE-S3).
     -- General purpose buckets - For information about the bucket
@@ -678,7 +682,7 @@ local record Client
     -- PutBucketEncryption
     -- GetBucketEncryption
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketEncryption: function(Client, types.DeleteBucketEncryptionInput): types.DeleteBucketEncryptionOutput, table
+    deleteBucketEncryption: function(Client, types.DeleteBucketEncryptionInput): Operation<types.DeleteBucketEncryptionOutput>
     -- This operation is not supported for directory buckets.
     -- Deletes the S3 Intelligent-Tiering configuration from the specified bucket.
     -- The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without performance impact or operational overhead. S3 Intelligent-Tiering delivers automatic cost savings in three low latency and high throughput access tiers. To get the lowest storage cost on data that can be accessed in minutes to hours, you can choose to activate additional archiving capabilities.
@@ -689,7 +693,7 @@ local record Client
     -- PutBucketIntelligentTieringConfiguration
     -- ListBucketIntelligentTieringConfigurations
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketIntelligentTieringConfiguration: function(Client, types.DeleteBucketIntelligentTieringConfigurationInput): types.DeleteBucketIntelligentTieringConfigurationOutput, table
+    deleteBucketIntelligentTieringConfiguration: function(Client, types.DeleteBucketIntelligentTieringConfigurationInput): Operation<types.DeleteBucketIntelligentTieringConfigurationOutput>
     -- Deletes an S3 Inventory configuration (identified by the inventory ID) from the bucket.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
     -- . Virtual-hosted-style requests aren't supported.
@@ -719,7 +723,7 @@ local record Client
     -- PutBucketInventoryConfiguration
     -- ListBucketInventoryConfigurations
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketInventoryConfiguration: function(Client, types.DeleteBucketInventoryConfigurationInput): types.DeleteBucketInventoryConfigurationOutput, table
+    deleteBucketInventoryConfiguration: function(Client, types.DeleteBucketInventoryConfigurationInput): Operation<types.DeleteBucketInventoryConfigurationOutput>
     -- Deletes the lifecycle configuration from the specified bucket. Amazon S3 removes all the lifecycle
     -- configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire,
     -- and Amazon S3 no longer automatically deletes any objects on the basis of rules contained in the deleted
@@ -754,7 +758,7 @@ local record Client
     -- PutBucketLifecycleConfiguration
     -- GetBucketLifecycleConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketLifecycle: function(Client, types.DeleteBucketLifecycleInput): types.DeleteBucketLifecycleOutput, table
+    deleteBucketLifecycle: function(Client, types.DeleteBucketLifecycleInput): Operation<types.DeleteBucketLifecycleOutput>
     -- Deletes an S3 Metadata configuration from a general purpose bucket. For more information, see
     -- Accelerating
     -- data discovery with S3 Metadata in the Amazon S3 User Guide.
@@ -774,7 +778,7 @@ local record Client
     -- UpdateBucketMetadataInventoryTableConfiguration
     -- UpdateBucketMetadataJournalTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketMetadataConfiguration: function(Client, types.DeleteBucketMetadataConfigurationInput): types.DeleteBucketMetadataConfigurationOutput, table
+    deleteBucketMetadataConfiguration: function(Client, types.DeleteBucketMetadataConfigurationInput): Operation<types.DeleteBucketMetadataConfigurationOutput>
     -- We recommend that you delete your S3 Metadata configurations by using the V2
     -- DeleteBucketMetadataTableConfiguration API operation. We no longer recommend using
     -- the V1 DeleteBucketMetadataTableConfiguration API operation.
@@ -800,7 +804,7 @@ local record Client
     -- CreateBucketMetadataTableConfiguration
     -- GetBucketMetadataTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketMetadataTableConfiguration: function(Client, types.DeleteBucketMetadataTableConfigurationInput): types.DeleteBucketMetadataTableConfigurationOutput, table
+    deleteBucketMetadataTableConfiguration: function(Client, types.DeleteBucketMetadataTableConfigurationInput): Operation<types.DeleteBucketMetadataTableConfigurationOutput>
     -- Deletes a metrics configuration for the Amazon CloudWatch request metrics (specified by the metrics
     -- configuration ID) from the bucket. Note that this doesn't include the daily storage metrics.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
@@ -831,7 +835,7 @@ local record Client
     -- Monitoring
     -- Metrics with Amazon CloudWatch
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketMetricsConfiguration: function(Client, types.DeleteBucketMetricsConfigurationInput): types.DeleteBucketMetricsConfigurationOutput, table
+    deleteBucketMetricsConfiguration: function(Client, types.DeleteBucketMetricsConfigurationInput): Operation<types.DeleteBucketMetricsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Removes OwnershipControls for an Amazon S3 bucket. To use this operation, you must have the
     -- s3:PutBucketOwnershipControls permission. For more information about Amazon S3 permissions,
@@ -842,7 +846,7 @@ local record Client
     -- GetBucketOwnershipControls
     -- PutBucketOwnershipControls
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketOwnershipControls: function(Client, types.DeleteBucketOwnershipControlsInput): types.DeleteBucketOwnershipControlsOutput, table
+    deleteBucketOwnershipControls: function(Client, types.DeleteBucketOwnershipControlsInput): Operation<types.DeleteBucketOwnershipControlsOutput>
     -- Deletes the policy of a specified bucket.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
     -- . Virtual-hosted-style requests aren't supported.
@@ -877,7 +881,7 @@ local record Client
     -- CreateBucket
     -- DeleteObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): types.DeleteBucketPolicyOutput, table
+    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): Operation<types.DeleteBucketPolicyOutput>
     -- This operation is not supported for directory buckets.
     -- Deletes the replication configuration from the bucket.
     -- To use this operation, you must have permissions to perform the
@@ -891,7 +895,7 @@ local record Client
     -- PutBucketReplication
     -- GetBucketReplication
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): types.DeleteBucketReplicationOutput, table
+    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): Operation<types.DeleteBucketReplicationOutput>
     -- This operation is not supported for directory buckets.
     -- Deletes tags from the general purpose bucket if attribute based access control (ABAC) is not enabled for the bucket. When you enable ABAC for a general purpose bucket, you can no longer use this operation for that bucket and must use UntagResource instead.
     -- To use this operation, you must have permission to perform the s3:PutBucketTagging
@@ -900,7 +904,7 @@ local record Client
     -- GetBucketTagging
     -- PutBucketTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): types.DeleteBucketTaggingOutput, table
+    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): Operation<types.DeleteBucketTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- This action removes the website configuration for a bucket. Amazon S3 returns a 200 OK
     -- response upon successfully deleting a website configuration on the specified bucket. You will get a
@@ -916,7 +920,7 @@ local record Client
     -- GetBucketWebsite
     -- PutBucketWebsite
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteBucketWebsite: function(Client, types.DeleteBucketWebsiteInput): types.DeleteBucketWebsiteOutput, table
+    deleteBucketWebsite: function(Client, types.DeleteBucketWebsiteInput): Operation<types.DeleteBucketWebsiteOutput>
     -- Removes an object from a bucket. The behavior depends on the bucket's versioning state:
     -- If bucket versioning is not enabled, the operation permanently deletes the object.
     -- If bucket versioning is enabled, the operation inserts a delete marker, which becomes the
@@ -981,7 +985,7 @@ local record Client
     -- PutObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
     -- The If-Match header is supported for both general purpose and directory buckets. IfMatchLastModifiedTime and IfMatchSize is only supported for directory buckets.
-    deleteObject: function(Client, types.DeleteObjectInput): types.DeleteObjectOutput, table
+    deleteObject: function(Client, types.DeleteObjectInput): Operation<types.DeleteObjectOutput>
     -- This operation enables you to delete multiple objects from a bucket using a single HTTP request. If
     -- you know the object keys that you want to delete, then this operation provides a suitable alternative to
     -- sending individual delete requests, reducing per-request overhead.
@@ -1046,7 +1050,7 @@ local record Client
     -- ListParts
     -- AbortMultipartUpload
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteObjects: function(Client, types.DeleteObjectsInput): types.DeleteObjectsOutput, table
+    deleteObjects: function(Client, types.DeleteObjectsInput): Operation<types.DeleteObjectsOutput>
     -- This operation is not supported for directory buckets.
     -- Removes the entire tag set from the specified object. For more information about managing object
     -- tags, see Object
@@ -1059,7 +1063,7 @@ local record Client
     -- PutObjectTagging
     -- GetObjectTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deleteObjectTagging: function(Client, types.DeleteObjectTaggingInput): types.DeleteObjectTaggingOutput, table
+    deleteObjectTagging: function(Client, types.DeleteObjectTaggingInput): Operation<types.DeleteObjectTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- Removes the PublicAccessBlock configuration for an Amazon S3 bucket. This
     -- operation removes the bucket-level configuration only. The effective public access behavior
@@ -1074,9 +1078,9 @@ local record Client
     -- PutPublicAccessBlock
     -- GetBucketPolicyStatus
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): types.DeletePublicAccessBlockOutput, table
+    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): Operation<types.DeletePublicAccessBlockOutput>
     -- Returns the attribute-based access control (ABAC) property of the general purpose bucket. If ABAC is enabled on your bucket, you can use tags on the bucket for access control. For more information, see Enabling ABAC in general purpose buckets.
-    getBucketAbac: function(Client, types.GetBucketAbacInput): types.GetBucketAbacOutput, table
+    getBucketAbac: function(Client, types.GetBucketAbacInput): Operation<types.GetBucketAbacOutput>
     -- This operation is not supported for directory buckets.
     -- This implementation of the GET action uses the accelerate subresource to return the
     -- Transfer Acceleration state of a bucket, which is either Enabled or Suspended.
@@ -1096,7 +1100,7 @@ local record Client
     -- The following operations are related to GetBucketAccelerateConfiguration:
     -- PutBucketAccelerateConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketAccelerateConfiguration: function(Client, types.GetBucketAccelerateConfigurationInput): types.GetBucketAccelerateConfigurationOutput, table
+    getBucketAccelerateConfiguration: function(Client, types.GetBucketAccelerateConfigurationInput): Operation<types.GetBucketAccelerateConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- This implementation of the GET action uses the acl subresource to return
     -- the access control list (ACL) of a bucket. To use GET to return the ACL of the bucket, you
@@ -1115,7 +1119,7 @@ local record Client
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
     -- The following operations are related to GetBucketAcl:
     -- ListObjects
-    getBucketAcl: function(Client, types.GetBucketAclInput): types.GetBucketAclOutput, table
+    getBucketAcl: function(Client, types.GetBucketAclInput): Operation<types.GetBucketAclOutput>
     -- This operation is not supported for directory buckets.
     -- This implementation of the GET action returns an analytics configuration (identified by the
     -- analytics configuration ID) from the bucket.
@@ -1130,7 +1134,7 @@ local record Client
     -- ListBucketAnalyticsConfigurations
     -- PutBucketAnalyticsConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketAnalyticsConfiguration: function(Client, types.GetBucketAnalyticsConfigurationInput): types.GetBucketAnalyticsConfigurationOutput, table
+    getBucketAnalyticsConfiguration: function(Client, types.GetBucketAnalyticsConfigurationInput): Operation<types.GetBucketAnalyticsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the Cross-Origin Resource Sharing (CORS) configuration information set for the
     -- bucket.
@@ -1146,7 +1150,7 @@ local record Client
     -- PutBucketCors
     -- DeleteBucketCors
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketCors: function(Client, types.GetBucketCorsInput): types.GetBucketCorsOutput, table
+    getBucketCors: function(Client, types.GetBucketCorsInput): Operation<types.GetBucketCorsOutput>
     -- Returns the default encryption configuration for an Amazon S3 bucket. By default, all buckets have a
     -- default encryption configuration that uses server-side encryption with Amazon S3 managed keys (SSE-S3). This operation also returns the BucketKeyEnabled and BlockedEncryptionTypes statuses.
     -- General purpose buckets - For information about the bucket
@@ -1172,7 +1176,7 @@ local record Client
     -- PutBucketEncryption
     -- DeleteBucketEncryption
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketEncryption: function(Client, types.GetBucketEncryptionInput): types.GetBucketEncryptionOutput, table
+    getBucketEncryption: function(Client, types.GetBucketEncryptionInput): Operation<types.GetBucketEncryptionOutput>
     -- This operation is not supported for directory buckets.
     -- Gets the S3 Intelligent-Tiering configuration from the specified bucket.
     -- The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without performance impact or operational overhead. S3 Intelligent-Tiering delivers automatic cost savings in three low latency and high throughput access tiers. To get the lowest storage cost on data that can be accessed in minutes to hours, you can choose to activate additional archiving capabilities.
@@ -1183,7 +1187,7 @@ local record Client
     -- PutBucketIntelligentTieringConfiguration
     -- ListBucketIntelligentTieringConfigurations
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketIntelligentTieringConfiguration: function(Client, types.GetBucketIntelligentTieringConfigurationInput): types.GetBucketIntelligentTieringConfigurationOutput, table
+    getBucketIntelligentTieringConfiguration: function(Client, types.GetBucketIntelligentTieringConfigurationInput): Operation<types.GetBucketIntelligentTieringConfigurationOutput>
     -- Returns an S3 Inventory configuration (identified by the inventory configuration ID) from the
     -- bucket.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
@@ -1212,7 +1216,7 @@ local record Client
     -- ListBucketInventoryConfigurations
     -- PutBucketInventoryConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketInventoryConfiguration: function(Client, types.GetBucketInventoryConfigurationInput): types.GetBucketInventoryConfigurationOutput, table
+    getBucketInventoryConfiguration: function(Client, types.GetBucketInventoryConfigurationInput): Operation<types.GetBucketInventoryConfigurationOutput>
     -- Returns the lifecycle configuration information set on the bucket. For information about lifecycle
     -- configuration, see Object Lifecycle Management.
     -- Bucket lifecycle configuration now supports specifying a lifecycle rule using an object key name
@@ -1257,7 +1261,7 @@ local record Client
     -- PutBucketLifecycle
     -- DeleteBucketLifecycle
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): types.GetBucketLifecycleConfigurationOutput, table
+    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): Operation<types.GetBucketLifecycleConfigurationOutput>
     -- Using the GetBucketLocation operation is no longer a best practice. To return the
     -- Region that a bucket resides in, we recommend that you use the
     -- HeadBucket
@@ -1282,7 +1286,7 @@ local record Client
     -- GetObject
     -- CreateBucket
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketLocation: function(Client, types.GetBucketLocationInput): types.GetBucketLocationOutput, table
+    getBucketLocation: function(Client, types.GetBucketLocationInput): Operation<types.GetBucketLocationOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the logging status of a bucket and the permissions users have to view and modify that
     -- status.
@@ -1290,7 +1294,7 @@ local record Client
     -- CreateBucket
     -- PutBucketLogging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketLogging: function(Client, types.GetBucketLoggingInput): types.GetBucketLoggingOutput, table
+    getBucketLogging: function(Client, types.GetBucketLoggingInput): Operation<types.GetBucketLoggingOutput>
     -- Retrieves the S3 Metadata configuration for a general purpose bucket. For more information, see
     -- Accelerating
     -- data discovery with S3 Metadata in the Amazon S3 User Guide.
@@ -1309,7 +1313,7 @@ local record Client
     -- UpdateBucketMetadataInventoryTableConfiguration
     -- UpdateBucketMetadataJournalTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketMetadataConfiguration: function(Client, types.GetBucketMetadataConfigurationInput): types.GetBucketMetadataConfigurationOutput, table
+    getBucketMetadataConfiguration: function(Client, types.GetBucketMetadataConfigurationInput): Operation<types.GetBucketMetadataConfigurationOutput>
     -- We recommend that you retrieve your S3 Metadata configurations by using the V2
     -- GetBucketMetadataTableConfiguration API operation. We no longer recommend using the V1
     -- GetBucketMetadataTableConfiguration API operation.
@@ -1334,7 +1338,7 @@ local record Client
     -- CreateBucketMetadataTableConfiguration
     -- DeleteBucketMetadataTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketMetadataTableConfiguration: function(Client, types.GetBucketMetadataTableConfigurationInput): types.GetBucketMetadataTableConfigurationOutput, table
+    getBucketMetadataTableConfiguration: function(Client, types.GetBucketMetadataTableConfigurationInput): Operation<types.GetBucketMetadataTableConfigurationOutput>
     -- Gets a metrics configuration (specified by the metrics configuration ID) from the bucket. Note that
     -- this doesn't include the daily storage metrics.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
@@ -1366,7 +1370,7 @@ local record Client
     -- Monitoring
     -- Metrics with Amazon CloudWatch
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketMetricsConfiguration: function(Client, types.GetBucketMetricsConfigurationInput): types.GetBucketMetricsConfigurationOutput, table
+    getBucketMetricsConfiguration: function(Client, types.GetBucketMetricsConfigurationInput): Operation<types.GetBucketMetricsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the notification configuration of a bucket.
     -- If notifications are not enabled on the bucket, the action returns an empty
@@ -1385,7 +1389,7 @@ local record Client
     -- The following action is related to GetBucketNotification:
     -- PutBucketNotification
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketNotificationConfiguration: function(Client, types.GetBucketNotificationConfigurationInput): types.GetBucketNotificationConfigurationOutput, table
+    getBucketNotificationConfiguration: function(Client, types.GetBucketNotificationConfigurationInput): Operation<types.GetBucketNotificationConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Retrieves OwnershipControls for an Amazon S3 bucket. To use this operation, you must have
     -- the s3:GetBucketOwnershipControls permission. For more information about Amazon S3 permissions,
@@ -1402,7 +1406,7 @@ local record Client
     -- PutBucketOwnershipControls
     -- DeleteBucketOwnershipControls
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketOwnershipControls: function(Client, types.GetBucketOwnershipControlsInput): types.GetBucketOwnershipControlsOutput, table
+    getBucketOwnershipControls: function(Client, types.GetBucketOwnershipControlsInput): Operation<types.GetBucketOwnershipControlsOutput>
     -- Returns the policy of a specified bucket.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
     -- . Virtual-hosted-style requests aren't supported.
@@ -1441,7 +1445,7 @@ local record Client
     -- The following action is related to GetBucketPolicy:
     -- GetObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketPolicy: function(Client, types.GetBucketPolicyInput): types.GetBucketPolicyOutput, table
+    getBucketPolicy: function(Client, types.GetBucketPolicyInput): Operation<types.GetBucketPolicyOutput>
     -- This operation is not supported for directory buckets.
     -- Retrieves the policy status for an Amazon S3 bucket, indicating whether the bucket is public. In order to
     -- use this operation, you must have the s3:GetBucketPolicyStatus permission. For more
@@ -1454,7 +1458,7 @@ local record Client
     -- PutPublicAccessBlock
     -- DeletePublicAccessBlock
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketPolicyStatus: function(Client, types.GetBucketPolicyStatusInput): types.GetBucketPolicyStatusOutput, table
+    getBucketPolicyStatus: function(Client, types.GetBucketPolicyStatusInput): Operation<types.GetBucketPolicyStatusOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the replication configuration of a bucket.
     -- It can take a while to propagate the put or delete a replication configuration to all Amazon S3
@@ -1473,14 +1477,14 @@ local record Client
     -- PutBucketReplication
     -- DeleteBucketReplication
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketReplication: function(Client, types.GetBucketReplicationInput): types.GetBucketReplicationOutput, table
+    getBucketReplication: function(Client, types.GetBucketReplicationInput): Operation<types.GetBucketReplicationOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the request payment configuration of a bucket. To use this version of the operation, you
     -- must be the bucket owner. For more information, see Requester Pays Buckets.
     -- The following operations are related to GetBucketRequestPayment:
     -- ListObjects
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketRequestPayment: function(Client, types.GetBucketRequestPaymentInput): types.GetBucketRequestPaymentOutput, table
+    getBucketRequestPayment: function(Client, types.GetBucketRequestPaymentInput): Operation<types.GetBucketRequestPaymentOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the tag set associated with the general purpose bucket.
     -- To use this operation, you must have permission to perform the s3:GetBucketTagging
@@ -1492,7 +1496,7 @@ local record Client
     -- PutBucketTagging
     -- DeleteBucketTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketTagging: function(Client, types.GetBucketTaggingInput): types.GetBucketTaggingOutput, table
+    getBucketTagging: function(Client, types.GetBucketTaggingInput): Operation<types.GetBucketTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the versioning state of a bucket.
     -- To retrieve the versioning state of a bucket, you must be the bucket owner.
@@ -1504,7 +1508,7 @@ local record Client
     -- PutObject
     -- DeleteObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketVersioning: function(Client, types.GetBucketVersioningInput): types.GetBucketVersioningOutput, table
+    getBucketVersioning: function(Client, types.GetBucketVersioningInput): Operation<types.GetBucketVersioningOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the website configuration for a bucket. To host website on Amazon S3, you can configure a bucket
     -- as website by adding a website configuration. For more information about hosting websites, see Hosting Websites on Amazon S3.
@@ -1516,7 +1520,7 @@ local record Client
     -- DeleteBucketWebsite
     -- PutBucketWebsite
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getBucketWebsite: function(Client, types.GetBucketWebsiteInput): types.GetBucketWebsiteOutput, table
+    getBucketWebsite: function(Client, types.GetBucketWebsiteInput): Operation<types.GetBucketWebsiteOutput>
     -- Retrieves an object from Amazon S3.
     -- In the GetObject request, specify the full key name for the object.
     -- General purpose buckets - Both the virtual-hosted-style requests
@@ -1611,7 +1615,7 @@ local record Client
     -- ListBuckets
     -- GetObjectAcl
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObject: function(Client, types.GetObjectInput): types.GetObjectOutput, table
+    getObject: function(Client, types.GetObjectInput): Operation<types.GetObjectOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the access control list (ACL) of an object. To use this operation, you must have
     -- s3:GetObjectAcl permissions or READ_ACP access to the object. For more
@@ -1630,7 +1634,7 @@ local record Client
     -- DeleteObject
     -- PutObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectAcl: function(Client, types.GetObjectAclInput): types.GetObjectAclOutput, table
+    getObjectAcl: function(Client, types.GetObjectAclInput): Operation<types.GetObjectAclOutput>
     -- Retrieves all of the metadata from an object without returning the object itself. This operation is
     -- useful if you're interested only in an object's metadata.
     -- GetObjectAttributes combines the functionality of HeadObject and
@@ -1724,14 +1728,14 @@ local record Client
     -- HeadObject
     -- ListParts
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectAttributes: function(Client, types.GetObjectAttributesInput): types.GetObjectAttributesOutput, table
+    getObjectAttributes: function(Client, types.GetObjectAttributesInput): Operation<types.GetObjectAttributesOutput>
     -- This operation is not supported for directory buckets.
     -- Gets an object's current legal hold status. For more information, see Locking Objects.
     -- This functionality is not supported for Amazon S3 on Outposts.
     -- The following action is related to GetObjectLegalHold:
     -- GetObjectAttributes
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectLegalHold: function(Client, types.GetObjectLegalHoldInput): types.GetObjectLegalHoldOutput, table
+    getObjectLegalHold: function(Client, types.GetObjectLegalHoldInput): Operation<types.GetObjectLegalHoldOutput>
     -- This operation is not supported for directory buckets.
     -- Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration
     -- will be applied by default to every new object placed in the specified bucket. For more information, see
@@ -1739,14 +1743,14 @@ local record Client
     -- The following action is related to GetObjectLockConfiguration:
     -- GetObjectAttributes
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectLockConfiguration: function(Client, types.GetObjectLockConfigurationInput): types.GetObjectLockConfigurationOutput, table
+    getObjectLockConfiguration: function(Client, types.GetObjectLockConfigurationInput): Operation<types.GetObjectLockConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Retrieves an object's retention settings. For more information, see Locking Objects.
     -- This functionality is not supported for Amazon S3 on Outposts.
     -- The following action is related to GetObjectRetention:
     -- GetObjectAttributes
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectRetention: function(Client, types.GetObjectRetentionInput): types.GetObjectRetentionOutput, table
+    getObjectRetention: function(Client, types.GetObjectRetentionInput): Operation<types.GetObjectRetentionOutput>
     -- This operation is not supported for directory buckets.
     -- Returns the tag-set of an object. You send the GET request against the tagging subresource
     -- associated with the object.
@@ -1762,7 +1766,7 @@ local record Client
     -- GetObjectAttributes
     -- PutObjectTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectTagging: function(Client, types.GetObjectTaggingInput): types.GetObjectTaggingOutput, table
+    getObjectTagging: function(Client, types.GetObjectTaggingInput): Operation<types.GetObjectTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- Returns torrent files from a bucket. BitTorrent can save you bandwidth when you're distributing
     -- large files.
@@ -1773,7 +1777,7 @@ local record Client
     -- The following action is related to GetObjectTorrent:
     -- GetObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getObjectTorrent: function(Client, types.GetObjectTorrentInput): types.GetObjectTorrentOutput, table
+    getObjectTorrent: function(Client, types.GetObjectTorrentInput): Operation<types.GetObjectTorrentOutput>
     -- This operation is not supported for directory buckets.
     -- Retrieves the PublicAccessBlock configuration for an Amazon S3 bucket. This
     -- operation returns the bucket-level configuration only. To understand the effective public
@@ -1796,7 +1800,7 @@ local record Client
     -- GetPublicAccessBlock
     -- DeletePublicAccessBlock
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): types.GetPublicAccessBlockOutput, table
+    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): Operation<types.GetPublicAccessBlockOutput>
     -- You can use this operation to determine if a bucket exists and if you have permission to access it.
     -- The action returns a 200 OK HTTP status code if the bucket exists and you have
     -- permission to access it. You can make a HeadBucket call on any bucket name to any
@@ -1844,7 +1848,7 @@ local record Client
     -- Amazon S3 User Guide. For more information about endpoints in Local Zones, see Concepts for directory buckets in Local Zones in the
     -- Amazon S3 User Guide.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    headBucket: function(Client, types.HeadBucketInput): types.HeadBucketOutput, table
+    headBucket: function(Client, types.HeadBucketInput): Operation<types.HeadBucketOutput>
     -- The HEAD operation retrieves metadata from an object without returning the object
     -- itself. This operation is useful if you're interested only in an object's metadata.
     -- A HEAD request has the same options as a GET operation on an object. The
@@ -1922,7 +1926,7 @@ local record Client
     -- GetObject
     -- GetObjectAttributes
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    headObject: function(Client, types.HeadObjectInput): types.HeadObjectOutput, table
+    headObject: function(Client, types.HeadObjectInput): Operation<types.HeadObjectOutput>
     -- This operation is not supported for directory buckets.
     -- Lists the analytics configurations for the bucket. You can have up to 1,000 analytics configurations
     -- per bucket.
@@ -1944,7 +1948,7 @@ local record Client
     -- DeleteBucketAnalyticsConfiguration
     -- PutBucketAnalyticsConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listBucketAnalyticsConfigurations: function(Client, types.ListBucketAnalyticsConfigurationsInput): types.ListBucketAnalyticsConfigurationsOutput, table
+    listBucketAnalyticsConfigurations: function(Client, types.ListBucketAnalyticsConfigurationsInput): Operation<types.ListBucketAnalyticsConfigurationsOutput>
     -- This operation is not supported for directory buckets.
     -- Lists the S3 Intelligent-Tiering configuration from the specified bucket.
     -- The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without performance impact or operational overhead. S3 Intelligent-Tiering delivers automatic cost savings in three low latency and high throughput access tiers. To get the lowest storage cost on data that can be accessed in minutes to hours, you can choose to activate additional archiving capabilities.
@@ -1955,7 +1959,7 @@ local record Client
     -- PutBucketIntelligentTieringConfiguration
     -- GetBucketIntelligentTieringConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listBucketIntelligentTieringConfigurations: function(Client, types.ListBucketIntelligentTieringConfigurationsInput): types.ListBucketIntelligentTieringConfigurationsOutput, table
+    listBucketIntelligentTieringConfigurations: function(Client, types.ListBucketIntelligentTieringConfigurationsInput): Operation<types.ListBucketIntelligentTieringConfigurationsOutput>
     -- Returns a list of S3 Inventory configurations for the bucket. You can have up to 1,000 inventory
     -- configurations per bucket.
     -- This action supports list pagination and does not return more than 100 configurations at a time.
@@ -1990,7 +1994,7 @@ local record Client
     -- DeleteBucketInventoryConfiguration
     -- PutBucketInventoryConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listBucketInventoryConfigurations: function(Client, types.ListBucketInventoryConfigurationsInput): types.ListBucketInventoryConfigurationsOutput, table
+    listBucketInventoryConfigurations: function(Client, types.ListBucketInventoryConfigurationsInput): Operation<types.ListBucketInventoryConfigurationsOutput>
     -- Lists the metrics configurations for the bucket. The metrics configurations are only for the request
     -- metrics of the bucket and do not provide information on daily storage metrics. You can have up to 1,000
     -- configurations per bucket.
@@ -2027,7 +2031,7 @@ local record Client
     -- GetBucketMetricsConfiguration
     -- DeleteBucketMetricsConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listBucketMetricsConfigurations: function(Client, types.ListBucketMetricsConfigurationsInput): types.ListBucketMetricsConfigurationsOutput, table
+    listBucketMetricsConfigurations: function(Client, types.ListBucketMetricsConfigurationsInput): Operation<types.ListBucketMetricsConfigurationsOutput>
     -- This operation is not supported for directory buckets.
     -- Returns a list of all buckets owned by the authenticated sender of the request. To grant IAM
     -- permission to use this operation, you must add the s3:ListAllMyBuckets policy action.
@@ -2040,7 +2044,7 @@ local record Client
     -- ListBuckets requests will be rejected for Amazon Web Services accounts with a general purpose bucket
     -- quota greater than 10,000.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listBuckets: function(Client, types.ListBucketsInput): types.ListBucketsOutput, table
+    listBuckets: function(Client, types.ListBucketsInput): Operation<types.ListBucketsOutput>
     -- Returns a list of all Amazon S3 directory buckets owned by the authenticated sender of the request. For
     -- more information about directory buckets, see Directory buckets in the
     -- Amazon S3 User Guide.
@@ -2059,7 +2063,7 @@ local record Client
     -- The BucketRegion response element is not part of the
     -- ListDirectoryBuckets Response Syntax.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listDirectoryBuckets: function(Client, types.ListDirectoryBucketsInput): types.ListDirectoryBucketsOutput, table
+    listDirectoryBuckets: function(Client, types.ListDirectoryBucketsInput): Operation<types.ListDirectoryBucketsOutput>
     -- This operation lists in-progress multipart uploads in a bucket. An in-progress multipart upload is a
     -- multipart upload that has been initiated by the CreateMultipartUpload request, but has not
     -- yet been completed or aborted.
@@ -2123,7 +2127,7 @@ local record Client
     -- ListParts
     -- AbortMultipartUpload
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): types.ListMultipartUploadsOutput, table
+    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): Operation<types.ListMultipartUploadsOutput>
     -- This operation is not supported for directory buckets.
     -- Returns some or all (up to 1,000) of the objects in a bucket. You can use the request parameters as
     -- selection criteria to return a subset of the objects in a bucket. A 200 OK response can contain valid or
@@ -2139,7 +2143,7 @@ local record Client
     -- CreateBucket
     -- ListBuckets
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listObjects: function(Client, types.ListObjectsInput): types.ListObjectsOutput, table
+    listObjects: function(Client, types.ListObjectsInput): Operation<types.ListObjectsOutput>
     -- Returns some or all (up to 1,000) of the objects in a bucket with each request. You can use the
     -- request parameters as selection criteria to return a subset of the objects in a bucket. A 200
     -- OK response can contain valid or invalid XML. Make sure to design your application to parse the
@@ -2187,7 +2191,7 @@ local record Client
     -- PutObject
     -- CreateBucket
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listObjectsV2: function(Client, types.ListObjectsV2Input): types.ListObjectsV2Output, table
+    listObjectsV2: function(Client, types.ListObjectsV2Input): Operation<types.ListObjectsV2Output>
     -- This operation is not supported for directory buckets.
     -- Returns metadata about all versions of the objects in a bucket. You can also use request parameters
     -- as selection criteria to return metadata about a subset of all the object versions.
@@ -2202,7 +2206,7 @@ local record Client
     -- PutObject
     -- DeleteObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listObjectVersions: function(Client, types.ListObjectVersionsInput): types.ListObjectVersionsOutput, table
+    listObjectVersions: function(Client, types.ListObjectVersionsInput): Operation<types.ListObjectVersionsOutput>
     -- Lists the parts that have been uploaded for a specific multipart upload.
     -- To use this operation, you must provide the upload ID in the request. You obtain this
     -- uploadID by sending the initiate multipart upload request through CreateMultipartUpload.
@@ -2245,9 +2249,9 @@ local record Client
     -- GetObjectAttributes
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    listParts: function(Client, types.ListPartsInput): types.ListPartsOutput, table
+    listParts: function(Client, types.ListPartsInput): Operation<types.ListPartsOutput>
     -- Sets the attribute-based access control (ABAC) property of the general purpose bucket. You must have s3:PutBucketABAC permission to perform this action. When you enable ABAC, you can use tags for access control on your buckets. Additionally, when ABAC is enabled, you must use the TagResource and UntagResource actions to manage tags on your buckets. You can nolonger use the PutBucketTagging and DeleteBucketTagging actions to tag your bucket. For more information, see Enabling ABAC in general purpose buckets.
-    putBucketAbac: function(Client, types.PutBucketAbacInput): types.PutBucketAbacOutput, table
+    putBucketAbac: function(Client, types.PutBucketAbacInput): Operation<types.PutBucketAbacOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the accelerate configuration of an existing bucket. Amazon S3 Transfer Acceleration is a
     -- bucket-level feature that enables you to perform faster data transfers to Amazon S3.
@@ -2269,7 +2273,7 @@ local record Client
     -- GetBucketAccelerateConfiguration
     -- CreateBucket
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketAccelerateConfiguration: function(Client, types.PutBucketAccelerateConfigurationInput): types.PutBucketAccelerateConfigurationOutput, table
+    putBucketAccelerateConfiguration: function(Client, types.PutBucketAccelerateConfigurationInput): Operation<types.PutBucketAccelerateConfigurationOutput>
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
     -- This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).
@@ -2358,7 +2362,7 @@ local record Client
     -- DeleteBucket
     -- GetObjectAcl
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketAcl: function(Client, types.PutBucketAclInput): types.PutBucketAclOutput, table
+    putBucketAcl: function(Client, types.PutBucketAclInput): Operation<types.PutBucketAclOutput>
     -- This operation is not supported for directory buckets.
     -- Sets an analytics configuration for the bucket (specified by the analytics configuration ID). You
     -- can have up to 1,000 analytics configurations per bucket.
@@ -2395,7 +2399,7 @@ local record Client
     -- DeleteBucketAnalyticsConfiguration
     -- ListBucketAnalyticsConfigurations
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketAnalyticsConfiguration: function(Client, types.PutBucketAnalyticsConfigurationInput): types.PutBucketAnalyticsConfigurationOutput, table
+    putBucketAnalyticsConfiguration: function(Client, types.PutBucketAnalyticsConfigurationInput): Operation<types.PutBucketAnalyticsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the cors configuration for your bucket. If the configuration exists, Amazon S3 replaces
     -- it.
@@ -2426,7 +2430,7 @@ local record Client
     -- DeleteBucketCors
     -- RESTOPTIONSobject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketCors: function(Client, types.PutBucketCorsInput): types.PutBucketCorsOutput, table
+    putBucketCors: function(Client, types.PutBucketCorsInput): Operation<types.PutBucketCorsOutput>
     -- This operation configures default encryption and Amazon S3 Bucket Keys for an existing bucket. You can also block encryption types using this operation.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
     -- . Virtual-hosted-style requests aren't supported.
@@ -2487,7 +2491,7 @@ local record Client
     -- GetBucketEncryption
     -- DeleteBucketEncryption
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketEncryption: function(Client, types.PutBucketEncryptionInput): types.PutBucketEncryptionOutput, table
+    putBucketEncryption: function(Client, types.PutBucketEncryptionInput): Operation<types.PutBucketEncryptionOutput>
     -- This operation is not supported for directory buckets.
     -- Puts a S3 Intelligent-Tiering configuration to the specified bucket. You can have up to 1,000
     -- S3 Intelligent-Tiering configurations per bucket.
@@ -2514,7 +2518,7 @@ local record Client
     -- the s3:PutIntelligentTieringConfiguration bucket permission to set the configuration
     -- on the bucket.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketIntelligentTieringConfiguration: function(Client, types.PutBucketIntelligentTieringConfigurationInput): types.PutBucketIntelligentTieringConfigurationOutput, table
+    putBucketIntelligentTieringConfiguration: function(Client, types.PutBucketIntelligentTieringConfigurationInput): Operation<types.PutBucketIntelligentTieringConfigurationOutput>
     -- This implementation of the PUT action adds an S3 Inventory configuration (identified by
     -- the inventory ID) to the bucket. You can have up to 1,000 inventory configurations per bucket.
     -- Amazon S3 inventory generates inventories of the objects in the bucket on a daily or weekly basis, and
@@ -2577,7 +2581,7 @@ local record Client
     -- DeleteBucketInventoryConfiguration
     -- ListBucketInventoryConfigurations
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketInventoryConfiguration: function(Client, types.PutBucketInventoryConfigurationInput): types.PutBucketInventoryConfigurationOutput, table
+    putBucketInventoryConfiguration: function(Client, types.PutBucketInventoryConfigurationInput): Operation<types.PutBucketInventoryConfigurationOutput>
     -- Creates a new lifecycle configuration for the bucket or replaces an existing lifecycle
     -- configuration. Keep in mind that this will overwrite an existing lifecycle configuration, so if you want
     -- to retain any configuration details, they must be included in the new lifecycle configuration. For
@@ -2646,7 +2650,7 @@ local record Client
     -- GetBucketLifecycleConfiguration
     -- DeleteBucketLifecycle
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): types.PutBucketLifecycleConfigurationOutput, table
+    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): Operation<types.PutBucketLifecycleConfigurationOutput>
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
     -- This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).
@@ -2687,7 +2691,7 @@ local record Client
     -- CreateBucket
     -- GetBucketLogging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketLogging: function(Client, types.PutBucketLoggingInput): types.PutBucketLoggingOutput, table
+    putBucketLogging: function(Client, types.PutBucketLoggingInput): Operation<types.PutBucketLoggingOutput>
     -- Sets a metrics configuration (specified by the metrics configuration ID) for the bucket. You can
     -- have up to 1,000 metrics configurations per bucket. If you're updating an existing metrics
     -- configuration, note that this is a full replacement of the existing metrics configuration. If you don't
@@ -2724,7 +2728,7 @@ local record Client
     -- 1,000-configuration limit.
     -- HTTP Status Code: HTTP 400 Bad Request
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketMetricsConfiguration: function(Client, types.PutBucketMetricsConfigurationInput): types.PutBucketMetricsConfigurationOutput, table
+    putBucketMetricsConfiguration: function(Client, types.PutBucketMetricsConfigurationInput): Operation<types.PutBucketMetricsConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Enables notifications of specified events for a bucket. For more information about event
     -- notifications, see Configuring Event Notifications.
@@ -2759,7 +2763,7 @@ local record Client
     -- The following action is related to PutBucketNotificationConfiguration:
     -- GetBucketNotificationConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketNotificationConfiguration: function(Client, types.PutBucketNotificationConfigurationInput): types.PutBucketNotificationConfigurationOutput, table
+    putBucketNotificationConfiguration: function(Client, types.PutBucketNotificationConfigurationInput): Operation<types.PutBucketNotificationConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Creates or modifies OwnershipControls for an Amazon S3 bucket. To use this operation, you
     -- must have the s3:PutBucketOwnershipControls permission. For more information about Amazon S3
@@ -2769,7 +2773,7 @@ local record Client
     -- GetBucketOwnershipControls
     -- DeleteBucketOwnershipControls
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketOwnershipControls: function(Client, types.PutBucketOwnershipControlsInput): types.PutBucketOwnershipControlsOutput, table
+    putBucketOwnershipControls: function(Client, types.PutBucketOwnershipControlsInput): Operation<types.PutBucketOwnershipControlsOutput>
     -- Applies an Amazon S3 bucket policy to an Amazon S3 bucket.
     -- Directory buckets - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name
     -- . Virtual-hosted-style requests aren't supported.
@@ -2809,7 +2813,7 @@ local record Client
     -- CreateBucket
     -- DeleteBucket
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketPolicy: function(Client, types.PutBucketPolicyInput): types.PutBucketPolicyOutput, table
+    putBucketPolicy: function(Client, types.PutBucketPolicyInput): Operation<types.PutBucketPolicyOutput>
     -- This operation is not supported for directory buckets.
     -- Creates a replication configuration or replaces an existing one. For more information, see Replication in the
     -- Amazon S3 User Guide.
@@ -2852,7 +2856,7 @@ local record Client
     -- GetBucketReplication
     -- DeleteBucketReplication
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketReplication: function(Client, types.PutBucketReplicationInput): types.PutBucketReplicationOutput, table
+    putBucketReplication: function(Client, types.PutBucketReplicationInput): Operation<types.PutBucketReplicationOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the request payment configuration for a bucket. By default, the bucket owner pays for downloads
     -- from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person
@@ -2862,7 +2866,7 @@ local record Client
     -- CreateBucket
     -- GetBucketRequestPayment
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketRequestPayment: function(Client, types.PutBucketRequestPaymentInput): types.PutBucketRequestPaymentOutput, table
+    putBucketRequestPayment: function(Client, types.PutBucketRequestPaymentInput): Operation<types.PutBucketRequestPaymentOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the tags for a general purpose bucket if attribute based access control (ABAC) is not enabled for the bucket. When you enable ABAC for a general purpose bucket, you can no longer use this operation for that bucket and must use the TagResource or UntagResource operations instead.
     -- Use tags to organize your Amazon Web Services bill to reflect your own cost structure. To do this, sign up to get
@@ -2890,7 +2894,7 @@ local record Client
     -- GetBucketTagging
     -- DeleteBucketTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketTagging: function(Client, types.PutBucketTaggingInput): types.PutBucketTaggingOutput, table
+    putBucketTagging: function(Client, types.PutBucketTaggingInput): Operation<types.PutBucketTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- When you enable versioning on a bucket for the first time, it might take a short amount of time
     -- for the change to be fully propagated. While this change is propagating, you might encounter
@@ -2919,7 +2923,7 @@ local record Client
     -- DeleteBucket
     -- GetBucketVersioning
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketVersioning: function(Client, types.PutBucketVersioningInput): types.PutBucketVersioningOutput, table
+    putBucketVersioning: function(Client, types.PutBucketVersioningInput): Operation<types.PutBucketVersioningOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the configuration of the website that is specified in the website subresource. To
     -- configure a bucket as a website, you can add this subresource on the bucket with website configuration
@@ -2962,7 +2966,7 @@ local record Client
     -- Amazon S3 User Guide.
     -- The maximum request length is limited to 128 KB.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putBucketWebsite: function(Client, types.PutBucketWebsiteInput): types.PutBucketWebsiteOutput, table
+    putBucketWebsite: function(Client, types.PutBucketWebsiteInput): Operation<types.PutBucketWebsiteOutput>
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
     -- This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).
@@ -3046,7 +3050,7 @@ local record Client
     -- CopyObject
     -- DeleteObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObject: function(Client, types.PutObjectInput): types.PutObjectOutput, table
+    putObject: function(Client, types.PutObjectInput): Operation<types.PutObjectOutput>
     -- End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025,
     -- the request will receive an HTTP 405 (Method Not Allowed) error.
     -- This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).
@@ -3135,12 +3139,12 @@ local record Client
     -- CopyObject
     -- GetObject
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObjectAcl: function(Client, types.PutObjectAclInput): types.PutObjectAclOutput, table
+    putObjectAcl: function(Client, types.PutObjectAclInput): Operation<types.PutObjectAclOutput>
     -- This operation is not supported for directory buckets.
     -- Applies a legal hold configuration to the specified object. For more information, see Locking Objects.
     -- This functionality is not supported for Amazon S3 on Outposts.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObjectLegalHold: function(Client, types.PutObjectLegalHoldInput): types.PutObjectLegalHoldOutput, table
+    putObjectLegalHold: function(Client, types.PutObjectLegalHoldInput): Operation<types.PutObjectLegalHoldOutput>
     -- This operation is not supported for directory buckets.
     -- Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock
     -- configuration will be applied by default to every new object placed in the specified bucket. For more
@@ -3153,7 +3157,7 @@ local record Client
     -- You can enable Object Lock for new or existing buckets. For more information, see Configuring
     -- Object Lock.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObjectLockConfiguration: function(Client, types.PutObjectLockConfigurationInput): types.PutObjectLockConfigurationOutput, table
+    putObjectLockConfiguration: function(Client, types.PutObjectLockConfigurationInput): Operation<types.PutObjectLockConfigurationOutput>
     -- This operation is not supported for directory buckets.
     -- Places an Object Retention configuration on an object. For more information, see Locking Objects. Users or
     -- accounts require the s3:PutObjectRetention permission in order to place an Object Retention
@@ -3161,7 +3165,7 @@ local record Client
     -- s3:BypassGovernanceRetention permission.
     -- This functionality is not supported for Amazon S3 on Outposts.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObjectRetention: function(Client, types.PutObjectRetentionInput): types.PutObjectRetentionOutput, table
+    putObjectRetention: function(Client, types.PutObjectRetentionInput): Operation<types.PutObjectRetentionOutput>
     -- This operation is not supported for directory buckets.
     -- Sets the supplied tag-set to an object that already exists in a bucket. A tag is a key-value pair.
     -- For more information, see Object Tagging.
@@ -3186,7 +3190,7 @@ local record Client
     -- GetObjectTagging
     -- DeleteObjectTagging
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putObjectTagging: function(Client, types.PutObjectTaggingInput): types.PutObjectTaggingOutput, table
+    putObjectTagging: function(Client, types.PutObjectTaggingInput): Operation<types.PutObjectTaggingOutput>
     -- This operation is not supported for directory buckets.
     -- Creates or modifies the PublicAccessBlock configuration for an Amazon S3 bucket. To use this
     -- operation, you must have the s3:PutBucketPublicAccessBlock permission. For more information
@@ -3206,7 +3210,7 @@ local record Client
     -- GetBucketPolicyStatus
     -- Using Amazon S3 Block Public Access
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): types.PutPublicAccessBlockOutput, table
+    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): Operation<types.PutPublicAccessBlockOutput>
     -- Renames an existing object in a directory bucket that uses the S3 Express One Zone storage class.
     -- You can use RenameObject by specifying an existing object’s name as the source and the new
     -- name of the object as the destination within the same directory bucket.
@@ -3242,7 +3246,7 @@ local record Client
     -- Directory buckets - The HTTP Host header syntax is
     -- Bucket-name.s3express-zone-id.region-code.amazonaws.com.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    renameObject: function(Client, types.RenameObjectInput): types.RenameObjectOutput, table
+    renameObject: function(Client, types.RenameObjectInput): Operation<types.RenameObjectOutput>
     -- This operation is not supported for directory buckets.
     -- Restores an archived copy of an object back into Amazon S3
     -- This functionality is not supported for Amazon S3 on Outposts.
@@ -3340,7 +3344,7 @@ local record Client
     -- PutBucketLifecycleConfiguration
     -- GetBucketNotificationConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    restoreObject: function(Client, types.RestoreObjectInput): types.RestoreObjectOutput, table
+    restoreObject: function(Client, types.RestoreObjectInput): Operation<types.RestoreObjectOutput>
     -- This operation is not supported for directory buckets.
     -- This action filters the contents of an Amazon S3 object based on a simple structured query language (SQL)
     -- statement. In the request, along with the SQL expression, you must also specify a data serialization
@@ -3404,7 +3408,7 @@ local record Client
     -- GetBucketLifecycleConfiguration
     -- PutBucketLifecycleConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    selectObjectContent: function(Client, types.SelectObjectContentInput): types.SelectObjectContentOutput, table
+    selectObjectContent: function(Client, types.SelectObjectContentInput): Operation<types.SelectObjectContentOutput>
     -- Enables or disables a live inventory table for an S3 Metadata configuration on a general
     -- purpose bucket. For more information, see
     -- Accelerating
@@ -3432,7 +3436,7 @@ local record Client
     -- GetBucketMetadataConfiguration
     -- UpdateBucketMetadataJournalTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    updateBucketMetadataInventoryTableConfiguration: function(Client, types.UpdateBucketMetadataInventoryTableConfigurationInput): types.UpdateBucketMetadataInventoryTableConfigurationOutput, table
+    updateBucketMetadataInventoryTableConfiguration: function(Client, types.UpdateBucketMetadataInventoryTableConfigurationInput): Operation<types.UpdateBucketMetadataInventoryTableConfigurationOutput>
     -- Enables or disables journal table record expiration for an S3 Metadata configuration on a general
     -- purpose bucket. For more information, see
     -- Accelerating
@@ -3447,7 +3451,7 @@ local record Client
     -- GetBucketMetadataConfiguration
     -- UpdateBucketMetadataInventoryTableConfiguration
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    updateBucketMetadataJournalTableConfiguration: function(Client, types.UpdateBucketMetadataJournalTableConfigurationInput): types.UpdateBucketMetadataJournalTableConfigurationOutput, table
+    updateBucketMetadataJournalTableConfiguration: function(Client, types.UpdateBucketMetadataJournalTableConfigurationInput): Operation<types.UpdateBucketMetadataJournalTableConfigurationOutput>
     -- This operation is not supported for directory buckets or Amazon S3 on Outposts buckets.
     -- Updates the server-side encryption type of an existing encrypted object in a general purpose bucket.
     -- You can use the UpdateObjectEncryption operation to change encrypted objects from
@@ -3528,7 +3532,7 @@ local record Client
     -- hold, you must first remove the Object Lock status on the object before you issue your
     -- UpdateObjectEncryption request. You can't use the UpdateObjectEncryption
     -- operation with objects that have an Object Lock compliance mode retention period applied to them.
-    updateObjectEncryption: function(Client, types.UpdateObjectEncryptionInput): types.UpdateObjectEncryptionOutput, table
+    updateObjectEncryption: function(Client, types.UpdateObjectEncryptionInput): Operation<types.UpdateObjectEncryptionOutput>
     -- Uploads a part in a multipart upload.
     -- In this operation, you provide new data as a part of an object in your request. However, you have
     -- an option to specify your existing Amazon S3 object as a data source for the part you are uploading. To
@@ -3628,7 +3632,7 @@ local record Client
     -- ListParts
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    uploadPart: function(Client, types.UploadPartInput): types.UploadPartOutput, table
+    uploadPart: function(Client, types.UploadPartInput): Operation<types.UploadPartOutput>
     -- Uploads a part by copying data from an existing object as data source. To specify the data source,
     -- you add the request header x-amz-copy-source in your request. To specify a byte range, you
     -- add the request header x-amz-copy-source-range in your request.
@@ -3745,7 +3749,7 @@ local record Client
     -- ListParts
     -- ListMultipartUploads
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    uploadPartCopy: function(Client, types.UploadPartCopyInput): types.UploadPartCopyOutput, table
+    uploadPartCopy: function(Client, types.UploadPartCopyInput): Operation<types.UploadPartCopyOutput>
     -- This operation is not supported for directory buckets.
     -- Passes transformed objects to a GetObject operation when using Object Lambda access points. For information
     -- about Object Lambda access points, see Transforming objects with Object Lambda access points in the Amazon S3 User Guide.
@@ -3778,7 +3782,7 @@ local record Client
     -- For information on how to view and use these functions, see Using Amazon Web Services built Lambda functions in the
     -- Amazon S3 User Guide.
     -- You must URL encode any signed header values that contain spaces. For example, if your header value is my file.txt, containing two spaces after my, you must URL encode this value to my%20%20file.txt.
-    writeGetObjectResponse: function(Client, types.WriteGetObjectResponseInput): types.WriteGetObjectResponseOutput, table
+    writeGetObjectResponse: function(Client, types.WriteGetObjectResponseInput): Operation<types.WriteGetObjectResponseOutput>
 end
 
 local record M

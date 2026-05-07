@@ -2,13 +2,17 @@
 
 local types = require("glue.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates one or more partitions in a batch operation.
-    batchCreatePartition: function(Client, types.BatchCreatePartitionInput): types.BatchCreatePartitionOutput, table
+    batchCreatePartition: function(Client, types.BatchCreatePartitionInput): Operation<types.BatchCreatePartitionOutput>
     -- Deletes a list of connection definitions from the Data Catalog.
-    batchDeleteConnection: function(Client, types.BatchDeleteConnectionInput): types.BatchDeleteConnectionOutput, table
+    batchDeleteConnection: function(Client, types.BatchDeleteConnectionInput): Operation<types.BatchDeleteConnectionOutput>
     -- Deletes one or more partitions in a batch operation.
-    batchDeletePartition: function(Client, types.BatchDeletePartitionInput): types.BatchDeletePartitionOutput, table
+    batchDeletePartition: function(Client, types.BatchDeletePartitionInput): Operation<types.BatchDeletePartitionOutput>
     -- Deletes multiple tables at once.
     -- After completing this operation, you no longer have access to the table versions and
     -- partitions that belong to the deleted table. Glue deletes these "orphaned" resources
@@ -18,90 +22,90 @@ local record Client
     -- BatchDeleteTableVersion, and DeletePartition or
     -- BatchDeletePartition, to delete any resources that belong to the
     -- table.
-    batchDeleteTable: function(Client, types.BatchDeleteTableInput): types.BatchDeleteTableOutput, table
+    batchDeleteTable: function(Client, types.BatchDeleteTableInput): Operation<types.BatchDeleteTableOutput>
     -- Deletes a specified batch of versions of a table.
-    batchDeleteTableVersion: function(Client, types.BatchDeleteTableVersionInput): types.BatchDeleteTableVersionOutput, table
+    batchDeleteTableVersion: function(Client, types.BatchDeleteTableVersionInput): Operation<types.BatchDeleteTableVersionOutput>
     -- Retrieves information about a list of blueprints.
-    batchGetBlueprints: function(Client, types.BatchGetBlueprintsInput): types.BatchGetBlueprintsOutput, table
+    batchGetBlueprints: function(Client, types.BatchGetBlueprintsInput): Operation<types.BatchGetBlueprintsOutput>
     -- Returns a list of resource metadata for a given list of crawler names. After calling the ListCrawlers operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.
-    batchGetCrawlers: function(Client, types.BatchGetCrawlersInput): types.BatchGetCrawlersOutput, table
+    batchGetCrawlers: function(Client, types.BatchGetCrawlersInput): Operation<types.BatchGetCrawlersOutput>
     -- Retrieves the details for the custom patterns specified by a list of names.
-    batchGetCustomEntityTypes: function(Client, types.BatchGetCustomEntityTypesInput): types.BatchGetCustomEntityTypesOutput, table
+    batchGetCustomEntityTypes: function(Client, types.BatchGetCustomEntityTypesInput): Operation<types.BatchGetCustomEntityTypesOutput>
     -- Retrieves a list of data quality results for the specified result IDs.
-    batchGetDataQualityResult: function(Client, types.BatchGetDataQualityResultInput): types.BatchGetDataQualityResultOutput, table
+    batchGetDataQualityResult: function(Client, types.BatchGetDataQualityResultInput): Operation<types.BatchGetDataQualityResultOutput>
     -- Returns a list of resource metadata for a given list of development endpoint names. After
     -- calling the ListDevEndpoints operation, you can call this operation to access the
     -- data to which you have been granted permissions. This operation supports all IAM permissions,
     -- including permission conditions that uses tags.
-    batchGetDevEndpoints: function(Client, types.BatchGetDevEndpointsInput): types.BatchGetDevEndpointsOutput, table
+    batchGetDevEndpoints: function(Client, types.BatchGetDevEndpointsInput): Operation<types.BatchGetDevEndpointsOutput>
     -- Returns a list of resource metadata for a given list of job names. After calling the ListJobs operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.
-    batchGetJobs: function(Client, types.BatchGetJobsInput): types.BatchGetJobsOutput, table
+    batchGetJobs: function(Client, types.BatchGetJobsInput): Operation<types.BatchGetJobsOutput>
     -- Retrieves partitions in a batch request.
-    batchGetPartition: function(Client, types.BatchGetPartitionInput): types.BatchGetPartitionOutput, table
+    batchGetPartition: function(Client, types.BatchGetPartitionInput): Operation<types.BatchGetPartitionOutput>
     -- Returns the configuration for the specified table optimizers.
-    batchGetTableOptimizer: function(Client, types.BatchGetTableOptimizerInput): types.BatchGetTableOptimizerOutput, table
+    batchGetTableOptimizer: function(Client, types.BatchGetTableOptimizerInput): Operation<types.BatchGetTableOptimizerOutput>
     -- Returns a list of resource metadata for a given list of trigger names. After calling the ListTriggers operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.
-    batchGetTriggers: function(Client, types.BatchGetTriggersInput): types.BatchGetTriggersOutput, table
+    batchGetTriggers: function(Client, types.BatchGetTriggersInput): Operation<types.BatchGetTriggersOutput>
     -- Returns a list of resource metadata for a given list of workflow names. After calling the ListWorkflows operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.
-    batchGetWorkflows: function(Client, types.BatchGetWorkflowsInput): types.BatchGetWorkflowsOutput, table
+    batchGetWorkflows: function(Client, types.BatchGetWorkflowsInput): Operation<types.BatchGetWorkflowsOutput>
     -- Annotate datapoints over time for a specific data quality statistic.
     -- The API requires both profileID and statisticID as part of the InclusionAnnotation input.
     -- The API only works for a single statisticId across multiple profiles.
-    batchPutDataQualityStatisticAnnotation: function(Client, types.BatchPutDataQualityStatisticAnnotationInput): types.BatchPutDataQualityStatisticAnnotationOutput, table
+    batchPutDataQualityStatisticAnnotation: function(Client, types.BatchPutDataQualityStatisticAnnotationInput): Operation<types.BatchPutDataQualityStatisticAnnotationOutput>
     -- Stops one or more job runs for a specified job definition.
-    batchStopJobRun: function(Client, types.BatchStopJobRunInput): types.BatchStopJobRunOutput, table
+    batchStopJobRun: function(Client, types.BatchStopJobRunInput): Operation<types.BatchStopJobRunOutput>
     -- Updates one or more partitions in a batch operation.
-    batchUpdatePartition: function(Client, types.BatchUpdatePartitionInput): types.BatchUpdatePartitionOutput, table
+    batchUpdatePartition: function(Client, types.BatchUpdatePartitionInput): Operation<types.BatchUpdatePartitionOutput>
     -- Cancels the specified recommendation run that was being used to generate rules.
-    cancelDataQualityRuleRecommendationRun: function(Client, types.CancelDataQualityRuleRecommendationRunInput): types.CancelDataQualityRuleRecommendationRunOutput, table
+    cancelDataQualityRuleRecommendationRun: function(Client, types.CancelDataQualityRuleRecommendationRunInput): Operation<types.CancelDataQualityRuleRecommendationRunOutput>
     -- Cancels a run where a ruleset is being evaluated against a data source.
-    cancelDataQualityRulesetEvaluationRun: function(Client, types.CancelDataQualityRulesetEvaluationRunInput): types.CancelDataQualityRulesetEvaluationRunOutput, table
+    cancelDataQualityRulesetEvaluationRun: function(Client, types.CancelDataQualityRulesetEvaluationRunInput): Operation<types.CancelDataQualityRulesetEvaluationRunOutput>
     -- Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that Glue runs on your behalf as part of various machine learning workflows. You can cancel a
     -- machine learning task run at any time by calling CancelMLTaskRun with a task
     -- run's parent transform's TransformID and the task run's TaskRunId.
-    cancelMLTaskRun: function(Client, types.CancelMLTaskRunInput): types.CancelMLTaskRunOutput, table
+    cancelMLTaskRun: function(Client, types.CancelMLTaskRunInput): Operation<types.CancelMLTaskRunOutput>
     -- Cancels the statement.
-    cancelStatement: function(Client, types.CancelStatementInput): types.CancelStatementOutput, table
+    cancelStatement: function(Client, types.CancelStatementInput): Operation<types.CancelStatementOutput>
     -- Validates the supplied schema. This call has no side effects, it simply validates using the supplied schema using DataFormat as the format. Since it does not take a schema set name, no compatibility checks are performed.
-    checkSchemaVersionValidity: function(Client, types.CheckSchemaVersionValidityInput): types.CheckSchemaVersionValidityOutput, table
+    checkSchemaVersionValidity: function(Client, types.CheckSchemaVersionValidityInput): Operation<types.CheckSchemaVersionValidityOutput>
     -- Registers a blueprint with Glue.
-    createBlueprint: function(Client, types.CreateBlueprintInput): types.CreateBlueprintOutput, table
+    createBlueprint: function(Client, types.CreateBlueprintInput): Operation<types.CreateBlueprintOutput>
     -- Creates a new catalog in the Glue Data Catalog.
-    createCatalog: function(Client, types.CreateCatalogInput): types.CreateCatalogOutput, table
+    createCatalog: function(Client, types.CreateCatalogInput): Operation<types.CreateCatalogOutput>
     -- Creates a classifier in the user's account. This can be a GrokClassifier, an
     -- XMLClassifier, a JsonClassifier, or a CsvClassifier,
     -- depending on which field of the request is present.
-    createClassifier: function(Client, types.CreateClassifierInput): types.CreateClassifierOutput, table
+    createClassifier: function(Client, types.CreateClassifierInput): Operation<types.CreateClassifierOutput>
     -- Creates settings for a column statistics task.
-    createColumnStatisticsTaskSettings: function(Client, types.CreateColumnStatisticsTaskSettingsInput): types.CreateColumnStatisticsTaskSettingsOutput, table
+    createColumnStatisticsTaskSettings: function(Client, types.CreateColumnStatisticsTaskSettingsInput): Operation<types.CreateColumnStatisticsTaskSettingsOutput>
     -- Creates a connection definition in the Data Catalog.
     -- Connections used for creating federated resources require the IAM glue:PassConnection permission.
-    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): Operation<types.CreateConnectionOutput>
     -- Creates a new crawler with specified targets, role, configuration, and optional schedule.
     -- At least one crawl target must be specified, in the s3Targets field, the
     -- jdbcTargets field, or the DynamoDBTargets field.
-    createCrawler: function(Client, types.CreateCrawlerInput): types.CreateCrawlerOutput, table
+    createCrawler: function(Client, types.CreateCrawlerInput): Operation<types.CreateCrawlerOutput>
     -- Creates a custom pattern that is used to detect sensitive data across the columns and rows of your structured data.
     -- Each custom pattern you create specifies a regular expression and an optional list of context words. If no context words are passed only a regular expression is checked.
-    createCustomEntityType: function(Client, types.CreateCustomEntityTypeInput): types.CreateCustomEntityTypeOutput, table
+    createCustomEntityType: function(Client, types.CreateCustomEntityTypeInput): Operation<types.CreateCustomEntityTypeOutput>
     -- Creates a new database in a Data Catalog.
-    createDatabase: function(Client, types.CreateDatabaseInput): types.CreateDatabaseOutput, table
+    createDatabase: function(Client, types.CreateDatabaseInput): Operation<types.CreateDatabaseOutput>
     -- Creates a data quality ruleset with DQDL rules applied to a specified Glue table.
     -- You create the ruleset using the Data Quality Definition Language (DQDL). For more information, see the Glue developer guide.
-    createDataQualityRuleset: function(Client, types.CreateDataQualityRulesetInput): types.CreateDataQualityRulesetOutput, table
+    createDataQualityRuleset: function(Client, types.CreateDataQualityRulesetInput): Operation<types.CreateDataQualityRulesetOutput>
     -- Creates a new development endpoint.
-    createDevEndpoint: function(Client, types.CreateDevEndpointInput): types.CreateDevEndpointOutput, table
+    createDevEndpoint: function(Client, types.CreateDevEndpointInput): Operation<types.CreateDevEndpointOutput>
     -- Creates a new Glue Identity Center configuration to enable integration between Glue and Amazon Web Services IAM
     -- Identity Center for authentication and authorization.
-    createGlueIdentityCenterConfiguration: function(Client, types.CreateGlueIdentityCenterConfigurationInput): types.CreateGlueIdentityCenterConfigurationOutput, table
+    createGlueIdentityCenterConfiguration: function(Client, types.CreateGlueIdentityCenterConfigurationInput): Operation<types.CreateGlueIdentityCenterConfigurationOutput>
     -- Creates a Zero-ETL integration in the caller's account between two resources with Amazon Resource Names (ARNs): the SourceArn and TargetArn.
-    createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    createIntegration: function(Client, types.CreateIntegrationInput): Operation<types.CreateIntegrationOutput>
     -- This API can be used for setting up the ResourceProperty of the Glue connection (for the source) or Glue database ARN (for the target). These properties can include the role to access the connection or database. To set both source and target properties the same API needs to be invoked with the Glue connection ARN as ResourceArn with SourceProcessingProperties and the Glue database ARN as ResourceArn with TargetProcessingProperties respectively.
-    createIntegrationResourceProperty: function(Client, types.CreateIntegrationResourcePropertyInput): types.CreateIntegrationResourcePropertyOutput, table
+    createIntegrationResourceProperty: function(Client, types.CreateIntegrationResourcePropertyInput): Operation<types.CreateIntegrationResourcePropertyOutput>
     -- This API is used to provide optional override properties for the the tables that need to be replicated. These properties can include properties for filtering and partitioning for the source and target tables. To set both source and target properties the same API need to be invoked with the Glue connection ARN as ResourceArn with SourceTableConfig, and the Glue database ARN as ResourceArn with TargetTableConfig respectively.
-    createIntegrationTableProperties: function(Client, types.CreateIntegrationTablePropertiesInput): types.CreateIntegrationTablePropertiesOutput, table
+    createIntegrationTableProperties: function(Client, types.CreateIntegrationTablePropertiesInput): Operation<types.CreateIntegrationTablePropertiesOutput>
     -- Creates a new job definition.
-    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createJob: function(Client, types.CreateJobInput): Operation<types.CreateJobOutput>
     -- Creates an Glue machine learning transform. This operation creates the transform and
     -- all the necessary parameters to train it.
     -- Call this operation as the first step in the process of using a machine learning transform
@@ -113,62 +117,62 @@ local record Client
     -- transform. These parameters include Role, and optionally,
     -- AllocatedCapacity, Timeout, and MaxRetries. For more
     -- information, see Jobs.
-    createMLTransform: function(Client, types.CreateMLTransformInput): types.CreateMLTransformOutput, table
+    createMLTransform: function(Client, types.CreateMLTransformInput): Operation<types.CreateMLTransformOutput>
     -- Creates a new partition.
-    createPartition: function(Client, types.CreatePartitionInput): types.CreatePartitionOutput, table
+    createPartition: function(Client, types.CreatePartitionInput): Operation<types.CreatePartitionOutput>
     -- Creates a specified partition index in an existing table.
-    createPartitionIndex: function(Client, types.CreatePartitionIndexInput): types.CreatePartitionIndexOutput, table
+    createPartitionIndex: function(Client, types.CreatePartitionIndexInput): Operation<types.CreatePartitionIndexOutput>
     -- Creates a new registry which may be used to hold a collection of schemas.
-    createRegistry: function(Client, types.CreateRegistryInput): types.CreateRegistryOutput, table
+    createRegistry: function(Client, types.CreateRegistryInput): Operation<types.CreateRegistryOutput>
     -- Creates a new schema set and registers the schema definition. Returns an error if the schema set already exists without actually registering the version.
     -- When the schema set is created, a version checkpoint will be set to the first version. Compatibility mode "DISABLED" restricts any additional schema versions from being added after the first schema version. For all other compatibility modes, validation of compatibility settings will be applied only from the second version onwards when the RegisterSchemaVersion API is used.
     -- When this API is called without a RegistryId, this will create an entry for a "default-registry" in the registry database tables, if it is not already present.
-    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): Operation<types.CreateSchemaOutput>
     -- Transforms a directed acyclic graph (DAG) into code.
-    createScript: function(Client, types.CreateScriptInput): types.CreateScriptOutput, table
+    createScript: function(Client, types.CreateScriptInput): Operation<types.CreateScriptOutput>
     -- Creates a new security configuration. A security configuration is a set of security properties that can be used by Glue. You can use a security configuration to encrypt data at rest. For information about using security configurations in Glue, see Encrypting Data Written by Crawlers, Jobs, and Development Endpoints.
-    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): types.CreateSecurityConfigurationOutput, table
+    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): Operation<types.CreateSecurityConfigurationOutput>
     -- Creates a new session.
-    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    createSession: function(Client, types.CreateSessionInput): Operation<types.CreateSessionOutput>
     -- Creates a new table definition in the Data Catalog.
-    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createTable: function(Client, types.CreateTableInput): Operation<types.CreateTableOutput>
     -- Creates a new table optimizer for a specific function.
-    createTableOptimizer: function(Client, types.CreateTableOptimizerInput): types.CreateTableOptimizerOutput, table
+    createTableOptimizer: function(Client, types.CreateTableOptimizerInput): Operation<types.CreateTableOptimizerOutput>
     -- Creates a new trigger.
     -- Job arguments may be logged. Do not pass plaintext secrets as arguments. Retrieve secrets from a Glue Connection, Amazon Web Services Secrets Manager or other secret management mechanism if you intend to keep them within the Job.
-    createTrigger: function(Client, types.CreateTriggerInput): types.CreateTriggerOutput, table
+    createTrigger: function(Client, types.CreateTriggerInput): Operation<types.CreateTriggerOutput>
     -- Creates an Glue usage profile.
-    createUsageProfile: function(Client, types.CreateUsageProfileInput): types.CreateUsageProfileOutput, table
+    createUsageProfile: function(Client, types.CreateUsageProfileInput): Operation<types.CreateUsageProfileOutput>
     -- Creates a new function definition in the Data Catalog.
-    createUserDefinedFunction: function(Client, types.CreateUserDefinedFunctionInput): types.CreateUserDefinedFunctionOutput, table
+    createUserDefinedFunction: function(Client, types.CreateUserDefinedFunctionInput): Operation<types.CreateUserDefinedFunctionOutput>
     -- Creates a new workflow.
-    createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    createWorkflow: function(Client, types.CreateWorkflowInput): Operation<types.CreateWorkflowOutput>
     -- Deletes an existing blueprint.
-    deleteBlueprint: function(Client, types.DeleteBlueprintInput): types.DeleteBlueprintOutput, table
+    deleteBlueprint: function(Client, types.DeleteBlueprintInput): Operation<types.DeleteBlueprintOutput>
     -- Removes the specified catalog from the Glue Data Catalog.
     -- After completing this operation, you no longer have access to the databases, tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted catalog. Glue deletes these "orphaned" resources asynchronously in a timely manner, at the discretion of the service.
     -- To ensure the immediate deletion of all related resources before calling the DeleteCatalog operation, use DeleteTableVersion (or BatchDeleteTableVersion), DeletePartition (or BatchDeletePartition), DeleteTable (or BatchDeleteTable), DeleteUserDefinedFunction and DeleteDatabase to delete any resources that belong to the catalog.
-    deleteCatalog: function(Client, types.DeleteCatalogInput): types.DeleteCatalogOutput, table
+    deleteCatalog: function(Client, types.DeleteCatalogInput): Operation<types.DeleteCatalogOutput>
     -- Removes a classifier from the Data Catalog.
-    deleteClassifier: function(Client, types.DeleteClassifierInput): types.DeleteClassifierOutput, table
+    deleteClassifier: function(Client, types.DeleteClassifierInput): Operation<types.DeleteClassifierOutput>
     -- Delete the partition column statistics of a column.
     -- The Identity and Access Management (IAM) permission required for this operation is DeletePartition.
-    deleteColumnStatisticsForPartition: function(Client, types.DeleteColumnStatisticsForPartitionInput): types.DeleteColumnStatisticsForPartitionOutput, table
+    deleteColumnStatisticsForPartition: function(Client, types.DeleteColumnStatisticsForPartitionInput): Operation<types.DeleteColumnStatisticsForPartitionOutput>
     -- Retrieves table statistics of columns.
     -- The Identity and Access Management (IAM) permission required for this operation is DeleteTable.
-    deleteColumnStatisticsForTable: function(Client, types.DeleteColumnStatisticsForTableInput): types.DeleteColumnStatisticsForTableOutput, table
+    deleteColumnStatisticsForTable: function(Client, types.DeleteColumnStatisticsForTableInput): Operation<types.DeleteColumnStatisticsForTableOutput>
     -- Deletes settings for a column statistics task.
-    deleteColumnStatisticsTaskSettings: function(Client, types.DeleteColumnStatisticsTaskSettingsInput): types.DeleteColumnStatisticsTaskSettingsOutput, table
+    deleteColumnStatisticsTaskSettings: function(Client, types.DeleteColumnStatisticsTaskSettingsInput): Operation<types.DeleteColumnStatisticsTaskSettingsOutput>
     -- Deletes a connection from the Data Catalog.
-    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): Operation<types.DeleteConnectionOutput>
     -- Deletes a custom connection type in Glue.
     -- The connection type must exist and be registered before it can be deleted. This operation supports cleanup of connection type resources and helps maintain proper lifecycle management of custom connection types.
-    deleteConnectionType: function(Client, types.DeleteConnectionTypeInput): types.DeleteConnectionTypeOutput, table
+    deleteConnectionType: function(Client, types.DeleteConnectionTypeInput): Operation<types.DeleteConnectionTypeOutput>
     -- Removes a specified crawler from the Glue Data Catalog, unless the crawler state is
     -- RUNNING.
-    deleteCrawler: function(Client, types.DeleteCrawlerInput): types.DeleteCrawlerOutput, table
+    deleteCrawler: function(Client, types.DeleteCrawlerInput): Operation<types.DeleteCrawlerOutput>
     -- Deletes a custom pattern by specifying its name.
-    deleteCustomEntityType: function(Client, types.DeleteCustomEntityTypeInput): types.DeleteCustomEntityTypeOutput, table
+    deleteCustomEntityType: function(Client, types.DeleteCustomEntityTypeInput): Operation<types.DeleteCustomEntityTypeOutput>
     -- Removes a specified database from a Data Catalog.
     -- After completing this operation, you no longer have access to the tables (and all table
     -- versions and partitions that might belong to the tables) and the user-defined functions in
@@ -180,49 +184,49 @@ local record Client
     -- BatchDeletePartition, DeleteUserDefinedFunction, and
     -- DeleteTable or BatchDeleteTable, to delete any resources that
     -- belong to the database.
-    deleteDatabase: function(Client, types.DeleteDatabaseInput): types.DeleteDatabaseOutput, table
+    deleteDatabase: function(Client, types.DeleteDatabaseInput): Operation<types.DeleteDatabaseOutput>
     -- Deletes a data quality ruleset.
-    deleteDataQualityRuleset: function(Client, types.DeleteDataQualityRulesetInput): types.DeleteDataQualityRulesetOutput, table
+    deleteDataQualityRuleset: function(Client, types.DeleteDataQualityRulesetInput): Operation<types.DeleteDataQualityRulesetOutput>
     -- Deletes a specified development endpoint.
-    deleteDevEndpoint: function(Client, types.DeleteDevEndpointInput): types.DeleteDevEndpointOutput, table
+    deleteDevEndpoint: function(Client, types.DeleteDevEndpointInput): Operation<types.DeleteDevEndpointOutput>
     -- Deletes the existing Glue Identity Center configuration, removing the integration between Glue and
     -- Amazon Web Services IAM Identity Center.
-    deleteGlueIdentityCenterConfiguration: function(Client, types.DeleteGlueIdentityCenterConfigurationInput): types.DeleteGlueIdentityCenterConfigurationOutput, table
+    deleteGlueIdentityCenterConfiguration: function(Client, types.DeleteGlueIdentityCenterConfigurationInput): Operation<types.DeleteGlueIdentityCenterConfigurationOutput>
     -- Deletes the specified Zero-ETL integration.
-    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): Operation<types.DeleteIntegrationOutput>
     -- This API is used for deleting the ResourceProperty of the Glue connection (for the source) or Glue database ARN (for the target).
-    deleteIntegrationResourceProperty: function(Client, types.DeleteIntegrationResourcePropertyInput): types.DeleteIntegrationResourcePropertyOutput, table
+    deleteIntegrationResourceProperty: function(Client, types.DeleteIntegrationResourcePropertyInput): Operation<types.DeleteIntegrationResourcePropertyOutput>
     -- Deletes the table properties that have been created for the tables that need to be replicated.
-    deleteIntegrationTableProperties: function(Client, types.DeleteIntegrationTablePropertiesInput): types.DeleteIntegrationTablePropertiesOutput, table
+    deleteIntegrationTableProperties: function(Client, types.DeleteIntegrationTablePropertiesInput): Operation<types.DeleteIntegrationTablePropertiesOutput>
     -- Deletes a specified job definition. If the job definition
     -- is not found, no exception is thrown.
-    deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    deleteJob: function(Client, types.DeleteJobInput): Operation<types.DeleteJobOutput>
     -- Deletes an Glue machine learning transform. Machine learning transforms are a special
     -- type of transform that use machine learning to learn the details of the transformation to be
     -- performed by learning from examples provided by humans. These transformations are then saved
     -- by Glue. If you no longer need a transform, you can delete it by calling
     -- DeleteMLTransforms. However, any Glue jobs that still reference the deleted
     -- transform will no longer succeed.
-    deleteMLTransform: function(Client, types.DeleteMLTransformInput): types.DeleteMLTransformOutput, table
+    deleteMLTransform: function(Client, types.DeleteMLTransformInput): Operation<types.DeleteMLTransformOutput>
     -- Deletes a specified partition.
-    deletePartition: function(Client, types.DeletePartitionInput): types.DeletePartitionOutput, table
+    deletePartition: function(Client, types.DeletePartitionInput): Operation<types.DeletePartitionOutput>
     -- Deletes a specified partition index from an existing table.
-    deletePartitionIndex: function(Client, types.DeletePartitionIndexInput): types.DeletePartitionIndexOutput, table
+    deletePartitionIndex: function(Client, types.DeletePartitionIndexInput): Operation<types.DeletePartitionIndexOutput>
     -- Delete the entire registry including schema and all of its versions. To get the status of the delete operation, you can call the GetRegistry API after the asynchronous call. Deleting a registry will deactivate all online operations for the registry such as the UpdateRegistry, CreateSchema, UpdateSchema, and RegisterSchemaVersion APIs.
-    deleteRegistry: function(Client, types.DeleteRegistryInput): types.DeleteRegistryOutput, table
+    deleteRegistry: function(Client, types.DeleteRegistryInput): Operation<types.DeleteRegistryOutput>
     -- Deletes a specified policy.
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): Operation<types.DeleteResourcePolicyOutput>
     -- Deletes the entire schema set, including the schema set and all of its versions. To get the status of the delete operation, you can call GetSchema API after the asynchronous call. Deleting a registry will deactivate all online operations for the schema, such as the GetSchemaByDefinition, and RegisterSchemaVersion APIs.
-    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): Operation<types.DeleteSchemaOutput>
     -- Remove versions from the specified schema. A version number or range may be supplied. If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned. Calling the GetSchemaVersions API after this call will list the status of the deleted versions.
     -- When the range of version numbers contain check pointed version, the API will return a 409 conflict and will not proceed with the deletion. You have to remove the checkpoint first using the DeleteSchemaCheckpoint API before using this API.
     -- You cannot use the DeleteSchemaVersions API to delete the first schema version in the schema set. The first schema version can only be deleted by the DeleteSchema API. This operation will also delete the attached SchemaVersionMetadata under the schema versions. Hard deletes will be enforced on the database.
     -- If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned.
-    deleteSchemaVersions: function(Client, types.DeleteSchemaVersionsInput): types.DeleteSchemaVersionsOutput, table
+    deleteSchemaVersions: function(Client, types.DeleteSchemaVersionsInput): Operation<types.DeleteSchemaVersionsOutput>
     -- Deletes a specified security configuration.
-    deleteSecurityConfiguration: function(Client, types.DeleteSecurityConfigurationInput): types.DeleteSecurityConfigurationOutput, table
+    deleteSecurityConfiguration: function(Client, types.DeleteSecurityConfigurationInput): Operation<types.DeleteSecurityConfigurationOutput>
     -- Deletes the session.
-    deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    deleteSession: function(Client, types.DeleteSessionInput): Operation<types.DeleteSessionOutput>
     -- Removes a table definition from the Data Catalog.
     -- After completing this operation, you no longer have access to the table versions and
     -- partitions that belong to the deleted table. Glue deletes these "orphaned" resources
@@ -232,375 +236,375 @@ local record Client
     -- BatchDeleteTableVersion, and DeletePartition or
     -- BatchDeletePartition, to delete any resources that belong to the
     -- table.
-    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): Operation<types.DeleteTableOutput>
     -- Deletes an optimizer and all associated metadata for a table. The optimization will no longer be performed on the table.
-    deleteTableOptimizer: function(Client, types.DeleteTableOptimizerInput): types.DeleteTableOptimizerOutput, table
+    deleteTableOptimizer: function(Client, types.DeleteTableOptimizerInput): Operation<types.DeleteTableOptimizerOutput>
     -- Deletes a specified version of a table.
-    deleteTableVersion: function(Client, types.DeleteTableVersionInput): types.DeleteTableVersionOutput, table
+    deleteTableVersion: function(Client, types.DeleteTableVersionInput): Operation<types.DeleteTableVersionOutput>
     -- Deletes a specified trigger. If the trigger is not found, no
     -- exception is thrown.
-    deleteTrigger: function(Client, types.DeleteTriggerInput): types.DeleteTriggerOutput, table
+    deleteTrigger: function(Client, types.DeleteTriggerInput): Operation<types.DeleteTriggerOutput>
     -- Deletes the Glue specified usage profile.
-    deleteUsageProfile: function(Client, types.DeleteUsageProfileInput): types.DeleteUsageProfileOutput, table
+    deleteUsageProfile: function(Client, types.DeleteUsageProfileInput): Operation<types.DeleteUsageProfileOutput>
     -- Deletes an existing function definition from the Data Catalog.
-    deleteUserDefinedFunction: function(Client, types.DeleteUserDefinedFunctionInput): types.DeleteUserDefinedFunctionOutput, table
+    deleteUserDefinedFunction: function(Client, types.DeleteUserDefinedFunctionInput): Operation<types.DeleteUserDefinedFunctionOutput>
     -- Deletes a workflow.
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): Operation<types.DeleteWorkflowOutput>
     -- The DescribeConnectionType API provides full details of the supported options for a given connection type in Glue. The response includes authentication configuration details that show supported authentication types and properties, and RestConfiguration for custom REST-based connection types registered via RegisterConnectionType.
     -- See also: ListConnectionTypes, RegisterConnectionType, DeleteConnectionType
-    describeConnectionType: function(Client, types.DescribeConnectionTypeInput): types.DescribeConnectionTypeOutput, table
+    describeConnectionType: function(Client, types.DescribeConnectionTypeInput): Operation<types.DescribeConnectionTypeOutput>
     -- Provides details regarding the entity used with the connection type, with a description of the data model for each field in the selected entity.
     -- The response includes all the fields which make up the entity.
-    describeEntity: function(Client, types.DescribeEntityInput): types.DescribeEntityOutput, table
+    describeEntity: function(Client, types.DescribeEntityInput): Operation<types.DescribeEntityOutput>
     -- Returns a list of inbound integrations for the specified integration.
-    describeInboundIntegrations: function(Client, types.DescribeInboundIntegrationsInput): types.DescribeInboundIntegrationsOutput, table
+    describeInboundIntegrations: function(Client, types.DescribeInboundIntegrationsInput): Operation<types.DescribeInboundIntegrationsOutput>
     -- The API is used to retrieve a list of integrations.
-    describeIntegrations: function(Client, types.DescribeIntegrationsInput): types.DescribeIntegrationsOutput, table
+    describeIntegrations: function(Client, types.DescribeIntegrationsInput): Operation<types.DescribeIntegrationsOutput>
     -- Retrieves the details of a blueprint.
-    getBlueprint: function(Client, types.GetBlueprintInput): types.GetBlueprintOutput, table
+    getBlueprint: function(Client, types.GetBlueprintInput): Operation<types.GetBlueprintOutput>
     -- Retrieves the details of a blueprint run.
-    getBlueprintRun: function(Client, types.GetBlueprintRunInput): types.GetBlueprintRunOutput, table
+    getBlueprintRun: function(Client, types.GetBlueprintRunInput): Operation<types.GetBlueprintRunOutput>
     -- Retrieves the details of blueprint runs for a specified blueprint.
-    getBlueprintRuns: function(Client, types.GetBlueprintRunsInput): types.GetBlueprintRunsOutput, table
+    getBlueprintRuns: function(Client, types.GetBlueprintRunsInput): Operation<types.GetBlueprintRunsOutput>
     -- The name of the Catalog to retrieve. This should be all lowercase.
-    getCatalog: function(Client, types.GetCatalogInput): types.GetCatalogOutput, table
+    getCatalog: function(Client, types.GetCatalogInput): Operation<types.GetCatalogOutput>
     -- Retrieves the status of a migration operation.
-    getCatalogImportStatus: function(Client, types.GetCatalogImportStatusInput): types.GetCatalogImportStatusOutput, table
+    getCatalogImportStatus: function(Client, types.GetCatalogImportStatusInput): Operation<types.GetCatalogImportStatusOutput>
     -- Retrieves all catalogs defined in a catalog in the Glue Data Catalog. For a Redshift-federated catalog use case, this operation returns the list of catalogs mapped to Redshift databases in the Redshift namespace catalog.
-    getCatalogs: function(Client, types.GetCatalogsInput): types.GetCatalogsOutput, table
+    getCatalogs: function(Client, types.GetCatalogsInput): Operation<types.GetCatalogsOutput>
     -- Retrieve a classifier by name.
-    getClassifier: function(Client, types.GetClassifierInput): types.GetClassifierOutput, table
+    getClassifier: function(Client, types.GetClassifierInput): Operation<types.GetClassifierOutput>
     -- Lists all classifier objects in the Data Catalog.
-    getClassifiers: function(Client, types.GetClassifiersInput): types.GetClassifiersOutput, table
+    getClassifiers: function(Client, types.GetClassifiersInput): Operation<types.GetClassifiersOutput>
     -- Retrieves partition statistics of columns.
     -- The Identity and Access Management (IAM) permission required for this operation is GetPartition.
-    getColumnStatisticsForPartition: function(Client, types.GetColumnStatisticsForPartitionInput): types.GetColumnStatisticsForPartitionOutput, table
+    getColumnStatisticsForPartition: function(Client, types.GetColumnStatisticsForPartitionInput): Operation<types.GetColumnStatisticsForPartitionOutput>
     -- Retrieves table statistics of columns.
     -- The Identity and Access Management (IAM) permission required for this operation is GetTable.
-    getColumnStatisticsForTable: function(Client, types.GetColumnStatisticsForTableInput): types.GetColumnStatisticsForTableOutput, table
+    getColumnStatisticsForTable: function(Client, types.GetColumnStatisticsForTableInput): Operation<types.GetColumnStatisticsForTableOutput>
     -- Get the associated metadata/information for a task run, given a task run ID.
-    getColumnStatisticsTaskRun: function(Client, types.GetColumnStatisticsTaskRunInput): types.GetColumnStatisticsTaskRunOutput, table
+    getColumnStatisticsTaskRun: function(Client, types.GetColumnStatisticsTaskRunInput): Operation<types.GetColumnStatisticsTaskRunOutput>
     -- Retrieves information about all runs associated with the specified table.
-    getColumnStatisticsTaskRuns: function(Client, types.GetColumnStatisticsTaskRunsInput): types.GetColumnStatisticsTaskRunsOutput, table
+    getColumnStatisticsTaskRuns: function(Client, types.GetColumnStatisticsTaskRunsInput): Operation<types.GetColumnStatisticsTaskRunsOutput>
     -- Gets settings for a column statistics task.
-    getColumnStatisticsTaskSettings: function(Client, types.GetColumnStatisticsTaskSettingsInput): types.GetColumnStatisticsTaskSettingsOutput, table
+    getColumnStatisticsTaskSettings: function(Client, types.GetColumnStatisticsTaskSettingsInput): Operation<types.GetColumnStatisticsTaskSettingsOutput>
     -- Retrieves a connection definition from the Data Catalog.
-    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getConnection: function(Client, types.GetConnectionInput): Operation<types.GetConnectionOutput>
     -- Retrieves a list of connection definitions from the Data Catalog.
-    getConnections: function(Client, types.GetConnectionsInput): types.GetConnectionsOutput, table
+    getConnections: function(Client, types.GetConnectionsInput): Operation<types.GetConnectionsOutput>
     -- Retrieves metadata for a specified crawler.
-    getCrawler: function(Client, types.GetCrawlerInput): types.GetCrawlerOutput, table
+    getCrawler: function(Client, types.GetCrawlerInput): Operation<types.GetCrawlerOutput>
     -- Retrieves metrics about specified crawlers.
-    getCrawlerMetrics: function(Client, types.GetCrawlerMetricsInput): types.GetCrawlerMetricsOutput, table
+    getCrawlerMetrics: function(Client, types.GetCrawlerMetricsInput): Operation<types.GetCrawlerMetricsOutput>
     -- Retrieves metadata for all crawlers defined in the customer
     -- account.
-    getCrawlers: function(Client, types.GetCrawlersInput): types.GetCrawlersOutput, table
+    getCrawlers: function(Client, types.GetCrawlersInput): Operation<types.GetCrawlersOutput>
     -- Retrieves the details of a custom pattern by specifying its name.
-    getCustomEntityType: function(Client, types.GetCustomEntityTypeInput): types.GetCustomEntityTypeOutput, table
+    getCustomEntityType: function(Client, types.GetCustomEntityTypeInput): Operation<types.GetCustomEntityTypeOutput>
     -- Retrieves the definition of a specified database.
-    getDatabase: function(Client, types.GetDatabaseInput): types.GetDatabaseOutput, table
+    getDatabase: function(Client, types.GetDatabaseInput): Operation<types.GetDatabaseOutput>
     -- Retrieves all databases defined in a given Data Catalog.
-    getDatabases: function(Client, types.GetDatabasesInput): types.GetDatabasesOutput, table
+    getDatabases: function(Client, types.GetDatabasesInput): Operation<types.GetDatabasesOutput>
     -- Retrieves the security configuration for a specified catalog.
-    getDataCatalogEncryptionSettings: function(Client, types.GetDataCatalogEncryptionSettingsInput): types.GetDataCatalogEncryptionSettingsOutput, table
+    getDataCatalogEncryptionSettings: function(Client, types.GetDataCatalogEncryptionSettingsInput): Operation<types.GetDataCatalogEncryptionSettingsOutput>
     -- Transforms a Python script into a directed acyclic graph (DAG).
-    getDataflowGraph: function(Client, types.GetDataflowGraphInput): types.GetDataflowGraphOutput, table
+    getDataflowGraph: function(Client, types.GetDataflowGraphInput): Operation<types.GetDataflowGraphOutput>
     -- Retrieve the training status of the model along with more information (CompletedOn, StartedOn, FailureReason).
-    getDataQualityModel: function(Client, types.GetDataQualityModelInput): types.GetDataQualityModelOutput, table
+    getDataQualityModel: function(Client, types.GetDataQualityModelInput): Operation<types.GetDataQualityModelOutput>
     -- Retrieve a statistic's predictions for a given Profile ID.
-    getDataQualityModelResult: function(Client, types.GetDataQualityModelResultInput): types.GetDataQualityModelResultOutput, table
+    getDataQualityModelResult: function(Client, types.GetDataQualityModelResultInput): Operation<types.GetDataQualityModelResultOutput>
     -- Retrieves the result of a data quality rule evaluation.
-    getDataQualityResult: function(Client, types.GetDataQualityResultInput): types.GetDataQualityResultOutput, table
+    getDataQualityResult: function(Client, types.GetDataQualityResultInput): Operation<types.GetDataQualityResultOutput>
     -- Gets the specified recommendation run that was used to generate rules.
-    getDataQualityRuleRecommendationRun: function(Client, types.GetDataQualityRuleRecommendationRunInput): types.GetDataQualityRuleRecommendationRunOutput, table
+    getDataQualityRuleRecommendationRun: function(Client, types.GetDataQualityRuleRecommendationRunInput): Operation<types.GetDataQualityRuleRecommendationRunOutput>
     -- Returns an existing ruleset by identifier or name.
-    getDataQualityRuleset: function(Client, types.GetDataQualityRulesetInput): types.GetDataQualityRulesetOutput, table
+    getDataQualityRuleset: function(Client, types.GetDataQualityRulesetInput): Operation<types.GetDataQualityRulesetOutput>
     -- Retrieves a specific run where a ruleset is evaluated against a data source.
-    getDataQualityRulesetEvaluationRun: function(Client, types.GetDataQualityRulesetEvaluationRunInput): types.GetDataQualityRulesetEvaluationRunOutput, table
+    getDataQualityRulesetEvaluationRun: function(Client, types.GetDataQualityRulesetEvaluationRunInput): Operation<types.GetDataQualityRulesetEvaluationRunOutput>
     -- Retrieves information about a specified development endpoint.
     -- When you create a development endpoint in a virtual private cloud (VPC), Glue returns only
     -- a private IP address, and the public IP address field is not populated. When you create a
     -- non-VPC development endpoint, Glue returns only a public IP address.
-    getDevEndpoint: function(Client, types.GetDevEndpointInput): types.GetDevEndpointOutput, table
+    getDevEndpoint: function(Client, types.GetDevEndpointInput): Operation<types.GetDevEndpointOutput>
     -- Retrieves all the development endpoints in this Amazon Web Services account.
     -- When you create a development endpoint in a virtual private cloud (VPC), Glue returns only a private IP address
     -- and the public IP address field is not populated. When you create a non-VPC development
     -- endpoint, Glue returns only a public IP address.
-    getDevEndpoints: function(Client, types.GetDevEndpointsInput): types.GetDevEndpointsOutput, table
+    getDevEndpoints: function(Client, types.GetDevEndpointsInput): Operation<types.GetDevEndpointsOutput>
     -- This API is used to query preview data from a given connection type or from a native Amazon S3 based Glue Data Catalog.
     -- Returns records as an array of JSON blobs. Each record is formatted using Jackson JsonNode based on the field type defined by the DescribeEntity API.
     -- Spark connectors generate schemas according to the same data type mapping as in the DescribeEntity API. Spark connectors convert data to the appropriate data types matching the schema when returning rows.
-    getEntityRecords: function(Client, types.GetEntityRecordsInput): types.GetEntityRecordsOutput, table
+    getEntityRecords: function(Client, types.GetEntityRecordsInput): Operation<types.GetEntityRecordsOutput>
     -- Retrieves the current Glue Identity Center configuration details, including the associated Identity Center instance and
     -- application information.
-    getGlueIdentityCenterConfiguration: function(Client, types.GetGlueIdentityCenterConfigurationInput): types.GetGlueIdentityCenterConfigurationOutput, table
+    getGlueIdentityCenterConfiguration: function(Client, types.GetGlueIdentityCenterConfigurationInput): Operation<types.GetGlueIdentityCenterConfigurationOutput>
     -- This API is used for fetching the ResourceProperty of the Glue connection (for the source) or Glue database ARN (for the target)
-    getIntegrationResourceProperty: function(Client, types.GetIntegrationResourcePropertyInput): types.GetIntegrationResourcePropertyOutput, table
+    getIntegrationResourceProperty: function(Client, types.GetIntegrationResourcePropertyInput): Operation<types.GetIntegrationResourcePropertyOutput>
     -- This API is used to retrieve optional override properties for the tables that need to be replicated. These properties can include properties for filtering and partition for source and target tables.
-    getIntegrationTableProperties: function(Client, types.GetIntegrationTablePropertiesInput): types.GetIntegrationTablePropertiesOutput, table
+    getIntegrationTableProperties: function(Client, types.GetIntegrationTablePropertiesInput): Operation<types.GetIntegrationTablePropertiesOutput>
     -- Retrieves an existing job definition.
-    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getJob: function(Client, types.GetJobInput): Operation<types.GetJobOutput>
     -- Returns information on a job bookmark entry.
     -- For more information about enabling and using job bookmarks, see:
     -- Tracking processed data using job bookmarks
     -- Job parameters used by Glue
     -- Job structure
-    getJobBookmark: function(Client, types.GetJobBookmarkInput): types.GetJobBookmarkOutput, table
+    getJobBookmark: function(Client, types.GetJobBookmarkInput): Operation<types.GetJobBookmarkOutput>
     -- Retrieves the metadata for a given job run. Job run history is accessible for 365 days for your workflow and job run.
-    getJobRun: function(Client, types.GetJobRunInput): types.GetJobRunOutput, table
+    getJobRun: function(Client, types.GetJobRunInput): Operation<types.GetJobRunOutput>
     -- Retrieves metadata for all runs of a given job definition.
     -- GetJobRuns returns the job runs in chronological order, with the newest jobs returned first.
-    getJobRuns: function(Client, types.GetJobRunsInput): types.GetJobRunsOutput, table
+    getJobRuns: function(Client, types.GetJobRunsInput): Operation<types.GetJobRunsOutput>
     -- Retrieves all current job definitions.
-    getJobs: function(Client, types.GetJobsInput): types.GetJobsOutput, table
+    getJobs: function(Client, types.GetJobsInput): Operation<types.GetJobsOutput>
     -- Creates mappings.
-    getMapping: function(Client, types.GetMappingInput): types.GetMappingOutput, table
+    getMapping: function(Client, types.GetMappingInput): Operation<types.GetMappingOutput>
     -- Get the associated metadata/information for a task run, given a task run ID.
-    getMaterializedViewRefreshTaskRun: function(Client, types.GetMaterializedViewRefreshTaskRunInput): types.GetMaterializedViewRefreshTaskRunOutput, table
+    getMaterializedViewRefreshTaskRun: function(Client, types.GetMaterializedViewRefreshTaskRunInput): Operation<types.GetMaterializedViewRefreshTaskRunOutput>
     -- Gets details for a specific task run on a machine learning transform. Machine learning
     -- task runs are asynchronous tasks that Glue runs on your behalf as part of various machine
     -- learning workflows. You can check the stats of any task run by calling
     -- GetMLTaskRun with the TaskRunID and its parent transform's
     -- TransformID.
-    getMLTaskRun: function(Client, types.GetMLTaskRunInput): types.GetMLTaskRunOutput, table
+    getMLTaskRun: function(Client, types.GetMLTaskRunInput): Operation<types.GetMLTaskRunOutput>
     -- Gets a list of runs for a machine learning transform. Machine learning task runs are
     -- asynchronous tasks that Glue runs on your behalf as part of various machine learning
     -- workflows. You can get a sortable, filterable list of machine learning task runs by calling
     -- GetMLTaskRuns with their parent transform's TransformID and other
     -- optional parameters as documented in this section.
     -- This operation returns a list of historic runs and must be paginated.
-    getMLTaskRuns: function(Client, types.GetMLTaskRunsInput): types.GetMLTaskRunsOutput, table
+    getMLTaskRuns: function(Client, types.GetMLTaskRunsInput): Operation<types.GetMLTaskRunsOutput>
     -- Gets an Glue machine learning transform artifact and all its corresponding metadata.
     -- Machine learning transforms are a special type of transform that use machine learning to learn
     -- the details of the transformation to be performed by learning from examples provided by
     -- humans. These transformations are then saved by Glue. You can retrieve their metadata by
     -- calling GetMLTransform.
-    getMLTransform: function(Client, types.GetMLTransformInput): types.GetMLTransformOutput, table
+    getMLTransform: function(Client, types.GetMLTransformInput): Operation<types.GetMLTransformOutput>
     -- Gets a sortable, filterable list of existing Glue machine learning transforms. Machine
     -- learning transforms are a special type of transform that use machine learning to learn the
     -- details of the transformation to be performed by learning from examples provided by humans.
     -- These transformations are then saved by Glue, and you can retrieve their metadata by
     -- calling GetMLTransforms.
-    getMLTransforms: function(Client, types.GetMLTransformsInput): types.GetMLTransformsOutput, table
+    getMLTransforms: function(Client, types.GetMLTransformsInput): Operation<types.GetMLTransformsOutput>
     -- Retrieves information about a specified partition.
-    getPartition: function(Client, types.GetPartitionInput): types.GetPartitionOutput, table
+    getPartition: function(Client, types.GetPartitionInput): Operation<types.GetPartitionOutput>
     -- Retrieves the partition indexes associated with a table.
-    getPartitionIndexes: function(Client, types.GetPartitionIndexesInput): types.GetPartitionIndexesOutput, table
+    getPartitionIndexes: function(Client, types.GetPartitionIndexesInput): Operation<types.GetPartitionIndexesOutput>
     -- Retrieves information about the partitions in a table.
-    getPartitions: function(Client, types.GetPartitionsInput): types.GetPartitionsOutput, table
+    getPartitions: function(Client, types.GetPartitionsInput): Operation<types.GetPartitionsOutput>
     -- Gets code to perform a specified mapping.
-    getPlan: function(Client, types.GetPlanInput): types.GetPlanOutput, table
+    getPlan: function(Client, types.GetPlanInput): Operation<types.GetPlanOutput>
     -- Describes the specified registry in detail.
-    getRegistry: function(Client, types.GetRegistryInput): types.GetRegistryOutput, table
+    getRegistry: function(Client, types.GetRegistryInput): Operation<types.GetRegistryOutput>
     -- Retrieves the resource policies set on individual resources by Resource Access Manager
     -- during cross-account permission grants. Also retrieves the Data Catalog resource
     -- policy.
     -- If you enabled metadata encryption in Data Catalog settings, and you do not have
     -- permission on the KMS key, the operation can't return the Data Catalog resource
     -- policy.
-    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): types.GetResourcePoliciesOutput, table
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): Operation<types.GetResourcePoliciesOutput>
     -- Retrieves a specified resource policy.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Describes the specified schema in detail.
-    getSchema: function(Client, types.GetSchemaInput): types.GetSchemaOutput, table
+    getSchema: function(Client, types.GetSchemaInput): Operation<types.GetSchemaOutput>
     -- Retrieves a schema by the SchemaDefinition. The schema definition is sent to the Schema Registry, canonicalized, and hashed. If the hash is matched within the scope of the SchemaName or ARN (or the default registry, if none is supplied), that schema’s metadata is returned. Otherwise, a 404 or NotFound error is returned. Schema versions in Deleted statuses will not be included in the results.
-    getSchemaByDefinition: function(Client, types.GetSchemaByDefinitionInput): types.GetSchemaByDefinitionOutput, table
+    getSchemaByDefinition: function(Client, types.GetSchemaByDefinitionInput): Operation<types.GetSchemaByDefinitionOutput>
     -- Get the specified schema by its unique ID assigned when a version of the schema is created or registered. Schema versions in Deleted status will not be included in the results.
-    getSchemaVersion: function(Client, types.GetSchemaVersionInput): types.GetSchemaVersionOutput, table
+    getSchemaVersion: function(Client, types.GetSchemaVersionInput): Operation<types.GetSchemaVersionOutput>
     -- Fetches the schema version difference in the specified difference type between two stored schema versions in the Schema Registry.
     -- This API allows you to compare two schema versions between two schema definitions under the same schema.
-    getSchemaVersionsDiff: function(Client, types.GetSchemaVersionsDiffInput): types.GetSchemaVersionsDiffOutput, table
+    getSchemaVersionsDiff: function(Client, types.GetSchemaVersionsDiffInput): Operation<types.GetSchemaVersionsDiffOutput>
     -- Retrieves a specified security configuration.
-    getSecurityConfiguration: function(Client, types.GetSecurityConfigurationInput): types.GetSecurityConfigurationOutput, table
+    getSecurityConfiguration: function(Client, types.GetSecurityConfigurationInput): Operation<types.GetSecurityConfigurationOutput>
     -- Retrieves a list of all security configurations.
-    getSecurityConfigurations: function(Client, types.GetSecurityConfigurationsInput): types.GetSecurityConfigurationsOutput, table
+    getSecurityConfigurations: function(Client, types.GetSecurityConfigurationsInput): Operation<types.GetSecurityConfigurationsOutput>
     -- Retrieves the session.
-    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): Operation<types.GetSessionOutput>
     -- Retrieves the statement.
-    getStatement: function(Client, types.GetStatementInput): types.GetStatementOutput, table
+    getStatement: function(Client, types.GetStatementInput): Operation<types.GetStatementOutput>
     -- Retrieves the Table definition in a Data Catalog for
     -- a specified table.
-    getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    getTable: function(Client, types.GetTableInput): Operation<types.GetTableOutput>
     -- Returns the configuration of all optimizers associated with a specified table.
-    getTableOptimizer: function(Client, types.GetTableOptimizerInput): types.GetTableOptimizerOutput, table
+    getTableOptimizer: function(Client, types.GetTableOptimizerInput): Operation<types.GetTableOptimizerOutput>
     -- Retrieves the definitions of some or all of the tables in a given
     -- Database.
-    getTables: function(Client, types.GetTablesInput): types.GetTablesOutput, table
+    getTables: function(Client, types.GetTablesInput): Operation<types.GetTablesOutput>
     -- Retrieves a specified version of a table.
-    getTableVersion: function(Client, types.GetTableVersionInput): types.GetTableVersionOutput, table
+    getTableVersion: function(Client, types.GetTableVersionInput): Operation<types.GetTableVersionOutput>
     -- Retrieves a list of strings that identify available versions of
     -- a specified table.
-    getTableVersions: function(Client, types.GetTableVersionsInput): types.GetTableVersionsOutput, table
+    getTableVersions: function(Client, types.GetTableVersionsInput): Operation<types.GetTableVersionsOutput>
     -- Retrieves a list of tags associated with a resource.
-    getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    getTags: function(Client, types.GetTagsInput): Operation<types.GetTagsOutput>
     -- Retrieves the definition of a trigger.
-    getTrigger: function(Client, types.GetTriggerInput): types.GetTriggerOutput, table
+    getTrigger: function(Client, types.GetTriggerInput): Operation<types.GetTriggerOutput>
     -- Gets all the triggers associated with a job.
-    getTriggers: function(Client, types.GetTriggersInput): types.GetTriggersOutput, table
+    getTriggers: function(Client, types.GetTriggersInput): Operation<types.GetTriggersOutput>
     -- Retrieves partition metadata from the Data Catalog that contains unfiltered
     -- metadata.
     -- For IAM authorization, the public IAM action associated with this API is glue:GetPartition.
-    getUnfilteredPartitionMetadata: function(Client, types.GetUnfilteredPartitionMetadataInput): types.GetUnfilteredPartitionMetadataOutput, table
+    getUnfilteredPartitionMetadata: function(Client, types.GetUnfilteredPartitionMetadataInput): Operation<types.GetUnfilteredPartitionMetadataOutput>
     -- Retrieves partition metadata from the Data Catalog that contains unfiltered
     -- metadata.
     -- For IAM authorization, the public IAM action associated with this API is glue:GetPartitions.
-    getUnfilteredPartitionsMetadata: function(Client, types.GetUnfilteredPartitionsMetadataInput): types.GetUnfilteredPartitionsMetadataOutput, table
+    getUnfilteredPartitionsMetadata: function(Client, types.GetUnfilteredPartitionsMetadataInput): Operation<types.GetUnfilteredPartitionsMetadataOutput>
     -- Allows a third-party analytical engine to retrieve unfiltered table metadata from the Data Catalog.
     -- For IAM authorization, the public IAM action associated with this API is glue:GetTable.
-    getUnfilteredTableMetadata: function(Client, types.GetUnfilteredTableMetadataInput): types.GetUnfilteredTableMetadataOutput, table
+    getUnfilteredTableMetadata: function(Client, types.GetUnfilteredTableMetadataInput): Operation<types.GetUnfilteredTableMetadataOutput>
     -- Retrieves information about the specified Glue usage profile.
-    getUsageProfile: function(Client, types.GetUsageProfileInput): types.GetUsageProfileOutput, table
+    getUsageProfile: function(Client, types.GetUsageProfileInput): Operation<types.GetUsageProfileOutput>
     -- Retrieves a specified function definition from the Data Catalog.
-    getUserDefinedFunction: function(Client, types.GetUserDefinedFunctionInput): types.GetUserDefinedFunctionOutput, table
+    getUserDefinedFunction: function(Client, types.GetUserDefinedFunctionInput): Operation<types.GetUserDefinedFunctionOutput>
     -- Retrieves multiple function definitions from the Data Catalog.
-    getUserDefinedFunctions: function(Client, types.GetUserDefinedFunctionsInput): types.GetUserDefinedFunctionsOutput, table
+    getUserDefinedFunctions: function(Client, types.GetUserDefinedFunctionsInput): Operation<types.GetUserDefinedFunctionsOutput>
     -- Retrieves resource metadata for a workflow.
-    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): Operation<types.GetWorkflowOutput>
     -- Retrieves the metadata for a given workflow run. Job run history is accessible for 90 days for your workflow and job run.
-    getWorkflowRun: function(Client, types.GetWorkflowRunInput): types.GetWorkflowRunOutput, table
+    getWorkflowRun: function(Client, types.GetWorkflowRunInput): Operation<types.GetWorkflowRunOutput>
     -- Retrieves the workflow run properties which were set during the run.
-    getWorkflowRunProperties: function(Client, types.GetWorkflowRunPropertiesInput): types.GetWorkflowRunPropertiesOutput, table
+    getWorkflowRunProperties: function(Client, types.GetWorkflowRunPropertiesInput): Operation<types.GetWorkflowRunPropertiesOutput>
     -- Retrieves metadata for all runs of a given workflow.
-    getWorkflowRuns: function(Client, types.GetWorkflowRunsInput): types.GetWorkflowRunsOutput, table
+    getWorkflowRuns: function(Client, types.GetWorkflowRunsInput): Operation<types.GetWorkflowRunsOutput>
     -- Imports an existing Amazon Athena Data Catalog to Glue.
-    importCatalogToGlue: function(Client, types.ImportCatalogToGlueInput): types.ImportCatalogToGlueOutput, table
+    importCatalogToGlue: function(Client, types.ImportCatalogToGlueInput): Operation<types.ImportCatalogToGlueOutput>
     -- Lists all the blueprint names in an account.
-    listBlueprints: function(Client, types.ListBlueprintsInput): types.ListBlueprintsOutput, table
+    listBlueprints: function(Client, types.ListBlueprintsInput): Operation<types.ListBlueprintsOutput>
     -- List all task runs for a particular account.
-    listColumnStatisticsTaskRuns: function(Client, types.ListColumnStatisticsTaskRunsInput): types.ListColumnStatisticsTaskRunsOutput, table
+    listColumnStatisticsTaskRuns: function(Client, types.ListColumnStatisticsTaskRunsInput): Operation<types.ListColumnStatisticsTaskRunsOutput>
     -- The ListConnectionTypes API provides a discovery mechanism to learn available connection types in Glue. The response contains a list of connection types with high-level details of what is supported for each connection type, including both built-in connection types and custom connection types registered via RegisterConnectionType. The connection types listed are the set of supported options for the ConnectionType value in the CreateConnection API.
     -- See also: DescribeConnectionType, RegisterConnectionType, DeleteConnectionType
-    listConnectionTypes: function(Client, types.ListConnectionTypesInput): types.ListConnectionTypesOutput, table
+    listConnectionTypes: function(Client, types.ListConnectionTypesInput): Operation<types.ListConnectionTypesOutput>
     -- Retrieves the names of all crawler resources in this Amazon Web Services account, or the
     -- resources with the specified tag. This operation allows you to see which
     -- resources are available in your account, and their names.
     -- This operation takes the optional Tags field, which you can use as a filter on
     -- the response so that tagged resources can be retrieved as a group. If you choose to use tags
     -- filtering, only resources with the tag are retrieved.
-    listCrawlers: function(Client, types.ListCrawlersInput): types.ListCrawlersOutput, table
+    listCrawlers: function(Client, types.ListCrawlersInput): Operation<types.ListCrawlersOutput>
     -- Returns all the crawls of a specified crawler. Returns only the crawls that have occurred since the launch date of the crawler history feature, and only retains up to 12 months of crawls. Older crawls will not be returned.
     -- You may use this API to:
     -- Retrive all the crawls of a specified crawler.
     -- Retrieve all the crawls of a specified crawler within a limited count.
     -- Retrieve all the crawls of a specified crawler in a specific time range.
     -- Retrieve all the crawls of a specified crawler with a particular state, crawl ID, or DPU hour value.
-    listCrawls: function(Client, types.ListCrawlsInput): types.ListCrawlsOutput, table
+    listCrawls: function(Client, types.ListCrawlsInput): Operation<types.ListCrawlsOutput>
     -- Lists all the custom patterns that have been created.
-    listCustomEntityTypes: function(Client, types.ListCustomEntityTypesInput): types.ListCustomEntityTypesOutput, table
+    listCustomEntityTypes: function(Client, types.ListCustomEntityTypesInput): Operation<types.ListCustomEntityTypesOutput>
     -- Returns all data quality execution results for your account.
-    listDataQualityResults: function(Client, types.ListDataQualityResultsInput): types.ListDataQualityResultsOutput, table
+    listDataQualityResults: function(Client, types.ListDataQualityResultsInput): Operation<types.ListDataQualityResultsOutput>
     -- Lists the recommendation runs meeting the filter criteria.
-    listDataQualityRuleRecommendationRuns: function(Client, types.ListDataQualityRuleRecommendationRunsInput): types.ListDataQualityRuleRecommendationRunsOutput, table
+    listDataQualityRuleRecommendationRuns: function(Client, types.ListDataQualityRuleRecommendationRunsInput): Operation<types.ListDataQualityRuleRecommendationRunsOutput>
     -- Lists all the runs meeting the filter criteria, where a ruleset is evaluated against a data source.
-    listDataQualityRulesetEvaluationRuns: function(Client, types.ListDataQualityRulesetEvaluationRunsInput): types.ListDataQualityRulesetEvaluationRunsOutput, table
+    listDataQualityRulesetEvaluationRuns: function(Client, types.ListDataQualityRulesetEvaluationRunsInput): Operation<types.ListDataQualityRulesetEvaluationRunsOutput>
     -- Returns a paginated list of rulesets for the specified list of Glue tables.
-    listDataQualityRulesets: function(Client, types.ListDataQualityRulesetsInput): types.ListDataQualityRulesetsOutput, table
+    listDataQualityRulesets: function(Client, types.ListDataQualityRulesetsInput): Operation<types.ListDataQualityRulesetsOutput>
     -- Retrieve annotations for a data quality statistic.
-    listDataQualityStatisticAnnotations: function(Client, types.ListDataQualityStatisticAnnotationsInput): types.ListDataQualityStatisticAnnotationsOutput, table
+    listDataQualityStatisticAnnotations: function(Client, types.ListDataQualityStatisticAnnotationsInput): Operation<types.ListDataQualityStatisticAnnotationsOutput>
     -- Retrieves a list of data quality statistics.
-    listDataQualityStatistics: function(Client, types.ListDataQualityStatisticsInput): types.ListDataQualityStatisticsOutput, table
+    listDataQualityStatistics: function(Client, types.ListDataQualityStatisticsInput): Operation<types.ListDataQualityStatisticsOutput>
     -- Retrieves the names of all DevEndpoint resources in this Amazon Web Services account, or the
     -- resources with the specified tag. This operation allows you to see which resources are
     -- available in your account, and their names.
     -- This operation takes the optional Tags field, which you can use as a filter on
     -- the response so that tagged resources can be retrieved as a group. If you choose to use tags
     -- filtering, only resources with the tag are retrieved.
-    listDevEndpoints: function(Client, types.ListDevEndpointsInput): types.ListDevEndpointsOutput, table
+    listDevEndpoints: function(Client, types.ListDevEndpointsInput): Operation<types.ListDevEndpointsOutput>
     -- Returns the available entities supported by the connection type.
-    listEntities: function(Client, types.ListEntitiesInput): types.ListEntitiesOutput, table
+    listEntities: function(Client, types.ListEntitiesInput): Operation<types.ListEntitiesOutput>
     -- List integration resource properties for a single customer. It supports the filters, maxRecords and markers.
-    listIntegrationResourceProperties: function(Client, types.ListIntegrationResourcePropertiesInput): types.ListIntegrationResourcePropertiesOutput, table
+    listIntegrationResourceProperties: function(Client, types.ListIntegrationResourcePropertiesInput): Operation<types.ListIntegrationResourcePropertiesOutput>
     -- Retrieves the names of all job resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.
     -- This operation takes the optional Tags field, which you can use as a filter on
     -- the response so that tagged resources can be retrieved as a group. If you choose to use tags
     -- filtering, only resources with the tag are retrieved.
-    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobs: function(Client, types.ListJobsInput): Operation<types.ListJobsOutput>
     -- List all task runs for a particular account.
-    listMaterializedViewRefreshTaskRuns: function(Client, types.ListMaterializedViewRefreshTaskRunsInput): types.ListMaterializedViewRefreshTaskRunsOutput, table
+    listMaterializedViewRefreshTaskRuns: function(Client, types.ListMaterializedViewRefreshTaskRunsInput): Operation<types.ListMaterializedViewRefreshTaskRunsOutput>
     -- Retrieves a sortable, filterable list of existing Glue machine learning transforms in this Amazon Web Services account,
     -- or the resources with the specified tag. This operation takes the optional Tags field, which you can use as
     -- a filter of the responses so that tagged resources can be retrieved as a group. If you choose to use tag
     -- filtering, only resources with the tags are retrieved.
-    listMLTransforms: function(Client, types.ListMLTransformsInput): types.ListMLTransformsOutput, table
+    listMLTransforms: function(Client, types.ListMLTransformsInput): Operation<types.ListMLTransformsOutput>
     -- Returns a list of registries that you have created, with minimal registry information. Registries in the Deleting status will not be included in the results. Empty results will be returned if there are no registries available.
-    listRegistries: function(Client, types.ListRegistriesInput): types.ListRegistriesOutput, table
+    listRegistries: function(Client, types.ListRegistriesInput): Operation<types.ListRegistriesOutput>
     -- Returns a list of schemas with minimal details. Schemas in Deleting status will not be included in the results. Empty results will be returned if there are no schemas available.
     -- When the RegistryId is not provided, all the schemas across registries will be part of the API response.
-    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): Operation<types.ListSchemasOutput>
     -- Returns a list of schema versions that you have created, with minimal information. Schema versions in Deleted status will not be included in the results. Empty results will be returned if there are no schema versions available.
-    listSchemaVersions: function(Client, types.ListSchemaVersionsInput): types.ListSchemaVersionsOutput, table
+    listSchemaVersions: function(Client, types.ListSchemaVersionsInput): Operation<types.ListSchemaVersionsOutput>
     -- Retrieve a list of sessions.
-    listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    listSessions: function(Client, types.ListSessionsInput): Operation<types.ListSessionsOutput>
     -- Lists statements for the session.
-    listStatements: function(Client, types.ListStatementsInput): types.ListStatementsOutput, table
+    listStatements: function(Client, types.ListStatementsInput): Operation<types.ListStatementsOutput>
     -- Lists the history of previous optimizer runs for a specific table.
-    listTableOptimizerRuns: function(Client, types.ListTableOptimizerRunsInput): types.ListTableOptimizerRunsOutput, table
+    listTableOptimizerRuns: function(Client, types.ListTableOptimizerRunsInput): Operation<types.ListTableOptimizerRunsOutput>
     -- Retrieves the names of all trigger resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.
     -- This operation takes the optional Tags field, which you can use as a filter on
     -- the response so that tagged resources can be retrieved as a group. If you choose to use tags
     -- filtering, only resources with the tag are retrieved.
-    listTriggers: function(Client, types.ListTriggersInput): types.ListTriggersOutput, table
+    listTriggers: function(Client, types.ListTriggersInput): Operation<types.ListTriggersOutput>
     -- List all the Glue usage profiles.
-    listUsageProfiles: function(Client, types.ListUsageProfilesInput): types.ListUsageProfilesOutput, table
+    listUsageProfiles: function(Client, types.ListUsageProfilesInput): Operation<types.ListUsageProfilesOutput>
     -- Lists names of workflows created in the account.
-    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): Operation<types.ListWorkflowsOutput>
     -- Modifies a Zero-ETL integration in the caller's account.
-    modifyIntegration: function(Client, types.ModifyIntegrationInput): types.ModifyIntegrationOutput, table
+    modifyIntegration: function(Client, types.ModifyIntegrationInput): Operation<types.ModifyIntegrationOutput>
     -- Sets the security configuration for a specified catalog. After the configuration has been
     -- set, the specified encryption is applied to every catalog write thereafter.
-    putDataCatalogEncryptionSettings: function(Client, types.PutDataCatalogEncryptionSettingsInput): types.PutDataCatalogEncryptionSettingsOutput, table
+    putDataCatalogEncryptionSettings: function(Client, types.PutDataCatalogEncryptionSettingsInput): Operation<types.PutDataCatalogEncryptionSettingsOutput>
     -- Annotate all datapoints for a Profile.
-    putDataQualityProfileAnnotation: function(Client, types.PutDataQualityProfileAnnotationInput): types.PutDataQualityProfileAnnotationOutput, table
+    putDataQualityProfileAnnotation: function(Client, types.PutDataQualityProfileAnnotationInput): Operation<types.PutDataQualityProfileAnnotationOutput>
     -- Sets the Data Catalog resource policy for access control.
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): Operation<types.PutResourcePolicyOutput>
     -- Puts the metadata key value pair for a specified schema version ID. A maximum of 10 key value pairs will be allowed per schema version. They can be added over one or more calls.
-    putSchemaVersionMetadata: function(Client, types.PutSchemaVersionMetadataInput): types.PutSchemaVersionMetadataOutput, table
+    putSchemaVersionMetadata: function(Client, types.PutSchemaVersionMetadataInput): Operation<types.PutSchemaVersionMetadataOutput>
     -- Puts the specified workflow run properties for the given workflow run. If a property already exists for the specified run, then it overrides the value otherwise adds the property to existing properties.
-    putWorkflowRunProperties: function(Client, types.PutWorkflowRunPropertiesInput): types.PutWorkflowRunPropertiesOutput, table
+    putWorkflowRunProperties: function(Client, types.PutWorkflowRunPropertiesInput): Operation<types.PutWorkflowRunPropertiesOutput>
     -- Queries for the schema version metadata information.
-    querySchemaVersionMetadata: function(Client, types.QuerySchemaVersionMetadataInput): types.QuerySchemaVersionMetadataOutput, table
+    querySchemaVersionMetadata: function(Client, types.QuerySchemaVersionMetadataInput): Operation<types.QuerySchemaVersionMetadataOutput>
     -- Registers a custom connection type in Glue based on the configuration provided. This operation enables customers to configure custom connectors for any data source with REST-based APIs, eliminating the need for building custom Lambda connectors.
     -- The registered connection type stores details about how requests and responses are interpreted by REST sources, including connection properties, authentication configuration, and REST configuration with entity definitions. Once registered, customers can create connections using this connection type and work with them the same way as natively supported Glue connectors.
     -- Supports multiple authentication types including Basic, OAuth2 (Client Credentials, JWT Bearer, Authorization Code), and Custom Auth configurations.
-    registerConnectionType: function(Client, types.RegisterConnectionTypeInput): types.RegisterConnectionTypeOutput, table
+    registerConnectionType: function(Client, types.RegisterConnectionTypeInput): Operation<types.RegisterConnectionTypeOutput>
     -- Adds a new version to the existing schema. Returns an error if new version of schema does not meet the compatibility requirements of the schema set. This API will not create a new schema set and will return a 404 error if the schema set is not already present in the Schema Registry.
     -- If this is the first schema definition to be registered in the Schema Registry, this API will store the schema version and return immediately. Otherwise, this call has the potential to run longer than other operations due to compatibility modes. You can call the GetSchemaVersion API with the SchemaVersionId to check compatibility modes.
     -- If the same schema definition is already stored in Schema Registry as a version, the schema ID of the existing schema is returned to the caller.
-    registerSchemaVersion: function(Client, types.RegisterSchemaVersionInput): types.RegisterSchemaVersionOutput, table
+    registerSchemaVersion: function(Client, types.RegisterSchemaVersionInput): Operation<types.RegisterSchemaVersionOutput>
     -- Removes a key value pair from the schema version metadata for the specified schema version ID.
-    removeSchemaVersionMetadata: function(Client, types.RemoveSchemaVersionMetadataInput): types.RemoveSchemaVersionMetadataOutput, table
+    removeSchemaVersionMetadata: function(Client, types.RemoveSchemaVersionMetadataInput): Operation<types.RemoveSchemaVersionMetadataOutput>
     -- Resets a bookmark entry.
     -- For more information about enabling and using job bookmarks, see:
     -- Tracking processed data using job bookmarks
     -- Job parameters used by Glue
     -- Job structure
-    resetJobBookmark: function(Client, types.ResetJobBookmarkInput): types.ResetJobBookmarkOutput, table
+    resetJobBookmark: function(Client, types.ResetJobBookmarkInput): Operation<types.ResetJobBookmarkOutput>
     -- Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.
-    resumeWorkflowRun: function(Client, types.ResumeWorkflowRunInput): types.ResumeWorkflowRunOutput, table
+    resumeWorkflowRun: function(Client, types.ResumeWorkflowRunInput): Operation<types.ResumeWorkflowRunOutput>
     -- Executes the statement.
-    runStatement: function(Client, types.RunStatementInput): types.RunStatementOutput, table
+    runStatement: function(Client, types.RunStatementInput): Operation<types.RunStatementOutput>
     -- Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions.
     -- You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search.
-    searchTables: function(Client, types.SearchTablesInput): types.SearchTablesOutput, table
+    searchTables: function(Client, types.SearchTablesInput): Operation<types.SearchTablesOutput>
     -- Starts a new run of the specified blueprint.
-    startBlueprintRun: function(Client, types.StartBlueprintRunInput): types.StartBlueprintRunOutput, table
+    startBlueprintRun: function(Client, types.StartBlueprintRunInput): Operation<types.StartBlueprintRunOutput>
     -- Starts a column statistics task run, for a specified table and columns.
-    startColumnStatisticsTaskRun: function(Client, types.StartColumnStatisticsTaskRunInput): types.StartColumnStatisticsTaskRunOutput, table
+    startColumnStatisticsTaskRun: function(Client, types.StartColumnStatisticsTaskRunInput): Operation<types.StartColumnStatisticsTaskRunOutput>
     -- Starts a column statistics task run schedule.
-    startColumnStatisticsTaskRunSchedule: function(Client, types.StartColumnStatisticsTaskRunScheduleInput): types.StartColumnStatisticsTaskRunScheduleOutput, table
+    startColumnStatisticsTaskRunSchedule: function(Client, types.StartColumnStatisticsTaskRunScheduleInput): Operation<types.StartColumnStatisticsTaskRunScheduleOutput>
     -- Starts a crawl using the specified crawler, regardless
     -- of what is scheduled. If the crawler is already running, returns a
     -- CrawlerRunningException.
-    startCrawler: function(Client, types.StartCrawlerInput): types.StartCrawlerOutput, table
+    startCrawler: function(Client, types.StartCrawlerInput): Operation<types.StartCrawlerOutput>
     -- Changes the schedule state of the specified crawler to
     -- SCHEDULED, unless the crawler is already running or the
     -- schedule state is already SCHEDULED.
-    startCrawlerSchedule: function(Client, types.StartCrawlerScheduleInput): types.StartCrawlerScheduleOutput, table
+    startCrawlerSchedule: function(Client, types.StartCrawlerScheduleInput): Operation<types.StartCrawlerScheduleOutput>
     -- Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.
     -- Recommendation runs are automatically deleted after 90 days.
-    startDataQualityRuleRecommendationRun: function(Client, types.StartDataQualityRuleRecommendationRunInput): types.StartDataQualityRuleRecommendationRunOutput, table
+    startDataQualityRuleRecommendationRun: function(Client, types.StartDataQualityRuleRecommendationRunInput): Operation<types.StartDataQualityRuleRecommendationRunOutput>
     -- Once you have a ruleset definition (either recommended or your own), you call this operation to evaluate the ruleset against a data source (Glue table). The evaluation computes results which you can retrieve with the GetDataQualityResult API.
-    startDataQualityRulesetEvaluationRun: function(Client, types.StartDataQualityRulesetEvaluationRunInput): types.StartDataQualityRulesetEvaluationRunOutput, table
+    startDataQualityRulesetEvaluationRun: function(Client, types.StartDataQualityRulesetEvaluationRunInput): Operation<types.StartDataQualityRulesetEvaluationRunOutput>
     -- Begins an asynchronous task to export all labeled data for a particular transform. This
     -- task is the only label-related API call that is not part of the typical active learning
     -- workflow. You typically use StartExportLabelsTaskRun when you want to work with
@@ -610,7 +614,7 @@ local record Client
     -- Service (Amazon S3) path to export the labels to. The operation returns a
     -- TaskRunId. You can check on the status of your task run by calling the
     -- GetMLTaskRun API.
-    startExportLabelsTaskRun: function(Client, types.StartExportLabelsTaskRunInput): types.StartExportLabelsTaskRunOutput, table
+    startExportLabelsTaskRun: function(Client, types.StartExportLabelsTaskRunInput): Operation<types.StartExportLabelsTaskRunOutput>
     -- Enables you to provide additional labels (examples of truth) to be used to teach the
     -- machine learning transform and improve its quality. This API operation is generally used as
     -- part of the active learning workflow that starts with the
@@ -633,18 +637,18 @@ local record Client
     -- believe that they are having a negative effect on your transform quality.
     -- You can check on the status of your task run by calling the GetMLTaskRun
     -- operation.
-    startImportLabelsTaskRun: function(Client, types.StartImportLabelsTaskRunInput): types.StartImportLabelsTaskRunOutput, table
+    startImportLabelsTaskRun: function(Client, types.StartImportLabelsTaskRunInput): Operation<types.StartImportLabelsTaskRunOutput>
     -- Starts a job run using a job definition.
-    startJobRun: function(Client, types.StartJobRunInput): types.StartJobRunOutput, table
+    startJobRun: function(Client, types.StartJobRunInput): Operation<types.StartJobRunOutput>
     -- Starts a materialized view refresh task run, for a specified table and columns.
-    startMaterializedViewRefreshTaskRun: function(Client, types.StartMaterializedViewRefreshTaskRunInput): types.StartMaterializedViewRefreshTaskRunOutput, table
+    startMaterializedViewRefreshTaskRun: function(Client, types.StartMaterializedViewRefreshTaskRunInput): Operation<types.StartMaterializedViewRefreshTaskRunOutput>
     -- Starts a task to estimate the quality of the transform.
     -- When you provide label sets as examples of truth, Glue machine learning uses some of
     -- those examples to learn from them. The rest of the labels are used as a test to estimate
     -- quality.
     -- Returns a unique identifier for the run. You can call GetMLTaskRun to get more
     -- information about the stats of the EvaluationTaskRun.
-    startMLEvaluationTaskRun: function(Client, types.StartMLEvaluationTaskRunInput): types.StartMLEvaluationTaskRunOutput, table
+    startMLEvaluationTaskRun: function(Client, types.StartMLEvaluationTaskRunInput): Operation<types.StartMLEvaluationTaskRunOutput>
     -- Starts the active learning workflow for your machine learning transform to improve the
     -- transform's quality by generating label sets and adding labels.
     -- When the StartMLLabelingSetGenerationTaskRun finishes, Glue will have
@@ -658,113 +662,113 @@ local record Client
     -- perform a higher-quality transformation.
     -- Note: The role used to write the generated labeling set to the OutputS3Path is the role
     -- associated with the Machine Learning Transform, specified in the CreateMLTransform API.
-    startMLLabelingSetGenerationTaskRun: function(Client, types.StartMLLabelingSetGenerationTaskRunInput): types.StartMLLabelingSetGenerationTaskRunOutput, table
+    startMLLabelingSetGenerationTaskRun: function(Client, types.StartMLLabelingSetGenerationTaskRunInput): Operation<types.StartMLLabelingSetGenerationTaskRunOutput>
     -- Starts an existing trigger. See Triggering
     -- Jobs for information about how different types of trigger are
     -- started.
-    startTrigger: function(Client, types.StartTriggerInput): types.StartTriggerOutput, table
+    startTrigger: function(Client, types.StartTriggerInput): Operation<types.StartTriggerOutput>
     -- Starts a new run of the specified workflow.
-    startWorkflowRun: function(Client, types.StartWorkflowRunInput): types.StartWorkflowRunOutput, table
+    startWorkflowRun: function(Client, types.StartWorkflowRunInput): Operation<types.StartWorkflowRunOutput>
     -- Stops a task run for the specified table.
-    stopColumnStatisticsTaskRun: function(Client, types.StopColumnStatisticsTaskRunInput): types.StopColumnStatisticsTaskRunOutput, table
+    stopColumnStatisticsTaskRun: function(Client, types.StopColumnStatisticsTaskRunInput): Operation<types.StopColumnStatisticsTaskRunOutput>
     -- Stops a column statistics task run schedule.
-    stopColumnStatisticsTaskRunSchedule: function(Client, types.StopColumnStatisticsTaskRunScheduleInput): types.StopColumnStatisticsTaskRunScheduleOutput, table
+    stopColumnStatisticsTaskRunSchedule: function(Client, types.StopColumnStatisticsTaskRunScheduleInput): Operation<types.StopColumnStatisticsTaskRunScheduleOutput>
     -- If the specified crawler is running, stops the crawl.
-    stopCrawler: function(Client, types.StopCrawlerInput): types.StopCrawlerOutput, table
+    stopCrawler: function(Client, types.StopCrawlerInput): Operation<types.StopCrawlerOutput>
     -- Sets the schedule state of the specified crawler to
     -- NOT_SCHEDULED, but does not stop the crawler if it is
     -- already running.
-    stopCrawlerSchedule: function(Client, types.StopCrawlerScheduleInput): types.StopCrawlerScheduleOutput, table
+    stopCrawlerSchedule: function(Client, types.StopCrawlerScheduleInput): Operation<types.StopCrawlerScheduleOutput>
     -- Stops a materialized view refresh task run, for a specified table and columns.
-    stopMaterializedViewRefreshTaskRun: function(Client, types.StopMaterializedViewRefreshTaskRunInput): types.StopMaterializedViewRefreshTaskRunOutput, table
+    stopMaterializedViewRefreshTaskRun: function(Client, types.StopMaterializedViewRefreshTaskRunInput): Operation<types.StopMaterializedViewRefreshTaskRunOutput>
     -- Stops the session.
-    stopSession: function(Client, types.StopSessionInput): types.StopSessionOutput, table
+    stopSession: function(Client, types.StopSessionInput): Operation<types.StopSessionOutput>
     -- Stops a specified trigger.
-    stopTrigger: function(Client, types.StopTriggerInput): types.StopTriggerOutput, table
+    stopTrigger: function(Client, types.StopTriggerInput): Operation<types.StopTriggerOutput>
     -- Stops the execution of the specified workflow run.
-    stopWorkflowRun: function(Client, types.StopWorkflowRunInput): types.StopWorkflowRunOutput, table
+    stopWorkflowRun: function(Client, types.StopWorkflowRunInput): Operation<types.StopWorkflowRunOutput>
     -- Adds tags to a resource. A tag is a label you can assign to an Amazon Web Services resource.
     -- In Glue, you can tag only certain resources. For information about what
     -- resources you can tag, see Amazon Web Services Tags in Glue.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Tests a connection to a service to validate the service credentials that you provide.
     -- You can either provide an existing connection name or a TestConnectionInput for testing a non-existing connection input. Providing both at the same time will cause an error.
     -- If the action is successful, the service sends back an HTTP 200 response.
-    testConnection: function(Client, types.TestConnectionOperationInput): types.TestConnectionOutput, table
+    testConnection: function(Client, types.TestConnectionOperationInput): Operation<types.TestConnectionOutput>
     -- Removes tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a registered blueprint.
-    updateBlueprint: function(Client, types.UpdateBlueprintInput): types.UpdateBlueprintOutput, table
+    updateBlueprint: function(Client, types.UpdateBlueprintInput): Operation<types.UpdateBlueprintOutput>
     -- Updates an existing catalog's properties in the Glue Data Catalog.
-    updateCatalog: function(Client, types.UpdateCatalogInput): types.UpdateCatalogOutput, table
+    updateCatalog: function(Client, types.UpdateCatalogInput): Operation<types.UpdateCatalogOutput>
     -- Modifies an existing classifier (a GrokClassifier,
     -- an XMLClassifier, a JsonClassifier, or a CsvClassifier, depending on
     -- which field is present).
-    updateClassifier: function(Client, types.UpdateClassifierInput): types.UpdateClassifierOutput, table
+    updateClassifier: function(Client, types.UpdateClassifierInput): Operation<types.UpdateClassifierOutput>
     -- Creates or updates partition statistics of columns.
     -- The Identity and Access Management (IAM) permission required for this operation is UpdatePartition.
-    updateColumnStatisticsForPartition: function(Client, types.UpdateColumnStatisticsForPartitionInput): types.UpdateColumnStatisticsForPartitionOutput, table
+    updateColumnStatisticsForPartition: function(Client, types.UpdateColumnStatisticsForPartitionInput): Operation<types.UpdateColumnStatisticsForPartitionOutput>
     -- Creates or updates table statistics of columns.
     -- The Identity and Access Management (IAM) permission required for this operation is UpdateTable.
-    updateColumnStatisticsForTable: function(Client, types.UpdateColumnStatisticsForTableInput): types.UpdateColumnStatisticsForTableOutput, table
+    updateColumnStatisticsForTable: function(Client, types.UpdateColumnStatisticsForTableInput): Operation<types.UpdateColumnStatisticsForTableOutput>
     -- Updates settings for a column statistics task.
-    updateColumnStatisticsTaskSettings: function(Client, types.UpdateColumnStatisticsTaskSettingsInput): types.UpdateColumnStatisticsTaskSettingsOutput, table
+    updateColumnStatisticsTaskSettings: function(Client, types.UpdateColumnStatisticsTaskSettingsInput): Operation<types.UpdateColumnStatisticsTaskSettingsOutput>
     -- Updates a connection definition in the Data Catalog.
-    updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    updateConnection: function(Client, types.UpdateConnectionInput): Operation<types.UpdateConnectionOutput>
     -- Updates a crawler. If a crawler is
     -- running, you must stop it using StopCrawler before updating
     -- it.
-    updateCrawler: function(Client, types.UpdateCrawlerInput): types.UpdateCrawlerOutput, table
+    updateCrawler: function(Client, types.UpdateCrawlerInput): Operation<types.UpdateCrawlerOutput>
     -- Updates the schedule of a crawler using a cron expression.
-    updateCrawlerSchedule: function(Client, types.UpdateCrawlerScheduleInput): types.UpdateCrawlerScheduleOutput, table
+    updateCrawlerSchedule: function(Client, types.UpdateCrawlerScheduleInput): Operation<types.UpdateCrawlerScheduleOutput>
     -- Updates an existing database definition in a Data Catalog.
-    updateDatabase: function(Client, types.UpdateDatabaseInput): types.UpdateDatabaseOutput, table
+    updateDatabase: function(Client, types.UpdateDatabaseInput): Operation<types.UpdateDatabaseOutput>
     -- Updates the specified data quality ruleset.
-    updateDataQualityRuleset: function(Client, types.UpdateDataQualityRulesetInput): types.UpdateDataQualityRulesetOutput, table
+    updateDataQualityRuleset: function(Client, types.UpdateDataQualityRulesetInput): Operation<types.UpdateDataQualityRulesetOutput>
     -- Updates a specified development endpoint.
-    updateDevEndpoint: function(Client, types.UpdateDevEndpointInput): types.UpdateDevEndpointOutput, table
+    updateDevEndpoint: function(Client, types.UpdateDevEndpointInput): Operation<types.UpdateDevEndpointOutput>
     -- Updates the existing Glue Identity Center configuration, allowing modification of scopes and permissions for the integration.
-    updateGlueIdentityCenterConfiguration: function(Client, types.UpdateGlueIdentityCenterConfigurationInput): types.UpdateGlueIdentityCenterConfigurationOutput, table
+    updateGlueIdentityCenterConfiguration: function(Client, types.UpdateGlueIdentityCenterConfigurationInput): Operation<types.UpdateGlueIdentityCenterConfigurationOutput>
     -- This API can be used for updating the ResourceProperty of the Glue connection (for the source) or Glue database ARN (for the target). These properties can include the role to access the connection or database. Since the same resource can be used across multiple integrations, updating resource properties will impact all the integrations using it.
-    updateIntegrationResourceProperty: function(Client, types.UpdateIntegrationResourcePropertyInput): types.UpdateIntegrationResourcePropertyOutput, table
+    updateIntegrationResourceProperty: function(Client, types.UpdateIntegrationResourcePropertyInput): Operation<types.UpdateIntegrationResourcePropertyOutput>
     -- This API is used to provide optional override properties for the tables that need to be replicated. These properties can include properties for filtering and partitioning for the source and target tables. To set both source and target properties the same API need to be invoked with the Glue connection ARN as ResourceArn with SourceTableConfig, and the Glue database ARN as ResourceArn with TargetTableConfig respectively.
     -- The override will be reflected across all the integrations using same ResourceArn and source table.
-    updateIntegrationTableProperties: function(Client, types.UpdateIntegrationTablePropertiesInput): types.UpdateIntegrationTablePropertiesOutput, table
+    updateIntegrationTableProperties: function(Client, types.UpdateIntegrationTablePropertiesInput): Operation<types.UpdateIntegrationTablePropertiesOutput>
     -- Updates an existing job definition. The previous job definition is completely overwritten by this information.
-    updateJob: function(Client, types.UpdateJobInput): types.UpdateJobOutput, table
+    updateJob: function(Client, types.UpdateJobInput): Operation<types.UpdateJobOutput>
     -- Synchronizes a job from the source control repository. This operation takes the job artifacts that are located in the remote repository and updates the Glue internal stores with these artifacts.
     -- This API supports optional parameters which take in the repository information.
-    updateJobFromSourceControl: function(Client, types.UpdateJobFromSourceControlInput): types.UpdateJobFromSourceControlOutput, table
+    updateJobFromSourceControl: function(Client, types.UpdateJobFromSourceControlInput): Operation<types.UpdateJobFromSourceControlOutput>
     -- Updates an existing machine learning transform. Call this operation to tune the algorithm parameters to achieve better results.
     -- After calling this operation, you can call the StartMLEvaluationTaskRun
     -- operation to assess how well your new parameters achieved your goals (such as improving the
     -- quality of your machine learning transform, or making it more cost-effective).
-    updateMLTransform: function(Client, types.UpdateMLTransformInput): types.UpdateMLTransformOutput, table
+    updateMLTransform: function(Client, types.UpdateMLTransformInput): Operation<types.UpdateMLTransformOutput>
     -- Updates a partition.
-    updatePartition: function(Client, types.UpdatePartitionInput): types.UpdatePartitionOutput, table
+    updatePartition: function(Client, types.UpdatePartitionInput): Operation<types.UpdatePartitionOutput>
     -- Updates an existing registry which is used to hold a collection of schemas. The updated properties relate to the registry, and do not modify any of the schemas within the registry.
-    updateRegistry: function(Client, types.UpdateRegistryInput): types.UpdateRegistryOutput, table
+    updateRegistry: function(Client, types.UpdateRegistryInput): Operation<types.UpdateRegistryOutput>
     -- Updates the description, compatibility setting, or version checkpoint for a schema set.
     -- For updating the compatibility setting, the call will not validate compatibility for the entire set of schema versions with the new compatibility setting. If the value for Compatibility is provided, the VersionNumber (a checkpoint) is also required. The API will validate the checkpoint version number for consistency.
     -- If the value for the VersionNumber (checkpoint) is provided, Compatibility is optional and this can be used to set/reset a checkpoint for the schema.
     -- This update will happen only if the schema is in the AVAILABLE state.
-    updateSchema: function(Client, types.UpdateSchemaInput): types.UpdateSchemaOutput, table
+    updateSchema: function(Client, types.UpdateSchemaInput): Operation<types.UpdateSchemaOutput>
     -- Synchronizes a job to the source control repository. This operation takes the job artifacts from the Glue internal stores and makes a commit to the remote repository that is configured on the job.
     -- This API supports optional parameters which take in the repository information.
-    updateSourceControlFromJob: function(Client, types.UpdateSourceControlFromJobInput): types.UpdateSourceControlFromJobOutput, table
+    updateSourceControlFromJob: function(Client, types.UpdateSourceControlFromJobInput): Operation<types.UpdateSourceControlFromJobOutput>
     -- Updates a metadata table in the Data Catalog.
-    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+    updateTable: function(Client, types.UpdateTableInput): Operation<types.UpdateTableOutput>
     -- Updates the configuration for an existing table optimizer.
-    updateTableOptimizer: function(Client, types.UpdateTableOptimizerInput): types.UpdateTableOptimizerOutput, table
+    updateTableOptimizer: function(Client, types.UpdateTableOptimizerInput): Operation<types.UpdateTableOptimizerOutput>
     -- Updates a trigger definition.
     -- Job arguments may be logged. Do not pass plaintext secrets as arguments. Retrieve secrets from a Glue Connection, Amazon Web Services Secrets Manager or other secret management mechanism if you intend to keep them within the Job.
-    updateTrigger: function(Client, types.UpdateTriggerInput): types.UpdateTriggerOutput, table
+    updateTrigger: function(Client, types.UpdateTriggerInput): Operation<types.UpdateTriggerOutput>
     -- Update an Glue usage profile.
-    updateUsageProfile: function(Client, types.UpdateUsageProfileInput): types.UpdateUsageProfileOutput, table
+    updateUsageProfile: function(Client, types.UpdateUsageProfileInput): Operation<types.UpdateUsageProfileOutput>
     -- Updates an existing function definition in the Data Catalog.
-    updateUserDefinedFunction: function(Client, types.UpdateUserDefinedFunctionInput): types.UpdateUserDefinedFunctionOutput, table
+    updateUserDefinedFunction: function(Client, types.UpdateUserDefinedFunctionInput): Operation<types.UpdateUserDefinedFunctionOutput>
     -- Updates an existing workflow.
-    updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+    updateWorkflow: function(Client, types.UpdateWorkflowInput): Operation<types.UpdateWorkflowOutput>
 end
 
 local record M

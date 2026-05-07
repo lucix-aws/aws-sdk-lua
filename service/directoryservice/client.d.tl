@@ -2,9 +2,13 @@
 
 local types = require("directoryservice.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Accepts a directory sharing request that was sent from the directory owner account.
-    acceptSharedDirectory: function(Client, types.AcceptSharedDirectoryInput): types.AcceptSharedDirectoryOutput, table
+    acceptSharedDirectory: function(Client, types.AcceptSharedDirectoryInput): Operation<types.AcceptSharedDirectoryOutput>
     -- If the DNS server for your self-managed domain uses a publicly addressable IP address,
     -- you must add a CIDR address block to correctly route traffic to and from your Microsoft AD
     -- on Amazon Web Services. AddIpRoutes adds this address block. You can
@@ -13,58 +17,58 @@ local record Client
     -- Before you call AddIpRoutes, ensure that all of the required
     -- permissions have been explicitly granted through a policy. For details about what
     -- permissions are required to run the AddIpRoutes operation, see Directory Service API Permissions: Actions, Resources, and Conditions Reference.
-    addIpRoutes: function(Client, types.AddIpRoutesInput): types.AddIpRoutesOutput, table
+    addIpRoutes: function(Client, types.AddIpRoutesInput): Operation<types.AddIpRoutesOutput>
     -- Adds two domain controllers in the specified Region for the specified directory.
-    addRegion: function(Client, types.AddRegionInput): types.AddRegionOutput, table
+    addRegion: function(Client, types.AddRegionInput): Operation<types.AddRegionOutput>
     -- Adds or overwrites one or more tags for the specified directory. Each directory can
     -- have a maximum of 50 tags. Each tag consists of a key and optional value. Tag keys must be
     -- unique to each resource.
-    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): Operation<types.AddTagsToResourceOutput>
     -- Cancels an in-progress schema extension to a Microsoft AD directory. Once a schema
     -- extension has started replicating to all domain controllers, the task can no longer be
     -- canceled. A schema extension can be canceled during any of the following states;
     -- Initializing, CreatingSnapshot, and
     -- UpdatingSchema.
-    cancelSchemaExtension: function(Client, types.CancelSchemaExtensionInput): types.CancelSchemaExtensionOutput, table
+    cancelSchemaExtension: function(Client, types.CancelSchemaExtensionInput): Operation<types.CancelSchemaExtensionOutput>
     -- Creates an AD Connector to connect to a self-managed directory.
     -- Before you call ConnectDirectory, ensure that all of the required permissions
     -- have been explicitly granted through a policy. For details about what permissions are required
     -- to run the ConnectDirectory operation, see Directory Service API Permissions: Actions, Resources, and Conditions Reference.
-    connectDirectory: function(Client, types.ConnectDirectoryInput): types.ConnectDirectoryOutput, table
+    connectDirectory: function(Client, types.ConnectDirectoryInput): Operation<types.ConnectDirectoryOutput>
     -- Creates an alias for a directory and assigns the alias to the directory. The alias is used
     -- to construct the access URL for the directory, such as
     -- http://.awsapps.com.
     -- After an alias has been created, it cannot be deleted or reused, so this operation should only be used when absolutely necessary.
-    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createAlias: function(Client, types.CreateAliasInput): Operation<types.CreateAliasOutput>
     -- Creates an Active Directory computer object in the specified directory.
-    createComputer: function(Client, types.CreateComputerInput): types.CreateComputerOutput, table
+    createComputer: function(Client, types.CreateComputerInput): Operation<types.CreateComputerOutput>
     -- Creates a conditional forwarder associated with your Amazon Web Services directory. Conditional
     -- forwarders are required in order to set up a trust relationship with another domain. The
     -- conditional forwarder points to the trusted domain.
-    createConditionalForwarder: function(Client, types.CreateConditionalForwarderInput): types.CreateConditionalForwarderOutput, table
+    createConditionalForwarder: function(Client, types.CreateConditionalForwarderInput): Operation<types.CreateConditionalForwarderOutput>
     -- Creates a Simple AD directory. For more information, see Simple Active Directory in the Directory Service Admin Guide.
     -- Before you call CreateDirectory, ensure that all of the required permissions
     -- have been explicitly granted through a policy. For details about what permissions are required
     -- to run the CreateDirectory operation, see Directory Service API Permissions: Actions, Resources, and Conditions Reference.
-    createDirectory: function(Client, types.CreateDirectoryInput): types.CreateDirectoryOutput, table
+    createDirectory: function(Client, types.CreateDirectoryInput): Operation<types.CreateDirectoryOutput>
     -- Creates a hybrid directory that connects your self-managed Active Directory (AD)
     -- infrastructure and Amazon Web Services.
     -- You must have a successful directory assessment using StartADAssessment to validate your environment compatibility before you
     -- use this operation.
     -- Updates are applied asynchronously. Use DescribeDirectories to
     -- monitor the progress of directory creation.
-    createHybridAD: function(Client, types.CreateHybridADInput): types.CreateHybridADOutput, table
+    createHybridAD: function(Client, types.CreateHybridADInput): Operation<types.CreateHybridADOutput>
     -- Creates a subscription to forward real-time Directory Service domain controller security
     -- logs to the specified Amazon CloudWatch log group in your Amazon Web Services account.
-    createLogSubscription: function(Client, types.CreateLogSubscriptionInput): types.CreateLogSubscriptionOutput, table
+    createLogSubscription: function(Client, types.CreateLogSubscriptionInput): Operation<types.CreateLogSubscriptionOutput>
     -- Creates a Microsoft AD directory in the Amazon Web Services Cloud. For more information, see Managed Microsoft AD in the Directory Service Admin Guide.
     -- Before you call CreateMicrosoftAD, ensure that all of the required
     -- permissions have been explicitly granted through a policy. For details about what permissions
     -- are required to run the CreateMicrosoftAD operation, see Directory Service API Permissions: Actions, Resources, and Conditions Reference.
-    createMicrosoftAD: function(Client, types.CreateMicrosoftADInput): types.CreateMicrosoftADOutput, table
+    createMicrosoftAD: function(Client, types.CreateMicrosoftADInput): Operation<types.CreateMicrosoftADOutput>
     -- Creates a snapshot of a Simple AD or Microsoft AD directory in the Amazon Web Services cloud.
     -- You cannot take snapshots of AD Connector directories.
-    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): Operation<types.CreateSnapshotOutput>
     -- Directory Service for Microsoft Active Directory allows you to configure trust relationships. For
     -- example, you can establish a trust between your Managed Microsoft AD directory, and your existing
     -- self-managed Microsoft Active Directory. This would allow you to provide users and groups
@@ -72,53 +76,53 @@ local record Client
     -- This action initiates the creation of the Amazon Web Services side of a trust relationship between an
     -- Managed Microsoft AD directory and an external domain. You can create either a forest trust or an
     -- external trust.
-    createTrust: function(Client, types.CreateTrustInput): types.CreateTrustOutput, table
+    createTrust: function(Client, types.CreateTrustInput): Operation<types.CreateTrustOutput>
     -- Deletes a directory assessment and all associated data. This operation permanently
     -- removes the assessment results, validation reports, and configuration
     -- information.
     -- You cannot delete system-initiated assessments. You can delete customer-created
     -- assessments even if they are in progress.
-    deleteADAssessment: function(Client, types.DeleteADAssessmentInput): types.DeleteADAssessmentOutput, table
+    deleteADAssessment: function(Client, types.DeleteADAssessmentInput): Operation<types.DeleteADAssessmentOutput>
     -- Deletes a conditional forwarder that has been set up for your Amazon Web Services
     -- directory.
-    deleteConditionalForwarder: function(Client, types.DeleteConditionalForwarderInput): types.DeleteConditionalForwarderOutput, table
+    deleteConditionalForwarder: function(Client, types.DeleteConditionalForwarderInput): Operation<types.DeleteConditionalForwarderOutput>
     -- Deletes an Directory Service directory.
     -- Before you call DeleteDirectory, ensure that all of the required permissions
     -- have been explicitly granted through a policy. For details about what permissions are required
     -- to run the DeleteDirectory operation, see Directory Service API Permissions: Actions, Resources, and Conditions Reference.
-    deleteDirectory: function(Client, types.DeleteDirectoryInput): types.DeleteDirectoryOutput, table
+    deleteDirectory: function(Client, types.DeleteDirectoryInput): Operation<types.DeleteDirectoryOutput>
     -- Deletes the specified log subscription.
-    deleteLogSubscription: function(Client, types.DeleteLogSubscriptionInput): types.DeleteLogSubscriptionOutput, table
+    deleteLogSubscription: function(Client, types.DeleteLogSubscriptionInput): Operation<types.DeleteLogSubscriptionOutput>
     -- Deletes a directory snapshot.
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): Operation<types.DeleteSnapshotOutput>
     -- Deletes an existing trust relationship between your Managed Microsoft AD directory and an external
     -- domain.
-    deleteTrust: function(Client, types.DeleteTrustInput): types.DeleteTrustOutput, table
+    deleteTrust: function(Client, types.DeleteTrustInput): Operation<types.DeleteTrustOutput>
     -- Deletes from the system the certificate that was registered for secure LDAP or client
     -- certificate authentication.
-    deregisterCertificate: function(Client, types.DeregisterCertificateInput): types.DeregisterCertificateOutput, table
+    deregisterCertificate: function(Client, types.DeregisterCertificateInput): Operation<types.DeregisterCertificateOutput>
     -- Removes the specified directory as a publisher to the specified Amazon SNS topic.
-    deregisterEventTopic: function(Client, types.DeregisterEventTopicInput): types.DeregisterEventTopicOutput, table
+    deregisterEventTopic: function(Client, types.DeregisterEventTopicInput): Operation<types.DeregisterEventTopicOutput>
     -- Retrieves detailed information about a directory assessment, including its current
     -- status, validation results, and configuration details. Use this operation to monitor
     -- assessment progress and review results.
-    describeADAssessment: function(Client, types.DescribeADAssessmentInput): types.DescribeADAssessmentOutput, table
+    describeADAssessment: function(Client, types.DescribeADAssessmentInput): Operation<types.DescribeADAssessmentOutput>
     -- Retrieves detailed information about the certificate authority (CA) enrollment policy for
     -- the specified directory. This policy determines how client certificates are automatically enrolled and
     -- managed through Amazon Web Services Private Certificate Authority.
-    describeCAEnrollmentPolicy: function(Client, types.DescribeCAEnrollmentPolicyInput): types.DescribeCAEnrollmentPolicyOutput, table
+    describeCAEnrollmentPolicy: function(Client, types.DescribeCAEnrollmentPolicyInput): Operation<types.DescribeCAEnrollmentPolicyOutput>
     -- Displays information about the certificate registered for secure LDAP or client
     -- certificate authentication.
-    describeCertificate: function(Client, types.DescribeCertificateInput): types.DescribeCertificateOutput, table
+    describeCertificate: function(Client, types.DescribeCertificateInput): Operation<types.DescribeCertificateOutput>
     -- Retrieves information about the type of client authentication for the specified directory,
     -- if the type is specified. If no type is specified, information about all client authentication
     -- types that are supported for the specified directory is retrieved. Currently, only
     -- SmartCard is supported.
-    describeClientAuthenticationSettings: function(Client, types.DescribeClientAuthenticationSettingsInput): types.DescribeClientAuthenticationSettingsOutput, table
+    describeClientAuthenticationSettings: function(Client, types.DescribeClientAuthenticationSettingsInput): Operation<types.DescribeClientAuthenticationSettingsOutput>
     -- Obtains information about the conditional forwarders for this account.
     -- If no input parameters are provided for RemoteDomainNames, this request describes all
     -- conditional forwarders for the specified directory ID.
-    describeConditionalForwarders: function(Client, types.DescribeConditionalForwardersInput): types.DescribeConditionalForwardersOutput, table
+    describeConditionalForwarders: function(Client, types.DescribeConditionalForwardersInput): Operation<types.DescribeConditionalForwardersOutput>
     -- Obtains information about the directories that belong to this account.
     -- You can retrieve information about specific directories by passing the directory
     -- identifiers in the DirectoryIds parameter. Otherwise, all directories that belong
@@ -130,30 +134,30 @@ local record Client
     -- items.
     -- You can also specify a maximum number of return results with the Limit
     -- parameter.
-    describeDirectories: function(Client, types.DescribeDirectoriesInput): types.DescribeDirectoriesOutput, table
+    describeDirectories: function(Client, types.DescribeDirectoriesInput): Operation<types.DescribeDirectoriesOutput>
     -- Obtains status of directory data access enablement through the Directory Service Data API for the
     -- specified directory.
-    describeDirectoryDataAccess: function(Client, types.DescribeDirectoryDataAccessInput): types.DescribeDirectoryDataAccessOutput, table
+    describeDirectoryDataAccess: function(Client, types.DescribeDirectoryDataAccessInput): Operation<types.DescribeDirectoryDataAccessOutput>
     -- Provides information about any domain controllers in your directory.
-    describeDomainControllers: function(Client, types.DescribeDomainControllersInput): types.DescribeDomainControllersOutput, table
+    describeDomainControllers: function(Client, types.DescribeDomainControllersInput): Operation<types.DescribeDomainControllersOutput>
     -- Obtains information about which Amazon SNS topics receive status messages from the specified
     -- directory.
     -- If no input parameters are provided, such as DirectoryId or TopicName, this request
     -- describes all of the associations in the account.
-    describeEventTopics: function(Client, types.DescribeEventTopicsInput): types.DescribeEventTopicsOutput, table
+    describeEventTopics: function(Client, types.DescribeEventTopicsInput): Operation<types.DescribeEventTopicsOutput>
     -- Retrieves information about update activities for a hybrid directory. This operation
     -- provides details about configuration changes, administrator account updates, and
     -- self-managed instance settings (IDs and DNS IPs).
-    describeHybridADUpdate: function(Client, types.DescribeHybridADUpdateInput): types.DescribeHybridADUpdateOutput, table
+    describeHybridADUpdate: function(Client, types.DescribeHybridADUpdateInput): Operation<types.DescribeHybridADUpdateOutput>
     -- Describes the status of LDAP security for the specified directory.
-    describeLDAPSSettings: function(Client, types.DescribeLDAPSSettingsInput): types.DescribeLDAPSSettingsOutput, table
+    describeLDAPSSettings: function(Client, types.DescribeLDAPSSettingsInput): Operation<types.DescribeLDAPSSettingsOutput>
     -- Provides information about the Regions that are configured for multi-Region
     -- replication.
-    describeRegions: function(Client, types.DescribeRegionsInput): types.DescribeRegionsOutput, table
+    describeRegions: function(Client, types.DescribeRegionsInput): Operation<types.DescribeRegionsOutput>
     -- Retrieves information about the configurable settings for the specified directory.
-    describeSettings: function(Client, types.DescribeSettingsInput): types.DescribeSettingsOutput, table
+    describeSettings: function(Client, types.DescribeSettingsInput): Operation<types.DescribeSettingsOutput>
     -- Returns the shared directories in your account.
-    describeSharedDirectories: function(Client, types.DescribeSharedDirectoriesInput): types.DescribeSharedDirectoriesOutput, table
+    describeSharedDirectories: function(Client, types.DescribeSharedDirectoriesInput): Operation<types.DescribeSharedDirectoriesOutput>
     -- Obtains information about the directory snapshots that belong to this account.
     -- This operation supports pagination with the use of the NextToken request and
     -- response parameters. If more results are available, the DescribeSnapshots.NextToken
@@ -161,89 +165,89 @@ local record Client
     -- retrieve the next set of items.
     -- You can also specify a maximum number of return results with the Limit
     -- parameter.
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): Operation<types.DescribeSnapshotsOutput>
     -- Obtains information about the trust relationships for this account.
     -- If no input parameters are provided, such as DirectoryId or TrustIds, this request
     -- describes all the trust relationships belonging to the account.
-    describeTrusts: function(Client, types.DescribeTrustsInput): types.DescribeTrustsOutput, table
+    describeTrusts: function(Client, types.DescribeTrustsInput): Operation<types.DescribeTrustsOutput>
     -- Describes the updates of a directory for a particular update type.
-    describeUpdateDirectory: function(Client, types.DescribeUpdateDirectoryInput): types.DescribeUpdateDirectoryOutput, table
+    describeUpdateDirectory: function(Client, types.DescribeUpdateDirectoryInput): Operation<types.DescribeUpdateDirectoryOutput>
     -- Disables the certificate authority (CA) enrollment policy for the specified directory. This stops
     -- automatic certificate enrollment and management for domain-joined clients, but does not affect
     -- existing certificates.
     -- Disabling the CA enrollment policy prevents new certificates from being automatically
     -- enrolled, but existing certificates remain valid and functional until they expire.
-    disableCAEnrollmentPolicy: function(Client, types.DisableCAEnrollmentPolicyInput): types.DisableCAEnrollmentPolicyOutput, table
+    disableCAEnrollmentPolicy: function(Client, types.DisableCAEnrollmentPolicyInput): Operation<types.DisableCAEnrollmentPolicyOutput>
     -- Disables alternative client authentication methods for the specified directory.
-    disableClientAuthentication: function(Client, types.DisableClientAuthenticationInput): types.DisableClientAuthenticationOutput, table
+    disableClientAuthentication: function(Client, types.DisableClientAuthenticationInput): Operation<types.DisableClientAuthenticationOutput>
     -- Deactivates access to directory data via the Directory Service Data API for the specified directory. For
     -- more information, see Directory Service Data API Reference.
-    disableDirectoryDataAccess: function(Client, types.DisableDirectoryDataAccessInput): types.DisableDirectoryDataAccessOutput, table
+    disableDirectoryDataAccess: function(Client, types.DisableDirectoryDataAccessInput): Operation<types.DisableDirectoryDataAccessOutput>
     -- Deactivates LDAP secure calls for the specified directory.
-    disableLDAPS: function(Client, types.DisableLDAPSInput): types.DisableLDAPSOutput, table
+    disableLDAPS: function(Client, types.DisableLDAPSInput): Operation<types.DisableLDAPSOutput>
     -- Disables multi-factor authentication (MFA) with the Remote Authentication Dial In User
     -- Service (RADIUS) server for an AD Connector or Microsoft AD directory.
-    disableRadius: function(Client, types.DisableRadiusInput): types.DisableRadiusOutput, table
+    disableRadius: function(Client, types.DisableRadiusInput): Operation<types.DisableRadiusOutput>
     -- Disables single-sign on for a directory.
-    disableSso: function(Client, types.DisableSsoInput): types.DisableSsoOutput, table
+    disableSso: function(Client, types.DisableSsoInput): Operation<types.DisableSsoOutput>
     -- Enables certificate authority (CA) enrollment policy for the specified directory. This allows
     -- domain-joined clients to automatically request and receive certificates from the specified
     -- Amazon Web Services Private Certificate Authority.
     -- Before enabling CA enrollment, ensure that the PCA connector is properly configured and
     -- accessible from the directory. The connector must be in an active state and have the
     -- necessary permissions.
-    enableCAEnrollmentPolicy: function(Client, types.EnableCAEnrollmentPolicyInput): types.EnableCAEnrollmentPolicyOutput, table
+    enableCAEnrollmentPolicy: function(Client, types.EnableCAEnrollmentPolicyInput): Operation<types.EnableCAEnrollmentPolicyOutput>
     -- Enables alternative client authentication methods for the specified directory.
-    enableClientAuthentication: function(Client, types.EnableClientAuthenticationInput): types.EnableClientAuthenticationOutput, table
+    enableClientAuthentication: function(Client, types.EnableClientAuthenticationInput): Operation<types.EnableClientAuthenticationOutput>
     -- Enables access to directory data via the Directory Service Data API for the specified directory. For
     -- more information, see Directory Service Data API Reference.
-    enableDirectoryDataAccess: function(Client, types.EnableDirectoryDataAccessInput): types.EnableDirectoryDataAccessOutput, table
+    enableDirectoryDataAccess: function(Client, types.EnableDirectoryDataAccessInput): Operation<types.EnableDirectoryDataAccessOutput>
     -- Activates the switch for the specific directory to always use LDAP secure calls.
-    enableLDAPS: function(Client, types.EnableLDAPSInput): types.EnableLDAPSOutput, table
+    enableLDAPS: function(Client, types.EnableLDAPSInput): Operation<types.EnableLDAPSOutput>
     -- Enables multi-factor authentication (MFA) with the Remote Authentication Dial In User
     -- Service (RADIUS) server for an AD Connector or Microsoft AD directory.
-    enableRadius: function(Client, types.EnableRadiusInput): types.EnableRadiusOutput, table
+    enableRadius: function(Client, types.EnableRadiusInput): Operation<types.EnableRadiusOutput>
     -- Enables single sign-on for a directory. Single sign-on allows users in your directory to
     -- access certain Amazon Web Services services from a computer joined to the directory without having to enter
     -- their credentials separately.
-    enableSso: function(Client, types.EnableSsoInput): types.EnableSsoOutput, table
+    enableSso: function(Client, types.EnableSsoInput): Operation<types.EnableSsoOutput>
     -- Obtains directory limit information for the current Region.
-    getDirectoryLimits: function(Client, types.GetDirectoryLimitsInput): types.GetDirectoryLimitsOutput, table
+    getDirectoryLimits: function(Client, types.GetDirectoryLimitsInput): Operation<types.GetDirectoryLimitsOutput>
     -- Obtains the manual snapshot limits for a directory.
-    getSnapshotLimits: function(Client, types.GetSnapshotLimitsInput): types.GetSnapshotLimitsOutput, table
+    getSnapshotLimits: function(Client, types.GetSnapshotLimitsInput): Operation<types.GetSnapshotLimitsOutput>
     -- Retrieves a list of directory assessments for the specified directory or all
     -- assessments in your account. Use this operation to monitor assessment status and manage
     -- multiple assessments.
-    listADAssessments: function(Client, types.ListADAssessmentsInput): types.ListADAssessmentsOutput, table
+    listADAssessments: function(Client, types.ListADAssessmentsInput): Operation<types.ListADAssessmentsOutput>
     -- For the specified directory, lists all the certificates registered for a secure LDAP or
     -- client certificate authentication.
-    listCertificates: function(Client, types.ListCertificatesInput): types.ListCertificatesOutput, table
+    listCertificates: function(Client, types.ListCertificatesInput): Operation<types.ListCertificatesOutput>
     -- Lists the address blocks that you have added to a directory.
-    listIpRoutes: function(Client, types.ListIpRoutesInput): types.ListIpRoutesOutput, table
+    listIpRoutes: function(Client, types.ListIpRoutesInput): Operation<types.ListIpRoutesOutput>
     -- Lists the active log subscriptions for the Amazon Web Services account.
-    listLogSubscriptions: function(Client, types.ListLogSubscriptionsInput): types.ListLogSubscriptionsOutput, table
+    listLogSubscriptions: function(Client, types.ListLogSubscriptionsInput): Operation<types.ListLogSubscriptionsOutput>
     -- Lists all schema extensions applied to a Microsoft AD Directory.
-    listSchemaExtensions: function(Client, types.ListSchemaExtensionsInput): types.ListSchemaExtensionsOutput, table
+    listSchemaExtensions: function(Client, types.ListSchemaExtensionsInput): Operation<types.ListSchemaExtensionsOutput>
     -- Lists all tags on a directory.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Registers a certificate for a secure LDAP or client certificate authentication.
-    registerCertificate: function(Client, types.RegisterCertificateInput): types.RegisterCertificateOutput, table
+    registerCertificate: function(Client, types.RegisterCertificateInput): Operation<types.RegisterCertificateOutput>
     -- Associates a directory with an Amazon SNS topic. This establishes the directory as a
     -- publisher to the specified Amazon SNS topic. You can then receive email or text (SMS) messages when
     -- the status of your directory changes. You get notified if your directory goes from an Active
     -- status to an Impaired or Inoperable status. You also receive a notification when the directory
     -- returns to an Active status.
-    registerEventTopic: function(Client, types.RegisterEventTopicInput): types.RegisterEventTopicOutput, table
+    registerEventTopic: function(Client, types.RegisterEventTopicInput): Operation<types.RegisterEventTopicOutput>
     -- Rejects a directory sharing request that was sent from the directory owner account.
-    rejectSharedDirectory: function(Client, types.RejectSharedDirectoryInput): types.RejectSharedDirectoryOutput, table
+    rejectSharedDirectory: function(Client, types.RejectSharedDirectoryInput): Operation<types.RejectSharedDirectoryOutput>
     -- Removes IP address blocks from a directory.
-    removeIpRoutes: function(Client, types.RemoveIpRoutesInput): types.RemoveIpRoutesOutput, table
+    removeIpRoutes: function(Client, types.RemoveIpRoutesInput): Operation<types.RemoveIpRoutesOutput>
     -- Stops all replication and removes the domain controllers from the specified Region. You
     -- cannot remove the primary Region with this operation. Instead, use the
     -- DeleteDirectory API.
-    removeRegion: function(Client, types.RemoveRegionInput): types.RemoveRegionOutput, table
+    removeRegion: function(Client, types.RemoveRegionInput): Operation<types.RemoveRegionOutput>
     -- Removes tags from a directory.
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): Operation<types.RemoveTagsFromResourceOutput>
     -- Resets the password for any user in your Managed Microsoft AD or Simple AD directory. Disabled
     -- users will become enabled and can be authenticated following the API call.
     -- You can reset the password for any user in your directory with the following
@@ -257,14 +261,14 @@ local record Client
     -- Reserved OU. For more information about the OU structure for an Managed Microsoft AD
     -- directory, see What Gets Created in the Directory Service Administration
     -- Guide.
-    resetUserPassword: function(Client, types.ResetUserPasswordInput): types.ResetUserPasswordOutput, table
+    resetUserPassword: function(Client, types.ResetUserPasswordInput): Operation<types.ResetUserPasswordOutput>
     -- Restores a directory using an existing directory snapshot.
     -- When you restore a directory from a snapshot, any changes made to the directory after the snapshot date are overwritten.
     -- This action returns as soon as the restore operation is initiated. You can monitor the
     -- progress of the restore operation by calling the DescribeDirectories operation with
     -- the directory identifier. When the DirectoryDescription.Stage value changes to
     -- Active, the restore operation is complete.
-    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput): types.RestoreFromSnapshotOutput, table
+    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput): Operation<types.RestoreFromSnapshotOutput>
     -- Shares a specified directory (DirectoryId) in your Amazon Web Services account (directory
     -- owner) with another Amazon Web Services account (directory consumer). With this operation you can use your
     -- directory from any Amazon Web Services account and from any Amazon VPC within an Amazon Web Services Region.
@@ -278,7 +282,7 @@ local record Client
     -- inside or outside of the organization (HANDSHAKE).
     -- The ShareNotes parameter is only used when HANDSHAKE is called,
     -- which sends a directory sharing request to the directory consumer.
-    shareDirectory: function(Client, types.ShareDirectoryInput): types.ShareDirectoryOutput, table
+    shareDirectory: function(Client, types.ShareDirectoryInput): Operation<types.ShareDirectoryOutput>
     -- Initiates a directory assessment to validate your self-managed AD environment for
     -- hybrid domain join. The assessment checks compatibility and connectivity of the
     -- self-managed AD environment.
@@ -296,16 +300,16 @@ local record Client
     -- paired with [i-10243420, i-10243410].
     -- Note: You must provide exactly one DirectoryId or
     -- AssessmentConfiguration.
-    startADAssessment: function(Client, types.StartADAssessmentInput): types.StartADAssessmentOutput, table
+    startADAssessment: function(Client, types.StartADAssessmentInput): Operation<types.StartADAssessmentOutput>
     -- Applies a schema extension to a Microsoft AD directory.
-    startSchemaExtension: function(Client, types.StartSchemaExtensionInput): types.StartSchemaExtensionOutput, table
+    startSchemaExtension: function(Client, types.StartSchemaExtensionInput): Operation<types.StartSchemaExtensionOutput>
     -- Stops the directory sharing between the directory owner and consumer accounts.
-    unshareDirectory: function(Client, types.UnshareDirectoryInput): types.UnshareDirectoryOutput, table
+    unshareDirectory: function(Client, types.UnshareDirectoryInput): Operation<types.UnshareDirectoryOutput>
     -- Updates a conditional forwarder that has been set up for your Amazon Web Services
     -- directory.
-    updateConditionalForwarder: function(Client, types.UpdateConditionalForwarderInput): types.UpdateConditionalForwarderOutput, table
+    updateConditionalForwarder: function(Client, types.UpdateConditionalForwarderInput): Operation<types.UpdateConditionalForwarderOutput>
     -- Updates directory configuration for the specified update type.
-    updateDirectorySetup: function(Client, types.UpdateDirectorySetupInput): types.UpdateDirectorySetupOutput, table
+    updateDirectorySetup: function(Client, types.UpdateDirectorySetupInput): Operation<types.UpdateDirectorySetupOutput>
     -- Updates the configuration of an existing hybrid directory. You can recover hybrid
     -- directory administrator account or modify self-managed instance settings.
     -- Updates are applied asynchronously. Use DescribeHybridADUpdate to
@@ -317,26 +321,26 @@ local record Client
     -- 10.24.34.200] paired with [i-10243410, i-10243420] or [10.24.34.200, 10.24.34.100]
     -- paired with [i-10243420, i-10243410].
     -- You must provide at least one update to UpdateHybridADRequest$HybridAdministratorAccountUpdate or UpdateHybridADRequest$SelfManagedInstancesSettings.
-    updateHybridAD: function(Client, types.UpdateHybridADInput): types.UpdateHybridADOutput, table
+    updateHybridAD: function(Client, types.UpdateHybridADInput): Operation<types.UpdateHybridADOutput>
     -- Adds or removes domain controllers to or from the directory. Based on the difference
     -- between current value and new value (provided through this API call), domain controllers will
     -- be added or removed. It may take up to 45 minutes for any new domain controllers to become
     -- fully active once the requested number of domain controllers is updated. During this time, you
     -- cannot make another update request.
-    updateNumberOfDomainControllers: function(Client, types.UpdateNumberOfDomainControllersInput): types.UpdateNumberOfDomainControllersOutput, table
+    updateNumberOfDomainControllers: function(Client, types.UpdateNumberOfDomainControllersInput): Operation<types.UpdateNumberOfDomainControllersOutput>
     -- Updates the Remote Authentication Dial In User Service (RADIUS) server information for
     -- an AD Connector or Microsoft AD directory.
-    updateRadius: function(Client, types.UpdateRadiusInput): types.UpdateRadiusOutput, table
+    updateRadius: function(Client, types.UpdateRadiusInput): Operation<types.UpdateRadiusOutput>
     -- Updates the configurable settings for the specified directory.
-    updateSettings: function(Client, types.UpdateSettingsInput): types.UpdateSettingsOutput, table
+    updateSettings: function(Client, types.UpdateSettingsInput): Operation<types.UpdateSettingsOutput>
     -- Updates the trust that has been set up between your Managed Microsoft AD directory and an
     -- self-managed Active Directory.
-    updateTrust: function(Client, types.UpdateTrustInput): types.UpdateTrustOutput, table
+    updateTrust: function(Client, types.UpdateTrustInput): Operation<types.UpdateTrustOutput>
     -- Directory Service for Microsoft Active Directory allows you to configure and verify trust
     -- relationships.
     -- This action verifies a trust relationship between your Managed Microsoft AD directory and an
     -- external domain.
-    verifyTrust: function(Client, types.VerifyTrustInput): types.VerifyTrustOutput, table
+    verifyTrust: function(Client, types.VerifyTrustInput): Operation<types.VerifyTrustOutput>
 end
 
 local record M

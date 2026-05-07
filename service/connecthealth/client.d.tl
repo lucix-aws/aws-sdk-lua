@@ -2,39 +2,43 @@
 
 local types = require("connecthealth.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Activates a Subscription to enable billing for a user.
-    activateSubscription: function(Client, types.ActivateSubscriptionInput): types.ActivateSubscriptionOutput, table
+    activateSubscription: function(Client, types.ActivateSubscriptionInput): Operation<types.ActivateSubscriptionOutput>
     -- Creates a new Domain for managing HealthAgent resources.
-    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createDomain: function(Client, types.CreateDomainInput): Operation<types.CreateDomainOutput>
     -- Creates a new Subscription within a Domain for billing and user management.
-    createSubscription: function(Client, types.CreateSubscriptionInput): types.CreateSubscriptionOutput, table
+    createSubscription: function(Client, types.CreateSubscriptionInput): Operation<types.CreateSubscriptionOutput>
     -- Deactivates a Subscription to stop billing for a user.
-    deactivateSubscription: function(Client, types.DeactivateSubscriptionInput): types.DeactivateSubscriptionOutput, table
+    deactivateSubscription: function(Client, types.DeactivateSubscriptionInput): Operation<types.DeactivateSubscriptionOutput>
     -- Deletes a Domain and all associated resources.
-    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): Operation<types.DeleteDomainOutput>
     -- Retrieves information about a Domain.
-    getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    getDomain: function(Client, types.GetDomainInput): Operation<types.GetDomainOutput>
     -- Retrieves details about an existing Medical Scribe listening session
-    getMedicalScribeListeningSession: function(Client, types.GetMedicalScribeListeningSessionInput): types.GetMedicalScribeListeningSessionOutput, table
+    getMedicalScribeListeningSession: function(Client, types.GetMedicalScribeListeningSessionInput): Operation<types.GetMedicalScribeListeningSessionOutput>
     -- Get details of a started patient insights job.
-    getPatientInsightsJob: function(Client, types.GetPatientInsightsJobInput): types.GetPatientInsightsJobOutput, table
+    getPatientInsightsJob: function(Client, types.GetPatientInsightsJobInput): Operation<types.GetPatientInsightsJobOutput>
     -- Retrieves information about a Subscription.
-    getSubscription: function(Client, types.GetSubscriptionInput): types.GetSubscriptionOutput, table
+    getSubscription: function(Client, types.GetSubscriptionInput): Operation<types.GetSubscriptionOutput>
     -- Lists Domains for a given account.
-    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): Operation<types.ListDomainsOutput>
     -- Lists all Subscriptions within a Domain.
-    listSubscriptions: function(Client, types.ListSubscriptionsInput): types.ListSubscriptionsOutput, table
+    listSubscriptions: function(Client, types.ListSubscriptionsInput): Operation<types.ListSubscriptionsOutput>
     -- Lists the tags associated with the specified resource
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Starts a new Medical Scribe listening session for real-time audio transcription
-    startMedicalScribeListeningSession: function(Client, types.StartMedicalScribeListeningSessionInput): types.StartMedicalScribeListeningSessionOutput, table
+    startMedicalScribeListeningSession: function(Client, types.StartMedicalScribeListeningSessionInput): Operation<types.StartMedicalScribeListeningSessionOutput>
     -- Starts a new patient insights job.
-    startPatientInsightsJob: function(Client, types.StartPatientInsightsJobInput): types.StartPatientInsightsJobOutput, table
+    startPatientInsightsJob: function(Client, types.StartPatientInsightsJobInput): Operation<types.StartPatientInsightsJobOutput>
     -- Associates the specified tags with the specified resource
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the specified tags from the specified resource
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M

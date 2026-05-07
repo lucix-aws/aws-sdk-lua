@@ -2,96 +2,100 @@
 
 local types = require("iottwinmaker.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Sets values for multiple time series properties.
-    batchPutPropertyValues: function(Client, types.BatchPutPropertyValuesInput): types.BatchPutPropertyValuesOutput, table
+    batchPutPropertyValues: function(Client, types.BatchPutPropertyValuesInput): Operation<types.BatchPutPropertyValuesOutput>
     -- Cancels the metadata transfer job.
-    cancelMetadataTransferJob: function(Client, types.CancelMetadataTransferJobInput): types.CancelMetadataTransferJobOutput, table
+    cancelMetadataTransferJob: function(Client, types.CancelMetadataTransferJobInput): Operation<types.CancelMetadataTransferJobOutput>
     -- Creates a component type.
-    createComponentType: function(Client, types.CreateComponentTypeInput): types.CreateComponentTypeOutput, table
+    createComponentType: function(Client, types.CreateComponentTypeInput): Operation<types.CreateComponentTypeOutput>
     -- Creates an entity.
-    createEntity: function(Client, types.CreateEntityInput): types.CreateEntityOutput, table
+    createEntity: function(Client, types.CreateEntityInput): Operation<types.CreateEntityOutput>
     -- Creates a new metadata transfer job.
-    createMetadataTransferJob: function(Client, types.CreateMetadataTransferJobInput): types.CreateMetadataTransferJobOutput, table
+    createMetadataTransferJob: function(Client, types.CreateMetadataTransferJobInput): Operation<types.CreateMetadataTransferJobOutput>
     -- Creates a scene.
-    createScene: function(Client, types.CreateSceneInput): types.CreateSceneOutput, table
+    createScene: function(Client, types.CreateSceneInput): Operation<types.CreateSceneOutput>
     -- This action creates a SyncJob.
-    createSyncJob: function(Client, types.CreateSyncJobInput): types.CreateSyncJobOutput, table
+    createSyncJob: function(Client, types.CreateSyncJobInput): Operation<types.CreateSyncJobOutput>
     -- Creates a workplace.
-    createWorkspace: function(Client, types.CreateWorkspaceInput): types.CreateWorkspaceOutput, table
+    createWorkspace: function(Client, types.CreateWorkspaceInput): Operation<types.CreateWorkspaceOutput>
     -- Deletes a component type.
-    deleteComponentType: function(Client, types.DeleteComponentTypeInput): types.DeleteComponentTypeOutput, table
+    deleteComponentType: function(Client, types.DeleteComponentTypeInput): Operation<types.DeleteComponentTypeOutput>
     -- Deletes an entity.
-    deleteEntity: function(Client, types.DeleteEntityInput): types.DeleteEntityOutput, table
+    deleteEntity: function(Client, types.DeleteEntityInput): Operation<types.DeleteEntityOutput>
     -- Deletes a scene.
-    deleteScene: function(Client, types.DeleteSceneInput): types.DeleteSceneOutput, table
+    deleteScene: function(Client, types.DeleteSceneInput): Operation<types.DeleteSceneOutput>
     -- Delete the SyncJob.
-    deleteSyncJob: function(Client, types.DeleteSyncJobInput): types.DeleteSyncJobOutput, table
+    deleteSyncJob: function(Client, types.DeleteSyncJobInput): Operation<types.DeleteSyncJobOutput>
     -- Deletes a workspace.
-    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): types.DeleteWorkspaceOutput, table
+    deleteWorkspace: function(Client, types.DeleteWorkspaceInput): Operation<types.DeleteWorkspaceOutput>
     -- Run queries to access information from your knowledge graph of entities within
     -- individual workspaces.
     -- The ExecuteQuery action only works with Amazon Web Services Java SDK2.
     -- ExecuteQuery will not work with any Amazon Web Services Java SDK version < 2.x.
-    executeQuery: function(Client, types.ExecuteQueryInput): types.ExecuteQueryOutput, table
+    executeQuery: function(Client, types.ExecuteQueryInput): Operation<types.ExecuteQueryOutput>
     -- Retrieves information about a component type.
-    getComponentType: function(Client, types.GetComponentTypeInput): types.GetComponentTypeOutput, table
+    getComponentType: function(Client, types.GetComponentTypeInput): Operation<types.GetComponentTypeOutput>
     -- Retrieves information about an entity.
-    getEntity: function(Client, types.GetEntityInput): types.GetEntityOutput, table
+    getEntity: function(Client, types.GetEntityInput): Operation<types.GetEntityOutput>
     -- Gets a nmetadata transfer job.
-    getMetadataTransferJob: function(Client, types.GetMetadataTransferJobInput): types.GetMetadataTransferJobOutput, table
+    getMetadataTransferJob: function(Client, types.GetMetadataTransferJobInput): Operation<types.GetMetadataTransferJobOutput>
     -- Gets the pricing plan.
-    getPricingPlan: function(Client, types.GetPricingPlanInput): types.GetPricingPlanOutput, table
+    getPricingPlan: function(Client, types.GetPricingPlanInput): Operation<types.GetPricingPlanOutput>
     -- Gets the property values for a component, component type, entity, or workspace.
     -- You must specify a value for either componentName,
     -- componentTypeId, entityId, or workspaceId.
-    getPropertyValue: function(Client, types.GetPropertyValueInput): types.GetPropertyValueOutput, table
+    getPropertyValue: function(Client, types.GetPropertyValueInput): Operation<types.GetPropertyValueOutput>
     -- Retrieves information about the history of a time series property value for a component,
     -- component type, entity, or workspace.
     -- You must specify a value for workspaceId. For entity-specific queries,
     -- specify values for componentName and entityId. For cross-entity
     -- quries, specify a value for componentTypeId.
-    getPropertyValueHistory: function(Client, types.GetPropertyValueHistoryInput): types.GetPropertyValueHistoryOutput, table
+    getPropertyValueHistory: function(Client, types.GetPropertyValueHistoryInput): Operation<types.GetPropertyValueHistoryOutput>
     -- Retrieves information about a scene.
-    getScene: function(Client, types.GetSceneInput): types.GetSceneOutput, table
+    getScene: function(Client, types.GetSceneInput): Operation<types.GetSceneOutput>
     -- Gets the SyncJob.
-    getSyncJob: function(Client, types.GetSyncJobInput): types.GetSyncJobOutput, table
+    getSyncJob: function(Client, types.GetSyncJobInput): Operation<types.GetSyncJobOutput>
     -- Retrieves information about a workspace.
-    getWorkspace: function(Client, types.GetWorkspaceInput): types.GetWorkspaceOutput, table
+    getWorkspace: function(Client, types.GetWorkspaceInput): Operation<types.GetWorkspaceOutput>
     -- This API lists the components of an entity.
-    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): Operation<types.ListComponentsOutput>
     -- Lists all component types in a workspace.
-    listComponentTypes: function(Client, types.ListComponentTypesInput): types.ListComponentTypesOutput, table
+    listComponentTypes: function(Client, types.ListComponentTypesInput): Operation<types.ListComponentTypesOutput>
     -- Lists all entities in a workspace.
-    listEntities: function(Client, types.ListEntitiesInput): types.ListEntitiesOutput, table
+    listEntities: function(Client, types.ListEntitiesInput): Operation<types.ListEntitiesOutput>
     -- Lists the metadata transfer jobs.
-    listMetadataTransferJobs: function(Client, types.ListMetadataTransferJobsInput): types.ListMetadataTransferJobsOutput, table
+    listMetadataTransferJobs: function(Client, types.ListMetadataTransferJobsInput): Operation<types.ListMetadataTransferJobsOutput>
     -- This API lists the properties of a component.
-    listProperties: function(Client, types.ListPropertiesInput): types.ListPropertiesOutput, table
+    listProperties: function(Client, types.ListPropertiesInput): Operation<types.ListPropertiesOutput>
     -- Lists all scenes in a workspace.
-    listScenes: function(Client, types.ListScenesInput): types.ListScenesOutput, table
+    listScenes: function(Client, types.ListScenesInput): Operation<types.ListScenesOutput>
     -- List all SyncJobs.
-    listSyncJobs: function(Client, types.ListSyncJobsInput): types.ListSyncJobsOutput, table
+    listSyncJobs: function(Client, types.ListSyncJobsInput): Operation<types.ListSyncJobsOutput>
     -- Lists the sync resources.
-    listSyncResources: function(Client, types.ListSyncResourcesInput): types.ListSyncResourcesOutput, table
+    listSyncResources: function(Client, types.ListSyncResourcesInput): Operation<types.ListSyncResourcesOutput>
     -- Lists all tags associated with a resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Retrieves information about workspaces in the current account.
-    listWorkspaces: function(Client, types.ListWorkspacesInput): types.ListWorkspacesOutput, table
+    listWorkspaces: function(Client, types.ListWorkspacesInput): Operation<types.ListWorkspacesOutput>
     -- Adds tags to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes tags from a resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates information in a component type.
-    updateComponentType: function(Client, types.UpdateComponentTypeInput): types.UpdateComponentTypeOutput, table
+    updateComponentType: function(Client, types.UpdateComponentTypeInput): Operation<types.UpdateComponentTypeOutput>
     -- Updates an entity.
-    updateEntity: function(Client, types.UpdateEntityInput): types.UpdateEntityOutput, table
+    updateEntity: function(Client, types.UpdateEntityInput): Operation<types.UpdateEntityOutput>
     -- Update the pricing plan.
-    updatePricingPlan: function(Client, types.UpdatePricingPlanInput): types.UpdatePricingPlanOutput, table
+    updatePricingPlan: function(Client, types.UpdatePricingPlanInput): Operation<types.UpdatePricingPlanOutput>
     -- Updates a scene.
-    updateScene: function(Client, types.UpdateSceneInput): types.UpdateSceneOutput, table
+    updateScene: function(Client, types.UpdateSceneInput): Operation<types.UpdateSceneOutput>
     -- Updates a workspace.
-    updateWorkspace: function(Client, types.UpdateWorkspaceInput): types.UpdateWorkspaceOutput, table
+    updateWorkspace: function(Client, types.UpdateWorkspaceInput): Operation<types.UpdateWorkspaceOutput>
 end
 
 local record M

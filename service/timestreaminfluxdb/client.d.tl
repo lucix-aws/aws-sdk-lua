@@ -2,45 +2,49 @@
 
 local types = require("timestreaminfluxdb.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a new Timestream for InfluxDB cluster.
-    createDbCluster: function(Client, types.CreateDbClusterInput): types.CreateDbClusterOutput, table
+    createDbCluster: function(Client, types.CreateDbClusterInput): Operation<types.CreateDbClusterOutput>
     -- Creates a new Timestream for InfluxDB DB instance.
-    createDbInstance: function(Client, types.CreateDbInstanceInput): types.CreateDbInstanceOutput, table
+    createDbInstance: function(Client, types.CreateDbInstanceInput): Operation<types.CreateDbInstanceOutput>
     -- Creates a new Timestream for InfluxDB DB parameter group to associate with DB instances.
-    createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput): types.CreateDbParameterGroupOutput, table
+    createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput): Operation<types.CreateDbParameterGroupOutput>
     -- Deletes a Timestream for InfluxDB cluster.
-    deleteDbCluster: function(Client, types.DeleteDbClusterInput): types.DeleteDbClusterOutput, table
+    deleteDbCluster: function(Client, types.DeleteDbClusterInput): Operation<types.DeleteDbClusterOutput>
     -- Deletes a Timestream for InfluxDB DB instance.
-    deleteDbInstance: function(Client, types.DeleteDbInstanceInput): types.DeleteDbInstanceOutput, table
+    deleteDbInstance: function(Client, types.DeleteDbInstanceInput): Operation<types.DeleteDbInstanceOutput>
     -- Retrieves information about a Timestream for InfluxDB cluster.
-    getDbCluster: function(Client, types.GetDbClusterInput): types.GetDbClusterOutput, table
+    getDbCluster: function(Client, types.GetDbClusterInput): Operation<types.GetDbClusterOutput>
     -- Returns a Timestream for InfluxDB DB instance.
-    getDbInstance: function(Client, types.GetDbInstanceInput): types.GetDbInstanceOutput, table
+    getDbInstance: function(Client, types.GetDbInstanceInput): Operation<types.GetDbInstanceOutput>
     -- Returns a Timestream for InfluxDB DB parameter group.
-    getDbParameterGroup: function(Client, types.GetDbParameterGroupInput): types.GetDbParameterGroupOutput, table
+    getDbParameterGroup: function(Client, types.GetDbParameterGroupInput): Operation<types.GetDbParameterGroupOutput>
     -- Returns a list of Timestream for InfluxDB DB clusters.
-    listDbClusters: function(Client, types.ListDbClustersInput): types.ListDbClustersOutput, table
+    listDbClusters: function(Client, types.ListDbClustersInput): Operation<types.ListDbClustersOutput>
     -- Returns a list of Timestream for InfluxDB DB instances.
-    listDbInstances: function(Client, types.ListDbInstancesInput): types.ListDbInstancesOutput, table
+    listDbInstances: function(Client, types.ListDbInstancesInput): Operation<types.ListDbInstancesOutput>
     -- Returns a list of Timestream for InfluxDB clusters.
-    listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput): types.ListDbInstancesForClusterOutput, table
+    listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput): Operation<types.ListDbInstancesForClusterOutput>
     -- Returns a list of Timestream for InfluxDB DB parameter groups.
-    listDbParameterGroups: function(Client, types.ListDbParameterGroupsInput): types.ListDbParameterGroupsOutput, table
+    listDbParameterGroups: function(Client, types.ListDbParameterGroupsInput): Operation<types.ListDbParameterGroupsOutput>
     -- A list of tags applied to the resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Reboots a Timestream for InfluxDB cluster.
-    rebootDbCluster: function(Client, types.RebootDbClusterInput): types.RebootDbClusterOutput, table
+    rebootDbCluster: function(Client, types.RebootDbClusterInput): Operation<types.RebootDbClusterOutput>
     -- Reboots a Timestream for InfluxDB instance.
-    rebootDbInstance: function(Client, types.RebootDbInstanceInput): types.RebootDbInstanceOutput, table
+    rebootDbInstance: function(Client, types.RebootDbInstanceInput): Operation<types.RebootDbInstanceOutput>
     -- Tags are composed of a Key/Value pairs. You can use tags to categorize and track your Timestream for InfluxDB resources.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes the tag from the specified resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates a Timestream for InfluxDB cluster.
-    updateDbCluster: function(Client, types.UpdateDbClusterInput): types.UpdateDbClusterOutput, table
+    updateDbCluster: function(Client, types.UpdateDbClusterInput): Operation<types.UpdateDbClusterOutput>
     -- Updates a Timestream for InfluxDB DB instance.
-    updateDbInstance: function(Client, types.UpdateDbInstanceInput): types.UpdateDbInstanceOutput, table
+    updateDbInstance: function(Client, types.UpdateDbInstanceInput): Operation<types.UpdateDbInstanceOutput>
 end
 
 local record M

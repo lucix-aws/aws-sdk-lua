@@ -2,16 +2,20 @@
 
 local types = require("eks.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates an access policy and its scope to an access entry. For more information
     -- about associating access policies, see Associating and disassociating
     -- access policies to and from access entries in the Amazon EKS User Guide.
-    associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput): types.AssociateAccessPolicyOutput, table
+    associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput): Operation<types.AssociateAccessPolicyOutput>
     -- Associates an encryption configuration to an existing cluster.
     -- Use this API to enable encryption on existing clusters that don't already have
     -- encryption enabled. This allows you to implement a defense-in-depth security strategy
     -- without migrating applications to new Amazon EKS clusters.
-    associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput): types.AssociateEncryptionConfigOutput, table
+    associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput): Operation<types.AssociateEncryptionConfigOutput>
     -- Associates an identity provider configuration to a cluster.
     -- If you want to authenticate identities using an identity provider, you can create an
     -- identity provider configuration and associate it to your cluster. After configuring
@@ -20,7 +24,7 @@ local record Client
     -- the identities using Kubernetes RoleBinding and ClusterRoleBinding
     -- objects. For more information see Using RBAC
     -- Authorization in the Kubernetes documentation.
-    associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput): types.AssociateIdentityProviderConfigOutput, table
+    associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput): Operation<types.AssociateIdentityProviderConfigOutput>
     -- Creates an access entry.
     -- An access entry allows an IAM principal to access your cluster. Access
     -- entries can replace the need to maintain entries in the aws-auth
@@ -34,17 +38,17 @@ local record Client
     -- RoleBinding, and ClusterRoleBinding objects.
     -- For more information about access entries, see Access entries in the
     -- Amazon EKS User Guide.
-    createAccessEntry: function(Client, types.CreateAccessEntryInput): types.CreateAccessEntryOutput, table
+    createAccessEntry: function(Client, types.CreateAccessEntryInput): Operation<types.CreateAccessEntryOutput>
     -- Creates an Amazon EKS add-on.
     -- Amazon EKS add-ons help to automate the provisioning and lifecycle management of common
     -- operational software for Amazon EKS clusters. For more information, see Amazon EKS
     -- add-ons in the Amazon EKS User Guide.
-    createAddon: function(Client, types.CreateAddonInput): types.CreateAddonOutput, table
+    createAddon: function(Client, types.CreateAddonInput): Operation<types.CreateAddonOutput>
     -- Creates a managed capability resource for an Amazon EKS cluster.
     -- Capabilities provide fully managed capabilities to build and scale with Kubernetes. When you create a capability, Amazon EKSprovisions and manages the infrastructure required to run the capability outside of your cluster. This approach reduces operational overhead and preserves cluster resources.
     -- You can only create one Capability of each type on a given Amazon EKS cluster. Valid types are Argo CD for declarative GitOps deployment, Amazon Web Services Controllers for Kubernetes (ACK) for resource management, and Kube Resource Orchestrator (KRO) for Kubernetes custom resource orchestration.
     -- For more information, see EKS Capabilities in the Amazon EKS User Guide.
-    createCapability: function(Client, types.CreateCapabilityInput): types.CreateCapabilityOutput, table
+    createCapability: function(Client, types.CreateCapabilityInput): Operation<types.CreateCapabilityOutput>
     -- Creates an Amazon EKS control plane.
     -- The Amazon EKS control plane consists of control plane instances that run the Kubernetes
     -- software, such as etcd and the API server. The control plane runs in an
@@ -81,12 +85,12 @@ local record Client
     -- launch nodes into your cluster. For more information, see Allowing users to
     -- access your cluster and Launching Amazon EKS
     -- nodes in the Amazon EKS User Guide.
-    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createCluster: function(Client, types.CreateClusterInput): Operation<types.CreateClusterOutput>
     -- Creates an EKS Anywhere subscription. When a subscription is created, it is a contract
     -- agreement for the length of the term specified in the request. Licenses that are used to
     -- validate support are provisioned in Amazon Web Services License Manager and the caller account is
     -- granted access to EKS Anywhere Curated Packages.
-    createEksAnywhereSubscription: function(Client, types.CreateEksAnywhereSubscriptionInput): types.CreateEksAnywhereSubscriptionOutput, table
+    createEksAnywhereSubscription: function(Client, types.CreateEksAnywhereSubscriptionInput): Operation<types.CreateEksAnywhereSubscriptionOutput>
     -- Creates an Fargate profile for your Amazon EKS cluster. You must have at least one
     -- Fargate profile in a cluster to be able to run pods on Fargate.
     -- The Fargate profile allows an administrator to declare which pods run on Fargate
@@ -112,7 +116,7 @@ local record Client
     -- must wait for that Fargate profile to finish deleting before you can create any other
     -- profiles in that cluster.
     -- For more information, see Fargate profile in the Amazon EKS User Guide.
-    createFargateProfile: function(Client, types.CreateFargateProfileInput): types.CreateFargateProfileOutput, table
+    createFargateProfile: function(Client, types.CreateFargateProfileInput): Operation<types.CreateFargateProfileOutput>
     -- Creates a managed node group for an Amazon EKS cluster.
     -- You can only create a node group for your cluster that is equal to the current Kubernetes
     -- version for the cluster. All node groups are created with the latest AMI release version
@@ -129,7 +133,7 @@ local record Client
     -- node groups in the Amazon EKS User Guide.
     -- Windows AMI types are only supported for commercial Amazon Web Services Regions that support
     -- Windows on Amazon EKS.
-    createNodegroup: function(Client, types.CreateNodegroupInput): types.CreateNodegroupOutput, table
+    createNodegroup: function(Client, types.CreateNodegroupInput): Operation<types.CreateNodegroupOutput>
     -- Creates an EKS Pod Identity association between a service account in an Amazon EKS cluster and an IAM role
     -- with EKS Pod Identity. Use EKS Pod Identity to give temporary IAM credentials to
     -- Pods and the credentials are rotated automatically.
@@ -153,19 +157,19 @@ local record Client
     -- account, then using those credentials to assume the target IAM role. This process
     -- provides your Pod with temporary credentials that have the permissions defined in the
     -- target role, allowing secure access to resources in another Amazon Web Services account.
-    createPodIdentityAssociation: function(Client, types.CreatePodIdentityAssociationInput): types.CreatePodIdentityAssociationOutput, table
+    createPodIdentityAssociation: function(Client, types.CreatePodIdentityAssociationInput): Operation<types.CreatePodIdentityAssociationOutput>
     -- Deletes an access entry.
     -- Deleting an access entry of a type other than Standard can cause your
     -- cluster to function improperly. If you delete an access entry in error, you can recreate
     -- it.
-    deleteAccessEntry: function(Client, types.DeleteAccessEntryInput): types.DeleteAccessEntryOutput, table
+    deleteAccessEntry: function(Client, types.DeleteAccessEntryInput): Operation<types.DeleteAccessEntryOutput>
     -- Deletes an Amazon EKS add-on.
     -- When you remove an add-on, it's deleted from the cluster. You can always manually
     -- start an add-on on the cluster using the Kubernetes API.
-    deleteAddon: function(Client, types.DeleteAddonInput): types.DeleteAddonOutput, table
+    deleteAddon: function(Client, types.DeleteAddonInput): Operation<types.DeleteAddonOutput>
     -- Deletes a managed capability from your Amazon EKS cluster. When you delete a capability, Amazon EKS removes the capability infrastructure but retains all resources that were managed by the capability.
     -- Before deleting a capability, you should delete all Kubernetes resources that were created by the capability. After the capability is deleted, these resources become difficult to manage because the controller that managed them is no longer available. To delete resources before removing the capability, use kubectl delete or remove them through your GitOps workflow.
-    deleteCapability: function(Client, types.DeleteCapabilityInput): types.DeleteCapabilityOutput, table
+    deleteCapability: function(Client, types.DeleteCapabilityInput): Operation<types.DeleteCapabilityOutput>
     -- Deletes an Amazon EKS cluster control plane.
     -- If you have active services and ingress resources in your cluster that are associated with a load balancer,
     -- you must delete those services before deleting the cluster so that the load balancers
@@ -175,12 +179,12 @@ local record Client
     -- If you have managed node groups or Fargate profiles attached to the cluster, you
     -- must delete them first. For more information, see DeleteNodgroup and
     -- DeleteFargateProfile.
-    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): Operation<types.DeleteClusterOutput>
     -- Deletes an expired or inactive subscription. Deleting inactive subscriptions removes
     -- them from the Amazon Web Services Management Console view and from list/describe API responses. Subscriptions can
     -- only be cancelled within 7 days of creation and are cancelled by creating a ticket in
     -- the Amazon Web Services Support Center.
-    deleteEksAnywhereSubscription: function(Client, types.DeleteEksAnywhereSubscriptionInput): types.DeleteEksAnywhereSubscriptionOutput, table
+    deleteEksAnywhereSubscription: function(Client, types.DeleteEksAnywhereSubscriptionInput): Operation<types.DeleteEksAnywhereSubscriptionOutput>
     -- Deletes an Fargate profile.
     -- When you delete a Fargate profile, any Pod running on Fargate that
     -- was created with the profile is deleted. If the Pod matches another
@@ -190,29 +194,29 @@ local record Client
     -- Only one Fargate profile in a cluster can be in the DELETING status at
     -- a time. You must wait for a Fargate profile to finish deleting before you can delete
     -- any other profiles in that cluster.
-    deleteFargateProfile: function(Client, types.DeleteFargateProfileInput): types.DeleteFargateProfileOutput, table
+    deleteFargateProfile: function(Client, types.DeleteFargateProfileInput): Operation<types.DeleteFargateProfileOutput>
     -- Deletes a managed node group.
-    deleteNodegroup: function(Client, types.DeleteNodegroupInput): types.DeleteNodegroupOutput, table
+    deleteNodegroup: function(Client, types.DeleteNodegroupInput): Operation<types.DeleteNodegroupOutput>
     -- Deletes a EKS Pod Identity association.
     -- The temporary Amazon Web Services credentials from the previous IAM role session might still be valid until the session expiry. If you need to immediately revoke the temporary session credentials, then go to the role in the IAM console.
-    deletePodIdentityAssociation: function(Client, types.DeletePodIdentityAssociationInput): types.DeletePodIdentityAssociationOutput, table
+    deletePodIdentityAssociation: function(Client, types.DeletePodIdentityAssociationInput): Operation<types.DeletePodIdentityAssociationOutput>
     -- Deregisters a connected cluster to remove it from the Amazon EKS control plane.
     -- A connected cluster is a Kubernetes cluster that you've connected to your control plane
     -- using the Amazon EKS Connector.
-    deregisterCluster: function(Client, types.DeregisterClusterInput): types.DeregisterClusterOutput, table
+    deregisterCluster: function(Client, types.DeregisterClusterInput): Operation<types.DeregisterClusterOutput>
     -- Describes an access entry.
-    describeAccessEntry: function(Client, types.DescribeAccessEntryInput): types.DescribeAccessEntryOutput, table
+    describeAccessEntry: function(Client, types.DescribeAccessEntryInput): Operation<types.DescribeAccessEntryOutput>
     -- Describes an Amazon EKS add-on.
-    describeAddon: function(Client, types.DescribeAddonInput): types.DescribeAddonOutput, table
+    describeAddon: function(Client, types.DescribeAddonInput): Operation<types.DescribeAddonOutput>
     -- Returns configuration options.
-    describeAddonConfiguration: function(Client, types.DescribeAddonConfigurationInput): types.DescribeAddonConfigurationOutput, table
+    describeAddonConfiguration: function(Client, types.DescribeAddonConfigurationInput): Operation<types.DescribeAddonConfigurationOutput>
     -- Describes the versions for an add-on.
     -- Information such as the Kubernetes versions that you can use the add-on with, the
     -- owner, publisher, and the type of the add-on
     -- are returned.
-    describeAddonVersions: function(Client, types.DescribeAddonVersionsInput): types.DescribeAddonVersionsOutput, table
+    describeAddonVersions: function(Client, types.DescribeAddonVersionsInput): Operation<types.DescribeAddonVersionsOutput>
     -- Returns detailed information about a specific managed capability in your Amazon EKS cluster, including its current status, configuration, health information, and any issues that may be affecting its operation.
-    describeCapability: function(Client, types.DescribeCapabilityInput): types.DescribeCapabilityOutput, table
+    describeCapability: function(Client, types.DescribeCapabilityInput): Operation<types.DescribeCapabilityOutput>
     -- Describes an Amazon EKS cluster.
     -- The API server endpoint and certificate authority data returned by this operation are
     -- required for kubelet and kubectl to communicate with your
@@ -220,58 +224,58 @@ local record Client
     -- updating a kubeconfig file for an Amazon EKS cluster.
     -- The API server endpoint and certificate authority data aren't available until the
     -- cluster reaches the ACTIVE state.
-    describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    describeCluster: function(Client, types.DescribeClusterInput): Operation<types.DescribeClusterOutput>
     -- Lists available Kubernetes versions for Amazon EKS clusters.
-    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput): types.DescribeClusterVersionsOutput, table
+    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput): Operation<types.DescribeClusterVersionsOutput>
     -- Returns descriptive information about a subscription.
-    describeEksAnywhereSubscription: function(Client, types.DescribeEksAnywhereSubscriptionInput): types.DescribeEksAnywhereSubscriptionOutput, table
+    describeEksAnywhereSubscription: function(Client, types.DescribeEksAnywhereSubscriptionInput): Operation<types.DescribeEksAnywhereSubscriptionOutput>
     -- Describes an Fargate profile.
-    describeFargateProfile: function(Client, types.DescribeFargateProfileInput): types.DescribeFargateProfileOutput, table
+    describeFargateProfile: function(Client, types.DescribeFargateProfileInput): Operation<types.DescribeFargateProfileOutput>
     -- Describes an identity provider configuration.
-    describeIdentityProviderConfig: function(Client, types.DescribeIdentityProviderConfigInput): types.DescribeIdentityProviderConfigOutput, table
+    describeIdentityProviderConfig: function(Client, types.DescribeIdentityProviderConfigInput): Operation<types.DescribeIdentityProviderConfigOutput>
     -- Returns details about an insight that you specify using its ID.
-    describeInsight: function(Client, types.DescribeInsightInput): types.DescribeInsightOutput, table
+    describeInsight: function(Client, types.DescribeInsightInput): Operation<types.DescribeInsightOutput>
     -- Returns the status of the latest on-demand cluster insights refresh operation.
-    describeInsightsRefresh: function(Client, types.DescribeInsightsRefreshInput): types.DescribeInsightsRefreshOutput, table
+    describeInsightsRefresh: function(Client, types.DescribeInsightsRefreshInput): Operation<types.DescribeInsightsRefreshOutput>
     -- Describes a managed node group.
-    describeNodegroup: function(Client, types.DescribeNodegroupInput): types.DescribeNodegroupOutput, table
+    describeNodegroup: function(Client, types.DescribeNodegroupInput): Operation<types.DescribeNodegroupOutput>
     -- Returns descriptive information about an EKS Pod Identity association.
     -- This action requires the ID of the association. You can get the ID from the response to
     -- the CreatePodIdentityAssocation for newly created associations. Or, you can
     -- list the IDs for associations with ListPodIdentityAssociations and filter the
     -- list by namespace or service account.
-    describePodIdentityAssociation: function(Client, types.DescribePodIdentityAssociationInput): types.DescribePodIdentityAssociationOutput, table
+    describePodIdentityAssociation: function(Client, types.DescribePodIdentityAssociationInput): Operation<types.DescribePodIdentityAssociationOutput>
     -- Describes an update to an Amazon EKS resource.
     -- When the status of the update is Successful, the update is complete. If
     -- an update fails, the status is Failed, and an error detail explains the
     -- reason for the failure.
-    describeUpdate: function(Client, types.DescribeUpdateInput): types.DescribeUpdateOutput, table
+    describeUpdate: function(Client, types.DescribeUpdateInput): Operation<types.DescribeUpdateOutput>
     -- Disassociates an access policy from an access entry.
-    disassociateAccessPolicy: function(Client, types.DisassociateAccessPolicyInput): types.DisassociateAccessPolicyOutput, table
+    disassociateAccessPolicy: function(Client, types.DisassociateAccessPolicyInput): Operation<types.DisassociateAccessPolicyOutput>
     -- Disassociates an identity provider configuration from a cluster.
     -- If you disassociate an identity provider from your cluster, users included in the
     -- provider can no longer access the cluster. However, you can still access the cluster
     -- with IAM principals.
-    disassociateIdentityProviderConfig: function(Client, types.DisassociateIdentityProviderConfigInput): types.DisassociateIdentityProviderConfigOutput, table
+    disassociateIdentityProviderConfig: function(Client, types.DisassociateIdentityProviderConfigInput): Operation<types.DisassociateIdentityProviderConfigOutput>
     -- Lists the access entries for your cluster.
-    listAccessEntries: function(Client, types.ListAccessEntriesInput): types.ListAccessEntriesOutput, table
+    listAccessEntries: function(Client, types.ListAccessEntriesInput): Operation<types.ListAccessEntriesOutput>
     -- Lists the available access policies.
-    listAccessPolicies: function(Client, types.ListAccessPoliciesInput): types.ListAccessPoliciesOutput, table
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput): Operation<types.ListAccessPoliciesOutput>
     -- Lists the installed add-ons.
-    listAddons: function(Client, types.ListAddonsInput): types.ListAddonsOutput, table
+    listAddons: function(Client, types.ListAddonsInput): Operation<types.ListAddonsOutput>
     -- Lists the access policies associated with an access entry.
-    listAssociatedAccessPolicies: function(Client, types.ListAssociatedAccessPoliciesInput): types.ListAssociatedAccessPoliciesOutput, table
+    listAssociatedAccessPolicies: function(Client, types.ListAssociatedAccessPoliciesInput): Operation<types.ListAssociatedAccessPoliciesOutput>
     -- Lists all managed capabilities in your Amazon EKS cluster. You can use this operation to get an overview of all capabilities and their current status.
-    listCapabilities: function(Client, types.ListCapabilitiesInput): types.ListCapabilitiesOutput, table
+    listCapabilities: function(Client, types.ListCapabilitiesInput): Operation<types.ListCapabilitiesOutput>
     -- Lists the Amazon EKS clusters in your Amazon Web Services account in the specified Amazon Web Services Region.
-    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listClusters: function(Client, types.ListClustersInput): Operation<types.ListClustersOutput>
     -- Displays the full description of the subscription.
-    listEksAnywhereSubscriptions: function(Client, types.ListEksAnywhereSubscriptionsInput): types.ListEksAnywhereSubscriptionsOutput, table
+    listEksAnywhereSubscriptions: function(Client, types.ListEksAnywhereSubscriptionsInput): Operation<types.ListEksAnywhereSubscriptionsOutput>
     -- Lists the Fargate profiles associated with the specified cluster in your Amazon Web Services
     -- account in the specified Amazon Web Services Region.
-    listFargateProfiles: function(Client, types.ListFargateProfilesInput): types.ListFargateProfilesOutput, table
+    listFargateProfiles: function(Client, types.ListFargateProfilesInput): Operation<types.ListFargateProfilesOutput>
     -- Lists the identity provider configurations for your cluster.
-    listIdentityProviderConfigs: function(Client, types.ListIdentityProviderConfigsInput): types.ListIdentityProviderConfigsOutput, table
+    listIdentityProviderConfigs: function(Client, types.ListIdentityProviderConfigsInput): Operation<types.ListIdentityProviderConfigsOutput>
     -- Returns a list of all insights checked for against the specified cluster. You can
     -- filter which insights are returned by category, associated Kubernetes version, and
     -- status. The default filter lists all categories and every status.
@@ -281,18 +285,18 @@ local record Client
     -- MISCONFIGURATION: Amazon EKS identifies misconfiguration in your EKS
     -- Hybrid Nodes setup that could impair functionality of your cluster or
     -- workloads. These are called configuration insights.
-    listInsights: function(Client, types.ListInsightsInput): types.ListInsightsOutput, table
+    listInsights: function(Client, types.ListInsightsInput): Operation<types.ListInsightsOutput>
     -- Lists the managed node groups associated with the specified cluster in your Amazon Web Services
     -- account in the specified Amazon Web Services Region. Self-managed node groups aren't listed.
-    listNodegroups: function(Client, types.ListNodegroupsInput): types.ListNodegroupsOutput, table
+    listNodegroups: function(Client, types.ListNodegroupsInput): Operation<types.ListNodegroupsOutput>
     -- List the EKS Pod Identity associations in a cluster. You can filter the list by the namespace that the
     -- association is in or the service account that the association uses.
-    listPodIdentityAssociations: function(Client, types.ListPodIdentityAssociationsInput): types.ListPodIdentityAssociationsOutput, table
+    listPodIdentityAssociations: function(Client, types.ListPodIdentityAssociationsInput): Operation<types.ListPodIdentityAssociationsOutput>
     -- List the tags for an Amazon EKS resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Lists the updates associated with an Amazon EKS resource in your Amazon Web Services account, in the
     -- specified Amazon Web Services Region.
-    listUpdates: function(Client, types.ListUpdatesInput): types.ListUpdatesOutput, table
+    listUpdates: function(Client, types.ListUpdatesInput): Operation<types.ListUpdatesOutput>
     -- Connects a Kubernetes cluster to the Amazon EKS control plane.
     -- Any Kubernetes cluster can be connected to the Amazon EKS control plane to view current
     -- information about the cluster and its nodes.
@@ -307,9 +311,9 @@ local record Client
     -- Amazon EKS control plane. If the manifest isn't applied within three days, the connected
     -- cluster will no longer be visible and must be deregistered using
     -- DeregisterCluster.
-    registerCluster: function(Client, types.RegisterClusterInput): types.RegisterClusterOutput, table
+    registerCluster: function(Client, types.RegisterClusterInput): Operation<types.RegisterClusterOutput>
     -- Initiates an on-demand refresh operation for cluster insights, getting the latest analysis outside of the standard refresh schedule.
-    startInsightsRefresh: function(Client, types.StartInsightsRefreshInput): types.StartInsightsRefreshOutput, table
+    startInsightsRefresh: function(Client, types.StartInsightsRefreshInput): Operation<types.StartInsightsRefreshOutput>
     -- Associates the specified tags to an Amazon EKS resource with the specified
     -- resourceArn. If existing tags on a resource are not specified in the
     -- request parameters, they aren't changed. When a resource is deleted, the tags associated
@@ -317,16 +321,16 @@ local record Client
     -- propagate to any other resources associated with the cluster. For example, if you tag a
     -- cluster with this operation, that tag doesn't automatically propagate to the subnets and
     -- nodes associated with the cluster.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Deletes specified tags from an Amazon EKS resource.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- Updates an access entry.
-    updateAccessEntry: function(Client, types.UpdateAccessEntryInput): types.UpdateAccessEntryOutput, table
+    updateAccessEntry: function(Client, types.UpdateAccessEntryInput): Operation<types.UpdateAccessEntryOutput>
     -- Updates an Amazon EKS add-on.
-    updateAddon: function(Client, types.UpdateAddonInput): types.UpdateAddonOutput, table
+    updateAddon: function(Client, types.UpdateAddonInput): Operation<types.UpdateAddonOutput>
     -- Updates the configuration of a managed capability in your Amazon EKS cluster. You can update the IAM role, configuration settings, and delete propagation policy for a capability.
     -- When you update a capability, Amazon EKS applies the changes and may restart capability components as needed. The capability remains available during the update process, but some operations may be temporarily unavailable.
-    updateCapability: function(Client, types.UpdateCapabilityInput): types.UpdateCapabilityOutput, table
+    updateCapability: function(Client, types.UpdateCapabilityInput): Operation<types.UpdateCapabilityOutput>
     -- Updates an Amazon EKS cluster configuration. Your cluster continues to function during the
     -- update. The response output includes an update ID that you can use to track the status
     -- of your cluster update with DescribeUpdate.
@@ -363,7 +367,7 @@ local record Client
     -- an update, the cluster status moves to UPDATING (this status transition is
     -- eventually consistent). When the update is complete (either Failed or
     -- Successful), the cluster status moves to Active.
-    updateClusterConfig: function(Client, types.UpdateClusterConfigInput): types.UpdateClusterConfigOutput, table
+    updateClusterConfig: function(Client, types.UpdateClusterConfigInput): Operation<types.UpdateClusterConfigOutput>
     -- Updates an Amazon EKS cluster to the specified Kubernetes version. Your cluster continues to
     -- function during the update. The response output includes an update ID that you can use
     -- to track the status of your cluster update with the
@@ -376,17 +380,17 @@ local record Client
     -- If your cluster has managed node groups attached to it, all of your node groups' Kubernetes
     -- versions must match the cluster's Kubernetes version in order to update the cluster to a new
     -- Kubernetes version.
-    updateClusterVersion: function(Client, types.UpdateClusterVersionInput): types.UpdateClusterVersionOutput, table
+    updateClusterVersion: function(Client, types.UpdateClusterVersionInput): Operation<types.UpdateClusterVersionOutput>
     -- Update an EKS Anywhere Subscription. Only auto renewal and tags can be updated after
     -- subscription creation.
-    updateEksAnywhereSubscription: function(Client, types.UpdateEksAnywhereSubscriptionInput): types.UpdateEksAnywhereSubscriptionOutput, table
+    updateEksAnywhereSubscription: function(Client, types.UpdateEksAnywhereSubscriptionInput): Operation<types.UpdateEksAnywhereSubscriptionOutput>
     -- Updates an Amazon EKS managed node group configuration. Your node group continues to
     -- function during the update. The response output includes an update ID that you can use
     -- to track the status of your node group update with the
     -- DescribeUpdate
     -- API operation. You can update the Kubernetes labels
     -- and taints for a node group and the scaling and version update configuration.
-    updateNodegroupConfig: function(Client, types.UpdateNodegroupConfigInput): types.UpdateNodegroupConfigOutput, table
+    updateNodegroupConfig: function(Client, types.UpdateNodegroupConfigInput): Operation<types.UpdateNodegroupConfigOutput>
     -- Updates the Kubernetes version or AMI version of an Amazon EKS managed node group.
     -- You can update a node group using a launch template only if the node group was
     -- originally deployed with a launch template. Additionally, the launch template ID or name
@@ -409,7 +413,7 @@ local record Client
     -- gracefully and will fail if it is unable to do so. You can force the update
     -- if Amazon EKS is unable to drain the nodes as a result of a Pod disruption
     -- budget issue.
-    updateNodegroupVersion: function(Client, types.UpdateNodegroupVersionInput): types.UpdateNodegroupVersionOutput, table
+    updateNodegroupVersion: function(Client, types.UpdateNodegroupVersionInput): Operation<types.UpdateNodegroupVersionOutput>
     -- Updates a EKS Pod Identity association. In an update, you can change the IAM role, the target IAM role, or disableSessionTags.
     -- You must change at least one of these in an update. An association can't be moved
     -- between clusters, namespaces, or service accounts. If you need to edit the namespace
@@ -427,7 +431,7 @@ local record Client
     -- account, then using those credentials to assume the target IAM role. This process
     -- provides your Pod with temporary credentials that have the permissions defined in the
     -- target role, allowing secure access to resources in another Amazon Web Services account.
-    updatePodIdentityAssociation: function(Client, types.UpdatePodIdentityAssociationInput): types.UpdatePodIdentityAssociationOutput, table
+    updatePodIdentityAssociation: function(Client, types.UpdatePodIdentityAssociationInput): Operation<types.UpdatePodIdentityAssociationOutput>
 end
 
 local record M

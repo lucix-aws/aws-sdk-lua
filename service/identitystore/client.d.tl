@@ -2,45 +2,49 @@
 
 local types = require("identitystore.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a group within the specified identity store.
-    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createGroup: function(Client, types.CreateGroupInput): Operation<types.CreateGroupOutput>
     -- Creates a relationship between a member and a group. The following identifiers must be specified: GroupId, IdentityStoreId, and MemberId.
-    createGroupMembership: function(Client, types.CreateGroupMembershipInput): types.CreateGroupMembershipOutput, table
+    createGroupMembership: function(Client, types.CreateGroupMembershipInput): Operation<types.CreateGroupMembershipOutput>
     -- Creates a user within the specified identity store.
-    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUser: function(Client, types.CreateUserInput): Operation<types.CreateUserOutput>
     -- Delete a group within an identity store given GroupId.
-    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): Operation<types.DeleteGroupOutput>
     -- Delete a membership within a group given MembershipId.
-    deleteGroupMembership: function(Client, types.DeleteGroupMembershipInput): types.DeleteGroupMembershipOutput, table
+    deleteGroupMembership: function(Client, types.DeleteGroupMembershipInput): Operation<types.DeleteGroupMembershipOutput>
     -- Deletes a user within an identity store given UserId.
-    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): Operation<types.DeleteUserOutput>
     -- Retrieves the group metadata and attributes from GroupId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    describeGroup: function(Client, types.DescribeGroupInput): Operation<types.DescribeGroupOutput>
     -- Retrieves membership metadata and attributes from MembershipId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    describeGroupMembership: function(Client, types.DescribeGroupMembershipInput): types.DescribeGroupMembershipOutput, table
+    describeGroupMembership: function(Client, types.DescribeGroupMembershipInput): Operation<types.DescribeGroupMembershipOutput>
     -- Retrieves the user metadata and attributes from the UserId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    describeUser: function(Client, types.DescribeUserInput): Operation<types.DescribeUserOutput>
     -- Retrieves GroupId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    getGroupId: function(Client, types.GetGroupIdInput): types.GetGroupIdOutput, table
+    getGroupId: function(Client, types.GetGroupIdInput): Operation<types.GetGroupIdOutput>
     -- Retrieves the MembershipId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    getGroupMembershipId: function(Client, types.GetGroupMembershipIdInput): types.GetGroupMembershipIdOutput, table
+    getGroupMembershipId: function(Client, types.GetGroupMembershipIdInput): Operation<types.GetGroupMembershipIdOutput>
     -- Retrieves the UserId in an identity store. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    getUserId: function(Client, types.GetUserIdInput): types.GetUserIdOutput, table
+    getUserId: function(Client, types.GetUserIdInput): Operation<types.GetUserIdOutput>
     -- Checks the user's membership in all requested groups and returns if the member exists in all queried groups. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    isMemberInGroups: function(Client, types.IsMemberInGroupsInput): types.IsMemberInGroupsOutput, table
+    isMemberInGroups: function(Client, types.IsMemberInGroupsInput): Operation<types.IsMemberInGroupsOutput>
     -- For the specified group in the specified identity store, returns the list of all GroupMembership objects and returns results in paginated form. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    listGroupMemberships: function(Client, types.ListGroupMembershipsInput): types.ListGroupMembershipsOutput, table
+    listGroupMemberships: function(Client, types.ListGroupMembershipsInput): Operation<types.ListGroupMembershipsOutput>
     -- For the specified member in the specified identity store, returns the list of all GroupMembership objects and returns results in paginated form. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    listGroupMembershipsForMember: function(Client, types.ListGroupMembershipsForMemberInput): types.ListGroupMembershipsForMemberOutput, table
+    listGroupMembershipsForMember: function(Client, types.ListGroupMembershipsForMemberInput): Operation<types.ListGroupMembershipsForMemberOutput>
     -- Lists all groups in the identity store. Returns a paginated list of complete Group objects. Filtering for a Group by the DisplayName attribute is deprecated. Instead, use the GetGroupId API action. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): Operation<types.ListGroupsOutput>
     -- Lists all users in the identity store. Returns a paginated list of complete User objects. Filtering for a User by the UserName attribute is deprecated. Instead, use the GetUserId API action. If you have access to a member account, you can use this API operation from the member account. For more information, see Limiting access to the identity store from member accounts in the IAM Identity Center User Guide.
-    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): Operation<types.ListUsersOutput>
     -- Updates the specified group metadata and attributes in the specified identity store.
-    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): Operation<types.UpdateGroupOutput>
     -- Updates the specified user metadata and attributes in the specified identity store.
-    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    updateUser: function(Client, types.UpdateUserInput): Operation<types.UpdateUserOutput>
 end
 
 local record M

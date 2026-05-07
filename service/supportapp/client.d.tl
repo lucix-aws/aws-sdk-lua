@@ -2,6 +2,10 @@
 
 local types = require("supportapp.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Creates a Slack channel configuration for your Amazon Web Services account.
     -- You can add up to 5 Slack workspaces for your account.
@@ -14,27 +18,27 @@ local record Client
     -- channel have read and write access to your support cases. Anyone in your Slack channel can
     -- create, update, or resolve support cases for your account. Users require an invitation to
     -- join private channels.
-    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput): types.CreateSlackChannelConfigurationOutput, table
+    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput): Operation<types.CreateSlackChannelConfigurationOutput>
     -- Deletes an alias for an Amazon Web Services account ID. The alias appears in the Amazon Web Services Support App page of the
     -- Amazon Web Services Support Center. The alias also appears in Slack messages from the Amazon Web Services Support App.
-    deleteAccountAlias: function(Client, types.DeleteAccountAliasInput): types.DeleteAccountAliasOutput, table
+    deleteAccountAlias: function(Client, types.DeleteAccountAliasInput): Operation<types.DeleteAccountAliasOutput>
     -- Deletes a Slack channel configuration from your Amazon Web Services account. This operation doesn't
     -- delete your Slack channel.
-    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput): types.DeleteSlackChannelConfigurationOutput, table
+    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput): Operation<types.DeleteSlackChannelConfigurationOutput>
     -- Deletes a Slack workspace configuration from your Amazon Web Services account. This operation doesn't
     -- delete your Slack workspace.
-    deleteSlackWorkspaceConfiguration: function(Client, types.DeleteSlackWorkspaceConfigurationInput): types.DeleteSlackWorkspaceConfigurationOutput, table
+    deleteSlackWorkspaceConfiguration: function(Client, types.DeleteSlackWorkspaceConfigurationInput): Operation<types.DeleteSlackWorkspaceConfigurationOutput>
     -- Retrieves the alias from an Amazon Web Services account ID. The alias appears in the Amazon Web Services Support App page of
     -- the Amazon Web Services Support Center. The alias also appears in Slack messages from the Amazon Web Services Support App.
-    getAccountAlias: function(Client, types.GetAccountAliasInput): types.GetAccountAliasOutput, table
+    getAccountAlias: function(Client, types.GetAccountAliasInput): Operation<types.GetAccountAliasOutput>
     -- Lists the Slack channel configurations for an Amazon Web Services account.
-    listSlackChannelConfigurations: function(Client, types.ListSlackChannelConfigurationsInput): types.ListSlackChannelConfigurationsOutput, table
+    listSlackChannelConfigurations: function(Client, types.ListSlackChannelConfigurationsInput): Operation<types.ListSlackChannelConfigurationsOutput>
     -- Lists the Slack workspace configurations for an Amazon Web Services account.
-    listSlackWorkspaceConfigurations: function(Client, types.ListSlackWorkspaceConfigurationsInput): types.ListSlackWorkspaceConfigurationsOutput, table
+    listSlackWorkspaceConfigurations: function(Client, types.ListSlackWorkspaceConfigurationsInput): Operation<types.ListSlackWorkspaceConfigurationsOutput>
     -- Creates or updates an individual alias for each Amazon Web Services account ID. The alias appears in the
     -- Amazon Web Services Support App page of the Amazon Web Services Support Center. The alias also appears in Slack messages from the
     -- Amazon Web Services Support App.
-    putAccountAlias: function(Client, types.PutAccountAliasInput): types.PutAccountAliasOutput, table
+    putAccountAlias: function(Client, types.PutAccountAliasInput): Operation<types.PutAccountAliasOutput>
     -- Registers a Slack workspace for your Amazon Web Services account. To call this API, your account must be
     -- part of an organization in Organizations.
     -- If you're the management account and you want to register Slack
@@ -53,9 +57,9 @@ local record Client
     -- see Managing access to the Amazon Web Services Support App.
     -- Configure a Slack channel to use the Amazon Web Services Support App for support cases for that account. For
     -- more information, see Configuring a Slack channel.
-    registerSlackWorkspaceForOrganization: function(Client, types.RegisterSlackWorkspaceForOrganizationInput): types.RegisterSlackWorkspaceForOrganizationOutput, table
+    registerSlackWorkspaceForOrganization: function(Client, types.RegisterSlackWorkspaceForOrganizationInput): Operation<types.RegisterSlackWorkspaceForOrganizationOutput>
     -- Updates the configuration for a Slack channel, such as case update notifications.
-    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput): types.UpdateSlackChannelConfigurationOutput, table
+    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput): Operation<types.UpdateSlackChannelConfigurationOutput>
 end
 
 local record M

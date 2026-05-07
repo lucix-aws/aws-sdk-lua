@@ -2,31 +2,35 @@
 
 local types = require("billing.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Associates one or more source billing views with an existing billing view. This allows creating aggregate billing views that combine data from multiple sources.
-    associateSourceViews: function(Client, types.AssociateSourceViewsInput): types.AssociateSourceViewsOutput, table
+    associateSourceViews: function(Client, types.AssociateSourceViewsInput): Operation<types.AssociateSourceViewsOutput>
     -- Creates a billing view with the specified billing view attributes.
-    createBillingView: function(Client, types.CreateBillingViewInput): types.CreateBillingViewOutput, table
+    createBillingView: function(Client, types.CreateBillingViewInput): Operation<types.CreateBillingViewOutput>
     -- Deletes the specified billing view.
-    deleteBillingView: function(Client, types.DeleteBillingViewInput): types.DeleteBillingViewOutput, table
+    deleteBillingView: function(Client, types.DeleteBillingViewInput): Operation<types.DeleteBillingViewOutput>
     -- Removes the association between one or more source billing views and an existing billing view. This allows modifying the composition of aggregate billing views.
-    disassociateSourceViews: function(Client, types.DisassociateSourceViewsInput): types.DisassociateSourceViewsOutput, table
+    disassociateSourceViews: function(Client, types.DisassociateSourceViewsInput): Operation<types.DisassociateSourceViewsOutput>
     -- Returns the metadata associated to the specified billing view ARN.
-    getBillingView: function(Client, types.GetBillingViewInput): types.GetBillingViewOutput, table
+    getBillingView: function(Client, types.GetBillingViewInput): Operation<types.GetBillingViewOutput>
     -- Returns the resource-based policy document attached to the resource in JSON format.
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): Operation<types.GetResourcePolicyOutput>
     -- Lists the billing views available for a given time period. Every Amazon Web Services account has a unique PRIMARY billing view that represents the billing data available by default. Accounts that use Billing Conductor also have BILLING_GROUP billing views representing pro forma costs associated with each created billing group.
-    listBillingViews: function(Client, types.ListBillingViewsInput): types.ListBillingViewsOutput, table
+    listBillingViews: function(Client, types.ListBillingViewsInput): Operation<types.ListBillingViewsOutput>
     -- Lists the source views (managed Amazon Web Services billing views) associated with the billing view.
-    listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput): types.ListSourceViewsForBillingViewOutput, table
+    listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput): Operation<types.ListSourceViewsForBillingViewOutput>
     -- Lists tags associated with the billing view resource.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- An API operation for adding one or more tags (key-value pairs) to a resource.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Removes one or more tags from a resource. Specify only tag keys in your request. Don't specify the value.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
     -- An API to update the attributes of the billing view.
-    updateBillingView: function(Client, types.UpdateBillingViewInput): types.UpdateBillingViewOutput, table
+    updateBillingView: function(Client, types.UpdateBillingViewInput): Operation<types.UpdateBillingViewOutput>
 end
 
 local record M

@@ -2,18 +2,22 @@
 
 local types = require("mediastoredata.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Deletes an object at the specified path.
-    deleteObject: function(Client, types.DeleteObjectInput): types.DeleteObjectOutput, table
+    deleteObject: function(Client, types.DeleteObjectInput): Operation<types.DeleteObjectOutput>
     -- Gets the headers for an object at the specified path.
-    describeObject: function(Client, types.DescribeObjectInput): types.DescribeObjectOutput, table
+    describeObject: function(Client, types.DescribeObjectInput): Operation<types.DescribeObjectOutput>
     -- Downloads the object at the specified path. If the object’s upload availability is set to streaming, AWS Elemental MediaStore downloads the object even if it’s still uploading the object.
-    getObject: function(Client, types.GetObjectInput): types.GetObjectOutput, table
+    getObject: function(Client, types.GetObjectInput): Operation<types.GetObjectOutput>
     -- Provides a list of metadata entries about folders and objects in the specified
     -- folder.
-    listItems: function(Client, types.ListItemsInput): types.ListItemsOutput, table
+    listItems: function(Client, types.ListItemsInput): Operation<types.ListItemsOutput>
     -- Uploads an object to the specified path. Object sizes are limited to 25 MB for standard upload availability and 10 MB for streaming upload availability.
-    putObject: function(Client, types.PutObjectInput): types.PutObjectOutput, table
+    putObject: function(Client, types.PutObjectInput): Operation<types.PutObjectOutput>
 end
 
 local record M

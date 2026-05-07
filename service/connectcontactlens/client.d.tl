@@ -2,9 +2,13 @@
 
 local types = require("connectcontactlens.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Provides a list of analysis segments for a real-time analysis session.
-    listRealtimeContactAnalysisSegments: function(Client, types.ListRealtimeContactAnalysisSegmentsInput): types.ListRealtimeContactAnalysisSegmentsOutput, table
+    listRealtimeContactAnalysisSegments: function(Client, types.ListRealtimeContactAnalysisSegmentsInput): Operation<types.ListRealtimeContactAnalysisSegmentsOutput>
 end
 
 local record M

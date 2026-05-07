@@ -2,36 +2,40 @@
 
 local types = require("healthlake.types")
 
+local record Operation<T>
+    await: function(Operation<T>): T, table
+end
+
 local record Client
     -- Create a FHIR-enabled data store.
-    createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput): types.CreateFHIRDatastoreOutput, table
+    createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput): Operation<types.CreateFHIRDatastoreOutput>
     -- Delete a FHIR-enabled data store.
-    deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput): types.DeleteFHIRDatastoreOutput, table
+    deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput): Operation<types.DeleteFHIRDatastoreOutput>
     -- Get properties for a FHIR-enabled data store.
-    describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput): types.DescribeFHIRDatastoreOutput, table
+    describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput): Operation<types.DescribeFHIRDatastoreOutput>
     -- Get FHIR export job properties.
-    describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput): types.DescribeFHIRExportJobOutput, table
+    describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput): Operation<types.DescribeFHIRExportJobOutput>
     -- Get the import job properties to learn more about the job or job progress.
-    describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput): types.DescribeFHIRImportJobOutput, table
+    describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput): Operation<types.DescribeFHIRImportJobOutput>
     -- List all FHIR-enabled data stores in a user’s account, regardless of data store
     -- status.
-    listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput): types.ListFHIRDatastoresOutput, table
+    listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput): Operation<types.ListFHIRDatastoresOutput>
     -- Lists all FHIR export jobs associated with an account and their statuses.
-    listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput): types.ListFHIRExportJobsOutput, table
+    listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput): Operation<types.ListFHIRExportJobsOutput>
     -- List all FHIR import jobs associated with an account and their statuses.
-    listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput): types.ListFHIRImportJobsOutput, table
+    listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput): Operation<types.ListFHIRImportJobsOutput>
     -- Returns a list of all existing tags associated with a data store.
-    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): Operation<types.ListTagsForResourceOutput>
     -- Start a FHIR export job.
-    startFHIRExportJob: function(Client, types.StartFHIRExportJobInput): types.StartFHIRExportJobOutput, table
+    startFHIRExportJob: function(Client, types.StartFHIRExportJobInput): Operation<types.StartFHIRExportJobOutput>
     -- Start importing bulk FHIR data into an ACTIVE data store. The import job imports FHIR
     -- data found in the InputDataConfig object and stores processing results in the
     -- JobOutputDataConfig object.
-    startFHIRImportJob: function(Client, types.StartFHIRImportJobInput): types.StartFHIRImportJobOutput, table
+    startFHIRImportJob: function(Client, types.StartFHIRImportJobInput): Operation<types.StartFHIRImportJobOutput>
     -- Add a user-specifed key and value tag to a data store.
-    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): Operation<types.TagResourceOutput>
     -- Remove a user-specifed key and value tag from a data store.
-    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): Operation<types.UntagResourceOutput>
 end
 
 local record M
